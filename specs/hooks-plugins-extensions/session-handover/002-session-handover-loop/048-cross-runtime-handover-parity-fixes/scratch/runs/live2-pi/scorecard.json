@@ -1,0 +1,38 @@
+{
+  "runtime": "pi",
+  "label": "live2",
+  "trustDialogs": 0,
+  "steps": {
+    "notePrepared": true,
+    "signalled": true,
+    "relaunched": true,
+    "noteClosed": false,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "recall": {
+    "sideWordStated": false,
+    "sideWordInNote": false
+  },
+  "noteStatus": "claimed",
+  "carry": {
+    "model": "unobservable",
+    "effort": "unobservable",
+    "name": "unobservable",
+    "provider": "unobservable"
+  },
+  "seconds": {
+    "startToPrepare": 24.3,
+    "prepareToSignal": 5.7,
+    "signalToRelaunch": 0.2,
+    "startToClosed": null
+  },
+  "problems": [],
+  "firstLaunch": "pi",
+  "relaunchArgs": null,
+  "score": "4/5"
+}

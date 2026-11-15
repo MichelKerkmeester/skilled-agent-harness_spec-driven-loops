@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring",
+  "description": "Phase 3: nudge-parity-and-hop-scoring",
+  "keywords": [
+    "phase",
+    "nudge-parity-and-hop-scoring"
+  ],
+  "lastUpdated": "2026-11-15T21:21:18.698Z",
+  "specId": "003",
+  "folderSlug": "nudge-parity-and-hop-scoring",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "048-cross-runtime-handover-parity-fixes"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "15-11-26_21-40__phase-048-extends-history-lookup-to-pi-and.md",
+    "15-11-26_22-21__phase-048-extends-history-lookup-to-pi-and.md"
+  ]
+}

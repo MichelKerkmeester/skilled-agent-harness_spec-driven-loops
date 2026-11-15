@@ -1,3 +1,3 @@
-$ mkdir -p "$VIBE_HOME/agents" && cp "$CONVERSATION_REPO_ROOT"/.vibe/agents/prompt-improver.toml "$VIBE_HOME/agents/" && test -f "$VIBE_HOME/agents/prompt-improver.toml" && echo agent-mirrored
+$ if ls -d "$VIBE_HOME"/logs/session/unified/child-* >/dev/null 2>&1; then echo child-spawned-before-mirror; exit 1; fi; mkdir -p "$VIBE_HOME/agents" && cp "$CONVERSATION_REPO_ROOT"/.vibe/agents/prompt-improver.toml "$VIBE_HOME/agents/" && test -f "$VIBE_HOME/agents/prompt-improver.toml" && echo agent-mirrored
 agent-mirrored
 [exit 0]

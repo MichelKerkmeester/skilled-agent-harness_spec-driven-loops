@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.11.0
+version: 1.6.12.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -126,9 +126,8 @@ If the runtime does not surface command menus clearly, use this compact command 
 - `/speckit:save` - write the current session context into the packet's continuity documents
 - `/speckit:search` - retrieve prior context, decisions, and analysis by ripgrep over spec and skill docs
 
-**Nested changelog generator (deprecated)**
+**Changelogs**
 - Spec folders no longer get changelogs. Write new entries to `.skilled/changelog/` with `/create:changelog`.
-- `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write` - re-render an existing packet changelog, with a deprecation notice on stderr. It refuses a packet that has no changelog and writes nothing
 
 ### Create Spec Folder
 

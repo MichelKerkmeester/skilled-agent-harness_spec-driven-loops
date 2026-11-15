@@ -1,4 +1,4 @@
 turn	status	attempts	evidence	observed
-read	PASS	1	turns/read	compaction-checkpoint at sequence 54
-reinject-after-tool	PASS	1	turns/reinject-after-tool	reinjection in post_tool_call at sequence 78, after compaction at 54
-follow-up	PASS	1	turns/follow-up	answer-written-after-compaction
+read	PASS	1	turns/read	compaction-checkpoint at sequence 50
+reinject-after-tool	PASS	1	turns/reinject-after-tool	reinjection in post_tool_call at sequence 74, after compaction at 50
+answer-written	PASS	1	turns/answer-written	answer-written-after-compaction

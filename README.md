@@ -70,7 +70,7 @@ Eleven specialized agents own focused roles. Eight CLI bridges let a runtime dis
 
 A review can fan out across several models at once, with the safest verdict winning. The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns.
 
-The six bridges for repository-opening runtimes refuse self-dispatch except `cli-pi`. The experimental dsh and Vibe targets are separate run surfaces: dsh for a headless dispatch or an interactive session such as `dsh web`, Vibe for a pinned print-mode run that reads its config from `.vibe/`. Fan-out lineages and dispatch stacks are bounded, so delegation never loops.
+Six bridges refuse to dispatch the runtime they run in. `cli-pi` and `cli-deepseek-harness` do not. The experimental dsh and Vibe bridges also run outside the checkout: dsh for a headless dispatch or an interactive session such as `dsh web`, Vibe for a pinned print-mode run that reads its config from `.vibe/`. Fan-out lineages and dispatch stacks are bounded, so delegation never loops.
 
 &nbsp;
 
@@ -181,7 +181,7 @@ node .skilled/bin/skill-advisor.cjs list-tools --format json
 
 ### Check The Setup
 
-Open the repository in any of the six runtimes: OpenCode, Claude Code, Codex, Cursor, Devin or Pi. Then run:
+Open the repository in any of the eight runtimes: OpenCode, Claude Code, Codex, Cursor, Devin, Pi, DeepSeek Harness (DSH) or Mistral Vibe. Then run:
 
 ```
 /doctor:setup
@@ -537,7 +537,7 @@ When the index has no scored candidate, Gate 1 also scores declared trigger phra
 
 When a session claims a handoff note, the claim can carry a `## History Lookup` section after the note body. It holds one read-only command that searches, browses, loads and pages the sender's earlier turns, at most 16 KiB per reply. It returns only what the conversation showed, and it ends with `Use it for a detail this note does not spell out, before you guess.`
 
-`prepare` stores a locator for the sending session, and `claim` mints a fresh one for it. Only Claude Code and Codex senders get one. The section is left out when the sender has no transcript, when the note names another runtime, when the sender ran in another checkout, or when the runtime is not built, and the claim then prints what it printed before.
+`prepare` stores a locator for the sending session, and `claim` mints a fresh one for it. Only Claude Code, Codex, Vibe, Pi and OpenCode senders get one. The section is left out when the sender has no transcript, when the note names another runtime, when the sender ran in another checkout, or when the runtime is not built, and the claim then prints what it printed before.
 
 The printed command is `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. The locator works for 30 minutes from the claim and only for the session and checkout that minted it. Search matches whole identifier parts, split on `-`, `.`, `/`, `:` and `_` and on case changes. A query matches whole word parts, so 'live' does not match 'delivery'.
 
@@ -962,7 +962,7 @@ Orca work routes here, not to the mcp-tooling hub, which names `cli-orca` as the
 
 ## 10. 🤖 AGENT LIBRARY
 
-11 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code, Codex, Cursor, Devin and Pi (`.<runtime>/agents/`). OpenCode reads `.opencode/agents/`, which links to the same `.skilled/agents/` source.
+11 custom specialist agents. Defined in `.skilled/agents/` (source of truth). The Codex, Pi, DSH and Mistral Vibe copies are generated from it, Claude Code keeps a hand-carried fork in `.claude/agents/`, and Cursor and Devin link to that fork. OpenCode reads `.opencode/agents/`, which links to the same `.skilled/agents/` source.
 
 &nbsp;
 
@@ -1016,7 +1016,7 @@ Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and na
 
 Executes a single LEAF pass. The `/deep:research` command owns the loop. See [Deep Loop](#7--deep-loop).
 
-**Deep Review** - audits one review pass, read-only on code
+**Deep Review** - audits one review pass and changes no code
 
 Produces `file:line` findings. The `/deep:review` command owns the loop. See [Deep Loop](#7--deep-loop).
 

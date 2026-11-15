@@ -825,6 +825,70 @@ function writeState(sessionId, level, env = process.env) {
   persistState(sessionId, level, null, env);
 }
 
+// Two hooks can decide on one nudge at once: Vibe runs tool calls side by side, and Claude and
+// Codex run a hook per tool call in a parallel batch and a prompt hook beside a tool hook. Only
+// the hook that creates the claim file delivers, and it decides again under the claim, because a
+// hook that delivered first has already written its level. A claim older than this bound was
+// left by a hook that died and is taken over. Two hooks that both find the same stale claim can,
+// rarely, both hold one; the cost is one repeated nudge.
+const NUDGE_CLAIM_STALE_MS = 10000;
+
+function claimNudge(sessionId, env) {
+  let claimPath;
+  try {
+    if (!validSessionId(sessionId)) return { release() {} };
+    core.ensureStateDir(env);
+    claimPath = path.join(core.stateDir(env), `nudge-${sessionId}.claim`);
+  } catch {
+    // Without a state directory there is no stored level to race on either.
+    return { release() {} };
+  }
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      fs.closeSync(fs.openSync(claimPath, 'wx', 0o600));
+      return {
+        release() {
+          try {
+            fs.rmSync(claimPath, { force: true });
+          } catch {}
+        },
+      };
+    } catch (error) {
+      if (error.code !== 'EEXIST') return { release() {} };
+      try {
+        if (Date.now() - fs.statSync(claimPath).mtimeMs <= NUDGE_CLAIM_STALE_MS) return null;
+        fs.rmSync(claimPath, { force: true });
+      } catch {
+        return null;
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Deliver a nudge decision once when hooks race: claim the session's nudge, decide again under
+ * the claim and write the level that second decision returns.
+ *
+ * @param {Object} options - The inputs `nudgeDecision` takes.
+ * @returns {{nudge: boolean, level: number, reason: string}|null} The decision to deliver, or
+ * null when another hook holds the claim or the second decision no longer nudges.
+ */
+function commitNudge(options = {}) {
+  const env = options.env ?? process.env;
+  const claim = claimNudge(options.sessionId, env);
+  if (claim === null) return null;
+  try {
+    // Through the export, so a test can stand in for the decision a racing hook made.
+    const confirmed = module.exports.nudgeDecision(options);
+    if (!confirmed.nudge) return null;
+    writeState(options.sessionId, confirmed.level, env);
+    return confirmed;
+  } finally {
+    claim.release();
+  }
+}
+
 /** Mark the session's unknown context window once, preserving its current nudge state. */
 function markWindowUnknown(sessionId, env = process.env) {
   try {
@@ -901,6 +965,7 @@ module.exports = {
   validSessionId,
   readState,
   writeState,
+  commitNudge,
   markWindowUnknown,
   rearmAfterWithdraw,
 };

@@ -1,0 +1,4 @@
+.skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.6.0.md
+.skilled/skills/sk-code/changelog/v2.1.0.0.md
+.skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.3.0.md
+.skilled/skills/system-skill-advisor/changelog/v0.17.17.0.md

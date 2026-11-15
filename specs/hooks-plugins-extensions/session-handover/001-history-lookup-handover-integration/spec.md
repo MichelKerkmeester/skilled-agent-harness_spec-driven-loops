@@ -55,7 +55,7 @@ _memory:
 | **Parent Packet** | hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | All seven children are Complete, recursive strict validation reports RESULT: PASSED, and a live Claude Code hop shows the receiver running the lookup against the sender session. |
+| **Handoff Criteria** | Children 1 to 7 are Complete, recursive strict validation reports RESULT: PASSED, and a live Claude Code hop shows the receiver running the lookup against the sender session. Child 8 is a planned wider measurement, added after the parent closed, and it does not reopen the delivered work. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -122,6 +122,9 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 5 | 005-deprecate-compaction-offer/ | No runtime mints or offers the lookup after a compaction. | Complete |
 | 6 | 006-docs-and-live-hop-proof/ | Docs, catalog and playbooks updated, one live hop recorded, the phase 1 measurement rerun. | Complete |
 | 7 | 007-review-remediation/ | The claim mints only for a transcript in the receiver's checkout, the command reads `CLAUDE_CONFIG_DIR`, `prepare` mints nothing, and the docs match the code. | Complete |
+| 8 | 008-wider-hop-recall-measurement/ | Rerun the hop-recall measurement on Claude Code, Codex and Vibe, in both arms, with more runs and with real handoffs. Planned, not run. | Draft |
+| 9 | 009-deep-review-p2-remediation/ | Fix the deep review's P2 advisories on the engine move, measure the search index memory, and remove the predecessor hard block from `/speckit:complete`. Independent of phase 8. | Complete |
+| 10 | 010-history-secret-redaction/ | Redact secret-shaped values (API keys, tokens, private keys, auth headers, URL passwords) from every history lookup reply. The stored transcript stays untouched. | Complete |
 
 ### Phase Transition Rules
 
@@ -140,6 +143,9 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 004-offer-lookup-at-claim | 005-deprecate-compaction-offer | A claim prints a lookup command that returns the sender's turns, including after the 30-minute window. | The phase 4 tests and one manual claim. |
 | 005-deprecate-compaction-offer | 006-docs-and-live-hop-proof | No compaction path prints the lookup section and the remaining suites pass. | `rg` for the section title in the compaction hooks returns nothing, plus the hook suites. |
 | 006-docs-and-live-hop-proof | 007-review-remediation | The deep review reports no P0 or P1 and lists every P2 it found. | `review/review-report.md` section 3. |
+| 007-review-remediation | 008-wider-hop-recall-measurement | The lookup ships on main, and the engine build exists at its new path in the hook folder. | `test -f .skilled/hooks/session-handover/history/dist/cli.js && echo built` prints `built`. |
+| 008-wider-hop-recall-measurement | 009-deep-review-p2-remediation | None: phase 9 remediates the phase 6 review and does not wait on phase 8's measurement. | Phase 9 started while phase 8 was Draft, by the operator's decision. |
+| 009-deep-review-p2-remediation | 010-history-secret-redaction | None: phase 10 is a new operator request and does not depend on phase 9's fixes. | Phase 10 started after phase 9 merged, by the operator's decision. |
 <!-- /ANCHOR:phase-map -->
 
 ---

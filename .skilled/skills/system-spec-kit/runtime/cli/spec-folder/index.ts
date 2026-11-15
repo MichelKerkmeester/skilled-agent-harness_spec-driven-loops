@@ -19,11 +19,6 @@ import {
   validateFolderAlignment,
 } from './alignment-validator.js';
 import { ensureSpecFolderExists } from './directory-setup.js';
-import {
-  buildNestedChangelogData,
-  generateNestedChangelogMarkdown,
-  writeNestedChangelog,
-} from './nested-changelog.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. EXPORTS
@@ -38,12 +33,9 @@ export {
   extractConversationTopics,
   extractObservationKeywords,
   calculateAlignmentScore,
-  buildNestedChangelogData,
   computeTelemetrySchemaDocsFieldDiffs,
   formatTelemetrySchemaDocsDriftDiffs,
-  generateNestedChangelogMarkdown,
   validateTelemetrySchemaDocsDrift,
   validateContentAlignment,
   validateFolderAlignment,
-  writeNestedChangelog,
 };

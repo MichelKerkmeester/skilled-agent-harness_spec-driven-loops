@@ -12,12 +12,9 @@ const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 
 const ENTRY_PATH = path.join(__dirname, '..', 'bin', 'history-lookup.mjs');
-const OFFER_PATH = path.join(
-  __dirname, '..', '..', '..', 'skills', 'system-spec-kit', 'runtime', 'dist',
-  'hooks', 'lib', 'history', 'lookup-offer.js',
-);
+const OFFER_PATH = path.join(__dirname, '..', 'history', 'dist', 'lookup-offer.js');
 const ENTRY_RELATIVE_PATH = '.skilled/hooks/session-handover/bin/history-lookup.mjs';
-const CORE_RELATIVE_PATH = '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js';
+const CORE_RELATIVE_PATH = '.skilled/hooks/session-handover/history/dist/cli.js';
 
 function writePlaceholder(root, relativePath) {
   const filePath = path.join(root, relativePath);

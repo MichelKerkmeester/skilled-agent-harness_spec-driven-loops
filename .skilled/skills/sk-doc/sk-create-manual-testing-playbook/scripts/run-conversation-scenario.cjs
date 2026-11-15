@@ -1252,6 +1252,29 @@ function piAnswerKeys(question, answer) {
 const VIBE_HOME_PREFIX = 'vibe-home-';
 
 /**
+ * Model alias every Vibe subject runs on unless a scenario's launch setup pins another.
+ *
+ * The repository config names the allowed models but no active one, so an unpinned home falls
+ * back to Vibe's routed default, which can change between runs without notice.
+ */
+const VIBE_DEFAULT_MODEL = 'deepseek-flash';
+
+/**
+ * Return a Vibe config with exactly one active model, the given alias, as its first line.
+ *
+ * A top-level key must precede the first table, so the pin is prepended, and any earlier pin is
+ * removed so the file never holds the key twice.
+ *
+ * @param {string} text - Config file text.
+ * @param {string} alias - Model alias to pin.
+ * @returns {string} Pinned config text.
+ */
+function pinVibeModel(text, alias) {
+  const rest = text.split('\n').filter((line) => !/^\s*active_model\s*=/.test(line)).join('\n');
+  return `active_model = ${JSON.stringify(alias)}\n${rest}`;
+}
+
+/**
  * Create the disposable home a Vibe subject reads its config and hooks from.
  *
  * A scratch project is not a trusted folder, so Vibe ignores its `.vibe/config.toml` and
@@ -1268,7 +1291,10 @@ function prepareVibeHome(ctx) {
   const home = fs.mkdtempSync(path.join(parent, VIBE_HOME_PREFIX));
 
   const config = path.join(ctx.repoRoot, '.vibe', 'config.toml');
-  if (fs.existsSync(config)) fs.copyFileSync(config, path.join(home, 'config.toml'));
+  if (fs.existsSync(config)) {
+    const pinned = pinVibeModel(fs.readFileSync(config, 'utf8'), VIBE_DEFAULT_MODEL);
+    fs.writeFileSync(path.join(home, 'config.toml'), pinned);
+  }
 
   const hooks = path.join(ctx.repoRoot, '.vibe', 'hooks.toml');
   if (fs.existsSync(hooks)) {
@@ -1337,6 +1363,40 @@ function vibeSessionId(home) {
     .map((entry) => entry.name)
     .sort();
   return names.length > 0 ? names[names.length - 1] : null;
+}
+
+/**
+ * Read the model alias each session in a Vibe home ran on, from the session's own metadata.
+ *
+ * The value is what Vibe resolved at start, not what the runner wrote, so a pin that did not take
+ * shows up in the result.
+ *
+ * @param {string} home - Absolute home path.
+ * @returns {string|null} The aliases joined with commas, or null when no session recorded one.
+ */
+function vibeSessionModels(home) {
+  if (!home) return null;
+  const root = path.join(home, 'logs', 'session', 'unified');
+  let names;
+  try {
+    names = fs.readdirSync(root, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .sort();
+  } catch {
+    return null;
+  }
+  const models = [];
+  for (const name of names) {
+    try {
+      const meta = JSON.parse(fs.readFileSync(path.join(root, name, 'meta.json'), 'utf8'));
+      const model = meta && meta.config && meta.config.active_model;
+      if (typeof model === 'string' && model && !models.includes(model)) models.push(model);
+    } catch {
+      // A session without readable metadata names no model.
+    }
+  }
+  return models.length > 0 ? models.join(',') : null;
 }
 
 // A Vibe question is a bordered box: a tab row when several questions are queued, the question
@@ -3222,6 +3282,7 @@ async function runRuntime(options) {
   const cleanup = cleanupContext(ctx);
   // The home is removed only after the subject has stopped, so nothing writes into it again.
   const vibeHome = ctx.vibeHome || null;
+  const vibeModel = vibeSessionModels(vibeHome);
   const vibeHomeRemoved = Boolean(vibeHome && ctx.removeHome && removeVibeHome(vibeHome));
 
   const after = snapshotRepo(ctx.repoRoot, ctx.watched, ctx.outRoot);
@@ -3272,6 +3333,7 @@ async function runRuntime(options) {
     session_id: ctx.sessionId,
     project: ctx.project,
     vibe_home: vibeHome,
+    vibe_model: vibeModel,
     vibe_home_removed: vibeHomeRemoved,
     started_at: startedAt,
     finished_at: new Date().toISOString(),
@@ -3733,6 +3795,9 @@ module.exports = {
   parseCodexQuestion,
   findOptionIndex,
   removeVibeHome,
+  pinVibeModel,
+  vibeSessionModels,
+  VIBE_DEFAULT_MODEL,
 };
 
 if (require.main === module) {

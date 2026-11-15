@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe review remediation",
+      "phase 23 vibe review remediation",
+      "vibe compaction scenario rerun",
+      "vibe runner model pin",
+      "vibe review remediation plan",
+      "vibe review remediation tasks",
+      "vibe review remediation acceptance criteria",
+      "vibe review remediation implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "review",
+      "remediation",
+      "phase",
+      "compaction",
+      "scenario",
+      "rerun",
+      "runner",
+      "model",
+      "pin",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/compaction-post-tool.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-save-nudge.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/compaction-context.test.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/README.md",
+      ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+      ".skilled/hooks/session-handover/tests/vibe-adapters.test.cjs",
+      ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      ".skilled/hooks/goal/README.md",
+      ".skilled/hooks/goal/vibe/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-post-tool.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/compaction-post-tool.md",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start-compaction-reinjection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start-save-nudge.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-save-nudge.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-context.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-context.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/compaction-context.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-lifecycle/vibe/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover-parts.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "vibe-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/vibe-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 022 records 26 scenarios as passing live, but three of them last passed before the automatic hand-over tier changed `turn-start.mjs`, `turn-end.mjs` and `compaction-post-tool.mjs`",
+    "created_at": "2026-11-15T19:09:48Z",
+    "last_save_at": "2026-11-15T19:56:37.492Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0e28eed43226616cee8ed2de29c0b553c15c8e36c20f3ddf1b88e586b3fec049",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5e0ec6a0737f397dc7c829a97e83cf6575051c8f7b5ea343f455c771b54b3dc1",
+      "plan.md": "9e964a0ddd948e0ae01df6a00ffccf7fa72b725360c3e7469e87ccd95d583e8d",
+      "tasks.md": "06a48c1150ab0d5b89264d32d7f102325208a367db41725079f9718f080e0829",
+      "implementation-summary.md": "9456e6de83982d9b93f982f24d5b3891fd85d06c4e1a331e4f73ba1a62442747"
+    },
+    "last_active_at": null
+  }
+}

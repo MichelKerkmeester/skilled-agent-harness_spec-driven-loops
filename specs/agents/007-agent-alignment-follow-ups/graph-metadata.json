@@ -23,7 +23,20 @@
     "agents/007-agent-alignment-follow-ups/017-terminal-record-gaps",
     "agents/007-agent-alignment-follow-ups/018-research-duration-check",
     "agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check",
-    "agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research"
+    "agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research",
+    "agents/007-agent-alignment-follow-ups/021-vibe-budget-default",
+    "agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks",
+    "agents/007-agent-alignment-follow-ups/023-agent-docs-fixes",
+    "agents/007-agent-alignment-follow-ups/024-terminal-gates-script",
+    "agents/007-agent-alignment-follow-ups/025-stop-path-live-proof",
+    "agents/007-agent-alignment-follow-ups/026-closeout-run-identity",
+    "agents/007-agent-alignment-follow-ups/027-review-traceability-recording",
+    "agents/007-agent-alignment-follow-ups/028-review-scope-recording",
+    "agents/007-agent-alignment-follow-ups/029-review-verdict-script",
+    "agents/007-agent-alignment-follow-ups/030-review-count-source",
+    "agents/007-agent-alignment-follow-ups/031-search-debt-verdict",
+    "agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration",
+    "agents/007-agent-alignment-follow-ups/033-zero-iteration-report"
   ],
   "manual": {
     "depends_on": [],
@@ -33,7 +46,8 @@
   "derived": {
     "trigger_phrases": [
       "agent alignment follow ups phase parent spec",
-      "agent file review findings"
+      "agent file review findings",
+      "007-agent-alignment-follow-ups operator decisions"
     ],
     "key_topics": [
       "agent",
@@ -46,13 +60,14 @@
       "file",
       "review",
       "findings",
-      "packet",
-      "agents"
+      "007-agent-alignment-follow-ups",
+      "operator"
     ],
-    "importance_tier": "important",
-    "status": "complete",
+    "importance_tier": "normal",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "decision-record.md",
       "scratch/agent-review/finding-to-phase.tsv",
       "scratch/agent-review/agents-review.out.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -65,13 +80,20 @@
       ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
       ".skilled/skills/sk-prompt/SKILL.md",
       ".skilled/agents/README.txt",
-      ".skilled/bin/agent-mirror-crosswalk.md"
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".skilled/CROSS-CLI.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -141,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -175,22 +203,48 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-15T15:11:13.640Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T21:15:51.223Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:694cc012713528e4381217b32f103d86a5138578decc6dd1086453bd511fc714",
+    "source_fingerprint": "sha256:31f08d1800cf9e36dff61ae3b72abbab29c157f7a582975df2171427d6c6e49b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3e19c28d76d12b3b29a029ab48e90d2abc48c4aff90678dc34ceef720b74c539"
+      "spec.md": "243a075926067092930265a5840cde973b96addefe28fc6cc344cae408a27948",
+      "decision-record.md": "b2665fb0b3ba884786ee87dcd168b2377d59dff278e5676366af693a7742e075"
     },
-    "last_active_child_id": "agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research",
-    "last_active_at": "2026-11-15T15:10:00.162Z"
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/033-zero-iteration-report",
+    "last_active_at": "2026-11-15T21:15:49.404Z"
   }
 }

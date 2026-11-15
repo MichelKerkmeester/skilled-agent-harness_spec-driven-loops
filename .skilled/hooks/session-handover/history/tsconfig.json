@@ -1,0 +1,22 @@
+{
+  // The source folder and the build folder sit side by side at the same depth, so a relative
+  // import that leaves this package resolves the same from lib/ under vitest and from dist/ at
+  // run time. That is why lib/ is the root and not the package folder.
+  "extends": "../../../skills/system-spec-kit/tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "./lib",
+    "outDir": "./dist",
+    "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true,
+    "typeRoots": ["../../../skills/system-spec-kit/node_modules/@types"],
+    "types": ["node"]
+  },
+  // The CLI reads the hook state the runtime compiles, so the runtime builds first.
+  "references": [{ "path": "../../../skills/system-spec-kit/runtime" }],
+  "include": ["lib/**/*.ts", "lib/**/*.json"],
+  "exclude": ["node_modules", "dist", "tests"]
+}

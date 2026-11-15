@@ -12,8 +12,9 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agents/*.md`
+- OpenCode runtime: `.opencode/agents/*.md`, a link to the `.skilled/agents/*.md` source
 - Claude runtime: `.claude/agents/*.md`
+- Other runtimes: see `.skilled/bin/agent-mirror-crosswalk.md`
 
 Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05) live in `references/convergence/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
 
@@ -180,8 +181,8 @@ An unconverted out-of-scale severity reaches the cross-lineage merge unranked, w
 
 | Verdict | Condition |
 |---------|-----------|
-| **PASS** | No P0/P1 findings, P2 findings recorded as advisories (`hasAdvisories: true`) |
-| **CONDITIONAL** | P1 findings present, remediation plan included in report |
+| **PASS** | No P0/P1 findings and no open search debt, P2 findings recorded as advisories (`hasAdvisories: true`) |
+| **CONDITIONAL** | P1 findings present, or open search debt remains, with remediation plan included in report |
 | **FAIL** | Any P0 finding confirmed after adversarial self-check, or a required quality gate (evidence, scope, coverage) still failing at the terminal stop |
 
 ### Acceptance-Coverage Signal
@@ -261,7 +262,7 @@ Each pass also compares `maxDurationMinutes` with the config `createdAt`. When t
 
 ### Iteration Status Enum
 
-`complete | timeout | error | stuck | insight`
+`complete | timeout | error | stuck | insight | thought`
 
 - `insight`: Low newInfoRatio but important finding that changes the verdict trajectory.
 

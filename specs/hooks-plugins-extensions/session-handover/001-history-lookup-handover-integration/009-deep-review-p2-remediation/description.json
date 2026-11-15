@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation",
+  "description": "Phase 9: deep-review-p2-remediation",
+  "keywords": [
+    "phase",
+    "deep-review-p2-remediation"
+  ],
+  "lastUpdated": "2026-11-15T20:04:12.897Z",
+  "specId": "009",
+  "folderSlug": "deep-review-p2-remediation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_21-04__closed-all-seven-p2-findings-from-the-history.md"
+  ]
+}

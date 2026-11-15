@@ -43,6 +43,9 @@ correctness, security, traceability, maintainability
 - **Core**: spec_code, checklist_evidence
 - **Overlay**: skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability
 
+Record each protocol you ran this iteration as one `traceabilityChecks.results[]` entry keyed `protocolId`. Record each core protocol at least once in the run, and when one does not apply to the target, record it with status `notApplicable` and `applicable: false`. Leave out protocols you did not run rather than recording them as `pending` or `deferred`. A result that raises an earlier `partial` to `pass` needs a file:line reference in `evidenceRefs`, or it stays `partial`.
+{unfinished_core_protocols_block}
+
 ## QUALITY GATES
 
 evidence, scope, coverage
@@ -118,7 +121,7 @@ You MUST produce THREE artifacts per iteration. The YAML-owned post_dispatch_val
 2. **Canonical iteration record recorded THROUGH THE APPEND GATEWAY** — never written to `{state_paths_state_log}` directly — the gateway is its only writer, and it refreshes that log from the ledger after authorizing, fencing, and receipting the record. The record MUST use `"type":"iteration"` EXACTLY, NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored. Required schema:
 
 ```json
-{"type":"iteration","iteration":<n>,"mode":"review","target_agent":"deep-review","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=review target_agent=deep-review","run":"<run-id>","status":"complete","focus":"<dimension-or-focus>","dimensions":["..."],"filesReviewed":["path:line"],"findingsCount":<n>,"findingsSummary":{"P0":<n>,"P1":<n>,"P2":<n>},"findingsNew":[],"findingDetails":[],"traceabilityChecks":{},"newFindingsRatio":<0..1>,"sessionId":"<session-id>","generation":<n>,"lineageMode":"new","timestamp":"<ISO-8601>","durationMs":<n>,"graphEvents":[/* optional */]}
+{"type":"iteration","iteration":<n>,"mode":"review","target_agent":"deep-review","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=review target_agent=deep-review","run":"<run-id>","status":"complete","focus":"<dimension-or-focus>","dimensions":["..."],"filesReviewed":["path:line"],"findingsCount":<n>,"findingsSummary":{"P0":<n>,"P1":<n>,"P2":<n>},"findingsNew":[],"findingDetails":[],"traceabilityChecks":{"results":[{"protocolId":"spec_code","status":"pass","gateClass":"hard","applicable":true,"evidence":["path:line"],"summary":"<one line>"}]},"newFindingsRatio":<0..1>,"sessionId":"<session-id>","generation":<n>,"lineageMode":"new","timestamp":"<ISO-8601>","durationMs":<n>,"graphEvents":[/* optional */]}
 ```
 
 ### v2 Search Depth Output (when scopeClass is standard or complex)

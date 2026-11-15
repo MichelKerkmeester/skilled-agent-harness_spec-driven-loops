@@ -1,7 +1,7 @@
 ---
 name: markdown
 description: Template-first markdown/documentation executor; handles /create:* commands, spec docs, and scoped markdown authoring
-mode: all
+mode: subagent
 temperature: 0.1
 permission:
   read: allow

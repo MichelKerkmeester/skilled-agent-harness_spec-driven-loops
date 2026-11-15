@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.6.0
+version: 1.14.7.0
 ---
 
 # deep-research
@@ -25,7 +25,7 @@ version: 1.14.6.0
 |---|---|
 | **Use it for** | Multi-round investigation of a topic that spans three or more sources, where each round should build on what the prior round found |
 | **Invoke with** | `/deep:research:auto "topic"` (autonomous) or `:confirm` (approval-gated). Keyword triggers include "autoresearch", "deep research" and "research loop" |
-| **Works on** | Any research topic with web sources, codebase references or both, through the LEAF agent's Read, WebFetch, Grep and Glob tool set |
+| **Works on** | Any research topic with web sources, codebase references or both, through the LEAF agent's tools, which the permission map in `.skilled/agents/deep-research.md` lists |
 | **Produces** | A converged findings report at `research/research.md`, plus an iteration audit trail, a findings registry and a convergence dashboard under `{spec_folder}/research/` |
 
 ### Why This Skill Exists

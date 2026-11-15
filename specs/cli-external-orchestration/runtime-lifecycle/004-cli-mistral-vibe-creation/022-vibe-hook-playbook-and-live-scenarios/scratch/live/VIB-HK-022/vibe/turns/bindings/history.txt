@@ -1,7 +1,7 @@
 
-⢔⡢⡀    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⠸⣀⡔⢉⠱⣃⡐⣔⡣   deepseek-flash[max] · Free
-  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+ ⢠⢢    ⡠⡀⡠⡀   Mistral Vibe v3.1.2
+ ⢸⢸⣀⡔⢉⢑⠇⠨⡠⢇   GLM-5.3 Flash (Mistral Hosted)[high] · Pro
+ ⠈⠒⠒⠣⠤⠵⠭⠭⠯⠇   Type /help for more information
 
 Hello Michel, how can I help you?
 
@@ -10,12 +10,12 @@ Hello Michel, how can I help you?
 > Give me a one-line summary of what this project contains.
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-⏵ Ran 7 commands, thought                                                                                                     
+⏵ Ran 3 commands, thought                                                                                                     
 
-  Skilled — a spec-driven agent harness: a markdown-only framework of specs, skills, agents, hooks and commands that installs into Claude Code, Codex, OpenCode, Pi, Devin and Cursor CLI to give an
-  AI coding agent persistent memory, an auditable paper trail, and specialized sub-agents.
+  There is no project here to summarize — the working directory (tmp.GQMqmzSZeq/vibe) contains only session scaffolding (.env, .conversation-scratch, .skilled/, .cleanup-lines-before), no source
+  code, and it isn't a git repository.
 
-
+  If you expected a project to be loaded here, it may not have been mounted — point me at its path or open a session in its directory and I'll summarize it.
 
 
 
@@ -42,9 +42,9 @@ Hello Michel, how can I help you?
 
 
                                                 
-─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
->                                                           
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── GLM-5.3 Flash (Mistral Hosted)[high] · auto approve ─
+>   
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.4Ns41Cd3ss/vibe                                                                                                       ctx ▍      16.3k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.GQMqmzSZeq/vibe                                                                                     usage ▏      0% · ctx ▏      10.4k/400k

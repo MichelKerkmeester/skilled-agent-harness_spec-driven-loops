@@ -15,14 +15,16 @@
     "phases",
     "ai-council"
   ],
-  "lastUpdated": "2026-11-14T20:49:12.206Z",
+  "lastUpdated": "2026-11-15T20:39:27.049Z",
   "specId": "007",
   "folderSlug": "agent-alignment-follow-ups",
   "parentChain": [
     "agents"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "14-11-26_21-49__agent-review-findings-grouped-into-nine-coupled.md"
+    "14-11-26_21-49__agent-review-findings-grouped-into-nine-coupled.md",
+    "15-11-26_18-29__phases-015-to-021-shipped-the-review-verdict-gate.md",
+    "15-11-26_21-39__phase-030-built-deep-review-report-and-closeout.md"
   ]
 }

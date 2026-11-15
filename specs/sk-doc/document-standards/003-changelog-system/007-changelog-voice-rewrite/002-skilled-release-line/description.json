@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line",
+  "description": "Phase 2: skilled-release-line",
+  "keywords": [
+    "phase",
+    "skilled-release-line"
+  ],
+  "lastUpdated": "2026-11-15T11:29:28.239Z",
+  "specId": "002",
+  "folderSlug": "skilled-release-line",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "007-changelog-voice-rewrite"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_12-29__phase-002-rewrote-51-skilled-release-entries-52.md"
+  ]
+}

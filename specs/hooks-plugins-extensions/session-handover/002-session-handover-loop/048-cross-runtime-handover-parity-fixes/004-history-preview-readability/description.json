@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability",
+  "description": "Phase 4: history-preview-readability",
+  "keywords": [
+    "phase",
+    "history-preview-readability"
+  ],
+  "lastUpdated": "2026-11-15T21:21:07.070Z",
+  "specId": "004",
+  "folderSlug": "history-preview-readability",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "048-cross-runtime-handover-parity-fixes"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_22-21__phase-004-made-history-previews-and-search.md"
+  ]
+}

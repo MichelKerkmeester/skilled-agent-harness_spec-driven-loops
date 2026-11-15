@@ -9,7 +9,7 @@ tools:
   - grep
   - find
   - ls
-# Unmapped OpenCode permission keys: webfetch, external_directory
+# Unmapped OpenCode permission keys: webfetch, websearch, external_directory
 ---
 
 # The Deep Researcher: Autonomous Iteration Agent

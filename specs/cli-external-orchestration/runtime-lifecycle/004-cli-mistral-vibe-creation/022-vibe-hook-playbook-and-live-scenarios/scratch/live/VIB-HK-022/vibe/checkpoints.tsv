@@ -1,4 +1,4 @@
 turn	status	attempts	evidence	observed
 bindings	PASS	1	turns/bindings	turn-hooks-and-session-start-bound
-close	PASS	1	turns/close	2026-11-15T14:19:54+0100 action=skip reason=no-session-pid
-guarded-after-resume	PASS	1	turns/guarded-after-resume	rendered-guard-refused-after-resume since=2026-11-15T13:20:01.839Z
+close	PASS	1	turns/close	2026-11-15T17:19:40+0100 action=skip reason=no-session-pid
+guarded-after-resume	PASS	1	turns/guarded-after-resume	rendered-guard-refused-after-resume since=2026-11-15T16:19:46.503Z

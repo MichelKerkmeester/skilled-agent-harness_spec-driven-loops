@@ -29,10 +29,10 @@ Section 5 covers a session seeded with `[session-handover] claim and continue ha
 
 **Inputs:** nothing through `$ARGUMENTS`.
 Both `prepare` and `claim` require `--session <id>`.
-Only Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`.
+Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`, and so can a Vibe session started through `skilled-loop`, which uses the id its turn-start hook recorded.
 On Claude, `CLAUDE_PID` supplies the runtime process id for the shell-child check and the killer's target, both only while it descends from the loop.
 Other runtimes must pass the session id.
-If a runtime has no session-id variable, such as Devin, Cursor or Vibe, run `uuidgen` once and reuse that id for the session.
+A Vibe session started through `skilled-loop` gets its id from `node .skilled/hooks/session-handover/bin/session-handover.cjs session-id --runtime vibe`. When that command fails, run `uuidgen` instead. If a runtime has no session-id variable, such as Devin, Cursor or a Vibe session outside the loop, run `uuidgen` once and reuse that id for the session.
 `spec_folder` records the Gate 3 answer: the repo-relative packet path, `none` after D) Skip or empty when Gate 3 was never answered.
 
 **Outputs:**
@@ -78,7 +78,7 @@ If a runtime has no session-id variable, such as Devin, Cursor or Vibe, run `uui
 
 ### Step 1: Resolve Inputs
 
-- Session id: both commands require `--session <id>`. Claude Code can omit the flag because the CLI reads `$CLAUDE_CODE_SESSION_ID`. Other runtimes pass the id directly. If a runtime exposes no session-id variable, such as Devin, Cursor or Vibe, run `uuidgen` once and reuse that value for the rest of the session. Never search the disk or a runtime's log folder for an id. The id fills the note's `session_id`, the filename suffix and `--session`.
+- Session id: both commands require `--session <id>`. Claude Code can omit the flag because the CLI reads `$CLAUDE_CODE_SESSION_ID`. Other runtimes pass the id directly. A Vibe session started through `skilled-loop` prints its id with `node .skilled/hooks/session-handover/bin/session-handover.cjs session-id --runtime vibe`. When that command fails, run `uuidgen` instead. If a runtime exposes no session-id variable, such as Devin, Cursor or a Vibe session outside the loop, run `uuidgen` once and reuse that value for the rest of the session. Never search the disk or a runtime's log folder for an id. The id fills the note's `session_id`, the filename suffix and `--session`.
 - cwd: the absolute working directory.
 - Spec binding: use the repo-relative packet path when one is bound. Use `none` when Gate 3 was answered D) Skip. Leave the field empty when Gate 3 was never answered.
 
@@ -138,7 +138,8 @@ Frontmatter is flat `key: value` lines only: no nesting, no lists.
 Leave it out of the note, because a value you write is replaced or removed.
 `prepare` and `keep` also own the optional `goal_ended` field, which they write when a Claude goal was met, failed or cleared and remove any value you write by hand.
 `SESSION_HANDOVER_GOAL=0` turns both fields off, `goal_packet` and `goal_ended` alike.
-On Cursor, Devin and Vibe the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal.
+On Cursor and Devin, a receiver started from the manual command that `prepare` prints does not get the goal.
+On Vibe, `prepare` records the packet the session's goal came from, `VIBE_SPEC_FOLDER` first and then a claimed note's packet, and the receiver's session-start hook renders that goal.
 Every section must be non-empty.
 Goal states what the work is for.
 When `spec_folder` names a packet, open Goal with the packet's purpose line, `Purpose: <sentence>`, where `<sentence>` is the first sentence of that packet's purpose in its `spec.md`, copied word for word and cut to 300 characters.
@@ -175,7 +176,7 @@ Skip this command when no deep-loop lock is held.
 node .skilled/hooks/session-handover/bin/session-handover.cjs prepare --handoff <path> --session <session id> --runtime <runtime>
 ```
 
-Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE_CODE_SESSION_ID`. The `session-handover.cjs --runtime` value must be one of `claude`, `pi`, `opencode`, `codex`, `cursor`, `devin` or `vibe`, the `RUNTIMES` list in `relaunch-core.cjs`. A DSH session saves through the continuity writer, which takes `dsh` as a runtime value, but `prepare` refuses `--runtime dsh`, so a DSH session gets no relaunch record. Outside the loop, it overrides the environment or Claude default. Inside the loop, it must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. The handoff nudge passes the session id and runtime.
+Pass `--session <id>` to `prepare`. Claude Code can omit it and use `CLAUDE_CODE_SESSION_ID`, and a Vibe session started through `skilled-loop` can omit it and use the id its turn-start hook recorded. The `session-handover.cjs --runtime` value must be one of `claude`, `pi`, `opencode`, `codex`, `cursor`, `devin` or `vibe`, the `RUNTIMES` list in `relaunch-core.cjs`. A DSH session saves through the continuity writer, which takes `dsh` as a runtime value, but `prepare` refuses `--runtime dsh`, so a DSH session gets no relaunch record. Outside the loop, it overrides the environment or Claude default. Inside the loop, it must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. The handoff nudge passes the session id and runtime.
 
 ### Step 5: Report By Exit Code
 

@@ -1,0 +1,1400 @@
+{
+  "mergedFrom": [
+    "vibe-1",
+    "vibe-2"
+  ],
+  "lineageExecutors": {
+    "vibe-1": {
+      "kind": "cli-mistral-vibe",
+      "model": "deepseek-flash",
+      "reasoningEffort": null
+    },
+    "vibe-2": {
+      "kind": "cli-mistral-vibe",
+      "model": "deepseek-flash",
+      "reasoningEffort": null
+    }
+  },
+  "mergedVerdict": "CONDITIONAL",
+  "failedRequiredGateIds": [],
+  "openFindings": [
+    {
+      "findingId": "R5-P2-002--9e111e07ef17",
+      "severity": "P2",
+      "title": "Both compaction scenarios require a non-empty goal slice, so the empty-slice path that loses the injection has no coverage",
+      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md",
+      "line": 31,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R5-P2-002",
+      "_conflict_id": "R5-P2-002--9e111e07ef17",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-002",
+          "peerId": "R5-P2-002--88730f1859ce",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "measureJournal returns null for an empty journal directory, so the binding skips the detector right after a snapshot roll",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      "line": 274,
+      "description": "",
+      "findingClass": "correctness",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ]
+    },
+    {
+      "findingId": "R2-P1-001--a422b0f9d15d",
+      "severity": "P1",
+      "title": "Phase 022s live-verdict claim does not cover the code the branch ships: all three VIB-HK-005/006/007 runs finished before e5b8611a4fa",
+      "file": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/implementation-summary.md",
+      "line": 110,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R2-P1-001",
+      "_conflict_id": "R2-P1-001--a422b0f9d15d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P1-001",
+          "peerId": "R2-P1-001--83b2e98ba3f7",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--4cabe1421439",
+      "severity": "P2",
+      "title": "The compaction state directory is derived from payload.cwd with no containment check",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      "line": 67,
+      "description": "",
+      "findingClass": "security",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--4cabe1421439",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--09922ec53397",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--a0bfc4ef4adc",
+      "severity": "P2",
+      "title": "The compaction test suite pins the watermark contract for the no-compaction case but not for the empty-section case, which is why the iteration-1 defect shipped",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.test.mjs",
+      "line": 141,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--a0bfc4ef4adc",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--c3535226947a",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P1-001--5b32b66c4f09",
+      "severity": "P1",
+      "title": "The compaction watermark advances before any text exists, so a compaction with no resolvable section is consumed silently and never retried",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      "line": 231,
+      "description": "",
+      "findingClass": "correctness",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R1-P1-001",
+      "_conflict_id": "R1-P1-001--5b32b66c4f09",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P1-001",
+          "peerId": "R1-P1-001--348907bfd9c2",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-002--a2160734b6d7",
+      "severity": "P2",
+      "title": "The compaction watermark directory is created under payload.cwd with no check that the directory is inside the checkout",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      "line": 69,
+      "description": "",
+      "findingClass": "security",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R3-P2-002",
+      "_conflict_id": "R3-P2-002--a2160734b6d7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--26cf29d2e12e",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P1-001--348907bfd9c2",
+      "severity": "P1",
+      "title": "The detector commits the watermark before it knows it has any text, so a compaction whose goal slice and handoff note are both empty is marked injected and never retried",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      "line": 231,
+      "description": "",
+      "findingClass": "correctness",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R1-P1-001",
+      "_conflict_id": "R1-P1-001--348907bfd9c2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P1-001",
+          "peerId": "R1-P1-001--5b32b66c4f09",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P2-001--1704af684955",
+      "severity": "P2",
+      "title": "The feature catalog dispatch-mode page lists three composition points and omits the hand-over part that now runs in all three composers, and the catalog never mentions hand-over at all",
+      "file": ".skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md",
+      "line": 39,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R5-P2-001",
+      "_conflict_id": "R5-P2-001--1704af684955",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--dee4b5181343",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P2-001--dee4b5181343",
+      "severity": "P2",
+      "title": "The feature catalog omits Vibe from both hand-over runtime enumerations and carries no entry for the Vibe compaction re-injection tier, so the two features this branch ships are absent from the feature index",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      "line": 1096,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R5-P2-001",
+      "_conflict_id": "R5-P2-001--dee4b5181343",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--1704af684955",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P1-001",
+      "severity": "P1",
+      "title": "The goal adapter README states that nothing re-injects the slice after compaction, while the compaction detector calls that adapter on every new compaction",
+      "file": ".skilled/hooks/goal/vibe/README.md",
+      "line": 21,
+      "description": "",
+      "findingClass": "maintainability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--d5b1ccf53ad4",
+      "severity": "P2",
+      "title": "The goal README still says Vibe has no compaction re-injection and reads only VIBE_SPEC_FOLDER, contradicting the code it documents",
+      "file": ".skilled/hooks/goal/README.md",
+      "line": 80,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--d5b1ccf53ad4",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--75c34f8b3f37",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-005",
+      "severity": "P2",
+      "title": "The goal-fallback comment added by the 2026-11-15 fix is wrapped past the file own width, and one template literal in the turn-start composer is 148 characters",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 747,
+      "description": "",
+      "findingClass": "maintainability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--09922ec53397",
+      "severity": "P2",
+      "title": "The hand-over part uses payload.cwd and payload.transcript_path without a containment check, and arm persists the unvalidated cwd into the record the wrapper restarts from",
+      "file": ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+      "line": 347,
+      "description": "",
+      "findingClass": "security",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--09922ec53397",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--4cabe1421439",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-002--26cf29d2e12e",
+      "severity": "P2",
+      "title": "The hand-over state directory falls back to a predictable path under os.tmpdir() with no ownership or symlink check",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 291,
+      "description": "",
+      "findingClass": "security",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R3-P2-002",
+      "_conflict_id": "R3-P2-002--26cf29d2e12e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--a2160734b6d7",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P1-001--83b2e98ba3f7",
+      "severity": "P1",
+      "title": "The packet live-evidence claim for VIB-HK-005/006/007 is stale after the automatic handover tier merged, and no artifact records the regression",
+      "file": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
+      "line": 139,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R2-P1-001",
+      "_conflict_id": "R2-P1-001--83b2e98ba3f7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P1-001",
+          "peerId": "R2-P1-001--a422b0f9d15d",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P2-002--88730f1859ce",
+      "severity": "P2",
+      "title": "The packet's open-lead text attributes the VIB-HK-005 save-nudge failure to e5b8611a4fa changing turn-start.mjs, but that file's diff is purely additive, so the lead sends the next reader to a file the commit did not change behaviourally",
+      "file": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
+      "line": 139,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R5-P2-002",
+      "_conflict_id": "R5-P2-002--88730f1859ce",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-002",
+          "peerId": "R5-P2-002--9e111e07ef17",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-002--64b3ed5e25dc",
+      "severity": "P2",
+      "title": "The parent spec records all 22 phases Complete and a push-ready next action while three of 022s own live rows are pre-change",
+      "file": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
+      "line": 17,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R2-P2-002",
+      "_conflict_id": "R2-P2-002--64b3ed5e25dc",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-002",
+          "peerId": "R2-P2-002--cd69769ad494",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-002--cd69769ad494",
+      "severity": "P2",
+      "title": "The playbook lists 27 scenarios but carries no per-scenario verdict, so the only verdict table lives under a phase scratch folder",
+      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 261,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R2-P2-002",
+      "_conflict_id": "R2-P2-002--cd69769ad494",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-002",
+          "peerId": "R2-P2-002--64b3ed5e25dc",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P1-002--02fa7ff472c2",
+      "severity": "P1",
+      "title": "The post-tool size gate records the journal size even when the detector produced no text, so a mid-turn compaction is consumed before the detector can retry",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      "line": 319,
+      "description": "",
+      "findingClass": "correctness",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R1-P1-002",
+      "_conflict_id": "R1-P1-002--02fa7ff472c2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P1-002",
+          "peerId": "R1-P1-002--adb007ab580f",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "The post_tool binding re-reads the whole session store on every grown-journal tool call inside a 10-second budget",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      "line": 314,
+      "description": "",
+      "findingClass": "security",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ]
+    },
+    {
+      "findingId": "R1-P1-002--adb007ab580f",
+      "severity": "P1",
+      "title": "The post_tool size gate watches only journal/*.jsonl, so a snapshot-only compaction never reaches the detector",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      "line": 271,
+      "description": "",
+      "findingClass": "correctness",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R1-P1-002",
+      "_conflict_id": "R1-P1-002--adb007ab580f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P1-002",
+          "peerId": "R1-P1-002--02fa7ff472c2",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--75c34f8b3f37",
+      "severity": "P2",
+      "title": "The recorded VIB-HK-006 evidence is from a four-turn scenario version the playbook no longer contains",
+      "file": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/live/VIB-HK-006/vibe/checkpoints.tsv",
+      "line": 1,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--75c34f8b3f37",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--d5b1ccf53ad4",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--e3447f5b13ad",
+      "severity": "P2",
+      "title": "The reference doc Status paragraph still describes .vibe/hooks.toml as the guard bundle plus one session_start entry, while the file declares 18 entries",
+      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+      "line": 37,
+      "description": "",
+      "findingClass": "maintainability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--e3447f5b13ad",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--3e1b6633d712",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--c3535226947a",
+      "severity": "P2",
+      "title": "The same paragraph claims every section-4 row names the run that proved it, while five of the seventeen hook rows name a run",
+      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+      "line": 37,
+      "description": "",
+      "findingClass": "maintainability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--c3535226947a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--a0bfc4ef4adc",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001--4e51b4609c93",
+      "severity": "P2",
+      "title": "The seen list is capped at 64 ids, so a long session can re-inject a compaction a snapshot refolds",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      "line": 115,
+      "description": "",
+      "findingClass": "correctness",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--4e51b4609c93",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--ac2d8f414c3b",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-003--8f1aef762f06",
+      "severity": "P2",
+      "title": "The session-lifecycle README counts six kill switches, and the two parts behind the open lead have none",
+      "file": ".skilled/hooks/session-lifecycle/vibe/README.md",
+      "line": 29,
+      "description": "",
+      "findingClass": "maintainability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R4-P2-003",
+      "_conflict_id": "R4-P2-003--8f1aef762f06",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-003",
+          "peerId": "R4-P2-003--f6d51a8e69ea",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-004",
+      "severity": "P2",
+      "title": "The session-lifecycle README states the watermark-before-build order and the journal-size-only gate as the contract, so the fixes for R1-P1-001 and R1-P1-002 will read as regressions",
+      "file": ".skilled/hooks/session-lifecycle/vibe/README.md",
+      "line": 25,
+      "description": "",
+      "findingClass": "maintainability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--3e1b6633d712",
+      "severity": "P2",
+      "title": "The turn-start.mjs module header names four parts while PARTS holds five, so the hand-over part added by e5b8611a4fa is undocumented where the ordering contract lives",
+      "file": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+      "line": 8,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--3e1b6633d712",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--e3447f5b13ad",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-003--f6d51a8e69ea",
+      "severity": "P2",
+      "title": "withdrawOnOperatorPrompt fires on any non-seed pre_agent without checking that the payload carries a prompt, contradicting the comment that justifies it",
+      "file": ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+      "line": 209,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_conflictOf": "R4-P2-003",
+      "_conflict_id": "R4-P2-003--f6d51a8e69ea",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-003",
+          "peerId": "R4-P2-003--8f1aef762f06",
+          "peerLineages": [
+            "vibe-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001--ac2d8f414c3b",
+      "severity": "P2",
+      "title": "writeWatermark records only the latest compaction id in seen, so a multi-compaction catch-up re-injects the older ones after a snapshot roll",
+      "file": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      "line": 111,
+      "description": "",
+      "findingClass": "correctness",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--ac2d8f414c3b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--4e51b4609c93",
+          "peerLineages": [
+            "vibe-1"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 7,
+    "P2": 24
+  },
+  "openFindingsCount": 31,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 7,
+  "activeP2": 24
+}

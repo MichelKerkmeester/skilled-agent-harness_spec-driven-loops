@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs",
+  "description": "Phase 12: small-skill-changelogs",
+  "keywords": [
+    "phase",
+    "small-skill-changelogs"
+  ],
+  "lastUpdated": "2026-11-15T19:21:37.353Z",
+  "specId": "012",
+  "folderSlug": "small-skill-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "007-changelog-voice-rewrite"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_20-21__phase-012-rewrote-69-changelogs-of-sk-prompt-cli.md"
+  ]
+}

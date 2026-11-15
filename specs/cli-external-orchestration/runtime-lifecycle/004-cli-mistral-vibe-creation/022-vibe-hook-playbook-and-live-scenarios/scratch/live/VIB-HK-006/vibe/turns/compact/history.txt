@@ -1,6 +1,6 @@
 
   ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Pro
   ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
 
 Hello Michel, how can I help you?
@@ -16,7 +16,7 @@ Hello Michel, how can I help you?
 
 ⏵ Ran 1 command, read 1 file, thought                                                                                              
 
-  notes.txt contains a single line: alpha.
+  notes.txt contains a single line, the word alpha.
 
 ✓ Compaction completed.             
 
@@ -43,8 +43,8 @@ Hello Michel, how can I help you?
                                                                                                                                                                                                         
                                                                                                                                                                                                         
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
->                                                          
+>         
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.s45REfUPTk/vibe                                                                                                           ctx        0/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CVD4T5siX9/vibe                                                                                         usage ▍      6% · ctx        0/256k

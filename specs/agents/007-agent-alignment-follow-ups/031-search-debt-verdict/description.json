@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/031-search-debt-verdict",
+  "description": "Phase 31: search-debt-verdict",
+  "keywords": [
+    "phase",
+    "search-debt-verdict"
+  ],
+  "lastUpdated": "2026-11-15T20:53:04.208Z",
+  "specId": "031",
+  "folderSlug": "search-debt-verdict",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_21-53__phase-031-built-open-search-debt-makes-the-final.md"
+  ]
+}

@@ -1,0 +1,11 @@
+run loc2-vibe
+session fe6b7cf4-2ee0-18f0-eb6a-02f0c5275de7 title: Session handover README report
+  11 history-lookup.mjs --session <id> --handle <hl1_...> 
+History Lookup mentions: 7
+lookup refusals: 0
+session c67ea6e7-7c0d-3a6d-9e11-cd40dfffc3a8 title: Vibe history locator handoff
+   7 history-lookup.mjs --session 'fe6b7cf4-2ee0-18f0-eb6a-02f0c5275de7' --handle 'hl1_bac6762714032e6d46ed0021b4cee4db' browse
+  18 history-lookup.mjs --session 'fe6b7cf4-2ee0-18f0-eb6a-02f0c5275de7' --handle 'hl1_bac6762714032e6d46ed0021b4cee4db' load
+  18 history-lookup.mjs --session 'fe6b7cf4-2ee0-18f0-eb6a-02f0c5275de7' --handle 'hl1_bac6762714032e6d46ed0021b4cee4db' search
+History Lookup mentions: 7
+lookup refusals: 0

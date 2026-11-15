@@ -261,6 +261,54 @@ test('pre_agent withdraws an armed hand-over and answers with the notice alone',
   assert.equal(stored.disarmReason, 'user-message');
 });
 
+test('the early withdraw step disarms first and the context part still answers with the notice', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = 'vibe-early-withdraw-loop-0001';
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = String(WINDOW_TOKENS);
+  const { recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID, 'armed');
+  record.armedAt = new Date().toISOString();
+  record.armId = 'arm-early-withdraw';
+  fs.writeFileSync(recordPath, JSON.stringify(record));
+
+  const sessionRoot = createVibeSession(t, sandbox);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(950)]);
+  const { buildHandoverContextPart, withdrawBeforeTurnStart } = await loadParts();
+  const payload = payloadFor(sandbox, sessionRoot, 'pre_agent', { prompt: 'Continue the current task' });
+
+  assert.equal(withdrawBeforeTurnStart(payload, { env: sandbox.env }), true);
+  const early = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(early.status, 'disarmed');
+  assert.equal(early.disarmReason, 'user-message');
+
+  const text = await buildHandoverContextPart(payload, { env: sandbox.env });
+  assert.equal(text, nudge.WITHDRAWN_NOTICE);
+});
+
+test('a pre_agent with no prompt leaves an armed hand-over armed', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = 'vibe-withdraw-noprompt-0001';
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = String(WINDOW_TOKENS);
+  const { recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID, 'armed');
+  record.armedAt = new Date().toISOString();
+  record.armId = 'arm-noprompt';
+  fs.writeFileSync(recordPath, JSON.stringify(record));
+
+  const sessionRoot = createVibeSession(t, sandbox);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(950)]);
+  const { buildHandoverContextPart, withdrawBeforeTurnStart } = await loadParts();
+  const payload = payloadFor(sandbox, sessionRoot, 'pre_agent', { prompt: '  ' });
+
+  assert.equal(withdrawBeforeTurnStart(payload, { env: sandbox.env }), false);
+  const text = await buildHandoverContextPart(payload, { env: sandbox.env });
+
+  assert.ok(!text.includes(nudge.WITHDRAWN_NOTICE), text);
+  assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'armed');
+});
+
 test('the withdraw prompt still records the re-arm floor', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = 'vibe-withdraw-floor-loop-0001';
@@ -290,7 +338,7 @@ test('the withdraw prompt still records the re-arm floor', async (t) => {
   assert.equal(state.rearm.floor, 0.9);
 });
 
-test('turn end arms the record and spawns the killer on the newest journal file', async (t) => {
+test('turn end arms the record and spawns the killer on the journal folder', async (t) => {
   const sandbox = createSandbox(t);
   sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
   const { recordPath } = createPendingRecord(sandbox, LOOP_ID, SESSION_ID);
@@ -321,7 +369,7 @@ test('turn end arms the record and spawns the killer on the newest journal file'
   assert.ok(spawned.args[0].endsWith('killer.cjs'));
   assert.equal(spawned.args[spawned.args.indexOf('--loop-id') + 1], LOOP_ID);
   assert.equal(spawned.args[spawned.args.indexOf('--target-pid') + 1], TARGET_PID);
-  assert.equal(spawned.args[spawned.args.indexOf('--transcript') + 1], newest);
+  assert.equal(spawned.args[spawned.args.indexOf('--transcript') + 1], path.join(sessionRoot, 'journal'));
   assert.equal(spawned.options.detached, true);
   assert.equal(spawned.options.env, sandbox.env);
   const armed = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
@@ -329,7 +377,60 @@ test('turn end arms the record and spawns the killer on the newest journal file'
   assert.equal(armed.runtime, 'vibe');
 });
 
-test('turn end ignores a journal lock and arms the killer on the numbered segment', async (t) => {
+test('a turn end that cannot arm marks the record deferred and the next prompt withdraws it', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = String(WINDOW_TOKENS);
+  const { recordPath } = createPendingRecord(sandbox, LOOP_ID, SESSION_ID);
+  const sessionRoot = createVibeSession(t, sandbox);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(100)]);
+
+  const spawns = [];
+  const { armHandoverTurnEnd, buildHandoverContextPart } = await loadParts();
+  await armHandoverTurnEnd(
+    payloadFor(sandbox, sessionRoot, 'post_agent'),
+    {
+      env: sandbox.env,
+      pid: HOOK_PID,
+      processTable: '41 50\n50 1\n',
+      spawn: recordSpawns(spawns),
+    },
+  );
+
+  assert.equal(spawns.length, 0);
+  const parked = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(parked.status, 'pending');
+  assert.ok(parked.deferredAt, 'the record carries a deferred mark');
+
+  const text = await buildHandoverContextPart(
+    payloadFor(sandbox, sessionRoot, 'pre_agent', { prompt: 'Continue the current task' }),
+    { env: sandbox.env },
+  );
+  assert.equal(text, nudge.WITHDRAWN_NOTICE);
+  const withdrawn = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(withdrawn.status, 'disarmed');
+});
+
+test('a pending record without a deferred mark survives the next prompt', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = String(WINDOW_TOKENS);
+  const { recordPath } = createPendingRecord(sandbox, LOOP_ID, SESSION_ID);
+  const sessionRoot = createVibeSession(t, sandbox);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(100)]);
+
+  const { buildHandoverContextPart } = await loadParts();
+  await buildHandoverContextPart(
+    payloadFor(sandbox, sessionRoot, 'pre_agent', { prompt: 'Continue the current task' }),
+    { env: sandbox.env },
+  );
+  const stored = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(stored.status, 'pending');
+});
+
+test('turn end ignores a journal lock and arms the killer on the journal folder', async (t) => {
   const sandbox = createSandbox(t);
   sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
   createPendingRecord(sandbox, LOOP_ID, SESSION_ID);
@@ -355,44 +456,55 @@ test('turn end ignores a journal lock and arms the killer on the numbered segmen
 
   assert.equal(spawns.length, 1);
   const [spawned] = spawns;
-  assert.equal(spawned.args[spawned.args.indexOf('--transcript') + 1], segment);
+  assert.equal(spawned.args[spawned.args.indexOf('--transcript') + 1], path.join(sessionRoot, 'journal'));
 });
 
-test('a subagent payload neither nudges nor arms', async (t) => {
+test('a subagent post_tool payload never nudges', async (t) => {
   const sandbox = createSandbox(t);
   sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
   sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
   sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = String(WINDOW_TOKENS);
-  const { recordPath, record } = createPendingRecord(sandbox, LOOP_ID, SESSION_ID);
   const sessionRoot = createVibeSession(t, sandbox);
   writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(950)]);
-  const { buildHandoverContextPart, armHandoverTurnEnd } = await loadParts();
-  const spawns = [];
-  const dependencies = {
-    env: sandbox.env,
-    pid: HOOK_PID,
-    processTable: PROCESS_TABLE,
-    spawn: recordSpawns(spawns),
-  };
+  const { buildHandoverContextPart } = await loadParts();
 
   const text = await buildHandoverContextPart(
-    payloadFor(sandbox, sessionRoot, 'pre_agent', {
+    payloadFor(sandbox, sessionRoot, 'post_tool', { parent_session_id: 'parent-session' }),
+    { env: sandbox.env },
+  );
+  assert.equal(text, '');
+});
+
+test('a forked main session still nudges at turn start and arms at turn end', async (t) => {
+  const nudgeBox = createSandbox(t);
+  nudgeBox.env.SKILLED_LOOP_ID = LOOP_ID;
+  nudgeBox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  nudgeBox.env.SESSION_HANDOVER_WINDOW_TOKENS = String(WINDOW_TOKENS);
+  const nudgeRoot = createVibeSession(t, nudgeBox);
+  writeVibeSegment(nudgeRoot, '0000000000000001.jsonl', [vibeModelCall(950)]);
+  const { buildHandoverContextPart, armHandoverTurnEnd } = await loadParts();
+
+  const text = await buildHandoverContextPart(
+    payloadFor(nudgeBox, nudgeRoot, 'pre_agent', {
       prompt: 'Continue the current task',
       parent_session_id: 'parent-session',
     }),
-    dependencies,
+    { env: nudgeBox.env },
   );
-  assert.equal(text, '');
+  assert.ok(text.includes('prepare --handoff'), text);
 
-  const result = await armHandoverTurnEnd(
-    payloadFor(sandbox, sessionRoot, 'post_agent', {
-      parent_session_id: 'parent-session',
-    }),
-    dependencies,
+  const armBox = createSandbox(t);
+  armBox.env.SKILLED_LOOP_ID = LOOP_ID;
+  const { recordPath } = createPendingRecord(armBox, LOOP_ID, SESSION_ID);
+  const armRoot = createVibeSession(t, armBox);
+  writeVibeSegment(armRoot, '0000000000000001.jsonl', [vibeModelCall(100)]);
+  const spawns = [];
+  await armHandoverTurnEnd(
+    payloadFor(armBox, armRoot, 'post_agent', { parent_session_id: 'parent-session' }),
+    { env: armBox.env, pid: HOOK_PID, processTable: PROCESS_TABLE, spawn: recordSpawns(spawns) },
   );
-  assert.equal(result, null);
-  assert.equal(spawns.length, 0);
-  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+  assert.equal(spawns.length, 1);
+  assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'armed');
 });
 
 test('the switch silences both parts', async (t) => {
@@ -436,4 +548,110 @@ test('the switch silences both parts', async (t) => {
     ),
     '',
   );
+});
+
+test('the turn-start step records the session id for its loop', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  const sessionRoot = createVibeSession(t, sandbox);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(100)]);
+  const { withdrawBeforeTurnStart } = await loadParts();
+
+  assert.equal(core.readVibeSessionId({ loopId: LOOP_ID, env: sandbox.env }), null);
+  withdrawBeforeTurnStart(
+    payloadFor(sandbox, sessionRoot, 'pre_agent', { prompt: 'Continue the current task' }),
+    { env: sandbox.env },
+  );
+  assert.equal(core.readVibeSessionId({ loopId: LOOP_ID, env: sandbox.env }), SESSION_ID);
+  assert.equal(core.readVibeSessionId({ loopId: 'another-loop', env: sandbox.env }), null);
+});
+
+test('a nudge another hook is delivering stays quiet, and a stale claim is taken over', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = String(WINDOW_TOKENS);
+  const sessionRoot = createVibeSession(t, sandbox);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(950)]);
+  const stateDir = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
+  fs.mkdirSync(stateDir, { recursive: true, mode: 0o700 });
+  const claimPath = path.join(stateDir, `nudge-${SESSION_ID}.claim`);
+  const { buildHandoverContextPart } = await loadParts();
+  const postTool = () => buildHandoverContextPart(
+    payloadFor(sandbox, sessionRoot, 'post_tool'),
+    { env: sandbox.env },
+  );
+
+  fs.writeFileSync(claimPath, '');
+  assert.equal(await postTool(), '');
+  assert.equal(nudge.readState(SESSION_ID, sandbox.env), 0);
+
+  const old = new Date(Date.now() - 60000);
+  fs.utimesSync(claimPath, old, old);
+  const text = await postTool();
+  assert.ok(text.includes('prepare --handoff'), text);
+  assert.equal(fs.existsSync(claimPath), false);
+  assert.equal(nudge.readState(SESSION_ID, sandbox.env), 1);
+});
+
+test('a hook whose decision predates another hook\'s nudge decides again under the claim', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = String(WINDOW_TOKENS);
+  const sessionRoot = createVibeSession(t, sandbox);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(820)]);
+  const { buildHandoverContextPart } = await loadParts();
+  const postTool = () => buildHandoverContextPart(
+    payloadFor(sandbox, sessionRoot, 'post_tool'),
+    { env: sandbox.env },
+  );
+
+  assert.ok((await postTool()).includes('prepare --handoff'));
+  assert.equal(nudge.readState(SESSION_ID, sandbox.env), 1);
+
+  // The second hook made its first decision before the first hook wrote its level.
+  const realDecision = nudge.nudgeDecision;
+  let calls = 0;
+  nudge.nudgeDecision = (options) => {
+    calls += 1;
+    return calls === 1 ? { nudge: true, level: 1, reason: 'threshold' } : realDecision(options);
+  };
+  t.after(() => { nudge.nudgeDecision = realDecision; });
+
+  assert.equal(await postTool(), '');
+  assert.equal(calls, 2);
+});
+
+test('a turn end with no transcript path marks the record deferred', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  const { recordPath } = createPendingRecord(sandbox, LOOP_ID, SESSION_ID);
+  const sessionRoot = createVibeSession(t, sandbox);
+  const { armHandoverTurnEnd } = await loadParts();
+
+  await armHandoverTurnEnd(
+    payloadFor(sandbox, sessionRoot, 'post_agent', { transcript_path: '' }),
+    { env: sandbox.env, pid: HOOK_PID, processTable: PROCESS_TABLE, spawn: recordSpawns([]) },
+  );
+  const stored = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(stored.status, 'pending');
+  assert.ok(stored.deferredAt, 'the record carries a deferred mark');
+});
+
+test('a turn end whose session has no journal segment marks the record deferred', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  const { recordPath } = createPendingRecord(sandbox, LOOP_ID, SESSION_ID);
+  const emptyRoot = path.join(sandbox.root, 'empty-vibe-session');
+  fs.mkdirSync(path.join(emptyRoot, 'journal'), { recursive: true });
+  const { armHandoverTurnEnd } = await loadParts();
+
+  await armHandoverTurnEnd(
+    payloadFor(sandbox, emptyRoot, 'post_agent'),
+    { env: sandbox.env, pid: HOOK_PID, processTable: PROCESS_TABLE, spawn: recordSpawns([]) },
+  );
+  const stored = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(stored.status, 'pending');
+  assert.ok(stored.deferredAt, 'the record carries a deferred mark');
 });

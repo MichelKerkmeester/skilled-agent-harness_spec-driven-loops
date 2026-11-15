@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # deep-review: Feature Catalog
@@ -425,7 +425,7 @@ Maps active finding state into FAIL or CONDITIONAL or PASS.
 
 #### How It Works
 
-Verdicts are derived from active findings plus gate state: unresolved P0 or failed required gates yield FAIL, active P1 without P0 yields CONDITIONAL, and PASS requires no active P0 or P1 while recording `hasAdvisories=true` when P2 remains.
+Verdicts are derived from active findings plus gate state: unresolved P0 or failed required gates yield FAIL, active P1 without P0 or open search debt yields CONDITIONAL, and PASS requires no active P0 or P1 and no open search debt while recording `hasAdvisories=true` when P2 remains.
 
 #### Source Files
 

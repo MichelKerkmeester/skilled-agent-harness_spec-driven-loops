@@ -1,7 +1,7 @@
 ---
 title: "CP-051 -- EXHAUSTED_APPROACH_RESPECT resume-state discipline **(SANDBOXED)**"
 description: "Validate that command-dispatched @deep-research reads existing state and does not retry a Blocked exhausted approach."
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # CP-051 -- EXHAUSTED_APPROACH_RESPECT resume-state discipline **(SANDBOXED)**
@@ -120,7 +120,7 @@ diff /tmp/cp-051-pre.txt /tmp/cp-051-post.txt > /tmp/cp-051-tripwire.diff; echo 
 | `.skilled/commands/deep/assets/deep-research.yaml:197-217` | resume classification and event |
 | `.skilled/agents/deep-research.md:77-97` | read state and hard-block missing state |
 | `.skilled/agents/deep-research.md:113-130` | focus selection and exhausted approach handling |
-| `.skilled/agents/deep-research.md:399-428` | always and never rules for state discipline |
+| `.skilled/agents/deep-research.md:425-465` | always and never rules for state discipline |
 | `.skilled/skills/system-deep-loop/deep-research/SKILL.md:183-189` | skill-level state and exhausted approach rules |
 
 ---

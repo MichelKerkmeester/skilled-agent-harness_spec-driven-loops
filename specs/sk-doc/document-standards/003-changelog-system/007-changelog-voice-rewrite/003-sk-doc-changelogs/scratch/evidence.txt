@@ -1,0 +1,31 @@
+## list
+lists/003.txt lines: 298
+## measure before (HEAD text of the 296 queued files)
+files=296 sentences=4169 avg_words=12.5
+sentences_over_15=1280 sentences_over_22=552
+files_with_a_sentence_over_22=210 files_with_hvr_hard_blockers=12
+## measure after
+files=296 sentences=6385 avg_words=8.4
+sentences_over_15=186 sentences_over_22=0
+files_with_a_sentence_over_22=0 files_with_hvr_hard_blockers=0
+## wave 003 driver
+2026-11-15T12:27:54.921Z finished pass=247 restored=1 unchanged=48
+driver exit=0
+## wave 003-retry driver (single-backtick span matcher)
+2026-11-15T12:29:50.202Z finished pass=0 restored=1 unchanged=0
+driver exit=0
+## wave 003-retry2 driver (fixed span matcher)
+2026-11-15T12:32:38.129Z finished pass=1 restored=0 unchanged=0
+driver exit=0
+## wave-verify
+{"listed":298,"keep":248,"restored":48,"missing":0,"problems":2}
+PROBLEM .skilled/skills/sk-doc/changelog/v2.3.20.0.md: the saved original is not the file at HEAD
+PROBLEM .skilled/skills/sk-doc/sk-create-command/changelog/v1.0.6.0.md: the saved original is not the file at HEAD
+## pilot files against HEAD
+git diff --quiet exit=0
+## changed notes in worktree
+248
+## span matcher regression (old vs new pattern over scope-list files without a double backtick)
+{ same: 1556, diff: 0, multi: 15 }
+## tokens
+waves 003, 003-retry and 003-retry2 worker plus verifier input and output: 10717333

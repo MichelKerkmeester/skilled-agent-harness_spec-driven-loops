@@ -25,7 +25,8 @@
     "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier",
     "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening",
     "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction",
-    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios"
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -56,14 +57,15 @@
       "routes"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "decision-record.md",
       "002-mistral-provider-roster/evidence/probes.md",
       "001-deep-research/research-angles.md",
       "003-dsh-mistral-route/scratch/draft-route-mistral-deepseek.patch.yml",
-      "001-deep-research/research/phase-plan.md"
+      "001-deep-research/research/phase-plan.md",
+      "review/review-report.md"
     ],
     "entities": [
       {
@@ -103,6 +105,12 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -110,12 +118,6 @@
       },
       {
         "name": "Mistral Vibe",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,6 +136,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -171,20 +179,20 @@
     ],
     "causal_summary": "The operator subscribed to Mistral, whose plan serves DeepSeek V4.1 Flash 1017 and GLM-5.3-Flash beside Mistral's own models and its Vibe coding agent",
     "created_at": "2026-11-14T12:01:21Z",
-    "last_save_at": "2026-11-15T15:01:17.212Z",
+    "last_save_at": "2026-11-15T19:31:03.167Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:0740940c7c38c8942cb0272a69e3910b9285a63d8fc7bf5bd74dc6867adbd531",
+    "source_fingerprint": "sha256:7e5b7276ab6075488a8ec39c09a2335155019152e18cddaa8358d03f0c70d9b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e16ba525acfe9e56444594f50ce3fbad9ec7683f613699a5925320d864810a41",
+      "spec.md": "c28a7f9b59d9148f9302cfd7c1b46293c54e43c73b486eea2babfdadf4720322",
       "decision-record.md": "402d177ba91912474789bd8fe6dae7266c9b820726fdd90524d3d7ef7e83521d"
     },
-    "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier",
-    "last_active_at": "2026-11-15T15:01:17.212Z"
+    "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation",
+    "last_active_at": "2026-11-15T19:30:46.486Z"
   }
 }

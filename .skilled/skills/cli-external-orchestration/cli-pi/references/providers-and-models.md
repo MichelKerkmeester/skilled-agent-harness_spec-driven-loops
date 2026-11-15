@@ -11,7 +11,7 @@ trigger_phrases:
   - "pi mistral deepseek glm route"
 importance_tier: normal
 contextType: implementation
-version: 1.5.11.0
+version: 1.5.12.0
 ---
 
 # cli-pi Providers, Models & Invocation
@@ -108,7 +108,7 @@ The operator's Mistral subscription, through Pi's **builtin** `mistral` provider
 
 Model-id gotcha: Mistral ids use **dashes, not dots**. `mistral/deepseek-v4.1-flash-1017` does not resolve. Write `mistral/deepseek-v4-1-flash-1017` and `mistral/zai-glm-5-3-flash`.
 
-Billing: Mistral's API list rate for the DeepSeek route is $0.30 in, $1.20 out and $0.007 cached per million tokens, double the DevPass rate. Mistral documents one monthly usage pool shared across Studio, the API and Vibe Code. Whether a Pi turn draws on that pool or on pay-as-you-go is UNKNOWN until the Mistral console's usage counter is read after a run.
+Billing: Mistral's API list rate for the DeepSeek route is $0.30 in, $1.20 out and $0.007 cached per million tokens, double the DevPass rate. Mistral bills two separate budgets: the key from the Vibe browser sign-in (macOS keychain item `ai.mistral.vibe`) bills the plan's Vibe budget, and any other Mistral key bills the API budget. Save the sign-in key as Pi's `mistral` credential so Pi turns bill the Vibe budget. On 2026-11-15 a `mistral/deepseek-v4-1-flash-1017` turn with that key replied `ok`, moved the Vibe budget and left the API budget unchanged. An exhausted budget fails with `402 API budget exhausted`.
 
 | Model id | Notes |
 |----------|-------|

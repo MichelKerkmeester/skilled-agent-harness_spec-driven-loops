@@ -1,0 +1,24 @@
+## build
+build exit=0
+## vitest cli
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |cli| tests/hook-registration-sync.vitest.ts > sync-hook-registrations.cjs > renders each runtime in its own wrapper dialect from one binding
+ FAIL  |cli| tests/playbook-provenance-paths.vitest.ts > playbook provenance lines > every file carries exactly one provenance line in one of the two forms
+ Test Files  2 failed | 210 passed | 3 skipped (215)
+      Tests  2 failed | 2611 passed | 20 skipped (2633)
+## test:legacy
+exit=0
+PASS: create.sh parent mode: predecessor links to prior phase
+
+Result: passed=27 failed=0
+## test:validation
+exit=0
+  Results: 12 passed, 0 failed (of 12)
+---------------------------------------------------------------
+
+## sk-doc pytest
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+443 passed, 1 warning in 69.91s (0:01:09)
+## packet changelogs
+    1410

@@ -2,12 +2,15 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 1845233133,
-  "socket": "conv-68365-vibe",
-  "session_id": "d04796f1-af97-41a9-8fc5-89590222f9cb",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.Tr39hDMhAn/vibe",
-  "started_at": "2026-11-15T00:33:59.434Z",
-  "finished_at": "2026-11-15T00:34:41.130Z",
+  "seed": 869535194,
+  "socket": "conv-9786-vibe",
+  "session_id": "88649c3f-b752-44a1-9328-911737e353d0",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.P3gZjIcH8p/vibe",
+  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.P3gZjIcH8p/vibe-home-NaDIkJ",
+  "vibe_model": "deepseek-flash",
+  "vibe_home_removed": false,
+  "started_at": "2026-11-15T19:40:37.871Z",
+  "finished_at": "2026-11-15T19:41:52.161Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -37,7 +40,7 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "brief-delivered receipt=1794702850",
+      "observed": "brief-delivered receipt=1794771662",
       "evidence": "turns/advisor-1"
     },
     {
@@ -46,7 +49,7 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "no-second-brief receipt=unchanged-since-turn1",
+      "observed": "no-second-brief receipt=unchanged-since-turn1 pre-agent-runs=2->4",
       "evidence": "turns/advisor-2"
     }
   ]

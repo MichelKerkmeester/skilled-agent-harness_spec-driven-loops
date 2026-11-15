@@ -155,6 +155,7 @@ describe('prompt-pack', () => {
       pivot_lineage: 'Pivot pivot-1-fed654cba321 selected candidate-001 from source iteration 3.',
       saturated_directions: '- traceability',
       review_focus_block: '',
+      unfinished_core_protocols_block: '',
     });
 
     expect(researchRendered).toContain('Research Topic: Deep loop coverage');

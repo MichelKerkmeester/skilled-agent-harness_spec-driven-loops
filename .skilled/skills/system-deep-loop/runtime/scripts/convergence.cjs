@@ -1460,6 +1460,30 @@ function reviewTraceabilityCovered(config, registry) {
   }));
 }
 
+// The core protocols a stop still owes. A review that reaches its iteration cap
+// before every veto has run closes over a partial verdict, so the ids are
+// reported as a stop input and the last iteration can be steered to them.
+function reviewUnfinishedCoreProtocols(config, registry) {
+  const core = isPlainObject(config?.crossReference) && Array.isArray(config.crossReference.core)
+    ? config.crossReference.core
+    : [];
+  if (core.length === 0) return [];
+
+  const traceability = isPlainObject(registry?.traceability) ? registry.traceability : {};
+  const results = Array.isArray(traceability.results) ? traceability.results : [];
+  const latestStatusById = new Map();
+  for (const entry of results) {
+    if (!isPlainObject(entry) || typeof entry.protocolId !== 'string') continue;
+    latestStatusById.set(
+      entry.protocolId,
+      typeof entry.status === 'string' ? entry.status.toLowerCase() : '',
+    );
+  }
+
+  const unfinishedStatuses = new Set(['', 'pending', 'deferred', 'skipped', 'partial', 'blocked']);
+  return core.filter((id) => unfinishedStatuses.has(latestStatusById.get(id) ?? ''));
+}
+
 function lastClaimAdjudicationPassed(stateRows) {
   let lastMatch = null;
   for (const row of stateRows) {
@@ -1532,6 +1556,7 @@ function stopDecisionReviewFacts(options = {}) {
     missingDimensions: dimensions.filter((dimension) => coverage[dimension] !== true),
     coverageAge: reviewCoverageAge(evidenceRecords, dimensions),
     traceabilityCovered: reviewTraceabilityCovered(config, registry),
+    unfinishedCoreProtocols: reviewUnfinishedCoreProtocols(config, registry),
     activeP0: finiteNumberOrNull(findingsBySeverity.P0) ?? 0,
     activeP1: finiteNumberOrNull(findingsBySeverity.P1) ?? 0,
     evidenceBackedP0P1: openFindings.filter((finding) => (
@@ -1894,7 +1919,10 @@ module.exports = {
   parseMinObservationsValue,
   parseSlidingWindowSizeValue,
   readConvergenceModeConfig,
+  readJsonObjectFile,
   readObservationThresholdConfig,
+  readStateLogRows,
+  reviewUnfinishedCoreProtocols,
   shouldTraceImprovementEffect,
 };
 

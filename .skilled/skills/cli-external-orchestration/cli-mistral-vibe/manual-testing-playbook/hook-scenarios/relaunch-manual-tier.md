@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-026 -- The manual relaunch tier hands off and a fresh session claims it"
 description: "This scenario validates the Vibe manual relaunch tier: a sender prepares a handoff note, the operator ends the session, and a fresh Vibe session started from the wrapper's claim seed claims the note."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # VIB-HK-026 -- The manual relaunch tier hands off and a fresh session claims it
@@ -27,8 +27,8 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Objective: verify that the manual relaunch tier prepares a handoff and that a fresh Vibe session claims it.
 - Real user request: `Hand this session's work to a fresh session, then claim the handoff there and continue it.`
 - Prompt: `Hand this session's work to a fresh session, then claim the handoff there and continue it.`
-- Expected execution process: the operator exports `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`, because session handover is default-on for Claude Code only, and starts `skilled-loop vibe --trust`. The sender follows `.skilled/commands/speckit/handoff.md`, which the operator names in words because Vibe has no command loader. Its `prepare --runtime vibe` prints `RESULT=manual` and one claim command. The operator exits the session and runs that command with `--trust` added, because the printed command leaves the sender's launch flags out, so a fresh Vibe session starts with the claim seed.
-- Expected signals: the note's frontmatter reads `status: claimed` with a `claimed_by` session id, the hop history holds one `claimed` line whose runtime column is `vibe`, and the fresh session's first turn carries the claim's output.
+- Expected execution process: the operator exports `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`, because session handover is default-on for Claude Code only, and starts `skilled-loop vibe --trust`. The sender follows `.skilled/commands/speckit/handoff.md`, which the operator names in words because Vibe has no command loader. Its `prepare --runtime vibe` prints `STATUS=OK`. The operator exits the session, the wrapper prints one claim command that keeps the sender's launch flags, `--trust` included, and the operator runs it, so a fresh Vibe session starts with the claim seed. For the goal check the operator also exports `VIBE_SPEC_FOLDER` naming a packet that holds a `goal.md` before the sender starts, and unsets it before running the claim command.
+- Expected signals: the note's frontmatter reads `status: claimed` with a `claimed_by` session id, the hop history holds one `claimed` line whose runtime column is `vibe`, and the fresh session's first turn carries the claim's output. With a packet bound, the note also carries `goal_packet`, and the fresh session's first input holds that packet's goal slice as hook context although its shell has no `VIBE_SPEC_FOLDER`.
 - Desired user-visible outcome: the fresh session reads the note, names its remaining work and continues it.
 - Pass/fail: PASS when the note reads claimed and the fresh session's first turn shows the claim. FAIL when the note stays open or the new session never claims it. The shared runner reports SKIP with the named blocker, because it cannot run the wrapper, cannot type a per-run absolute seed, and starts its subject in a scratch project that holds no relaunch CLI; the operator procedure carries the manual steps.
 
@@ -78,8 +78,8 @@ Capture matrix.md, checkpoints.tsv, the preflight turn's screen.txt and check.tx
 
 ### Pass / Fail
 
-- **Pass**: the note's frontmatter reads `status: claimed` with a `claimed_by` session, the relaunch history holds one `claimed` line for runtime `vibe`, and the fresh session's first turn shows the claim's output.
-- **Fail**: the note stays open after the fresh session's first turn, or the claim fails in that session.
+- **Pass**: the note's frontmatter reads `status: claimed` with a `claimed_by` session, the relaunch history holds one `claimed` line for runtime `vibe`, and the fresh session's first turn shows the claim's output. With a packet bound, the note carries `goal_packet` and the fresh session starts with that packet's goal slice.
+- **Fail**: the note stays open after the fresh session's first turn, or the claim fails in that session. With a packet bound, the note carries no `goal_packet`, or the fresh session starts without the goal slice.
 - **Skip**: the runner cannot drive the hop, because it cannot run the wrapper, cannot type the per-run absolute seed, and starts a subject in a scratch project without the relaunch CLI; the blocker names the first of those and procedure.md carries the manual steps.
 
 ### Failure Triage
@@ -87,6 +87,7 @@ Capture matrix.md, checkpoints.tsv, the preflight turn's screen.txt and check.tx
 1. Read turns/preflight/check.txt for the two probes.
 2. Compare the seed the wrapper printed with the note path under `.skilled/skills/.state/session-handover/handoffs/`.
 3. Run the claim command by hand and read whether the note's frontmatter flips to `claimed`.
+4. With a packet bound and no `goal_packet` in the note, run `prepare` again with `VIBE_SPEC_FOLDER` set and read the `[session-handover] goal not carried:` line, if any; a note with the field but a receiver without the goal points at `.skilled/hooks/goal/vibe/goal-inject.mjs`.
 
 ---
 
@@ -105,6 +106,8 @@ Capture matrix.md, checkpoints.tsv, the preflight turn's screen.txt and check.tx
 |---|---|
 | `.skilled/hooks/session-handover/lib/nudge.cjs` | The claim-seed and claim-command builders |
 | `.skilled/hooks/session-handover/bin/session-handover.cjs` | The prepare, claim and history subcommands |
+| `.skilled/hooks/session-handover/lib/relaunch-core.cjs` | Resolves the packet a Vibe sender's note carries |
+| `.skilled/hooks/goal/vibe/goal-inject.mjs` | Renders the receiver's goal slice from the claimed packet |
 | `.skilled/bin/skilled-loop` | The wrapper that consumes the record and starts the fresh Vibe session |
 | `.vibe/hooks.toml` | The hook bindings a Vibe session runs |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` | The runner and its `vibe` adapter |

@@ -1,6 +1,6 @@
 ---
 title: "Cross-CLI Runtime Map"
-description: "How the six CLI runtime directories derive from .skilled: which surfaces are symlinks that cannot drift, which are generator output that can, which files are authored in one runtime and exist nowhere else, and why each runtime needs a different shape."
+description: "How the eight CLI runtime directories derive from .skilled: which surfaces are symlinks that cannot drift, which are generator output that can, which files are authored in one runtime and exist nowhere else, and why each runtime needs a different shape."
 trigger_phrases:
   - "cross cli runtime map"
   - "which runtime symlinks what"
@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.skilled/` holds the authored tree. Six runtime directories sit beside it, one per CLI, and each holds what that CLI reads, at the path it reads it, in the dialect it parses. Almost none of it is authored twice.
+`.skilled/` holds the authored tree. Eight runtime directories sit beside it, one per CLI, and each holds what that CLI reads, at the path it reads it, in the dialect it parses. Almost none of it is authored twice.
 
 Three mechanisms do the work, and telling them apart is the whole point of this document:
 
@@ -42,7 +42,7 @@ A real file is therefore not automatically authored content — most of them are
 | `.dsh/` | Skills, prompt stubs, agent patches and repo-guard plugin for the external DeepSeek Harness target | None | skills, prompts and agents from three DSH generators | `patches/`, `plugins/repo-guards/`, `README.md`, `SYNC.md` |
 | `.vibe/` | Skills, prompt stubs, agent profiles and repo-guard plugin for the external Mistral Vibe target | `skills/` (relative symlinks) | skills, prompts and agents from three Vibe generators | `config.toml`, `hooks.toml`, `plugins/repo-guards/`, `SYNC.md` |
 
-The six repository-opening runtimes author their own `SYNC.md`. Every `hooks/` directory authors its own `README.md`. `.dsh/` is an external run surface, not another directory for opening the repository in. Its `SYNC.md` records the separate contract: run from a scratch working directory outside the checkout, set a disposable `DSH_HOME`, choose `read-only` or `workspace-write` deliberately and treat `--approval-policy never` as approval handling rather than filesystem confinement. The documented scratch-cwd launch path keeps the repository-root `.env` out of dsh's search path. `.vibe/` is the second external run surface, for Mistral Vibe. Its `SYNC.md` records that contract: run from a scratch working directory with a disposable `VIBE_HOME` that holds a copy of `config.toml`, and load the hand-authored `hooks.toml` through the copy `plugins/repo-guards/render-home-hooks.cjs` writes into that home. `.claude/settings.local.json` is a per-machine file that git ignores, so it is not part of the map.
+All eight runtimes author their own `SYNC.md`. Every `hooks/` directory authors its own `README.md`. `.dsh/` also serves dispatched runs from outside the checkout. Its `SYNC.md` records that contract: run from a scratch working directory outside the checkout, set a disposable `DSH_HOME`, choose `read-only` or `workspace-write` deliberately and treat `--approval-policy never` as approval handling rather than filesystem confinement. The documented scratch-cwd launch path keeps the repository-root `.env` out of dsh's search path. `.vibe/` serves dispatched Mistral Vibe runs the same way. Its `SYNC.md` records that contract: run from a scratch working directory with a disposable `VIBE_HOME` that holds a copy of `config.toml`, and load the hand-authored `hooks.toml` through the copy `plugins/repo-guards/render-home-hooks.cjs` writes into that home. `.claude/settings.local.json` is a per-machine file that git ignores, so it is not part of the map.
 
 ---
 
@@ -54,7 +54,7 @@ The six repository-opening runtimes author their own `SYNC.md`. Every `hooks/` d
 
 **`.claude/agents/` is the one deliberate content fork.** Claude's agent frontmatter uses `tools:` where the authored dialect uses `mode`, `temperature` and `permission:`. The bodies are otherwise the same document, so the pair is held in step by a blocking pre-commit gate rather than by a link. This is the only surface in the repository where the same prose is authored twice on purpose. `Explore.md` is the exception: a Claude-only agent with no counterpart in `.skilled/agents/`.
 
-**`.cursor/` and `.devin/` link into `.claude/agents/`, not into `.skilled/agents/`,** because both parse the Claude dialect. That gives agent content **two upstreams, deliberately**: `.skilled/agents/` is canonical for the Claude fork, the Codex TOMLs and the Pi copies, while `.claude/agents/` is canonical for Cursor and Devin. Changing an agent means editing `.skilled/agents/`, letting the gate carry it into `.claude/agents/`, and the two downstream runtimes follow their links from there.
+**`.cursor/` and `.devin/` link into `.claude/agents/`, not into `.skilled/agents/`,** because both parse the Claude dialect. That gives agent content **two upstreams, deliberately**: `.skilled/agents/` is canonical for the Claude fork and for the generated Codex, Pi, DSH and Vibe copies, while `.claude/agents/` is canonical for Cursor and Devin. Changing an agent means editing `.skilled/agents/`, letting the gate carry it into `.claude/agents/`, and the two downstream runtimes follow their links from there.
 
 **`.devin/` needs the same files at a different shape.** Where the others read `agents/<name>.md`, Devin reads `agents/<name>/AGENT.md`. Each of those eleven directories is real and holds one symlink.
 
@@ -107,6 +107,6 @@ node .skilled/bin/check-agent-mirror-sync.cjs
 
 ## 6. RELATED
 
-- Each repository runtime has its own contract: `.claude/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.devin/SYNC.md`, `.opencode/SYNC.md` and `.pi/SYNC.md`. The external DSH and Vibe run-surface contracts are in `.dsh/SYNC.md` and `.vibe/SYNC.md`.
+- Each runtime has its own contract: `.claude/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.devin/SYNC.md`, `.opencode/SYNC.md`, `.pi/SYNC.md`, `.dsh/SYNC.md` and `.vibe/SYNC.md`. The DSH and Vibe contracts also cover runs dispatched from outside the checkout.
 - [`AGENTS.md`](../AGENTS.md) — the runtime instruction file
 - [`README.md`](../README.md) — repository overview

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0f629be22b59b92306bdb764134c797b068d923ac629fb5d461d1f3d785cb015",
+  "manifestHash": "9520012f9465563f296ab8fdbb813b51cad79b93d848e30fe1bfc3fe91de4372",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1114,6 +1114,9 @@
     "004 graphify task list": [
       "004-graphify task list"
     ],
+    "004 history preview readability operator decisions": [
+      "004-history-preview-readability operator decisions"
+    ],
     "004 implementation summary": [
       "004 implementation summary"
     ],
@@ -1804,6 +1807,9 @@
     "006 test cycle speed operator decisions": [
       "006-test-cycle-speed operator decisions"
     ],
+    "007 agent alignment follow ups operator decisions": [
+      "007-agent-alignment-follow-ups operator decisions"
+    ],
     "007 agents implementation summary": [
       "007-agents implementation summary"
     ],
@@ -2317,6 +2323,9 @@
     ],
     "009 deep review audit": [
       "009 deep review audit"
+    ],
+    "009 deep review p2 remediation operator decisions": [
+      "009-deep-review-p2-remediation operator decisions"
     ],
     "009 deep review remediation": [
       "009 deep-review remediation"
@@ -4667,6 +4676,9 @@
     "021 stress test wiring": [
       "021 stress test wiring"
     ],
+    "021 vibe budget default operator decisions": [
+      "021-vibe-budget-default operator decisions"
+    ],
     "022": [
       "022"
     ],
@@ -4856,6 +4868,9 @@
     ],
     "022 014 tasks": [
       "022/014 tasks"
+    ],
+    "022 agent source and drift checks operator decisions": [
+      "022-agent-source-and-drift-checks operator decisions"
     ],
     "022 arc closure": [
       "022 arc closure"
@@ -5066,6 +5081,9 @@
     ],
     "024 launcher lease integration test": [
       "024-launcher-lease-integration-test"
+    ],
+    "024 terminal gates script operator decisions": [
+      "024-terminal-gates-script operator decisions"
     ],
     "025 artifact certificate binding complete": [
       "025 artifact certificate binding complete"
@@ -6641,6 +6659,9 @@
     "031 findings fixes": [
       "031 findings fixes"
     ],
+    "031 search debt verdict operator decisions": [
+      "031-search-debt-verdict operator decisions"
+    ],
     "032 035 deferred items": [
       "032 035 deferred items"
     ],
@@ -7082,6 +7103,9 @@
     "046 handover anchor naming": [
       "046 handover anchor naming"
     ],
+    "046 vibe history locator operator decisions": [
+      "046-vibe-history-locator operator decisions"
+    ],
     "047 implementation summary": [
       "047 implementation summary"
     ],
@@ -7093,6 +7117,9 @@
     ],
     "047 v8 dominates relaxation": [
       "047 V8 dominates relaxation"
+    ],
+    "048 cross runtime handover parity fixes operator decisions": [
+      "048-cross-runtime-handover-parity-fixes operator decisions"
     ],
     "048 remaining p1 p2 remediation": [
       "048 remaining P1 P2 remediation"
@@ -10160,6 +10187,18 @@
     "agent docs alignment research tasks": [
       "agent docs alignment research tasks"
     ],
+    "agent docs fixes": [
+      "agent docs fixes"
+    ],
+    "agent docs fixes implementation summary": [
+      "agent docs fixes implementation summary"
+    ],
+    "agent docs fixes plan": [
+      "agent docs fixes plan"
+    ],
+    "agent docs fixes tasks": [
+      "agent docs fixes tasks"
+    ],
     "agent emphasis register": [
       "agent emphasis register"
     ],
@@ -10598,6 +10637,18 @@
     ],
     "agent safe output flag": [
       "agent-safe output flag"
+    ],
+    "agent source and drift checks": [
+      "agent source and drift checks"
+    ],
+    "agent source and drift checks implementation summary": [
+      "agent source and drift checks implementation summary"
+    ],
+    "agent source and drift checks plan": [
+      "agent source and drift checks plan"
+    ],
+    "agent source and drift checks tasks": [
+      "agent source and drift checks tasks"
     ],
     "agent spec authoring contract": [
       "agent spec authoring contract"
@@ -12051,6 +12102,9 @@
     "api call trace": [
       "api call trace"
     ],
+    "api keys in transcripts": [
+      "api keys in transcripts"
+    ],
     "api ready prompt structure": [
       "api-ready prompt structure"
     ],
@@ -12786,6 +12840,9 @@
     ],
     "archived tier read exclusion": [
       "archived tier read exclusion"
+    ],
+    "arena builder stale dist refusal": [
+      "arena builder stale dist refusal"
     ],
     "args present": [
       "args_present"
@@ -17661,9 +17718,6 @@
     "changelog entry frontmatter check": [
       "changelog entry frontmatter check"
     ],
-    "changelog evidence stack": [
-      "changelog evidence stack"
-    ],
     "changelog findability": [
       "changelog findability",
       "changelog-findability"
@@ -17710,14 +17764,8 @@
     "changelog gap 026": [
       "changelog gap 026"
     ],
-    "changelog generator modes": [
-      "changelog generator modes"
-    ],
     "changelog hub component resolution": [
       "changelog hub component resolution"
-    ],
-    "changelog identity phrase": [
-      "{{CHANGELOG_IDENTITY_PHRASE}}"
     ],
     "changelog identity phrase decision": [
       "changelog identity phrase decision"
@@ -17982,6 +18030,9 @@
     ],
     "changelog version keys tasks": [
       "changelog version keys tasks"
+    ],
+    "changelog voice rewrite phase parent spec": [
+      "changelog voice rewrite phase parent spec"
     ],
     "changelog word budgets": [
       "changelog word budgets"
@@ -19243,6 +19294,9 @@
     ],
     "cherry pick commit id remint": [
       "cherry-pick commit-id remint"
+    ],
+    "chg 012 removed": [
+      "chg-012 removed"
     ],
     "child changelog creation": [
       "child changelog creation"
@@ -22693,6 +22747,21 @@
     "cli external orchestration changelog rewrite tasks": [
       "cli-external-orchestration changelog rewrite tasks"
     ],
+    "cli external orchestration changelogs": [
+      "cli external orchestration changelogs"
+    ],
+    "cli external orchestration changelogs acceptance criteria": [
+      "cli external orchestration changelogs acceptance criteria"
+    ],
+    "cli external orchestration changelogs implementation summary": [
+      "cli external orchestration changelogs implementation summary"
+    ],
+    "cli external orchestration changelogs plan": [
+      "cli external orchestration changelogs plan"
+    ],
+    "cli external orchestration changelogs tasks": [
+      "cli external orchestration changelogs tasks"
+    ],
     "cli external orchestration compiled routing": [
       "cli-external-orchestration compiled routing"
     ],
@@ -25060,6 +25129,18 @@
     ],
     "closeout plan": [
       "closeout plan"
+    ],
+    "closeout run identity": [
+      "closeout run identity"
+    ],
+    "closeout run identity implementation summary": [
+      "closeout run identity implementation summary"
+    ],
+    "closeout run identity plan": [
+      "closeout run identity plan"
+    ],
+    "closeout run identity tasks": [
+      "closeout run identity tasks"
     ],
     "closeout tasks": [
       "closeout tasks"
@@ -27533,6 +27614,9 @@
     ],
     "codex persona tool mapping tasks": [
       "codex persona tool mapping tasks"
+    ],
+    "codex pi opencode deferred record": [
+      "codex pi opencode deferred record"
     ],
     "codex pi sync agents": [
       "codex pi sync agents"
@@ -32803,6 +32887,9 @@
     ],
     "cross runtime handover parity acceptance criteria": [
       "cross runtime handover parity acceptance criteria"
+    ],
+    "cross runtime handover parity fixes": [
+      "cross runtime handover parity fixes"
     ],
     "cross runtime handover parity implementation summary": [
       "cross runtime handover parity implementation summary"
@@ -38505,6 +38592,18 @@
     ],
     "deep review p2 plan check build summary": [
       "deep review p2 plan check build summary"
+    ],
+    "deep review p2 remediation": [
+      "deep review p2 remediation"
+    ],
+    "deep review p2 remediation implementation summary": [
+      "deep review p2 remediation implementation summary"
+    ],
+    "deep review p2 remediation plan": [
+      "deep review p2 remediation plan"
+    ],
+    "deep review p2 remediation tasks": [
+      "deep review p2 remediation tasks"
     ],
     "deep review packet 013": [
       "deep-review packet 013"
@@ -45530,6 +45629,9 @@
     "duplicate hash collapse": [
       "duplicate hash collapse"
     ],
+    "duplicate nudge race": [
+      "duplicate nudge race"
+    ],
     "duplicate packet number 001": [
       "duplicate packet number 001"
     ],
@@ -49415,6 +49517,21 @@
     ],
     "fail restore vs sentinel": [
       "fail restore vs sentinel"
+    ],
+    "failed arm deferred mark": [
+      "failed arm deferred mark"
+    ],
+    "failed arm deferred mark acceptance criteria": [
+      "failed arm deferred mark acceptance criteria"
+    ],
+    "failed arm deferred mark implementation summary": [
+      "failed arm deferred mark implementation summary"
+    ],
+    "failed arm deferred mark plan": [
+      "failed arm deferred mark plan"
+    ],
+    "failed arm deferred mark tasks": [
+      "failed arm deferred mark tasks"
     ],
     "failed embedding cleanup": [
       "failed embedding cleanup"
@@ -58829,8 +58946,26 @@
     "history lookup handover integration": [
       "history lookup handover integration"
     ],
+    "history lookup p2 fixes": [
+      "history lookup p2 fixes"
+    ],
     "history lookup review fixes": [
       "history lookup review fixes"
+    ],
+    "history preview readability": [
+      "history preview readability"
+    ],
+    "history preview readability acceptance criteria": [
+      "history preview readability acceptance criteria"
+    ],
+    "history preview readability implementation summary": [
+      "history preview readability implementation summary"
+    ],
+    "history preview readability plan": [
+      "history preview readability plan"
+    ],
+    "history preview readability tasks": [
+      "history preview readability tasks"
     ],
     "history rewrite": [
       "history rewrite"
@@ -58849,6 +58984,18 @@
     ],
     "history rewrite tasks": [
       "history rewrite tasks"
+    ],
+    "history secret redaction": [
+      "history secret redaction"
+    ],
+    "history secret redaction implementation summary": [
+      "history secret redaction implementation summary"
+    ],
+    "history secret redaction plan": [
+      "history secret redaction plan"
+    ],
+    "history secret redaction tasks": [
+      "history secret redaction tasks"
     ],
     "history test database env": [
       "history test database env"
@@ -59512,6 +59659,12 @@
     ],
     "hop recall conversation": [
       "hop recall conversation"
+    ],
+    "hop recall on codex and vibe": [
+      "hop recall on codex and vibe"
+    ],
+    "hop scorecard side word": [
+      "hop scorecard side word"
     ],
     "hop withdrawn because the transcript was missing": [
       "hop withdrawn because the transcript was missing"
@@ -60910,6 +61063,9 @@
     ],
     "in place recycle vs self exit": [
       "in-place recycle vs self-exit"
+    ],
+    "in place shell write scorer": [
+      "in-place shell write scorer"
     ],
     "in process execution directive": [
       "in-process execution directive"
@@ -69249,6 +69405,21 @@
     "mcp tooling changelog rewrite tasks": [
       "mcp-tooling changelog rewrite tasks"
     ],
+    "mcp tooling changelogs": [
+      "mcp tooling changelogs"
+    ],
+    "mcp tooling changelogs acceptance criteria": [
+      "mcp tooling changelogs acceptance criteria"
+    ],
+    "mcp tooling changelogs implementation summary": [
+      "mcp tooling changelogs implementation summary"
+    ],
+    "mcp tooling changelogs plan": [
+      "mcp tooling changelogs plan"
+    ],
+    "mcp tooling changelogs tasks": [
+      "mcp tooling changelogs tasks"
+    ],
     "mcp tooling compiled routing": [
       "mcp-tooling compiled routing"
     ],
@@ -74658,8 +74829,8 @@
     "nested changelog generate description adopters": [
       "nested-changelog generate-description adopters"
     ],
-    "nested changelog generator": [
-      "nested changelog generator"
+    "nested changelog generator removed": [
+      "nested changelog generator removed"
     ],
     "nested changelog helper replace": [
       "nested-changelog helper replace"
@@ -74667,20 +74838,11 @@
     "nested changelog identity phrase": [
       "nested changelog identity phrase"
     ],
-    "nested changelog js": [
-      "nested-changelog.js"
-    ],
     "nested changelog output override": [
       "nested-changelog output override"
     ],
-    "nested changelog templates": [
-      "nested changelog templates"
-    ],
     "nested changelog title escaping": [
       "nested changelog title escaping"
-    ],
-    "nested changelog workflow": [
-      "nested changelog workflow"
     ],
     "nested child goal": [
       "nested child goal"
@@ -75752,6 +75914,21 @@
     ],
     "nudge note lines tasks": [
       "nudge note lines tasks"
+    ],
+    "nudge parity and hop scoring acceptance criteria": [
+      "nudge parity and hop scoring acceptance criteria"
+    ],
+    "nudge parity and hop scoring plan": [
+      "nudge parity and hop scoring plan"
+    ],
+    "nudge parity and hop scoring tasks": [
+      "nudge parity and hop scoring tasks"
+    ],
+    "nudge parity decision record": [
+      "nudge parity decision record"
+    ],
+    "nudge parity implementation summary": [
+      "nudge parity implementation summary"
     ],
     "numbered all caps sections": [
       "numbered all caps sections"
@@ -77351,6 +77528,9 @@
     ],
     "opencode head drops the command": [
       "opencode head drops the command"
+    ],
+    "opencode history locator": [
+      "opencode history locator"
     ],
     "opencode hook adapter": [
       "opencode hook adapter"
@@ -79786,14 +79966,8 @@
     "packet changelog frontmatter": [
       "packet changelog frontmatter"
     ],
-    "packet changelog identity phrase": [
-      "packet changelog identity phrase"
-    ],
     "packet changelog request routing": [
       "packet changelog request routing"
-    ],
-    "packet changelog templates": [
-      "packet changelog templates"
     ],
     "packet closeout edits": [
       "packet closeout edits"
@@ -79887,9 +80061,6 @@
     ],
     "packet lineage lifecycle": [
       "packet lineage lifecycle"
-    ],
-    "packet local changelog": [
-      "packet-local changelog"
     ],
     "packet local changelog placement": [
       "packet local changelog placement"
@@ -81881,6 +82052,9 @@
     "phase 1 unknowns and baseline": [
       "phase 1 unknowns and baseline"
     ],
+    "phase 1 voice rule tooling and pilot": [
+      "phase 1 voice rule tooling and pilot"
+    ],
     "phase 1 workflow reentry seed": [
       "phase 1 workflow reentry seed"
     ],
@@ -81919,6 +82093,9 @@
     ],
     "phase 10 goal ending carry": [
       "phase 10 goal ending carry"
+    ],
+    "phase 10 history secret redaction": [
+      "phase 10 history secret redaction"
     ],
     "phase 10 hub registration and routing": [
       "phase 10 hub registration and routing"
@@ -81964,6 +82141,9 @@
     ],
     "phase 10 sk create manual testing playbook": [
       "phase 10 sk create manual testing playbook"
+    ],
+    "phase 10 sk design changelogs": [
+      "phase 10 sk design changelogs"
     ],
     "phase 10 sk doc tests path filter": [
       "phase 10 sk doc tests path filter"
@@ -82051,6 +82231,9 @@
     ],
     "phase 11 sk create repo rule": [
       "phase 11 sk create repo rule"
+    ],
+    "phase 11 sk git changelogs": [
+      "phase 11 sk git changelogs"
     ],
     "phase 11 sparse checkout rollout": [
       "phase 11 sparse checkout rollout"
@@ -82144,6 +82327,9 @@
     ],
     "phase 12 sk vision v2 prompt hook": [
       "phase 12 sk vision v2 prompt hook"
+    ],
+    "phase 12 small skill changelogs": [
+      "phase 12 small skill changelogs"
     ],
     "phase 12 system skill advisor": [
       "phase 12 system skill advisor"
@@ -82787,6 +82973,9 @@
     "phase 2 skill and routing rename": [
       "phase 2 skill and routing rename"
     ],
+    "phase 2 skilled release line": [
+      "phase 2 skilled release line"
+    ],
     "phase 2 state dir read check": [
       "phase 2 state dir read check"
     ],
@@ -82922,11 +83111,17 @@
     "phase 21 test db temp leak": [
       "phase 21 test db temp leak"
     ],
+    "phase 21 vibe budget default": [
+      "phase 21 vibe budget default"
+    ],
     "phase 21 vibe hook docs correction": [
       "phase 21 vibe hook docs correction"
     ],
     "phase 22 advisor routing and local install": [
       "phase 22 advisor routing and local install"
+    ],
+    "phase 22 agent source and drift checks": [
+      "phase 22 agent source and drift checks"
     ],
     "phase 22 align system spec kit": [
       "phase 22 align system spec kit"
@@ -82961,6 +83156,9 @@
     "phase 22 workflow measure soundness": [
       "phase 22 workflow measure soundness"
     ],
+    "phase 23 agent docs fixes": [
+      "phase 23 agent docs fixes"
+    ],
     "phase 23 ci sparse big suites": [
       "phase 23 ci sparse big suites"
     ],
@@ -82981,6 +83179,9 @@
     ],
     "phase 23 untuned outcome evidence": [
       "phase 23 untuned outcome evidence"
+    ],
+    "phase 23 vibe review remediation": [
+      "phase 23 vibe review remediation"
     ],
     "phase 24 dsh docs alignment": [
       "phase 24 dsh docs alignment"
@@ -83006,6 +83207,9 @@
     "phase 24 tasks": [
       "phase 24 tasks"
     ],
+    "phase 24 terminal gates script": [
+      "phase 24 terminal gates script"
+    ],
     "phase 24 typed command ambiguity": [
       "phase 24 typed command ambiguity"
     ],
@@ -83027,6 +83231,9 @@
     "phase 25 release notes and doc sync": [
       "phase 25 release notes and doc sync"
     ],
+    "phase 25 stop path live proof": [
+      "phase 25 stop path live proof"
+    ],
     "phase 26 alignment findings fixes": [
       "phase 26 alignment findings fixes"
     ],
@@ -83035,6 +83242,9 @@
     ],
     "phase 26 ci and test runners": [
       "phase 26 ci and test runners"
+    ],
+    "phase 26 closeout run identity": [
+      "phase 26 closeout run identity"
     ],
     "phase 26 goal rebind shared core and opencode": [
       "phase 26 goal rebind shared core and opencode"
@@ -83057,6 +83267,9 @@
     "phase 27 review pass four remediation": [
       "phase 27 review pass four remediation"
     ],
+    "phase 27 review traceability recording": [
+      "phase 27 review traceability recording"
+    ],
     "phase 28 changelog release extension": [
       "phase 28 changelog release extension"
     ],
@@ -83072,6 +83285,9 @@
     "phase 28 plugin kill switch coverage": [
       "phase 28 plugin kill switch coverage"
     ],
+    "phase 28 review scope recording": [
+      "phase 28 review scope recording"
+    ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
     ],
@@ -83080,6 +83296,9 @@
     ],
     "phase 29 relaunch evidence gaps and playbook drift": [
       "phase 29 relaunch evidence gaps and playbook drift"
+    ],
+    "phase 29 review verdict script": [
+      "phase 29 review verdict script"
     ],
     "phase 29 unrun tests ci coverage": [
       "phase 29 unrun tests ci coverage"
@@ -83270,6 +83489,9 @@
     "phase 3 sk design diagram": [
       "phase 3 sk design diagram"
     ],
+    "phase 3 sk doc changelogs": [
+      "phase 3 sk doc changelogs"
+    ],
     "phase 3 sk git playbook changelog": [
       "phase 3 sk git playbook changelog"
     ],
@@ -83318,6 +83540,9 @@
     "phase 30 opencode2 killer target": [
       "phase 30 opencode2 killer target"
     ],
+    "phase 30 review count source": [
+      "phase 30 review count source"
+    ],
     "phase 30 vibe runtime parity": [
       "phase 30 vibe runtime parity"
     ],
@@ -83333,6 +83558,9 @@
     "phase 31 relaunch model and effort": [
       "phase 31 relaunch model and effort"
     ],
+    "phase 31 search debt verdict": [
+      "phase 31 search debt verdict"
+    ],
     "phase 32 epic follow up review": [
       "phase 32 epic follow up review"
     ],
@@ -83342,11 +83570,20 @@
     "phase 32 plugin tests ci and stale bundles": [
       "phase 32 plugin tests ci and stale bundles"
     ],
+    "phase 32 review pass five remediation": [
+      "phase 32 review pass five remediation"
+    ],
+    "phase 32 traceability reserve iteration": [
+      "phase 32 traceability reserve iteration"
+    ],
     "phase 33 battery mcp prompt commands": [
       "phase 33 battery mcp prompt commands"
     ],
     "phase 33 follow up review fixes": [
       "phase 33 follow up review fixes"
+    ],
+    "phase 33 zero iteration report": [
+      "phase 33 zero iteration report"
     ],
     "phase 35 v2 bridge plugin effects": [
       "phase 35 v2 bridge plugin effects"
@@ -83561,6 +83798,9 @@
     "phase 4 symlink relink after unlink": [
       "phase 4 symlink relink after unlink"
     ],
+    "phase 4 system spec kit changelogs": [
+      "phase 4 system spec kit changelogs"
+    ],
     "phase 4 template section fill guidance": [
       "phase 4 template section fill guidance"
     ],
@@ -83608,6 +83848,12 @@
     ],
     "phase 47 diagram corpus ci": [
       "phase 47 diagram corpus ci"
+    ],
+    "phase 47 vibe handover hardening": [
+      "phase 47 vibe handover hardening"
+    ],
+    "phase 48 cross runtime handover parity fixes": [
+      "phase 48 cross runtime handover parity fixes"
     ],
     "phase 48 skilled loop shared nudge formatter": [
       "phase 48 skilled loop shared nudge formatter"
@@ -83774,6 +84020,9 @@
     "phase 5 silent input sweep": [
       "phase 5 silent input sweep"
     ],
+    "phase 5 sk code changelogs": [
+      "phase 5 sk code changelogs"
+    ],
     "phase 5 sk code review": [
       "phase 5 sk code review"
     ],
@@ -83866,6 +84115,9 @@
     ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
+    ],
+    "phase 6 cli external orchestration changelogs": [
+      "phase 6 cli external orchestration changelogs"
     ],
     "phase 6 cli hermes": [
       "phase 6 cli hermes"
@@ -84224,6 +84476,9 @@
     "phase 7 spec kit hook deadlines": [
       "phase 7 spec kit hook deadlines"
     ],
+    "phase 7 system deep loop changelogs": [
+      "phase 7 system deep loop changelogs"
+    ],
     "phase 7 test and ci bloat research": [
       "phase 7 test and ci bloat research"
     ],
@@ -84311,6 +84566,9 @@
     "phase 8 mcp obsidian": [
       "phase 8 mcp obsidian"
     ],
+    "phase 8 mcp tooling changelogs": [
+      "phase 8 mcp tooling changelogs"
+    ],
     "phase 8 orchestrate routing and retry": [
       "phase 8 orchestrate routing and retry"
     ],
@@ -84377,6 +84635,9 @@
     "phase 8 vibe repo guards": [
       "phase 8 vibe repo guards"
     ],
+    "phase 8 wider hop recall measurement": [
+      "phase 8 wider hop recall measurement"
+    ],
     "phase 8 write containment scoping": [
       "phase 8 write containment scoping"
     ],
@@ -84403,6 +84664,9 @@
     ],
     "phase 9 deep loop executor kind": [
       "phase 9 deep loop executor kind"
+    ],
+    "phase 9 deep review p2 remediation": [
+      "phase 9 deep review p2 remediation"
     ],
     "phase 9 doctor ci review wiring": [
       "phase 9 doctor ci review wiring"
@@ -84502,6 +84766,9 @@
     ],
     "phase 9 sk git": [
       "phase 9 sk git"
+    ],
+    "phase 9 system skill advisor changelogs": [
+      "phase 9 system skill advisor changelogs"
     ],
     "phase a readme authoring": [
       "Phase A readme authoring"
@@ -85712,6 +85979,9 @@
     "pi help": [
       "pi help"
     ],
+    "pi history locator": [
+      "pi history locator"
+    ],
     "pi hook adapter blocking": [
       "pi hook adapter blocking"
     ],
@@ -85864,6 +86134,21 @@
     ],
     "pi opencode gate pg tasks": [
       "Pi OpenCode Gate PG tasks"
+    ],
+    "pi opencode history lookup": [
+      "pi opencode history lookup"
+    ],
+    "pi opencode history lookup acceptance criteria": [
+      "pi opencode history lookup acceptance criteria"
+    ],
+    "pi opencode history lookup implementation summary": [
+      "pi opencode history lookup implementation summary"
+    ],
+    "pi opencode history lookup plan": [
+      "pi opencode history lookup plan"
+    ],
+    "pi opencode history lookup tasks": [
+      "pi opencode history lookup tasks"
     ],
     "pi openrouter roster": [
       "pi openrouter roster"
@@ -92236,6 +92521,9 @@
     "red then green vitest": [
       "red then green vitest"
     ],
+    "redact secrets from history lookup": [
+      "redact secrets from history lookup"
+    ],
     "reddit audit plan": [
       "reddit audit plan"
     ],
@@ -94408,6 +94696,12 @@
     "release writing defaults tasks": [
       "release writing defaults tasks"
     ],
+    "released changelog retrofit": [
+      "released changelog retrofit"
+    ],
+    "released changelog voice carve out": [
+      "released changelog voice carve-out"
+    ],
     "relevance aware detector redesign": [
       "relevance-aware detector redesign"
     ],
@@ -94744,6 +95038,9 @@
     "remote github operations": [
       "remote github operations"
     ],
+    "remote guard every live turn": [
+      "remote guard every live turn"
+    ],
     "remote push approval": [
       "remote push approval"
     ],
@@ -94903,8 +95200,26 @@
     "remove model benchmark mode": [
       "remove model-benchmark mode"
     ],
+    "remove nested changelog": [
+      "remove nested changelog"
+    ],
+    "remove nested changelog acceptance criteria": [
+      "remove nested changelog acceptance criteria"
+    ],
+    "remove nested changelog implementation summary": [
+      "remove nested changelog implementation summary"
+    ],
+    "remove nested changelog plan": [
+      "remove nested changelog plan"
+    ],
+    "remove nested changelog tasks": [
+      "remove nested changelog tasks"
+    ],
     "remove obsidian plugin support": [
       "remove obsidian plugin support"
+    ],
+    "remove predecessor hard block": [
+      "remove predecessor hard block"
     ],
     "remove process derived root source": [
       "remove process-derived root source"
@@ -94986,6 +95301,9 @@
     ],
     "remove the operator s personal account name": [
       "remove the operator s personal account name"
+    ],
+    "remove the unused nested spec changelog generator templates": [
+      "remove the unused nested spec changelog generator templates"
     ],
     "remove track narrowing scorer": [
       "remove track narrowing scorer"
@@ -98142,6 +98460,9 @@
     "retrofit relocation plan": [
       "retrofit relocation plan"
     ],
+    "retrofit rewords released changelog": [
+      "retrofit rewords released changelog"
+    ],
     "retry manager drain": [
       "retry manager drain"
     ],
@@ -98483,6 +98804,18 @@
     ],
     "review core reference": [
       "review-core reference"
+    ],
+    "review count source": [
+      "review count source"
+    ],
+    "review count source implementation summary": [
+      "review count source implementation summary"
+    ],
+    "review count source plan": [
+      "review count source plan"
+    ],
+    "review count source tasks": [
+      "review count source tasks"
     ],
     "review coverage ledger": [
       "review coverage ledger"
@@ -98845,6 +99178,21 @@
     "review packet type tasks": [
       "review packet type tasks"
     ],
+    "review pass five remediation": [
+      "review pass five remediation"
+    ],
+    "review pass five remediation acceptance criteria": [
+      "review pass five remediation acceptance criteria"
+    ],
+    "review pass five remediation implementation summary": [
+      "review pass five remediation implementation summary"
+    ],
+    "review pass five remediation plan": [
+      "review pass five remediation plan"
+    ],
+    "review pass five remediation tasks": [
+      "review pass five remediation tasks"
+    ],
     "review pass four remediation": [
       "review pass four remediation"
     ],
@@ -99103,6 +99451,18 @@
     "review scope coverage report": [
       "review scope coverage report"
     ],
+    "review scope recording": [
+      "review scope recording"
+    ],
+    "review scope recording implementation summary": [
+      "review scope recording implementation summary"
+    ],
+    "review scope recording plan": [
+      "review scope recording plan"
+    ],
+    "review scope recording tasks": [
+      "review scope recording tasks"
+    ],
     "review script entrypoints": [
       "review script entrypoints"
     ],
@@ -99190,6 +99550,18 @@
     "review traceability checks": [
       "review traceability checks"
     ],
+    "review traceability recording": [
+      "review traceability recording"
+    ],
+    "review traceability recording implementation summary": [
+      "review traceability recording implementation summary"
+    ],
+    "review traceability recording plan": [
+      "review traceability recording plan"
+    ],
+    "review traceability recording tasks": [
+      "review traceability recording tasks"
+    ],
     "review trigger split": [
       "review trigger split"
     ],
@@ -99213,6 +99585,18 @@
     ],
     "review verdict gate rule tasks": [
       "review verdict gate rule tasks"
+    ],
+    "review verdict script": [
+      "review verdict script"
+    ],
+    "review verdict script implementation summary": [
+      "review verdict script implementation summary"
+    ],
+    "review verdict script plan": [
+      "review verdict script plan"
+    ],
+    "review verdict script tasks": [
+      "review verdict script tasks"
     ],
     "review wording fixes": [
       "review wording fixes"
@@ -99336,6 +99720,9 @@
     ],
     "rewrite batch verification": [
       "rewrite batch verification"
+    ],
+    "rewrite changelogs to human voice": [
+      "rewrite changelogs to human voice"
     ],
     "rewrite main skilled v4 0 0 0": [
       "rewrite main skilled v4 0 0 0"
@@ -99700,9 +100087,6 @@
     ],
     "root name hardcode plan": [
       "root name hardcode plan"
-    ],
-    "root phase changelog": [
-      "root phase changelog"
     ],
     "root playbook backtick check": [
       "root playbook backtick check"
@@ -103476,6 +103860,18 @@
     "search command runs the ripgrep wrapper": [
       "search command runs the ripgrep wrapper"
     ],
+    "search debt verdict": [
+      "search debt verdict"
+    ],
+    "search debt verdict implementation summary": [
+      "search debt verdict implementation summary"
+    ],
+    "search debt verdict plan": [
+      "search debt verdict plan"
+    ],
+    "search debt verdict tasks": [
+      "search debt verdict tasks"
+    ],
     "search decision envelope": [
       "search decision envelope"
     ],
@@ -103532,6 +103928,9 @@
     ],
     "search index integrity sweep changelog": [
       "search-index-integrity-sweep changelog"
+    ],
+    "search index memory measurement": [
+      "search index memory measurement"
     ],
     "search intelligence findings behind 017": [
       "search intelligence findings behind 017"
@@ -105631,6 +106030,9 @@
     "shared neutrality": [
       "shared neutrality"
     ],
+    "shared nudge claim": [
+      "shared nudge claim"
+    ],
     "shared opt in helper migration": [
       "shared opt-in helper migration"
     ],
@@ -105973,6 +106375,9 @@
     ],
     "shorten the wait after a push": [
       "shorten the wait after a push"
+    ],
+    "shorter changelog sentences": [
+      "shorter changelog sentences"
     ],
     "shorter repo rules": [
       "shorter repo rules"
@@ -107003,6 +107408,21 @@
     ],
     "sk code changelog rewrite tasks": [
       "sk-code changelog rewrite tasks"
+    ],
+    "sk code changelogs": [
+      "sk code changelogs"
+    ],
+    "sk code changelogs acceptance criteria": [
+      "sk code changelogs acceptance criteria"
+    ],
+    "sk code changelogs implementation summary": [
+      "sk code changelogs implementation summary"
+    ],
+    "sk code changelogs plan": [
+      "sk code changelogs plan"
+    ],
+    "sk code changelogs tasks": [
+      "sk code changelogs tasks"
     ],
     "sk code ci": [
       "sk code ci"
@@ -109380,6 +109800,9 @@
     "sk create changelog 1 5 2 0": [
       "sk-create-changelog 1.5.2.0"
     ],
+    "sk create changelog 1 5 3 0": [
+      "sk-create-changelog 1.5.3.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -109493,6 +109916,9 @@
     ],
     "sk create changelog v1 5 2 0": [
       "sk-create-changelog v1.5.2.0"
+    ],
+    "sk create changelog v1 5 3 0": [
+      "sk-create-changelog v1.5.3.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -110846,6 +111272,9 @@
     "sk create with human voice 1 2 6 0": [
       "sk-create-with-human-voice 1.2.6.0"
     ],
+    "sk create with human voice 1 2 7 0": [
+      "sk-create-with-human-voice 1.2.7.0"
+    ],
     "sk create with human voice implementation summary": [
       "sk create with human voice implementation summary"
     ],
@@ -110884,6 +111313,9 @@
     ],
     "sk create with human voice v1 2 6 0": [
       "sk-create-with-human-voice v1.2.6.0"
+    ],
+    "sk create with human voice v1 2 7 0": [
+      "sk-create-with-human-voice v1.2.7.0"
     ],
     "sk deep research cli codex dispatch": [
       "sk-deep-research cli-codex dispatch"
@@ -110992,6 +111424,21 @@
     ],
     "sk design changelog symlinks": [
       "sk-design changelog symlinks"
+    ],
+    "sk design changelogs": [
+      "sk design changelogs"
+    ],
+    "sk design changelogs acceptance criteria": [
+      "sk design changelogs acceptance criteria"
+    ],
+    "sk design changelogs implementation summary": [
+      "sk design changelogs implementation summary"
+    ],
+    "sk design changelogs plan": [
+      "sk design changelogs plan"
+    ],
+    "sk design changelogs tasks": [
+      "sk design changelogs tasks"
     ],
     "sk design chart": [
       "sk design chart"
@@ -111822,6 +112269,9 @@
     "sk doc 2 9 15 0": [
       "sk-doc 2.9.15.0"
     ],
+    "sk doc 2 9 16 0": [
+      "sk-doc 2.9.16.0"
+    ],
     "sk doc 2 9 2 0": [
       "sk-doc 2.9.2.0"
     ],
@@ -111899,6 +112349,21 @@
     ],
     "sk doc changelog rewrite tasks": [
       "sk-doc changelog rewrite tasks"
+    ],
+    "sk doc changelogs": [
+      "sk doc changelogs"
+    ],
+    "sk doc changelogs acceptance criteria": [
+      "sk doc changelogs acceptance criteria"
+    ],
+    "sk doc changelogs implementation summary": [
+      "sk doc changelogs implementation summary"
+    ],
+    "sk doc changelogs plan": [
+      "sk doc changelogs plan"
+    ],
+    "sk doc changelogs tasks": [
+      "sk doc changelogs tasks"
     ],
     "sk doc ci outside failures": [
       "sk doc ci outside failures"
@@ -112338,6 +112803,9 @@
     "sk doc v2 9 15 0": [
       "sk-doc v2.9.15.0"
     ],
+    "sk doc v2 9 16 0": [
+      "sk-doc v2.9.16.0"
+    ],
     "sk doc v2 9 2 0": [
       "sk-doc v2.9.2.0"
     ],
@@ -112587,6 +113055,21 @@
     ],
     "sk git changelog rewrite tasks": [
       "sk-git changelog rewrite tasks"
+    ],
+    "sk git changelogs": [
+      "sk git changelogs"
+    ],
+    "sk git changelogs acceptance criteria": [
+      "sk git changelogs acceptance criteria"
+    ],
+    "sk git changelogs implementation summary": [
+      "sk git changelogs implementation summary"
+    ],
+    "sk git changelogs plan": [
+      "sk git changelogs plan"
+    ],
+    "sk git changelogs tasks": [
+      "sk git changelogs tasks"
     ],
     "sk git commit contract update": [
       "sk-git commit contract update"
@@ -115515,14 +115998,23 @@
     "skilled release line": [
       "skilled release line"
     ],
+    "skilled release line acceptance criteria": [
+      "skilled release line acceptance criteria"
+    ],
     "skilled release line changelog": [
       "skilled release line changelog"
+    ],
+    "skilled release line implementation summary": [
+      "skilled release line implementation summary"
     ],
     "skilled release line plan": [
       "skilled release line plan"
     ],
     "skilled release line shipped": [
       "skilled release line shipped"
+    ],
+    "skilled release line tasks": [
+      "skilled release line tasks"
     ],
     "skilled release notes": [
       "skilled release notes"
@@ -115979,6 +116471,21 @@
     ],
     "small model prompt craft profiles retired": [
       "small-model prompt-craft profiles retired"
+    ],
+    "small skill changelogs": [
+      "small skill changelogs"
+    ],
+    "small skill changelogs acceptance criteria": [
+      "small skill changelogs acceptance criteria"
+    ],
+    "small skill changelogs implementation summary": [
+      "small skill changelogs implementation summary"
+    ],
+    "small skill changelogs plan": [
+      "small skill changelogs plan"
+    ],
+    "small skill changelogs tasks": [
+      "small skill changelogs tasks"
     ],
     "smart embedder precedence chain": [
       "smart embedder precedence chain"
@@ -120217,6 +120724,21 @@
     "stop park notices tasks": [
       "stop park notices tasks"
     ],
+    "stop path live proof": [
+      "stop path live proof"
+    ],
+    "stop path live proof implementation summary": [
+      "stop path live proof implementation summary"
+    ],
+    "stop path live proof plan": [
+      "stop path live proof plan"
+    ],
+    "stop path live proof review report": [
+      "stop path live proof review report"
+    ],
+    "stop path live proof tasks": [
+      "stop path live proof tasks"
+    ],
     "stop policy event name": [
       "stop policy event name"
     ],
@@ -122034,6 +122556,21 @@
     "system deep loop changelog rewrite tasks": [
       "system-deep-loop changelog rewrite tasks"
     ],
+    "system deep loop changelogs": [
+      "system deep loop changelogs"
+    ],
+    "system deep loop changelogs acceptance criteria": [
+      "system deep loop changelogs acceptance criteria"
+    ],
+    "system deep loop changelogs implementation summary": [
+      "system deep loop changelogs implementation summary"
+    ],
+    "system deep loop changelogs plan": [
+      "system deep loop changelogs plan"
+    ],
+    "system deep loop changelogs tasks": [
+      "system deep loop changelogs tasks"
+    ],
     "system deep loop compiled routing": [
       "system-deep-loop compiled routing"
     ],
@@ -122510,6 +123047,21 @@
     ],
     "system skill advisor changelog rewrite tasks": [
       "system-skill-advisor changelog rewrite tasks"
+    ],
+    "system skill advisor changelogs": [
+      "system skill advisor changelogs"
+    ],
+    "system skill advisor changelogs acceptance criteria": [
+      "system skill advisor changelogs acceptance criteria"
+    ],
+    "system skill advisor changelogs implementation summary": [
+      "system skill advisor changelogs implementation summary"
+    ],
+    "system skill advisor changelogs plan": [
+      "system skill advisor changelogs plan"
+    ],
+    "system skill advisor changelogs tasks": [
+      "system skill advisor changelogs tasks"
     ],
     "system skill advisor cli trusted": [
       "SYSTEM_SKILL_ADVISOR_CLI_TRUSTED"
@@ -123312,6 +123864,9 @@
     "system spec kit 2 13 3 0": [
       "system-spec-kit 2.13.3.0"
     ],
+    "system spec kit 2 13 4 0": [
+      "system-spec-kit 2.13.4.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -123440,6 +123995,21 @@
     ],
     "system spec kit changelog rewrite tasks": [
       "system-spec-kit changelog rewrite tasks"
+    ],
+    "system spec kit changelogs": [
+      "system spec kit changelogs"
+    ],
+    "system spec kit changelogs acceptance criteria": [
+      "system spec kit changelogs acceptance criteria"
+    ],
+    "system spec kit changelogs implementation summary": [
+      "system spec kit changelogs implementation summary"
+    ],
+    "system spec kit changelogs plan": [
+      "system spec kit changelogs plan"
+    ],
+    "system spec kit changelogs tasks": [
+      "system spec kit changelogs tasks"
     ],
     "system spec kit cli matrix corpus": [
       "system-spec-kit cli matrix corpus"
@@ -123950,6 +124520,9 @@
     ],
     "system spec kit v2 13 3 0": [
       "system-spec-kit v2.13.3.0"
+    ],
+    "system spec kit v2 13 4 0": [
+      "system-spec-kit v2.13.4.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -125107,6 +125680,18 @@
     "terminal external binary segment": [
       "terminal external-binary segment"
     ],
+    "terminal gates script": [
+      "terminal gates script"
+    ],
+    "terminal gates script implementation summary": [
+      "terminal gates script implementation summary"
+    ],
+    "terminal gates script plan": [
+      "terminal gates script plan"
+    ],
+    "terminal gates script tasks": [
+      "terminal gates script tasks"
+    ],
     "terminal proof decisions": [
       "terminal proof decisions"
     ],
@@ -126160,6 +126745,9 @@
     "tool call integration matrix": [
       "tool_call integration matrix"
     ],
+    "tool call preview json": [
+      "tool call preview json"
+    ],
     "tool count 37": [
       "tool count 37"
     ],
@@ -126426,6 +127014,18 @@
     ],
     "traceability precedence fixed": [
       "traceability precedence fixed"
+    ],
+    "traceability reserve iteration": [
+      "traceability reserve iteration"
+    ],
+    "traceability reserve iteration implementation summary": [
+      "traceability reserve iteration implementation summary"
+    ],
+    "traceability reserve iteration plan": [
+      "traceability reserve iteration plan"
+    ],
+    "traceability reserve iteration tasks": [
+      "traceability reserve iteration tasks"
     ],
     "traceabilitychecks": [
       "traceabilityChecks"
@@ -130742,6 +131342,18 @@
     "vibe automatic relaunch tier": [
       "Vibe automatic relaunch tier"
     ],
+    "vibe budget default": [
+      "vibe budget default"
+    ],
+    "vibe budget default implementation summary": [
+      "vibe budget default implementation summary"
+    ],
+    "vibe budget default plan": [
+      "vibe budget default plan"
+    ],
+    "vibe budget default tasks": [
+      "vibe budget default tasks"
+    ],
     "vibe cli": [
       "vibe cli"
     ],
@@ -130768,6 +131380,9 @@
     ],
     "vibe compaction context tasks": [
       "vibe compaction context tasks"
+    ],
+    "vibe compaction scenario rerun": [
+      "vibe compaction scenario rerun"
     ],
     "vibe completion evidence": [
       "vibe completion evidence"
@@ -130892,11 +131507,53 @@
     "vibe handover flag and live hop tasks": [
       "vibe handover flag and live hop tasks"
     ],
+    "vibe handover hardening": [
+      "vibe handover hardening"
+    ],
+    "vibe handover hardening acceptance criteria": [
+      "vibe handover hardening acceptance criteria"
+    ],
+    "vibe handover hardening decision record": [
+      "vibe handover hardening decision record"
+    ],
+    "vibe handover hardening implementation summary": [
+      "vibe handover hardening implementation summary"
+    ],
+    "vibe handover hardening plan": [
+      "vibe handover hardening plan"
+    ],
+    "vibe handover hardening tasks": [
+      "vibe handover hardening tasks"
+    ],
+    "vibe handover hardening timeline": [
+      "vibe handover hardening timeline"
+    ],
+    "vibe handover locator": [
+      "vibe handover locator"
+    ],
     "vibe handover withdraw": [
       "Vibe handover withdraw"
     ],
+    "vibe history locator": [
+      "vibe history locator"
+    ],
+    "vibe history locator acceptance criteria": [
+      "vibe history locator acceptance criteria"
+    ],
+    "vibe history locator implementation summary": [
+      "vibe history locator implementation summary"
+    ],
+    "vibe history locator plan": [
+      "vibe history locator plan"
+    ],
+    "vibe history locator tasks": [
+      "vibe history locator tasks"
+    ],
     "vibe history lookup after compaction": [
       "vibe history lookup after compaction"
+    ],
+    "vibe history lookup at claim": [
+      "vibe history lookup at claim"
     ],
     "vibe home isolation": [
       "vibe home isolation"
@@ -130958,6 +131615,9 @@
     "vibe journal fixture and reader tasks": [
       "vibe journal fixture and reader tasks"
     ],
+    "vibe killer journal folder watch": [
+      "vibe killer journal folder watch"
+    ],
     "vibe lineage auto approve posture": [
       "vibe lineage auto-approve posture"
     ],
@@ -131011,6 +131671,9 @@
     ],
     "vibe pre tool hook": [
       "vibe pre_tool hook"
+    ],
+    "vibe prepare nothing ends this session": [
+      "vibe prepare nothing ends this session"
     ],
     "vibe print mode": [
       "vibe print mode"
@@ -131071,6 +131734,24 @@
     ],
     "vibe repo guards tasks": [
       "vibe repo guards tasks"
+    ],
+    "vibe review remediation": [
+      "vibe review remediation"
+    ],
+    "vibe review remediation acceptance criteria": [
+      "vibe review remediation acceptance criteria"
+    ],
+    "vibe review remediation implementation summary": [
+      "vibe review remediation implementation summary"
+    ],
+    "vibe review remediation plan": [
+      "vibe review remediation plan"
+    ],
+    "vibe review remediation tasks": [
+      "vibe review remediation tasks"
+    ],
+    "vibe runner model pin": [
+      "vibe runner model pin"
     ],
     "vibe runtime folder": [
       "vibe runtime folder"
@@ -131444,6 +132125,21 @@
     ],
     "voice routing section moved": [
       "voice routing section moved"
+    ],
+    "voice rule tooling and pilot": [
+      "voice rule tooling and pilot"
+    ],
+    "voice rule tooling and pilot acceptance criteria": [
+      "voice rule tooling and pilot acceptance criteria"
+    ],
+    "voice rule tooling and pilot implementation summary": [
+      "voice rule tooling and pilot implementation summary"
+    ],
+    "voice rule tooling and pilot plan": [
+      "voice rule tooling and pilot plan"
+    ],
+    "voice rule tooling and pilot tasks": [
+      "voice rule tooling and pilot tasks"
     ],
     "voice scanner": [
       "voice scanner"
@@ -132373,6 +133069,15 @@
     ],
     "widened drift baseline": [
       "widened drift baseline"
+    ],
+    "wider hop recall measurement": [
+      "wider hop recall measurement"
+    ],
+    "wider hop recall measurement plan": [
+      "wider hop recall measurement plan"
+    ],
+    "wider hop recall measurement tasks": [
+      "wider hop recall measurement tasks"
     ],
     "wikilink registry row": [
       "wikilink registry row"
@@ -133520,6 +134225,18 @@
     ],
     "zero hit fallback criteria": [
       "zero hit fallback criteria"
+    ],
+    "zero iteration report": [
+      "zero iteration report"
+    ],
+    "zero iteration report implementation summary": [
+      "zero iteration report implementation summary"
+    ],
+    "zero iteration report plan": [
+      "zero iteration report plan"
+    ],
+    "zero iteration report tasks": [
+      "zero iteration report tasks"
     ],
     "zero javascript diff report": [
       "zero javascript diff report",

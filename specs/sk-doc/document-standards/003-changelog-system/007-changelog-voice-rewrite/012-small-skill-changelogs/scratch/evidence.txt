@@ -1,0 +1,40 @@
+## list
+lists/012.txt lines: 98
+## measure before (HEAD text of the 95 queued files)
+files=95 sentences=1272 avg_words=12.3
+sentences_over_15=379 sentences_over_22=139
+files_with_a_sentence_over_22=57 files_with_hvr_hard_blockers=2
+## measure after
+files=95 sentences=1872 avg_words=8.6
+sentences_over_15=90 sentences_over_22=1
+files_with_a_sentence_over_22=1 files_with_hvr_hard_blockers=0
+The one sentence over 22 words is in .skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md, the restored file.
+## wave 012 driver
+2026-11-15T18:54:04.575Z wave=012 listed=98 queued=95 refused=0 slots=2
+2026-11-15T19:13:30.703Z finished pass=68 restored=2 unchanged=25
+driver exit=0
+## wave 012-retry driver
+2026-11-15T19:13:37.748Z wave=012-retry listed=98 queued=2 refused=0 slots=2
+2026-11-15T19:14:27.331Z restored .skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md attempts=3 secs=50 worker_in=37491 verify_in=38985
+2026-11-15T19:14:38.522Z pass .skilled/skills/sk-prompt/changelog/v2.1.3.0.md attempts=1 secs=61 worker_in=12695 verify_in=22082
+2026-11-15T19:14:38.522Z finished pass=1 restored=1 unchanged=0
+## wave 012-retry2 driver
+2026-11-15T19:14:53.657Z wave=012-retry2 listed=98 queued=1 refused=0 slots=2
+2026-11-15T19:15:52.872Z restored .skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md attempts=3 secs=59 worker_in=37475 verify_in=35582
+2026-11-15T19:15:52.873Z finished pass=0 restored=1 unchanged=0
+## restored file, last finding
+012-retry2 {'attempt': 3, 'problem': 'fact check', 'items': ['changed (correct it): The condition “as each unit needed” originally qualifies the listed edits. In the rewrite, “Adds the frontmatter version key to older changelog entries” is unconditional, and “It does so as each unit needed” has an unclear antecedent.']}
+## wave-verify
+{"listed":98,"keep":69,"restored":26,"missing":0,"problems":3}
+PROBLEM .skilled/skills/cli-classifier/cli-jev/changelog/v0.1.1.0.md: the saved original is not the file at HEAD
+PROBLEM .skilled/skills/cli-classifier/cli-jev/changelog/v0.1.4.0.md: the saved original is not the file at HEAD
+PROBLEM .skilled/skills/sk-prompt/changelog/v1.4.0.0.md: the saved original is not the file at HEAD
+## pilot files against HEAD
+git diff --quiet exit=0
+## changed notes in worktree
+69
+## tokens
+waves 012, 012-retry and 012-retry2 worker plus verifier input and output: 3236542
+## retry driver exits (from the command line, not the log)
+wave 012-retry: driver exit=0
+wave 012-retry2: driver exit=0

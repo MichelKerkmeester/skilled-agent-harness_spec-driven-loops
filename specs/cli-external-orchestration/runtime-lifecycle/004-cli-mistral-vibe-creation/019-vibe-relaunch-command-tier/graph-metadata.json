@@ -35,7 +35,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,7 +48,9 @@
       "scratch/manual-hop/procedure.md",
       "scratch/manual-hop.md",
       "scratch/resume-probe.md",
-      ".vibe/prompts/speckit-handoff.md"
+      ".vibe/prompts/speckit-handoff.md",
+      ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      ".skilled/commands/speckit/handoff.md"
     ],
     "entities": [
       {
@@ -124,6 +126,18 @@
         "source": "derived"
       },
       {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Command",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`relaunch-core.cjs:35` freezes the loop's runtimes as `claude pi opencode codex cursor devin`, and `skilled-loop` has no `vibe` case, so `skilled-loop vibe` falls through to Claude and `session-relaunch.cjs` refuses `--runtime vibe`",
     "created_at": "2026-11-14T20:13:11Z",
-    "last_save_at": "2026-11-15T15:01:17.127Z",
+    "last_save_at": "2026-11-15T17:26:17.750Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5edcdfc61f512977f50116ceac46d3f34b98c60f96aa5df6735ec3d5ca61705",
+    "source_fingerprint": "sha256:eff2a3ef31ab8144d22fd3de2996527adda4d77149802ee5365f6cc41cf3a63e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fe99a341294630d342eefc8a8a1e00b1ee53d7589a63d768e7d8ea56a37a7312",
       "plan.md": "1dddd540dc91376764a437158e6265ab0f763df9789fb0b92e853db9d1597e8f",
-      "tasks.md": "ba7bd7647d97b1187547a055c54ae7b0781762798492044e62bee34f7cd3eaea",
-      "implementation-summary.md": "5d6b27dd44ca5d0017c87d9f4b446afc928a0eeb2e966f9ad201a67c4d2baee0"
+      "tasks.md": "497caedfbbc3e75d6719f24129eb2b7f3400ce21862f298e1dd36c6e1cf0a469",
+      "implementation-summary.md": "fe7c74e7cb6c32b6bb932f8ad11eabc4fb4cf3dd8d56e8dd449447646cda2984"
     },
     "last_active_at": null
   }

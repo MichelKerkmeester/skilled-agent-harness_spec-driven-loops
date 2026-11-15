@@ -744,8 +744,9 @@ function claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env
   }
   // A session that never had a goal set leaves the receiver waiting for the operator to type
   // one. The packet the note names already states what the work is for, so the nearest
-  // unfinished goal the receiver can be started on is carried instead. A log read only in part cannot rule out a goal that
-  // ended earlier, and a finished goal.md would only make the receiver prove it again.
+  // unfinished goal the receiver can be started on is carried instead. A log read only in
+  // part cannot rule out a goal that ended earlier, and a finished goal.md would only make
+  // the receiver prove it again.
   if (latest === null) {
     // A goal the sender before this one ended stays ended. This session set none of its
     // own, so its log is silent and the note it claimed is what still says so.
@@ -820,6 +821,24 @@ function codexRolloutPath(sessionId, env) {
   return latest === null ? null : latest.file;
 }
 
+// Vibe keeps one folder per session under its home, and the handle digests the folder path
+// itself, so the mint has to name the same folder the lookup CLI joins for the same id. A
+// relative home resolves against whatever folder the command runs in, and a folder with no
+// journal leaves the reader nothing to parse, so either one would only mint a dead command.
+function vibeSessionFolder(sessionId, env) {
+  if (!/^[A-Za-z0-9._-]+$/.test(sessionId)) return null;
+  const configuredHome = env?.VIBE_HOME?.trim() ?? '';
+  if (configuredHome !== '' && !path.isAbsolute(configuredHome)) return null;
+  const vibeHome = configuredHome || path.join(os.homedir(), '.vibe');
+  const folder = path.join(vibeHome, 'logs', 'session', 'unified', sessionId);
+  try {
+    if (!fs.statSync(folder).isDirectory()) return null;
+    return fs.statSync(path.join(folder, 'journal')).isDirectory() ? folder : null;
+  } catch {
+    return null;
+  }
+}
+
 // Cursor writes its current model to one config file for every session, so the file is this
 // session's only when it changed after the wrapper launched this hop. Every switch rewrites
 // `model`, while `selectedModel` holds parameters and is rewritten only for a parameterized
@@ -851,9 +870,23 @@ function safeDirectory(directory) {
   }
 }
 
-// The history helpers are compiled into the spec-kit runtime's build output, which a checkout
-// may not have built yet. Requiring them inside the mint keeps this core loadable without that
-// build: a missing build is one more reason to skip the locator, never to fail the hand-over.
+// Pi and OpenCode keep no transcript file a handle could name. The lookup reads each through its
+// shared reader with the folder the session ran in and digests the session identity alone, so
+// the mint asks that same reader with that same folder and mints only when it finds the session.
+const SESSION_READERS_DIR = path.resolve(__dirname, '..', '..', 'shared', 'session-readers');
+
+function readerFindsSession(runtime, sessionId, projectDir) {
+  const load = runtime === 'pi'
+    ? require(path.join(SESSION_READERS_DIR, 'pi.mjs')).loadPiSession
+    : require(path.join(SESSION_READERS_DIR, 'opencode.mjs')).loadOpenCodeSession;
+  const result = load({ sessionId, projectDir, home: os.homedir(), env: process.env });
+  return result?.ok === true && result.source?.sessionId === sessionId;
+}
+
+// The hook state is compiled into the spec-kit runtime's build output and the history helpers
+// into this folder's history build, and a checkout may not have built either yet. Requiring them
+// inside the mint keeps this core loadable without those builds: a missing build is one more
+// reason to skip the locator, never to fail the hand-over.
 const HISTORY_RUNTIME_DIST = path.resolve(
   __dirname,
   '..',
@@ -864,29 +897,18 @@ const HISTORY_RUNTIME_DIST = path.resolve(
   'runtime',
   'dist',
 );
+const HISTORY_ENGINE_DIST = path.resolve(__dirname, '..', 'history', 'dist');
 
 function loadHistoryRuntime() {
   return {
     hookState: require(path.join(HISTORY_RUNTIME_DIST, 'hooks', 'claude', 'hook-state.js')),
-    digest: require(path.join(
-      HISTORY_RUNTIME_DIST,
-      'hooks',
-      'lib',
-      'history',
-      'locator-digest.js',
-    )),
+    digest: require(path.join(HISTORY_ENGINE_DIST, 'locator-digest.js')),
     offer: loadLookupOffer(),
   };
 }
 
 function loadLookupOffer() {
-  return require(path.join(
-    HISTORY_RUNTIME_DIST,
-    'hooks',
-    'lib',
-    'history',
-    'lookup-offer.js',
-  ));
+  return require(path.join(HISTORY_ENGINE_DIST, 'lookup-offer.js'));
 }
 
 /**
@@ -910,25 +932,38 @@ function mintHandoverLocator({ runtime, sessionId, cwd = process.cwd(), now } = 
     const { hookState, digest, offer } = loadHistoryRuntime();
     const locatorKind = hookState.HISTORY_LOCATOR_KINDS[runtime];
     if (!nonEmptyString(locatorKind)) return null;
+    const readsBySession = runtime === 'pi' || runtime === 'opencode';
     const transcriptPath = runtime === 'claude'
       ? claudeSessionLogPath(sessionId, process.env)
       : runtime === 'codex'
         ? codexRolloutPath(sessionId, process.env)
-        : null;
-    if (transcriptPath === null) return null;
+        : runtime === 'vibe'
+          ? vibeSessionFolder(sessionId, process.env)
+          : null;
+    if (!readsBySession && transcriptPath === null) return null;
     const placement = offer.placeLookup(cwd);
     if (placement === null) return null;
-    // The transcript is found by session id across every project, so a note could name
-    // another project's session. The folder the transcript itself records must sit in the
-    // same checkout as the folder the note names.
-    const recordedFolder = transcriptWorkingFolder(transcriptPath);
-    if (recordedFolder === null) return null;
-    const recordedPlacement = offer.placeLookup(recordedFolder);
-    if (
-      recordedPlacement === null
-      || !sameCheckout(recordedPlacement.workspace, placement.workspace)
-    ) {
-      return null;
+    if (readsBySession) {
+      // The mint asks the same question the lookup will, so the two agree. The reader refuses a
+      // session recorded for another folder whenever the store records one: always on Pi, and
+      // on OpenCode when its session table has a directory column.
+      const projectDir = placement.sessionDirectory ?? placement.workspace;
+      if (!readerFindsSession(runtime, sessionId, projectDir)) return null;
+    } else {
+      // The transcript is found by session id across every project, so a note could name
+      // another project's session. The folder the transcript itself records must sit in the
+      // same checkout as the folder the note names.
+      const recordedFolder = runtime === 'vibe'
+        ? vibeWorkingFolder(transcriptPath, sessionId)
+        : transcriptWorkingFolder(transcriptPath);
+      if (recordedFolder === null) return null;
+      const recordedPlacement = offer.placeLookup(recordedFolder);
+      if (
+        recordedPlacement === null
+        || !sameCheckout(recordedPlacement.workspace, placement.workspace)
+      ) {
+        return null;
+      }
     }
 
     const mintedAt = toIsoTimestamp(now);
@@ -1001,6 +1036,22 @@ function transcriptWorkingFolder(transcriptPath) {
     }
   }
   return null;
+}
+
+// Vibe records the session's folder in `meta.json`, not in the journal the reader parses, so
+// the mint reads the metadata file beside that journal instead of looking for a cwd in it. A
+// meta that names another session is the one the reader refuses at redeem, so it refuses too.
+function vibeWorkingFolder(sessionFolder, sessionId) {
+  try {
+    const meta = JSON.parse(fs.readFileSync(path.join(sessionFolder, 'meta.json'), 'utf8'));
+    if (nonEmptyString(meta?.session_id) && meta.session_id !== sessionId) return null;
+    if (nonEmptyString(meta?.environment?.working_directory)) {
+      return meta.environment.working_directory;
+    }
+    return nonEmptyString(meta?.origin_directory) ? meta.origin_directory : null;
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -1167,6 +1218,19 @@ function handoverGoalPacket({ runtime, roots, env }) {
   return goalPacketProblem(packet, roots) === null ? packet : '';
 }
 
+// Vibe keeps no goal record. Its session_start hook renders the goal from the packet the
+// operator named in VIBE_SPEC_FOLDER, or else from the one a claimed note handed over, so the
+// sender carries whichever of the two its own goal came from, in that order.
+function vibeGoalPacket({ roots, env }) {
+  const named = typeof env?.VIBE_SPEC_FOLDER === 'string' ? env.VIBE_SPEC_FOLDER.trim() : '';
+  const claimed = typeof env?.SESSION_HANDOVER_GOAL_PACKET === 'string'
+    ? env.SESSION_HANDOVER_GOAL_PACKET.trim()
+    : '';
+  const packet = named || claimed;
+  if (packet === '') return '';
+  return goalPacketProblem(packet, roots) === null ? packet : '';
+}
+
 /**
  * Find the packet the sending session's goal is bound to and say why a known goal cannot be
  * carried. Every reader fails closed: a log or record that cannot be read leaves the packet
@@ -1197,6 +1261,9 @@ function resolveGoalPacketResult({
       const recorded = recordedGoalPacket({ runtime, sessionId, roots });
       if (recorded !== '') return { ...none, packet: recorded };
       return { ...none, packet: handoverGoalPacket({ runtime, roots, env }) };
+    }
+    if (runtime === 'vibe') {
+      return { ...none, packet: vibeGoalPacket({ roots, env }) };
     }
     if (runtime === 'claude') {
       return claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env });
@@ -2448,6 +2515,47 @@ function dropNestedLoop(env, { hostPid, pid = process.pid, processTable } = {}) 
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+function vibeSessionIdPath(loopId, env) {
+  if (!validLoopId(loopId)) {
+    throw new Error(
+      'loopId must contain only letters, numbers, dots, underscores, or hyphens',
+    );
+  }
+  return path.join(stateDir(env), `vibe-session-${loopId}`);
+}
+
+/**
+ * Record the Vibe session id the loop's turn-start hook last saw. Vibe gives its tools no
+ * session id, so this is how a hand-over typed by the operator learns it.
+ *
+ * @param {Object} options - Inputs.
+ * @param {string} options.loopId - Wrapper process identifier.
+ * @param {string} options.sessionId - The Vibe session id from the hook payload.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ */
+function recordVibeSessionId({ loopId, sessionId, env = process.env }) {
+  const filePath = vibeSessionIdPath(loopId, env);
+  ensureStateDir(env);
+  atomicWriteFile(filePath, `${sessionId}\n`);
+}
+
+/**
+ * Read the Vibe session id the loop's turn-start hook last recorded.
+ *
+ * @param {Object} options - Inputs.
+ * @param {string} options.loopId - Wrapper process identifier.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @returns {string|null} The id, or null when none is recorded or it is malformed.
+ */
+function readVibeSessionId({ loopId, env = process.env }) {
+  try {
+    const value = fs.readFileSync(vibeSessionIdPath(loopId, env), 'utf8').trim();
+    return /^[A-Za-z0-9._-]+$/.test(value) ? value : null;
+  } catch {
+    return null;
+  }
+}
+
 module.exports = {
   HANDOFF_SECTIONS,
   RUNTIMES,
@@ -2470,6 +2578,10 @@ module.exports = {
   resolveGoalPacketReason,
   resolveSessionSettings,
   recordGoalPacket,
+  vibeSessionFolder,
+  recordVibeSessionId,
+  readVibeSessionId,
+  vibeSessionIdPath,
   mintHandoverLocator,
   handoverLookupSection,
   parentMapFromTable,

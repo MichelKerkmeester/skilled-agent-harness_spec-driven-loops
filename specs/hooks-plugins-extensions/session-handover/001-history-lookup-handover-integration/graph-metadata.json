@@ -10,7 +10,10 @@
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim",
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer",
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof",
-    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation"
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation",
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement",
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation",
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction"
   ],
   "manual": {
     "depends_on": [],
@@ -124,18 +127,18 @@
     ],
     "causal_summary": "A model can search and load its own earlier turns through the history lookup, but the lookup is offered only after a compaction",
     "created_at": "2026-11-15T06:24:14Z",
-    "last_save_at": "2026-11-15T15:09:28.005Z",
+    "last_save_at": "2026-11-15T20:47:50.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:44717cc6c05e2ecd9a51c9c15d40b93b0703e6ab2813b5df40b5721971d53db2",
+    "source_fingerprint": "sha256:e83e12a822cd0d4a2bd41f3b715c2e408964d09eb8a1c60b8e8d579bdce378bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cd17cb229d3a3da6e4c9ead775f91fa4dd279e2292e654cbc9a746fbe31a867c"
+      "spec.md": "7b756aa1d6aa9c5ad9effb0e2145ad86595e5203cf6c652765c126e51c59b228"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation",
-    "last_active_at": "2026-11-15T15:09:28.005Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction",
+    "last_active_at": "2026-11-15T20:47:50.578Z"
   }
 }

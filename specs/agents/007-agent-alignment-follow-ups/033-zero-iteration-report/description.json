@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/033-zero-iteration-report",
+  "description": "Phase 33: zero-iteration-report",
+  "keywords": [
+    "phase",
+    "zero-iteration-report"
+  ],
+  "lastUpdated": "2026-11-15T21:15:49.387Z",
+  "specId": "033",
+  "folderSlug": "zero-iteration-report",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_22-15__phase-033-built-the-deep-review-report-step-has-a.md"
+  ]
+}

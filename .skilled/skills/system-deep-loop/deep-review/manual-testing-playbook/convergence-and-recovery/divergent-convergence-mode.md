@@ -1,7 +1,7 @@
 ---
 title: "RV-069 -- Divergent convergence mode"
 description: "Verify eligible clean-review pivots preserve synthesis-only verdict derivation, security gates, and target read-only authority."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # RV-069 -- Divergent convergence mode
@@ -29,7 +29,7 @@ Operators should run this as a deterministic control-flow and boundary inspectio
 - Prompt: `Validate the shipped deep-review divergent pivot, synthesis-only verdict mapping, security-gate preservation, and read-only target boundary.`
 - Expected execution process: Inspect the `convergence.cjs` legal-stop decision and exact divergent predicate, trace the successful branch away from synthesis, inspect `phase_synthesis` verdict derivation, then inspect candidate and seat-prompt read-only enforcement.
 - Desired user-visible outcome: The user gets a PASS only when `all_dimensions_clean` restores a new read-only direction and loops, while verdict derivation remains reachable only through `phase_synthesis` and mutation-shaped candidates are rejected.
-- Expected signals: Exact eligible reason `all_dimensions_clean`; nine gates run before the pivot branch; successful pivot binds `next_dimension` and proceeds to `step_normalize_pause_events`; `step_derive_verdict` exists only under `phase_synthesis`; PASS/CONDITIONAL/FAIL depends only on active P0/P1 counts; candidate generation rejects fix, mutation, write, and target-expansion language; every seat prompt declares the target read-only.
+- Expected signals: Exact eligible reason `all_dimensions_clean`; nine gates run before the pivot branch; successful pivot binds `next_dimension` and proceeds to `step_normalize_pause_events`; `step_derive_verdict` exists only under `phase_synthesis`; PASS/CONDITIONAL/FAIL depends only on active P0/P1 counts, failed required gates and open search debt; candidate generation rejects fix, mutation, write, and target-expansion language; every seat prompt declares the target read-only.
 - Pass/fail posture: PASS if all control-flow and boundary signals agree. FAIL if pivot handling can derive a verdict, bypass a failed gate, authorize a fix, expand the target, or mutate reviewed files.
 
 ---
@@ -56,7 +56,7 @@ Validate the shipped deep-review divergent pivot, synthesis-only verdict mapping
 
 ### Expected
 
-The nine legal-stop gates precede a predicate requiring divergent mode and `all_dimensions_clean`. A successful pivot restores `next_dimension` and returns to loop processing rather than entering `phase_synthesis`. Verdict derivation appears inside `phase_synthesis` and maps active P0 to FAIL, active P1 without P0 to CONDITIONAL, and no active P0/P1 to PASS. Candidate filtering and all three native seat prompts reject mutation, fixes, writes, and target expansion.
+The nine legal-stop gates precede a predicate requiring divergent mode and `all_dimensions_clean`. A successful pivot restores `next_dimension` and returns to loop processing rather than entering `phase_synthesis`. Verdict derivation appears inside `phase_synthesis` and maps active P0 or a failed required gate to FAIL, active P1 without P0 or open search debt without P0 to CONDITIONAL, and no active P0/P1 and no open search debt to PASS. Candidate filtering and all three native seat prompts reject mutation, fixes, writes, and target expansion.
 
 ### Evidence
 
