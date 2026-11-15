@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/009-cache-optimizer-single-copy-guard",
+  "description": "A user-level link `~/.pi/agent/extensions/pi-cache-optimizer`, added on 2026-10-28",
+  "keywords": [
+    "user-level",
+    "link",
+    "agent",
+    "extensions",
+    "pi-cache-optimizer"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.339Z",
+  "specId": "009",
+  "folderSlug": "cache-optimizer-single-copy-guard",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-cache-optimizer"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

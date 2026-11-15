@@ -313,7 +313,7 @@ None of these edits was applied or run at planning time. This session could not 
 ## 5. TESTING STRATEGY
 <!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
-Run each command below before E1 and again after E7 and the build. Commands marked `(runtime)` run from `.skilled/skills/system-spec-kit/runtime`, all others from the worktree root. `G` is `specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime` and `D` is `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research`.
+Run each command below before E1 and again after E7 and the build. Commands marked `(runtime)` run from `.skilled/skills/system-spec-kit/runtime`, all others from the worktree root. `G` is `specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime` and `D` is `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research`.
 
 | Command | Baseline | After the edits |
 |---------|----------|-----------------|

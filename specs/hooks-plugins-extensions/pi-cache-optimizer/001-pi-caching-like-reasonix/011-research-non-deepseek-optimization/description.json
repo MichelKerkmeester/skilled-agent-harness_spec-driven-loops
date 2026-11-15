@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/011-research-non-deepseek-optimization",
+  "description": "Packet 008's fork work guards `pi-cache-optimizer`'s two mutation hooks against DeepSeek-matched models, leaving deep-pi as the exclusive",
+  "keywords": [
+    "packet",
+    "fork",
+    "work",
+    "guards",
+    "pi-cache-optimizer",
+    "two",
+    "mutation",
+    "hooks",
+    "against",
+    "deepseek-matched",
+    "models",
+    "leaving",
+    "deep-pi",
+    "exclusive"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.286Z",
+  "specId": "011",
+  "folderSlug": "research-non-deepseek-optimization",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-cache-optimizer",
+    "001-pi-caching-like-reasonix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

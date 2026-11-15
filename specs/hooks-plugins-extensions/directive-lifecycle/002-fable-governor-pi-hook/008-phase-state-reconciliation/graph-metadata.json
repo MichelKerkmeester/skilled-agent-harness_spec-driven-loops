@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/008-phase-state-reconciliation",
+  "spec_folder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/008-phase-state-reconciliation",
+  "parent_id": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase state reconciliation",
+      "spec metadata reconciliation",
+      "stale completion frontmatter",
+      "graph status repair",
+      "phase state reconciliation plan",
+      "metadata refresh plan",
+      "parent map repair plan",
+      "phase state reconciliation tasks",
+      "metadata refresh tasks",
+      "parent map repair tasks",
+      "phase state reconciliation summary",
+      "metadata reconciliation status"
+    ],
+    "key_topics": [
+      "phase",
+      "state",
+      "reconciliation",
+      "spec",
+      "metadata",
+      "stale",
+      "completion",
+      "frontmatter",
+      "graph",
+      "status",
+      "repair",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Phase State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet's phase implementation summaries contain contradictory state: some frontmatter says planned or not started while the body says implemented, completion percentages remain at zero after claimed work, graph metadata still reports draft/planned state, and completion criteria remain unchecked",
+    "created_at": "2026-08-04T17:57:55Z",
+    "last_save_at": "2026-11-15T07:08:32.607Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b3a2caada44d5c0557eb00ee6ba0c4722ec529f8979fd26c98a96a4f553743dc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ac7a87c7456bbf2eab08e5977b664f7e5aeaf408f4af82d1874b3399bef12452",
+      "plan.md": "7d7466851f067a136b0509f4da79ef3e7901fe5716f2eb9b10f98005f2e3d827",
+      "tasks.md": "34d53c81bef4ad55cd52ee527b10dd8d1c53d15127ec7f56a541e4189b09ac86",
+      "implementation-summary.md": "28845ecefbb8a47676ce395a9bde0e147b302bb9139db3b355b8b070e7112ea9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

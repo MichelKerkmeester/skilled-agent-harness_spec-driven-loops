@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/005-gate3-relay-edge-triggering",
+  "description": "Gate-3 relay (`GATE3QUESTION` in `spec-gate-core.mjs`) re-delivers the identical question on every mutation-positive turn while gate state remains",
+  "keywords": [
+    "gate-3",
+    "relay",
+    "gate3question",
+    "spec-gate-core",
+    "mjs",
+    "re-delivers",
+    "identical",
+    "question",
+    "every",
+    "mutation-positive",
+    "turn",
+    "while",
+    "gate",
+    "state",
+    "remains"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.177Z",
+  "specId": "005",
+  "folderSlug": "gate3-relay-edge-triggering",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "directive-lifecycle",
+    "001-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

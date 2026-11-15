@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/007-gap-closure",
+  "spec_folder": "hooks-plugins-extensions/decision-capture/001-decision-capture/007-gap-closure",
+  "parent_id": "hooks-plugins-extensions/decision-capture/001-decision-capture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gap closure",
+      "phase 7 gap closure",
+      "decision capture gap closure",
+      "decision capture orphaned answers",
+      "gap closure plan",
+      "gap closure tasks",
+      "gap closure acceptance criteria",
+      "gap closure goal",
+      "gap closure decision record",
+      "gap closure implementation summary"
+    ],
+    "key_topics": [
+      "gap",
+      "closure",
+      "phase",
+      "decision",
+      "capture",
+      "orphaned",
+      "answers",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+      ".skilled/hooks/decision-capture/pi/decision-capture.ts",
+      ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+      ".opencode/plugins/decision-capture.js",
+      ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+      ".skilled/skills/system-spec-kit/runtime/api/index.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts",
+      ".skilled/commands/speckit/save.md",
+      ".skilled/hooks/coverage-rationale.md",
+      ".skilled/hooks/README.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-codex.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-pi.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "decision-capture.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/decision-capture/pi/decision-capture.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-opencode.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "decision-capture.js",
+        "kind": "code",
+        "path": ".opencode/plugins/decision-capture.js",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record-writer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "match-decision-table.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-rationale.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/coverage-rationale.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "operator-decision-capture.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-capture-live-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Codex and Pi sweeps exit 0 with no output when a named transcript cannot be read, so a save cannot tell a failed read from an empty one",
+    "created_at": "2026-11-02T17:46:38Z",
+    "last_save_at": "2026-11-15T07:18:26.118Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:435f6f0542a66c80a27c1f7de6a99736cac7c7f470b1f1077721e966c13abd38",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "67f44e50a0fb44b2ce38af153643224550c98f03f82a076d1b0d4672201b2087",
+      "plan.md": "bd154412fbc363d20f24e0cd49adf43f5c2a56d87aae686c811d02df0751ff07",
+      "tasks.md": "d6b9aa446ab29652ddd4bb17fc8f2269ad8d00e46a40d7070cf1430e4d04f40d",
+      "decision-record.md": "6858a2e769e970718abc63f223d4a4416d4c0061bc5f5b9fe0a0cd3f04ee52ed",
+      "implementation-summary.md": "519c7aec902c161d19248537c1357b651b9d85f4d3457c5016b36555f095914d"
+    },
+    "last_active_at": null
+  }
+}

@@ -55,9 +55,9 @@
       ".skilled/hooks/session-relaunch/lib/nudge.cjs",
       ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
       ".skilled/commands/speckit/handoff.md",
-      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
-      ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
-      ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md"
+      ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md",
+      "scratch/probe-purpose-origin.mjs",
+      "runtime/api/index.ts"
     ],
     "entities": [
       {
@@ -163,21 +163,21 @@
         "source": "derived"
       },
       {
-        "name": "speckit-resume-auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-resume-confirm.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-purpose-origin.mjs",
+        "kind": "file",
+        "path": "scratch/probe-purpose-origin.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "runtime/api/index.ts",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The next AI after a compaction or hop reads a problem statement or a layout note labelled `Purpose:` for 211 live packets, so it is told the wrong reason for the work",
     "created_at": "2026-11-14T11:26:55Z",
-    "last_save_at": "2026-11-14T19:20:16.045Z",
+    "last_save_at": "2026-11-15T07:18:59.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cac8e538bb775f8d76926b138f6f4be3e515fb3938b6bebe513be821ce416c49",
+    "source_fingerprint": "sha256:1efee872735d51e4f7fee5d37c761774938314748bf5693a62a7cadd0008a686",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9f006db32d84785c5d9c44d050b3450a35df78a478a73c061a131b1cb3a94622",
+      "spec.md": "fe9f36c19307554429edc9604dbdb41c9032e7aae00423512bc2b1a2f5e2df05",
       "plan.md": "7ae83330dd9641de448b51f63c31ab7eca5a2947c0fdb2c5881c97fa7e254f81",
       "tasks.md": "15ff2062040ffa3b82f07bf05096a97ad2b193cb401e42835250b65598ec2026",
       "implementation-summary.md": "2c6a6a00e84e41e57d448eaaf6b845998bc4684d54245a04cc43feb8fbd575c2"

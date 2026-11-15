@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/session-lifecycle",
+  "description": "Container folder for hooks-plugins-extensions/session-lifecycle.",
+  "keywords": [
+    "session",
+    "lifecycle"
+  ],
+  "lastUpdated": "2026-11-15T06:36:39.656Z",
+  "specId": "hooks-plugins-extensions/session-lifecycle",
+  "folderSlug": "session-lifecycle",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

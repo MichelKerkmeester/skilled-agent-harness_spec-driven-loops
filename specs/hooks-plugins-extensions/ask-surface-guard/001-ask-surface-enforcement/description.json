@@ -1,0 +1,36 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement",
+  "description": "Agents end turns with a prose menu of lettered options and a closing question instead of calling the runtime's ask-question tool",
+  "keywords": [
+    "agents",
+    "end",
+    "turns",
+    "prose",
+    "menu",
+    "lettered",
+    "options",
+    "closing",
+    "question",
+    "instead",
+    "calling",
+    "runtime",
+    "ask-question",
+    "tool"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.352Z",
+  "specId": "001",
+  "folderSlug": "ask-surface-enforcement",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "ask-surface-guard"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "08-11-26_11-44__researched-ask-surface-enforcement-over-five.md",
+    "08-11-26_14-05__built-the-ask-surface-guard-a-shared-prose-menu.md",
+    "08-11-26_14-06__built-the-ask-surface-guard-a-shared-prose-menu.md",
+    "08-11-26_15-58__ran-local-skilled-alignment-over-the-ask-surface.md",
+    "08-11-26_17-44__fixed-the-pi-test-that-broke-goal-core-described.md"
+  ]
+}

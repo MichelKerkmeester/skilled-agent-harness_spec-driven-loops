@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi",
+  "description": "A full read of `deep-pi`'s installed source (1,299 lines across 7 files — `deeppi.ts`, `eligibility.ts`, `stability.ts`, `stormbreaker.ts`,",
+  "keywords": [
+    "full",
+    "read",
+    "deep-pi",
+    "installed",
+    "source",
+    "lines",
+    "across",
+    "files",
+    "deeppi",
+    "eligibility",
+    "stability",
+    "stormbreaker"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.262Z",
+  "specId": "001",
+  "folderSlug": "fix-and-test-deep-pi",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-cache-optimizer",
+    "001-pi-caching-like-reasonix",
+    "006-fork-and-improve-deep-pi"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

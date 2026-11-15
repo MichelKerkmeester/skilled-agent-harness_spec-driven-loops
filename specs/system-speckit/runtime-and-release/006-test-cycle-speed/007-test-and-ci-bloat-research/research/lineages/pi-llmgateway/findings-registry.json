@@ -499,7 +499,7 @@
         "`.github/workflows/routing-registry-drift.yml`",
         "`.skilled/scripts/run-node-tests.mjs`",
         "`specs/cli-classifier/003-cli-jev-workflow-integration/**` (path listing)",
-        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/`",
+        "`specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/`",
         "`specs/sk-git/commit-standards/001-crawlable-commit-history/005-history-rewrite/scripts/tests/`",
         "`.skilled/hooks/` (directory listing)"
       ]
@@ -513,7 +513,7 @@
         "`.github/workflows/routing-registry-drift.yml`",
         "`.skilled/scripts/run-node-tests.mjs`",
         "`specs/cli-classifier/003-cli-jev-workflow-integration/**` (path listing)",
-        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/`",
+        "`specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/`",
         "`specs/sk-git/commit-standards/001-crawlable-commit-history/005-history-rewrite/scripts/tests/`",
         "`.skilled/hooks/` (directory listing)"
       ]
@@ -527,7 +527,7 @@
         "`.github/workflows/routing-registry-drift.yml`",
         "`.skilled/scripts/run-node-tests.mjs`",
         "`specs/cli-classifier/003-cli-jev-workflow-integration/**` (path listing)",
-        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/`",
+        "`specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/`",
         "`specs/sk-git/commit-standards/001-crawlable-commit-history/005-history-rewrite/scripts/tests/`",
         "`.skilled/hooks/` (directory listing)"
       ]
@@ -541,21 +541,21 @@
         "`.github/workflows/routing-registry-drift.yml`",
         "`.skilled/scripts/run-node-tests.mjs`",
         "`specs/cli-classifier/003-cli-jev-workflow-integration/**` (path listing)",
-        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/`",
+        "`specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/`",
         "`specs/sk-git/commit-standards/001-crawlable-commit-history/005-history-rewrite/scripts/tests/`",
         "`.skilled/hooks/` (directory listing)"
       ]
     },
     {
       "id": "finding-5-5-two-files-look-like-live-suites-and-are-not-specs-hooks-plugins-extensions-hook-",
-      "text": "Two files look like live suites and are not: `specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs` and `guardrail-negative-controls.test.mjs`. They are the only files with those names anywhere in the tree, so guardrail activation behaviour is tested only in a folder CI never runs. [SOURCE: specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1]",
+      "text": "Two files look like live suites and are not: `specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs` and `guardrail-negative-controls.test.mjs`. They are the only files with those names anywhere in the tree, so guardrail activation behaviour is tested only in a folder CI never runs. [SOURCE: specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1]",
       "addedAtIteration": 5,
       "sources": [
         "`git ls-files specs` (111 matching paths, classified)",
         "`.github/workflows/routing-registry-drift.yml`",
         "`.skilled/scripts/run-node-tests.mjs`",
         "`specs/cli-classifier/003-cli-jev-workflow-integration/**` (path listing)",
-        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/`",
+        "`specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/`",
         "`specs/sk-git/commit-standards/001-crawlable-commit-history/005-history-rewrite/scripts/tests/`",
         "`.skilled/hooks/` (directory listing)"
       ]

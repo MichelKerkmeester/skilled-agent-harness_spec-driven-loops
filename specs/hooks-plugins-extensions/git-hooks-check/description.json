@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/git-hooks-check",
+  "description": "Container folder for hooks-plugins-extensions/git-hooks-check.",
+  "keywords": [
+    "git",
+    "hooks",
+    "check"
+  ],
+  "lastUpdated": "2026-11-15T06:36:38.004Z",
+  "specId": "hooks-plugins-extensions/git-hooks-check",
+  "folderSlug": "git-hooks-check",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

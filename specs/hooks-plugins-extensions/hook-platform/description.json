@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/hook-platform",
+  "description": "Container folder for hooks-plugins-extensions/hook-platform.",
+  "keywords": [
+    "hook",
+    "platform"
+  ],
+  "lastUpdated": "2026-11-15T06:21:37.508Z",
+  "specId": "hooks-plugins-extensions/hook-platform",
+  "folderSlug": "hook-platform",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

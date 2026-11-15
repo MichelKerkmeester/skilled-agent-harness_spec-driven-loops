@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard",
+  "description": "A retry loop is expensive in a way that is invisible until the bill arrives: the same request is",
+  "keywords": [
+    "retry",
+    "loop",
+    "expensive",
+    "way",
+    "invisible",
+    "until",
+    "bill",
+    "arrives",
+    "same",
+    "request"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.327Z",
+  "specId": "003",
+  "folderSlug": "port-retry-loop-guard",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-cache-optimizer",
+    "004-cache-optimizer-absorbs-deep-pi"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

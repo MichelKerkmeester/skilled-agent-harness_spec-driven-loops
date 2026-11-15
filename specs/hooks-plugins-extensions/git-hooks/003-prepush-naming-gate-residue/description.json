@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/git-hooks/003-prepush-naming-gate-residue",
+  "description": "`pre-push.test.sh` failed two of twenty-two cases",
+  "keywords": [
+    "pre-push",
+    "test",
+    "failed",
+    "two",
+    "twenty-two",
+    "cases"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.343Z",
+  "specId": "003",
+  "folderSlug": "prepush-naming-gate-residue",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "git-hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

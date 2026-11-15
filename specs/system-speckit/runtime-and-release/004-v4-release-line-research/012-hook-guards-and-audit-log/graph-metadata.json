@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The ask-surface guard misses a menu numbered `1.` or one with a tenth option and fires on a `1)` how-to list that ends in an unrelated question",
     "created_at": "2026-11-08T23:39:03Z",
-    "last_save_at": "2026-11-10T05:48:28.289Z",
+    "last_save_at": "2026-11-15T07:18:59.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:925fe4c0575cca5806e6ddd66fda5bf4b173da1216004c8efa78561dd2999d55",
+    "source_fingerprint": "sha256:e39c4c45b615b0a77c38d39af281951866c25b29f9ce611b6aca8aa1caf39eda",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea57443f75d10678054e0e1d75427324dc76b1fee54a184ca37c303b5cf6816a",
+      "spec.md": "49b53a0a9ddbcac4f70067f4cc9c0c1458ae01f51b2a43903c33829f809cdfd8",
       "plan.md": "1379e8d6248b07da9caf4ecd78c18b69c83e25dcb1a8675ce7d3ac7c764da73b",
       "tasks.md": "d5ac039681c37406ab18e0e19efae69e851f67156aa4df89687dba8489e142e2",
       "decision-record.md": "291698beb0ce9a93fa163578a3e18f108e0e821b9268c9656714b27a41a6fdbb",
-      "implementation-summary.md": "60b447c64aeeae3099ce57a800e1b6381264dc5c1d00083f3dc26fdee935aa46"
+      "implementation-summary.md": "d432ce3155273aef42358e639a82fc7893f214fae042aa372e18d87c29d125c8"
     },
     "last_active_at": null
   }

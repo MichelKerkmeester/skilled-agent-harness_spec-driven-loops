@@ -1,0 +1,31 @@
+{
+  "specFolder": "hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure",
+  "description": "Give every hook, plugin and extension feature its own sub-track under the hooks track, with one overview of all features and their owning packets.",
+  "keywords": [
+    "give",
+    "every",
+    "hook",
+    "plugin",
+    "extension",
+    "feature",
+    "own",
+    "sub-track",
+    "hooks",
+    "track",
+    "one",
+    "overview",
+    "features",
+    "owning",
+    "packets"
+  ],
+  "lastUpdated": "2026-11-15T06:21:47.654Z",
+  "specId": "001",
+  "folderSlug": "feature-subtrack-restructure",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

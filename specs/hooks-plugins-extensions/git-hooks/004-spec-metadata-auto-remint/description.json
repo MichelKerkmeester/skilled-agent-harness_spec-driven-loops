@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/git-hooks/004-spec-metadata-auto-remint",
+  "description": "Every spec packet carries a `graph-metadata.json` holding a fingerprint of the documents it was derived from, plus fields summarised out of them",
+  "keywords": [
+    "every",
+    "spec",
+    "packet",
+    "carries",
+    "graph-metadata",
+    "json",
+    "holding",
+    "fingerprint",
+    "documents",
+    "derived",
+    "plus",
+    "fields",
+    "summarised",
+    "them"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.344Z",
+  "specId": "004",
+  "folderSlug": "spec-metadata-auto-remint",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "git-hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

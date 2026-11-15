@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair",
+  "description": "The OpenCode dual-compat build recorded two dispatch adapter suites as failing before it began and still failing after:",
+  "keywords": [
+    "opencode",
+    "dual-compat",
+    "recorded",
+    "two",
+    "dispatch",
+    "adapter",
+    "suites",
+    "failing",
+    "began",
+    "still"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.231Z",
+  "specId": "001",
+  "folderSlug": "dispatch-adapter-test-repair",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "dispatch"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

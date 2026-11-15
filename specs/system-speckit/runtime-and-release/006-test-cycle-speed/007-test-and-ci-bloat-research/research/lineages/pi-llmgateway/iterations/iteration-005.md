@@ -21,7 +21,7 @@ Key question 4: which test files under `specs/` belong to closed packets, and wh
 
 4. The four Python tests under `specs/sk-git/commit-standards/001-crawlable-commit-history` test one-time history-rewrite scripts, not a runtime module. A closed packet's throwaway tooling keeps its tests and its script in the same folder, which is correct, but it means the file count says nothing about the runtime under test. [SOURCE: specs/sk-git/commit-standards/001-crawlable-commit-history/005-history-rewrite/scripts/tests/test_build_commit_plan.py:1]
 
-5. Two files look like live suites and are not: `specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs` and `guardrail-negative-controls.test.mjs`. They are the only files with those names anywhere in the tree, so guardrail activation behaviour is tested only in a folder CI never runs. [SOURCE: specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1]
+5. Two files look like live suites and are not: `specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs` and `guardrail-negative-controls.test.mjs`. They are the only files with those names anywhere in the tree, so guardrail activation behaviour is tested only in a folder CI never runs. [SOURCE: specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1]
 
 ## Ruled Out
 
@@ -45,7 +45,7 @@ Key question 4: which test files under `specs/` belong to closed packets, and wh
 - `.github/workflows/routing-registry-drift.yml`
 - `.skilled/scripts/run-node-tests.mjs`
 - `specs/cli-classifier/003-cli-jev-workflow-integration/**` (path listing)
-- `specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/`
+- `specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/`
 - `specs/sk-git/commit-standards/001-crawlable-commit-history/005-history-rewrite/scripts/tests/`
 - `.skilled/hooks/` (directory listing)
 
