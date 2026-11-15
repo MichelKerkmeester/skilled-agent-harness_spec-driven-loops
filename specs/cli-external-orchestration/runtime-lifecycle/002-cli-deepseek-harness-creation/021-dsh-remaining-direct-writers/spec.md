@@ -108,6 +108,7 @@ research: gateway on a raw verification_degraded row: 1 {"ok":false,"phase":"run
 | `.skilled/commands/deep/assets/deep-review-auto.yaml`, `deep-review-confirm.yaml`, `deep-research-auto.yaml`, `deep-research-confirm.yaml` | Modify | Each containment call and each validate step names the session id |
 | `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | Modify | The executor sentence |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Modify | The same executor sentence in the review protocol, added on 2026-11-15 |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts` | Modify | Scope the harness refusal assertion so a new kind's own refusal does not fail it |
 | `.skilled/skills/system-deep-loop/changelog/v1.6.29.0.md`, and the version in the hub `SKILL.md`, `description.json`, `mode-registry.json` and `hub-router.json` | Create, Modify | The release |
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown`, `deep-research.contract.markdown`, `deep-ai-council.contract.markdown` | Regenerate | The contracts pin the workflow and prompt pack digests |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit-ledger-projection.vitest.ts` | Modify | Survival tests per writer and mode, the no-session fallback and the opening-row executor check |

@@ -8,12 +8,11 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/010-hub-registration-and-routing"
-    last_updated_at: "2026-11-14T14:30:00Z"
+    last_updated_at: "2026-11-14T21:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Authored the plan from the phase plan and the routing baseline"
-    next_safe_action: "Run T001 once phases 005 and 009 land"
-    blockers:
-      - "Phases 005 and 009 are not built"
+    recent_action: "Registered cli-mistral-vibe as the eighth hub mode"
+    next_safe_action: "Phase 011 adds the goal bridge and dist-freshness hooks"
+    blockers: []
     key_files:
       - ".skilled/skills/cli-external-orchestration/mode-registry.json"
       - ".skilled/skills/cli-external-orchestration/hub-router.json"
@@ -21,10 +20,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "mistral-support-2026-11-14"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Does a .vibe/agents/ generator with --check exist after phase 006?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Phase 006 ships sync-agents-vibe.cjs --check"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Phase 10: hub-registration-and-routing
@@ -58,10 +57,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `compiled-route.cjs --hub cli-external-orchestration --prompt "delegate to vibe"` prints `"workflowMode":"cli-mistral-vibe"`
-- [ ] `skill_advisor.py "delegate to vibe" --threshold 0.5` names `cli-external-orchestration`
-- [ ] `parent-skill-check.cjs .skilled/skills/cli-external-orchestration` reports 8 modes and no hard failure
-- [ ] "give this landing page a calmer vibe" does not route to `cli-mistral-vibe`
+- [x] `compiled-route.cjs --hub cli-external-orchestration --prompt "delegate to vibe"` prints `"workflowMode":"cli-mistral-vibe"`
+- [x] `skill_advisor.py "delegate to vibe" --threshold 0.5` names `cli-external-orchestration`
+- [x] `parent-skill-check.cjs .skilled/skills/cli-external-orchestration` reports 8 modes and no hard failure
+- [x] "give this landing page a calmer vibe" does not route to `cli-mistral-vibe`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,14 +76,23 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Routing baseline | Done | 7 modes, no hub routing file names `cli-mistral-vibe`, compiled router serves `legacy` with `stale-manifest`, advisor picks the hub at 0.5974 (`spec.md` Measured Behavior) |
-| Registration | Pending | Waits on phases 005 and 009 |
+| Routing baseline | Done | 7 modes, compiled router served `legacy` with `stale-manifest`, scorer suite 1 failed of 365, executor-delegation 38 passed (`scratch/baseline.txt`) |
+| Registration | Done | `mode-registry.json` declares 8 modes; hub-router, ROUTER, graph-metadata, SKILL, README, description and leaf-manifest name the mode; `rg -c '"vibe"' hub-router.json` prints 0 |
+| Compiled routing | Done | Authored activation manifest pinned to `3bc7c5fe...`; sync promoted 62 closure files and finalized; manifest tests 48/48; status `"fresh":true`, `compiled-serving` |
+| Stage two | Done | "delegate to vibe" routes `cli-mistral-vibe`; "use cli-opencode with mistral deepseek-v4-1-flash-1017" routes `cli-opencode`; "give this landing page a calmer vibe" defers (`scratch/replays.txt`) |
+| Stage one | Done | `skill_advisor.py "delegate to vibe" --threshold 0.5` names `cli-external-orchestration` at 0.95, `passes_threshold: true`; the landing-page prompt returns `[]` |
+| Advisor suites | Done | card-sync exit 0; executor-delegation 42 passed (baseline 38); scorer 367 passed, 2 skipped, 0 failed (baseline 1 failed) |
+| Per-hub gate | Done | `parent-skill-check.cjs` exit 0, 8 modes, 0 failures, 0 warnings |
+| Mirrors | Done | `check-agent-mirror-sync.cjs --all` all comparable mirrors in sync; the three `.vibe` sync `--check` commands exit 0 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Stage one passes before any edit | The advisor already picks the hub for "delegate to vibe" on generic delegation words, so stage two is the real handoff test |
+| Sync failed until finalize | The first sync run failed its move simulation; a rerun after the pin promoted cleanly. The manifest tests then failed 16 with `publication-locked` until `--finalize` released the lock, after which 48/48 passed |
+| 13d failures were ours | The three packet-version failures on cli-deepseek-harness, cli-opencode and cli-pi came from this packet's version bumps in phases 002 and 003, not from main. Changelog entries v1.0.1.0, v1.5.11.0 and v1.5.22.0 were added and the gate passed |
+| Scorer suite improved | The one scorer failure in the baseline no longer fails after the routing edits; the cause was not traced |
+| `.vibe/agents/` generator | Answered: phase 006 ships `sync-agents-vibe.cjs --check`, and it exits 0 |
 
-Open question: does phase 006 ship a `.vibe/agents/` generator with a `--check` mode? T014 reruns it only if it exists.
 <!-- /ANCHOR:log -->

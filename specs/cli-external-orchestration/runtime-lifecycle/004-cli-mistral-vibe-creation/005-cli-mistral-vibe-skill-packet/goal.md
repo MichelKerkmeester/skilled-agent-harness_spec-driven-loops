@@ -10,10 +10,9 @@ _memory:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/005-cli-mistral-vibe-skill-packet"
     last_updated_at: "2026-11-14T14:20:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Planned the cli-mistral-vibe mode packet from the research phase plan"
-    next_safe_action: "Wait for phase 004's evidence, then run T001"
-    blockers:
-      - "Phase 004's evidence does not exist yet"
+    recent_action: "Built the cli-mistral-vibe mode packet: eight files, all checks passing"
+    next_safe_action: "Phase 006 builds the .vibe/ runtime folder"
+    blockers: []
     key_files:
       - "../001-deep-research/research/research.md"
       - "../004-vibe-contract-pin/spec.md"
@@ -21,15 +20,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "mistral-support-2026-11-14"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
-      - "What are the --output json and streaming payload shapes?"
-      - "Is stdin a prompt source in vibe 3.1.2?"
-      - "Does the ancestor walk see vibe or vibe-rs?"
-      - "Does the Mistral catalog list both roster ids without a hand-written row?"
       - "What is the hook decision wire format?"
       - "Does a Vibe turn draw on the same Mistral usage pool as an API turn?"
-    answered_questions: []
+    answered_questions:
+      - "Payload shapes, stdin, process name and catalog: answered by phase 004"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Phase 5: cli-mistral-vibe-skill-packet
@@ -65,9 +61,9 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `jq '[.[] | select((.check // "") == "")] | length' hard-rules.json` prints `0`
-- [ ] `validate_document.py` prints `Total issues: 0` for all seven markdown files in the packet
-- [ ] `rg -o UNKNOWN references/cli-reference.md | wc -l` prints `0`
+- [x] `jq '[.[] | select((.check // "") == "")] | length' hard-rules.json` prints `0`
+- [x] `validate_document.py` prints `Total issues: 0` for all seven markdown files in the packet
+- [x] `rg -o UNKNOWN references/cli-reference.md | wc -l` prints `0`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -83,15 +79,18 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase 004 evidence | Blocked | Phase 004 has not run, so `evidence/` does not exist |
-| Mode packet folder | Pending | `ls .skilled/skills/cli-external-orchestration/cli-mistral-vibe` printed No such file or directory on 2026-11-14 |
+| Phase 004 evidence | Done | `004-vibe-contract-pin/evidence/` holds export, payloads, stdin, ancestors and catalog |
+| Mode packet folder | Done | `find .skilled/skills/cli-external-orchestration/cli-mistral-vibe -type f \| wc -l` prints `8` |
+| Hard rules | Done | 0 rules without a check; 6 of 6 named checks |
+| Markdown validation | Done | 7 of 7 files print `Total issues: 0` |
+| Scope | Done | `.skilled` status outside the packet matches `scratch/status-before.txt` |
 
 ### Open questions
 
-- Open question: What are the `--output json` and `streaming` payload shapes? UNKNOWN until phase 004 T006 and T007. The cli-reference output section waits on it.
-- Open question: Is stdin a prompt source in 3.1.2? UNKNOWN until phase 004 T008. The shared `stdin-redirect-required` rule is in `hard-rules.json` regardless, so the answer only changes the cli-reference text.
-- Open question: Does a recursion guard's ancestor walk see `vibe` or `vibe-rs`? UNKNOWN until phase 004 T009. The cli-reference recursion note waits on it.
-- Open question: Does the Mistral catalog list `deepseek-v4-1-flash-1017` and `zai-glm-5-3-flash` without a hand-written row? UNKNOWN until phase 004 T010. The providers reference states the hand-written rows either way.
+- Answered by phase 004: `--output json` prints one JSON array of session entries at the end, and `--output streaming` prints the same entries one per line; neither carries the exit code, so `export.json` is the verdict.
+- Answered by phase 004: stdin is a prompt source only behind a bare `-p` (`echo ... | vibe -p` exits 0); a pipe with no `-p` exits 1, "Interactive mode needs a terminal".
+- Answered by phase 004: the ancestor walk sees `vibe-rs` and its child `vibe-app-server`, never `vibe`, because the Python launcher execs away.
+- Answered by phase 004: neither roster id resolves without a hand-written model row (`Unknown model ... Available: mistral-medium-3.5`), so the rows use their own aliases, `deepseek-flash` and `glm-flash`; `mistral-medium-3.5` stays selectable until `allowed_models` closes it.
 - Open question: What does a hook receive and how does it answer? UNKNOWN until phase 008. `guards-and-hooks.md` marks it UNKNOWN.
 - Open question: Does a Vibe turn draw on the same Mistral usage pool as an API turn (research question 6)? UNKNOWN, and the phase plan gives it no owner. The providers reference states it as UNKNOWN.
 
@@ -99,5 +98,8 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| None yet | The phase has not started |
+| Delegated writes | Each file was written by one `opencode run` dispatch on `mistral/deepseek-v4-1-flash-1017#max`, one file per brief; every Verify was rerun by the orchestrator. No fallback route was needed |
+| Corrections after review | `hard-rules.json` roster message said Vibe "does not validate catalog membership"; it now says unknown ids exit 1 but `mistral-medium-3.5` stays selectable. `cli-reference.md` cited research for `-p TEXT`; it now cites the phase 004 capture. `providers-and-models.md` cited a task id; the sentence now describes the proof |
+| Completion line | The Completion Criteria said T013 prints `0` and `5`, written before the sixth rule; corrected to `0` and `6` |
+| Corrected by phase 006 | Phase 006 probes showed `allowed_models` matches model names, not aliases, and that `--trust` from a subdirectory does not apply the root config. `providers-and-models.md`, `runtime-folder-and-sync.md`, `cli-reference.md`, `guards-and-hooks.md` and `SKILL.md` were corrected there |
 <!-- /ANCHOR:log -->

@@ -139,6 +139,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 12 | 012-review-agent-gates/ | Give the review agent's fast path, low-confidence case and final-line checker an exit the agent can take | Complete |
 | 13 | 013-context-markdown-design-fixes/ | Fix the context, markdown and design agents' instructions their granted tools cannot carry out | Complete |
 | 14 | 014-prompt-improver-model-eligibility/ | Settle the prompt-improver's model deny rows, its TEST field and its caller names | Complete |
+| 15 | 015-review-verdict-gate-rule/ | Make the deep-review verdict follow the contract: a required quality gate still failing at the stop forces FAIL, read from one typed terminal-gates record | Planned |
 
 ### Phase Transition Rules
 
@@ -164,6 +165,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 011-debug-agent-revert-and-handoff | 012-review-agent-gates | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
 | 012-review-agent-gates | 013-context-markdown-design-fixes | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
 | 013-context-markdown-design-fixes | 014-prompt-improver-model-eligibility | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
+| 014-prompt-improver-model-eligibility | 015-review-verdict-gate-rule | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---

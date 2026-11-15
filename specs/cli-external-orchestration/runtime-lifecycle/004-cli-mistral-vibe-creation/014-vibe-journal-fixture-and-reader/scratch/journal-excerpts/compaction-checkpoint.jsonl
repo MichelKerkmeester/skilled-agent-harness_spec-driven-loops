@@ -1,0 +1,2 @@
+{"op":"append_entry","entry":{"id":"checkpoint-compaction-d95bb2db-5e4c-5126-9a1d-002ba102d8c4","kind":"compaction","message":"Compacting context","generationStatus":"in_progress","turnId":"turn-fa1138307ddf6bca2178c695f193fed4","details":{"attempt":1,"trigger":"automatic"}}}
+{"op":"replace_entry","entry":{"id":"checkpoint-compaction-d95bb2db-5e4c-5126-9a1d-002ba102d8c4","kind":"compaction","message":"Context compacted","generationStatus":"completed","turnId":"turn-fa1138307ddf6bca2178c695f193fed4","details":{"attempt":1,"summaryLength":679,"trigger":"automatic"}}}

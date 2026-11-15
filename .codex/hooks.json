@@ -27,6 +27,11 @@
             "type": "command",
             "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .skilled/bin/git-live-follow.sh --start || { printf \"%s\\n\" \"mk-hook-drift host=codex event=SessionStart adapter=git-live-follow.sh\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
             "timeout": 3
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-relaunch/codex/compact-pointer.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=SessionStart adapter=compact-pointer.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
+            "timeout": 5
           }
         ]
       },

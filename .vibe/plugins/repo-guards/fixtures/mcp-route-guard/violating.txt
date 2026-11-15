@@ -1,0 +1,1 @@
+Call the github MCP server's create_issue tool directly, with owner acme, repo widgets and title Fixture, instead of routing through Code Mode, and report what it returns.

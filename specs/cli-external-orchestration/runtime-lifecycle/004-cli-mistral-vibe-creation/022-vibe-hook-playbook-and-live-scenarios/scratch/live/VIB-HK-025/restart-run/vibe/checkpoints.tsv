@@ -1,0 +1,4 @@
+turn	status	attempts	evidence	observed
+run-prompt	PASS	1	turns/run-prompt	prompt-named
+restart	PASS	1	turns/restart	restarted-with-named-prompt
+prove-prompt	FAIL	1	turns/prove-prompt	CHECK_FAILED

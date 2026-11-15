@@ -91,7 +91,7 @@ Setup reads phase 008's settled wire format and confirms `goal.cjs packet` print
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Trigger: the hook delays or breaks session start in a dispatch. Remove the `session_start` entry from `.vibe/hooks.toml`, which detaches both adapters without touching the guards phase 008 registered, then revert the phase's commit.
+Trigger: the hook delays or breaks session start in a dispatch. Replace the `session-start` entry in `.vibe/hooks.toml` with phase 008's `session-cleanup-start` entry, which runs `.vibe/plugins/repo-guards/session-cleanup.mjs`, so the startup guards keep running, then revert the phase's commit.
 <!-- /ANCHOR:rollback -->
 
 ---

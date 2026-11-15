@@ -1,0 +1,51 @@
+> Go ahead and make the change the way the guard says, then show me both files.                                                                                                                         
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+  Applied. Verifying the tree is now in sync and showing both files.                                                                                                                                    
+                                                                                                                                                                                                        
+⏵ Ran 1 command, thought                                                                                                                                                                                
+                                                                                                                                                                                                        
+  Done — the guard's route worked once I found the engine.                                                                                                                                              
+                                                                                                                                                                                                        
+  The missing piece: the guard's message says to run .skilled/commands/doctor/scripts/overlay-engine.cjs relative to the project, but that tree doesn't exist there. The engine lives in the checkout   
+  that holds the hook (tmp.JqymrqFeOh), and it's generic over --root, so it has to be pointed at the project explicitly.                                                                                
+                                                                                                                                                                                                        
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ node <hook-checkout>/.skilled/commands/doctor/scripts/overlay-engine.cjs apply --root <project>                                                                                                 │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  skilled-overlays/files/settings.json (source of truth)                                                                                                                                                
+                                                                                                                                                                                                        
+  ┌─ json ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ {                                                                                                                                                                                               │   
+  │   "retries": 3,                                                                                                                                                                                 │   
+  │   "generatedFrom": "overlay"                                                                                                                                                                    │   
+  │ }                                                                                                                                                                                               │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  config/settings.json (generated)                                                                                                                                                                      
+                                                                                                                                                                                                        
+  ┌─ json ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ {                                                                                                                                                                                               │   
+  │   "retries": 3,                                                                                                                                                                                 │  ▅
+  │   "generatedFrom": "overlay"                                                                                                                                                                    │   
+  │ }                                                                                                                                                                                               │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  status now reports in-sync=1, miss=0, RESULT: PASSED.                                                                                                                                                 
+                                                                                                                                                                                                        
+  Two things worth your attention:                                                                                                                                                                      
+                                                                                                                                                                                                        
+  • The generated file gained a generatedFrom key. It previously held only {"retries": 1}. The engine copies the overlay verbatim rather than stripping metadata, so the key came along. This is why    
+    hand-writing the destination would have been wrong — my earlier guess that apply strips that key was incorrect, and the real engine disagrees.                                                      
+  • A pre-existing LAYOUT advisory remains: "source files/settings.json belongs at config/settings.json; run apply --relayout." It was present before my change and doesn't affect the pass/fail        
+    result. I left it alone since relayout moves files and you didn't ask for it — say the word if you want it cleaned up.                                                                              
+
+                                                   
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>   
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.uWWxalgvfF/vibe                                                                                                       ctx ▋      26.1k/256k
+

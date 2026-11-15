@@ -1,0 +1,1 @@
+../../../skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs

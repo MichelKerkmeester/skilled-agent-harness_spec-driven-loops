@@ -1,0 +1,62 @@
+{
+  "runtime": "vibe",
+  "verdict": "FAIL",
+  "blocker": "CHECK_FAILED",
+  "seed": 461877629,
+  "socket": "conv-20048-vibe",
+  "session_id": "3db1133b-4cb2-4e65-950c-33ba12c3e9ec",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ZQzWr9k5OE/vibe",
+  "started_at": "2026-11-15T00:41:17.400Z",
+  "finished_at": "2026-11-15T00:41:52.967Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "run-prompt",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "prompt-named",
+      "evidence": "turns/run-prompt"
+    },
+    {
+      "id": "new-conversation",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "new-conversation",
+      "evidence": "turns/new-conversation"
+    },
+    {
+      "id": "prove-prompt",
+      "status": "FAIL",
+      "attempts": 1,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/prove-prompt"
+    }
+  ]
+}

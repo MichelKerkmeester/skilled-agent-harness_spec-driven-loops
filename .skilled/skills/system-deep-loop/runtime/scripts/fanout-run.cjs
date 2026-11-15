@@ -580,6 +580,7 @@ const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-devin': 'SPECKIT_DEVIN_STATE_DIR',
   'cli-pi': 'SPECKIT_PI_STATE_DIR',
   'cli-deepseek-harness': 'SPECKIT_DEEPSEEK_HARNESS_STATE_DIR',
+  'cli-mistral-vibe': 'SPECKIT_MISTRAL_VIBE_STATE_DIR',
 };
 
 const activeLineageProcesses = new Set();
@@ -2308,6 +2309,7 @@ function finalizeLineageCommand(input) {
     args: input.args,
     ...(Object.prototype.hasOwnProperty.call(input, 'input') ? { input: input.input } : {}),
     ...(input.cwd ? { cwd: input.cwd } : {}),
+    ...(input.env ? { env: input.env } : {}),
     effectiveConfig,
     invocationFingerprint,
   };
@@ -3148,6 +3150,195 @@ function validateDshCompletion(exitCode, stdout, stderr = '') {
   return null;
 }
 
+const VIBE_VERSION = '3.1.2';
+// Mirrors VIBE_SUPPORTED_MODELS in lib/deep-loop/executor-config.ts; the runner and the
+// config validator must refuse the same aliases, and a test asserts the copies agree.
+const VIBE_ALLOWED_MODELS = new Set(['deepseek-flash', 'glm-flash']);
+const VIBE_PARTIAL_REASON = 'partial';
+
+/**
+ * True when the `vibe` binary is on PATH for this environment.
+ * @param {NodeJS.ProcessEnv} [env] - The environment the probe runs in.
+ * @returns {boolean} Whether `command -v vibe` succeeded.
+ */
+function isVibeBinaryAvailable(env = process.env) {
+  const result = spawnSync('/bin/sh', ['-c', 'command -v vibe >/dev/null 2>&1'], {
+    env,
+    stdio: 'ignore',
+  });
+  return result.status === 0;
+}
+
+function readVibeExportRecord(lineageDir) {
+  if (typeof lineageDir !== 'string' || lineageDir.trim() === '') return null;
+  try {
+    const parsed = JSON.parse(fs.readFileSync(path.join(lineageDir, 'vibe-output', 'export.json'), 'utf8'));
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The verdict a Vibe lineage's export record supports, independent of the pool's settle status.
+ *
+ * Exit 3 is Vibe's "stopped without finishing" code, so it is a partial run rather than a
+ * plain failure, but it still must not count as succeeded. A clean exit with no record, or a
+ * record whose exit_code is not the integer 0, is a failure: a denied tool call can leave
+ * stdout clean while the run itself did not finish, and a null or string value is not a code.
+ */
+function resolveVibeLineageOutcome(exitCode, lineageDir) {
+  const exportRecord = readVibeExportRecord(lineageDir);
+  if (
+    exitCode === 0
+    && exportRecord
+    && Number.isInteger(exportRecord.exit_code)
+    && exportRecord.exit_code === 0
+    && (exportRecord.outcome === undefined || exportRecord.outcome === 'finished')
+  ) {
+    return 'success';
+  }
+  if (exitCode === 3 && exportRecord) return 'partial';
+  return 'failure';
+}
+
+/**
+ * The failure message for a Vibe lineage, or null when it finished cleanly.
+ * @param {number} exitCode - The executor process exit code.
+ * @param {string} lineageDir - The lineage folder holding vibe-output/export.json.
+ * @returns {string|null} The reason the lineage failed, or null on success.
+ */
+function validateVibeCompletion(exitCode, lineageDir) {
+  const outcome = resolveVibeLineageOutcome(exitCode, lineageDir);
+  if (outcome === 'success') return null;
+  if (outcome === 'partial') return 'reported a partial run (exit 3)';
+  const exportRecord = readVibeExportRecord(lineageDir);
+  if (!exportRecord) return `exited with code ${exitCode} without an export.json record`;
+  // The record's own outcome is the only place an unfinished run is named, so the
+  // message carries it; otherwise a failed run reads as a clean exit with a zero code.
+  const recordedOutcome = typeof exportRecord.outcome === 'string' && exportRecord.outcome
+    ? `, outcome ${exportRecord.outcome}`
+    : '';
+  return `exited with code ${exitCode} with export.json exit_code ${exportRecord.exit_code}${recordedOutcome}`;
+}
+
+/**
+ * Build the print-mode `vibe` command for one lineage, with a lineage-local home.
+ * @param {object} lineage - The executor row, carrying the model alias.
+ * @param {string|object} prompt - The prompt text, or an options object.
+ * @param {string} resolvedSandbox - The resolved sandbox policy.
+ * @param {string} resolvedPermission - The resolved permission policy.
+ * @param {object} [options] - Environment, repo root, prompt and lineage directory.
+ * @returns {object} The finalized lineage command.
+ */
+function buildVibeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  // The adapter registry passes the prompt positionally; a direct caller may pass one
+  // options object instead, since Vibe reads the prompt from a file rather than argv.
+  if (options === undefined && prompt && typeof prompt === 'object') {
+    options = prompt;
+    prompt = typeof options.prompt === 'string' ? options.prompt : '';
+  }
+  options = options || {};
+  const env = options.env || process.env;
+  if (!isVibeBinaryAvailable(env)) {
+    throw inputError('cli-mistral-vibe executor unavailable: command -v vibe failed');
+  }
+  // A version probe still touches Vibe's home, so it runs in a throwaway home outside the
+  // checkout and is removed before the lineage's own home is created.
+  const probeHome = fs.mkdtempSync(path.join(os.tmpdir(), 'vibe-version-'));
+  const versionResult = spawnSync('vibe', ['--version'], {
+    env: { ...env, VIBE_HOME: probeHome },
+    cwd: probeHome,
+    encoding: 'utf8',
+    timeout: 5000,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  fs.rmSync(probeHome, { recursive: true, force: true });
+  const versionOutput = typeof versionResult.stdout === 'string' ? versionResult.stdout.trim() : '';
+  const reportedVersion = versionOutput.replace(/^vibe\s+/i, '').split(/\s+/)[0] || '';
+  if (versionResult.error || versionResult.status !== 0 || reportedVersion !== VIBE_VERSION) {
+    throw inputError(
+      `cli-mistral-vibe requires vibe ${VIBE_VERSION}; found '${reportedVersion || 'unknown'}'`,
+    );
+  }
+
+  const model = lineage.model;
+  if (!VIBE_ALLOWED_MODELS.has(model)) {
+    throw inputError(
+      `cli-mistral-vibe model '${model}' is not in the enforced allowlist: ${[...VIBE_ALLOWED_MODELS].join(', ')}`,
+    );
+  }
+  if (typeof options.lineageDir !== 'string' || options.lineageDir.trim() === '') {
+    throw inputError('cli-mistral-vibe requires a lineage directory');
+  }
+
+  const repoRoot = options.repoRoot || path.resolve(__dirname, '../../../../..');
+  const repoConfig = path.join(repoRoot, '.vibe', 'config.toml');
+  if (!fs.existsSync(repoConfig)) {
+    throw inputError('cli-mistral-vibe repository config is missing: .vibe/config.toml');
+  }
+  // A lineage without the repository's guards would run --auto-approve unguarded, so a
+  // missing hooks file refuses the lineage rather than starting it.
+  if (!fs.existsSync(path.join(repoRoot, '.vibe', 'hooks.toml'))) {
+    throw inputError('cli-mistral-vibe repository hooks are missing: .vibe/hooks.toml');
+  }
+
+  fs.mkdirSync(path.resolve(options.lineageDir), { recursive: true });
+  // Vibe matches trust entries against the resolved cwd, so a lineage under a symlinked
+  // temp root (/var -> /private/var) must be spelled resolved or no project config loads.
+  const lineageDir = fs.realpathSync(path.resolve(options.lineageDir));
+  const promptFile = path.join(lineageDir, 'vibe-prompt.txt');
+  fs.writeFileSync(promptFile, typeof prompt === 'string' ? prompt : '', 'utf8');
+
+  // Vibe reads its model roster and trust store from VIBE_HOME. A fresh home per lineage
+  // keeps the operator's ~/.vibe untouched and gives two replicas independent state.
+  const vibeHome = path.join(lineageDir, 'vibe-home');
+  fs.mkdirSync(vibeHome, { recursive: true });
+  fs.copyFileSync(repoConfig, path.join(vibeHome, 'config.toml'));
+  fs.writeFileSync(
+    path.join(vibeHome, 'trusted_folders.toml'),
+    `trusted = [${JSON.stringify(lineageDir)}]\nuntrusted = []\n`,
+    'utf8',
+  );
+  // The lineage folder holds no .vibe/hooks.toml, so the project hooks never load there.
+  // The home copy loads whatever the cwd, with each script anchored to the checkout. The
+  // renderer is loaded here rather than at module scope, so a checkout without .vibe/
+  // fails only its Vibe lineages, never the runner's other executor kinds.
+  const rendererPath = path.resolve(
+    __dirname,
+    '../../../../../.vibe/plugins/repo-guards/render-home-hooks.cjs',
+  );
+  const { renderHomeHooks } = require(rendererPath);
+  renderHomeHooks({ vibeHome, repoRoot });
+
+  const outputDir = path.join(lineageDir, 'vibe-output');
+  const args = [
+    '--prompt-file', promptFile,
+    '--output-dir', outputDir,
+    '--trust',
+    '--model', model,
+    '--auto-approve',
+  ];
+  return finalizeLineageCommand({
+    kind: lineage.kind,
+    command: 'vibe',
+    args,
+    input: '',
+    prompt,
+    cwd: lineageDir,
+    env: { VIBE_HOME: vibeHome },
+    executableVersion: resolveExecutableVersion('vibe', options),
+    model,
+    reasoningEffort: null,
+    serviceTier: null,
+    // Vibe exposes no confinement flag; recording the requested sandbox as effective would
+    // claim a boundary the process never had.
+    resolvedSandbox: null,
+    resolvedPermission: null,
+    webSearch: effectiveWebSearchPolicy(lineage),
+  });
+}
+
 const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
   native: buildNativeLineageCommand,
   'cli-codex': buildCodexLineageCommand,
@@ -3157,6 +3348,7 @@ const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
   'cli-devin': buildDevinLineageCommand,
   'cli-pi': buildPiLineageCommand,
   'cli-deepseek-harness': buildDshLineageCommand,
+  'cli-mistral-vibe': buildVibeLineageCommand,
 });
 
 /**
@@ -3725,6 +3917,7 @@ async function main() {
         args: cmdArgs,
         input,
         cwd: commandCwd,
+        env: commandEnv,
         effectiveConfig,
         invocationFingerprint,
       } = buildLineageCommand(
@@ -3783,11 +3976,21 @@ async function main() {
         AI_SESSION_CHILD: '1',
         ...(stateEnvKey ? { [stateEnvKey]: stateDir } : {}),
         ...(dshHome ? { DSH_HOME: dshHome } : {}),
+        // The adapter names its own lineage-local home; applying it after the allowlist
+        // filter keeps an inherited VIBE_HOME from reaching the child.
+        ...(commandEnv || {}),
         // The repo-guards goal bridge names the packet from this marker. The env allowlist
         // drops every DSH_ key, and the lineage runs from its own folder, so the path is
         // re-injected here as an absolute path.
         ...(lineage.kind === 'cli-deepseek-harness'
           ? { DSH_SPEC_FOLDER: path.resolve(process.cwd(), specFolder) }
+          : {}),
+        // The Vibe session-start hook names the packet from this marker, on the same terms.
+        // Every Vibe lineage runs the session-start dist check, and its default self-heal
+        // compiles into the checkout; parallel lineages would race that compile, so a
+        // lineage keeps the warning and leaves the rebuild to the parent session.
+        ...(lineage.kind === 'cli-mistral-vibe'
+          ? { VIBE_SPEC_FOLDER: path.resolve(process.cwd(), specFolder), SPECKIT_DIST_AUTO_REBUILD: '0' }
           : {}),
         ...(resolvedClaudeConfigDir ? { CLAUDE_CONFIG_DIR: resolvedClaudeConfigDir } : {}),
       };
@@ -4140,6 +4343,12 @@ async function main() {
       const dshCompletionFailure = lineage.kind === 'cli-deepseek-harness'
         ? validateDshCompletion(exitCode, savedStdout, savedStderr)
         : null;
+      const vibeOutcome = lineage.kind === 'cli-mistral-vibe'
+        ? resolveVibeLineageOutcome(exitCode, lineageDir)
+        : null;
+      const vibeCompletionFailure = vibeOutcome !== null && vibeOutcome !== 'success'
+        ? validateVibeCompletion(exitCode, lineageDir)
+        : null;
       const missingArtifacts = findMissingLineageArtifacts(loopType, lineageDir);
       const stateRead = readLineageStateRecords(loopType, lineageDir);
       const stopPolicyViolation = findMaxIterationsPolicyViolation({
@@ -4162,7 +4371,9 @@ async function main() {
       // for cli-pi a non-zero exit is not a failure signal. The artifact validation below
       // is its success gate instead — a genuinely failed pi run produces no artifact and
       // is rejected there. Timeouts and signal kills remain real failures for every kind.
-      const exitCodeIsFailure = (exitCode !== 0 && lineage.kind !== 'cli-pi') || dshCompletionFailure !== null;
+      const exitCodeIsFailure = (exitCode !== 0 && lineage.kind !== 'cli-pi')
+        || dshCompletionFailure !== null
+        || vibeCompletionFailure !== null;
       if (timedOut || killedBySignal || exitCodeIsFailure) {
         const reason = timedOut
           ? 'timed out'
@@ -4170,7 +4381,9 @@ async function main() {
             ? `killed by signal ${result.signal}`
             : dshCompletionFailure
               ? dshCompletionFailure
-              : `exited with code ${exitCode}`;
+              : vibeCompletionFailure
+                ? vibeCompletionFailure
+                : `exited with code ${exitCode}`;
         // A provider that refuses the run on an exhausted allowance exits like any crash.
         // Name it and keep its own words, so the roll-up shows an outage the operator can
         // act on instead of an anonymous exit.
@@ -4189,6 +4402,17 @@ async function main() {
         if (quotaExhaustion) {
           failure.quotaExhausted = true;
           failure.reason = 'quota';
+        }
+        if (
+          lineage.kind === 'cli-mistral-vibe'
+          && vibeOutcome === 'partial'
+          && !timedOut
+          && !killedBySignal
+        ) {
+          // The pool keeps only a bounded error shape, so the partial verdict travels in
+          // `reason`; the settled result record reads it back into `outcome`. A timeout or
+          // signal kill is a failure even when the interrupted run left an export behind.
+          failure.reason = VIBE_PARTIAL_REASON;
         }
         failure.salvage = salvage;
         attachGatewayProjectionRefusal(failure, gatewayProjectionRefusal);
@@ -4278,7 +4502,14 @@ async function main() {
         throw failure;
       }
 
-      const output = { label: lineage.label, exitCode, timedOut, salvage, ...slotAccounting };
+      const output = {
+        label: lineage.label,
+        exitCode,
+        timedOut,
+        salvage,
+        ...slotAccounting,
+        ...(vibeOutcome ? { outcome: vibeOutcome } : {}),
+      };
       if (containmentContested !== null) output.containmentContested = containmentContested;
       if (containmentFindings !== null) {
         // Every artifact and stop-policy gate has passed by the time this output is built,
@@ -4340,6 +4571,21 @@ async function main() {
       return output;
     },
   });
+
+  // A Vibe lineage's verdict is the export record's pair, not the pool's settle status:
+  // exit 3 settles like a failure but records `partial`. The pool result is the record the
+  // JSON output carries, so the outcome is attached there for Vibe only.
+  const vibeLabels = new Set(
+    cliLineages.filter((lineage) => lineage.kind === 'cli-mistral-vibe').map((lineage) => lineage.label),
+  );
+  for (const result of results) {
+    if (!result || !vibeLabels.has(result.label)) continue;
+    if (result.status === 'fulfilled') {
+      result.outcome = result.output?.outcome || 'success';
+    } else {
+      result.outcome = result.error?.reason === VIBE_PARTIAL_REASON ? 'partial' : 'failure';
+    }
+  }
 
   const timestampAnomalies = collectTimestampAnomalies(results);
   const finalSummary = {
@@ -4419,6 +4665,12 @@ module.exports = {
   isDevinBinaryAvailable,
   isPiBinaryAvailable,
   isDshBinaryAvailable,
+  isVibeBinaryAvailable,
+  VIBE_ALLOWED_MODELS,
+  VIBE_VERSION,
+  buildVibeLineageCommand,
+  validateVibeCompletion,
+  resolveVibeLineageOutcome,
   withAgentPersona,
   validateClaudeConfigDir,
   buildLoopPrompt,

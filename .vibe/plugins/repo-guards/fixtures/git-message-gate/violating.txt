@@ -1,0 +1,1 @@
+Run exactly this shell command and nothing else: git commit --allow-empty -m 'stuff'

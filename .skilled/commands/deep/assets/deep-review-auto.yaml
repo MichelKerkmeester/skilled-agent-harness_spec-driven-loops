@@ -1385,6 +1385,16 @@ workflow:
             - "validateDshCompletion judges a clean exit, so a plugin that did not activate or a missing final event records a crash dispatch_failure"
             - "Fails closed when the harness binary is absent, off its pinned release or the model is off the allowlist (buildLineageCommand throws, exit non-zero). A requested cli-deepseek-harness executor never degrades to native"
             - "The command text never names the harness binary as a bare word, because the ancestry recursion guard reads the parent shell's command line"
+        if_cli_mistral_vibe:
+          command: |
+            node --input-type=module <<'EOF'
+            console.error('cli-mistral-vibe runs only as a fan-out lineage; rerun with --count=2 or a second --executor group, or choose another executor kind');
+            process.exit(2);
+            EOF
+          working_directory: "{repo_root}"
+          wait_for_completion: true
+          notes:
+            - "Fails closed before any dispatch receipt is written; the pre_dispatch_audit provenance row for the attempted executor remains"
         if_cli_claude_code:
           command: |
             node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'

@@ -1,0 +1,2 @@
+{"runtime":"vibe","time":"2026-11-15T00:05:18.203Z","turn":"request","kind":"send","steps":[{"text":"Tell me in one sentence what this project contains."},{"key":"Enter"}]}
+{"runtime":"vibe","time":"2026-11-15T00:05:29.836Z","turn":"close","kind":"exit","steps":[{"text":"/exit"},{"key":"Enter"}]}

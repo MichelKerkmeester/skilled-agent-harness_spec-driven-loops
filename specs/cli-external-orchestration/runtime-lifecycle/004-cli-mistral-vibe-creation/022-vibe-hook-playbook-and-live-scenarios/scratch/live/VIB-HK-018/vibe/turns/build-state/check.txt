@@ -1,0 +1,3 @@
+$ state=$(node "$CONVERSATION_REPO_ROOT/.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs" check-all --json --no-write); case "$state" in *'"stale":false'*) echo 'no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session'; exit 77;; esac; grep -rqs 'STALE DIST WARNING' "$VIBE_HOME/logs/session/unified" && grep -rqs 'npm run build' "$VIBE_HOME/logs/session/unified" && echo warning-names-package
+no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session
+[exit 77]

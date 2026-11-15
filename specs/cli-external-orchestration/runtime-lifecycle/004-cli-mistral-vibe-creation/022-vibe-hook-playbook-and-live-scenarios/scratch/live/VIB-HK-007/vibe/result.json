@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "SKIP",
+  "blocker": "no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window",
+  "seed": 1945772878,
+  "socket": "conv-41983-vibe",
+  "session_id": "e009a09e-9b09-4323-b77d-6706b3863414",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.YfEHr3kctk/vibe",
+  "started_at": "2026-11-14T23:49:34.017Z",
+  "finished_at": "2026-11-14T23:50:47.728Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "read",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window",
+      "observed": "no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window",
+      "evidence": "turns/read"
+    },
+    {
+      "id": "reinject-after-tool",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window",
+      "observed": "no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window",
+      "evidence": "turns/reinject-after-tool"
+    }
+  ]
+}

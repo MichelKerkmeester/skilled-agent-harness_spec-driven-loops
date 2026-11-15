@@ -14,6 +14,7 @@ const { pathToFileURL } = require('node:url');
 const CONTEXT_NUDGE_PATH = path.resolve(__dirname, '../codex/context-nudge.mjs');
 const PROMPT_SEED_PATH = path.resolve(__dirname, '../codex/prompt-seed.mjs');
 const STOP_ARM_PATH = path.resolve(__dirname, '../codex/stop-arm.mjs');
+const COMPACT_POINTER_PATH = path.resolve(__dirname, '../codex/compact-pointer.mjs');
 const USER_PROMPT_SUBMIT = require('./fixtures/codex-user-prompt-submit.json');
 const STOP_PAYLOAD = require('./fixtures/codex-stop.json');
 const ROLLOUT_CAPTURE = require('./fixtures/codex-rollout-token-count.json');
@@ -245,11 +246,74 @@ test('Codex registrations assign each event a unique adapter', () => {
     UserPromptSubmit: '.skilled/hooks/session-relaunch/codex/prompt-seed.mjs',
     PostToolUse: '.skilled/hooks/session-relaunch/codex/context-nudge.mjs',
     Stop: '.skilled/hooks/session-relaunch/codex/stop-arm.mjs',
+    SessionStart: '.skilled/hooks/session-relaunch/codex/compact-pointer.mjs',
   });
   assert.equal(
     new Set(bindings.map(({ script }) => script)).size,
     bindings.length,
   );
+});
+
+function writeCodexOpenNote(sandbox) {
+  const directory = path.join(sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs');
+  fs.mkdirSync(directory, { recursive: true });
+  const notePath = path.join(directory, `20261021T080000Z-${SESSION_ID}.md`);
+  fs.writeFileSync(notePath, [
+    '---',
+    'status: open',
+    `session_id: ${SESSION_ID}`,
+    'loop_id: ',
+    'runtime: codex',
+    `cwd: ${sandbox.repoRoot}`,
+    'spec_folder: ',
+    'created_at: 2026-10-25T10:00:00Z',
+    '---',
+    '## Goal', 'g', '## Done', 'd', '## Remaining work', 'r', '## In-flight state', 'i',
+  ].join('\n'));
+  return notePath;
+}
+
+test('compact-pointer points a compacted Codex session at its open note and resets the nudge level', async (t) => {
+  const sandbox = createSandbox(t);
+  const notePath = writeCodexOpenNote(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2}\n');
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER_PATH, {
+    hook_event_name: 'SessionStart',
+    source: 'compact',
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout).hookSpecificOutput;
+  assert.equal(output.hookEventName, 'SessionStart');
+  assert.match(output.additionalContext, /^\[session-relaunch\] This session was compacted after it wrote a handoff note/);
+  assert.ok(output.additionalContext.includes(`claim '${notePath}' --session '${SESSION_ID}'`), output.additionalContext);
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 0 });
+});
+
+test('compact-pointer adds nothing to a Codex start that is not a compaction or has no open note', async (t) => {
+  const sandbox = createSandbox(t);
+  writeCodexOpenNote(sandbox);
+  const startup = await runAdapter(sandbox, COMPACT_POINTER_PATH, {
+    hook_event_name: 'SessionStart',
+    source: 'startup',
+    session_id: SESSION_ID,
+  });
+  assert.equal(startup.code, 0, startup.stderr);
+  assert.equal(startup.stdout, '');
+
+  const empty = createSandbox(t);
+  const compacted = await runAdapter(empty, COMPACT_POINTER_PATH, {
+    hook_event_name: 'SessionStart',
+    source: 'compact',
+    session_id: SESSION_ID,
+  });
+  assert.equal(compacted.code, 0, compacted.stderr);
+  assert.equal(compacted.stdout, '');
 });
 
 test('PostToolUse adapter ignores UserPromptSubmit seed prompts', async (t) => {

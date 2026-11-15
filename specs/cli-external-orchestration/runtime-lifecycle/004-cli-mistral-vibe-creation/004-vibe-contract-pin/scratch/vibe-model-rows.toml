@@ -1,0 +1,13 @@
+active_model = "deepseek-flash"
+
+[[models]]
+name = "deepseek-v4-1-flash-1017"
+provider = "mistral"
+alias = "deepseek-flash"
+thinking = "max"
+
+[[models]]
+name = "zai-glm-5-3-flash"
+provider = "mistral"
+alias = "glm-flash"
+thinking = "max"

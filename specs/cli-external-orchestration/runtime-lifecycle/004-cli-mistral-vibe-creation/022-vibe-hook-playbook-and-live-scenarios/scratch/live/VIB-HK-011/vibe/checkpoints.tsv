@@ -1,0 +1,3 @@
+turn	status	attempts	evidence	observed
+dispatch	PASS	1	turns/dispatch	dispatch-refused
+deny-notice	PASS	1	turns/deny-notice	deny-notice-recorded

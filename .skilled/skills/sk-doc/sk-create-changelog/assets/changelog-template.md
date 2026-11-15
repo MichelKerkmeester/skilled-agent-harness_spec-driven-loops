@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.3.2.0
+version: 1.3.3.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -32,9 +32,9 @@ Three published entries show the house style. Each one teaches something differe
 
 - `.skilled/changelog/skilled/v4.0.1.0.md` is the model for length and selection. It keeps what a reader would notice, gives each item one paragraph and cuts items rather than sections. It also collects small fixes into a Smaller Fixes list, orders its upgrade notes by section and names the components with their own entry in one sentence. Model a release with many changes on it.
 - `.skilled/changelog/skilled/v4.0.2.1.md` is the model for readability and depth. Its sentences are short and its words are plain. Each feature item says how the feature works and shows a real line of output. Its fixes are listed one by one. Its How It Was Checked section shows what was measured before and after, what the change costs and which tests ran. Copy its sentence length, its level of detail and that section.
-- `.skilled/changelog/skilled/v4.0.0.0.md` is the model for voice and for how a major release opens. Its opening narrative and Why This Release frame a large change for a reader who was not there. Copy that voice and framing, never its length, because it records one unusually large release and runs past this template's ceilings.
+- `.skilled/changelog/skilled/v4.0.0.0.md` is the model for voice and for how a major release opens. Its opening narrative and Why This Release frame a large change for a reader who was not there. Copy that voice and framing, never its length, because it records one unusually large release.
 
-When this template and a model entry disagree on how a section reads, the model entry wins. When they disagree on how long an entry runs, this template's ceilings win (section 4). Record the discrepancy either way. Older entries in the same folders predate this style, so do not copy them.
+When this template and a model entry disagree on how a section reads, the model entry wins. When they disagree on how long an entry runs, this template's length guidance wins (section 4). Record the discrepancy either way. Older entries in the same folders predate this style, so do not copy them.
 
 ---
 
@@ -163,7 +163,7 @@ Start from the reader: write down what they would notice, act on or decide diffe
 
 ### Cut Items, Never Sections
 
-When an entry runs past a ceiling, cut at the H4 level. A cut item leaves in one of three ways: it folds into a sibling item as a closing sentence, it moves into its section's Smaller Fixes list or it is dropped as process, housekeeping or a fix with no visible effect. Never drop a whole section to shorten the entry, because each section is a domain a reader looks for by name.
+To shorten an entry, cut at the H4 level. A cut item leaves in one of three ways: it folds into a sibling item as a closing sentence, it moves into its section's Smaller Fixes list or it is dropped as process, housekeeping or a fix with no visible effect. Never drop a whole section to shorten the entry, because each section is a domain a reader looks for by name.
 
 ### Keep
 
@@ -243,15 +243,14 @@ These rules apply to changelog files and GitHub release notes. The Human Voice R
 | Summary paragraph | 1-3 short sentences | About 60 words |
 | Expanded opening narrative | 1-3 paragraphs | 5 paragraphs |
 | Why This Release | 1-3 short paragraphs | About 120 words, gain bullets allowed |
-| What's New at a Glance | 3-6 bullets compact, 5-9 expanded | 14 bullets, one line each |
+| What's New at a Glance | 3-6 bullets compact, 5-9 expanded | One line each |
 | Glance bullet | A bold sentence and one short plain sentence | A bold sentence and about 30 words |
 | H4 item narrative | 1 paragraph, about 60 words | 2 paragraphs, about 120 words |
 | H4 heading | 2-7 words | 10 words |
 | Sentence | About 8 words | 22 words |
 | Sentence average | About 8 words | 10 words |
-| Expanded H4 items | 12-22 | 32 |
 
-Validation checks the ceilings, and each one is set from the entry a reader needs, never from a model entry's length. `scripts/check_changelog_shape.py` fails an entry past the H4 item ceiling or the glance bullet ceiling, and it fails tagged glance bullets that run out of section order and a spec-folder line that carries a level label. It also fails a sentence past its ceiling, an average past its ceiling and an expanded entry with no How It Was Checked section. An entry has no line ceiling: its length follows from what the release changed, held in check by the H4 item and glance bullet ceilings. The usual column is the target. A release with one fix reads short. Paragraph and section word counts are guidance, not gates, so more short sentences are always fine. The two sentence ceilings are gates. Go past a word budget when a reader needs the fact, and record why.
+Validation checks the ceilings, and each one is set from the entry a reader needs, never from a model entry's length. `scripts/check_changelog_shape.py` fails tagged glance bullets that run out of section order and a spec-folder line that carries a level label. It also fails a sentence past its ceiling, an average past its ceiling and an expanded entry with no How It Was Checked section. An entry has no line, H4 item or glance bullet ceiling: its size follows from what the release changed. The usual column is the target. A release with one fix reads short. Paragraph and section word counts are guidance, not gates, so more short sentences are always fine. The two sentence ceilings are gates. Go past a word budget when a reader needs the fact, and record why.
 
 ---
 

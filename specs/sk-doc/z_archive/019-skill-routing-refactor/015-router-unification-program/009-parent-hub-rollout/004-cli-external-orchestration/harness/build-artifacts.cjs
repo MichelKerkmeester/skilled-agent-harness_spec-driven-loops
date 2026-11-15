@@ -99,6 +99,7 @@ function sourceInputs() {
       'cli-deepseek-harness',
       'SKILL.md',
     ),
+    'cli-external-orchestration/cli-mistral-vibe/SKILL.md': path.join(SKILL_ROOT, 'cli-mistral-vibe', 'SKILL.md'),
     'cli-external-orchestration/hub-router.json': path.join(SKILL_ROOT, 'hub-router.json'),
     'cli-external-orchestration/mode-registry.json': path.join(
       SKILL_ROOT,

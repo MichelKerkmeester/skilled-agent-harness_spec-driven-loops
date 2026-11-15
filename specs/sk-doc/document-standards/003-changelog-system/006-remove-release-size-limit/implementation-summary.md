@@ -8,16 +8,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit"
-    last_updated_at: "2026-11-14T21:57:51Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Removed the release-note file-total ceiling"
-    next_safe_action: "None, packet complete"
+    last_updated_at: "2026-11-15T06:26:05Z"
+    last_updated_by: "generate-context"
+    recent_action: "Fixed scenario CHG-015 and removed the H4 item and glance ceilings"
+    next_safe_action: "Verify the release tag after the next notes edit"
+    packet_purpose: "Purpose: A release note runs as long as its release needs, while the H4 item, glance bullet and sentence gates stay."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py"
+      - ".skilled/skills/sk-doc/scripts/tests/test_check_changelog_shape.py"
+      - ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
+      - ".skilled/changelog/skilled/v4.0.2.1.md"
+      - ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/check-expanded-shape.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:dfef4db4ae54e87e7479e02cf07dbc34826f15de4b5973aa5d26cc5bb105f6e1"
       session_id: "309bc6f7-fcbc-4b75-830c-186ea0a707b1"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "309bc6f7-fcbc-4b75-830c-186ea0a707b1"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-15T06:26:05Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []
@@ -50,7 +63,7 @@ A release note can now run as long as its release needs. The shape check failed 
 
 ### Remove the file-total line ceiling from release notes
 
-`check_changelog_shape.py` no longer counts an entry's lines. The template's length table drops both file totals, the 280-line expanded ceiling and the 40-line compact guidance, and says that no line ceiling applies. The `/create:changelog` workflow files drop their 240-line draft target. A follow-up raised their stated ceilings from 26 H4 items and 12 glance bullets to the 32 and 14 the checker enforces, and a test now fails when the two disagree. Every other gate stays: 32 H4 items, 14 glance bullets, glance order, the spec-folder line, How It Was Checked and the two sentence-length rules. sk-create-changelog is at 1.5.1.0 and the sk-doc hub at 2.9.14.0.
+`check_changelog_shape.py` no longer counts an entry's lines. The template's length table drops both file totals, the 280-line expanded ceiling and the 40-line compact guidance, and says that no line ceiling applies. The `/create:changelog` workflow files drop their 240-line draft target. A follow-up raised their stated ceilings from 26 H4 items and 12 glance bullets to the 32 and 14 the checker enforces, and a test now fails when the two disagree. A second follow-up removed the 32 H4 item and 14 glance bullet ceilings as well, at sk-create-changelog 1.5.2.0 and sk-doc 2.9.15.0. The v4.0.2.1 entry then gained its own Code Skill section. Every other gate stays: 32 H4 items, 14 glance bullets, glance order, the spec-folder line, How It Was Checked and the two sentence-length rules. sk-create-changelog is at 1.5.1.0 and the sk-doc hub at 2.9.14.0.
 
 ### Files Changed
 
@@ -80,7 +93,7 @@ The shape tests and the sk-doc suite ran first for a baseline. The rule, its tes
 
 | Decision | Why |
 |----------|-----|
-| Remove the file total only | The operator chose it. The H4 item and glance bullet ceilings still bound the structure, and the sentence gates govern readability, not size |
+| Remove the file total first, then the item ceilings | The operator first chose the file total only, then asked for the H4 item and glance bullet ceilings to go too. The sentence gates stay because they govern readability, not size |
 | Drop the 40-line compact guidance too | It was the compact entry's file total, and the operator's choice named it |
 | Align the workflow files' 26 and 12 numbers in a follow-up | The operator asked for it after the first commit. The workflow line says the checker enforces it, so it must name the checker's numbers |
 <!-- /ANCHOR:decisions -->
@@ -100,6 +113,7 @@ The shape tests and the sk-doc suite ran first for a baseline. The rule, its tes
 | `parent-skill-check.cjs .skilled/skills/sk-doc` | `all hard invariants passed, 0 warnings` |
 | `check_changelog_shape.py` on both new release notes | `SUMMARY files=2 pass=2 fail=0` |
 | `yaml.safe_load` on both workflow files | Both parse |
+| `test_an_entry_has_no_h4_or_glance_ceiling` and the v4.0.2.1 entry | `20 passed`. The entry prints `PASS` at 35 H4 items and 15 glance bullets |
 | `test_the_workflow_ceilings_match_the_checker` | `1 failed` on the old 26 and 12, then `21 passed` with 32 and 14 |
 <!-- /ANCHOR:verification -->
 

@@ -1,0 +1,50 @@
+
+⢔⡢⡀    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡐⣔⡣   deepseek-flash[max] · Free
+  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+
+Hello Michel, how can I help you?
+
+
+✓ New conversation started.
+  Previous session: b78d1631 To resume it later, run: vibe --resume b78d1631
+                                                                                                                                                                                                        
+
+> In one sentence, tell me which instructions you are following right now.                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                                                                                                                    
+⏵ Loaded 1 skill, thought                                                                                                                                                      
+
+  I'm following the system prompt's instruction hierarchy — critical instructions first, then your message, then repo AGENTS.md, then your AGENTS.md, then overridable defaults, then skills/MCP
+  output, then external data — plus the advisor directive that code comments must never carry ADR-/REQ-/CHK-/task IDs or spec paths.
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                                          
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ZQzWr9k5OE/vibe                                                                                                       ctx ▊      34.4k/256k

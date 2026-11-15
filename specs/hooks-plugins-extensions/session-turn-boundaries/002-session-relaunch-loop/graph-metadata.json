@@ -44,7 +44,8 @@
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure"
   ],
   "manual": {
     "depends_on": [],
@@ -246,7 +247,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-14T22:50:41.929Z",
+    "last_save_at": "2026-11-15T06:11:29.938Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -254,13 +255,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:61614c7cc6a76c557953da5dbe35780002ecdcbd98e59abb58b2c4543be2238e",
+    "source_fingerprint": "sha256:4f4a84b03e9b62b7b5d7dfcc1914442f788591ae216d54c5cfa6e5ce68486f97",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5fbb6554b41086032df21d57e8cdcbb711a5defb7e8e630f1505a6004e07e2f9",
+      "spec.md": "fb7d9335be1ef0ba8a851c29bc3edb0fd18651fb30ac291551a4c7f7ec031339",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes",
-    "last_active_at": "2026-11-14T22:27:32.983Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure",
+    "last_active_at": "2026-11-15T06:11:29.938Z"
   }
 }

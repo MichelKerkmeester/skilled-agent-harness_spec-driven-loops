@@ -71,6 +71,12 @@ interface NudgeDecision {
 
 interface NudgeModule {
   CLI_COMMAND: string;
+  WITHDRAWN_NOTICE: string;
+  questionHoldReason(options: {
+    sessionId: string;
+    runtime: string;
+    env?: NodeJS.ProcessEnv;
+  }): string | null;
   handoffText(options: {
     notePath: string;
     sessionId: string;
@@ -176,6 +182,8 @@ type AgentSettledRegistrar = {
 };
 
 const CONCERN = 'session-relaunch';
+// Two installed extensions each give Pi a question dialog, under these names.
+const QUESTION_TOOLS = new Set(['question', 'ask_user_question']);
 let modulesPromise: Promise<AdapterModules> | null = null;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -677,6 +685,31 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
       });
       if (withdrawn === null) return;
       logArmCancelled(modules.core, loopId, sessionId);
+      // The model asked for this hand-over and would otherwise still believe it is about to
+      // end. Pi awaits this handler before the run's first model call reads its steers.
+      pi.sendMessage(
+        { customType: CONCERN, content: modules.nudge.WITHDRAWN_NOTICE, display: false },
+        { deliverAs: 'steer' },
+      );
+    } catch {
+      return undefined;
+    }
+  });
+
+  // Only the settle arms a prepared hand-over, and a question dialog holds the run open until
+  // the operator answers, so the dialog is refused while this session's record can be armed.
+  pi.on('tool_call', async (event, ctx) => {
+    try {
+      if (!QUESTION_TOOLS.has(event.toolName)) return;
+      const config = loadConfigFile(configPath());
+      if (!isEnabled(config)) return;
+      const modules = await loadModules();
+      const sessionId = sessionIdOf(ctx, modules.nudge);
+      if (!sessionId) return;
+
+      const reason = modules.nudge.questionHoldReason({ sessionId, runtime: 'pi', env: process.env });
+      if (reason === null) return;
+      return { block: true, reason };
     } catch {
       return undefined;
     }

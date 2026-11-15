@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1419066683,
+  "socket": "conv-19252-vibe",
+  "session_id": "e68212fd-03ae-4ac7-8d00-945a52fa3cbc",
+  "project": "/private/tmp/vib-hk-017/vibe",
+  "started_at": "2026-11-15T00:41:06.102Z",
+  "finished_at": "2026-11-15T00:41:47.432Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "edit",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "stale-warned",
+      "evidence": "turns/edit"
+    },
+    {
+      "id": "package",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "package-named",
+      "evidence": "turns/package"
+    }
+  ]
+}

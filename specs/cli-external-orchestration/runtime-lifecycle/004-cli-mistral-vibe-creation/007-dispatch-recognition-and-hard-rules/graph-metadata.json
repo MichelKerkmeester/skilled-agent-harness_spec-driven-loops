@@ -16,7 +16,8 @@
       "vibe dispatch preflight",
       "dispatch recognition and hard rules plan",
       "dispatch recognition and hard rules tasks",
-      "dispatch recognition and hard rules goal"
+      "dispatch recognition and hard rules goal",
+      "vibe dispatch recognition implementation summary"
     ],
     "key_topics": [
       "dispatch",
@@ -29,22 +30,25 @@
       "plan",
       "tasks",
       "goal",
-      "shared",
-      "hook"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "implementation-summary.md",
       ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
       ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
       ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
-      ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
       ".skilled/hooks/dispatch/README.md",
-      ".skilled/hooks/vitest.config.ts"
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+      ".skilled/hooks/vitest.config.ts",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json"
     ],
     "entities": [
       {
@@ -72,9 +76,21 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "dispatch-audit.mjs",
         "kind": "file",
         "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
         "source": "derived"
       },
       {
@@ -90,21 +106,27 @@
         "source": "derived"
       },
       {
-        "name": "dispatch-audit.test.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/dispatch/README.md",
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "vitest.config.ts",
         "kind": "code",
         "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json",
         "source": "derived"
       },
       {
@@ -172,43 +194,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shared dispatch hook library maps each headless CLI shape to the packet whose `hard-rules.json` it enforces, and Vibe is not in that map",
     "created_at": "2026-11-14T12:56:20Z",
-    "last_save_at": "2026-11-14T13:33:19.610Z",
+    "last_save_at": "2026-11-14T15:31:50.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03ba1f64061cf583ba5a0b1d1e256d3304fd6279ef97c44c5c3150d5949aea6d",
+    "source_fingerprint": "sha256:d65b7c45ac67f34392b8676d9d6ff489661dc1c0599b6fb434d1f87e6e905120",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a97deb8da1977d0ca3e13858446ff2fb43e9c51b10d2b1cdbbbb915d6fe4728b",
+      "spec.md": "e70bb6821bdd1dcc4e905c63ce32df59c5a479713837d275d5d137422b696b42",
       "plan.md": "35ec3fea7123a1873647f13a3f032948f5796879bee50379d1490a48986ea08e",
-      "tasks.md": "15a979fc1695910a3a31ebfb7fedb3a3cfc9035d9ebc4363e75e5e8171d5c1be"
+      "tasks.md": "d3387a3c69193138ee481c2bb23a71a4f70a9f91e24b2df756d9cf77e5223566",
+      "implementation-summary.md": "d972641e7a39fb124262a21f40b0d075400cc03a686f60fa30409de0b99f7054"
     },
     "last_active_at": null
   }

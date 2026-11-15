@@ -1,0 +1,2 @@
+log	prepare .*sessionId=ses_	NONE
+screen!	esc interrupt|esc to interrupt	DELAY:0.5:Status check: what is the state of your hand-over right now, and what should you do next? Answer in one or two sentences.

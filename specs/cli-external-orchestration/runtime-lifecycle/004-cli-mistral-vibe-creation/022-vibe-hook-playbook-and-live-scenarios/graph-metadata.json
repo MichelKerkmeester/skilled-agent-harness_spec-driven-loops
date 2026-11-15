@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe hook playbook and live scenarios",
+      "phase 22 vibe hook playbook and live scenarios",
+      "vibe conversation scenarios",
+      "vibe hook playbook coverage",
+      "vibe hook playbook and live scenarios plan",
+      "vibe hook playbook and live scenarios tasks",
+      "vibe hook playbook and live scenarios goal",
+      "022-vibe-hook-playbook-and-live-scenarios operator decisions",
+      "vibe hook playbook and live scenarios implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "hook",
+      "playbook",
+      "live",
+      "scenarios",
+      "phase",
+      "conversation",
+      "coverage",
+      "plan",
+      "tasks",
+      "goal",
+      "022-vibe-hook-playbook-and-live-scenarios"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      ".vibe/hooks.toml",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md",
+      "scratch/inventory.md",
+      "scratch/predecessors.md",
+      "scratch/baseline-validator.txt",
+      "scratch/baseline-runner.txt",
+      ".vibe/config.toml",
+      "scratch/live/VIB-HK-007/procedure.md",
+      "scratch/live/VIB-HK-013/procedure.md",
+      "scratch/live/VIB-HK-018/procedure.md",
+      "scratch/live/VIB-HK-025/procedure.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "scratch/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "predecessors.md",
+        "kind": "doc",
+        "path": "scratch/predecessors.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-validator.txt",
+        "kind": "file",
+        "path": "scratch/baseline-validator.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-runner.txt",
+        "kind": "file",
+        "path": "scratch/baseline-runner.txt",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".vibe/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "procedure.md",
+        "kind": "doc",
+        "path": "scratch/live/VIB-HK-007/procedure.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.vibe/hooks.toml` registers 18 hook entries, and the Vibe playbook's 25 scenarios cover only the goal slice as a live conversation; the spec-gate and hard-rule rows are test-suite runs, and 14 entries are named in no scenario at all (Measured Behavior)",
+    "created_at": "2026-11-14T22:25:49Z",
+    "last_save_at": "2026-11-15T06:04:05.851Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:98857cc107144ff9fdb53b3543c4da11f8d2651bae9e4f99a47a048503e71540",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6e7deb14dac3c13b0535cb853f6d1f92c408de023754b68e29109f8942cb7aa7",
+      "plan.md": "a3bf0bbb0ec4a9cba5ff2da6e23a89c49bb592d1159b14bbf0a255e1c21f13ef",
+      "tasks.md": "a129d3778a43e99b85d14aaa528923a615f7a802401783c5ee7220245dfae0d6",
+      "decision-record.md": "9ed7d8950b4bb753b05e3708a61c60409d2cc74bef8261f28076baef708d16f6",
+      "implementation-summary.md": "db91b2a23f79c308ecd6b8238424dcaa6c29e71056e04eaab104b34f36570ff7"
+    },
+    "last_active_at": null
+  }
+}

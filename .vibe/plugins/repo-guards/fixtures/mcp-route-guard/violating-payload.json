@@ -1,0 +1,14 @@
+{
+  "session_id": "<session_id>",
+  "transcript_path": "<transcript_path>",
+  "cwd": "<cwd>",
+  "parent_session_id": null,
+  "hook_event_name": "pre_tool",
+  "tool_name": "mcp_github.create_issue",
+  "tool_call_id": "<tool_call_id>",
+  "tool_input": {
+    "owner": "acme",
+    "repo": "widgets",
+    "title": "Fixture issue"
+  }
+}

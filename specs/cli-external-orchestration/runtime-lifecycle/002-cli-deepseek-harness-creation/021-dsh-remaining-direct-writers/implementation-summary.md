@@ -66,6 +66,7 @@ Phase 020 left three writers that still appended straight into a ledger-backed s
 | `.skilled/commands/deep/assets/deep-review-auto.yaml`, `deep-review-confirm.yaml`, `deep-research-auto.yaml`, `deep-research-confirm.yaml` | Modified | The session id on every containment call and every validate step |
 | `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | Modified | The executor sentence |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Modified | The same executor sentence in the review protocol |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts` | Modified | The harness branch test now looks for the harness refusal only. The Mistral Vibe runtime merged from origin/main added its own `cli-mistral-vibe runs only as a fan-out lineage` refusal, which failed the old phrase-wide assertion on origin/main |
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown`, `deep-research.contract.markdown` | Regenerated | They pin the workflow and prompt pack digests. The AI Council contract regenerated unchanged |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit-ledger-projection.vitest.ts`, `deep-research-ledger-schema.vitest.ts`, `check-ledger-stem-producers.vitest.ts`, `write-containment-yaml-call-sites.vitest.ts` | Modified | Survival, fallback, executor, round-trip, census and call-site tests |
 <!-- /ANCHOR:what-built -->

@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier",
+  "description": "Phase 19: vibe-relaunch-command-tier",
+  "keywords": [
+    "phase",
+    "vibe-relaunch-command-tier"
+  ],
+  "lastUpdated": "2026-11-14T20:13:12.711Z",
+  "specId": "019",
+  "folderSlug": "vibe-relaunch-command-tier",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "004-cli-mistral-vibe-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

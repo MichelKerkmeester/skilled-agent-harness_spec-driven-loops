@@ -1,0 +1,50 @@
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+> Add an exported farewell constant to .skilled/skills/system-spec-kit/shared/src/greeting.ts.                                                                                                          
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                       ▆
+⚠ [turn-start] Added context for the model: "Advisor: live; use system-spec-kit 0.82/0.22 pass. Directives: - Comment hygien…"                                                                          
+                                                                                                                                                                                                        
+  I'll start by reading the target file and checking for any AGENTS.md constraints.                                                                                                                     
+                                                                                                                                                                                                        
+⏵ Ran 10 commands, thought                                                                                                                                                                              
+                                                                                                                                                                                                        
+  The repo is a 5-file sandbox: no git, no tests, no AGENTS.md. The change is one line matching the existing style. I'll add it with no comment — the file is self-documenting, and a comment here      
+  would only invite the spec-ID references the hygiene rule forbids.                                                                                                                                    
+                                                                                                                                                                                                        
+⏵ Edited 1 file, ran 2 commands, thought                                                                                                                                                                
+                                                                                                                                                                                                        
+  The suggested npm run build doesn't exist in this package. I'll typecheck directly instead.                                                                                                           
+                                                                                                                                                                                                        
+⏵ Ran 3 commands, thought                                                                                                                                                                               
+                                                                                                                                                                                                        
+  Done.                                                                                                                                                                                                 
+                                                                                                                                                                                                        
+  ┌─ ts ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ // .skilled/skills/system-spec-kit/shared/src/greeting.ts                                                                                                                                       │   
+  │ export const greeting = "hello";                                                                                                                                                                │   
+  │ export const farewell = "goodbye";                                                                                                                                                              │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  Verified: tsc --noEmit --strict passes (rc=0), and evaluating the module yields greeting = "hello", farewell = "goodbye".                                                                             
+                                                                                                                                                                                                        
+  Two things worth flagging:                                                                                                                                                                            
+                                                                                                                                                                                                        
+  No comment added. The file is self-documenting, so a comment would have been invented rationale. That also keeps the comment-hygiene rule satisfied by construction — no ADR-/REQ-/CHK-/task-ids or   
+  spec paths anywhere in the source.                                                                                                                                                                    
+                                                                                                                                                                                                        
+  The advisor's "0.82/0.22 pass" and the stale-dist warning both point at machinery that isn't here. package.json is {"name":"@spec-kit/shared","version":"0.0.0"} with no scripts block, so the        
+  suggested npm run build fails with Missing script: "build". tsconfig.json is an empty {"compilerOptions":{}}, and dist/ holds only a stub tsconfig.tsbuildinfo ({"program":{}}) — no emitted output   
+  to refresh. I typechecked the file directly rather than fabricate a build. If a real build pipeline is supposed to exist for this package, it's missing from the checkout and worth restoring         
+  before the dist-freshness gate matters.                                                                                                                                                               
+                                                                                                                                                                                                        
+  I did not load a system-spec-kit skill — no such skill is available to me, only the directory of that name.                                                                                           
+
+                                                 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                                                              
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/tmp/vib-hk-017/vibe                                                                                                                                                       ctx ▍      15.2k/256k

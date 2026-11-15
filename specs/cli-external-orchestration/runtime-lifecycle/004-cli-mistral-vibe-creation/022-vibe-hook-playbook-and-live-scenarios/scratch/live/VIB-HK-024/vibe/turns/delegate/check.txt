@@ -1,0 +1,3 @@
+$ ls -d "$VIBE_HOME"/logs/session/unified/child-* >/dev/null 2>&1 && grep -rqsE '"agent_?[Nn]ame":"prompt-improver"' "$VIBE_HOME/logs/session/unified" && grep -rqsF 'The Prompt-Improver Agent' "$VIBE_HOME"/logs/session/unified/child-* && echo agent-spawned-from-mirror
+agent-spawned-from-mirror
+[exit 0]

@@ -595,7 +595,7 @@ workflow:
             In the last body section, one sentence names every component and mode with its own changelog entry for this release
 
           Expanded ceilings (template section 4, enforced by shape_check in Step 5):
-            32 H4 items, 14 glance bullets, 22 words a sentence, 10 words a sentence on average
+            22 words a sentence, 10 words a sentence on average
 
         Detail and readability apply to every format (template sections 2 and 4), with no request needed:
           - Each new feature says how it works, step by step, and quotes one real line of output

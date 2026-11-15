@@ -64,7 +64,7 @@ type ExecutorDispatchGuardContext = {
   statePaths?: string[];
 };
 
-const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string>> = {
+const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string | readonly string[]>> = {
   'cli-codex': 'codex',
   'cli-claude-code': 'claude',
   'cli-opencode': 'opencode',
@@ -74,10 +74,14 @@ const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-devin': 'devin',
   'cli-pi': 'pi',
   'cli-deepseek-harness': 'dsh',
+  // A running Vibe shows as its Rust binary or its app server in the ancestor walk,
+  // so every name it can appear under is listed rather than the launcher alone.
+  'cli-mistral-vibe': ['vibe', 'vibe-rs', 'vibe-app-server'],
 };
 
 // Pi's session environment variable is unconfirmed; leave this kind absent
 // until the live contract identifies a real session identifier.
+// Vibe's session env is unconfirmed too; the kind stays absent rather than carrying a guessed name.
 const EXECUTOR_SESSION_ENV_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-codex': 'CODEX_SESSION_ID',
   'cli-claude-code': 'CLAUDE_CODE_SESSION_ID',
@@ -101,6 +105,9 @@ const EXECUTOR_STATE_ENV_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   'cli-devin': ['SPECKIT_DEVIN_STATE_DIR'],
   'cli-pi': ['SPECKIT_PI_STATE_DIR'],
   'cli-deepseek-harness': ['SPECKIT_DEEPSEEK_HARNESS_STATE_DIR', 'DSH_HOME'],
+  // Vibe reads its own home override, so an inherited VIBE_HOME is lineage state and not
+  // a pass-through variable.
+  'cli-mistral-vibe': ['SPECKIT_MISTRAL_VIBE_STATE_DIR', 'VIBE_HOME'],
 };
 
 const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> = {
@@ -111,6 +118,7 @@ const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> =
   'cli-devin': '.devin',
   'cli-pi': '.pi',
   'cli-deepseek-harness': '.dsh',
+  'cli-mistral-vibe': '.vibe',
 };
 
 // Two of the five recursion layers ask "is the caller sitting inside this CLI right now" —
@@ -163,6 +171,9 @@ const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // identical direct dispatch succeeds. Add a prefix here only with the same standard of evidence.
   'cli-pi': ['LLMGATEWAY_'],
   'cli-deepseek-harness': ['LLMGATEWAY_'],
+  // Vibe's provider key and its own runtime variables share this prefix; VIBE_HOME also
+  // matches it, so the deny table below keeps an inherited home out.
+  'cli-mistral-vibe': ['VIBE_'],
 };
 
 // Single variables a kind passes through where no prefix fits. Each entry names one
@@ -176,6 +187,18 @@ const EXECUTOR_ENV_KEYS_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // DSH_HOME is absent on purpose: the runner gives every lineage a fresh home, and an
   // inherited one would point a leaf at the operator's harness state.
   'cli-deepseek-harness': ['OPENCODE_API_KEY'],
+  // Vibe authenticates its provider with this one key; VIBE_HOME is absent on purpose,
+  // for the same reason DSH_HOME is.
+  'cli-mistral-vibe': ['MISTRAL_API_KEY'],
+};
+
+// State variables a kind must never inherit, even when a prefix above would match them.
+// A prefix is deliberately broad, so the one name inside it that names lineage state is
+// denied here rather than narrowing the prefix and losing its other variables.
+const EXECUTOR_ENV_DENY_KEYS_BY_KIND: Partial<Record<ExecutorKind, readonly string[]>> = {
+  // An inherited VIBE_HOME points the leaf at the operator's Vibe state, while the runner
+  // gives every lineage its own home.
+  'cli-mistral-vibe': ['VIBE_HOME'],
 };
 
 type RunAuditedExecutorCommandInput = {
@@ -226,6 +249,9 @@ function getExecutorKind(config: ExecutorConfig): ExecutorKind {
 function isAllowedExecutorEnvKey(key: string, kind: ExecutorKind): boolean {
   if (EXECUTOR_COMMON_ENV_ALLOWLIST.has(key) || key.startsWith('LC_')) {
     return true;
+  }
+  if ((EXECUTOR_ENV_DENY_KEYS_BY_KIND[kind] ?? []).includes(key)) {
+    return false;
   }
   if ((EXECUTOR_ENV_KEYS_BY_KIND[kind] ?? []).includes(key)) {
     return true;
@@ -369,7 +395,9 @@ function getDefaultStatePaths(kind: ExecutorKind, env: Record<string, string | u
 }
 
 function candidateLockfileNames(kind: ExecutorKind): string[] {
-  const binary = EXECUTOR_BINARY_BY_KIND[kind] ?? kind;
+  const configured = EXECUTOR_BINARY_BY_KIND[kind];
+  // A kind with several binary names keeps the first as its canonical lockfile stem.
+  const binary = (typeof configured === 'string' ? configured : configured?.[0]) ?? kind;
   return [
     `${kind}.lock`,
     `${binary}.lock`,
@@ -831,12 +859,13 @@ export function detectSameKindFromStack(stack: string | undefined, kind: Executo
  * @returns True if the executor binary is found in the ancestry.
  */
 export function detectFromAncestry(kind: ExecutorKind, ancestryCmdlines: string[] = readAncestorCmdlines()): boolean {
-  const binary = EXECUTOR_BINARY_BY_KIND[kind];
-  if (!binary) {
+  const configured = EXECUTOR_BINARY_BY_KIND[kind];
+  if (!configured) {
     return false;
   }
 
-  return ancestryCmdlines.some((commandLine) => commandLineContainsBinary(commandLine, binary));
+  const binaries = typeof configured === 'string' ? [configured] : configured;
+  return ancestryCmdlines.some((commandLine) => binaries.some((binary) => commandLineContainsBinary(commandLine, binary)));
 }
 
 /**

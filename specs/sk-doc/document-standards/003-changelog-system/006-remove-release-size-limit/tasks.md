@@ -57,6 +57,8 @@ contextType: "general"
 - [x] T009 Rerun the sk-doc suite (`.skilled/skills/sk-doc/scripts/tests/run-script-tests.sh`). Verify: it prints `1 failing: test_validation_switch.py`, the baseline. [EVIDENCE: the same single failure]
 - [x] T010 Validate the changed documents and the hub (`.skilled/skills/sk-doc/SKILL.md`). Verify: `validate_document.py` prints `Total issues: 0` on the six changed docs, and `parent-skill-check.cjs .skilled/skills/sk-doc` prints `all hard invariants passed`. [EVIDENCE: six `VALID`, hub check passed with 0 warnings]
 - [x] T011 Align the workflow ceiling line with the checker and test it (`.skilled/commands/create/assets/create-changelog-auto.yaml`). Verify: `test_the_workflow_ceilings_match_the_checker` fails on the old 26 and 12 and passes on 32 and 14, and the shape tests print `21 passed`. [EVIDENCE: `1 failed` on the old files, `21 passed` after]
+- [x] T012 Remove the H4 item and glance bullet ceilings (`.skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py`). Verify: `test_an_entry_has_no_h4_or_glance_ceiling` passes with 60 H4 items and 30 glance bullets, the shape tests print `20 passed`, and the v4.0.2.1 entry passes at 35 H4 items and 15 glance bullets. [EVIDENCE: `20 passed`, `PASS` on v4.0.2.1]
+- [x] T013 Point scenario CHG-015's broken copy at a section tag the v4.0.2.1 entry holds (`.skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/check-expanded-shape.md`). Verify: step 3 prints `[glance-order]` and exits 1, where the old `section: Routing` copy printed `PASS`. [EVIDENCE: `[glance-order]`, exit 1]
 <!-- /ANCHOR:phase-3 -->
 
 ---

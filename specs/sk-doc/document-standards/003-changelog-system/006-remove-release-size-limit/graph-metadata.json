@@ -15,6 +15,7 @@
       "remove the file total line ceiling from release",
       "remove release size limit plan",
       "remove release size limit tasks",
+      "006-remove-release-size-limit operator decisions",
       "remove release size limit implementation summary"
     ],
     "key_topics": [
@@ -28,8 +29,8 @@
       "ceiling",
       "plan",
       "tasks",
-      "implementation",
-      "summary"
+      "006-remove-release-size-limit",
+      "operator"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -37,6 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       "scripts/README.md",
       ".skilled/commands/create/assets/create-changelog-auto.yaml",
@@ -45,7 +47,8 @@
       ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
       ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
       ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
-      ".skilled/skills/sk-doc/SKILL.md"
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/check-expanded-shape.md"
     ],
     "entities": [
       {
@@ -64,6 +67,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -118,6 +127,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-expanded-shape.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/check-expanded-shape.md",
         "source": "derived"
       },
       {
@@ -179,38 +194,28 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`checkchangelogshape.py` fails an expanded release note that runs past 280 lines below its frontmatter",
     "created_at": "2026-11-14T21:40:01Z",
-    "last_save_at": "2026-11-14T22:29:44.388Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T06:26:05.316Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d28903040bd5589400998ef405010de22cd92318a86412dceef058a9adde22e",
+    "source_fingerprint": "sha256:395f9506376b5c68ee3c15bcfd382964217aac0e5282328c40dd62dc91d62dd2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87afa1c2da82a2a3d5a61ad0ee32c07a66933d61f0a9553c4bd8026e41140579",
+      "spec.md": "b79df65a056ff01ce328959999d2aa8653e51e90674c6727c55a90d7cadc611c",
       "plan.md": "4b070a4baaca48221c6b8b593c6ed1291864cd93731c98451856e2ddb0c3ea5b",
-      "tasks.md": "ccd4eea1479c724e953027d3d0f9a7bf91040b5826f05aef64d8c0154ad16c78",
-      "implementation-summary.md": "1233a823ebd6e94c0040089d767e0db59ca45ff9966846aec429960f4864095e"
+      "tasks.md": "13301c3ec7a1ceba30a2a31d98e80986649de349e670ca6ff789db68726a10a3",
+      "decision-record.md": "a8bce6ed669628399c6a2edfdda99149c936640feabdc33a305a8a4cf17fb251",
+      "implementation-summary.md": "1cefffc1fa9c89e2ad7f055debe91a22d9e2fc8e19fd2b18dacf3600bb1f5c0a"
     },
     "last_active_at": null
   }

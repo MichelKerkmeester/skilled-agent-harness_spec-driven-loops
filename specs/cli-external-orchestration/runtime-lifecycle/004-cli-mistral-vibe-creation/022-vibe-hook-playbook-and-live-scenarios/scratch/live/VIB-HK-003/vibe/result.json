@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1845233133,
+  "socket": "conv-68365-vibe",
+  "session_id": "d04796f1-af97-41a9-8fc5-89590222f9cb",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.Tr39hDMhAn/vibe",
+  "started_at": "2026-11-15T00:33:59.434Z",
+  "finished_at": "2026-11-15T00:34:41.130Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "advisor-1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "brief-delivered receipt=1794702850",
+      "evidence": "turns/advisor-1"
+    },
+    {
+      "id": "advisor-2",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "no-second-brief receipt=unchanged-since-turn1",
+      "evidence": "turns/advisor-2"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+[[hooks]]
+name = "wire-fixture"
+type = "pre_tool"
+match = "re:bash|process_start"
+strict = true
+command = "WIRE_LOG=/dev/null sh @REPO@/.vibe/plugins/repo-guards/fixtures/wire-format/record-and-deny.sh"

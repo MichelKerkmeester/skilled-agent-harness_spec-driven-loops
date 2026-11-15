@@ -1,0 +1,12 @@
+{
+  "session_id": "<session_id>",
+  "transcript_path": "<transcript_path>",
+  "cwd": "<cwd>",
+  "parent_session_id": null,
+  "hook_event_name": "pre_tool",
+  "tool_name": "file_system.read_file",
+  "tool_call_id": "<tool_call_id>",
+  "tool_input": {
+    "file_path": ".env"
+  }
+}

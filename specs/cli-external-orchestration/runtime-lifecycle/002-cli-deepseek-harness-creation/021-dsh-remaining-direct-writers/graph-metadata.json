@@ -50,14 +50,14 @@
       ".skilled/commands/deep/assets/deep-review-auto.yaml",
       ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
       ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts",
       ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit-ledger-projection.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts",
       ".skilled/skills/system-deep-loop/changelog/v1.6.29.0.md",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts"
     ],
     "entities": [
       {
@@ -133,6 +133,12 @@
         "source": "derived"
       },
       {
+        "name": "executor-branch-contract.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "deep-review.contract.markdown",
         "kind": "file",
         "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
@@ -175,12 +181,6 @@
         "source": "derived"
       },
       {
-        "name": "check-ledger-stem-producers.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "In a deep review or deep research run, the JSONL state log beside a `deep-review-ledger/frames` or `deep-research-ledger/frames` folder is a projection the append gateway rewrites from the ledger after every append",
     "created_at": "2026-11-15T05:44:31Z",
-    "last_save_at": "2026-11-15T06:51:35.056Z",
+    "last_save_at": "2026-11-15T07:08:57.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:72ab35448c20dc603e3ae646f94a3b658bfac06aa9016307aeafb985f43b1cee",
+    "source_fingerprint": "sha256:ea8e49b1243049a3e669d54bae2777233eea813a37d397d5609862ac0e788181",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "db47965dae6e2aad7816ba07a4048d6a1cba8b4e29f3ccc863d346ced5d69d1b",
+      "spec.md": "4a4f11d318684439cfd46bd2582ab67dff3f2d73b781732b9d5fde4f191d412f",
       "plan.md": "63148112edafa5820f4331c35b24a2c7a460c85622f3dc0216c28d1b17e21a4b",
-      "tasks.md": "ac3a2866502ba9eab45a4077c84815e9e90beb254526f60a05a25d9a684bd131",
-      "implementation-summary.md": "b29603b9ba5b1e850e9b4433e9345d9ac522323fb0b7fcaeb905917839bea621"
+      "tasks.md": "1f204c769968fb262af91d86a105f5db8daed115f6fa2ec83381142ebc32c9ca",
+      "implementation-summary.md": "b265d88e6dd96385f5a6187461fd54bc27191f62be6eb43532dd1878e878ddc0"
     },
     "last_active_at": null
   }

@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 10445014,
+  "socket": "conv-44919-vibe",
+  "session_id": "cdac9f6c-137b-4ece-8968-69d5b5818212",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.7J0vUgGSN5/vibe",
+  "started_at": "2026-11-15T00:31:31.448Z",
+  "finished_at": "2026-11-15T00:32:18.075Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "mirror-ready",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "mirror-linked",
+      "evidence": "turns/mirror-ready"
+    },
+    {
+      "id": "load-skill",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "skill-loaded-from-mirror",
+      "evidence": "turns/load-skill"
+    }
+  ]
+}

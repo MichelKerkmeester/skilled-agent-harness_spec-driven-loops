@@ -1,0 +1,51 @@
+
+ ⢠⢢    ⡠⡀⡠⡀   Mistral Vibe v3.1.2
+ ⢸⢸⣀⡔⢉⢑⠇⠨⡠⢇   deepseek-flash[max] · Free
+ ⠈⠒⠒⠣⠤⠵⠭⠭⠯⠇   Type /help for more information
+
+Hello Michel, how can I help you?
+
+
+
+> I'm weighing two ways to cache the journal read: a small LRU inside the reader, or a memoized wrapper around it. Compare them as two labelled options, A) and B), with one trade-off each, reply in
+  prose without opening the question box, and end by asking me which one I want.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⏵ Ran 2 commands, thought                                                                                                    
+
+  No repo here to check against, so this is from the design shape alone.
+
+  A) LRU inside the reader. The cache lives next to the I/O it serves, so invalidation is local: the reader already knows when it appends or reopens the journal, and can drop entries at that moment.
+  The trade-off is that the reader now owns two responsibilities, and every future read path has to remember the cache exists — you get correctness by discipline rather than by construction.
+
+  B) Memoized wrapper around it. The reader stays a plain, honest function of the file, and caching becomes a separate concern you can swap, disable in tests, or bound differently per caller. The
+  trade-off is that the wrapper can only see arguments, not file state, so it will happily serve a stale entry after an external append unless you thread a version or mtime through the key.
+
+  Which one do you want?
+
+⏵ Thought                           
+
+  Two options, one trade-off each.
+
+  A) Small LRU inside the reader. The cache sits next to the I/O, so it can key on the exact read shape and invalidate the moment the journal appends or rotates — the failure mode that actually
+  bites a journal. The cost is mutable state inside the reader: every instance carries its own cache, so parallel readers can't share it and tests can't easily bypass it.
+
+  B) Memoized wrapper around the reader. The reader stays pure and the cache becomes composable — swap in a no-op for tests, share one cache across readers. The cost is that the wrapper only sees
+  the public call signature, so it can't tell when the journal changed underneath it and needs an explicit invalidation hook or TTL, which risks serving stale reads.
+
+□ Asking Which caching approach do you want for the journal read?
+
+
+
+⠇  User input required… (8s Esc/Ctrl+C to interrupt)
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Which caching approach do you want for the journal read?                                                                                                                                             │
+│                                                                                                                                                                                                      │
+│   1. A) LRU inside reader - Recommended: cache next to the I/O so it can invalidate on append/rotation; cost is per-instance mutable state.                                                          │
+│   2. B) Memoized wrapper - Keeps the reader pure and the cache composable; cost is needing an explicit invalidation hook or TTL to avoid stale reads.                                                │
+│   3. Type your answer...                                                                                                                                                                             │
+│                                                                                                                                                                                                      │
+│ ↑↓/jk navigate  Enter select  Esc cancel                                                                                                                                                             │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.g69maohMIf/vibe                                                                                                       ctx ▎      11.9k/256k
+

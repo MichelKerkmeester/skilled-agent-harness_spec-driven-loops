@@ -1,0 +1,51 @@
+> I need to write a README for a brand new skill, where do I start?                                                                                                                                     
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+⏵ Thought                                                                                                                                                                                               
+                                                                                                                                                                                                        
+  Same starting point, but concretely — here's the README skeleton to fill in. It's for humans; SKILL.md is what the model reads.                                                                       
+                                                                                                                                                                                                        
+  ┌─ markdown ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ # <skill-name>                                                                                                                                                                                  │   
+  │                                                                                                                                                                                                 │   
+  │ One sentence: what this skill does.                                                                                                                                                             │   
+  │                                                                                                                                                                                                 │   
+  │ ## When it fires                                                                                                                                                                                │   
+  │                                                                                                                                                                                                 │   
+  │ The situations that should trigger it. Mirror the `description` in                                                                                                                              │   
+  │ `SKILL.md` — if the two drift apart, the README is wrong.                                                                                                                                       │   
+  │                                                                                                                                                                                                 │   
+  │ ## Usage                                                                                                                                                                                        │   
+  │                                                                                                                                                                                                 │   
+  │     /<skill-name>          # manual                                                                                                                                                             │   
+  │     # or: loads automatically when <condition>                                                                                                                                                  │   
+  │                                                                                                                                                                                                 │   
+  │ ## What's in here                                                                                                                                                                               │   
+  │                                                                                                                                                                                                 │  ▂
+  │ | File | Purpose |                                                                                                                                                                              │   
+  │ |---|---|                                                                                                                                                                                       │   
+  │ | `SKILL.md` | Frontmatter + the instructions the model follows |                                                                                                                               │   
+  │ | `reference.md` | Detail `SKILL.md` points to, read on demand |                                                                                                                                │   
+  │                                                                                                                                                                                                 │   
+  │ ## Editing                                                                                                                                                                                      │   
+  │                                                                                                                                                                                                 │   
+  │ What to change when the skill misbehaves — usually the `description`                                                                                                                            │   
+  │ first, since that controls routing.                                                                                                                                                             │   
+  │                                                                                                                                                                                                 │   
+  │ ## Limitations                                                                                                                                                                                  │   
+  │                                                                                                                                                                                                 │   
+  │ What it does not handle.                                                                                                                                                                        │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  Two rules that keep it honest: the "When it fires" section must match the frontmatter description verbatim in meaning, and don't document steps in the README that SKILL.md doesn't actually          
+  contain.                                                                                                                                                                                              
+                                                                                                                                                                                                        
+  Give me the skill's name and what it does, and I'll write both files to .vibe/skills/<name>/ with the placeholders filled in.                                                                         
+
+                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>   
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.Tr39hDMhAn/vibe                                                                                                       ctx ▍      14.3k/256k
+

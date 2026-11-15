@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -156,10 +156,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What are the `--output json` and `streaming` payload shapes? UNKNOWN until phase 004 records them.
-- Is stdin a prompt source in 3.1.2? UNKNOWN until phase 004 records it. The shared `stdin-redirect-required` rule applies either way, because an open stdin can hang any headless dispatch.
-- Does a recursion guard's ancestor walk see `vibe` or `vibe-rs`? UNKNOWN until phase 004 records it.
-- Does the Mistral catalog list both roster ids without a hand-written row? UNKNOWN until phase 004 records it.
+- Answered by phase 004: `--output json` prints one JSON array of session entries at the end, and `--output streaming` prints the same entries one per line; neither carries the exit code, so `export.json` is the verdict.
+- Answered by phase 004: stdin is a prompt source only behind a bare `-p` (`echo ... | vibe -p` exits 0); a pipe with no `-p` exits 1, "Interactive mode needs a terminal". `stdin-redirect-required` still applies to the `-p TEXT` form.
+- Answered by phase 004: the ancestor walk sees `vibe-rs` and its child `vibe-app-server`, never `vibe`, because the Python launcher execs away.
+- Answered by phase 004: neither roster id resolves without a hand-written model row (`Unknown model ... Available: mistral-medium-3.5`), so the rows use their own aliases, `deepseek-flash` and `glm-flash`; `mistral-medium-3.5` stays selectable until `allowed_models` closes it.
 - What does a hook receive and how does it answer? UNKNOWN until phase 008.
 - Does a Vibe turn draw on the same Mistral usage pool as an API turn (research question 6)? UNKNOWN, and no phase owns it.
 <!-- /ANCHOR:questions -->

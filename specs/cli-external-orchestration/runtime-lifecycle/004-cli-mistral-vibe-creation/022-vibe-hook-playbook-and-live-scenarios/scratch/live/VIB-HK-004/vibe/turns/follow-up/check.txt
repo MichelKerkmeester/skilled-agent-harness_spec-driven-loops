@@ -1,0 +1,3 @@
+$ n=$(grep -rohF '[completion-evidence]' "$VIBE_HOME/logs/session/unified" | wc -l | tr -d ' '); base=$(tr -d ' ' < "$CONVERSATION_RUN_DIR/evidence-count-turn1.txt"); test "$n" -gt "$base" || { echo no-delivery; exit 1; }; test ! -f .skilled/skills/.state/completion-sentinel/vibe-pending-advisory.txt || { echo still-pending; exit 1; }; echo "advisory-delivered turn1=$base turn2=$n pending=consumed"
+advisory-delivered turn1=0 turn2=14 pending=consumed
+[exit 0]

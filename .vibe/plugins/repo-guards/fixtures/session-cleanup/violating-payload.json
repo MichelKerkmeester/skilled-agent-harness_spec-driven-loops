@@ -1,0 +1,8 @@
+{
+  "session_id": "<session_id>",
+  "transcript_path": "<transcript_path>",
+  "cwd": "/tmp/vibe-session-cleanup-fixture",
+  "parent_session_id": null,
+  "hook_event_name": "session_start",
+  "source": "startup"
+}

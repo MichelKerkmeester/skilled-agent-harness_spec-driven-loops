@@ -1,0 +1,3 @@
+$ grep -rqs 'is a dotenv file and its values must not reach the model' "$VIBE_HOME/logs/session/unified" && grep -rqs '"hookName":"env-secret-guard"' "$VIBE_HOME/logs/session/unified" && echo refused
+refused
+[exit 0]

@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes",
+  "description": "Phase 13: vibe-audit-fixes",
+  "keywords": [
+    "phase",
+    "vibe-audit-fixes"
+  ],
+  "lastUpdated": "2026-11-14T20:13:06.860Z",
+  "specId": "013",
+  "folderSlug": "vibe-audit-fixes",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "004-cli-mistral-vibe-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

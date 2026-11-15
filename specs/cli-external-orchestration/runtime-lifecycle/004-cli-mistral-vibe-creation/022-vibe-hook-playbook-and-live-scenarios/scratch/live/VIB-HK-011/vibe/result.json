@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1254797431,
+  "socket": "conv-54699-vibe",
+  "session_id": "f7443e06-c96d-44fa-8137-7e845f87c2d4",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.5W9I075Iqb/vibe",
+  "started_at": "2026-11-15T00:10:04.538Z",
+  "finished_at": "2026-11-15T00:11:50.325Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "dispatch",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "dispatch-refused",
+      "evidence": "turns/dispatch"
+    },
+    {
+      "id": "deny-notice",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "deny-notice-recorded",
+      "evidence": "turns/deny-notice"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "session_id": "361f483c-a000-4775-df4c-5517c3c1e4fd",
+  "parent_session_id": null,
+  "start_time": "2026-11-14T16:42:37.869000+00:00",
+  "end_time": "2026-11-14T16:44:59.584000+00:00",
+  "git_commit": null,
+  "git_branch": null,
+  "environment": {
+    "working_directory": "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/vibe-1"
+  },
+  "origin_directory": "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/vibe-1",
+  "username": "michelkerkmeester",
+  "child_sessions": [],
+  "loops": [],
+  "title": null,
+  "title_source": "auto",
+  "bumped_at": "2026-11-14T16:42:38.420562+00:00",
+  "pinned_at": null,
+  "archived_at": null,
+  "unseen_at": "2026-11-14T16:44:59.600187+00:00",
+  "seen_at": null,
+  "experiments": null,
+  "config": {
+    "active_model": "deepseek-flash",
+    "model_name": "deepseek-v4-1-flash-1017"
+  },
+  "runtime_path": "direct",
+  "import_provenance": null,
+  "created_worktree": null,
+  "project": null,
+  "artifacts": [],
+  "worktrees": []
+}

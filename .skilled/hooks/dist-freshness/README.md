@@ -66,6 +66,7 @@ The coverage matrix marks the *projection* OpenCode-owned: the system-context in
 | **Codex** | `codex/check-dist-staleness.sh` (symlink) | PostToolUse (single-file) + SessionStart (`--all`) | Bounded stdout banner |
 | **Cursor** | `cursor/check-dist-staleness.sh` (symlink) | PostToolUse (single-file) + SessionStart (`--all`) | Bounded stdout banner |
 | **Devin** | `devin/check-dist-staleness.sh` (symlink) | PostToolUse (single-file) + SessionStart (`--all`) | Bounded stdout banner |
+| **Vibe** | `.vibe/plugins/repo-guards/dist-freshness.mjs` | `post_tool` on `write_file`/`edit` (single-file) and on `bash`/`process_start` running `validate.sh` or a headless dispatch (`--all`, rebuild off) | Banner appended to the tool result as `hook_specific_output.additional_context`; non-strict, so a check failure leaves the result intact |
 | **Pi** | — | — | `by-design`: OpenCode plugin owns source/dist freshness projection; no Pi adapter |
 
 OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/system-dist-freshness-guard.js` is a browsability-only symlink back into that folder and nothing loads through it.

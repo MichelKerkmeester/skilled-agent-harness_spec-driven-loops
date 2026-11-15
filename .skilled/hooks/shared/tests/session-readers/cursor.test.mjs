@@ -17,7 +17,7 @@ test('the capability table marks Cursor gated with a reason', () => {
   assert.equal(typeof capabilities.cursor.reason, 'string');
   assert.deepEqual(
     Object.keys(capabilities),
-    ['claude', 'codex', 'pi', 'opencode', 'devin', 'dsh', 'cursor'],
+    ['claude', 'codex', 'pi', 'opencode', 'devin', 'dsh', 'cursor', 'vibe'],
   );
 });
 

@@ -1,0 +1,28 @@
+T003 — dotfile drift reproduction (before the fix)
+
+Setup A: a fresh mktemp directory holding one empty `.DS_Store`, passed as
+VIBE_SKILLS_OUTPUT_DIR. The source tree is the repository's own .skilled/skills.
+
+Command:
+  OUT=$(mktemp -d); touch "$OUT/.DS_Store"
+  VIBE_SKILLS_OUTPUT_DIR="$OUT" node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs --check
+
+Result: exit 1.
+  [vibe-skill-sync] EXTRA /var/folders/.../.DS_Store
+  [vibe-skill-sync] FAIL: 57 drift item(s); run without --check to regenerate
+
+The EXTRA line names .DS_Store, so the finding holds. The other 56 items are the
+MISSING links a fresh output folder always reports.
+
+Setup B: the mirror is generated first, so the only drift candidate is the dotfile.
+
+Command:
+  OUT=$(mktemp -d)
+  VIBE_SKILLS_OUTPUT_DIR="$OUT" node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs
+  touch "$OUT/.DS_Store"
+  VIBE_SKILLS_OUTPUT_DIR="$OUT" node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs --check
+
+Before the fix this prints `EXTRA .../.DS_Store` and exits 1.
+After T007 it prints:
+  [vibe-skill-sync] PASS: 56 skill links are in sync.
+and exits 0, with no EXTRA line naming .DS_Store.

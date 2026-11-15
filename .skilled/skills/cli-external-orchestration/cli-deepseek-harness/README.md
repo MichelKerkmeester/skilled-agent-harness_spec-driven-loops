@@ -132,6 +132,7 @@ Use cli-deepseek-harness when the request names DeepSeek Harness, `dsh`, `dsh he
 | cli-pi | Pi's coding agent. It also reaches DeepSeek models, through its own provider flags |
 | cli-opencode | Full OpenCode runtime, plugins and detached sessions |
 | cli-claude-code, cli-codex, cli-cursor, cli-devin | Their own vendors' CLIs and model families |
+| cli-mistral-vibe | Mistral Vibe print-mode runs over a closed DeepSeek and GLM roster, with an `export.json` outcome record |
 
 ### Resource Map
 

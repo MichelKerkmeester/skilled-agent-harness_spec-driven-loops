@@ -1,0 +1,1 @@
+Create a file named notes.txt in the current folder with the text hello, using your file-write tool.

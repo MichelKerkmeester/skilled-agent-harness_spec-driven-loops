@@ -1,0 +1,3 @@
+{"runtime":"vibe","time":"2026-11-15T00:38:28.209Z","turn":"run-prompt","kind":"send","steps":[{"text":"In one sentence, tell me which instructions you are following right now."},{"key":"Enter"}]}
+{"runtime":"vibe","time":"2026-11-15T00:38:33.353Z","turn":"restart","kind":"exit","steps":[{"text":"/exit"},{"key":"Enter"}]}
+{"runtime":"vibe","time":"2026-11-15T00:38:42.642Z","turn":"prove-prompt","kind":"send","steps":[{"text":"In one sentence, tell me which instructions you are following right now."},{"key":"Enter"}]}

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "dsh has no model option, so its route patch is the model choice, and the `closed-roster` rule allows only the LLM Gateway and OpenCode Go patches",
     "created_at": "2026-11-14T12:01:23Z",
-    "last_save_at": "2026-11-14T21:31:14.992Z",
+    "last_save_at": "2026-11-15T06:19:00.178Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38873e5504a0241f99146ad2e1de7e42379d69d837e20987fb6210a913429859",
+    "source_fingerprint": "sha256:e07c977ea1bc492054139f637da3f6b39b718adfc69949fa52a75343c8462d15",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "62667c2fefa56bbfe618478dd8ef1b80528273795e8111a9e807cd958dcbfcf5",

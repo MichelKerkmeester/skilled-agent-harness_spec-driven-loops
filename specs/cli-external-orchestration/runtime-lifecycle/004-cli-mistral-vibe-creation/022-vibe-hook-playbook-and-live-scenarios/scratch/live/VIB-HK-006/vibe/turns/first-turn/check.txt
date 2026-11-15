@@ -1,0 +1,3 @@
+$ if grep -rqsF 'Context restored after a compaction.' "$VIBE_HOME/logs/session/unified"; then echo reinjection-before-compaction; exit 1; fi; if grep -rqs '"hook":"pre_agent_turn"' "$VIBE_HOME/logs/session/unified"; then echo turn-start-with-no-compaction-context; else echo no-pre-agent-turn-record; exit 1; fi
+turn-start-with-no-compaction-context
+[exit 0]
