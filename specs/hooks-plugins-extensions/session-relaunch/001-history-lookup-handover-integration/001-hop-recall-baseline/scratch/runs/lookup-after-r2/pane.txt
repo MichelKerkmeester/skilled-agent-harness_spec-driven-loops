@@ -8,6 +8,21 @@
   /Users/michelkerkmeester/worktrees/public/399-hook-feature-subtracks/.skilled/skills/.state/session-handover/handoffs/20261115T102504Z-90625308-1bb4-4983-9a76-7e1adfecd480.md | Spec folder: none
   (Gate 3 answered D, Skip, in the sending session)
 
+  Searched for 1 pattern, ran 2 shell commands
+
+⏺ .skilled/hooks/session-handover/README.md has 382 lines. Its first heading is # Session Handover, on line 9. Lines 1–8 are frontmatter, so the file starts with a title field, not a heading.
+
+  I read both from the file with wc -l and grep. I didn't rerun show-codes.sh, and I changed no files. I closed the handoff note and the command exited 0.
+
+✻ Crunched for 11s · done 11:25 AM
+
+❯ What exact code did show-codes.sh print for K073 in the previous session? Reply with the code only, or UNKNOWN if you cannot determine it. Do not write any file.
+
+  Ran 2 shell commands
+
+⏺ UNKNOWN
+
+✻ Crunched for 9s · done 11:26 AM
 
 
 
@@ -28,23 +43,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-✢ Burrowing…
-                                                                                                                                                                                    ◐ medium · /effort
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── hoprecall-lookup-after-r2 (2) ─
 ❯ 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-  ⏵⏵ auto mode on (shift+tab to cycle) · ← for agents
+  ⏵⏵ auto mode on (shift+tab to cycle)
