@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 927,
+  "derived_count": 929,
   "directories": [
     ".",
     ".claude",
@@ -66,6 +66,7 @@
     ".skilled/hooks/decision-capture/lib",
     ".skilled/hooks/decision-capture/pi",
     ".skilled/hooks/decision-capture/tests",
+    ".skilled/hooks/decision-capture/vibe",
     ".skilled/hooks/directive-lifecycle",
     ".skilled/hooks/directive-lifecycle/claude",
     ".skilled/hooks/dispatch",
@@ -204,6 +205,7 @@
     ".skilled/hooks/skill-advisor/dsh",
     ".skilled/hooks/skill-advisor/opencode",
     ".skilled/hooks/skill-advisor/pi",
+    ".skilled/hooks/skill-advisor/vibe",
     ".skilled/hooks/spec-gate",
     ".skilled/hooks/spec-gate/claude",
     ".skilled/hooks/spec-gate/codex",
