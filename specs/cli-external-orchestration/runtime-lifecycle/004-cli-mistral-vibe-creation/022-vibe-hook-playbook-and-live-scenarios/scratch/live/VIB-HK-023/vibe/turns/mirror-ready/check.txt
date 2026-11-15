@@ -1,0 +1,3 @@
+$ mkdir -p "$VIBE_HOME/.vibe-skills-mirror" && for d in "$CONVERSATION_REPO_ROOT"/.vibe/skills/*; do ln -s "$d" "$VIBE_HOME/.vibe-skills-mirror/$(basename "$d")"; done && mv "$VIBE_HOME/.vibe-skills-mirror" "$VIBE_HOME/skills" && test -f "$VIBE_HOME/skills/sk-prompt/SKILL.md" && echo mirror-linked
+mirror-linked
+[exit 0]

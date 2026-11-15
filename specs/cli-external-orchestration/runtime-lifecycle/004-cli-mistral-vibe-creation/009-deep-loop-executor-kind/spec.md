@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -94,7 +94,7 @@ Line 26 matters because Vibe also uses exit 3, for a run stopped without finishi
 ### In Scope
 - Add `cli-mistral-vibe` to `EXECUTOR_KINDS` and `EXECUTOR_KIND_FLAG_SUPPORT` with `model`, `timeoutSeconds` and `liveTools`, no `reasoningEffort`, and a sandbox request that fails closed. Add `VIBE_SUPPORTED_MODELS` and `isVibeSupportedModel`, holding only aliases whose model row pins `thinking`.
 - Add `buildVibeLineageCommand` to `LINEAGE_COMMAND_ADAPTERS` in `fanout-run.cjs`: PATH and version preflight, roster check, a lineage-local `VIBE_HOME`, `--output-dir` in the lineage folder and `--trust`.
-- Extend `executor-audit.ts`: the `VIBE_` prefix and `MISTRAL_API_KEY` in the env allowlist, `VIBE_HOME` as lineage state, and recursion detection for both `vibe` and `vibe-rs`.
+- Extend `executor-audit.ts`: the `VIBE_` prefix and `MISTRAL_API_KEY` in the env allowlist, `VIBE_HOME` as lineage state, and recursion detection for `vibe-rs` and `vibe-app-server`, the names phase 004 saw in the ancestor walk (`vibe` stays harmless).
 - Record a per-lineage outcome read from `export.json`: exit 3 records partial and never counts as success. No per-lineage partial exists today, so this phase defines it.
 - Add the stress fixture, the `live-contracts.json` and matrix manifest rows, and the deep-research and deep-review YAML branches.
 
@@ -134,7 +134,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-002 | `isVibeSupportedModel` accepts only aliases in `VIBE_SUPPORTED_MODELS`, each backed by a model row that pins `thinking` |
 | REQ-003 | `buildVibeLineageCommand` refuses a missing binary, a version other than 3.1.2 and an off-roster model, and builds a command with a lineage-local `VIBE_HOME`, `--output-dir` and `--trust` |
 | REQ-004 | The env allowlist passes `VIBE_`-prefixed variables and `MISTRAL_API_KEY` to a Vibe lineage, and the lineage's own `VIBE_HOME` replaces an inherited one |
-| REQ-005 | The recursion guard detects a Vibe ancestor under either `vibe` or `vibe-rs` |
+| REQ-005 | The recursion guard detects a Vibe ancestor under `vibe-rs` or `vibe-app-server` |
 | REQ-006 | A Vibe exit 3 is recorded as partial on the lineage result and never counted as success, and is told apart from the recursion guard's exit 3 |
 | REQ-007 | One keyed Vibe lineage runs a research iteration end to end, in the smallest fan-out the `if_cli_mistral_vibe` branch accepts |
 
@@ -210,7 +210,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |-----------|-------|-------|
 | Scope | 17/25 | Three runtime files, four test files, two YAMLs and two stress manifests |
 | Risk | 15/25 | Shared executor tables, the exit 3 collision and the inherited-env path |
-| Research | 9/20 | Process name, catalog membership and alias source wait on phases 004 and 006 |
+| Research | 9/20 | Process name and catalog membership are settled by phase 004; the alias source waits on phase 006 |
 | **Total** | **41/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
@@ -219,8 +219,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Does a lineage show as `vibe` or `vibe-rs` in the ancestor walk? UNKNOWN until phase 004. The guard matches both.
-- Does Mistral's catalog list `deepseek-v4-1-flash-1017` and `zai-glm-5-3-flash` for Vibe without a hand-written row? UNKNOWN until phase 004. A hand-written row pins them either way.
+- Answered by phase 004: the ancestor walk sees `vibe-rs` and its child `vibe-app-server`, never `vibe`, because the Python launcher execs away.
+- Answered by phase 004: neither roster id resolves without a hand-written model row (`Unknown model ... Available: mistral-medium-3.5`), so the rows use their own aliases, `deepseek-flash` and `glm-flash`; `mistral-medium-3.5` stays selectable until `allowed_models` closes it.
 - Does this phase wait on phase 006 for the model aliases, although the phase plan's graph lists only 007?
 - Does `--prompt-file` alone run print mode, or does it need `-p`? The adapter prefers `--prompt-file` so the prompt stays out of the process list.
 <!-- /ANCHOR:questions -->

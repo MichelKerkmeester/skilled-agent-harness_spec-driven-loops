@@ -17,7 +17,8 @@
       "vibe goal bridge",
       "vibe context and goal hooks plan",
       "vibe context and goal hooks tasks",
-      "vibe context and goal hooks goal"
+      "vibe context and goal hooks goal",
+      "vibe context and goal hooks implementation summary"
     ],
     "key_topics": [
       "vibe",
@@ -29,21 +30,33 @@
       "bridge",
       "plan",
       "tasks",
-      "every",
-      "governed",
-      "runtime"
+      "implementation",
+      "summary",
+      "every"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "implementation-summary.md",
+      ".vibe/hooks.toml",
+      ".skilled/hooks/session-lifecycle/vibe/session-start.mjs",
+      ".skilled/hooks/goal/vibe/goal-inject.mjs",
+      ".vibe/SYNC.md",
       ".skilled/hooks/goal/README.md",
       ".skilled/hooks/session-lifecycle/README.md",
+      ".vibe/plugins/repo-guards/render-home-hooks.cjs",
+      ".skilled/hooks/goal/vibe/goal-vibe.test.mjs",
+      ".skilled/hooks/goal/vibe/README.md",
+      ".skilled/hooks/session-lifecycle/vibe/README.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".skilled/hooks/goal/lib/goal-core.cjs",
-      ".skilled/hooks/goal/dsh/goal-context.mjs"
+      ".vibe/plugins/repo-guards/session-cleanup.mjs",
+      "scratch/wire-format.md",
+      "scratch/slice.txt"
     ],
     "entities": [
       {
@@ -71,9 +84,57 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/session-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/vibe/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".vibe/SYNC.md",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-home-hooks.cjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/render-home-hooks.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-vibe.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/vibe/goal-vibe.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
@@ -83,9 +144,21 @@
         "source": "derived"
       },
       {
-        "name": "goal-context.mjs",
+        "name": "session-cleanup.mjs",
         "kind": "file",
-        "path": ".skilled/hooks/goal/dsh/goal-context.mjs",
+        "path": ".vibe/plugins/repo-guards/session-cleanup.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "wire-format.md",
+        "kind": "doc",
+        "path": "scratch/wire-format.md",
+        "source": "derived"
+      },
+      {
+        "name": "slice.txt",
+        "kind": "file",
+        "path": "scratch/slice.txt",
         "source": "derived"
       },
       {
@@ -129,85 +202,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Session",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "an",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every other governed runtime receives the bound packet goal and session context at start, but no `.vibe/` folder and no Vibe adapter exist, so a Vibe dispatch runs without either",
     "created_at": "2026-11-14T12:56:36Z",
-    "last_save_at": "2026-11-14T13:09:26.244Z",
+    "last_save_at": "2026-11-14T19:11:07.657Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ceb3b4c499ee011d50ec9c27e7a8d0dc15f72dd9b14cde2c2746d2909071b444",
+    "source_fingerprint": "sha256:986f91e70e45e7a71659c7764fe500f3778d05b68938c80670c36c26ca779a41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e0953f50a58e66b51bc201ed69a158584b73b5057221e42633740a14b9cff13",
-      "plan.md": "80df24e6aa7320799f3ce6a46276b39de316d99256763c3aa6d7473d812c9330",
-      "tasks.md": "a7e907f8388bee93d6a2f318d6053facb94bbeedd51f29d2f9952aed12e0beab"
+      "spec.md": "84b80f0deaa6a4e4919f468710ba7e013233b838edd1c9394868bba6f3860c4e",
+      "plan.md": "4045938ea4a00ed67d498eb702f33421d43a8db14d6bd63db1451ec0a206dc27",
+      "tasks.md": "16e4fc746be8f1225f4cdd135c02ee6a3daf7098c073cc7b813f5aa159c44fc5",
+      "implementation-summary.md": "02fb37dce08de5636f85b093a3d9a9796a6d98675929171b68fdbf6d9e1ca9f6"
     },
     "last_active_at": null
   }

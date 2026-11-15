@@ -1,0 +1,3 @@
+$ grep -rqsF 'user:spec-gate-classify' "$VIBE_HOME/logs/session/unified" && grep -rqsF '"hook":"pre_agent_turn"' "$VIBE_HOME/logs/session/unified" && s=$(ls .skilled/skills/.state/spec-gate/*.json 2>/dev/null | head -1) && [ -n "$s" ] && grep -qsF '"status": "open"' "$s" && echo spec-gate-open
+spec-gate-open
+[exit 0]

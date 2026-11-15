@@ -1,6 +1,6 @@
 ---
 title: "Completion Hooks: Completion-Evidence Gate"
-description: "Advisory completion-evidence check that fires when an assistant claims completion, surfacing missing proof across Claude, Codex, Devin, Cursor, Pi, and the OpenCode plugins."
+description: "Advisory completion-evidence check that fires when an assistant claims completion, surfacing missing proof across Claude, Codex, Devin, Cursor, Pi, Vibe, and the OpenCode plugins."
 trigger_phrases:
   - "completion evidence hook"
   - "completion sentinel"
@@ -66,12 +66,13 @@ Every adapter evaluates the **same** core. What differs is the event, how the cl
 | **Devin** | `devin/completion-evidence-stop.cjs` → `system-spec-kit/.../hooks/devin/` | `Stop` (`.devin/hooks.v1.json`) | `payload.last_assistant_message` | Same lifecycle state file | `stderr` warning + advisory log. |
 | **Cursor** | `cursor/completion-evidence-response.mjs` → `system-spec-kit/.../hooks/cursor/` | `afterAgentResponse` | `payload.text` | `resolveSpecFolderFromText(claimText)` (regex on the claim text), then `readLastSpecFolder` fallback | Advisory log only (no stderr). |
 | **Pi** | `pi/completion-evidence.ts` → `system-spec-kit/.../hooks/pi/` | `turn_end` | Flattens `event.message.content` (string or `TextContent[]`) | `resolveSpecFolderFromText(claimText)`, then `readLastSpecFolder` using `ctx.sessionManager.getSessionId()` | Advisory log + `pi.sendMessage({customType:"completion-evidence-advisory", content, display:false, deliverAs:"nextTurn"})`: hidden from human display and model-visible on the next turn. |
+| **Vibe** | `vibe/completion-evidence-post-agent.cjs` → `system-spec-kit/.../hooks/vibe/` | `post_agent` (`.vibe/hooks.toml`) | `lastAssistantText` from the Vibe journal reader (the reply is a completion record at hook time) | `VIBE_SPEC_FOLDER` | Advisory log + a pending file under the session's project root that the `turn-start` composer injects once on the next main turn. Never prints and never denies. |
 | **OpenCode** | `opencode/system-completion-sentinel.js` → `.opencode/plugins/` | `session.idle` (+ `session.created` for sweep) | `resolveLastAssistantText` via `ctx.client.session.messages()` (fetches last 20 messages, finds last assistant entry) | `resolveSpecFolderFromText(claimText)` only: no lifecycle state file | Advisory log only. **Never** stdout/stderr (TUI constraint). `session.created` triggers throttled state sweep. |
 | **OpenCode** | `opencode/system-speckit-completion.js` → `.opencode/plugins/` | None (read-only tool) | N/A | Tool arg `specFolder` | Tool return value (pretty-printed JSON). Not a sentinel. |
 
-The three Stop-event adapters (Claude, Codex, Devin) share the same structure: read stdin, check kill switch, skip re-entrant stops, extract claim text, resolve spec folder from the shared lifecycle state file, run the core, log to stderr + advisory log. Cursor and Pi resolve the spec folder from the claim text first (regex), falling back to the lifecycle state file. OpenCode resolves from text only: `session.idle` hands over neither the message nor the active packet, so the adapter must recover both itself (the message via `ctx.client`, the folder via regex).
+The three Stop-event adapters (Claude, Codex, Devin) share the same structure: read stdin, check kill switch, skip re-entrant stops, extract claim text, resolve spec folder from the shared lifecycle state file, run the core, log to stderr + advisory log. Cursor and Pi resolve the spec folder from the claim text first (regex), falling back to the lifecycle state file. OpenCode resolves from text only: `session.idle` hands over neither the message nor the active packet, so the adapter must recover both itself (the message via `ctx.client`, the folder via regex). Vibe's `post_agent` payload carries only the session root, so the adapter reads the reply through the journal reader and hands the advisory to the `turn-start` composer; a `post_agent` deny becomes a retry message, which is why this concern never uses one.
 
-OpenCode's real plugins cannot live in this tree because the loader globs `.opencode/plugins/` by a flat pattern, so `opencode/system-completion-sentinel.js` and `opencode/system-speckit-completion.js` are browsability-only symlinks back into that folder. The per-runtime adapters under `claude/`, `codex/`, `devin/`, `cursor/`, and `pi/` are symlinks back into `system-spec-kit/runtime/hooks/`.
+OpenCode's real plugins cannot live in this tree because the loader globs `.opencode/plugins/` by a flat pattern, so `opencode/system-completion-sentinel.js` and `opencode/system-speckit-completion.js` are browsability-only symlinks back into that folder. The per-runtime adapters under `claude/`, `codex/`, `devin/`, `cursor/`, `pi/`, and `vibe/` are symlinks back into `system-spec-kit/runtime/hooks/`.
 
 ---
 
@@ -84,6 +85,7 @@ completion/
 +-- devin/    completion-evidence-stop.cjs   (symlink -> .skilled/skills/system-spec-kit/runtime/hooks/devin/)
 +-- cursor/   completion-evidence-response.mjs (symlink -> .skilled/skills/system-spec-kit/runtime/hooks/cursor/)
 +-- pi/       completion-evidence.ts        (symlink -> .skilled/skills/system-spec-kit/runtime/hooks/pi/)
++-- vibe/     completion-evidence-post-agent.cjs (symlink -> .skilled/skills/system-spec-kit/runtime/hooks/vibe/)
 `-- opencode/
     +-- system-completion-sentinel.js       (symlink -> .opencode/plugins/system-completion-sentinel.js)
     `-- system-speckit-completion.js        (symlink -> .opencode/plugins/system-speckit-completion.js)
@@ -101,6 +103,7 @@ completion/
 | `system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs` | Devin `Stop` adapter. Same structure as Claude. |
 | `system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs` | Cursor `afterAgentResponse` adapter. Reads `payload.text`, resolves spec folder from text then lifecycle state, runs the core, logs to advisory log. |
 | `system-spec-kit/runtime/hooks/pi/completion-evidence.ts` | Pi `turn_end` extension. Flattens assistant message content, resolves spec folder from text then lifecycle state, runs the core, logs + queues a model-visible next-turn advisory with `display: false` and `deliverAs: "nextTurn"`. |
+| `system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs` | Vibe `post_agent` part. Reads the turn's reply through the journal reader, evaluates `VIBE_SPEC_FOLDER`, logs the advisory and writes the pending file the `turn-start` composer delivers. Never denies and never prints. |
 | `.opencode/plugins/system-completion-sentinel.js` | OpenCode `session.idle` plugin. Resolves last assistant text via `ctx.client.session.messages()`, resolves spec folder from text, runs the core, logs to advisory log. `session.created` triggers sweep. Never stdout/stderr. |
 | `.opencode/plugins/system-speckit-completion.js` | OpenCode read-only tool `system_speckit_completion`. Returns a spec folder's completion state (level, checklist P0/P1/P2, placeholder completeness). Not a sentinel: no event hooks. |
 

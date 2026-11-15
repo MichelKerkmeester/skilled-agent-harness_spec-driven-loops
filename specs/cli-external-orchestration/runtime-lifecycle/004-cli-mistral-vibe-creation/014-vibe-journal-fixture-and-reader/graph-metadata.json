@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe journal fixture and reader",
+      "phase 14 vibe journal fixture",
+      "vibe post_agent fixture",
+      "vibe session journal reader",
+      "vibe journal fixture and reader plan",
+      "vibe journal fixture and reader tasks",
+      "vibe journal fixture and reader goal",
+      "vibe journal fixture and reader implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "journal",
+      "fixture",
+      "reader",
+      "phase",
+      "session",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "turn-end"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/facts.md",
+      ".vibe/plugins/repo-guards/fixtures/post-agent/hooks.toml",
+      ".vibe/plugins/repo-guards/fixtures/post-agent/capture-post-agent.sh",
+      ".vibe/plugins/repo-guards/fixtures/run-fixture.sh",
+      ".vibe/plugins/repo-guards/fixtures/compaction/config.toml",
+      ".skilled/hooks/shared/session-readers/vibe.mjs",
+      ".skilled/hooks/shared/session-readers/vibe.d.mts",
+      ".skilled/hooks/shared/session-readers/vibe.d.mts.map",
+      ".skilled/hooks/shared/session-readers/index.mjs",
+      ".skilled/hooks/shared/session-readers/index.d.mts",
+      ".skilled/hooks/shared/session-readers/index.d.mts.map",
+      ".skilled/hooks/shared/session-readers/README.md",
+      ".skilled/hooks/shared/tests/session-readers/vibe-reader.test.mjs",
+      ".skilled/hooks/shared/tests/session-readers/cursor.test.mjs",
+      ".vibe/hooks.toml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "facts.md",
+        "kind": "doc",
+        "path": "scratch/facts.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/fixtures/post-agent/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "capture-post-agent.sh",
+        "kind": "script",
+        "path": ".vibe/plugins/repo-guards/fixtures/post-agent/capture-post-agent.sh",
+        "source": "derived"
+      },
+      {
+        "name": "run-fixture.sh",
+        "kind": "script",
+        "path": ".vibe/plugins/repo-guards/fixtures/run-fixture.sh",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/fixtures/compaction/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "vibe.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/vibe.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "vibe.d.mts",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/vibe.d.mts",
+        "source": "derived"
+      },
+      {
+        "name": "vibe.d.mts.map",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/vibe.d.mts.map",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "index.d.mts",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/index.d.mts",
+        "source": "derived"
+      },
+      {
+        "name": "index.d.mts.map",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/index.d.mts.map",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/shared/session-readers/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "vibe-reader.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/tests/session-readers/vibe-reader.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cursor.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/tests/session-readers/cursor.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Three Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The turn-end guard, decision capture and compaction designs each rest on a reading of Vibe's source that no run has shown",
+    "created_at": "2026-11-14T20:13:07Z",
+    "last_save_at": "2026-11-14T21:48:55.118Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8f2e4f71ff410b6f75f28ee33dd2fe70bfff0ecd9acfeac8d36449200dfae759",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eaeeedba7210321c25e06a06631ce9f53799304e95eea214a4aa32b4dba6bc19",
+      "plan.md": "844da27785f1b0abd9b3cb76c2e3df06b8441875ac80258f7ee3445714a64be5",
+      "tasks.md": "b36029106c3a524d5b76016032885c222cd3f5f102b72e01552d33b3768ac558",
+      "implementation-summary.md": "6aed4460a660b4387cc64d508d4f5836e88d02f0cf880d7c6538c3d060fb11c5"
+    },
+    "last_active_at": null
+  }
+}

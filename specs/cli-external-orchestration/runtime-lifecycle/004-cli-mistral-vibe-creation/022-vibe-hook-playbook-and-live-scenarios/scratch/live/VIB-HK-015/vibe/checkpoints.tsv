@@ -1,0 +1,3 @@
+turn	status	attempts	evidence	observed
+dispatch	PASS	1	turns/dispatch	refused
+reason	PASS	1	turns/reason	reason-recorded

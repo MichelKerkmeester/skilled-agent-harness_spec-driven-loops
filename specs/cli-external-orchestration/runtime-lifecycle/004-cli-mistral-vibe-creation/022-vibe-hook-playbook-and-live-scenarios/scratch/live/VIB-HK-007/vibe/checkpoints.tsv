@@ -1,0 +1,3 @@
+turn	status	attempts	evidence	observed
+read	SKIP	1	turns/read	no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window
+reinject-after-tool	SKIP	1	turns/reinject-after-tool	no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window

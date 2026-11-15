@@ -1,0 +1,44 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 827621770,
+  "socket": "conv-54691-vibe",
+  "session_id": "88ff600c-fe2a-4652-af98-6e98b00b2ca6",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.g69maohMIf/vibe",
+  "started_at": "2026-11-15T00:52:41.172Z",
+  "finished_at": "2026-11-15T00:53:13.092Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "prose-menu",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "one-ask-surface-retry-naming-ask_user_question",
+      "evidence": "turns/prose-menu"
+    }
+  ]
+}

@@ -162,7 +162,7 @@ describe('deep-loop executor branch contract', () => {
 
   it('routes the cli-deepseek-harness branch through dispatch-iteration.cjs in both workflows', () => {
     for (const [file, yaml] of workflows) {
-      expect(yaml, file).not.toContain('runs only as a fan-out lineage');
+      expect(dshSingleBranchText(yaml), file).not.toContain('runs only as a fan-out lineage');
       expect(dshSingleBranchText(yaml), file)
         .toContain('dispatch-iteration.cjs --executor cli-deepseek-harness {cli_dispatch_args} --spec-folder "{spec_folder}"');
     }

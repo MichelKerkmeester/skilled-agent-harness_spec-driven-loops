@@ -1,0 +1,44 @@
+{
+  "runtime": "vibe",
+  "verdict": "SKIP",
+  "blocker": "the manual relaunch tier needs skilled-loop vibe and a claim seed carrying this run absolute note path; the runner cannot run the wrapper, cannot type a per-run path, and starts its subject in a scratch project with no relaunch CLI",
+  "seed": 544126795,
+  "socket": "conv-43904-vibe",
+  "session_id": "d3cd6c3c-75e9-4702-8aea-fd279ad0e2fd",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.4i4t2fqldc/vibe",
+  "started_at": "2026-11-14T23:47:52.381Z",
+  "finished_at": "2026-11-14T23:48:34.292Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "preflight",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "the manual relaunch tier needs skilled-loop vibe and a claim seed carrying this run absolute note path; the runner cannot run the wrapper, cannot type a per-run path, and starts its subject in a scratch project with no relaunch CLI",
+      "observed": "no-vibe-claim-seed-part",
+      "evidence": "turns/preflight"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 443782848,
+  "socket": "conv-6979-vibe",
+  "session_id": "98aad6aa-1fe5-4a28-b99c-d919e890ffb4",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.BKJPP5dRor/vibe",
+  "started_at": "2026-11-15T00:06:08.535Z",
+  "finished_at": "2026-11-15T00:09:16.180Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "read",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "refused",
+      "evidence": "turns/read"
+    },
+    {
+      "id": "no-leak",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "guard-logged-and-value-absent",
+      "evidence": "turns/no-leak"
+    }
+  ]
+}

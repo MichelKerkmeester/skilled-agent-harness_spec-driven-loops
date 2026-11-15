@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -151,7 +151,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Risk | `vibe config schema` only prints the JSON schema of `config.toml` (its help says "Print the JSON schema"), so it cannot accept or refuse a config by itself | Med | REQ-001 validates the config against that schema, and REQ-006 proves Vibe loads it under `--trust` |
 | Risk | A same-name skill is shadowed by its first claimant, and the precedence between `skill_paths` and `.vibe/skills` is unknown | Med | `skill_paths` stays unset and the skills generator fails on a duplicate frontmatter `name` |
 | Risk | Rendering agents to TOML may drop frontmatter Vibe does not model | Low | `SYNC.md` lists the dropped fields per agent |
-| Risk | Vibe writes into `~/.vibe` when `VIBE_HOME` is unset, as it did during research | Med | Every Vibe command sets `VIBE_HOME` to a fresh temp dir, and T013 compares `~/.vibe` against a start marker |
+| Risk | Vibe writes into `~/.vibe` when `VIBE_HOME` is unset, as it did during research | Med | Every Vibe command sets `VIBE_HOME` to a fresh temp dir, and T014 compares `~/.vibe` against a start marker |
 <!-- /ANCHOR:risks -->
 
 ---

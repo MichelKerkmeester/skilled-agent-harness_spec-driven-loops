@@ -1,0 +1,1 @@
+Run exactly this shell command and nothing else: git status

@@ -1,0 +1,8 @@
+T004 — git-message-gate fixture output, before any hook-io.mjs change
+
+$ node .vibe/plugins/repo-guards/git-message-gate.mjs < .vibe/plugins/repo-guards/fixtures/git-message-gate/violating-payload.json
+{"decision":"deny","reason":"sk-git blocked this commit message: it breaks the repository's commit message rules.\n  • [subject.format] Authored subject must match type(scope): imperative summary using an allowed type (build, chore, ci, docs, feat, fix, merge, perf, refactor, release, revert, style, test).\n  • [body.required] A prose body is required on every authored commit: add at least one prose line above the trailers.\n  Expected: type(scope): imperative summary\n  Rules: /Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.skilled/skills/sk-git/assets/commit-message-template.md\n  Fix the text and run the command again; there is no bypass."}
+exit=0
+
+$ node .vibe/plugins/repo-guards/git-message-gate.mjs < .vibe/plugins/repo-guards/fixtures/git-message-gate/clean-payload.json
+exit=0

@@ -54,7 +54,7 @@ const fanoutRun = requireCjs('../../../../scripts/fanout-run.cjs') as {
     sandbox: string,
     permission: string,
     options?: Record<string, unknown>,
-  ): { command: string; args: string[]; input?: string };
+  ): { command: string; args: string[]; input?: string; effectiveConfig?: Record<string, unknown> };
 };
 
 function lineageFor(kind: AdapterKind): Record<string, unknown> {
@@ -86,6 +86,8 @@ function authEnv(kind: AdapterKind): NodeJS.ProcessEnv {
       return {};
     case 'cli-deepseek-harness':
       return { LLMGATEWAY_API_KEY: 'shim-llmgateway-token' };
+    case 'cli-mistral-vibe':
+      return { MISTRAL_API_KEY: 'shim-mistral-token' };
   }
 }
 
@@ -137,6 +139,13 @@ function expectSuccessArgs(kind: AdapterKind, args: readonly string[]): void {
       expect(patchArgs[1]).toMatch(/lineage\.patch\.yml$/);
       break;
     }
+    case 'cli-mistral-vibe':
+      expect(args).toEqual(expect.arrayContaining([
+        '--prompt-file', expect.stringMatching(/vibe-prompt\.txt$/),
+        '--output-dir', expect.stringMatching(/vibe-output$/),
+        '--trust', '--model', MODEL_BY_KIND[kind], '--auto-approve',
+      ]));
+      break;
   }
 }
 
@@ -213,7 +222,7 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       {
         env: fixture.env,
         cwd,
-        ...(kind === 'cli-deepseek-harness' ? { lineageDir: cwd } : {}),
+        ...(kind === 'cli-deepseek-harness' || kind === 'cli-mistral-vibe' ? { lineageDir: cwd } : {}),
         executableVersion: 'shim',
       },
     );
@@ -451,6 +460,16 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
         expect(readOnlyArgs).toEqual(expect.arrayContaining([
           '--permission-mode', 'read-only', '--approval-policy', 'never',
         ]));
+      } else if (kind === 'cli-mistral-vibe') {
+        // Vibe exposes no confinement or approval flag, so the only truthful assertion is
+        // that the read-only request adds none and the recorded config claims no boundary.
+        const built = buildCommand(fixture, 'read-only');
+        expect(readOnlyArgs).toEqual(expect.arrayContaining([
+          '--trust', '--auto-approve', '--model', MODEL_BY_KIND[kind],
+        ]));
+        expect(readOnlyArgs).not.toContain('--sandbox');
+        expect(readOnlyArgs).not.toContain('--permission-mode');
+        expect(built.effectiveConfig).toMatchObject({ sandboxMode: null, permissionMode: null });
       } else {
         expect(readOnlyArgs).toEqual(expect.arrayContaining(['--mode', 'plan', '--trust']));
         expect(readOnlyArgs).not.toContain('--force');

@@ -1,0 +1,1 @@
+{"checkpoint_version":1,"compaction_count":1,"context":{"messages":[]},"last_finished_turn_id":"turn-71a507510fcf5258a98608658622d8a3","last_reported_context_tokens":9778,"notifications":[],"turn":{"outcome":{"output":[{"text":"compaction-proof-ok","type":"text"}],"type":"completed"},"turn_id":"turn-71a507510fcf5258a98608658622d8a3","type":"terminal"}}

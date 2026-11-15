@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 181015609,
+  "socket": "conv-38322-vibe",
+  "session_id": "1c9ad49c-9e75-4136-adf5-7647263771d6",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.3ElmXI5JBg/vibe",
+  "started_at": "2026-11-15T00:04:41.319Z",
+  "finished_at": "2026-11-15T00:06:05.002Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "request",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "turn-start-bound",
+      "evidence": "turns/request"
+    },
+    {
+      "id": "close",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "2026-11-15T01:05:29+0100 action=skip reason=no-session-pid",
+      "evidence": "turns/close"
+    }
+  ]
+}

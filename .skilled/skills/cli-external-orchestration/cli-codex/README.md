@@ -9,7 +9,7 @@ trigger_phrases:
   - "code review"
   - "second opinion"
   - "cross-validate"
-version: 1.9.6.0
+version: 1.9.7.0
 ---
 
 # cli-codex
@@ -223,6 +223,7 @@ The cli-X skills each dispatch to a different provider and never overlap.
 | `cli-devin` | Cognition | Cloud coding via `devin -p`, subagent delegation, `/handoff` |
 | `cli-pi` | Pi | Guarded headless print and JSON-event dispatch |
 | `cli-deepseek-harness` | DeepSeek Harness | Pinned headless one-task dispatch over a closed DeepSeek V4.1 Flash roster, prompt on stdin. Experimental, no route proven live yet |
+| `cli-mistral-vibe` | Mistral | Pinned print-mode one-task dispatch over a closed DeepSeek and GLM roster, outcome read from `export.json`. Experimental, ACP deferred |
 
 If you are already inside one runtime, the matching cli-X skill refuses to load. Use a different runtime or exit first.
 

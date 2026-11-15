@@ -1,0 +1,50 @@
+
+  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
+  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+
+
+⚠ [turn-start] Added context for the model: "Advisor: no skill matched. Directives: - Comment hygiene [HARD BLOCK]: NEVER em…"
+
+
+> Give me a one-line summary of what this project contains.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  I'll look at the project structure to summarize it.
+
+⏵ Ran 3 commands, thought
+
+  Skilled — a spec-driven agent harness that gives AI coding CLIs (Claude Code, Codex, OpenCode, Pi, Devin, Cursor, and here Mistral Vibe) a persistent memory, a markdown paper trail, and a team of
+  specialist agents, all stored as diffable files inside your own repo.
+
+✓ Resumed session 2e672d66.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>  
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.dDeLqntCUH/vibe                                                                                                       ctx ▎      12.5k/256k

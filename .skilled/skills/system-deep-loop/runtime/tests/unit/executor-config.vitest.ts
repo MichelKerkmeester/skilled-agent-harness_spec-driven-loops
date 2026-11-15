@@ -31,6 +31,8 @@ import {
   DSH_SUPPORTED_MODELS,
   DSH_DEFAULT_MODEL,
   isDshModelAllowed,
+  VIBE_SUPPORTED_MODELS,
+  isVibeSupportedModel,
   isFlashMaxPinnedModel,
   pinReasoningEffortForModel,
   assertExecutorMcpServerCapability,
@@ -40,8 +42,8 @@ const here = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(here, '..', '..', '..', '..', '..', '..');
 
 describe('executor-config', () => {
-  it('defines eight executor kinds including the experimental cli-deepseek-harness kind', () => {
-    expect(EXECUTOR_KINDS).toHaveLength(8);
+  it('defines nine executor kinds including the experimental cli-deepseek-harness and cli-mistral-vibe kinds', () => {
+    expect(EXECUTOR_KINDS).toHaveLength(9);
     expect([...EXECUTOR_KINDS]).toEqual([
       'native',
       'cli-codex',
@@ -51,6 +53,7 @@ describe('executor-config', () => {
       'cli-devin',
       'cli-pi',
       'cli-deepseek-harness',
+      'cli-mistral-vibe',
     ]);
     expect(parseExecutorConfig({}).kind).toBe('native');
   });
@@ -88,6 +91,34 @@ describe('executor-config', () => {
       liveTools: { webSearch: 'inherit' },
     })).toMatchObject({ kind: 'cli-pi', model: 'candidate-model', reasoningEffort: 'xhigh', timeoutSeconds: 120 });
     expect(() => parseExecutorConfig({ kind: 'cli-pi', sandboxMode: 'read-only' })).toThrow(/not supported by executor kind 'cli-pi'/);
+  });
+
+  it('allows only the confirmed cli-mistral-vibe fields', () => {
+    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-mistral-vibe']).toEqual(['model', 'timeoutSeconds', 'liveTools']);
+    expect(parseExecutorConfig({
+      kind: 'cli-mistral-vibe',
+      model: 'deepseek-flash',
+      timeoutSeconds: 120,
+    })).toMatchObject({
+      kind: 'cli-mistral-vibe',
+      model: 'deepseek-flash',
+      timeoutSeconds: 120,
+    });
+  });
+
+  it('rejects reasoningEffort and sandboxMode for cli-mistral-vibe', () => {
+    // Vibe has no reasoning flag — thinking is pinned on the roster row — and no OS
+    // sandbox flag, so neither field may be carried.
+    expect(() => parseExecutorConfig({ kind: 'cli-mistral-vibe', model: 'deepseek-flash', reasoningEffort: 'high' }))
+      .toThrowError(/reasoningEffort.*not supported by executor kind 'cli-mistral-vibe'/);
+    expect(() => parseExecutorConfig({ kind: 'cli-mistral-vibe', model: 'deepseek-flash', sandboxMode: 'read-only' }))
+      .toThrowError(/sandboxMode.*not supported by executor kind 'cli-mistral-vibe'/);
+  });
+
+  it('rejects an off-roster model for cli-mistral-vibe', () => {
+    expect(() => parseExecutorConfig({ kind: 'cli-mistral-vibe', model: 'mistral-medium-3.5' }))
+      .toThrowError(/cli-mistral-vibe model 'mistral-medium-3\.5' is not in the enforced allowlist: deepseek-flash, glm-flash/);
+    expect(parseExecutorConfig({ kind: 'cli-mistral-vibe', model: null }).model).toBeNull();
   });
 
   afterEach(() => {
@@ -442,6 +473,7 @@ describe('executor web-search policy', () => {
       'cli-devin': { inherit: true, disabled: false, cached: false, live: false },
       'cli-pi': { inherit: true, disabled: false, cached: false, live: false },
       'cli-deepseek-harness': { inherit: true, disabled: false, cached: false, live: false },
+      'cli-mistral-vibe': { inherit: true, disabled: false, cached: false, live: false },
     });
   });
 
@@ -460,6 +492,7 @@ describe('executor web-search policy', () => {
       'cli-devin': false,
       'cli-pi': false,
       'cli-deepseek-harness': true,
+      'cli-mistral-vibe': false,
     });
     // Devin, Pi, and OpenCode have no preventive OS sandbox.
     expect(['cli-devin', 'cli-pi', 'cli-opencode'].every(
@@ -489,7 +522,13 @@ describe('executor web-search policy', () => {
   it('preflights the complete matrix after lineage expansion', () => {
     for (const kind of EXECUTOR_KINDS) {
       for (const webSearch of WEB_SEARCH_POLICIES) {
-        const model = kind === 'native' ? null : `${kind}-model`;
+        // A kind that enforces a model allowlist needs an on-roster id here; the matrix
+        // under test is the web-search policy, not the model roster.
+        const model = kind === 'native'
+          ? null
+          : kind === 'cli-mistral-vibe'
+            ? VIBE_SUPPORTED_MODELS[0]
+            : `${kind}-model`;
         const config = parseFanoutConfig({
           executors: [{ kind, model, label: `${kind.replaceAll('cli-', '')}-${webSearch}`, liveTools: { webSearch } }],
         });
@@ -1065,6 +1104,19 @@ describe('DSH_SUPPORTED_MODELS / isDshModelAllowed', () => {
     for (const model of DSH_SUPPORTED_MODELS) expect(isDshModelAllowed(model)).toBe(true);
     expect(isDshModelAllowed('deepseek-v4-flash')).toBe(false);
     expect(isDshModelAllowed('opencode-go/deepseek-v4.1-flash')).toBe(false);
+  });
+});
+
+describe('VIBE_SUPPORTED_MODELS / isVibeSupportedModel', () => {
+  it('restricts Vibe to its two roster aliases', () => {
+    expect([...VIBE_SUPPORTED_MODELS]).toEqual(['deepseek-flash', 'glm-flash']);
+    for (const model of VIBE_SUPPORTED_MODELS) expect(isVibeSupportedModel(model)).toBe(true);
+  });
+
+  it('rejects a provider model name that is not a roster alias', () => {
+    expect(isVibeSupportedModel('mistral-medium-3.5')).toBe(false);
+    expect(isVibeSupportedModel('deepseek-v4-1-flash-1017')).toBe(false);
+    expect(isVibeSupportedModel('zai-glm-5-3-flash')).toBe(false);
   });
 });
 

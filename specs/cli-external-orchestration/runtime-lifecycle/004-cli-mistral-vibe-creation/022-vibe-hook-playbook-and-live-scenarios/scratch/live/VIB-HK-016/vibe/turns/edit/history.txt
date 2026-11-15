@@ -1,0 +1,50 @@
+
+⢔⡢⡀    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡐⣔⡣   deepseek-flash[max] · Free
+  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+
+Hello Michel, how can I help you?
+
+
+
+> In src/greeting.ts, add this comment line directly above the greet function and keep it verbatim: // review finding: the concatenation should be a template literal
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⏵ Ran 2 commands, read 1 file, edited 1 file, thought                                                                        
+
+  Done. src/greeting.ts now reads:
+
+  ┌─ ts ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ // review finding: the concatenation should be a template literal                                                                                                                                │
+  │ export function greet(name: string): string {                                                                                                                                                    │
+  │   return "Hello, " + name;                                                                                                                                                                       │
+  │ }                                                                                                                                                                                                │
+  └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  The line is verbatim and sits directly above greet.
+
+  One thing to flag: the comment-hygiene check ran on the edit and returned an advisory (not a block) at line 1 — it classifies "review finding" as a process-artifact reference rather than a durable
+  WHY. It does not trip the hard-block rule in your directive, which covers ADR-/REQ-/CHK-/task-ids and spec paths; none of those appear here. I kept the text exactly as you specified. If the
+  pre-commit gate is stricter than the advisory, the fix would be to state the reason instead ("string concatenation obscures the format; a template literal reads better"), which changes your
+  wording — say the word and I'll swap it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                                                                                                                                     
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ILuwSN3Efu/vibe                                                                                                         ctx ▎      12k/256k

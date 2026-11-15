@@ -1,0 +1,3 @@
+$ grep -rqs 'registry modes=' "$VIBE_HOME/logs/session/unified" && grep -rqs 'but the prompt declares mode=' "$VIBE_HOME/logs/session/unified" && echo reason-recorded
+reason-recorded
+[exit 0]

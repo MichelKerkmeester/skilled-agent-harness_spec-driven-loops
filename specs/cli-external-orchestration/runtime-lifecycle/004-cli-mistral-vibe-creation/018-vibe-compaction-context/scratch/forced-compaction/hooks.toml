@@ -1,0 +1,142 @@
+# Repository guards for Mistral Vibe. Each entry runs a script under plugins/repo-guards/,
+# which imports its runtime-neutral core from .skilled/. The file loads only in a trusted checkout; a
+# scratch-cwd dispatch or a fan-out lineage gets a copy with absolute paths in its own VIBE_HOME,
+# written by plugins/repo-guards/render-home-hooks.cjs.
+
+# Classifies the operator prompt so the gate is open before the first mutation.
+[[hooks]]
+name = "spec-gate-classify"
+type = "pre_agent"
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/spec-gate-classify.mjs\""
+
+# The only turn-start hook: composes the advisor brief and every later turn-start part
+# in one entry, so their order is fixed here rather than by hook registration order. It
+# stays separate from spec-gate-classify, so a composer failure cannot open the spec gate.
+[[hooks]]
+name = "turn-start"
+type = "pre_agent"
+match = "main"
+timeout = 20.0
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.skilled/hooks/session-lifecycle/vibe/turn-start.mjs\""
+
+# The only turn-end hook: records a completion advisory for the next turn, then sends
+# a prose option menu back once through the ask-surface reprompt. One entry, because
+# the first post_agent deny skips every later post_agent hook.
+[[hooks]]
+name = "turn-end"
+type = "post_agent"
+match = "main"
+timeout = 20.0
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.skilled/hooks/session-lifecycle/vibe/turn-end.mjs\""
+
+# Refuses a write or edit while the session's spec-folder gate is open and unanswered.
+[[hooks]]
+name = "spec-gate"
+type = "pre_tool"
+strict = true
+match = "re:bash|process_start|write_file|edit"
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/spec-gate.mjs\""
+
+# Refuses a tool call that would read or write a dotenv file.
+[[hooks]]
+name = "env-secret-guard"
+type = "pre_tool"
+strict = true
+match = "re:bash|process_start|read_file|write_file|edit"
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/env-secret-guard.mjs\""
+
+# Refuses a shell dispatch that breaks the target CLI skill's blocking hard rules.
+[[hooks]]
+name = "dispatch-preflight"
+type = "pre_tool"
+strict = true
+match = "re:bash|process_start"
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/dispatch-preflight.mjs\""
+
+# Refuses a write to a file a vendored tree's overlay owns and names the overlay file to edit instead.
+[[hooks]]
+name = "overlay-guard"
+type = "pre_tool"
+strict = true
+match = "re:bash|process_start|write_file|edit"
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/overlay-guard.mjs\""
+
+# Refuses a native external MCP call whose family has a Code Mode manual registered.
+[[hooks]]
+name = "mcp-route-guard"
+type = "pre_tool"
+strict = true
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/mcp-route-guard.mjs\""
+
+# Refuses a commit message, PR description or branch name that breaks the sk-git templates.
+[[hooks]]
+name = "git-message-gate"
+type = "pre_tool"
+strict = true
+match = "re:bash|process_start"
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/git-message-gate.mjs\""
+
+# Blocks a subagent spawn to a deep-loop agent whose declared mode disagrees with the mode registry, or a repeated loop-like hand-off.
+[[hooks]]
+name = "deep-loop-guard"
+type = "pre_tool"
+strict = true
+match = "agents_spawn"
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/deep-loop-guard.mjs\""
+
+# Appends post-edit quality findings to the tool result after a write or edit.
+[[hooks]]
+name = "post-edit-quality"
+type = "post_tool"
+strict = true
+match = "re:write_file|edit"
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/post-edit-quality.mjs\""
+
+# Appends a dist-staleness warning when an edit leaves a watched package's build
+# behind its sources. Non-strict and separate from post-edit-quality, so a checker
+# failure never blanks the tool result the model needs.
+[[hooks]]
+name = "dist-freshness-edit"
+type = "post_tool"
+match = "re:write_file|edit"
+timeout = 15.0
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/dist-freshness.mjs\""
+
+# The same warning for a shell command that is about to trust the local build: a spec
+# validation or a headless dispatch. It reports only; the session-start hook self-heals.
+[[hooks]]
+name = "dist-freshness-shell"
+type = "post_tool"
+match = "re:bash|process_start"
+timeout = 15.0
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/dist-freshness.mjs\""
+
+# Appends an injection advisory to a fetched web page's tool result when its text reads as instructions aimed at the agent.
+[[hooks]]
+name = "classifier-injection-screen"
+type = "post_tool"
+match = "re:web_fetch|open_url"
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/classifier-injection-screen.mjs\""
+
+# Re-injects the compaction context at the next tool call when a long headless turn
+# compacted mid-turn and no next turn start follows. Non-strict, so a detector failure
+# never blanks the tool result; the journal's size decides whether it reads at all.
+[[hooks]]
+name = "compaction-post-tool"
+type = "post_tool"
+timeout = 10.0
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs\""
+
+# The only session-start hook: adds the bound packet's goal slice, the session context, the
+# startup-guard warnings and the stale-dist warning as additional context, composed in one
+# entry so their order is fixed here rather than by hook registration order.
+[[hooks]]
+name = "session-start"
+type = "session_start"
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.skilled/hooks/session-lifecycle/vibe/session-start.mjs\""
+
+# Runs the cleanup script and process sweep on session end.
+[[hooks]]
+name = "session-cleanup-end"
+type = "session_end"
+command = "node \"/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.vibe/plugins/repo-guards/session-cleanup.mjs\""

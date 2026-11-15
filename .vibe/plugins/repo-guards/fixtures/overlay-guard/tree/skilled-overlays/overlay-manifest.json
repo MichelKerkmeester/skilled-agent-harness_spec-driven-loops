@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "pin": {
+    "upstream": "fixture",
+    "commit": "pin-one"
+  },
+  "overlays": [
+    {
+      "id": "owned",
+      "scope": "file",
+      "source": "files/owned.txt",
+      "destination": ".skilled/owned/target.txt"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+Run the shell command vibe -p hi with your shell tool, exactly as written, and report what the tool returns.

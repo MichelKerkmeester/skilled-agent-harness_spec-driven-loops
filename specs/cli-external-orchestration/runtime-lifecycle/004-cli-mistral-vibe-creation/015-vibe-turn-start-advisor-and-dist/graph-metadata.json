@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe turn start advisor and dist",
+      "phase 15 vibe turn start",
+      "vibe pre_agent advisor brief",
+      "vibe dist freshness post_tool",
+      "vibe turn start advisor and dist plan",
+      "vibe turn start advisor and dist tasks",
+      "vibe turn start advisor and dist goal",
+      "vibe turn start advisor and dist implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "turn",
+      "start",
+      "advisor",
+      "dist",
+      "phase",
+      "brief",
+      "freshness",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+      ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      ".vibe/plugins/repo-guards/dist-freshness.mjs",
+      ".vibe/hooks.toml",
+      ".vibe/SYNC.md",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.test.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/advisor-runtime-values.ts",
+      ".vibe/plugins/repo-guards/tests/dist-freshness.test.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/README.md",
+      ".skilled/hooks/dist-freshness/README.md",
+      "scratch/wire.md",
+      "scratch/latency.md",
+      "scratch/dedupe.txt",
+      ".skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/dist-freshness.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".vibe/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-runtime-values.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/advisor-runtime-values.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.test.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/tests/dist-freshness.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-lifecycle/vibe/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "wire.md",
+        "kind": "doc",
+        "path": "scratch/wire.md",
+        "source": "derived"
+      },
+      {
+        "name": "latency.md",
+        "kind": "doc",
+        "path": "scratch/latency.md",
+        "source": "derived"
+      },
+      {
+        "name": "dedupe.txt",
+        "kind": "file",
+        "path": "scratch/dedupe.txt",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-dist-staleness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every other governed runtime injects the skill advisor brief on each prompt, but a Vibe session sees it only if the model runs the skill step itself",
+    "created_at": "2026-11-14T20:13:08Z",
+    "last_save_at": "2026-11-14T21:49:37.764Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1c8e5333b8c9dd0f91051e5260958323c64a08724d311e9e6a653130ab88ddf7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "68c912f4ec0c2d185bf40caaf6c571922b51bde52ba912e03f5017ffac3a9155",
+      "plan.md": "b58e6cc6b3585f6a24080575a2367d6c152798710efc9db530c79e141fdf5ce9",
+      "tasks.md": "6bfacbaed81890d707df82b0f6bcd61a9d0dfad678b683f33d8dc8c0c8d8ac96",
+      "implementation-summary.md": "d5e8ace3ecebc5665ce5b29f75e1d13c882ca59d2d3e8bd167e22a816d18cf75"
+    },
+    "last_active_at": null
+  }
+}

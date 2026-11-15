@@ -1,0 +1,3 @@
+$ grep -rqs 'validator-finished' "$VIBE_HOME/logs/session/unified" || { echo 'the validation command never reached the shell, so the dist hook had nothing to judge'; exit 1; }; if grep -rqs 'STALE DIST WARNING' "$VIBE_HOME/logs/session/unified"; then echo warning-recorded; else echo 'no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session'; exit 77; fi
+no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session
+[exit 77]

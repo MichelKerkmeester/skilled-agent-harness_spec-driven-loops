@@ -16,7 +16,8 @@
       "vibe sync generators",
       "vibe runtime folder and mirrors plan",
       "vibe runtime folder and mirrors tasks",
-      "vibe runtime folder and mirrors goal"
+      "vibe runtime folder and mirrors goal",
+      "vibe runtime folder implementation summary"
     ],
     "key_topics": [
       "vibe",
@@ -29,17 +30,28 @@
       "plan",
       "tasks",
       "goal",
-      "without",
-      "run"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      ".dsh/SYNC.md"
+      "implementation-summary.md",
+      ".vibe/config.toml",
+      ".vibe/SYNC.md",
+      "scratch/validate-config.py",
+      "scratch/allowed-models-probe.md",
+      "scratch/trust-probe.md",
+      ".dsh/SYNC.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs",
+      "scratch/strict-load/export.json",
+      "scratch/allowed-models/export.json"
     ],
     "entities": [
       {
@@ -67,9 +79,63 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".vibe/config.toml",
+        "source": "derived"
+      },
+      {
         "name": "SYNC.md",
         "kind": "doc",
-        "path": ".dsh/SYNC.md",
+        "path": ".vibe/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-config.py",
+        "kind": "file",
+        "path": "scratch/validate-config.py",
+        "source": "derived"
+      },
+      {
+        "name": "allowed-models-probe.md",
+        "kind": "doc",
+        "path": "scratch/allowed-models-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "trust-probe.md",
+        "kind": "doc",
+        "path": "scratch/trust-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-vibe.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-vibe.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-vibe.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "export.json",
+        "kind": "config",
+        "path": "scratch/strict-load/export.json",
         "source": "derived"
       },
       {
@@ -131,79 +197,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Generated",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Give Vibe",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Without a `.vibe/` folder, a Vibe run in this repository has an open model list and none of the repository's agents, skills or command prompts",
     "created_at": "2026-11-14T12:56:18Z",
-    "last_save_at": "2026-11-14T13:36:30.690Z",
+    "last_save_at": "2026-11-14T14:57:07.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddc678c3774041d47553a495e99765ad758051e16091448352ff3038d68ae30f",
+    "source_fingerprint": "sha256:878a4e7aa48ea3277d63beac5b251d881be6dd62a131096602e4e9972129f001",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6af2ced4016c3e570247e868a943e466bcfe5cf17c76d7183739219794bce091",
+      "spec.md": "b7344ab2139d9725c4922d67a1deaeb0e6f6971d124f6c7c44a3e6481d556e40",
       "plan.md": "8962b03ba2b91588fb35db051b7e91134653a84e88ac5f8d4de05fdb3c13852c",
-      "tasks.md": "c9ac7d37af1a6e979fc3d959242a2f1f5b79c70471d0061f05632edf582e9ba0"
+      "tasks.md": "d57d02bc0e4bcfbf38d1a5feb4b28fe0639b3dc23655b24d21b6021bdeb5bc26",
+      "implementation-summary.md": "6e4de7269552fb9ae3248c9732767fd441731e78e18c2bdf1960ae660f8aaae4"
     },
     "last_active_at": null
   }

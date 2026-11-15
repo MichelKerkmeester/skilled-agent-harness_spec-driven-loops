@@ -9,6 +9,7 @@ const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 const { RUNTIMES } = require('../lib/relaunch-core.cjs');
+const { nudgeDecision } = require('../lib/nudge.cjs');
 const {
   SEED, SPEC_FOLDER, SPEC_FOLDER_SUFFIX, SKIP_SPEC_FOLDER_SUFFIX, LOOP_ID_PATTERN,
   RUNTIME_SOURCE, expectedClaudeManualCommand, createSandbox, installRuntimeStub,
@@ -17,6 +18,14 @@ const {
   installWrapperCopyWithChangedSuffix,
   installWrapperWithThrowingSuffix, installMalformedConsumeStub, readRecords, readLog,
 } = require('./skilled-loop-wrapper-harness.cjs');
+
+// The shared harness stubs the runtimes the wrapper shipped before Vibe, so a Vibe case
+// copies one stub to exercise the wrapper's launch path without changing the harness.
+function installVibeStub(sandbox) {
+  const target = path.join(sandbox.binDir, 'vibe');
+  fs.copyFileSync(path.join(sandbox.binDir, 'claude'), target);
+  fs.chmodSync(target, 0o755);
+}
 
 test('second invocation uses only the seed and name, recorded cwd, and the same loop id', (t) => {
   const sandbox = createSandbox(t);
@@ -91,6 +100,49 @@ test('an attached short option value keeps the next word as the prompt', (t) => 
 test('Devin first launch arguments are replayed', (t) => {
   assertHopReplaysArguments(t, 'devin', ['--config', '/tmp/devin.json', '--sandbox', 'first prompt'],
     (seed) => ['--config', '/tmp/devin.json', '--sandbox', '--', seed]);
+});
+
+test('Vibe first launch arguments are replayed with the seed as the initial prompt', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  installVibeStub(sandbox);
+  const result = runWrapper(sandbox, ['vibe', '--trust', '--add-dir', '/tmp', 'first prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[0].args, ['--trust', '--add-dir', '/tmp', 'first prompt']);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--trust', '--add-dir', '/tmp']);
+  assert.deepEqual(records.map((record) => record.env.SKILLED_LOOP_RUNTIME), ['vibe', 'vibe']);
+});
+
+test('a Vibe hop never replays the headless-only --model flag', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  installVibeStub(sandbox);
+  const result = runWrapper(sandbox, ['vibe', '--model', 'mistral-large', 'first prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`]);
+  assert.equal(records[1].args.includes('--model'), false);
+});
+
+test('a dispatched Vibe child never gets a relaunch nudge', (t) => {
+  const sandbox = createSandbox(t);
+  installRuntimeStub(sandbox);
+  installVibeStub(sandbox);
+  sandbox.env.AI_SESSION_CHILD = '1';
+  const result = runWrapper(sandbox, ['vibe', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(
+    nudgeDecision({
+      ratio: 0.95,
+      threshold: 0.8,
+      sessionId: 'vibe-child-0001',
+      env: { ...sandbox.env, SKILLED_LOOP_ID: '100' },
+    }),
+    { nudge: false, level: 0, reason: 'child-session' },
+  );
 });
 
 test('deny list flags are absent from a hop', (t) => {
@@ -487,6 +539,7 @@ test('wrapper exports runtime identity for each supported runtime', (t) => {
   for (const runtime of RUNTIMES) {
     const sandbox = createSandbox(t);
     const { recordPath } = installRuntimeStub(sandbox);
+    installVibeStub(sandbox);
     const result = runWrapper(sandbox, [runtime]);
 
     assert.equal(result.status, 0, result.stderr);

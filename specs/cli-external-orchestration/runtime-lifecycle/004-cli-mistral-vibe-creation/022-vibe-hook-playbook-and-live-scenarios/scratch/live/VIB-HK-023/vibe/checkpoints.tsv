@@ -1,0 +1,3 @@
+turn	status	attempts	evidence	observed
+mirror-ready	PASS	1	turns/mirror-ready	mirror-linked
+load-skill	PASS	1	turns/load-skill	skill-loaded-from-mirror

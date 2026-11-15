@@ -1,0 +1,3 @@
+turn	status	attempts	evidence	observed
+claim	PASS	1	turns/claim	advisory-recorded baseline=0
+follow-up	PASS	1	turns/follow-up	advisory-delivered turn1=0 turn2=14 pending=consumed

@@ -1,0 +1,3 @@
+$ grep -rqs 'Advisory findings from the edited file' "$VIBE_HOME/logs/session/unified" && grep -rqsF '[comment-hygiene]' "$VIBE_HOME/logs/session/unified" && echo finding-returned
+finding-returned
+[exit 0]

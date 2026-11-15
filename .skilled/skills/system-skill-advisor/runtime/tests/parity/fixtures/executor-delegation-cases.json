@@ -63,6 +63,18 @@
       "branch": "direct-alias"
     },
     {
+      "id": "direct-alias-delegate-to-vibe",
+      "prompt": "delegate to vibe",
+      "expectedTop": "cli-external-orchestration",
+      "branch": "direct-alias"
+    },
+    {
+      "id": "conflict-opencode-with-mistral-model",
+      "prompt": "use cli-opencode with mistral deepseek-v4-1-flash-1017",
+      "expectedTop": "cli-external-orchestration",
+      "branch": "direct-alias"
+    },
+    {
       "id": "split-handoff-delegate-object-to-codex",
       "prompt": "delegate this refactor to codex using gpt-6.1 terra",
       "expectedTop": "cli-external-orchestration",

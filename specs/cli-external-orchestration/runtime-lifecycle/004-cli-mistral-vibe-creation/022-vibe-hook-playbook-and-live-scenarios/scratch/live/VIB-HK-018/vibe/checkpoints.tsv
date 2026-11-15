@@ -1,0 +1,3 @@
+turn	status	attempts	evidence	observed
+validate	SKIP	1	turns/validate	no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session
+build-state	SKIP	1	turns/build-state	no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session

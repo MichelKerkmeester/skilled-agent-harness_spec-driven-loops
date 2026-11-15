@@ -1,0 +1,50 @@
+
+ ⢠⢢    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⢸⣀⡔⢉⠱⣃⡐⣔⡣   deepseek-flash[max] · Free
+ ⠈⠒⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+
+Hello Michel, how can I help you?
+
+
+
+> In one sentence, tell me which instructions you are following right now.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⏵ Thought                                                                                                                     
+
+  I'm following the system prompt's instruction hierarchy — critical safety rules first, then your messages, then repo/user AGENTS.md, then overridable defaults — along with this session's advisor
+  directive that code comments must never contain ADR-/REQ-/CHK-/task IDs or spec paths, and the session context noting no skill matched and continuity is recovered on demand.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                           
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                                          
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ZQzWr9k5OE/vibe                                                                                                       ctx ▎      9.91k/256k

@@ -1,0 +1,39 @@
+$ node --test .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs
+conversation runner suite: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/conversation-runner-4r52TT
+PASS sandbox policy
+PASS empty repository snapshot
+PASS refusals
+PASS setup exit 77 skips runtime
+PASS multi-runtime guards before side effects
+PASS setup SIGINT cleans up
+PASS fake subject conversation
+PASS check reads turn evidence
+PASS literal text sends
+PASS startup screen waits for redraw
+PASS chat question at settle
+PASS unexpected question
+PASS turn timeout
+PASS check skip continues
+PASS retry on second attempt
+PASS check timeout stops the run
+PASS repo changed
+PASS unreadable snapshot fails closed
+PASS hook trust undone
+PASS evidence files
+PASS cleanup leaves nothing
+PASS SIGINT cleans up
+adapter screens: PASS (5 runtimes)
+PASS quota screen
+PASS conversation runner suite
+✔ .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs (89575.885375ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 89579.375375
+[exit 0]
+
+# summary: PASS lines 24, node test fail 0, exit 0

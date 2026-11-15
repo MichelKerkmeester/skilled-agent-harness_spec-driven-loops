@@ -137,9 +137,12 @@ jobs:
           node --test --test-reporter=tap \
             .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs \
             .skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-dsh.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-vibe.test.mjs \
             .skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-dsh.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-vibe.test.mjs \
             .skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs \
             .skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-dsh.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-vibe.test.mjs \
             .skilled/skills/system-spec-kit/runtime/cli/tests/unactioned-recorded-failure-audit.test.mjs \
             .skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs \
             .skilled/skills/system-spec-kit/runtime/tests/hooks/permission-request-policy.test.mjs \

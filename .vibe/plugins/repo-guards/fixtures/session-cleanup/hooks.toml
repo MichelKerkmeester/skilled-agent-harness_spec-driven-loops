@@ -1,0 +1,10 @@
+# Runs the startup guards on session start and the cleanup script and process sweep on session end.
+[[hooks]]
+name = "session-cleanup-start"
+type = "session_start"
+command = "node @REPO@/.vibe/plugins/repo-guards/session-cleanup.mjs"
+
+[[hooks]]
+name = "session-cleanup-end"
+type = "session_end"
+command = "node @REPO@/.vibe/plugins/repo-guards/session-cleanup.mjs"

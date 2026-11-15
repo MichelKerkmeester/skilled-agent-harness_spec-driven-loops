@@ -20,6 +20,7 @@ import { loadDshSession } from './dsh.mjs';
 import { loadOpenCodeSession } from './opencode.mjs';
 import { loadPiSession } from './pi.mjs';
 import { projectEntries } from './project.mjs';
+import { loadVibeSession } from './vibe.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CAPABILITIES
@@ -62,6 +63,11 @@ export const capabilities = Object.freeze({
     storeRoot: '(unconfirmed)',
     reason: 'PreCompact delivery is unconfirmed, so there is no trustworthy capture point',
   }),
+  vibe: Object.freeze({
+    status: 'ready',
+    locatorKind: 'transcript_path',
+    storeRoot: '$VIBE_HOME/logs/session/unified/<session_id>',
+  }),
 });
 
 const READERS = Object.freeze({
@@ -72,6 +78,7 @@ const READERS = Object.freeze({
   devin: loadDevinSession,
   dsh: loadDshSession,
   cursor: loadCursorSession,
+  vibe: loadVibeSession,
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
