@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/394-dsh-executor-identity` |
 | **Parent Spec** | ../spec.md |
@@ -83,12 +83,14 @@ review: dispatch_receipt_write_failed rows before refresh=2 after refresh=0
 - Make the `record_executor_audit` step call `appendExecutorAuditToLastRecord`, which on a ledger-backed log records the executor on the iteration's opening row through the gateway, at most once per iteration.
 - Pass the run's session id to all sixteen audited runner calls and both audit steps, so the gateway scopes each row to its run.
 - Compare a repeated dispatch failure by content, because the projection writes the executor object back with sorted keys.
+- Stop the `upsert`, `status`, `query` and `convergence` entrypoints from reading stdin when their child never uses it. `upsert` forwards stdin only for `--events -`, through a read that retries on EAGAIN. Added on 2026-11-14 after the 019 live review crashed on a non-blocking stdin.
+- Run the continuity writer with `--full-auto` in all six review, research and AI Council workflows, and put the four continuity fields in the review and research payloads. Added on 2026-11-14 after the 019 live review save only planned.
+- Release the phase as `system-deep-loop` v1.6.28.0.
 
 ### Out of Scope
 - The `verification_degraded` row from `post-dispatch-validate.ts` and the `containment_violation` and `containment_contested` rows from `write-containment.ts` - they also write straight into the state log, but the operator named three writers, so they are raised in section 7 and not changed.
 - The research prompt pack's sentence that the workflow patches the iteration record with the executor block - it is guidance for the leaf, and on a ledger-backed log the executor now lands on the opening row, so section 7 asks whether to reword it.
 - The `executor_missing` check in `validateIterationOutputs` - the executed gate is `verify-iteration.cjs`, which does not read the executor, and section 7 asks what the documented validator should accept.
-- A hub changelog entry and version bump - section 7 asks how the operator wants this phase released.
 
 ### Files to Change
 
@@ -106,6 +108,13 @@ review: dispatch_receipt_write_failed rows before refresh=2 after refresh=0
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit-ledger-projection.vitest.ts` | Modify | One survival test per writer for review and research, and the no-session fallback |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts` | Modify | Fixtures and round-trip cases for the two stems |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts` | Modify | The pinned stem census counts 88 registered and 65 reserved |
+| `.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs` | Modify | `readStdinSync`, a stdin read that retries on EAGAIN |
+| `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs`, `status.cjs`, `query.cjs`, `convergence.cjs` | Modify | Forward stdin to the tsx child only for `upsert --events -` |
+| `.skilled/commands/deep/assets/deep-ai-council-auto.yaml`, `deep-ai-council-confirm.yaml` | Modify | The save runs with `--full-auto`, as in the four review and research workflows |
+| `.skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/memory-save.md` | Modify | The save command and its continuity fields |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/cli-stdin-forwarding.vitest.ts` | Create | EAGAIN retry, `--events -` and a stdin left open |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-loop-save-full-auto-yaml.vitest.ts` | Create | Each save step runs full-auto and carries the continuity fields |
+| `.skilled/skills/system-deep-loop/changelog/v1.6.28.0.md`, and the version in the hub `SKILL.md`, `description.json`, `mode-registry.json` and `hub-router.json` | Create, Modify | The release |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -132,6 +141,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | Recording a failure never throws. With no session id, or when the gateway refuses, the row is written directly and one stderr line says the next refresh drops it | The `writes a failure row straight into a ledger-backed log` case passes |
 | REQ-007 | A repeated identical dispatch failure adds no second row on a ledger-backed log, although the projection reorders the executor's keys | The dispatch case's second call leaves one row |
 | REQ-008 | Every audited runner call and both audit steps in the four workflows pass the run's session id, and the compiled contracts match the workflows | The E15 script prints the counts 7, 1, 7 and 1, and `check-contract-drift.cjs` prints `[CONTRACT DRIFT] OK commands=3` |
+| REQ-010 | A CLI entrypoint never reads a stdin its child does not use, and `upsert --events -` survives a non-blocking stdin | `cli-stdin-forwarding.vitest.ts` prints `3 passed`, and 2 of its 3 fail on the old entrypoints |
+| REQ-011 | Every deep loop save writes continuity | `deep-loop-save-full-auto-yaml.vitest.ts` prints `10 passed`, and all 10 fail on the old workflows |
 | REQ-009 | The two research stems are registered and declared reserved | `check-ledger-stem-producers.cjs` prints `"ok":true` with `"registered":88` and `"reserved":65`, and `npm run typecheck` exits 0 |
 <!-- /ANCHOR:requirements -->
 
@@ -163,11 +174,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should review carry the failure rows under a dedicated stem instead of `deep_review.iteration_recorded`? Recommended: no. The stem carries any record whole, and its name is the only thing that does not fit.
-- Is threading the session id through sixteen runner calls worth it, against letting the gateway scope failure rows to its default `run-cli` as research already does for idea rows? Recommended: thread it, as phase 019 required for the opening row.
-- Should the three other direct writers, `verification_degraded`, `containment_violation` and `containment_contested`, get a phase of their own? They lose their rows the same way.
-- Should `validateIterationOutputs` accept the executor from the iteration's opening row on a ledger-backed log, and should the research prompt pack's sentence about patching the iteration record be reworded?
-- Does this phase get its own hub changelog and version bump after `v1.6.27.0`, or does it ship with the next release note?
+- Should review carry the failure rows under a dedicated stem instead of `deep_review.iteration_recorded`? Answered on 2026-11-14 with the recommendation: no.
+- Is threading the session id through sixteen runner calls worth it? Answered on 2026-11-14 with the recommendation: thread it.
+- Should `verification_degraded`, `containment_violation` and `containment_contested` get a phase of their own? Not built here. They stay a known limitation for a later phase.
+- Should `validateIterationOutputs` read the opening row, and should the research prompt pack sentence be reworded? Not built here. Both stay as they are.
+- How is this phase released? As `system-deep-loop` v1.6.28.0, following the operator's choice of a new version for C6.
 <!-- /ANCHOR:questions -->
 
 ---

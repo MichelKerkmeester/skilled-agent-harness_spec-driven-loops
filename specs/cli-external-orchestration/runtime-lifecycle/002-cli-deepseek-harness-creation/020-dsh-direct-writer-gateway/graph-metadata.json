@@ -36,7 +36,7 @@
       "executor"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,6 +45,9 @@
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+      ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/memory-save.md",
+      ".skilled/skills/system-deep-loop/changelog/v1.6.28.0.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
@@ -97,6 +100,24 @@
         "name": "append-mode-event.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-guards.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/memory-save.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.6.28.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/changelog/v1.6.28.0.md",
         "source": "derived"
       },
       {
@@ -182,29 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement In",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "In a deep review or deep research run, the JSONL state log beside a `deep-review-ledger/frames` or `deep-research-ledger/frames` folder is a projection",
     "created_at": "2026-11-14T22:20:25Z",
-    "last_save_at": "2026-11-14T22:43:37.673Z",
+    "last_save_at": "2026-11-15T05:30:55.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94aafee34d62ceaa35df02bad716bc53541968a9ec1735f92a16ec0e26c4748d",
+    "source_fingerprint": "sha256:0e1151e1060a0c5d30532492b8fd9246fb2acca2786f0fffd6a9616e3c680aa0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1b9f977edb3797413e819ac977a61ac1d44066b35e72971c95e737334cc30a8",
+      "spec.md": "d662b27cddb95d9b2e7de2a2e654fdbeba24ca317ecea813dc5fd2bc7ea78a5a",
       "plan.md": "b630a8d20a8887feaceed40c3315bf90701ced7856eb404af96bece260f64024",
-      "tasks.md": "cccab4bb4f610917aa381630ef82f807f527bb7c4c4c829303c3be6bff57a819",
-      "implementation-summary.md": "6e76d2cc694fa65e4bb483ad41640226ae3439e0b0164e8012d8053ada7fa50e"
+      "tasks.md": "b60e0dbe44929cddb84e5e2f575315ae3f9d03b30141dc70eb0babe8e99f301c",
+      "implementation-summary.md": "5c14f02eb2ea8595d576d90a7f723f931ed7887982b5b7b083e83ae90dd20897"
     },
     "last_active_at": null
   }

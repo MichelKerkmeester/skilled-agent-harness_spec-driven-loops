@@ -20,6 +20,7 @@ const {
   classifyExitCode,
   installSignalHandlers,
   maybeThrowTestFault,
+  readStdinSync,
   sleepSync,
   validateNamespaceValue,
 } = require('./lib/cli-guards.cjs');
@@ -47,7 +48,8 @@ if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   const child = spawnSync(process.execPath, ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)], {
     cwd: process.cwd(),
     env: require('./runtime-bootstrap.cjs').tsxChildEnv({ DEEP_LOOP_TSX_LOADED: '1' }),
-    input: process.stdin.isTTY ? undefined : fs.readFileSync(0),
+    // Only `--events -` reads stdin, so stdin is forwarded for that alone.
+    input: process.argv.slice(2).includes('-') ? readStdinSync() : undefined,
     encoding: 'utf8',
   });
   if (child.stdout) process.stdout.write(child.stdout);

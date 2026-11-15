@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 020-dsh-direct-writer-gateway |
-| **Completed** | Not started |
+| **Completed** | 2026-11-15 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This packet is planned and holds the design per writer, the counted edits and the task list.
+A failed dispatch, a lost receipt and the post-dispatch executor record now survive a state log refresh in review and research. The CLI entrypoints no longer crash on a non-blocking stdin, and every deep loop save writes continuity. The release is `system-deep-loop` v1.6.28.0.
 
 ### Phase 20: dsh-direct-writer-gateway
 
@@ -58,7 +58,15 @@ A deep review or deep research run whose state log sits beside a ledger loses a 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | Planned | `spec.md` section 3 lists the files this packet will change |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | Modified | Session id on the runner input, the failure row helper, both failure writers and the audit's ledger branch |
+| `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` | Modified | The review gateway takes the two failure rows |
+| The five research schema, projection and reducer files named in `spec.md` section 3 | Modified | Two new research stems carried field for field |
+| `.skilled/commands/deep/assets/` review, research and AI Council workflows, auto and confirm | Modified | Session id on every audited call, the audit call and the full-auto save |
+| `.skilled/commands/deep/assets/compiled/` three contracts | Regenerated | They pin each workflow's digest |
+| `.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs`, `upsert.cjs`, `status.cjs`, `query.cjs`, `convergence.cjs` | Modified | Stdin is read only for `upsert --events -`, retrying on EAGAIN |
+| `.skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/memory-save.md` | Modified | The save command and its fields |
+| Three test files modified and two created, named in `spec.md` section 3 | Modified, Created | Survival, round-trip, census, stdin and save tests |
+| `.skilled/skills/system-deep-loop/changelog/v1.6.28.0.md` and four version fields | Created, Modified | The release |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,7 +74,7 @@ A deep review or deep research run whose state log sits beside a ledger loses a 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. Every edit in `plan.md` was applied to an APFS clone of `216ba55452`, and section 5 of the plan records what the tests printed there.
+The plan's count script found all 43 search texts on origin/main `23f6583b89` and applied them, and the E15 script added the session id to 16 runner calls. The two faults from the 019 live review were added to the scope on 2026-11-14 and fixed at their source: the shared bootstrap pattern in four entrypoints, and the save step in six workflows. Each new test was run against the old code first and failed there.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -88,7 +96,13 @@ Not delivered yet. Every edit in `plan.md` was applied to an APFS clone of `216b
 
 | Check | Result |
 |-------|--------|
-| `validate.sh --strict` on the planned packet | Recorded at commit time |
+| Named suites | PASS. `85 passed (85)` up from 78, and `62 passed (62)` up from 60 |
+| Fail first | PASS. The survival file printed `6 failed \| 4 passed (10)` on the old sources, the stdin file 2 of 3 failed and the save file 10 of 10 failed |
+| Receipt, dispatch failure and reducer tests | PASS. `55 passed (55)` |
+| Stem census and append checks | PASS. `"registered":88`, `"reserved":65`, and every check `"ok":true` |
+| Contract drift and typecheck | PASS. `[CONTRACT DRIFT] OK commands=3`, typecheck exit 0 |
+| Full deep-loop suite | PASS. `Tests  2929 passed \| 8 skipped (2937)` in 176 files, the planned 2916 plus the 13 stdin and save tests |
+| Trial saves | The old payload with `--full-auto` wrote no continuity. The payload with the four fields wrote it to `implementation-summary.md` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -96,7 +110,8 @@ Not delivered yet. Every edit in `plan.md` was applied to an APFS clone of `216b
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Three other writers still lose their rows.** `verification_degraded`, `containment_violation` and `containment_contested` write straight into the state log too. `spec.md` section 7 asks whether they get a phase.
+1. **Three other writers still lose their rows.** `verification_degraded`, `containment_violation` and `containment_contested` write straight into the state log too. They wait for a later phase.
+2. **`upsert --events -` waits for its input.** A caller that passes `-` and never closes stdin keeps the command waiting, as any reader of stdin does.
 <!-- /ANCHOR:limitations -->
 
 ---
