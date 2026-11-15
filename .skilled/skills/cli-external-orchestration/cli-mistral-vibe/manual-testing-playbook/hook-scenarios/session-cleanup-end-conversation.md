@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-021 -- Session cleanup writes its log line when the session closes"
 description: "This scenario validates that closing a Vibe session runs the session-cleanup-end session_end hook, which writes the cleanup script's log line, judged from the cleanup log the hook writes."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # VIB-HK-021 -- Session cleanup writes its log line when the session closes
@@ -52,10 +52,11 @@ Operators run the conversation script through the shared runner with the `vibe` 
     "vibe"
   ],
   "setup": [
-    "log=${SESSION_CLEANUP_LOG_PATH:-${CLAUDE_SESSION_CLEANUP_LOG_PATH:-$HOME/.local/share/session-cleanup.log}}; mkdir -p \"$(dirname \"$log\")\"; before=$(wc -l < \"$log\" 2>/dev/null || echo 0); printf '%s\\n' \"$before\" | tr -d ' ' > .cleanup-lines-before"
+    "log=/private/tmp/vib-hk-021-session-cleanup.log; mkdir -p \"$(dirname \"$log\")\"; before=$(wc -l < \"$log\" 2>/dev/null || echo 0); printf '%s\\n' \"$before\" | tr -d ' ' > .cleanup-lines-before"
   ],
   "env": {
-    "SYSTEM_SPEC_GATE_DISABLED": "1"
+    "SYSTEM_SPEC_GATE_DISABLED": "1",
+    "SESSION_CLEANUP_LOG_PATH": "/private/tmp/vib-hk-021-session-cleanup.log"
   },
   "turns": [
     {
@@ -95,7 +96,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 }
 ```
 
-The cleanup log path follows the plugin's own override chain, so a run with `SESSION_CLEANUP_LOG_PATH` or its Claude alias set reads the same file the plugin writes. Setup records the line count before Vibe starts, which is what lets the close check attribute the new line to this session rather than to an older entry. The runner's restart action closes the first session with `/exit` and then resumes it, so the check runs after the `session_end` hook has had its close grace. The spec gate is switched off because the scenario judges only the teardown hook.
+The cleanup log path follows the plugin's own override chain, so a run with `SESSION_CLEANUP_LOG_PATH` or its Claude alias set reads the same file the plugin writes. The script points `SESSION_CLEANUP_LOG_PATH` at a log of its own under `/private/tmp`, and the setup line names the same path, because the setup step runs without the script environment. A machine-wide log would let another session's line match the close check, or push this session's line out of the last position. Setup records the line count before Vibe starts, which is what lets the close check attribute the new line to this session rather than to an older entry. The runner's restart action closes the first session with `/exit` and then resumes it, so the check runs after the `session_end` hook has had its close grace. The spec gate is switched off because the scenario judges only the teardown hook.
 
 ### Expected
 

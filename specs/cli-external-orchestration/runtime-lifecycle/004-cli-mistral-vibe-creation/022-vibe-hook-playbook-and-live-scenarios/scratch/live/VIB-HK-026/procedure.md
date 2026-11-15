@@ -8,7 +8,7 @@ Verdict: **PASS**, recorded in `hop-record.md` from a live hop driven by hand in
 2. The claim seed names the note by its absolute path (`[session-handover] claim and continue handoff <path>`). A turn's `send` is a static string the runner types verbatim, so it cannot carry the path a run creates.
 3. The runner starts its subject in a scratch project outside the checkout, where no `.skilled/hooks/session-handover` tree exists.
 
-The preflight turn's check records both facts: `no-relaunch-cli-in-project` and `no-vibe-claim-seed-part`.
+The preflight turn's check records two facts: `no-relaunch-cli-in-project`, and `automatic-tier-present`, which says the automatic part lives in the repository and so never arms a record for a scratch subject.
 
 ## Manual steps
 

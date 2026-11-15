@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`goal/vibe/` holds the Vibe goal adapter. `goal-inject.mjs` exports `renderVibeGoalSlice`. It reads the packet path from `VIBE_SPEC_FOLDER` and returns exactly the `chat_slice` that `node .skilled/hooks/goal/bin/goal.cjs packet <folder>` prints. No variable means no goal text.
+`goal/vibe/` holds the Vibe goal adapter. `goal-inject.mjs` exports `renderVibeGoalSlice`. It reads the packet path from `VIBE_SPEC_FOLDER` and returns exactly the `chat_slice` that `node .skilled/hooks/goal/bin/goal.cjs packet <folder>` prints. A session started from a manual handover claim has no `VIBE_SPEC_FOLDER`, so the adapter then reads `SESSION_HANDOVER_GOAL_PACKET`, the packet `skilled-loop` exported from the claimed note. An operator-named `VIBE_SPEC_FOLDER` always wins. Neither variable means no goal text.
 
 The adapter has no hook entry of its own. `.skilled/hooks/session-lifecycle/vibe/session-start.mjs` imports it and puts the returned text in the one `session_start` reply, so the goal arrives in the first turn without a second registration.
 
@@ -26,8 +26,8 @@ Vibe is injection-only. There is no goal object, no `/goal` command and no goal 
 
 | File | Event | What it does | On error |
 |---|---|---|---|
-| `goal-inject.mjs` | `session_start`, through the session-start hook | Reads `VIBE_SPEC_FOLDER`, resolves the packet slice and returns the same `chat_slice` text `goal.cjs packet` prints. Returns no text when the variable is unset, empty or unusable. | Returns no goal text. The session-start hook still emits the rest of its context. |
-| `goal-vibe.test.mjs` | `node --test` | Covers a bound packet, no packet and malformed input. | A failed assertion fails the test process with a nonzero status. |
+| `goal-inject.mjs` | `session_start`, through the session-start hook | Reads `VIBE_SPEC_FOLDER`, or `SESSION_HANDOVER_GOAL_PACKET` when that is unset, resolves the packet slice and returns the same `chat_slice` text `goal.cjs packet` prints. Returns no text when both are unset, empty or unusable. | Returns no goal text. The session-start hook still emits the rest of its context. |
+| `goal-vibe.test.mjs` | `node --test` | Covers a bound packet, a handover-claimed packet, a named packet winning over a claimed one, no packet and malformed input. | A failed assertion fails the test process with a nonzero status. |
 
 Run the test with `node --test .skilled/hooks/goal/vibe/goal-vibe.test.mjs`.
 

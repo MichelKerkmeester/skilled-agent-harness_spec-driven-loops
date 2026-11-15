@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-024 -- A request that needs a repository agent spawns it from the .vibe/agents mirror"
 description: "This scenario validates that a Vibe session spawns a repository subagent from the .vibe/agents mirror installed in the disposable home's agents directory, judged from the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-024 -- A request that needs a repository agent spawns it from the .vibe/agents mirror
@@ -68,7 +68,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
           "optional": true
         }
       ],
-      "check": "mkdir -p \"$VIBE_HOME/agents\" && cp \"$CONVERSATION_REPO_ROOT\"/.vibe/agents/prompt-improver.toml \"$VIBE_HOME/agents/\" && test -f \"$VIBE_HOME/agents/prompt-improver.toml\" && echo agent-mirrored"
+      "check": "if ls -d \"$VIBE_HOME\"/logs/session/unified/child-* >/dev/null 2>&1; then echo child-spawned-before-mirror; exit 1; fi; mkdir -p \"$VIBE_HOME/agents\" && cp \"$CONVERSATION_REPO_ROOT\"/.vibe/agents/prompt-improver.toml \"$VIBE_HOME/agents/\" && test -f \"$VIBE_HOME/agents/prompt-improver.toml\" && echo agent-mirrored"
     },
     {
       "id": "restart",
@@ -99,7 +99,7 @@ The runner's home is created at launch with only `config.toml` and the rendered 
 
 ### Expected
 
-Turn `delegate-before-mirror` installs the profile. Turn `restart` confirms the mirrored profile is still in the home and reloads it. Turn `delegate` finds the child session the post-restart spawn created, running under the mirrored `prompt-improver` profile. Before the mirror exists the spawn is refused, so no child session appears for turn one.
+Turn `delegate-before-mirror` first confirms that no child session exists yet, then installs the profile. Turn `restart` confirms the mirrored profile is still in the home and reloads it. Turn `delegate` finds the child session the post-restart spawn created, running under the mirrored `prompt-improver` profile. Before the mirror exists the spawn is refused, so no child session appears for turn one.
 
 ### Evidence
 

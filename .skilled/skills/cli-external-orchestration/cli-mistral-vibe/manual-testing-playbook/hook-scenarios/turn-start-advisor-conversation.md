@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-003 -- Turn-start advisor adds the skill advisor brief once"
 description: "This scenario validates that the Vibe turn-start pre_agent hook injects the skill advisor brief on the first turn and delivers nothing for an identical repeat message, judged from the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-003 -- Turn-start advisor adds the skill advisor brief once
@@ -67,12 +67,12 @@ Operators run the conversation script through the shared runner with the `vibe` 
           "optional": true
         }
       ],
-      "check": "sid=$(ls \"$VIBE_HOME/logs/session/unified\" | head -1); h=$(printf '%s' \"$sid\" | shasum -a 256 | cut -c1-16); f=\"$TMPDIR/speckit-advisor/vibe-turn-start/$h.head\"; test -s \"$f\" || { echo no-head-receipt; exit 1; }; stat -f %m \"$f\" > \"$CONVERSATION_RUN_DIR/receipt-turn1.txt\"; grep -rqsF 'Added context for the model: \\\"Advisor:' \"$VIBE_HOME/logs/session/unified\" || { echo context-does-not-lead-with-advisor; exit 1; }; echo \"brief-delivered receipt=$(cat \"$CONVERSATION_RUN_DIR/receipt-turn1.txt\")\""
+      "check": "sid=$(ls \"$VIBE_HOME/logs/session/unified\" | head -1); h=$(printf '%s' \"$sid\" | shasum -a 256 | cut -c1-16); f=\"$TMPDIR/speckit-advisor/vibe-turn-start/$h.head\"; test -s \"$f\" || { echo no-head-receipt; exit 1; }; stat -f %m \"$f\" > \"$CONVERSATION_RUN_DIR/receipt-turn1.txt\"; grep -rohF '\"kind\":\"hook_run_completed\",\"scope\":\"pre_agent\"' \"$VIBE_HOME/logs/session/unified\" | wc -l | tr -d ' ' > \"$CONVERSATION_RUN_DIR/pre-agent-runs-turn1.txt\"; grep -rqsF 'Added context for the model: \\\"Advisor:' \"$VIBE_HOME/logs/session/unified\" || { echo context-does-not-lead-with-advisor; exit 1; }; echo \"brief-delivered receipt=$(cat \"$CONVERSATION_RUN_DIR/receipt-turn1.txt\")\""
     },
     {
       "id": "advisor-2",
       "send": "I need to write a README for a brand new skill, where do I start?",
-      "check": "sid=$(ls \"$VIBE_HOME/logs/session/unified\" | head -1); h=$(printf '%s' \"$sid\" | shasum -a 256 | cut -c1-16); f=\"$TMPDIR/speckit-advisor/vibe-turn-start/$h.head\"; test -s \"$f\" || { echo head-receipt-missing; exit 1; }; now=$(stat -f %m \"$f\"); first=$(tr -d ' ' < \"$CONVERSATION_RUN_DIR/receipt-turn1.txt\"); test \"$now\" = \"$first\" && echo \"no-second-brief receipt=unchanged-since-turn1\""
+      "check": "sid=$(ls \"$VIBE_HOME/logs/session/unified\" | head -1); h=$(printf '%s' \"$sid\" | shasum -a 256 | cut -c1-16); f=\"$TMPDIR/speckit-advisor/vibe-turn-start/$h.head\"; test -s \"$f\" || { echo head-receipt-missing; exit 1; }; n=$(grep -rohF '\"kind\":\"hook_run_completed\",\"scope\":\"pre_agent\"' \"$VIBE_HOME/logs/session/unified\" | wc -l | tr -d ' '); base=$(tr -d ' ' < \"$CONVERSATION_RUN_DIR/pre-agent-runs-turn1.txt\"); [ \"$n\" -gt \"$base\" ] || { echo pre-agent-hooks-did-not-run-on-turn2 base=$base now=$n; exit 1; }; now=$(stat -f %m \"$f\"); first=$(tr -d ' ' < \"$CONVERSATION_RUN_DIR/receipt-turn1.txt\"); test \"$now\" = \"$first\" && echo \"no-second-brief receipt=unchanged-since-turn1 pre-agent-runs=$base->$n\""
     }
   ]
 }
@@ -82,7 +82,7 @@ Turn 2 sends turn 1's message word for word, because the suppression under test 
 
 ### Expected
 
-Turn `advisor-1` finds the head receipt for the session and a journal notice whose context leads with `Advisor:`, then saves the receipt's modification time. Turn `advisor-2` finds that time unchanged, so the second turn injected nothing.
+Turn `advisor-1` finds the head receipt for the session and a journal notice whose context leads with `Advisor:`, then saves the receipt's modification time. Turn `advisor-2` finds that time unchanged and more completed `pre_agent` hook-run notices than turn 1 left, so the turn-start hook ran on the second turn and injected nothing.
 
 ### Evidence
 
@@ -90,7 +90,7 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 
 ### Pass / Fail
 
-- **Pass**: turn 1 records the brief in the journal with a head receipt, and turn 2 leaves the receipt untouched.
+- **Pass**: turn 1 records the brief in the journal with a head receipt, and turn 2 runs the hook again but leaves the receipt untouched.
 - **Fail**: turn 1 records no brief, or turn 2 rewrites the receipt.
 
 ### Failure Triage

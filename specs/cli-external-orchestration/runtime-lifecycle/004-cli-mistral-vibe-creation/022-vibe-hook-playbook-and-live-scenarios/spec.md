@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/383-mistral-vibe-runtime` |
 | **Parent Spec** | ../spec.md |

@@ -2,7 +2,7 @@
 # DOCTOR: RUNTIME MIRROR PARITY (READ-ONLY DIAGNOSTIC)
 # ─────────────────────────────────────────────────────────────────
 role: Diagnostic Operator reporting whether every runtime config dir still mirrors its canonical source
-purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor, .devin, .pi and .dsh derive from .skilled, plus adapter-path resolution drift in the Claude, Codex, Cursor and Devin hook fallback chains
+purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor, .devin, .pi, .dsh and .vibe derive from .skilled, plus adapter-path resolution drift in the Claude, Codex, Cursor and Devin hook fallback chains
 action: Run every upstream-assets checker plus the hook-adapter fallback health checks -> aggregate their verdicts -> report per-surface drift
 skill_owner: ".skilled/skills/system-skilled-doctor/"
 
@@ -44,6 +44,9 @@ upstream_assets:
   dsh_skills: ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs"
   dsh_prompts: ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs"
   dsh_agents: ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs"
+  vibe_skills: ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs"
+  vibe_prompts: ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs"
+  vibe_agents: ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs"
 
 # ─────────────────────────────────────────────────────────────────
 # HOOK-ADAPTER FALLBACK HEALTH CHECKS
@@ -153,6 +156,9 @@ execution:
     - "Run upstream_assets.dsh_skills, the command node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check. Covers the generated .dsh/skills/ links. When .dsh/ is absent, report the row as n/a (no .dsh/ tree) without running the check; an n/a row leaves STATUS unchanged, and this run never creates that directory. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.dsh_prompts, the command node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check. Covers the generated .dsh/prompts/*.md files. When .dsh/ is absent, report the row as n/a (no .dsh/ tree) without running the check; an n/a row leaves STATUS unchanged, and this run never creates that directory. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.dsh_agents, the command node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check. Covers the generated .dsh/agents/*.patch.yml files. When .dsh/ is absent, report the row as n/a (no .dsh/ tree) without running the check; an n/a row leaves STATUS unchanged, and this run never creates that directory. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.vibe_skills, the command node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs --check. Covers the generated .vibe/skills/ links. When .vibe/ is absent, report the row as n/a (no .vibe/ tree) without running the check; an n/a row leaves STATUS unchanged, and this run never creates that directory. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.vibe_prompts, the command node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs --check. Covers the generated .vibe/prompts/*.md files. When .vibe/ is absent, report the row as n/a (no .vibe/ tree) without running the check; an n/a row leaves STATUS unchanged, and this run never creates that directory. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.vibe_agents, the command node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs --check. Covers the generated .vibe/agents/*.toml profiles. When .vibe/ is absent, report the row as n/a (no .vibe/ tree) without running the check; an n/a row leaves STATUS unchanged, and this run never creates that directory. Exit 0 = in sync, 1 = drift."
     - "For each row in hook_adapter_fallback_health_checks, run its file_exists check (a plain path-existence read, no execution of the adapter or the shell command that wraps it). Collect every row whose path does not resolve as a degraded hook adapter, keyed by host:event:path."
     - "Aggregate: report each surface with its own verdict rather than a single pass/fail, so the operator learns which mirror moved."
 
@@ -160,7 +166,7 @@ execution:
 # OUTPUT
 # ─────────────────────────────────────────────────────────────────
 output: |
-  STATUS=OK when every checker reports in sync, or n/a for a DSH row while its runtime tree is absent, and the
+  STATUS=OK when every checker reports in sync, or n/a for a DSH or Vibe row while its runtime tree is absent, and the
   Codex hook approval check reports in sync or skip.
   STATUS=WARN when the Codex hook approval check reports an unapproved or absent advisor entry and no checker
   reports drift: show its lines, including the repair line it prints, without adding a drift surface.
@@ -175,8 +181,12 @@ output: |
     dsh skills       -> node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs
     dsh prompts      -> node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs
     dsh agents       -> node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs
+    vibe skills      -> node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs
+    vibe prompts     -> node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs
+    vibe agents      -> node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs
     command catalog  -> update the root and family indexes, group counts, and hub metadata from command frontmatter
-  While .dsh/ is absent the three DSH rows read n/a (no .dsh/ tree), never in sync, and leave
+  While .dsh/ is absent the three DSH rows read n/a (no .dsh/ tree), and while .vibe/ is absent the three
+  Vibe rows read n/a (no .vibe/ tree); neither reads in sync, and both leave
   STATUS unchanged: the mirror does not exist yet, and this run never creates it. Their repair lines are the generators without --check, run once the tree exists.
   The agent roster check has no generator. Its drift is repaired by the runtime-mirrors generator or by hand
   for the authored surfaces (.skilled/agents and .claude/agents).

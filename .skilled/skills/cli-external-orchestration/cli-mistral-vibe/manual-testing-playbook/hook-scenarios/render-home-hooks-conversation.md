@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-022 -- Rendered home hooks bind every repository hook"
 description: "This scenario validates that a Vibe session started from a rendered home hooks file binds every entry of the repository's .vibe/hooks.toml, judged from the session journal's hook binding list, the session-start context binding and the cleanup log written at session close."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # VIB-HK-022 -- Rendered home hooks bind every repository hook
@@ -52,12 +52,13 @@ Operators run the conversation script through the shared runner with the `vibe` 
     "vibe"
   ],
   "setup": [
-    "log=${SESSION_CLEANUP_LOG_PATH:-${CLAUDE_SESSION_CLEANUP_LOG_PATH:-$HOME/.local/share/session-cleanup.log}}; mkdir -p \"$(dirname \"$log\")\"; before=$(wc -l < \"$log\" 2>/dev/null || echo 0); printf '%s\\n' \"$before\" | tr -d ' ' > .cleanup-lines-before",
+    "log=/private/tmp/vib-hk-022-session-cleanup.log; mkdir -p \"$(dirname \"$log\")\"; before=$(wc -l < \"$log\" 2>/dev/null || echo 0); printf '%s\\n' \"$before\" | tr -d ' ' > .cleanup-lines-before",
     "printf 'SCENARIO_PLACEHOLDER_KEY=placeholder-not-a-secret\\n' > \".$(printf env)\"",
     "mkdir -p .skilled/skills/.state"
   ],
   "env": {
-    "SYSTEM_SPEC_GATE_DISABLED": "1"
+    "SYSTEM_SPEC_GATE_DISABLED": "1",
+    "SESSION_CLEANUP_LOG_PATH": "/private/tmp/vib-hk-022-session-cleanup.log"
   },
   "turns": [
     {
@@ -98,6 +99,8 @@ Operators run the conversation script through the shared runner with the `vibe` 
 ```
 
 Vibe journals the turn hooks it compiles into Core bindings as `user:<name>` ids, but it runs `session_start` and `session_end` as host hooks outside that list. The session-start entry is therefore proven by `builtin:session_start_context`, which Vibe binds only when at least one `session_start` hook exists, and the session-end entry by the cleanup log line its hook writes at the close. The check reads names from the repository file and searches the whole journal tree, because Vibe compacts most records into chunks and only the tail stays in the journal's jsonl files. The spec gate is switched off because the scenario judges only the bindings and the read-only turn should not open a gate.
+
+The script points `SESSION_CLEANUP_LOG_PATH` at a log of its own under `/private/tmp`, and the setup line names the same path, because the setup step runs without the script environment. A machine-wide log would let another session's line match the close check, or push this session's line out of the last position.
 
 ### Expected
 
