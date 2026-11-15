@@ -1,0 +1,33 @@
+be3d037066c
+$ bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json
+ERROR: Not on a feature branch. Current: worktrees/384-agent-alignment-follow-ups
+Feature branches should be: 001-feature-name (or main/master/trunk for trunk-based operators)
+exit=1
+$ SPECIFY_FEATURE=agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json
+{"FEATURE_DIR":"/Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups/specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule","AVAILABLE_DOCS":[]}
+exit=0
+$ rg -n 'check-prerequisites.sh' .skilled/commands/speckit/assets/speckit-plan.yaml .skilled/commands/speckit/assets/speckit-implement.yaml .skilled/commands/speckit/assets/speckit-complete.yaml
+.skilled/commands/speckit/assets/speckit-implement.yaml:299:      - { id: prerequisites_complete, from: step_1_review_plan_and_spec, criteria: ".skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh exited 0 and spec.md and plan.md exist." }
+.skilled/commands/speckit/assets/speckit-implement.yaml:375:    - Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json
+.skilled/commands/speckit/assets/speckit-plan.yaml:602:    activities: [Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --paths-only, Load plan.md, Fill Technical Context, Fill Constitution Check, "Phase 0: Record each unknown in the plan.md Technical Context and name /deep:research for an unknown that needs investigation. Read an existing research/research.md as input and never write it", "Phase 1: Define component structure/interfaces", Generate Testing Strategy, Generate Success Metrics, Import Risk Matrix from spec, Generate Dependencies Tables, "Import Planning Packet fields into the Affected Surfaces table for fix_bug/remediation packets", Generate Phase 2-4 outlines, "Run the restraint pass on the planned components and files before the plan is final: name what fails today without each new file, module, option, layer or dependency"]
+.skilled/commands/speckit/assets/speckit-complete.yaml:748:    - Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --paths-only to get feature paths
+.skilled/commands/speckit/assets/speckit-complete.yaml:808:    - Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json to get FEATURE_DIR
+.skilled/commands/speckit/assets/speckit-complete.yaml:879:    - Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --require-tasks
+exit=0
+$ rg -c 'SPECIFY_FEATURE' .skilled/commands/speckit/assets/speckit-plan.yaml .skilled/commands/speckit/assets/speckit-implement.yaml .skilled/commands/speckit/assets/speckit-complete.yaml .skilled/skills/system-spec-kit/runtime/cli/setup/README.md
+exit=1
+$ node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js 2>&1 | tail -3
+PASS: T-EM7: shared save-context tail carries the writer call and the post-save rule
+
+Result: passed=143 failed=0
+exit=0
+$ node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs 2>&1 | grep -E 'ℹ (pass|fail)'
+ℹ pass 17
+ℹ fail 0
+exit=0
+$ (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --config vitest.config.ts tests/unit/speckit-autopilot-contract.vitest.ts 2>&1 | grep -E 'Tests ')
+      Tests  5 passed (5)
+exit=0
+$ (cd .skilled/skills/system-spec-kit/runtime/cli && npx --no-install vitest run --config ../../vitest.config.ts --project cli tests/yaml-intake-event-payloads.vitest.ts 2>&1 | grep -E 'Tests ')
+      Tests  7 passed (7)
+exit=0
