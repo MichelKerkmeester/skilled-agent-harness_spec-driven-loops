@@ -95,6 +95,8 @@ No new file, module, option, layer or dependency. `ADV/skill-advisor-cli.ts` is 
 
 **Widening, stated.** The daemon now also reads the master switch, its `MK_` alias, the canonical name, the other aliases and truthy values from its own environment, where it read two names set to `1`. The launcher's allowlist forwards none of these names and not `HOOK_FLAGS_CONFIG` (Measured Behavior, the `rg` that exits 1), so a daemon the launcher starts sees no change. Only a daemon started outside it, such as an MCP server a runtime starts from a shell that exported the switch, sees it, and abstaining there is what that switch means.
 
+**The Python compat path.** `scripts/skill_advisor.py` checks `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` set to exactly `1` itself, and its native path runs `handleAdvisorRecommend` in a Node bridge whose environment allowlist (`ADV/scripts/skill_advisor.py:214-235`) holds no switch name and no `HOOK_FLAGS_CONFIG`. With D2 that bridge reads no flags file either, so the compat contract keeps its exact-`1` rule. Without D2 a flags-file line would make the Python native path abstain.
+
 **Residual.** An `advisor_recommend` MCP tool call that a daemon answers does not abstain under a flags-file line alone. That path is the MCP tool, not the Gate 2 direct call, and no caller-side check exists on it. Recorded, not built.
 
 ### Data Flow
@@ -122,6 +124,7 @@ No review Planning Packet applies. The gap is phase 028's assumption A4, and eve
 | `ADV/tests/handlers/advisor-recommend.vitest.ts` `afterEach` (`:112-124`) | Deletes two names | update to strip the list and `HOOK_FLAGS_CONFIG` before and after each case (T005) | `VX` of the file with `SYSTEM_SKILL_ADVISOR_DISABLED=1` exported |
 | `.skilled/bin/system-skill-advisor-launcher.cjs` `CHILD_ENV_ALLOWLIST` (`:131-189`) | Forwards no switch name and no `HOOK_FLAGS_CONFIG` | unchanged, must stay so | The allowlist `rg` exits 1 and `G diff --quiet BASE -- $LB` exits 0 (T012) |
 | `ADV/schemas/compat-contract.json`, `ADV/lib/compat/contract.ts:7`, `ADV/lib/compat/daemon-probe.ts:47`, `ADV/scripts/skill_advisor.py` | The Python CLI compat contract, `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` set to exactly `1` | unchanged, not on the direct-call path | `G diff --quiet BASE --` over the four exits 0 (T012) |
+| `ADV/scripts/skill_advisor.py` native bridge (`:116`, `:187`, allowlist `:214-235`) | Runs `handleAdvisorRecommend` in Node with an allowlisted environment that holds no switch name and no `HOOK_FLAGS_CONFIG` | not a consumer of the change, because D2 keeps the handler off the flags file | `G diff --quiet BASE -- $ADV/scripts/skill_advisor.py` exits 0 (T013) |
 | `.opencode/plugins/system-skill-advisor.js:206`, `SAD/hooks/claude/user-prompt-submit.ts:73`, `SAD/hooks/dsh/prompt-advisor.mjs` | The adapters, the parity reference | not a consumer, unchanged | `VP` and the `hook=` column of the matrix |
 | `SAD/hooks/skill-advisor-hook.md` section 6 | The canonical row and the paragraph say the other names act on the adapters only | update (T007) | `rg` for the new sentence and for the removed one |
 | `SAD/manual-testing-playbook/compat-and-disable/global-disable-flag.md` step 1 | Checks only the legacy name | update (T008) | `rg` for the new call and signal |
