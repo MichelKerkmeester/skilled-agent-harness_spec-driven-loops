@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -122,6 +122,13 @@ Every skill and release changelog reads in short, plain sentences that pass the 
 | 10 | 010-sk-design-changelogs/ | 71 sk-design changelogs | Complete |
 | 11 | 011-sk-git-changelogs/ | 54 sk-git changelogs | Complete |
 | 12 | 012-small-skill-changelogs/ | 98 changelogs of sk-prompt, cli-classifier, mcp-code-mode, cli-orca and system-skilled-doctor | Complete |
+
+### Program Result
+
+All 12 phases are Complete. A final check ran `measure-voice.py` and the house checker's sentence rules over all 1,571 files in `scratch/scope-list.txt`. Sentences average 8.6 words, against 12.8 in the problem statement's count of 1,573 files. One sentence runs past 22 words, against 3,756 in that count. 1,570 files pass both sentence rules. Two files are recorded exceptions:
+
+- `.skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md` keeps its original text and fails both sentence rules. Three waves restored it, because each draft lost its "as each unit needed" condition. Phase 012's evidence records the last finding.
+- `.skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.10.0.md` keeps one voice-scan hard blocker. The word is part of the name `harness-diagram`, which the entry must keep. Phase 010 records it.
 
 ### Phase Transition Rules
 

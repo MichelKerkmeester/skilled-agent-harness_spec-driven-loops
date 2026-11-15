@@ -116,7 +116,7 @@ Each row identifies one child phase and its purpose.
 | 4 | `004-changelog-section-spacing/` | Apply consistent spacing to entries and release notes | Complete |
 | 5 | `005-concise-release-format/` | Bound the expanded format, model it on the v4.0.1.0 entry and block drafts that break its ceilings | Complete |
 | 6 | `006-remove-release-size-limit/` | Remove the file-total line ceiling so an entry runs as long as its release needs | Complete |
-| 7 | `007-changelog-voice-rewrite/` | Rewrite the 1,571 skill and release changelogs to the Human Voice Rules with shorter sentences | Draft |
+| 7 | `007-changelog-voice-rewrite/` | Rewrite the 1,571 skill and release changelogs to the Human Voice Rules with shorter sentences | Complete |
 
 ### Phase Transition Rules
 

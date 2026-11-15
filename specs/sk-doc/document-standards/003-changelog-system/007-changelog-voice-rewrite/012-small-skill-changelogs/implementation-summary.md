@@ -8,24 +8,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs"
-    last_updated_at: "2026-11-15T19:21:37Z"
+    last_updated_at: "2026-11-15T19:24:52Z"
     last_updated_by: "generate-context"
-    recent_action: "Rewrote the small-skill changelogs"
-    next_safe_action: "Close the 007 parent packet"
+    recent_action: "Closed the changelog voice rewrite program"
+    next_safe_action: "Await the operator decision to merge the worktree branch to main"
     packet_purpose: "Purpose: Every changelog on the list reads in short plain sentences with every fact kept."
     blockers: []
     key_files:
-      - "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/scratch/lists/012.txt"
-      - "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/scratch/state.jsonl"
+      - "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/spec.md"
     session_dedup:
-      fingerprint: "sha256:777720e1a19f32bd5da254ae5f3286995310b395a519883dd8239e89c29c4453"
+      fingerprint: "sha256:e2f296ab0ed2c494630f0198c1127fde6ec15aa6750df05ad4872515f245adc2"
       session_id: "scaffold-012-small-skill-changelogs"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "079f7de2-cb32-4e35-b608-1c6f6425d281"
       workspace: "/Users/michelkerkmeester/worktrees/public/401-changelog-voice-rewrite"
-      savedAt: "2026-11-15T19:21:37Z"
+      savedAt: "2026-11-15T19:24:52Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The changelogs of the five small skills hold long sentences",
     "created_at": "2026-11-15T06:37:56Z",
-    "last_save_at": "2026-11-15T19:21:37.353Z",
+    "last_save_at": "2026-11-15T19:24:52.095Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e945aacb6336a8cda4679008035ca224c478ff10d21f2f74a33d23091b83469",
+    "source_fingerprint": "sha256:158eeb9c9e10e6cf8354cc0068010baf5003ebf8c8a22bb07cc9237232022d02",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "19bdc1811703ec0d2d462145462d7530f1184ed6012f0e37e400197ae4d3c669",
       "plan.md": "590f07834d8d33f88cbeffa082777c24bed024f1fecb1b4f1bf2650f52ee0799",
       "tasks.md": "62de742749919f0a0db9975ab5fa0f89f3dca400916b0f84860165dd1e1230b9",
-      "implementation-summary.md": "c1ed8677c457e69f9b82dcd2950b54aeab91f82abe347676073fe76ac8eb9cf0"
+      "implementation-summary.md": "b86a7efbc6f7c201feca616fec0cbaef43bba9064179abe3a9061832c7a08eea"
     },
     "last_active_at": null
   }

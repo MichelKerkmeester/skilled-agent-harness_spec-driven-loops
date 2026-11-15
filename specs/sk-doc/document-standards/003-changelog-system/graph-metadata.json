@@ -40,7 +40,7 @@
       "searchable"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -90,18 +90,18 @@
     ],
     "causal_summary": "The changelog template prescribed machine-era tables and stale paths, and its workflow did not enforce the concise narrative style established by v4.0.0.0",
     "created_at": "2026-10-31T13:41:22.552Z",
-    "last_save_at": "2026-11-15T19:21:37.380Z",
+    "last_save_at": "2026-11-15T19:24:52.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:aaac7e01b1a537358ffae5c8b77e782f9207de3e87164e0541b363eee0e230ab",
+    "source_fingerprint": "sha256:5f6260a6b8d81943683f2b5e38c38de498a7c208720ddcde4ee722bc10c467fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee20adc62026f46ccd6064b29cf293584ec73c9a12863c7689e524e618b71309"
+      "spec.md": "6fca73f1d134515f2d45d9bf9ab5574cb779380496eae2a02ac1db4bcd8f3212"
     },
     "last_active_child_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite",
-    "last_active_at": "2026-11-15T19:21:37.380Z"
+    "last_active_at": "2026-11-15T19:24:52.118Z"
   }
 }
