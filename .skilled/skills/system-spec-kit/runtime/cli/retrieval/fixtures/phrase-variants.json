@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5f45e98f3d23153de2fccb250b8a4d9eef4d764a78d6566541c7d46ddcabff2f",
+  "manifestHash": "357f309469ff03428ec21a7eabccb7637cda99e76c38f5bd45b3cd280d2c12a0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -82154,6 +82154,9 @@
     "phase 15 results": [
       "phase 15 results"
     ],
+    "phase 15 review verdict gate rule": [
+      "phase 15 review verdict gate rule"
+    ],
     "phase 15 routing data alignment": [
       "phase 15 routing data alignment"
     ],
@@ -98811,6 +98814,21 @@
     ],
     "review verdict conditional six findings": [
       "review verdict conditional six findings"
+    ],
+    "review verdict gate rule": [
+      "review verdict gate rule"
+    ],
+    "review verdict gate rule acceptance criteria": [
+      "review verdict gate rule acceptance criteria"
+    ],
+    "review verdict gate rule implementation summary": [
+      "review verdict gate rule implementation summary"
+    ],
+    "review verdict gate rule plan": [
+      "review verdict gate rule plan"
+    ],
+    "review verdict gate rule tasks": [
+      "review verdict gate rule tasks"
     ],
     "review wording fixes": [
       "review wording fixes"
