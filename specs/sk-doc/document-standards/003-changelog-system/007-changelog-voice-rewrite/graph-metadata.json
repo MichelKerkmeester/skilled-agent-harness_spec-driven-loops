@@ -43,7 +43,7 @@
       "caps"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "scratch/scope-list.txt",
@@ -121,18 +121,18 @@
     ],
     "causal_summary": "The changelog standard caps a sentence at 22 words and an entry at 10 words a sentence on average",
     "created_at": "2026-11-15T06:37:25Z",
-    "last_save_at": "2026-11-15T18:58:18.073Z",
+    "last_save_at": "2026-11-15T19:21:37.380Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:53906440770eeffc0b3b8cdac45d8d5af3b433f18e00a3e128f59e5f9739789b",
+    "source_fingerprint": "sha256:96611f3c3dd58cedcd72787eea4ed3b1af8a0ae53b722f209c719df4b9ced867",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8db6e4f27b4aae6b22469e9363aaf9be625526e9543f33846d883af00c0f3fac"
+      "spec.md": "013ae44ae100c402dfb226d540cb4053a264b7954432780f63f70815565add9b"
     },
-    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs",
-    "last_active_at": "2026-11-15T18:58:18.073Z"
+    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs",
+    "last_active_at": "2026-11-15T19:21:37.380Z"
   }
 }

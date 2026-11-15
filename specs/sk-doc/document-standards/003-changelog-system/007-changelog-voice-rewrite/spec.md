@@ -121,7 +121,7 @@ Every skill and release changelog reads in short, plain sentences that pass the 
 | 9 | 009-system-skill-advisor-changelogs/ | 74 system-skill-advisor changelogs | Complete |
 | 10 | 010-sk-design-changelogs/ | 71 sk-design changelogs | Complete |
 | 11 | 011-sk-git-changelogs/ | 54 sk-git changelogs | Complete |
-| 12 | 012-small-skill-changelogs/ | 98 changelogs of sk-prompt, cli-classifier, mcp-code-mode, cli-orca and system-skilled-doctor | Pending |
+| 12 | 012-small-skill-changelogs/ | 98 changelogs of sk-prompt, cli-classifier, mcp-code-mode, cli-orca and system-skilled-doctor | Complete |
 
 ### Phase Transition Rules
 
