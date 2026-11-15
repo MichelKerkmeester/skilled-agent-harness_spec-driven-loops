@@ -28,6 +28,7 @@ import {
   promptSessionId,
   replayOffer,
 } from '../scripts/routing-accuracy/command-offer.mjs';
+import { MARK } from '../scripts/routing-accuracy/prepare-behaviour-arena.mjs';
 
 const OFFERED_HEAD = 'Advisor: live; use sk-git → /doctor:git hooks (ask) 0.82/0.12 pass.';
 const BRIEF = 'Advisor: live; use sk-doc → /create:readme (start) 0.82/0.12 pass.';
@@ -570,7 +571,7 @@ describe('backfillRunLog', () => {
     const dir = mkdtempSync(join(tmpdir(), 'command-offer-'));
     const checkoutDir = join(dir, 'checkout');
     mkdirSync(join(checkoutDir, '.git'), { recursive: true });
-    writeFileSync(join(checkoutDir, '.git', 'skilled-behaviour-arena'), '');
+    writeFileSync(join(checkoutDir, '.git', MARK), '');
     const outPath = join(dir, 'runs-out.jsonl');
     const inPath = writeRunLog(dir, [
       { runtime: 'claude', rowId: 'row-one', arm: 'pre', locator: { projectDir: checkoutDir }, exit: 0, changedPaths: [] },

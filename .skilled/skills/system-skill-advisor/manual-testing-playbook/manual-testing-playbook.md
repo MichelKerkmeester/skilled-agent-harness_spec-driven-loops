@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.12.0
+version: 0.8.13.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -34,8 +34,6 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome, its 
 ## 1. OVERVIEW
 
 This playbook provides 53 scenario files across 9 categories, one of them a live conversation scenario, validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion and `PC` for Python compatibility.
-
-> **Numbering note (gap-09).** The directory layout skips slot `09--*` between `scorer-fusion` and `python-compat`. This mirrors the `feature-catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
 Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual-testing-playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 42 scenarios. The category tree holds 53 scenario files named by feature, none of them `NNN-*.md`, and still no `CL-002`. This root playbook reflects the live file inventory.
 
@@ -81,7 +79,7 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 - Exit code for shell commands.
 - Hook stdout and stderr captured separately when hook scripts are involved.
 - Final user-facing verdict with rationale.
-- Triage notes for every `FAIL`, `PARTIAL` or `SKIP`.
+- Triage notes for every `FAIL` or `SKIP`.
 
 ---
 
@@ -100,7 +98,7 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 ### Inputs Required
 
 1. `manual-testing-playbook.md`.
-2. Referenced per-feature files under `manual-testing-playbook/NN__category_name/`.
+2. Referenced per-feature files under each category folder, such as `manual-testing-playbook/native-cli-tools/`.
 3. Scenario execution evidence.
 4. Feature-to-scenario coverage map.
 5. Triage notes for all non-pass outcomes.
@@ -118,14 +116,13 @@ For each executed scenario, check:
 
 Scenario verdict:
 - `PASS`: all acceptance checks true.
-- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete.
 - `FAIL`: expected behavior missing, contradictory output appears, prompt text leaks or a critical check failed.
 - `SKIP`: a real sandbox, dependency or runtime blocker prevents execution and is documented.
 
 ### Feature Verdict Rules
 
 - `PASS`: all mapped scenarios for the feature are `PASS`.
-- `PARTIAL`: at least one mapped scenario is `PARTIAL`, none are `FAIL`.
+- `SKIP`: no mapped scenario is `FAIL` and at least one is `SKIP`.
 - `FAIL`: any mapped scenario is `FAIL`.
 
 ### Release Readiness Rule
@@ -152,7 +149,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 ### Recommended Wave Plan
 
 - **Wave 1**: `NC-001..NC-012` native command-surface behavior.
-- **Wave 2**: `CL-001`, `CL-004..CL-010` runtime hooks, the OpenCode plugin, CLI fallback and the goal plugin.
+- **Wave 2**: `CL-001`, `CL-005..CL-010` runtime hooks, the OpenCode plugin, CLI fallback and the goal plugin.
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
@@ -186,7 +183,7 @@ This category validates native command-surface scenarios `NC-001..NC-012`.
 
 ## 8. CLI HOOKS AND PLUGIN
 
-This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-010`.
+This category validates cli hooks and plugin scenarios `CL-001`, `CL-005..CL-010`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -347,7 +344,7 @@ The catalog uses 7 groups. The playbook uses 9 categories. Mapping is intentiona
 | `scorer-fusion` | `scorer-fusion` | 1:1 mapping |
 | `cli-surface` | `native-cli-tools` plus `cli-hooks-and-plugin` | Catalog group split across 2 playbook categories: native command-surface scenarios in 01, CLI hook plus plugin invocation scenarios in 02 |
 | `hooks-and-plugin` | `cli-hooks-and-plugin` (primary) plus `compat-and-disable` (rollback states) | Catalog group split across 2 playbook categories: happy-path hook behavior in 02, disable plus rollback flags in 03 |
-| `python-compat` | `python-compat` | 1:1 mapping (note gap-09 is intentional per playbook §1) |
+| `python-compat` | `python-compat` | 1:1 mapping |
 | (none) | `compat-and-disable` | Compat plus disable flags cut across multiple catalog groups. No single catalog group owns them |
 | (none) | `operator-h5` | H5 operator state scenarios cut across catalog groups. No single catalog group owns them |
 

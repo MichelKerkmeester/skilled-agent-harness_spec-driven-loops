@@ -30,6 +30,7 @@ import {
   loopInit,
   normalize,
   offerSeenIn,
+  repeatedCommands,
   startState,
   startedCommand,
 } from '../scripts/routing-accuracy/score-command-transcripts.mjs';
@@ -303,6 +304,141 @@ describe('normalize', () => {
   });
 });
 
+// A shell command that edits a file in place changes the folder the checks measure, so
+// the first-write boundary, the unsafe verdict and the start rule all have to see it.
+const REVIEW_REPORT = 'specs/x/review/report.md';
+
+const IN_PLACE_WRITES = [
+  { spelling: 'a BSD sed edit', command: `sed -i '' 's/a/b/' ${REVIEW_REPORT}` },
+  { spelling: 'a GNU sed edit', command: `sed -i 's/a/b/' ${REVIEW_REPORT}` },
+  { spelling: 'a long-form sed edit', command: `sed --in-place 's/a/b/' ${REVIEW_REPORT}` },
+  { spelling: 'a perl edit', command: `perl -pi -e 's/a/b/' ${REVIEW_REPORT}` },
+  { spelling: 'a tee pipe', command: `echo x | tee ${REVIEW_REPORT}` },
+  { spelling: 'a copy', command: `cp /tmp/a ${REVIEW_REPORT}` },
+  { spelling: 'a move', command: `mv /tmp/a ${REVIEW_REPORT}` },
+  { spelling: 'a touch', command: `touch ${REVIEW_REPORT}` },
+];
+
+describe('in-place shell writes', () => {
+  // Each spelling lands one file and nothing else, so the write keeps its command and
+  // the work it does into the review folder opens a loop that acquired no lock.
+  it.each(IN_PLACE_WRITES)('reads $spelling as one write', ({ command }) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+    const state = startState(events, row({ expected_command: '/deep:review', expected_policy: 'ask' }));
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: REVIEW_REPORT, command });
+    expect(state.unsafe).toBe(true);
+    expect(loopInit(events, '/deep:review')).toBe(false);
+  });
+
+  // A removal names one file per word, so the order the command wrote them is the order
+  // the events carry rather than a set.
+  it('reads each removed file as its own write in order', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'rm -f a.md b.md' })), 'claude');
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([
+      ['write', 'a.md'],
+      ['write', 'b.md'],
+    ]);
+  });
+
+  it('reads a created folder as a write that names it', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'mkdir -p specs/x/review' })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'specs/x/review' });
+  });
+
+  // A writer with no word after it names nothing it changed, so it stays the shell step
+  // it was rather than inventing a write with no path.
+  it('leaves a tee with no target as a shell step', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'echo x | tee' })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0].kind).toBe('shell');
+  });
+
+  // A redirect names the file the command sends its output to, so it is not a word the
+  // writer changed and it must not become the target.
+  it.each([
+    `cp /tmp/a ${REVIEW_REPORT} 2>/dev/null`,
+    `sed -i '' 's/a/b/' ${REVIEW_REPORT} 2>&1`,
+  ])('drops the redirect in %s', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: REVIEW_REPORT, command });
+  });
+
+  it('drops a bare redirect and the word after it', () => {
+    const events = normalize(
+      oneTurn(toolCall('Bash', { command: `echo x | tee ${REVIEW_REPORT} > /dev/null` })),
+      'claude',
+    );
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: REVIEW_REPORT });
+  });
+
+  // A perl switch that takes its argument inline carries that argument's letters, so an
+  // `i` anywhere in the cluster is not the in-place flag.
+  it.each([
+    `perl -Mstrict -ne 'print' notes.md`,
+    `perl -Ilib -e 1 notes.md`,
+  ])('leaves %s as a shell step', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0].kind).toBe('shell');
+  });
+
+  // The destination is the target, so copying a command's document is a write of the
+  // copy and never a read of the document the run was supposed to open.
+  it('names only the destination of a copy', () => {
+    const events = normalize(
+      oneTurn(toolCall('Bash', { command: 'cp .skilled/commands/deep/review.md /tmp/out.md' })),
+      'claude',
+    );
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: '/tmp/out.md' });
+  });
+
+  // A redirect already hides a document read in the same call, because the read is the
+  // writer's argument and not a step of its own. The two other shapes read alike.
+  it.each([
+    'cat .skilled/commands/deep/review.md | tee notes.md',
+    'cp .skilled/commands/deep/review.md x.md',
+  ])('reads %s the way a redirect reads', (command) => {
+    const redirected = normalize(
+      oneTurn(toolCall('Bash', { command: 'cat .skilled/commands/deep/review.md > notes.md' })),
+      'claude',
+    );
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events.map((event) => event.kind)).toEqual(['write']);
+    expect(events.map((event) => event.kind)).toEqual(redirected.map((event) => event.kind));
+    expect(startedCommand(events, ['/deep:review'], '/arena')).toBeNull();
+    expect(startedCommand(events, ['/deep:review'], '/arena'))
+      .toBe(startedCommand(redirected, ['/deep:review'], '/arena'));
+  });
+
+  // The read came first and the edit is what crosses the boundary, so the command the
+  // document names is the one the run started.
+  it('starts the command a document read precedes an in-place edit', () => {
+    const events = normalize(
+      turns(
+        [toolCall('Bash', { command: 'cat .skilled/commands/deep/review.md' })],
+        [toolCall('Bash', { command: "sed -i '' 's/a/b/' notes.md" })],
+      ),
+      'claude',
+    );
+
+    expect(startedCommand(events, ['/deep:review'], '/arena')).toBe('/deep:review');
+  });
+});
+
 // A Vibe projection keeps its tool calls beside its messages rather than inside them,
 // so the scorer reads both from the entries the session ran, in that order.
 describe('vibeRecords', () => {
@@ -440,6 +576,141 @@ describe('commandLines', () => {
     );
 
     expect(commandLines(events).map((line) => line.count)).toEqual([2, 2]);
+  });
+
+  // A model writes the mode it chose onto the command, so one command reported once
+  // bare and once with a mode suffix is still one command reported twice.
+  it('reports two lines that name one command with and without its mode suffix', () => {
+    const events = normalize(
+      turns(
+        [text('COMMAND: /deep:review → offered')],
+        [text('COMMAND: /deep:review:auto → started')],
+      ),
+      'claude',
+    );
+
+    expect(commandLines(events).map((line) => [line.command, line.count])).toEqual([
+      ['/deep:review', 2],
+      ['/deep:review:auto', 2],
+    ]);
+  });
+
+  // Two names in one namespace are two commands, so the tally that folds the mode
+  // suffix must not fold the name with it.
+  it('reports two commands in one namespace at one line each', () => {
+    const events = normalize(
+      turns(
+        [text('COMMAND: /deep:review → started')],
+        [text('COMMAND: /deep:research → started')],
+      ),
+      'claude',
+    );
+
+    expect(commandLines(events).map((line) => [line.command, line.count])).toEqual([
+      ['/deep:review', 1],
+      ['/deep:research', 1],
+    ]);
+  });
+
+  // A refusal that quotes the format is not a report, so a marker inside a sentence
+  // is not read as a line the model printed.
+  it('reports no line when a sentence quotes the marker', () => {
+    const events = normalize(
+      oneTurn(text('A line like COMMAND: /deep:review → started appears only when I actually run one, so you will not see it here.')),
+      'claude',
+    );
+
+    expect(commandLines(events)).toEqual([]);
+    expect(startState(events, {
+      expected_command: '/deep:review',
+      expected_policy: 'ask',
+      row_type: 'ask',
+      prompt: 'x',
+    }).started).toBe(false);
+  });
+
+  // A blockquote holds text the model is quoting rather than reporting.
+  it('reports no line when the marker sits in a blockquote', () => {
+    const events = normalize(oneTurn(text('> COMMAND: /deep:review → started')), 'claude');
+
+    expect(commandLines(events)).toEqual([]);
+  });
+
+  // A fenced block holds an example the model is showing, so a marker line between
+  // the fences is skipped.
+  it('reports no line when the marker sits in a fenced block', () => {
+    const events = normalize(
+      oneTurn(text('```\nCOMMAND: /deep:review → started\n```')),
+      'claude',
+    );
+
+    expect(commandLines(events)).toEqual([]);
+  });
+
+  // Each text block is a document of its own, so a fence a turn never closes must
+  // not swallow the report a later turn prints.
+  it('reports a line in a later turn after a turn left a fence open', () => {
+    const events = normalize(
+      turns(
+        [text('```bash\necho hi')],
+        [text('COMMAND: /deep:review → started')],
+      ),
+      'claude',
+    );
+
+    expect(commandLines(events)).toEqual([
+      { seq: 1, command: '/deep:review', state: 'started', count: 1 },
+    ]);
+  });
+
+  // A numbered list item is one of the shapes a model prints a report in.
+  it('reports one line when a number and a dot open it', () => {
+    const events = normalize(oneTurn(text('1. COMMAND: /deep:review → started')), 'claude');
+
+    expect(commandLines(events)).toEqual([
+      { seq: 0, command: '/deep:review', state: 'started', count: 1 },
+    ]);
+  });
+});
+
+describe('repeatedCommands', () => {
+  // A model writes the mode it chose onto the command, so one command reported once
+  // bare and once with a mode suffix is still one command reported more than once.
+  it('counts one command reported with and without its mode suffix once', () => {
+    const events = normalize(
+      turns(
+        [text('COMMAND: /deep:review → offered')],
+        [text('COMMAND: /deep:review:auto → started')],
+      ),
+      'claude',
+    );
+
+    expect(repeatedCommands(commandLines(events))).toBe(1);
+  });
+
+  it('counts one command reported twice under the same name once', () => {
+    const events = normalize(
+      turns(
+        [text('COMMAND: /deep:review → offered')],
+        [text('COMMAND: /deep:review → started')],
+      ),
+      'claude',
+    );
+
+    expect(repeatedCommands(commandLines(events))).toBe(1);
+  });
+
+  // Two names in one namespace are two commands, so neither is a repeat.
+  it('counts two commands in one namespace none', () => {
+    const events = normalize(
+      turns(
+        [text('COMMAND: /deep:review → started')],
+        [text('COMMAND: /deep:research → started')],
+      ),
+      'claude',
+    );
+
+    expect(repeatedCommands(commandLines(events))).toBe(0);
   });
 });
 

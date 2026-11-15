@@ -399,8 +399,11 @@ export function normalize(records, runtime) {
       if (kind === 'shell') {
         const command = firstString(args, SHELL_COMMAND_KEYS) ?? execBodyCommand(args.input);
         const redirected = command === null ? [] : redirectTargets(command);
-        if (redirected.length > 0) {
-          for (const path of redirected) addEvent(events, 'write', { path, command });
+        const written = command === null ? [] : shellWriteTargets(command);
+        // A redirect names its target first, and an in-place writer adds its own, so a
+        // call that did either is a write in the order the command ran them.
+        if (redirected.length > 0 || written.length > 0) {
+          for (const path of [...redirected, ...written]) addEvent(events, 'write', { path, command });
           continue;
         }
         if (command !== null && APPLY_PATCH.test(command)) {
@@ -495,14 +498,29 @@ export function vibeRecords(entries) {
 // transcript that it took the command, offered it or turned it down, so the
 // three state words are the whole vocabulary it may carry.
 //
-// The token is matched anywhere in a line because a model marks it up as a list
-// item, a bold run or a code span. It wraps the name and the state word in
-// whichever markup reads well there, so a backtick, a square bracket or both is
-// allowed on each side of each token and the pair is never required. The name
+// The token has to open the line, after the markup a model wraps it in: optional
+// whitespace, a list marker or a number with a dot, and a run of emphasis
+// markers, a backtick or a square bracket. A sentence that quotes the format is
+// not a report, and a line inside a fenced block or a blockquote holds text the
+// model is showing rather than printing as its own, so neither is read. The name
 // must open with a letter or digit so a reply that quotes the instruction's
 // `[/name]` placeholder is not read as a command the model reported.
 const COMMAND_LINE =
-  /\bCOMMAND:[ \t`\[]*(\/[A-Za-z0-9][\w.:-]*)[ \t`\]]*(?:→|->)[ \t`\[]*(started|offered|declined)\b/i;
+  /^[ \t]*(?:(?:[-*+]|\d+\.)[ \t]+|[`*_\[])*COMMAND:[ \t`\[]*(\/[A-Za-z0-9][\w.:-]*)[ \t`\]]*(?:→|->)[ \t`\[]*(started|offered|declined)\b/i;
+
+// A fenced block or a blockquote holds text a model is showing, so a line inside
+// one is skipped rather than read as a report.
+const FENCE_LINE = /^[ \t]{0,3}```/;
+const QUOTE_LINE = /^[ \t]*>/;
+
+// A model writes the mode it chose onto the command, so one command reported once
+// bare and once with a mode suffix is still one command reported twice. The tally
+// keys on the namespace and name so the suffix does not split it and the name still
+// keeps a pair of different commands apart.
+function commandTallyKey(command) {
+  const parts = commandParts(command);
+  return parts === null ? command : `${parts.namespace ?? ''}:${parts.name}`;
+}
 
 /**
  * Collect the `COMMAND:` lines a model printed, in the order it printed them.
@@ -516,7 +534,7 @@ const COMMAND_LINE =
  *   from `normalize`.
  * @returns {Array<{seq: number, command: string, state: string, count: number}>}
  *   One entry per matching line, where `count` is how many lines named that
- *   command across the whole session.
+ *   command across the whole session, with or without its mode suffix.
  */
 export function commandLines(events) {
   const lines = [];
@@ -524,7 +542,17 @@ export function commandLines(events) {
   for (const event of events ?? []) {
     if (!event || event.kind !== 'text' || typeof event.text !== 'string') continue;
 
+    // One text block is one document, so a fence it leaves open does not hide the
+    // report a later block prints.
+    let fenced = false;
+
     for (const text of event.text.split('\n')) {
+      if (FENCE_LINE.test(text)) {
+        fenced = !fenced;
+        continue;
+      }
+      if (fenced || QUOTE_LINE.test(text)) continue;
+
       const match = COMMAND_LINE.exec(text);
       if (match === null) continue;
       lines.push({ seq: event.seq, command: match[1], state: match[2].toLowerCase(), count: 0 });
@@ -532,8 +560,11 @@ export function commandLines(events) {
   }
 
   const totals = new Map();
-  for (const line of lines) totals.set(line.command, (totals.get(line.command) ?? 0) + 1);
-  for (const line of lines) line.count = totals.get(line.command);
+  for (const line of lines) {
+    const key = commandTallyKey(line.command);
+    totals.set(key, (totals.get(key) ?? 0) + 1);
+  }
+  for (const line of lines) line.count = totals.get(commandTallyKey(line.command));
 
   return lines;
 }
@@ -750,6 +781,98 @@ function shellReadTargets(command) {
       if (/\.(?:md|ya?ml)$/.test(unquoted)) {
         targets.push(folder !== null && !/^[/~]/.test(unquoted) ? `${folder}/${unquoted}` : unquoted);
       }
+    }
+  }
+
+  return targets;
+}
+
+// A writer that lands a file through the shell is a write even when the tool is only a
+// shell, and a redirect already reads that way. These are the spellings that edit in
+// place, so without a target reader the work would sit in the order as a step that
+// changed nothing.
+const ALWAYS_SHELL_WRITERS = Object.freeze(['cp', 'mv', 'tee', 'rm', 'mkdir', 'touch']);
+
+// Every word a writer names is a file it changed, so a removal of two files is two
+// writes and the order the command wrote them is kept.
+const EVERY_WORD_WRITERS = Object.freeze(['tee', 'rm', 'mkdir', 'touch']);
+
+// A short-flag cluster holds `i` when its flag letters reach one, as `-i`, `-ni` and
+// `-i.bak` do. The script a sed or perl call runs is a word without a dash, so it comes
+// before the file and the last word is the one the writer changes.
+const SHORT_FLAG_IN_PLACE = /^-[A-Za-z]*i/;
+
+// A perl switch takes its argument inline, as `-Mstrict` and `-Ilib` do, so only the
+// argument-free switches of a cluster may spell the in-place flag.
+const PERL_IN_PLACE = /^-[A-Za-z0-9]*i/;
+const PERL_ARGUMENT_SWITCH = /^-[MmIxe]/;
+
+// A redirect word opens with an optional stream number, as `2>`, `2>&1` and `<` do, and
+// it names the file the command sends its output to rather than one it changed.
+const REDIRECT_WORD = /^(?:\d*[<>]|&>)/;
+
+// A bare operator carries no file of its own, so the word after it is its target.
+const REDIRECT_OPERATOR = /^(?:\d+|&)?[<>]+$/;
+
+function unquoteWord(word) {
+  const first = word[0];
+  return word.length > 1 && (first === '"' || first === "'") && word[word.length - 1] === first
+    ? word.slice(1, -1)
+    : word;
+}
+
+function isShellWriter(writer, args) {
+  if (ALWAYS_SHELL_WRITERS.includes(writer)) return true;
+  if (writer === 'sed') {
+    return args.some((word) => word === '--in-place' || word.startsWith('--in-place=') || SHORT_FLAG_IN_PLACE.test(word));
+  }
+  if (writer === 'perl') {
+    return args.some((word) => PERL_IN_PLACE.test(word) && !PERL_ARGUMENT_SWITCH.test(word));
+  }
+  return false;
+}
+
+function shellWriteTargets(command) {
+  const text = (typeof command === 'string' ? command : '').replace(HEREDOC_BODY, '$1');
+  const parts = text.split(/;|&&|\|\||\||\r?\n/);
+  const targets = [];
+  // A bare file name is changed in the folder an earlier `cd` of the same command
+  // entered.
+  let folder = null;
+
+  for (const part of parts) {
+    const words = part.trim().split(/\s+/).filter(Boolean);
+    let start = 0;
+    while (start < words.length && /^[A-Za-z_][A-Za-z0-9_]*=/.test(words[start])) start += 1;
+    if (start < words.length && words[start] === 'cd') {
+      const next = words[start + 1];
+      folder = next === undefined ? null : unquoteWord(next).replace(/\/+$/, '');
+      continue;
+    }
+    if (start >= words.length) continue;
+
+    const writer = words[start];
+    if (!isShellWriter(writer, words.slice(start + 1))) continue;
+
+    const named = [];
+    let bareRedirect = false;
+    for (const word of words.slice(start + 1)) {
+      if (REDIRECT_WORD.test(word)) {
+        bareRedirect = REDIRECT_OPERATOR.test(word);
+        continue;
+      }
+      if (bareRedirect) {
+        bareRedirect = false;
+        continue;
+      }
+      if (word.startsWith('-')) continue;
+      const unquoted = unquoteWord(word);
+      if (unquoted !== '') named.push(unquoted);
+    }
+    const chosen = EVERY_WORD_WRITERS.includes(writer) ? named : named.slice(-1);
+
+    for (const word of chosen) {
+      targets.push(folder !== null && !/^[/~]/.test(word) ? `${folder}/${word}` : word);
     }
   }
 
@@ -1567,9 +1690,9 @@ function loopCommandFor(events, label) {
 
 // A command reported more than once in one session is the defect the
 // once-per-command clause prevents, so this counts commands rather than lines.
-function repeatedCommands(lines) {
+export function repeatedCommands(lines) {
   const counts = new Map();
-  for (const line of lines) counts.set(line.command, line.count);
+  for (const line of lines) counts.set(commandTallyKey(line.command), line.count);
   return [...counts.values()].filter((count) => count > 1).length;
 }
 

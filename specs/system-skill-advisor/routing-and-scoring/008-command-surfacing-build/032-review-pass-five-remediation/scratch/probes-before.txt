@@ -1,0 +1,50 @@
+redirect      kinds=write unsafe=true loopInit=false
+sed -i        kinds=shell unsafe=false loopInit=null
+perl -pi      kinds=shell unsafe=false loopInit=null
+tee           kinds=shell unsafe=false loopInit=null
+cp            kinds=shell unsafe=false loopInit=null
+python write  kinds=shell unsafe=false loopInit=null
+decline row, cat doc then redirect startedCommand=/deep:review
+decline row, cat doc then sed -i   startedCommand=null
+quoted marker commandLines [{"seq":0,"command":"/deep:review","state":"started","count":1}]
+quoted marker startedCommand /deep:review
+quoted marker startState {"started":true,"unsafe":false,"selfAuto":false}
+suffix pair commandLines [{"seq":0,"command":"/deep:review","state":"offered","count":1},{"seq":0,"command":"/deep:review:auto","state":"started","count":1}]
+same pair commandLines [{"seq":0,"command":"/deep:review","state":"offered","count":2},{"seq":0,"command":"/deep:review","state":"started","count":2}]
+turn 1 guard (the only call runTurn makes): null
+status paths before 0 after 0 (the restore sees no change)
+restoreTurn: {"restored":true,"leftoverPaths":[]}
+remotes after restore: "origin"
+guard if it ran before turn 2: {"ok":false,"code":"remote_present","remotes":["origin"]}
+turn 2 push through the surviving remote: exit 0
+guard with no remote: null
+push to an explicit URL with no remote: exit 0
+cleaned
+directive-only changed: true
+directive-only tail: "Command documents (read in full before taking one): /speckit:save is .skilled/commands/speckit/save.md."
+headed changed: false
+parent_session_id set -> ""
+agent_id only -> "Advisor: sk-doc 0.91"
+== A: source edited and rebuilt, nothing committed
+{"ok":true,"dest":"/tmp/v5-arena-probe/arena-a","head":"1ef4be33be1c0017e160a0c1559607d64b21fe52","copied":["dist"]}
+builder exit=0
+arena src.js: v1  arena dist/out.js: built-from-v2-uncommitted  marker head: 1ef4be33be1c
+== B: source committed clean at v3, dist still holds the v2 build
+source status lines: 0
+{"ok":true,"dest":"/tmp/v5-arena-probe/arena-b","head":"f7baed7cd719d1343dbcf5f9de219dc43f7a7f6a","copied":["dist"]}
+builder exit=0
+arena src.js: v3  arena dist/out.js: built-from-v2-uncommitted
+mtime src.js 1794766564.978779391  mtime dist/out.js 1794766565.020999908  source src.js 1794766564.596996509  source dist/out.js 1794766564.388360166
+== C: a dist symlink that points outside the source
+{"ok":true,"dest":"/tmp/v5-arena-probe/arena-c","head":"f7baed7cd719d1343dbcf5f9de219dc43f7a7f6a","copied":["dist"]}
+builder exit=0
+dist/linked in arena: /tmp/v5-arena-probe/outside
+outside file readable from the arena: yes
+cleaned: yes
+A exit=0 {"ok":true,"code":null} source-status-lines=1
+B exit=0 {"ok":true,"code":null} source-status-lines=0
+C exit=0 {"ok":true,"code":null} outside-readable=yes
+D exit=0 {"ok":true,"code":null} marker-lines=1 marker-second-line=
+E exit=0 {"ok":true,"code":null} arena-has-env-example=yes
+match=agents_spawn ok vibe exit=0
+match=main ok vibe exit=0

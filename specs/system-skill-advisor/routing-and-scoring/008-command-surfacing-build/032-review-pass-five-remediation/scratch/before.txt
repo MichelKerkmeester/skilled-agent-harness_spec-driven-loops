@@ -1,0 +1,160 @@
+
+## 031 complete
+1
+exit=0
+
+## ancestor 2427bc4c4b6
+0
+exit=0
+
+## status FILES (whole tree)
+exit=0
+
+## BASE
+2a1a42263cc
+exit=0
+
+## flags file
+1
+exit=0
+
+## BUILD
+@spec-kit/system-skill-advisor dist build attestation recorded
+@spec-kit/system-skill-advisor dist build attestation recorded
+exit=0
+
+## TC
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+
+exit=0
+
+## VX tests/command-transcript-score.vitest.ts
+ Test Files  1 passed (1)
+      Tests  199 passed (199)
+exit=0
+
+## VX tests/command-behaviour-guards.vitest.ts
+ Test Files  1 passed (1)
+      Tests  34 passed (34)
+exit=0
+
+## VX tests/command-offer.vitest.ts
+ Test Files  1 passed (1)
+      Tests  30 passed (30)
+exit=0
+
+## VX tests/launcher-bootstrap.vitest.ts
+ Test Files  1 passed (1)
+      Tests  21 passed (21)
+exit=0
+
+## VX tests/skill-advisor-cli-stale-daemon-retry.vitest.ts
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+exit=0
+
+## VX tests/advisor-disabled.vitest.ts
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+exit=0
+
+## VX tests/hooks/vibe-prompt-advisor.vitest.ts
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+exit=0
+
+## VX tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+ Test Files  1 passed (1)
+      Tests  39 passed (39)
+exit=0
+
+## VX tests/manual-testing-playbook.vitest.ts
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+exit=0
+
+## VALL
+ Test Files  185 passed (185)
+      Tests  2157 passed | 6 skipped (2163)
+exit=0
+
+## DT
+ℹ tests 1230
+ℹ pass 1230
+ℹ fail 0
+exit=0
+
+## VT
+ℹ tests 84
+ℹ pass 84
+ℹ fail 0
+exit=0
+
+## VMIR prompts
+[vibe-prompt-sync] PASS: 45 prompt stubs are in sync.
+exit=0
+
+## VMIR agents
+[vibe-agent-sync] PASS: 11 agent profiles are in sync.
+exit=0
+
+## VMIR skills
+[vibe-skill-sync] PASS: 55 skill links are in sync.
+exit=0
+
+## META compiler
+VALIDATION PASSED: all metadata files are valid
+exit=0
+
+## META freshness
+  (report-only — the canonical reindex is operator-gated; nothing was written)
+exit=0
+
+## META root
+checked=14 passed=14 failed=0 fixed=0
+exit=0
+
+## META derived
+checked=14 fresh=14 stale=0 errored=0
+exit=0
+
+## META leaf
+checked=14 fresh=14 failed=0
+exit=0
+
+## META intent
+RESULT: PASSED
+exit=0
+
+## PBV
+PASS package=system-skill-advisor tier=FAIL_CLOSED scenarios=53 categories=9 operator=28 routing_gold_excluded=25 violations=0 warnings=0
+exit=0
+
+## SHAPE
+SUMMARY files=1 pass=1 fail=0
+exit=0
+
+## LINKS
+check-markdown-links: 7608 files, 14918 links checked, 0 broken
+exit=0
+
+## FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+
+## EVAL
+[160,49,21,5]
+
+## PROBES lines
+     109
+
+## LEFT
+       0
+       0
+
+## PROBES rerun
+The first PROBES run passed the builder an absolute path twice joined, so the two arena probes printed builder exit=1. Rerun with the right path: every line matches the Measured Behavior block of spec.md except temporary heads and times. LEFT 0 and 0.
+
+## T002 stored-arm summaries
+start: arms 12, rows-before 275. pre: arms 6, rows-before 138. final: arms 5, rows-before 114. jq type exit 0 on each JSON, no prompt key.

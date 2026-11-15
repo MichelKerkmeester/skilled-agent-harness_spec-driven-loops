@@ -54,6 +54,9 @@ import { fileURLToPath } from 'node:url';
 import { dshProjectKey, dshStoreRoot } from '../../../../../hooks/shared/session-readers/dsh.mjs';
 import { loadSession as loadSharedSession } from '../../../../../hooks/shared/session-readers/index.mjs';
 import { backfillRunLog, briefDelivered, codexHookApproval, promptSessionId, replayOffer } from './command-offer.mjs';
+// The arena builder writes this file into the checkout it made. Its absence is the
+// proof that a root is an operator's working tree rather than a disposable arena.
+import { MARK } from './prepare-behaviour-arena.mjs';
 import { restoreTurn, statusSnapshot } from './worktree-restore.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -518,10 +521,6 @@ function locatorFor(runtime, sessionId, reportedId) {
 // lie, and the restore step trusts that snapshot.
 const GIT_PREFIX = ['-c', 'core.fsmonitor=false'];
 
-// The arena builder writes this file into the checkout it made. Its absence is the
-// proof that a root is an operator's working tree rather than a disposable arena.
-const MARK = 'skilled-behaviour-arena';
-
 function git(args) {
   const result = spawnSync('git', [...GIT_PREFIX, ...args], {
     cwd: REPO_ROOT,
@@ -607,10 +606,12 @@ function gitSnapshot() {
   };
 }
 
-// A remote is the one way a turn reaches outside the checkout, so a live arm
-// refuses to start when one is listed. The builder's marker then proves the root
-// came from the arena builder, because only that checkout has no remote, no outer
-// repository and no dotenv file in its copied build trees.
+// A remote is what a turn could push to by name, so a live arm refuses to start
+// when one is listed. It is only half the boundary: the push boundary is childEnv's
+// empty credential helper, empty GH_CONFIG_DIR and GIT_TERMINAL_PROMPT=0, because a
+// push to an explicit URL needs no remote at all. The builder's marker then proves
+// the root came from the arena builder, because only that checkout has no remote, no
+// outer repository and no dotenv file in its copied build trees.
 export function liveArmRefusal(root) {
   const gitAt = (args) => {
     const result = spawnSync('git', ['-C', root, ...GIT_PREFIX, ...args], {
@@ -630,6 +631,23 @@ export function liveArmRefusal(root) {
   const marker = resolve(root, gitAt(['rev-parse', '--git-path', MARK]).trim());
   if (!existsSync(marker)) return { ok: false, code: 'arena_unprepared', marker };
   return null;
+}
+
+/**
+ * Check whether a turn may start where it would run.
+ *
+ * A remote one turn adds outlives that turn, so the check runs before every turn
+ * rather than before the first one only.
+ *
+ * @param {string} root - The checkout the turn runs in.
+ * @param {{ dryRun: boolean }} options - Whether the turn spawns a model.
+ * @returns {object | null} The refusal, or null when the turn may start.
+ */
+export function turnRefusal(root, { dryRun }) {
+  // A dry run spawns nothing and keeps running in this checkout, so it has no
+  // turn to guard.
+  if (dryRun) return null;
+  return liveArmRefusal(root);
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -1263,16 +1281,16 @@ function writeArgv(runtimeName) {
 // fires, so a broken precondition never spends another model call.
 async function runTurn(job, options, exempt, isFirst) {
   const before = { status: statusPaths(), ...gitSnapshot() };
+  // A live turn can push, so it may only start in the arena the builder made: no
+  // remote it could push to by name and the builder's marker in place. The push
+  // boundary is childEnv's empty credential helper, empty GH_CONFIG_DIR and
+  // GIT_TERMINAL_PROMPT=0, because a push to an explicit URL needs no remote. A dry
+  // run spawns nothing and keeps running in this checkout.
+  const refusal = turnRefusal(REPO_ROOT, { dryRun: options.dryRun });
+  if (refusal !== null) {
+    return { status: EXIT_REFUSED, refusal };
+  }
   if (isFirst) {
-    // A live turn can push, so it may only start in the arena the builder made: no
-    // remote to push to and the builder's marker in place. A dry run spawns nothing
-    // and keeps running in this checkout.
-    if (!options.dryRun) {
-      const refusal = liveArmRefusal(REPO_ROOT);
-      if (refusal !== null) {
-        return { status: EXIT_REFUSED, refusal };
-      }
-    }
     const dirty = dirtyPaths(before.status, exempt);
     if (dirty.length > 0) {
       return {

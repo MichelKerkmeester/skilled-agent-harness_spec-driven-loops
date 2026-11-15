@@ -39,21 +39,25 @@ function writeClaudeSettings(root, hooks) {
   fs.writeFileSync(path.join(root, CLAUDE_FILE), JSON.stringify({ hooks }, null, 2));
 }
 
-function writeVibeHooks(root, text) {
+// A case can replace the match line of the text it writes, and null drops it.
+// The line is written as the case spells it, so a case chooses its quoting and
+// any trailing comment.
+function writeVibeHooks(root, text, matchLine) {
   fs.mkdirSync(path.join(root, '.vibe'), { recursive: true });
-  fs.writeFileSync(path.join(root, VIBE_FILE), text);
+  let body = text;
+  if (matchLine === null) body = body.replace(/^match = .*\n/m, '');
+  else if (typeof matchLine === 'string') body = body.replace(/^match = .*$/m, matchLine);
+  fs.writeFileSync(path.join(root, VIBE_FILE), body);
 }
 
 // The Vibe hook file is TOML, so one block is built as the lines the check reads.
-function vibeBlock(type, commandLine) {
-  return [
-    '[[hooks]]',
-    'name = "turn-start"',
-    `type = "${type}"`,
-    'match = "main"',
-    'timeout = 20.0',
-    commandLine,
-  ].join('\n');
+// A block omits its match line when the case passes null for it, and otherwise
+// writes the line as the case spells it.
+function vibeBlock(type, commandLine, match = 'match = "main"') {
+  const lines = ['[[hooks]]', 'name = "turn-start"', `type = "${type}"`];
+  if (match !== null) lines.push(match);
+  lines.push('timeout = 20.0', commandLine);
+  return lines.join('\n');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -231,11 +235,80 @@ test('names a runtime whose entry echoes a quoted command', (t) => {
   assert.match(result.out, /^hook-missing claude \.claude\/settings\.json$/m);
 });
 
-// Vibe keeps its hooks in TOML and only a `pre_agent` entry that starts node on
-// the turn-start script runs before the prompt, so each shape below must not count.
+// Vibe keeps its hooks in TOML and only a `pre_agent` entry for the main agent
+// that starts node on the turn-start script runs before the prompt, so each
+// shape below must not count.
 test('passes the Vibe turn-start entry under pre_agent', (t) => {
   const f = fixture(t);
   writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"'));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
+test('passes a Vibe entry whose match selector names the main agent', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"', 'match = "main"'));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
+test('passes a Vibe entry with no match line', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"', null));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
+test('names Vibe when its turn-start entry matches another agent', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"'), 'match = "agents_spawn"');
+  const result = f.run();
+  assert.equal(result.code, 1, result.out.trim());
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('names Vibe when its match selector is a regular expression', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"', 'match = "re:main|other"'));
+  const result = f.run();
+  assert.equal(result.code, 1, result.out.trim());
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('names Vibe when its match selector is a literal string', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock(
+    'pre_agent',
+    'command = "' + VIBE_COMMAND + '"',
+    "match = 'agents_spawn'",
+  ));
+  const result = f.run();
+  assert.equal(result.code, 1, result.out.trim());
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('names Vibe when its match line carries a trailing comment', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock(
+    'pre_agent',
+    'command = "' + VIBE_COMMAND + '"',
+    'match = "agents_spawn"  # subagents',
+  ));
+  const result = f.run();
+  assert.equal(result.code, 1, result.out.trim());
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('passes a Vibe match selector written as a literal string', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock(
+    'pre_agent',
+    'command = "' + VIBE_COMMAND + '"',
+    "match = 'main'",
+  ));
   const text = f.run();
   assert.equal(text.code, 0);
   assert.equal(text.out.trim(), 'ok vibe');

@@ -37,6 +37,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { loadSession as loadSharedSession } from '../../../../../hooks/shared/session-readers/index.mjs';
+import { MARK } from './prepare-behaviour-arena.mjs';
 
 const HOOK_RELATIVE = '.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js';
 const ADVISOR_CLI_RELATIVE = '.skilled/bin/skill-advisor.cjs';
@@ -355,7 +356,7 @@ export function trustedCheckout(checkoutDir) {
   try {
     return (
       realpathSync(checkoutDir) === realpathSync(REPO_ROOT)
-      || existsSync(join(checkoutDir, '.git', 'skilled-behaviour-arena'))
+      || existsSync(join(checkoutDir, '.git', MARK))
     );
   } catch {
     return false;

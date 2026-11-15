@@ -41,12 +41,20 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "scratch/probes-after.txt",
       "hooks/dsh/README.md",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "scratch/rescore-delta.txt",
       "scratch/planning/arena-cases.sh",
+      "scratch/before.txt",
+      "scratch/floor-before.txt",
+      "scratch/eval-before.txt",
+      "scratch/probes-before.txt",
       ".vibe/hooks.toml",
       ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
-      "scratch/planning/wiring-match.sh"
+      "scratch/planning/wiring-match.sh",
+      "scratch/after.txt",
+      "scratch/boundaries.txt"
     ],
     "entities": [
       {
@@ -74,6 +82,12 @@
         "source": "derived"
       },
       {
+        "name": "probes-after.txt",
+        "kind": "file",
+        "path": "scratch/probes-after.txt",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": "hooks/dsh/README.md",
@@ -86,9 +100,39 @@
         "source": "derived"
       },
       {
+        "name": "rescore-delta.txt",
+        "kind": "file",
+        "path": "scratch/rescore-delta.txt",
+        "source": "derived"
+      },
+      {
         "name": "arena-cases.sh",
         "kind": "script",
         "path": "scratch/planning/arena-cases.sh",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "floor-before.txt",
+        "kind": "file",
+        "path": "scratch/floor-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "eval-before.txt",
+        "kind": "file",
+        "path": "scratch/eval-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "probes-before.txt",
+        "kind": "file",
+        "path": "scratch/probes-before.txt",
         "source": "derived"
       },
       {
@@ -107,6 +151,18 @@
         "name": "wiring-match.sh",
         "kind": "script",
         "path": "scratch/planning/wiring-match.sh",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "boundaries.txt",
+        "kind": "file",
+        "path": "scratch/boundaries.txt",
         "source": "derived"
       },
       {
@@ -144,59 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Four",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Fix",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The workflow measure misses every write a model makes with an in-place shell edit, so a run that edits a file with `sed -i` or `tee` reads as safe and as a non-start, and the goal log cannot explain `unsafe` row by row",
     "created_at": "2026-11-15T17:40:45Z",
-    "last_save_at": "2026-11-15T18:05:36.403Z",
+    "last_save_at": "2026-11-15T19:21:34.784Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +213,12 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:27c1213e3f3246124cfac10fad2af9579bab477597337c6e4bc0b8a124d6cfa7",
+    "source_fingerprint": "sha256:9889656e956fe9784adb764b1fdef85d853ee816772297965b8a19033b96d815",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "26b3556e0364c22770fc69ba14b23ce84a2bf313abbb35e9d361b3544e4fc2b7",
       "plan.md": "b2be1cf6dbb48cd907d51dff98ee17f16901a018bb5909ec5857df0c09ea8b14",
-      "tasks.md": "9b36c798d968153d9a56fd5be312ee91503b8c5d1e0c7cf7c07b62d191f40363"
+      "tasks.md": "698c4095c528b21d83b60de8d74b20465a9542c47c71ea866aaba7700b6eda89"
     },
     "last_active_at": null
   }

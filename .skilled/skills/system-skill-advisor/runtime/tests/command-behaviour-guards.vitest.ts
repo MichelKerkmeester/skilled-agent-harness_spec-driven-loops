@@ -2,13 +2,14 @@
 // MODULE: Behaviour Runner Guard Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { G2_ROWS, armFor, assertFreshRun, assertFreshRowsUnique, childEnv, freshRowsFrom, lineFixture, liveArmRefusal, offerLineFields, restorePointer } from '../scripts/routing-accuracy/run-command-behaviour.mjs';
+import { MARK, copyArgs } from '../scripts/routing-accuracy/prepare-behaviour-arena.mjs';
+import { G2_ROWS, armFor, assertFreshRun, assertFreshRowsUnique, childEnv, freshRowsFrom, lineFixture, liveArmRefusal, offerLineFields, restorePointer, turnRefusal } from '../scripts/routing-accuracy/run-command-behaviour.mjs';
 import { startedLabel } from '../scripts/routing-accuracy/score-command-transcripts.mjs';
 
 describe('childEnv', () => {
@@ -283,11 +284,37 @@ describe('liveArmRefusal', () => {
 
     expect(liveArmRefusal(dir)?.code).toBe('arena_unprepared');
 
-    writeFileSync(join(dir, '.git', 'skilled-behaviour-arena'), 'arena\n');
+    writeFileSync(join(dir, '.git', MARK), 'arena\n');
     expect(liveArmRefusal(dir)).toBeNull();
 
     expect(runGit(['remote', 'add', 'origin', 'https://example.invalid/x.git']).status).toBe(0);
     expect(liveArmRefusal(dir)).toEqual({ ok: false, code: 'remote_present', remotes: ['origin'] });
+  });
+});
+
+describe('turnRefusal', () => {
+  const dirs: string[] = [];
+
+  afterEach(() => {
+    for (const dir of dirs.splice(0)) rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('checks for a remote before every live turn and never on a dry run', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'skilled-behaviour-turn-'));
+    dirs.push(dir);
+    const runGit = (args: string[]) => spawnSync('git', args, { cwd: dir, encoding: 'utf8' });
+    expect(runGit(['init', '-q']).status).toBe(0);
+    writeFileSync(join(dir, '.git', MARK), 'arena\n');
+
+    expect(turnRefusal(dir, { dryRun: false })).toBeNull();
+
+    expect(runGit(['remote', 'add', 'origin', 'file:///nonexistent.git']).status).toBe(0);
+    expect(turnRefusal(dir, { dryRun: false })).toEqual({
+      ok: false,
+      code: 'remote_present',
+      remotes: ['origin'],
+    });
+    expect(turnRefusal(dir, { dryRun: true })).toBeNull();
   });
 });
 
@@ -434,6 +461,15 @@ describe('arena builder', () => {
   const build = (source: string, arena: string) =>
     spawnSync(process.execPath, [builderPath, '--source', source, '--dest', arena], { encoding: 'utf8' });
 
+  it('the arena marker name is the builder\'s', () => {
+    expect(MARK).toBe("skilled-behaviour-arena");
+  });
+
+  it('passes the clonefile flag on macOS only', () => {
+    expect(copyArgs('darwin')).toEqual(['-Rc']);
+    expect(copyArgs('linux')).toEqual(['-R']);
+  });
+
   it('leaves a CLAUDE.md pointer git status does not list', () => {
     const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
     try {
@@ -461,6 +497,230 @@ describe('arena builder', () => {
 
       expect(built.status).toBe(0);
       expect(readFileSync(join(arena, 'CLAUDE.md'), 'utf8')).toBe('keep me');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  // A source whose build is ignored, as a package's build is: the commit holds the
+  // source file and the ignore rule, and the build sits beside them untracked.
+  const makeBuiltSource = (root: string, extra: Record<string, string> = {}) => {
+    const source = join(root, 'source');
+    mkdirSync(source);
+    const gitRun = (args: string[]) => spawnSync('git', args, { cwd: source, encoding: 'utf8' });
+    expect(gitRun(['init', '-q']).status).toBe(0);
+    writeFileSync(join(source, '.gitignore'), 'dist/\n');
+    writeFileSync(join(source, 'src.js'), 'v1\n');
+    for (const [name, text] of Object.entries(extra)) writeFileSync(join(source, name), text);
+    expect(gitRun(['add', '.']).status).toBe(0);
+    const committed = gitRun([
+      '-c',
+      'user.name=t',
+      '-c',
+      'user.email=t@example.invalid',
+      '-c',
+      'core.hooksPath=/dev/null',
+      'commit',
+      '-qm',
+      'init',
+    ]);
+    expect(committed.status).toBe(0);
+    mkdirSync(join(source, 'dist'));
+    writeFileSync(join(source, 'dist', 'out.js'), 'built from v1\n');
+    return source;
+  };
+
+  // The check compares the newest tracked file with the newest file of the build, so
+  // each case states both times instead of borrowing the clock.
+  const stamp = (source: string, sourceTime: Date, buildTime: Date, extra: string[] = []) => {
+    utimesSync(join(source, '.gitignore'), sourceTime, sourceTime);
+    utimesSync(join(source, 'src.js'), sourceTime, sourceTime);
+    for (const name of extra) utimesSync(join(source, name), sourceTime, sourceTime);
+    utimesSync(join(source, 'dist', 'out.js'), buildTime, buildTime);
+  };
+
+  const markerLines = (arena: string) =>
+    readFileSync(join(arena, '.git', MARK), 'utf8')
+      .split('\n')
+      .filter((line) => line !== '');
+
+  it('refuses a source whose tracked file changed after the commit', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = makeBuiltSource(root);
+      writeFileSync(join(source, 'src.js'), 'v2 uncommitted\n');
+      stamp(source, new Date('2020-01-01T00:00:00Z'), new Date('2020-01-01T01:00:00Z'));
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(2);
+      expect(JSON.parse(built.stdout).code).toBe('source_dirty');
+      expect(existsSync(arena)).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses a clean source whose build is older than its source', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = makeBuiltSource(root);
+      stamp(source, new Date('2020-01-01T01:00:00Z'), new Date('2020-01-01T00:00:00Z'));
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(2);
+      expect(JSON.parse(built.stdout).code).toBe('stale_build');
+      expect(existsSync(arena)).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('records a clean source and each copied build in the marker', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = makeBuiltSource(root);
+      stamp(source, new Date('2020-01-01T00:00:00Z'), new Date('2020-01-01T01:00:00Z'));
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(0);
+      const head = spawnSync('git', ['-C', source, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).stdout.trim();
+      const lines = markerLines(arena);
+      expect(lines).toHaveLength(3);
+      expect(lines[0]).toBe(head);
+      expect(lines[1]).toBe('source clean');
+      expect(lines[2]).toMatch(/^built dist \d{4}-\d{2}-\d{2}T/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses a build tree link that leaves the source', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const outside = join(root, 'outside');
+      mkdirSync(outside);
+      writeFileSync(join(outside, 'secret.txt'), 'outside\n');
+      const source = makeBuiltSource(root);
+      symlinkSync(outside, join(source, 'dist', 'linked'));
+      stamp(source, new Date('2020-01-01T00:00:00Z'), new Date('2020-01-01T01:00:00Z'));
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(2);
+      expect(JSON.parse(built.stdout).code).toBe('symlink_escape');
+      expect(built.stdout).toContain('dist/linked');
+      expect(existsSync(arena)).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses a build tree link whose target is missing', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = makeBuiltSource(root);
+      symlinkSync(join(root, 'missing.txt'), join(source, 'dist', 'dangling'));
+      stamp(source, new Date('2020-01-01T00:00:00Z'), new Date('2020-01-01T01:00:00Z'));
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(2);
+      expect(JSON.parse(built.stdout).code).toBe('symlink_escape');
+      expect(built.stdout).toContain('dist/dangling');
+      expect(existsSync(arena)).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('copies a build tree link that stays inside the source', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = makeBuiltSource(root);
+      symlinkSync(join('..', 'src.js'), join(source, 'dist', 'inner'));
+      stamp(source, new Date('2020-01-01T00:00:00Z'), new Date('2020-01-01T01:00:00Z'));
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(0);
+      const copied = join(arena, 'dist', 'inner');
+      expect(lstatSync(copied).isSymbolicLink()).toBe(true);
+      expect(readFileSync(copied, 'utf8')).toBe('v1\n');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('names a tracked dotenv file in its output and the marker', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = makeBuiltSource(root, { '.env.example': 'KEY=\n' });
+      stamp(source, new Date('2020-01-01T00:00:00Z'), new Date('2020-01-01T01:00:00Z'), ['.env.example']);
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(0);
+      expect(JSON.parse(built.stdout).trackedDotenv).toEqual(['.env.example']);
+      expect(markerLines(arena)).toContain('tracked-dotenv .env.example');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('prints no trackedDotenv field when the head commits none', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = makeBuiltSource(root);
+      stamp(source, new Date('2020-01-01T00:00:00Z'), new Date('2020-01-01T01:00:00Z'));
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(0);
+      expect(JSON.parse(built.stdout)).not.toHaveProperty('trackedDotenv');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  // A build tree is copied whole, so a nested output a clone never carries arrives with
+  // it, and the dotenv file beside it stays behind because a run can print what it holds.
+  it('copies a build tree without the dotenv file it holds', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = makeBuiltSource(root);
+      mkdirSync(join(source, 'dist', 'sub'));
+      writeFileSync(join(source, 'dist', 'sub', 'deep.js'), 'built from v1 deep\n');
+      writeFileSync(join(source, 'dist', '.env.local'), 'SECRET=arena\n');
+      const buildTime = new Date('2020-01-01T01:00:00Z');
+      stamp(source, new Date('2020-01-01T00:00:00Z'), buildTime);
+      utimesSync(join(source, 'dist', 'sub', 'deep.js'), buildTime, buildTime);
+      utimesSync(join(source, 'dist', '.env.local'), buildTime, buildTime);
+      const arena = join(root, 'arena');
+
+      const before = new Date();
+      const built = build(source, arena);
+
+      expect(built.status).toBe(0);
+      expect(JSON.parse(built.stdout).copied).toContain('dist');
+      expect(readFileSync(join(arena, 'dist', 'out.js'), 'utf8')).toBe(
+        readFileSync(join(source, 'dist', 'out.js'), 'utf8'),
+      );
+      expect(readFileSync(join(arena, 'dist', 'sub', 'deep.js'), 'utf8')).toBe(
+        readFileSync(join(source, 'dist', 'sub', 'deep.js'), 'utf8'),
+      );
+      expect(existsSync(join(arena, 'dist', '.env.local'))).toBe(false);
+      expect(lstatSync(join(arena, 'dist', 'out.js')).mtimeMs).toBeGreaterThanOrEqual(before.getTime());
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

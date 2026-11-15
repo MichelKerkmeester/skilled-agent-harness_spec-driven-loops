@@ -236,6 +236,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "hooks/dsh/README.md",
+    "diskPath": "hooks/dsh/README.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "hooks/lib/README.md",
     "diskPath": "hooks/lib/README.md"
   },

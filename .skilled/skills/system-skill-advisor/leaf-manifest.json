@@ -49,6 +49,7 @@
         "feature-catalog/scorer-fusion/projection.md",
         "feature-catalog/scorer-fusion/weights-config.md",
         "hooks/claude/README.md",
+        "hooks/dsh/README.md",
         "hooks/lib/README.md",
         "hooks/pi/README.md",
         "hooks/skill-advisor-hook-validation.md",

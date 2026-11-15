@@ -229,7 +229,21 @@ function collectCommands(node, commands) {
 // line. A commented line names nothing that runs, so it is skipped. A basic
 // string value escapes the quote and backslash after it, so both are unescaped.
 // A header ends the block before it, so a commented header or another table never
-// lends its keys to a hooks block.
+// lends its keys to a hooks block. A block keeps its `match` selector, because
+// the event alone does not say which agent the entry runs for. A `match` value
+// may be a basic or a literal string, and a comment may follow either one.
+const BASIC_STRING = /^"((?:[^"\\]|\\.)*)"\s*(?:#.*)?$/;
+const LITERAL_STRING = /^'([^']*)'\s*(?:#.*)?$/;
+
+// A `match` line the reader cannot parse keeps a selector naming no agent, so an
+// unread line never widens the match it describes.
+function tomlMatch(value) {
+  const basic = BASIC_STRING.exec(value);
+  if (basic) return basic[1].replace(/\\(["\\])/g, '$1');
+  const literal = LITERAL_STRING.exec(value);
+  return literal ? literal[1] : null;
+}
+
 function tomlCommands(text, event) {
   const blocks = [];
   let current = null;
@@ -247,12 +261,15 @@ function tomlCommands(text, event) {
     }
     if (current === null || trimmed.startsWith('#')) continue;
     const entry = /^(type|command)\s*=\s*"(.*)"$/.exec(trimmed);
-    if (!entry) continue;
-    current[entry[1]] = entry[2].replace(/\\(["\\])/g, '$1');
+    if (entry) {
+      current[entry[1]] = entry[2].replace(/\\(["\\])/g, '$1');
+      continue;
+    }
+    const match = /^match\s*=\s*(.*)$/.exec(trimmed);
+    if (match) current.match = tomlMatch(match[1]);
   }
   return blocks
-    .filter((block) => block.type === event && typeof block.command === 'string')
-    .map((block) => block.command);
+    .filter((block) => block.type === event && typeof block.command === 'string');
 }
 
 const ASSIGNMENT = /^[A-Za-z_][A-Za-z0-9_]*=/;
@@ -357,7 +374,11 @@ function inspect(runtime, root) {
     } catch {
       return { runtime: runtime.id, file: runtime.file, status: 'hook-missing' };
     }
-    const wired = tomlCommands(text, runtime.event).some((command) => runsMarker(command, runtime.marker));
+    // The doctor cannot run Vibe's matcher, so only a block with no selector or
+    // the main agent's name proves the entry runs before the prompt it reports on.
+    const wired = tomlCommands(text, runtime.event)
+      .filter((block) => block.match === undefined || block.match === 'main')
+      .some((block) => runsMarker(block.command, runtime.marker));
     return { runtime: runtime.id, file: runtime.file, status: wired ? 'ok' : 'hook-missing' };
   }
   let document;

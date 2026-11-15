@@ -1,6 +1,6 @@
 ---
 title: Skill Advisor Hook Reference
-description: Operator contract for the maintained Skill Advisor adapters across Claude, Codex, Cursor, Devin, Pi, DSH and the OpenCode plugin. Surfaces a prompt-safe routing brief on each user prompt; advisory only and fail-open.
+description: Operator contract for the maintained Skill Advisor adapters across Claude, Codex, Cursor, Devin, Pi, DSH, Vibe and the OpenCode plugin. Surfaces a prompt-safe routing brief on each user prompt. Advisory only and fail-open.
 trigger_phrases:
   - "skill advisor hook reference"
   - "native-first advisor hooks"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.18.0
+version: 3.6.19.0
 ---
 
 # Skill Advisor Hook Reference
@@ -81,7 +81,7 @@ Rows below the threshold are discarded before either rule applies. The degraded 
 
 ## 3. PER-RUNTIME DELIVERY
 
-Every native runtime, Pi and DSH run the same hook handler, which gates the prompt, calls the advisor CLI and renders with `renderAdvisorBrief`. The OpenCode plugin calls the CLI itself. The native adapters differ in prompt event, transport and delivery channel.
+Every native runtime, Pi, DSH and Vibe run the same hook handler, which gates the prompt, calls the advisor CLI and renders with `renderAdvisorBrief`. The OpenCode plugin calls the CLI itself. The native adapters differ in prompt event, transport and delivery channel.
 
 | Runtime | Adapter | Event / wiring | Payload difference it handles | Delivery |
 |---|---|---|---|---|
@@ -109,6 +109,7 @@ The document behind a surfaced command is `.skilled/commands/<group>/<name>.md`.
 | Pi | No model path found | The mirror is a pointer stub. Public Pi docs were not fetched, so this is unverified beyond the repository |
 | OpenCode | No documented model path. A parent process can start one with `opencode run --command` | Commands are user-triggered templates, while skills are loaded by the model through a skill tool |
 | DSH | No | dsh has no agent-file loader and no command loader |
+| Vibe | No | Vibe has no command loader. The brief names each offered command's document, which the model reads in full |
 
 ---
 
@@ -170,9 +171,9 @@ The advisor is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | Variable | Effect |
 |---|---|
 | `SYSTEM_SKILL_ADVISOR_DISABLED=1` | Canonical kill-switch. Every adapter checks `isHookEnabled('skill-advisor')` and returns empty/skipped prompt-safe output, and the `advisor_recommend` direct call abstains. |
-| `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` | Alias. Disables the native adapters and makes the `advisor_recommend` direct call abstain. |
+| `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` | Alias. Disables every adapter and makes the `advisor_recommend` direct call abstain. |
 | `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Alias. Disables every adapter and makes the `advisor_recommend` direct call abstain. |
-| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Legacy alias for the native adapters and the `advisor_recommend` direct call. The standalone Python CLI (`skill_advisor.py`) reads only this name, set to exactly `1`, from `runtime/schemas/compat-contract.json`. |
+| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Legacy alias that disables every adapter and makes the `advisor_recommend` direct call abstain. The standalone Python CLI (`skill_advisor.py`) reads only this name, set to exactly `1`, from `runtime/schemas/compat-contract.json`. |
 | `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Legacy alias. Disables every adapter and makes the `advisor_recommend` direct call abstain. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 

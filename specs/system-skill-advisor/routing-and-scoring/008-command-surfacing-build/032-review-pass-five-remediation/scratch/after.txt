@@ -1,0 +1,163 @@
+
+## status FILES (whole tree)
+ M .skilled/skills/system-skill-advisor/leaf-aliases.json
+ M .skilled/skills/system-skill-advisor/leaf-manifest.json
+ M .skilled/skills/system-skill-advisor/leaf-scopes.json
+ M .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+ M .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/system-skill-advisor/runtime/lib/README.md
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+ M .skilled/skills/system-skill-advisor/runtime/tests/README.md
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+exit=0
+
+## flags file
+1
+exit=0
+
+## BUILD
+@spec-kit/system-skill-advisor dist build attestation recorded
+@spec-kit/system-skill-advisor dist build attestation recorded
+exit=0
+
+## TC
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+
+exit=0
+
+## VX tests/command-transcript-score.vitest.ts
+ Test Files  1 passed (1)
+      Tests  229 passed (229)
+exit=0
+
+## VX tests/command-behaviour-guards.vitest.ts
+ Test Files  1 passed (1)
+      Tests  46 passed (46)
+exit=0
+
+## VX tests/command-offer.vitest.ts
+ Test Files  1 passed (1)
+      Tests  30 passed (30)
+exit=0
+
+## VX tests/launcher-bootstrap.vitest.ts
+ Test Files  1 passed (1)
+      Tests  21 passed (21)
+exit=0
+
+## VX tests/skill-advisor-cli-stale-daemon-retry.vitest.ts
+ Test Files  1 passed (1)
+      Tests  20 passed (20)
+exit=0
+
+## VX tests/advisor-disabled.vitest.ts
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+exit=0
+
+## VX tests/hooks/vibe-prompt-advisor.vitest.ts
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+exit=0
+
+## VX tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+ Test Files  1 passed (1)
+      Tests  40 passed (40)
+exit=0
+
+## VX tests/manual-testing-playbook.vitest.ts
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+exit=0
+
+## VALL
+ Test Files  185 passed (185)
+      Tests  2206 passed | 6 skipped (2212)
+exit=0
+
+## DT
+ℹ tests 1237
+ℹ pass 1237
+ℹ fail 0
+exit=0
+
+## VT
+ℹ tests 84
+ℹ pass 84
+ℹ fail 0
+exit=0
+
+## VMIR prompts
+[vibe-prompt-sync] PASS: 45 prompt stubs are in sync.
+exit=0
+
+## VMIR agents
+[vibe-agent-sync] PASS: 11 agent profiles are in sync.
+exit=0
+
+## VMIR skills
+[vibe-skill-sync] PASS: 55 skill links are in sync.
+exit=0
+
+## META compiler
+VALIDATION PASSED: all metadata files are valid
+exit=0
+
+## META freshness
+  (report-only — the canonical reindex is operator-gated; nothing was written)
+exit=0
+
+## META root
+checked=14 passed=14 failed=0 fixed=0
+exit=0
+
+## META derived
+checked=14 fresh=14 stale=0 errored=0
+exit=0
+
+## META leaf
+checked=14 fresh=14 failed=0
+exit=0
+
+## META intent
+RESULT: PASSED
+exit=0
+
+## PBV
+PASS package=system-skill-advisor tier=FAIL_CLOSED scenarios=53 categories=9 operator=28 routing_gold_excluded=25 violations=0 warnings=0
+exit=0
+
+## SHAPE
+SUMMARY files=1 pass=1 fail=0
+exit=0
+
+## LINKS
+check-markdown-links: 7608 files, 14918 links checked, 0 broken
+exit=0
+
+## FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+
+## EVAL
+[160,49,21,5]
+
+## LEFT
+       0
+       0
+
+## CMP
+floor cmp=0
+eval cmp=0

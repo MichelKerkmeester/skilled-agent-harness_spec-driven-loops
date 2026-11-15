@@ -6,7 +6,7 @@ trigger_phrases:
   - "global disable flag"
   - "global disable"
   - "global"
-version: 0.8.6.0
+version: 0.8.7.0
 id: CP-003
 category: compat_and_disable
 stage: routing
@@ -46,7 +46,7 @@ Validate the common disable flag across the native CLI, Python shim, runtime hoo
 node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --no-warm-only > /dev/null
 HOOK_FLAGS_CONFIG=/dev/null SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
 HOOK_FLAGS_CONFIG=/dev/null SYSTEM_SKILL_ADVISOR_DISABLED=true node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
-HOOK_FLAGS_CONFIG=/dev/null env -u SPECKIT_SKILL_ADVISOR_HOOK_DISABLED -u SYSTEM_SKILL_ADVISOR_HOOK_DISABLED -u SYSTEM_SKILL_ADVISOR_DISABLED -u SYSTEM_HOOKS_DISABLED node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1}' --format json --timeout-ms 30000
+HOOK_FLAGS_CONFIG=/dev/null env -u SYSTEM_HOOKS_DISABLED -u MK_HOOKS_DISABLED -u SYSTEM_SKILL_ADVISOR_DISABLED -u SYSTEM_SKILL_ADVISOR_HOOK_DISABLED -u SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED -u MK_SKILL_ADVISOR_DISABLED -u MK_SKILL_ADVISOR_HOOK_DISABLED -u MK_SKILL_ADVISOR_PLUGIN_DISABLED -u SPECKIT_SKILL_ADVISOR_HOOK_DISABLED -u SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1}' --format json --timeout-ms 30000
 ```
 
 2. Python shim:

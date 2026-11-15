@@ -98,26 +98,42 @@ subfolders -> handlers for runtime behavior
 
 ```text
 lib/
++-- advisor-disabled.ts
 +-- advisor-runtime-values.ts
 +-- affordance-normalizer.ts
++-- caller-context.ts
 +-- command-attach.ts
++-- compiled-routing-flag.ts
++-- df-idf.ts
 +-- error-diagnostics.ts
 +-- freshness.ts
 +-- generation.ts
 +-- metrics.ts
 +-- normalize-adapter-output.ts
 +-- policy-plan.ts
++-- private-skill-target.cjs
++-- private-skill-target.ts
 +-- prompt-cache.ts
 +-- prompt-policy.ts
 +-- render.ts
++-- route-exclusions.ts
 +-- skill-advisor-brief.ts
 +-- source-cache.ts
 +-- subprocess.ts
++-- auth/
++-- compat/
 +-- cross-skill-edges/
++-- daemon/
++-- derived/
 +-- embedders/
++-- freshness/
 +-- ipc/
++-- lifecycle/
 +-- scorer/
++-- shadow/
 +-- shared/
++-- skill-graph/
++-- utils/
 `-- README.md
 ```
 

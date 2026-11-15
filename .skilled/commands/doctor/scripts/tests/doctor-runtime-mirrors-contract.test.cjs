@@ -200,7 +200,7 @@ function repairGaps(workflowText) {
 // 4. THE MANIFEST AND WORKFLOW AS THEY SHIP
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('the route declares all DSH checks in their check-only form', () => {
+test('the route declares every DSH and Vibe check in its check-only form', () => {
   assert.deepEqual(routeGaps(read(ROUTES_PATH)), []);
 });
 

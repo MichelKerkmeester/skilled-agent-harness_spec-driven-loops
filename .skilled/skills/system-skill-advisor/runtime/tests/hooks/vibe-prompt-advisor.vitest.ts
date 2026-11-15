@@ -8,7 +8,7 @@
 // scores the advisor varies between runs.
 
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -90,6 +90,14 @@ function vibeHead(scope: IsolatedCliScope, prompt: string, sessionId: string): s
   return text.split('\nDirectives:')[0];
 }
 
+// The receipt folder is what the injected env moves, so the case counts receipt
+// files rather than asserting on the returned text.
+function headReceipts(directory: string): string[] {
+  const receiptDir = join(directory, 'vibe-turn-start');
+  if (!existsSync(receiptDir)) return [];
+  return readdirSync(receiptDir).filter((name) => name.endsWith('.head'));
+}
+
 describe('Vibe prompt advisor with the real advisor', () => {
   let scope: IsolatedCliScope;
 
@@ -144,6 +152,12 @@ describe('withCommandDocuments', () => {
     expect(vibeAdvisor.withCommandDocuments(context, repoRoot)).toBe(
       `${context}\n${LEAD}/doctor:git is .skilled/commands/doctor/git.md.`,
     );
+  });
+
+  it('leaves a directive-only context unchanged', () => {
+    const context = 'Directives:\n- When a save is due, run /speckit:save to record the session.';
+
+    expect(vibeAdvisor.withCommandDocuments(context)).toBe(context);
   });
 
   it('names the document a no-skill head offers as its follow-up', () => {
@@ -206,5 +220,54 @@ describe('withCommandDocuments', () => {
       `${head}\n${LEAD}/create:readme is .skilled/commands/create/readme.md.`,
     );
     await expect(vibeAdvisor.buildAdvisorPart(payload, dependencies)).resolves.toBe('');
+  });
+});
+
+describe('buildAdvisorPart head receipt location', () => {
+  let scope: IsolatedCliScope;
+
+  beforeAll(() => {
+    scope = createIsolatedCliScope('vibe-prompt-advisor-receipts');
+  });
+
+  afterAll(async () => {
+    await cleanupSkillAdvisorScope(scope);
+  });
+
+  it('writes the receipt under the injected env, not process.env', async () => {
+    const injectedDir = join(scope.rootDir, 'receipts-injected');
+    const processDir = join(scope.rootDir, 'receipts-process');
+    mkdirSync(injectedDir, { recursive: true });
+    mkdirSync(processDir, { recursive: true });
+
+    const previous = process.env.SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR;
+    process.env.SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR = processDir;
+    try {
+      const head = 'Advisor: live; use sk-doc → /create:readme (start) 0.94/0.12 pass.';
+      const result = await vibeAdvisor.buildAdvisorPart(
+        {
+          hook_event_name: 'pre_agent',
+          prompt: 'write a readme for the utils folder',
+          session_id: 'vibe-receipt-injected-env',
+        },
+        {
+          run: async () => ({ hookSpecificOutput: { additionalContext: head } }),
+          env: { SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR: injectedDir },
+          isEnabled: () => true,
+        },
+      );
+
+      expect(result.startsWith(head)).toBe(true);
+      // The two counts are the whole observable: a writer that reads process.env
+      // lands the receipt in the other folder, so the pair proves which env the
+      // receipt path followed.
+      expect({
+        injected: headReceipts(injectedDir).length,
+        process: headReceipts(processDir).length,
+      }).toEqual({ injected: 1, process: 0 });
+    } finally {
+      if (previous === undefined) delete process.env.SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR;
+      else process.env.SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR = previous;
+    }
   });
 });

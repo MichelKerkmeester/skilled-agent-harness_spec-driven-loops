@@ -216,9 +216,7 @@ describe('skill-advisor CLI stale-daemon retry', () => {
 });
 
 describe('skill-advisor CLI disable switch', () => {
-  // The resolver copies an MK_ value onto its new name when it loads, so the
-  // reason an MK_ name gets depends on load order. The loop leaves those out.
-  it.each(ADVISOR_DISABLED_FLAGS.filter((flag) => !flag.startsWith('MK_')).map((flag) => [flag]))('abstains under %s before it asks a warm daemon', async (flag) => {
+  it.each(ADVISOR_DISABLED_FLAGS.map((flag) => [flag]))('abstains under %s before it asks a warm daemon', async (flag) => {
     const scope = createIsolatedCliScope('disable-switch-warm');
     scopes.push(scope);
     const daemon = await startFakeAdvisorDaemon(scope.socketPath, 'answer');
@@ -229,7 +227,12 @@ describe('skill-advisor CLI disable switch', () => {
     expect(run.exitCode, run.stderr).toBe(0);
     expect(payload.status).toBe('ok');
     expect(payload.data?.recommendations).toEqual([]);
-    expect(payload.data?.abstainReasons).toEqual([`Skill advisor disabled by ${flag}.`]);
+    // A legacy name can reach the resolver as the canonical one it maps to, so the
+    // reported name is not fixed but the reason always names some switch.
+    const reasons = payload.data?.abstainReasons ?? [];
+    expect(reasons).toHaveLength(1);
+    expect(reasons[0]?.startsWith('Skill advisor disabled by ')).toBe(true);
+    if (!flag.startsWith('MK_')) expect(reasons).toEqual([`Skill advisor disabled by ${flag}.`]);
     expect(payload.data?.warnings).toEqual(['ADVISOR_DISABLED']);
     expect(payload.data?.freshness).toBe('unavailable');
     expect(daemon.calls).toHaveLength(0);

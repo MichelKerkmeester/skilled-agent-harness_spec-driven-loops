@@ -65,20 +65,20 @@ function isChildSession(payload, env) {
   return typeof parent === 'string' && parent.trim() !== '';
 }
 
-function headReceiptDir() {
-  const configured = process.env[STATE_DIR_ENV]?.trim();
+function headReceiptDir(env) {
+  const configured = env[STATE_DIR_ENV]?.trim();
   const base = configured ? resolve(configured) : join(tmpdir(), 'speckit-advisor');
   return join(base, HEAD_RECEIPT_SUBDIR);
 }
 
-function headReceiptPath(sessionId) {
+function headReceiptPath(sessionId, env) {
   const digest = createHash('sha256').update(sessionId).digest('hex').slice(0, 16);
-  return join(headReceiptDir(), `${digest}.head`);
+  return join(headReceiptDir(env), `${digest}.head`);
 }
 
-function readHeadReceipt(sessionId) {
+function readHeadReceipt(sessionId, env = process.env) {
   try {
-    return readFileSync(headReceiptPath(sessionId), 'utf8');
+    return readFileSync(headReceiptPath(sessionId, env), 'utf8');
   } catch {
     return '';
   }
@@ -96,11 +96,11 @@ function evictOldestReceipts(directory) {
   for (const entry of oldest) unlinkSync(join(directory, entry.name));
 }
 
-function writeHeadReceipt(sessionId, head) {
+function writeHeadReceipt(sessionId, head, env = process.env) {
   try {
-    const directory = headReceiptDir();
+    const directory = headReceiptDir(env);
     mkdirSync(directory, { recursive: true, mode: 0o700 });
-    const target = headReceiptPath(sessionId);
+    const target = headReceiptPath(sessionId, env);
     if (!existsSync(target)) evictOldestReceipts(directory);
     writeFileSync(target, head, { mode: 0o600 });
   } catch {
@@ -122,6 +122,11 @@ function writeHeadReceipt(sessionId, head) {
  */
 export function withCommandDocuments(context, root = REPO_ROOT) {
   try {
+    // A context that opens with the directive label has no routing head for a
+    // document line to sit under, and its block is the handler's to deliver.
+    const label = DIRECTIVE_SEPARATOR.slice(1);
+    if (context.startsWith(label)) return context;
+
     const separator = context.indexOf(DIRECTIVE_SEPARATOR);
     const head = separator > 0 ? context.slice(0, separator) : context;
     const rest = separator > 0 ? context.slice(separator) : '';
@@ -157,18 +162,19 @@ export function withCommandDocuments(context, root = REPO_ROOT) {
  *
  * @param {string} context - The advisor's additional context.
  * @param {string} sessionId - The Vibe session id, the receipt key.
- * @param {{read?: Function, write?: Function}} [receipts] - Injectable for tests.
+ * @param {{read?: Function, write?: Function, env?: Object}} [receipts] - Injectable for tests.
  * @returns {string} The text to deliver, or an empty string to deliver nothing.
  */
 export function reduceRepeatedHead(context, sessionId, {
   read = readHeadReceipt,
   write = writeHeadReceipt,
+  env = process.env,
 } = {}) {
   if (typeof sessionId !== 'string' || !sessionId.trim()) return context;
 
   const separator = context.indexOf(DIRECTIVE_SEPARATOR);
   if (separator > 0) {
-    write(sessionId, context.slice(0, separator));
+    write(sessionId, context.slice(0, separator), env);
     return context;
   }
   // An older build rendered the no-brief fallback as the directive block alone.
@@ -176,8 +182,8 @@ export function reduceRepeatedHead(context, sessionId, {
   const label = DIRECTIVE_SEPARATOR.slice(1);
   if (context.startsWith(label)) return context;
 
-  if (read(sessionId) === context) return '';
-  write(sessionId, context);
+  if (read(sessionId, env) === context) return '';
+  write(sessionId, context, env);
   return context;
 }
 
@@ -229,7 +235,7 @@ export async function buildAdvisorPart(payload, {
 
     const context = output?.hookSpecificOutput?.additionalContext;
     if (typeof context !== 'string' || !context.trim()) return '';
-    return reduceRepeatedHead(withCommandDocuments(context), sessionId, { read, write });
+    return reduceRepeatedHead(withCommandDocuments(context), sessionId, { read, write, env });
   } catch {
     return '';
   }
