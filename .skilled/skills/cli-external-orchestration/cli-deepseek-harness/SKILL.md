@@ -1,8 +1,8 @@
 ---
 name: cli-deepseek-harness
-description: "DeepSeek Harness (dsh) CLI executor for pinned headless one-task dispatch over a closed three-route DeepSeek V4.1 Flash roster."
+description: "DeepSeek Harness (dsh) CLI executor for pinned headless one-task dispatch over a closed two-route DeepSeek V4.1 Flash roster."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DeepSeek Harness CLI Orchestrator - Cross-AI Task Delegation
@@ -32,9 +32,9 @@ Each live result applies only to the route and behavior the saved probe exercise
 ### When NOT to Use
 
 - `dsh` is not on PATH, or `dsh --version` is not the pinned version.
-- The task needs a model outside the three-route roster, a GLM or official DeepSeek route, or a provider the roster does not list.
+- The task needs a model outside the two-route roster, a GLM or official DeepSeek route, or a provider the roster does not list.
 - The task needs an interactive session, a human answer mid-run, plan mode or native goal rounds.
-- The task requires OpenCode Go and `OPENCODE_API_KEY` is not set, or Mistral and `MISTRAL_API_KEY` is not set.
+- The task requires OpenCode Go and `OPENCODE_API_KEY` is not set.
 - The only cwd available is the repository root.
 
 ---
@@ -56,7 +56,7 @@ This packet owns the dispatch contract: the hard rules, the roster, the argv sha
 For research and review lineages, the shared deep-loop runtime owns process construction through the experimental `cli-deepseek-harness` executor kind, described in [fanout-executor.md](./references/fanout-executor.md). The verified LLM Gateway route is the default. OpenCode Go is proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and remains explicit-only.
 Do not add a packet-local wrapper, spawn path or command builder.
 
-**Closed roster: non-roster routes are FORBIDDEN.** Three routes exist, LLM Gateway, OpenCode Go and Mistral, all serving DeepSeek V4.1 Flash. [providers-and-models.md](./references/providers-and-models.md) section 2 is the one place the ids, endpoints and key variables are recorded. dsh validates no catalog membership, so a patch naming any other model would run. The preflight is the only gate.
+**Closed roster: non-roster routes are FORBIDDEN.** Two routes exist, LLM Gateway and OpenCode Go, both serving DeepSeek V4.1 Flash. Mistral work goes through `cli-mistral-vibe`, not dsh. [providers-and-models.md](./references/providers-and-models.md) section 2 is the one place the ids, endpoints and key variables are recorded. dsh validates no catalog membership, so a patch naming any other model would run. The preflight is the only gate.
 
 ### The Dispatch Shape
 
@@ -67,7 +67,7 @@ cd "$RUN_DIR" && printf '%s' "$PROMPT" | DSH_HOME="$RUN_DIR/.dsh-home" \
     --json --permission-mode read-only --approval-policy never -
 ```
 
-`$RUN_DIR` is a fresh scratch directory and `$REPO` is the checkout root, so all three patches are named by absolute path. Swap the route file for `route-opencode-go-deepseek.patch.yml` or `route-mistral-deepseek.patch.yml` to use another roster route. Name each patch by its literal file name: the preflight checks the roster from that name, and a patch hidden behind a variable fails `route-patch-required`. A writer uses `workspace-write` and names any directory it must write outside the cwd with `--add-dir`. The annotated shape and every flag are in [cli-reference.md](./references/cli-reference.md) sections 3 to 5.
+`$RUN_DIR` is a fresh scratch directory and `$REPO` is the checkout root, so all three patches are named by absolute path. Swap the route file for `route-opencode-go-deepseek.patch.yml` to use the other roster route. Name each patch by its literal file name: the preflight checks the roster from that name, and a patch hidden behind a variable fails `route-patch-required`. A writer uses `workspace-write` and names any directory it must write outside the cwd with `--add-dir`. The annotated shape and every flag are in [cli-reference.md](./references/cli-reference.md) sections 3 to 5.
 
 ### Dispatch Lifecycle
 
@@ -112,7 +112,7 @@ The thirteen fail-closed rules live in [hard-rules.json](./hard-rules.json): `he
 
 ### ⛔ NEVER
 
-1. Never dispatch any route outside the three-route roster, and never write a route patch for one.
+1. Never dispatch any route outside the two-route roster, and never write a route patch for one.
 2. Never start dsh with the repository root as its cwd.
 3. Never run any dsh command with `DSH_HOME` unset.
 4. Never use `danger-full-access`, and never treat `--approval-policy never` as confinement.
@@ -138,7 +138,7 @@ The thirteen fail-closed rules live in [hard-rules.json](./hard-rules.json): `he
 ### Core References
 
 - [cli-reference.md](./references/cli-reference.md) - The version pin, the headless option set, the launcher flags, the dispatch shape and the exit contract
-- [providers-and-models.md](./references/providers-and-models.md) - The closed three-route roster, the route patch shape and what stays unconfirmed
+- [providers-and-models.md](./references/providers-and-models.md) - The closed two-route roster, the route patch shape and what stays unconfirmed
 - [runtime-folder-and-sync.md](./references/runtime-folder-and-sync.md) - The `.dsh/` folder, `DSH_HOME` isolation, skills, prompts and personas
 - [guards-and-hooks.md](./references/guards-and-hooks.md) - Harness seams, the repo-guards plugin bundle and the port table
 - [mcp.md](./references/mcp.md) - MCP off by default and the opt-in Code Mode patch

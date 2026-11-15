@@ -6,7 +6,7 @@ trigger_phrases:
   - "vibe print mode"
   - "delegate to vibe"
   - "vibe cli"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # cli-mistral-vibe
@@ -122,7 +122,7 @@ Use cli-mistral-vibe when the request names Mistral Vibe, `vibe -p`, `vibe print
 
 | Skill | Relationship |
 |---|---|
-| cli-deepseek-harness | DeepSeek Harness headless runs, with a closed three-route patch roster |
+| cli-deepseek-harness | DeepSeek Harness headless runs, with a closed two-route patch roster |
 | cli-opencode | Full OpenCode runtime, plugins and detached sessions |
 | cli-claude-code, cli-codex, cli-cursor, cli-devin, cli-pi | Their own vendors' CLIs and model families |
 

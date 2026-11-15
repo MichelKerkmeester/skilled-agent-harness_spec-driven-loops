@@ -12,12 +12,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation"
-    last_updated_at: "2026-11-15T09:15:00Z"
+    last_updated_at: "2026-11-15T10:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built phases 004 to 022 and pushed them to origin/main as e263e5481e7"
-    next_safe_action: "Close the open children 003, 015, 016, 017, 019 and 022"
-    blockers:
-      - "MISTRAL_API_KEY is not exported for dsh"
+    next_safe_action: "Run the operator-only live checks that keep 016, 017, 019 and 022 open"
+    blockers: []
     key_files:
       - "002-mistral-provider-roster/evidence/probes.md"
       - "001-deep-research/research-angles.md"
@@ -119,7 +118,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | Vibe as a runtime mode, parity with cli-opencode's extensions, hooks and plugins, ranked phase plan | Complete |
 | 2 | 002-mistral-provider-roster/ | Mistral DeepSeek and GLM routes on the cli-opencode and cli-pi rosters | Complete |
-| 3 | 003-dsh-mistral-route/ | Third DeepSeek Harness route through Mistral | In Progress: keyed proof pending |
+| 3 | 003-dsh-mistral-route/ | Third DeepSeek Harness route through Mistral | Complete: route retired 2026-11-15 |
 | 4 | 004-vibe-contract-pin/ | One keyed print-mode dispatch with an isolated `VIBE_HOME` pins the export, payload, exit, stdin and process-name contract | Complete |
 | 5 | 005-cli-mistral-vibe-skill-packet/ | The `cli-mistral-vibe` mode packet: `SKILL.md`, `ROUTER.md`, `hard-rules.json`, references and prompt card | Complete |
 | 6 | 006-vibe-runtime-folder-and-mirrors/ | The `.vibe/` runtime folder with a closed `allowed_models` roster, generated agent, skill and prompt mirrors and `SYNC.md` | Complete |
@@ -129,16 +128,16 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 10 | 010-hub-registration-and-routing/ | Mode registry, hub router, advisor vocabulary, compiled routing and agent tables | Complete |
 | 11 | 011-vibe-context-and-goal-hooks/ | A `session_start` hook carrying the packet goal slice and session context | Complete |
 | 12 | 012-playbook-docs-and-closeout/ | Manual-testing playbook, cross-runtime docs, feature catalog and recursive strict validation | Complete |
-| 13 | 013-vibe-audit-fixes/ | The verified sk-code audit fixes: guard session cwd, relative `VIBE_HOME` base, export-record exit check, duplicated rule sets, renderer substitution check, headers and line lengths | Pending |
-| 14 | 014-vibe-journal-fixture-and-reader/ | Keyed fixtures that settle the `post_agent`, compaction and question-tool facts, and the shared session-journal reader | Pending |
-| 15 | 015-vibe-turn-start-advisor-and-dist/ | A `pre_agent` turn-start composer carrying the per-prompt skill advisor brief, and a `post_tool` dist-freshness recheck after edits | Pending |
-| 16 | 016-vibe-turn-end-guards/ | A `post_agent` turn-end composer: ask-surface reprompt through a deny-as-retry, and advisory completion evidence | Pending |
-| 17 | 017-vibe-decision-capture/ | A `post_tool` hook on `ask_user_question` that records answered decisions, with a journal sweep at save time | Pending |
-| 18 | 018-vibe-compaction-context/ | Goal slice and history locator re-injected after a compaction, detected from the journal | Pending |
-| 19 | 019-vibe-relaunch-command-tier/ | The manual tier of session relaunch for Vibe; the automatic tier stays out of scope | Pending |
-| 20 | 020-vibe-dispatch-hardening/ | A hard rule for a dispatch that skips the hooks render step, the lineage approval and confinement posture, and the Vibe tests in CI, plus pre-commit where the hook runs test suites | Pending |
-| 21 | 021-vibe-hook-docs-correction/ | `guards-and-hooks.md` and the mode docs corrected from the runs in 013-020, and recursive strict validation | Pending |
-| 22 | 022-vibe-hook-playbook-and-live-scenarios/ | A manual-testing scenario for every Vibe hook, mirror and plugin surface, each run live as a conversation and recorded, then the local Skilled alignment run over the branch | Pending |
+| 13 | 013-vibe-audit-fixes/ | The verified sk-code audit fixes: guard session cwd, relative `VIBE_HOME` base, export-record exit check, duplicated rule sets, renderer substitution check, headers and line lengths | Complete |
+| 14 | 014-vibe-journal-fixture-and-reader/ | Keyed fixtures that settle the `post_agent`, compaction and question-tool facts, and the shared session-journal reader | Complete |
+| 15 | 015-vibe-turn-start-advisor-and-dist/ | A `pre_agent` turn-start composer carrying the per-prompt skill advisor brief, and a `post_tool` dist-freshness recheck after edits | Complete |
+| 16 | 016-vibe-turn-end-guards/ | A `post_agent` turn-end composer: ask-surface reprompt through a deny-as-retry, and advisory completion evidence | In Progress: operator live check open |
+| 17 | 017-vibe-decision-capture/ | A `post_tool` hook on `ask_user_question` that records answered decisions, with a journal sweep at save time | In Progress: operator live check open |
+| 18 | 018-vibe-compaction-context/ | Goal slice and history locator re-injected after a compaction, detected from the journal | Complete |
+| 19 | 019-vibe-relaunch-command-tier/ | The manual tier of session relaunch for Vibe; the automatic tier stays out of scope | In Progress: operator live check open |
+| 20 | 020-vibe-dispatch-hardening/ | A hard rule for a dispatch that skips the hooks render step, the lineage approval and confinement posture, and the Vibe tests in CI, plus pre-commit where the hook runs test suites | Complete |
+| 21 | 021-vibe-hook-docs-correction/ | `guards-and-hooks.md` and the mode docs corrected from the runs in 013-020, and recursive strict validation | Complete |
+| 22 | 022-vibe-hook-playbook-and-live-scenarios/ | A manual-testing scenario for every Vibe hook, mirror and plugin surface, each run live as a conversation and recorded, then the local Skilled alignment run over the branch | In Progress: operator live checks open |
 
 Phases 004 to 012 follow `001-deep-research/research/phase-plan.md`. Phases 013 to 021 close the parity gaps a source reading of Vibe 3.1.2 reopened: a `post_agent` deny sends the turn back for revision, `pre_agent` and `post_tool` can add context, and an `ask_user_question` tool exists. The handoff rows below are linear, and each child's Phase Context names its real dependencies. The ACP supervisor, the automatic session-relaunch tier and sandbox mode stay deferred.
 
