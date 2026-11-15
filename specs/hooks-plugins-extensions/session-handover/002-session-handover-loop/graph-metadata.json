@@ -252,7 +252,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-15T16:30:36.411Z",
+    "last_save_at": "2026-11-15T17:23:07.257Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -260,7 +260,7 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7226b665d54f0be954985813f3ae74fab621bc9183210f66ead58ad08cea6795",
+    "source_fingerprint": "sha256:5bdfce22c7afda289aaf0f55fa26de2f6ec9f9c092871bd22ba6f84ab15ef533",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7507097126b5ddcac57730ab345bde3db3bd1f2177e4b500b6935af5fe78b43d",
