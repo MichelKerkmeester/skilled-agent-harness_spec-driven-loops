@@ -28,18 +28,19 @@
       "criteria",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing"
+      "sk-doc",
+      "skilled",
+      "skills"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/evidence.txt"
     ],
     "entities": [
       {
@@ -70,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence.txt",
+        "kind": "file",
+        "path": "scratch/evidence.txt",
         "source": "derived"
       },
       {
@@ -121,7 +128,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,13 +146,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,18 +186,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The sk-doc changelogs under `.skilled/skills/sk-doc/` hold long sentences",
     "created_at": "2026-11-15T06:37:31Z",
-    "last_save_at": "2026-11-15T06:46:57.955Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T12:39:05.158Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +200,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7531a60a55b1824944f1854a25516701cabd8184018987a069dd9668c3ea702",
+    "source_fingerprint": "sha256:0d9f3b0eea08df1a431142610aaaa71fc3ee3e48da2e08ce9ea65cf287de6f39",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5c5c75d12350a7cfdd3bd5d7598d16924df297363e651d09a5996fcc95a50915",
-      "plan.md": "5abab63172079d4f01323121445922309075dfa0ba45071bbeccf7f0a4205433",
-      "tasks.md": "84acedb7f304a6ac01f58f61d0f92a9aba579b803b9a5daa53988ffb02e5c588",
-      "implementation-summary.md": "21df8a617c1e7d5c874b15da704de2a6a22d4d1b0e6abdb06103d76b3851d7fa"
+      "spec.md": "27628b21270967fa957a45a60e8ffc6c329a1619b41bc0c2be9407e134684be7",
+      "plan.md": "395658c6007b448e44f1ee23b1d2cbb565d20182d98f950290c247dd206d85d1",
+      "tasks.md": "468551b4f9d626d62c502b7113521a0dccca03a96a10ce91c6fc53531cf9afa5",
+      "implementation-summary.md": "736212a85e0b4bcc83ddec95c588c72931e92d139e313f0ea02e7e7a9479b58d"
     },
     "last_active_at": null
   }

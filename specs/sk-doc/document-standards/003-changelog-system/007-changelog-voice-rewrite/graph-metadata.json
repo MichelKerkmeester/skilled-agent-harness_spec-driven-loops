@@ -121,18 +121,18 @@
     ],
     "causal_summary": "The changelog standard caps a sentence at 22 words and an entry at 10 words a sentence on average",
     "created_at": "2026-11-15T06:37:25Z",
-    "last_save_at": "2026-11-15T11:29:28.257Z",
+    "last_save_at": "2026-11-15T12:39:05.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9b95a5784a860ad6b0bba12602e13ad9cb7f6a79616d6fd696e066fc165cb7d1",
+    "source_fingerprint": "sha256:1b7cf14eb2892c40b0492cb366e303601e8dbbbaaa0eb1a91ca9b92a6e943ec6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5635d22372cd6bc3a9e43475ae787f6f677e67fc497ddd9b5ed840ab0d5cbc6d"
+      "spec.md": "826e9259bb8caf6887a86c285ce410f5acaeef56027ac1383c26390f1e620689"
     },
-    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line",
-    "last_active_at": "2026-11-15T11:29:28.257Z"
+    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs",
+    "last_active_at": "2026-11-15T12:39:05.175Z"
   }
 }

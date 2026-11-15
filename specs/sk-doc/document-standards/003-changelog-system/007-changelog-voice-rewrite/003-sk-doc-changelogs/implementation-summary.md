@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The 296 queued sk-doc changelogs now read in short sentences with every fact kept. A double-backtick span bug in the driver and the measure tool was fixed on the way."
 trigger_phrases:
   - "sk doc changelogs implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs"
-    last_updated_at: "2026-11-15T06:37:33Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-15T12:39:05Z"
+    last_updated_by: "generate-context"
+    recent_action: "Rewrote the sk-doc changelogs and fixed the span matcher"
+    next_safe_action: "Run phase 004 with the rewrite driver"
+    packet_purpose: "Purpose: Every changelog on the list reads in short plain sentences with every fact kept."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/scratch/lists/003.txt"
+      - "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/scratch/rewrite-driver.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8e63a6df790746f1236b9b0ca9a4ba3d7ef5d1c2cce3e7dab8dbe9099859cd08"
       session_id: "scaffold-003-sk-doc-changelogs"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "079f7de2-cb32-4e35-b608-1c6f6425d281"
+      workspace: "/Users/michelkerkmeester/worktrees/public/401-changelog-voice-rewrite"
+      savedAt: "2026-11-15T12:39:05Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,62 +55,70 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The sk-doc changelogs now read in short plain sentences. Across the 296 changelogs this phase queued, the mean sentence fell from 12.5 to 8.4 words. The count of sentences over 22 words fell from 552 to 0, and the 12 files with a hard blocker now have none.
 
 ### Phase 3: sk-doc-changelogs
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+You can read the release history of every sk-doc mode without long run-on sentences. Each fact of the original is still there, because a second model checked every kept file against its original.
+
+The structure lock now reads double-backtick code spans the way Markdown does. Later phases get that fix too, so a changelog that quotes a backtick no longer fails for a tool reason.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| 248 changelogs under `.skilled/skills/sk-doc/` | Modified | Rewritten and kept after every gate passed |
+| `../scratch/rewrite-driver.cjs` | Modified | The span matcher pairs a backtick run with a closing run of the same length |
+| `../scratch/measure-voice.py` | Modified | The same span fix |
+| `../scratch/state.jsonl` | Modified | One record per dispatch with tokens and verdict |
+| `scratch/evidence.txt` | Created | Measure, wave and wave-verify results |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+The driver ran the list with two slots. It skipped the 2 pilot files and recorded 48 files as already passing. The first wave kept 247 and restored 1. That file, `sk-create-readme/changelog/v1.3.3.0.md`, failed for a tool reason, and a first retry failed the same way. The span matcher was fixed and checked against the old pattern, and a second retry kept the file on its first attempt. `wave-verify.cjs` then checked every record against HEAD, and `measure-voice.py` measured the result.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Fix the span matcher in the driver mid-phase | Line 25 of `sk-create-readme/changelog/v1.3.3.0.md` holds double-backtick spans such as `` `gone.py` ``. The old pattern took each backtick as a delimiter, so the structure lock misread the spans and rejected every attempt. The new pattern follows CommonMark: a span closes with a backtick run as long as the one that opened it |
+| Prove the fix changes nothing else first | On every scope-list file without a double backtick, the new pattern gives the same spans as the old one, 1,556 of 1,556. Wave 003 re-verified under the fix still keeps all 247 earlier passes |
+| Fix `measure-voice.py` the same way | It had the same bug and counted that line as one sentence over 22 words. The numbers here come from the fixed tool. Phase 002's baseline is unchanged under it, 5,001 sentences and a 13.7-word mean |
+| Retry the tool failure, never hand-edit it | Every kept file must come through the gates and the fact check |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Wave 003 | PASS: `pass=247 restored=1 unchanged=48`, driver exit 0 |
+| Wave 003-retry, old matcher | `pass=0 restored=1`, driver exit 0. The same span misread |
+| Wave 003-retry2, fixed matcher | PASS: `pass=1 restored=0`, driver exit 0 |
+| Span matcher regression | PASS: same spans on 1,556 of 1,556 files without a double backtick |
+| `wave-verify.cjs` | PASS for this phase: keep 248, 48 unchanged, 0 missing. The 2 problems are the pilot files, which match HEAD |
+| `measure-voice.py`, 296 files | PASS: avg 12.5 to 8.4 words, over 22 from 552 to 0, hard blockers from 12 to 0 |
+| Tokens | 10,717,333 for the three waves, about 36,000 per queued file |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **`wave-verify.cjs` flags the two pilot files.** Their latest record is the pilot pass, and its saved original predates the pilot, so it is not HEAD. Both files match HEAD.
+2. **The span fix was checked on files without a double backtick.** The 15 scope files that have one were not compared, because the old pattern misreads them by design. Later phases that touch those files run under the fixed matcher.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

@@ -155,8 +155,11 @@ function anatomy(text) {
     prose.push(line.replace(/<!--.*?-->/g, ''));
   }
   const proseText = prose.join('\n');
-  const spans = [...proseText.matchAll(/`([^`\n]+)`/g)].map((m) => m[1]);
-  const plain = proseText.replace(/`[^`\n]*`/g, ' ');
+  // A code span opens with a run of backticks and closes with a run of the same
+  // length, so `` `name` `` is one span holding a backtick, not two broken ones.
+  const SPAN_RE = /(?<!`)(`+)(?!`)([^\n]*?[^`\n])\1(?!`)/g;
+  const spans = [...proseText.matchAll(SPAN_RE)].map((m) => m[2]);
+  const plain = proseText.replace(SPAN_RE, ' ');
   const numbers = [...plain.matchAll(/\d+(?:[.,]\d+)*/g)].map((m) => m[0]);
   return { front, locked, bullets, spans, numbers };
 }

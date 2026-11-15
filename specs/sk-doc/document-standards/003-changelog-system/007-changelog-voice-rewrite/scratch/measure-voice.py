@@ -19,7 +19,8 @@ def sentences(text):
     body = parts[2] if text.startswith("---") and len(parts) == 3 else text
     body = re.sub(r"```.*?```", "", body, flags=re.S)
     body = re.sub(r"<!--.*?-->", "", body, flags=re.S)
-    body = re.sub(r"`[^`]*`", "X", body)
+    # A code span closes with a backtick run as long as the one that opened it.
+    body = re.sub(r"(?<!`)(`+)(?!`)([^\n]*?[^`\n])\1(?!`)", "X", body)
     keep = []
     for line in body.splitlines():
         s = line.strip()
