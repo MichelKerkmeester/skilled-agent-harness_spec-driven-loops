@@ -130,7 +130,9 @@ if (require.main === module && process.env.DEEP_LOOP_TSX_LOADED !== '1') {
     {
       cwd: process.cwd(),
       env: require('./runtime-bootstrap.cjs').tsxChildEnv({ DEEP_LOOP_TSX_LOADED: '1' }),
-      input: process.stdin.isTTY ? undefined : fs.readFileSync(0),
+      // The child owns stdin. Reading it here blocks on a pipe that is never
+      // closed and throws EAGAIN on a non-blocking one, before any argument is checked.
+      stdio: ['inherit', 'pipe', 'pipe'],
       encoding: 'utf8',
     },
   );

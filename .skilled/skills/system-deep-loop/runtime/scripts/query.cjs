@@ -10,7 +10,6 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
@@ -50,7 +49,9 @@ if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   const child = spawnSync(process.execPath, ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)], {
     cwd: process.cwd(),
     env: require('./runtime-bootstrap.cjs').tsxChildEnv({ DEEP_LOOP_TSX_LOADED: '1' }),
-    input: process.stdin.isTTY ? undefined : fs.readFileSync(0),
+    // The child owns stdin. Reading it here blocks on a pipe that is never
+    // closed and throws EAGAIN on a non-blocking one, before any argument is checked.
+    stdio: ['inherit', 'pipe', 'pipe'],
     encoding: 'utf8',
   });
   if (child.stdout) process.stdout.write(child.stdout);
