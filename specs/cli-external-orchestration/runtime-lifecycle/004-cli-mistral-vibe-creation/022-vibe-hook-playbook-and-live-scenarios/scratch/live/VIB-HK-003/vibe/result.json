@@ -2,14 +2,15 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 138000694,
-  "socket": "conv-25836-vibe",
-  "session_id": "3f32b8ea-59d4-4ca4-8107-63a1abc0f907",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ayzleBaVib/vibe",
-  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ayzleBaVib/vibe-home-OPoiRg",
+  "seed": 869535194,
+  "socket": "conv-9786-vibe",
+  "session_id": "88649c3f-b752-44a1-9328-911737e353d0",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.P3gZjIcH8p/vibe",
+  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.P3gZjIcH8p/vibe-home-NaDIkJ",
+  "vibe_model": "deepseek-flash",
   "vibe_home_removed": false,
-  "started_at": "2026-11-15T16:13:13.936Z",
-  "finished_at": "2026-11-15T16:14:13.029Z",
+  "started_at": "2026-11-15T19:40:37.871Z",
+  "finished_at": "2026-11-15T19:41:52.161Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -39,7 +40,7 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "brief-delivered receipt=1794759217",
+      "observed": "brief-delivered receipt=1794771662",
       "evidence": "turns/advisor-1"
     },
     {

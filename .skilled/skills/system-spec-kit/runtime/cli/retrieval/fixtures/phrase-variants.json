@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9f538ee7ff57ec068a1087df0deb281c3cc92a9f67aa18593e0336d4db63610f",
+  "manifestHash": "10270cc00e7c44f0da4c365f0d886e08a05f8ea1b093d9c5ab1f8b8238476fc3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2320,6 +2320,9 @@
     ],
     "009 deep review audit": [
       "009 deep review audit"
+    ],
+    "009 deep review p2 remediation operator decisions": [
+      "009-deep-review-p2-remediation operator decisions"
     ],
     "009 deep review remediation": [
       "009 deep-review remediation"
@@ -12065,6 +12068,9 @@
     ],
     "api call trace": [
       "api call trace"
+    ],
+    "api keys in transcripts": [
+      "api keys in transcripts"
     ],
     "api ready prompt structure": [
       "api-ready prompt structure"
@@ -38476,6 +38482,18 @@
     "deep review p2 plan check build summary": [
       "deep review p2 plan check build summary"
     ],
+    "deep review p2 remediation": [
+      "deep review p2 remediation"
+    ],
+    "deep review p2 remediation implementation summary": [
+      "deep review p2 remediation implementation summary"
+    ],
+    "deep review p2 remediation plan": [
+      "deep review p2 remediation plan"
+    ],
+    "deep review p2 remediation tasks": [
+      "deep review p2 remediation tasks"
+    ],
     "deep review packet 013": [
       "deep-review packet 013"
     ],
@@ -58715,6 +58733,9 @@
     "history lookup handover integration": [
       "history lookup handover integration"
     ],
+    "history lookup p2 fixes": [
+      "history lookup p2 fixes"
+    ],
     "history lookup review fixes": [
       "history lookup review fixes"
     ],
@@ -58735,6 +58756,18 @@
     ],
     "history rewrite tasks": [
       "history rewrite tasks"
+    ],
+    "history secret redaction": [
+      "history secret redaction"
+    ],
+    "history secret redaction implementation summary": [
+      "history secret redaction implementation summary"
+    ],
+    "history secret redaction plan": [
+      "history secret redaction plan"
+    ],
+    "history secret redaction tasks": [
+      "history secret redaction tasks"
     ],
     "history test database env": [
       "history test database env"
@@ -81764,6 +81797,9 @@
     "phase 10 goal ending carry": [
       "phase 10 goal ending carry"
     ],
+    "phase 10 history secret redaction": [
+      "phase 10 history secret redaction"
+    ],
     "phase 10 hub registration and routing": [
       "phase 10 hub registration and routing"
     ],
@@ -82816,6 +82852,9 @@
     ],
     "phase 23 relaunch cancel and test isolation": [
       "phase 23 relaunch cancel and test isolation"
+    ],
+    "phase 23 vibe review remediation": [
+      "phase 23 vibe review remediation"
     ],
     "phase 24 dsh docs alignment": [
       "phase 24 dsh docs alignment"
@@ -84268,6 +84307,9 @@
     ],
     "phase 9 deep loop executor kind": [
       "phase 9 deep loop executor kind"
+    ],
+    "phase 9 deep review p2 remediation": [
+      "phase 9 deep review p2 remediation"
     ],
     "phase 9 doctor ci review wiring": [
       "phase 9 doctor ci review wiring"
@@ -92101,6 +92143,9 @@
     "red then green vitest": [
       "red then green vitest"
     ],
+    "redact secrets from history lookup": [
+      "redact secrets from history lookup"
+    ],
     "reddit audit plan": [
       "reddit audit plan"
     ],
@@ -94770,6 +94815,9 @@
     ],
     "remove obsidian plugin support": [
       "remove obsidian plugin support"
+    ],
+    "remove predecessor hard block": [
+      "remove predecessor hard block"
     ],
     "remove process derived root source": [
       "remove process-derived root source"
@@ -103421,6 +103469,9 @@
     ],
     "search index integrity sweep changelog": [
       "search-index-integrity-sweep changelog"
+    ],
+    "search index memory measurement": [
+      "search index memory measurement"
     ],
     "search intelligence findings behind 017": [
       "search intelligence findings behind 017"
@@ -130781,6 +130832,9 @@
     "vibe compaction context tasks": [
       "vibe compaction context tasks"
     ],
+    "vibe compaction scenario rerun": [
+      "vibe compaction scenario rerun"
+    ],
     "vibe completion evidence": [
       "vibe completion evidence"
     ],
@@ -131128,6 +131182,24 @@
     ],
     "vibe repo guards tasks": [
       "vibe repo guards tasks"
+    ],
+    "vibe review remediation": [
+      "vibe review remediation"
+    ],
+    "vibe review remediation acceptance criteria": [
+      "vibe review remediation acceptance criteria"
+    ],
+    "vibe review remediation implementation summary": [
+      "vibe review remediation implementation summary"
+    ],
+    "vibe review remediation plan": [
+      "vibe review remediation plan"
+    ],
+    "vibe review remediation tasks": [
+      "vibe review remediation tasks"
+    ],
+    "vibe runner model pin": [
+      "vibe runner model pin"
     ],
     "vibe runtime folder": [
       "vibe runtime folder"

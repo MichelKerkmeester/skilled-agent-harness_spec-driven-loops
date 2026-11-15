@@ -22,7 +22,7 @@ import { dirname, join, resolve } from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-import { buildCompactionPart, buildPostToolPart } from './compaction-context.mjs';
+import { buildCompactionPart, buildPostToolPart, measureJournal } from './compaction-context.mjs';
 
 const HOOK_DIR = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(HOOK_DIR, '../../../..');
@@ -137,6 +137,68 @@ test('the default watermark is written under the session folder', (t) => {
   assert.notEqual(text, '');
   const stateDir = join(project, '.skilled', 'skills', '.state', 'vibe-compaction');
   assert.ok(watermarkFile(stateDir), 'watermark under the session folder');
+});
+
+// A session with no goal and no open note is the common case. Its compaction is
+// consumed anyway, or every later turn would re-detect it and re-arm the advisor.
+test('an empty restore consumes the compaction and stays quiet on the next call', (t) => {
+  const stateDir = tempStateDir(t);
+  const resets = [];
+  const options = optionsFor(stateDir, {
+    env: {},
+    goalSlice: () => '',
+    resetReceipt: (sessionId) => { resets.push(sessionId); return true; },
+  });
+
+  assert.equal(buildCompactionPart(payloadFor(), options), '');
+  const file = watermarkFile(stateDir);
+  assert.ok(file, 'the watermark file was written');
+  assert.equal(JSON.parse(readFileSync(file, 'utf8')).compactionId, COMPACTION_ID);
+
+  assert.equal(buildCompactionPart(payloadFor(), options), '');
+  assert.deepEqual(resets, [SESSION_ID]);
+});
+
+// A catch-up can find two compactions at once. Both are consumed, so a snapshot
+// roll that replays the older one under a higher sequence injects nothing.
+test('every compaction in a catch-up is remembered, not just the latest', (t) => {
+  const stateDir = tempStateDir(t);
+  const listAt = (entries) => () => entries;
+  const older = { compactionId: 'e0000000-0000-0000-0000-00000000000a', sequence: 10 };
+  const newer = { compactionId: 'e0000000-0000-0000-0000-00000000000b', sequence: 20 };
+  assert.notEqual(
+    buildCompactionPart(payloadFor(), optionsFor(stateDir, { listCompactions: listAt([older, newer]) })),
+    '',
+  );
+  const replayed = { ...older, sequence: 300 };
+  assert.equal(
+    buildCompactionPart(payloadFor(), optionsFor(stateDir, { listCompactions: listAt([replayed]) })),
+    '',
+  );
+});
+
+// The payload names the folder the state is written under, so a folder that
+// does not exist is never created; the checkout's state folder is used instead.
+test('a payload folder that does not exist falls back to the checkout', (t) => {
+  const workspace = tempStateDir(t);
+  const missing = join(workspace, 'not-created');
+  const text = buildCompactionPart(payloadFor({ cwd: missing }), {
+    env: {},
+    workspace,
+    goalSlice: () => '# Goal: probe',
+    resetReceipt: () => true,
+  });
+
+  assert.notEqual(text, '');
+  assert.ok(watermarkFile(join(workspace, '.skilled', 'skills', '.state', 'vibe-compaction')));
+  assert.equal(readdirSync(workspace).includes('not-created'), false);
+});
+
+test('an empty journal folder measures 0 and a missing one is unreadable', (t) => {
+  const root = tempStateDir(t);
+  assert.equal(measureJournal(root), null);
+  mkdirSync(join(root, 'journal'));
+  assert.equal(measureJournal(root), 0);
 });
 
 test('a journal with no compaction returns nothing and writes no watermark', (t) => {

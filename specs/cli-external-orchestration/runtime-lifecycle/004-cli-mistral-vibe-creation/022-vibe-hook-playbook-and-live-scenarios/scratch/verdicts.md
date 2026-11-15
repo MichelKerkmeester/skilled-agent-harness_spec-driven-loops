@@ -6,12 +6,12 @@ One row per hook scenario this phase owns. `Runner row` is the `vibe` row of the
 |---|---|---|---|---|
 | VIB-HK-001 | Spec gate classify opens the gate for an unbound write request | PASS | PASS 2/2 | `scratch/live/VIB-HK-001/matrix.md` |
 | VIB-HK-002 | Strict spec gate refuses the first write while the gate is open | PASS | PASS 3/3 | `scratch/live/VIB-HK-002/matrix.md` |
-| VIB-HK-003 | Turn-start advisor adds the skill advisor brief once | PASS | PASS 2/2 | `scratch/live/VIB-HK-003/matrix.md` |
-| VIB-HK-004 | Turn-start delivers the turn-end completion advisory once | PASS | PASS 2/2 | `scratch/live/VIB-HK-004/matrix.md` |
-| VIB-HK-005 | Turn start raises the save nudge for a captured answer | PASS | PASS 2/2 | `scratch/live/VIB-HK-005/matrix.md` |
-| VIB-HK-006 | Turn start re-injects the goal slice after a compaction | PASS | PASS 4/4 | `scratch/live/VIB-HK-006/matrix.md` |
-| VIB-HK-007 | A mid-turn compaction re-injects at the next tool call | PASS | PASS 3/3 | `scratch/live/VIB-HK-007/matrix.md` |
-| VIB-HK-008 | Turn end sends a prose option menu back once | PASS | PASS 2/2 | `scratch/live/VIB-HK-008/matrix.md` |
+| VIB-HK-003 | Turn-start advisor adds the skill advisor brief once | PASS (phase 023 rerun after the merge, `deepseek-flash`) | PASS 2/2 | `scratch/live/VIB-HK-003/matrix.md` |
+| VIB-HK-004 | Turn-start delivers the turn-end completion advisory once | PASS (phase 023 rerun after the merge, `deepseek-flash`) | PASS 2/2 | `scratch/live/VIB-HK-004/matrix.md` |
+| VIB-HK-005 | Turn start raises the save nudge for a captured answer | PASS (phase 023 rerun after the merge, `deepseek-flash`) | PASS 2/2 | `scratch/live/VIB-HK-005/matrix.md` |
+| VIB-HK-006 | Turn start re-injects the goal slice after a compaction | PASS (phase 023 rerun after the merge, `deepseek-flash`) | PASS 3/3 | `scratch/live/VIB-HK-006/matrix.md` |
+| VIB-HK-007 | A mid-turn compaction re-injects at the next tool call | PASS (phase 023 rerun after the merge, `compaction-probe`) | PASS 3/3 | `scratch/live/VIB-HK-007/matrix.md` |
+| VIB-HK-008 | Turn end sends a prose option menu back once | PASS (phase 023 rerun, `deepseek-flash`) | PASS 2/2 | `scratch/live/VIB-HK-008/matrix.md` |
 | VIB-HK-009 | Turn-end leaves a completion advisory and never blocks | PASS | PASS 3/3 | `scratch/live/VIB-HK-009/matrix.md` |
 | VIB-HK-010 | Env secret guard refuses a dotenv read | PASS | PASS 3/3 | `scratch/live/VIB-HK-010/matrix.md` |
 | VIB-HK-011 | Dispatch preflight refuses a dispatch that breaks a hard rule | PASS | PASS 3/3 | `scratch/live/VIB-HK-011/matrix.md` |
@@ -31,7 +31,7 @@ One row per hook scenario this phase owns. `Runner row` is the `vibe` row of the
 | VIB-HK-025 | A mirrored prompt from .vibe/prompts runs by name | PASS | PASS 2/2 | `scratch/live/VIB-HK-025/matrix.md` |
 | VIB-HK-026 | The manual relaunch tier hands off and a fresh session claims it | PASS | hand-driven hop | `scratch/live/VIB-HK-026/hop-record.md` |
 
-Counts: 26 PASS, 0 OPERATOR-ONLY, 0 FAIL. 25 come from runner rows and 1 from the hand-driven hop.
+Counts: 26 PASS, 0 OPERATOR-ONLY, 0 FAIL. 25 come from runner rows and 1 from the hand-driven hop. A row whose verdict names no model ran before the runner pinned one, and after the last change to its hook.
 
 Every runner scenario sends two or more user messages, and VIB-HK-026 spans two sessions. VIB-HK-021 and VIB-HK-022 also restart the session between their messages.
 
@@ -45,3 +45,5 @@ Every runner scenario sends two or more user messages, and VIB-HK-026 spans two 
 - VIB-HK-014 and VIB-HK-017 failed their new turn on the first run, and both causes were in the scenario, not the hook. In VIB-HK-014 the model committed `a.txt` with a compliant message after the refusal, which the gate allows, so the check now accepts that branch. In VIB-HK-017 the model read "this folder" as the package's `src/`, so the prompt now names the project root. Both reruns passed 3/3.
 - VIB-HK-027, the automatic handover tier, came in with the merge of origin/main as `2d4fb4d0f92`. It belongs to the automatic handover work, not this phase, so it has no row here. The same merge cut VIB-HK-006 from four turns to three by dropping its history-offer turn. Its 4/4 row is from the four-turn version, which covered every turn the three-turn version checks.
 - After the 2026-11-15 review, the checks of VIB-HK-003, 009, 021, 022 and 024 were tightened. The first rerun stopped on `402 API budget exhausted` from Mistral. Once the shell exported the key the Vibe browser sign-in keeps in the keychain, which Mistral bills to the Vibe budget, VIB-HK-003's second turn needed the same optional question as its first, because the model asked which answer a repeated message meant. All five then passed live with the hardened checks, and the evidence in their folders is from that rerun (T104).
+- After the automatic hand-over tier changed `turn-start.mjs`, `turn-end.mjs` and `compaction-post-tool.mjs`, a rerun of VIB-HK-005, 006 and 007 failed, each for a cause in the scenario or the runner: HK-006 sent its next message while Vibe was still compacting, HK-005's model asked where the uploader lived in an empty project, and HK-007's model batched both reads before the compaction and made no later tool call. The runner also pinned no model, so those reruns ran on GLM-5.3 Flash. Phase 023 fixed the scenarios, pinned `deepseek-flash` in the runner's Vibe home and recorded the resolved model as `vibe_model` in `result.json`. VIB-HK-004 to 008 then passed live on 2026-11-15 between 19:20 and 19:27 UTC, on `f8dcf4940db` plus the phase 023 changes. VIB-HK-006's 3/3 is the three-turn version.
+- Merging origin/main as `c96ff28ef4e` brought the Vibe hand-over hardening, which changed `turn-start.mjs` (an early withdraw step), `compaction-context.mjs` (a nudge-level reset and the hand-over checks on the handoff pointer) and `handover-parts.mjs`. VIB-HK-003 to 007 were rerun on that merged code between 19:40 and 19:56 UTC. VIB-HK-006 failed the first time: the re-injection landed, but the open question about what to pick up next sent the model searching the machine for the packet until the turn timed out. Its last message now asks for the packet's goal without tools, and the rerun passed 3/3. VIB-HK-008's pass is from the run before the merge; the merge did not change `turn-end.mjs`, and the hand-over parts it changed stay off for Vibe in that scenario.
