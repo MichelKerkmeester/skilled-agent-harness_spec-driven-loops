@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6816,
-    "ok": 19055,
+    "ok": 19073,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27498,
+  "documentsScanned": 27516,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5b2e1047a37437ec235c1bb6aad7a61ac0920b117345228202852372ad38b6cd",
+  "manifestHash": "e23dbb147b27b19dfe80a1f766223b19741572797b1bea0b9ac7db27b3d7f12a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43939,
+      "ok": 43967,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -53437,6 +53437,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/agents/007-agent-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
@@ -54770,6 +54778,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/022-dsh-verify-iteration-executor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/scratch",
       "reason": "excluded directory"
     },
     {

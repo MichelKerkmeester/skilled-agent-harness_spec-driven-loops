@@ -18,7 +18,9 @@
     "agents/007-agent-alignment-follow-ups/012-review-agent-gates",
     "agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes",
     "agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility",
-    "agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule"
+    "agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule",
+    "agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep",
+    "agents/007-agent-alignment-follow-ups/017-terminal-record-gaps"
   ],
   "manual": {
     "depends_on": [],
@@ -174,18 +176,18 @@
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-15T07:16:41.626Z",
+    "last_save_at": "2026-11-15T10:39:26.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:01e88176280caa5fa4baa17450308510457b5fb72a9f09655ae0743333fc8cd2",
+    "source_fingerprint": "sha256:520b25501f59848b8cb52e196b6a553894be1ea944f166d151fb84953b48e4e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "77d714cd99f05d963177dedaf3a76a67cc10208c151ff4652d8bf67c1a7c0bad"
+      "spec.md": "5a491bcc3b4d2d077f5606fe3d48f71fb7f2beb999a19ddfbe04e2e59319f204"
     },
-    "last_active_child_id": "agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule",
-    "last_active_at": "2026-11-15T07:16:04.794Z"
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/017-terminal-record-gaps",
+    "last_active_at": "2026-11-15T10:39:26.250Z"
   }
 }

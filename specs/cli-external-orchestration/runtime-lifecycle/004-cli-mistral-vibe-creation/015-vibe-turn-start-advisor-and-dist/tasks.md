@@ -72,7 +72,7 @@ contextType: "implementation"
 <!-- ANCHOR:follow-ups -->
 ## Follow-ups
 
-- [B] F001 The `vibe` label breaks the advisor's own runtime-list invariant, and the repair sits outside this phase's write authority. `A/runtime/tests/hooks/advisor-runtime-list-parity.vitest.ts` needs a `vibe` directory under `.skilled/hooks/skill-advisor/` and a `| **Vibe** |` row in `A/hooks/skill-advisor-hook.md`; `A/runtime/tests/legacy/advisor-observability.vitest.ts:69` pins the exact tuple and needs `'vibe'` appended. No CI workflow runs these two files today, but `npx vitest run` in `A/runtime` fails 3 cases until they are updated.
+- [x] F001 The `vibe` label breaks the advisor's own runtime-list invariant, and the repair sits outside this phase's write authority. `A/runtime/tests/hooks/advisor-runtime-list-parity.vitest.ts` needs a `vibe` directory under `.skilled/hooks/skill-advisor/` and a `| **Vibe** |` row in `A/hooks/skill-advisor-hook.md`; `A/runtime/tests/legacy/advisor-observability.vitest.ts:69` pins the exact tuple and needs `'vibe'` appended. No CI workflow runs these two files today, but `npx vitest run` in `A/runtime` fails 3 cases until they are updated. Resolved: the `vibe` directory, the `| **Vibe** |` row and the `'vibe'` tuple entry landed with the Vibe mode commit, and on 2026-11-15 `npx vitest run` on both files printed 14 of 14 passing.
 <!-- /ANCHOR:follow-ups -->
 
 ---
@@ -81,7 +81,7 @@ contextType: "implementation"
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining (F001 is blocked)
+- [x] No `[B]` blocked tasks remaining (F001 resolved 2026-11-15)
 - [x] Both keyed runs' journal excerpts are in `scratch/keyed-run/`
 <!-- /ANCHOR:completion -->
 

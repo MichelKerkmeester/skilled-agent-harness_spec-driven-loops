@@ -879,32 +879,6 @@ workflow:
         command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
         on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than iterate without it."
 
-      step_check_max_duration:
-        action: "Stop the loop when the run has used its wall-clock budget, and still synthesize"
-        command: |
-          node -e '
-            const config = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
-            const maxDurationMinutes = Number(config.maxDurationMinutes);
-            const startedMs = Date.parse(config.createdAt);
-            const elapsedMinutes = Math.floor((Date.now() - startedMs) / 60000);
-            const reached = Number.isFinite(maxDurationMinutes) && maxDurationMinutes > 0
-              && Number.isFinite(startedMs) && elapsedMinutes >= maxDurationMinutes;
-            console.log(JSON.stringify({ elapsedMinutes, maxDurationMinutes, reached }));
-          ' "{state_paths.config}"
-        outputs:
-          - duration_reached: "reached from the JSON output"
-          - elapsed_minutes: "elapsedMinutes from the JSON output"
-        note: "The clock starts at the createdAt of the current generation's config. A resume keeps it and a restart resets it, so paused and waiting time counts."
-        if_reached:
-          when: "duration_reached == true"
-          set: { decision: "STOP", reason: "maxDurationReached", stopReason: "maxDurationReached" }
-          bookkeeping_log: '{"type":"event","event":"maxDurationReached","mode":"review","run":{current_iteration},"stopReason":"maxDurationReached","elapsedMinutes":{elapsed_minutes},"maxDurationMinutes":{config.maxDurationMinutes},"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
-          log: "Duration limit reached after {elapsed_minutes} minutes. Skipping dispatch and entering synthesis with partial findings."
-          skip_to: phase_synthesis
-          note: "The stop row is printed, not appended: the gateway refuses an event it has no ledger stem for. The reason reaches the synthesis report through the bound reason."
-        if_not_reached:
-          action: "Continue with the iteration"
-
       step_record_artifact_migration:
         action: "Record the legacy review state move once per session, after the run is open"
         dry_run_boundary: "state-mutation"
@@ -952,6 +926,33 @@ workflow:
           - pivot_lineage: "Summarize registry.divergence.completed and registry.divergence.overrides with pivot ids, source iterations, and selected review direction; else 'none yet'"
           - saturated_directions: "List registry.divergence.saturatedDirections; else 'none yet'"
           - review_focus_block: "When deep-review-config.json reviewFocus is a non-empty string, return 'Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): <reviewFocus>'. Else return an empty string."
+
+      step_check_max_duration:
+        action: "Stop the loop when the run has used its wall-clock budget, and still synthesize"
+        command: |
+          node -e '
+            const config = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+            const maxDurationMinutes = Number(config.maxDurationMinutes);
+            const startedMs = Date.parse(config.createdAt);
+            const elapsedMinutes = Math.floor((Date.now() - startedMs) / 60000);
+            const reached = Number.isFinite(maxDurationMinutes) && maxDurationMinutes > 0
+              && Number.isFinite(startedMs) && elapsedMinutes >= maxDurationMinutes;
+            console.log(JSON.stringify({ elapsedMinutes, maxDurationMinutes, reached }));
+          ' "{state_paths.config}"
+        outputs:
+          - duration_reached: "reached from the JSON output"
+          - elapsed_minutes: "elapsedMinutes from the JSON output"
+        note: "The clock starts at the createdAt of the current generation's config. A resume keeps it and a restart resets it, so paused and waiting time counts."
+        if_reached:
+          when: "duration_reached == true"
+          set: { decision: "STOP", reason: "maxDurationReached", stopReason: "maxDurationReached" }
+          bookkeeping_log: '{"type":"event","event":"maxDurationReached","mode":"review","run":{current_iteration},"stopReason":"maxDurationReached","elapsedMinutes":{elapsed_minutes},"maxDurationMinutes":{config.maxDurationMinutes},"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          log: "Duration limit reached after {elapsed_minutes} minutes. Skipping dispatch and entering synthesis with partial findings."
+          run_first: record_terminal_gates
+          skip_to: phase_synthesis
+          note: "The stop row is printed, not appended: the gateway refuses an event it has no ledger stem for. The reason reaches the synthesis report through the bound reason."
+        if_not_reached:
+          action: "Continue with the iteration"
 
       step_check_pause_sentinel:
         action: "Check for pause sentinel file"
@@ -1132,7 +1133,7 @@ workflow:
           note: "The failure count is rebuilt from the state log, so this gate asks again after each further failed iteration and stops asking once an iteration completes."
         if_stop:
           record_terminal_gates:
-            when: "Run once, immediately before control leaves this if_stop for phase_synthesis or gate_pre_synthesis: in if_existing_terminal_path, in the divergent pivot's if_failed and on_error branches, and in the confirm-mode manualStop exit (on_C) that skips to gate_pre_synthesis. Never run it when the pivot continues the loop."
+            when: "Run once, immediately before control jumps to phase_synthesis: in if_existing_terminal_path, in the divergent pivot's if_failed and on_error branches, and in every confirm-mode manualStop exit (on_C) into phase_synthesis: both divergent pivot gates, gate_pre_iteration and the post-iteration gate. The auto three-errors stop (reason error) reaches it through if_existing_terminal_path. The duration stop in step_check_max_duration runs it, once, before its jump to phase_synthesis. Never run it when the pivot continues the loop."
             evaluate: |
               evidence: pass when every active P0/P1 finding has concrete file:line evidence and none relies only on inference (the evidenceDensityGate rule).
               scope: pass when every active finding's file lies inside the review target.
@@ -1140,7 +1141,7 @@ workflow:
               Evaluate all three fresh at this stop, even when an earlier blocked stop recorded failures.
               terminal_gate_results_json = JSON array of exactly three rows {"gateId":"evidence"|"scope"|"coverage","status":"pass"|"fail","reasonCode":"<short code such as all-findings-cited or missing-dimensions>","evidenceDigest":"<64 lowercase hex sha256 of the evidence summary for that gate>"}
               failed_required_gate_ids = JSON array of the gateIds whose status is fail, in the order evidence, scope, coverage; [] when all pass
-              terminal_stop_reason = "maxIterationsReached" when stopReason is maxIterationsReached, else "converged"
+              terminal_stop_reason = reason when it is maxIterationsReached, maxDurationReached, manualStop or error, else "converged". Read reason, never stopReason: every manual stop sets reason to manualStop while stopReason may still hold blockedStop or stuckRecovery
             append_jsonl: '{"stem":"deep_review.terminal_gates_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"stopReason":"{terminal_stop_reason}","gateResults":{terminal_gate_results_json},"failedRequiredGateIds":{failed_required_gate_ids},"appendPosition":{current_iteration}}}'
             log: "Terminal gates recorded at stop {terminal_stop_reason}. Failed required gates: {failed_required_gate_ids}"
           branch_on: "convergence_mode == 'divergent' AND stop_decision.reasonDetail == 'all_dimensions_clean'"
@@ -1249,7 +1250,8 @@ workflow:
                     on_C:
                       bookkeeping_log: '{"type":"event","event":"manualStop","mode":"review","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
                       set: { reason: "manualStop" }
-                      skip_to: gate_pre_synthesis
+                      run_first: record_terminal_gates
+                      skip_to: phase_synthesis
                   set:
                     next_dimension: "{pivot_result.restoredFocus}"
                     pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
@@ -1263,7 +1265,7 @@ workflow:
                     type: approval_gate
                     purpose: "Offer the audited operator override when a failed pivot is recoverable"
                     condition: "Runs only when pivot_result.failedEvent.recoverableByOverride == true AND pivot_result.agreement.reason == 'insufficient_endorsement'. Otherwise this gate is skipped and the branch fails closed as written."
-                    order: "Under confirm this gate runs before the log and skip_to of this branch."
+                    order: "Under confirm this gate runs before the run_first, log and skip_to of this branch."
                     present: |
                       ## Divergent Review Pivot Did Not Converge
 
@@ -1279,7 +1281,7 @@ workflow:
                       C) manualStop and proceed to the existing pre-synthesis gate
                     wait_for: "User response"
                     after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
-                    on_A: { continue: "Fail closed: run the log and skip_to of this branch." }
+                    on_A: { continue: "Fail closed: run the run_first, log and skip_to of this branch." }
                     on_B:
                       action: "Read pivot_result.paths.configPath, validate the supplied id against acceptedCandidates, bind the exact candidate and persisted previousFocus/saturatedDirections/frontier, and reject ids outside that frontier or any candidate that authorizes a fix, target expansion, or file mutation."
                       bookkeeping_log: '{"type":"event","event":"pivot_override_accepted","mode":"review","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{operator_selected_candidate},"selectedFrontier":{operator_selected_frontier},"previousFocus":"{operator_previous_focus}","saturatedDirections":{operator_saturated_directions},"reason":"{operator_override_rationale}","agreementReason":"insufficient_endorsement","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
@@ -1293,7 +1295,7 @@ workflow:
                       bookkeeping_log: '{"type":"event","event":"manualStop","mode":"review","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
                       set: { reason: "manualStop" }
                       run_first: record_terminal_gates
-                      skip_to: gate_pre_synthesis
+                      skip_to: phase_synthesis
                   run_first: record_terminal_gates
                   log: "Divergent review pivot {pivot_result.pivotId} failed closed ({pivot_result.failureReason}); proceeding to synthesis."
                   skip_to: phase_synthesis
@@ -1407,7 +1409,7 @@ workflow:
         after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
         on_A: { proceed_to: step_dispatch_iteration }
         on_B: { action: "Update next_dimension to user's choice", proceed_to: step_dispatch_iteration }
-        on_C: { proceed_to: gate_pre_synthesis }
+        on_C: { set: { reason: "manualStop" }, run_first: record_terminal_gates, proceed_to: phase_synthesis }
         on_D: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
 
       step_dispatch_iteration:
@@ -1581,7 +1583,7 @@ workflow:
         post_dispatch_validate:
           validator: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type review --artifact-dir {artifact_dir} --iteration {current_iteration}"
-          command_note: "Mechanical leaf-reliability gate: exit 0 = complete; non-zero prints one machine reason (dispatch_failed|iteration_file_missing|iteration_verdict_missing|state_record_missing|route_proof_missing|route_proof_mismatch|delta_file_missing|executor_missing). dispatch_failed means the narrative is missing and the completion receipt shows a non-zero exit or a signal. executor_missing means the config names a non-native executor outside a fan-out lineage and neither the iteration record nor its iteration_start row names one. The script enforces the artifact + route-proof + executor contract instead of trusting the leaf to self-report, and a non-zero exit triggers on_failure.redispatch_once."
+          command_note: "Mechanical leaf-reliability gate: exit 0 = complete; non-zero prints one machine reason (dispatch_failed|iteration_file_missing|iteration_verdict_missing|state_record_missing|route_proof_missing|route_proof_mismatch|delta_file_missing|executor_missing). dispatch_failed means the narrative is missing and the completion receipt shows a non-zero exit or a signal. executor_missing means the config names a non-native executor and neither the iteration record nor its iteration_start row names one. In a fan-out lineage it means the lineage's invocation-metadata.json does not name that executor. The script enforces the artifact + route-proof + executor contract instead of trusting the leaf to self-report, and a non-zero exit triggers on_failure.redispatch_once."
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
           assert_jsonl_fields: [type, iteration, mode, run, status, focus, dimensions, filesReviewed, findingsCount, findingsSummary, findingsNew, findingDetails, newFindingsRatio, sessionId, generation, lineageMode, timestamp, durationMs]
@@ -1791,7 +1793,7 @@ workflow:
         after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
         on_A: { proceed_to: step_update_tracking }
         on_B: { action: "Set next_dimension to user's choice in strategy.md", proceed_to: step_update_tracking }
-        on_C: { proceed_to: gate_pre_synthesis }
+        on_C: { set: { reason: "manualStop" }, run_first: record_terminal_gates, proceed_to: phase_synthesis }
         on_D: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
 
       step_update_tracking:
@@ -1848,7 +1850,7 @@ workflow:
           - dimension_coverage: "covered / total"
           - ac_coverage_signal: "For spec-folder targets only: if level is 2+ and acceptance-criteria.md exists and implementation-summary.md is in-progress or later, surface the AC_COVERAGE advisory status; otherwise mark exempt."
           - last_3_summaries: "Summarize the latest 3 iteration records"
-          - reason: "Use the latest stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
+          - reason: "Use the latest stop reason if present: read stopReason from the last line of {state_paths.state_log} with type === 'event' and event === 'terminal_gates' when it is newer than the latest stop event, since a manual stop is stored only there; else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
 
       # H-1 verdict derivation: parse findings JSONL, map highest severity to verdict
       # - PASS: no P0 or P1 findings (P2-only or clean)
@@ -1897,7 +1899,7 @@ workflow:
         wait_for: "User response"
         after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
         on_A: { proceed_to: step_read_all_iterations }
-        on_B: { action: "Increase max_iterations or adjust focus, return to loop", proceed_to: phase_loop }
+        on_B: { action: "Increase max_iterations or adjust focus, return to loop. When reason is maxDurationReached, raise maxDurationMinutes in the config too, or the duration check stops the loop again and writes another terminal record", proceed_to: phase_loop }
         on_C: { action: "Cancel synthesis, keep artifacts", status: "PARTIAL" }
 
       step_read_all_iterations:

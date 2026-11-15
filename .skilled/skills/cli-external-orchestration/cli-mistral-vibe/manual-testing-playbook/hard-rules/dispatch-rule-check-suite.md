@@ -1,7 +1,7 @@
 ---
 title: "VIB-HR-001 -- Dispatch rule-check suite"
 description: "This scenario validates that the dispatch rule-check suite passes and that every Vibe hard rule refuses its own violation through the shared evaluator."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # VIB-HR-001 -- Dispatch rule-check suite
@@ -26,7 +26,7 @@ The hard rules are the gate a caller relies on before spending a keyed run. A ru
 - Real user request: `Run the dispatch hard-rule suite and tell me whether every Vibe rule still refuses its own violation and still accepts the documented dispatch line.`
 - Prompt: `Run the dispatch rule-check suite and report the pass and fail counts. Name the Vibe cases it covers, and stop if any Vibe rule no longer refuses its own violation.`
 - Expected execution process: Run the suite from the repository root -> read the per-test lines for the Vibe rules -> read the final `pass` and `fail` counts -> read the exit code.
-- Expected signals: The run exits `0`. The summary prints `tests 65`, `pass 65`, `fail 0`. The Vibe cases include `print-mode-only refuses interactive vibe and vibe-acp dispatches`, `isolated-vibe-home requires a disposable VIBE_HOME outside the checkout`, `output-dir-required requires a non-empty output folder outside the checkout`, `no-repo-root-cwd refuses a run started in the checkout root`, `vibe-closed-roster refuses a model that is not a roster alias`, `the documented vibe dispatch line passes every hard rule` `every vibe hard rule names an implemented check and never borrows the dsh roster check` and the four `rendered-home-hooks` cases.
+- Expected signals: The run exits `0`. The summary prints `tests 64`, `pass 64`, `fail 0`. The Vibe cases include `print-mode-only refuses interactive vibe and vibe-acp dispatches`, `isolated-vibe-home requires a disposable VIBE_HOME outside the checkout`, `output-dir-required requires a non-empty output folder outside the checkout`, `no-repo-root-cwd refuses a run started in the checkout root`, `vibe-closed-roster refuses a model that is not a roster alias`, `the documented vibe dispatch line passes every hard rule` `every vibe hard rule names an implemented check and never borrows the dsh roster check` and the four `rendered-home-hooks` cases.
 - Evidence: The command transcript with the per-test lines, the summary counts and the exit code.
 - Desired user-visible outcome: A clear statement that the suite passed and that each Vibe rule refuses its own violation, with the counts.
 - Pass/fail: PASS if the suite exits `0` with `fail 0` and the Vibe cases above are present and passing. FAIL if any test fails, if a Vibe case is missing, or if the suite exits non-zero.
@@ -52,14 +52,14 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
 
 - Verdict: `PASS`.
 - Date: 2026-11-15.
-- Observed: the command exited `0` with `tests 65`, `pass 65`, `fail 0`, `cancelled 0`, `skipped 0` and `todo 0`.
+- Observed: the command exited `0` with `tests 64`, `pass 64`, `fail 0`, `cancelled 0`, `skipped 0` and `todo 0`.
 - Observed: the run printed the five Vibe rule cases, `stdin-redirect-required covers vibe print mode and its prompt-file form`, `the documented vibe dispatch line passes every hard rule` and `every vibe hard rule names an implemented check and never borrows the dsh roster check`, all passing.
-- Observed: the run also printed `dsh hard rules accept the Mistral route as a roster route`, which shows the shared evaluator keeps the Vibe route distinct from the dsh roster.
+- Observed: the run also printed `dsh hard rules refuse the retired Mistral route`, which shows the shared evaluator keeps the dsh roster closed while the Vibe roster names Mistral models.
 - Note: the suite is hermetic. It evaluates command strings and never starts `vibe` or contacts a provider.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VIB-HR-001 | Dispatch rule-check suite | Prove the suite passes and each Vibe rule refuses its violation | `Run the dispatch rule-check suite and report the pass and fail counts. Name the Vibe cases it covers, and stop if any Vibe rule no longer refuses its own violation.` | 1. `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` -> 2. read the Vibe test lines -> 3. read the summary counts and the exit code | Step 1: exit `0`, `tests 65`, `pass 65`, `fail 0`. Step 2: the five Vibe rule cases, the stdin case, the documented-line case and the enforcement guard all pass | The command transcript with the per-test lines, the summary counts and the exit code | PASS if the suite exits `0` with `fail 0` and every Vibe case passes. FAIL if a case fails or is missing | 1. Read the failing test name and the rule it exercises. 2. Confirm the sidecar still carries that rule id. 3. Confirm the check is registered in the shared evaluator and is not borrowed from another runtime |
+| VIB-HR-001 | Dispatch rule-check suite | Prove the suite passes and each Vibe rule refuses its violation | `Run the dispatch rule-check suite and report the pass and fail counts. Name the Vibe cases it covers, and stop if any Vibe rule no longer refuses its own violation.` | 1. `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` -> 2. read the Vibe test lines -> 3. read the summary counts and the exit code | Step 1: exit `0`, `tests 64`, `pass 64`, `fail 0`. Step 2: the five Vibe rule cases, the stdin case, the documented-line case and the enforcement guard all pass | The command transcript with the per-test lines, the summary counts and the exit code | PASS if the suite exits `0` with `fail 0` and every Vibe case passes. FAIL if a case fails or is missing | 1. Read the failing test name and the rule it exercises. 2. Confirm the sidecar still carries that rule id. 3. Confirm the check is registered in the shared evaluator and is not borrowed from another runtime |
 
 ### Failure Triage
 

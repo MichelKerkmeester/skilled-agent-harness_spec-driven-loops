@@ -8,16 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up"
-    last_updated_at: "2026-11-15T05:25:51Z"
-    last_updated_by: "claude"
-    recent_action: "Fixed all six open findings and reran the gates"
-    next_safe_action: "Operator decides on push and merge through sk-git"
+    last_updated_at: "2026-11-15T10:29:58Z"
+    last_updated_by: "generate-context"
+    recent_action: "Republished the release tag and notes with the deep-loop section"
+    next_safe_action: "None; packet closed"
+    packet_purpose: "Purpose: Each of the six findings is fixed and proved by a command, or is named not fixed with the numbers that blocked it."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/changelog/skilled/v4.0.2.1.md"
+      - ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
+      - "README.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:6fc4d9edcbac9ef4751a6131a4ec242758ea41dffc817e57cc4d0b24281a545d"
       session_id: "scaffold-007-open-findings-follow-up"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "6b959364-9580-45bd-923d-efd800111a7f"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-15T10:29:58Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

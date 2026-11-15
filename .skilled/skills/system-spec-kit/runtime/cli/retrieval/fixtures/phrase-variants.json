@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5b2e1047a37437ec235c1bb6aad7a61ac0920b117345228202852372ad38b6cd",
+  "manifestHash": "e23dbb147b27b19dfe80a1f766223b19741572797b1bea0b9ac7db27b3d7f12a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -729,6 +729,9 @@
     ],
     "003 documentation truth validation resource map": [
       "003-documentation-truth-validation resource map"
+    ],
+    "003 dsh mistral route operator decisions": [
+      "003-dsh-mistral-route operator decisions"
     ],
     "003 embedder testing and architecture changelog index": [
       "003-embedder-testing-and-architecture changelog index"
@@ -1899,6 +1902,9 @@
     ],
     "007 ollama and bge promotion rollup": [
       "007-ollama-and-bge-promotion rollup"
+    ],
+    "007 open findings follow up operator decisions": [
+      "007-open-findings-follow-up operator decisions"
     ],
     "007 phase 002 changelog": [
       "007 phase 002 changelog"
@@ -22055,6 +22061,9 @@
     "cli deepseek harness 1 0 1 0": [
       "cli-deepseek-harness 1.0.1.0"
     ],
+    "cli deepseek harness 1 0 2 0": [
+      "cli-deepseek-harness 1.0.2.0"
+    ],
     "cli deepseek harness commit follow up": [
       "cli-deepseek-harness commit follow-up"
     ],
@@ -22099,6 +22108,9 @@
     ],
     "cli deepseek harness v1 0 1 0": [
       "cli-deepseek-harness v1.0.1.0"
+    ],
+    "cli deepseek harness v1 0 2 0": [
+      "cli-deepseek-harness v1.0.2.0"
     ],
     "cli deepseek research scope": [
       "cli-deepseek research scope"
@@ -44728,6 +44740,21 @@
     "dsh lineage command": [
       "dsh lineage command"
     ],
+    "dsh lineage executor check": [
+      "dsh lineage executor check"
+    ],
+    "dsh lineage executor check goal": [
+      "dsh lineage executor check goal"
+    ],
+    "dsh lineage executor check implementation summary": [
+      "dsh lineage executor check implementation summary"
+    ],
+    "dsh lineage executor check plan": [
+      "dsh lineage executor check plan"
+    ],
+    "dsh lineage executor check tasks": [
+      "dsh lineage executor check tasks"
+    ],
     "dsh lineage leaf": [
       "dsh lineage leaf"
     ],
@@ -44830,6 +44857,9 @@
     ],
     "dsh mistral route plan": [
       "dsh mistral route plan"
+    ],
+    "dsh mistral route retired": [
+      "dsh mistral route retired"
     ],
     "dsh mistral route tasks": [
       "dsh mistral route tasks"
@@ -49320,6 +49350,12 @@
     "fan out fixed rate overrun accounting": [
       "fan-out fixed-rate overrun accounting"
     ],
+    "fan out lineage executor check": [
+      "fan-out lineage executor check"
+    ],
+    "fan out lineage executor missing": [
+      "fan-out lineage executor_missing"
+    ],
     "fan out lineage pwd": [
       "fan-out lineage pwd"
     ],
@@ -52025,6 +52061,21 @@
     ],
     "follow up defect fixes tasks": [
       "follow up defect fixes tasks"
+    ],
+    "follow up fix sweep": [
+      "follow up fix sweep"
+    ],
+    "follow up fix sweep acceptance criteria": [
+      "follow up fix sweep acceptance criteria"
+    ],
+    "follow up fix sweep implementation summary": [
+      "follow up fix sweep implementation summary"
+    ],
+    "follow up fix sweep plan": [
+      "follow up fix sweep plan"
+    ],
+    "follow up fix sweep tasks": [
+      "follow up fix sweep tasks"
     ],
     "follow up fixes": [
       "follow up fixes"
@@ -60551,9 +60602,6 @@
     "in session handover rename acceptance criteria": [
       "in session handover rename acceptance criteria"
     ],
-    "in session handover spelling": [
-      "in-session handover spelling"
-    ],
     "inbound enhances": [
       "inbound enhances"
     ],
@@ -61498,6 +61546,9 @@
     ],
     "invert resolver registry": [
       "invert resolver registry"
+    ],
+    "invocation metadata executor gate": [
+      "invocation metadata executor gate"
     ],
     "invocation pattern column": [
       "invocation pattern column"
@@ -64710,6 +64761,12 @@
     "lineage executor schema": [
       "lineage executor schema"
     ],
+    "lineage invocation metadata executor check": [
+      "lineage invocation metadata executor check"
+    ],
+    "lineage invocation metadata plan": [
+      "lineage invocation metadata plan"
+    ],
     "lineage iteration count": [
       "lineage iteration count"
     ],
@@ -66803,6 +66860,9 @@
     ],
     "max secondary clients 64": [
       "max secondary clients 64"
+    ],
+    "maxdurationreached terminal gate record": [
+      "maxDurationReached terminal gate record"
     ],
     "may 18 baseline invalidated": [
       "May 18 baseline invalidated"
@@ -81971,6 +82031,9 @@
     "phase 16 ended goal mark match": [
       "phase 16 ended goal mark match"
     ],
+    "phase 16 follow up fix sweep": [
+      "phase 16 follow up fix sweep"
+    ],
     "phase 16 handover trigger review": [
       "phase 16 handover trigger review"
     ],
@@ -82048,6 +82111,9 @@
     ],
     "phase 17 tasks": [
       "phase 17 tasks"
+    ],
+    "phase 17 terminal record gaps": [
+      "phase 17 terminal record gaps"
     ],
     "phase 17 vibe decision capture": [
       "phase 17 vibe decision capture"
@@ -82510,6 +82576,9 @@
     ],
     "phase 23 deep review remediation": [
       "phase 23 deep review remediation"
+    ],
+    "phase 23 dsh lineage executor check": [
+      "phase 23 dsh lineage executor check"
     ],
     "phase 23 epic review doc fixes": [
       "phase 23 epic review doc fixes"
@@ -115170,9 +115239,6 @@
     "skilled v4 0 2 1": [
       "skilled v4.0.2.1"
     ],
-    "skilled v4 0 2 2": [
-      "skilled v4.0.2.2"
-    ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
     ],
@@ -121389,6 +121455,9 @@
     "system deep loop 2 0 1 0": [
       "system-deep-loop 2.0.1.0"
     ],
+    "system deep loop 2 0 2 0": [
+      "system-deep-loop 2.0.2.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -121607,6 +121676,9 @@
     ],
     "system deep loop v2 0 1 0": [
       "system-deep-loop v2.0.1.0"
+    ],
+    "system deep loop v2 0 2 0": [
+      "system-deep-loop v2.0.2.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"
@@ -124488,6 +124560,21 @@
     ],
     "terminal proof tasks": [
       "terminal proof tasks"
+    ],
+    "terminal record gaps": [
+      "terminal record gaps"
+    ],
+    "terminal record gaps acceptance criteria": [
+      "terminal record gaps acceptance criteria"
+    ],
+    "terminal record gaps implementation summary": [
+      "terminal record gaps implementation summary"
+    ],
+    "terminal record gaps plan": [
+      "terminal record gaps plan"
+    ],
+    "terminal record gaps tasks": [
+      "terminal record gaps tasks"
     ],
     "terminal skin palette": [
       "terminal skin palette"
@@ -128595,9 +128682,6 @@
     ],
     "v4 0 2 1 release notes": [
       "v4.0.2.1 release notes"
-    ],
-    "v4 0 2 2 release notes": [
-      "v4.0.2.2 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"

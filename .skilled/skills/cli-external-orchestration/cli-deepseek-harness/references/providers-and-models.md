@@ -1,16 +1,15 @@
 ---
 title: "DeepSeek Harness - Providers and Models"
-description: "The closed three-route roster for dsh dispatch, each route's patch and key variable, and the evidence-backed status of each route."
+description: "The closed two-route roster for dsh dispatch, each route's patch and key variable, and the evidence-backed status of both routes."
 trigger_phrases:
   - "dsh model roster"
   - "dsh route patch"
   - "dsh llm gateway route"
   - "dsh opencode go route"
   - "deepseek harness providers"
-  - "dsh mistral route"
 importance_tier: important
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # DeepSeek Harness - Providers and Models
@@ -23,7 +22,7 @@ Open this file to pick the route patch for a dispatch. The harness, not the call
 
 ### Purpose
 
-Records the only three routes a dsh dispatch may use, how each one is composed and which of its claims a keyed run still has to prove.
+Records the only two routes a dsh dispatch may use, how each one is composed and which of its claims a keyed run still has to prove.
 
 ### When to Use
 
@@ -39,13 +38,12 @@ dsh has no `model` or `provider` option in headless (see [cli-reference.md](./cl
 
 ## 2. ROSTER
 
-Exactly three routes. Anything else is refused before launch.
+Exactly two routes. Anything else is refused before launch.
 
 | Route | Provider id | Model id | Protocol | Base URL | Key variable | Route patch | Status |
 |---|---|---|---|---|---|---|---|
 | LLM Gateway | `llmgateway` | `deepseek-v4.1-flash-1017` | `openai-completions` | `https://api.llmgateway.io/v1` | `LLMGATEWAY_API_KEY` | `.dsh/patches/route-llmgateway-deepseek.patch.yml` | Verified 2026-11-06 on dsh 0.2.2-rc.1 and again 2026-11-14 on 0.2.2-rc.3: exit 0 and `completed` |
 | OpenCode Go | `opencode-go` | `deepseek-v4.1-flash` | `openai-completions` | `https://opencode.ai/zen/go/v1` | `OPENCODE_API_KEY` | `.dsh/patches/route-opencode-go-deepseek.patch.yml` | Proven 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` |
-| Mistral | `mistral` | `deepseek-v4-1-flash-1017` | `openai-completions` | `https://api.mistral.ai/v1` | `MISTRAL_API_KEY` | `.dsh/patches/route-mistral-deepseek.patch.yml` | Composes on dsh 0.2.2-rc.3 (2026-11-14); no keyed dsh run yet |
 
 Composition observed means `--dump-config` with the draft route patch and the lineage patch, from a disposable home, showed `agent-default-model` naming that provider and model, and the `llm-pi-ai` row carrying that provider with `apiKeyEnv` naming its key variable (`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/dump-config-llmgateway.txt` and `dump-config-opencode-go.txt`). It does not show that a request reaches the provider, which needs a key.
 
@@ -57,10 +55,6 @@ Two endpoints are documented for OpenCode Go:
 - `https://opencode.ai/zen/go/v1`, from the OpenCode Go documentation.
 
 The draft route patch used for the offline pin carries the second one, which proves only that the patch composes. A keyed run on 2026-11-07 answered on that endpoint, so `https://opencode.ai/zen/go/v1` is the one this harness uses. Evidence: `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/latency-and-tokens.md`.
-
-### Mistral
-
-Mistral is the operator's Mistral subscription, and it serves DeepSeek V4.1 Flash, the 2026-10-17 release, under the dash-form id `deepseek-v4-1-flash-1017`. Its patch differs from the other two in one field: it carries **no `compat.thinkingFormat: deepseek`**. On 2026-11-14 Mistral's `/v1/chat/completions` answered `422 extra_forbidden` to a `thinking` field, enabled or disabled, and `200` to `reasoning_effort` at `high` and `max`. The patch composed with the lineage and guards patches on dsh 0.2.2-rc.3 with exit 0 and empty stderr. No keyed dsh run has completed yet, so which reasoning field dsh sends without a thinking format stays UNKNOWN. Mistral is a non-default route, and the deep-loop fan-out does not map any model to it.
 
 ### LLM Gateway
 
@@ -119,6 +113,7 @@ These are not roster routes. They are listed so a reviewer knows what a missing 
 
 - **The base default.** Without a route patch, the default composition's `agent-default-model` row names provider `deepseek-official`, the official DeepSeek API, with model `deepseek-flash` (`.../002-dsh-offline-contract-pin/scratch/default-config.yml`). `route-patch-required` exists so no dispatch reaches it.
 - **DeepSeek web search and fetch.** The base `web` row uses `searchProvider: deepseek-official`, and two web rows read `DEEPSEEK_API_KEY` (`dump-config-llmgateway.txt`, rows `web`, `web-search-deepseek` and `web-deepseek-api`). With that key absent the model request omits `web_search`. Never put `DEEPSEEK_API_KEY` in a dispatch environment, because it would switch that official route back on.
+- **Mistral.** A Mistral route for `deepseek-v4-1-flash-1017` was tried and retired on 2026-11-15. On dsh 0.2.2-rc.3 the OpenAI-compatible endpoint answers 422 to the `store` field, and with any reasoning level it streams `delta.content` as a list of `thinking` chunks, which dsh rejects with `text-delta text must be a string`. Only `off` completed, and dsh accepts no native Mistral API. Mistral work goes through `cli-mistral-vibe`.
 
 ---
 
