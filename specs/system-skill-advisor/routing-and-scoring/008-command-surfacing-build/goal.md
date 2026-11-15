@@ -314,6 +314,8 @@ and findings belong here.
 | Phase 030 vibe runtime parity | Complete | 6c026746381 and follow-up 0c4de1808e7: Vibe is scored, named not measured, checked by the doctor and briefed with command documents, observations carry their runtime. Review SHIP, 0 P0 and 0 P1, floors cmp equal, suite 2157 passed 0 failed |
 | Final catch-up merge | Done | 682ca792315 merges main 28a6d40f81f, 0 behind. Changelog ranges combined, Claude reader declaration, trigger index and fixtures regenerated, Vibe markdown and orchestrate profiles regenerated after main changed their sources. Gates: suite 2157 passed 0 failed, doctor 1229, Vibe 79, mirrors in sync, floors 24/44 and 0/35, switch matrix 14 of 14 |
 | Phase 031 alignment findings remediation | Planned | 24 tasks fix D-01, X-01, D-03 and B-S4-01, tune P02, P04, P07 and P11 behind the floors, decline P01, rebuild BAT-01 and record BAT-02, BAT-06 and BAT-07 as pre-existing (fail on the merge base, pass on main) |
+| Phase 031 probe P07 | Declined | floor: {"correct":24,"total":44} {"count":0,"total":35} {"own":2,"attached":0,"combined":2,"total":44} eval: [160,49,21,5] blocked=1 probe=[] |
+| Phase 031 alignment findings remediation | Complete | d509e9d5c07 + 2efe3204e3e: validator, CI Vibe checks, offer-rule docs, NC-012/CL-009/CL-010, P02 P04 P11 routed, P07 P01 declined, floors equal, review SHIP twice, recheck new=0 |
 
 ### Deviations and findings
 

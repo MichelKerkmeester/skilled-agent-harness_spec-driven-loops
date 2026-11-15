@@ -56,7 +56,7 @@ This phase builds the in-scope P0 and P1 findings of the alignment run at `~/.lo
 
 ### This packet
 
-- **X-05** (P2) `../030-vibe-runtime-parity/spec.md:58`. The gap accounting names twelve gaps and lists eleven. G4 appears nowhere in the phase. Owner: the coordinator, as a correction to a closed phase.
+- **X-05** (P2) `../030-vibe-runtime-parity/spec.md:42` and `:58`. The gap accounting names twelve gaps and lists eleven. G4 appears nowhere in the phase. Owner: the coordinator, as a correction to a closed phase.
 
 ### Packet 004 and the alignment command
 

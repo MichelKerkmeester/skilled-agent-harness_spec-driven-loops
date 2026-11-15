@@ -236,7 +236,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-15T14:39:55.538Z",
+    "last_save_at": "2026-11-15T16:12:57.807Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -244,10 +244,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:00b228325cf7e69b8c79c4a7158ee86cdac64f583ed174c0d9bc3d8ac0db28da",
+    "source_fingerprint": "sha256:e3db9c5d6b3f06ba021155867d3219fb47f0a6e23a9a5ae0fd444e0845308007",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7d86bb6b4f641972e8341cb89a7c89a4434370696cc355ff610039629293b531",
+      "spec.md": "0d5bb93d831c2713000da0c45c07d2b2dd3136f3f0afec31a1771093cba028a7",
       "decision-record.md": "9c73ea765254083c8c08352d0eb81b34c6a8d01e931c0f2a1650345328ad0872"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm",

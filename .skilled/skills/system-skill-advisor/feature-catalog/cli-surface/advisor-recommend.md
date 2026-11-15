@@ -7,7 +7,7 @@ trigger_phrases:
   - "native recommend"
   - "skill recommendation tool"
   - "compiledRoute enrichment"
-version: 0.9.11.0
+version: 0.9.12.0
 ---
 
 # advisor_recommend Command
@@ -38,7 +38,7 @@ The request option `options.compiledRouteTopOnly` is an optional boolean that de
 
 A hub below the head leaves `command` off when the same command already ranks in the result through its own command row, because `enrichCompiledRoutes()` takes the `command` fields present in the result as the commands already offered. The head keeps its command even then, because every caller renders the head and at most one partner.
 
-`attachCommand()` returns no command when the prompt refuses or asks about it, and no command when the prompt rules out a change. The ask or decline lead must sit right before the command, and a command named after `ran` or `already ran` is withheld too. A command named with no such lead is offered when its owner and route gates pass. It also returns no command when the prompt asks for a correction inside an existing readme, catalog or playbook, because that request is not a call for a creation workflow.
+`attachCommand()` returns no command when the prompt refuses or asks about it, and no command when the prompt rules out a change. The ask or decline lead must sit right before the command, and a command named after a history lead such as `ran`, `already ran`, `was running` or `undo what` is withheld too. A command named with no such lead is offered when its owner and route gates pass. It also returns no command when the prompt asks for a correction inside an existing readme, catalog or playbook, because that request is not a call for a creation workflow.
 
 ### Recommendation Contract (`kind`, `command`, `policy`, `ownerSkillId`)
 

@@ -18,7 +18,8 @@
       "mention is not a request release note",
       "alignment findings remediation plan",
       "alignment findings remediation tasks",
-      "alignment findings remediation acceptance criteria"
+      "alignment findings remediation acceptance criteria",
+      "alignment findings remediation implementation summary"
     ],
     "key_topics": [
       "alignment",
@@ -35,28 +36,28 @@
       "request"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "scratch/matrix-after.txt",
-      "scratch/handback.md",
+      "implementation-summary.md",
       ".skilled/commands/scripts/validate-command-references.cjs",
       ".github/workflows/command-tree-parity.yml",
       ".github/workflows/spec-kit-check.yml",
       ".github/workflows/README.md",
-      ".skilled/skills/system-skilled-doctor/graph-metadata.json",
-      "scratch/battery-origin.txt",
-      "scratch/probe-decisions.txt",
-      "scratch/floor-before.txt",
-      "scratch/eval-before.txt",
-      "scratch/matrix-before.txt",
-      "scratch/before.txt",
-      ".vibe/hooks.toml",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md",
-      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+      ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/vibe-command-documents.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts",
+      ".skilled/skills/system-skill-advisor/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-skill-advisor/leaf-manifest.json",
+      "scratch/matrix-before.txt"
     ],
     "entities": [
       {
@@ -84,15 +85,9 @@
         "source": "derived"
       },
       {
-        "name": "matrix-after.txt",
-        "kind": "file",
-        "path": "scratch/matrix-after.txt",
-        "source": "derived"
-      },
-      {
-        "name": "handback.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "scratch/handback.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -120,63 +115,69 @@
         "source": "derived"
       },
       {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-offer-fit-gates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-command-policy-word.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md",
+        "source": "derived"
+      },
+      {
+        "name": "vibe-command-documents.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/vibe-command-documents.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".skilled/skills/system-skilled-doctor/graph-metadata.json",
+        "path": ".skilled/skills/system-skill-advisor/graph-metadata.json",
         "source": "derived"
       },
       {
-        "name": "battery-origin.txt",
-        "kind": "file",
-        "path": "scratch/battery-origin.txt",
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
         "source": "derived"
       },
       {
-        "name": "probe-decisions.txt",
-        "kind": "file",
-        "path": "scratch/probe-decisions.txt",
-        "source": "derived"
-      },
-      {
-        "name": "floor-before.txt",
-        "kind": "file",
-        "path": "scratch/floor-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "eval-before.txt",
-        "kind": "file",
-        "path": "scratch/eval-before.txt",
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/leaf-manifest.json",
         "source": "derived"
       },
       {
         "name": "matrix-before.txt",
         "kind": "file",
         "path": "scratch/matrix-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "before.txt",
-        "kind": "file",
-        "path": "scratch/before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.toml",
-        "kind": "file",
-        "path": ".vibe/hooks.toml",
-        "source": "derived"
-      },
-      {
-        "name": "setup-native-module-health-and-mcp-installation.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
         "source": "derived"
       },
       {
@@ -206,21 +207,23 @@
     ],
     "causal_summary": "The branch ships the Vibe runtime rows, but the command-reference validator rejects the `.vibe/agents/` row this branch added and no CI job checks a Vibe mirror, so a Vibe drift can merge with every check green",
     "created_at": "2026-11-15T14:27:31Z",
-    "last_save_at": "2026-11-15T16:08:55.541Z",
+    "last_save_at": "2026-11-15T16:17:10.145Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4702d2eeadad88822c0314176f322f9d1c2b794657a4c6a2cd1a7cf76ce1ffad",
+    "source_fingerprint": "sha256:4eaec21b9251f230728c9a2912fa0c70378504c8e2314f5e9acab7af3755885b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6d796a4adc094598e8401c0b15a7fd284ddefe19671ed2022831fc00d6832a6a",
+      "spec.md": "80d74daf8b69da325b23d8d6d3ab52c88a6b2926ed0c617324bb7c0d6516323f",
       "plan.md": "b27c4fb4d4f9a3a8d8c562cfa05d7a0e1f2ec1b4f05c30009a72cf9eb39c03f5",
-      "tasks.md": "bbf4b72d6325bd99d0132e7f38c95610f7ba737733ff5bc48f1839ecfdbd92e9"
+      "tasks.md": "d72cadc8b7255c8344d05a2d676d083bd14342056ea58d961e470d3456a87e30",
+      "implementation-summary.md": "245340368571e043f703baaa9c529da9f3f019086b8cc14bdfcb7c3a1ff2e350"
     },
     "last_active_at": null
   }
