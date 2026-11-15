@@ -1,5 +1,5 @@
 {
-  "corpusHash": "0e925915a99698bfe88e2e72330283c1c762ce4031c1a5e61e295aa64cad1cb0",
+  "corpusHash": "4337e1e5e7748cb171f2991140c9d4c1b772e8e2f2f0dd4a6c2a789fe0699d75",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27696,
+  "includedPathCount": 27697,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1386,6 +1386,7 @@
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-deny.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-ask-surface.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-completion.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor-uptake.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-completion-advisory.md",
@@ -27728,7 +27729,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4ff7d1af7c43389792d379d72f36bc82fd41feec9c0a7b037e1a388f8cc5e3e4",
+  "manifestHash": "1c91e93ae11dfc9fc4d289d34983d4c777f15eda80d4c5b183427a3ba7276b13",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

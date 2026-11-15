@@ -2,12 +2,15 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 1939023697,
-  "socket": "conv-5317-vibe",
-  "session_id": "6d8ba2e8-956d-4c31-9b18-f0f528d42b9a",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ztRD8fUAvk/vibe",
-  "started_at": "2026-11-15T13:23:56.015Z",
-  "finished_at": "2026-11-15T13:25:03.463Z",
+  "seed": 1526976853,
+  "socket": "conv-60543-vibe",
+  "session_id": "be131ccc-a25b-432e-904d-6637f716b880",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.EAfu3FMONn/vibe",
+  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.EAfu3FMONn/vibe-home-ag3YLW",
+  "vibe_model": "deepseek-flash",
+  "vibe_home_removed": false,
+  "started_at": "2026-11-15T20:55:02.803Z",
+  "finished_at": "2026-11-15T20:56:44.812Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -55,7 +58,7 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "compliant-commit-only: chore(repo): add a.txt",
+      "observed": "compliant-commit-only: chore(repo): add a.txt greeting file",
       "evidence": "turns/still-staged"
     }
   ]

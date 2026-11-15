@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-001 -- Spec gate classify opens the gate for an unbound write request"
 description: "This scenario validates that the Vibe spec-gate-classify pre_agent hook records an open gate state file for an operator request that would mutate a file with no bound spec packet, judged from the session journal and the hook-written state."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # VIB-HK-001 -- Spec gate classify opens the gate for an unbound write request
@@ -80,13 +80,22 @@ Operators run the conversation script through the shared runner with the `vibe` 
     {
       "id": "answer-skip",
       "send": "D",
+      "questions": [
+        {
+          "match": "[Mm]ap|[Aa]nswering|[Mm]enu|[Oo]ption|D\\b",
+          "answer": {
+            "other": "D is my answer to the spec gate's documentation question: skip documentation for this scratch project."
+          },
+          "optional": true
+        }
+      ],
       "check": "s=$(ls .skilled/skills/.state/spec-gate/*.json 2>/dev/null | head -1); [ -n \"$s\" ] && grep -qsF '\"status\": \"skipped\"' \"$s\" && echo gate-closed-by-skip-answer"
     }
   ]
 }
 ```
 
-The spec gate is deliberately left enabled here, because this scenario judges the classify half: the request must still be classified before any refusal can happen. The prompt names the exact shell line and asks for no questions, so the mutation is concrete and the subject does not answer the gate on this turn; the open state survives to the check. The classify hook adds only a deferral, not the full question, so the subject can keep working on the turn. The optional question entries remain only as a safety net if the subject asks anyway, in a dialog or in plain chat.
+The spec gate is deliberately left enabled here, because this scenario judges the classify half: the request must still be classified before any refusal can happen. The prompt names the exact shell line and asks for no questions, so the mutation is concrete and the subject does not answer the gate on this turn; the open state survives to the check. The classify hook adds only a deferral, not the full question, so the subject can keep working on the turn. The optional question entries remain only as a safety net if the subject asks anyway, in a dialog or in plain chat. The second turn's bare `D` is classified at turn start, which is what closes the gate. When the subject obeyed the first turn and never asked the gate question, it may ask what `D` answers; the optional entry there tells it, and the check still reads only the gate state.
 
 ### Expected
 

@@ -1,0 +1,65 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 192020937,
+  "socket": "conv-83800-vibe",
+  "session_id": "8bfafa59-5eb1-4a08-a3da-8a7c0707cccb",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CEHdCt8QvJ/vibe",
+  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CEHdCt8QvJ/vibe-home-veawoU",
+  "vibe_model": "deepseek-flash",
+  "vibe_home_removed": false,
+  "started_at": "2026-11-15T21:17:52.570Z",
+  "finished_at": "2026-11-15T21:19:52.015Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "mirror-ready",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "mirror-linked",
+      "evidence": "turns/mirror-ready"
+    },
+    {
+      "id": "uptake",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "advised-skill-loaded",
+      "evidence": "turns/uptake"
+    },
+    {
+      "id": "carry-prompt",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "prompt-carried lines=47",
+      "evidence": "turns/carry-prompt"
+    }
+  ]
+}

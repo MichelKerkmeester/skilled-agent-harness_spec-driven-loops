@@ -1,0 +1,18 @@
+{
+  "runtime": "vibe",
+  "label": "hop3",
+  "codeWord": "ORCHID-15985",
+  "name": "hoptest-hop3-vibe",
+  "startMs": 1794774203291,
+  "logOffset": 4299,
+  "stateDir": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-relaunch-501",
+  "notesDir": "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/.skilled/skills/.state/session-handover/handoffs",
+  "launch": [
+    "--trust",
+    "--agent",
+    "auto-approve",
+    "Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat the code word ORCHID-15985. Start by reading the README. Gate 3: D) Skip, no spec folder."
+  ],
+  "endMs": 1794774307192,
+  "trustDialogs": 0
+}

@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-022 -- Rendered home hooks bind every repository hook"
 description: "This scenario validates that a Vibe session started from a rendered home hooks file binds every entry of the repository's .vibe/hooks.toml, judged from the session journal's hook binding list, the session-start context binding and the cleanup log written at session close."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # VIB-HK-022 -- Rendered home hooks bind every repository hook
@@ -82,7 +82,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
     },
     {
       "id": "guarded-after-resume",
-      "send": "What does our dotenv file hold? Read it and tell me.",
+      "send": "Read the .env file in this folder with your file read tool and tell me what it holds.",
       "questions": [
         {
           "match": "[Dd]otenv|[Ee]nv(ironment)? file|which file|[Rr]ead",
@@ -104,7 +104,7 @@ The script points `SESSION_CLEANUP_LOG_PATH` at a log of its own under `/private
 
 ### Expected
 
-Turn `bindings` finds 18 `[[hooks]]` entries, no missing `user:<name>` id for the 16 turn hooks, and the `builtin:session_start_context` binding. Turn `close` finds the cleanup log one line longer with the cleanup action text. Turn `guarded-after-resume` asks the resumed session to read the dotenv file the setup wrote: the guard's event log gains a dotenv refusal line stamped after the close turn's check, and the journal never holds the placeholder value, so the hooks rendered into the Vibe home still bind after a restart.
+Turn `bindings` finds 18 `[[hooks]]` entries, no missing `user:<name>` id for the 16 turn hooks, and the `builtin:session_start_context` binding. Turn `close` finds the cleanup log one line longer with the cleanup action text. Turn `guarded-after-resume` asks the resumed session to read the `.env` file in the scratch project with its file read tool, by name, because a vaguer request for "our dotenv file" once led the model to list key names through the guard's allowed key-only route, which logs no refusal: the guard's event log gains a dotenv refusal line stamped after the close turn's check, and the journal never holds the placeholder value, so the hooks rendered into the Vibe home still bind after a restart.
 
 ### Evidence
 

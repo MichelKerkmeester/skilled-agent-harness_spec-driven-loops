@@ -87,10 +87,10 @@ VIB-HK-008  PASS 2/2
 - Harden the compaction detector: the seen list, the empty journal directory and the payload folder, with tests and the documented rationale for the watermark order.
 - Correct the goal READMEs, the session-lifecycle README, the `turn-start.mjs` header, `guards-and-hooks.md`, the two feature catalogs and the playbook's verdict pointer.
 - Correct the live-verdict claims in phase 022 and the parent.
+- Close the gaps the first pass left open: rerun VIB-HK-027 live on the merged code, rerun every other runner scenario so each records its model, add a scenario proving the model follows the advisor brief, and keep lineage Vibe homes and exports out of Git.
 
 ### Out of Scope
 - The hand-over `arm` cwd and the relaunch state directory fallback - the Claude and Codex adapters share both, `skilled-loop` checks the cwd before it changes into it, and `ensureStateDir` already refuses a directory it does not own.
-- Whether the model follows the skill advisor's brief inside Vibe - the review deferred it, and it needs its own scenario.
 - The post-tool binding's re-read of the session store on a grown journal - a cost the review asserted but did not measure.
 
 ### Files to Change
@@ -107,6 +107,10 @@ VIB-HK-008  PASS 2/2
 | `.skilled/hooks/session-handover/vibe/handover-parts.mjs` | Modify | Withdraw only on a turn that carries an operator prompt |
 | Goal, session-lifecycle and mode docs named in the review | Modify | Correct the drift |
 | `022-vibe-hook-playbook-and-live-scenarios/` records and the parent `spec.md` | Modify | Correct the live-verdict claims |
+| `hook-scenarios/turn-start-advisor-uptake.md` | Create | VIB-HK-028: the model loads the skill the advisor brief names |
+| `hook-scenarios/spec-gate-classify.md`, `overlay-guard.md`, `render-home-hooks.md` | Modify | Scenario gaps found by the full rerun |
+| `.gitignore` | Modify | Ignore lineage `vibe-home/` and `vibe-output/` |
+| `scratch/harness/` | Create | Copy of the hand-over packet's live-hop harness, with the Vibe home outside the checkout |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -130,6 +134,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-004 | The compaction detector records every compaction it consumed, measures an empty journal directory as 0 and keeps its state under the payload folder only when that folder exists |
 | REQ-005 | Every doc the review found wrong states what the code does |
 | REQ-006 | Every finding in `../review/review-report.md` has a recorded disposition |
+| REQ-007 | VIB-HK-027's hop and withdraw pass live on the merged code |
+| REQ-008 | Every runner scenario's `result.json` records the model, from a run after the merge |
+| REQ-009 | A live scenario shows the model loading the skill the advisor brief names |
+| REQ-010 | A lineage's Vibe home and raw export never show up as untracked files |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

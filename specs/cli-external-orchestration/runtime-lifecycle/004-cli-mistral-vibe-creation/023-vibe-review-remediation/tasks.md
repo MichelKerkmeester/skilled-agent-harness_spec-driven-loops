@@ -57,7 +57,11 @@ contextType: "implementation"
 - [x] T010 Rerun VIB-HK-004 to 008 live with the pin, then VIB-HK-003 to 007 again on the merged code (`scratchpad/run-batch.sh`). Verify: each `scratch/live/VIB-HK-00N/vibe/result.json` under 022 reads `"verdict": "PASS"` with a `vibe_model`.
 - [x] T011 Update the verdict table, 022's summary and the parent row from the reruns. Verify: `rg -c 'before the automatic tier' ../022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md` prints 0.
 - [x] T012 Record a disposition for every review finding (`implementation-summary.md`). Verify: each finding id in `../review/review-report.md` section 3 appears in the disposition table.
-- [ ] T013 Recursive strict validation of the parent. Verify: `validate.sh ../ --recursive --strict` prints `RESULT: PASSED`.
+- [x] T014 Rerun VIB-HK-027 live: a full hop and a withdraw probe (`scratch/harness/`). Verify: `node scratch/harness/score.cjs scratch/runs/hop3-vibe` prints `"score": "5/5"`, and `scratch/runs/wd2-vibe/relaunch.log` holds `withdrawn` with `reason=user-message`.
+- [x] T015 Rerun every other runner scenario with the pin; fix the scenario gaps it finds in VIB-HK-001, 012 and 022. Verify: every `result.json` under 022's `scratch/live/` reads PASS with a `vibe_model`.
+- [x] T016 [P] Add VIB-HK-028 and run it live (`hook-scenarios/turn-start-advisor-uptake.md`). Verify: `scratch/live/VIB-HK-028/vibe/turns/uptake/check.txt` prints `advised-skill-loaded`.
+- [x] T017 [P] Ignore lineage Vibe homes and exports (`.gitignore`). Verify: `git check-ignore` matches a file under `review/lineages/vibe-1/vibe-home/`.
+- [x] T013 Recursive strict validation of the parent. Verify: `validate.sh ../ --recursive --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +69,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

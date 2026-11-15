@@ -1,50 +1,50 @@
-
- ⢠⢢    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⢸⣀⡔⢉⠱⣃⡐⣔⡣   GLM-5.3 Flash (Mistral Hosted)[high] · Pro
- ⠈⠒⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
-
-
-⚠ [turn-start] Added context for the model: "Advisor: stale; use sk-prompt 0.95/0.15 pass. Directives: - Comment hygiene [HA…"
-
-
-> Spawn a child from the prompt-improver agent type (config_name prompt-improver) to rewrite this rough request into a dispatch-ready prompt: make the build faster. One attempt only; report the
-  result.
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-
-⏵ Thought
-
-  I'll discover the agent-spawning tool, then spawn the child with the right configuration.
-
-⏵ Called 2 tools, thought
-
-  Tool details loaded. Spawning the child from the prompt-improver config with the rough request — one attempt, no retries.
-
-⏵ Ran 1 subagent, thought
-
-  The spawn failed — prompt-improver is not a valid subagent config. I made only the one spawn attempt, as instructed. Let me check what agent types actually exist so the report is actionable.
-
-⏵ Listed subagents
-
-  Result: spawn failed.
-
-  • Single attempt made: tools.agents.spawn with config_name: "prompt-improver", name prompt-improver, and the task being the rewrite of "make the build faster" into a dispatch-ready prompt.
-  • Error: subagent_not_found — "Unknown subagent type". The prompt-improver config does not exist in this session.
-  • I did not retry, per the one-attempt constraint. agents.list (read-only, not another attempt) shows zero registered child agents.
-
-  To proceed, you'd need a prompt-improver subagent config (e.g., defined in ~/.vibe/agents/ or project .vibe/agents/), or I can spawn a generic child with hand-written instructions for the rewrite
-  instead.
-
-✓ Resumed session 8a5a51cf.
-
-
-
-
-
+> Spawn a child from the prompt-improver agent type (config_name prompt-improver) to rewrite this rough request into a dispatch-ready prompt: make the build faster. One attempt only; report the       
+  result.                                                                                                                                                                                               
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  I'll check the available agent types and spawn the prompt-improver child.                                                                                                                             
+                                                                                                                                                                                                        
+⏵ Called 2 tools, ran 1 subagent, thought                                                                                                                                                               
+                                                                                                                                                                                                        
+  The spawn was rejected. Let me confirm what agent types actually exist so the report is accurate.                                                                                                     
+                                                                                                                                                                                                        
+⏵ Ran 10 commands, called 1 tool, thought                                                                                                                                                               
+                                                                                                                                                                                                        
+  Spawn attempted once, as instructed. It failed.                                                                                                                                                       
+                                                                                                                                                                                                        
+  Result                                                                                                                                                                                                
+                                                                                                                                                                                                        
+  ┌────────────────────────────────────────────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ Field                                                                          │ Value                                                                                                          │   
+  ├────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Call                                                                           │ tools.agents.spawn                                                                                             │   
+  ├────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ config_name                                                                    │ prompt-improver                                                                                                │   
+  ├────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Outcome                                                                        │ Failed                                                                                                         │   
+  ├────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Error code                                                                     │ subagent_type_not_found                                                                                        │   
+  ├────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Message                                                                        │ Unknown subagent type                                                                                          │   
+  ├────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Children created                                                               │ None (agents.list → [])                                                                                        │   
+  └────────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  Diagnosis                                                                                                                                                                                             
+                                                                                                                                                                                                        
+  prompt-improver is declared as a subagent in ~/.vibe/ui_startup_config.json (schemaVersion 9, serverVersion 3.1.2), described as "Prompt-improver specialist: one-pass checklist, CLEAR screening,    
+  dispatch…". But ~/.vibe/config.toml contains only theme = "auto" — no subagent definitions at all. The runtime's subagent registry is empty, so the UI's preset list is stale relative to this        
+  session. The type exists on paper, not in the registry the spawn call consults.                                                                                                                       
+                                                                                                                                                                                                        
+  No side effects: nothing was spawned, so the rough request was never rewritten.                                                                                                                       
+                                                                                                                                                                                                        
+  Do you want me to do the rewrite inline instead, or should the subagent registry be fixed first?                                                                                                      
+                                                                                                                                                                                                        
+✓ Resumed session 2ca280ae.                                                                                                                                                                             
 
                  
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── GLM-5.3 Flash (Mistral Hosted)[high] · auto approve ─
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
 >  
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.6l1bZVmHk8/vibe                                                                                     usage ▏      0% · ctx ▏      11.2k/400k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.xtSbzMDoHr/vibe                                                                                    usage █▌     25% · ctx ▍      15.5k/256k

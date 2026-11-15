@@ -1,0 +1,50 @@
+> Improve this prompt so a coding agent can act on it: make the build faster.                                                                                                                           
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+      row. To shorten, cut Profile and Rejected — those are the two that buy the most honesty, so cut them last.                                                                                        
+                                                                                                                                                                                                        
+  Checklist pass (standard effort, all ten rows)                                                                                                                                                        
+                                                                                                                                                                                                        
+  ┌──────────────────────────────┬──────────────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ Row                          │ Status                           │ Reason                                                                                                                        │   
+  ├──────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 1 Task                       │ Present, unmeasurable            │ "faster" had no target or unit; added a 20% warm-median target                                                                │   
+  ├──────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 2 Role                       │ Absent                           │ Added one line; it changes the response from general coder to performance engineer                                            │   
+  ├──────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 3 Context                    │ Absent                           │ No build command, baseline, or environment; all three added                                                                   │   
+  ├──────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 4 Constraints                │ Absent                           │ Added, with an explicit conflict order so rules cannot fight                                                                  │   
+  ├──────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 5 Process                    │ Absent                           │ Added measure → profile → rank → implement → re-measure                                                                       │   
+  ├──────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 6 Output format              │ Absent                           │ Added a six-section report schema                                                                                             │   
+  ├──────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 7 Examples                   │ Not needed                       │ A worked example would add tokens without changing behavior here                                                              │   
+  ├──────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 8 Success criteria           │ Absent                           │ Added measurable threshold plus a verification gate                                                                           │   
+  ├──────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 9 Assumptions                │ Absent                           │ Added stop conditions and the "no safe win" branch; defaults listed above                                                     │   
+  ├──────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 10 Wording                   │ Present                          │ Original was terse but not shouty; kept plain, each constraint carries its reason                                             │  ▃
+  └──────────────────────────────┴──────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  CLEAR: 44/50 — C:9 (target and method defined, no unverified claims, the 20%-or-best branch resolves the only tension) · L:9 (measure-first chain with stop conditions and a conflict order) · E:13   
+  (concrete commands and named evidence sources; placeholders are deliberate) · A:9 (sections follow execution order, report mirrors process) · R:4 (build command, environment and target are          
+  parameterized). All per-dimension floors met.                                                                                                                                                         
+                                                                                                                                                                                                        
+  Change report                                                                                                                                                                                         
+                                                                                                                                                                                                        
+  • Added — measurable target, role line, build/environment context, six ordered constraints with a conflict order, five-step measure-first process, report schema, success criteria, stop              
+    conditions, anti-gaming list.                                                                                                                                                                       
+  • Changed — "make the build faster" became a target with a unit (20% on the warm median) and a verification method.                                                                                   
+  • Removed — nothing; the original had four words.                                                                                                                                                     
+  • Skipped — examples (row 7), judged not needed.                                                                                                                                                      
+  • Quick test: NOT RUN — no target model available to run representative inputs through old versus new.                                                                                                
+
+                                              
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                                             
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CEHdCt8QvJ/vibe                                                                                    usage █▌     25% · ctx ▊      33.5k/256k

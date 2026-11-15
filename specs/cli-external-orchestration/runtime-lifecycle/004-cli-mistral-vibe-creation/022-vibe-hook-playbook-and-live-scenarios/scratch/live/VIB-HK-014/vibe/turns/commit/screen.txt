@@ -1,45 +1,45 @@
 > Please commit a.txt for me with the commit message stuff, using git commit -m.                                                                                                                        
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+⏵ Ran 1 command, thought                                                                                                                                                                                
+                                                                                                                                                                                                        
+  The commit-msg gate rejected the bare message. Let me read the rule it points to.                                                                                                                     
+                                                                                                                                                                                                        
+⏵ Ran 11 commands, thought                                                                                                                                                                              
+                                                                                                                                                                                                        
+  The gate blocks stuff (it's on the vague-summary list) and forbids Co-Authored-By. Let me test a compliant message against the validator before committing.                                           
                                                                                                                                                                                                         
 ⏵ Ran 1 command, thought                                                                                                                                                                                
                                                                                                                                                                                                         
-  The commit was blocked by the repo's sk-git commit-message hook, which requires conventional-commit format. Let me read the rule file so I comply exactly.                                            
-                                                                                                                                                                                                        
-⏵ Ran 3 commands, thought                                                                                                                                                                               
-                                                                                                                                                                                                        
-  The hook's rulebook is strict: stuff is on the vagueSummaries blocklist, scope is required, a prose body is required, and Co-Authored-By is forbidden. There is no bypass, so I'll write a            
-  conforming message that describes the actual change. Checking the remaining hooks first.                                                                                                              
-                                                                                                                                                                                                        
-⏵ Ran 1 command, thought                                                                                                                                                                                
-                                                                                                                                                                                                        
-  Hooks are machine-wide via core.hooksPath; this temp repo is untrusted so pre-commit skips its toolchain, but commit-msg validates regardless. Committing with a conforming message.                  
+  Message passes the contract. Committing with git commit -m.                                                                                                                                          ▄
                                                                                                                                                                                                         
 ⏵ Ran 2 commands, thought                                                                                                                                                                               
                                                                                                                                                                                                         
-  Committed as 3e42325 on main (root commit, a.txt only).                                                                                                                                               
+  Committed. a.txt is in as the root commit a5346f9.                                                                                                                                                    
                                                                                                                                                                                                         
-  I could not use the literal message stuff. The machine-wide commit-msg hook (sk-git, via core.hooksPath) rejected it with subject.format, and its rulebook also blocklists stuff under                
-  vagueSummaries, requires a scope, requires a prose body, and forbids Co-Authored-By. The hook states there is no bypass, so I wrote the closest conforming message:                                   
+  I could not use the literal message stuff. The repo's commit-msg gate (sk-git contract via global core.hooksPath) rejected it:                                                                        
                                                                                                                                                                                                         
   ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
-  │ chore(repo): add a.txt                                                                                                                                                                          │   
+  │ [subject.format] Authored subject must match type(scope): imperative summary                                                                                                                    │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  stuff is also explicitly on the contract's vague-summary blocklist, and the gate states there is no bypass. So I wrote a compliant message describing the actual change:                              
+                                                                                                                                                                                                        
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ chore(repo): add a.txt greeting file                                                                                                                                                            │   
   │                                                                                                                                                                                                 │   
-  │ Context: The repository had no tracked files, so this commit establishes its                                                                                                                    │   
-  │ first tracked file.                                                                                                                                                                             │   
+  │ Context: The repository had no tracked files, so the first commit establishes                                                                                                                   │   
+  │ the working tree with the greeting note.                                                                                                                                                        │   
   │                                                                                                                                                                                                 │   
   │ Changes:                                                                                                                                                                                        │   
-  │ - Add a.txt containing a single greeting line.                                                                                                                                                  │   
-  │                                                                                                                                                                                                 │   
-  │ Verification:                                                                                                                                                                                   │   
-  │ - `cat a.txt` -> prints `hello`                                                                                                                                                                 │   
+  │ - Track a.txt containing the greeting line.                                                                                                                                                     │   
   └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
                                                                                                                                                                                                         
   Two things worth knowing:                                                                                                                                                                             
                                                                                                                                                                                                         
-  • I dropped the usual Co-Authored-By: Mistral Vibe trailer because this repo's contract treats it as a violation (attribution.forbidden). The repo rule wins over my default.                         
-  • .conversation-scratch and .skilled/ are untracked and were left alone. If you want either committed, say which and I'll add it.                                                                     
+  • I omitted the usual Co-Authored-By: Mistral Vibe trailer. The same contract has an attribution.forbidden rule that blocks it, and repo rules outrank my default commit format.                      
+  • The commit succeeded with one warning: body.line-length — my Context: line is 118 chars. Warning only, not a block.                                                                                 
                                                                                                                                                                                                         
-  If you'd rather have a different subject line, tell me the wording and I'll amend.                                                                                                                    
+  .conversation-scratch and .skilled/ remain untracked; I left them alone. If you want different wording, git commit --amend is the move — say the word and I'll run it.                                
 
                                                  
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
@@ -47,5 +47,5 @@
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ztRD8fUAvk/vibe                                                                                                       ctx ▌      20.9k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.EAfu3FMONn/vibe                                                                                    usage █▏     19% · ctx ▋      24.8k/256k
 

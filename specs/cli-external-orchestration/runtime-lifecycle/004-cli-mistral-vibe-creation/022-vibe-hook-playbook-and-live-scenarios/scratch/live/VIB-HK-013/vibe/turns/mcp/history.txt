@@ -1,50 +1,50 @@
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
 > Use the github MCP server's get_file tool to read README.md, then reply with the first line it returned.                                                                                              
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                       ▆
+⚠ [turn-start] Added context for the model: "Advisor: live; ambiguous: sk-code 0.91/0.16 vs sk-doc 0.90/0.12 pass. Directive…"                                                                          
                                                                                                                                                                                                         
-  I'll look up the GitHub MCP get_file tool and read README.md.                                                                                                                                         
+  I'll look up the GitHub MCP file-reading function first.                                                                                                                                              
                                                                                                                                                                                                         
 ⏵ Called 3 tools, thought                                                                                                                                                                               
                                                                                                                                                                                                         
-  The direct call was blocked — this MCP server requires routing through Code Mode. Let me find that entry point.                                                                                       
-                                                                                                                                                                                                       ▃
-⏵ Called 3 tools, ran 1 command, read 1 file, thought                                                                                                                                                   
+  The direct call was blocked by a routing hook. Let me find the Code Mode entry point it points to.                                                                                                    
                                                                                                                                                                                                         
-  I could not complete this as asked. mcp_github.get_file is blocked in this session.                                                                                                                   
+⏵ Called 3 tools, ran 2 commands, thought                                                                                                                                                               
+                                                                                                                                                                                                        
+  I couldn't complete this as asked — mcp_github.get_file is blocked in this session.                                                                                                                   
                                                                                                                                                                                                         
   What happened                                                                                                                                                                                         
                                                                                                                                                                                                         
   ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
   │ tools.mcp_github.get_file({ path: 'README.md' })                                                                                                                                                │   
-  │ → tool_skipped                                                                                                                                                                                  │   
-  │   "native call to \"github\" -- Code Mode can route this family via the                                                                                                                         │   
-  │    \"github\" manual (call_tool_chain); route through Code Mode for the                                                                                                                         │   
-  │    ~98% context reduction the mcp-code-mode SKILL mandates."                                                                                                                                    │   
+  │ → tool_skipped: native call to "github" -- Code Mode can route this family                                                                                                                      │   
+  │   via the "github" manual (call_tool_chain); route through Code Mode for                                                                                                                        │   
+  │   the ~98% context reduction the mcp-code-mode SKILL mandates.                                                                                                                                  │   
   └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
                                                                                                                                                                                                         
-  The block is a harness policy on the whole github family, not a bad argument. It tells me to route through call_tool_chain, but that function does not exist here — I checked tools.client,           
-  tools.mcp_github, and tools.vibe, and grepped ~/.vibe and .vibe for it. The mcp-code-mode skill it cites is also not in my available skills. So the required routing path is missing, and the tool    
-  is unreachable.                                                                                                                                                                                       
+  The hook demands I route through a Code Mode call_tool_chain entry point, but that function isn't exposed here. The mcp_github connector inventory contains exactly one function (get_file), and no   
+  mcp-code-mode skill is loaded or listed. So the only path to the tool is gated behind a route that doesn't exist in this session — a deadlock, not a transient failure. I retried once and got the    
+  identical error.                                                                                                                                                                                      
                                                                                                                                                                                                         
-  The content, from a different source                                                                                                                                                                  
+  What I did not do: invent a first line. Since the tool never executed, there is no "first line it returned."                                                                                          
                                                                                                                                                                                                         
-  I read the file directly off disk instead. It is 37 bytes, two lines:                                                                                                                                 
+  Fallback, clearly labeled: README.md does exist in the working directory (/private/var/folders/.../tmp.A9KZcz25D2/vibe, 37 bytes). Reading it with file_system.bash instead gives:                    
                                                                                                                                                                                                         
   ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
   │ # demo project                                                                                                                                                                                  │   
-  │ hello from the readme                                                                                                                                                                           │   
   └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
                                                                                                                                                                                                         
-  So the first line is # demo project — but that came from read_file, not from get_file. I'm flagging that because you asked specifically for what get_file returned, and I can't tell you that.        
+  That's the file's actual first line, but it came from head -1, not from get_file.                                                                                                                     
                                                                                                                                                                                                         
-  Worth noting: get_file is documented as "Read a text file from the working directory," which is why the local file is almost certainly the same content. But that's an inference, not a verified      
-  result.                                                                                                                                                                                               
-                                                                                                                                                                                                        
-  To actually unblock the MCP path, the mcp-code-mode skill or a call_tool_chain entry point needs to be installed in this session.                                                                     
+  To actually exercise the tool, you'd need to either enable the Code Mode call_tool_chain route for the github family, or disable the hook that's intercepting native calls.                           
 
-                                                
+                                                 
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
->                                                                                                          
+>   
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ggfRQjiJgT/vibe                                                                                                         ctx ▍      14k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.A9KZcz25D2/vibe                                                                                      usage █▏     19% · ctx ▎      13k/256k
