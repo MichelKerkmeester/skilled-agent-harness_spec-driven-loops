@@ -1,5 +1,5 @@
 {
-  "corpusHash": "13bec7dcc637165b8b82ad5b5178180a60ca5ba34f9fba6936533440192172aa",
+  "corpusHash": "d079f0cb677142485d5d32a51639b964382ca00e663e9281c815f9ef3bd1333e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -234,6 +234,7 @@
     ".skilled/hooks/session-handover/bin/README.md",
     ".skilled/hooks/session-handover/claude/README.md",
     ".skilled/hooks/session-handover/codex/README.md",
+    ".skilled/hooks/session-handover/history/README.md",
     ".skilled/hooks/session-handover/lib/README.md",
     ".skilled/hooks/session-handover/opencode/README.md",
     ".skilled/hooks/session-handover/pi/README.md",
@@ -9038,7 +9039,6 @@
     ".skilled/skills/system-spec-kit/runtime/hooks/devin/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/dsh/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/README.md",
-    ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/opencode/README.md",
@@ -27610,7 +27610,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e8a24a5dddc3da5c2e5ead824bdce4047dbc1a14bfe93f138b7fe51fd92d0e30",
+  "manifestHash": "5bc1a36a5a41f3b6bc9cbc1ff5142266c1a7f57959c9d078dcf72fbc26f3554a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
