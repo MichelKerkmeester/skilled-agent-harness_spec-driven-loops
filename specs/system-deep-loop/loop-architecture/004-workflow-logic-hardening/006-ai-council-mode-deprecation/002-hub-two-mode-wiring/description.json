@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/002-hub-two-mode-wiring",
+  "description": "Phase 2: hub-two-mode-wiring",
+  "keywords": [
+    "phase",
+    "hub-two-mode-wiring"
+  ],
+  "lastUpdated": "2026-11-14T20:19:50.629Z",
+  "specId": "002",
+  "folderSlug": "hub-two-mode-wiring",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "004-workflow-logic-hardening",
+    "006-ai-council-mode-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

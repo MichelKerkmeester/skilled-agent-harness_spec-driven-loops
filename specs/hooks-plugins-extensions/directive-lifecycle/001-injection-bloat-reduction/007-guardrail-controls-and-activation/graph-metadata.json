@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation",
+  "spec_folder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation",
+  "parent_id": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "guardrail negative controls",
+      "per-runtime activation gate",
+      "injection reduction rollback",
+      "governor behavioral scenarios",
+      "guardrail activation gate plan",
+      "behavioral negative control plan",
+      "activation matrix rollback plan",
+      "guardrail activation gate tasks",
+      "behavioral negative control tasks",
+      "guardrail activation gate implementation summary",
+      "behavioral negative control verification"
+    ],
+    "key_topics": [
+      "guardrail",
+      "negative",
+      "controls",
+      "per-runtime",
+      "activation",
+      "gate",
+      "injection",
+      "reduction",
+      "rollback",
+      "governor",
+      "behavioral",
+      "scenarios"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Guardrail Controls",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Activation Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement None",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "placeholder",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "None of candidates 002-006 (OpenCode route bounding, transform dedup, full-first/route-only-repeats, Gate suppression, Pi compaction) can safely activate on byte savings alone",
+    "created_at": "2026-08-06T11:10:46.674Z",
+    "last_save_at": "2026-11-15T07:08:32.180Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:08f28af1c069efc95d97807507bcafb055e50a83d7bb6d397ec0e502bcc52340",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cb28f0aa391941902a9291f1465a2cab976ecca586ede1583e355753355765c6",
+      "plan.md": "f817fb5373a0a4b0a773ae0bb6d3a735d8b16297af46b504b2fb3123b58f1897",
+      "tasks.md": "2cd3071367f51a1caa131aa39ea781c6c72d2df350ea9bd7399e289e03ea0197",
+      "implementation-summary.md": "6c4453dee50c31f66d4a5794685af743ff435620ca26e1ec1b689b658816348c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

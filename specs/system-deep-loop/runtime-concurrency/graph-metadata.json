@@ -4,7 +4,6 @@
   "spec_folder": "system-deep-loop/runtime-concurrency",
   "parent_id": "system-deep-loop",
   "children_ids": [
-    "system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash",
     "system-deep-loop/runtime-concurrency/002-writer-lock-stale-reclaim-race",
     "system-deep-loop/runtime-concurrency/003-loop-lock-cross-process-race"
   ],

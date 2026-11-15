@@ -6,7 +6,7 @@ This file is the single source of truth for user-facing presentation in `/doctor
 
 ```text
 Unknown argument: [argument]
-/doctor:deep-loop takes no target. Its only flag is --scope=research|review|council|both|all.
+/doctor:deep-loop takes no target. Its only flag is --scope=research|review|both|all.
 STATUS=FAIL ERROR="unknown_argument"
 ```
 
@@ -18,12 +18,11 @@ Ask only when `--scope` was not passed and the operation needs a scope.
 Which deep-loop history should be checked?
    1) research
    2) review
-   3) council
-   4) both research and review
-   5) all loop types
+   3) both research and review
+   4) all
 ```
 
-Accept `1-5` or the corresponding name; empty defaults to `all`.
+Accept `1-4` or the corresponding name; empty defaults to `all`.
 
 ## 3. Setup Dashboard
 
@@ -33,7 +32,7 @@ Target: deep-loop
 Workflow: .skilled/commands/doctor/assets/doctor-deep-loop.yaml
 Mutation class: add-only (state log in the active packet's scratch folder)
 Execution mode: INTERACTIVE
-Scope: [research|review|council|both|all]
+Scope: [research|review|both|all]
 Next: load workflow YAML
 ```
 
@@ -69,7 +68,6 @@ STATUS=FAIL ERROR="[message]"
 | Situation | Suggested Action |
 |-----------|------------------|
 | Coverage graph empty or stale | Resume the loop, whose iterations upsert their graph rows, or repair rows from the iteration records with `system-deep-loop/runtime/scripts/upsert.cjs` |
-| Council graph drift | Replay the council graph from its artifacts with the ai-council replay script |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 End interactive presentations with: `What would you like to do next?`

@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/006-docs-and-live-hop-proof",
+  "description": "Phase 6: docs-and-live-hop-proof",
+  "keywords": [
+    "phase",
+    "docs-and-live-hop-proof"
+  ],
+  "lastUpdated": "2026-11-15T06:24:31.706Z",
+  "specId": "006",
+  "folderSlug": "docs-and-live-hop-proof",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-relaunch",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

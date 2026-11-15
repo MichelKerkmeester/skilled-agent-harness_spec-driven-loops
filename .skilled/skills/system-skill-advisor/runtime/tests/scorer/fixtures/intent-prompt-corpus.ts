@@ -60,11 +60,6 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
     category: 'today-correct',
   },
   {
-    prompt: 'Use deep-ai-council for a multi-seat planning council with persistent artifacts.',
-    expectedSkill: 'system-deep-loop',
-    category: 'today-correct',
-  },
-  {
     prompt: 'Change the scoring function, add a regression test, and verify the TypeScript build.',
     expectedSkill: 'sk-code',
     category: 'intent-described',

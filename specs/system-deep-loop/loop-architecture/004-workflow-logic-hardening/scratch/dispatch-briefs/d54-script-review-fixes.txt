@@ -1,0 +1,71 @@
+ROLE: You are a Node.js engineer. Apply eight small fixes to four existing scripts.
+
+CONTEXT: a review compared these new scripts with the inline workflow bodies they replace and
+found eight behavior differences. Fix exactly these. Do not refactor anything else.
+
+ALLOWED WRITE PATHS (all under .skilled/skills/system-deep-loop/runtime/):
+- scripts/dispatch-iteration.cjs
+- scripts/run-now-sentinel.cjs
+- scripts/divergent-pivot.cjs
+- scripts/loop-heartbeat.cjs
+- tests/unit/loop-heartbeat.vitest.ts   (FIX 4 only)
+- tests/unit/dispatch-iteration.vitest.ts   (FIX 6 only)
+
+FIX 1. dispatch-iteration.cjs, review `cli-opencode` path. Today the order is: dispatch, then
+enforceWriteContainment, then the staged-event drain in a `finally`. The drain calls the append
+gateway, which rewrites the state log from its ledger and so deletes the rows that
+enforceWriteContainment just appended. New order: dispatch, then the drain, then
+enforceWriteContainment and its two stderr advisories, then exit. The drain must still run on
+every path, also when a preflight guard or the dispatch throws. Exit status rule stays: a
+non-zero gateway status wins, else the status of the guarded body.
+
+FIX 2. run-now-sentinel.cjs. The staged event stem is built as `${STEM_PREFIX}${event}`. A
+checker credits an emitter only when the source holds the literal prefix, so write it as
+  stem: `deep_research.${event}`
+inside the `record` function and remove the STEM_PREFIX constant if nothing else uses it. Keep
+the three call sites shaped `record("run_now_requested"`, `record("run_now_rejected"` and
+`record("run_now_accepted"`, and keep the whole literal "deep_research.run_now_restored".
+
+FIX 3. divergent-pivot.cjs. It writes one JSON line to stdout and then calls process.exit, which
+cuts a piped write off at 65536 bytes. On every success path set `process.exitCode = code` and
+let the process end by itself. Keep process.exit only on usage errors and on thrown errors,
+where nothing was written to stdout.
+
+FIX 4. loop-heartbeat.cjs. It rejects a flag whose value is the empty string. The inline bodies
+used the empty value. A required flag is missing only when the flag is absent. An empty value
+is accepted and used as it is (an empty session id stays '', an empty generation or run becomes
+Number('') which is 0, an empty reason stays ''). `--phase` and `--execution-mode` still need a
+valid enum value. Add one test case to tests/unit/loop-heartbeat.vitest.ts: `--phase terminal`
+with `--reason ""` and otherwise valid arguments exits 0 and writes one row with event
+"completed".
+
+FIX 5. run-now-sentinel.cjs and dispatch-iteration.cjs, the drain. When a gateway child is
+killed by a signal, the inline shell loop exited with 128 plus the signal number. Return
+`128 + os.constants.signals[result.signal]` when `result.signal` is set and known, else 1. Fix
+the comment in run-now-sentinel.cjs that says the shell loop had no status to pass.
+
+FIX 6. dispatch-iteration.cjs. Decide `--executor` first, before tsx is registered, before any
+TypeScript module or fanout-run.cjs is loaded and before the other flags are validated:
+  - `--executor` absent or not a known kind: print the usage line plus
+    `unknown executor kind '<value>'. Supported kinds: native, cli-codex, cli-claude-code, cli-opencode, cli-cursor, cli-devin, cli-pi, cli-deepseek-harness`
+    and exit 64. An absent flag prints the same line with an empty value.
+  - `cli-deepseek-harness`: print its refusal line and exit 2, whatever other flags are present.
+  - `native`: print its line and exit 64.
+  The list of kinds for this early check may be a literal array in the script. Keep the later
+  check against EXECUTOR_KINDS from executor-config.ts as it is. Add one test case to
+  tests/unit/dispatch-iteration.vitest.ts: `--executor cli-deepseek-harness --bogus x` exits 2.
+
+FIX 7. dispatch-iteration.cjs, review `cli-claude-code`. Call validateClaudeConfigDir before the
+prompt and persona are read, as the inline body did.
+
+FIX 8. Comments. Replace the em dash character in comments of divergent-pivot.cjs and
+dispatch-iteration.cjs with a comma or a full stop.
+
+CHECKS, run from .skilled/skills/system-deep-loop/runtime:
+  for s in dispatch-iteration run-now-sentinel divergent-pivot loop-heartbeat; do node --check scripts/$s.cjs; done
+  node_modules/.bin/vitest run --no-coverage tests/unit/loop-heartbeat.vitest.ts tests/unit/divergent-pivot-cli.vitest.ts tests/unit/dispatch-iteration.vitest.ts     must pass 12 tests
+  node scripts/dispatch-iteration.cjs ; echo "status=$?"          must print the unknown executor kind line and status=64
+  grep -c 'deep_research.${event}' scripts/run-now-sentinel.cjs   must print 1
+  npm run typecheck                                                 must exit 0
+
+REPORT: one line per fix, "done" or "failed, <reason>", then the output of each check.

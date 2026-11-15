@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests",
+  "description": "Unit tests cannot prove that the extension loader, settings transition, duplicate command registry, custom footer, RPC surface, and real child process",
+  "keywords": [
+    "unit",
+    "tests",
+    "cannot",
+    "prove",
+    "extension",
+    "loader",
+    "settings",
+    "transition",
+    "duplicate",
+    "command",
+    "registry",
+    "custom",
+    "footer",
+    "rpc",
+    "surface",
+    "real",
+    "child",
+    "process"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.316Z",
+  "specId": "003",
+  "folderSlug": "integration-and-tests",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-fast-mode",
+    "001-pi-fast-mode-w-subagent-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

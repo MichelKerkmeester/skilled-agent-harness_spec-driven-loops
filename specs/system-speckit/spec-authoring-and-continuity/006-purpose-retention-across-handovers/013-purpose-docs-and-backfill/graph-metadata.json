@@ -44,7 +44,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/spec.md",
+      "specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/spec.md",
       "specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/spec.md",
       "specs/sk-design/020-chart-and-diagram-review/spec.md",
       ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/packet-purpose-carry.md",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "An operator or a model reading the docs cannot learn that every hop carries the packet's purpose, because no feature catalog entry, playbook scenario, injection contract section or root README passage names it",
     "created_at": "2026-11-14T11:27:14Z",
-    "last_save_at": "2026-11-14T19:47:48.009Z",
+    "last_save_at": "2026-11-15T07:10:07.386Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2944dfd355b6ee5c0f22f8a08d8944d32a11a48c7c257198b3d9957c502e2f4",
+    "source_fingerprint": "sha256:6b54fa6845a711a4d9cdcf3352ebe02fdd0280d46a0405ff33cdf8ae47e340b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b27887fc1e68ada96b35fd75fd677e2ec8ef72486f7c531e30024d1d3afd36e6",
-      "plan.md": "ab69844358688623346596133185a0cd9b2860666d734bcd178503d2e6b52001",
-      "tasks.md": "0465cee873067620f755127c105fb40a9fd1be13db05a13e5e45c89bcf35a0a4",
-      "implementation-summary.md": "e255665cf2aa7f47bfb5acc24d9f44b1d4c22cd338b4d97fe4ad10934c23080b"
+      "spec.md": "cff5bd439d95726d3632c2597329dc6af01b8806878da3621d7f7db141abcc5e",
+      "plan.md": "898f1476a6296bf32673bc05af8cbc18f3590598bf100ed905c8dbfd2940a85d",
+      "tasks.md": "4ec081db15d52ba49059436a5fd128b1db9365fb4ccaa35058f6a4907e44e305",
+      "implementation-summary.md": "718cd4c444c79ea3b8bbcb30e199c6900b528522bfe495e78c6d82959654dfde"
     },
     "last_active_at": null
   }

@@ -1,0 +1,24 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, git add, rm -rf
+outside a temp folder your own test created, any write outside the ALLOWED WRITE PATHS, any
+package install. Do NOT read a workflow YAML file whole: each is over 150 KB. Find every anchor
+with grep -n and read only a small window around it (sed -n 'A,Bp').
+Never write a spec path, a task id, a requirement id or a finding id into a code comment.
+

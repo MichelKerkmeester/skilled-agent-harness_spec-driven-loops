@@ -101,7 +101,7 @@ function graphWithPathWrites(leftIdentity: string, rightIdentity: string): Write
   );
   declarations = replaceDeclaration(
     declarations,
-    '003-deep-ai-council',
+    '002-deep-review',
     (declaration) => ({
       ...declaration,
       writeSet: [
@@ -178,8 +178,8 @@ describe('write-set conflict graph', () => {
     expect(graph.schedule.graph_state).toBe('fallback');
     expect(graph.schedule.phase_gate_complete).toBe(false);
     expect(graph.schedule.missing_evidence.some((issue) => issue.code === 'UNCLASSIFIED_RESOURCE')).toBe(true);
-    expect(graph.edges.filter((edge) => edge.edge_origin === 'unknown-widening')).toHaveLength(2);
-    expect(affectedPairs).toHaveLength(2);
+    expect(graph.edges.filter((edge) => edge.edge_origin === 'unknown-widening')).toHaveLength(1);
+    expect(affectedPairs).toHaveLength(1);
     expect(affectedPairs.every((pair) => pair.classification === 'must-serialize'
       && pair.failure?.issue_codes.includes('UNCLASSIFIED_RESOURCE'))).toBe(true);
   });
@@ -193,17 +193,17 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({ ...declaration, writeSet: [...declaration.writeSet, shared] }),
     );
     const graph = buildGraph(declarations);
     const conflict = graph.edges.find((edge) => edge.edge_type === 'write-write'
       && edge.from === '001-deep-research'
-      && edge.to === '003-deep-ai-council');
+      && edge.to === '002-deep-review');
 
     expect(conflict?.resources).toContain('state:{packet}/adversarial/shared.jsonl');
     expect(graph.schedule.lanes.some((lane) => lane.node_ids.includes('001-deep-research')
-      && lane.node_ids.includes('003-deep-ai-council'))).toBe(false);
+      && lane.node_ids.includes('002-deep-review'))).toBe(false);
   });
 
   it('derives a symmetric write-read conflict regardless of declaration direction', () => {
@@ -218,7 +218,7 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({
         ...declaration,
         readSet: [...declaration.readSet, testResource(identity, 'read')],
@@ -228,7 +228,7 @@ describe('write-set conflict graph', () => {
 
     expect(graph.edges).toContainEqual(expect.objectContaining({
       from: '001-deep-research',
-      to: '003-deep-ai-council',
+      to: '002-deep-review',
       edge_type: 'write-read',
       resources: [identity],
     }));
@@ -245,12 +245,12 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({ ...declaration, writeSet: [...declaration.writeSet, right] }),
     );
     const graph = buildGraph(declarations);
     const collision = graph.edges.find((edge) => edge.from === '001-deep-research'
-      && edge.to === '003-deep-ai-council'
+      && edge.to === '002-deep-review'
       && edge.edge_origin === 'unknown-widening');
 
     expect(collision?.resources).toEqual(['state:canonical-left', 'state:canonical-right']);
@@ -278,14 +278,14 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({ ...declaration, readSet: [...declaration.readSet, childResource] }),
     );
     const graph = buildGraph(declarations);
 
     expect(graph.edges).toContainEqual(expect.objectContaining({
       from: '001-deep-research',
-      to: '003-deep-ai-council',
+      to: '002-deep-review',
       edge_type: 'write-read',
       resources: [rootIdentity, childIdentity],
     }));
@@ -314,7 +314,7 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => peerAccess === 'write'
         ? { ...declaration, writeSet: [...declaration.writeSet, peer] }
         : { ...declaration, readSet: [...declaration.readSet, peer] },
@@ -323,7 +323,7 @@ describe('write-set conflict graph', () => {
 
     expect(graph.edges).toContainEqual(expect.objectContaining({
       from: '001-deep-research',
-      to: '003-deep-ai-council',
+      to: '002-deep-review',
       edge_type: edgeType,
       resources: expect.arrayContaining([identity, `${identity}/`]),
     }));
@@ -345,7 +345,7 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({
         ...declaration,
         readSet: [
@@ -358,7 +358,7 @@ describe('write-set conflict graph', () => {
 
     expect(graph.edges).toContainEqual(expect.objectContaining({
       from: '001-deep-research',
-      to: '003-deep-ai-council',
+      to: '002-deep-review',
       edge_type: 'write-read',
       resources: [rootIdentity, childIdentity],
     }));
@@ -380,7 +380,7 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({
         ...declaration,
         sharedState: [...declaration.sharedState, invalidAccess],
@@ -413,7 +413,7 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({
         ...declaration,
         sharedState: [...declaration.sharedState, testResource(identity, peerAccess)],
@@ -423,7 +423,7 @@ describe('write-set conflict graph', () => {
 
     expect(graph.edges).toContainEqual(expect.objectContaining({
       from: '001-deep-research',
-      to: '003-deep-ai-council',
+      to: '002-deep-review',
       edge_type: edgeType,
       resources: [identity],
     }));
@@ -445,7 +445,7 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({
         ...declaration,
         writeSet: [
@@ -495,12 +495,12 @@ describe('write-set conflict graph', () => {
       : `file:${peerPath}${slashMode === 'trailing-slash' ? '/' : ''}`;
     const graph = graphWithPathWrites(leftIdentity, rightIdentity);
     const pairEdges = graph.edges.filter((edge) => edge.from === '001-deep-research'
-      && edge.to === '003-deep-ai-council'
+      && edge.to === '002-deep-review'
       && (edge.edge_type === 'write-write' || edge.edge_origin === 'unknown-widening'));
 
     expect(pairEdges.length).toBeGreaterThan(0);
     expect(graph.schedule.lanes.some((lane) => lane.node_ids.includes('001-deep-research')
-      && lane.node_ids.includes('003-deep-ai-council'))).toBe(false);
+      && lane.node_ids.includes('002-deep-review'))).toBe(false);
     if (rootMode === 'non-root'
       && caseMode === 'diff-case'
       && slashMode === 'trailing-slash') {
@@ -530,7 +530,7 @@ describe('write-set conflict graph', () => {
       (issue) => issue.code === 'UNRESOLVED_RESOURCE_ALIAS',
     )).toBe(true);
     expect(graph.schedule.lanes.some((lane) => lane.node_ids.includes('001-deep-research')
-      && lane.node_ids.includes('003-deep-ai-council'))).toBe(false);
+      && lane.node_ids.includes('002-deep-review'))).toBe(false);
   });
 
   it.each([
@@ -558,7 +558,7 @@ describe('write-set conflict graph', () => {
       missing_evidence: [],
     }));
     expect(graph.schedule.lanes.some((lane) => lane.node_ids.includes('001-deep-research')
-      && lane.node_ids.includes('003-deep-ai-council'))).toBe(true);
+      && lane.node_ids.includes('002-deep-review'))).toBe(true);
   });
 
   it('treats NFC and NFD spellings of the same path as one write resource', () => {
@@ -580,7 +580,7 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({
         ...declaration,
         writeSet: [
@@ -593,12 +593,12 @@ describe('write-set conflict graph', () => {
 
     expect(graph.edges).toContainEqual(expect.objectContaining({
       from: '001-deep-research',
-      to: '003-deep-ai-council',
+      to: '002-deep-review',
       edge_type: 'write-write',
       resources: [nfcIdentity],
     }));
     expect(graph.schedule.lanes.some((lane) => lane.node_ids.includes('001-deep-research')
-      && lane.node_ids.includes('003-deep-ai-council'))).toBe(false);
+      && lane.node_ids.includes('002-deep-review'))).toBe(false);
   });
 
   it('keeps genuinely different Unicode filenames independent', () => {
@@ -619,7 +619,7 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({
         ...declaration,
         writeSet: [
@@ -636,7 +636,7 @@ describe('write-set conflict graph', () => {
       missing_evidence: [],
     }));
     expect(graph.schedule.lanes.some((lane) => lane.node_ids.includes('001-deep-research')
-      && lane.node_ids.includes('003-deep-ai-council'))).toBe(true);
+      && lane.node_ids.includes('002-deep-review'))).toBe(true);
   });
 
   it.each([
@@ -662,7 +662,7 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({
         ...declaration,
         writeSet: [
@@ -675,12 +675,12 @@ describe('write-set conflict graph', () => {
 
     expect(graph.edges).toContainEqual(expect.objectContaining({
       from: '001-deep-research',
-      to: '003-deep-ai-council',
+      to: '002-deep-review',
       edge_type: 'write-write',
       resources: expect.arrayContaining(['file:/']),
     }));
     expect(graph.schedule.lanes.some((lane) => lane.node_ids.includes('001-deep-research')
-      && lane.node_ids.includes('003-deep-ai-council'))).toBe(false);
+      && lane.node_ids.includes('002-deep-review'))).toBe(false);
   });
 
   it('normalizes an unrecognized mutability to unknown and falls back globally', () => {
@@ -709,13 +709,13 @@ describe('write-set conflict graph', () => {
     )).toBe(true);
   });
 
-  it('keeps genuinely independent research and council work in one parallel lane', () => {
+  it('keeps genuinely independent research and review work in one parallel lane', () => {
     const graph = buildGraph();
 
     expect(graph.schedule.graph_state).toBe('ready');
     expect(graph.schedule.missing_evidence).toEqual([]);
     expect(graph.schedule.lanes.some((lane) => lane.node_ids.includes('001-deep-research')
-      && lane.node_ids.includes('003-deep-ai-council'))).toBe(true);
+      && lane.node_ids.includes('002-deep-review'))).toBe(true);
   });
 
   it('refuses stale source digests during construction and graph reuse', () => {
@@ -747,7 +747,7 @@ describe('write-set conflict graph', () => {
     }));
   });
 
-  it('validates research and council independence against actual resources', () => {
+  it('validates research and review independence against actual resources', () => {
     const independent = buildGraph().independent_assertions[0];
     const shared = testResource('state:{packet}/adversarial/assertion.jsonl', 'write');
     let declarations = replaceDeclaration(
@@ -757,7 +757,7 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({ ...declaration, writeSet: [...declaration.writeSet, shared] }),
     );
     const conflictedGraph = buildGraph(declarations);
@@ -829,14 +829,14 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({ ...declaration, writeSet: [...declaration.writeSet, shared] }),
     );
     const artifact = buildWriteSetConflictArtifact(buildInput(declarations));
     const pair = artifact.pair_classifications.find((entry) =>
-      entry.left === '001-deep-research' && entry.right === '003-deep-ai-council');
+      entry.left === '001-deep-research' && entry.right === '002-deep-review');
 
-    expect(artifact.pair_classifications).toHaveLength(3);
+    expect(artifact.pair_classifications).toHaveLength(1);
     expect(pair).toEqual(expect.objectContaining({
       classification: 'must-serialize',
       failure: expect.objectContaining({
@@ -864,7 +864,7 @@ describe('write-set conflict graph', () => {
     );
     declarations = replaceDeclaration(
       declarations,
-      '003-deep-ai-council',
+      '002-deep-review',
       (declaration) => ({
         ...declaration,
         writeSet: [
@@ -878,7 +878,7 @@ describe('write-set conflict graph', () => {
     );
     const artifact = buildWriteSetConflictArtifact(buildInput(declarations));
     const pair = artifact.pair_classifications.find((entry) =>
-      entry.left === '001-deep-research' && entry.right === '003-deep-ai-council');
+      entry.left === '001-deep-research' && entry.right === '002-deep-review');
 
     expect(pair).toEqual(expect.objectContaining({
       classification: 'parallel-safe',
@@ -895,7 +895,7 @@ describe('write-set conflict graph', () => {
       sourceDigests: input.sourceDigests.slice(1),
     });
 
-    expect(artifact.pair_classifications).toHaveLength(3);
+    expect(artifact.pair_classifications).toHaveLength(1);
     expect(artifact.pair_classifications.every((pair) =>
       pair.classification === 'must-serialize'
       && pair.failure?.code === 'GRAPH_NOT_READY'

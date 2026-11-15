@@ -50,7 +50,7 @@ Frozen choices. Changing one is an amendment.
 | D1 | Scenarios run through the shared sk-doc conversation runner with a new `vibe` adapter, not through a one-off script, so every runtime's scenarios share one runner and one evidence shape. |
 | D2 | A scenario passes only on a journal record its check reads, never on the exit code or the reply text alone, because a Vibe deny leaves the run at exit 0. |
 | D3 | OPERATOR-ONLY is allowed only where the runner has no path to drive the behavior, and each one carries a written procedure; a scenario is never marked passed on a guess. |
-| D4 | The alignment pass runs once over the finished branch with the `opencode-go` lane preset (DeepSeek V4.1 Flash max), and only findings the triage confirms in scope are fixed here. |
+| D4 | The alignment pass runs once over the finished branch with the `opencode-go` lane preset (DeepSeek V4.1 Flash max), and only findings the triage confirms in scope are fixed here. A lane that times out on that preset reruns on the `codex` preset (amended 2026-11-15 by operator decision). |
 | D5 | The phase is executed by a DeepSeek V4.1 Flash max swarm across OpenCode and pi on the `llmgateway`, `opencode-go` and `mistral` providers, one scenario per worker task. |
 
 <!-- /ANCHOR:directive -->
@@ -81,6 +81,7 @@ and findings belong here.
 |------|-------|----------|
 | Spec, plan, tasks and goal | Done | `validate.sh <this folder> --strict --quiet` printed `RESULT: PASSED` |
 | Inventory gap at authoring | Measured | 18 hook entries; 17 have no conversation scenario, 14 are named in no scenario at all (spec.md Measured Behavior) |
+| Alignment pass, triage, fixes, recheck and suites | Done | 58 findings triaged (51 fixed, 6 out of scope, 1 deferred); recheck still_open=8, none in scope; probes pass=10; 15 suites exit 0 |
 
 ### Deviations and findings
 

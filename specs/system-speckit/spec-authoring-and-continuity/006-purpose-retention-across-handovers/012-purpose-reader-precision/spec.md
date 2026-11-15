@@ -88,7 +88,7 @@ own purpose read: 2717 of 2981
 $ node -e "...detectSpecFolder(['Read specs/a/001-x/spec.md:12','Edit specs/a/001-x/spec.md:40','see specs/b/002-y/plan.md'])"
 "specs/a/001-x/spec.md:12"
 ```
-The five packets with no line after the fix are `sk-git/live-sync-and-publishing/006-remote-push-approval`, `sk-git/worktree-lifecycle/003-worktree-dependency-provisioning`, `sk-code/verification-guards/002-dist-staleness-rebuild-on-drift`, `sk-code/verification-guards/003-dist-guard-skip-unprovisioned` and `system-speckit/memory-search-and-knowledge/004-memory-reindex-embed-performance`. Each prints a problem sentence as its Purpose today.
+The five packets with no line after the fix are `sk-git/live-sync-and-publishing/006-remote-push-approval`, `sk-git/worktree-lifecycle/003-worktree-dependency-provisioning`, `hooks-plugins-extensions/dist-freshness/001-dist-staleness-rebuild-on-drift`, `hooks-plugins-extensions/dist-freshness/002-dist-guard-skip-unprovisioned` and `system-speckit/memory-search-and-knowledge/004-memory-reindex-embed-performance`. Each prints a problem sentence as its Purpose today.
 <!-- /ANCHOR:measured-behavior -->
 
 ---

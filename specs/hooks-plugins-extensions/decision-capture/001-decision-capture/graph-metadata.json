@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/decision-capture/001-decision-capture",
+  "spec_folder": "hooks-plugins-extensions/decision-capture/001-decision-capture",
+  "parent_id": "hooks-plugins-extensions/decision-capture",
+  "children_ids": [
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build",
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/002-table-row-matching",
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/003-codex-and-pi-capture",
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/004-opencode-devin-live-capture",
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/005-chat-question-detection",
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/006-live-conversation-test",
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/007-gap-closure",
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/008-project-scoped-state",
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/009-chat-answer-evidence",
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "decision capture phase parent spec",
+      "decision capture series",
+      "decision capture follow-up",
+      "decision capture goal",
+      "043-decision-capture operator decisions",
+      "decision capture open gaps research",
+      "record my chat reply as a decision routing",
+      "linked projects share decision capture state",
+      "chat answer judgment decision capture",
+      "decision capture handover",
+      "043 handover",
+      "decision record upgrade continuation"
+    ],
+    "key_topics": [
+      "decision",
+      "capture",
+      "phase",
+      "parent",
+      "spec",
+      "series",
+      "follow-up",
+      "goal",
+      "043-decision-capture",
+      "operator",
+      "decisions",
+      "open"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md",
+      "research/research.md",
+      "handover.md",
+      ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".skilled/hooks/README.md",
+      ".skilled/skills/.state/decision-capture/README.md",
+      "research/synthesis-review.md",
+      "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md",
+      "001-decision-capture-build/goal.md",
+      "002-table-row-matching/goal.md",
+      "003-codex-and-pi-capture/goal.md",
+      "004-opencode-devin-live-capture/goal.md",
+      "005-chat-question-detection/goal.md",
+      "006-live-conversation-test/goal.md",
+      "007-gap-closure/goal.md",
+      "008-project-scoped-state/goal.md",
+      "009-chat-answer-evidence/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record-writer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-review.md",
+        "kind": "doc",
+        "path": "research/synthesis-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The artifact this series changes is the automatic operator decision capture pipeline: the capture core and runtime adapters under `.skilled/hooks/decision-capture/`, the save-time sweeps in its `bin/`, and the decision-record writer at `.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts` that a full-auto `/speckit:save` calls",
+    "created_at": "2026-11-01T20:52:24Z",
+    "last_save_at": "2026-11-15T07:18:25.991Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:650e80fb4ddff991007075b4b31cb47a13349de95f135811390702dbdd160af6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bf4c9a0b84fc47f407152392c86a04489e67d922538a43ca28cc67c7f2f69cbd",
+      "decision-record.md": "371ee92c629dd1fe1f86260ef393f52443474afa67d6efb9006b61c4956b628f",
+      "research/research.md": "c789a080cd66aa0572f8fc6d3a9ddfea993c904562fd432b6e576b074e489dd1",
+      "handover.md": "26ab0ee0b0275927533c3424cf7d473cafb15dbb41272e949f1e9eafa4338a93"
+    },
+    "last_active_child_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/007-gap-closure",
+    "last_active_at": "2026-11-03T08:11:03.728Z"
+  }
+}

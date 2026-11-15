@@ -1,12 +1,12 @@
 ---
 title: cli-mistral-vibe
-description: Cross-AI dispatcher for Mistral Vibe (vibe) print-mode runs, with a pinned version, a closed two-alias roster and six fail-closed dispatch rules.
+description: Cross-AI dispatcher for Mistral Vibe (vibe) print-mode runs, with a pinned version, a closed two-alias roster and seven fail-closed dispatch rules.
 trigger_phrases:
   - "mistral vibe"
   - "vibe print mode"
   - "delegate to vibe"
   - "vibe cli"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # cli-mistral-vibe
@@ -36,7 +36,7 @@ Vibe picks its model from a config row, not from a reasoning flag. Print mode ha
 
 A fresh `VIBE_HOME` with no `config.toml` offers one model, so `--model deepseek-flash` exits 1 with `usage_error`. A run whose tool calls were denied can still exit 0, because `--output` carries no exit code. A dispatch started from the repository root puts the root `.env` and `AGENTS.md` in reach of Vibe's project discovery.
 
-This packet fixes the argv shape, names the two aliases that may run and states six rules the dispatch preflight checks.
+This packet fixes the argv shape, names the two aliases that may run and states seven rules the dispatch preflight checks.
 
 ### Status
 
@@ -69,10 +69,10 @@ Name `deepseek-flash` or `glm-flash` and nothing else. The home a dispatch uses 
 **Step 3: Dispatch in print mode and read the outcome record.**
 
 ~~~bash
-AI_SESSION_CHILD=1 VIBE_SPEC_FOLDER="$REPO/$SPEC_FOLDER" vibe -p "$PROMPT" --model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null
+node "$REPO/.vibe/plugins/repo-guards/render-home-hooks.cjs" "$RUN_DIR/.vibe-home" && AI_SESSION_CHILD=1 VIBE_SPEC_FOLDER="$REPO/$SPEC_FOLDER" VIBE_HOME="$RUN_DIR/.vibe-home" vibe -p "$PROMPT" --model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null
 ~~~
 
-A run is complete only when `out/export.json` records `exit_code` 0 and `outcome` `finished`. Never read the outcome from stdout, from `--output json` or from the exit status alone.
+The run line repeats the render and names the home itself, because the preflight judges each command on its own and refuses a run whose home was set or rendered by an earlier line. A run is complete only when `$RUN_DIR/out/export.json` records `exit_code` 0 and `outcome` `finished`. Never read the outcome from stdout, from `--output json` or from the exit status alone.
 
 ---
 
@@ -88,7 +88,7 @@ The calling AI stays the conductor. It picks the alias, writes a scoped prompt w
 
 ### Fail-Closed Rules
 
-[hard-rules.json](./hard-rules.json) carries six rules at severity `error`: `print-mode-only`, `isolated-vibe-home`, `output-dir-required`, `vibe-closed-roster`, `no-repo-root-cwd` and `stdin-redirect-required`.
+[hard-rules.json](./hard-rules.json) carries seven rules at severity `error`: `print-mode-only`, `isolated-vibe-home`, `output-dir-required`, `vibe-closed-roster`, `no-repo-root-cwd`, `stdin-redirect-required` and `rendered-home-hooks`.
 
 ---
 
@@ -99,7 +99,7 @@ cli-mistral-vibe/
   SKILL.md                                  # Runtime instructions and rules
   ROUTER.md                                 # Machine router: intent map, resource map and loading levels
   README.md                                 # Folder orientation and navigation for the packet
-  hard-rules.json                           # The six fail-closed dispatch rules
+  hard-rules.json                           # The seven fail-closed dispatch rules
   assets/
     prompt-quality-card.md                  # Thin prompt-quality delegator plus Vibe print-mode addenda
   changelog/                                # Versioned release notes
@@ -178,7 +178,7 @@ A: Yes, as a fan-out lineage beside a second executor group, through the shared 
 | Availability | `command -v vibe` prints a path and `vibe --version` prints `vibe 3.1.2` |
 | Provider | `MISTRAL_API_KEY` is exported in the child's environment |
 | Completion | `export.json` records `exit_code` 0 and `outcome` `finished` |
-| Rules | `hard-rules.json` parses and carries all six rule ids |
+| Rules | `hard-rules.json` parses and carries all seven rule ids |
 | Flags | Every flag this contract names appears in the captured help text or in the flag table that grounds it separately |
 | Packet shape | `node .skilled/commands/doctor/scripts/sk-skill-check.cjs .skilled/skills/cli-external-orchestration/cli-mistral-vibe` |
 
@@ -190,7 +190,7 @@ A: Yes, as a fan-out lineage beside a second executor group, through the shared 
 |---|---|
 | [SKILL.md](./SKILL.md) | Runtime instructions and rules |
 | [ROUTER.md](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| [hard-rules.json](./hard-rules.json) | The six fail-closed dispatch rules |
+| [hard-rules.json](./hard-rules.json) | The seven fail-closed dispatch rules |
 | [references/cli-reference.md](./references/cli-reference.md) | Flags, dispatch shape and exit contract |
 | [references/providers-and-models.md](./references/providers-and-models.md) | The closed roster |
 | [assets/prompt-quality-card.md](./assets/prompt-quality-card.md) | Thin prompt-quality delegator |

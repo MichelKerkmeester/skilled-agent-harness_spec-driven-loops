@@ -7,12 +7,14 @@ trigger_phrases:
   - "mode append gateway flow"
   - "deep-loop package topology"
 importance_tier: "important"
-version: 1.0.3.0
+version: 1.0.6.0
 ---
 
 # Architecture: system-deep-loop
 
-> Current-reality architecture for the `system-deep-loop` package. It runs iterative research, review and AI Council loops, reached through `Skill(system-deep-loop)`, the `/deep:*` commands and the deep-loop agents.
+> Current-reality architecture for the `system-deep-loop` package. It runs iterative research and review loops, reached through `Skill(system-deep-loop)`, the `/deep:*` commands and the deep-loop agents.
+
+A planning council is not a mode of this hub. It runs as the standalone `@ai-council` agent, reached through `/speckit:ai-council`.
 
 ---
 
@@ -23,7 +25,7 @@ version: 1.0.3.0
 The package owns three authored zones:
 
 - The hub root (`SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `graph-metadata.json`) routes and holds no per-mode logic.
-- The mode packets `deep-research/`, `deep-review/` and `deep-ai-council/` carry each mode's contract, references, assets and mode-local scripts. `shared/` carries helpers the packets share.
+- The mode packets `deep-research/` and `deep-review/` carry each mode's contract, references, assets and mode-local scripts. `shared/` carries helpers the packets share.
 - `runtime/` carries the TypeScript and CommonJS library, the CLI scripts, the SQLite stores and the test suites.
 
 ### Architecture diagram
@@ -39,9 +41,8 @@ The package owns three authored zones:
 │             ▼                                ▼                   │
 │  ┌──────────────────────┐   ┌─────────────────────────────────┐  │
 │  │ hub: mode-registry   │──▶│ mode packets                    │  │
-│  │ + ROUTER.md          │   │ deep-research / deep-review /   │  │
-│  └──────────────────────┘   │ deep-ai-council                 │  │
-│                             └────────────────┬────────────────┘  │
+│  │ + ROUTER.md          │   │ deep-research / deep-review     │  │
+│  └──────────────────────┘   └────────────────┬────────────────┘  │
 │                                              ▼                   │
 │  ┌────────────────────────────────────────────────────────────┐  │
 │  │ runtime/scripts/  JSON-stdout CLI adapters                 │  │
@@ -53,7 +54,7 @@ The package owns three authored zones:
 │  └──────────────────────────────┬─────────────────────────────┘  │
 │                                 ▼                                │
 │  ┌────────────────────────────────────────────────────────────┐  │
-│  │ runtime/database/ deep-loop and council SQLite graphs      │  │
+│  │ runtime/database/ deep-loop graph, legacy council database │  │
 │  └────────────────────────────────────────────────────────────┘  │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -68,7 +69,6 @@ system-deep-loop/
 ├── mode-registry.json           # workflowMode -> packet, runtimeLoopType, backendKind
 ├── deep-research/               # Research mode packet
 ├── deep-review/                 # Review mode packet
-├── deep-ai-council/             # AI Council mode packet
 ├── shared/                      # behavior-benchmark, progress, rollout, synthesis
 ├── runtime/
 │   ├── lib/                     # One folder per domain, each with an index barrel
@@ -88,7 +88,7 @@ Allowed dependency direction:
 - `runtime/lib/<domain>/ ──▶ runtime/lib/<sibling>/index` through the public barrel
 - `runtime/tests/ ──▶ runtime/lib/` and `runtime/scripts/`
 
-Two `lib/` modules reach back into `scripts/`: `deep-loop/jsonl-repair.ts` and `council/convergence.cjs` take the writer lock from `scripts/lib/cli-guards.cjs`. Those are the only exceptions to the direction above.
+One `lib/` module reaches back into `scripts/`: `deep-loop/jsonl-repair.ts` takes the writer lock from `runtime/scripts/lib/cli-guards.cjs`. That is the only exception to the direction above.
 
 ---
 
@@ -112,13 +112,13 @@ Two `lib/` modules reach back into `scripts/`: `deep-loop/jsonl-repair.ts` and `
 
 **Coverage graph.** Per-session nodes and edges for research (`QUESTION`, `FINDING`, `CLAIM`, `SOURCE`) and review (`DIMENSION`, `FILE`, `FINDING`, `EVIDENCE` and more), stored in `database/deep-loop-graph.sqlite`. Schema: `runtime/references/coverage-graph-schema.md`.
 
-**Per-mode ledgers.** Each mode has a ledger schema, reducers and sealed artifacts (`deep-research-*`, `deep-review-*`, `deep-ai-council-*`). Reducers derive projections from the append-only ledger, and `per-mode-authority-flip/` records when a mode's authority has moved to that ledger.
+**Per-mode ledgers.** Each mode has a ledger schema, reducers and sealed artifacts (`deep-research-*`, `deep-review-*`). Reducers derive projections from the append-only ledger, and `per-mode-authority-flip/` records when a mode's authority has moved to that ledger.
 
-**Authority and fencing.** `authority-root/`, `authorized-ledger/` and `locks-and-fencing/` hold the durable authority record, the fenced append and the protected-resource registry. `scripts/loop-lock.cjs` exposes lock acquire, heartbeat, reclaim and release to the CLI.
+**Authority and fencing.** `authority-root/`, `authorized-ledger/` and `locks-and-fencing/` hold the durable authority record, the fenced append and the protected-resource registry. `runtime/scripts/loop-lock.cjs` exposes lock acquire, heartbeat, reclaim and release to the CLI.
 
 **Fan-out.** `fanout-run.cjs`, `fanout-pool.cjs`, `fanout-merge.cjs` and `fanout-salvage.cjs` run lineages as CLI subprocesses under a concurrency cap, merge their outputs deterministically and recover artifacts from captured output. `hierarchical-budgets/` bounds the waves and their budgets.
 
-**Council.** `lib/council/` and `database/council-graph.sqlite` hold the AI Council graph, its convergence and the seat primitives the `deep-ai-council` packet orchestrates.
+**Seat dispatch.** `runtime/lib/council/multi-seat-dispatch.cjs` is the one helper left in `lib/council/`: it runs the pivot seats a stalled research or review run convenes. `database/council-graph.sqlite` is a legacy file that no script reads or writes.
 
 ---
 

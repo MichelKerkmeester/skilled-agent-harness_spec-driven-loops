@@ -1,7 +1,7 @@
 ---
 title: "DR-005 -- Resume classification from valid prior state"
 description: "Verify that the workflow classifies an existing valid scratch state as resumable before writing new files."
-version: 1.14.0.15
+version: 1.14.1.0
 ---
 
 # DR-005 -- Resume classification from valid prior state
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-research resume classification inspects prior config, JSONL, and strategy before writing new files.
 ### Commands
 1. `bash: rg -n 'Auto-Resume Protocol|resume|completed-session|invalid-state' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'step_classify_session|on_resume|on_completed_session|on_invalid_state' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+2. `bash: rg -n 'step_classify_session|on_resume|on_completed_session|on_invalid_state' .skilled/commands/deep/assets/deep-research.yaml`
 3. `bash: rg -n 'Auto-resume|resume' .skilled/skills/system-deep-loop/deep-research/README.md`
 ### Expected
 A four-state classification model exists, resume skips init writes, and completed sessions route differently from active resumes.
@@ -55,7 +55,7 @@ Capture the classification states, the YAML branch names, and the user-facing au
 ### Pass/Fail
 PASS if protocol, YAML, and README align on classification and resume semantics; FAIL if resume behavior is underdefined or contradictory.
 ### Failure Triage
-Verify completed sessions route differently from active resumes and that both YAML files use the same classification model.
+Verify completed sessions route differently from active resumes and that the workflow uses the same classification model in both execution modes.
 ---
 
 ## 4. SOURCE FILES
@@ -72,8 +72,7 @@ Verify completed sessions route differently from active resumes and that both YA
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Resume contract; use `ANCHOR:phase-initialization` and `Auto-Resume Protocol` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Session classification; inspect `step_classify_session` |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Session classification; inspect `step_classify_session` |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Session classification; inspect `step_classify_session` |
 | `.skilled/skills/system-deep-loop/deep-research/README.md` | User-facing auto-resume claim; use `ANCHOR:features` and `ANCHOR:faq` |
 
 ---

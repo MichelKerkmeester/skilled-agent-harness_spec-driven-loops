@@ -11,7 +11,7 @@ trigger_phrases:
   - "install opencode v2 and v1"
 importance_tier: important
 contextType: implementation
-version: 1.0.13.0
+version: 1.0.15.0
 ---
 
 # OpenCode CLI - Install and Version Layouts
@@ -57,6 +57,8 @@ Both majors ship a binary named `opencode` [confirmed: `npm view opencode-ai bin
 | `./cli-reference.md` | Subcommands, `run` flags and the version-drift section |
 
 **Verified versions.** Verified against OpenCode 2.3.0 and OpenCode 1.19.4 on 2026-11-14. Flag and provider observations that name 2.0.32 or 1.19.3 were read on those releases and have not been re-read on 2.3.0 or 1.19.4. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in this reference.
+
+**Two subcommands moved in 2.3.0** [confirmed: `opencode --help` and the commands below, on 2.3.0, 2026-11-15]. There is no `providers` subcommand: `opencode providers` is read as a directory argument and fails. Credentials are under `opencode auth` (`list`, `login [<provider>]`, `logout`, `switch`). There is no `agent` subcommand either: `opencode debug agents` lists every agent with its resolved prompt, and `debug` has no `skill` subcommand.
 
 ---
 

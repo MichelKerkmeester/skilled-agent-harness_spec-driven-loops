@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision",
+  "description": "Phase 1: deterministic-stop-decision",
+  "keywords": [
+    "phase",
+    "deterministic-stop-decision"
+  ],
+  "lastUpdated": "2026-11-14T11:33:18.456Z",
+  "specId": "001",
+  "folderSlug": "deterministic-stop-decision",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "004-workflow-logic-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

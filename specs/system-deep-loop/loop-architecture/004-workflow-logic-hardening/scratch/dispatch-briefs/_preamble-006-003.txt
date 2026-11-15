@@ -1,0 +1,55 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/003-runtime-council-removal
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, git add, rm -rf
+outside a temp folder your own test created, any write outside the ALLOWED WRITE PATHS, any
+package install. Do NOT read a workflow YAML file whole: each is about 150 KB. Find every anchor
+with grep -n and read only a small window around it (sed -n 'A,Bp').
+Never write a spec path, a task id, a requirement id or a finding id into a code comment.
+
+
+CONTEXT FOR EVERY BRIEF IN THIS PHASE: `ai-council` is retired as a workflow mode of the
+`system-deep-loop` hub. The hub keeps two modes, `research` and `review`. The folder
+`.skilled/skills/system-deep-loop/deep-ai-council/` and the command `/deep:ai-council` with its
+workflow files are ALREADY DELETED. The council lives on as the standalone agent
+`.skilled/agents/ai-council.md` and the command `/speckit:ai-council`. NEVER touch:
+`.skilled/skills/system-deep-loop/runtime/lib/council/multi-seat-dispatch.cjs`, its test,
+`runtime/lib/deep-loop/divergent-pivot.ts`, any `changelog/` folder, any `benchmark/reports/`
+folder, anything under `specs/`. The "divergent Council pivot" inside research and review is a
+feature that STAYS: leave every sentence about the pivot, pivot seats and `pathContainsAiCouncil`
+as it is.
+
+
+ALSO ALREADY DONE (R = .skilled/skills/system-deep-loop/runtime): these files are DELETED and must
+not be recreated: R/lib/council/{adjudicator-verdict-scoring,convergence,cost-guards,
+round-state-jsonl,session-state-hierarchy}.cjs, R/lib/council/council-graph-db.ts,
+R/lib/council/council-graph-query.ts, the folders R/lib/deep-ai-council-ledger-schema,
+R/lib/deep-ai-council-reducers, R/lib/deep-ai-council-sealed-artifacts, the file
+R/lib/legacy-projections/deep-ai-council-config-state-contract.ts, every test of those files and
+R/tests/fixtures/council-value.
+
+WHAT STAYS, BYTE FOR BYTE (the divergent pivot): R/lib/council/multi-seat-dispatch.cjs,
+R/tests/council/multi-seat-dispatch.vitest.ts, R/lib/deep-loop/divergent-pivot.ts,
+R/scripts/divergent-pivot.cjs, R/tests/integration/divergent-pivot.vitest.ts, the function
+`pathContainsAiCouncil`, the names `dispatchCouncilSeats` and `councilSeatOutputs`, the pivot's
+own `council/` artifact subfolder, the pivot comments in R/scripts/fanout-pool.cjs, every pivot
+field in R/lib/deep-research-ledger-schema/, and the file R/database/council-graph.sqlite.
+A line is "pivot vocabulary" when it is about seats a stalled research or review run convenes.
+A line is "mode vocabulary" when it is about the `ai-council` workflow mode, the `council` loop
+type, the `deep-ai-council` packet, a council ledger, reducer, sealed artifact or council graph.
+Remove mode vocabulary. Keep pivot vocabulary. When unsure, keep the line and list it in the report.

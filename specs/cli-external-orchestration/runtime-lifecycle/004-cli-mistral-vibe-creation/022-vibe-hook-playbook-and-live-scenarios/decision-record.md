@@ -37,6 +37,9 @@ _memory:
 | Q001 | Review phases 013 to 021 with a fresh Opus 5.5 at medium effort, as a native subagent. | Opus 5.2 does not exist on the Claude CLI (unrecognized_model). | None | Review of the 013-021 planning docs |
 | Q002 | Vibe lineages keep --auto-approve and the compensating guards are recorded instead of tightening approval. Approved by the operator 2026-11-14. | Not stated. | None | 020-vibe-dispatch-hardening T005, T009, T020; 020 scratch/posture-options.md |
 | Q003 | Vibe lineages keep both AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_DISABLED=1. Approved by the operator 2026-11-14. | Not stated. | None | 020-vibe-dispatch-hardening T005 |
+| Q004 | Lanes A and C, which timed out on the opencode-go preset, rerun on the codex preset, and D4 records the amendment. | Both lanes timed out at 1800 s on DeepSeek V4.1 Flash max while still reading files, and an earlier run had the same timeout recovered on Codex. | None | goal.md D4, scratch/alignment-run.txt, T065 |
+| Q005 | Fix the four failed Vibe routing probes in this phase by adding compound phrases to both routing stages and reminting the compiled routes. | Not stated. | None | T083, hub graph-metadata.json, hub-router.json, hub ROUTER.md |
+| Q006 | The self-invocation guard for cli-mistral-vibe is the SKILL.md section that names the refusal, as in the sibling packets. | Not stated. | None | T086, cli-mistral-vibe/SKILL.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -103,6 +106,64 @@ D: drop the extra switch
 Answer:
 ```text
 Keep both (Recommended)
+```
+
+### Q004
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_01N5T4FSzG5eEHtmJgTpAEip:0 -->
+
+Question:
+```text
+Phase 022's goal.md decision D4 freezes the alignment pass on the opencode-go preset (DeepSeek V4.1 Flash max). Lanes A (code) and C (READMEs, changelogs, env docs) timed out there at 1800 s while still reading files. I started a rerun of A and C on the codex preset (Luna xhigh via cli-codex), following the 2026-11-14 run's precedent. That breaks D4. How should A and C be covered?
+```
+
+Options:
+```text
+Use the Codex rerun (Recommended)
+Record A, C as timed out
+Retry on opencode-go
+```
+
+Answer:
+```text
+Use the Codex rerun (Recommended)
+```
+
+### Q005
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_013RQm8v2BNkmDDsvAA7uGWM:0 -->
+
+Question:
+```text
+The critic upheld 4 failed routing probes (D-05). Plain requests such as 'read export.json to confirm the vibe run finished' route to sk-code or to nothing instead of cli-mistral-vibe. The fix adds compound phrases ('vibe run', 'vibe roster', 'export.json') to hub-router.json and graph metadata, then rebuilds the compiled routes and reruns the probes. Phase 022's goal requires no open in-scope finding at recheck. What should happen to this item?
+```
+
+Options:
+```text
+Defer as a follow-up (Recommended)
+Fix it in this phase
+```
+
+Answer:
+```text
+Fix it in this phase
+```
+
+### Q006
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_013RQm8v2BNkmDDsvAA7uGWM:1 -->
+
+Question:
+```text
+The critic's X-07 (P1) says cli-mistral-vibe has no self-invocation refusal, yet its playbook claims 'A Vibe dispatch is refused inside a Vibe child'. Siblings such as cli-claude-code and cli-devin refuse by detecting their own runtime (for example $CLAUDECODE). I have no verified signal that a Vibe child sets, and cli-deepseek-harness has the same gap. What should I do?
+```
+
+Options:
+```text
+Correct the claim, defer the guard (Recommended)
+Build the guard now
+```
+
+Answer:
+```text
+The doc in the skill naming it, is the guard
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

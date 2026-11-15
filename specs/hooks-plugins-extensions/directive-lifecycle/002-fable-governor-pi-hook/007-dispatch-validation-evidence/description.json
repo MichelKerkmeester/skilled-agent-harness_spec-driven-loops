@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/007-dispatch-validation-evidence",
+  "description": "The packet currently mixes pure predicate assertions, shared matcher tests, registered Pi behavior, and live startup into one evidence story",
+  "keywords": [
+    "packet",
+    "currently",
+    "mixes",
+    "pure",
+    "predicate",
+    "assertions",
+    "shared",
+    "matcher",
+    "tests",
+    "registered",
+    "behavior",
+    "live",
+    "startup",
+    "one",
+    "evidence",
+    "story"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.129Z",
+  "specId": "007",
+  "folderSlug": "dispatch-validation-evidence",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "directive-lifecycle",
+    "002-fable-governor-pi-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

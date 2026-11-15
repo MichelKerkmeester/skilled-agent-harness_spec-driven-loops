@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/goal/003-goal-isolation",
+  "spec_folder": "hooks-plugins-extensions/goal/003-goal-isolation",
+  "parent_id": "hooks-plugins-extensions/goal",
+  "children_ids": [
+    "hooks-plugins-extensions/goal/003-goal-isolation/001-goal-isolation-research",
+    "hooks-plugins-extensions/goal/003-goal-isolation/002-session-scoped-core",
+    "hooks-plugins-extensions/goal/003-goal-isolation/003-pi-and-runtime-bindings",
+    "hooks-plugins-extensions/goal/003-goal-isolation/004-legacy-cutover-and-docs",
+    "hooks-plugins-extensions/goal/003-goal-isolation/005-verification-and-validation",
+    "hooks-plugins-extensions/goal/003-goal-isolation/006-opencode-goal-optimization-and-devin-removal"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "hooks/003-goal-hooks-cross-runtime",
+        "reason": "Investigates and corrects the shared singleton state model introduced by the cross-runtime goal-hook packet.",
+        "source": "author",
+        "spec_folder": "hooks/003-goal-hooks-cross-runtime",
+        "title": "Cross-runtime goal hooks"
+      },
+      {
+        "packet_id": "hooks/004-goal-hook-playbooks-and-validation",
+        "reason": "Extends the prior goal-hook validation surface with explicit concurrent-session isolation evidence.",
+        "source": "author",
+        "spec_folder": "hooks/004-goal-hook-playbooks-and-validation",
+        "title": "Goal-hook playbooks and validation"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal isolation",
+      "multiple active goals",
+      "pi goal confusion",
+      "cross-runtime goal state",
+      "session-scoped goal",
+      "goal isolation plan",
+      "session-scoped goal implementation",
+      "pi goal state migration",
+      "active-goal singleton replacement",
+      "goal isolation tasks",
+      "pi session goal tasks",
+      "cross-runtime goal implementation"
+    ],
+    "key_topics": [
+      "goal",
+      "isolation",
+      "multiple",
+      "active",
+      "goals",
+      "confusion",
+      "cross-runtime",
+      "state",
+      "session-scoped",
+      "plan",
+      "implementation",
+      "migration"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/hooks/goal/bin/goal.cjs",
+      ".opencode/hooks/goal/pi/goal-context.ts",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs",
+      ".pi/settings.json",
+      ".pi/prompts/goal-pi.md",
+      ".cursor/commands/goal-cursor.md",
+      ".opencode/hooks/goal/devin/goal-inject.mjs",
+      ".devin/hooks.v1.json",
+      ".cursor/hooks.json",
+      ".opencode/hooks/goal/lib/goal-core.test.cjs",
+      ".pi/extensions/goal-context.ts",
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/002-decisions-and-contract-freeze/decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.md",
+        "kind": "doc",
+        "path": ".pi/prompts/goal-pi.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-cursor.md",
+        "kind": "doc",
+        "path": ".cursor/commands/goal-cursor.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.test.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Goal Isolation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cross-runtime core resolves every Pi and Cursor goal operation to one fixed file, `active-goal.json`",
+    "created_at": "2026-08-10T10:17:19Z",
+    "last_save_at": "2026-11-15T07:09:26.956Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3d1f9958c563d94b9d41a107f62193af9cb1d25b8492dc8f599500b68ae84aa4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "80803287b8fcd0b435566ebcb04a2de9629f488e83bdce9b893441937a4ea1e8",
+      "plan.md": "4da0a56bdb8ab788d1647ae584f9069ecb7e9b2aecad673268bd64f9932f6007",
+      "tasks.md": "d9bf089d392382b08e4d29c1a06db34701cd72afdac140f73a515be96ab95db5",
+      "decision-record.md": "fbc30e2ac396f53b1572f5afa4189dbd73bdfa26fb69804accdd38649f548766",
+      "implementation-summary.md": "72020acf149b24d2f878229854b96ec429fc2a3f8b646cb793c2d480aaef3a4c"
+    },
+    "last_active_child_id": "hooks/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal",
+    "last_active_at": "2026-08-10T19:27:47.625Z"
+  }
+}

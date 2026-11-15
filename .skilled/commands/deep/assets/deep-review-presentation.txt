@@ -8,7 +8,7 @@ This workflow gathers all setup inputs in one prompt. Confirm mode still include
 
 For `:confirm` or no suffix, the consolidated setup prompt MUST be the first visible response. No implementation or file-modifying tool calls before asking. Lightweight read-only discovery to suggest a spec folder or load prior context is allowed, then ask ALL questions immediately and wait.
 
-For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
+For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the workflow YAML only after all required values are bound.
 
 ### `:auto` Setup Resolution
 
@@ -16,7 +16,7 @@ Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-m
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `reviewFocus`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-review-auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `reviewFocus`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-review.yaml` with `execution_mode` bound to `auto`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
@@ -259,7 +259,6 @@ Conduct autonomous iterative code review with convergence detection. Each iterat
 
 **NOT INTERCHANGEABLE with siblings:**
 - `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
-- `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
 
 Carrying threshold expectations across siblings will cause unexpected iteration counts. See 116 research at `.opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
 
@@ -350,12 +349,18 @@ Key references:
 
 ### Instructions
 
-After setup phase passes, load and execute the appropriate YAML prompt based on execution_mode:
+After setup phase passes, load and execute the workflow YAML with `execution_mode` bound to the selected mode:
 
-- **AUTONOMOUS**: `.skilled/commands/deep/assets/deep-review-auto.yaml`
-- **INTERACTIVE**: `.skilled/commands/deep/assets/deep-review-confirm.yaml`
+- **Both modes**: `.skilled/commands/deep/assets/deep-review.yaml`. The mode binds `execution_mode` to `auto` or `confirm`.
 
 The YAML contains the full loop workflow: initialization, iteration dispatch, convergence detection, synthesis, and memory save.
+
+### Dry-Run Halt
+
+`--dry-run` binds `dry_run=true` in both execution modes.
+Setup then binds its values in memory and skips the Tier 1 config persist, so no `deep-review-config.json` is written.
+The workflow then prints `dry_run_halt` preview lines and stops before any dispatch or state write.
+Show the operator the halt line and say that nothing was written.
 
 ### Review Success
 
@@ -403,7 +408,7 @@ STATUS=FAIL ERROR="[message]"
 |-------|--------|
 | Agent dispatch timeout | Retry once with reduced scope, then mark timeout |
 | State file missing | Reconstruct from iteration files |
-| 3+ consecutive failures | Halt loop, enter synthesis with partial findings |
+| 3 consecutive failed iterations | Auto mode: stop with reason `error` and enter synthesis with partial findings. Confirm mode only: a checkpoint first asks Retry, Skip or Cancel |
 | Memory save failure | Preserve the `review/` packet as backup |
 
 ### Key Features

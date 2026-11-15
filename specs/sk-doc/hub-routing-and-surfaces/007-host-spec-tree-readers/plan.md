@@ -323,7 +323,7 @@ test('leg 3 skips a missing route gold in a host and reports it in its own check
 **Edit 9.** Move the evidence file. Run from the repository root:
 
 ```bash
-git mv specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix-evidence.mjs .skilled/skills/system-skill-advisor/runtime/tests/helpers/activation-matrix-evidence.mjs
+git mv specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix-evidence.mjs .skilled/skills/system-skill-advisor/runtime/tests/helpers/activation-matrix-evidence.mjs
 ```
 
 **Edit 10.** `.skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts`, line 7.
@@ -331,7 +331,7 @@ git mv specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloa
 OLD:
 
 ```ts
-import { evidenceBindsToCell } from '../../../../specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix-evidence.mjs';
+import { evidenceBindsToCell } from '../../../../specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix-evidence.mjs';
 ```
 
 NEW:
@@ -340,7 +340,7 @@ NEW:
 import { evidenceBindsToCell } from './helpers/activation-matrix-evidence.mjs';
 ```
 
-**Edit 11.** `specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs`, line 6.
+**Edit 11.** `specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs`, line 6.
 
 OLD:
 
@@ -417,7 +417,7 @@ Coverage floor only, one happy path and one edge per changed surface. `compiled-
 - `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` prints `router-sync: 5/5 checks passed`.
 - `node .skilled/bin/compiled-route-sync.cjs --check` prints `all 55 served copies match their authored files`.
 - `cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/policy-observation-sink.vitest.ts` prints `Tests  5 passed (5)`.
-- `node --test specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs` reports `pass 4`, with the same one `ajv` failure as the baseline.
+- `node --test specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs` reports `pass 4`, with the same one `ajv` failure as the baseline.
 
 The two host skips are checked by hand in the throwaway host, after copying the edited files into its vendored `.skilled`.
 <!-- /ANCHOR:testing -->

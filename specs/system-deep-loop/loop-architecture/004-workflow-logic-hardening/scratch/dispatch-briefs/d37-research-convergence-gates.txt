@@ -1,0 +1,150 @@
+ROLE: You are a YAML editor. Make three edits to ONE file. Every block to insert is given below: copy it exactly.
+
+CONTEXT: deep-research.yaml serves both execution modes. Two confirm-only approval points of the
+convergence step move here from the confirm twin, each marked `applies_to: confirm`: the Retry,
+Skip or Cancel gate after repeated failed iterations, and the operator approval of a divergent
+pivot. The pivot result step keeps ONE `if_failed` branch for both modes.
+
+ALLOWED WRITE PATHS (only this file):
+- .skilled/commands/deep/assets/deep-research.yaml
+
+EDIT 1. Find `      step_handle_convergence:`. Directly after its line
+`        action: "Act on convergence decision"` insert this block, exactly:
+
+        if_consecutive_failures:
+          applies_to: confirm
+          when: "stop_decision.reasonDetail == 'consecutiveFailures'. This branch runs instead of if_stop."
+          gate_consecutive_failures:
+            type: approval_gate
+            purpose: "In confirm mode, ask the operator Retry / Skip / Cancel before synthesis starts."
+            present: |
+              **{consecutive_failure_count} iterations in a row failed.**
+
+              Options:
+              A) Retry: dispatch the next iteration with the same focus
+              B) Skip: dispatch the next iteration with the next focus
+              C) Cancel: end the run with no synthesis
+            wait_for: "User response"
+            after_gate_refresh_lock:
+              action: "Refresh the packet lock heartbeat immediately after the operator response"
+              command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+              on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
+            on_A: { set: { decision: "CONTINUE" }, proceed_to: step_rejected_pattern_cache }
+            on_B: { action: "Advance next_focus to the next focus in strategy.md", set: { decision: "CONTINUE" }, proceed_to: step_rejected_pattern_cache }
+            on_C: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
+          note: "The failure count is rebuilt from the state log, so this gate asks again after each further failed iteration and stops asking once an iteration completes."
+
+EDIT 2. Inside the same step, find the line `              step_apply_divergent_pivot_result:`.
+Replace that whole block, from that line through the last line of its `if_failed:` branch (the
+line `                  skip_to: phase_synthesis`), with this block, exactly:
+
+              step_apply_divergent_pivot_result:
+                action: "Adopt a successful focus or fail closed to the existing synthesis path"
+                branch_on: "pivot_result.status"
+                if_completed:
+                  gate_divergent_pivot_choice:
+                    applies_to: confirm
+                    type: approval_gate
+                    purpose: "Approve the Council-selected research direction before it becomes the next focus"
+                    order: "Under confirm this gate runs before the set, command, log and proceed_to of this branch."
+                    present: |
+                      ## Divergent Pivot Candidate
+
+                      **Pivot**: {pivot_result.pivotId}
+                      **Council-selected candidate**: {pivot_result.selectedCandidate.id}
+                      **Focus**: {pivot_result.restoredFocus}
+                      **Agreement**: {pivot_result.agreement.endorsementCount}/3 material endorsements
+                      **Saturated direction**: {pivot_result.completedEvent.previousFocus}
+
+                      The Phase 2 adapter exposes an ordered candidate frontier and agreement tallies, but no ranked-candidate score contract. Choosing a different ranked candidate is therefore unavailable in this phase rather than inferred from array order.
+
+                      Options:
+                      A) Accept the Council-selected candidate and continue
+                      B) Choose a different ranked candidate (unavailable: no ranking contract)
+                      C) manualStop and proceed to the existing pre-synthesis gate
+                    wait_for: "User response"
+                    after_gate_refresh_lock:
+                      action: "Refresh the packet lock heartbeat immediately after the operator response"
+                      command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+                      on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
+                    on_A:
+                      bookkeeping_log: '{"type":"event","event":"pivot_confirm_accepted","mode":"research","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{pivot_result.selectedCandidate},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                      continue: "Run the set, command, log and proceed_to of this branch."
+                    on_B:
+                      message: "No ranked alternative can be selected because the adapter exposes no ranking score or rank contract."
+                      return_to: gate_divergent_pivot_choice
+                    on_C:
+                      bookkeeping_log: '{"type":"event","event":"manualStop","mode":"research","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                      set: { reason: "manualStop" }
+                      skip_to: gate_pre_synthesis
+                  set:
+                    next_focus: "{pivot_result.restoredFocus}"
+                    pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
+                    saturated_directions: "{pivot_result.completedEvent.saturatedDirections}"
+                  command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+                  log: "Divergent pivot {pivot_result.pivotId} restored focus to {pivot_result.restoredFocus}; continuing iteration {current_iteration}."
+                  proceed_to: step_rejected_pattern_cache
+                if_failed:
+                  gate_divergent_pivot_override:
+                    applies_to: confirm
+                    type: approval_gate
+                    purpose: "Offer the audited operator override when a failed pivot is recoverable"
+                    condition: "Runs only when pivot_result.failedEvent.recoverableByOverride == true AND pivot_result.agreement.reason == 'insufficient_endorsement'. Otherwise this gate is skipped and the branch fails closed as written."
+                    order: "Under confirm this gate runs before the log and skip_to of this branch."
+                    present: |
+                      ## Divergent Pivot Did Not Converge
+
+                      **Pivot**: {pivot_result.pivotId}
+                      **Failure**: {pivot_result.failureReason}
+                      **Agreement tallies**: {pivot_result.agreement.tallies}
+
+                      The adapter marked this insufficient-endorsement failure as recoverable by explicit operator override. The candidate frontier is unranked; any override must name an accepted candidate id and provide a rationale.
+
+                      Options:
+                      A) Fail closed to synthesis
+                      B) Explicitly override with accepted candidate id + rationale
+                      C) manualStop and proceed to the existing pre-synthesis gate
+                    wait_for: "User response"
+                    after_gate_refresh_lock:
+                      action: "Refresh the packet lock heartbeat immediately after the operator response"
+                      command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+                      on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
+                    on_A: { continue: "Fail closed: run the log and skip_to of this branch." }
+                    on_B:
+                      action: "Read pivot_result.paths.configPath, validate the supplied id against acceptedCandidates, bind the exact candidate and persisted previousFocus/saturatedDirections/frontier, and reject ids outside that frontier."
+                      append_jsonl: '{"type":"event","event":"pivot_override_accepted","mode":"research","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{operator_selected_candidate},"selectedFrontier":{operator_selected_frontier},"previousFocus":"{operator_previous_focus}","saturatedDirections":{operator_saturated_directions},"reason":"{operator_override_rationale}","agreementReason":"insufficient_endorsement","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                      set:
+                        next_focus: "{operator_selected_candidate.focus}"
+                        pivot_lineage: "Pivot {pivot_result.pivotId} used an audited insufficient-endorsement override for {operator_selected_candidate.id}."
+                        saturated_directions: "{operator_saturated_directions}"
+                      command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+                      proceed_to: step_rejected_pattern_cache
+                    on_C:
+                      bookkeeping_log: '{"type":"event","event":"manualStop","mode":"research","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                      set: { reason: "manualStop" }
+                      skip_to: gate_pre_synthesis
+                  log: "Divergent pivot {pivot_result.pivotId} failed closed ({pivot_result.failureReason}); proceeding to synthesis."
+                  skip_to: phase_synthesis
+
+Leave the `on_error:` key that follows the block untouched.
+
+EDIT 3. Find `      gate_pre_iteration:`. Directly after its `applies_to: confirm` line insert this
+line, at the same indentation:
+        skip_when: "The operator already approved the next dispatch in this pass through gate_consecutive_failures, gate_divergent_pivot_choice or gate_divergent_pivot_override."
+
+CHECKS. Run from the repository root and fix the file until all pass:
+  python3 -c "
+import yaml
+d=yaml.safe_load(open('.skilled/commands/deep/assets/deep-research.yaml'))
+h=d['workflow']['phase_loop']['steps']['step_handle_convergence']
+print(list(h)[:3], h['if_consecutive_failures']['applies_to'])
+a=h['if_stop']['if_divergent_eligible']['steps']['step_apply_divergent_pivot_result']
+print(sorted(k for k in a if k.startswith('if_')), a['if_completed']['gate_divergent_pivot_choice']['applies_to'], a['if_failed']['gate_divergent_pivot_override']['applies_to'], a['if_failed']['skip_to'], a['if_completed']['proceed_to'])
+"
+    must print these two lines:
+    ['action', 'if_consecutive_failures', 'if_stop'] confirm
+    ['if_completed', 'if_failed'] confirm confirm phase_synthesis step_rejected_pattern_cache
+  grep -c 'if_failed_recoverable\|if_failed_unrecoverable' .skilled/commands/deep/assets/deep-research.yaml    must print 0
+  grep -c 'Retry' .skilled/commands/deep/assets/deep-research.yaml    must print at least 1
+
+REPORT: one line per edit, "done" or "failed, <reason>", then the output of each check.

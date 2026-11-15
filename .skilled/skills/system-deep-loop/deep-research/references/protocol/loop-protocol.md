@@ -229,7 +229,7 @@ Rejected-cache lifecycle:
 
 The active cache is capped at 100 entries. When the replay would exceed that cap, the oldest active entry is evicted and the reducer emits a warning. Operators can re-add an evicted pattern with another `idea_rejected` event if it remains relevant. Existing `ideaRejected`, `ideaRejectedRemoved` and `ideaRejectedReset` replay rows are legacy aliases and remain accepted for backward compatibility.
 
-When every candidate is suppressed, the auto workflow halts for operator input. In a ledger-backed run the operator records the `idea_rejected_removed` or `idea_rejected_reset` row through the append gateway (`append-mode-event.cjs --mode research --run-directory <artifact dir> --event-json <row file>`), never by editing the state log, which the next projection replaces. The row shapes and the full command are in `../state/state-jsonl.md` section 7.
+When every candidate is suppressed, the workflow halts for operator input. In a ledger-backed run the operator records the `idea_rejected_removed` or `idea_rejected_reset` row through the append gateway (`append-mode-event.cjs --mode research --run-directory <artifact dir> --event-json <row file>`), never by editing the state log, which the next projection replaces. The row shapes and the full command are in `../state/state-jsonl.md` section 7.
 
 Ideas lifecycle:
 
@@ -297,14 +297,14 @@ Two containment rules bind every CLI lineage (any `cli-*` executor kind):
   - **Sibling lineage exemption.** One exemption still applies to attribution: another run's lineage directory under the same top-level packet is treated as that run's own write surface while its loop lock is live, so two lineages can run in sibling phases of one packet at the same time; a directory with no lock, or a stale one, is still attributed here.
   - **Evidence.** The runtime records each finding's diff under the lineage directory at `containment/quarantine/<iteration>[-attempt-<n>]/`, in a `containment-out-of-scope/` subdirectory on the default preserve path and `containment-reverted/` only under restore, where bytes really were rolled back; each pass keeps its own directory so a retry never overwrites an earlier pass's evidence. The pre-dispatch baseline bytes go to `<lineage dir>/containment/baseline/`, so an out-of-scope change stays recoverable either way.
 
-Failure handling: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
+Failure handling: `schema_mismatch` records a conflict event, then three consecutive failures stop the loop with stop reason `error`.
 
 The dispatch context may include a suggested `focusTrack` label (e.g., `"focusTrack": "performance"`, `"focusTrack": "security"`). Agents may tag their iteration with this track label for post-hoc grouping and analysis. Track labels are metadata only - the orchestrator does not use them for loop decisions.
 
 #### Step 3a: Per-Iteration Budget
 
 After dispatch, the orchestrator monitors the running iteration against budget limits:
-- **Tool call count**: tracked against `config.maxToolCallsPerIteration`
+- **Tool call count**: tracked against `config.maxToolCallsPerIteration` from `assets/deep-research-config.json`, the only source of the per-iteration value
 - **Elapsed time**: tracked against `config.maxMinutesPerIteration` (default: 10)
 - If either limit is exceeded and no iteration file has been written yet:
   1. Mark the iteration as `"status": "timeout"` in the JSONL record
@@ -340,14 +340,14 @@ After agent completes:
 4. Verify reducer refreshed `deep-research-strategy.md`, `findings-registry.json`, and `deep-research-dashboard.md`
 5. Verify the refreshed packet surfaces reflect the new iteration evidence
 6. Extract `newInfoRatio` from JSONL record
-7. Track stuck count: skip if `status == "thought"` (no change), reset to 0 if `status == "insight"` (breakthrough counts as progress), increment if `newInfoRatio < config.convergenceThreshold`, reset otherwise
+7. Let `deriveLoopCounters` in `runtime/scripts/convergence.cjs` derive the stuck count from the state log on every pass: skip `status == "thought"` (no change), reset to 0 if `status == "insight"` (breakthrough counts as progress), increment if `newInfoRatio < config.convergenceThreshold`, reset otherwise. A resumed run counts the same as one that never paused.
 
 #### Step 4a: Generate Dashboard
 
-After evaluating iteration results, generate a human-readable dashboard:
+After evaluating iteration results, the reducer generates the human-readable dashboard:
 
 1. Read JSONL state log, findings registry, and strategy.md
-2. Generate or regenerate `research/deep-research-dashboard.md` with the following sections:
+2. The reducer writes or rewrites `research/deep-research-dashboard.md` with the following sections:
    - **Iteration table**: `| run | focus | newInfoRatio | findings count | status |`
    - **Question status**: `X/Y answered` with itemized list (answered vs remaining)
    - **Trend**: Last 3 newInfoRatio values with direction indicator (ascending, descending, flat)
@@ -619,7 +619,7 @@ Hook-capable and non-hook runtimes must follow the same state machine. Hooks may
 | WebFetch fails | Loop | Log URL in iteration file, try alternative source, continue with available data |
 | State file missing | Init/Loop | If JSONL missing: re-initialize. If strategy missing: reconstruct from JSONL |
 | JSONL malformed | Loop | Skip malformed lines, reconstruct from valid entries |
-| 3+ consecutive failures | Loop | Halt loop, enter synthesis with partial findings |
+| 3+ consecutive failures | Loop | Halt the loop with stop reason `error` and enter synthesis with partial findings. In confirm mode the workflow first asks Retry, Skip or Cancel. |
 | Agent dispatch failure (API overload, timeout) | Loop | Escalate through the documented recovery ladder in order. Direct mode fallback is reference-only unless the runtime explicitly supports it. |
 | Memory save fails | Save | Preserve the current `{artifact_dir}` packet as backup, then log the error |
 

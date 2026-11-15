@@ -1,7 +1,7 @@
 ---
 title: "DR-062 -- Per-iteration lineage context refresh"
 description: "Verify that each completed iteration is persisted lineage-locally and refreshed into the next prompt context."
-version: 1.14.0.22
+version: 1.14.1.0
 ---
 
 # DR-062 -- Per-iteration lineage context refresh
@@ -27,7 +27,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify that each completed iteration is persisted lineage-locally and refreshed into the next prompt context.
 - Real user request: Make sure mid-run findings survive an interrupted loop and reach the next prompt.
 - Prompt: `Validate lineage context refresh ordering and non-fatal state-read behavior.`
-- Expected execution process: Inspect auto YAML step ordering, the state files the refresh reads, the non-fatal error policy, and unit tests.
+- Expected execution process: Inspect workflow step ordering, the state files the refresh reads, the non-fatal error policy and unit tests.
 - Desired user-visible outcome: The user is told that completed iteration evidence is durable as it is produced and that a state-read failure does not kill the loop.
 - Expected signals: `step_reduce_state` and `step_graph_upsert` run before `step_refresh_lineage_context`, which runs before result evaluation, and state-read failures are advisory.
 - Pass/fail posture: PASS if the refresh reads reducer-owned lineage state and fails non-fatally; FAIL if the next prompt depends on any index, daemon or network call.
@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate lineage context refresh ordering and non-fatal state-read behavior.
 ### Commands
-1. `bash: rg -n 'step_reduce_state|step_graph_upsert|step_refresh_lineage_context|lineage_context_prompt_line|non-fatal' .skilled/commands/deep/assets/deep-research-auto.yaml`
+1. `bash: rg -n 'step_reduce_state|step_graph_upsert|step_refresh_lineage_context|lineage_context_prompt_line|non-fatal' .skilled/commands/deep/assets/deep-research.yaml`
 2. `bash: sed -n '55,95p' .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts`
 ### Expected
 The workflow refreshes the context line from the reducer-owned dashboard, registry and strategy files before the next prompt, and treats a missing or unreadable state file as a non-fatal advisory condition.
@@ -54,7 +54,7 @@ Capture step order, the state files read, prompt-line injection, and unit-test a
 ### Pass/Fail
 PASS if the refresh is ordered before next prompt construction and failures do not halt the loop; FAIL if it reaches outside the lineage directory.
 ### Failure Triage
-Privilege the auto YAML for live ordering and the unit test for required step sequence.
+Privilege the workflow for live ordering and the unit test for required step sequence.
 
 ---
 
@@ -71,7 +71,7 @@ Privilege the auto YAML for live ordering and the unit test for required step se
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Lineage context refresh step and the prompt line it feeds |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Lineage context refresh step and the prompt line it feeds |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts` | Unit coverage for step ordering, state reads, and advisory errors |
 
 ---

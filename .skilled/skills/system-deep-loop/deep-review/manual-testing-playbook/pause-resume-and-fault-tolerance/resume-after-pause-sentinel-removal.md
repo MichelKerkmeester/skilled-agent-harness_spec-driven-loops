@@ -1,7 +1,7 @@
 ---
 title: "DRV-022 -- Resume after pause sentinel removal"
 description: "Verify that removing the pause sentinel lets the review loop resume from its persisted state."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-022 -- Resume after pause sentinel removal
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review resume after pause removal and report whether the next iteration resumes without replay.
 ### Commands
 1. `bash: rg -n 'resume|re-read|read.state|iteration.*count|last.*iteration|Delete.*pause|sentinel.*removal' .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md`
-2. `bash: rg -n 'resume|read_state|re_read|iteration_count|last_iteration|pause.*removed|sentinel.*delete' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'resume|read_state|re_read|iteration_count|last_iteration|pause.*removed|sentinel.*delete' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'resume|pause.*delete|pick up|restart|continue.*review' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/commands/deep/review.md`
 ### Expected
 Removing sentinel triggers loop re-entry, JSONL re-read determines last iteration, strategy.md provides dimension state, no iterations re-run, and resume event logged.
@@ -73,8 +73,7 @@ Privilege the loop protocol for resume flow and the state format reference for J
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Resume and pause sentinel lifecycle, use the lifecycle branch table |
 | `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md` | JSONL state schema for iteration counting on resume, use the state log section |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | State re-read and resume logic in loop entry |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | State re-read and resume logic in loop entry |
+| `.skilled/commands/deep/assets/deep-review.yaml` | State re-read and resume logic in loop entry |
 | `.skilled/commands/deep/review.md` | Command entrypoint, resume documentation |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Troubleshooting and state files, use `ANCHOR:state-files` and `ANCHOR:troubleshooting` |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Rules for state reading, use `ANCHOR:rules` Rule 1 |

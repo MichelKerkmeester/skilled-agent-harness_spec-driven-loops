@@ -1,7 +1,7 @@
 ---
 title: "DRV-002 -- Confirm mode checkpointed review"
 description: "Verify that confirm mode pauses at each phase for user approval before proceeding."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-002 -- Confirm mode checkpointed review
@@ -27,9 +27,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify that `/deep:review:confirm` pauses at each phase for user approval before proceeding.
 - Real user request: Run a deep review but let me approve each iteration before it continues.
 - Prompt: `Validate the confirm-mode deep-review entrypoint and report whether approval gates appear at every phase transition.`
-- Expected execution process: Inspect the public docs first to confirm confirm mode is advertised, then the command entrypoint for mode routing, then the confirm YAML workflow for explicit approval gates.
+- Expected execution process: Inspect the public docs first to confirm confirm mode is advertised, then the command entrypoint for mode routing, then the workflow's confirm mode block for explicit approval gates.
 - Desired user-facing outcome: The user is told that confirm mode pauses between iterations for approval, that they can inspect findings before continuing, and that the same `review/` artifacts are produced.
-- Expected signals: The confirm YAML has `approvals: multi_gate`, pause/approval steps appear in the loop, and the command entrypoint routes `:confirm` to the confirm YAML.
+- Expected signals: The workflow has `approvals: multi_gate` in confirm mode, pause/approval steps appear in the loop, and the command entrypoint routes `:confirm` to that mode.
 - Pass/fail posture: PASS if confirm mode has explicit approval gates at phase transitions. FAIL if any phase transition runs without an approval gate.
 
 ---
@@ -47,15 +47,15 @@ Validate the confirm-mode deep-review entrypoint and report whether approval gat
 ### Commands
 1. `bash: rg -n '/deep:review:confirm|approval|multi_gate' .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
 2. `bash: rg -n 'confirm|approval|gate|pause' .skilled/commands/deep/review.md`
-3. `bash: rg -n 'approvals|approval_gate|wait_for_approval|interactive' .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'approvals|approval_gate|wait_for_approval|interactive' .skilled/commands/deep/assets/deep-review.yaml`
 ### Expected
-The confirm YAML has `approvals: multi_gate`, approval steps appear in the loop, and the command entrypoint routes `:confirm` to the confirm YAML.
+The workflow has `approvals: multi_gate` in confirm mode, approval steps appear in the loop, and the command entrypoint routes `:confirm` to that mode.
 ### Evidence
-Capture the mode-routing block, the confirm YAML operating_mode, and the approval gate steps together.
+Capture the mode-routing block, the confirm mode `operating_mode` block, and the approval gate steps together.
 ### Pass/Fail
 PASS if confirm mode has explicit approval gates at phase transitions. FAIL if any phase transition runs without an approval gate.
 ### Failure Triage
-Compare the auto and confirm YAMLs side by side to verify the confirm variant adds approval gates that the auto variant omits.
+Compare the two `execution_mode` blocks in the workflow to verify confirm mode adds approval gates that auto mode omits.
 ---
 
 ## 4. SOURCE FILES
@@ -74,7 +74,7 @@ Compare the auto and confirm YAMLs side by side to verify the confirm variant ad
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` |
 | `.skilled/commands/deep/review.md` | Markdown setup and mode routing, use `## 0. UNIFIED SETUP PHASE` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Confirm workflow contract, inspect `operating_mode`, `approvals`, and approval gate steps |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Confirm mode workflow contract, inspect `operating_mode`, `approvals`, and approval gate steps |
 
 ---
 

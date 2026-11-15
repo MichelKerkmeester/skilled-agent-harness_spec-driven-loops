@@ -1,0 +1,45 @@
+
+ALLOWED WRITE PATHS (R = .skilled/skills/system-deep-loop/runtime):
+R/scripts/convergence.cjs  R/scripts/upsert.cjs  R/scripts/query.cjs  R/scripts/status.cjs
+R/scripts/append-mode-event.cjs  R/scripts/check-projection-coverage.cjs
+R/lib/mode-append-gateway/append-mode-event.ts
+R/tests/integration/convergence-script.vitest.ts  R/tests/unit/check-projection-coverage.vitest.ts
+R/tests/unit/typo-flags.vitest.ts  R/tests/unit/deep-research-lock-release.vitest.ts
+R/tests/unit/runtime-capabilities-matrix-conformance.vitest.ts  R/tests/unit/graph-read-only.vitest.ts
+R/tests/unit/verify-authority-cli.vitest.ts  R/tests/helpers/spawn-cjs.ts
+and any other test file under R/tests that fails ONLY because it exercises the `council` loop
+type of one of these scripts or names a deleted council file.
+
+TASK: the runtime scripts accept three loop types. Make them accept two, `research` and `review`.
+
+1. Find every anchor first:
+   rg -n -i 'council' R/scripts/convergence.cjs R/scripts/upsert.cjs R/scripts/query.cjs R/scripts/status.cjs R/scripts/append-mode-event.cjs R/scripts/check-projection-coverage.cjs R/lib/mode-append-gateway/append-mode-event.ts
+2. R/scripts/convergence.cjs: delete the council branch (the code guarded by
+   `loopType === 'council'` or `isCouncil`), every require of a deleted council file and every
+   helper used only by that branch. The loop type validation accepts `research` and `review`,
+   and its error message lists those two.
+3. R/scripts/upsert.cjs, query.cjs, status.cjs: delete the council paths, the council database
+   path and the requires of deleted council files. The loop type validation and usage text list
+   two loop types.
+4. R/scripts/append-mode-event.cjs and R/lib/mode-append-gateway/append-mode-event.ts: delete the
+   `ai-council` and `deep-council` mode cases and their imports of deleted modules.
+5. R/scripts/check-projection-coverage.cjs: delete the council projection entries.
+6. Tests in the allowed paths: delete the cases that cover the council loop type, a council
+   workflow file (`deep-ai-council-auto.yaml`, `deep-ai-council-confirm.yaml`), a script of the
+   deleted packet (for example `advise-council-completion.cjs`) or a deleted contract. A whole
+   test file that only covers deleted code: do NOT delete it, list it under FILES TO DELETE.
+   Do not weaken an assertion about research or review.
+7. Do not add a code comment that names a task, a phase or a spec path.
+
+CHECKS (run from R):
+  rg -n -i 'council' scripts/upsert.cjs scripts/query.cjs scripts/status.cjs scripts/convergence.cjs      prints nothing
+  rg -n 'ai-council|deep-council' scripts/append-mode-event.cjs lib/mode-append-gateway      prints nothing
+  for f in convergence upsert query status append-mode-event check-projection-coverage; do node --check scripts/$f.cjs || echo BAD $f; done      prints nothing
+  node scripts/convergence.cjs --spec-folder /tmp --session-id probe --loop-type council      prints an INPUT_VALIDATION error that starts `loopType must be` and does not name council
+  node_modules/.bin/vitest run --no-coverage tests/integration/convergence-script.vitest.ts tests/unit/check-projection-coverage.vitest.ts tests/unit/typo-flags.vitest.ts tests/unit/deep-research-lock-release.vitest.ts tests/unit/graph-read-only.vitest.ts      all pass
+  node_modules/.bin/vitest run --no-coverage tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts      all pass
+
+REPORT: per file the line ranges you deleted, each test case you deleted with one line why,
+FILES TO DELETE (one path per line, or none), every remaining `council` line in the allowed
+script files with one line why it stays, then the output of each check. Do NOT run the full
+test suite or any generator.

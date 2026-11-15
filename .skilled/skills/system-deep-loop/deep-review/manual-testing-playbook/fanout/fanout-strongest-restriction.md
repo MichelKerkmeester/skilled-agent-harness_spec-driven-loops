@@ -1,7 +1,7 @@
 ---
 title: "Fan-out review strongest-restriction verdict"
 description: "Validate that clean lineage A + P0 lineage B → mergedVerdict=FAIL bound to p0_count=1 fed into step_derive_verdict → review-report verdict=FAIL. Verify all 5 verdict combinations."
-version: 1.11.0.2
+version: 1.11.1.0
 ---
 
 # DRV-065 -- Fan-out review strongest-restriction verdict
@@ -37,7 +37,7 @@ blocking issue in any lineage disappears from the final verdict.
 ### Prerequisites
 
 - Working directory is repository root.
-- `scripts/fanout-merge.cjs` present.
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` present.
 
 ### Prompt
 
@@ -45,8 +45,8 @@ blocking issue in any lineage disappears from the final verdict.
 
 ### Commands
 
-1. Inspect `scripts/fanout-merge.cjs` `mergeReviewRegistries` — confirm `SEVERITY_RANK` constant, `finding.status !== 'active'` filter, `mergedVerdict` derivation.
-2. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-merge.vitest.ts --reporter=verbose`
+1. Inspect `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` `mergeReviewRegistries` — confirm `SEVERITY_RANK` constant, `finding.status !== 'active'` filter, `mergedVerdict` derivation.
+2. `bash: npx vitest run .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts --reporter=verbose`
 3. Identify the 5 review tests: `merges FAIL when lineage A is clean but lineage B has active P0`, `merges PASS when all clean`, `merges CONDITIONAL when P1 exists but no P0`, `escalates to highest severity for duplicate findingId`, `skips non-active findings`.
 4. Confirm all 5 pass.
 

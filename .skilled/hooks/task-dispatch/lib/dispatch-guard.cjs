@@ -79,8 +79,8 @@ const MS_PER_DAY = 24 * 60 * 60 * 1000;
 // command. Each of these owns its iteration state, and its LEAF agent forbids
 // direct Task dispatch, so repeated hand-offs are the loop-outside-its-command
 // smell the guard counts.
-// Generic subagents (context/review/write/debug) and ai-council (also reachable
-// via /deep:ai-council for multi-turn planning) are intentionally excluded from
+// Generic subagents (context/review/write/debug) and ai-council (a single-pass
+// planning agent with no iteration state) are intentionally excluded from
 // loop-repeat counting.
 const LOOP_EXECUTOR_AGENTS = new Set(['deep-research', 'deep-review']);
 

@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build",
+  "description": "Operator answers to AI questions are not captured in a consistent decision record",
+  "keywords": [
+    "operator",
+    "answers",
+    "questions",
+    "captured",
+    "consistent",
+    "decision",
+    "record"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.543Z",
+  "specId": "001",
+  "folderSlug": "decision-capture-build",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "01-11-26_23-56__record-the-child-guard-answer-for-the-session.md",
+    "01-11-26_23-56__record-the-child-guard-answer-for-the-session.md",
+    "01-11-26_23-56__record-the-child-guard-answer-for-the-session.md"
+  ]
+}

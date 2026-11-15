@@ -21,8 +21,6 @@ This folder exercises the runtime across process, database and artifact boundari
 | File | Responsibility |
 |---|---|
 | `convergence-script.vitest.ts` | Invokes the convergence CLI and checks typed graph decisions. |
-| `council-graph-script.vitest.ts` | Checks council graph CLI behavior. |
-| `council-graph-value-scenarios.vitest.ts` | Runs council graph value scenarios against seeded fixtures. |
 | `divergent-pivot.vitest.ts` | Checks pivot transaction prepare, finalize, quorum and seat-resume recovery. |
 | `query-script.vitest.ts` | Invokes the query CLI and checks returned graph data. |
 | `review-depth-convergence.vitest.ts` | Checks review convergence signals across graph depth. |
@@ -38,7 +36,7 @@ This folder exercises the runtime across process, database and artifact boundari
 | Surface | Entry |
 |---|---|
 | Script integration | Convergence, query, status and upsert command boundaries |
-| Graph integration | Council graph and review-depth projections |
+| Graph integration | Review-depth projections |
 | Recovery integration | Divergent-pivot transaction and seat-resume behavior |
 
 The files are executable integration checks. Their public contract is the runtime command and database boundary they exercise.
@@ -63,5 +61,4 @@ Integration tests follow evidence from command input through graph storage, proj
 
 - [Runtime test index](../README.md)
 - [Runtime scripts](../../scripts/README.md)
-- [Council value fixtures](../fixtures/council-value/README.md)
 - [Runtime database](../../database/README.md)

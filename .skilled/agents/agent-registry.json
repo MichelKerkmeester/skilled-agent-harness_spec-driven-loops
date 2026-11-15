@@ -35,18 +35,18 @@
       "tier": "LEAF",
       "priority": 3,
       "dispatchers": [
-        "/deep:ai-council",
+        "/speckit:ai-council",
         "orchestrate",
         "operator"
       ],
       "taskType": "Multi-strategy planning and architecture synthesis",
       "skills": "Multi-lens planning rubric (planning-only)",
-      "notes": "Multi-strategy planning architect (max 3 seats). Writes its own `ai-council/**` artifacts with Write and Edit and names each state event in order for the caller to record through the append gateway; the caller runs no persistence step afterwards. One round per invocation: the caller owns the round loop, the resume and `max_rounds` (default 3).",
+      "notes": "Multi-strategy planning architect (max 3 seats). Writes its own `ai-council/**` artifacts and its state log with Write and Edit, and runs every round up to `max_rounds` (default 3), so @orchestrate runs nothing after it returns. The plan is in `council-report.md` inside the bound packet. `/speckit:ai-council` binds the spec folder and dispatches it once.",
       "summary": "multi-strategy AI Council planning, writes only ai-council artifacts",
       "templateExceptions": [
         {
           "section": "HOOK-INJECTED CONTEXT ROUTING",
-          "reason": "Thirteen files in the deep-ai-council skill cite this agent's sections 0 to 11 by number, so the section sits after them and no cited number moves."
+          "reason": "The council's own cross-references and the /speckit:ai-council command cite sections 0 to 11 by number, so the section sits after them and no cited number moves."
         }
       ]
     },

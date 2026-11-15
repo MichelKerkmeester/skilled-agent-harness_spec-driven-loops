@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/008-sk-code-alignment",
+  "description": "The injection-bloat shadow program (packet 002, phases 001-007) landed roughly sixteen changed code files across the `system-skill-advisor` runtime,",
+  "keywords": [
+    "injection-bloat",
+    "shadow",
+    "program",
+    "packet",
+    "phases",
+    "landed",
+    "roughly",
+    "sixteen",
+    "changed",
+    "code",
+    "files",
+    "across",
+    "system-skill-advisor",
+    "runtime"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.186Z",
+  "specId": "008",
+  "folderSlug": "sk-code-alignment",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "directive-lifecycle",
+    "001-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

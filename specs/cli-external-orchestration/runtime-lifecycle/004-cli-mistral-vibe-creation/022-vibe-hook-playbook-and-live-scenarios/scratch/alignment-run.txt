@@ -1,0 +1,10 @@
+Alignment run (T065), 2026-11-15
+Run folder: /Users/michelkerkmeester/.local/state/local-skilled-alignment/383-mistral-vibe-runtime/20261115T063605Z
+Command: /local-skilled-alignment:auto worktrees/383-mistral-vibe-runtime --kind branch --lanes opencode-go --base 99d197475d9
+
+Deviation 1, --base 99d197475d9: origin/main equals HEAD after the merge push, so the default base origin/main gives an empty scope. The base is the main commit the branch last forked from.
+Deviation 2, lanes A and C: both timed out at 1800 s on opencode-go (DeepSeek V4.1 Flash max) while still reading files. Their timeout evidence is kept as lanes/A.*.deepseek-timeout.* and lanes/C.*.deepseek-timeout.*. Both reran on the codex preset (Luna xhigh via cli-codex), A in 500 s and C in 802 s, by operator decision on 2026-11-15 ("Use the Codex rerun"). Lanes B and D and the critic ran on opencode-go as the goal's D4 states.
+
+Outputs: report.md, findings.json, fix-plan.md, overturned.json, probes-held.json, probes.json, critic.json.
+Aggregate: findings=58 (P0 2, P1 24, P2 32), outside scope 3, overturned by the critic 5. The critic re-listed many lane findings, so most appear twice.
+Probes: 6 pass, 4 fail before the fixes. The critic upheld all four. After the fixes: pass=10 fail=0.

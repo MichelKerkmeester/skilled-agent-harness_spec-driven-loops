@@ -168,7 +168,13 @@
     "vibe headless",
     "vibe cli",
     "mistral vibe cli",
-    "vibe second opinion"
+    "vibe second opinion",
+    "vibe run finished",
+    "delegating to vibe",
+    "dispatch vibe",
+    "vibe_home",
+    "vibe is installed",
+    "glm-flash roster"
   ],
   "derived": {
     "trigger_phrases": [

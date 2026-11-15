@@ -1,5 +1,7 @@
 # VIB-HK-018 operator procedure
 
+Verdict: **OPERATOR-ONLY**. The hook's shell branch runs `check-dist-staleness.sh --all`, which judges the checkout with no `--workspace-root`, and only an operator may make the checkout's build stale.
+
 The live run of `hook-scenarios/dist-freshness-shell-conversation.md` recorded a skip, not a pass.
 This file names the runner limitation behind that skip and the manual steps that exercise the hook.
 

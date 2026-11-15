@@ -3,12 +3,10 @@
 
 set -euo pipefail
 
-readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
+readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../../.." && pwd)"
 readonly -a YAML_FILES=(
-  ".skilled/commands/deep/assets/deep-research-auto.yaml"
-  ".skilled/commands/deep/assets/deep-research-confirm.yaml"
-  ".skilled/commands/deep/assets/deep-review-auto.yaml"
-  ".skilled/commands/deep/assets/deep-review-confirm.yaml"
+  ".skilled/commands/deep/assets/deep-research.yaml"
+  ".skilled/commands/deep/assets/deep-review.yaml"
 )
 
 missing=0

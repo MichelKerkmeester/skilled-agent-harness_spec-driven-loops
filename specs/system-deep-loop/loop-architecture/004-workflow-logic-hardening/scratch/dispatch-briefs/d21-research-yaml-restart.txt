@@ -1,0 +1,92 @@
+ROLE: You are a workflow-file editor. Make exactly the edits below, nothing else. Do not refactor,
+reformat, reorder or fix anything adjacent. Keep the indentation of the surrounding lines exactly.
+Both files must still parse as YAML afterwards. Do not edit any test.
+
+CONTEXT: a deep-research restart must archive the old packet without ever moving a held lock file,
+must remember the old session id and generation, and must write them into the new config. The
+exact text each edit must produce is in the WORKFLOW TEXT CONTRACT above, parts C1 to C6.
+
+ALLOWED WRITE PATHS (only these two files, both in .skilled/commands/deep/assets/):
+- deep-research-auto.yaml
+- deep-research-confirm.yaml
+
+EDITS FOR BOTH FILES
+
+EDIT 1. In `user_inputs:` near the top, directly after the `spec_folder:` line, add:
+  lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. `resume` keeps the same sessionId and archives nothing. `restart` opens a new sessionId at generation+1 and archives the prior research/ packet."
+
+EDIT 2. In step_preflight_contract, in the `required_values_present:` list, add `lineage_mode`
+directly after `spec_folder`, so the list starts `[research_topic, spec_folder, lineage_mode, max_iterations, ...`.
+
+EDIT 3. In step_create_config, directly before the `populate:` line, add the `lineage_values:`
+block of contract C5 (eight spaces before `lineage_values:`). Then replace these three populate
+lines:
+          lineage.parentSessionId: null
+          lineage.lineageMode: "new"
+          lineage.generation: 1
+with the three research populate lines of contract C5. Leave `lineage.sessionId` and
+`lineage.continuedFromRun` as they are.
+
+EDIT 4. Directly before the line `      step_create_strategy:`, add the whole
+`step_record_restarted_run` step of contract C6, followed by one blank line.
+In deep-research-confirm.yaml only, add these two lines to that new step directly after its
+`action:` line (copy the form of the same two keys in step_create_state_log of that file):
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_record_restarted_run","detail":"The restarted lineage event would be appended through the gateway.","timestamp":"{ISO_8601_NOW}"}'
+
+EDITS FOR deep-research-auto.yaml ONLY
+
+EDIT 5. Directly before the top-level line `  step_fanout_spawn:` (two spaces), add this new
+top-level step, followed by one blank line. The `bind_prior_lineage:` block is contract C1 with
+`<I>` = four spaces. The `command:` block is contract C2.
+  step_apply_lifecycle_request:
+    description: "Honor explicit auto-mode restart before fan-out or normal initialization"
+    skip_when: "lineage_mode != 'restart'"
+    instructions: |
+      This is the autonomous equivalent of the confirm-mode restart choice. Run it
+      immediately after artifact resolution and before fan-out so old packet files
+      cannot be merged with fresh lineage outputs. A restart request must never
+      fall back to auto-resume. In auto mode, the explicit restart flag is operator
+      authorization to archive the resolved research packet, so do not ask for a
+      second confirmation. Rollback is to move the timestamped archive back to
+      the packet directory.
+    <bind_prior_lineage block from contract C1, with four spaces before `bind_prior_lineage:`>
+    <command block from contract C2>
+    outputs:
+      - archived_path: "{state_paths.archive_root}/{timestamp_slug} when a prior packet existed, else null"
+      - lineage_mode: "restart"
+    on_fail: "Halt with STATUS=FAIL; do not continue as resume or auto."
+
+EDIT 6. In step_classify_session, replace the whole `on_restart:` branch (its key line and every
+deeper-indented line under it: `action`, `command`, `set` with its three entries, `append_jsonl`,
+`skip_to`) with these two lines:
+        on_restart:
+          action: "Nothing is archived here. step_apply_lifecycle_request archived the packet before the lock was taken, so a restart run reaches this step as fresh and continues as on_fresh."
+Leave `note_deferred_branches:` and everything after it unchanged.
+
+EDITS FOR deep-research-confirm.yaml ONLY
+
+EDIT 7. In step_classify_session, under `on_resume:`, replace the body of `on_restart_choice:`.
+Keep its `dry_run_boundary:` and `dry_run_halt_event:` lines unchanged. Replace the `command:`
+line, the `set:` block with its three entries, the `append_jsonl:` line and the `skip_to:` line with:
+            <bind_prior_lineage block from contract C1, with twelve spaces before `bind_prior_lineage:`>
+            <command block and on_fail line from contract C3>
+            set:
+              lineage_mode: "restart"
+            skip_to: step_create_config
+Leave `on_cancel_choice:` and everything after it unchanged.
+
+VERIFY (run from the repository root and print each output):
+  python3 -c "import sys, yaml; [yaml.safe_load(open(p)) for p in sys.argv[1:]]; print('yaml ok')" .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml
+  rg -n 'mv \{state_paths.packet_dir\}|lineageMode: "new"$|generation: 1$|"event":"restarted"' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml | cut -c1-160
+  rg -c 'bind_prior_lineage:|step_record_restarted_run:|lineage_values:' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/workflow-restart-lifecycle.vitest.ts -t research 2>&1 | tail -40)
+  git status --short
+
+EXPECTED: `yaml ok`. The second command prints exactly two lines, the `"event":"restarted"` line
+inside step_record_restarted_run of each file. The third prints 3 for each file. In the test run,
+every test whose title names research auto or research confirm passes, except tests that also need
+research.md, the presentation file or the ledger table, which another brief owns. If a research
+test fails for a workflow-text reason, fix the workflow file, never the test.
+
+RETURN: the outputs of the verify commands.

@@ -6,7 +6,7 @@ trigger_phrases:
   - "byte-offset-log-regions"
   - "byte-offset log regions runtime"
   - "observability byte-offset log regions"
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # Byte-offset log regions
@@ -36,7 +36,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 | File | Layer | Role |
 |---|---|---|
 | `lib/deep-loop/post-dispatch-validate.ts` | Runtime | byte-offset log regions. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Integration | byte-offset log regions. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Integration | byte-offset log regions. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Integration | byte-offset log regions. |
 
 ### Validation And Tests
@@ -54,6 +54,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 - Group: Observability
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `observability/byte-offset-log-regions.md`
-- Primary sources: `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`, `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs`
+- Primary sources: `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research.yaml`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`, `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs`
 Related references:
 - [observability](../observability/) — Observability category

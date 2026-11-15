@@ -7,7 +7,7 @@ trigger_phrases:
   - "supplementary stop signals"
   - "conceptual novelty plateau"
   - "finding-set stability"
-version: 1.11.0.5
+version: 1.11.1.0
 ---
 
 # Semantic convergence signals
@@ -37,7 +37,7 @@ Two signals supplement the 3-signal composite vote and participate in legal-stop
 | File | Layer | Role |
 |---|---|---|
 | `references/convergence/convergence.md` | Protocol | Semantic Convergence Signals section: definitions, computation, thresholds, and gate integration. |
-| `scripts/reduce-state.cjs` | Reducer | `computeConvergenceScore` and the registry stability inputs the signals draw from. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Reducer | `computeConvergenceScore` and the registry stability inputs the signals draw from. |
 
 ### Validation And Tests
 
@@ -53,7 +53,7 @@ Two signals supplement the 3-signal composite vote and participate in legal-stop
 - Group: Severity system
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `severity-system/convergence-signals.md`
-- Primary sources: `references/convergence/convergence.md`, `scripts/reduce-state.cjs`
+- Primary sources: `references/convergence/convergence.md`, `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`
 Related references:
 - [quality-gates.md](../../feature-catalog/severity-system/quality-gates.md) — Quality gates
 - [security-sensitive-fix-overrides.md](../../feature-catalog/severity-system/security-sensitive-fix-overrides.md) — Security-sensitive fix overrides

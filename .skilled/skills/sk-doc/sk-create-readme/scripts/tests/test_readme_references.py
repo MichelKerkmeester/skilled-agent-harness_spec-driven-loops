@@ -159,3 +159,15 @@ def test_root_folder_head_does_not_hide_a_path_that_is_gone(root: Path) -> None:
         ("nowhere/tool.py", False),
         (".git/hooks/", False),
     ]
+
+
+def test_runtime_run_surface_folders_resolve_from_a_nested_readme(root: Path) -> None:
+    for folder in (".dsh", ".vibe"):
+        (root / folder / "plugins" / "repo-guards").mkdir(parents=True)
+
+    results = resolve_all(root, "See `.dsh/plugins/repo-guards/` and `.vibe/plugins/repo-guards/`.\n")
+
+    assert [(item.reference.raw, item.resolved) for item in results] == [
+        (".dsh/plugins/repo-guards/", True),
+        (".vibe/plugins/repo-guards/", True),
+    ]

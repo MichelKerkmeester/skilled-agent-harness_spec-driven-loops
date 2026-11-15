@@ -1,7 +1,7 @@
 ---
 title: "DR-058 -- Rejected-pattern cache"
 description: "Verify that rejected ideas and patterns are suppressed from future focus candidates until removed or reset."
-version: 1.14.0.21
+version: 1.14.1.0
 ---
 
 # DR-058 -- Rejected-pattern cache
@@ -47,7 +47,7 @@ Validate rejected-pattern suppression across JSONL events, loop protocol, reduce
 ### Commands
 1. `bash: rg -n 'idea_rejected|idea_rejected_removed|idea_rejected_reset|rejected-pattern' .skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
 2. `bash: rg -n 'deriveRejectedPatternIndex|findRejectedPatternMatch|filterRejectedIdeaCandidates|suppressedCandidates|MAX_REJECTED_PATTERNS' .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
-3. `bash: rg -n 'step_rejected_pattern_cache|rejectedPatternIndex|suppressedCandidates|All next-focus' .skilled/commands/deep/assets/deep-research-auto.yaml`
+3. `bash: rg -n 'step_rejected_pattern_cache|rejectedPatternIndex|suppressedCandidates|All next-focus' .skilled/commands/deep/assets/deep-research.yaml`
 4. `bash: rg -n 'suppresses an exact rejected|re-admits a pattern|bounded rejected-pattern|fuzzy matching' .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts`
 ### Expected
 Rejected patterns are stored, bounded, exact/fuzzy matched, surfaced in suppressed-candidate diagnostics, and reversible through removal or reset events.
@@ -76,7 +76,7 @@ Privilege reducer behavior for active suppression and `state-jsonl.md` for event
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | Rejected-pattern event schema |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Candidate suppression order and overflow policy |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Rejected-pattern index derivation and candidate filtering |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Runtime candidate check before dispatch |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Runtime candidate check before dispatch |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Unit coverage for exact, fuzzy, removal, and reset behavior |
 
 ---

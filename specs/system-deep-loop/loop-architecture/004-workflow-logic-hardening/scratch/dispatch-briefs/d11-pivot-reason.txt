@@ -1,0 +1,58 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a code implementation worker. Make exactly the change below, nothing else.
+Do not refactor, reformat or fix anything adjacent. Do not commit.
+
+ALLOWED WRITE PATHS (only these two files):
+- four YAML files in .skilled/commands/deep/assets/: deep-research-auto.yaml,
+  deep-research-confirm.yaml, deep-review-auto.yaml, deep-review-confirm.yaml
+- .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any
+write outside the allowed paths, any package install. Do NOT read the YAML files whole:
+each is over 150 KB. Use grep -n to find the line.
+
+CONTEXT: each workflow hands the divergent pivot a trigger reason. The variable `reason`
+now holds the coarse stop reason (for example `converged`). The pivot needs the fine cause
+(for example `all_dimensions_clean`), which the workflow binds as `reason_detail`.
+
+EDIT 1. Each of the four YAML files holds exactly one line containing
+  triggerReason: '{reason}',
+Replace `'{reason}'` with `'{reason_detail}'` on that line, in all four files. Change
+nothing else. Find the lines with:
+  grep -n "triggerReason:" .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+
+EDIT 2. In the test file, inside the `describe.each(FILES)` block, add one more test after
+the test named 'the divergent pivot reads stop_decision.reasonDetail':
+
+  it('hands the divergent pivot the fine cause, not the coarse stop reason', () => {
+    const lines = text.split('\n').filter((line) => line.includes('triggerReason:'));
+    expect(lines.length).toBe(1);
+    expect(lines[0]).toContain("'{reason_detail}'");
+  });
+
+VERIFY (run from the repository root and print the output):
+  grep -n "triggerReason:" .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/stop-decision-yaml-contract.vitest.ts)
+
+EXPECTED: the grep prints four lines, each with '{reason_detail}'. The test file reports
+22 passed and 0 failed.
+
+RETURN: the two command outputs.

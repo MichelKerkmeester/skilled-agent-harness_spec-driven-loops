@@ -11,7 +11,7 @@ description: "How .vibe/ derives from .skilled: a hand-authored config under a t
 
 ## 1. OVERVIEW
 
-Vibe walks up from the working directory to find `.vibe/config.toml`, nearest first, and reads `config.toml`, `hooks.toml` and the `tools/`, `skills/`, `plugins/`, `agents/` and `prompts/` folders from that root only. The config applies only when its own folder, the checkout root, is trusted. `--trust` from a subdirectory trusts only that subdirectory and does not apply it, so a dispatch writes `trusted = ["<checkout root>"]` into its fresh `VIBE_HOME/trusted_folders.toml`.
+Vibe walks up from the working directory to find `.vibe/config.toml`, nearest first, and reads `config.toml`, `hooks.toml` and the `tools/`, `skills/`, `plugins/`, `agents/` and `prompts/` folders from that root only. The config applies only when its own folder, the checkout root, is trusted. `--trust` from a subdirectory trusts only that subdirectory and does not apply it. A print-mode dispatch runs from a scratch cwd outside the checkout, so it never reads this file in place: it copies `config.toml` into its fresh `VIBE_HOME` and needs no trust entry. A fan-out lineage writes its own lineage directory into the trust store, never the checkout root.
 
 `allowed_models` matches each `[[models]]` row's `name`, not its `alias`. An alias list closes nothing: it warns and leaves every configured model selectable, the built-in `mistral-medium-3.5` included. The list therefore names `deepseek-v4-1-flash-1017` and `zai-glm-5-3-flash`, and each row pins `thinking = "max"` because Vibe has no reasoning flag.
 

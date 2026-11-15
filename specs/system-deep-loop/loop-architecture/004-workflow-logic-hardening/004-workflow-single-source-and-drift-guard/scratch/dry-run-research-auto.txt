@@ -1,0 +1,13 @@
+COMMAND: /deep:research:auto "How does the packet lock heartbeat decide that a lock is stale?" --spec-folder=specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/scratch/901-dry-run-probe --max-iterations=1 --dry-run
+WORKFLOW: .skilled/commands/deep/assets/deep-research.yaml
+EXECUTION_MODE: auto
+STEP step_resolve_artifact_root: ran read-only
+STEP step_bind_reducer_artifact_arg: ran read-only
+STEP step_apply_lifecycle_request: skipped by skip_when
+STEP step_fanout_spawn: skipped by skip_when
+STEP step_preflight_contract: ran read-only
+STEP step_create_directories: halted
+{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_create_directories","timestamp":"2026-11-14T18:58:03Z"}
+WRITES: none
+DISPATCHES: none
+DRY-RUN NOTE: The command promises existing-packet state/convergence reads and a next-prompt preview before stopping, but the YAML's unconditional first boundary is `step_create_directories` (state-mutation), which precedes `step_classify_session`/`step_read_state`, so every dry-run halts at directory creation; `research.md` §3.3's `:auto` setup persist of `deep-research-config.json` and `step_graph_convergence`'s preview-only `convergence.cjs --persist-snapshot` are also write paths not covered by `halt_hook_rule`.

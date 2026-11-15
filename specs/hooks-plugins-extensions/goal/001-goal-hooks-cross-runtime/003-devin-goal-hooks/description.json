@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/003-devin-goal-hooks",
+  "description": "Devin sessions on this repo have no way to carry an operator-set goal across turns",
+  "keywords": [
+    "devin",
+    "sessions",
+    "repo",
+    "way",
+    "carry",
+    "operator-set",
+    "goal",
+    "across",
+    "turns"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.093Z",
+  "specId": "003",
+  "folderSlug": "devin-goal-hooks",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "goal",
+    "001-goal-hooks-cross-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

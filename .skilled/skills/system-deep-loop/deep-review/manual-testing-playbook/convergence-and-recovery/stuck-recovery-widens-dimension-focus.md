@@ -1,7 +1,7 @@
 ---
 title: "DRV-019 -- Stuck recovery widens dimension focus"
 description: "Verify that stuck recovery switches the review loop to the least-covered dimension when progress stalls."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-019 -- Stuck recovery widens dimension focus
@@ -27,7 +27,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify stuck recovery switches to least-covered dimension.
 - Real user request: What happens if the review keeps looking at the same area and stops finding new things?
 - Prompt: `Validate deep-review stuck recovery and report whether the loop switches to the least-covered dimension.`
-- Expected execution process: Inspect the convergence reference for stuck detection and recovery rules, then the review YAML algorithm for stuck handling, then the strategy template and quick reference for user-facing documentation.
+- Expected execution process: Inspect the convergence reference for stuck detection and recovery rules, then the `convergence.cjs` recovery decision, then the strategy template and quick reference for user-facing documentation.
 - Desired user-facing outcome: The user is told that the review automatically pivots to underexplored dimensions when it gets stuck, and that this is visible in the strategy file.
 - Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
 - Pass/fail posture: PASS if stuck detection and dimension-widening recovery are enforced and documented. FAIL if stuck iterations do not trigger a focus change or the recovery mechanism is missing.
@@ -46,16 +46,16 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review stuck recovery and report whether the loop switches to the least-covered dimension.
 ### Commands
 1. `bash: rg -n 'stuck|STUCK|noProgress|no_progress|stuckThreshold|recovery|widen|least.covered' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'stuck|STUCK|recovery|widen|least_covered|no_progress|stuckThreshold|RECOVERY' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'stuck|STUCK|recovery|widen|least_covered|no_progress|stuckThreshold|RECOVERY' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'stuck|recovery|dimension.*focus|noProgress|least.covered|Next Focus' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
 ### Expected
 `stuckThreshold=2`, `noProgressThreshold=0.05`, recovery selects least-covered dimension, strategy.md "Next Focus" is updated, and stuck event logged to JSONL.
 ### Evidence
-Capture the stuck detection algorithm from convergence.md, the YAML recovery step, and the strategy template showing dimension-focus rotation.
+Capture the stuck detection algorithm from convergence.md, the runtime recovery decision, and the strategy template showing dimension-focus rotation.
 ### Pass/Fail
 PASS if stuck detection and dimension-widening recovery are enforced and documented. FAIL if stuck iterations do not trigger a focus change or the recovery mechanism is missing.
 ### Failure Triage
-Privilege the convergence reference for stuck detection math and the YAML workflow for recovery enforcement. Use strategy template as secondary evidence.
+Privilege the convergence reference for stuck detection math and the runtime stop decision for recovery enforcement. Use strategy template as secondary evidence.
 ---
 
 ## 4. SOURCE FILES
@@ -72,8 +72,7 @@ Privilege the convergence reference for stuck detection math and the YAML workfl
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, stuck detection and recovery rules |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect stuck recovery step |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect stuck recovery step |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow branch on the `convergence.cjs` stop decision, inspect stuck recovery |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence parameters including stuckThreshold, use `ANCHOR:convergence` |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Rules for dimension focus and exhausted approaches, use `ANCHOR:rules` |
 | `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template showing "Next Focus" and dimension coverage tracking |

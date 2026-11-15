@@ -104,8 +104,8 @@ description: "Auto-generated research resource map from convergence evidence."
 | specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/14.pre.vitest.ts | Cited | OK | Citations=1; Iterations=1 |
 | specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/15.pre.vitest.ts | Cited | OK | Citations=1; Iterations=1 |
 | specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/package.json | Cited | OK | Citations=1; Iterations=1 |
-| specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/ | Cited | OK | Citations=1; Iterations=1 |
-| specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs | Cited | OK | Citations=1; Iterations=1 |
+| specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/ | Cited | OK | Citations=1; Iterations=1 |
+| specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs | Cited | OK | Citations=1; Iterations=1 |
 | specs/sk-git/commit-standards/001-crawlable-commit-history/005-history-rewrite/scripts/tests/test_build_commit_plan.py | Cited | OK | Citations=1; Iterations=1 |
 | specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts | Cited | OK | Citations=1; Iterations=1 |
 | specs/system-speckit/repo-operations/002-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md | Cited | OK | Citations=1; Iterations=1 |

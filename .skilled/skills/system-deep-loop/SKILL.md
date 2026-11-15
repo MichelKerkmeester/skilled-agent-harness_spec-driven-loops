@@ -1,15 +1,15 @@
 ---
 name: system-deep-loop
-version: 1.6.29.0
-description: "Routes research, review, and AI Council modes through registry-selected packets."
+version: 2.0.1.0
+description: "Routes research and review modes through registry-selected packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---
 
-<!-- Keywords: system-deep-loop, deep-loop, deep-research, deep-review, deep-ai-council, autoresearch, iterative-research, review-loop, deep-review-wave, release-readiness, severity-findings, P0-P1-P2, ai-council, council-deliberation, multi-seat-planning, benchmark-harness, convergence-detection, externalized-state, iteration-files, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
+<!-- Keywords: system-deep-loop, deep-loop, deep-research, deep-review, autoresearch, iterative-research, review-loop, deep-review-wave, release-readiness, severity-findings, P0-P1-P2, benchmark-harness, convergence-detection, externalized-state, iteration-files, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
 
 # System Deep Loop
 
-One skill has three active workflow families and one nested runtime layer.
+One skill has two active workflow families and one nested runtime layer.
 `system-deep-loop` is the public, advisor-routable home for active deep-loop personas.
 `runtime/` is the frozen, MCP-free infrastructure layer it consumes.
 This hub holds NO per-mode convergence, state or synthesis logic.
@@ -29,7 +29,8 @@ Use this skill (through the hub) for any active deep-loop workflow. Invoke it as
 |------|-----------|--------|---------|-------|
 | **research** | Outward, web + code iterative investigation → `research/research.md` | `system-deep-loop/deep-research/` | `/deep:research` | `deep-research` |
 | **review** | Iterative review loop → P0/P1/P2 findings + verdict | `system-deep-loop/deep-review/` | `/deep:review` | `deep-review` |
-| **ai-council** | Multi-seat planning deliberation → `ai-council/**` artifacts | `system-deep-loop/deep-ai-council/` | `/deep:ai-council` | `ai-council` |
+
+A planning council is not a mode of this hub. It runs as the standalone `@ai-council` agent, reached through `/speckit:ai-council`.
 
 ### When NOT to Use
 - A single quick read/edit (no loop) — use the relevant code or doc skill directly.
@@ -40,7 +41,7 @@ Use this skill (through the hub) for any active deep-loop workflow. Invoke it as
 ## 2. SMART ROUTING
 
 Routing is **registry-driven at runtime and authored in `hub-router.json`** in two stages.
-Stage 1 (hub → mode) selects a mode: `hub-router.json` `vocabularyClasses` is the one authored vocabulary, and its `routerSignals` keys are `research`, `review` and `ai-council`.
+Stage 1 (hub → mode) selects a mode: `hub-router.json` `vocabularyClasses` is the one authored vocabulary, and its `routerSignals` keys are `research` and `review`.
 The `mode-registry.json` aliases, each packet's `Keyword triggers:` line where one exists and the root `ROUTER.md` intents are checked against it.
 Stage 2 (mode → leaves) lives in the root [`ROUTER.md`](./ROUTER.md), which maps the request's deep-loop intent to the packet-local leaf resources that mode loads.
 The advisor routes every deep-loop query to the single identity `system-deep-loop`.
@@ -56,11 +57,11 @@ Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selectin
 
 ### Terms
 
-- **`workflowMode`**: the public active mode key, `research`, `review` or `ai-council`.
-- **`runtimeLoopType`**: the graph-backed convergence key that `runtime/scripts/convergence.cjs` consumes, validated against `research|review|council`, explicitly `null` for a custom backend and never inferred from `workflowMode`.
-- **`backendKind`**: `runtime-loop-type` for all three modes, which run on the `runtime/` convergence backend.
-- **mode packet**: one of the three nested folders that owns its mode's convergence, state and artifact contract.
-- **`runtime/`**: the frozen, MCP-free layer every mode consumes, holding the executor config, atomic state, coverage graph, Bayesian scoring, fan-out and council primitives.
+- **`workflowMode`**: the public active mode key, `research` or `review`.
+- **`runtimeLoopType`**: the graph-backed convergence key that `runtime/scripts/convergence.cjs` consumes, validated against `research|review`, explicitly `null` for a custom backend and never inferred from `workflowMode`.
+- **`backendKind`**: `runtime-loop-type` for both modes, which run on the `runtime/` convergence backend.
+- **mode packet**: one of the two nested folders that owns its mode's convergence, state and artifact contract.
+- **`runtime/`**: the frozen, MCP-free layer every mode consumes, holding the executor config, atomic state, coverage graph, Bayesian scoring, fan-out and the seat-dispatch file the divergent pivot uses.
 - **`mode-registry.json`**: the registry that owns each mode's discriminator and its authoritative `packet` path.
 - **`hub-router.json`**: stage one's signals, vocabulary classes and tie-break order.
 - **`vocabularyClasses`**: the authored deep-loop vocabulary that stage one scores.
@@ -76,19 +77,17 @@ system-deep-loop/
   ROUTER.md              # stage-two surface router (deep-loop intent -> leaf sets)
   mode-registry.json     # the three-tier discriminator + advisorRouting (single source of truth)
   graph-metadata.json    # the ONE advisor identity for the whole skill
-  deep-research/   deep-review/   deep-ai-council/   # active mode packets
+  deep-research/   deep-review/   # active mode packets
   shared/synthesis/      # workflows-shared synthesis (e.g. emitResourceMap)
 ```
 
 Always resolve a packet path through `mode-registry.json` instead of hardcoding it.
 Each active mode packet keeps its own `SKILL.md`, `references/`, `scripts/`, `assets/`, `feature-catalog/` or `manual-testing-playbook/`, as applicable, with internal paths repointed.
 Mode packets have **no per-packet `graph-metadata.json`**. Only this hub carries one, so the advisor discovers exactly one skill.
-The `deep-ai-council` packet folder follows the standard `folder == packetSkillName` convention (`deep-ai-council`).
-Its legacy public surfaces, the `/deep:ai-council` command and the `ai-council` agent, intentionally keep the shorter `ai-council` key.
 
 ### Backend
 All modes consume `runtime/`, a frozen, MCP-free layer.
-It provides executor config, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, fan-out and the council primitives.
+It provides executor config, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, fan-out and the seat-dispatch file the divergent pivot uses.
 
 - The offline fan-out pair replay at `runtime/scripts/score-fanout-pairs.cjs` reads the merge's own decisions on near-line and cross-body pairs.
 - It compares a backend's judgment with the operator's labels and makes no model call by default.
@@ -114,7 +113,7 @@ It provides executor config, prompt-pack, validation, atomic state, coverage-gra
 - **NEVER** let a CLI lineage dispatch a nested executor for its own iteration, and prefer not to edit tracked files in a checkout with a live lineage (write containment reports them against that lineage; it no longer reverts them, and a lane that produced its artifacts still completes). Both rules live in `deep-research/references/protocol/loop-protocol.md` under "Executor Resolution".
 
 ### ⚠️ ESCALATE IF
-- A new mode is needed beyond the three registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.
+- A new mode is needed beyond the two registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.
 - A change would require the runtime to gain MCP tools — that contradicts the architecture; escalate.
 
 ---
@@ -122,7 +121,7 @@ It provides executor config, prompt-pack, validation, atomic state, coverage-gra
 ## 5. REFERENCES
 
 - Backend: `.skilled/skills/system-deep-loop/runtime/` (frozen, consumed by every mode; nested infrastructure, not a separate skill).
-- Mode packets: `deep-research/SKILL.md`, `deep-review/SKILL.md`, `deep-ai-council/SKILL.md` (per-mode detail).
+- Mode packets: `deep-research/SKILL.md`, `deep-review/SKILL.md` (per-mode detail).
 - Commands: the active `/deep:*` commands under `.skilled/commands/deep/` (complementary surface).
 - Registry: `mode-registry.json` (the routing contract — the authoritative `packet` paths).
 - Surface router: `ROUTER.md` (deep-loop intent to packet-local leaf sets).
@@ -143,10 +142,9 @@ It provides executor config, prompt-pack, validation, atomic state, coverage-gra
 ### Modes
 - `research` — outward web + code iterative investigation (`research/research.md`).
 - `review` — iterative review loop, P0/P1/P2 findings + verdict.
-- `ai-council` — multi-seat planning deliberation (`ai-council/**` artifacts).
 
 ### Surfaces and Consumers
-- `Skill(system-deep-loop)` is the invokable hub; active `/deep:*` commands and the agent types (`deep-research`, `deep-review`, `ai-council`) are complementary surfaces over the same packets.
+- `Skill(system-deep-loop)` is the invokable hub; active `/deep:*` commands and the agent types (`deep-research`, `deep-review`) are complementary surfaces over the same packets.
 - `runtime/` is the frozen, MCP-free backend every mode consumes (nested infrastructure, not a separate skill).
 - `/speckit:plan` consumes `@context` packages plus research/review outputs; spec-folder docs consume research/review output.
 

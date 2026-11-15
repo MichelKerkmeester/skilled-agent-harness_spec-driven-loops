@@ -42,7 +42,7 @@ Read: the five children `001-runtime-code-review` to `005-review-leaf-protocol`.
 
 ## The three phase 011 sentences Fable reserved
 
-### specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection
+### specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection
 Today: Decide from repository evidence which repo rules, if any, a prompt-time hook should carry instead of the Gate 5 load, and design the selectivity that keeps injection off most turns.
 Reservation: it describes two of the four children. `003-shallow-evidence-claims` and `004-agents-md-concision` fall outside it.
 Sentence: Decide from repository evidence which repo rules, if any, a prompt-time or event hook should carry instead of the Gate 5 load, and sharpen the rule text such a hook would carry, from the evidence a claim needs to a shorter AGENTS.md.

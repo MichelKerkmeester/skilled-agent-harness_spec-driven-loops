@@ -92,7 +92,7 @@ const VALID_ROUTING_CLASSES = ['lexical', 'alias-fold', 'metadata', 'command-bri
 // The graph-backed convergence loop keys consumed by a runtime-loop backend.
 // null is the explicit value for host/adapter modes; only demanded when the hub
 // declares the runtime-loop extension.
-const VALID_RUNTIME_LOOP_TYPES = ['research', 'review', 'council', null];
+const VALID_RUNTIME_LOOP_TYPES = ['research', 'review', null];
 
 // Read-only tool set a surface packet's toolSurface.allowed must stay within,
 // and the tools every non-mutating packet (surface or transport) must forbid.
@@ -655,7 +655,7 @@ function checkModeToolSurface(ctx, mode, label, state) {
       softFail(`3d: mode "${label}" is missing runtimeLoopType (runtime-loop extension declared; null is allowed, absence is not)`);
       state.canonOk = false;
     } else if (!VALID_RUNTIME_LOOP_TYPES.includes(mode.runtimeLoopType)) {
-      softFail(`3d: mode "${label}" has invalid runtimeLoopType ${JSON.stringify(mode.runtimeLoopType)} (expected one of {research, review, council, null})`);
+      softFail(`3d: mode "${label}" has invalid runtimeLoopType ${JSON.stringify(mode.runtimeLoopType)} (expected one of {research, review, null})`);
       state.canonOk = false;
     }
   } else if (hasLoopType && !ctx.ext.runtimeLoop) {

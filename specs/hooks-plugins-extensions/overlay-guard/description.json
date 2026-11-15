@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/overlay-guard",
+  "description": "Container folder for hooks-plugins-extensions/overlay-guard.",
+  "keywords": [
+    "overlay",
+    "guard"
+  ],
+  "lastUpdated": "2026-11-15T06:36:38.939Z",
+  "specId": "hooks-plugins-extensions/overlay-guard",
+  "folderSlug": "overlay-guard",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

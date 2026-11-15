@@ -1,7 +1,7 @@
 ---
 title: "DR-015 -- Pause sentinel halts between iterations"
 description: "Verify that the pause sentinel halts the loop between iterations and logs a pause event."
-version: 1.14.0.17
+version: 1.14.1.0
 ---
 
 # DR-015 -- Pause sentinel halts between iterations
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate pause sentinels halt research and review loops between iterations without entering synthesis.
 ### Commands
 1. `bash: rg -n '.deep-research-pause|paused|Delete .*\\.deep-research-pause|review/.deep-research-pause' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-research/README.md`
-2. `bash: rg -n 'step_check_pause_sentinel|paused|halt: true|review/.deep-research-pause|research/.deep-research-pause' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'step_check_pause_sentinel|paused|halt: true|review/.deep-research-pause|research/.deep-research-pause' .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'pause|sentinel|review/.deep-research-pause' .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md .skilled/skills/system-deep-loop/deep-research/SKILL.md`
 ### Expected
 The sentinel is checked before dispatch, a paused event is logged, and the loop halts rather than flowing into synthesis in both research and review mode.
@@ -72,8 +72,7 @@ Use the loop protocol pause subsection as the canonical flow and verify both res
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Pause sentinel contract; use `ANCHOR:phase-iteration-loop` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Pause check step; inspect `step_check_pause_sentinel` |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Pause check step; inspect `step_check_pause_sentinel` |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Pause check step; inspect `step_check_pause_sentinel` |
 | `.skilled/skills/system-deep-loop/deep-research/README.md` | User-facing pause FAQ; use `ANCHOR:faq` |
 | `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Rule-level context; use `ANCHOR:rules` |
 

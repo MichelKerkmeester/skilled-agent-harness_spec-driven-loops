@@ -7,7 +7,7 @@ trigger_phrases:
   - "legal-stop bundle"
   - "source diversity check"
   - "blocked-stop event"
-version: 1.14.0.8
+version: 1.14.1.0
 ---
 
 # Quality guards
@@ -22,9 +22,9 @@ Quality guards sit after the convergence vote and before synthesis. They make su
 
 ## 2. HOW IT WORKS
 
-The legal-stop bundle is explicit. After a stop nomination, the workflow checks that each key question has evidence-backed coverage, that research stayed aligned with the original question set, and that the answered set is not leaning on a single tentative source. A stop is legal only when both the convergence gate and these guard checks pass together.
+The legal-stop bundle is explicit. convergence.cjs checks that each key question has evidence-backed coverage, that research stayed aligned with the original question set, and that the answered set is not leaning on a single tentative source. A stop is legal only when both the convergence gate and these guard checks pass together.
 
-Guard failures are visible packet events, not quiet side effects. The workflow emits `guard_violation` lines for the specific issue and then persists a `blocked_stop` event with gate results, blocker names, recovery guidance, session identifier, and generation. The reducer uses those events to update next focus, blocked-stop history, and dashboard reporting for the next loop turn.
+Guard failures are visible packet events, not quiet side effects. convergence.cjs reports the failed guard as `qualityGuardFailed` and names it in `stop_decision.blockedBy`, and the workflow logs the failed guard names when it continues. The `blocked_stop` event carries gate results, blockers, recovery guidance, session identifier, and generation so the reducer and dashboard can show why the loop had to continue.
 
 ---
 
@@ -36,8 +36,7 @@ Guard failures are visible packet events, not quiet side effects. The workflow e
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines the legal-stop gate bundle and the source-diversity, focus-alignment, and weak-source rules. |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Defines when the guards run and how blocked-stop events are persisted. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Emits guard and blocked-stop events in autonomous mode. |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Emits the same guard and blocked-stop events in confirm mode. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Persists `blocked_stop` events and logs failed guard names. Confirm mode adds approval gates. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Surfaces blocked-stop history and recovery hints into strategy and dashboard outputs. |
 
 ### Validation And Tests

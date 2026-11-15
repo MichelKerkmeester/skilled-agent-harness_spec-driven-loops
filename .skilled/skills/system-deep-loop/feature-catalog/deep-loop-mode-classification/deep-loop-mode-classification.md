@@ -1,19 +1,19 @@
 ---
 title: "Registry-Driven Deep-Loop Mode Classification"
-description: "`mode-registry.json` is the single source of truth for the hub's three `workflowMode` packets, each carrying a `workflowMode`/`runtimeLoopType`/`backendKind` three-tier discriminator."
+description: "`mode-registry.json` is the single source of truth for the hub's two `workflowMode` packets, each carrying a `workflowMode`/`runtimeLoopType`/`backendKind` three-tier discriminator."
 trigger_phrases:
   - "registry-driven deep-loop mode classification"
   - "system-deep-loop three-tier discriminator"
   - "workflowMode runtimeLoopType backendKind"
   - "system-deep-loop smart routing"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Registry-Driven Deep-Loop Mode Classification (system-deep-loop)
 
 ## 1. OVERVIEW
 
-`system-deep-loop` is a registry-driven, invokable hub. `mode-registry.json` is the single source of truth for its three `workflowMode` packets; the hub classifies a request, resolves the mode through the registry, and loads `registry[mode].packet` without re-deriving the mapping or holding per-mode logic itself.
+`system-deep-loop` is a registry-driven, invokable hub. `mode-registry.json` is the single source of truth for its two `workflowMode` packets; the hub classifies a request, resolves the mode through the registry, and loads `registry[mode].packet` without re-deriving the mapping or holding per-mode logic itself.
 
 The `/deep:*` commands and native agent types are complementary surfaces that reach the same packets through their own static routers or agent definitions — they do not bypass or duplicate the registry.
 
@@ -23,7 +23,7 @@ The `/deep:*` commands and native agent types are complementary surfaces that re
 
 ### Three-Tier Discriminator
 
-Every packet carries `workflowMode` (the public mode key: `research`, `review`, `ai-council`), `runtimeLoopType` (the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs`, validated against active `research`/`review`/`council` — `ai-council` maps to `runtimeLoopType: council`), and `backendKind` (`runtime-loop-type` for research/review/ai-council).
+Every packet carries `workflowMode` (the public mode key: `research`, `review`), `runtimeLoopType` (the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs`, validated against active `research`/`review`), and `backendKind` (`runtime-loop-type` for research/review).
 
 ### Intent Classification, Not Keyed Resource Discovery
 
@@ -38,7 +38,7 @@ The advisor routes any deep-loop query to the single identity `system-deep-loop`
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/SKILL.md` | Shared | States the registry-driven classification contract and names the three discriminator keys as terms. |
-| `.skilled/skills/system-deep-loop/mode-registry.json` | Shared | Declarative registry for all three `workflowMode` packets. |
+| `.skilled/skills/system-deep-loop/mode-registry.json` | Shared | Declarative registry for both `workflowMode` packets. |
 | `.skilled/skills/system-deep-loop/ROUTER.md` | Shared | Second-layer intent-to-leaf mapping consumed by router-replay benchmarking, and the three-tier discriminator section with its never-infer rule. |
 
 ### Validation And Tests

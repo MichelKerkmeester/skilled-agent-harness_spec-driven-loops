@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/git-primary-reconcile/002-rebase-abort-head-preservation",
+  "spec_folder": "hooks-plugins-extensions/git-primary-reconcile/002-rebase-abort-head-preservation",
+  "parent_id": "hooks-plugins-extensions/git-primary-reconcile",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "commit disappeared after autosync",
+      "git hook reset local head",
+      "rebase abort rewound branch",
+      "stale rebase-merge lost commit",
+      "rebase abort head preservation plan",
+      "rebase abort head preservation tasks",
+      "rebase abort head preservation summary"
+    ],
+    "key_topics": [
+      "commit",
+      "disappeared",
+      "autosync",
+      "git",
+      "hook",
+      "reset",
+      "local",
+      "head",
+      "rebase",
+      "abort",
+      "rewound",
+      "branch"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/git-primary-reconcile.sh",
+      ".opencode/bin/git-sync.sh",
+      ".opencode/bin/tests/git-rebase-abort-head-preservation.test.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-primary-reconcile.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-primary-reconcile.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-sync.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-rebase-abort-head-preservation.test.sh",
+        "kind": "script",
+        "path": ".opencode/bin/tests/git-rebase-abort-head-preservation.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "empty",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The live-sync reconcilers publish a session's commits onto the shared live branch",
+    "created_at": "2026-08-20T08:29:54.549Z",
+    "last_save_at": "2026-11-15T07:18:50.963Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3f29395098e6669c6bb50aef8c92d44b1bb55c31c7dc172f39a9c93e75d79e5b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "163b3adcea3fabc05db776b6c4b383744dd3097b2aedd13c61b830fc8774ca1c",
+      "plan.md": "249cf4ae39b3aefc82886b6efab3c0a6c6270897018e642efabeb53a41905c68",
+      "tasks.md": "eb1f7477bce42c6cf0a82330463e07e3e85065a95a35b36e73335dfe9be410db",
+      "implementation-summary.md": "dd76e407a2bb6043d64b44dbfcc62b99a97a702c7dbaa0f80424e8501837c2e6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

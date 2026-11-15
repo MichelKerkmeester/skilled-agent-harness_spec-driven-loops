@@ -9,7 +9,7 @@ trigger_phrases:
   - "graph convergence graceful degradation"
 importance_tier: normal
 contextType: implementation
-version: 1.14.0.3
+version: 1.14.1.0
 ---
 
 # Graph-Aware Convergence Reference
@@ -36,7 +36,7 @@ Graph gates add structural evidence to legal-stop checks. They never replace the
 
 ## 2. WHEN GRAPH GATES APPLY
 
-Graph gates apply only when at least one iteration emits `graphEvents`. Without graph data, the graph sub-checks are omitted and the standard legal-stop gates decide.
+A graph decision is required for every non-terminal STOP. Without a graph decision, every non-terminal STOP is blocked and the loop continues.
 
 `graphEvents` are documented in `../state/state-jsonl.md`. Reducer-owned graph summaries are documented in `../state/state-reducer-registry.md`.
 
@@ -70,7 +70,7 @@ The loop may STOP for composite convergence only when:
 
 - the inline composite vote nominates STOP;
 - standard legal-stop gates pass;
-- the latest graph decision is `STOP_ALLOWED` or graph data is absent.
+- the latest graph decision is `STOP_ALLOWED`.
 
 If graph data says `STOP_BLOCKED`, the workflow emits a blocked-stop path and continues.
 
@@ -106,7 +106,7 @@ Event fields and namespace rules live in `../state/state-jsonl.md`.
 
 | Condition | Behavior |
 |-----------|----------|
-| No `graphEvents` in any iteration | Omit graph checks |
+| No `graphEvents` in any iteration | Block every non-terminal STOP until a graph decision exists |
 | MCP unavailable | Rebuild graph-derived state from JSONL when possible |
 | Fewer than 2 graph iterations | Mark graph signals `insufficient_data` |
 | Graph has zero edges | Use `graphEdgeDensity = 0.0`; skip unsupported graph checks |

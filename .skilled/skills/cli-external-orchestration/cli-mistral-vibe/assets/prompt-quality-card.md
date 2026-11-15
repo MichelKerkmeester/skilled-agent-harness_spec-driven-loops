@@ -8,7 +8,7 @@ trigger_phrases:
   - "vibe print mode prompt"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Mistral Vibe CLI - Prompt Quality Card
@@ -88,6 +88,6 @@ A Vibe print-mode child cannot ask a question, does not start in the repository 
 ## 6. RELATED
 
 - [SKILL.md](../SKILL.md) owns the hard rules, and [ROUTER.md](../ROUTER.md) owns routing.
-- [hard-rules.json](../hard-rules.json) lists the six rules a dispatch must satisfy.
+- [hard-rules.json](../hard-rules.json) lists the seven rules a dispatch must satisfy.
 - [cli-reference.md](../references/cli-reference.md) owns the flags, the prompt sources and the outcome record.
 - [child-dispatch-preamble.md](../../shared/references/child-dispatch-preamble.md) holds the preamble block.

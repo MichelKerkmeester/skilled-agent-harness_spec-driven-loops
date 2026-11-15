@@ -106,7 +106,7 @@ Each search text is the `Today:` line in `scratch/sentences.md`, and each replac
 
 | Edit | File | Line |
 |------|------|------|
-| E9 | `specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/spec.md` | 39 |
+| E9 | `specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/spec.md` | 39 |
 | E10 | `specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/spec.md` | 43 |
 | E11 | `specs/sk-design/020-chart-and-diagram-review/spec.md` | 68 |
 

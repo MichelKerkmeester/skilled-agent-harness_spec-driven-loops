@@ -1,0 +1,115 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+
+ROLE: You are a code implementation worker. Make exactly the change below, nothing else.
+Do not refactor, reformat or fix anything adjacent. Do not commit.
+
+ALLOWED WRITE PATHS (only these two files):
+- .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs
+- .skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any write
+outside the allowed paths, any package install, any edit to convergence.cjs.
+
+CONTEXT: the research dashboard prints a "Stuck count" that is a different number from the one
+the stop decision uses. The reducer computes it in renderDashboard as the count of every
+iteration with a zero ratio, which also counts failed iterations and never resets. The stop
+decision uses deriveLoopCounters(rows, options).stuckCount, exported from
+.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs. The dashboard must print that
+same number.
+
+CONTRACT of deriveLoopCounters (file .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs):
+
+  deriveLoopCounters(records, options) returns { stuckCount, consecutiveFailureCount }
+
+  records: array of parsed state-log rows in file order. An entry that is not a plain object is ignored.
+  options: { loopType: 'research' | 'review', convergenceThreshold?: number }
+
+  Rules:
+  R1. An iteration row has type === 'iteration'. Its number is a finite `iteration`, else a finite
+      `run`. When several iteration rows share a number, only the LAST one in file order counts,
+      and it counts at the position of that last row. A row with no number counts at its own position.
+  R2. Walk the rows in file order, starting with stuckCount 0 and consecutiveFailureCount 0:
+      a. A recovery event sets stuckCount to 0. A recovery event is a row with type === 'event' and
+         event === 'stuckRecovery', or a row with stem === 'deep_review.recovery_started'.
+      b. An iteration with status 'thought' changes nothing.
+      c. An iteration with status 'error' or 'timeout' adds 1 to consecutiveFailureCount and leaves
+         stuckCount unchanged.
+      d. Any other iteration sets consecutiveFailureCount to 0. Then: status 'insight' sets
+         stuckCount to 0. Otherwise read the ratio: `newInfoRatio` for research, `newFindingsRatio`
+         for review. Research: the iteration is low when the ratio is a finite number below the
+         threshold (options.convergenceThreshold when it is a finite number above 0, else 0.05).
+         Review: low when the ratio is a finite number at or below
+         mapReviewThresholds(options.convergenceThreshold).noProgressCutoff, which is 0.5 x the
+         threshold with a default threshold of 0.1. A low iteration adds 1 to stuckCount. Any
+         other iteration, a missing ratio included, sets stuckCount to 0.
+      e. Every other row is ignored.
+  R3. An empty array returns { stuckCount: 0, consecutiveFailureCount: 0 }.
+  R4. The function is pure: no file read, no clock, no mutation of its arguments.
+
+STEP 1, the failing test first. In loop-counters-derivation.vitest.ts add one describe block
+at the end of the file:
+
+  describe('research dashboard', () => {
+    it('dashboard stuck count equals the derived stuck count', () => { ... });
+  });
+
+The test builds a research packet fixture on disk, the way
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts does
+for its `reduceResearchState(specFolder, { write: false })` cases (read that file's fixture
+helper with grep -n and copy only what you need). The state log of the fixture must hold, in
+this order: one complete iteration with newInfoRatio 0.5, two error iterations with
+newInfoRatio 0, one complete iteration with newInfoRatio 0.01, and one complete iteration with
+newInfoRatio 0.02. With the default threshold 0.05 the derived stuck count is 2. The old
+dashboard formula gives 2 for a different reason only by accident, so add a second fixture
+that tells them apart: the same rows followed by a row
+{ "type": "event", "event": "stuckRecovery", ... } and one more complete iteration with
+newInfoRatio 0.01. The derived stuck count is then 1.
+For each fixture assert:
+  - result.dashboard contains the line `- Stuck count: <n>` where <n> is
+    deriveLoopCounters(rows, { loopType: 'research', convergenceThreshold: <the fixture config value or undefined> }).stuckCount
+  - and that <n> is the literal expected value (2, then 1).
+Create fixture directories under fileURLToPath(new URL('../.tmp/', import.meta.url)) or the way
+the existing reducer test does, and remove them afterwards.
+Run the test and confirm the second fixture FAILS before step 2.
+
+STEP 2, the fix. In reduce-state.cjs:
+  - require deriveLoopCounters from '../../runtime/scripts/convergence.cjs' next to the other
+    requires at the top of the file.
+  - In renderDashboard, replace the expression after `- Stuck count: ` with the derived value.
+    deriveLoopCounters needs the state-log rows in file order WITH the event rows, because a
+    stuckRecovery event resets the count. Check what the caller passes as the third argument of
+    renderDashboard (grep -n 'renderDashboard(' and read the lines above the call). If that
+    array holds only iteration records, pass the full parsed row list to renderDashboard as an
+    added last parameter and use it for this one line only. Use
+      deriveLoopCounters(<rows>, { loopType: 'research', convergenceThreshold: <the config convergenceThreshold when it is a finite number, else undefined> }).stuckCount
+  - Change nothing else in renderDashboard.
+
+No comment may name a spec path, a task id, a requirement id or a finding id.
+
+VERIFY (run from the repository root and print the output):
+  node --check .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/loop-counters-derivation.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts tests/unit/deep-research-reducers.vitest.ts)
+
+EXPECTED: node --check exits 0 and the three test files report 0 failed. If an existing reducer
+test fails, do not edit it: print the failure and stop.
+
+RETURN: the output of the failing run from step 1, the two verify outputs, and one sentence
+saying which rows the third argument of renderDashboard held.

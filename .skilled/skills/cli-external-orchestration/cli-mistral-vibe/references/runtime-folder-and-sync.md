@@ -10,7 +10,7 @@ trigger_phrases:
   - "vibe home isolation"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Mistral Vibe - Runtime Folder and Sync
@@ -34,7 +34,7 @@ Records the one project folder Vibe reads, the trust gate that decides whether i
 
 ### Status
 
-The runtime-folder phase creates this folder, and it is not present yet: `ls .vibe` reports `No such file or directory`, which is the state this packet measured. The three generators under `.skilled/skills/system-spec-kit/runtime/cli/vibe/` are absent for the same reason. The layout and the generator contract below are what that phase builds; the discovery and home behavior are read from the installed package and observed during research.
+The folder ships: `.vibe/config.toml`, `.vibe/hooks.toml`, `.vibe/SYNC.md`, the generated agent, skill and prompt mirrors, and the `plugins/repo-guards/` bundle. The three generators under `.skilled/skills/system-spec-kit/runtime/cli/vibe/` own the mirrors. The discovery and home behavior below are read from the installed package and observed during research.
 
 ### Evidence Base
 
@@ -111,7 +111,7 @@ The runtime-folder phase hand-authors two files here, `config.toml` and `SYNC.md
 
 ## 4. GENERATORS
 
-Three Node scripts under `.skilled/skills/system-spec-kit/runtime/cli/vibe/` own the generated trees. The runtime-folder phase builds them; none exists yet.
+Three Node scripts under `.skilled/skills/system-spec-kit/runtime/cli/vibe/` own the generated trees.
 
 | Generator | Writes | Source |
 |---|---|---|

@@ -1,7 +1,7 @@
 ---
 title: "DR-004 -- Fresh initialization creates canonical state files"
 description: "Verify that a fresh session creates the canonical config, JSONL, and strategy files from the shipped assets."
-version: 1.14.0.15
+version: 1.14.1.0
 ---
 
 # DR-004 -- Fresh initialization creates canonical state files
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate fresh deep-research initialization creates canonical config, JSONL state, and strategy files from live templates.
 ### Commands
 1. `bash: sed -n '1,220p' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_strategy' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+2. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_strategy' .skilled/commands/deep/assets/deep-research.yaml`
 3. `bash: sed -n '1,220p' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json && sed -n '1,220p' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
 ### Expected
 The scratch directory is created, config and strategy come from the shipped assets, and the JSONL begins with a config record.
@@ -55,7 +55,7 @@ Capture the initialization outputs, the explicit create steps, and the live temp
 ### Pass/Fail
 PASS if protocol, YAML, and asset templates agree on the initial scratch artifacts and their roles; FAIL if the artifact list or template sources drift.
 ### Failure Triage
-Check both YAML variants, verify the JSONL init step writes a config record, and confirm the assets live under `assets/`.
+Check the workflow in both execution modes, verify the JSONL init step writes a config record, and confirm the assets live under `assets/`.
 ---
 
 ## 4. SOURCE FILES
@@ -72,8 +72,7 @@ Check both YAML variants, verify the JSONL init step writes a config record, and
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Initialization lifecycle; use `ANCHOR:phase-initialization` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Autonomous init steps; inspect `phase_init` |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Interactive init steps; inspect `phase_init` |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Init steps in both execution modes; inspect `phase_init` |
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Config template |
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Strategy template |
 

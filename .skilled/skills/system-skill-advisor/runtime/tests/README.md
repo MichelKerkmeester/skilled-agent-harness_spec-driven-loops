@@ -114,7 +114,6 @@ tests/
 +-- system-skill-advisor-plugin.vitest.ts
 +-- rename-invariants.vitest.ts
 +-- routing-fixtures.affordance.test.ts
-+-- routing-parity-deep-council.vitest.ts
 +-- routing-parity-deep-skills.vitest.ts
 +-- routing-registry-drift-guard.vitest.ts
 +-- shadow-sink.vitest.ts

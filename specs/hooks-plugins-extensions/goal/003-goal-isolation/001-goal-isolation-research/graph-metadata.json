@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/goal/003-goal-isolation/001-goal-isolation-research",
+  "spec_folder": "hooks-plugins-extensions/goal/003-goal-isolation/001-goal-isolation-research",
+  "parent_id": "hooks-plugins-extensions/goal/003-goal-isolation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal isolation research",
+      "multiple active goals",
+      "pi goal session identity",
+      "cross-runtime goal hooks",
+      "goal isolation research plan",
+      "three goal research iterations",
+      "goal isolation research tasks",
+      "goal deep loop iterations",
+      "goal isolation research status",
+      "goal research handoff"
+    ],
+    "key_topics": [
+      "goal",
+      "isolation",
+      "research",
+      "multiple",
+      "active",
+      "goals",
+      "session",
+      "identity",
+      "cross-runtime",
+      "hooks",
+      "plan",
+      "three"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      ".pi/settings.json",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/hooks/goal/bin/goal.cjs",
+      "research/deltas/iter-001.jsonl",
+      "research/deltas/iter-002.jsonl",
+      "research/deltas/iter-003.jsonl",
+      "dist/graph/backfill-graph-metadata.js",
+      ".opencode/hooks/goal/pi/goal-context.ts",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs",
+      ".devin/hooks.v1.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iter-002.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-002.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iter-003.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-003.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.js",
+        "kind": "code",
+        "path": "dist/graph/backfill-graph-metadata.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Goal Isolation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pi and Cursor currently share one repository-level `active-goal.json`",
+    "created_at": "2026-08-10T11:33:28Z",
+    "last_save_at": "2026-11-15T07:08:31.878Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:49c941ab4c63b2d68c7b0fe01d18d29b9e156dad48dd8bed5f0f106cb726d272",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "22a4c7ef9b8d714a1cd625baa7131a8f16d4d774f459f1668d0b89a4ba15f843",
+      "plan.md": "0336896c7776901ba52577c50491306166e715829a7e75c7a01b36572bb4920f",
+      "tasks.md": "562b508b69fcd99b092effa4b3295c1a42d4dfd6213fe15e9129331293e76ac2",
+      "implementation-summary.md": "4e9bf92d646058300ca96f234efc010cc64d0f0692e4458ddce4e03b40618821",
+      "research/research.md": "6f10cdb2c0a091fe3c9e9525c8ad1b5dd3e83ebf1eeada7aee9a078fa71a210f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`checkchangelogshape.py` fails an expanded release note that runs past 280 lines below its frontmatter",
     "created_at": "2026-11-14T21:40:01Z",
-    "last_save_at": "2026-11-15T06:26:05.316Z",
+    "last_save_at": "2026-11-15T09:12:34.363Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:395f9506376b5c68ee3c15bcfd382964217aac0e5282328c40dd62dc91d62dd2",
+    "source_fingerprint": "sha256:00ab3cbb6213926b4fa7348701a053c2f102c544003e5b7f23619cbc209c1c9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b79df65a056ff01ce328959999d2aa8653e51e90674c6727c55a90d7cadc611c",
       "plan.md": "4b070a4baaca48221c6b8b593c6ed1291864cd93731c98451856e2ddb0c3ea5b",
       "tasks.md": "13301c3ec7a1ceba30a2a31d98e80986649de349e670ca6ff789db68726a10a3",
-      "decision-record.md": "a8bce6ed669628399c6a2edfdda99149c936640feabdc33a305a8a4cf17fb251",
-      "implementation-summary.md": "1cefffc1fa9c89e2ad7f055debe91a22d9e2fc8e19fd2b18dacf3600bb1f5c0a"
+      "decision-record.md": "4eb4b9b2cd21e19e8ab4f14c3f1ba9b8df4642e4aed5dbcba07562b80b9f6d57",
+      "implementation-summary.md": "0b3bf79686c574dcfaf5ead96eaa35ab4e2be15f4199943604bf8c97a1446997"
     },
     "last_active_at": null
   }

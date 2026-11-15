@@ -1,6 +1,6 @@
 # Mistral Vibe project config. Hand-authored; .vibe/SYNC.md lists what is generated.
-# Applies only when this checkout root is trusted. --trust from a subdirectory does not
-# reach it; a dispatch lists the root in its VIBE_HOME/trusted_folders.toml.
+# Applies in place only when this checkout root is trusted. --trust from a subdirectory does not
+# reach it, so a print-mode dispatch copies this file into its fresh VIBE_HOME instead.
 
 # allowed_models matches each row's `name`, not its alias. An alias list only
 # warns and leaves every configured model selectable, mistral-medium-3.5 included.

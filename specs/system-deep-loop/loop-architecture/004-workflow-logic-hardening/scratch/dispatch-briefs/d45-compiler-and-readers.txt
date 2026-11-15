@@ -1,0 +1,74 @@
+ROLE: You are a Node.js engineer. Repoint the functional readers of four old workflow file names.
+
+CONTEXT: /deep:research and /deep:review each ran from two workflow files, an auto and a confirm
+twin. Each now runs from one file: deep-research.yaml and deep-review.yaml in
+.skilled/commands/deep/assets/. The four twins still exist and are deleted later. This change
+repoints the compiler, the drift checker and five other readers. /deep:ai-council keeps its two
+files: do not touch its definition.
+
+OLD NAMES: deep-research-auto.yaml, deep-research-confirm.yaml, deep-review-auto.yaml,
+deep-review-confirm.yaml.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs
+- .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs
+- .skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs
+- .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts
+- .skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts
+- .skilled/skills/system-deep-loop/deep-research/scripts/verify-yaml-script-paths.sh
+- .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml
+- .skilled/commands/speckit/assets/speckit-complete.yaml
+- .skilled/commands/deep/assets/compiled/deep-research.contract.markdown   (only by running the compiler)
+- .skilled/commands/deep/assets/compiled/deep-review.contract.markdown     (only by running the compiler)
+
+EDIT 1. compile-command-contracts.cjs. In the review definition and in the research definition,
+replace the two lines `autoWorkflowPath: ...` and `confirmWorkflowPath: ...` with one line
+`workflowPath: '.skilled/commands/deep/assets/deep-review.yaml',` (deep-research.yaml for
+research). In each definition's `sourcePaths` array, replace the two twin entries with the one
+single file. Where the setup block is rendered, the two lines
+    `autoWorkflow: ${definition.autoWorkflowPath}`,
+    `confirmWorkflow: ${definition.confirmWorkflowPath}`,
+become: one line `workflow: ${definition.workflowPath}` when the definition has a workflowPath,
+else the two old lines. Leave the council definition as it is.
+
+EDIT 2. check-contract-drift.cjs. In both places that read `definition.autoWorkflowPath` and
+`definition.confirmWorkflowPath`, read `definition.workflowPath` alone when it is set, else the
+two old fields.
+
+EDIT 3. check-ledger-stem-producers.cjs. In `PRODUCER_SURFACE`, replace the four old workflow
+paths with the two single files, and add
+'.skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs' and
+'.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs'. Fix the comment above
+the list so it says two workflows.
+
+EDIT 4. Both ledger type files. Every producer path that names an old file becomes the single
+file of that command. Exception: the producers of the stems run_now_requested, run_now_rejected,
+run_now_accepted and run_now_restored become
+'.skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs', and the producer of
+recovery_baseline becomes '.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs'.
+
+EDIT 5. verify-yaml-script-paths.sh: the `YAML_FILES` array holds the two single files only.
+
+EDIT 6. review-mode-contract.yaml: the two lines that name the review twins name deep-review.yaml.
+If both lines then say the same thing under two keys, keep both keys with the same path.
+
+EDIT 7. speckit-complete.yaml: both mentions of deep-research-auto.yaml become deep-research.yaml.
+At the mention that executes the workflow, add on the next line, at the same indentation and in
+the same key style as its neighbours, the binding `execution_mode: auto`. Read 10 lines around
+each mention first.
+
+EDIT 8. Regenerate the compiled contracts. From the repository root run:
+  node .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs --command deep/review --write
+  node .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs --command deep/research --write
+  node .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs --command deep/ai-council --write
+
+CHECKS, from the repository root:
+  node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs                    must print [CONTRACT DRIFT] OK commands=3
+  rg -c 'deep-(research|review)-(auto|confirm)\.yaml' .skilled/skills/system-deep-loop/runtime/scripts .skilled/skills/system-deep-loop/runtime/lib .skilled/skills/system-deep-loop/deep-research/scripts .skilled/skills/system-deep-loop/deep-review/assets .skilled/commands/speckit/assets/speckit-complete.yaml .skilled/commands/deep/assets/compiled
+       must print nothing
+  rg -c 'deep-ai-council-(auto|confirm)' .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs     must print 4
+  bash .skilled/skills/system-deep-loop/deep-research/scripts/verify-yaml-script-paths.sh     must print PASS and "across 2 workflow YAMLs"
+  cd .skilled/skills/system-deep-loop/runtime && npm run typecheck                                  must exit 0
+Do not run or edit any test file. Tests are repointed by a later change.
+
+REPORT: one line per edit, "done" or "failed, <reason>", then the output of each check.

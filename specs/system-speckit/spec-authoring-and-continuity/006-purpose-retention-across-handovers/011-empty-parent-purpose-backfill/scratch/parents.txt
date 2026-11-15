@@ -13,7 +13,7 @@
 # further up states a purpose. That was not checked, because the planning session could not run node.
 
 ## No purpose text (11)
-specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/spec.md
+specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/spec.md
 specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/spec.md
 specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/spec.md
 specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/spec.md

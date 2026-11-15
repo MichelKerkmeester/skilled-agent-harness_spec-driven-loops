@@ -8,7 +8,7 @@ trigger_phrases:
   - "graph aware review convergence"
 importance_tier: normal
 contextType: implementation
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Deep Review Convergence Recovery and Reporting
@@ -118,7 +118,7 @@ When the loop stops, the orchestrator generates a convergence report embedded in
 ```
 CONVERGENCE REPORT
 ------------------
-Stop reason: [converged | maxIterationsReached | userPaused | blockedStop | stuckRecovery | error | manualStop]
+Stop reason: [converged | maxIterationsReached | userPaused | blockedStop | stuckRecovery | error | manualStop | maxDurationReached]
 Total iterations: N
 Provisional verdict: [PASS | CONDITIONAL | FAIL]
 hasAdvisories: [true | false]

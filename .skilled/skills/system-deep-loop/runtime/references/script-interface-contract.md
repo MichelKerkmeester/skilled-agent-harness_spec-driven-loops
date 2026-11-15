@@ -8,7 +8,7 @@ trigger_phrases:
   - "coverage graph script exit codes"
 importance_tier: important
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # Deep Loop Runtime Script Interface Contract
@@ -60,10 +60,10 @@ Every script follows the same lifecycle: parse CLI args, re-exec through the TSX
 
 ### Read-Only Mode
 
-- `status.cjs`, `query.cjs` and `convergence.cjs` accept `--read-only`. Each selects the coverage database except for `--loop-type council`, which selects the council database. Existing files use the module's read-only SQLite opener. When both WAL side files are absent, coverage opens a header-adjusted byte buffer and council tries an immutable URI. Otherwise, both open the database path as read-only. If the council URI open fails, it falls back to a read-only path open.
-- An absent database is served from `:memory:` after the opener creates its schema and version row there. The opener creates no directory or on-disk database file and returns `databasePresent: false`. Status reports zero counts, query returns empty query results, coverage convergence returns `CONTINUE` and council convergence returns `STOP_BLOCKED`. Successful responses put `readOnly: true` and the boolean `databasePresent` in `data`.
-- For an existing database, the main database file is opened read-only. The opener does not apply schema SQL or update the on-disk version row, and it creates no directory or main database file. Status and convergence skip observability event appends. Query has no append path. Convergence also skips snapshot creation. Both modules' source comments warn that path-opening a WAL database can recreate missing `-wal` or `-shm` files on first query. The buffer and immutable URI avoid that path when both side files are absent. The council opener also falls back to the path if its immutable URI open fails, so the code does not guarantee zero side-file writes in every path-open case.
-- In convergence, `--read-only` disables `--persist-snapshot`. Nonempty coverage and council results report `data.snapshotPersistence: "not_requested"` even if persistence was requested. Empty coverage returns before adding that field. Empty council returns before persistence and its persistence field. Council also does not require `--round-id` when read-only mode disables persistence.
+- `status.cjs`, `query.cjs` and `convergence.cjs` accept `--read-only` and read the coverage database. Existing files use the module's read-only SQLite opener. When both WAL side files are absent, the coverage opener reads a header-adjusted byte buffer. Otherwise it opens the database path as read-only.
+- An absent database is served from `:memory:` after the opener creates its schema and version row there. The opener creates no directory or on-disk database file and returns `databasePresent: false`. Status reports zero counts, query returns empty query results and convergence returns `CONTINUE`. Successful responses put `readOnly: true` and the boolean `databasePresent` in `data`.
+- For an existing database, the main database file is opened read-only. The opener does not apply schema SQL or update the on-disk version row, and it creates no directory or main database file. Status and convergence skip observability event appends. Query has no append path. Convergence also skips snapshot creation. The coverage opener's source comments warn that path-opening a WAL database can recreate missing `-wal` or `-shm` files on first query. The buffer avoids that path when both side files are absent.
+- In convergence, `--read-only` disables `--persist-snapshot`. Nonempty coverage results report `data.snapshotPersistence: "not_requested"` even if persistence was requested. Empty coverage returns before adding that field.
 - `upsert.cjs` has no read-only mode.
 
 ### Exit-Code Matrix
@@ -80,7 +80,7 @@ Every script follows the same lifecycle: parse CLI args, re-exec through the TSX
 | Arg | Required | Values | Notes |
 |---|---|---|---|
 | `--spec-folder` | Yes | path string | Stored as `specFolder`. |
-| `--loop-type` | Yes | `research`, `review` or `council` | Validated before DB operations. |
+| `--loop-type` | Yes | `research`, `review` or `context` | Validated before DB operations. |
 | `--session-id` | Yes | string | Scopes graph reads and writes to one loop lineage. |
 
 ---
@@ -146,7 +146,6 @@ Visible anchors:
 | Variable | Points to | Default when unset |
 |---|---|---|
 | `DEEP_LOOP_COVERAGE_DB_DIR` | Directory containing `deep-loop-graph.sqlite` | `.skilled/skills/system-deep-loop/runtime/database` |
-| `DEEP_LOOP_COUNCIL_DB_DIR` | Directory containing `council-graph.sqlite` | `.skilled/skills/system-deep-loop/runtime/database` |
 
 ---
 
