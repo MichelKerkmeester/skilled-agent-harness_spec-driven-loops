@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe runtime parity",
+      "phase 30 vibe runtime parity",
+      "mistral vibe chat automation",
+      "vibe transcript scorer tool table",
+      "vibe command document pointer",
+      "vibe runtime parity plan",
+      "vibe runtime parity tasks",
+      "vibe runtime parity acceptance criteria"
+    ],
+    "key_topics": [
+      "vibe",
+      "runtime",
+      "parity",
+      "phase",
+      "mistral",
+      "chat",
+      "automation",
+      "transcript",
+      "scorer",
+      "tool",
+      "table",
+      "command"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "scratch/handback.md",
+      ".vibe/prompts/doctor-setup.md",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+      ".vibe/hooks.toml",
+      ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/hooks/shared/session-readers/vibe.mjs",
+      ".skilled/commands/doctor/runtime-mirrors.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs",
+      ".vibe/SYNC.md",
+      ".vibe/plugins/README.md",
+      ".skilled/hooks/README.md",
+      ".skilled/hooks/goal/vibe/README.md",
+      "scratch/planning/vibe-parity-matrix.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "handback.md",
+        "kind": "doc",
+        "path": "scratch/handback.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup.md",
+        "kind": "doc",
+        "path": ".vibe/prompts/doctor-setup.md",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-mirrors.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "vibe.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/vibe.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-mirrors.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/runtime-mirrors.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-vibe.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".vibe/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".vibe/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "vibe-parity-matrix.sh",
+        "kind": "script",
+        "path": "scratch/planning/vibe-parity-matrix.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Vibe user already gets the advisor brief, but the measures and checks this packet built read Vibe as if it were not there",
+    "created_at": "2026-11-15T10:20:11Z",
+    "last_save_at": "2026-11-15T10:38:49.281Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md"
+    ],
+    "source_fingerprint": "sha256:d9466938b22fdac9710c39bb58de7189dab464d49af53dd0783effdada8b77b1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c01ded47db4bb6a361d965085410d4e218e67e19dd2e5a3ae961f0ef6995e0c7",
+      "plan.md": "d8b666f0c8b3b4625929a4bc4002b4233a8f5f09a827afc2e5e4a1cf242a9d4a",
+      "tasks.md": "51c7b30465f42d9668bca95e342293a24d1d245e8ed293055e689fbee0d275c1"
+    },
+    "last_active_at": null
+  }
+}

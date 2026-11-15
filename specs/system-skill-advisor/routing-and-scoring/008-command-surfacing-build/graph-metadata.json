@@ -32,7 +32,8 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/027-review-pass-four-remediation",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/028-direct-call-off-switch",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/029-direct-call-kill-switch"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/029-direct-call-kill-switch",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity"
   ],
   "manual": {
     "depends_on": [],
@@ -70,6 +71,7 @@
       "decision-record.md",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      ".vibe/hooks.toml",
       "review/review-report.md",
       "001-command-routing-baseline-corpus/goal.md",
       "002-command-inventory-and-risk-metadata/goal.md",
@@ -83,8 +85,7 @@
       "021-brief-head-parity/goal.md",
       "022-workflow-measure-soundness/goal.md",
       "023-untuned-outcome-evidence/goal.md",
-      ".skilled/commands/design/chart.md",
-      "026-untuned-behaviour-arm/scratch/switch-probe.txt"
+      ".skilled/commands/design/chart.md"
     ],
     "entities": [
       {
@@ -118,6 +119,12 @@
         "source": "derived"
       },
       {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
         "name": "review-report.md",
         "kind": "doc",
         "path": "review/review-report.md",
@@ -127,12 +134,6 @@
         "name": "chart.md",
         "kind": "doc",
         "path": ".skilled/commands/design/chart.md",
-        "source": "derived"
-      },
-      {
-        "name": "switch-probe.txt",
-        "kind": "file",
-        "path": "026-untuned-behaviour-arm/scratch/switch-probe.txt",
         "source": "derived"
       },
       {
@@ -220,13 +221,13 @@
         "source": "derived"
       },
       {
-        "name": "Answer Log",
+        "name": "The Vibe",
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verbatim Operator Answers Each",
+        "name": "Answer Log",
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
@@ -234,7 +235,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-15T09:59:45.266Z",
+    "last_save_at": "2026-11-15T10:39:14.560Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -242,11 +243,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:63ccb5ee4e345991cb791d143ef323c9109ca4a4c9c2a1326fc2e65170c42dbb",
+    "source_fingerprint": "sha256:57073fa4903cd4608a5087b4c697282c967e8afdcad27ee4d7028338d2009738",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8478508a7eccfe3f2fd6fa7787f6bab2e3b7bdc17a929ecb3e4ea50760483dfb",
-      "decision-record.md": "c7d2aa93262a8d2e578ed37aab551a68919bc05d1cc3a70cd53bddac20e6805f"
+      "spec.md": "3f413a43c14593d9f27bfe5f32640a5d32752fa90e072b10129a06bf5e838b94",
+      "decision-record.md": "fed74a7ce42d24192450eed933eba33195750a19b5c8312cdbb9f8adb0c4bf07"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm",
     "last_active_at": "2026-11-15T06:00:13.664Z"

@@ -98,6 +98,9 @@ _memory:
 | Q062 | When the last gates pass, the branch stays unpushed and the operator pushes and opens the pull request. | Not stated. | None | goal.md log |
 | Q063 | The new behaviour arm runs at 864 sessions, 36 rows with two runs each, brief off and on, six runtimes, after the measured token cost of about 334M at the median and 621M at the mean. | Not stated. | None | phase 026, P034 |
 | Q064 | Before choosing the arm size, the operator asked for the token usage per CLI. It was measured from the 144 stored sessions of the last arm and put in the Q063 question. | Not stated. | None | goal.md log |
+| Q065 | Merge `origin/main` and apply main's move: hand-apply main's four ai-council table edits to `command-attach.ts`, regenerate the generated files, and record the floor move the retired command caused as main's change, not this packet's. At the merge the plain holdout reads 2 of 44 and the eval holdout 49, where phase 029 recorded 1 of 44 and 51. | Not stated. | None | goal.md log, phase 030 T001 |
+| Q066 | The Vibe parity work goes in a new phase of this packet, phase 030, not in the Vibe packet or a new packet (answer "C) New 008 phase"). | Not stated. | None | phase 030 |
+| Q067 | The request of 2026-11-15, verbatim: "Analyze the .vibe mistral stuff we've added. Make sure all chat automation stuff also works for that cli runtime." It scopes phase 030 to the packet's own surfaces and hands the rest back. | Not stated. | None | phase 030 spec.md, scratch/handback.md |
 
 ### Answer Log, 2026-11-14
 

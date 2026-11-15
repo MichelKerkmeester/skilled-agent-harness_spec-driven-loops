@@ -308,6 +308,8 @@ and findings belong here.
 | Merge onto origin/main e263e5481e7 | Approved | operator chose 2026-11-15 to merge and hand-apply main's four ai-council table edits to the branch's command-attach.ts (35 conflicts, one in runtime code), regenerate generated files with committed scripts, and record any floor move caused by the retired /deep:ai-council as main's change |
 | Branch on origin/main | Met | merge f582d21924f brings main e263e5481e7 in; 0 behind, unpushed; gates on the merged tree: advisor suite 2137 passed 0 failed, typed recall 24/44, false offers 0/35, switch matrix 14/14; scorer eval holdout 49 is main's own recorded baseline |
 | Branch on origin/main, correction | Partly met | the row above is wrong to say 0 behind: f582d21924f merges main as of e263e5481e7, but other sessions pushed 16 more commits to origin/main (now 544a4092244) while the merge ran, including the session relaunch to in-session handover rename; a catch-up merge is needed before the pull request |
+| Catch-up merge | Done | e58d450985c merges main 544a4092244; main moved 11 more commits by other sessions since, so one final catch-up runs before handoff. Operator asked 2026-11-15 to make all chat automation work on Mistral Vibe and chose a new 008 phase, 030-vibe-runtime-parity |
+| Phase 030 vibe runtime parity | Planned | Level 2 plan: Vibe gets a scorer tool table read from its journal entries, a not-measured runner reason, a doctor wiring row and three mirror rows, a command-document line in its brief, its own observation label and a real-brief proof test, 19 tasks in five lanes, floors at main's merge 24/44, 0/35, 2/44, eval [160,49,21,5], G7 G8 G9 G10 G12 handed back |
 
 ### Deviations and findings
 
