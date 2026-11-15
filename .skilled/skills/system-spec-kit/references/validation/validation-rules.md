@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.14.0
+version: 2.7.15.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -239,7 +239,7 @@ All spec folders require an implementation summary that captures what was built:
 
 ### Nested Packet Changelog (Deprecated)
 
-Packet-local changelogs are deprecated and are not part of the required FILE_EXISTS contract. Completion no longer writes one, and new changelog entries go to `.skilled/changelog/` through `/create:changelog`. The existing files stay and still validate at these paths:
+Packet-local changelogs are deprecated and are not part of the required FILE_EXISTS contract. Completion no longer writes one, and new changelog entries go to `.skilled/changelog/` through `/create:changelog`. The existing files stay as history and still validate at these paths:
 
 | Artifact | Path |
 | --- | --- |

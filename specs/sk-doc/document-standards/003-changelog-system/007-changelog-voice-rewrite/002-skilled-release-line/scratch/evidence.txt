@@ -1,0 +1,30 @@
+## list
+lists/002.txt lines: 62
+## measure before (HEAD text of the 60 queued files)
+files=60 sentences=5001 avg_words=13.7
+sentences_over_15=1731 sentences_over_22=626
+files_with_a_sentence_over_22=50 files_with_hvr_hard_blockers=1
+## measure after
+files=60 sentences=7685 avg_words=9.0
+sentences_over_15=289 sentences_over_22=0
+files_with_a_sentence_over_22=0 files_with_hvr_hard_blockers=0
+## wave 002 driver
+2026-11-15T10:42:18.943Z finished pass=46 restored=5 unchanged=9
+driver exit=0
+## wave 002-retry driver
+2026-11-15T10:50:49.158Z finished pass=5 restored=0 unchanged=0
+driver exit=0
+## wave-verify
+{"listed":62,"keep":51,"restored":9,"missing":0,"problems":2}
+PROBLEM .skilled/changelog/skilled/v4.0.0.0.md: the saved original is not the file at HEAD
+PROBLEM .skilled/changelog/skilled/v4.0.0.12.md: the saved original is not the file at HEAD
+## pilot files against HEAD
+git diff --quiet exit=0
+## changed notes in worktree
+51
+## release bodies
+before backups: 52
+after bodies: 52
+sync loop (gh release edit, then gh release view read-back compare): synced_ok=52 fail=0
+## tokens
+waves 002 and 002-retry worker plus verifier input and output: 4468065

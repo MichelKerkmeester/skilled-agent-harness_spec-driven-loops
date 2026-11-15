@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Phases 15 to 17 made every terminal stop record its gates and fail the verdict on a failed gate, but each step was tested alone",
     "created_at": "2026-11-15T17:32:08Z",
-    "last_save_at": "2026-11-15T18:28:35.632Z",
+    "last_save_at": "2026-11-15T19:15:12.107Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28549175e042c7d6281ff021a860f97e98e17b17a182403172e392ec4165fba2",
+    "source_fingerprint": "sha256:0bd43ba877e19b7c6c83acfe7b42618345ddfeada144730389226f5151fc85a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "32242b20b561bae7458245fedd6e600e75d335062c7ec79a20af28fd47125bd4",
+      "spec.md": "b1541dd773671665b7fbf126048cb9c7b16177e75f92dd6c4f8904dc537f160c",
       "plan.md": "e6299a5efc77aa259f45129dd1beaa055bc36a8faf8529b23e67ff5431e2faf0",
       "tasks.md": "a2930e064a6b1a524cb3f62bbca2cb9b2cc69d7cd589cfad1c388aba231bcd9f",
       "implementation-summary.md": "eca5d811e6bdfb1be64196f7495f996765894656f5d596409726e447b35de43a"

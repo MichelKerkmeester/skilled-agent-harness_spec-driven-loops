@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global component changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # create-changelog
@@ -91,7 +91,7 @@ Auto detection takes the explicit `--bump` flag first, then change-type keywords
 
 Spec folders no longer get changelogs. Changelogs live only under `.skilled/changelog/` and in each skill's own `changelog/` folder. This workflow writes no file under `specs/**/changelog/` and refuses `--nested`.
 
-Existing packet-local files such as `changelog-<packet>-root.md` stay where they are and still validate. The spec-kit nested generator remains only to render them and prints a deprecation notice when it runs.
+Existing packet-local files such as `changelog-<packet>-root.md` stay where they are and still validate. The spec-kit nested generator that rendered them is removed.
 
 ---
 
@@ -131,7 +131,7 @@ A topic phrase is 2 to 6 words from the entry's own text that name what changed.
 It carries no version number and never fits any release the way "bug fixes" would.
 A component entry may keep a `version:` key after the five.
 
-Existing packet-local entries keep the block the deprecated nested generator renders, with an identity phrase derived from the output path.
+Existing packet-local entries keep the block the removed nested generator rendered, with an identity phrase derived from the output path.
 
 ---
 
@@ -351,7 +351,7 @@ Packet-local files are deprecated, so no new one is validated here. `validate_do
 2. Overwrite an existing changelog or reuse an existing version. Extending an untagged `skilled` release entry is the one exception, and it adds to the entry rather than replacing it.
 3. Guess a component folder, or create a missing one.
 4. Write an entry with an empty summary or an empty required section.
-5. Write a new packet-local changelog, or use the deprecated nested generator to create one. Its `--write` only re-renders an existing packet changelog.
+5. Write a new packet-local changelog.
 6. Make the command router or YAML the only workflow contract.
 7. Hide a source-format conflict. Record it and follow the template.
 

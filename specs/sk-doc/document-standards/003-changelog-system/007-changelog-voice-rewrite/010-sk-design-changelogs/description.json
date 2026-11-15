@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs",
+  "description": "Phase 10: sk-design-changelogs",
+  "keywords": [
+    "phase",
+    "sk-design-changelogs"
+  ],
+  "lastUpdated": "2026-11-15T18:40:56.707Z",
+  "specId": "010",
+  "folderSlug": "sk-design-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "007-changelog-voice-rewrite"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_19-40__phase-010-rewrote-64-sk-design-changelogs-6.md"
+  ]
+}

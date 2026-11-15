@@ -254,17 +254,36 @@ function countOnlyFindings(records) {
   }, 0);
 }
 
-// The artifact directory name is the run-stable token this step can derive
-// from the state-log path it was handed.
-function buildStem(mode, eventName, scopeRunId) {
+// A run scopes every row it appends by the session id it opened with, so the
+// close-out reads that id from the run config instead of the folder the
+// artifacts happened to land in. Research records the lineage it inherits
+// beside it, review its own session.
+function runScope(mode, stateLog) {
+  const configName = mode === 'research' ? 'deep-research-config.json' : 'deep-review-config.json';
+  const config = readJson(join(dirname(stateLog), configName)) || {};
+  const lineage = config.lineage || config;
+  const sessionId = lineage.sessionId;
+  // A run whose config is missing or unreadable still needs a run-stable id, and
+  // the artifact folder name is the only one the state-log path carries.
+  const runId = typeof sessionId === 'string' && sessionId !== ''
+    ? sessionId
+    : basename(dirname(stateLog)) || mode;
+  if (mode === 'review') return { runId, sessionId: runId };
+  const parentSessionId = typeof lineage.parentSessionId === 'string' && lineage.parentSessionId !== ''
+    ? lineage.parentSessionId
+    : runId;
+  return { runId, lineageId: parentSessionId };
+}
+
+function buildStem(mode, eventName, scope) {
   const builders = {
     research: (name) => ({
       stem: `deep_research.${name}`,
-      scope: { runId: scopeRunId, lineageId: scopeRunId },
+      scope: { runId: scope.runId, lineageId: scope.lineageId },
     }),
     review: (name) => ({
       stem: `deep_review.${name}`,
-      scope: { runId: scopeRunId, sessionId: scopeRunId },
+      scope: { runId: scope.runId, sessionId: scope.sessionId },
     }),
   };
   return builders[mode](eventName);
@@ -272,11 +291,11 @@ function buildStem(mode, eventName, scopeRunId) {
 
 // The state log is a projection the gateway rebuilds. The staged ledger event
 // is what survives the next refresh.
-function stage(eventDir, scopeRunId, mode, eventRecord) {
+function stage(eventDir, scope, mode, eventRecord) {
   const eventName = eventRecord.event;
   const data = { ...eventRecord };
   delete data.event;
-  const built = buildStem(mode, eventName, scopeRunId);
+  const built = buildStem(mode, eventName, scope);
   writeFileSync(
     join(eventDir, `${eventName}.json`),
     JSON.stringify({ stem: built.stem, scope: built.scope, data }),
@@ -291,7 +310,7 @@ function stage(eventDir, scopeRunId, mode, eventRecord) {
 function closeOut(args) {
   const mode = args.mode;
   const fields = FINDING_FIELDS[mode];
-  const scopeRunId = basename(dirname(args.stateLog)) || mode;
+  const scope = runScope(mode, args.stateLog);
   const registry = readJson(args.registry);
   const evidence = registryEvidence(mode, registry);
   const lineageLogs = lineageStateLogs(args.artifactDir, mode);
@@ -370,7 +389,7 @@ function closeOut(args) {
     const answeredCount = Number(args.answeredCount);
     const totalQuestions = Number(args.totalQuestions);
     if (invariantFailures.length > 0) {
-      stage(args.eventDir, scopeRunId, mode, {
+      stage(args.eventDir, scope, mode, {
         event: 'synthesis_incomplete',
         mode: 'research',
         severity: 'error',
@@ -394,7 +413,7 @@ function closeOut(args) {
       process.exitCode = 2;
       return;
     }
-    stage(args.eventDir, scopeRunId, mode, {
+    stage(args.eventDir, scope, mode, {
       event: 'synthesis_complete',
       totalIterations: counts.totalIterations,
       answeredCount,
@@ -409,7 +428,7 @@ function closeOut(args) {
   const activeP2 = Number(args.activeP2);
   const dimensionCoverage = Number(args.dimensionCoverage);
   if (invariantFailures.length > 0) {
-    stage(args.eventDir, scopeRunId, mode, {
+    stage(args.eventDir, scope, mode, {
       event: 'synthesis_incomplete',
       mode: 'review',
       severity: 'warning',
@@ -433,7 +452,7 @@ function closeOut(args) {
     // Review incompleteness is a warning the workflow still records.
     return;
   }
-  stage(args.eventDir, scopeRunId, mode, {
+  stage(args.eventDir, scope, mode, {
     event: 'synthesis_complete',
     mode: 'review',
     totalIterations: counts.totalIterations,

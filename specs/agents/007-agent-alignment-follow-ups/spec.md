@@ -150,6 +150,10 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 23 | 023-agent-docs-fixes/ | Fix every phase 20 doc finding that phase 22 left | Complete |
 | 24 | 024-terminal-gates-script/ | Compute the deep-review terminal gates with a script and record its result | Complete |
 | 25 | 025-stop-path-live-proof/ | Prove each review stop reason reaches the recorded gates and the verdict | Complete |
+| 26 | 026-closeout-run-identity/ | Scope synthesis closeout rows by the run's session id | Complete |
+| 27 | 027-review-traceability-recording/ | Record traceability results in a shape the coverage gate reads | Complete |
+| 28 | 028-review-scope-recording/ | Count line-suffixed and packet-doc findings as in scope | Complete |
+| 29 | 029-review-verdict-script/ | Derive the final review verdict in one script | Complete |
 
 ### Phase Transition Rules
 
@@ -186,6 +190,10 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 022-agent-source-and-drift-checks | 023-agent-docs-fixes | Every agent tree is checked and the two agent decisions are carried | Roster check prints eight OK rows |
 | 023-agent-docs-fixes | 024-terminal-gates-script | Every phase 20 doc finding is closed | The implementation summary lists each outcome |
 | 024-terminal-gates-script | 025-stop-path-live-proof | The terminal gates are computed from state | `terminal-gates.vitest.ts` passes and the workflow runs the script |
+| 025-stop-path-live-proof | 026-closeout-run-identity | Each stop reason reaches the verdict | `review-stop-path-replay.vitest.ts` passes and the live run recorded `maxDurationReached` |
+| 026-closeout-run-identity | 027-review-traceability-recording | Closeout rows carry the run's ids | The closeout tests read the config's ids |
+| 027-review-traceability-recording | 028-review-scope-recording | Core protocol results reach the coverage gate | A `protocol`-keyed row passes coverage in a test |
+| 028-review-scope-recording | 029-review-verdict-script | In-target findings pass scope | The scope tests pass for suffixed and packet-doc findings |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -205,6 +213,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 - Answered 2026-11-14 (see below), phase 14: are the prompt-improver's Opus and Fable deny rows deliberate policy? The model-eligibility fix in that phase builds to the answer.
 - Phases 6, 8, 10, 11, 12 and 13 raised further questions while planning. Each child's own open-questions section lists them with the default its plan takes, so only the three above blocked a build, and all three are answered.
 - Operator answers, 2026-11-14, through the question tool. Phase 9: the agent stays the one writer of ai-council artifacts, and the registry drops its `persist-artifacts.cjs` step. Phase 14: keep the Opus and Fable rule but move it to the dispatcher, so the workflows pass `model=sonnet`, the Claude copy pins sonnet, the table lives in sk-prompt and the agent keeps a one-line refusal. Phase 8: the main agent owns spec-folder docs, so `orchestrate.md:461` stays and the `@markdown` route at `:444` and the rejection at `:499` go. Next step: rebuild the trigger index, commit the plan on branch 384 without pushing, then build phase 6.
+- Operator answers, 2026-11-15, in chat after phase 29: yes to adding phases 21 to 29 to the v4.0.2.1 changelog and moving the tag, and yes to counting DeepSeek Harness and Mistral Vibe as full runtimes. The changelog gained the computed checks and verdict, the coverage and scope fixes, the Vibe budget and the agent fixes. `README.md`, `CONTRIBUTING.md`, `INSTALL-SKILLED.md` and `.skilled/CROSS-CLI.md` now count eight runtimes. CROSS-CLI keeps each contract for runs dispatched from outside the checkout, because DSH reads no project folder unless a `--patch` names one.
 - Build order: phase 6 first. Phase 7 lands before phase 8, because it edits two lines of `orchestrate.md`. Phase 8's planned size of about 591 lines is re-measured after phases 6 and 7 land.
 <!-- /ANCHOR:questions -->
 

@@ -1411,6 +1411,123 @@ function buildPivotState(eventRecords) {
   };
 }
 
+// Statuses an iteration can report for a protocol. A recorded status is free
+// text that starts with one of these words; anything else is not a result.
+const TRACEABILITY_STATUS_WORDS = new Set([
+  'pass', 'partial', 'fail', 'blocked', 'pending', 'deferred', 'skipped',
+]);
+
+// Keys a traceability map uses for its own bookkeeping rather than for a
+// protocol, so none of them is ever read as a protocol id.
+const TRACEABILITY_META_KEYS = new Set([
+  'results', 'summary', 'notes', 'note', 'evidenceRefs', 'evidence',
+  'status', 'iteration', 'core', 'overlay',
+]);
+
+// The review contract's gate class per protocol. A recorded result that omits
+// its class is classed here, so an omitted field cannot quietly turn a hard
+// protocol into an advisory one or the reverse.
+const TRACEABILITY_PROTOCOL_GATE_CLASSES = {
+  spec_code: 'hard',
+  checklist_evidence: 'hard',
+  skill_agent: 'advisory',
+  agent_cross_runtime: 'advisory',
+  feature_catalog_code: 'advisory',
+  playbook_capability: 'advisory',
+};
+
+// A status that records no run for a protocol. Such a result says the protocol
+// was not exercised in that pass, not that an earlier verdict was reversed.
+const TRACEABILITY_UNDECIDED_STATUSES = new Set(['pending', 'deferred', 'skipped']);
+
+/**
+ * Parse a recorded protocol status into one of the known words.
+ *
+ * Records carry free text such as `"deferred - same"` or `"partial; claim not
+ * adjudicated"`, where the leading word is the status and the rest is the
+ * reviewer's note. Text that does not start with a known status word is not a
+ * result, and reading a status out of it would credit the protocol with a
+ * verdict nobody recorded.
+ *
+ * @param {*} value - Recorded status value.
+ * @returns {string} Normalized status, or '' when the value carries none.
+ */
+function parseTraceabilityStatus(value) {
+  const word = normalizeText(value)
+    .split(/\s+/u)[0]
+    .toLowerCase()
+    .replace(/^[^a-z0-9]+|[^a-z0-9]+$/gu, '');
+  if (!word) return '';
+  if (word === 'n/a') return 'notApplicable';
+  const collapsed = word.replace(/[_-]+/gu, '');
+  if (collapsed === 'notapplicable') return 'notApplicable';
+  return TRACEABILITY_STATUS_WORDS.has(collapsed) ? collapsed : '';
+}
+
+/**
+ * Build one protocol result from a recorded status string or result object.
+ *
+ * @param {string} protocolId - Protocol the result belongs to.
+ * @param {string|Object} value - Recorded status string or result object.
+ * @returns {Object|null} Normalized result, or null when it carries no status.
+ */
+function traceabilityResult(protocolId, value) {
+  const record = value !== null && typeof value === 'object' && !Array.isArray(value)
+    ? value
+    : { status: value };
+  const status = parseTraceabilityStatus(record.status);
+  if (!status) return null;
+  return {
+    ...record,
+    protocolId,
+    status,
+    gateClass: normalizeText(record.gateClass)
+      || TRACEABILITY_PROTOCOL_GATE_CLASSES[protocolId]
+      || 'advisory',
+    applicable: typeof record.applicable === 'boolean' ? record.applicable : status !== 'notApplicable',
+  };
+}
+
+/**
+ * Normalize one iteration's `traceabilityChecks` into protocol result objects.
+ *
+ * Iterations record the same checks in several shapes: a `results` array keyed
+ * by `protocolId` or by the shorter `protocol`, and protocol-to-status maps,
+ * whole or split under `core` and `overlay`. The coverage gate reads a
+ * `protocolId` and a known status, so every shape is folded into that one form
+ * here rather than taught to the gate.
+ *
+ * @param {*} traceabilityChecks - Recorded `traceabilityChecks` value.
+ * @returns {Array<Object>} Normalized protocol results.
+ */
+function normalizeTraceabilityChecks(traceabilityChecks) {
+  const source = traceabilityChecks !== null && typeof traceabilityChecks === 'object'
+    && !Array.isArray(traceabilityChecks)
+    ? traceabilityChecks
+    : {};
+  const normalized = [];
+  for (const entry of Array.isArray(source.results) ? source.results : []) {
+    const protocolId = normalizeText(entry?.protocolId) || normalizeText(entry?.protocol);
+    if (!protocolId) continue;
+    const result = traceabilityResult(protocolId, entry);
+    if (result) normalized.push(result);
+  }
+  // A protocol map is any object whose values are status strings or result
+  // objects; its bookkeeping keys are named above and never read as protocols.
+  for (const map of [source, source.core, source.overlay]) {
+    if (map === null || typeof map !== 'object' || Array.isArray(map)) continue;
+    for (const [key, value] of Object.entries(map)) {
+      if (TRACEABILITY_META_KEYS.has(key)) continue;
+      const isStatusObject = value !== null && typeof value === 'object'
+        && !Array.isArray(value) && typeof value.status === 'string';
+      if (typeof value !== 'string' && !isStatusObject) continue;
+      const result = traceabilityResult(key, value);
+      if (result) normalized.push(result);
+    }
+  }
+  return normalized;
+}
+
 /**
  * Aggregate the latest result for each traceability protocol into the registry.
  * Iterations may report only the protocols exercised in that pass.
@@ -1418,31 +1535,35 @@ function buildPivotState(eventRecords) {
 function buildTraceabilityRollup(iterationRecords) {
   const latestByProtocol = new Map();
   for (const record of Array.isArray(iterationRecords) ? iterationRecords : []) {
-    const results = record?.traceabilityChecks?.results;
-    if (!Array.isArray(results)) continue;
-    for (const result of results) {
-      const protocolId = normalizeText(result?.protocolId);
-      if (protocolId) latestByProtocol.set(protocolId, result);
+    for (const result of normalizeTraceabilityChecks(record?.traceabilityChecks)) {
+      const previous = latestByProtocol.get(result.protocolId);
+      // A later pass reports only the protocols it ran, so a pass that records
+      // one as undecided must not erase the result an earlier pass reached.
+      if (previous && TRACEABILITY_UNDECIDED_STATUSES.has(result.status)
+        && !TRACEABILITY_UNDECIDED_STATUSES.has(previous.status)) {
+        continue;
+      }
+      latestByProtocol.set(result.protocolId, result);
     }
   }
 
   const results = [...latestByProtocol.values()];
-  const statuses = results.map((result) => normalizeText(result.status).toLowerCase());
+  const statuses = results.map((result) => result.status);
   const applicable = results.filter((result) => result.applicable !== false);
 
   return {
     summary: {
       required: applicable.length,
-      executed: applicable.filter((result) => !['', 'pending', 'deferred', 'skipped'].includes(
-        normalizeText(result.status).toLowerCase(),
-      )).length,
+      executed: applicable.filter(
+        (result) => !TRACEABILITY_UNDECIDED_STATUSES.has(result.status),
+      ).length,
       pass: statuses.filter((status) => status === 'pass').length,
       partial: statuses.filter((status) => status === 'partial').length,
       fail: statuses.filter((status) => status === 'fail').length,
       blocked: statuses.filter((status) => status === 'blocked').length,
-      notApplicable: statuses.filter((status) => status === 'not_applicable').length,
+      notApplicable: statuses.filter((status) => status === 'notApplicable').length,
       gatingFailures: applicable.filter((result) => result.gateClass === 'hard'
-        && ['partial', 'fail', 'blocked'].includes(normalizeText(result.status).toLowerCase())).length,
+        && ['partial', 'fail', 'blocked'].includes(result.status)).length,
     },
     results,
   };
@@ -2575,6 +2696,7 @@ module.exports = {
   SEVERITY_KEYS,
   SEVERITY_WEIGHTS,
   buildGraphConvergenceRollup,
+  normalizeTraceabilityChecks,
   parseIterationFile,
   parseJsonl,
   parseJsonlDetailed,

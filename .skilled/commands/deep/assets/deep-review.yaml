@@ -601,7 +601,7 @@ workflow:
             3. Fail before dispatch with line-numbered validation errors when any manifest entry is invalid; otherwise set scope = the validated manifest paths in declared order
             4. When no manifest exists, discover implementation files referenced in the canonical spec artifacts
             5. Discover test files associated with the implementation files
-            6. Set scope = all discovered implementation and test files
+            6. Set scope = the packet's own canonical docs plus all discovered implementation and test files
           skill: |
             1. Read SKILL.md from .skilled/skills/{skill_name}/
             2. Discover references/, assets/, scripts/ contents
@@ -1860,15 +1860,32 @@ workflow:
       # Final line of iteration-NNN.md MUST be exactly: "Review verdict: PASS" / "Review verdict: CONDITIONAL" / "Review verdict: FAIL"
       step_derive_verdict:
         action: "Derive review verdict from accumulated findings"
-        algorithm: |
-          if p0_count > 0 or len(failed_required_gate_ids) > 0:
-            verdict = "FAIL"
-          elif p1_count > 0:
-            verdict = "CONDITIONAL"
-          else:
-            verdict = "PASS"
-          has_advisories = (verdict == "PASS" and p2_count > 0)
-          ac_coverage_signal is advisory while the validation rule is INFO/default-off; include it in synthesis traceability, but do not change the exact verdict enum from this signal alone.
+        note: "ac_coverage_signal is advisory while the validation rule is INFO/default-off; include it in synthesis traceability, but do not change the exact verdict enum from this signal alone."
+        branch_on: "config.fanout"
+        if_present:
+          command: |
+            node .skilled/skills/system-deep-loop/runtime/scripts/review-verdict.cjs \
+              --active-p0 {p0_count} \
+              --active-p1 {p1_count} \
+              --active-p2 {p2_count} \
+              --failed-gate-ids '{failed_required_gate_ids}'
+          working_directory: "{repo_root}"
+          wait_for_completion: true
+          bind_from_output:
+            verdict: "verdict"
+            has_advisories: "has_advisories"
+          on_fail: "Halt with STATUS=FAIL through step_release_lock. The values the merge bound are the authority on a fan-out root, so an unreadable bound value must stop the run rather than let a verdict be guessed."
+        if_absent:
+          command: |
+            node .skilled/skills/system-deep-loop/runtime/scripts/review-verdict.cjs \
+              --registry-path "{state_paths.findings_registry}" \
+              --state-log "{state_paths.state_log}"
+          working_directory: "{repo_root}"
+          wait_for_completion: true
+          bind_from_output:
+            verdict: "verdict"
+            has_advisories: "has_advisories"
+          on_fail: "Halt with STATUS=FAIL through step_release_lock. A non-zero exit means the registry or the state log could not be read, so this stop has no verdict yet and none may be assumed."
         outputs:
           - verdict: "PASS | CONDITIONAL | FAIL"
           - has_advisories: "Boolean true when verdict is PASS and any active P2 findings exist"

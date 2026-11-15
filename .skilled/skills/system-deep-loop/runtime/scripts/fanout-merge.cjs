@@ -26,6 +26,11 @@ const {
   findingKeys,
 } = require('../lib/deep-loop/iteration-findings.cjs');
 const { assertKnownFlags } = require('./lib/cli-guards.cjs');
+const {
+  activeReviewSeverityCounts,
+  deriveReviewVerdict,
+  lineageFailedRequiredGateIds,
+} = require('./review-verdict.cjs');
 
 const SEVERITY_RANK = { P0: 3, P1: 2, P2: 1 };
 
@@ -934,14 +939,12 @@ function mergeReviewRegistries(lineageData, options = {}) {
   const failedRequiredGateIds = [...new Set(lineageData.flatMap((lineage) => lineageFailedRequiredGateIds(lineage)))].sort();
 
   // Strongest-restriction verdict
-  let mergedVerdict;
-  if (activeP0 > 0 || failedRequiredGateIds.length > 0) {
-    mergedVerdict = 'FAIL';
-  } else if (activeP1 > 0) {
-    mergedVerdict = 'CONDITIONAL';
-  } else {
-    mergedVerdict = 'PASS';
-  }
+  const { verdict: mergedVerdict } = deriveReviewVerdict({
+    activeP0,
+    activeP1,
+    activeP2,
+    failedRequiredGateIds,
+  });
 
   // Same channel the registry-shape mismatches already use, so an unranked severity reaches
   // both the run's stderr and the merged registry a release decision reads.
@@ -979,30 +982,6 @@ function mergeReviewRegistries(lineageData, options = {}) {
 // 5. ATTRIBUTION
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Per-lineage attribution verdict must apply the same active-disposition guard
-// mergeReviewRegistries uses, not the registry's raw findingsBySeverity — a raw
-// per-lineage count can include findings that were since resolved, which would
-// let the attribution table's verdict diverge from the merged verdict it reports on.
-function activeReviewSeverityCounts(registry) {
-  const openFindings = Array.isArray(registry?.openFindings) ? registry.openFindings : [];
-  const active = openFindings.filter((finding) => (finding?.disposition ?? finding?.status) === 'active');
-  return {
-    P0: active.filter((finding) => finding.severity === 'P0').length,
-    P1: active.filter((finding) => finding.severity === 'P1').length,
-  };
-}
-
-// The state log is the first source: the reducer can run before the terminal-gates
-// row is written, so a registry can predate it. A required gate the lineage still
-// failed is a stop the merged verdict must not read as a pass.
-function lineageFailedRequiredGateIds({ registry, stateRecords }) {
-  const latest = (Array.isArray(stateRecords) ? stateRecords : [])
-    .filter((record) => record?.type === 'event' && record?.event === 'terminal_gates')
-    .at(-1);
-  const ids = latest ? latest.failedRequiredGateIds : registry?.terminalGates?.failedRequiredGateIds;
-  return Array.isArray(ids) ? ids.map((id) => String(id)).filter(Boolean) : [];
-}
-
 /**
  * Build fanout-attribution.md summarizing per-lineage convergence, iters, salvage, model.
  *
@@ -1028,11 +1007,12 @@ function buildAttributionMd(lineageData, loopType, options = {}) {
     const severityCounts = loopType === 'review' ? activeReviewSeverityCounts(registry) : null;
     const verdict =
       loopType === 'review'
-        ? severityCounts.P0 > 0 || lineageFailedRequiredGateIds({ registry, stateRecords }).length > 0
-          ? 'FAIL'
-          : severityCounts.P1 > 0
-          ? 'CONDITIONAL'
-          : 'PASS'
+        ? deriveReviewVerdict({
+          activeP0: severityCounts.P0,
+          activeP1: severityCounts.P1,
+          activeP2: severityCounts.P2,
+          failedRequiredGateIds: lineageFailedRequiredGateIds({ registry, stateRecords }),
+        }).verdict
         : 'n/a';
     lines.push(`| ${label} | ${kind ?? 'unknown'} | ${model ?? 'unknown'} | ${iters} | ${convergenceScore} | ${salvage} | ${refusedLineages.has(label) ? 'REFUSED' : verdict} |`);
   }

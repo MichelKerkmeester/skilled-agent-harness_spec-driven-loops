@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/026-closeout-run-identity",
+  "description": "Phase 26: closeout-run-identity",
+  "keywords": [
+    "phase",
+    "closeout-run-identity"
+  ],
+  "lastUpdated": "2026-11-15T19:35:46.833Z",
+  "specId": "026",
+  "folderSlug": "closeout-run-identity",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_20-35__closeout-rows-now-carry-the-run-s-session-id-from.md"
+  ]
+}

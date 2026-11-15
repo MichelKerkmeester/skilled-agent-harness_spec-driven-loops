@@ -1,5 +1,5 @@
 {
-  "corpusHash": "172fab6d9a776ece92c951896e989310e06b79e6fa8ae685e53b21155db0b24d",
+  "corpusHash": "0e925915a99698bfe88e2e72330283c1c762ce4031c1a5e61e295aa64cad1cb0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27617,
+  "includedPathCount": 27696,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6609,6 +6609,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.13.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.14.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.15.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.16.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
@@ -6845,6 +6846,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -6853,7 +6855,6 @@
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/never-infer-release-line.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/route-skilled-release-entry.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/skip-release-for-component.md",
-    ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/search-metadata/render-nested-identity-phrase.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/search-metadata/write-global-entry-metadata.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/topology/route-global-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/topology/route-phase-child-nested.md",
@@ -7277,6 +7278,7 @@
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.4.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.5.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.6.0.md",
+    ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.7.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/scope-gate/accuracy-outranks-the-standard.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/scope-gate/code-and-quotations-untouched.md",
@@ -8715,6 +8717,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.13.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.2.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.13.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -8787,7 +8790,6 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/markdown-link-integrity-guard.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/measured-behavior-block.md",
-    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/nested-changelog-generator.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md",
@@ -8899,7 +8901,6 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/main-agent-review-and-verdict-handoff.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/nested-changelog-generator.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/no-symlinks-in-lib-tree.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-sweep-stop-hook-activation.md",
@@ -8985,7 +8986,6 @@
     ".skilled/skills/system-spec-kit/references/workflows/execution-methods.md",
     ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
     ".skilled/skills/system-spec-kit/references/workflows/intake-contract.md",
-    ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
     ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
     ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
     ".skilled/skills/system-spec-kit/references/workflows/rename-pattern.md",
@@ -9093,9 +9093,6 @@
     ".skilled/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
     ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
     ".skilled/skills/system-spec-kit/templates/README.md",
-    ".skilled/skills/system-spec-kit/templates/changelog/README.md",
-    ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
-    ".skilled/skills/system-spec-kit/templates/changelog/root.md",
     ".skilled/skills/system-spec-kit/templates/examples/README.md",
     ".skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md",
     ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
@@ -9556,6 +9553,22 @@
     "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/review-report.md",
     "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/026-closeout-run-identity/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/026-closeout-run-identity/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/026-closeout-run-identity/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/026-closeout-run-identity/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/027-review-traceability-recording/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/027-review-traceability-recording/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/027-review-traceability-recording/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/027-review-traceability-recording/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/028-review-scope-recording/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/028-review-scope-recording/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/028-review-scope-recording/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/028-review-scope-recording/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -15997,6 +16010,67 @@
     "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/timeline.md",
     "specs/sk-doc/document-standards/004-security-policy-alignment/goal.md",
@@ -27646,10 +27720,15 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/fable-plan-verification.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/fanout-attribution.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/review-report.md",
-    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md",
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/acceptance-criteria.md",
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/plan.md",
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/spec.md",
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9d16265afd4fb39eab5b267c75ccb185fd8d72a7490a015c9e3352407c1ebad6",
+  "manifestHash": "4ff7d1af7c43389792d379d72f36bc82fd41feec9c0a7b037e1a388f8cc5e3e4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28869,6 +28948,22 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/026-closeout-run-identity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/027-review-traceability-recording/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/028-review-scope-recording/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/scratch",
       "reason": "excluded directory"
     },
     {
@@ -34289,6 +34384,58 @@
     },
     {
       "path": "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/scratch",
       "reason": "excluded directory"
     },
     {
@@ -40001,6 +40148,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/scratch",
       "reason": "excluded directory"
     },
     {

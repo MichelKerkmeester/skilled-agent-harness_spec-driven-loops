@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.14.0
+version: 1.6.15.0
 ---
 
 # Folder Structure Reference
@@ -54,7 +54,6 @@ templates/
 │
 ├── spec-kit-docs.json              # Level contract resolved by create.sh
 ├── examples/               # Rendered examples by Level
-├── changelog/              # Deprecated packet changelog templates, kept to re-render existing files
 └── scratch/                # Local ignored render workspace
 ```
 

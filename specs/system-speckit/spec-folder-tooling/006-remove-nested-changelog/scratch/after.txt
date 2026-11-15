@@ -1,0 +1,39 @@
+## build
+build exit=0
+## vitest cli
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |cli| tests/hook-registration-sync.vitest.ts > sync-hook-registrations.cjs > renders each runtime in its own wrapper dialect from one binding
+ FAIL  |cli| tests/playbook-provenance-paths.vitest.ts > playbook provenance lines > every file carries exactly one provenance line in one of the two forms
+ FAIL  |cli| tests/validate-runs-every-registry-rule.vitest.ts > validate.sh runs every registry rule > reports an entry for every rule id on a fresh Level 2 scaffold
+ Test Files  3 failed | 208 passed | 3 skipped (214)
+      Tests  3 failed | 2597 passed | 20 skipped (2620)
+## test:legacy
+exit=0
+Result: passed=27 failed=0
+## test:validation
+Results: 12 passed, 0 failed
+Results: 2 passed, 0 failed
+  Results: 12 passed, 0 failed (of 12)
+## sk-doc pytest
+443 passed, 1 warning in 116.12s (0:01:56)
+## manifest test
+ℹ pass 48
+ℹ fail 0
+## packet changelogs (REQ-003 find, z_archive pruned)
+    1410
+## vitest cli, second full run
+The first run also failed tests/validate-runs-every-registry-rule.vitest.ts. It passed run alone (1 passed) and in this second full run.
+ FAIL  |cli| tests/hook-registration-sync.vitest.ts (pre-existing, also in baseline)
+ FAIL  |cli| tests/playbook-provenance-paths.vitest.ts (pre-existing, also in baseline)
+ Test Files  2 failed | 209 passed | 3 skipped (214)
+      Tests  2 failed | 2598 passed | 20 skipped (2620)
+Delta vs baseline: -1 test file, -13 tests (nested-changelog.vitest.ts: 12 cases, one it.each runs twice). Failures unchanged.
+## REQ-001 search
+.skilled/changelog/skilled/v3+/v3.2.1.0.md
+.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl
+## card sync
+CARD SYNC OK
+## release entries: shape and HVR
+.skilled/skills/system-spec-kit/changelog/v2.13.3.0.md shape_exit=0 hard blockers:          0
+.skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.3.0.md shape_exit=0 hard blockers:          0
+.skilled/skills/sk-doc/changelog/v2.9.16.0.md shape_exit=0 hard blockers:          0

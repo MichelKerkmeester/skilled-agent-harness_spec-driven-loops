@@ -98,6 +98,7 @@ Each row identifies one child phase and its purpose.
 | specs/sk-doc/document-standards/003-changelog-system/004-changelog-section-spacing/ | Phase | 004-changelog-section-spacing | Sets section spacing for entries and release notes. |
 | specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/ | Phase | 005-concise-release-format | Bounds the expanded format and adds the changelog shape gate. |
 | specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/ | Phase | 006-remove-release-size-limit | Removes the file-total line ceiling from release notes. |
+| specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/ | Phase | 007-changelog-voice-rewrite | Rewrites every skill and release changelog in short, plain sentences that keep every fact. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -115,6 +116,7 @@ Each row identifies one child phase and its purpose.
 | 4 | `004-changelog-section-spacing/` | Apply consistent spacing to entries and release notes | Complete |
 | 5 | `005-concise-release-format/` | Bound the expanded format, model it on the v4.0.1.0 entry and block drafts that break its ceilings | Complete |
 | 6 | `006-remove-release-size-limit/` | Remove the file-total line ceiling so an entry runs as long as its release needs | Complete |
+| 7 | `007-changelog-voice-rewrite/` | Rewrite the 1,571 skill and release changelogs to the Human Voice Rules with shorter sentences | Complete |
 
 ### Phase Transition Rules
 
@@ -132,6 +134,7 @@ Each row identifies one child phase and its purpose.
 | 003-skilled-release-changelog | 004-changelog-section-spacing | 003-skilled-release-changelog validates on its own | validate.sh --strict on 003-skilled-release-changelog |
 | 004-changelog-section-spacing | 005-concise-release-format | 004-changelog-section-spacing validates on its own | validate.sh --strict on 004-changelog-section-spacing |
 | 005-concise-release-format | 006-remove-release-size-limit | 005-concise-release-format validates on its own | validate.sh --strict on 005-concise-release-format |
+| 006-remove-release-size-limit | 007-changelog-voice-rewrite | 006-remove-release-size-limit validates on its own | validate.sh --strict on 006-remove-release-size-limit |
 <!-- /ANCHOR:phase-map -->
 
 ---
