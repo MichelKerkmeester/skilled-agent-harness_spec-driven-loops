@@ -242,10 +242,10 @@ Do not use `research/deep-research-strategy.md`, `research/findings-registry.jso
 Record exactly ONE canonical iteration record through the append gateway — never write `research/deep-research-state.jsonl` directly. Build the record as a single JSON object and write it to a one-record event file (this JSON is that payload):
 
 ```json
-{"type":"iteration","iteration":N,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","run":N,"status":"complete","focus":"[focus area]","findingsCount":N,"newInfoRatio":0.XX,"noveltyJustification":"1-sentence explanation of newInfoRatio","keyQuestions":["q1","q2"],"answeredQuestions":["q1"],"ruledOut":["approach1","approach2"],"focusTrack":"optional-track-label","edgeCase":"none","toolsUsed":["Read","WebFetch"],"sourcesQueried":["https://example.com/doc","src/file.ts:42"],"graphEvents":[]}
+{"type":"iteration","iteration":N,"runId":"<run session id>","sessionId":"<run session id>","lineageId":"<run session id>","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","run":N,"status":"complete","focus":"[focus area]","findingsCount":N,"newInfoRatio":0.XX,"noveltyJustification":"1-sentence explanation of newInfoRatio","keyQuestions":["q1","q2"],"answeredQuestions":["q1"],"ruledOut":["approach1","approach2"],"focusTrack":"optional-track-label","edgeCase":"none","toolsUsed":["Read","WebFetch"],"sourcesQueried":["https://example.com/doc","src/file.ts:42"],"graphEvents":[]}
 ```
 
-The gateway stamps the event time, which the projection writes back as `timestamp`, so the record carries no timing field.
+The gateway stamps the event time, which the projection writes back as `timestamp`, so the record carries no timing field. `runId`, `sessionId` and `lineageId` all take the run's session id, read from the config's `lineage.sessionId`. The gateway refuses a record without them as `stable-identity-missing`.
 
 **Status values**: `complete | timeout | error | stuck | insight | thought`
 - `complete`: Normal evidence gathering with new findings

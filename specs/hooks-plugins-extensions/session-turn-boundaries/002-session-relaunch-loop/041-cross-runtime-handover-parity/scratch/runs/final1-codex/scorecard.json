@@ -1,0 +1,34 @@
+{
+  "runtime": "codex",
+  "label": "final1",
+  "trustDialogs": 0,
+  "steps": {
+    "notePrepared": true,
+    "signalled": true,
+    "relaunched": true,
+    "noteClosed": false,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "noteStatus": "claimed",
+  "carry": {
+    "model": "kept",
+    "effort": "kept",
+    "name": "not-set",
+    "provider": "not-set"
+  },
+  "seconds": {
+    "startToPrepare": 30.8,
+    "prepareToSignal": 5.9,
+    "signalToRelaunch": 0.1,
+    "startToClosed": null
+  },
+  "problems": [],
+  "firstLaunch": "codex --no-daemon -m gpt-6-luna -c model_reasoning_effort=low --dangerously-bypass-approvals-and-sandbox Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-relaunch/README.md, name its first heading and repeat the code word ORCHID-11177. Start by reading the README. Gate 3: D) Skip, no spec folder.",
+  "relaunchArgs": "codex --no-daemon -m gpt-6-luna -c model_reasoning_effort=\"low\" [session-relaunch] claim and continue handoff /Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity/.skilled/skills/.state/session-relaunch/handoffs/20261114T215318Z-01a1dc0c-abdb-72b2-94cc-dc97a86a4b44.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session) --dangerously-bypass-approvals-and-sandbox",
+  "score": "4/5"
+}

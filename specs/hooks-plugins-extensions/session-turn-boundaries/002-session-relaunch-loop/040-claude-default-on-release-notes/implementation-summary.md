@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes"
-    last_updated_at: "2026-11-14T20:01:19Z"
+    last_updated_at: "2026-11-14T22:27:32Z"
     last_updated_by: "generate-context"
-    recent_action: "Claude default on, release notes and README rewritten, gate green"
-    next_safe_action: "Wait for the operator to approve merge and push"
+    recent_action: "Merged and pushed to main, release tag republished at c1dbb1bcc4"
+    next_safe_action: "Continue cross-runtime handover work in phase 041"
     packet_purpose: "Purpose: A Claude Code session hands over by default while every other runtime stays off until its switch is set, and the v4.0.2.1 release notes and root README describe every handover change in the existing changelog style."
     blockers: []
     key_files:
@@ -21,14 +21,14 @@ _memory:
       - ".skilled/changelog/skilled/v4.0.2.1.md"
       - "README.md"
     session_dedup:
-      fingerprint: "sha256:d274b08c357a4d72de05f1b42bac678fb5351e8456aa03dfe2748a110a5d5b71"
+      fingerprint: "sha256:f335cefc7acb33dbe9cde8b9ba5b95cefd310419509d7e2ddbfb350e27a88464"
       session_id: "scaffold-040-claude-default-on-release-notes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "b726ec67-1d85-4833-b219-c038e184d696"
-      workspace: "/Users/michelkerkmeester/worktrees/public/390-claude-default-on-release-notes"
-      savedAt: "2026-11-14T20:01:19Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity"
+      savedAt: "2026-11-14T22:27:32Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

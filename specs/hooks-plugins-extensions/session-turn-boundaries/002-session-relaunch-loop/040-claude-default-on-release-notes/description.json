@@ -11,7 +11,7 @@
     "release",
     "notes"
   ],
-  "lastUpdated": "2026-11-14T20:01:19.582Z",
+  "lastUpdated": "2026-11-14T22:27:32.950Z",
   "specId": "040",
   "folderSlug": "claude-default-on-release-notes",
   "parentChain": [
@@ -19,8 +19,9 @@
     "session-turn-boundaries",
     "002-session-relaunch-loop"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "14-11-26_21-01__claude-code-session-handover-is-now-on-by-default.md"
+    "14-11-26_21-01__claude-code-session-handover-is-now-on-by-default.md",
+    "14-11-26_23-27__recorded-the-operator-answers-that-landed-phase.md"
   ]
 }

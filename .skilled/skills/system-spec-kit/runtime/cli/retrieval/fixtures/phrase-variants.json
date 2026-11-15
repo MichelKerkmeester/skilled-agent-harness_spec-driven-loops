@@ -1,5 +1,5 @@
 {
-  "manifestHash": "18e500db994b5c89955723f96c6ac73f094132479ff973929f417892bde5ce1a",
+  "manifestHash": "5f45e98f3d23153de2fccb250b8a4d9eef4d764a78d6566541c7d46ddcabff2f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6872,6 +6872,9 @@
     "039 token aware chunking tasks": [
       "039 token-aware chunking tasks"
     ],
+    "040 claude default on release notes operator decisions": [
+      "040-claude-default-on-release-notes operator decisions"
+    ],
     "040 embedding row reset": [
       "040 embedding row reset"
     ],
@@ -6907,6 +6910,9 @@
     ],
     "041 cocoindex ipc observability": [
       "041 cocoindex ipc observability"
+    ],
+    "041 cross runtime handover parity operator decisions": [
+      "041-cross-runtime-handover-parity operator decisions"
     ],
     "041 implementation plan": [
       "041 implementation plan"
@@ -15005,6 +15011,9 @@
     ],
     "bind single entry executors to single path tasks": [
       "bind single entry executors to single path tasks"
+    ],
+    "binding after config read": [
+      "binding after config read"
     ],
     "binding block check": [
       "binding block check"
@@ -32802,6 +32811,21 @@
     ],
     "cross runtime goal state": [
       "cross-runtime goal state"
+    ],
+    "cross runtime handover parity": [
+      "cross runtime handover parity"
+    ],
+    "cross runtime handover parity acceptance criteria": [
+      "cross runtime handover parity acceptance criteria"
+    ],
+    "cross runtime handover parity implementation summary": [
+      "cross runtime handover parity implementation summary"
+    ],
+    "cross runtime handover parity plan": [
+      "cross runtime handover parity plan"
+    ],
+    "cross runtime handover parity tasks": [
+      "cross runtime handover parity tasks"
     ],
     "cross runtime hook parity": [
       "cross runtime hook parity"
@@ -65360,6 +65384,9 @@
     "live hop and notice reason tasks": [
       "live hop and notice reason tasks"
     ],
+    "live hop harness": [
+      "live hop harness"
+    ],
     "live mcp probe contract": [
       "live MCP probe contract"
     ],
@@ -77250,6 +77277,9 @@
     "opencode native surfaces tasks": [
       "opencode native surfaces tasks"
     ],
+    "opencode nested run misread": [
+      "opencode nested run misread"
+    ],
     "opencode nested run waiver": [
       "opencode nested run waiver"
     ],
@@ -85456,6 +85486,9 @@
     ],
     "pi no extensions read only hardening": [
       "pi no-extensions read-only hardening"
+    ],
+    "pi nudge steer turn end": [
+      "pi nudge steer turn end"
     ],
     "pi one line entry files": [
       "pi one-line entry files"
@@ -104085,6 +104118,9 @@
     "session handover 2026 05 18 evening": [
       "session handover 2026-05-18 evening"
     ],
+    "session handover pi opencode codex": [
+      "session handover pi opencode codex"
+    ],
     "session health check": [
       "session health check"
     ],
@@ -108711,6 +108747,9 @@
     "sk create agent 1 0 1 2": [
       "sk-create-agent 1.0.1.2"
     ],
+    "sk create agent 1 0 10 0": [
+      "sk-create-agent 1.0.10.0"
+    ],
     "sk create agent 1 0 2 0": [
       "sk-create-agent 1.0.2.0"
     ],
@@ -108764,6 +108803,9 @@
     ],
     "sk create agent v1 0 1 2": [
       "sk-create-agent v1.0.1.2"
+    ],
+    "sk create agent v1 0 10 0": [
+      "sk-create-agent v1.0.10.0"
     ],
     "sk create agent v1 0 2 0": [
       "sk-create-agent v1.0.2.0"

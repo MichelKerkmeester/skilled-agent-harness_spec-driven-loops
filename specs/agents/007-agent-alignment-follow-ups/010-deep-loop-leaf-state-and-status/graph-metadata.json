@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`deep-research.md` tells the leaf to set status `error` when source recovery fails, while its own status rule keeps `error` for state corruption and the workflow halts after 3 consecutive errors",
     "created_at": "2026-11-14T20:19:21Z",
-    "last_save_at": "2026-11-14T23:57:16.506Z",
+    "last_save_at": "2026-11-15T05:24:49.764Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a899991ed893d71f2c805858a169f2c998d3bb143195e66f39eed611b63d3908",
+    "source_fingerprint": "sha256:ad1df05ce05023abf41aced869c5c818e60a3b78be7739da2c1b844ab3d3c797",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "89cf587330384448cf4823c5f9db48b7ee36fdf68fcc167a734704e46ccaa994",
+      "spec.md": "127cb83386512e8091c944ac273ced712ff70473024aa4cb4dbe2a1537c71ce0",
       "plan.md": "2fee2e19d6050d9c019991cbe440a8513e2292f0500752862c283761abfe223e",
       "tasks.md": "3cf126266d609d9d48b468d8e4294c28b2e57ffb0a9ecff78201fe6e445015a2",
-      "implementation-summary.md": "270b29bc733bd145a7c884c2de84e5e48c62114d4fac58ab3b4bbda07ce8f957"
+      "implementation-summary.md": "1885bb68f1c934e1480babea8deed7fd8710ab6586f14de66f74601311d194f5"
     },
     "last_active_at": null
   }
