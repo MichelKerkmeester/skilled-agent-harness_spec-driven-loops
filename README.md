@@ -625,7 +625,7 @@ The runtime is self-contained and MCP-free. It declares its own dependency manif
 
 Every loop keeps its progress in files, not in the chat, and those files are the single source of truth. A typed, append-only event ledger records each iteration. The `deep-*-state.jsonl` you read is a projection the runtime rebuilds from that ledger.
 
-There is one way in. A leaf records its iteration through the append gateway. The gateway authorizes the write, fences it behind the ledger, returns a receipt, then refreshes the state projection. Nothing writes the state file directly, so the log never drifts from the ledger.
+There is one way in. A leaf records its iteration through the append gateway. The gateway authorizes the write, fences it behind the ledger, returns a receipt, then refreshes the state projection. On a ledger-backed log every row the loop writes goes through the append gateway, so the log never drifts from the ledger. A log with no ledger keeps direct writes. A failure row the gateway refuses is written directly, and stderr warns that the next refresh drops it.
 
 A record is durable or refused, never half-written. The gateway either commits the record and hands back a receipt, or refuses it and names the failed check so the leaf halts. There is no partial append and no silent fallback to a direct write.
 
