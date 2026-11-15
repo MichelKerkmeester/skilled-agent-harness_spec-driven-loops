@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent source and drift checks",
+      "phase 22 agent source and drift checks",
+      "agent source and drift checks plan",
+      "agent source and drift checks tasks",
+      "022-agent-source-and-drift-checks operator decisions",
+      "agent source and drift checks implementation summary"
+    ],
+    "key_topics": [
+      "agent",
+      "source",
+      "drift",
+      "checks",
+      "phase",
+      "plan",
+      "tasks",
+      "022-agent-source-and-drift-checks",
+      "operator",
+      "decisions",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/agent-roster-mirror-check.test.cjs",
+      ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh",
+      ".skilled/agents/deep-research.md",
+      ".skilled/agents/markdown.md",
+      ".pi/agents/deep-research.md",
+      ".vibe/agents/markdown.toml",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".skilled/CROSS-CLI.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-roster-mirror-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agent-roster-mirror-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/agent-roster-mirror-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "setup-cp-sandbox.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.toml",
+        "kind": "file",
+        "path": ".vibe/agents/markdown.toml",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doctor roster check never reads `.dsh/agents` or `.vibe/agents`, so an agent missing there passes, and its header calls `.opencode` and `.codex` independently authored when one is a symlink and the other generated",
+    "created_at": "2026-11-15T17:32:05Z",
+    "last_save_at": "2026-11-15T17:44:29.706Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:99c6ff63bdee09c2bc6baf4637e6e676850ba83ce5636c5614d715b5aa4b41b4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6b6089e4114dca5d6c2474e95b02a27dba123f976ab1a97997cdc6ec24008880",
+      "plan.md": "14cc67ca6f463d6eda938c736a542cacfe2984103d90459a465a147d90ff56ed",
+      "tasks.md": "7d78238137f68649470ab0424a1fca50ec4bbb327b6686474b618ebaf8b8027d",
+      "decision-record.md": "0e3446e51dadd5b02efaeaef7400c1ecba021b2af671656737ca31330fa76a53",
+      "implementation-summary.md": "d6f26724de3869429089fd29c2e975734c059e5585bad4f3c09fac09224fe2fb"
+    },
+    "last_active_at": null
+  }
+}

@@ -25,9 +25,9 @@ contextType: "general"
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 21 of 21 |
+| **Phase** | 21 of 25 |
 | **Predecessor** | 020-agent-docs-alignment-research |
-| **Successor** | None |
+| **Successor** | 022-agent-source-and-drift-checks |
 | **Handoff Criteria** | The two runtime unit files pass, the full deep-loop suite matches its baseline plus the new tests, and `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 

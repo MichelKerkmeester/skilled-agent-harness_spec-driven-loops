@@ -1,0 +1,18 @@
+{
+  "specFolder": "agents/007-agent-alignment-follow-ups/025-stop-path-live-proof",
+  "description": "Phase 25: stop-path-live-proof",
+  "keywords": [
+    "phase",
+    "stop-path-live-proof"
+  ],
+  "lastUpdated": "2026-11-15T17:32:08.897Z",
+  "specId": "025",
+  "folderSlug": "stop-path-live-proof",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

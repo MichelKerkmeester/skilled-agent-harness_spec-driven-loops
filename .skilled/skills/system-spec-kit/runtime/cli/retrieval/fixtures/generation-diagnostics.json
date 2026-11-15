@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6820,
-    "ok": 19125,
+    "ok": 19143,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27572,
+  "documentsScanned": 27590,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "3e72f579ebddff5b592b8bbb81cf8db5c0e1e461f2c17eaae92e07a47d512404",
+  "manifestHash": "802645d4a7bf062767832a43e361bb3caa033230f450965a729ff6a4f7b6ed61",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44047,
+      "ok": 44069,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -53558,6 +53558,22 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/021-vibe-budget-default/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/023-agent-docs-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/scratch",
       "reason": "excluded directory"
     },
     {

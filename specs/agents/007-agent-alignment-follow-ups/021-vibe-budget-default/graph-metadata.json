@@ -15,6 +15,7 @@
       "phase 21 vibe budget default",
       "vibe budget default plan",
       "vibe budget default tasks",
+      "021-vibe-budget-default operator decisions",
       "vibe budget default implementation summary"
     ],
     "key_topics": [
@@ -24,19 +25,20 @@
       "phase",
       "plan",
       "tasks",
+      "021-vibe-budget-default",
+      "operator",
+      "decisions",
       "implementation",
       "summary",
-      "mistral",
-      "bills",
-      "api",
-      "separately"
+      "mistral"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
@@ -45,7 +47,8 @@
       ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
-      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".vibe/agents/orchestrate.toml"
     ],
     "entities": [
       {
@@ -64,6 +67,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -112,6 +121,12 @@
         "name": "ENV-REFERENCE.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".vibe/agents/orchestrate.toml",
         "source": "derived"
       },
       {
@@ -179,38 +194,28 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Mistral bills a Vibe budget and an API budget separately",
     "created_at": "2026-11-15T16:05:23Z",
-    "last_save_at": "2026-11-15T16:20:20.242Z",
+    "last_save_at": "2026-11-15T17:44:58.697Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec84238a3181b89622372fc151bd987d340dd831b1768e7cc9ec1ed083fe9f9a",
+    "source_fingerprint": "sha256:bdb59579168e95e39e133046b50366bba35dffdd47fdb0bf074ade6110bfeb11",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "552e7522c324d8cc95fa9c8cb04c8bf780d5fe5306792af823e519ba802aa5e4",
+      "spec.md": "1d2667c47e737b74baa362fc9605853e09dff30a10723a59a712506c1cd72d6a",
       "plan.md": "aa4a3022570423f3fd7dcce98b33dfaa87320de12643d7183b6f8499ab5d4f23",
       "tasks.md": "47127d0d8105ca1f9731a77302803c6dbf197c1631f69cd870a169c1454b4f80",
-      "implementation-summary.md": "dcdcfc5324e810639dc4967d1791e1d2f4657d69a0ebbda56a0c8bbe8c85fbb2"
+      "decision-record.md": "4cecb46d6635e9a66e7a535d9ade0dfc1de5000040ae0a7e8366b64531732fe2",
+      "implementation-summary.md": "b96fc617251bf56e5defa47aea5689bc5a653291c8881bce9d9dffa83978baa8"
     },
     "last_active_at": null
   }

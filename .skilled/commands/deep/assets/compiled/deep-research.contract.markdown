@@ -77,7 +77,7 @@
     },
     {
       "path": ".skilled/agents/deep-research.md",
-      "sha256": "1591ba199ad36289661138c7037ded44b359e8fefff0a2888f3b371223bff899",
+      "sha256": "d69ca8fb5d34778fd0d3ca65f56633a79a033d0c87f6b9b8b1e7929c274f6d25",
       "section": "full"
     },
     {

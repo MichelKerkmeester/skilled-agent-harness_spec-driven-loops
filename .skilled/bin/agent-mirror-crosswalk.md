@@ -67,7 +67,7 @@ What fails when a mirror drifts:
 
 `.skilled` is the only tree that carries a permission map, and the only one where it is enforced
 by the runtime. Each agent declares its own vocabulary of `read`, `write`, `edit`, `bash`, `grep`,
-`glob`, `webfetch`, `chrome_devtools`, `browser`, `task`, `list`, `patch` and `external_directory`, each
+`glob`, `webfetch`, `websearch`, `chrome_devtools`, `browser`, `task`, `list`, `patch` and `external_directory`, each
 `allow` or `deny`.
 
 | Tree | The allow half lands as | The deny half stands in as |
@@ -80,8 +80,9 @@ by the runtime. Each agent declares its own vocabulary of `read`, `write`, `edit
 | `.codex` | `sandbox_mode` — a filesystem boundary, not a tool list | `sandbox_mode = "read-only"` when the map grants no `write`, `edit` or `bash`; otherwise `workspace-write` and the body's prose carries the scope |
 
 Three permission keys have no counterpart in the Claude dialect — `list`, `patch` and
-`external_directory` — and four have none in Pi's toolset — `webfetch`, `task`, `patch` and
-`external_directory` — which is exactly the set the Pi comment records. `list` maps only in Pi,
+`external_directory` — and five have none in Pi's toolset — `webfetch`, `websearch`, `task`,
+`patch` and `external_directory` — which is exactly the set the Pi comment records. `websearch`
+lands in the Claude dialect as `WebSearch`. `list` maps only in Pi,
 to `ls`. `chrome_devtools` and `browser` are denied in every map that carries them,
 and `browser` is the name OpenCode 2 enforces. `.codex` declares no tools at all.
 
@@ -118,8 +119,7 @@ repository promises otherwise.
 
 ### 2.3 `mode` — the role
 
-`.skilled` declares `mode: subagent` for ten agents, `mode: all` for `markdown` and
-`mode: primary` for `orchestrate`.
+`.skilled` declares `mode: subagent` for ten agents and `mode: primary` for `orchestrate`.
 
 | Tree | Lands as |
 |------|----------|

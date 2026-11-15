@@ -1,0 +1,18 @@
+{
+  "specFolder": "agents/007-agent-alignment-follow-ups/024-terminal-gates-script",
+  "description": "Phase 24: terminal-gates-script",
+  "keywords": [
+    "phase",
+    "terminal-gates-script"
+  ],
+  "lastUpdated": "2026-11-15T17:32:07.913Z",
+  "specId": "024",
+  "folderSlug": "terminal-gates-script",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

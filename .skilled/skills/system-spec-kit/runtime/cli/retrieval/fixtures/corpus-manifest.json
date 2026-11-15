@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ef11ef7c18d4d5dcaaed80bde3f520396affd819c4c3546cf0e54f80c1a47bcf",
+  "corpusHash": "536377cf10e6952cb7f6eb6753d6caf9a8221eb3eb33e188f9e669430a7868fb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27572,
+  "includedPathCount": 27590,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9530,10 +9530,28 @@
     "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/research.md",
     "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/021-vibe-budget-default/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/021-vibe-budget-default/implementation-summary.md",
     "specs/agents/007-agent-alignment-follow-ups/021-vibe-budget-default/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/021-vibe-budget-default/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/021-vibe-budget-default/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks/decision-record.md",
+    "specs/agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/023-agent-docs-fixes/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/023-agent-docs-fixes/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/023-agent-docs-fixes/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/023-agent-docs-fixes/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -27604,7 +27622,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3e72f579ebddff5b592b8bbb81cf8db5c0e1e461f2c17eaae92e07a47d512404",
+  "manifestHash": "802645d4a7bf062767832a43e361bb3caa033230f450965a729ff6a4f7b6ed61",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28808,6 +28826,22 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/021-vibe-budget-default/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/023-agent-docs-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/scratch",
       "reason": "excluded directory"
     },
     {
