@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/420-cross-runtime-handover-parity-fixes` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 3 |
+| **Phase** | 1 of 4 |
 | **Predecessor** | None |
 | **Successor** | 002-failed-arm-deferred-mark |
 | **Handoff Criteria** | A Pi claim and an OpenCode claim each print a History Lookup whose command redeems |

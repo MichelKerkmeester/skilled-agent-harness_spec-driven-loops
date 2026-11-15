@@ -24,7 +24,7 @@ contextType: "implementation"
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/420-cross-runtime-handover-parity-fixes` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 3 |
+| **Phase** | 2 of 4 |
 | **Predecessor** | 001-pi-opencode-history-lookup |
 | **Successor** | 003-nudge-parity-and-hop-scoring |
 | **Handoff Criteria** | Every failed arm on Codex, Pi and OpenCode leaves a deferred record that the next operator prompt withdraws |

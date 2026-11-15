@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Claude and Codex read the nudge level, decide and write it with no claim, so two hooks that run at once both deliver",
     "created_at": "2026-11-15T19:49:26Z",
-    "last_save_at": "2026-11-15T20:40:42.519Z",
+    "last_save_at": "2026-11-15T21:18:31.178Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb720d4f228a5722bbd4dfb615579f2c3744d91b862721112a0031eb2d437430",
+    "source_fingerprint": "sha256:b846b285273d47b42deb1980053e86a1781db8181f0f8b970174afc99a8e5cf4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37c361436d7a5c396d5f2b8c2be3676e1e8d9424f33bc207fce8c142217782fa",
+      "spec.md": "39ea751ac6fc1f46815cb47fbd2e85d535aa0fd22d76c9cd0672f8dc26fb82bb",
       "plan.md": "fbc249f69694bdd391248a18ad11d5b2ee6b6319f986ede77aad8e7f735449e9",
-      "tasks.md": "b84bb0558c1d57272d45a941bd9ad590e5cc2b1500947c6dc3a316fd7fd7a2b5",
+      "tasks.md": "df751edef12d9a251c28ba0c906756601809f46150432c388794e7eb24642279",
       "decision-record.md": "49a9299ea12dc2e132ce53c1a007d509b4d4fc443e7869bbbcf4ebb5b2092f26",
-      "implementation-summary.md": "0c05598a5353e58bad32b23c63104abd7487801206023a01dfb082ac47169895"
+      "implementation-summary.md": "5c60660d09a5b9dfa593a72cea9e15b9e2c7f144ee9c4873cabd870b8d89f0bb"
     },
     "last_active_at": null
   }

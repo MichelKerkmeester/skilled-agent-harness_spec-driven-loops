@@ -54,7 +54,7 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [x] T007 Run the handover and Vibe lifecycle suites from the final state. Verify: `fail 0` above the baseline count. Evidence: handover `tests 1039`, `fail 0`; Vibe lifecycle `tests 37`, `fail 0`.
-- [ ] T008 Live Pi hop and live OpenCode hop (`../scratch/harness/live-hop.sh`). Verify: `score.cjs` prints `5/5` and the side word is reported and absent from the note. Open: `live1-opencode` met it. `live1-pi` scored 5/5 with the side word leaked into the note, and `live2-pi` ran the lookup but did not recover the word.
+- [x] T008 Live Pi hop and live OpenCode hop (`../scratch/harness/live-hop.sh`). Verify: `score.cjs` prints `5/5` and the side word is reported and absent from the note. Evidence: `live1-opencode` scored 5/5 with the side word absent from the note and loaded through the lookup. `live3-pi`, on DeepSeek Flash at max thinking after the phase 004 preview fix, scored 5/5 the same way. Earlier Pi runs on GPT-6 Luna low: `live1-pi` leaked the word into the note, and `live2-pi` gave up on JSON previews.
 - [x] T009 Fresh Opus medium review of the 048 diff. Verify: no P0 or P1 left open. Evidence: no P0 or P1. Four P2: the Codex retry wording and an overclaiming comment were fixed, a missing-session test was added, and the fallback on a thrown commit is documented as unchanged from before.
 - [x] T010 Update the README nudge paragraphs (`H/README.md`). Verify: drift guards pass. Evidence: the README has a paragraph on the shared claim, and the Vibe paragraph points to it; drift guards print `all 4 guards PASSED`.
 <!-- /ANCHOR:phase-3 -->
@@ -64,9 +64,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: the live Pi and OpenCode hops report the side word
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed: the live Pi and OpenCode hops report the side word
 <!-- /ANCHOR:completion -->
 
 ---
@@ -119,7 +119,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-020 [P0] All acceptance criteria met Evidence: every row in `acceptance-criteria.md` is Met.
 - [x] CHK-021 [P0] Manual testing complete Evidence: live hops `../scratch/runs/live1-pi` and `live1-opencode` both delivered their nudge and relaunched, 5/5.
 - [x] CHK-022 [P1] Edge cases tested: a stale claim, a held claim, a spent level Evidence: tests cover a stale claim taken over, a held claim staying quiet, and a level already spent by the first hook.
 - [x] CHK-023 [P1] Error scenarios validated: no state directory Evidence: the no-state-directory path is the existing guard that the Vibe claim tests already exercised.

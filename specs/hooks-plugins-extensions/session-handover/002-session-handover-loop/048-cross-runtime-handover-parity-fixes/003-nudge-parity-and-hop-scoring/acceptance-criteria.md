@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `003-nudge-parity-and-hop-scoring`
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-15
 <!-- /ANCHOR:metadata -->
 
@@ -57,7 +57,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-002 | REQ-002 | Given a held claim, When the Claude, Codex or Vibe nudge path decides to nudge, Then it stays quiet | A held-claim case per runtime, each failing with the old write restored. Observed: the held-claim tests on Claude, Codex and Vibe pass, and removing each adapter's null check fails its test | Met | - |
 | AC-003 | REQ-003 | Given the baseline counts, When the handover and Vibe lifecycle suites run, Then 0 fail | Suite summary lines. Observed: handover `tests 1039`, `fail 0`; Vibe lifecycle `tests 37`, `fail 0` | Met | - |
 | AC-004 | REQ-004 | Given a saved run, When `score.cjs` scores it, Then it reports whether the receiver stated the side word and whether the note held it | `score.cjs` output on the saved 047 `hard2-vibe` run. Observed: `score.cjs` on the saved 047 `hard2-vibe` run prints `sideWordStated: true` and `sideWordInNote: false` | Met | - |
-| AC-005 | REQ-005 | Given phases 001 and 002 built, When one live Pi hop and one live OpenCode hop run with a side word, Then each relaunches and the receiver reports the side word through History Lookup | Run folders under `../scratch/runs/` with `score.cjs` output. Observed: `live1-opencode` 5/5, side word absent from the note and loaded by history id. `live1-pi` 5/5, but the sender wrote the side word into the note, so no lookup was needed. `live2-pi` relaunched (4/5): the receiver ran the printed browse, which returned turns 6 to 2 with tool-call JSON previews, and it declined to guess the side word | Unmet | - |
+| AC-005 | REQ-005 | Given phases 001 and 002 built, When one live Pi hop and one live OpenCode hop run with a side word, Then each relaunches and the receiver reports the side word through History Lookup | Run folders under `../scratch/runs/` with `score.cjs` output. Observed: `live1-opencode` 5/5, side word absent from the note and loaded by history id. `live1-pi` 5/5, but the sender wrote the side word into the note, so no lookup was needed. `live2-pi` relaunched (4/5): the receiver ran the printed browse, which returned turns 6 to 2 with tool-call JSON previews, and it declined to guess the side word. After the preview fix in phase 004, `live3-pi` on DeepSeek Flash at max thinking scored 5/5: the side word was absent from the note, and the receiver browsed, loaded the sender's first turn and reported it | Met | - |
 
 ### Status values
 
@@ -83,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-005 is unmet: the OpenCode receiver recovered the side word through History Lookup, but no Pi receiver did.
+Every criterion is Met with observed evidence.
 <!-- /ANCHOR:closure -->

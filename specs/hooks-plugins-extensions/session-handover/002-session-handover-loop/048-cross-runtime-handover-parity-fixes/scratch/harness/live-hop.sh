@@ -23,7 +23,12 @@ prompt="Carry this short task through a context handoff, then finish it in the n
 name="hoptest-$label-$runtime"
 case "$runtime" in
   claude) launch=(--model sonnet --effort medium --name "$name" "$prompt") ;;
-  pi) launch=(--provider openai --model gpt-6-luna --thinking low --name "$name" "$prompt") ;;
+  # PI_ROUTE=deepseek runs the repository's own Pi default instead of GPT.
+  pi) if [ "${PI_ROUTE:-}" = deepseek ]; then
+        launch=(--provider llmgateway --model deepseek-v4.1-flash-1017 --thinking max --name "$name" "$prompt")
+      else
+        launch=(--provider openai --model gpt-6-luna --thinking low --name "$name" "$prompt")
+      fi ;;
   opencode) launch=(--auto --prompt "$prompt") ;;
   codex) launch=(-m gpt-6-luna -c model_reasoning_effort=low --dangerously-bypass-approvals-and-sandbox "$prompt") ;;
   vibe) launch=(--trust --agent auto-approve "$prompt") ;;

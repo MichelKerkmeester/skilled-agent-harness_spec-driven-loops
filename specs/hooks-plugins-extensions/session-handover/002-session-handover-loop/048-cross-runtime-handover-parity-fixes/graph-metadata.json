@@ -6,7 +6,8 @@
   "children_ids": [
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark",
-    "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring"
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring",
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability"
   ],
   "manual": {
     "depends_on": [],
@@ -158,20 +159,20 @@
     ],
     "causal_summary": "Only Claude Code, Codex and Vibe senders mint a History Lookup at claim, so a Pi or OpenCode receiver cannot recover a detail the note left out",
     "created_at": "2026-11-15T19:49:03Z",
-    "last_save_at": "2026-11-15T20:40:42.553Z",
+    "last_save_at": "2026-11-15T21:10:57.540Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:5c25902e7c19825b95fa97b12271e60745fff4437217d864ad45d54dd59d6df1",
+    "source_fingerprint": "sha256:a57c6aed2000ed7e271fe66b96c4c06591fae4efce9a8f3a62c3fd9b368806e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37a47eff0b51d8aacfa6c9d1304b9e16ff03a28d8f457650bd25efee10b31213",
+      "spec.md": "fff791d089ce4ba38f6e0e2f352085c3d7d0487cdb3037517729618c1ab817d1",
       "decision-record.md": "9f7fa83b79d7fbfcd1bf517dfbf3df97bff9d72b81b17adaaff4803b4535e4c7"
     },
-    "last_active_at": "2026-11-15T20:40:42.553Z",
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring",
+    "last_active_at": "2026-11-15T20:40:42.553Z"
   }
 }

@@ -50,7 +50,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-nudge-parity-and-hop-scoring |
-| **Completed** | Not yet: AC-005 is open |
+| **Completed** | 2026-11-15 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -82,7 +82,7 @@ The claim that phase 047 built inside the Vibe adapter now lives in the shared n
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Vibe CLI on deepseek-flash built the shared function first, then the Claude and Codex callers, then the Vibe change, from three one-change briefs in worktree 420. Each diff was read before the next brief. Mutation checks removed the second decision, the held-claim check and each adapter's null check, and tests failed every time. A fresh Opus medium review read the diff. Three live hops ran: one OpenCode and two Pi.
+Vibe CLI on deepseek-flash built the shared function first, then the Claude and Codex callers, then the Vibe change, from three one-change briefs in worktree 420. Each diff was read before the next brief. Mutation checks removed the second decision, the held-claim check and each adapter's null check, and tests failed every time. A fresh Opus medium review read the diff. Four live hops ran: one OpenCode and three Pi. The third Pi hop ran after the phase 004 preview fix.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -110,6 +110,7 @@ Vibe CLI on deepseek-flash built the shared function first, then the Claude and 
 | Live hop `../scratch/runs/live1-opencode` | PASS 5/5. Side word absent from the note and recovered through the lookup |
 | Live hop `../scratch/runs/live1-pi` | 5/5, but the sender wrote the side word into the note, so the run does not show recall through the lookup |
 | Live hop `../scratch/runs/live2-pi` | 4/5. The receiver ran the printed browse but did not recover the side word, and the note stayed claimed |
+| Live hop `../scratch/runs/live3-pi`, after the phase 004 preview fix | PASS 5/5 on DeepSeek Flash at max thinking. Side word absent from the note, and the receiver browsed, loaded the sender's first turn and reported it |
 | Opus medium review | no P0 or P1 |
 <!-- /ANCHOR:verification -->
 
@@ -118,6 +119,6 @@ Vibe CLI on deepseek-flash built the shared function first, then the Claude and 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A Pi receiver did not recover the side word through the lookup.** In `live2-pi` the default browse returned the sender's five latest turns, and each Pi model-turn preview showed the tail of serialized tool-call JSON instead of readable text. At low thinking the receiver stopped without a `search` or `load`. The previews come from the history engine, which another lane owns.
+1. **Recall depends on the receiver using the lookup.** A Pi receiver on GPT-6 Luna at low thinking gave up after one browse in `live2-pi`. On DeepSeek Flash at max thinking, with readable previews, it browsed further and loaded the turn it needed.
 2. **Two hooks that find the same stale claim can both deliver.** The cost is one repeated nudge.
 <!-- /ANCHOR:limitations -->

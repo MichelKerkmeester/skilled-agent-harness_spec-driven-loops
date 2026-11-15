@@ -25,9 +25,9 @@ contextType: "implementation"
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/420-cross-runtime-handover-parity-fixes` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 3 |
+| **Phase** | 3 of 4 |
 | **Predecessor** | 002-failed-arm-deferred-mark |
-| **Successor** | None |
+| **Successor** | 004-history-preview-readability |
 | **Handoff Criteria** | One nudge per level on Claude, Codex and Vibe under racing hooks, and live Pi and OpenCode hops that report the side word |
 <!-- /ANCHOR:metadata -->
 

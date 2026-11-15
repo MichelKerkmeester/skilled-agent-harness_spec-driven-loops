@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`mintHandoverLocator` finds a transcript path only for Claude, Codex and Vibe and returns null for every other runtime, so a claim of a Pi or OpenCode note prints no History Lookup",
     "created_at": "2026-11-15T19:49:18Z",
-    "last_save_at": "2026-11-15T20:38:58.306Z",
+    "last_save_at": "2026-11-15T21:18:31.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b38b4034a3c74081b328ffd9c4fbdf472d2a2bb4f499dfe3cbf32a737de0359b",
+    "source_fingerprint": "sha256:8eff3db6772c1ef4187c54612af5341644613bc6aded1bec98345ee3162b73a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "16c208e6216e0c0f9e8efe90101236c7d4c5caeca39bcba00c5da2d5e9e679c3",
+      "spec.md": "25471a23f1da2a0da02f0a09014592739a62035ac19bcfd374c65b0e8c109a23",
       "plan.md": "a47f360919485dae3405f94bc27fc967dc32b75c5b12090d3212e129c94ce21d",
       "tasks.md": "f6442a69f4399c7261b77e2ded40a94a40b9b30157633cc7811ba6e3ec7ac18d",
       "implementation-summary.md": "34a3c7fc720e747396e080ffc2cdd0ad7d7d1ddf93d83de4302b9d2ba4f0e936"
