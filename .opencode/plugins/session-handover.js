@@ -1,0 +1,628 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Session Handover OpenCode Plugin
+// ───────────────────────────────────────────────────────────────────
+'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+import { createRequire } from 'node:module';
+import { dualPlugin } from './lib/v2-bridge.js';
+
+const require = createRequire(import.meta.url);
+const childProcess = require('node:child_process');
+const fs = require('node:fs');
+const core = require('../hooks/session-handover/lib/relaunch-core.cjs');
+const contextUsage = require('../hooks/session-handover/lib/context-usage.cjs');
+const nudge = require('../hooks/session-handover/lib/nudge.cjs');
+const withdraw = require('../hooks/session-handover/lib/withdraw.cjs');
+const hookFlags = require('../hooks/shared/hook-flags.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS AND HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const CONCERN = 'session-handover';
+const QUESTION_TOOL = 'question';
+const MAX_SESSIONS = 1_000;
+const KILLER_PATH = require.resolve('../hooks/session-handover/lib/killer.cjs');
+// Both the nudge and the seed read a note through the core's one classification:
+// a note that is missing or cannot be parsed proves nothing was written or claimed.
+const NOTE_NOT_WRITTEN = new Set(['missing', 'invalid']);
+
+// message.part.updated fires for every streamed part, so a flags read per event
+// would parse the same file many times per turn. A stat is enough to notice the
+// edit that changes the answer, and a missing file is a stable answer too.
+// The cache rereads the file whenever mtime, ctime, size or inode changes. A
+// rewrite that changes none of them within the filesystem's timestamp resolution
+// is served stale until the next change.
+let flagsCache = null;
+
+function flagsConfig() {
+  const configPath = hookFlags.configPath();
+  let stat = null;
+  try {
+    stat = fs.statSync(configPath);
+  } catch {}
+  const mtimeMs = stat ? stat.mtimeMs : null;
+  const ctimeMs = stat ? stat.ctimeMs : null;
+  const size = stat ? stat.size : null;
+  const ino = stat ? stat.ino : null;
+  if (
+    flagsCache
+    && flagsCache.path === configPath
+    && flagsCache.mtimeMs === mtimeMs
+    && flagsCache.ctimeMs === ctimeMs
+    && flagsCache.size === size
+    && flagsCache.ino === ino
+  ) return flagsCache.config;
+
+  const config = hookFlags.loadConfigFile(configPath);
+  flagsCache = { path: configPath, mtimeMs, ctimeMs, size, ino, config };
+  return config;
+}
+
+function positiveNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : null;
+}
+
+function sessionIdOf(input) {
+  const value = input?.sessionID;
+  return nudge.validSessionId(value) ? value : null;
+}
+
+function resolveWindow(modelWindow) {
+  return positiveNumber(process.env.SESSION_HANDOVER_WINDOW_TOKENS)
+    ?? positiveNumber(modelWindow);
+}
+
+function validLoopId(loopId) {
+  if (!loopId) return null;
+  try {
+    core.relaunchFilePath(loopId, process.env);
+    return loopId;
+  } catch {
+    return null;
+  }
+}
+
+// A record this session already owns suppresses the nudge: pending always, and
+// armed until it goes stale, because a stale record's killer died before firing
+// and can never relaunch. The nudge module answers that same question for every
+// runtime, so the age limit keeps one reader instead of two that can disagree.
+function shouldPushActiveNudge(activeNudge, sessionID) {
+  if (!activeNudge) return false;
+  // A session at its hop cap cannot relaunch, so even a held nudge is spent.
+  if (nudge.hopLimitReached(process.env)) return false;
+  // The shared decision never queues a nudge outside the loop, so this branch is a loop
+  // id that cannot name a record: a readable note is then the only proof this session
+  // already wrote its handoff; a missing or broken one is not.
+  if (!validLoopId(process.env.SKILLED_LOOP_ID)) {
+    return NOTE_NOT_WRITTEN.has(core.noteState(activeNudge.notePath));
+  }
+  return !nudge.handoffPending({ sessionId: sessionID, env: process.env });
+}
+
+// A claimed note already ran the claim steps, so repeating the full seed text asks
+// for work the note records as done. The completion step is the one still owed.
+function claimedReminder(seed) {
+  const complete = nudge.completeCommandFor(seed.notePath, nudge.CLI_COMMAND);
+  return `[${CONCERN}] This session claimed handoff note ${seed.notePath}. `
+    + `When the remaining work is done, run \`${complete}\` to close the note.`;
+}
+
+// The note's own frontmatter names the spec folder a claim of it should resume into, and
+// its date, so the session can check git for work done since.
+function noteFields(notePath) {
+  try {
+    const { frontmatter } = core.parseHandoff(fs.readFileSync(notePath, 'utf8'));
+    return {
+      specFolder: typeof frontmatter.spec_folder === 'string' ? frontmatter.spec_folder : '',
+      createdAt: typeof frontmatter.created_at === 'string' ? frontmatter.created_at : '',
+    };
+  } catch {
+    return { specFolder: '', createdAt: '' };
+  }
+}
+
+function makeState() {
+  return {
+    contextWindow: null,
+    lastAssistantMessageId: null,
+    latestUserMessageId: null,
+    nudgeLevel: 0,
+    activeNudge: null,
+    pendingNudge: null,
+    activeSeed: null,
+    pendingUsage: null,
+  };
+}
+
+function stateFor(sessionStates, sessionID) {
+  let state = sessionStates.get(sessionID);
+  if (state) {
+    sessionStates.delete(sessionID);
+    sessionStates.set(sessionID, state);
+    return state;
+  }
+
+  if (sessionStates.size >= MAX_SESSIONS) {
+    sessionStates.delete(sessionStates.keys().next().value);
+  }
+  state = makeState();
+  sessionStates.set(sessionID, state);
+  return state;
+}
+
+function trackChildSession(sessionStates, childSessions, sessionID, parentID) {
+  if (!childSessions.has(sessionID) && childSessions.size >= MAX_SESSIONS) {
+    childSessions.delete(childSessions.keys().next().value);
+  }
+  const tracked = childSessions.get(sessionID);
+  childSessions.set(sessionID, {
+    parentID,
+    busy: tracked?.parentID === parentID ? tracked.busy : true,
+  });
+  sessionStates.delete(sessionID);
+}
+
+// Only a busy child of this session can still need the runtime the parent would end, so
+// the busy flag gates the arm and lets the child that finishes last run the deferral.
+function hasBusyChild(childSessions, parentID) {
+  for (const child of childSessions.values()) {
+    if (child.parentID === parentID && child.busy) return true;
+  }
+  return false;
+}
+
+function queueNudge(state, sessionID, fillTokens, windowTokens, directory) {
+  if (state.pendingNudge) {
+    state.pendingUsage = null;
+    return;
+  }
+
+  const ratio = contextUsage.fillRatio(fillTokens, windowTokens);
+  const threshold = nudge.relaunchThreshold(flagsConfig());
+  state.pendingUsage = null;
+  if (ratio < threshold) return;
+
+  const persistedLevel = nudge.readState(sessionID, process.env);
+  // A restarted plugin host has lost the nudge it held, so a spent level is shown again.
+  const decision = nudge.nudgeDecision({
+    ratio,
+    threshold,
+    sessionId: sessionID,
+    env: process.env,
+    level: Math.max(persistedLevel, state.nudgeLevel),
+    resume: !state.activeNudge && persistedLevel >= 1,
+  });
+  if (!decision.nudge) return;
+
+  // Reusing the note this session already has open is the shared planner's job.
+  const notePath = state.activeNudge?.notePath
+    ?? nudge.plannedNotePath({ cwd: directory, sessionId: sessionID });
+  const nextNudge = {
+    level: decision.level,
+    notePath,
+    text: nudge.handoffText({
+      notePath,
+      sessionId: sessionID,
+      specFolder: nudge.specFolderInput({ env: process.env }),
+      runtime: 'opencode',
+      cliPath: nudge.CLI_COMMAND,
+      cwd: directory || process.cwd(),
+      ratio,
+    }),
+  };
+  state.activeNudge = nextNudge;
+  state.pendingNudge = nextNudge;
+}
+
+// Logging is best-effort: a state-dir failure must never break the plugin host.
+function logEvent(event, fields) {
+  try {
+    core.appendLog(event, fields, process.env);
+  } catch {}
+}
+
+function logSpawnError(loopId, error) {
+  logEvent('session-idle-arm-error', {
+    stage: 'spawn',
+    loopId,
+    message: error?.message || 'killer spawn failed',
+  });
+}
+
+// OpenCode 2 loads plugins in a server process its TUI starts, so signalling the plugin's
+// own pid ends that server and leaves the TUI the loop waits on still running. The loop's
+// direct child is the runtime the loop started on every version. A host the walk cannot
+// place below the loop keeps its own pid, which the killer then refuses.
+function killerTargetPid(loopId) {
+  try {
+    return core.findLoopChildPid(loopId, { pid: process.pid }) ?? process.pid;
+  } catch {
+    return process.pid;
+  }
+}
+
+function spawnKiller(loopId) {
+  const command = process.versions.bun ? 'node' : process.execPath;
+  try {
+    const child = childProcess.spawn(
+      command,
+      [KILLER_PATH, '--loop-id', loopId, '--target-pid', String(killerTargetPid(loopId))],
+      { detached: true, stdio: 'ignore' },
+    );
+    if (typeof child?.on === 'function') {
+      child.on('error', (error) => logSpawnError(loopId, error));
+    }
+    if (typeof child?.unref === 'function') child.unref();
+  } catch (error) {
+    logSpawnError(loopId, error);
+  }
+}
+
+// A hand-off record is already gone when its receiver starts, so the launch name reaches
+// this session only through the environment the wrapper exports. The event path must not
+// wait on the server, and a failed title may never stop the seed, so every error is caught.
+function titleSeedSession(client, sessionID) {
+  const title = process.env.SKILLED_LOOP_NAME;
+  if (!title) return;
+  if (typeof client?.session?.update !== 'function') return;
+  try {
+    Promise.resolve(client.session.update({
+      path: { id: sessionID },
+      body: { title },
+    })).catch(() => {});
+  } catch {}
+}
+
+// The killer runs without a transcript, so it never sees the operator's next turn arrive;
+// the arm is withdrawn here, before its fixed idle wait ends and it signals a relaunch.
+// Returns whether an arm was withdrawn, so the caller can drop what the hand-over made stale.
+function withdrawArmForUserMessage(loopId, sessionID) {
+  try {
+    const withdrawn = withdraw.withdrawHandOver({
+      loopId,
+      sessionId: sessionID,
+      reason: 'user-message',
+      pending: 'none',
+      env: process.env,
+    });
+    if (withdrawn === null) return false;
+    logEvent('arm-cancelled', { loopId, sessionId: sessionID, reason: 'user-message' });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// What a compaction tells the session about its open note. A note whose hand-over was
+// withdrawn predates the work done since, so it is background to read, never a claim.
+function compactionSeed(sessionID, notePath) {
+  if (nudge.handoffWithdrawn({ sessionId: sessionID, notePath, env: process.env })) {
+    logEvent('compact-pointer-stale-note', { sessionId: sessionID, note: notePath });
+    return { notePath, withdrawn: true, text: nudge.staleNoteText({ notePath }) };
+  }
+  logEvent('compact-pointer', { sessionId: sessionID, note: notePath });
+  const { specFolder, createdAt } = noteFields(notePath);
+  return {
+    notePath,
+    withdrawn: false,
+    text: nudge.seedText({
+      notePath,
+      specFolder,
+      sessionId: sessionID,
+      cliPath: nudge.CLI_COMMAND,
+      afterCompaction: true,
+      createdAt,
+    }),
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. PLUGIN FACTORY
+// ─────────────────────────────────────────────────────────────────────────────
+
+function sessionHandoverPlugin(ctx = {}) {
+  const sessionStates = new Map();
+  // A sub-agent runs as a child session with its own id and its own fill, so its nudge,
+  // seed or idle would hand off or end the parent's runtime.
+  const childSessions = new Map();
+  // A child can outlive the parent's idle, and a child event is the only later trigger
+  // the parent gets, so a deferred arm waits here for the child that finishes last.
+  const deferredArms = new Set();
+
+  // A runtime started from inside another loop's process inherits that loop's variables, so a
+  // nested run would arm and relaunch a runtime that is not its own.
+  try {
+    core.dropNestedLoop(process.env, { hostPid: process.pid });
+  } catch {}
+
+  function isEnabled() {
+    try {
+      return hookFlags.isHookEnabled(CONCERN, process.env, flagsConfig(), { runtime: 'opencode' });
+    } catch {
+      return false;
+    }
+  }
+
+  function armOnIdle(sessionID) {
+    const loopId = process.env.SKILLED_LOOP_ID;
+    if (!loopId) return;
+    const record = core.readRelaunchFile(loopId, process.env);
+    const verdict = core.armableRecord(record, {
+      loopId,
+      sessionId: sessionID,
+      runtime: 'opencode',
+      env: process.env,
+    });
+    if (!verdict.armable) return;
+
+    if (hasBusyChild(childSessions, sessionID)) {
+      deferredArms.add(sessionID);
+      return;
+    }
+
+    const directory = typeof ctx.directory === 'string'
+      ? ctx.directory
+      : process.cwd();
+    const armed = core.arm({ loopId, cwd: directory, env: process.env });
+    if (armed?.status !== 'armed') return;
+    spawnKiller(loopId);
+  }
+
+  return {
+    async event(payload) {
+      try {
+        if (!isEnabled()) return;
+        const event = payload?.event;
+        const properties = event?.properties;
+        if (event?.type === 'session.created' || event?.type === 'session.updated') {
+          const info = properties?.info;
+          const topParentID = properties?.parentID;
+          const infoParentID = info?.parentID;
+          const parentID = typeof topParentID === 'string' && topParentID
+            ? topParentID
+            : (typeof infoParentID === 'string' ? infoParentID : null);
+          const childID = nudge.validSessionId(info?.id)
+            ? info.id
+            : (nudge.validSessionId(properties?.sessionID) ? properties.sessionID : null);
+          if (parentID && childID) {
+            trackChildSession(sessionStates, childSessions, childID, parentID);
+            return;
+          }
+        }
+
+        const sessionID = properties?.sessionID;
+        if (!nudge.validSessionId(sessionID)) return;
+        if (childSessions.has(sessionID)) {
+          const child = childSessions.get(sessionID);
+          // A tracked child is working until it reports an end, so any other event keeps
+          // the parent's runtime needed. Idle and deletion are the ends the bridge sends.
+          if (event.type === 'session.idle' || event.type === 'session.deleted') {
+            child.busy = false;
+            const parentID = child.parentID;
+            if (event.type === 'session.deleted') childSessions.delete(sessionID);
+            if (deferredArms.has(parentID) && !hasBusyChild(childSessions, parentID)) {
+              deferredArms.delete(parentID);
+              armOnIdle(parentID);
+            }
+          } else {
+            child.busy = true;
+          }
+          return;
+        }
+
+        if (event.type === 'message.updated') {
+          const info = properties.info;
+          if (!info || typeof info !== 'object') return;
+
+          if (info.role === 'user' && typeof info.id === 'string') {
+            const state = stateFor(sessionStates, sessionID);
+            const isNewUserMessage = state.latestUserMessageId !== info.id;
+            if (
+              isNewUserMessage
+              && state.activeSeed?.messageID !== null
+              && info.id !== state.activeSeed?.messageID
+            ) state.activeSeed = null;
+            if (
+              isNewUserMessage
+              && process.env.SKILLED_LOOP_ID
+              && withdrawArmForUserMessage(process.env.SKILLED_LOOP_ID, sessionID)
+            ) {
+              // The nudge that asked for the withdrawn hand-over is spent with it. Held on, it
+              // would be shown again at the next turn, ahead of the one nudge the session was
+              // granted for a step above its fill.
+              state.activeNudge = null;
+              state.pendingNudge = null;
+              // The model asked for the hand-over and would otherwise still expect to end.
+              state.withdrawnNotice = true;
+            } else if (isNewUserMessage) {
+              state.withdrawnNotice = false;
+            }
+            state.latestUserMessageId = info.id;
+            return;
+          }
+
+          if (info.role !== 'assistant') return;
+          const completedAt = positiveNumber(info.time?.completed);
+          if (completedAt === null) return;
+
+          const state = stateFor(sessionStates, sessionID);
+          if (
+            typeof info.id === 'string'
+            && state.lastAssistantMessageId === info.id
+          ) return;
+          state.lastAssistantMessageId = info.id || null;
+          if (state.pendingNudge) return;
+
+          const fillTokens = contextUsage.fillFromOpenCodeTokens(info.tokens);
+          state.pendingUsage = { fillTokens };
+          const windowTokens = resolveWindow(state.contextWindow);
+          if (windowTokens !== null) {
+            queueNudge(
+              state,
+              sessionID,
+              fillTokens,
+              windowTokens,
+              ctx.directory,
+            );
+          }
+          return;
+        }
+
+        if (event.type === 'message.part.updated') {
+          const state = sessionStates.get(sessionID);
+          const part = properties.part;
+          if (
+            !state
+            || part?.type !== 'text'
+            || typeof part.text !== 'string'
+            || part.messageID !== state.latestUserMessageId
+          ) return;
+
+          const seedText = nudge.seedInstructions({ prompt: part.text, sessionId: sessionID });
+          if (seedText !== null) {
+            if (state.activeSeed?.messageID !== part.messageID) {
+              titleSeedSession(ctx.client, sessionID);
+            }
+            state.activeSeed = {
+              messageID: part.messageID,
+              notePath: nudge.notePathFromSeed(part.text),
+              text: seedText,
+            };
+          }
+          return;
+        }
+
+        if (event.type === 'session.idle') {
+          armOnIdle(sessionID);
+          return;
+        }
+
+        if (event.type === 'session.compacted') {
+          // A compacted session keeps its id but loses the detail its open note holds, and the
+          // freed context makes the spent nudge level stale; the nudge the plugin still holds
+          // goes with it, since its text quotes the fill the compaction freed. A note a prepared
+          // hop already owns is left for that hop to claim.
+          try {
+            nudge.writeState(sessionID, 0, process.env);
+          } catch {}
+          const state = sessionStates.get(sessionID);
+          if (state) {
+            state.nudgeLevel = 0;
+            state.activeNudge = null;
+            state.pendingNudge = null;
+            state.pendingUsage = null;
+            // The compaction's own text about a withdrawn note replaces the notice.
+            state.withdrawnNotice = false;
+          }
+          if (nudge.handoffPending({ sessionId: sessionID, env: process.env })) return;
+
+          const notePath = nudge.openNotePathFor({
+            repoRoot: nudge.resolveRepoRoot(),
+            sessionId: sessionID,
+          });
+          if (notePath === null) return;
+
+          const seed = compactionSeed(sessionID, notePath);
+          stateFor(sessionStates, sessionID).activeSeed = { messageID: null, ...seed };
+        }
+      } catch {
+        return undefined;
+      }
+    },
+
+    async 'experimental.chat.system.transform'(input, output) {
+      try {
+        if (!isEnabled() || !output || typeof output !== 'object') return;
+        output.system = Array.isArray(output.system) ? output.system : [];
+
+        const sessionID = sessionIdOf(input);
+        if (!sessionID || childSessions.has(sessionID)) return;
+        const state = sessionStates.get(sessionID);
+        if (!state) return;
+
+        const windowTokens = resolveWindow(input?.model?.limit?.context);
+        if (windowTokens !== null) state.contextWindow = windowTokens;
+        if (state.pendingUsage && windowTokens !== null && !state.pendingNudge) {
+          queueNudge(
+            state,
+            sessionID,
+            state.pendingUsage.fillTokens,
+            windowTokens,
+            ctx.directory,
+          );
+        }
+
+        // A turn rebuilds the system prompt for every model request, and an auxiliary
+        // request may consume the first one, so the claim instructions stay in place
+        // until the note leaves the open state; a note not yet readable keeps them too.
+        if (state.activeSeed) {
+          const seed = state.activeSeed;
+          const status = core.noteState(seed.notePath);
+          // The stale-note text lasts only while the withdrawal does: once the session updates
+          // the note or prepares again, it no longer describes the note.
+          if (
+            seed.withdrawn
+            && !nudge.handoffWithdrawn({
+              sessionId: sessionID,
+              notePath: seed.notePath,
+              env: process.env,
+            })
+          ) {
+            state.activeSeed = null;
+          } else if (status === 'open' || NOTE_NOT_WRITTEN.has(status)) {
+            if (!output.system.includes(seed.text)) output.system.push(seed.text);
+          } else if (status === 'claimed') {
+            const reminder = claimedReminder(seed);
+            if (!output.system.includes(reminder)) output.system.push(reminder);
+          } else {
+            state.activeSeed = null;
+          }
+        }
+        // Every request of the withdrawing turn rebuilds this prompt, so the notice stays until
+        // the next operator prompt, as the seed does until its note is claimed.
+        if (state.withdrawnNotice && !output.system.includes(nudge.WITHDRAWN_NOTICE)) {
+          output.system.push(nudge.WITHDRAWN_NOTICE);
+        }
+        const activeNudge = state.activeNudge;
+        const shouldPushNudge = shouldPushActiveNudge(activeNudge, sessionID);
+        if (state.pendingNudge) {
+          const pending = state.pendingNudge;
+          state.nudgeLevel = pending.level;
+          state.pendingNudge = null;
+          try {
+            nudge.writeState(sessionID, pending.level, process.env);
+          } catch {}
+        }
+        if (shouldPushNudge) output.system.push(activeNudge.text);
+
+        state.latestUserMessageId = null;
+      } catch {
+        return undefined;
+      }
+    },
+
+    // Only the idle event arms a prepared hand-over, and a question dialog holds the session
+    // busy until the operator answers, so the dialog is refused while this session's record
+    // can be armed. A throw is how both OpenCode hosts refuse a call, so it leaves the guard.
+    async 'tool.execute.before'(input) {
+      let reason = null;
+      try {
+        if (input?.tool !== QUESTION_TOOL || !isEnabled()) return;
+        const sessionID = input.sessionID;
+        if (!nudge.validSessionId(sessionID) || childSessions.has(sessionID)) return;
+        reason = nudge.questionHoldReason({ sessionId: sessionID, runtime: 'opencode', env: process.env });
+      } catch {
+        return;
+      }
+      if (reason !== null) throw new Error(reason);
+    },
+  };
+}
+
+export default dualPlugin('session-handover', sessionHandoverPlugin);

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2b92a62d6e7aa35467b9aa2283dc91abf0d4a00e2e02dfcf26c6e746c766496b",
+  "manifestHash": "ab1134433f688fa0e71b4ada9700a340b08f09b72d8fd767b9816c521ad1b589",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6997,6 +6997,9 @@
     ],
     "044 implementation summary": [
       "044 implementation summary"
+    ],
+    "044 in session handover rename operator decisions": [
+      "044-in-session-handover-rename operator decisions"
     ],
     "044 named subtracks and host repos operator decisions": [
       "044-named-subtracks-and-host-repos operator decisions"
@@ -20703,6 +20706,10 @@
     "claude session end teardown": [
       "claude session end teardown"
     ],
+    "claude session handover": [
+      "Claude session handover",
+      "claude session handover"
+    ],
     "claude session lifecycle": [
       "claude session lifecycle"
     ],
@@ -20711,10 +20718,6 @@
     ],
     "claude session prime": [
       "claude session prime"
-    ],
-    "claude session relaunch": [
-      "Claude session relaunch",
-      "claude session relaunch"
     ],
     "claude spec gate enforce": [
       "claude spec gate enforce"
@@ -27459,12 +27462,12 @@
     "codex session cleanup": [
       "codex session cleanup"
     ],
+    "codex session handover": [
+      "Codex session handover",
+      "codex session handover"
+    ],
     "codex session lifecycle": [
       "codex session lifecycle"
-    ],
-    "codex session relaunch": [
-      "Codex session relaunch",
-      "codex session relaunch"
     ],
     "codex session resume companion": [
       "Codex session resume companion"
@@ -33230,11 +33233,11 @@
     "cursor session end teardown": [
       "cursor session end teardown"
     ],
+    "cursor session handover": [
+      "Cursor session handover"
+    ],
     "cursor session lifecycle": [
       "cursor session lifecycle"
-    ],
-    "cursor session relaunch": [
-      "Cursor session relaunch"
     ],
     "cursor session resume": [
       "cursor session resume"
@@ -40747,11 +40750,11 @@
     "devin session end teardown": [
       "devin session end teardown"
     ],
+    "devin session handover": [
+      "Devin session handover"
+    ],
     "devin session lifecycle": [
       "devin session lifecycle"
-    ],
-    "devin session relaunch": [
-      "Devin session relaunch"
     ],
     "devin session resume continue": [
       "devin session resume continue"
@@ -44730,6 +44733,21 @@
     ],
     "dsh lineage command": [
       "dsh lineage command"
+    ],
+    "dsh lineage executor check": [
+      "dsh lineage executor check"
+    ],
+    "dsh lineage executor check goal": [
+      "dsh lineage executor check goal"
+    ],
+    "dsh lineage executor check implementation summary": [
+      "dsh lineage executor check implementation summary"
+    ],
+    "dsh lineage executor check plan": [
+      "dsh lineage executor check plan"
+    ],
+    "dsh lineage executor check tasks": [
+      "dsh lineage executor check tasks"
     ],
     "dsh lineage leaf": [
       "dsh lineage leaf"
@@ -49322,6 +49340,12 @@
     ],
     "fan out fixed rate overrun accounting": [
       "fan-out fixed-rate overrun accounting"
+    ],
+    "fan out lineage executor check": [
+      "fan-out lineage executor check"
+    ],
+    "fan out lineage executor missing": [
+      "fan-out lineage executor_missing"
     ],
     "fan out lineage pwd": [
       "fan-out lineage pwd"
@@ -60563,6 +60587,15 @@
     "in session handover docs": [
       "in-session handover docs"
     ],
+    "in session handover rename": [
+      "in-session handover rename"
+    ],
+    "in session handover rename acceptance criteria": [
+      "in session handover rename acceptance criteria"
+    ],
+    "in session handover spelling": [
+      "in-session handover spelling"
+    ],
     "inbound enhances": [
       "inbound enhances"
     ],
@@ -61507,6 +61540,9 @@
     ],
     "invert resolver registry": [
       "invert resolver registry"
+    ],
+    "invocation metadata executor gate": [
+      "invocation metadata executor gate"
     ],
     "invocation pattern column": [
       "invocation pattern column"
@@ -64718,6 +64754,12 @@
     ],
     "lineage executor schema": [
       "lineage executor schema"
+    ],
+    "lineage invocation metadata executor check": [
+      "lineage invocation metadata executor check"
+    ],
+    "lineage invocation metadata plan": [
+      "lineage invocation metadata plan"
     ],
     "lineage iteration count": [
       "lineage iteration count"
@@ -77256,9 +77298,9 @@
     "opencode session cleanup": [
       "opencode session cleanup"
     ],
-    "opencode session relaunch": [
-      "OpenCode session relaunch",
-      "opencode session relaunch"
+    "opencode session handover": [
+      "OpenCode session handover",
+      "opencode session handover"
     ],
     "opencode session sweep": [
       "opencode session sweep"
@@ -82523,6 +82565,9 @@
     "phase 23 deep review remediation": [
       "phase 23 deep review remediation"
     ],
+    "phase 23 dsh lineage executor check": [
+      "phase 23 dsh lineage executor check"
+    ],
     "phase 23 epic review doc fixes": [
       "phase 23 epic review doc fixes"
     ],
@@ -85484,12 +85529,12 @@
     "pi session goal tasks": [
       "pi session goal tasks"
     ],
+    "pi session handover": [
+      "Pi session handover",
+      "pi session handover"
+    ],
     "pi session lifecycle": [
       "pi session lifecycle"
-    ],
-    "pi session relaunch": [
-      "Pi session relaunch",
-      "pi session relaunch"
     ],
     "pi session start context": [
       "pi session start context"
@@ -94605,6 +94650,9 @@
     ],
     "rename rule and test root fixes tasks": [
       "rename rule and test root fixes tasks"
+    ],
+    "rename session relaunch": [
+      "rename session relaunch"
     ],
     "rename spec kit memory mcp namespace": [
       "rename spec kit memory mcp namespace"
@@ -103881,8 +103929,48 @@
     "session handover 2026 05 18 evening": [
       "session handover 2026-05-18 evening"
     ],
+    "session handover claude": [
+      "session-handover-claude"
+    ],
+    "session handover cli": [
+      "session handover cli"
+    ],
+    "session handover command runtimes": [
+      "session-handover-command-runtimes"
+    ],
+    "session handover core": [
+      "session handover core"
+    ],
+    "session handover fixtures": [
+      "session handover fixtures"
+    ],
+    "session handover hook": [
+      "session handover hook"
+    ],
+    "session handover loop": [
+      "Session handover loop",
+      "session handover loop"
+    ],
+    "session handover pi opencode": [
+      "session-handover-pi-opencode"
+    ],
     "session handover pi opencode codex": [
       "session handover pi opencode codex"
+    ],
+    "session handover rename": [
+      "session handover rename"
+    ],
+    "session handover rename implementation summary": [
+      "session handover rename implementation summary"
+    ],
+    "session handover rename plan": [
+      "session handover rename plan"
+    ],
+    "session handover rename tasks": [
+      "session handover rename tasks"
+    ],
+    "session handover tests": [
+      "session handover tests"
     ],
     "session health check": [
       "session health check"
@@ -104013,26 +104101,14 @@
     "session relaunch cancel command": [
       "session relaunch cancel command"
     ],
-    "session relaunch claude": [
-      "session-relaunch-claude"
-    ],
-    "session relaunch cli": [
-      "session relaunch cli"
-    ],
     "session relaunch closure checklist": [
       "session relaunch closure checklist"
     ],
     "session relaunch closure plan": [
       "session relaunch closure plan"
     ],
-    "session relaunch command runtimes": [
-      "session-relaunch-command-runtimes"
-    ],
     "session relaunch conformance suite": [
       "session relaunch conformance suite"
-    ],
-    "session relaunch core": [
-      "session relaunch core"
     ],
     "session relaunch default off": [
       "session relaunch default off"
@@ -104046,17 +104122,11 @@
     "session relaunch feature catalog goal ended wrapper notice": [
       "session relaunch feature catalog goal_ended wrapper notice"
     ],
-    "session relaunch fixtures": [
-      "session relaunch fixtures"
-    ],
     "session relaunch goal": [
       "SESSION_RELAUNCH_GOAL"
     ],
     "session relaunch history command": [
       "session relaunch history command"
-    ],
-    "session relaunch hook": [
-      "session relaunch hook"
     ],
     "session relaunch keep command": [
       "session relaunch keep command"
@@ -104074,14 +104144,10 @@
       "session relaunch live round"
     ],
     "session relaunch loop": [
-      "Session relaunch loop",
       "session relaunch loop"
     ],
     "session relaunch opt in": [
       "session relaunch opt in"
-    ],
-    "session relaunch pi opencode": [
-      "session-relaunch-pi-opencode"
     ],
     "session relaunch post fix research": [
       "session relaunch post-fix research"
@@ -104094,9 +104160,6 @@
     ],
     "session relaunch stale re arm fix": [
       "session relaunch stale re-arm fix"
-    ],
-    "session relaunch tests": [
-      "session relaunch tests"
     ],
     "session resume": [
       "session resume"
@@ -115167,6 +115230,9 @@
     "skilled v4 0 2 1": [
       "skilled v4.0.2.1"
     ],
+    "skilled v4 0 2 2": [
+      "skilled v4.0.2.2"
+    ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
     ],
@@ -117871,8 +117937,8 @@
     "speckit handoff command template": [
       "speckit handoff command template"
     ],
-    "speckit handoff session relaunch": [
-      "/speckit:handoff session relaunch"
+    "speckit handoff session handover": [
+      "/speckit:handoff session handover"
     ],
     "speckit hf model server idle timeout min default": [
       "SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN default"
@@ -121383,6 +121449,9 @@
     "system deep loop 2 0 1 0": [
       "system-deep-loop 2.0.1.0"
     ],
+    "system deep loop 2 0 2 0": [
+      "system-deep-loop 2.0.2.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -121602,6 +121671,9 @@
     "system deep loop v2 0 1 0": [
       "system-deep-loop v2.0.1.0"
     ],
+    "system deep loop v2 0 2 0": [
+      "system-deep-loop v2.0.2.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -121620,6 +121692,9 @@
     "system hardening tasks": [
       "system hardening tasks"
     ],
+    "system in session handover enabled": [
+      "system in session handover enabled"
+    ],
     "system kind recall exclusion": [
       "system kind recall exclusion"
     ],
@@ -121628,6 +121703,9 @@
     ],
     "system rerank sidecar skill": [
       "system-rerank-sidecar skill"
+    ],
+    "system session handover enabled": [
+      "system session handover enabled"
     ],
     "system session relaunch claude enabled": [
       "SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED"
@@ -128583,6 +128661,9 @@
     ],
     "v4 0 2 1 release notes": [
       "v4.0.2.1 release notes"
+    ],
+    "v4 0 2 2 release notes": [
+      "v4.0.2.2 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"

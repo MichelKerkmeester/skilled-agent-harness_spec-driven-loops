@@ -2757,7 +2757,7 @@ GENERATED_COMMAND_BRIDGES = {
         "routing_enabled": True,
     },
     "command-speckit-handoff": {
-        "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+        "description": "Write the handoff note and prepare the session handover loop: the manual trigger on every runtime.",
         "slash_markers": ["/speckit:handoff", "speckit:handoff"],
         "owning_skill": "system-spec-kit",
         "inventory_id": "command-speckit-handoff",

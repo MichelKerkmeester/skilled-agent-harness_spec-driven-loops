@@ -1,1 +1,1 @@
-../../.skilled/hooks/session-relaunch/claude/compact-pointer.mjs
+../../.skilled/hooks/session-handover/claude/compact-pointer.mjs
