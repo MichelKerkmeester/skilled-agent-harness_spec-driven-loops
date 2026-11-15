@@ -19,7 +19,7 @@ const { restoreEnv } = require('./helpers/continuation-log.cjs');
 const testDir = dirname(__filename);
 const pluginUrl = pathToFileURL(join(testDir, '..', 'opencode-goal.js')).href;
 const PACKET = 'specs/t/001-fixture';
-const HAND_OVER_ENV = ['IN_SESSION_HANDOVER_GOAL_PACKET', 'IN_SESSION_HANDOVER_GOAL', 'AI_SESSION_CHILD'];
+const HAND_OVER_ENV = ['SESSION_HANDOVER_GOAL_PACKET', 'SESSION_HANDOVER_GOAL', 'AI_SESSION_CHILD'];
 
 async function loadHelpers(pluginModule) {
   const coreModule = await import(pathToFileURL(join(testDir, '..', 'lib', 'opencode-goal-core.js')).href);
@@ -66,7 +66,7 @@ function sessionCreated(sessionID, parentID) {
 }
 
 test('a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = PACKET;
   const plugin = await newPlugin();
   await plugin.event({ event: sessionCreated('receiver') });
 
@@ -82,7 +82,7 @@ test('a receiver with no goal is bound to the hand-over packet at session start 
 }));
 
 test('a second session start with the same id changes nothing', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = PACKET;
   await (await newPlugin()).event({ event: sessionCreated('twice-session') });
   const path = helpers.goalPathForSession('twice-session', { stateDir });
   const before = await readFile(path, 'utf8');
@@ -92,7 +92,7 @@ test('a second session start with the same id changes nothing', async () => with
 }));
 
 test('an active or paused goal of the session is kept byte for byte', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = PACKET;
   await helpers.setGoal('own-active', 'The operator own goal', { stateDir });
   await helpers.setGoal('own-paused', 'The operator paused goal', { stateDir });
   await helpers.markGoalStatus('own-paused', 'paused', { stateDir });
@@ -106,7 +106,7 @@ test('an active or paused goal of the session is kept byte for byte', async () =
 }));
 
 test('a goal that was cleared in this session is not handed back at the next start', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = PACKET;
   await helpers.setGoal('cleared-session', 'Abandoned work', { stateDir });
   await helpers.clearGoal('cleared-session', { stateDir });
   assert.equal(await helpers.readGoal('cleared-session', { stateDir }), null);
@@ -116,7 +116,7 @@ test('a goal that was cleared in this session is not handed back at the next sta
 }));
 
 test('a record that cannot be parsed counts as a goal and is left alone', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = PACKET;
   await mkdir(stateDir, { recursive: true });
   const path = helpers.goalPathForSession('broken-session', { stateDir });
   await writeFile(path, '{not json', 'utf8');
@@ -128,9 +128,9 @@ test('a record that cannot be parsed counts as a goal and is left alone', async 
 test('no variable, an empty one or the switch off binds nothing', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
   const cases = [
     ['no-variable', {}],
-    ['empty-variable', { IN_SESSION_HANDOVER_GOAL_PACKET: '' }],
-    ['switch-off', { IN_SESSION_HANDOVER_GOAL_PACKET: PACKET, IN_SESSION_HANDOVER_GOAL: '0' }],
-    ['switch-word', { IN_SESSION_HANDOVER_GOAL_PACKET: PACKET, IN_SESSION_HANDOVER_GOAL: 'off' }],
+    ['empty-variable', { SESSION_HANDOVER_GOAL_PACKET: '' }],
+    ['switch-off', { SESSION_HANDOVER_GOAL_PACKET: PACKET, SESSION_HANDOVER_GOAL: '0' }],
+    ['switch-word', { SESSION_HANDOVER_GOAL_PACKET: PACKET, SESSION_HANDOVER_GOAL: 'off' }],
   ];
   for (const [sessionID, env] of cases) {
     Object.assign(process.env, env);
@@ -149,7 +149,7 @@ test('a missing, escaping or linked-out packet binds nothing', async () => withW
     await mkdir(join(workspace, 'specs', 't', 'empty'), { recursive: true });
     const bad = ['specs/t/missing', 'specs/t/empty', '../outside', 'specs/t/../../../outside', join(workspace, 'specs', 't', 'empty'), 'specs/t/linked-out'];
     for (const [index, packet] of bad.entries()) {
-      process.env.IN_SESSION_HANDOVER_GOAL_PACKET = packet;
+      process.env.SESSION_HANDOVER_GOAL_PACKET = packet;
       const plugin = await newPlugin();
       await plugin.event({ event: sessionCreated(`bad-${index}`) });
       assert.equal(await helpers.readGoal(`bad-${index}`, { stateDir }), null, packet);
@@ -162,7 +162,7 @@ test('a missing, escaping or linked-out packet binds nothing', async () => withW
 }));
 
 test('only the first top-level session of the process is the receiver', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = PACKET;
   const plugin = await newPlugin();
   await plugin.event({ event: sessionCreated('child-session', 'parent-session') });
   assert.equal(await helpers.readGoal('child-session', { stateDir }), null, 'a child session is not a receiver');
@@ -173,7 +173,7 @@ test('only the first top-level session of the process is the receiver', async ()
 }));
 
 test('a dispatched child process binds nothing, even as the first top-level session it sees', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = PACKET;
   process.env.AI_SESSION_CHILD = '1';
   const plugin = await newPlugin();
   await plugin.event({ event: sessionCreated('dispatched-child') });
@@ -182,7 +182,7 @@ test('a dispatched child process binds nothing, even as the first top-level sess
 }));
 
 test('a goal set while the bind waits for the session lock is kept, never replaced', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = PACKET;
   await helpers.setGoal('seed-session', 'The operator own goal', { stateDir });
   const seed = JSON.parse(await readFile(helpers.goalPathForSession('seed-session', { stateDir }), 'utf8'));
   await rm(helpers.goalPathForSession('seed-session', { stateDir }), { force: true });
@@ -205,7 +205,7 @@ test('a goal set while the bind waits for the session lock is kept, never replac
 }));
 
 test('the plugin kill switch stops the hand-over bind', async () => withWorkspace(async ({ helpers, stateDir, newPlugin }) => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = PACKET;
   const plugin = await newPlugin();
   process.env.OPENCODE_GOAL_PLUGIN_DISABLED = '1';
   await plugin.event({ event: sessionCreated('disabled-session') });

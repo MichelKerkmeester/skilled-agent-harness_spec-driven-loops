@@ -1,13 +1,13 @@
 ---
-title: "Tasks: Rename session relaunch to in-session handover"
+title: "Tasks: Rename session relaunch to session handover"
 description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
 trigger_phrases:
-  - "in session handover rename tasks"
+  - "session handover rename tasks"
 importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
-# Tasks: Rename session relaunch to in-session handover
+# Tasks: Rename session relaunch to session handover
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -25,7 +25,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`H` is `.skilled/hooks/in-session-handover`. `X` is the git pathspec `':!specs/**' ':!**/changelog/**' ':!**/benchmark/reports/**' ':!**/z_archive/**'`.
+`H` is `.skilled/hooks/session-handover`. `X` is the git pathspec `':!specs/**' ':!**/changelog/**' ':!**/benchmark/reports/**' ':!**/z_archive/**'`.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -45,7 +45,7 @@ contextType: "general"
 - [x] T003 Move the hook folder and the 13 files named after the feature (`H`, `.opencode/plugins/`, `.pi/extensions/`, the playbooks and catalog). Verify: `git status --short | grep -c '^R'` counts the renames.
 - [x] T004 Rewrite every live form with the word map (130 files). Verify: the inventory grep, with `NNN-session-relaunch` and `--session-relaunch` lines dropped, prints 0.
 - [x] T005 Re-point the nine mirror links (`.claude/hooks/`, `.codex/hooks/`, `H/opencode/`). Verify: every link resolves with `test -e`.
-- [x] T006 Re-render the registrations (`.claude/settings.json`, `.codex/hooks.json`). Verify: `rg -c in-session-handover .claude/settings.json` prints a count above 0.
+- [x] T006 Re-render the registrations (`.claude/settings.json`, `.codex/hooks.json`). Verify: `rg -c session-handover .claude/settings.json` prints a count above 0.
 - [x] T007 Regenerate the trigger index and rebuild the advisor (`generate-trigger-index.mjs`, `npm run build`). Verify: both exit 0.
 <!-- /ANCHOR:phase-2 -->
 
@@ -57,7 +57,12 @@ contextType: "general"
 - [x] T008 Rerun the gate (`scratch/gate.sh`). Verify: every count matches T002, and hook sync and mirror sync print PASS.
 - [x] T009 Run the advisor command tests and the bridge check. Verify: 14 of 14 pass and `derive-command-bridges --check` reports no changes.
 - [x] T010 Run one live Claude Code hop (`scratch/harness/live-hop.sh claude rename1`). Verify: `score.cjs` prints `5/5`.
-- [ ] T011 Write the release note through `/create:changelog skilled`. Verify: the entry names the old and new variables and the state folder.
+- [x] T012 Rename every in-session form to the short main name (`scratch/rename2.pl`, 13 paths, 130 files). Verify: the in-session grep outside history lists only two false matches.
+- [x] T013 Read the in-session switch spelling while the main switch is blank (`hook-flags.cjs`, `hook-flags.sh`, `hook-flags.test.cjs`). Verify: `node --test hook-flags.test.cjs` prints 31 pass, 0 fail.
+- [x] T014 Add three owned signals to `/speckit:handoff` (`command-metadata.json`) and regenerate the bridges. Verify: the advisor names `/speckit:handoff` for all three phrasings, and none on main.
+- [x] T015 Retitle the parent goal and spec (`../goal.md`, `../spec.md`). Verify: both H1s read "Session handover loop".
+- [x] T016 Run one live Claude Code hop on the short names (`live-hop.sh claude short1`). Verify: `score.cjs` prints `5/5`.
+- [x] T011 Write the release note through `/create:changelog skilled`. Verify: the entry names the old and new variables and the state folder.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,7 +70,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] The live hop scored 5/5
 <!-- /ANCHOR:completion -->
@@ -136,7 +141,7 @@ contextType: "general"
 ## Documentation
 
 - [x] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` name the same counts
-- [ ] CHK-041 [P1] The release note names the old and new variables and the state folder
+- [x] CHK-041 [P1] The release note names the old and new variables and the state folder
 <!-- /ANCHOR:docs -->
 
 ---
@@ -156,7 +161,7 @@ contextType: "general"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 6 | 6/6 |
-| P1 Items | 6 | 5/6 |
+| P1 Items | 6 | 6/6 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-11-15

@@ -57,6 +57,7 @@
   "derived": {
     "trigger_phrases": [
       "session relaunch loop",
+      "session handover loop",
       "auto-handoff near the context limit",
       "packet goal",
       "durable directive",
@@ -67,6 +68,7 @@
       "session",
       "relaunch",
       "loop",
+      "handover",
       "auto-handoff",
       "near",
       "context",
@@ -74,8 +76,7 @@
       "packet",
       "goal",
       "durable",
-      "directive",
-      "completion"
+      "directive"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -249,7 +250,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-15T08:06:09.869Z",
+    "last_save_at": "2026-11-15T09:08:50.773Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -257,13 +258,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6b5d055379af7997f6dd31cafe314a42fcfbcf98d7094b04f7f4198c744311dd",
+    "source_fingerprint": "sha256:364b835a6269b4a2f7c2cbe48f392d996bbd7ea5bb59326aa2be3add07ac2fd5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bcb126dae0e90abc323e82d504d6ae2447eeaf7b5275c04db333028de68485f6",
+      "spec.md": "0060786fbbe1e7273101d9bb591ad2c49669e8bcf57bd2d8ddce4f2f33a2d076",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
     "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename",
-    "last_active_at": "2026-11-15T08:02:24.865Z"
+    "last_active_at": "2026-11-15T09:08:33.340Z"
   }
 }

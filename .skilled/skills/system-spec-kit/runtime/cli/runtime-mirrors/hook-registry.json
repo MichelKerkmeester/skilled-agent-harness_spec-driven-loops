@@ -1122,7 +1122,7 @@
       }
     },
     {
-      "id": "in-session-handover",
+      "id": "session-handover",
       "concern": "Hand a session near its context limit to a fresh one under skilled-loop",
       "bindings": {
         "claude": [
@@ -1132,7 +1132,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "node",
-            "script": ".skilled/hooks/in-session-handover/claude/context-nudge.mjs",
+            "script": ".skilled/hooks/session-handover/claude/context-nudge.mjs",
             "timeout": 5,
             "fallback": "envelope"
           },
@@ -1142,7 +1142,7 @@
             "slot": 2,
             "matcher": "",
             "runner": "node",
-            "script": ".skilled/hooks/in-session-handover/claude/context-nudge.mjs",
+            "script": ".skilled/hooks/session-handover/claude/context-nudge.mjs",
             "timeout": 5,
             "fallback": "envelope"
           },
@@ -1152,7 +1152,7 @@
             "slot": 2,
             "matcher": "",
             "runner": "node",
-            "script": ".skilled/hooks/in-session-handover/claude/stop-arm.mjs",
+            "script": ".skilled/hooks/session-handover/claude/stop-arm.mjs",
             "timeout": 10,
             "fallback": "envelope",
             "async": true
@@ -1163,7 +1163,7 @@
             "slot": 7,
             "matcher": "",
             "runner": "node",
-            "script": ".skilled/hooks/in-session-handover/claude/compact-pointer.mjs",
+            "script": ".skilled/hooks/session-handover/claude/compact-pointer.mjs",
             "timeout": 5,
             "fallback": "envelope"
           },
@@ -1173,7 +1173,7 @@
             "slot": 4,
             "matcher": "Bash",
             "runner": "node",
-            "script": ".skilled/hooks/in-session-handover/claude/subagent-guard.mjs",
+            "script": ".skilled/hooks/session-handover/claude/subagent-guard.mjs",
             "timeout": 5,
             "fallback": "envelope"
           },
@@ -1183,7 +1183,7 @@
             "slot": 0,
             "matcher": "AskUserQuestion",
             "runner": "node",
-            "script": ".skilled/hooks/in-session-handover/claude/subagent-guard.mjs",
+            "script": ".skilled/hooks/session-handover/claude/subagent-guard.mjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -1195,7 +1195,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".skilled/hooks/in-session-handover/codex/prompt-seed.mjs",
+            "script": ".skilled/hooks/session-handover/codex/prompt-seed.mjs",
             "timeout": 5,
             "fallback": "envelope"
           },
@@ -1205,7 +1205,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".skilled/hooks/in-session-handover/codex/context-nudge.mjs",
+            "script": ".skilled/hooks/session-handover/codex/context-nudge.mjs",
             "timeout": 5,
             "fallback": "envelope"
           },
@@ -1215,7 +1215,7 @@
             "slot": 2,
             "matcher": null,
             "runner": "node",
-            "script": ".skilled/hooks/in-session-handover/codex/stop-arm.mjs",
+            "script": ".skilled/hooks/session-handover/codex/stop-arm.mjs",
             "timeout": 10,
             "fallback": "envelope"
           },
@@ -1225,14 +1225,14 @@
             "slot": 5,
             "matcher": null,
             "runner": "node",
-            "script": ".skilled/hooks/in-session-handover/codex/compact-pointer.mjs",
+            "script": ".skilled/hooks/session-handover/codex/compact-pointer.mjs",
             "timeout": 5,
             "fallback": "envelope"
           }
         ]
       },
       "pi": {
-        "extension": "in-session-handover.ts"
+        "extension": "session-handover.ts"
       }
     },
     {

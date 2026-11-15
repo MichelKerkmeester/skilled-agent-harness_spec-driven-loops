@@ -31,12 +31,12 @@ beforeEach(() => {
   previousStateDir = process.env.OPENCODE_GOAL_STATE_DIR;
   process.env.OPENCODE_GOAL_STATE_DIR = stateDir;
   previousHandOver = {
-    IN_SESSION_HANDOVER_GOAL_PACKET: process.env.IN_SESSION_HANDOVER_GOAL_PACKET,
-    IN_SESSION_HANDOVER_GOAL: process.env.IN_SESSION_HANDOVER_GOAL,
+    SESSION_HANDOVER_GOAL_PACKET: process.env.SESSION_HANDOVER_GOAL_PACKET,
+    SESSION_HANDOVER_GOAL: process.env.SESSION_HANDOVER_GOAL,
     AI_SESSION_CHILD: process.env.AI_SESSION_CHILD,
   };
-  delete process.env.IN_SESSION_HANDOVER_GOAL_PACKET;
-  delete process.env.IN_SESSION_HANDOVER_GOAL;
+  delete process.env.SESSION_HANDOVER_GOAL_PACKET;
+  delete process.env.SESSION_HANDOVER_GOAL;
   delete process.env.AI_SESSION_CHILD;
 });
 
@@ -524,7 +524,7 @@ function withHandOverWorkspace(run) {
 }
 
 test('a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md', async () => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
   await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
     await pi.registered.session_start({ type: 'session_start' }, fakeContext('handover-start', workspace));
     const record = core.showGoal(scoped('handover-start'));
@@ -537,7 +537,7 @@ test('a receiver with no goal is bound to the hand-over packet at session start 
 });
 
 test('a second session_start with a new id binds nothing after the receiver binds', async () => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
   await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
     await pi.registered.session_start({ type: 'session_start' }, fakeContext('handover-receiver', workspace));
     assert.equal(core.showGoal(scoped('handover-receiver')).packetPath, HAND_OVER_PACKET);
@@ -545,12 +545,12 @@ test('a second session_start with a new id binds nothing after the receiver bind
     await pi.registered.session_start({ type: 'session_start' }, fakeContext('handover-later', workspace));
     assert.equal(core.showGoal(scoped('handover-later')), null);
     assert.equal(pi.sent.length, 1, 'only the receiver session restores the hop goal');
-    assert.equal(process.env.IN_SESSION_HANDOVER_GOAL_PACKET, undefined);
+    assert.equal(process.env.SESSION_HANDOVER_GOAL_PACKET, undefined);
   });
 });
 
 test('the first input binds when session start did not, and a later input leaves the record alone', async () => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
   await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
     const event = { type: 'input', text: 'continue', source: 'interactive' };
     const first = await pi.registered.input(event, fakeContext('handover-input', workspace));
@@ -563,7 +563,7 @@ test('the first input binds when session start did not, and a later input leaves
 });
 
 test('a goal of the session own is never replaced, and a cleared one is not handed back', async () => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
   await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
     const event = { type: 'input', text: 'continue', source: 'interactive' };
     core.setGoal({ objective: 'The operator own goal' }, scoped('handover-own'));
@@ -579,7 +579,7 @@ test('a goal of the session own is never replaced, and a cleared one is not hand
 });
 
 test('a dispatched child session that inherited the packet binds nothing in Pi', async () => {
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
   process.env.AI_SESSION_CHILD = '1';
   await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
     await pi.registered.session_start({ type: 'session_start' }, fakeContext('child-start', workspace));
@@ -594,17 +594,17 @@ test('the switch, an empty variable and a missing packet bind nothing in Pi', as
   await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
     const event = { type: 'input', text: 'continue', source: 'interactive' };
     const attempts = [
-      ['handover-off', { IN_SESSION_HANDOVER_GOAL_PACKET: HAND_OVER_PACKET, IN_SESSION_HANDOVER_GOAL: '0' }],
-      ['handover-empty', { IN_SESSION_HANDOVER_GOAL_PACKET: '' }],
-      ['handover-missing', { IN_SESSION_HANDOVER_GOAL_PACKET: 'specs/t/missing' }],
-      ['handover-escape', { IN_SESSION_HANDOVER_GOAL_PACKET: '../../etc' }],
+      ['handover-off', { SESSION_HANDOVER_GOAL_PACKET: HAND_OVER_PACKET, SESSION_HANDOVER_GOAL: '0' }],
+      ['handover-empty', { SESSION_HANDOVER_GOAL_PACKET: '' }],
+      ['handover-missing', { SESSION_HANDOVER_GOAL_PACKET: 'specs/t/missing' }],
+      ['handover-escape', { SESSION_HANDOVER_GOAL_PACKET: '../../etc' }],
     ];
     for (const [sessionId, env] of attempts) {
       Object.assign(process.env, env);
       assert.deepEqual(await pi.registered.input(event, fakeContext(sessionId, workspace)), { action: 'continue' }, sessionId);
       assert.equal(core.showGoal(scoped(sessionId)), null, sessionId);
-      delete process.env.IN_SESSION_HANDOVER_GOAL_PACKET;
-      delete process.env.IN_SESSION_HANDOVER_GOAL;
+      delete process.env.SESSION_HANDOVER_GOAL_PACKET;
+      delete process.env.SESSION_HANDOVER_GOAL;
     }
   });
 });

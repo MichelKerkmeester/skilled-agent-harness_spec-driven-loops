@@ -251,10 +251,10 @@ test('resolveDispatch: a runtime state concern README keeps the version gate, de
     'the same state dir read through the linked source root',
   );
 
-  const handoff = '.skilled/skills/.state/in-session-handover/handoffs/20261019T000000Z-abcd1234.md';
+  const handoff = '.skilled/skills/.state/session-handover/handoffs/20261019T000000Z-abcd1234.md';
   for (const out of [
     handoff,
-    '.opencode/skills/.state/in-session-handover/handoffs/20261019T000000Z-abcd1234.md',
+    '.opencode/skills/.state/session-handover/handoffs/20261019T000000Z-abcd1234.md',
     '.skilled/skills/.state/goal/notes.md',
     '.skilled/skills/.state/goal/nested/README.md',
     '.skilled/skills/sk-doc/.state/notes.md',

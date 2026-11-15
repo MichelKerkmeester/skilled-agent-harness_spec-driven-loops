@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6863e8a6e94ec947ebe85e279b93d852ba594fd634aebb5d2d18eb2cec0a1219",
+  "manifestHash": "be256d59cf5fed37f61e2679dd804b2b6a18d2d69ff49baceef2a0c7330e58c5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6991,6 +6991,9 @@
     ],
     "044 implementation summary": [
       "044 implementation summary"
+    ],
+    "044 in session handover rename operator decisions": [
+      "044-in-session-handover-rename operator decisions"
     ],
     "044 named subtracks and host repos operator decisions": [
       "044-named-subtracks-and-host-repos operator decisions"
@@ -20621,10 +20624,6 @@
     "claude hook settings schema normalization": [
       "claude hook settings schema normalization"
     ],
-    "claude in session handover": [
-      "Claude in-session handover",
-      "claude in-session handover"
-    ],
     "claude injection screen": [
       "claude injection screen"
     ],
@@ -20732,6 +20731,10 @@
     ],
     "claude session end teardown": [
       "claude session end teardown"
+    ],
+    "claude session handover": [
+      "Claude session handover",
+      "claude session handover"
     ],
     "claude session lifecycle": [
       "claude session lifecycle"
@@ -27326,10 +27329,6 @@
     "codex image input": [
       "codex image input"
     ],
-    "codex in session handover": [
-      "Codex in-session handover",
-      "codex in-session handover"
-    ],
     "codex lineage 401": [
       "codex lineage 401"
     ],
@@ -27482,6 +27481,10 @@
     ],
     "codex session cleanup": [
       "codex session cleanup"
+    ],
+    "codex session handover": [
+      "Codex session handover",
+      "codex session handover"
     ],
     "codex session lifecycle": [
       "codex session lifecycle"
@@ -33358,9 +33361,6 @@
     "cursor hooks json shared configuration": [
       "Cursor hooks.json shared configuration"
     ],
-    "cursor in session handover": [
-      "Cursor in-session handover"
-    ],
     "cursor live follow": [
       "cursor live follow"
     ],
@@ -33480,6 +33480,9 @@
     ],
     "cursor session end teardown": [
       "cursor session end teardown"
+    ],
+    "cursor session handover": [
+      "Cursor session handover"
     ],
     "cursor session lifecycle": [
       "cursor session lifecycle"
@@ -41029,9 +41032,6 @@
     "devin hop waived": [
       "devin hop waived"
     ],
-    "devin in session handover": [
-      "Devin in-session handover"
-    ],
     "devin injection screen": [
       "devin injection screen"
     ],
@@ -41274,6 +41274,9 @@
     ],
     "devpass llm gateway route": [
       "devpass llm gateway route"
+    ],
+    "devsession handover": [
+      "Devsession handover"
     ],
     "df idf corpus": [
       "df-idf corpus"
@@ -60995,35 +60998,8 @@
     "in session handover": [
       "in-session handover"
     ],
-    "in session handover claude": [
-      "in-session-handover-claude"
-    ],
-    "in session handover cli": [
-      "in-session handover cli"
-    ],
-    "in session handover command runtimes": [
-      "in-session-handover-command-runtimes"
-    ],
-    "in session handover core": [
-      "in-session handover core"
-    ],
     "in session handover docs": [
       "in-session handover docs"
-    ],
-    "in session handover fixtures": [
-      "in-session handover fixtures"
-    ],
-    "in session handover hook": [
-      "in-session handover hook"
-    ],
-    "in session handover hook folder": [
-      "in-session-handover hook folder"
-    ],
-    "in session handover loop": [
-      "In-session handover loop"
-    ],
-    "in session handover pi opencode": [
-      "in-session-handover-pi-opencode"
     ],
     "in session handover rename": [
       "in-session handover rename"
@@ -61031,17 +61007,8 @@
     "in session handover rename acceptance criteria": [
       "in session handover rename acceptance criteria"
     ],
-    "in session handover rename implementation summary": [
-      "in session handover rename implementation summary"
-    ],
-    "in session handover rename plan": [
-      "in session handover rename plan"
-    ],
-    "in session handover rename tasks": [
-      "in session handover rename tasks"
-    ],
-    "in session handover tests": [
-      "in-session handover tests"
+    "in session handover spelling": [
+      "in-session handover spelling"
     ],
     "inbound enhances": [
       "inbound enhances"
@@ -77466,10 +77433,6 @@
     "opencode hooks browsability mirror": [
       "opencode hooks browsability mirror"
     ],
-    "opencode in session handover": [
-      "OpenCode in-session handover",
-      "opencode in-session handover"
-    ],
     "opencode injection screen": [
       "opencode injection screen"
     ],
@@ -77766,6 +77729,10 @@
     ],
     "opencode session cleanup": [
       "opencode session cleanup"
+    ],
+    "opencode session handover": [
+      "OpenCode session handover",
+      "opencode session handover"
     ],
     "opencode session sweep": [
       "opencode session sweep"
@@ -85709,10 +85676,6 @@
     "pi hook latency handover": [
       "pi hook latency handover"
     ],
-    "pi in session handover": [
-      "Pi in-session handover",
-      "pi in-session handover"
-    ],
     "pi injection screen": [
       "pi injection screen"
     ],
@@ -85967,6 +85930,10 @@
     ],
     "pi session goal tasks": [
       "pi session goal tasks"
+    ],
+    "pi session handover": [
+      "Pi session handover",
+      "pi session handover"
     ],
     "pi session lifecycle": [
       "pi session lifecycle"
@@ -104499,8 +104466,48 @@
     "session handover 2026 05 18 evening": [
       "session handover 2026-05-18 evening"
     ],
+    "session handover claude": [
+      "session-handover-claude"
+    ],
+    "session handover cli": [
+      "session handover cli"
+    ],
+    "session handover command runtimes": [
+      "session-handover-command-runtimes"
+    ],
+    "session handover core": [
+      "session handover core"
+    ],
+    "session handover fixtures": [
+      "session handover fixtures"
+    ],
+    "session handover hook": [
+      "session handover hook"
+    ],
+    "session handover loop": [
+      "Session handover loop",
+      "session handover loop"
+    ],
+    "session handover pi opencode": [
+      "session-handover-pi-opencode"
+    ],
     "session handover pi opencode codex": [
       "session handover pi opencode codex"
+    ],
+    "session handover rename": [
+      "session handover rename"
+    ],
+    "session handover rename implementation summary": [
+      "session handover rename implementation summary"
+    ],
+    "session handover rename plan": [
+      "session handover rename plan"
+    ],
+    "session handover rename tasks": [
+      "session handover rename tasks"
+    ],
+    "session handover tests": [
+      "session handover tests"
     ],
     "session health check": [
       "session health check"
@@ -115748,6 +115755,9 @@
     "skilled v4 0 2 1": [
       "skilled v4.0.2.1"
     ],
+    "skilled v4 0 2 2": [
+      "skilled v4.0.2.2"
+    ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
     ],
@@ -118449,8 +118459,8 @@
     "speckit handoff command template": [
       "speckit handoff command template"
     ],
-    "speckit handoff in session handover": [
-      "/speckit:handoff in-session handover"
+    "speckit handoff session handover": [
+      "/speckit:handoff session handover"
     ],
     "speckit hf model server idle timeout min default": [
       "SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN default"
@@ -122194,6 +122204,9 @@
     ],
     "system rerank sidecar skill": [
       "system-rerank-sidecar skill"
+    ],
+    "system session handover enabled": [
+      "system session handover enabled"
     ],
     "system session relaunch claude enabled": [
       "SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED"
@@ -129191,6 +129204,9 @@
     ],
     "v4 0 2 1 release notes": [
       "v4.0.2.1 release notes"
+    ],
+    "v4 0 2 2 release notes": [
+      "v4.0.2.2 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"

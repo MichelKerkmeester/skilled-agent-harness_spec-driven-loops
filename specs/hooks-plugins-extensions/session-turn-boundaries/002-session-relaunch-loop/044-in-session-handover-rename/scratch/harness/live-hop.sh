@@ -12,11 +12,11 @@ repo=$(git -C "$here" rev-parse --show-toplevel)
 out="$here/../runs/$label-$runtime"
 mkdir -p "$out"
 if [ -n "${XDG_RUNTIME_DIR:-}" ]; then state="$XDG_RUNTIME_DIR/skilled-relaunch"; else state="${TMPDIR:-/tmp}/skilled-relaunch-$(id -u)"; fi
-notes="$repo/.skilled/skills/.state/in-session-handover/handoffs"
+notes="$repo/.skilled/skills/.state/session-handover/handoffs"
 mkdir -p "$notes"
 
 code_word="ORCHID-$RANDOM"
-prompt="Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/in-session-handover/README.md, name its first heading and repeat the code word $code_word. Start by reading the README. Gate 3: D) Skip, no spec folder."
+prompt="Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat the code word $code_word. Start by reading the README. Gate 3: D) Skip, no spec folder."
 
 name="hoptest-$label-$runtime"
 case "$runtime" in
@@ -34,7 +34,7 @@ session="hop-$label-$runtime"
 tmux kill-session -t "$session" 2>/dev/null
 
 quoted=$(printf '%q ' "${launch[@]}")
-envs="SYSTEM_IN_SESSION_HANDOVER_ENABLED=1 IN_SESSION_HANDOVER_THRESHOLD=0.05 IN_SESSION_HANDOVER_WINDOW_TOKENS=100 IN_SESSION_HANDOVER_MAX_HOPS=1"
+envs="SYSTEM_SESSION_HANDOVER_ENABLED=1 SESSION_HANDOVER_THRESHOLD=0.05 SESSION_HANDOVER_WINDOW_TOKENS=100 SESSION_HANDOVER_MAX_HOPS=1"
 tmux new-session -d -s "$session" -x 200 -y 50 \
   "cd '$repo' && env -u SKILLED_LOOP_HOPS -u SKILLED_LOOP_ID -u CLAUDECODE -u CLAUDE_CODE_SESSION_ID $envs bash .skilled/bin/skilled-loop $runtime $quoted; echo WRAPPER_EXIT=\$?; sleep 600"
 tmux set-option -t "$session" remain-on-exit on >/dev/null

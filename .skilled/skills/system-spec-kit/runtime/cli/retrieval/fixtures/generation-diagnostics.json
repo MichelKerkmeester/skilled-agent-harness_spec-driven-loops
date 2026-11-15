@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6865,
-    "ok": 19049,
+    "ok": 19051,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27544,
+  "documentsScanned": 27546,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6863e8a6e94ec947ebe85e279b93d852ba594fd634aebb5d2d18eb2cec0a1219",
+  "manifestHash": "be256d59cf5fed37f61e2679dd804b2b6a18d2d69ff49baceef2a0c7330e58c5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44121,
+      "ok": 44126,
       "prose-sentence": 20,
       "single-token": 156,
       "stop-word-only": 1,
@@ -6914,12 +6914,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/in-session-handover.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/mcp-route-guard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -6933,6 +6927,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-cleanup.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-handover.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -52892,14 +52892,6 @@
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/in-session-handover/opencode/in-session-handover.js",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/in-session-handover/tests/fixtures",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/hooks/mcp-route-guard/opencode/mcp-route-guard.js",
       "reason": "symlink not followed"
     },
@@ -52938,6 +52930,14 @@
     {
       "path": ".skilled/hooks/session-cleanup/opencode/session-cleanup.js",
       "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-handover/opencode/session-handover.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-handover/tests/fixtures",
+      "reason": "excluded directory"
     },
     {
       "path": ".skilled/hooks/session-lifecycle/claude/compact-inject.js",

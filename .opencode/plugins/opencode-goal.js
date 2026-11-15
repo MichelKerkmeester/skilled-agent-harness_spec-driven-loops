@@ -22,7 +22,7 @@ import { registerGoalCore } from './lib/opencode-goal-core.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
-const { readRelaunchFile } = require('../hooks/in-session-handover/lib/relaunch-core.cjs');
+const { readRelaunchFile } = require('../hooks/session-handover/lib/relaunch-core.cjs');
 // The packet goal.md projections are shared with the runtime-neutral core so the
 // two implementations cannot disagree on where the frontmatter ends.
 const goalSlice = require('../hooks/goal/lib/goal-slice.cjs');
@@ -2225,7 +2225,7 @@ async function bindGoal(sessionID, packetPath, rawOptions = {}) {
 /**
  * Bind the packet a relaunch hand-over named to a session that has no goal of its own.
  *
- * Nothing happens without `IN_SESSION_HANDOVER_GOAL_PACKET`, in a dispatched child session
+ * Nothing happens without `SESSION_HANDOVER_GOAL_PACKET`, in a dispatched child session
  * (`AI_SESSION_CHILD=1`), with the switch off, or when the session has a record of any status
  * or an archived one (a cleared or completed goal leaves one, and the session must not be
  * handed a second goal after it ended its first). A record that cannot be read counts as a

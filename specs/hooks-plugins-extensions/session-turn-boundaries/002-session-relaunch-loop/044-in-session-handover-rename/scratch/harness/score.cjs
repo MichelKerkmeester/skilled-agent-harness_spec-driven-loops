@@ -9,7 +9,7 @@ const dir = path.resolve(process.argv[2]);
 const read = (name) => { try { return fs.readFileSync(path.join(dir, name), 'utf8'); } catch { return ''; } };
 const meta = JSON.parse(read('meta.json'));
 const repo = path.resolve(__dirname, '../../../../../../..');
-const readmeLines = fs.readFileSync(path.join(repo, '.skilled/hooks/in-session-handover/README.md'), 'utf8').split('\n').length - 1;
+const readmeLines = fs.readFileSync(path.join(repo, '.skilled/hooks/session-handover/README.md'), 'utf8').split('\n').length - 1;
 
 const events = read('relaunch.log').split('\n').filter(Boolean).map((line) => {
   const [stamp, event, ...rest] = line.split(' ');
@@ -60,10 +60,10 @@ for (const [key, names] of Object.entries({
 }
 
 const pane = read('pane.txt');
-const afterSeed = pane.lastIndexOf('[in-session-handover]') >= 0 ? pane.slice(pane.lastIndexOf('[in-session-handover]')) : pane;
+const afterSeed = pane.lastIndexOf('[session-handover]') >= 0 ? pane.slice(pane.lastIndexOf('[session-handover]')) : pane;
 const answer = {
   lineCount: new RegExp(`\\b${readmeLines}\\b`).test(afterSeed),
-  heading: /In-Session Handover/.test(afterSeed),
+  heading: /Session Handover/.test(afterSeed),
   codeWord: afterSeed.includes(meta.codeWord),
 };
 

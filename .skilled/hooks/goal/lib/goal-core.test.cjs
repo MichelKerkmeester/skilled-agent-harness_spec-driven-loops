@@ -1248,7 +1248,7 @@ test('a record written under the old status word is read back under the current 
 const HAND_OVER_PACKET = 'specs/t/001-fixture';
 
 function handOverEnv(extra = {}) {
-  return { IN_SESSION_HANDOVER_GOAL_PACKET: HAND_OVER_PACKET, ...extra };
+  return { SESSION_HANDOVER_GOAL_PACKET: HAND_OVER_PACKET, ...extra };
 }
 
 test('a session with no goal is bound to the hand-over packet and the brief renders from it', () => {
@@ -1317,16 +1317,16 @@ test('nothing is bound without the packet variable, with it empty, or with the s
   writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
   const scoped = scopedOpts('pi', 'quiet-session');
   assert.deepEqual(core.bindRelaunchGoal(scoped, {}), { bound: false, reason: 'no-packet' });
-  assert.deepEqual(core.bindRelaunchGoal(scoped, { IN_SESSION_HANDOVER_GOAL_PACKET: '  ' }), { bound: false, reason: 'no-packet' });
+  assert.deepEqual(core.bindRelaunchGoal(scoped, { SESSION_HANDOVER_GOAL_PACKET: '  ' }), { bound: false, reason: 'no-packet' });
   for (const off of ['0', 'false', 'off', 'no', 'OFF']) {
     assert.deepEqual(
-      core.bindRelaunchGoal(scoped, handOverEnv({ IN_SESSION_HANDOVER_GOAL: off })),
+      core.bindRelaunchGoal(scoped, handOverEnv({ SESSION_HANDOVER_GOAL: off })),
       { bound: false, reason: 'switched-off' },
-      `IN_SESSION_HANDOVER_GOAL=${off}`,
+      `SESSION_HANDOVER_GOAL=${off}`,
     );
   }
   assert.equal(core.showGoal(scoped), null);
-  assert.equal(core.bindRelaunchGoal(scoped, handOverEnv({ IN_SESSION_HANDOVER_GOAL: '1' })).bound, true);
+  assert.equal(core.bindRelaunchGoal(scoped, handOverEnv({ SESSION_HANDOVER_GOAL: '1' })).bound, true);
 });
 
 test('a dispatched child session binds nothing, whatever packet its environment carries', () => {
@@ -1342,14 +1342,14 @@ test('a dispatched child session binds nothing, whatever packet its environment 
 
 test('the live environment marks a child too, not only an environment passed in', () => {
   writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
-  const previous = { packet: process.env.IN_SESSION_HANDOVER_GOAL_PACKET, child: process.env.AI_SESSION_CHILD };
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
+  const previous = { packet: process.env.SESSION_HANDOVER_GOAL_PACKET, child: process.env.AI_SESSION_CHILD };
+  process.env.SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
   process.env.AI_SESSION_CHILD = '1';
   try {
     assert.deepEqual(core.bindRelaunchGoal(scopedOpts('pi', 'live-child')), { bound: false, reason: 'child-session' });
     assert.equal(core.showGoal(scopedOpts('pi', 'live-child')), null);
   } finally {
-    for (const [name, value] of [['IN_SESSION_HANDOVER_GOAL_PACKET', previous.packet], ['AI_SESSION_CHILD', previous.child]]) {
+    for (const [name, value] of [['SESSION_HANDOVER_GOAL_PACKET', previous.packet], ['AI_SESSION_CHILD', previous.child]]) {
       if (value === undefined) delete process.env[name];
       else process.env[name] = value;
     }
@@ -1359,23 +1359,23 @@ test('the live environment marks a child too, not only an environment passed in'
 test('the switch is also read from the operator flags file, and the environment wins over it', () => {
   writePacketGoal(HAND_OVER_PACKET, packetGoalDoc());
   const flagsFile = join(stateDir, 'hook-flags.env');
-  writeFileSync(flagsFile, 'IN_SESSION_HANDOVER_GOAL=0\n', 'utf8');
+  writeFileSync(flagsFile, 'SESSION_HANDOVER_GOAL=0\n', 'utf8');
   const previous = process.env.HOOK_FLAGS_CONFIG;
-  const previousPacket = process.env.IN_SESSION_HANDOVER_GOAL_PACKET;
-  const previousSwitch = process.env.IN_SESSION_HANDOVER_GOAL;
+  const previousPacket = process.env.SESSION_HANDOVER_GOAL_PACKET;
+  const previousSwitch = process.env.SESSION_HANDOVER_GOAL;
   const previousChild = process.env.AI_SESSION_CHILD;
   process.env.HOOK_FLAGS_CONFIG = flagsFile;
-  process.env.IN_SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
-  delete process.env.IN_SESSION_HANDOVER_GOAL;
+  process.env.SESSION_HANDOVER_GOAL_PACKET = HAND_OVER_PACKET;
+  delete process.env.SESSION_HANDOVER_GOAL;
   delete process.env.AI_SESSION_CHILD;
   try {
     assert.equal(core.relaunchGoalEnabled(), false);
     assert.deepEqual(core.bindRelaunchGoal(scopedOpts('pi', 'flags-session')), { bound: false, reason: 'switched-off' });
-    process.env.IN_SESSION_HANDOVER_GOAL = '1';
+    process.env.SESSION_HANDOVER_GOAL = '1';
     assert.equal(core.relaunchGoalEnabled(), true);
     assert.equal(core.bindRelaunchGoal(scopedOpts('pi', 'flags-session')).bound, true);
   } finally {
-    for (const [name, value] of [['HOOK_FLAGS_CONFIG', previous], ['IN_SESSION_HANDOVER_GOAL_PACKET', previousPacket], ['IN_SESSION_HANDOVER_GOAL', previousSwitch], ['AI_SESSION_CHILD', previousChild]]) {
+    for (const [name, value] of [['HOOK_FLAGS_CONFIG', previous], ['SESSION_HANDOVER_GOAL_PACKET', previousPacket], ['SESSION_HANDOVER_GOAL', previousSwitch], ['AI_SESSION_CHILD', previousChild]]) {
       if (value === undefined) delete process.env[name];
       else process.env[name] = value;
     }
@@ -1407,7 +1407,7 @@ test('a packet that is missing, outside the repository or without a goal.md bind
     ];
     bad.forEach((packet, index) => {
       const scoped = scopedOpts('pi', `bad-${index}`);
-      const outcome = core.bindRelaunchGoal(scoped, { IN_SESSION_HANDOVER_GOAL_PACKET: packet });
+      const outcome = core.bindRelaunchGoal(scoped, { SESSION_HANDOVER_GOAL_PACKET: packet });
       assert.equal(outcome.bound, false, `refused: ${JSON.stringify(packet)}`);
       assert.equal(outcome.reason, 'packet-invalid', JSON.stringify(packet));
       assert.equal(core.showGoal(scoped), null, JSON.stringify(packet));

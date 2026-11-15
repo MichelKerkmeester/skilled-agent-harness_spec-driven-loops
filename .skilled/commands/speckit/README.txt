@@ -88,7 +88,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 | **complete** | `/speckit:complete <feature-description> [:auto\|:confirm\|:autopilot\|:unattended\|--unattended] [:with-research] [:with-context] [:with-phases]` | 13 | Full end-to-end workflow combining all phases. `:with-phases` adds phase decomposition pre-workflow |
 | **search** | `/speckit:search <query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--limit <n>] [--include-archive]` | direct-dispatch | Lexical retrieval: trigger-index lookup and the ripgrep recipes over spec docs and skill docs |
 | **save** | `/speckit:save <spec-folder>` | direct-dispatch | Write session context into the packet's continuity surfaces |
-| **handoff** | `/speckit:handoff` | 5 | Manual in-session-handover trigger: write the handoff note and arm the loop |
+| **handoff** | `/speckit:handoff` | 5 | Manual session-handover trigger: write the handoff note and arm the loop |
 
 ### Search Lanes
 
@@ -133,7 +133,7 @@ Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` re
 speckit/
 ├── README.txt        # This file, command index and workflow guide
 ├── complete.md       # /speckit:complete - Full end-to-end workflow
-├── handoff.md        # /speckit:handoff - Manual in-session-handover trigger
+├── handoff.md        # /speckit:handoff - Manual session-handover trigger
 ├── implement.md      # /speckit:implement - Execute planned work
 ├── plan.md           # /speckit:plan - Planning only (+ `--intake-only` standalone intake)
 ├── resume.md         # /speckit:resume - Resume existing work
@@ -228,7 +228,7 @@ The `complete` command combines research, plan and implement into a single invoc
 | complete | /deep:research and @general as needed, with the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake-contract.md`) when packet state requires repair |
 | save | No delegation: routes directly to `generate-context.js` |
 | search | No delegation: routes directly to the trigger-index lookup or a ripgrep recipe |
-| handoff | No delegation: writes the note and calls `in-session-handover.cjs prepare` |
+| handoff | No delegation: writes the note and calls `session-handover.cjs prepare` |
 
 <!-- /ANCHOR:workflow-progression -->
 

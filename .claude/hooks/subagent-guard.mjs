@@ -1,1 +1,1 @@
-../../.skilled/hooks/in-session-handover/claude/subagent-guard.mjs
+../../.skilled/hooks/session-handover/claude/subagent-guard.mjs

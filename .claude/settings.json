@@ -74,7 +74,7 @@
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/in-session-handover/claude/subagent-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=subagent-guard.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/subagent-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=subagent-guard.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -144,7 +144,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/in-session-handover/claude/subagent-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=subagent-guard.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/subagent-guard.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PreToolUse adapter=subagent-guard.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -166,7 +166,7 @@
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/in-session-handover/claude/context-nudge.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=UserPromptSubmit adapter=context-nudge.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/context-nudge.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=UserPromptSubmit adapter=context-nudge.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -213,7 +213,7 @@
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/in-session-handover/claude/compact-pointer.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=compact-pointer.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/compact-pointer.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=SessionStart adapter=compact-pointer.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]
@@ -237,7 +237,7 @@
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/in-session-handover/claude/stop-arm.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=stop-arm.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/stop-arm.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=stop-arm.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 10,
             "async": true
           },
@@ -297,7 +297,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/in-session-handover/claude/context-nudge.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=context-nudge.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-handover/claude/context-nudge.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=context-nudge.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 5
           }
         ]

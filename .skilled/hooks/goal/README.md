@@ -86,12 +86,12 @@ A runtime is not called fully supported unless injection and management bind the
 
 ### Hand-over bind
 
-A relaunch hop starts a new session id, and a goal record is keyed by that id, so the receiver starts with no record. When the sender had a goal, the hand-over names its packet and the launcher exports it to the receiver as `IN_SESSION_HANDOVER_GOAL_PACKET`. Pi, Devin, Cursor and OpenCode then bind that packet on the first turn (OpenCode at session start) through `bindRelaunchGoal` in the core, and inject from its `goal.md` like any bound session. No goal text travels in chat.
+A relaunch hop starts a new session id, and a goal record is keyed by that id, so the receiver starts with no record. When the sender had a goal, the hand-over names its packet and the launcher exports it to the receiver as `SESSION_HANDOVER_GOAL_PACKET`. Pi, Devin, Cursor and OpenCode then bind that packet on the first turn (OpenCode at session start) through `bindRelaunchGoal` in the core, and inject from its `goal.md` like any bound session. No goal text travels in chat.
 
 The bind happens only when all of these hold, and does nothing otherwise:
 
 - The variable names a repo-relative directory that holds a `goal.md`, inside the repository once links are followed. A missing, absolute, `..`, empty or linked-out value binds nothing.
-- `IN_SESSION_HANDOVER_GOAL` is not `0`, `false`, `off` or `no`, in the environment or in `hook-flags.env`. The receiver binds without asking, and this switch is the off setting.
+- `SESSION_HANDOVER_GOAL` is not `0`, `false`, `off` or `no`, in the environment or in `hook-flags.env`. The receiver binds without asking, and this switch is the off setting.
 - The session has no goal of its own: no live record of any status, no archived one (a goal that was cleared or completed leaves an archive entry, and the session is not handed a second goal after it), and no record that cannot be read. The bind never overwrites, and a second turn changes nothing.
 - The session is not a dispatched child. A process that runs with `AI_SESSION_CHILD=1` never binds, on any runtime, because it inherited the variable from the receiver that spawned it. The marker is the only signal the core reads, so a child launched without it still binds (the paragraph below).
 - In OpenCode, the session is also the first top-level session of the process. An in-process child session (one with a parent session) or a later session in the same process is not the receiver.
@@ -154,8 +154,8 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `OPENCODE_GOAL_PLUGIN_DISABLED=1` | Legacy alias, honoured by the shared resolver. Both engines print the canonical `OPENCODE_GOAL_DISABLED` in their errors, because that is the name an operator has to set. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 | `OPENCODE_GOAL_STATE_DIR` | Override the state root (tests and isolated probes use this to avoid touching the real `.state/goal/` tree). |
-| `IN_SESSION_HANDOVER_GOAL_PACKET` | Set by the relaunch launcher for a receiver session. A repo-relative packet directory the receiver binds when it has no goal of its own. Not an operator setting. |
-| `IN_SESSION_HANDOVER_GOAL=0` | Turns the hand-over bind off, in the environment or in `hook-flags.env`. On by default. |
+| `SESSION_HANDOVER_GOAL_PACKET` | Set by the relaunch launcher for a receiver session. A repo-relative packet directory the receiver binds when it has no goal of its own. Not an operator setting. |
+| `SESSION_HANDOVER_GOAL=0` | Turns the hand-over bind off, in the environment or in `hook-flags.env`. On by default. |
 | `AI_SESSION_CHILD=1` | Read only, never set by this concern. Marks a dispatched child session, which never binds the hand-over packet. |
 
 Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session. Pi discovery can additionally be disabled with `-extensions/goal-context.ts` in `.pi/settings.json`.

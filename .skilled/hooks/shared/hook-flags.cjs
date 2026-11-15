@@ -102,12 +102,12 @@ const LEGACY_ALIASES = {
 // names for it. The opt-in resolves like every other flag, environment over file,
 // and the master and kill switches still win over it.
 const DEFAULT_OFF = {
-  "in-session-handover": "SYSTEM_IN_SESSION_HANDOVER_ENABLED",
+  "session-handover": "SYSTEM_SESSION_HANDOVER_ENABLED",
 };
 
 // The CLI runtimes that can carry a default-off concern. An operator may want the
 // relaunch loop on in one runtime and off in another, so each runtime gets its own
-// enable switch, SYSTEM_IN_SESSION_HANDOVER_<RUNTIME>_ENABLED, which answers before
+// enable switch, SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED, which answers before
 // the global one whenever it holds a value. A caller names its runtime explicitly;
 // the resolver never guesses it from the environment.
 const RUNTIMES = Object.freeze(["claude", "codex", "pi", "opencode", "cursor", "devin", "vibe"]);
@@ -118,8 +118,24 @@ const RUNTIMES = Object.freeze(["claude", "codex", "pi", "opencode", "cursor", "
 // finding the switch; the other runtimes still wait for their owner to opt in. A set
 // value, the master switch and the kill switches all answer before this default.
 const DEFAULT_ON_RUNTIMES = Object.freeze({
-  "in-session-handover": Object.freeze(["claude"]),
+  "session-handover": Object.freeze(["claude"]),
 });
+
+// Main switch prefix -> the second spelling also read for it. People call the hand-over
+// "in-session handover" too, so a switch written with that name works. The second
+// spelling answers only when the main switch is unset or blank, so the main name wins
+// whenever both hold a value.
+const SWITCH_ALIAS_PREFIXES = Object.freeze({
+  SYSTEM_SESSION_HANDOVER_: "SYSTEM_IN_SESSION_HANDOVER_",
+});
+
+// The second spelling of a switch, or null when the switch has none.
+function switchAlias(key) {
+  for (const [prefix, aliasPrefix] of Object.entries(SWITCH_ALIAS_PREFIXES)) {
+    if (key.startsWith(prefix)) return aliasPrefix + key.slice(prefix.length);
+  }
+  return null;
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -228,37 +244,48 @@ function hookFlagDecision(concern, env, config, options) {
     const fromEnv = source[key];
     return fromEnv !== undefined ? fromEnv : cfg[key];
   };
+  const holds = (value) => typeof value === "string" && value.trim() !== "";
+  // A switch's own value when it holds one, else its second spelling's when that holds
+  // one, so `key` names whichever switch the operator actually set.
+  const resolveSwitch = (key) => {
+    const value = resolve(key);
+    const alias = holds(value) ? null : switchAlias(key);
+    if (alias && holds(resolve(alias))) return { key: alias, value: resolve(alias) };
+    return { key, value };
+  };
   for (const key of [MASTER_FLAG].concat(MASTER_ALIASES)) {
     if (isTruthy(resolve(key))) return { enabled: false, key, reason: "master" };
   }
   const flag = concernFlag(concern);
-  const keys = (flag ? [flag] : []).concat(LEGACY_ALIASES[concern] || []);
-  for (const key of keys) {
+  if (flag) {
+    const kill = resolveSwitch(flag);
+    if (isTruthy(kill.value)) return { enabled: false, key: kill.key, reason: "kill" };
+  }
+  for (const key of LEGACY_ALIASES[concern] || []) {
     if (isTruthy(resolve(key))) return { enabled: false, key, reason: "kill" };
   }
   if (Object.prototype.hasOwnProperty.call(DEFAULT_OFF, concern)) {
     const runtimeFlag = runtimeEnableFlag(concern, options && options.runtime);
     if (runtimeFlag) {
-      const value = resolve(runtimeFlag);
-      if (typeof value === "string" && value.trim() !== "") {
-        return { enabled: isTruthy(value), key: runtimeFlag, reason: "runtime" };
+      const runtimeSwitch = resolveSwitch(runtimeFlag);
+      if (holds(runtimeSwitch.value)) {
+        return { enabled: isTruthy(runtimeSwitch.value), key: runtimeSwitch.key, reason: "runtime" };
       }
     }
-    const globalFlag = DEFAULT_OFF[concern];
-    const globalValue = resolve(globalFlag);
-    if (typeof globalValue !== "string" || globalValue.trim() === "") {
+    const globalSwitch = resolveSwitch(DEFAULT_OFF[concern]);
+    if (!holds(globalSwitch.value)) {
       const runtime = options && typeof options.runtime === "string" ? options.runtime.trim().toLowerCase() : "";
       if ((DEFAULT_ON_RUNTIMES[concern] || []).includes(runtime)) {
         return { enabled: true, key: null, reason: "default" };
       }
     }
-    return { enabled: isTruthy(globalValue), key: globalFlag, reason: "global" };
+    return { enabled: isTruthy(globalSwitch.value), key: globalSwitch.key, reason: "global" };
   }
   return { enabled: true, key: null, reason: "default" };
 }
 
 // The per-runtime enable switch for a default-off concern, such as
-// SYSTEM_IN_SESSION_HANDOVER_CLAUDE_ENABLED, or null when the concern has no enable
+// SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED, or null when the concern has no enable
 // switch or the runtime is not one of RUNTIMES.
 function runtimeEnableFlag(concern, runtime) {
   if (!Object.prototype.hasOwnProperty.call(DEFAULT_OFF, concern)) return null;
@@ -316,6 +343,8 @@ module.exports = {
   DEFAULT_OFF,
   DEFAULT_ON_RUNTIMES,
   RUNTIMES,
+  SWITCH_ALIAS_PREFIXES,
+  switchAlias,
   configPath,
   _resetConfigCache,
 };

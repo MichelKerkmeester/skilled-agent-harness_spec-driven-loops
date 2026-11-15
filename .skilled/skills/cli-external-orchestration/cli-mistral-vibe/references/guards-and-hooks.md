@@ -10,7 +10,7 @@ trigger_phrases:
   - "vibe guard porting"
 importance_tier: normal
 contextType: implementation
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # Mistral Vibe - Guards and Hooks
@@ -131,7 +131,7 @@ Vibe never imports or evaluates OpenCode's JavaScript or TypeScript plugins (`vi
 | `system-skill-advisor.js` | Injects the skill advisor brief into each request's system text and exposes the advisor status tool. | hook — the `pre_agent` turn-start composer routes each main-session prompt through the shared advisor handler under the `vibe` label, so the brief arrives as `additional_context` (phase 015's keyed main-session run recorded `Advisor: no skill matched.`) | `pre_agent` |
 | `ask-surface-guard.js` | Reopens a finished turn when it closed with a prose option menu instead of the `question` tool. | hook — a non-strict `post_agent` part reads the finished turn through the journal reader and returns the prose menu once with the `ask_user_question` reprompt (phase 016's ten fixture cases; a live TUI retry stays operator-only) | `post_agent` |
 | `system-completion-sentinel.js` | Checks a turn's closing text for a completion claim and sends the evidence gap back to the model. | hook — a `post_agent` part records the gap as a pending advisory and the next turn's `pre_agent` composer delivers it once; the part never denies (phase 016's fixture suite and print-mode smoke run) | `post_agent`, `pre_agent` |
-| `in-session-handover.js` | Arms a relaunch on idle or compaction, writes a hand-off note and restarts the session under a supervisor. | command tier — the automatic arm stays not portable, because Vibe has no idle or compaction event; `skilled-loop vibe` and `/speckit:handoff` prepare the hand-off and the operator starts it (phase 019's prepare run and `--resume` probe) | command tier |
+| `session-handover.js` | Arms a relaunch on idle or compaction, writes a hand-off note and restarts the session under a supervisor. | command tier — the automatic arm stays not portable, because Vibe has no idle or compaction event; `skilled-loop vibe` and `/speckit:handoff` prepare the hand-off and the operator starts it (phase 019's prepare run and `--resume` probe) | command tier |
 | `session-history-lookup.js` | Saves a history locator on compaction and offers a `## History Lookup` section while it is fresh. | hook — the compaction detector re-injects the locator offer at the next turn start or tool call, and the save-time locator resolves a Vibe session under `VIBE_HOME` (phase 018's forced-compaction run and history-lookup CLI suite) | `pre_agent`, `post_tool` |
 | `classifier-injection-screen.js` | Screens fetched web text for instructions aimed at the agent and buffers an advisory for the next system transform. | hook — a non-strict `post_tool` hook on the fetch tool appends the advisory as `additional_context` to the result the model reads | `post_tool` |
 | `decision-capture.js` | Queues each answered `question` call as a decision record and nudges the next request toward `/speckit:save`. | hook — a non-strict `post_tool` adapter on `ask_user_question` queues each answer through the shared Vibe mapper, the save-time `sweep-vibe.mjs` replays the journal when the live hook did not fire, and the turn-start part reminds the model once per rising count; the live widget is interactive-only (phase 017's fixture suites) | `post_tool`, `pre_agent` |
@@ -159,7 +159,7 @@ The self-invocation row in research section 6 has no `.opencode/plugins/*.js` fi
 
 ### What Is Not Portable
 
-- **The automatic in-session handover.** `in-session-handover.js` arms a relaunch on `session.idle` (`in-session-handover.js:404,496`), and Vibe fires neither an idle nor a compaction event an in-session hook can observe. Phase 019 lands Vibe on the command-only tier: `skilled-loop vibe` and `/speckit:handoff` prepare a fresh session and the operator starts it. A guarded headless resume is UNVERIFIED: Vibe rejects `--model` on `--resume` (`--model only applies to a new session`), while the `vibe-closed-roster` rule refuses a resume without it (phase 019's `scratch/resume-probe.md`).
+- **The automatic session handover.** `session-handover.js` arms a relaunch on `session.idle` (`session-handover.js:404,496`), and Vibe fires neither an idle nor a compaction event an in-session hook can observe. Phase 019 lands Vibe on the command-only tier: `skilled-loop vibe` and `/speckit:handoff` prepare a fresh session and the operator starts it. A guarded headless resume is UNVERIFIED: Vibe rejects `--model` on `--resume` (`--model only applies to a new session`), while the `vibe-closed-roster` rule refuses a resume without it (phase 019's `scratch/resume-probe.md`).
 - **A live `ask_user_question` capture in a headless run.** Vibe removes the question tool from a non-interactive session, so the `post_tool` adapter can only fire in the TUI. Phase 017 proved the mapper and the dedup key on fixture journals and left the live capture to an operator procedure; `sweep-vibe.mjs` replays the journal at save time, so a headless answer still reaches the queue.
 - **A turn a `post_agent` deny holds open.** Vibe turns the deny into a retry message and force-accepts after three retries, so the turn-end composer can steer one retry but cannot keep the turn open. It records the completion advisory for the next turn instead of denying again (phase 016).
 

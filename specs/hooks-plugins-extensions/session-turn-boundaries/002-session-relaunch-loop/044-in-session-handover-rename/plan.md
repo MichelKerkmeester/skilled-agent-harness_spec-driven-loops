@@ -1,13 +1,13 @@
 ---
-title: "Implementation Plan: Rename session relaunch to in-session handover"
+title: "Implementation Plan: Rename session relaunch to session handover"
 description: "One scripted pass moves the hook folder and the files named after the feature, then rewrites every live form of the name with a word map that protects spec-folder names. The suites, the sync checks and one live Claude Code hop prove nothing else changed."
 trigger_phrases:
-  - "in session handover rename plan"
+  - "session handover rename plan"
 importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
-# Implementation Plan: Rename session relaunch to in-session handover
+# Implementation Plan: Rename session relaunch to session handover
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | node:test, vitest, the hook and mirror sync checks |
 
 ### Overview
-`git mv` moves `.skilled/hooks/session-relaunch/` and the 13 files named after the feature. A Perl word map then rewrites every live form of the name in 130 files and skips any `NNN-session-relaunch` spec-folder name. The same suites that passed before the rename must print the same counts, and one live Claude Code hop must hand over on the renamed code.
+`git mv` moves `.skilled/hooks/session-relaunch/` and the 13 files named after the feature. A Perl word map then rewrites every live form of the name in 130 files and skips any `NNN-session-relaunch` spec-folder name. A first pass named the feature "in-session handover". The operator then chose the shorter "session handover" as the main name, so `rename2.pl` moved every in-session form to the short one. Both flag readers then learn to read `SYSTEM_IN_SESSION_HANDOVER_*` for each on or off switch while the main one is blank, and `/speckit:handoff` gains three owned signals. The same suites that passed before the rename must print the same counts, and one live Claude Code hop must hand over on the renamed code.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,7 +40,7 @@ contextType: "general"
 
 ### Definition of Done
 - [x] The inventory grep, with spec-folder names excluded, prints 0
-- [x] `HOOKDIR=in-session-handover bash scratch/gate.sh` prints the baseline counts and two sync PASS lines
+- [x] `HOOKDIR=session-handover bash scratch/gate.sh` prints the baseline counts and two sync PASS lines
 - [x] `score.cjs` on the live Claude Code run prints `5/5`
 <!-- /ANCHOR:quality-gates -->
 
@@ -53,11 +53,12 @@ contextType: "general"
 Mechanical rename with protected names.
 
 ### Key Components
-- **`rename.pl`**: the word map. It runs the longest forms first, so `SYSTEM_SESSION_RELAUNCH` becomes `SYSTEM_IN_SESSION_HANDOVER` and never `SYSTEM_IN_SESSION_RELAUNCH`. It fixes "a session relaunch" to "an in-session handover".
+- **`rename.pl` and `rename2.pl`**: the word maps. They run the longest forms first and shield `NNN-` spec-folder names. The second turns every in-session form into the short one and fixes "an session handover" to "a session handover".
+- **`switchAlias()` and `__hook_flags_resolve_switch`**: one prefix map, `SYSTEM_SESSION_HANDOVER_` to `SYSTEM_IN_SESSION_HANDOVER_`, read only while the main switch is blank.
 - **Mirror links**: the nine `.claude/hooks`, `.codex/hooks` and OpenCode links, re-pointed with `ln -sfn` at the new folder.
 
 ### Data Flow
-The flag readers turn `SYSTEM_IN_SESSION_HANDOVER_*` into the on or off answer. The hooks write notes to `.state/in-session-handover/handoffs`, and the wrapper seeds the next session with `[in-session-handover] claim and continue handoff`.
+The flag readers turn `SYSTEM_SESSION_HANDOVER_*` into the on or off answer. The hooks write notes to `.state/session-handover/handoffs`, and the wrapper seeds the next session with `[session-handover] claim and continue handoff`.
 <!-- /ANCHOR:architecture -->
 
 ---

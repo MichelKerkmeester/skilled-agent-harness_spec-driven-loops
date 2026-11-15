@@ -61,7 +61,7 @@ Each row is one OpenCode plugin. The entry names are the `name` values in `../ho
 | `ask-surface-guard.js` | `turn-end`, which sends a prose option menu back once | `post_agent` | `session-lifecycle/vibe/turn-end.mjs` |
 | `session-history-lookup.js` | `turn-start`, `compaction-post-tool` | `pre_agent`, `post_tool` | `session-lifecycle/vibe/turn-start.mjs`, `session-lifecycle/vibe/compaction-post-tool.mjs` |
 | `decision-capture.js` | `decision-capture-ask`, plus the save nudge in `turn-start` | `post_tool`, `pre_agent` | `decision-capture/vibe/ask-capture-post-tool.mjs` |
-| `in-session-handover.js` | No hook. Vibe has no idle or compaction event, so `skilled-loop vibe` and `/speckit:handoff` prepare the hop and the operator starts it | none | none |
+| `session-handover.js` | No hook. Vibe has no idle or compaction event, so `skilled-loop vibe` and `/speckit:handoff` prepare the hop and the operator starts it | none | none |
 | `codex-hooks-watchdog.js` | Not needed: it watches a Codex file a Vibe session never reads | none | none |
 | `sk-git-preflight-advisory.js` | Not needed: sk-git's skill docs state the same rules | none | none |
 | `system-speckit-completion.js` | Not needed: Vibe has no plugin tool registry, and the spec-kit CLI returns the same data | none | none |

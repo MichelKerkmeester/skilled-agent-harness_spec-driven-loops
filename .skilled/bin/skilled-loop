@@ -35,10 +35,10 @@ wrapper_checksum() {
   { cksum < "$script_path"; } 2>/dev/null || true
 }
 
-relaunch_cli="$script_directory/../hooks/in-session-handover/bin/in-session-handover.cjs"
-relaunch_core="$script_directory/../hooks/in-session-handover/lib/relaunch-core.cjs"
-goal_handover="$script_directory/../hooks/in-session-handover/lib/goal-handover.cjs"
-relaunch_nudge="$script_directory/../hooks/in-session-handover/lib/nudge.cjs"
+relaunch_cli="$script_directory/../hooks/session-handover/bin/session-handover.cjs"
+relaunch_core="$script_directory/../hooks/session-handover/lib/relaunch-core.cjs"
+goal_handover="$script_directory/../hooks/session-handover/lib/goal-handover.cjs"
+relaunch_nudge="$script_directory/../hooks/session-handover/lib/nudge.cjs"
 hook_flags="$script_directory/../hooks/shared/hook-flags.cjs"
 manual_handoff_token='@@HANDOFF@@'
 manual_template_conflict=''
@@ -833,7 +833,7 @@ build_relaunch_arguments() {
 }
 
 build_manual_command_template() {
-  local manual_seed="[in-session-handover] claim and continue handoff $manual_handoff_token"
+  local manual_seed="[session-handover] claim and continue handoff $manual_handoff_token"
   local template="skilled-loop $runtime"
   local index
   local argument
@@ -869,7 +869,7 @@ find_manual_template_conflict() {
 }
 
 if [[ ! -f "$relaunch_cli" ]]; then
-  printf '%s\n' 'in-session-handover CLI was not found beside this wrapper' >&2
+  printf '%s\n' 'session-handover CLI was not found beside this wrapper' >&2
   exit 1
 fi
 
@@ -907,7 +907,7 @@ opencode_server_seen=0
 # The packet and the claim belong to one hop, so a value from an outer session never reaches a
 # first launch.
 unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER SKILLED_LOOP_EFFORT \
-  SKILLED_LOOP_PERMISSION_MODE IN_SESSION_HANDOVER_GOAL_PACKET SKILLED_LOOP_CLAIM_SEED
+  SKILLED_LOOP_PERMISSION_MODE SESSION_HANDOVER_GOAL_PACKET SKILLED_LOOP_CLAIM_SEED
 index=0
 option_scan_stopped=0
 skip_next_option=0
@@ -1182,13 +1182,13 @@ fi
 # above, so the packet comes from the note the seed names. The seed sits at a different place
 # per runtime and moves with the prepends above, so it is found by its prefix, and only that
 # one element of the operator's arguments may change.
-claim_seed_prefix='[in-session-handover] claim and continue handoff '
+claim_seed_prefix='[session-handover] claim and continue handoff '
 for ((index = 0; index < ${#launch_arguments[@]}; index++)); do
   if [[ "${launch_arguments[$index]}" == "$claim_seed_prefix"* ]]; then
     first_launch_seed=${launch_arguments[$index]}
     goal_packet=$(seeded_goal_packet "$first_launch_seed")
     if [[ -n "$goal_packet" ]]; then
-      export IN_SESSION_HANDOVER_GOAL_PACKET="$goal_packet"
+      export SESSION_HANDOVER_GOAL_PACKET="$goal_packet"
       if [[ "$runtime" == 'claude' ]] && goal_slice=$(render_goal_slice "$goal_packet"); then
         # Claude takes its goal from a start prompt that is the goal command alone, so the
         # seed moves to the environment for the start hook, as it does on a hop.
@@ -1369,13 +1369,13 @@ while true; do
       # A hop without a goal must not inherit the previous hop's packet.
       goal_packet=$(consumed_goal_packet)
       if [[ -n "$goal_packet" ]]; then
-        export IN_SESSION_HANDOVER_GOAL_PACKET="$goal_packet"
+        export SESSION_HANDOVER_GOAL_PACKET="$goal_packet"
       else
-        unset IN_SESSION_HANDOVER_GOAL_PACKET
+        unset SESSION_HANDOVER_GOAL_PACKET
       fi
       relaunched_handoff="$handoff_path"
       relaunched_spec_folder="$spec_folder"
-      seed="[in-session-handover] claim and continue handoff $handoff_path"
+      seed="[session-handover] claim and continue handoff $handoff_path"
       seed+=$(spec_folder_suffix "$spec_folder")
       # Claude takes its goal from a start prompt that is the goal command and nothing else, so
       # the claim seed travels in the environment for the start hook to deliver. A slice that

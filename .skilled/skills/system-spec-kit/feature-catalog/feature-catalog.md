@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-13"
-version: 2.1.34.0
+version: 2.1.35.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -1085,7 +1085,7 @@ See [retrieval/rg-archive-search.md](retrieval/rg-archive-search.md) for full im
 
 ## 9. CONTEXT PRESERVATION
 
-### In-session handover loop
+### Session handover loop
 
 #### Description
 
@@ -1093,11 +1093,11 @@ Hands a session near its context limit to a fresh one through a structured hando
 
 #### Current Reality
 
-The loop ships on for Claude Code and off for every other runtime: a runtime's own `SYSTEM_IN_SESSION_HANDOVER_<RUNTIME>_ENABLED` decides for it when it holds a value, `SYSTEM_IN_SESSION_HANDOVER_ENABLED` decides when it holds one, and with both empty only Claude Code is on. Claude Code, Pi, OpenCode and Codex prepare handoffs through automatic adapters. Cursor and Devin use `/speckit:handoff`. `prepare --runtime <name>` selects the manual claim runtime outside the loop and rejects a conflicting runtime inside it. The wrapper relaunches only an armed, fresh record below `IN_SESSION_HANDOVER_MAX_HOPS`. If a record is still pending at exit, it prints the selected runtime's manual claim command. A session can call a prepared hand-over off with `in-session-handover.cjs cancel`, and an operator prompt does the same on Claude, Codex, Pi and OpenCode when the session carried on after the hand-over was deferred or armed. A withdrawn hand-over earns one more context nudge, a `withdrawn` history line, one warning from the wrapper and no manual claim command. The wrapper writes the `handed-over` line only for an open note and prints its warning, without a claim command, for a claimed, done or missing one. Inside the wrapper the automatic nudge asks for a hop, and a sourced shell shim starts each interactive runtime launch under it, including in a repository that links `.skilled`. The shim runs only a wrapper inside the sourced checkout, a linked worktree registered to it or a checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS`. Outside it the nudge asks only for a note the session keeps with `keep` and, on Claude Code, claims after a compaction. Every hand-over, withdrawal, kept note, claim, finish and killer timeout adds a line to a gitignored hop history that `in-session-handover.cjs history` and `/doctor:setup` read along with any notes still open, and `IN_SESSION_HANDOVER_NOTIFY_HOPS` adds an opt-in macOS notice per hand-over.
+The loop ships on for Claude Code and off for every other runtime: a runtime's own `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` decides for it when it holds a value, `SYSTEM_SESSION_HANDOVER_ENABLED` decides when it holds one, and with both empty only Claude Code is on. Claude Code, Pi, OpenCode and Codex prepare handoffs through automatic adapters. Cursor and Devin use `/speckit:handoff`. `prepare --runtime <name>` selects the manual claim runtime outside the loop and rejects a conflicting runtime inside it. The wrapper relaunches only an armed, fresh record below `SESSION_HANDOVER_MAX_HOPS`. If a record is still pending at exit, it prints the selected runtime's manual claim command. A session can call a prepared hand-over off with `session-handover.cjs cancel`, and an operator prompt does the same on Claude, Codex, Pi and OpenCode when the session carried on after the hand-over was deferred or armed. A withdrawn hand-over earns one more context nudge, a `withdrawn` history line, one warning from the wrapper and no manual claim command. The wrapper writes the `handed-over` line only for an open note and prints its warning, without a claim command, for a claimed, done or missing one. Inside the wrapper the automatic nudge asks for a hop, and a sourced shell shim starts each interactive runtime launch under it, including in a repository that links `.skilled`. The shim runs only a wrapper inside the sourced checkout, a linked worktree registered to it or a checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS`. Outside it the nudge asks only for a note the session keeps with `keep` and, on Claude Code, claims after a compaction. Every hand-over, withdrawal, kept note, claim, finish and killer timeout adds a line to a gitignored hop history that `session-handover.cjs history` and `/doctor:setup` read along with any notes still open, and `SESSION_HANDOVER_NOTIFY_HOPS` adds an opt-in macOS notice per hand-over.
 
 #### Source Files
 
-See [context-preservation/in-session-handover-loop.md](context-preservation/in-session-handover-loop.md) for implementation and test file listings.
+See [context-preservation/session-handover-loop.md](context-preservation/session-handover-loop.md) for implementation and test file listings.
 
 ---
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh hook bridge"
 importance_tier: normal
 contextType: implementation
-version: 1.2.5.0
+version: 1.2.6.0
 ---
 
 # DeepSeek Harness - Guards and Hooks
@@ -130,7 +130,7 @@ A fan-out leaf leaves four adapters off:
 
 The leaf keeps every guard and context adapter. The runner's `SYSTEM_SPEC_GATE_DISABLED=1` still turns the spec gate off for a leaf.
 
-`in-session-handover` has no adapter. The outer runner owns a leaf's restarts, and `skilled-loop` launches no DSH session, so an interactive session gets the `/speckit:handoff` prompt only.
+`session-handover` has no adapter. The outer runner owns a leaf's restarts, and `skilled-loop` launches no DSH session, so an interactive session gets the `/speckit:handoff` prompt only.
 
 ---
 
