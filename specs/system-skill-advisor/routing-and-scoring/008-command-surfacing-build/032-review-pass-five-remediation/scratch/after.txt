@@ -1,11 +1,6 @@
 
 ## status FILES (whole tree)
- M .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
- M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
- M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs
- M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs
  M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
- M .skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts
  M .skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
 exit=0
 
@@ -25,7 +20,7 @@ exit=0
 
 ## VX tests/command-transcript-score.vitest.ts
  Test Files  1 passed (1)
-      Tests  322 passed (322)
+      Tests  330 passed (330)
 exit=0
 
 ## VX tests/command-behaviour-guards.vitest.ts
@@ -70,7 +65,7 @@ exit=0
 
 ## VALL
  Test Files  185 passed (185)
-      Tests  2304 passed | 6 skipped (2310)
+      Tests  2312 passed | 6 skipped (2318)
 exit=0
 
 ## DT

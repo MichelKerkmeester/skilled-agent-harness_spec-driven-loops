@@ -1,7 +1,7 @@
 Review brief, phase 032 second fix diff (read-only re-read)
 
 Worktree: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
-Diff: git -c core.fsmonitor=false diff d0f605b42f8 FIX2 -- .skilled, with FIX2 = @FIX2@ and the three prompt-file excludes on every git diff, show or log -p (':(exclude)**/command-prompts.jsonl' ':(exclude)**/holdout-prompts.jsonl' ':(exclude)**/behaviour-fresh-prompts.jsonl'). Never open those row files except through jq 'del(.prompt)', never read or create .skilled/hooks/hook-flags.env, run no model session, live runner, daemon or build, and put probes under a mktemp folder in TMPDIR, removed after. Write nothing in the repository except the report below.
+Diff: git -c core.fsmonitor=false diff d0f605b42f8 FIX2 -- .skilled, with FIX2 = 02261e94254 and the three prompt-file excludes on every git diff, show or log -p (':(exclude)**/command-prompts.jsonl' ':(exclude)**/holdout-prompts.jsonl' ':(exclude)**/behaviour-fresh-prompts.jsonl'). Never open those row files except through jq 'del(.prompt)', never read or create .skilled/hooks/hook-flags.env, run no model session, live runner, daemon or build, and put probes under a mktemp folder in TMPDIR, removed after. Write nothing in the repository except the report below.
 
 This commit answers your first report, scratch/review/report.txt in this phase folder. Tasks T044 to T052 (with T048a, T050a to T050d and T051a) in tasks.md say what each change was meant to do. The shell write reader went through three failed fixes and was rebuilt as option D of a Fable review, kept in /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/77af2d6d-58e8-4180-b6da-697f12833f71/scratchpad/fable-t050/report.txt, which names its accepted risks.
 

@@ -1040,18 +1040,68 @@ function writtenWords(writer, args) {
   return every ? named : named.slice(-1);
 }
 
-// A shell that runs its command from an argument changes whatever that text names, and a
-// command runner can put its own words before the shell. A shell name may carry a path, and
-// `-c` can ride in a login cluster as `-lc` does.
+// A shell or `eval` that runs its command from an argument changes whatever that text
+// names, and it has to be the segment's own command, after any runner that hands it the
+// rest. A shell name may carry a path, and `-c` can ride in a login or cluster form as
+// `-lc` and `-cx` do.
 const SHELL_NAME = /(?:^|\/)(?:sh|bash|zsh|dash|ksh)$/;
-const SHELL_COMMAND_FLAG = /^-[A-Za-z]*c$/;
+const SHELL_COMMAND_FLAG = /^-[A-Za-z]*c[A-Za-z]*$/;
 
-// The command text a segment carries, or null when it carries none. The text is stripped
-// of the quotes that kept it one word so it can be read as a command of its own.
+// A runner hands the rest of its segment to the shell it names, so its own words are read
+// before the shell. A duration, a level and a variable assignment belong to the runner,
+// while `nohup`, `command`, `exec` and `time` take none.
+const SHELL_RUNNERS = Object.freeze(['nohup', 'command', 'exec', 'time']);
+const ASSIGNMENT_WORD = /^[A-Za-z_][A-Za-z0-9_]*=/;
+
+// The index after the runner word at `at` and the words it owns, or -1 when the word runs
+// nothing.
+function afterRunner(words, at) {
+  const runner = shellWord(words[at]);
+  if (SHELL_RUNNERS.includes(runner)) return at + 1;
+
+  if (runner === 'timeout') {
+    let index = at + 1;
+    while (index < words.length && words[index].startsWith('-')) index += 1;
+    return index + 1;
+  }
+
+  if (runner === 'env') {
+    let index = at + 1;
+    while (index < words.length && (words[index].startsWith('-') || ASSIGNMENT_WORD.test(words[index]))) {
+      index += 1;
+    }
+    return index;
+  }
+
+  if (runner === 'nice') {
+    let index = at + 1;
+    while (index < words.length && words[index].startsWith('-')) {
+      index += words[index] === '-n' || words[index] === '--adjustment' ? 2 : 1;
+    }
+    return index;
+  }
+
+  return -1;
+}
+
+// The command text a segment carries, or null when it carries none. The shell or `eval`
+// has to be the segment's command, after any runner's own words, so a word called `eval`
+// inside another call names nothing and a shell handed a script reads its arguments rather
+// than the shell's flags. Only the option words after the shell are read for `-c`, whose
+// text is stripped of the quotes that kept it one word so it can be read as a command of
+// its own.
 function nestedCommand(words) {
-  const shellAt = words.findIndex((word) => SHELL_NAME.test(shellWord(word)));
-  if (shellAt !== -1) {
-    for (let index = shellAt + 1; index < words.length; index += 1) {
+  let at = 0;
+  while (at < words.length) {
+    const next = afterRunner(words, at);
+    if (next === -1) break;
+    at = next;
+  }
+  if (at >= words.length) return null;
+
+  if (SHELL_NAME.test(shellWord(words[at]))) {
+    for (let index = at + 1; index < words.length; index += 1) {
+      if (!words[index].startsWith('-')) break;
       if (!SHELL_COMMAND_FLAG.test(words[index])) continue;
       const text = words[index + 1];
       return text === undefined ? null : shellWord(text);
@@ -1059,9 +1109,8 @@ function nestedCommand(words) {
     return null;
   }
 
-  const evalAt = words.findIndex((word) => shellWord(word) === 'eval');
-  if (evalAt === -1) return null;
-  const text = words.slice(evalAt + 1).map(shellWord).join(' ');
+  if (shellWord(words[at]) !== 'eval') return null;
+  const text = words.slice(at + 1).map(shellWord).join(' ');
   return text === '' ? null : text;
 }
 

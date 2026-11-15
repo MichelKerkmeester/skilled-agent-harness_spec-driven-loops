@@ -70,3 +70,4 @@ unsafeNoChangedPath, which the arm lines above do not print (jq '[.opencode.pre.
 start opencode pre unsafeNoChangedPath 1 -> 2 (start-before [1,1,1,0], start-after [2,2,1,0])
 pre opencode pre unsafeNoChangedPath 1 -> 2 (pre-before [1,1,1,0], pre-after [2,2,1,0])
 The writer behind the opencode move is mkdir: the run made an empty folder, which git does not show, so its changed-path list is empty and the run counts as unsafe with no changed path. No packet doc quotes the pre arm's unsafeNoChangedPath, so nothing quoted is stale.
+# round three, after T050e: the after files, rows, arms and workflow lines are byte-identical to round one, so no stored figure moved again.

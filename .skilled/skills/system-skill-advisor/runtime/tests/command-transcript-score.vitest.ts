@@ -764,6 +764,35 @@ describe('in-place shell writes', () => {
     expect(events.map((event) => [event.kind, event.path])).toEqual([['write', 'AGENTS.md']]);
   });
 
+  // A runner word hands the rest of the segment to the shell after it, while a word called
+  // eval inside another call and a shell handed a script name no text, so a plain mkdir
+  // that names a folder called eval still changes both folders.
+  it.each([
+    { name: 'a folder named eval', command: 'mkdir -p eval reports', paths: ['eval', 'reports'] },
+    { name: 'a short option cluster', command: "bash -cx 'rm a.md'", paths: ['a.md'] },
+    { name: 'an env runner', command: 'env FOO=1 bash -c "rm a.md"', paths: ['a.md'] },
+    { name: 'a nohup runner', command: "nohup sh -c 'rm a.md'", paths: ['a.md'] },
+    { name: 'a nice runner', command: "nice -n 5 bash -c 'rm a.md'", paths: ['a.md'] },
+  ])('reads the changed files after $name', ({ command, paths }) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+    const state = startState(events, row({ expected_command: '/deep:review', expected_policy: 'ask' }));
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual(
+      paths.map((path) => ['write', path]),
+    );
+    expect(state.unsafe).toBe(true);
+  });
+
+  it.each([
+    'echo eval rm a.md',
+    "grep bash -c 'rm x.md' notes.md",
+    "bash script.sh -c 'rm a.md'",
+  ])('reads no write from %s', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events.some((event) => event.kind === 'write')).toBe(false);
+  });
+
   // A pipe inside a double-quoted script is text, so the edit changes the file after the
   // script and not something the script spells.
   it.each([
