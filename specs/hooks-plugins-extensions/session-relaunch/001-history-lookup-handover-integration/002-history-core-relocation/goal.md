@@ -87,5 +87,5 @@ and findings belong here.
 
 ### Open questions
 
-- Open question: Does the operator accept split ownership, with the source and build in the spec-kit runtime and the runnable entry in the handover concern, as "the handover concern owns the core"? The physical move is blocked by the build cycle named in `plan.md` §3; if the operator requires the move, the phase needs a larger refactor that this packet's scope forbids.
+- Answered 2026-11-15: the operator accepts split ownership. The source and the build stay in the spec-kit runtime, and the handover concern owns the runnable entry, the printed command, the docs and the wiring. The orchestrating session checked the four facts in `plan.md` section 3 against the code and all four hold. The full move is possible but costs a build step for the concern, breaking the two-way import between `hook-state.ts` and `lookup-offer.ts`, and an exception to the hooks README rule.
 <!-- /ANCHOR:log -->

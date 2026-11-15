@@ -144,8 +144,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- What recall rate in phase 1 counts as go? The operator decides before phase 2 starts.
-- Where does the built lookup CLI live once the handover concern owns the core? The concern has no build step today. Phase 2 compares the placements.
+- Answered 2026-11-15: no go threshold is set in advance. The operator decides after seeing the phase 1 numbers, and phase 2 waits for that decision.
+- Answered 2026-11-15: split ownership. The source and the build stay in the spec-kit runtime, and the handover concern owns the runnable entry, the printed command, the docs and the wiring.
 - Does the purpose line planned for the OpenCode compaction path in `system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers` need a new carrier once phase 5 removes that plugin?
 <!-- /ANCHOR:questions -->
 

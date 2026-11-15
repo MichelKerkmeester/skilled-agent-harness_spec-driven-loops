@@ -98,6 +98,6 @@ The operator sets the threshold before phase 002. The decision line is written a
 
 ### Open questions
 
-Open question: What threshold turns the measured loss rate into GO? The operator sets it; until then the phase is undecidable and phase 002 does not start.
+Answered 2026-11-15: the operator sets no threshold in advance. Phase 001 records the raw results, and the operator decides go or no-go after seeing the numbers. Phase 002 does not start before that decision.
 Open question: How many runs per arm per runtime count toward that threshold? The same operator answer fixes the denominator, and one run per arm is the floor.
 <!-- /ANCHOR:log -->

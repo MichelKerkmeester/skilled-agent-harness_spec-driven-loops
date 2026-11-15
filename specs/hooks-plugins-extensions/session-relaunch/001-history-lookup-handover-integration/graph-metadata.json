@@ -123,16 +123,16 @@
     ],
     "causal_summary": "A model can search and load its own earlier turns through the history lookup, but the lookup is offered only after a compaction",
     "created_at": "2026-11-15T06:24:14Z",
-    "last_save_at": "2026-11-15T06:48:17.352Z",
+    "last_save_at": "2026-11-15T07:58:20.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:351dad26b9f6feba5280f3a7eb20823d9c83b1000ef7100caa44daccdd90131e",
+    "source_fingerprint": "sha256:6dffc8a32fc59f188d63d7fcc7e73cff579bb88cb8dbe97014e2cc1b79926f7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8af1150d84407ca4e5080ff581e689c3c5b5645f4c0c3418b7d8d79479d2af2f"
+      "spec.md": "ed6a2c3f2d283292ad4f92116301c57f4f2cf98e77b4d769f119c95dd00188b2"
     },
     "last_active_at": null
   }
