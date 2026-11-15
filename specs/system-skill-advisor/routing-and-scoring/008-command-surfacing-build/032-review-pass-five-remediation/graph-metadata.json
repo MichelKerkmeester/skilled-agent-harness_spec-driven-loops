@@ -3,6 +3,7 @@
   "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation",
   "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation",
   "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -18,7 +19,8 @@
       "remote guard every live turn",
       "review pass five remediation plan",
       "review pass five remediation tasks",
-      "review pass five remediation acceptance criteria"
+      "review pass five remediation acceptance criteria",
+      "review pass five remediation implementation summary"
     ],
     "key_topics": [
       "review",
@@ -35,27 +37,28 @@
       "stale"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "scratch/probes-after.txt",
-      "hooks/dsh/README.md",
+      "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "scratch/probes-before.txt",
+      "scratch/probes-after.txt",
+      "scratch/after.txt",
       "scratch/rescore-delta.txt",
+      "scratch/boundaries.txt",
+      "scratch/review-rounds.txt",
+      "hooks/dsh/README.md",
       "scratch/planning/arena-cases.sh",
       "scratch/before.txt",
       "scratch/floor-before.txt",
       "scratch/eval-before.txt",
-      "scratch/probes-before.txt",
       ".vibe/hooks.toml",
-      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
-      "scratch/review/report.txt",
-      "scratch/planning/wiring-match.sh",
-      "scratch/after.txt",
-      "scratch/boundaries.txt"
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs"
     ],
     "entities": [
       {
@@ -83,15 +86,9 @@
         "source": "derived"
       },
       {
-        "name": "probes-after.txt",
-        "kind": "file",
-        "path": "scratch/probes-after.txt",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "hooks/dsh/README.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -101,9 +98,51 @@
         "source": "derived"
       },
       {
+        "name": "hook-wiring-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "probes-before.txt",
+        "kind": "file",
+        "path": "scratch/probes-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "probes-after.txt",
+        "kind": "file",
+        "path": "scratch/probes-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
         "name": "rescore-delta.txt",
         "kind": "file",
         "path": "scratch/rescore-delta.txt",
+        "source": "derived"
+      },
+      {
+        "name": "boundaries.txt",
+        "kind": "file",
+        "path": "scratch/boundaries.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-rounds.txt",
+        "kind": "file",
+        "path": "scratch/review-rounds.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "hooks/dsh/README.md",
         "source": "derived"
       },
       {
@@ -131,12 +170,6 @@
         "source": "derived"
       },
       {
-        "name": "probes-before.txt",
-        "kind": "file",
-        "path": "scratch/probes-before.txt",
-        "source": "derived"
-      },
-      {
         "name": "hooks.toml",
         "kind": "file",
         "path": ".vibe/hooks.toml",
@@ -146,30 +179,6 @@
         "name": "turn-start.mjs",
         "kind": "file",
         "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "report.txt",
-        "kind": "file",
-        "path": "scratch/review/report.txt",
-        "source": "derived"
-      },
-      {
-        "name": "wiring-match.sh",
-        "kind": "script",
-        "path": "scratch/planning/wiring-match.sh",
-        "source": "derived"
-      },
-      {
-        "name": "after.txt",
-        "kind": "file",
-        "path": "scratch/after.txt",
-        "source": "derived"
-      },
-      {
-        "name": "boundaries.txt",
-        "kind": "file",
-        "path": "scratch/boundaries.txt",
         "source": "derived"
       },
       {
@@ -195,31 +204,27 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The workflow measure misses every write a model makes with an in-place shell edit, so a run that edits a file with `sed -i` or `tee` reads as safe and as a non-start, and the goal log cannot explain `unsafe` row by row",
     "created_at": "2026-11-15T17:40:45Z",
-    "last_save_at": "2026-11-15T22:09:45.796Z",
+    "last_save_at": "2026-11-15T22:41:43.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f1f4df297314b0ba4f115bf4340556458d5cc402c00428bf1d14534247b893c",
+    "source_fingerprint": "sha256:4b5c0295490003a90aef448ba1db752d8a502a7bb1c6aaf9c3710f996427fdd7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26b3556e0364c22770fc69ba14b23ce84a2bf313abbb35e9d361b3544e4fc2b7",
-      "plan.md": "781419fc0fd5f2e7f2e0f84612452cd1a3a3c8ea0829dbd44c9a549a8f7d09ab",
-      "tasks.md": "17b2c41ce31b5ac25e7f01346bb798f89dedd62243408a574ebfd821d96a2f5a"
+      "spec.md": "78270c9a4b8ab1f3a5454d55404eda0d9525757b461c4937764611956f8ce0b0",
+      "plan.md": "2d388bbb2a628d337cfb37a6f8c5aed3754059fb642d700ddf43e085f10beff1",
+      "tasks.md": "7901683e45143a74aacaba3f46918453eb9de0d433e213670aa35bc796200101",
+      "implementation-summary.md": "70fb7e1d623fd7655e5a10d2d09b73f5d772153fd04ed4e2efa8007d6ac113d2"
     },
     "last_active_at": null
   }

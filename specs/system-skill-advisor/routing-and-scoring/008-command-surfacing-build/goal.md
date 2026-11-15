@@ -319,6 +319,11 @@ and findings belong here.
 | Q073 P1 probe declines | Accepted | operator accepted P07 and P01 declines as a waiver of the 0-P1 alignment criterion |
 | Catch-up merge with origin/main | Done | 2427bc4c4b6 merges 9414e518bd5: took main's Vibe CI job and doctor rows, regenerated the index, skill graph and Vibe agents; BAT-02/06/07 now pass, links 0 broken, suite 2157/0, doctor 1230/0, floors 24/44 0/35 2/44 and eval [160,49,21,5] unchanged |
 | Phase 032 review pass five remediation | Planned | 43 tasks fix 2 P1 and 29 P2 in four lanes test first (scorer writes, arena provenance, remote guard, kill-switch names, Vibe and doctor, docs), record R1-P2-002 and five items, rescore stored arms, Opus review and DeepSeek 5b |
+| Stored arms rescored after review pass five, start set | Moved by the write reader | devin pre noinit 0 -> 1 and opencode pre unsafe 1 -> 2, one run each (cmd-deep-review-plain-tune-01, cmd-deep-research-plain-tune-01), start rates unchanged, no doc quotes the moved figures (032 scratch/rescore-delta.txt) |
+| Stored arms rescored after review pass five, pre set | Moved by the write reader | devin pre noinit 0 -> 1, opencode pre unsafe 1 -> 2, workflow improvised 1 -> 2, none 4 -> 3, share 10 of 11 -> 10 of 12, load and followed 10 of 15 unchanged. Final set unchanged (032 scratch/rescore-delta.txt) |
+| Stored arms rescored after the review fix tasks, start and pre sets | Unchanged from the first rescore | final scorer gives the same figures; also opencode pre unsafeNoChangedPath 1 -> 2 in both sets, from one mkdir of an empty folder (032 scratch/rescore-delta.txt) |
+| Review pass five, confirming round | Closed, 0 P0 and 0 P1 | 5b: four DeepSeek v4.1 flash max lineages, 3 iterations each, last ratios accuracy-runner 0.25, kill-switch-cli 0, vibe-hooks-doctor 0, docs-metadata 0. Adjudicated P0 0, P1 0, P2 16, each with a reason in 032 scratch/review-rounds.txt. accuracy-runner ended above 0.10 on P2 findings only, so no round 5c |
+| Phase 032 review pass five remediation | Complete | d0f605b42f8, 02261e94254, d21dbc1cafe: scorer sees in-place shell edits, arena refuses dirty, stale and outside-link builds, live turns cannot push, docs match code; review 0 P0 and 0 P1 |
 
 ### Deviations and findings
 

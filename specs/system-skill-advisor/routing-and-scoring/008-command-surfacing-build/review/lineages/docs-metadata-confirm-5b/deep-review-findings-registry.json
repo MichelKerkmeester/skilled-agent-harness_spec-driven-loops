@@ -1,0 +1,717 @@
+{
+  "sessionId": "fanout-docs-metadata-confirm-5b-1794780590351-ezt1v0",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "timestamp": "2026-11-15T22:32:02.205Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "DMC5B-P2-001",
+      "severity": "P2",
+      "title": "The skill README still states 46 command rows while the fixed catalog states 47",
+      "file": ".skilled/skills/system-skill-advisor/README.md",
+      "line": 176,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DMC5B-P2-002",
+      "severity": "P2",
+      "title": "The router still says the hook scope names five hook docs after the fix added a sixth",
+      "file": ".skilled/skills/system-skill-advisor/ROUTER.md",
+      "line": 103,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DMC5B-P2-003",
+      "severity": "P2",
+      "title": "Section 18.5 still names numbered category slots that the playbook no longer has",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 341,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DMC5B-P2-004",
+      "severity": "P2",
+      "title": "The tests README package-topology block omits the doctor/ suite folder",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/README.md",
+      "line": 57,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 4
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "contradictory_statement",
+      "numbered_reference_rot",
+      "stale_count",
+      "stale_inventory_list"
+    ],
+    "ruledOut": [
+      "contradictory_statement",
+      "holdout_leak",
+      "link_rot",
+      "missing_inventory_entry",
+      "prompt_text_in_docs",
+      "secret_exposure",
+      "stale_inventory_list",
+      "stale_line_anchor",
+      "trust_boundary_widening",
+      "unfixed_active_finding",
+      "unsupported_behavior_claim"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "stale_count": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "contradictory_statement": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "missing_inventory_entry": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "unsupported_behavior_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "link_rot": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "stale_line_anchor": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_inventory_list": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "numbered_reference_rot": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "holdout_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "prompt_text_in_docs": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "trust_boundary_widening": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "unfixed_active_finding": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/leaf-manifest.json"
+      ],
+      "bugClass": "missing_inventory_entry",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "leaf-aliases.json:239",
+        "leaf-manifest.json:52"
+      ],
+      "reason": "all three files agree and the alias bytes equal the generator projection"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md"
+      ],
+      "bugClass": "contradictory_statement",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:176",
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:251"
+      ],
+      "reason": "the corrected wording matches the implementation it names"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md"
+      ],
+      "bugClass": "missing_inventory_entry",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md:95"
+      ],
+      "reason": "every listed entry exists and every disk entry is listed"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        "the nine scoped markdown files"
+      ],
+      "bugClass": "link_rot",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:103"
+      ],
+      "reason": "no broken relative link in the scoped docs"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "contradictory_statement",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:30"
+      ],
+      "reason": "the three owning sources agree, and the legacy scenario row is outside this fix and predates it"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "contradictory_statement",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:191"
+      ],
+      "reason": "the placeholder labels its own gap and the heading enumerates validated scenarios"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-011",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md"
+      ],
+      "bugClass": "stale_inventory_list",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md:209"
+      ],
+      "reason": "the table is explicitly curated; the finding named the tree"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        "nine reviewed docs"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/README.md:135"
+      ],
+      "reason": "no reviewed doc names a corpus file or quotes a row"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "security",
+      "targetRefs": [
+        "four markdown docs"
+      ],
+      "bugClass": "prompt_text_in_docs",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:176"
+      ],
+      "reason": "no prompt text appears in the reviewed docs"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [
+        "nine reviewed docs"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/README.md:176"
+      ],
+      "reason": "no credential shape appears in the reviewed set"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md"
+      ],
+      "bugClass": "trust_boundary_widening",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/leaf-scopes.json:7"
+      ],
+      "reason": "documentation and metadata only; no runtime read was added"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-016",
+      "dimension": "security",
+      "targetRefs": [
+        "four active finding sites"
+      ],
+      "bugClass": "unfixed_active_finding",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/ROUTER.md:103"
+      ],
+      "reason": "all four active P2 advisories remain accurate"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/leaf-manifest.json"
+      ],
+      "bugClass": "missing_inventory_entry",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "leaf-aliases.json:239",
+        "leaf-manifest.json:52"
+      ],
+      "proof": "all three files agree and the alias bytes equal the generator projection"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md"
+      ],
+      "bugClass": "contradictory_statement",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:176",
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:251"
+      ],
+      "proof": "the corrected wording matches the implementation it names"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md"
+      ],
+      "bugClass": "missing_inventory_entry",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md:95"
+      ],
+      "proof": "every listed entry exists and every disk entry is listed"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        "the nine scoped markdown files"
+      ],
+      "bugClass": "link_rot",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:103"
+      ],
+      "proof": "no broken relative link in the scoped docs"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "contradictory_statement",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:30"
+      ],
+      "proof": "the three owning sources agree, and the legacy scenario row is outside this fix and predates it"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "contradictory_statement",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:191"
+      ],
+      "proof": "the placeholder labels its own gap and the heading enumerates validated scenarios"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-011",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md"
+      ],
+      "bugClass": "stale_inventory_list",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md:209"
+      ],
+      "proof": "the table is explicitly curated; the finding named the tree"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        "nine reviewed docs"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/README.md:135"
+      ],
+      "proof": "no reviewed doc names a corpus file or quotes a row"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-013",
+      "dimension": "security",
+      "targetRefs": [
+        "four markdown docs"
+      ],
+      "bugClass": "prompt_text_in_docs",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:176"
+      ],
+      "proof": "no prompt text appears in the reviewed docs"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [
+        "nine reviewed docs"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/README.md:176"
+      ],
+      "proof": "no credential shape appears in the reviewed set"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md"
+      ],
+      "bugClass": "trust_boundary_widening",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/leaf-scopes.json:7"
+      ],
+      "proof": "documentation and metadata only; no runtime read was added"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-016",
+      "dimension": "security",
+      "targetRefs": [
+        "four active finding sites"
+      ],
+      "bugClass": "unfixed_active_finding",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/ROUTER.md:103"
+      ],
+      "proof": "all four active P2 advisories remain accurate"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "holdout_leak",
+      "prompt_text_in_docs",
+      "secret_exposure",
+      "trust_boundary_widening",
+      "unfixed_active_finding"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "holdout_leak",
+      "prompt_text_in_docs",
+      "secret_exposure",
+      "trust_boundary_widening",
+      "unfixed_active_finding"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

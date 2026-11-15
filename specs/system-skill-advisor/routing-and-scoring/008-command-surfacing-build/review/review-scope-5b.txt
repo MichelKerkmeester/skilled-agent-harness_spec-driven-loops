@@ -1,0 +1,30 @@
+# confirming round of review pass five: git -c core.fsmonitor=false diff --name-only 2a1a42263cc d21dbc1cafe -- .skilled .github (row files excluded)
+# area<TAB>path; lineage <area>-confirm-5b reviews area <area>
+vibe-hooks-doctor	.skilled/commands/doctor/scripts/hook-wiring-check.cjs
+vibe-hooks-doctor	.skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs
+vibe-hooks-doctor	.skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs
+docs-metadata	.skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+docs-metadata	.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md
+vibe-hooks-doctor	.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+vibe-hooks-doctor	.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
+vibe-hooks-doctor	.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs
+docs-metadata	.skilled/skills/system-skill-advisor/leaf-aliases.json
+docs-metadata	.skilled/skills/system-skill-advisor/leaf-manifest.json
+docs-metadata	.skilled/skills/system-skill-advisor/leaf-scopes.json
+kill-switch-cli	.skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+docs-metadata	.skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+kill-switch-cli	.skilled/skills/system-skill-advisor/runtime/lib/README.md
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+docs-metadata	.skilled/skills/system-skill-advisor/runtime/tests/README.md
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts
+accuracy-runner	.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+vibe-hooks-doctor	.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+vibe-hooks-doctor	.skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts
+kill-switch-cli	.skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts
+kill-switch-cli	.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts
+kill-switch-cli	.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md

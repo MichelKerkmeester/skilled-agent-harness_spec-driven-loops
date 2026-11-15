@@ -1,5 +1,5 @@
 {
-  "run_id": "1794760565927-i99t40",
+  "run_id": "1794780590351-ezt1v0",
   "loop_type": "review",
   "spec_folder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
   "base_artifact_dir": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review",
@@ -24,5 +24,30 @@
     "unattributed_state_log": 0,
     "needs_input": 0,
     "quota": 0
-  }
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "vibe-hooks-doctor-confirm-5b",
+      "state_log": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/vibe-hooks-doctor-confirm-5b/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-11-15T22:09:50.670Z",
+        "end_at_iso": "2026-11-15T22:36:09.535Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 6
+      },
+      "sample": [
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-11-15T22:44:00.000Z",
+          "deltaMs": 350465
+        }
+      ]
+    }
+  ]
 }

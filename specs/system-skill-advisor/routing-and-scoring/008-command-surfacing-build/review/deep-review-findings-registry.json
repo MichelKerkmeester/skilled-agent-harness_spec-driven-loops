@@ -6,8 +6,10 @@
     "accuracy-runner-5",
     "accuracy-runner-close-4c",
     "accuracy-runner-confirm-4b",
+    "accuracy-runner-confirm-5b",
     "advisor-runtime-3",
     "docs-metadata-5",
+    "docs-metadata-confirm-5b",
     "doctor-docs-3",
     "doctor-docs-4",
     "doctor-install",
@@ -15,6 +17,7 @@
     "hook-close-3c",
     "hook-confirm-3b",
     "kill-switch-cli-5",
+    "kill-switch-cli-confirm-5b",
     "noedit-close-3c",
     "noedit-confirm-3b",
     "render-hooks-plugin",
@@ -25,7 +28,8 @@
     "scorer-attach-4",
     "scorer-attach-close-4c",
     "scorer-attach-confirm-4b",
-    "vibe-hooks-doctor-5"
+    "vibe-hooks-doctor-5",
+    "vibe-hooks-doctor-confirm-5b"
   ],
   "lineageExecutors": {
     "accuracy-runner": {
@@ -58,12 +62,22 @@
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
     },
+    "accuracy-runner-confirm-5b": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
     "advisor-runtime-3": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
     },
     "docs-metadata-5": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "docs-metadata-confirm-5b": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -99,6 +113,11 @@
       "reasoningEffort": "max"
     },
     "kill-switch-cli-5": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "kill-switch-cli-confirm-5b": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -154,6 +173,11 @@
       "reasoningEffort": "max"
     },
     "vibe-hooks-doctor-5": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "vibe-hooks-doctor-confirm-5b": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -293,6 +317,39 @@
       ]
     },
     {
+      "findingId": "AR5B-P2-001",
+      "severity": "P2",
+      "title": "A --target-directory copy records the source as the file it changed",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 1040,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-confirm-5b"
+      ]
+    },
+    {
       "findingId": "ARC4C-P2-001",
       "severity": "P2",
       "title": "A 2> or &> redirect target that names a command document still counts as a start",
@@ -322,6 +379,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner-close-4c"
+      ]
+    },
+    {
+      "findingId": "AR5B-P2-002",
+      "severity": "P2",
+      "title": "A background & is folded into the writer's argument list",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 895,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-confirm-5b"
       ]
     },
     {
@@ -801,6 +891,39 @@
       ]
     },
     {
+      "findingId": "AR5B-P2-006",
+      "severity": "P2",
+      "title": "A mid-arm refusal names no row, so the stop cannot be tied to the log's last line",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 1429,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-confirm-5b"
+      ]
+    },
+    {
       "findingId": "iter1-P2-mode-suffix-hides-repeat",
       "severity": "P2",
       "title": "A mode suffix hides a command reported twice",
@@ -1190,6 +1313,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "doctor-install"
+      ]
+    },
+    {
+      "findingId": "AR5B-P2-003",
+      "severity": "P2",
+      "title": "A three-backtick line closes a four-backtick fence",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 515,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-confirm-5b"
       ]
     },
     {
@@ -2103,6 +2259,39 @@
       ]
     },
     {
+      "findingId": "AR5B-P2-004",
+      "severity": "P2",
+      "title": "In-place editors outside the fix's writer list stay invisible",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 822,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-confirm-5b"
+      ]
+    },
+    {
       "findingId": "iter1-P1-shell-writes-invisible",
       "severity": "P1",
       "title": "In-place shell edits are never write events, so unsafe and loopInit miss every write that is not a redirect",
@@ -2683,6 +2872,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "DMC5B-P2-003",
+      "severity": "P2",
+      "title": "Section 18.5 still names numbered category slots that the playbook no longer has",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 341,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-confirm-5b"
       ]
     },
     {
@@ -3388,6 +3610,39 @@
       ]
     },
     {
+      "findingId": "C5B-P2-001",
+      "severity": "P2",
+      "title": "The doctor README still says a single-quoted or trailing-comment value reads hook-missing, and never names the match selector rule",
+      "file": ".skilled/commands/doctor/scripts/README.markdown",
+      "line": 235,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-hooks-doctor-confirm-5b"
+      ]
+    },
+    {
       "findingId": "R3-P2-002--ecbea1260371",
       "severity": "P2",
       "title": "The documented recommendation contract omits the field that decides the child-session downgrade",
@@ -3777,6 +4032,39 @@
       ]
     },
     {
+      "findingId": "c5b-iter1-P2-hooks-index-aliases",
+      "severity": "P2",
+      "title": "The hook kill-switch index still omits the four MK_ aliases the resolver honors and this commit added to ENV-REFERENCE",
+      "file": ".skilled/hooks/README.md",
+      "line": 44,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "kill-switch-cli-confirm-5b"
+      ]
+    },
+    {
       "findingId": "iter4-P2-bench-runtime-matrix-incomplete",
       "severity": "P2",
       "title": "The hook-brief bench declares a seven-runtime matrix but defines two runtimes, and fails the moment benches are enabled",
@@ -4143,6 +4431,39 @@
       ]
     },
     {
+      "findingId": "C5B-P2-002",
+      "severity": "P2",
+      "title": "The new names-the-main-agent case duplicates the default case, so it cannot fail for a reason of its own",
+      "file": ".skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs",
+      "line": 249,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-hooks-doctor-confirm-5b"
+      ]
+    },
+    {
       "findingId": "iter3-P2-attached-metrics-unpinned",
       "severity": "P2",
       "title": "The new stage and fit counts are not held to the committed baseline",
@@ -4367,6 +4688,39 @@
           ],
           "basis": "same-id-different-content"
         }
+      ]
+    },
+    {
+      "findingId": "c5b-iter1-P2-topology-skill-graph",
+      "severity": "P2",
+      "title": "The package topology omits skill-graph/ while the directory tree and the directory itself have it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/README.md",
+      "line": 69,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "kill-switch-cli-confirm-5b"
       ]
     },
     {
@@ -4748,6 +5102,39 @@
       ]
     },
     {
+      "findingId": "AR5B-P2-007",
+      "severity": "P2",
+      "title": "The README's symlink_escape clause names two of the three refusals",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 111,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-confirm-5b"
+      ]
+    },
+    {
       "findingId": "SA4-P2-002",
       "severity": "P2",
       "title": "The recommend feature doc still says a hub suppresses a command its own command row already offers",
@@ -4876,6 +5263,39 @@
       ]
     },
     {
+      "findingId": "DMC5B-P2-002",
+      "severity": "P2",
+      "title": "The router still says the hook scope names five hook docs after the fix added a sixth",
+      "file": ".skilled/skills/system-skill-advisor/ROUTER.md",
+      "line": 103,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-confirm-5b"
+      ]
+    },
+    {
       "findingId": "ARC4C-P2-003",
       "severity": "P2",
       "title": "The runner row says --brief-only rewrites the four fields, but that mode copies the offer fields untouched",
@@ -4994,6 +5414,39 @@
       ]
     },
     {
+      "findingId": "AR5B-P2-008",
+      "severity": "P2",
+      "title": "The scorer row never says an in-place shell edit is a write",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 135,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-confirm-5b"
+      ]
+    },
+    {
       "findingId": "DR3-P2-004",
       "severity": "P2",
       "title": "The scripts README says the check runs three owner tools as children while it runs four",
@@ -5056,6 +5509,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner-5"
+      ]
+    },
+    {
+      "findingId": "DMC5B-P2-001",
+      "severity": "P2",
+      "title": "The skill README still states 46 command rows while the fixed catalog states 47",
+      "file": ".skilled/skills/system-skill-advisor/README.md",
+      "line": 176,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-confirm-5b"
       ]
     },
     {
@@ -5229,6 +5715,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "doctor-install"
+      ]
+    },
+    {
+      "findingId": "DMC5B-P2-004",
+      "severity": "P2",
+      "title": "The tests README package-topology block omits the doctor/ suite folder",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/README.md",
+      "line": 57,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-confirm-5b"
       ]
     },
     {
@@ -5416,6 +5935,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "scorer-attach-2"
+      ]
+    },
+    {
+      "findingId": "AR5B-P2-005",
+      "severity": "P2",
+      "title": "turnRefusal throws where its contract promises a refusal",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 653,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-confirm-5b"
       ]
     },
     {
@@ -5758,11 +6310,11 @@
   "findingsBySeverity": {
     "P0": 0,
     "P1": 15,
-    "P2": 133
+    "P2": 149
   },
-  "openFindingsCount": 148,
+  "openFindingsCount": 164,
   "resolvedFindingsCount": 5,
   "activeP0": 0,
   "activeP1": 15,
-  "activeP2": 133
+  "activeP2": 149
 }

@@ -172,7 +172,7 @@ The marker becomes three kinds of line: the head, `source clean`, and one `built
 |------|---------------|--------|
 | `R1-P2-002` | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:184`, `:195` | Rejected by the verifier: the field is documented and the code handles it |
 | Interpreter writes | `RAD/score-command-transcripts.mjs` `normalize` | A Python or Node write's target is only known by running it. The probe's `python write` line stays `kinds=shell` |
-| A document read in the same shell call as a write | `RAD/score-command-transcripts.mjs` `normalize` and `readDocument` (`:979-993`) | A redirect hides it today, and keeping it would move every stored redirect run. D1 keeps parity |
+| A document read in the same shell call as a write | `RAD/score-command-transcripts.mjs` `normalize` and `readDocument` (`:1379-1393`) | A redirect hides it today, and keeping it would move every stored redirect run. D1 keeps parity |
 | Tracked absolute symlinks | four links under `specs/**/scratch`, found with `git ls-files -s` mode `120000` | `git clone` brings them, not `copyPath` |
 | The fixed six-hop resolver path in other sources | `SAD/hooks/claude/directive-lifecycle-boundary.ts:18` and 13 sources under `.skilled/skills/system-spec-kit/runtime/hooks/` (`claude`, `codex`, `cursor`, `devin`) | No finding grades them, every compiled copy resolves, and the spec-kit sources are another skill's |
 | The registry severity of the remote guard | `review/deep-review-findings-registry.json`, `iter3-P1-remote-guard-first-turn-only` | Merged output, graded P2 by the verifier |
