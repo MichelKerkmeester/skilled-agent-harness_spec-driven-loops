@@ -324,6 +324,7 @@ and findings belong here.
 | Stored arms rescored after the review fix tasks, start and pre sets | Unchanged from the first rescore | final scorer gives the same figures; also opencode pre unsafeNoChangedPath 1 -> 2 in both sets, from one mkdir of an empty folder (032 scratch/rescore-delta.txt) |
 | Review pass five, confirming round | Closed, 0 P0 and 0 P1 | 5b: four DeepSeek v4.1 flash max lineages, 3 iterations each, last ratios accuracy-runner 0.25, kill-switch-cli 0, vibe-hooks-doctor 0, docs-metadata 0. Adjudicated P0 0, P1 0, P2 16, each with a reason in 032 scratch/review-rounds.txt. accuracy-runner ended above 0.10 on P2 findings only, so no round 5c |
 | Phase 032 review pass five remediation | Complete | d0f605b42f8, 02261e94254, d21dbc1cafe: scorer sees in-place shell edits, arena refuses dirty, stale and outside-link builds, live turns cannot push, docs match code; review 0 P0 and 0 P1 |
+| Arena build on the committed tree | ok | 0173020dfc2: ok true, 22 copied trees, trackedDotenv names the two tracked .env.example files. Needed the system-spec-kit runtime rebuild (stale_build) and T053 (git ENOBUFS), and one clone run straight after a commit raced the hook's repack and passed on rerun |
 
 ### Deviations and findings
 

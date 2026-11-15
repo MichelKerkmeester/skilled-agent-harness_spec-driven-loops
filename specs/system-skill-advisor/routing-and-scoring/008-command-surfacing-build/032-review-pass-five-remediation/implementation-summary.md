@@ -59,7 +59,7 @@ The scorer keeps quotes on shell words, reads in-place sed and perl edits with t
 
 The kill-switch docs, the CP-003 control and the test fixtures now name all ten switch names. The Vibe part keeps a directive-only context, the Claude hook finds its flag module from source and the doctor rejects a `pre_agent` block bound to spawned agents. The playbook, changelog, catalog and READMEs now state what the code does.
 
-BASE is `2a1a42263cc`. The fix is `d0f605b42f8`, the second fix `02261e94254` and the third fix `d21dbc1cafe`.
+BASE is `2a1a42263cc`. The fix is `d0f605b42f8`, the second fix `02261e94254`, the third fix `d21dbc1cafe` and the fourth fix `0173020dfc2`, which lets the arena builder read this repository's 20 MB file listing.
 
 ### Files Changed
 
@@ -122,6 +122,7 @@ After the lanes, the coordinator rescored the stored arms, ran every gate, the p
 | Review | Opus read one: FIX, P1 1 (reproduced, fixed in T044), P2 9. Reads two and three: SHIP, 0 P0 and 0 P1 (`scratch/review/`) |
 | Round 5b | Four lineages, 3 iterations each, last ratios 0.25, 0, 0 and 0, P0 0, P1 0, P2 16 each with a reason (`scratch/review-rounds.txt`) |
 | Synthesis | `../review/review-report.md`, pass four kept as `review-report-pass-4.md` |
+| Arena on the committed tree | At `0173020dfc2`, after the `system-spec-kit/runtime` rebuild the stale rule asked for: `"ok":true`, 22 copied trees, `trackedDotenv` naming the two tracked `.env.example` files. The first try after the rebuild failed `spawn_failed` on a git `ENOBUFS`, which T053 fixed |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -134,6 +135,7 @@ After the lanes, the coordinator rescored the stored arms, ran every gate, the p
 3. **The stale rule is wider than a compiler's inputs.** A committed doc in a reached folder marks the build stale. A rebuild clears it.
 4. **Sixteen round 5b P2 stay open.** Four name files outside the fix paths, three are scorer edges already in D13 and nine are doc wording or minor edges, each with a reason in `scratch/review-rounds.txt`.
 5. **Interpreter writes are not read.** A Python or Node write's target is only known by running it (plan D13).
+6. **Build an arena a moment after a commit, not in the same breath.** One build run straight after a commit failed `clone_failed` on the new commit, a race with the commit hook's background work. The rerun passed.
 <!-- /ANCHOR:limitations -->
 
 ---
