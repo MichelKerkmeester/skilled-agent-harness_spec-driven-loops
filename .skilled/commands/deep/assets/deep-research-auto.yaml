@@ -1298,6 +1298,7 @@ workflow:
                 input,
                 receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
                 dispatchId,
+                sessionId: '{config.lineage.sessionId}',
                 dispatchEnv: {
                   DSH_HOME: dshHome,
                   DSH_SPEC_FOLDER: path.resolve(repoRoot, '{spec_folder}'),
@@ -1410,6 +1411,7 @@ workflow:
                 iteration: Number('{current_iteration}'),
                 receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
                 dispatchId,
+                sessionId: '{config.lineage.sessionId}',
               }),
             );
             EOF
@@ -1486,6 +1488,7 @@ workflow:
               input,
               receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
               dispatchId,
+              sessionId: '{config.lineage.sessionId}',
             });
             const containment = enforceWriteContainment({
               repoRoot,
@@ -1587,6 +1590,7 @@ workflow:
               input,
               receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
               dispatchId,
+              sessionId: '{config.lineage.sessionId}',
             });
             const containment = enforceWriteContainment({
               repoRoot,
@@ -1689,6 +1693,7 @@ workflow:
               input,
               receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
               dispatchId,
+              sessionId: '{config.lineage.sessionId}',
             });
             const containment = enforceWriteContainment({
               repoRoot,
@@ -1727,13 +1732,11 @@ workflow:
             - "cli-deepseek-harness has its own single-executor branch, if_cli_deepseek_harness above, built through the same buildLineageCommand. Fan-out also runs the kind"
         record_executor_audit:
           skip_when: "config.executor.kind == 'native'"
-          target: "{state_paths.state_log}"
-          field: "executor"
-          value:
-            kind: "{config.executor.kind}"
-            model: "{config.executor.model}"
-            reasoningEffort: "{config.executor.reasoningEffort}"
-            serviceTier: "{config.executor.serviceTier}"
+          call: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts#appendExecutorAuditToLastRecord"
+          args:
+            stateLogPath: "{state_paths.state_log}"
+            executor: "{config.executor}"
+            sessionId: "{config.lineage.sessionId}"
         if_cli_opencode:
           command: |
             node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
@@ -1800,6 +1803,7 @@ workflow:
                 input,
                 receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
                 dispatchId,
+                sessionId: '{config.lineage.sessionId}',
               }),
             );
             EOF
@@ -1901,6 +1905,7 @@ workflow:
               input: promptBody,
               receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
               dispatchId,
+              sessionId: '{config.lineage.sessionId}',
             });
             // Structural write-containment: the artifact-dir boundary is prompt-only, so a
             // workspace-write leaf can write anywhere in the repo. The guard diffs the tree
@@ -2578,7 +2583,7 @@ workflow:
         output: "/tmp/save-context-data-<session-id>.json"
         requirements:
           - "Write this file before invoking generate-context.js; the loader fails closed if the explicit JSON file is absent."
-          - "Include `specFolder`, a concise `sessionSummary`, curated `observations`, `recent_context`, `toolCalls`, and `exchanges` from the completed research loop."
+          - "Include `specFolder`, a concise `sessionSummary`, curated `observations`, `recent_context`, `toolCalls`, and `exchanges` from the completed research loop. Without `--full-auto` the writer only plans, and a full-auto save writes continuity only from `recent_action`, `next_safe_action`, `blockers` and `key_files`, so the payload carries all four."
           - "Use a session-scoped temp filename; do not use the retired shared `/tmp/save-context-data.json` path."
         example_payload: |
           {
@@ -2587,12 +2592,16 @@ workflow:
             "observations": ["Summarize the final research conclusions and evidence."],
             "recent_context": ["Point to the generated research artifacts and next action."],
             "exchanges": [],
-            "toolCalls": []
+            "toolCalls": [],
+            "recent_action": "Deep research finished after {iteration_count} iterations",
+            "next_safe_action": "Act on the synthesis in research/research.md",
+            "blockers": [],
+            "key_files": ["research/research.md"]
           }
 
       step_generate_context:
         action: "Route continuity content into the correct canonical spec document via generate-context.js"
-        command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"
+        command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder} --full-auto"
         critical_rule: "NEVER manually author files under retired memory/ paths (the runtime rejects them); use generate-context.js so the save routes into decision-record.md, implementation-summary.md, or handover.md"
 
       step_verify_save:

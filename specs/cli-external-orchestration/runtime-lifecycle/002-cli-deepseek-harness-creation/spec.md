@@ -145,7 +145,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 17 | 017-dsh-rc3-repin/ | Move the dsh pin and its integrity from 0.2.2-rc.1 to 0.2.2-rc.3 at every pin site and repeat the re-pin runbook's probes on it | Complete |
 | 18 | 018-dsh-single-executor-loop/ | Run one dsh lineage in `/deep:review` and `/deep:research` `:auto` through the shared builder with an isolated home and a completion check | Complete |
 | 19 | 019-dsh-single-executor-hardening/ | Close the open Fable P2 points on the single dsh lineage and the three loop faults its first live review exposed: stale home sweep, a per-kind `dispatchEnv` list, no stdout echo, a `:confirm` refusal, one registry row per finding and canonical dimension ids | Complete |
-| 20 | 020-dsh-direct-writer-gateway/ | Route the dispatch failure row, the receipt write failure row and the post-dispatch executor audit through the append gateway, so a ledger-backed state log keeps them after a refresh | Planned |
+| 20 | 020-dsh-direct-writer-gateway/ | Route the dispatch failure row, the receipt write failure row and the post-dispatch executor audit through the append gateway, so a ledger-backed state log keeps them after a refresh. It also stops the CLI entrypoints reading an unused stdin and makes every deep loop save write continuity | Complete |
 
 ### Phase Transition Rules
 

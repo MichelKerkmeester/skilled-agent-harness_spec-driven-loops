@@ -55,9 +55,9 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/executor-audit.vitest.ts tests/unit/executor-audit-ledger-projection.vitest.ts` prints `Tests  85 passed (85)`
-- [ ] `npx vitest run tests/unit/deep-research-ledger-schema.vitest.ts tests/unit/check-ledger-stem-producers.vitest.ts` in the same folder prints `Tests  62 passed (62)`
-- [ ] `npm run typecheck` in the same folder exits 0, and `node scripts/check-contract-drift.cjs` prints `[CONTRACT DRIFT] OK commands=3`
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/executor-audit.vitest.ts tests/unit/executor-audit-ledger-projection.vitest.ts` prints `Tests  85 passed (85)`
+- [x] `npx vitest run tests/unit/deep-research-ledger-schema.vitest.ts tests/unit/check-ledger-stem-producers.vitest.ts` in the same folder prints `Tests  62 passed (62)`
+- [x] `npm run typecheck` in the same folder exits 0, and `node scripts/check-contract-drift.cjs` prints `[CONTRACT DRIFT] OK commands=3`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,6 +76,7 @@ and findings belong here.
 | Plan | Done | `plan.md` holds 43 counted edits, a runner script and a contract regeneration. The count script printed `edits=43` and exited 0 at `216ba55452` |
 | Plan check on a clone | Done | On an APFS clone of `216ba55452` with every edit applied, the two named files printed `Tests  85 passed (85)`, the typecheck exited 0 and the drift check printed `[CONTRACT DRIFT] OK commands=3` |
 | Build | Pending | Not started |
+| Build | Done | 2026-11-15: 43 planned edits and the E15 script applied on origin/main 23f6583b89. The two faults from the 019 live review were added and fixed: stdin read only for upsert --events - with an EAGAIN retry, and every deep loop save runs full-auto. Full suite 2929 passed and 8 skipped of 2937. Released as v1.6.28.0 |
 
 ### Deviations and findings
 

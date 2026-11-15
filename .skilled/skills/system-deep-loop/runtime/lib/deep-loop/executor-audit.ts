@@ -190,6 +190,9 @@ type RunAuditedExecutorCommandInput = {
   guardContext?: ExecutorDispatchGuardContext;
   timeoutGraceMs?: number;
   lineageId?: string;
+  // The run's session id. On a ledger-backed state log it scopes the failure
+  // rows the runner hands the append gateway.
+  sessionId?: string;
   // Opt-in dispatch-receipt envelope. When receiptDir is set, the engine writes
   // an INTENT receipt before spawn and a COMPLETION countersign after the
   // dispatch returns, to a parent-owned, child-unwritable path. dispatchId is
@@ -698,11 +701,12 @@ function emitReceiptWriteFailure(
   iteration: number,
   phase: ReceiptPhase,
   detail: string,
+  sessionId: string | undefined,
 ): void {
   // Distinct from the dispatch_failure event (and never deduped against it) so
   // a write failure is always observable separately from a 'missing' receipt
   // the validator reports later.
-  appendJsonlRecordSafe(stateLogPath, {
+  appendFailureRow(stateLogPath, {
     type: 'event',
     event: 'dispatch_receipt_write_failed',
     reason: 'dispatch_receipt_write_failed' as DispatchFailureReason,
@@ -711,7 +715,7 @@ function emitReceiptWriteFailure(
     ...(getExecutorKind(executor) === 'native' ? {} : { executor: buildExecutorAuditRecord(executor) }),
     timestamp: new Date().toISOString(),
     ...(detail ? { detail } : {}),
-  });
+  }, sessionId);
 }
 
 function tryWriteReceipt(
@@ -721,11 +725,12 @@ function tryWriteReceipt(
   phase: ReceiptPhase,
   receiptPath: string,
   record: Record<string, unknown>,
+  sessionId: string | undefined,
 ): void {
   try {
     writeReceiptAtomic(receiptPath, record);
   } catch (err) {
-    emitReceiptWriteFailure(stateLogPath, executor, iteration, phase, (err as Error).message ?? String(err));
+    emitReceiptWriteFailure(stateLogPath, executor, iteration, phase, (err as Error).message ?? String(err), sessionId);
   }
 }
 
@@ -766,7 +771,7 @@ function beginReceipt(input: RunAuditedExecutorCommandInput): ReceiptContext | n
   archivePriorAttempt(input.receiptDir, dispatchId);
   const paths = receiptPaths(input.receiptDir, dispatchId);
   const record = buildReceiptRecord('intent', dispatchId, buildReceiptFacts(input), key);
-  tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'intent', paths.intentPath, record);
+  tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'intent', paths.intentPath, record, input.sessionId);
   return { dispatchId, key, intentPath: paths.intentPath, completionPath: paths.completionPath };
 }
 
@@ -794,7 +799,7 @@ function completeReceipt(
     sessionId: completion.sessionId,
   };
   const record = buildReceiptRecord('completion', ctx.dispatchId, facts, ctx.key);
-  tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'completion', ctx.completionPath, record);
+  tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'completion', ctx.completionPath, record, input.sessionId);
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1107,11 +1112,48 @@ function appendThroughGateway(mode: 'review' | 'research', stateLogPath: string,
         || String(result.stderr || '').trim()
         || result.error?.message
         || `exit signal ${String(result.signal)}`;
-      throw new Error(`append gateway refused the executor row for iteration ${String(record.iteration)}: ${outcome}`);
+      throw new Error(`append gateway refused the ${String(record.event ?? record.type)} row for iteration ${String(record.iteration)}: ${outcome}`);
     }
   } finally {
     rmSync(eventDir, { recursive: true, force: true });
   }
+}
+
+// The ledger stores a row's objects with sorted keys, so a row the projection
+// wrote back is compared with a new one by content, not by key order.
+function canonicalJson(value: unknown): string | undefined {
+  if (Array.isArray(value)) {
+    return `[${value.map((entry) => canonicalJson(entry) ?? 'null').join(',')}]`;
+  }
+  if (isObjectRecord(value)) {
+    return `{${Object.keys(value).sort()
+      .filter((key) => value[key] !== undefined)
+      .map((key) => `${JSON.stringify(key)}:${canonicalJson(value[key])}`)
+      .join(',')}}`;
+  }
+  return JSON.stringify(value);
+}
+
+// A failure row on a ledger-backed state log goes through the append gateway,
+// or the next refresh drops it. Recording a failure never throws: when the run
+// names no session id or the gateway refuses, the row is written straight into
+// the state log, where the steps that read it right after the dispatch still
+// find it, and stderr says why it will not last.
+function appendFailureRow(stateLogPath: string, row: Record<string, unknown>, sessionId: string | undefined): void {
+  const ledgerMode = ledgerModeFor(stateLogPath);
+  if (ledgerMode !== null) {
+    if (!sessionId) {
+      process.stderr.write(`no session id scopes the ${String(row.event)} row, so the next refresh of the ledger-backed state log drops it\n`);
+    } else {
+      try {
+        appendThroughGateway(ledgerMode, stateLogPath, { ...row, sessionId });
+        return;
+      } catch (error) {
+        process.stderr.write(`${error instanceof Error ? error.message : String(error)}. The next refresh drops the row written in its place\n`);
+      }
+    }
+  }
+  appendJsonlRecordSafe(stateLogPath, row);
 }
 
 /**
@@ -1194,6 +1236,8 @@ export function writeFirstRecordExecutor(
  * @param reason - Dispatch failure reason.
  * @param iteration - Current iteration number.
  * @param detail - Optional failure detail string.
+ * @param matchedMarker - The provider outage marker, when one matched.
+ * @param sessionId - The run's session id, which scopes the ledger event.
  */
 export function emitDispatchFailure(
   stateLogPath: string,
@@ -1202,6 +1246,7 @@ export function emitDispatchFailure(
   iteration: number,
   detail?: string,
   matchedMarker?: string | null,
+  sessionId?: string,
 ): void {
   const executorAudit = getExecutorKind(executor) === 'native'
     ? undefined
@@ -1212,12 +1257,12 @@ export function emitDispatchFailure(
     && lastIterationEvent.reason === reason
     && lastIterationEvent.detail === (detail || undefined)
     && lastIterationEvent.matchedMarker === (matchedMarker || undefined)
-    && JSON.stringify(lastIterationEvent.executor) === JSON.stringify(executorAudit)
+    && canonicalJson(lastIterationEvent.executor) === canonicalJson(executorAudit)
   ) {
     return;
   }
 
-  appendJsonlRecordSafe(stateLogPath, {
+  appendFailureRow(stateLogPath, {
     type: 'event',
     event: 'dispatch_failure',
     ...(executorAudit ? { executor: executorAudit } : {}),
@@ -1226,7 +1271,7 @@ export function emitDispatchFailure(
     ...(detail ? { detail } : {}),
     ...(matchedMarker ? { executorUnavailable: true, matchedMarker } : {}),
     timestamp: new Date().toISOString(),
-  });
+  }, sessionId);
 }
 
 /**
@@ -1324,7 +1369,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
     // dispatch, so the caller carried on and only a missing-artifact check downstream
     // hinted that nothing ran.
     process.stderr.write(`${formatRecursionGuardRefusal(dispatchAllowed, input.executor)}\n`);
-    emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail);
+    emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail, null, input.sessionId);
     return RECURSION_GUARD_EXIT_CODE;
   }
 
@@ -1391,6 +1436,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       input.iteration,
       result.error.message,
       unavailableMarker,
+      input.sessionId,
     );
     return 0;
   }
@@ -1403,6 +1449,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       input.iteration,
       `executor exited with status ${result.status}`,
       unavailableMarker,
+      input.sessionId,
     );
     return 0;
   }
@@ -1415,6 +1462,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       input.iteration,
       `executor terminated by signal ${result.signal}`,
       unavailableMarker,
+      input.sessionId,
     );
     return 0;
   }
@@ -1435,6 +1483,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
         input.iteration,
         completionFailure,
         unavailableMarker,
+        input.sessionId,
       );
       return 0;
     }
@@ -1463,6 +1512,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
         input.iteration,
         `requested model ${requestedModel} but executor ran ${actualModel}`,
         unavailableMarker,
+        input.sessionId,
       );
       return 0;
     }
@@ -1485,7 +1535,7 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
   const dispatchAllowed = validateExecutorDispatchAllowed(input.executor, input.guardContext);
   if (!dispatchAllowed.allowed) {
     process.stderr.write(`${formatRecursionGuardRefusal(dispatchAllowed, input.executor)}\n`);
-    emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail);
+    emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail, null, input.sessionId);
     return RECURSION_GUARD_EXIT_CODE;
   }
 
@@ -1556,7 +1606,7 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
       if (graceTimer) clearTimeout(graceTimer);
       // Spawn failed before a child existed; countersign with null facts.
       writeCompletionOnce(null, null);
-      emitDispatchFailure(input.stateLogPath, input.executor, 'crash', input.iteration, error.message);
+      emitDispatchFailure(input.stateLogPath, input.executor, 'crash', input.iteration, error.message, null, input.sessionId);
       resolve();
     });
 
@@ -1578,6 +1628,8 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
           'timeout',
           input.iteration,
           `executor timed out after ${timeoutMs}ms`,
+          null,
+          input.sessionId,
         );
         resolve();
         return;
@@ -1590,6 +1642,8 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
           'crash',
           input.iteration,
           `executor exited with status ${status}`,
+          null,
+          input.sessionId,
         );
         resolve();
         return;
@@ -1602,6 +1656,8 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
           'crash',
           input.iteration,
           `executor terminated by signal ${signal}`,
+          null,
+          input.sessionId,
         );
       }
 
@@ -1615,11 +1671,17 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
 /**
  * Append executor audit information to the last JSONL record in the state log.
  *
+ * A ledger-backed state log is rebuilt from its ledger, which cannot carry an
+ * edit to a row it already holds. There the executor of the last record's
+ * iteration lives on that iteration's opening row, which goes through the
+ * append gateway when no row of the iteration names an executor yet.
+ *
  * @param stateLogPath - Path to the JSONL state log.
  * @param executor - Executor configuration.
+ * @param sessionId - The run's session id, which scopes the ledger event.
  * @throws If the state log is empty or the last record is not an object.
  */
-export function appendExecutorAuditToLastRecord(stateLogPath: string, executor: ExecutorConfig): void {
+export function appendExecutorAuditToLastRecord(stateLogPath: string, executor: ExecutorConfig, sessionId?: string): void {
   if (getExecutorKind(executor) === 'native') {
     return;
   }
@@ -1634,6 +1696,14 @@ export function appendExecutorAuditToLastRecord(stateLogPath: string, executor: 
   const parsedRecord = JSON.parse(lines[lastLineIndex]);
   if (parsedRecord === null || Array.isArray(parsedRecord) || typeof parsedRecord !== 'object') {
     throw new Error('Last JSONL record is not an object');
+  }
+
+  if (ledgerModeFor(stateLogPath) !== null) {
+    if (!Number.isSafeInteger(parsedRecord.iteration) || parsedRecord.iteration < 1) {
+      throw new Error('appendExecutorAuditToLastRecord needs the last record to name its iteration on a ledger-backed state log');
+    }
+    writeFirstRecordExecutor(stateLogPath, executor, parsedRecord.iteration, sessionId);
+    return;
   }
 
   const mergedRecord: Record<string, unknown> = {
