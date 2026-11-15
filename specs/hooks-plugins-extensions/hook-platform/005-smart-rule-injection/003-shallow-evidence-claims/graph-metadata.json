@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/005-smart-rule-injection/003-shallow-evidence-claims",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/005-smart-rule-injection/003-shallow-evidence-claims",
+  "parent_id": "hooks-plugins-extensions/hook-platform/005-smart-rule-injection",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shallow evidence claims research",
+      "confident unsupported claim shapes",
+      "evidence boundary fix",
+      "receipt that confirms a claim",
+      "shallow evidence claims plan",
+      "evidence criterion landing plan",
+      "shallow evidence claims tasks",
+      "evidence boundary landing tasks",
+      "shallow evidence claims closeout",
+      "evidence criterion closeout"
+    ],
+    "key_topics": [
+      "shallow",
+      "evidence",
+      "claims",
+      "research",
+      "confident",
+      "unsupported",
+      "claim",
+      "shapes",
+      "boundary",
+      "receipt",
+      "confirms",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-010.md",
+      "research/prior-findings.md",
+      "repo-rules/evidence-and-proof.md",
+      "repo-rules/delegation-and-orchestration.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "prior-findings.md",
+        "kind": "doc",
+        "path": "research/prior-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-and-proof.md",
+        "kind": "doc",
+        "path": "repo-rules/evidence-and-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "delegation-and-orchestration.md",
+        "kind": "doc",
+        "path": "repo-rules/delegation-and-orchestration.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Name",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Diagnose",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Claim",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A confident claim is cheap to write and expensive to unwind",
+    "created_at": "2026-10-03T15:32:03.098Z",
+    "last_save_at": "2026-11-15T07:08:32.784Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c5a3087747f704b85870c69101a7ff60cc1bc74ab75ef2c76e144ca6d138f9dc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e55ead02fef59c1e89a9e5559264d777bfae10bea96bd466310e3bcce3789ebc",
+      "plan.md": "6d81a6345bdfafa41c06818be94df9425d0429a0cc540afee282ec0d75273f1f",
+      "tasks.md": "015f35f19f1748733c2c7987525504f3638f7efd47e85f4e4f510343e8bbb9ed",
+      "implementation-summary.md": "33f22d38a089bb8d55982d499467fc6a2370db55ea6a1efd699223048c1b4f70"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

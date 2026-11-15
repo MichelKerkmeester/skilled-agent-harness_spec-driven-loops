@@ -170,6 +170,15 @@ export const DEEP_RESEARCH_EVENT_ROUTING = Object.freeze({
   'deep_research.pivot_selected': Object.freeze([]),
   'deep_research.pivot_completed': Object.freeze([]),
   'deep_research.pivot_failed': Object.freeze([]),
+  // Dispatch failure rows: the workflow reads them back from the state log, and
+  // none carries research evidence.
+  'deep_research.dispatch_failure': Object.freeze([]),
+  'deep_research.dispatch_receipt_write_failed': Object.freeze([]),
+  // Verification and write-containment diagnostics: an operator reads them in
+  // the state log, and none carries research evidence.
+  'deep_research.verification_degraded': Object.freeze([]),
+  'deep_research.containment_violation': Object.freeze([]),
+  'deep_research.containment_contested': Object.freeze([]),
 } as const satisfies Readonly<Record<DeepResearchEventStem, readonly ProjectionPlane[]>>);
 
 function stemsForPlane(plane: ProjectionPlane): readonly DeepResearchEventStem[] {
@@ -1372,6 +1381,11 @@ function artifactFromEvent(
     case 'deep_research.pivot_selected':
     case 'deep_research.pivot_completed':
     case 'deep_research.pivot_failed':
+    case 'deep_research.dispatch_failure':
+    case 'deep_research.dispatch_receipt_write_failed':
+    case 'deep_research.verification_degraded':
+    case 'deep_research.containment_violation':
+    case 'deep_research.containment_contested':
       return null;
   }
   return assertNeverStem((event as DeepResearchLedgerEvent).payload.stem as never);
@@ -1503,6 +1517,11 @@ function statusTransitionForEvent(
     case 'deep_research.pivot_selected':
     case 'deep_research.pivot_completed':
     case 'deep_research.pivot_failed':
+    case 'deep_research.dispatch_failure':
+    case 'deep_research.dispatch_receipt_write_failed':
+    case 'deep_research.verification_degraded':
+    case 'deep_research.containment_violation':
+    case 'deep_research.containment_contested':
       return null;
     case 'deep_research.memory_save_failed': {
       const payload = payloadFor(event, 'deep_research.memory_save_failed');
@@ -1915,6 +1934,11 @@ function applyEvent(
     case 'deep_research.pivot_selected':
     case 'deep_research.pivot_completed':
     case 'deep_research.pivot_failed':
+    case 'deep_research.dispatch_failure':
+    case 'deep_research.dispatch_receipt_write_failed':
+    case 'deep_research.verification_degraded':
+    case 'deep_research.containment_violation':
+    case 'deep_research.containment_contested':
       break;
     default:
       return assertNeverStem((event as DeepResearchLedgerEvent).payload.stem as never);

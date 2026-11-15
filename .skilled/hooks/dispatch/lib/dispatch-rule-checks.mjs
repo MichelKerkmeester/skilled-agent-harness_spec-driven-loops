@@ -20,7 +20,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { resolveOpencodeVersionSync, SUPPORTED_FAMILIES } from './opencode-version.mjs';
-import { resolveDispatchCommands, resolveDispatchPackets } from './dispatch-audit.mjs';
+import {
+  resolveDispatchCommands,
+  resolveDispatchPackets,
+  VIBE_SESSION_FREE_FLAGS,
+  VIBE_SESSION_FREE_SUBCOMMANDS,
+} from './dispatch-audit.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. RULE LOADING
@@ -29,7 +34,7 @@ import { resolveDispatchCommands, resolveDispatchPackets } from './dispatch-audi
 const HARD_RULES_FILENAME = 'hard-rules.json';
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const DSH_SKILL = 'cli-deepseek-harness';
-const DSH_PINNED_VERSION = '0.2.2-rc.1';
+const DSH_PINNED_VERSION = '0.2.2-rc.3';
 const DSH_HEADLESS_SHAPE = /\bdsh\s+(?:[^|;&]*\s)?(?:--profile(?:=|\s)|headless\b)/;
 const DSH_NPX_HEADLESS_SHAPE = /\bnpx\s+-y\s+@deepseek-ai\/dsh(?:@\S+)?[^\n;&|]*(?:--profile(?:=|\s)|\sheadless\b)/;
 const DSH_UNEXPANDED_PATCH_VALUE = /(?:\$(?:[A-Za-z_][A-Za-z0-9_]*|\{[^}]*\}|\()|`)/;
@@ -71,7 +76,7 @@ const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; //
 // closes no stdin of its own must be covered by one.
 const PIPE_FED_DISPATCH = new RegExp(
   String.raw`\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|`
-    + String.raw`cursor-agent|dsh|npx)\b`,
+    + String.raw`cursor-agent|dsh|vibe|npx)\b`,
   'g',
 );
 
@@ -171,7 +176,7 @@ const CLAUDE_PRINT = /\bclaude\s+(?:[^|;&]*\s)?(?:-p|--print)\b/;
 
 // Every headless CLI here inherits the parent terminal's stdin and can hang
 // indefinitely with no output, which reads as a slow model rather than a deadlock.
-// Five packets declared the stdin rule while the check only recognised `opencode run`,
+// Seven packets declare the stdin rule, and the check once recognised only `opencode run`,
 // so their rule never fired; these are the print-mode shapes each one documents.
 const HEADLESS_DISPATCH_SHAPES = [
   /\bopencode\d*\s+run\b/,
@@ -180,6 +185,7 @@ const HEADLESS_DISPATCH_SHAPES = [
   /\bcodex\s+exec\b/,
   /\bdevin\s+(?:[^|;&]*\s)?-p\b/,
   /\bcursor-agent\s+(?:[^|;&]*\s)?-p\b/,
+  /\bvibe(?:-rs)?\s+(?:[^|;&]*\s)?(?:--prompt-file|--prompt|-p)\b/,
   DSH_HEADLESS_SHAPE,
   DSH_NPX_HEADLESS_SHAPE,
 ];
@@ -189,6 +195,7 @@ const DSH_APP_VALUE_FLAGS = new Set(['--session-id', '--permission-mode', '--app
 const DSH_ROUTE_PATCHES = new Set([
   'route-llmgateway-deepseek.patch.yml',
   'route-opencode-go-deepseek.patch.yml',
+  'route-mistral-deepseek.patch.yml',
 ]);
 const DSH_LINEAGE_PATCH = 'lineage.patch.yml';
 const DSH_MCP_PATCH = 'mcp-code-mode.patch.yml';
@@ -364,8 +371,8 @@ function hasUnexpandedPatchValue(dispatch) {
   return dispatch.patches.some(({ value }) => DSH_UNEXPANDED_PATCH_VALUE.test(path.basename(value)));
 }
 
-/** Read DSH_HOME only from assignments before the executable, honoring env resets. */
-function dshHomePrefix(invocation) {
+/** Read one home variable only from assignments before the executable, honoring env resets. */
+function homePrefix(invocation, name) {
   let isSet = false;
   let value = '';
   let inEnv = false;
@@ -387,24 +394,207 @@ function dshHomePrefix(invocation) {
       continue;
     }
     if (inEnv && (word === '-u' || word === '--unset')) {
-      if (prefix[index + 1] === 'DSH_HOME') {
+      if (prefix[index + 1] === name) {
         isSet = false;
         value = '';
       }
       index += 1;
       continue;
     }
-    if (inEnv && (word === '-uDSH_HOME' || word === '--unset=DSH_HOME')) {
+    if (inEnv && (word === `-u${name}` || word === `--unset=${name}`)) {
       isSet = false;
       value = '';
       continue;
     }
-    if (word.startsWith('DSH_HOME=')) {
+    if (word.startsWith(`${name}=`)) {
       isSet = true;
-      value = word.slice('DSH_HOME='.length);
+      value = word.slice(name.length + 1);
     }
   }
   return { isSet, value };
+}
+
+/** Read DSH_HOME only from assignments before the executable, honoring env resets. */
+function dshHomePrefix(invocation) {
+  return homePrefix(invocation, 'DSH_HOME');
+}
+
+/** Read VIBE_HOME the same way, from the assignments on the dispatch's own command. */
+function vibeHomePrefix(invocation) {
+  return homePrefix(invocation, 'VIBE_HOME');
+}
+
+// Vibe loads `.vibe/hooks.toml` from the home, not from the checkout, so a home that holds no
+// rendered copy runs every tool with no guard. The renderer takes the home as its only
+// positional argument and never reads an inherited VIBE_HOME, so the argument must repeat the
+// value the run sets. A quoted span is one word, so a prompt that merely quotes the command
+// cannot satisfy the rule.
+const RENDER_HOME_HOOKS_SCRIPT = 'render-home-hooks.cjs';
+
+/** Return the home argument of every `render-home-hooks.cjs` invocation in a word list. */
+function renderHomeArguments(words) {
+  const separators = new Set(['|', '||', '&&', ';', '&']);
+  const homes = [];
+  for (let index = 0; index < words.length; index += 1) {
+    if (path.basename(words[index]) !== RENDER_HOME_HOOKS_SCRIPT) continue;
+    const home = words[index + 1];
+    if (!home || home.startsWith('-') || separators.has(home)) continue;
+    const runner = path.basename(words[index - 1] || '');
+    // A script path is a command only behind a runner or a command boundary; a path handed to
+    // `echo` or `grep` is a mention of the render, not a render.
+    const commandStart = index === 0 || separators.has(words[index - 1])
+      || /(?:^|[^\\])(?:;|&&|\|\||\||&)$/.test(words[index - 1]);
+    if (!['node', 'nodejs'].includes(runner) && !commandStart) continue;
+    homes.push(home);
+  }
+  return homes;
+}
+
+const VIBE_SKILL = 'cli-mistral-vibe';
+const VIBE_BINARIES = new Set(['vibe', 'vibe-rs', 'vibe-acp']);
+// Mirrors the alias rows in the cli-mistral-vibe providers reference.
+export const VIBE_ROSTER_ALIASES = new Set(['deepseek-flash', 'glm-flash']);
+
+/** Read one flag's value in either `--flag value` or `--flag=value` form. */
+function vibeFlagValue(args, index, inlineValue) {
+  if (inlineValue !== null) return { value: inlineValue, nextIndex: index };
+  const next = args[index + 1];
+  return next !== undefined && !next.startsWith('-')
+    ? { value: next, nextIndex: index + 1 }
+    : { value: '', nextIndex: index };
+}
+
+/** Parse one Vibe invocation: its binary, env prefix, arguments and print-mode flags. */
+function parseVibeInvocation(text) {
+  const words = shellWords(text);
+  let commandIndex = 0;
+  while (commandIndex < words.length && /^[A-Za-z_][A-Za-z0-9_]*=/.test(words[commandIndex])) {
+    commandIndex += 1;
+  }
+  const binary = path.basename(words[commandIndex] || '');
+  if (!VIBE_BINARIES.has(binary)) return null;
+
+  // A command word named `__proto__` must not reach the object's prototype.
+  const env = Object.create(null);
+  for (let index = 0; index < commandIndex; index += 1) {
+    const assignment = words[index];
+    const equalsIndex = assignment.indexOf('=');
+    env[assignment.slice(0, equalsIndex)] = assignment.slice(equalsIndex + 1);
+  }
+
+  const args = commandArguments(words, commandIndex + 1);
+  if (VIBE_SESSION_FREE_SUBCOMMANDS.has(args[0])
+    || args.some((argument) => VIBE_SESSION_FREE_FLAGS.has(argument))) return null;
+
+  let hasPromptFlag = false;
+  let promptFile = '';
+  let model = '';
+  let outputDir = '';
+  let workdir = '';
+
+  for (let index = 0; index < args.length; index += 1) {
+    const argument = args[index];
+    const equalsIndex = argument.indexOf('=');
+    const optionName = equalsIndex === -1 ? argument : argument.slice(0, equalsIndex);
+    const inlineValue = equalsIndex === -1 ? null : argument.slice(equalsIndex + 1);
+    if (optionName === '-p' || optionName === '--prompt') {
+      // The prompt value is optional: a bare `-p` reads it from stdin.
+      hasPromptFlag = true;
+      index = vibeFlagValue(args, index, inlineValue).nextIndex;
+      continue;
+    }
+    if (optionName === '--prompt-file') {
+      const read = vibeFlagValue(args, index, inlineValue);
+      promptFile = read.value;
+      index = read.nextIndex;
+      continue;
+    }
+    if (optionName === '--model') {
+      const read = vibeFlagValue(args, index, inlineValue);
+      model = read.value;
+      index = read.nextIndex;
+      continue;
+    }
+    if (optionName === '--output-dir') {
+      const read = vibeFlagValue(args, index, inlineValue);
+      outputDir = read.value;
+      index = read.nextIndex;
+      continue;
+    }
+    if (optionName === '--workdir') {
+      const read = vibeFlagValue(args, index, inlineValue);
+      workdir = read.value;
+      index = read.nextIndex;
+    }
+  }
+
+  return {
+    text,
+    words,
+    commandIndex,
+    binary,
+    env,
+    args,
+    hasPromptFlag,
+    promptFile,
+    model,
+    outputDir,
+    workdir,
+  };
+}
+
+/** Return each Vibe dispatch with its independently parsed flags. */
+function vibeDispatches(command) {
+  return resolveDispatchCommands(String(command || ''))
+    .filter(({ entry }) => entry.skill === VIBE_SKILL)
+    .map(({ text }) => parseVibeInvocation(text))
+    .filter(Boolean);
+}
+
+/**
+ * The directory a Vibe dispatch starts in: the last literal `cd` before its own segment, else
+ * the caller's cwd. The resolver hands each check only the dispatch segment, so a `cd` before
+ * the run is read from the full text. Returns null when a `cd` names a variable, which text
+ * cannot resolve.
+ */
+function vibeWorkingDirectory(command, dispatch, context) {
+  const raw = String(command || '');
+  const segmentStart = raw.indexOf(dispatch.text);
+  const before = shellWords(segmentStart === -1 ? '' : raw.slice(0, segmentStart));
+  let directory = typeof context?.cwd === 'string' && context.cwd ? path.resolve(context.cwd) : null;
+  for (let index = 0; index < before.length; index += 1) {
+    // Only a `cd` in command position changes directory; `echo cd` merely prints the word.
+    // The word splitter leaves a separator glued to the word before it (`W=1;`), so the
+    // previous word counts as a boundary when it ends in one.
+    const atCommandStart = index === 0 || /(?:^|[^\\])(?:;|&&|\|\||\||&)$/.test(before[index - 1]);
+    if (!atCommandStart || before[index].replace(/^\(+/, '') !== 'cd') continue;
+    const target = before[index + 1];
+    if (!target || ['|', '||', '&&', ';', '&'].includes(target)) {
+      directory = os.homedir();
+      continue;
+    }
+    if (DSH_UNEXPANDED_PATCH_VALUE.test(target)) return null;
+    // A relative `cd` with no caller cwd has no base to resolve against, so the folder is unknown.
+    if (!directory && !path.isAbsolute(target)) return null;
+    directory = path.resolve(directory || os.homedir(), target.replace(/^~(?=\/|$)/, os.homedir()));
+  }
+  return directory;
+}
+
+/**
+ * The directory a Vibe run starts in: `--workdir` when given, else the `cd` before it, else the
+ * caller's cwd. Returns null when neither the flag nor a `cd` names a path text can resolve.
+ */
+function vibeRunDirectory(command, dispatch, context) {
+  const base = vibeWorkingDirectory(command, dispatch, context);
+  const workdir = dispatch.workdir;
+  if (!workdir) return base;
+  // A variable or command substitution resolves only at run time; the dispatcher owns it.
+  if (DSH_UNEXPANDED_PATCH_VALUE.test(workdir)) return null;
+  const expanded = workdir.replace(/^~(?=\/|$)/, os.homedir());
+  // A relative `--workdir` with no base to resolve against names no folder text can place.
+  if (!base && !path.isAbsolute(expanded)) return null;
+  return path.resolve(base || os.homedir(), expanded);
 }
 
 /** The checkout the rules protect: the caller's repoRoot, else the one holding this file. */
@@ -789,6 +979,103 @@ export const CHECKS = {
   'non-interactive-permission-mode-risk': (cmd) => {
     if (!CLAUDE_PRINT.test(cmd)) return true;
     return /--dangerously-skip-permissions|--permission-mode\s+bypassPermissions/.test(cmd);
+  },
+  // An unattended run has no terminal: a bare `vibe` is the interactive client and `vibe-acp`
+  // a stdio agent, so neither returns a result. Only a prompt flag (a bare `-p` reads stdin)
+  // or a prompt file selects print mode.
+  'print-mode-only': (cmd) => {
+    const dispatches = vibeDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    return dispatches.every((dispatch) => (dispatch.binary === 'vibe' || dispatch.binary === 'vibe-rs')
+      && (dispatch.hasPromptFlag || Boolean(dispatch.promptFile)));
+  },
+  // Vibe's stdout carries no exit code, so a run whose tool calls were denied still reads as a
+  // clean run. The dispatcher reads the outcome from `DIR/export.json`, which exists only when
+  // the dispatch names its own output folder, and a folder inside the checkout is not a result
+  // the caller can discard with the working copy.
+  'output-dir-required': (cmd, context) => {
+    const dispatches = vibeDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    const repoRoot = contextRepoRoot(context);
+    return dispatches.every((dispatch) => {
+      const value = dispatch.outputDir;
+      if (!value) return false;
+      // A variable or command substitution resolves only at run time; the dispatcher owns it.
+      if (DSH_UNEXPANDED_PATCH_VALUE.test(value)) return true;
+      const expanded = value.replace(/^~(?=\/|$)/, os.homedir());
+      if (path.isAbsolute(expanded)) return !isPathInside(repoRoot, expanded);
+      const workingDirectory = vibeWorkingDirectory(cmd, dispatch, context);
+      // Without a known working directory a relative path cannot be placed, so it is accepted.
+      if (!workingDirectory) return true;
+      return !isPathInside(repoRoot, path.resolve(workingDirectory, expanded));
+    });
+  },
+  // Vibe writes its logs, history and trust store into VIBE_HOME, so a dispatch without a
+  // disposable home writes them into the operator's ~/.vibe or into the checkout.
+  'isolated-vibe-home': (cmd, context) => {
+    const dispatches = vibeDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    const repoRoot = contextRepoRoot(context);
+    const operatorHome = path.join(os.homedir(), '.vibe');
+    return dispatches.every((dispatch) => {
+      const { isSet, value: rawValue } = vibeHomePrefix(dispatch);
+      if (!isSet || !rawValue) return false;
+      const value = expandRepoAlias(rawValue, repoRoot);
+      // The current directory, a command substitution and the operator's own home can each land
+      // on the checkout or on ~/.vibe, so none of them counts as a disposable home.
+      if (/\$\{?PWD\b|\$\(|`|^~|^\$\{?HOME\b/.test(value)) return false;
+      // Any other variable resolves only at run time; the dispatcher owns making it disposable.
+      if (DSH_UNEXPANDED_PATCH_VALUE.test(value)) return true;
+      if (path.isAbsolute(value)) {
+        return !isPathInside(repoRoot, value) && !isPathInside(operatorHome, value);
+      }
+      // A relative home resolves against the folder the run starts in, the same base
+      // `output-dir-required` uses, so a `cd` before the run is honored instead of the caller's cwd.
+      const workingDirectory = vibeWorkingDirectory(cmd, dispatch, context);
+      // Without a known working directory a relative path cannot be placed, so it is accepted.
+      if (!workingDirectory) return true;
+      const home = path.resolve(workingDirectory, value);
+      return !isPathInside(repoRoot, home) && !isPathInside(operatorHome, home);
+    });
+  },
+  // Vibe loads `.vibe/hooks.toml` from the dispatch's home, so a home without a rendered
+  // copy runs every tool with no guard and still exits 0. The render must be chained before
+  // the run in the same command, and its argument must repeat the home the run sets.
+  'rendered-home-hooks': (cmd) => {
+    const dispatches = vibeDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    const raw = String(cmd || '');
+    return dispatches.every((dispatch) => {
+      const { isSet, value } = vibeHomePrefix(dispatch);
+      // An unset or empty home is `isolated-vibe-home`'s refusal; this rule proves only the
+      // render that belongs to a home the dispatch names.
+      if (!isSet || !value) return true;
+      const start = raw.indexOf(dispatch.text);
+      const before = shellWords(start === -1 ? raw : raw.slice(0, start));
+      return renderHomeArguments(before).includes(value);
+    });
+  },
+  // Vibe's project discovery reads the directory it starts in, and the checkout root holds the
+  // root AGENTS.md and a dotenv file, so a run started there reads both.
+  'no-repo-root-cwd': (cmd, context) => {
+    const dispatches = vibeDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    const repoRoot = contextRepoRoot(context);
+    return dispatches.every((dispatch) => {
+      const workingDirectory = vibeRunDirectory(cmd, dispatch, context);
+      // A `cd` to a variable is the documented scratch-folder pattern; text cannot resolve it.
+      if (!workingDirectory) return true;
+      return workingDirectory !== repoRoot;
+    });
+  },
+  // Vibe resolves `--model` against a model row, and its built-in catalog keeps
+  // `mistral-medium-3.5` selectable beside the two hand-written rows, so a value outside the
+  // roster runs a model the dispatch never approved. An unexpanded variable is refused for the
+  // same reason: command text cannot prove which row it names.
+  'vibe-closed-roster': (cmd) => {
+    const dispatches = vibeDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    return dispatches.every((dispatch) => VIBE_ROSTER_ALIASES.has(dispatch.model));
   },
 };
 

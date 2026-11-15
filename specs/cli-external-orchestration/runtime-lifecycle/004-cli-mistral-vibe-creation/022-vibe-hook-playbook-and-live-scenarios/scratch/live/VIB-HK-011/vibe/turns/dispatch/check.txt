@@ -1,0 +1,3 @@
+$ grep -rqs 'vibe-closed-roster' "$VIBE_HOME/logs/session/unified" && grep -rqs '"hookName":"dispatch-preflight"' "$VIBE_HOME/logs/session/unified" && echo dispatch-refused
+dispatch-refused
+[exit 0]

@@ -13,7 +13,7 @@ Output: JSON array of skill recommendations with confidence scores
 Options:
     --stdin      Read the single prompt from stdin instead of argv
     --stdin-preferred  Prefer stdin for the single-prompt mode, falling back to argv when stdin is empty
-    --deep-skill-routing-json  Score system-deep-loop mode routing (research|review|ai-council) from JSON stdin
+    --deep-skill-routing-json  Score system-deep-loop mode routing (research|review) from JSON stdin
     --health      Run health check diagnostics
     --validate-only  Run strict skill-graph validation
     --threshold   Confidence threshold used by default dual-threshold filtering (default: 0.8)
@@ -109,7 +109,7 @@ PY_HASH_START = "# BEGIN GENERATED DEEP ROUTING " + "PROJECTION HASH"
 PY_HASH_END = "# END GENERATED DEEP ROUTING " + "PROJECTION HASH"
 PY_LEXICAL_START = "# BEGIN GENERATED DEEP ROUTING " + "LEXICAL PROJECTION"
 PY_LEXICAL_END = "# END GENERATED DEEP ROUTING " + "LEXICAL PROJECTION"
-PY_LEXICAL_ORDER = ("deep-review", "deep-research", "deep-ai-council")
+PY_LEXICAL_ORDER = ("deep-review", "deep-research")
 
 NATIVE_ADVISOR_BRIDGE = r"""
 import { readFileSync } from 'node:fs';
@@ -300,12 +300,6 @@ SKILL_ALIAS_GROUPS = {
         "deep-review",
         "sk-deep-review",
     },
-    "deep-ai-council": {
-        "deep-ai-council",
-        "deep council",
-        "deep-council",
-        "sk-ai-council",
-    },
 }
 SKILL_ALIAS_TO_CANONICAL = {
     alias: canonical
@@ -313,7 +307,7 @@ SKILL_ALIAS_TO_CANONICAL = {
     for alias in {canonical, *aliases}
 }
 # BEGIN GENERATED DEEP ROUTING PROJECTION HASH
-DEEP_ROUTING_PROJECTION_HASH = "sha256:fcec7a8c9c11fb7db486bcf721ff90bf2c7af64d18b91f015a52cb70026bb945"
+DEEP_ROUTING_PROJECTION_HASH = "sha256:843813c3acce6018a7b5c32b786019a9e05db3bd6e9867dcbb47938ddea49517"
 # END GENERATED DEEP ROUTING PROJECTION HASH
 STRICT_TOPOLOGY_HEADERS = (
     ("DEPENDENCY CYCLE ERRORS", "dependency cycles"),
@@ -2301,7 +2295,7 @@ DEFAULT_UNCERTAINTY_THRESHOLD = NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD
 # BEGIN GENERATED COMMAND BRIDGES
 GENERATED_COMMAND_BRIDGES = {
     "command-speckit-plan": {
-        "description": "Run the SpecKit 8-step planning workflow using /speckit:plan.",
+        "description": "Run the SpecKit 7-step planning workflow using /speckit:plan.",
         "slash_markers": ["/speckit:plan", "spec_kit:plan"],
         "owning_skill": "system-spec-kit",
         "inventory_id": "command-speckit-plan",
@@ -2311,7 +2305,7 @@ GENERATED_COMMAND_BRIDGES = {
         "routing_enabled": True,
     },
     "command-speckit-complete": {
-        "description": "Run the full SpecKit 14+ step lifecycle using /speckit:complete.",
+        "description": "Run the full SpecKit 13-step lifecycle using /speckit:complete.",
         "slash_markers": ["/speckit:complete", "spec_kit:complete"],
         "owning_skill": "system-spec-kit",
         "inventory_id": "command-speckit-complete",
@@ -2752,6 +2746,16 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-prompt",
         "routing_enabled": True,
     },
+    "command-speckit-ai-council": {
+        "description": "AI Council, 3 steps: bind the spec folder, dispatch @ai-council once, report the plan. Modes :auto, :confirm.",
+        "slash_markers": ["/speckit:ai-council", "speckit:ai-council"],
+        "owning_skill": "system-spec-kit",
+        "inventory_id": "command-speckit-ai-council",
+        "command": "/speckit:ai-council",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
     "command-speckit-handoff": {
         "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
         "slash_markers": ["/speckit:handoff", "speckit:handoff"],
@@ -2843,15 +2847,6 @@ GENERATED_COMMAND_BRIDGES = {
         "command": "/create:with-human-voice",
         "skill_id": "sk-doc",
         "owner_mode": "sk-create-with-human-voice",
-        "routing_enabled": False,
-    },
-    "command-deep-ai-council": {
-        "description": "",
-        "slash_markers": ["/deep:ai-council"],
-        "inventory_id": "command-deep-ai-council",
-        "command": "/deep:ai-council",
-        "skill_id": "system-deep-loop",
-        "owner_mode": "ai-council",
         "routing_enabled": False,
     },
     "command-design-chart": {
@@ -3437,11 +3432,10 @@ DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
 # re-derives this tuple from that registry; it is never hand-edited independently.
 MERGED_DEEP_SKILL_ID = "system-deep-loop"
 # BEGIN GENERATED DEEP ROUTING LEXICAL PROJECTION
-DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")
+DEEP_ROUTING_SKILLS = ("deep-review", "deep-research")
 DEEP_ROUTING_MODE_BY_KEY = {
     "deep-review": "review",
     "deep-research": "research",
-    "deep-ai-council": "ai-council",
 }
 # END GENERATED DEEP ROUTING LEXICAL PROJECTION
 
@@ -3460,12 +3454,6 @@ DEEP_ROUTING_LEXICAL_PATTERNS = {
         (r"\bnewinforatio\b|\bnegative knowledge\b|\bruled out\b", 1.2),
         (r"\bconvergence\b|\bloop\b|\biterat(?:e|ively)\b", 0.25),
     ),
-    "deep-ai-council": (
-        (r"\bdeep[- ]ai[- ]council\b|\bdeep[- ]council\b|\bsk[- ]ai[- ]council\b|\bai[- ]council\b", 2.0),
-        (r"\bdeliberat(?:e|ion|ing)\b|\bmulti-seat\b|\bcouncil\b", 1.5),
-        (r"\bstrateg(?:y|ies)\b|\boption(?:s)?\b|\bverdict\b|\bdecision\b", 0.7),
-        (r"\bconver(?:ge|ges|gence)\b|\biterat(?:e|ively)\b", 0.2),
-    ),
 }
 
 DEEP_ROUTING_STRUCTURAL_PATTERNS = {
@@ -3480,12 +3468,6 @@ DEEP_ROUTING_STRUCTURAL_PATTERNS = {
         (r"\bnewinforatio\b|\bnew information\b|\bdiscover new\b|\bdiscovering new\b", 1.6),
         (r"\bnegative knowledge\b|\bruled[- ]out directions?\b|\bdead ends?\b", 1.3),
         (r"\bdeep[- ]research packet\b.*\bdrift\b|\bdrift\b.*\binvestigation topic\b", 1.5),
-    ),
-    "deep-ai-council": (
-        (r"\barchitecture decision\b|\bdesign decision\b|\bstrategy comparison\b", 2.0),
-        (r"\bdeliberat(?:e|ion|ing)\b|\bmulti-seat\b|\bopinion synthesis\b", 1.8),
-        (r"\bwhether\b.{0,80}\b(or|vs|versus)\b|\bcoverage-graph signals\b.{0,80}\badjudicator self-scoring\b", 1.5),
-        (r"\bverdict stability\b|\badjudicator[- ]verdict\b|\brecommend the best\b", 1.4),
     ),
 }
 
@@ -3531,9 +3513,6 @@ def _score_prior_art(packet_context: Dict[str, Any]) -> Dict[str, float]:
         "deep-research": (
             r"deep-research|research\.md|deep-research-findings-registry|(^|[\s/])findings-registry|newinforatio|research_topic",
         ),
-        "deep-ai-council": (
-            r"deep-ai-council|deep-council|sk-ai-council|ai-council|council-report|session-report|verdict stability",
-        ),
     }
 
     for skill, patterns in prior_patterns.items():
@@ -3568,7 +3547,6 @@ def _apply_deep_routing_incompatibility_penalties(
     """Lower plausible-but-wrong siblings when structural intent is explicit."""
     if re.search(r"\bfindings? stabiliz(?:e|es|ed|ing)\b|\bfindingstability\b", prompt_lower):
         totals["deep-research"] *= 0.35
-        totals["deep-ai-council"] *= 0.65
 
     if re.search(r"\binvestigation\b|\binvestigate whether\b|\boriginal .* investigation topic\b", prompt_lower):
         totals["deep-review"] *= 0.45
@@ -3587,7 +3565,7 @@ def _deep_routing_confidence(total_score: float) -> float:
 
 
 def score_deep_skill_routing(prompt: str, packet_context: dict) -> Dict[str, float]:
-    """Return Candidate-3 scores for deep-review/deep-research/deep-ai-council.
+    """Return Candidate-3 scores for deep-review/deep-research.
 
     Weighted routing is paired with parity invariants guarded by the Vitest suite.
     """
@@ -3624,13 +3602,11 @@ def _deep_routing_clarifying_question(prompt_lower: str, winner: str, runner_up:
     """Return the targeted clarification for low-confidence deep-loop mode routing.
 
     `winner`/`runner_up` are system-deep-loop workflowMode names
-    (research|review|ai-council), not legacy skill ids.
+    (research|review), not legacy skill ids.
     """
-    if "architecture" in prompt_lower or "decision" in prompt_lower or "strategy" in prompt_lower:
-        return "Are you comparing existing strategies (ai-council mode) or discovering new ones (research mode)?"
     if "findings" in prompt_lower or "convergence" in prompt_lower or "stabilize" in prompt_lower:
-        return "Are these findings defects to audit until stable (review mode), research discoveries to exhaust (research mode), or council opinions to deliberate (ai-council mode)?"
-    return f"Should this route to {winner} or {runner_up} mode, and what output do you expect: review-report.md, research.md, or council-report.md?"
+        return "Are these findings defects to audit until stable (review mode) or research discoveries to exhaust (research mode)?"
+    return f"Should this route to {winner} or {runner_up} mode, and what output do you expect: review-report.md or research.md?"
 
 
 def deep_skill_routing_payload(prompt: str, packet_context: dict) -> Dict[str, Any]:
@@ -3675,7 +3651,7 @@ def _apply_deep_skill_routing_layer(
 
     prompt_lower = prompt.lower()
     has_deep_signal = re.search(
-        r":review:(?:auto|confirm)\b|/autoresearch\b|\b(autoresearch|auto review release readiness|deep[- ]research|deep[- ]review|deep[- ]council|ai[- ]council|convergence|findings? stabiliz|architecture decision|deliberat|investigation)\b",
+        r":review:(?:auto|confirm)\b|/autoresearch\b|\b(autoresearch|auto review release readiness|deep[- ]research|deep[- ]review|convergence|findings? stabiliz|investigation)\b",
         prompt_lower,
     )
     if not has_deep_signal or _native_ranks_code_authoring_above_deep(recommendations, prompt_lower):

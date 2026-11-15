@@ -7,7 +7,7 @@ trigger_phrases:
   - "resolveQuestionConflicts"
   - "key-questions generated projection"
   - "inbox registry conflict"
-version: 1.14.0.13
+version: 1.14.1.0
 ---
 
 # Question conflict ownership
@@ -37,7 +37,7 @@ The workflow surfaces those disagreements through `question_conflict` JSONL even
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Resolves inbox and registry conflicts and emits conflict records. |
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Asset | Marks key questions as a generated reducer projection and documents conflict handling. |
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md` | Reference | Documents inbox, registry, and reducer ownership boundaries. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Records reducer-discovered `question_conflict` events in the loop state. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Records reducer-discovered `question_conflict` events in the loop state. |
 
 ### Validation And Tests
 

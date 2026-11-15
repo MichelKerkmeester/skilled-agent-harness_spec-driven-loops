@@ -1,0 +1,14 @@
+10 .skilled/agents/ai-council.md
+10 .claude/agents/ai-council.md
+5 .skilled/agents/agent-registry.json
+0 .skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md
+3 .skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md
+0 .skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md
+0 .skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md
+0 .skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md
+0 .skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md
+2 .skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md
+0 .skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md
+0 .skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md
+0 .skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/depth-and-failure-handling/resume-after-interrupted-state.md
+0 .skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/out-of-scope-write-rejection.md

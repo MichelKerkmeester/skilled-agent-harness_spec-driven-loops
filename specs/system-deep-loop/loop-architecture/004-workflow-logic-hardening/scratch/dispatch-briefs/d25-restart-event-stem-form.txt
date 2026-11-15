@@ -1,0 +1,79 @@
+ROLE: You are a careful editor. Make exactly the edits below, nothing else. Do not refactor,
+reformat or fix anything adjacent. All four workflow files must still parse as YAML afterwards.
+
+CONTEXT: parts C1 and C6 of the WORKFLOW TEXT CONTRACT above changed after the workflow files and
+the restart test were written. The stem checker credits a ledger event only when a workflow writes
+it in the structured form `{"stem":"deep_research.run_restarted",...}`, and that event needs a
+digest of the old state log. So: (1) the prior-lineage command now also prints `priorTailDigest`
+and takes the state log path as a second argument, (2) the research restarted step appends the
+structured stem form. Three archive tests also read the wrong command block.
+
+ALLOWED WRITE PATHS:
+- .skilled/commands/deep/assets/deep-research-auto.yaml
+- .skilled/commands/deep/assets/deep-research-confirm.yaml
+- .skilled/commands/deep/assets/deep-review-auto.yaml
+- .skilled/commands/deep/assets/deep-review-confirm.yaml
+- .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts
+
+PART A: the four workflow files. In each file find the `bind_prior_lineage:` block
+(grep -n 'bind_prior_lineage:' then read 30 lines) and bring it to the current contract C1:
+  A1. Directly after the line `const fs = require("fs");` add, at the same indentation:
+        const crypto = require("crypto");
+  A2. Replace the line `console.log(JSON.stringify({ priorSessionId, priorGeneration }));` with
+      the seven lines of contract C1 that start at `let priorTailDigest = ` and end at
+      `console.log(JSON.stringify({ priorSessionId, priorGeneration, priorTailDigest }));`,
+      at the same indentation as the line you replace.
+  A3. Change the closing line `' "{state_paths.config}"` of that command to
+        ' "{state_paths.config}" "{state_paths.state_log}"
+      Only inside bind_prior_lineage. Do not touch step_create_state_log.
+  A4. Directly after the `- prior_generation:` output line add the `- prior_tail_digest:` output
+      line of contract C1 at the same indentation.
+
+PART B: the two research workflow files. In `step_record_restarted_run`, replace the `action:`
+line and the `append_jsonl:` line with the `action:`, `bind:` (two lines) and `append_jsonl:`
+lines of contract C6. Keep `skip_when:` and, in the confirm file, the two `dry_run_` lines.
+
+PART C: .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts
+  C1. The archive tests must run the ARCHIVE command, not the binding command. `blockScalar`
+      returns the first `command: |` in the block, which is now the one inside
+      bind_prior_lineage. Add a helper `archiveCommand(block)` that removes the
+      bind_prior_lineage key block from the text first
+      (block.replace(keyBlock(block, 'bind_prior_lineage'), '')) and then calls
+      blockScalar(rest, 'command'). Use it in `autoArchiveCommand()` and in the confirm archive
+      test (the test titled `no post-lock move: the confirm archive keeps the held lock file in place`).
+  C2. Every expectation on the binding output now includes the digest. Where a test expects
+      toEqual({ priorSessionId: ..., priorGeneration: ... }), change it to toMatchObject with the
+      same two fields, and add an expectation that `priorTailDigest` matches /^[0-9a-f]{64}$/.
+      Where the test renders the binding command, also render {state_paths.state_log} to a path
+      inside the same temp folder that does not exist.
+      Add one new test, `prior lineage binding: the tail digest is the sha256 of the old state log`:
+      write a state log file with the bytes `row\n`, render both placeholders, run the research
+      auto binding command and expect priorTailDigest to equal
+      createHash('sha256').update('row\n').digest('hex').
+  C3. In `restart projection: the gateway records run_restarted after run_initialized`, render
+      these placeholders in the append_jsonl value: {session_id_init} -> sess-new,
+      {restart_lineage_id} -> sess-old, {generation_init} -> 3, {prior_tail_digest} -> the sha256
+      hex of the empty string. Remove the renders the new text no longer uses. Keep the
+      expectations on the receipt and on the projected `restarted` row with generation 3.
+  C4. In the `restarted event: recorded after the run opens` tests, replace
+      expect(restarted).toContain('"event":"restarted"') with
+      expect(restarted).toContain('"stem":"deep_research.run_restarted"') and add
+      expect(restarted).toContain('restart_lineage_id: "{prior_session_id} when it is not null, else {session_id_init}"').
+      Add expect(phaseStep(text, 'step_classify_session')).not.toContain('run_restarted').
+  Keep every title unchanged. The phrases `missing old config`, `corrupt old config` and
+  `archive target exists` must still each appear on exactly one line.
+
+VERIFY (run from the repository root and print each output):
+  python3 -c "import sys, yaml; [yaml.safe_load(open(p)) for p in sys.argv[1:]]; print('yaml ok')" .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -c 'priorTailDigest' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -n '"event":"restarted"' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/workflow-restart-lifecycle.vitest.ts tests/unit/check-ledger-stem-producers.vitest.ts 2>&1 | tail -40)
+  rg -c 'missing old config|corrupt old config|archive target exists' .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts
+  (cd .skilled/skills/system-deep-loop/runtime && npm run typecheck 2>&1 | tail -3)
+  git status --short
+
+EXPECTED: `yaml ok`. A count for each of the four files. The third command prints nothing. Both
+test files report 0 failed. The fifth command prints 3. The typecheck exits 0. If a workflow-text
+test fails, fix the workflow file to match the contract, not the test.
+
+RETURN: the outputs of the verify commands.

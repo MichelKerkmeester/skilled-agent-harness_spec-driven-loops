@@ -47,7 +47,9 @@ if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   const child = spawnSync(process.execPath, ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)], {
     cwd: process.cwd(),
     env: require('./runtime-bootstrap.cjs').tsxChildEnv({ DEEP_LOOP_TSX_LOADED: '1' }),
-    input: process.stdin.isTTY ? undefined : fs.readFileSync(0),
+    // The child owns stdin. Reading it here blocks on a pipe that is never
+    // closed and throws EAGAIN on a non-blocking one, before any argument is checked.
+    stdio: ['inherit', 'pipe', 'pipe'],
     encoding: 'utf8',
   });
   if (child.stdout) process.stdout.write(child.stdout);
@@ -109,13 +111,12 @@ function hasNodeSeedMetadata(node) {
       || hasOwn(node, 'seed_confidence'));
 }
 
-function parseSeedOptions(args, rawNodes, isCouncil) {
+function parseSeedOptions(args, rawNodes) {
   const hasSeedSource = args.seedSource !== undefined;
   const hasSeedConfidence = args.seedConfidence !== undefined;
   const hasInlineSeedMetadata = Array.isArray(rawNodes) && rawNodes.some(hasNodeSeedMetadata);
   const isSeedPath = hasSeedSource || hasSeedConfidence || hasInlineSeedMetadata;
   if (!isSeedPath) return null;
-  if (isCouncil) throw inputError('seed options are only supported for coverage graph loops');
   if (!hasSeedSource || !hasSeedConfidence) {
     throw inputError('seedSource and seedConfidence are required for seeding');
   }
@@ -153,6 +154,15 @@ function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
 
+// A review leaf names a dimension with the short prefix it uses locally. The graph keeps
+// one id shape, so a prefixed name folds to that shape before a node or edge is stored.
+function canonicalReviewDimensionId(id) {
+  if (typeof id !== 'string') return id;
+  const match = /^(?:dimension:|dim:|dim-)(.+)$/i.exec(id.trim());
+  if (!match) return id;
+  return `dimension:${match[1].toLowerCase()}`;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -163,7 +173,7 @@ async function main() {
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);
-  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council' && loopType !== 'context') throw inputError('loopType must be "research", "review", "council", or "context"');
+  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'context') throw inputError('loopType must be "research", "review", or "context"');
 
   let db = null;
   let releaseWriterLock = null;
@@ -173,10 +183,7 @@ async function main() {
     db?.closeDb();
   };
   try {
-    const isCouncil = loopType === 'council';
-    db = isCouncil
-      ? await import('../lib/council/council-graph-db.ts')
-      : await import('../lib/coverage-graph/coverage-graph-db.ts');
+    db = await import('../lib/coverage-graph/coverage-graph-db.ts');
     installSignalHandlers(cleanup);
     maybeThrowTestFault();
     const events = readEvents(args.events);
@@ -187,27 +194,8 @@ async function main() {
       ? events.filter((event) => event && (event.type === 'edge' || event.source || event.sourceId || event.target || event.targetId))
       : parseJsonValue(args.edges, [], 'edges');
     if (!Array.isArray(rawNodes) || !Array.isArray(rawEdges)) throw inputError('nodes and edges must be JSON arrays');
-    const seedOptions = parseSeedOptions(args, rawNodes, isCouncil);
+    const seedOptions = parseSeedOptions(args, rawNodes);
     if (rawNodes.length === 0 && rawEdges.length === 0) {
-      if (isCouncil) {
-        const namespace = { specFolder, loopType, sessionId };
-        jsonOut({
-          status: 'ok',
-          data: {
-            insertedNodes: 0,
-            insertedEdges: 0,
-            rejectedEdges: 0,
-            rejectedSelfLoops: [],
-            noOp: true,
-            namespace,
-            sourceOfTruth: 'derived_from_ai_council_artifacts',
-          },
-          graph_nodes_json: [],
-          graph_edges_json: [],
-          graph_upsert_event_count: 0,
-        });
-        return;
-      }
       if (!seedOptions) throw inputError('At least one node or edge must be provided');
     }
 
@@ -215,6 +203,10 @@ async function main() {
     const rejectedSelfLoops = [];
     const nodes = [];
     const edges = [];
+    // A leaf's own dimension id shape must not add a second node for a dimension the
+    // graph already holds. This map carries an old id to the canonical one so an edge
+    // that still names the old id lands on the same node.
+    const reviewDimensionIds = new Map();
 
     for (const n of rawNodes) {
       const kind = String(n.kind || n.nodeKind || n.type || '').toUpperCase();
@@ -222,40 +214,42 @@ async function main() {
         validationErrors.push('Node missing required id');
         continue;
       }
-      const validKinds = isCouncil ? db.VALID_KINDS : db.VALID_KINDS[loopType];
+      const validKinds = db.VALID_KINDS[loopType];
       if (!validKinds.includes(kind)) {
         validationErrors.push(`Invalid node kind "${kind}" for loop type "${loopType}". Valid: ${validKinds.join(', ')}`);
         continue;
       }
+      let nodeId = n.id;
+      if (loopType === 'review' && kind === 'DIMENSION') {
+        const canonicalId = canonicalReviewDimensionId(n.id);
+        if (canonicalId !== n.id) reviewDimensionIds.set(n.id, canonicalId);
+        nodeId = canonicalId;
+      }
       const name = n.name || n.label || n.id;
       const baseNode = {
-        id: n.id,
+        id: nodeId,
         specFolder,
         sessionId,
         kind,
         name,
         metadata: n.metadata,
       };
-      nodes.push(isCouncil
-        ? {
-            ...baseNode,
-            artifactPath: n.artifactPath,
-            contentHash: n.contentHash,
-            roundId: n.roundId,
-          }
-        : {
-            ...baseNode,
-            loopType,
-            contentHash: n.contentHash,
-            iteration: n.iteration,
-            seedSource: seedOptions?.seedSource,
-            seedConfidence: seedOptions?.seedConfidence,
-          });
+      nodes.push({
+        ...baseNode,
+        loopType,
+        contentHash: n.contentHash,
+        iteration: n.iteration,
+        seedSource: seedOptions?.seedSource,
+        seedConfidence: seedOptions?.seedConfidence,
+      });
     }
 
+    const canonicalEdgeEndpoint = (id) => (loopType === 'review'
+      ? canonicalReviewDimensionId(reviewDimensionIds.get(id) ?? id)
+      : id);
     for (const e of rawEdges) {
-      const sourceId = e.sourceId || e.source;
-      const targetId = e.targetId || e.target;
+      const sourceId = canonicalEdgeEndpoint(e.sourceId || e.source);
+      const targetId = canonicalEdgeEndpoint(e.targetId || e.target);
       const relation = String(e.relation || '').toUpperCase();
       if (!e.id || typeof e.id !== 'string') {
         validationErrors.push('Edge missing required id');
@@ -269,7 +263,7 @@ async function main() {
         rejectedSelfLoops.push(e.id);
         continue;
       }
-      const validRelations = isCouncil ? db.VALID_RELATIONS : db.VALID_RELATIONS[loopType];
+      const validRelations = db.VALID_RELATIONS[loopType];
       if (!validRelations.includes(relation)) {
         validationErrors.push(`Invalid relation "${relation}" for loop type "${loopType}". Valid: ${validRelations.join(', ')}`);
         continue;
@@ -284,19 +278,14 @@ async function main() {
         weight: db.clampWeight(e.weight ?? 1.0),
         metadata: e.metadata,
       };
-      edges.push(isCouncil
-        ? {
-            ...baseEdge,
-            artifactPath: e.artifactPath,
-          }
-        : {
-            ...baseEdge,
-            loopType,
-          });
+      edges.push({
+        ...baseEdge,
+        loopType,
+      });
     }
 
-    const storageDir = isCouncil ? db.COUNCIL_GRAPH_STORAGE_DIR : db.COVERAGE_GRAPH_DATABASE_DIR;
-    releaseWriterLock = acquireWriterLock(path.join(storageDir, isCouncil ? '.council-graph-writer.lock' : '.deep-loop-graph-writer.lock'));
+    const storageDir = db.COVERAGE_GRAPH_DATABASE_DIR;
+    releaseWriterLock = acquireWriterLock(path.join(storageDir, '.deep-loop-graph-writer.lock'));
     sleepSync(Number(process.env.DEEP_LOOP_SCRIPT_LOCK_HOLD_MS || 0));
     const result = db.batchUpsert(nodes, edges, seedOptions ?? undefined);
     const namespace = { specFolder, loopType, sessionId };
@@ -311,7 +300,6 @@ async function main() {
         ? { source: seedOptions.seedSource, confidence: seedOptions.seedConfidence }
         : undefined,
       namespace,
-      ...(isCouncil ? { sourceOfTruth: 'derived_from_ai_council_artifacts' } : {}),
     };
     jsonOut({
       status: 'ok',

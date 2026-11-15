@@ -1,0 +1,20 @@
+TASK: edit two keyword arrays in one JSON file.
+
+FILE: .skilled/skills/sk-code/hub-router.json (read lines 86 to 94 only; lines 88 and 91 are long single-line arrays)
+
+EDIT 1, line 88, the "keywords" array of "code-frontend-aliases". It ends with:
+"alt text missing", "wcag audit"]
+Append these 36 entries after "wcag audit", inside the same array, on the same line, in this order:
+"responsive layout", "responsive grid", "css grid", "flexbox layout", "sticky header", "sticky navbar", "navbar sticky", "with css", "the stylesheet", "css file", "focus trap", "modal dialog", "improve lcp", "lcp regression", "core web vitals", "cumulative layout shift", "interaction to next paint", "lazy load images", "optimize images", "image optimization", "rtl languages", "rtl layout", "rtl support", "i18n support", "center a div", "vertically center", "center vertically", "scroll horizontally", "horizontal scroll", "mobile viewport", "media query", "form inputs", "form styling", "style the form", "figma file", "from figma"
+
+EDIT 2, line 91, the "keywords" array of "code-frontend-visual".
+Remove exactly these four single-word entries, wherever they sit in the array: "hover", "padding", "animation", "easing".
+Do not remove any longer entry that contains one of those words, such as "hover state", "how much padding", "animation duration" or "easing curve".
+Then append these 10 entries at the end of the same array, in this order:
+"css animation", "css transition", "loading spinner", "dark mode toggle", "dark mode", "poor contrast", "low contrast", "text contrast", "hover animation", "hover effect"
+
+Change nothing else in the file. One file changes.
+
+VERIFY (run from the repository root):
+node -e "const v=require('./.skilled/skills/sk-code/hub-router.json').vocabularyClasses;const a=v['code-frontend-aliases'].keywords,b=v['code-frontend-visual'].keywords;console.log(a.length,b.length,[...a,...b].filter(x=>!/[ -]/.test(x)).length)"
+Expected output: 66 92 0

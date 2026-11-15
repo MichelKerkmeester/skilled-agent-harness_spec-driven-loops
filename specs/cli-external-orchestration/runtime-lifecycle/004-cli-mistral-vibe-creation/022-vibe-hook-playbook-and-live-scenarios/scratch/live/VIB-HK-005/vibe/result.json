@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 2018049691,
+  "socket": "conv-39424-vibe",
+  "session_id": "63ca746a-a6cd-4399-8175-cf5cb4a3a018",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.wOKYYhM4Fq/vibe",
+  "started_at": "2026-11-15T00:46:42.631Z",
+  "finished_at": "2026-11-15T00:47:35.277Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "answer-question",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "one-answer-captured-no-nudge-yet",
+      "evidence": "turns/answer-question"
+    },
+    {
+      "id": "next-turn",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "save-nudge-in-turn-start-context",
+      "evidence": "turns/next-turn"
+    }
+  ]
+}

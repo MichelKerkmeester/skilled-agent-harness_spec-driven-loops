@@ -1,0 +1,15 @@
+TASK: replace one line in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/references/quality-config.md (read lines 100 to 106 only)
+
+EDIT. Replace the whole line that starts with `` `assets/quality-config.template.json` holds every key `` with the one line between the marker lines below.
+
+<<<TEXT
+`assets/quality-config.template.json` holds every key and passes the schema. Its lists and maps are empty, `schemaVersion` is `1` and `sensors.debugLeftovers.enabled` is `true`.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'holds every key with an empty value' .skilled/skills/sk-code/sk-code-quality/references/quality-config.md; echo "exit $?"
+Expected output: `exit 1`

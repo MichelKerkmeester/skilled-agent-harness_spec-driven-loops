@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/pr-state-content-hash-dedup.md (read lines 252 to 262 only)
+
+EDIT. In the table row that starts with ``| `../../SKILL.md` |``, replace the literal text
+Section 8.1 M-1 signature, cache storage, retention and skip behavior; section 4 Extension Floors
+with the literal text
+Section 8.1 M-1 summary and skip behavior; section 4 Extension Floors
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'Section 8.1 M-1 summary and skip behavior' .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/pr-state-content-hash-dedup.md; echo "exit $?"
+Expected output: `1` then `exit 0`

@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/git-primary-reconcile",
+  "description": "Container folder for hooks-plugins-extensions/git-primary-reconcile.",
+  "keywords": [
+    "git",
+    "primary",
+    "reconcile"
+  ],
+  "lastUpdated": "2026-11-15T06:36:38.226Z",
+  "specId": "hooks-plugins-extensions/git-primary-reconcile",
+  "folderSlug": "git-primary-reconcile",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

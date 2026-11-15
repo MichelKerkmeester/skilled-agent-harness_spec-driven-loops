@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code agent retry and status",
+      "phase 7 code agent retry and status",
+      "code agent fail versus blocked",
+      "code agent retry and status plan",
+      "code agent retry and status tasks",
+      "code agent retry and status implementation summary"
+    ],
+    "key_topics": [
+      "code",
+      "agent",
+      "retry",
+      "status",
+      "phase",
+      "fail",
+      "versus",
+      "blocked",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/after.txt",
+      ".skilled/agents/code.md",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/agents/orchestrate.md",
+      ".claude/agents/code.md",
+      ".claude/agents/orchestrate.md",
+      ".cursor/agents/code.md",
+      ".devin/agents/code/AGENT.md",
+      ".pi/agents/code.md",
+      ".codex/agents/code.toml",
+      ".dsh/agents/code.patch.yml",
+      ".pi/agents/orchestrate.md",
+      ".codex/agents/orchestrate.toml",
+      ".dsh/agents/orchestrate.patch.yml",
+      "scratch/baseline.txt",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENT.md",
+        "kind": "doc",
+        "path": ".devin/agents/code/AGENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
+        "source": "derived"
+      },
+      {
+        "name": "code.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/code.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/orchestrate.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rubric Score",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`code.md` step 6 says \"NO internal retry",
+    "created_at": "2026-11-14T20:19:17Z",
+    "last_save_at": "2026-11-14T23:00:01.763Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:13c974ae898bc0c301d371e33cf5619a7860de837dae91acae266d15349bc8c6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cfffc20c53aa63a87cfbe3ba675409ae28a53a948e0dd9896e197dada7976f7b",
+      "plan.md": "ea008373efdfd83d00e30486eaa87ba7955107dd0eb740b34b1d50b02c69d62c",
+      "tasks.md": "149b1a18c1ba9696e278f829c0b10c1eb9e66c899b12ed38de108881820d2ffe",
+      "implementation-summary.md": "21d6006c657713dd11346f5eecec8f3bcf4f1202b3ce848bd59d38278476f486"
+    },
+    "last_active_at": null
+  }
+}

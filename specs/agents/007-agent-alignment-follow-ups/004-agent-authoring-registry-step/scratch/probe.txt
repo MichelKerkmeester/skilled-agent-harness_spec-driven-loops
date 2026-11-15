@@ -1,0 +1,40 @@
+# Roster probe with a throwaway agent, following the new step 13
+
+$ cp .skilled/agents/context.md .skilled/agents/zz-probe.md
+$ node .skilled/bin/sync-agent-roster.cjs --check   # the file alone, no record
+agent file without a registry record: zz-probe
+agent-roster: FAIL (1 problem(s))
+exit=1
+
+$ add a zz-probe record to agent-registry.json, copied from the context record, priority 99
+$ node .skilled/bin/sync-agent-roster.cjs   # rewrite the generated rosters
+updated routing-table
+updated tier-table
+updated agent-files
+updated readme-roster
+exit=0
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ rg -c 'zz-probe' .skilled/agents/orchestrate.md .skilled/agents/README.txt
+.skilled/agents/README.txt:1
+.skilled/agents/orchestrate.md:3
+
+# Removal
+$ rm .skilled/agents/zz-probe.md, remove the zz-probe record, node .skilled/bin/sync-agent-roster.cjs
+updated routing-table
+updated tier-table
+updated agent-files
+updated readme-roster
+exit=0
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ git status --short .skilled/agents .claude/agents .codex/agents   # only the phase 3 line change may remain
+ M .claude/agents/orchestrate.md
+ M .codex/agents/orchestrate.toml
+ M .skilled/agents/orchestrate.md
+$ git diff --stat -- .skilled/agents/agent-registry.json .skilled/agents/README.txt | wc -l
+       0
+$ rg -c 'zz-probe' .skilled .claude .codex .pi .dsh --hidden -g '!node_modules' | wc -l
+       0

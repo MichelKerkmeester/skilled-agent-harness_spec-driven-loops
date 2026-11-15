@@ -3,7 +3,7 @@
   "metric": "top3",
   "note": "gold skill_top_1 label present among the top 3 ranked recommendations",
   "corpusSha256": "sha256:4146b002802d010e4d9d3ddf4c07b0738e59a55fab590b2c51e1ed3d4da1e115",
-  "holdoutSha256": "sha256:51cb48eb8b10e501fd8536eb403deb7674583f89adc5418c1cb583c5c6b02d6a",
+  "holdoutSha256": "sha256:e8c637d3f59fbba18521c78bc238c5c86dc60d9f8b40c2c921c42ac49766a4cf",
   "full_corpus_top3": {
     "correct": 176,
     "total": 195,
@@ -11,7 +11,7 @@
   },
   "holdout_top3": {
     "correct": 51,
-    "total": 65,
-    "accuracy": 0.7846
+    "total": 66,
+    "accuracy": 0.7727
   }
 }

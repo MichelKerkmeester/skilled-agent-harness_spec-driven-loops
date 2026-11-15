@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/005-caller-sweep-and-verification",
+  "description": "Phase 5: caller-sweep-and-verification",
+  "keywords": [
+    "phase",
+    "caller-sweep-and-verification"
+  ],
+  "lastUpdated": "2026-11-14T20:19:53.880Z",
+  "specId": "005",
+  "folderSlug": "caller-sweep-and-verification",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "004-workflow-logic-hardening",
+    "006-ai-council-mode-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

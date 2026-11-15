@@ -1,0 +1,13 @@
+TASK: read one file range and answer one question. Change no file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md (read lines 14 to 30 only)
+
+QUESTION. A quality gate loads this checklist for some target files and not for others. From those lines alone, state in one sentence which target files the checklist applies to. Then list, one per line, each kind of file or change the lines name.
+
+Read no other file. Do not search the repository.
+
+In place of the HANDBACK shape, print exactly this shape as your final message:
+APPLIES TO: <one sentence>
+KINDS:
+- <kind>
+- <kind>

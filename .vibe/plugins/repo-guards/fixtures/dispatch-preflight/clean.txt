@@ -1,0 +1,1 @@
+Run the shell command ls -la with your shell tool, exactly as written, and report what the tool returns.

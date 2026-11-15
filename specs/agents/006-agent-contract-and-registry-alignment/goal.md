@@ -123,4 +123,5 @@ and findings belong here.
 |------|------|
 | Word ceiling | `wc -w .skilled/agents/*.md` prints 50,856, above the 50,000 the fifth criterion names. The operator waived it on 2026-11-14, recorded as ADR-001 in phase 005. |
 | Codex failure | The read-nothing failure did not reproduce on codex-cli 0.169.0. The rule stands on the one run observed on 0.167.2. |
+| CI after the push | The first run on main failed two workflows this packet caused. The roster script's path filter in `agent-mirror-sync.yml` had no `.opencode` twin, and the council mirror parity test still pinned `18. related resources` and `19. summary` as the last two headings of `ai-council.md`. Both were fixed the same day, and each check was seen failing before the fix and passing after it. |
 <!-- /ANCHOR:log -->

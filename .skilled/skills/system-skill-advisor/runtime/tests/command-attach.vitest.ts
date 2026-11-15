@@ -122,7 +122,6 @@ describe('command attach for a single routed mode', () => {
 
   it('stays quiet when a prompt only names a deep-loop mode by its topic', () => {
     const topicOnly: ReadonlyArray<readonly [string, string]> = [
-      ['ai-council', 'What does the AI council mode do?'],
       ['research', 'what is research mode?'],
       ['review', 'how does the review mode work?'],
     ];
@@ -130,8 +129,6 @@ describe('command attach for a single routed mode', () => {
       expect(MODE_COMMANDS['system-deep-loop'], mode).toHaveProperty(mode);
       expect(attachCommand('system-deep-loop', singleRoute(mode), prompt), prompt).toBeUndefined();
     }
-    expect(attachCommand('system-deep-loop', singleRoute('ai-council'), 'ask the council whether to split billing'))
-      .toBe(MODE_COMMANDS['system-deep-loop']['ai-council']);
   });
 
   it('names a real command file behind every generated row', () => {

@@ -97,12 +97,6 @@ const reviewPivot =
   '.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts';
 const reviewLoopProtocol =
   '.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md';
-const councilPersistence =
-  '.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs';
-const councilSession =
-  '.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs';
-const councilRoundState =
-  '.skilled/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
@@ -254,80 +248,6 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
       ),
     ],
     [reviewContract, reviewPivot, reviewLoopProtocol],
-  ),
-  declaration(
-    '003-deep-ai-council',
-    [
-      resource(
-        'file:.skilled/skills/system-deep-loop/shared/progress/progress-record.cjs',
-        ResourceKinds.FILE,
-        'read',
-        'mutable',
-        'runtime:shared-progress',
-        councilPersistence,
-        'import-census',
-        'Council persistence imports the shared progress record contract.',
-        'repository',
-      ),
-    ],
-    [
-      resource(
-        'file:.skilled/skills/system-deep-loop/deep-ai-council',
-        ResourceKinds.FILE,
-        'write',
-        'mutable',
-        'mode:deep-ai-council',
-        councilPersistence,
-        'write-census',
-        'The migration owns the shipped council packet surface.',
-        'repository',
-      ),
-      resource(
-        'file:.skilled/skills/system-deep-loop/runtime/lib/council',
-        ResourceKinds.FILE,
-        'write',
-        'mutable',
-        'mode:deep-ai-council',
-        councilSession,
-        'import-census',
-        'The session orchestrator consumes and owns council-specific runtime helpers.',
-        'repository',
-      ),
-      resource(
-        'state:{packet}/ai-council/ai-council-state.jsonl',
-        ResourceKinds.STATE,
-        'write',
-        'append-only',
-        'mode:deep-ai-council',
-        councilPersistence,
-        'write-census',
-        'Council persistence appends artifact and completion events.',
-      ),
-      resource(
-        'artifact:{packet}/ai-council',
-        ResourceKinds.ARTIFACT,
-        'write',
-        'mutable',
-        'mode:deep-ai-council',
-        councilPersistence,
-        'write-census',
-        'The scoped writer persists seats, critiques, deliberations, and reports.',
-      ),
-    ],
-    [
-      resource(
-        'backend:council-graph',
-        ResourceKinds.BACKEND,
-        'write',
-        'mutable',
-        'runtime:council-graph',
-        councilRoundState,
-        'write-census',
-        'Council state and graph projections use council-owned persistence.',
-        'repository',
-      ),
-    ],
-    [councilPersistence, councilSession, councilRoundState],
   ),
 ] as const;
 

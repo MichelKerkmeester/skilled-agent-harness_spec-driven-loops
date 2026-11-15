@@ -1,0 +1,134 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+
+ROLE: You are a code implementation worker. Make exactly the changes below, nothing else.
+Do not refactor, reformat or fix anything adjacent. Do not commit.
+
+ALLOWED WRITE PATHS (only these three files):
+- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
+- .skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts (step E7 only)
+- .skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any write
+outside the allowed paths, any package install, any edit to tests/unit/stop-decision.vitest.ts,
+and any edit to tests/unit/loop-counters-derivation.vitest.ts other than step E7.
+
+CONTEXT: the stop decision takes a stuck count from a --stuck-count flag that the orchestrator
+holds in memory, so a resumed run has none. Failed iterations (status error or timeout) are
+counted as zero-novelty evidence in the stop vote. This change derives the counters from the
+state log and keeps failed iterations out of the vote. The test file
+tests/unit/loop-counters-derivation.vitest.ts already exists and fails. Read it first: it is
+the acceptance test for this task.
+
+CONTRACT of deriveLoopCounters (file .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs):
+
+  deriveLoopCounters(records, options) returns { stuckCount, consecutiveFailureCount }
+
+  records: array of parsed state-log rows in file order. An entry that is not a plain object is ignored.
+  options: { loopType: 'research' | 'review', convergenceThreshold?: number }
+
+  Rules:
+  R1. An iteration row has type === 'iteration'. Its number is a finite `iteration`, else a finite
+      `run`. When several iteration rows share a number, only the LAST one in file order counts,
+      and it counts at the position of that last row. A row with no number counts at its own position.
+  R2. Walk the rows in file order, starting with stuckCount 0 and consecutiveFailureCount 0:
+      a. A recovery event sets stuckCount to 0. A recovery event is a row with type === 'event' and
+         event === 'stuckRecovery', or a row with stem === 'deep_review.recovery_started'.
+      b. An iteration with status 'thought' changes nothing.
+      c. An iteration with status 'error' or 'timeout' adds 1 to consecutiveFailureCount and leaves
+         stuckCount unchanged.
+      d. Any other iteration sets consecutiveFailureCount to 0. Then: status 'insight' sets
+         stuckCount to 0. Otherwise read the ratio: `newInfoRatio` for research, `newFindingsRatio`
+         for review. Research: the iteration is low when the ratio is a finite number below the
+         threshold (options.convergenceThreshold when it is a finite number above 0, else 0.05).
+         Review: low when the ratio is a finite number at or below
+         mapReviewThresholds(options.convergenceThreshold).noProgressCutoff, which is 0.5 x the
+         threshold with a default threshold of 0.1. A low iteration adds 1 to stuckCount. Any
+         other iteration, a missing ratio included, sets stuckCount to 0.
+      e. Every other row is ignored.
+  R3. An empty array returns { stuckCount: 0, consecutiveFailureCount: 0 }.
+  R4. The function is pure: no file read, no clock, no mutation of its arguments.
+
+EDITS, all in convergence.cjs unless a step names the test file:
+
+E1. Add `function deriveLoopCounters(records, options)` that follows the contract above. Put it
+    directly after the function orderedIterationRecords. Reuse isPlainObject, finiteNumberOrNull,
+    iterationRecordNumber and mapReviewThresholds. Give it a short header comment that states
+    the durable reason: the counters are rebuilt from the log on every pass so a resumed run
+    counts the same as a run that never paused. Export it from module.exports, in alphabetical
+    position.
+
+E2. In buildStopDecisionInput:
+    - `evidenceRecords` must leave out iterations whose status is 'thought', 'error' or 'timeout'.
+    - Compute `const counters = deriveLoopCounters(stateRows, { loopType, convergenceThreshold })`
+      where convergenceThreshold is the value stopDecisionConfig returns (call stopDecisionConfig
+      once, keep the result in a const, and use it for the `config` field too). Pass undefined
+      when that value is null.
+    - Set `stuckCount: counters.stuckCount` and add `consecutiveFailureCount:
+      counters.consecutiveFailureCount` directly after it.
+    - Remove the read of args.stuckCount. Remove 'stuckCount' from CONVERGENCE_FLAGS.
+
+E3. In buildStopDecision: read `consecutiveFailureCount` from the input the same way stuckCount
+    is read. Directly after the `if (iterationCount >= maxIterations) { ... }` block and before
+    the stuck check, add: when consecutiveFailureCount >= CONSECUTIVE_FAILURE_LIMIT, return
+    emit('STOP', 'error', 'consecutiveFailures', gatesAt(false), []). Define
+    `const CONSECUTIVE_FAILURE_LIMIT = 3;` with the other constants in section 2, with a one-line
+    comment: repeated failures are an outage, not evidence, so the loop halts instead of voting.
+    Add `consecutiveFailures` to the list of reasonDetail values in the file header comment.
+
+E4. Output field. At each of the three places that set `stop_decision` on a payload (the graph
+    failure payload, the empty graph payload and the normal payload), build the input once into
+    a const, pass it to buildStopDecision, and also set
+      loop_counters_json: { stuckCount: <input>.stuckCount, consecutiveFailureCount: <input>.consecutiveFailureCount }
+    on the same payload.
+
+E5. In readStopDecisionFiles, pass the state log path through
+    validateNamespaceValue(<path>, 'stateLog', inputError) before it is read.
+
+E6. In the test file convergence-script.vitest.ts, inside describe('convergence.cjs stop-decision'),
+    the helper writeFixtureFiles creates its directory with
+      fs.mkdtempSync(join(os.tmpdir(), 'dlr-stop-decision-'))
+    E5 rejects a path outside the repository, so change it to a git-ignored directory inside it:
+      const base = fileURLToPath(new URL('../.tmp/', import.meta.url));
+      fs.mkdirSync(base, { recursive: true });
+      const dir = fs.mkdtempSync(join(base, 'dlr-stop-decision-'));
+    Import fileURLToPath from 'node:url' if the file does not import it yet. Remove the `os`
+    require only if nothing else in that describe block uses it. Change nothing else in that file.
+
+E7. In tests/unit/loop-counters-derivation.vitest.ts, the test 'rejects a state log path with a
+    .. segment or outside the repository' passes today for the wrong reason: a missing file also
+    exits 3. Make it tell the two apart. Replace its loop with two explicit runs. For
+    '../outside/state.jsonl' also assert
+      expect(String(result.json.error)).toContain("must not contain '..' path segments");
+    For the absolute path under tmpdir() also assert
+      expect(String(result.json.error)).toContain('must stay inside the repository root');
+    Change nothing else in that file.
+
+DO NOT change any other assertion in any test file. If a test in loop-counters-derivation.vitest.ts
+contradicts the contract above, do not edit it: say which test and why in your return.
+
+VERIFY (run from the repository root and print the output):
+  node --check .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/loop-counters-derivation.vitest.ts tests/unit/stop-decision.vitest.ts tests/integration/convergence-script.vitest.ts)
+  (cd .skilled/skills/system-deep-loop/runtime && npm run typecheck)
+
+EXPECTED: node --check exits 0, the three test files report 0 failed, typecheck exits 0.
+
+RETURN: the three command outputs, and any test you believe contradicts the contract.

@@ -1,0 +1,449 @@
+{
+  "sessionId": "2026-11-14T22:08:20.484Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Unbounded gateway spawn can hang the pre-dispatch audit",
+      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      "line": 1103,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Legacy research upcast invents focus and strategy digests",
+      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+      "line": 585,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Fixed-depth repository root breaks on a differently vendored runtime",
+      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      "line": 1060,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 3
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 1,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 1
+  },
+  "candidateCoverage": {
+    "covered": [
+      "caller_contract",
+      "duplicate_open_rows",
+      "identity_projection",
+      "install_portability",
+      "legacy_migration",
+      "process_spawn_reliability",
+      "schema_acceptance",
+      "temp_file_injection"
+    ],
+    "ruledOut": [
+      "caller_contract",
+      "duplicate_open_rows",
+      "identity_projection",
+      "schema_acceptance",
+      "temp_file_injection"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "identity_projection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "caller_contract": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "duplicate_open_rows": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "process_spawn_reliability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "legacy_migration": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "install_portability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "schema_acceptance": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "temp_file_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+      ],
+      "bugClass": "identity_projection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1136",
+        "review/deep-review-state.jsonl:3"
+      ],
+      "reason": "Gateway append is implemented for both ledger modes and the live review row survived a refresh."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml"
+      ],
+      "bugClass": "caller_contract",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:1230",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:1201"
+      ],
+      "reason": "All four shipped callers pass a session id; the live review row proves the review binding resolves."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit-ledger-projection.vitest.ts"
+      ],
+      "bugClass": "duplicate_open_rows",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit-ledger-projection.vitest.ts:116"
+      ],
+      "reason": "The new test proves the sequential re-audit is idempotent; the concurrent case is recorded as an edge case."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+      ],
+      "bugClass": "temp_file_injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1103"
+      ],
+      "reason": "No shell is used, the temp directory is private on POSIX, and the record carries no secrets."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts"
+      ],
+      "bugClass": "schema_acceptance",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:641",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts:290"
+      ],
+      "reason": "Both test modes pass through the real gateway with the optional field."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+      ],
+      "bugClass": "identity_projection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1136",
+        "review/deep-review-state.jsonl:3"
+      ],
+      "proof": "Gateway append is implemented for both ledger modes and the live review row survived a refresh."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml"
+      ],
+      "bugClass": "caller_contract",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:1230",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:1201"
+      ],
+      "proof": "All four shipped callers pass a session id; the live review row proves the review binding resolves."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit-ledger-projection.vitest.ts"
+      ],
+      "bugClass": "duplicate_open_rows",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit-ledger-projection.vitest.ts:116"
+      ],
+      "proof": "The new test proves the sequential re-audit is idempotent; the concurrent case is recorded as an edge case."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+      ],
+      "bugClass": "temp_file_injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1103"
+      ],
+      "proof": "No shell is used, the temp directory is private on POSIX, and the record carries no secrets."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts"
+      ],
+      "bugClass": "schema_acceptance",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:641",
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts:290"
+      ],
+      "proof": "Both test modes pass through the real gateway with the optional field."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "identity_projection",
+      "caller_contract",
+      "duplicate_open_rows",
+      "process_spawn_reliability",
+      "legacy_migration",
+      "install_portability",
+      "schema_acceptance",
+      "temp_file_injection"
+    ],
+    "covered": [
+      "identity_projection",
+      "caller_contract",
+      "duplicate_open_rows",
+      "process_spawn_reliability",
+      "legacy_migration",
+      "install_portability",
+      "schema_acceptance",
+      "temp_file_injection"
+    ],
+    "ruledOut": [
+      "identity_projection",
+      "caller_contract",
+      "duplicate_open_rows",
+      "schema_acceptance",
+      "temp_file_injection"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

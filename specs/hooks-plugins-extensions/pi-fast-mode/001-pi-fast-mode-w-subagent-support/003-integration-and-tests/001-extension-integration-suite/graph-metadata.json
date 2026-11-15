@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite",
+  "spec_folder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite",
+  "parent_id": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "extension-integration-suite",
+      "fast-mode integration tests",
+      "get_commands test",
+      "extension-integration-suite plan",
+      "fakepi integration tests",
+      "extension-integration-suite tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "extension-integration-suite implementation summary"
+    ],
+    "key_topics": [
+      "extension-integration-suite",
+      "fast-mode",
+      "integration",
+      "tests",
+      "test",
+      "plan",
+      "fakepi",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".pi/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Pure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Catch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Extension",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Observable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "temporary",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "handler",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "RPC",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pure helper tests can pass while extension registration, lifecycle ordering, command ownership, or status calls are wired incorrectly",
+    "created_at": "2026-08-16T09:08:02Z",
+    "last_save_at": "2026-11-15T07:08:33.683Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1cd4e429537e7b15822a51cb83ddc7e92499a5b111ca22996b9c69fbc8c73f36",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "483383f1d0e027ecf9582fd9404a6c8b91873d880cf093e35b5c68b2cc408d69",
+      "plan.md": "2a2bf05916d0aa4af22792d79df446afe093db2e975849734e0191b58d1699c0",
+      "tasks.md": "9d5619a3f427735113ea49ebdb32c0ae90d458e36c28af7a7464e41f454295a9",
+      "implementation-summary.md": "27b2bed1cac5423bdb3ae9be29d06f9e2f6fbd66b8431f6f4ad21b8649d2a1aa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

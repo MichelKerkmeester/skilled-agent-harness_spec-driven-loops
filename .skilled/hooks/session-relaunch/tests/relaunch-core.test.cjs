@@ -1511,6 +1511,48 @@ test('hostRuntimePid returns the direct parent when it is not a shell', () => {
   assert.equal(hostRuntimePid({ pid: 500, processTable: table }), 400);
 });
 
+// OpenCode 2 runs a tool shell under its pty daemon, which its serve process
+// starts below the `opencode` launcher the loop started.
+const OPENCODE_TWO_TABLE = [
+  '600 590 node',
+  '590 550 /bin/zsh',
+  '550 520 /Users/me/.cache/opencode/bin/opencode-pty/0.5.2-ed3adb8c/opencode-pty',
+  '520 510 /Users/me/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe',
+  '510 100 opencode',
+  '100 1 bash',
+  '',
+].join('\n');
+
+test('hostRuntimePid climbs past the OpenCode 2 pty daemon and serve process', () => {
+  assert.equal(hostRuntimePid({ pid: 600, processTable: OPENCODE_TWO_TABLE }), 510);
+});
+
+test('dropNestedLoop keeps the loop variables for an OpenCode 2 tool shell', () => {
+  const env = { SKILLED_LOOP_ID: '100', SKILLED_LOOP_RUNTIME: 'opencode', OTHER: 'x' };
+  assert.equal(dropNestedLoop(env, { pid: 600, processTable: OPENCODE_TWO_TABLE }), false);
+  assert.deepEqual(env, { SKILLED_LOOP_ID: '100', SKILLED_LOOP_RUNTIME: 'opencode', OTHER: 'x' });
+});
+
+test('dropNestedLoop still drops the loop for OpenCode 2 started inside OpenCode 2', (t) => {
+  const { xdgRuntimeDir } = createSandbox(t);
+  const table = [
+    '900 890 node',
+    '890 850 /bin/zsh',
+    '850 820 /x/opencode-pty',
+    '820 810 /x/opencode.exe',
+    '810 590 opencode',
+    '590 550 /bin/zsh',
+    '550 520 /x/opencode-pty',
+    '520 510 /x/opencode.exe',
+    '510 100 opencode',
+    '100 1 bash',
+    '',
+  ].join('\n');
+  const env = { SKILLED_LOOP_ID: '100', SKILLED_LOOP_RUNTIME: 'opencode', XDG_RUNTIME_DIR: xdgRuntimeDir };
+  assert.equal(dropNestedLoop(env, { pid: 900, processTable: table }), true);
+  assert.deepEqual(env, { XDG_RUNTIME_DIR: xdgRuntimeDir });
+});
+
 test('hostRuntimePid returns null for a missing table or a broken chain', () => {
   assert.equal(hostRuntimePid({ pid: 500, processTable: '' }), null);
   assert.equal(hostRuntimePid({ pid: 500, processTable: 'not a process table' }), null);
@@ -1949,7 +1991,7 @@ test('the core owns the handoff sections and the runtime list as frozen exports'
   assert.equal(Object.isFrozen(relaunchCore.HANDOFF_SECTIONS), true);
   assert.deepEqual(
     relaunchCore.RUNTIMES,
-    ['claude', 'pi', 'opencode', 'codex', 'cursor', 'devin'],
+    ['claude', 'pi', 'opencode', 'codex', 'cursor', 'devin', 'vibe'],
   );
   assert.equal(Object.isFrozen(relaunchCore.RUNTIMES), true);
 });
@@ -2859,6 +2901,13 @@ test('resolveGoalPacket leaves an ended or unreadable Claude goal uncarried', (t
     roots,
     env: writeClaudeLog(sandbox, entries),
   });
+  const claudeResult = (entries) => resolveGoalPacketResult({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots,
+    env: writeClaudeLog(sandbox, entries),
+  });
   const condition = `${GOAL_HEADLINE}\n\nbody`;
 
   assert.equal(claude([goalStatus({ met: true, condition })]), '', 'a met goal stays ended');
@@ -2871,9 +2920,22 @@ test('resolveGoalPacket leaves an ended or unreadable Claude goal uncarried', (t
   assert.equal(claude([goalStatus({ met: false, condition: '# Goal: A different goal\n' })]), '',
     'a goal the sender set outranks the packet goal, even when no packet carries it');
 
-  // Past the tail cap an older goal entry cannot be ruled out, so nothing is assumed.
+  // Past the tail cap the bytes before the tail are read too, so a log with no goal entry
+  // anywhere is read whole and a goal that ended before the cap still ends the goal. One
+  // comparison reports both, because a failed assertion ends the test at the first one.
   const filler = { type: 'user', message: { content: 'x'.repeat(1024 * 1024) } };
-  assert.equal(claude(Array.from({ length: 17 }, () => filler)), '', 'a log read only in part');
+  const bigLog = Array.from({ length: 17 }, () => filler);
+  assert.deepEqual(
+    {
+      noGoal: claude(bigLog),
+      endedBeforeTail: claudeResult([goalStatus({ met: true, condition }), ...bigLog]),
+    },
+    {
+      noGoal: GOAL_PARENT,
+      endedBeforeTail: { packet: '', reason: '', ended: true },
+    },
+    'a log read whole with no goal entry, and an ended goal before the tail cap still ends it',
+  );
 
   assert.equal(resolveGoalPacket({
     runtime: 'claude',
@@ -2938,10 +3000,11 @@ test('a goal the sender ended stays ended for a receiver that sets none', (t) =>
   setEnded('\ngoal_ended: true');
   assert.deepEqual(resolve(), { packet: '', reason: '', ended: true });
 
-  // Past the tail cap the log cannot rule a goal in or out, and the note still speaks.
+  // The whole log holds no goal entry, so the note the session claimed last still says the
+  // goal ended.
   const filler = { type: 'user', message: { content: 'x'.repeat(1024 * 1024) } };
   assert.deepEqual(resolve(Array.from({ length: 17 }, () => filler)),
-    { packet: '', reason: '', ended: true }, 'a log read only in part');
+    { packet: '', reason: '', ended: true }, 'a log read whole with no goal entry');
 
   const condition = `${GOAL_HEADLINE}\n`;
   writeGoalPacket(sandbox.repoRoot, GOAL_PACKET, `${GOAL_HEADLINE}\n`);

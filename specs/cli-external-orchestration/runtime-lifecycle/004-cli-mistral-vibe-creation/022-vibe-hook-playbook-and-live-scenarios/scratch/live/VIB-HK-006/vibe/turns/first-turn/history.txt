@@ -1,0 +1,50 @@
+
+  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
+  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+
+Hello Michel, how can I help you?
+
+
+
+> Read notes.txt and tell me in one sentence what it says.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⚠ [turn-start] Added context for the model: "Advisor: no skill matched. Directives: - Comment hygiene [HARD BLOCK]: NEVER em…"
+
+  I'll read the file first.
+
+⏵ Ran 1 command, read 1 file, thought                                                                                              
+
+  notes.txt contains a single line: alpha.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                          
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.s45REfUPTk/vibe                                                                                                       ctx ▎      10.7k/256k

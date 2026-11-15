@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal scan large log",
+      "phase 21 goal scan large log",
+      "claude goal log tail cap",
+      "packet goal fallback over 16 MB",
+      "goal scan large log plan",
+      "goal scan large log tasks",
+      "goal scan large log acceptance criteria",
+      "goal scan large log goal",
+      "goal scan large log implementation summary"
+    ],
+    "key_topics": [
+      "goal",
+      "scan",
+      "large",
+      "log",
+      "phase",
+      "claude",
+      "tail",
+      "cap",
+      "packet",
+      "fallback",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/relaunch-core.txt",
+      "scratch/final-suite.txt",
+      "scratch/baseline.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.txt",
+        "kind": "file",
+        "path": "scratch/relaunch-core.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`latestGoalLogEntry` widens the tail from 256 KiB up to `GOALLOGMAXTAILBYTES`, which is 16 MB (`lib/relaunch-core.cjs:61`), and then returns `whole: false` when the capped read holds no goal entry (`:590`)",
+    "created_at": "2026-11-14T16:13:53Z",
+    "last_save_at": "2026-11-14T17:12:25.622Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:430609bf570431faa66d5c5fcf4a8f0602cf2e4aa4885b5713e5a2d5eab2797d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0e296625d59c28ecab99ee2f2222cf0c962a0299a1aef4ce4cc85eceda13201c",
+      "plan.md": "32f9bbcfabf36ff1fa7bb6c5e832a8ca88644b027741dc0759e3183233caf19c",
+      "tasks.md": "a4ca70255d43aa38b24456a6c272d6f0a4ae1d4003c656adde88cb0f53656b0e",
+      "implementation-summary.md": "95d354b395f423d321c2dce7014c4302da59468c0256014dc93acb330de415af"
+    },
+    "last_active_at": null
+  }
+}

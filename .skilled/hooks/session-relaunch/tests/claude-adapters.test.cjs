@@ -395,7 +395,7 @@ test('context-nudge emits nothing when the relaunch concern is disabled', async 
   assert.equal(result.stdout, '');
 });
 
-test('context-nudge emits nothing when nothing enables the relaunch concern', async (t) => {
+test('context-nudge nudges when no relaunch switch is set, because Claude is on by default', async (t) => {
   const sandbox = createSandbox(t);
   delete sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED;
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
@@ -407,15 +407,15 @@ test('context-nudge emits nothing when nothing enables the relaunch concern', as
     transcript_path: transcriptPath,
     cwd: sandbox.repoRoot,
   };
-  const silent = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
-  assert.equal(silent.code, 0, silent.stderr);
-  assert.equal(silent.stdout, '');
+  const byDefault = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(byDefault.code, 0, byDefault.stderr);
+  assert.notEqual(byDefault.stdout, '');
 
-  // The same fill nudges once the flags file opts in, so the silence above is the default.
-  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SYSTEM_SESSION_RELAUNCH_ENABLED=1\n');
-  const optedIn = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
-  assert.equal(optedIn.code, 0, optedIn.stderr);
-  assert.notEqual(optedIn.stdout, '');
+  // The same fill stays silent once the flags file turns Claude off.
+  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0\n');
+  const optedOut = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(optedOut.code, 0, optedOut.stderr);
+  assert.equal(optedOut.stdout, '');
 });
 
 test('context-nudge stays silent with its runtime switched off while the global flag is on', async (t) => {
@@ -1366,6 +1366,14 @@ test('stop-arm marks the pending record deferred when no process below the loop 
   });
 
   assert.equal(result.code, 0, result.stderr);
+  assert.notEqual(result.stdout, '', 'stdout is empty: the parked Stop printed no notice');
+  assert.equal(result.stdout.trim().split('\n').length, 1);
+  const notice = JSON.parse(result.stdout.trim());
+  assert.equal(typeof notice.systemMessage, 'string');
+  assert.match(notice.systemMessage, /could not arm/);
+  assert.match(notice.systemMessage, /next prompt withdraws/);
+  assert.match(notice.systemMessage, /later Stop/);
+  assert.equal(Object.hasOwn(notice, 'decision'), false);
   const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
   assert.deepEqual(unchanged, record);
   assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);
@@ -1386,6 +1394,7 @@ test('stop-arm marks the pending record deferred when arming throws', async (t) 
   sandbox.env.SKILLED_LOOP_ID = loopId;
   const { armPendingRecord } = await import(pathToFileURL(STOP_ARM_PATH).href);
   const spawns = [];
+  const lines = [];
 
   // A cwd that cannot be written as JSON makes the arm throw after the target resolved.
   const armed = await armPendingRecord({
@@ -1398,6 +1407,7 @@ test('stop-arm marks the pending record deferred when arming throws', async (t) 
     env: sandbox.env,
     pid: 41,
     processTable: '41 60\n60 100\n100 1\n',
+    write: (text) => lines.push(text),
     spawn: (...call) => {
       spawns.push(call);
       return { unref() {} };
@@ -1405,6 +1415,14 @@ test('stop-arm marks the pending record deferred when arming throws', async (t) 
   });
 
   assert.equal(armed, null);
+  assert.equal(lines.length, 1);
+  assert.equal(lines[0].trim().split('\n').length, 1);
+  const notice = JSON.parse(lines[0].trim());
+  assert.equal(typeof notice.systemMessage, 'string');
+  assert.match(notice.systemMessage, /could not arm/);
+  assert.match(notice.systemMessage, /next prompt withdraws/);
+  assert.match(notice.systemMessage, /later Stop/);
+  assert.equal(Object.hasOwn(notice, 'decision'), false);
   assert.deepEqual(spawns, []);
   const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
   assert.deepEqual(unchanged, record);

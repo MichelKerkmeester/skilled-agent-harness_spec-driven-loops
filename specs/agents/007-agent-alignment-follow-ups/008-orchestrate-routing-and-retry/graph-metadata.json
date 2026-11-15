@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "orchestrate routing and retry",
+      "phase 8 orchestrate routing and retry",
+      "orchestrate routing and retry plan",
+      "orchestrate routing and retry tasks",
+      "orchestrate routing and retry acceptance criteria",
+      "orchestrate routing and retry implementation summary"
+    ],
+    "key_topics": [
+      "orchestrate",
+      "routing",
+      "retry",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "orchestrator",
+      "routes"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/agents/orchestrate.md",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
+      ".skilled/skills/system-spec-kit/ROUTER.md",
+      "scratch/after.txt",
+      "scratch/measured-behavior.txt",
+      ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs",
+      ".claude/agents/orchestrate.md",
+      ".pi/agents/orchestrate.md",
+      ".codex/agents/orchestrate.toml",
+      ".dsh/agents/orchestrate.patch.yml",
+      ".skilled/agents/README.txt",
+      ".skilled/skills/system-spec-kit/leaf-manifest.json",
+      "scratch/baseline.txt",
+      ".skilled/bin/sync-agent-roster.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator-dispatch.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "measured-behavior.txt",
+        "kind": "file",
+        "path": "scratch/measured-behavior.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/orchestrate.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Route",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The orchestrator routes an \"Evidence / iterative investigation\" request to `@deep-research` and tells itself to dispatch that leaf at depth 1",
+    "created_at": "2026-11-14T20:19:19Z",
+    "last_save_at": "2026-11-14T23:28:44.789Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b277137c05fb3550204ed3e24de9dafd516d66c93b637a21e3e98377315e8581",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "37f7b36b7508f1c6fa63f115186f6c6d4ec6e04aa5c0ae366fdbbf39afc4d49f",
+      "plan.md": "4297e565ef39abd616da16aa2f06c07c2734709dc302c13e220946bbe94d2153",
+      "tasks.md": "608b33c4382efa9d3a450f6c4b93b39de9e2ae4497888d6d46fa257491597413",
+      "implementation-summary.md": "1cacda4b27de64cbf4df1bc07877a1794d4371745dc1e8503fffc9f829fcba42"
+    },
+    "last_active_at": null
+  }
+}

@@ -138,6 +138,37 @@ const LEGACY_LIFECYCLE_ROWS = {
     lifecycle: { from: 'PIVOT_PENDING', to: 'PIVOT_PENDING' }, reason: 'no_valid_candidates',
     recoverableByOverride: false, timestamp: LEGACY_ROW_TIMESTAMP,
   },
+  dispatchFailure: {
+    type: 'event', event: 'dispatch_failure',
+    executor: { kind: 'cli-claude-code', model: 'claude-opus-4-6', reasoningEffort: 'high', serviceTier: null },
+    reason: 'crash', iteration: 3, detail: 'executor exited with status 1', executorUnavailable: true,
+    matchedMarker: 'rate limit', timestamp: LEGACY_ROW_TIMESTAMP, sessionId: 'session-1',
+  },
+  dispatchReceiptWriteFailed: {
+    type: 'event', event: 'dispatch_receipt_write_failed', reason: 'dispatch_receipt_write_failed',
+    phase: 'intent', iteration: 3,
+    executor: { kind: 'cli-claude-code', model: 'claude-opus-4-6', reasoningEffort: 'high', serviceTier: null },
+    timestamp: LEGACY_ROW_TIMESTAMP, detail: 'ENOTDIR: not a directory', sessionId: 'session-1',
+  },
+  verificationDegraded: {
+    type: 'event', event: 'verification_degraded', status: 'degraded', confidence: 0.25, threshold: 0.5,
+    language: 'typescript', reason: 'verification_degraded',
+    detail: 'verification confidence 0.25 below threshold 0.50', timestamp: LEGACY_ROW_TIMESTAMP,
+    sessionId: 'session-1',
+  },
+  containmentViolation: {
+    type: 'event', event: 'containment_violation', severity: 'error', timestamp: LEGACY_ROW_TIMESTAMP,
+    iteration: 3, label: 'research-i3-g1',
+    violations: [{ path: 'tracked-outside.txt', kind: 'modified', status: 'M' }],
+    reverted: [{ path: 'tracked-outside.txt', action: 'preserved_in_head', ok: true }],
+    revertedPatchPath: 'artifact/containment/pass-i3/lane-writes.patch', sessionId: 'session-1',
+  },
+  containmentContested: {
+    type: 'event', event: 'containment_contested', severity: 'warning', iteration: 3, label: 'research-i3-g1',
+    paths: [{ path: 'operator-notes.md', kind: 'untracked', status: '??' }],
+    note: 'These paths were already uncommitted before the dispatch began and changed again during it.',
+    timestamp: LEGACY_ROW_TIMESTAMP, sessionId: 'session-1',
+  },
 } as const;
 
 // The ledger payload a legacy row travels as: everything but its envelope.
@@ -676,6 +707,11 @@ function dataFor<TStem extends DeepResearchEventStem>(
     'deep_research.pivot_selected': legacyRowData(LEGACY_LIFECYCLE_ROWS.pivotSelected),
     'deep_research.pivot_completed': legacyRowData(LEGACY_LIFECYCLE_ROWS.pivotCompleted),
     'deep_research.pivot_failed': legacyRowData(LEGACY_LIFECYCLE_ROWS.pivotFailed),
+    'deep_research.dispatch_failure': legacyRowData(LEGACY_LIFECYCLE_ROWS.dispatchFailure),
+    'deep_research.dispatch_receipt_write_failed': legacyRowData(LEGACY_LIFECYCLE_ROWS.dispatchReceiptWriteFailed),
+    'deep_research.verification_degraded': legacyRowData(LEGACY_LIFECYCLE_ROWS.verificationDegraded),
+    'deep_research.containment_violation': legacyRowData(LEGACY_LIFECYCLE_ROWS.containmentViolation),
+    'deep_research.containment_contested': legacyRowData(LEGACY_LIFECYCLE_ROWS.containmentContested),
   };
   return data[stem] as DeepResearchPayloadMap[TStem];
 }
@@ -1652,6 +1688,11 @@ describe('deep-research typed ledger schema', () => {
     { stem: 'deep_research.pivot_selected', record: LEGACY_LIFECYCLE_ROWS.pivotSelected },
     { stem: 'deep_research.pivot_completed', record: LEGACY_LIFECYCLE_ROWS.pivotCompleted },
     { stem: 'deep_research.pivot_failed', record: LEGACY_LIFECYCLE_ROWS.pivotFailed },
+    { stem: 'deep_research.dispatch_failure', record: LEGACY_LIFECYCLE_ROWS.dispatchFailure },
+    { stem: 'deep_research.dispatch_receipt_write_failed', record: LEGACY_LIFECYCLE_ROWS.dispatchReceiptWriteFailed },
+    { stem: 'deep_research.verification_degraded', record: LEGACY_LIFECYCLE_ROWS.verificationDegraded },
+    { stem: 'deep_research.containment_violation', record: LEGACY_LIFECYCLE_ROWS.containmentViolation },
+    { stem: 'deep_research.containment_contested', record: LEGACY_LIFECYCLE_ROWS.containmentContested },
   ] as const;
 
   it('projects a completed iteration with its focus, mode and answered questions', () => {

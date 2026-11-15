@@ -6,6 +6,7 @@ import {
   renameSync,
   cpSync,
   existsSync,
+  lstatSync,
   mkdirSync,
   mkdtempSync,
   readdirSync,
@@ -13,6 +14,7 @@ import {
   realpathSync,
   rmSync,
   symlinkSync,
+  utimesSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -34,6 +36,7 @@ import {
   type SpawnCjsResult,
 } from '../helpers/spawn-cjs';
 import { detectSameKindFromStack } from '../../lib/deep-loop/executor-audit.js';
+import { VIBE_ROSTER_ALIASES } from '../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
 import { gatewayAppendShell } from '../helpers/gateway-backed-lineage';
 import {
   CURSOR_DEFAULT_MODEL as TS_CURSOR_DEFAULT_MODEL,
@@ -44,6 +47,7 @@ import {
   PI_SUPPORTED_MODELS,
   DSH_DEFAULT_MODEL as TS_DSH_DEFAULT_MODEL,
   DSH_SUPPORTED_MODELS,
+  VIBE_SUPPORTED_MODELS,
 } from '../../lib/deep-loop/executor-config.js';
 
 const tempDirs: string[] = [];
@@ -67,6 +71,38 @@ describe('fanout-run.cjs — withAgentPersona', () => {
     const repoRoot = makeTempDir('fanout-persona-missing-');
     expect(() => withAgentPersona('deep-research', 'iteration prompt', repoRoot))
       .toThrow(`Agent persona file not found: ${join(repoRoot, '.skilled', 'agents', 'deep-research.md')}`);
+  });
+});
+
+describe('fanout-run.cjs — stale harness home sweep', () => {
+  it('removes only an old default home, keeping a young home, a named home and a link', () => {
+    const { sweepStaleDshHomes } = requireCjs('../../scripts/fanout-run.cjs') as {
+      sweepStaleDshHomes: (now?: number, tmpRoot?: string) => string[];
+    };
+    const now = Date.now();
+    const hour = 60 * 60 * 1000;
+    const tmpRoot = makeTempDir('fanout-stale-homes-');
+    const targetRoot = makeTempDir('fanout-stale-home-target-');
+    const oldHome = join(tmpRoot, 'dsh-home-AbC123');
+    const youngHome = join(tmpRoot, 'dsh-home-XyZ789');
+    const namedHome = join(tmpRoot, 'dsh-home-archive');
+    const linkHome = join(tmpRoot, 'dsh-home-Lnk456');
+    const linkTarget = join(targetRoot, 'kept-target');
+
+    for (const dir of [oldHome, youngHome, namedHome, linkTarget]) mkdirSync(dir);
+    symlinkSync(linkTarget, linkHome);
+    utimesSync(oldHome, new Date(now - 25 * hour), new Date(now - 25 * hour));
+    utimesSync(youngHome, new Date(now - hour), new Date(now - hour));
+    utimesSync(namedHome, new Date(now - 25 * hour), new Date(now - 25 * hour));
+    // An old link target proves the sweep never follows the link to judge its age.
+    utimesSync(linkTarget, new Date(now - 25 * hour), new Date(now - 25 * hour));
+
+    expect(sweepStaleDshHomes(now, tmpRoot)).toEqual(['dsh-home-AbC123']);
+    expect(existsSync(oldHome)).toBe(false);
+    expect(existsSync(youngHome)).toBe(true);
+    expect(existsSync(namedHome)).toBe(true);
+    expect(lstatSync(linkHome).isSymbolicLink()).toBe(true);
+    expect(existsSync(linkTarget)).toBe(true);
   });
 });
 
@@ -172,7 +208,7 @@ function writeStubBinary(binDir: string, name: string): string {
     [
       '#!/bin/sh',
       ...(name === 'opencode' ? [OPENCODE_VERSION_PROBE] : []),
-      ...(name === 'dsh' ? ['if [ "$1" = "--version" ]; then echo 0.2.2-rc.1; exit 0; fi'] : []),
+      ...(name === 'dsh' ? ['if [ "$1" = "--version" ]; then echo 0.2.2-rc.3; exit 0; fi'] : []),
       'write_fanout_artifacts',
       ...(name === 'dsh'
         ? ['printf \'{"type":"final","reason":{"kind":"completed"}}\\n\'']
@@ -539,10 +575,9 @@ const fanoutRunScript = resolve(runtimeRoot, 'scripts', 'fanout-run.cjs');
 const { withAgentPersona } = requireCjs(fanoutRunScript) as {
   withAgentPersona: (agentName: string, prompt: string, repoRoot: string) => string;
 };
-const reviewWorkflowPaths = [
-  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review-auto.yaml'),
-  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review-confirm.yaml'),
-];
+const reviewWorkflowPath = resolve(
+  runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review.yaml',
+);
 
 type ReviewInitSessionIds = {
   config: string;
@@ -1851,7 +1886,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
     validateDshCompletion: (exitCode: number, stdout: string, stderr?: string) => string | null;
   };
 
-  function writeDshStub(binDir: string, version = '0.2.2-rc.1'): string {
+  function writeDshStub(binDir: string, version = '0.2.2-rc.3'): string {
     const stubPath = join(binDir, 'dsh');
     writeFileSync(stubPath, `#!/bin/sh\nif [ "$1" = "--version" ]; then printf '%s\\n' '${version}'; exit 0; fi\nexit 0\n`, { mode: 0o755 });
     return stubPath;
@@ -1886,7 +1921,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
 
     expect([...DSH_ALLOWED_MODELS]).toEqual([...DSH_SUPPORTED_MODELS]);
     expect(DSH_DEFAULT_MODEL).toBe(TS_DSH_DEFAULT_MODEL);
-    expect(DSH_VERSION).toBe('0.2.2-rc.1');
+    expect(DSH_VERSION).toBe('0.2.2-rc.3');
     const command = buildLineageCommand({
       kind: 'cli-deepseek-harness',
       model: 'deepseek-v4.1-flash',
@@ -1982,7 +2017,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
     };
     expect(() => buildLineageCommand(
       { kind: 'cli-deepseek-harness' }, 'p', 'workspace-write', 'default', opts,
-    )).toThrow(/requires dsh 0\.2\.2-rc\.1; found '0\.2\.2-alpha\.3'/);
+    )).toThrow(/requires dsh 0\.2\.2-rc\.3; found '0\.2\.2-alpha\.3'/);
   });
 
   it.each([
@@ -2006,7 +2041,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
     const binDir = makeTempDir('fanout-run-dsh-home-bin-');
     writeFileSync(join(binDir, 'dsh'), [
       '#!/bin/sh',
-      'if [ "$1" = "--version" ]; then printf "0.2.2-rc.1\\n"; exit 0; fi',
+      'if [ "$1" = "--version" ]; then printf "0.2.2-rc.3\\n"; exit 0; fi',
       'lineage_dir=$(dirname "$SPECKIT_DEEPSEEK_HARNESS_STATE_DIR")',
       'mkdir -p "$lineage_dir"',
       'printf "%s\\n" "$@" > "$lineage_dir/dsh-argv.txt"',
@@ -2069,6 +2104,328 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
 
     expect(result.exitCode).not.toBe(0);
     expect(readdirSync(tempRoot).filter((name) => name.startsWith('dsh-home-'))).toEqual([]);
+  });
+});
+
+describe('fanout-run.cjs — cli-mistral-vibe adapter', () => {
+  const {
+    buildLineageCommand,
+    buildVibeLineageCommand,
+    isVibeBinaryAvailable,
+    resolveVibeLineageOutcome,
+    validateVibeCompletion,
+    VIBE_ALLOWED_MODELS,
+    VIBE_VERSION,
+  } = requireCjs(fanoutRunScript) as {
+    buildLineageCommand: (
+      lineage: Record<string, unknown>,
+      prompt: string,
+      resolvedSandbox: string,
+      resolvedPermission: string,
+      options?: { env?: NodeJS.ProcessEnv; repoRoot?: string; lineageDir?: string },
+    ) => {
+      command: string;
+      args: string[];
+      input?: string;
+      cwd?: string;
+      env?: NodeJS.ProcessEnv;
+      effectiveConfig: { model: string; reasoningEffort: string | null };
+    };
+    buildVibeLineageCommand: (
+      lineage: Record<string, unknown>,
+      options: { prompt?: string; env?: NodeJS.ProcessEnv; repoRoot?: string; lineageDir?: string },
+    ) => {
+      command: string;
+      args: string[];
+      input?: string;
+      cwd?: string;
+      env?: NodeJS.ProcessEnv;
+      effectiveConfig: { model: string; reasoningEffort: string | null };
+    };
+    isVibeBinaryAvailable: (env?: NodeJS.ProcessEnv) => boolean;
+    resolveVibeLineageOutcome: (exitCode: number, lineageDir: string) => 'success' | 'partial' | 'failure';
+    validateVibeCompletion: (exitCode: number, lineageDir: string) => string | null;
+    VIBE_ALLOWED_MODELS: ReadonlySet<string>;
+    VIBE_VERSION: string;
+  };
+
+  function writeVibeStub(binDir: string, version = '3.1.2'): string {
+    const stubPath = join(binDir, 'vibe');
+    writeFileSync(
+      stubPath,
+      `#!/bin/sh\nif [ "$1" = "--version" ]; then printf 'vibe %s\\n' '${version}'; exit 0; fi\nexit 0\n`,
+      { mode: 0o755 },
+    );
+    return stubPath;
+  }
+
+  function makeVibeRepo(): string {
+    const repoRoot = makeTempDir('fanout-run-vibe-repo-');
+    const vibeDir = join(repoRoot, '.vibe');
+    mkdirSync(vibeDir, { recursive: true });
+    writeFileSync(join(vibeDir, 'config.toml'), '[[providers]]\nname = "mistral"\n');
+    writeFileSync(
+      join(vibeDir, 'hooks.toml'),
+      '[[hooks]]\nname = "g"\ntype = "pre_tool"\ncommand = "node \\"$(git rev-parse --show-toplevel)/g.mjs\\""\n',
+    );
+    return repoRoot;
+  }
+
+  function writeVibeExport(lineageDir: string, exitCode: number | null, outcome: string): void {
+    const outputDir = join(lineageDir, 'vibe-output');
+    mkdirSync(outputDir, { recursive: true });
+    writeFileSync(join(outputDir, 'export.json'), JSON.stringify({ exit_code: exitCode, outcome }) + '\n');
+  }
+
+  it('matches the closed model roster and builds the print-mode command with a lineage-local home', () => {
+    const binDir = makeTempDir('fanout-run-vibe-bin-');
+    writeVibeStub(binDir);
+    const repoRoot = makeVibeRepo();
+    const lineageDir = realpathSync(makeTempDir('fanout-run-vibe-lineage-'));
+    const env = { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` };
+
+    expect([...VIBE_ALLOWED_MODELS]).toEqual([...VIBE_SUPPORTED_MODELS]);
+    expect([...VIBE_ALLOWED_MODELS]).toEqual([...VIBE_ROSTER_ALIASES]);
+    expect(VIBE_VERSION).toBe('3.1.2');
+    expect(isVibeBinaryAvailable(env)).toBe(true);
+
+    const command = buildLineageCommand(
+      { kind: 'cli-mistral-vibe', model: 'deepseek-flash' },
+      'prompt from the lineage\nsecond line',
+      'workspace-write',
+      'default',
+      { env, repoRoot, lineageDir },
+    );
+
+    const vibeHome = join(lineageDir, 'vibe-home');
+    expect(command).toMatchObject({
+      command: 'vibe',
+      cwd: lineageDir,
+      input: '',
+      env: { VIBE_HOME: vibeHome },
+    });
+    expect(command.args).toEqual([
+      '--prompt-file', join(lineageDir, 'vibe-prompt.txt'),
+      '--output-dir', join(lineageDir, 'vibe-output'),
+      '--trust',
+      '--model', 'deepseek-flash',
+      '--auto-approve',
+    ]);
+    expect(readFileSync(join(lineageDir, 'vibe-prompt.txt'), 'utf8')).toBe('prompt from the lineage\nsecond line');
+    expect(command.args).not.toContain('prompt from the lineage\nsecond line');
+    expect(readFileSync(join(vibeHome, 'config.toml'), 'utf8')).toBe('[[providers]]\nname = "mistral"\n');
+    expect(readFileSync(join(vibeHome, 'trusted_folders.toml'), 'utf8')).toContain(JSON.stringify(lineageDir));
+    // The lineage folder has no project hooks file, so the guards reach it only through the home copy.
+    const homeHooks = readFileSync(join(vibeHome, 'hooks.toml'), 'utf8');
+    expect(homeHooks).toContain(`${realpathSync(repoRoot)}/g.mjs`);
+    expect(homeHooks).not.toContain('$(');
+    expect(command.effectiveConfig.model).toBe('deepseek-flash');
+    expect(command.effectiveConfig.reasoningEffort).toBeNull();
+  });
+
+  it('accepts the direct lineage-plus-options call shape', () => {
+    const binDir = makeTempDir('fanout-run-vibe-direct-bin-');
+    writeVibeStub(binDir);
+    const lineageDir = realpathSync(makeTempDir('fanout-run-vibe-direct-lineage-'));
+    const command = buildVibeLineageCommand(
+      { kind: 'cli-mistral-vibe', model: 'glm-flash' },
+      {
+        prompt: 'direct prompt',
+        env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` },
+        repoRoot: makeVibeRepo(),
+        lineageDir,
+      },
+    );
+
+    expect(command.args).toContain('glm-flash');
+    expect(command.env?.VIBE_HOME).toBe(join(lineageDir, 'vibe-home'));
+  });
+
+  it('fails closed before command construction when vibe is absent', () => {
+    const env = { ...process.env, PATH: makeTempDir('fanout-run-no-vibe-') };
+    expect(isVibeBinaryAvailable(env)).toBe(false);
+    expect(() => buildLineageCommand(
+      { kind: 'cli-mistral-vibe', model: 'deepseek-flash' },
+      'p',
+      'workspace-write',
+      'default',
+      { env, repoRoot: makeVibeRepo(), lineageDir: makeTempDir('fanout-run-no-vibe-lineage-') },
+    )).toThrow(/command -v vibe failed/);
+  });
+
+  it('rejects a vibe version other than the pinned release', () => {
+    const binDir = makeTempDir('fanout-run-vibe-wrong-version-');
+    writeVibeStub(binDir, '3.0.0');
+    expect(() => buildLineageCommand(
+      { kind: 'cli-mistral-vibe', model: 'deepseek-flash' },
+      'p',
+      'workspace-write',
+      'default',
+      {
+        env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` },
+        repoRoot: makeVibeRepo(),
+        lineageDir: makeTempDir('fanout-run-vibe-wrong-version-lineage-'),
+      },
+    )).toThrow(/requires vibe 3\.1\.2; found '3\.0\.0'/);
+  });
+
+  it('rejects an off-roster model alias', () => {
+    const binDir = makeTempDir('fanout-run-vibe-off-roster-bin-');
+    writeVibeStub(binDir);
+    expect(() => buildLineageCommand(
+      { kind: 'cli-mistral-vibe', model: 'mistral-medium-3.5' },
+      'p',
+      'workspace-write',
+      'default',
+      {
+        env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` },
+        repoRoot: makeVibeRepo(),
+        lineageDir: makeTempDir('fanout-run-vibe-off-roster-lineage-'),
+      },
+    )).toThrow(/not in the enforced allowlist: deepseek-flash, glm-flash/);
+  });
+
+  it('scores success only when exit 0 and export.json agree', () => {
+    const lineageDir = makeTempDir('fanout-run-vibe-score-success-');
+    writeVibeExport(lineageDir, 0, 'finished');
+    expect(resolveVibeLineageOutcome(0, lineageDir)).toBe('success');
+    expect(validateVibeCompletion(0, lineageDir)).toBeNull();
+  });
+
+  it('scores exit 3 with an export as partial and never as success', () => {
+    const lineageDir = makeTempDir('fanout-run-vibe-score-partial-');
+    writeVibeExport(lineageDir, 3, 'stopped');
+    expect(resolveVibeLineageOutcome(3, lineageDir)).toBe('partial');
+    expect(validateVibeCompletion(3, lineageDir)).toMatch(/partial run/);
+  });
+
+  it('scores a null export exit_code as failure even when the process exited 0', () => {
+    const lineageDir = makeTempDir('fanout-run-vibe-score-null-');
+    writeVibeExport(lineageDir, null, 'finished');
+    expect(resolveVibeLineageOutcome(0, lineageDir)).toBe('failure');
+    expect(validateVibeCompletion(0, lineageDir)).toMatch(/exit_code null/);
+  });
+
+  it('names an unfinished outcome in the failure message', () => {
+    const lineageDir = makeTempDir('fanout-run-vibe-score-stopped-');
+    writeVibeExport(lineageDir, 0, 'stopped');
+    expect(resolveVibeLineageOutcome(0, lineageDir)).toBe('failure');
+    expect(validateVibeCompletion(0, lineageDir)).toMatch(/stopped/);
+  });
+
+  it('scores a missing export as failure for both exit 3 and exit 0', () => {
+    const exitThreeDir = makeTempDir('fanout-run-vibe-score-missing-3-');
+    const exitZeroDir = makeTempDir('fanout-run-vibe-score-missing-0-');
+    expect(resolveVibeLineageOutcome(3, exitThreeDir)).toBe('failure');
+    expect(validateVibeCompletion(3, exitThreeDir)).toMatch(/without an export\.json record/);
+    expect(resolveVibeLineageOutcome(0, exitZeroDir)).toBe('failure');
+    expect(validateVibeCompletion(0, exitZeroDir)).toMatch(/without an export\.json record/);
+  });
+
+  it('settles an exit 3 export as a partial result that is not counted as succeeded', async () => {
+    const binDir = makeTempDir('fanout-run-vibe-partial-bin-');
+    writeFileSync(join(binDir, 'vibe'), [
+      '#!/bin/sh',
+      'if [ "$1" = "--version" ]; then printf "vibe 3.1.2\\n"; exit 0; fi',
+      'lineage_dir=$(dirname "$VIBE_HOME")',
+      'output_dir=""',
+      'while [ $# -gt 0 ]; do',
+      '  case "$1" in',
+      '    --output-dir) output_dir="$2"; shift 2 ;;',
+      '    *) shift ;;',
+      '  esac',
+      'done',
+      'mkdir -p "$lineage_dir" "$output_dir"',
+      'printf "ok\\n" > "$lineage_dir/research.md"',
+      'printf "ok\\n" > "$lineage_dir/review-report.md"',
+      'printf \'{"exit_code":3,"outcome":"stopped"}\\n\' > "$output_dir/export.json"',
+      'printf "vibe-partial\\n"',
+      'exit 3',
+      '',
+    ].join('\n'), { mode: 0o755 });
+    const baseDir = makeTempDir('fanout-run-vibe-partial-base-');
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'vibe-partial', kind: 'cli-mistral-vibe', model: 'deepseek-flash', iterations: 1 }],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+    const { result } = await spawnFanout('vibe-partial', [
+      '--spec-folder', 'specs/test-fanout-vibe-partial',
+      '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig,
+      '--base-artifact-dir', baseDir,
+      '--no-metadata-refresh',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    expect(result.exitCode).toBe(3);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ status?: string; outcome?: string }>;
+      summary?: { succeeded?: number; failed?: number };
+    };
+    expect(payload.results?.[0]?.status).toBe('rejected');
+    expect(payload.results?.[0]?.outcome).toBe('partial');
+    expect(payload.summary?.succeeded).toBe(0);
+    expect(payload.summary?.failed).toBe(1);
+  });
+
+  it('gives two Vibe replicas distinct state dirs and their own VIBE_HOME', async () => {
+    const binDir = makeTempDir('fanout-run-vibe-replicas-bin-');
+    writeFileSync(join(binDir, 'vibe'), [
+      '#!/bin/sh',
+      'if [ "$1" = "--version" ]; then printf "vibe 3.1.2\\n"; exit 0; fi',
+      'lineage_dir=$(dirname "$VIBE_HOME")',
+      'output_dir=""',
+      'while [ $# -gt 0 ]; do',
+      '  case "$1" in',
+      '    --output-dir) output_dir="$2"; shift 2 ;;',
+      '    *) shift ;;',
+      '  esac',
+      'done',
+      'mkdir -p "$lineage_dir" "$output_dir"',
+      'printf "%s\\n" "$SPECKIT_MISTRAL_VIBE_STATE_DIR" > "$lineage_dir/vibe-state-dir.txt"',
+      'printf "%s\\n" "$VIBE_HOME" > "$lineage_dir/vibe-home.txt"',
+      'printf "ok\\n" > "$lineage_dir/research.md"',
+      'printf "ok\\n" > "$lineage_dir/review-report.md"',
+      'printf \'{"exit_code":0,"outcome":"finished"}\\n\' > "$output_dir/export.json"',
+      'printf "vibe-done\\n"',
+      'exit 0',
+      '',
+    ].join('\n'), { mode: 0o755 });
+    const baseDir = makeTempDir('fanout-run-vibe-replicas-base-');
+    const fanoutConfig = JSON.stringify({
+      executors: [
+        { label: 'vibe-a', kind: 'cli-mistral-vibe', model: 'deepseek-flash', iterations: 1 },
+        { label: 'vibe-b', kind: 'cli-mistral-vibe', model: 'glm-flash', iterations: 1 },
+      ],
+      concurrency: 2,
+      maxRetries: 0,
+    });
+    const { hermetic, result } = await spawnFanout('vibe-replicas', [
+      '--spec-folder', 'specs/test-fanout-vibe-replicas',
+      '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig,
+      '--base-artifact-dir', baseDir,
+      '--no-metadata-refresh',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    expect(result.exitCode).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ outcome?: string }>;
+    };
+    expect(payload.results?.map((entry) => entry.outcome)).toEqual(['success', 'success']);
+    const lineageRoot = join(hermetic.tmpDir, 'specs/test-fanout-vibe-replicas/research/fanout-test-artifacts/lineages');
+    // The adapter resolves the lineage path for Vibe's trust match, so the home is spelled resolved
+    // while the runner's state dir keeps the path it was given.
+    const resolvedLineageRoot = join(realpathSync(hermetic.tmpDir), 'specs/test-fanout-vibe-replicas/research/fanout-test-artifacts/lineages');
+    const stateA = readFileSync(join(lineageRoot, 'vibe-a', 'vibe-state-dir.txt'), 'utf8').trim();
+    const stateB = readFileSync(join(lineageRoot, 'vibe-b', 'vibe-state-dir.txt'), 'utf8').trim();
+    expect(stateA).toBe(join(lineageRoot, 'vibe-a', '.executor-state'));
+    expect(stateB).toBe(join(lineageRoot, 'vibe-b', '.executor-state'));
+    expect(stateA).not.toBe(stateB);
+    expect(readFileSync(join(lineageRoot, 'vibe-a', 'vibe-home.txt'), 'utf8').trim())
+      .toBe(join(resolvedLineageRoot, 'vibe-a', 'vibe-home'));
+    expect(readFileSync(join(lineageRoot, 'vibe-b', 'vibe-home.txt'), 'utf8').trim())
+      .toBe(join(resolvedLineageRoot, 'vibe-b', 'vibe-home'));
   });
 });
 
@@ -2910,18 +3267,16 @@ describe('fanout-run.cjs — review session id propagation templates', () => {
       OPENCODE_BIN: undefined,
     };
 
-    for (const workflowPath of reviewWorkflowPaths) {
-      expect(renderReviewInitSessionIds(workflowPath, suppliedSessionId)).toEqual({
-        config: suppliedSessionId,
-        stateLog: suppliedSessionId,
-        findingsRegistry: suppliedSessionId,
-      });
-      expect(renderReviewInitSessionIds(workflowPath)).toEqual({
-        config: '2035-02-03T04:05:06.000Z',
-        stateLog: '2035-02-03T04:05:06.000Z',
-        findingsRegistry: '2035-02-03T04:05:06.000Z',
-      });
-    }
+    expect(renderReviewInitSessionIds(reviewWorkflowPath, suppliedSessionId)).toEqual({
+      config: suppliedSessionId,
+      stateLog: suppliedSessionId,
+      findingsRegistry: suppliedSessionId,
+    });
+    expect(renderReviewInitSessionIds(reviewWorkflowPath)).toEqual({
+      config: '2035-02-03T04:05:06.000Z',
+      stateLog: '2035-02-03T04:05:06.000Z',
+      findingsRegistry: '2035-02-03T04:05:06.000Z',
+    });
 
     const withSession = buildLineageCommand(
       { kind: 'native', iterations: 2 },

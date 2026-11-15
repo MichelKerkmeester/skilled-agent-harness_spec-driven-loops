@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/012-review-agent-gates",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/012-review-agent-gates",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review agent gates",
+      "phase 12 review agent gates",
+      "review agent gates plan",
+      "review agent gates tasks",
+      "review agent gates implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "agent",
+      "gates",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "fast-path",
+      "skips",
+      "adversarial",
+      "self-check"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/after.txt",
+      ".skilled/agents/review.md",
+      ".claude/agents/review.md",
+      ".pi/agents/review.md",
+      ".codex/agents/review.toml",
+      ".dsh/agents/review.patch.yml",
+      "scratch/baseline.txt",
+      ".skilled/agents/orchestrate.md",
+      "codex/sync-agents.cjs",
+      ".opencode/agents/review.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.toml",
+        "kind": "file",
+        "path": ".codex/agents/review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "review.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/review.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": "codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Markdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Agent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fast-path review skips the adversarial self-check (`review.md:386`), and self-check question 6 then answers NO, which `:364` turns into DO NOT SEND",
+    "created_at": "2026-11-14T20:19:22Z",
+    "last_save_at": "2026-11-15T00:08:24.109Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2a3437cc0c60f363b7ea1ec2395a3d005cad2a0e2696b772122d7453d22e0f2d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "074c133733f1b7deccf88ec3a4e11c11ab5610e054e9f3b38a3099dc912bdac4",
+      "plan.md": "5661d9ebd33f55de1659603da68213becdf9d1f65f5cacb9234990d123d1127b",
+      "tasks.md": "54204642855c8aab2d5bfc1666d33bf612be9ca7c6f8675dd02752a2036f8f8d",
+      "implementation-summary.md": "5fbc51c634ce29019e8c5e2c2ea568b3ea1fba43f60da6a3224601a9fb246eef"
+    },
+    "last_active_at": null
+  }
+}

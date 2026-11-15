@@ -262,11 +262,12 @@
         "authority boundary",
         "agent template",
         "agent and paired",
+        "agent registry",
         "create an agent",
         "author an agent",
         "scaffold an agent",
         "/create:agent",
-        "agent definition",
+        "new agent definition",
         "specialist persona file"
       ]
     },
@@ -285,7 +286,7 @@
         "paired /create",
         "/create:command",
         "prompt shortcut",
-        "confirm flag"
+        "reusable prompt shortcut"
       ]
     },
     "create-feature-catalog-aliases": {

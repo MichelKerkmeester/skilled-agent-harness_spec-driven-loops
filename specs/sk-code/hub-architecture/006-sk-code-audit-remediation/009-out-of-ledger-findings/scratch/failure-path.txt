@@ -1,0 +1,16 @@
+Failure path for phase 009, run on 2026-11-14 from the repository root.
+
+$ printf '
+See `../assets/scripts/no-such-guard.cjs`.
+' >> .skilled/skills/sk-code/sk-code-skilled/scripts/README.md
+$ python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py .skilled/skills/sk-code/sk-code-skilled/scripts/README.md
+  line 57: inline '../assets/scripts/no-such-guard.cjs': path does not exist
+FAIL .skilled/skills/sk-code/sk-code-skilled/scripts/README.md: references=35 unresolved=1 examples=0 allowed=0
+SUMMARY files=1 pass=0 fail=1
+exit=1
+
+$ restore the file from its copy
+$ python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py .skilled/skills/sk-code/sk-code-skilled/scripts/README.md
+PASS .skilled/skills/sk-code/sk-code-skilled/scripts/README.md: references=34 unresolved=0 examples=0 allowed=0
+SUMMARY files=1 pass=1 fail=0
+exit=0

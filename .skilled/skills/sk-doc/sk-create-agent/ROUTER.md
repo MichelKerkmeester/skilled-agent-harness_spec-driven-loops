@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-agent routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -32,7 +32,7 @@ loads before an intent selects it.
 
 - **`opencode_agent`** fires on `opencode agent`, `permission object` and `.skilled/agents` at weight 4. It selects the `permission:` object schema and the OpenCode agent directory, then loads the packet's flat inventory: `references/README.md`, `references/agent-vs-skill-vs-command.md`, `references/permission-design.md`, `references/common-pitfalls.md` and `assets/agent-template.md`.
 - **`claude_agent`** fires on `claude code agent` and `.claude/agents` at weight 4. It selects the `tools:` allow-list schema and the Claude Code agent directory, and loads the same five files.
-- **`agent_authoring`** fires on `create agent`, `/create:agent`, `agent file`, `new agent`, `agent persona`, `agent frontmatter`, `authority boundary` and `agent template` at weight 4. It selects the authoring workflow and body shape rather than one runtime schema, and loads the same five files.
+- **`agent_authoring`** fires on `create agent`, `/create:agent`, `agent file`, `new agent`, `agent persona`, `agent frontmatter`, `authority boundary`, `agent template` and `agent registry` at weight 4. It selects the authoring workflow and body shape rather than one runtime schema, and loads the same five files.
 
 All three keys share one flat resource topology: the intent chooses the runtime schema and the body shape, never a keyed subtree. A request that scores below 4 on every key loads `references/README.md` alone and returns `UNKNOWN_FALLBACK` with the checklist below.
 
@@ -70,7 +70,7 @@ DEFAULT_RESOURCE = "references/README.md"
 INTENT_MODEL = {
     "opencode_agent": {"weight": 4, "keywords": ["opencode agent", "permission object", ".skilled/agents"]},
     "claude_agent": {"weight": 4, "keywords": ["claude code agent", ".claude/agents"]},
-    "agent_authoring": {"weight": 4, "keywords": ["create agent", "/create:agent", "agent file", "new agent", "agent persona", "agent frontmatter", "authority boundary", "agent template"]},
+    "agent_authoring": {"weight": 4, "keywords": ["create agent", "/create:agent", "agent file", "new agent", "agent persona", "agent frontmatter", "authority boundary", "agent template", "agent registry"]},
 }
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm the runtime target directory (.skilled/agents/ or .claude/agents/)",

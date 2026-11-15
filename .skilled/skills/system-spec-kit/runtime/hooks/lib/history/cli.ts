@@ -288,13 +288,30 @@ function sessionFolder(locator: HistoryLocator): string {
 function storeRootFor(locator: HistoryLocator, environment: HistoryLookupCliEnvironment): string | null {
   if (locator.runtime === 'claude') return join(environment.home, '.claude', 'projects');
   if (locator.runtime === 'codex') return join(environment.codexHome, 'sessions');
+  // Vibe keeps one folder per session under its home, so the store root is the
+  // parent the exact session id names a child of.
+  if (locator.runtime === 'vibe') {
+    const vibeHome = environment.env.VIBE_HOME?.trim();
+    return join(vibeHome || join(environment.home, '.vibe'), 'logs', 'session', 'unified');
+  }
   return null;
 }
 
+// A Vibe session root is the folder the hook received as `transcript_path`; it
+// holds the journal the reader parses. Anything that is not a folder is absent.
+function vibeSessionCandidates(root: string, locator: HistoryLocator): string[] {
+  const candidate = join(root, locator.sessionId);
+  try {
+    return statSync(candidate).isDirectory() ? [candidate] : [];
+  } catch {
+    return [];
+  }
+}
+
 function candidatesFor(locator: HistoryLocator, root: string): string[] {
-  return locator.runtime === 'claude'
-    ? claudeTranscriptCandidates(root, locator)
-    : codexTranscriptCandidates(root, locator);
+  if (locator.runtime === 'claude') return claudeTranscriptCandidates(root, locator);
+  if (locator.runtime === 'vibe') return vibeSessionCandidates(root, locator);
+  return codexTranscriptCandidates(root, locator);
 }
 
 async function loadReaderModule(): Promise<SessionReaderModule | null> {
@@ -387,7 +404,8 @@ async function locateTranscript(
     runtime: locator.runtime,
     sessionId: locator.sessionId,
     transcriptPath,
-    ...(locator.runtime === 'claude' ? { claudeRoot: root } : { codexRoot: root }),
+    ...(locator.runtime === 'claude' ? { claudeRoot: root } : {}),
+    ...(locator.runtime === 'codex' ? { codexRoot: root } : {}),
   });
   if (!result.ok) return { ok: false, code: normalizeReaderCode(result.code) };
   if (result.source.runtime !== locator.runtime || result.source.sessionId !== locator.sessionId) {
@@ -486,7 +504,9 @@ function currentRuntime(): HistoryLocatorRuntime | null {
   const detected = detectHistoryRuntime();
   if (detected !== null) return detected;
   const label = process.env.SPECKIT_RUNTIME;
-  return label === 'pi' || label === 'devin' || label === 'dsh' || label === 'opencode' ? label : null;
+  return label === 'pi' || label === 'devin' || label === 'dsh' || label === 'opencode' || label === 'vibe'
+    ? label
+    : null;
 }
 
 function environmentOf(overrides: Partial<HistoryLookupCliEnvironment>): HistoryLookupCliEnvironment {

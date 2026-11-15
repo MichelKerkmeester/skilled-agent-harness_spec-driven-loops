@@ -81,8 +81,8 @@ With one line restored, a changed contribution delivers its full brief again. Wh
 | .skilled/skills/system-skill-advisor/hooks/pi/README.md | Modified | Current dedup behavior described |
 | .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md | Modified | Current fallback behavior described, and the kill-switch rows name what each surface reads |
 | .skilled/skills/system-skill-advisor/hooks/lib/README.md | Modified | Current fallback behavior described |
-| specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief/implementation-summary.md | Modified | Correction note added, original numbers kept |
-| specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief/plan.md | Modified | Correction note added, original numbers kept |
+| specs/hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/001-restore-pi-advisor-brief/implementation-summary.md | Modified | Correction note added, original numbers kept |
+| specs/hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/001-restore-pi-advisor-brief/plan.md | Modified | Correction note added, original numbers kept |
 | .skilled/bin/system-skill-advisor-launcher.cjs | Modified | List `SYSTEM_SKILL_ADVISOR_DB_DIR` once in the child env allowlist |
 | .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py | Modified | List `SYSTEM_SKILL_ADVISOR_DB_DIR` once in the native bridge allowlist |
 | .skilled/commands/doctor/scripts/skill-graph-freshness.cjs | Modified | Read `SYSTEM_SKILL_ADVISOR_DB_DIR` once |

@@ -7,10 +7,8 @@
     "sk-git/commit-standards/001-crawlable-commit-history",
     "sk-git/commit-standards/002-commit-body-always-required",
     "sk-git/commit-standards/003-fix-broad-staging-in-examples",
-    "sk-git/commit-standards/004-template-driven-message-enforcement",
     "sk-git/commit-standards/005-git-setup-customization",
     "sk-git/commit-standards/006-standards-template-round-trip",
-    "sk-git/commit-standards/007-advisory-cd-prefix-env-steps",
     "sk-git/commit-standards/008-doctor-host-hook-acceptance"
   ],
   "manual": {

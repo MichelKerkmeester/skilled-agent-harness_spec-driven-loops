@@ -1,0 +1,1591 @@
+{
+  "sessionId": "fanout-devpass-deepseek-1794658946949-yw45xe",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 8,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-14T12:39:23.571Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-how-does-vibe-run-one-task-non-interactively-which-prompt-source-flags-output-fo",
+      "inboxId": null,
+      "text": "How does Vibe run one task non-interactively: which prompt source, flags, output formats and exit codes does the headless contract expose?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-providers-models-and-authentication-paths-can-a-vibe-dispatch-use-and-whic",
+      "inboxId": null,
+      "text": "Which providers, models and authentication paths can a Vibe dispatch use, and which usage counter does a turn draw on?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-does-vibe-read-from-the-working-directory-and-vibe-and-what-would-a-generat",
+      "inboxId": null,
+      "text": "What does Vibe read from the working directory and ~/.vibe/, and what would a generated repo-root .vibe/ mirror contain?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-for-each-cli-opencode-surface-this-repository-uses-does-vibe-have-an-equivalent-",
+      "inboxId": null,
+      "text": "For each cli-opencode surface this repository uses, does Vibe have an equivalent, a partial equivalent or none, and what would porting take?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-would-a-cli-mistral-vibe-deep-loop-executor-kind-need-and-is-acp-a-better-d",
+      "inboxId": null,
+      "text": "What would a cli-mistral-vibe deep-loop executor kind need, and is ACP a better dispatch surface than print mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-how-does-vibe-run-one-task-non-interactively-which-prompt-source-flags-output-fo",
+      "inboxId": null,
+      "text": "How does Vibe run one task non-interactively: which prompt source, flags, output formats and exit codes does the headless contract expose?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-providers-models-and-authentication-paths-can-a-vibe-dispatch-use-and-whic",
+      "inboxId": null,
+      "text": "Which providers, models and authentication paths can a Vibe dispatch use, and which usage counter does a turn draw on?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-what-does-vibe-read-from-the-working-directory-and-vibe-and-what-would-a-generat",
+      "inboxId": null,
+      "text": "What does Vibe read from the working directory and ~/.vibe/, and what would a generated repo-root .vibe/ mirror contain?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-for-each-cli-opencode-surface-this-repository-uses-does-vibe-have-an-equivalent-",
+      "inboxId": null,
+      "text": "For each cli-opencode surface this repository uses, does Vibe have an equivalent, a partial equivalent or none, and what would porting take?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-what-would-a-cli-mistral-vibe-deep-loop-executor-kind-need-and-is-acp-a-better-d",
+      "inboxId": null,
+      "text": "What would a cli-mistral-vibe deep-loop executor kind need, and is ACP a better dispatch surface than print mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-export-json-is-a-typed-record-not-a-pile-of-logs-vibe-version-outcome-stop-reaso",
+      "text": "`export.json` is a typed record, not a pile of logs: `vibe_version`, `outcome`, `stop_reason`, `error{message,code}`, `session_id`, `usage{input,output,cached,total}`, `cost_usd`, `steps`, redacted `config`, `warnings`, `started_at`/`ended_at`, `limits`, `subagents[]`, and a computed `exit_code`. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py:117-160,178-238]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/cli/launcher.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)"
+      ]
+    },
+    {
+      "id": "finding-1-6-a-denied-tool-has-no-exit-code-of-its-own-headless-runs-cannot-prompt-for-approv",
+      "text": "A denied tool has no exit code of its own. Headless runs cannot prompt for approval, and the binary carries \"needs approval, which a headless run cannot give\" followed by \"denied\": the denial is a tool result inside the run, so a run whose only problem was a denied tool can still end `finished` with exit 0. A caller that must detect denial has to read the journal/`export.json` or pin the tool set with `--enabled-tools`/`--disabled-tools` or an explicit approval agent. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings: \"needs approval, which a headless run cannot give\", \"denied\")] [INFERENCE: based on the exit-code taxonomy in run_export.py:32-84 having no denial member, and on the denial being emitted as a tool result]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/cli/launcher.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)"
+      ]
+    },
+    {
+      "id": "finding-1-7-architecturally-vibe-is-a-thin-launcher-not-the-agent-vibe-cli-launcher-py-execv",
+      "text": "Architecturally `vibe` is a thin launcher, not the agent: `vibe/cli/launcher.py` `execvpe`s a bundled Rust binary (`vibe/_bin/vibe-rs`, Mach-O arm64) and points it at the installed `vibe-app-server` through `VIBE_APP_SERVER_BIN`. The Rust side owns the CLI and the headless loop (`src/headless_run.rs`, `src/headless/turn.rs`, `src/headless/report.rs` appear in the binary), and the Python side owns the app server, session journal and run export. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/cli/launcher.py:8-29,43-74,90-103] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings: src/headless/*.rs)]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/cli/launcher.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)"
+      ]
+    },
+    {
+      "id": "finding-1-5-exit-codes-are-a-fixed-five-value-taxonomy-owned-by-runoutcome-exit-code-0-finis",
+      "text": "Exit codes are a fixed five-value taxonomy owned by `RunOutcome.exit_code`: `0` finished; `1` usage_error or config_error; `2` infrastructure_failure (model API after retries, or the runtime); `3` turn_limit, token_limit, price_limit, deadline, terminated, length or refusal; `4` aborted by an `--agent-socket` server. `--time-limit` is documented as \"write the export and exit 3\", which ties the documented timeout behaviour to the same taxonomy. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py:32-84] [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt:38-39]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/cli/launcher.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)"
+      ]
+    },
+    {
+      "id": "finding-1-1-headless-mode-is-entered-with-p-prompt-prompt-and-the-prompt-may-come-from-the-a",
+      "text": "Headless mode is entered with `-p`/`--prompt [PROMPT]`, and the prompt may come from the argument, from stdin, or from `--prompt-file PATH`; the same programmatic mode is mandatory for `--agent-socket` (\"--agent-socket needs programmatic mode: pass -p or --prompt-file\"). The help text says \"--prompt-file ... instead of `-p` TEXT or stdin\", while the binary also carries \"Pass either -p TEXT or --prompt-file\" and \"No prompt provided for programmatic mode\", so stdin-as-prompt is documented but not uniformly enforced. [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt:28-41] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings: \"Pass either -p TEXT or --prompt-file\", \"No prompt provided for programmatic mode\")]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/cli/launcher.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)"
+      ]
+    },
+    {
+      "id": "finding-1-3-output-is-selectable-output-text-default-json-or-streaming-output-dir-dir-additi",
+      "text": "Output is selectable: `--output text` (default), `json`, or `streaming`; `--output-dir DIR` additionally writes `export.json` and a copy of the session journal under `session/` on every exit. [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt:30-31,44-45] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py:1-6]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/cli/launcher.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)"
+      ]
+    },
+    {
+      "id": "finding-1-8-the-bundled-app-server-also-offers-a-multiplexed-surface-multiplex-serves-isolat",
+      "text": "The bundled app server also offers a multiplexed surface: `--multiplex` serves \"isolated Unified Harness connections in one stdio process\", and the binary carries a `run-server` command that serves \"many headless runs over JSON-RPC on stdin and stdout (experimental)\" plus `--runs-per-app-server` to cap live runs. That is a second, long-lived dispatch seam beside one-process-per-run print mode. [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt:82-95] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings: \"Serve many headless runs over JSON-RPC on stdin and stdout (experimental)\", \"--runs-per-app-server\")]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/cli/launcher.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-dispatch-surface-exposes-explicit-flags-for-every-axis-a-governed-executor-n",
+      "text": "The dispatch surface exposes explicit flags for every axis a governed executor needs: model `--model <ALIAS>` (headless-only, new sessions only), agent profile `--agent <NAME>` (builtin `ask`, `accept-edits`, `smart-approve`, `auto-approve`, or a custom `~/.vibe/agents/NAME.toml`), permissions `--auto-approve`/`--yolo`, `--smart-approve`, `--trust`, `--enabled-tools`, `--disabled-tools`, working directory `--workdir` (also `VIBE_CWD`) and `--add-dir`, and limits `--max-turns`, `--max-price`, `--max-tokens`, `--time-limit`. [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt:17-67]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/cli/launcher.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)"
+      ]
+    },
+    {
+      "id": "finding-2-1-a-vibe-dispatch-has-two-credential-families-the-first-party-mistral-provider-res",
+      "text": "A Vibe dispatch has two credential families. The first-party `mistral` provider resolves a browser sign-in (OIDC against `https://console.mistral.ai`) or an API key from `MISTRAL_API_KEY`; any additional `[[providers]]` row is BYOK with its own `api_base` and `api_key_env_var`. First-party code prefers the active provider only when it is a Mistral provider, so a third-party credential never reaches a first-party endpoint. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py:137-196] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/_defaults.py:9-19] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/platform_auth/_mistral.py:55-75]",
+      "addedAtIteration": 2,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/_defaults.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/platform_auth/_mistral.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/model_catalog/_constants.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/llm/reasoning.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_billing.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/setup/auth/whoami.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/lineages/devpass-deepseek/evidence/vibe-config-schema.json"
+      ]
+    },
+    {
+      "id": "finding-2-3-models-are-declarative-rows-too-name-provider-alias-temperature-default-0-2-thin",
+      "text": "Models are declarative rows too: `name`, `provider`, `alias`, `temperature` (default 0.2), `thinking`, `thinking_levels`, `input_price`/`output_price`/`cached_input_price` per million tokens, `max_context_length`, `auto_compact_threshold`, `supports_images`. Pinning `deepseek-v4-1-flash-1017` and `zai-glm-5-3-flash` is therefore a provider row plus a model row each, selected by `--model <alias>`; Vibe compiles in no roster beyond the single default `mistral-medium-3.5` row. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py:522-616] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py:216-231]",
+      "addedAtIteration": 2,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/_defaults.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/platform_auth/_mistral.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/model_catalog/_constants.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/llm/reasoning.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_billing.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/setup/auth/whoami.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/lineages/devpass-deepseek/evidence/vibe-config-schema.json"
+      ]
+    },
+    {
+      "id": "finding-2-8-per-dispatch-cost-is-locally-computable-even-without-the-billing-api-export-json",
+      "text": "Per-dispatch cost is locally computable even without the billing API: `export.json` carries `usage`, `cost_usd`, `steps` and `subagents[].cost_usd`, priced from the model row's per-million rates with cached input billed at `cached_input_price` when set. That gives a governed executor a cost signal per run, independent of the org budget endpoint. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py:117-160,183-190] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py:537-550]",
+      "addedAtIteration": 2,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/_defaults.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/platform_auth/_mistral.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/model_catalog/_constants.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/llm/reasoning.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_billing.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/setup/auth/whoami.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/lineages/devpass-deepseek/evidence/vibe-config-schema.json"
+      ]
+    },
+    {
+      "id": "finding-2-7-plan-labels-are-derived-from-whoami-chat-plans-map-free-pro-student-team-mistral",
+      "text": "Plan labels are derived from `/whoami`: chat plans map Free/Pro/Student/Team, Mistral Code maps \"Free Codestral\"/\"Code Enterprise\", and API plans map \"Free API\"/\"PAYG API\". The label is display data; the budget read above is the counter a dispatch actually draws on. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/setup/auth/whoami.py:346-390]",
+      "addedAtIteration": 2,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/_defaults.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/platform_auth/_mistral.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/model_catalog/_constants.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/llm/reasoning.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_billing.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/setup/auth/whoami.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/lineages/devpass-deepseek/evidence/vibe-config-schema.json"
+      ]
+    },
+    {
+      "id": "finding-2-2-providers-are-declarative-not-a-closed-list-providerconfig-carries-name-api-base",
+      "text": "Providers are declarative, not a closed list: `ProviderConfig` carries `name`, `api_base`, `api_key_env_var`, browser-auth base URLs, `api_style` (default `openai`), `backend` (`mistral` or `generic`), `project_id`/`region` for Google Vertex ADC, `reasoning_field_name`, `emits_finish_reason` and `extra_headers`. The shipped defaults are only `mistral` and a local `llamacpp` endpoint, so any OpenAI-compatible gateway is a config row. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py:137-204] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py:200-214]",
+      "addedAtIteration": 2,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/_defaults.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/platform_auth/_mistral.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/model_catalog/_constants.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/llm/reasoning.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_billing.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/setup/auth/whoami.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/lineages/devpass-deepseek/evidence/vibe-config-schema.json"
+      ]
+    },
+    {
+      "id": "finding-2-5-reasoning-effort-has-no-dispatch-flag-it-is-a-per-model-config-field-thinking-a-",
+      "text": "Reasoning effort has no dispatch flag. It is a per-model config field: `thinking` (a `ThinkingLevel`, default `off`) plus the offered `thinking_levels` list, with `thinking_is_set` distinguishing \"unset\" from \"off\" and the Mistral backend mapping curated level sets to its own reasoning-effort parameter. A governed executor must therefore pin reasoning through the model row or agent profile, not through the command line. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py:551-616] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/llm/reasoning.py:17-62]",
+      "addedAtIteration": 2,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/_defaults.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/platform_auth/_mistral.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/model_catalog/_constants.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/llm/reasoning.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_billing.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/setup/auth/whoami.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/lineages/devpass-deepseek/evidence/vibe-config-schema.json"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-mistral-side-catalogue-is-fetched-not-shipped-model-catalog-path-model-catal",
+      "text": "The Mistral-side catalogue is fetched, not shipped: `MODEL_CATALOG_PATH = \"/model-catalog\"` with surface `vibe-code`, a 5s bounded fetch and a 30-day cache TTL, built from the provider's `api_base`. A dispatch therefore sees whatever the configured Mistral API base advertises, while BYOK providers rely entirely on declared rows. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/model_catalog/_constants.py:1-27]",
+      "addedAtIteration": 2,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/_defaults.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/platform_auth/_mistral.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/model_catalog/_constants.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/llm/reasoning.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_billing.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/setup/auth/whoami.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/lineages/devpass-deepseek/evidence/vibe-config-schema.json"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-usage-counter-is-the-org-s-monthly-vibe-code-allowance-get-v1-billing-subscr",
+      "text": "The usage counter is the org's monthly Vibe Code allowance. `GET /v1/billing/subscription` names the plan and whether pay-as-you-go covers the run past its allowance; `GET /v1/billing/budget` reports `usage_percentage`, `initial_budget`, `reset_at` and `payg_enabled` for the Vibe Code budget. Both are optional and read as `None` on a self-hosted platform or missing permission. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_billing.py:1-46]",
+      "addedAtIteration": 2,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/_defaults.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/platform_auth/_mistral.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/model_catalog/_constants.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/llm/reasoning.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_billing.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/setup/auth/whoami.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/lineages/devpass-deepseek/evidence/vibe-config-schema.json"
+      ]
+    },
+    {
+      "id": "finding-3-4-agents-md-is-a-real-instruction-surface-on-both-levels-vibe-home-agents-md-is-th",
+      "text": "`AGENTS.md` is a real instruction surface on both levels: `$VIBE_HOME/AGENTS.md` is the user doc, and project docs are collected by walking up from the working directory to the open project root, outermost first, then rendered as one prompt section; a subdirectory `AGENTS.md` is injected lazily when a file below it is read. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/system_prompt.py:278-321] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py:200-270]",
+      "addedAtIteration": 3,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_local_config_files.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_vibe_home.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/conventions.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/project.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/agent_profile.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/system_prompt.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".opencode (repository runtime tree)"
+      ]
+    },
+    {
+      "id": "finding-3-3-configuration-is-a-layered-stack-user-toml-vibe-config-toml-user-supplied-projec",
+      "text": "Configuration is a layered stack: `user-toml` (`~/.vibe/config.toml`), `user-supplied`, `project-toml`, `environment` (`VIBE_*`), and session `overrides`, with an agent-profile layer allowed to change settings but forbidden from touching the three credential-routing base URLs (`vibe_base_url`, `console_base_url`, `vibe_code_sessions_base_url`) so an untrusted checkout cannot redirect a key. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/agent_profile.py:20-44]",
+      "addedAtIteration": 3,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_local_config_files.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_vibe_home.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/conventions.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/project.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/agent_profile.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/system_prompt.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".opencode (repository runtime tree)"
+      ]
+    },
+    {
+      "id": "finding-3-5-custom-agents-are-toml-profiles-agent-name-resolves-a-builtin-ask-accept-edits-s",
+      "text": "Custom agents are TOML profiles: `--agent NAME` resolves a builtin (`ask`, `accept-edits`, `smart-approve`, `auto-approve`) or `~/.vibe/agents/NAME.toml`, `.vibe/agents/` is discovered at the project root, `agent_paths` adds more directories, and `default_agent` defaults to `accept-edits` in both interactive and programmatic mode. [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt:46-47] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py:876-910]",
+      "addedAtIteration": 3,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_local_config_files.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_vibe_home.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/conventions.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/project.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/agent_profile.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/system_prompt.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".opencode (repository runtime tree)"
+      ]
+    },
+    {
+      "id": "finding-3-2-project-local-discovery-is-explicit-and-non-recursive-find-local-config-dirs-ins",
+      "text": "Project-local discovery is explicit and non-recursive. `find_local_config_dirs` inspects only the project root and collects `.vibe/tools/`, `.vibe/skills/`, `.vibe/plugins/`, `.vibe/agents/`, `.vibe/prompts/`, `.vibe/config.toml`, plus `.agents/skills/`. There is no `.vibe/commands/` directory in the discovery set. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_local_config_files.py:28-104]",
+      "addedAtIteration": 3,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_local_config_files.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_vibe_home.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/conventions.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/project.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/agent_profile.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/system_prompt.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".opencode (repository runtime tree)"
+      ]
+    },
+    {
+      "id": "finding-3-8-repo-mirror-shape-today-opencode-carries-agents-commands-hooks-plugins-skills-re",
+      "text": "Repo-mirror shape: today `.opencode/` carries `agents/`, `commands/`, `hooks/`, `plugins/`, `skills/`, `repo-rules/`, `scripts/` and `bin/`. The Vibe equivalent that discovery actually honours is `.vibe/config.toml` (providers, models, `default_agent`), `.vibe/agents/*.toml` (rendered from `.opencode/agents/*.md` and `.skilled/agents/*.md`), `.vibe/skills/` (rendered from `.skilled/skills/`), `.vibe/plugins/` (Vibe plugin format), `.vibe/prompts/` and `.vibe/tools/`. Command markdown has no `.vibe/commands/` counterpart and would have to become prompts or skills. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_local_config_files.py:28-104] [INFERENCE: based on this repository's `.opencode/` directory listing and Vibe's documented discovery set]",
+      "addedAtIteration": 3,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_local_config_files.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_vibe_home.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/conventions.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/project.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/agent_profile.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/system_prompt.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".opencode (repository runtime tree)"
+      ]
+    },
+    {
+      "id": "finding-3-6-skills-load-from-skill-paths-plus-the-discovered-vibe-skills-and-agents-skills-f",
+      "text": "Skills load from `skill_paths` plus the discovered `.vibe/skills` and `.agents/skills`, filtered by `enabled_skills`/`disabled_skills` glob or `re:` patterns; the experimental registry mode pulls shared skills from Mistral and lets the project's skill win on a name collision. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py:934-984]",
+      "addedAtIteration": 3,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_local_config_files.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_vibe_home.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/conventions.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/project.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/agent_profile.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/system_prompt.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".opencode (repository runtime tree)"
+      ]
+    },
+    {
+      "id": "finding-3-7-the-global-home-is-a-fixed-tree-vibe-home-holds-config-toml-agents-md-the-global",
+      "text": "The global home is a fixed tree: `$VIBE_HOME` holds `config.toml`, `AGENTS.md`, the global `.env`, `logs/` and `logs/session/`, `worktrees/`, `trusted_folders.toml`, `cache.toml`, `projects.toml`, `whoami_cache.json`, `model_catalog_cache.json` and the history file. None of these are repo-local, which is why a repo mirror must live in `.vibe/` rather than assume home-directory state. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_vibe_home.py:16-45]",
+      "addedAtIteration": 3,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_local_config_files.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_vibe_home.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/conventions.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/project.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/agent_profile.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/system_prompt.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".opencode (repository runtime tree)"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-project-config-root-is-vibe-config-toml-vibe-starts-at-the-working-directory",
+      "text": "The project config root is `.vibe/config.toml`. Vibe starts at the working directory and walks up parents until it finds a trusted `.vibe/config.toml`; an untrusted project config is ignored unless the dispatch passes `--trust`. That makes trust a per-dispatch gate for project configuration, not a one-time install setting. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/project.py:14-25,44-70]",
+      "addedAtIteration": 3,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_local_config_files.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_vibe_home.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/conventions.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/project.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/layers/agent_profile.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/system_prompt.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".opencode (repository runtime tree)"
+      ]
+    },
+    {
+      "id": "finding-4-8-custom-agents-partial-vibe-has-the-concept-and-the-roster-toml-profiles-with-dis",
+      "text": "Custom agents: partial. Vibe has the concept and the roster: TOML profiles with `display_name`, `description`, `safety`, `agent_type`, `instructions` and arbitrary config `overrides`, discovered from `.vibe/agents`, `~/.vibe/agents` and `agent_paths`. The repository's agents are markdown with YAML frontmatter, so a renderer must map body→`instructions` and frontmatter→fields. Porting cost: low-medium per agent. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py:33-80]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-4-4-dispatch-preflight-hooks-partial-same-mechanism-as-the-spec-gate-vibe-has-pre-to",
+      "text": "Dispatch preflight hooks: partial, same mechanism as the spec gate. Vibe has `pre_tool` and `pre_agent`; the repository's dispatch audit and preflight plugins would become hook commands, and their per-dispatch state files would have to move under `.vibe/` or the packet. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py:19-41] [SOURCE: .opencode/plugins/cli-dispatch-audit.js]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-4-1-executable-opencode-plugins-have-no-vibe-equivalent-vibe-s-plugin-unit-is-a-decl",
+      "text": "Executable OpenCode plugins have no Vibe equivalent. Vibe's plugin unit is a declarative `plugin.json` package, and its OpenCode adapter imports only portable Agent Skills and declarative MCP servers from an OpenCode package; OpenCode executables and custom tools are retained as package data and \"never imported or evaluated\" (`foreign_code_execution_unsupported`, `opencode_executable_tool_unsupported`). Porting the repository's 21 JavaScript plugins therefore means rewriting each as a Vibe artifact, not packaging them. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py:53-129,293-340] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py:924-947]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-4-6-goal-and-context-bridges-partial-context-injection-has-a-native-equivalent-user-",
+      "text": "Goal and context bridges: partial. Context injection has a native equivalent (user and project `AGENTS.md` plus `.vibe/prompts`), but no goal-state surface exists, and the repository's goal plugin writes and reads a packet `goal.md` through OpenCode tool hooks. Porting cost: medium for context, high for goal state. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/system_prompt.py:278-321] [SOURCE: .opencode/plugins/opencode-goal.js]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-4-2-hook-surface-vibe-declares-seven-hook-types-post-agent-pre-tool-post-tool-pre-ag",
+      "text": "Hook surface: Vibe declares seven hook types — `post_agent`, `pre_tool`, `post_tool`, `pre_agent`, `notification`, `session_start`, `session_end` — declared in `.vibe/hooks.toml` or `~/.vibe/hooks.toml`, with `strict` blocking allowed only on `pre_tool`, `post_tool` and `pre_agent`. The repository's plugins key off `tool.execute.before`/`after` and `session.*` events, so only the tool pair maps cleanly. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py:19-41,80-100] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py:140-143]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-4-11-mcp-code-mode-none-vibe-s-builtin-tool-set-is-bash-edit-grep-read-file-write-fil",
+      "text": "MCP Code Mode: none. Vibe's builtin tool set is bash, edit, grep, read_file, write_file, skill, task, todo, web_fetch, web_search and ask_user_question; there is no script/execute/notebook tool that would run TypeScript over MCP tools the way the repository's Code Mode does. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins (directory listing)]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-4-10-mcp-equivalent-vibe-configures-mcp-servers-as-stdio-or-streamable-http-with-stat",
+      "text": "MCP: equivalent. Vibe configures MCP servers as stdio or streamable-HTTP with static auth or OAuth and exposes their tools to the model; the repository's MCP routing plugin has no Vibe analogue, but the server contract itself ports by config. Porting cost: low. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py:225-260] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/auth/mcp_oauth.py:1-40]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-4-12-permissions-and-the-self-invocation-guard-partial-vibe-has-per-tool-settings-app",
+      "text": "Permissions and the self-invocation guard: partial. Vibe has per-tool settings, approval agents with `SAFE`/`NEUTRAL`/`DESTRUCTIVE`/`SMART`/`YOLO` safety levels, `enable_auto_approve`, `bypass_tool_permissions` and a sandbox, which covers the permission model; a nested-CLI refusal would be a strict `pre_tool` hook rather than a dedicated guard. Porting cost: low for permissions, medium for the guard. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py:6-18] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py:900-932]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-4-5-session-relaunch-loop-none-the-repository-s-relaunch-plugin-depends-on-session-i",
+      "text": "Session-relaunch loop: none. The repository's relaunch plugin depends on `session.idle`, `session.compacted` and `session.resumed`; Vibe's hook set has `session_start`/`session_end`, `notification` and `post_agent`, with no idle, compaction or resume event. A Vibe port would need an external supervisor reading `export.json` outcomes rather than an in-process hook. Porting cost: high, and the loop's trigger semantics change. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py:19-41] [SOURCE: .opencode/plugins/session-relaunch.js]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-4-9-skills-equivalent-vibe-parses-yaml-frontmatter-markdown-parse-skill-markdown-and",
+      "text": "Skills: equivalent. Vibe parses YAML-frontmatter markdown (`parse_skill_markdown`) and discovers skills from `skill_paths`, `.vibe/skills` and `.agents/skills`, with enable/disable patterns. The repository's `SKILL.md` convention is the same format, so pointing `skill_paths` at `.skilled/skills` is the lowest-cost port in the whole comparison. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py:116-153] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py:934-960]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-4-7-slash-commands-none-there-is-no-vibe-commands-discovery-vibe-prompts-is-a-prompt",
+      "text": "Slash commands: none. There is no `.vibe/commands` discovery; `.vibe/prompts` is a prompt-template directory resolved by `system_prompt_id`/utility prompt ids, not a user-invoked command catalogue with `$ARGUMENTS` substitution. Commands would have to become skills or prompts. Porting cost: high for the repository's command tree. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/paths/_local_config_files.py:28-104] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/prompts/__init__.py:63-100]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-4-3-spec-gate-partial-a-strict-pre-tool-hook-runs-a-command-before-a-tool-executes-a",
+      "text": "Spec gate: partial. A strict `pre_tool` hook runs a command before a tool executes and can block it, which is the same enforcement point the OpenCode spec gate uses, but the port needs a hook script plus a TOML declaration and the hook payload contract is not the OpenCode `tool.execute.before` shape. Porting cost: medium per guard. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py:28-41] [SOURCE: .opencode/plugins/system-spec-gate.js]",
+      "addedAtIteration": 4,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_foreign.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/plugins/_native.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        ".opencode/plugins (repository plugin tree)",
+        ".opencode/agents (repository agent tree)"
+      ]
+    },
+    {
+      "id": "finding-5-10-correction-to-angle-4-vibe-does-have-a-code-mode-equivalent-run-typescript-is-a-",
+      "text": "Correction to Angle 4: Vibe **does** have a Code Mode equivalent. `run_typescript` is a runtime builtin program tool; calls a program makes carry `parent_call_id` pointing at the `run_typescript` call, and tool descriptions tell the model to page through data \"from a `run_typescript` program as `tools.vibe.list_sessions`\" and to reach subagents as `tools.subagent`. Iteration 4's \"Code Mode: none\" verdict is superseded by \"equivalent, low-medium porting cost\". [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_session_peers.py:40-70] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/protocol.py:1074-1093]",
+      "addedAtIteration": 5,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/skill.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/task.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_session_peers.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/protocol.py",
+        ".opencode/commands",
+        ".skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-5-3-discovery-order-is-computed-not-directory-walk-order-skill-paths-first-global-sc",
+      "text": "Discovery order is computed, not directory-walk order: `skill_paths` first (global scope), then project `.vibe/skills` and `.agents/skills`, then user-level skill dirs, deduped by resolved path; the first claimant of a name wins and the loser is reported as shadowed. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/manager.py:228-275]",
+      "addedAtIteration": 5,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/skill.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/task.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_session_peers.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/protocol.py",
+        ".opencode/commands",
+        ".skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-5-4-registry-skills-are-an-opt-in-second-source-experimental-enable-registry-skills-",
+      "text": "Registry skills are an opt-in second source: `experimental_enable_registry_skills` pulls shared workspace skills from Mistral with version pins and a reserved `latest` alias, materialised on disk and loaded beside local skills. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py:14-36] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py:967-984]",
+      "addedAtIteration": 5,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/skill.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/task.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_session_peers.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/protocol.py",
+        ".opencode/commands",
+        ".skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-5-9-repository-agents-map-with-a-renderer-body-instructions-frontmatter-display-name",
+      "text": "Repository agents map with a renderer: body → `instructions`, frontmatter → `display_name`/`description`/`safety`, and deep-loop or review leaves get `agent_type = \"subagent\"` plus an entry in the `task` tool allowlist. The `main` name is reserved for hook matching and may not be used by a profile. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py:33-80]",
+      "addedAtIteration": 5,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/skill.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/task.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_session_peers.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/protocol.py",
+        ".opencode/commands",
+        ".skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-5-8-repository-commands-do-not-map-one-to-one-opencode-commands-md-are-argument-taki",
+      "text": "Repository commands do **not** map one-to-one: `.opencode/commands/**/*.md` are argument-taking slash commands with `$ARGUMENTS` substitution, while Vibe's user-invocable unit is a skill whose body is instructions and has no documented argument placeholder. Converting a command to a skill preserves the workflow but loses argument interpolation. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py:72-90] [SOURCE: .opencode/commands]",
+      "addedAtIteration": 5,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/skill.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/task.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_session_peers.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/protocol.py",
+        ".opencode/commands",
+        ".skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-5-7-repository-skills-map-with-near-zero-effort-point-skill-paths-at-skilled-skills-",
+      "text": "Repository skills map with near-zero effort: point `skill_paths` at `.skilled/skills`, because every skill there is a `SKILL.md` with YAML frontmatter. Extra repository frontmatter keys (`trigger_phrases`, `importance_tier`) are tolerated as `metadata`, and names such as `sk-code` satisfy the name pattern. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py:45-68] [INFERENCE: based on the `.skilled/skills/*/SKILL.md` frontmatter read in earlier iterations and the parser's permissive metadata handling]",
+      "addedAtIteration": 5,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/skill.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/task.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_session_peers.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/protocol.py",
+        ".opencode/commands",
+        ".skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-5-2-skills-are-both-model-invoked-and-user-invoked-the-skill-tool-loads-a-named-skil",
+      "text": "Skills are both model-invoked and user-invoked. The `skill` tool loads a named skill's full `<skill_content>` block plus a sample of its supporting files, and `user-invocable: false` hides a skill from the slash menu while `disable-model-invocation: true` makes it user-only. So **user-invocable skills are Vibe's slash commands** (`/skill-name`), which supersedes the narrow reading that Vibe has no slash-command surface. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/skill.py:35-45,60-95] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py:72-90,100-135]",
+      "addedAtIteration": 5,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/skill.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/task.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_session_peers.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/protocol.py",
+        ".opencode/commands",
+        ".skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-5-5-subagents-are-a-first-class-tool-task-task-agent-explore-runs-a-specialized-suba",
+      "text": "Subagents are a first-class tool: `task(task, agent=\"explore\")` runs a specialized subagent and returns `{response, turns_used, completed}`; the tool has a permission `allowlist` that defaults to `explore` and a `denylist`, so an executor must allow each custom agent explicitly. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/task.py:15-60]",
+      "addedAtIteration": 5,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/skill.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/task.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_session_peers.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/protocol.py",
+        ".opencode/commands",
+        ".skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-skill-format-is-yaml-frontmatter-plus-a-markdown-body-parsed-by-parse-skill-",
+      "text": "The skill format is YAML frontmatter plus a markdown body, parsed by `parse_skill_markdown` into `SkillMetadata`: `name` (lowercase letters, digits and hyphens, max 64), `description` (max 1024), optional `license`, `compatibility`, `metadata`, `allowed-tools`, `user-invocable` and `disable-model-invocation`. The repository's `SKILL.md` files already use this shape. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py:45-90] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py:116-153]",
+      "addedAtIteration": 5,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/skill.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/task.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_session_peers.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/protocol.py",
+        ".opencode/commands",
+        ".skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-5-6-the-subagent-roster-is-the-agent-profile-roster-filtered-by-agent-type-subagent-",
+      "text": "The subagent roster is the agent-profile roster filtered by `agent_type = \"subagent\"`, bounded by `enable_subagents` (default true), `max_subagents` (32) and `max_concurrent_subagents` (32). A governed fan-out pinning many subagents is therefore capped by config, not by the dispatch flag. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py:1143-1162] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py:28-80]",
+      "addedAtIteration": 5,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/skills/parser.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/skill.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/builtins/task.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/_session_peers.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/protocol.py",
+        ".opencode/commands",
+        ".skilled/skills"
+      ]
+    },
+    {
+      "id": "finding-6-4-a-resolved-hook-carries-execution-context-not-just-a-command-runtimehookdefiniti",
+      "text": "A resolved hook carries execution context, not just a command: `RuntimeHookDefinition` adds `cwd`, `environment`, `order`, `visibility`, `protocol`, `plugin_name`, `declared_name` and `config_file`, and plugin-sourced hooks must name their plugin. That is enough to run a repository guard from its own checkout rather than the session cwd. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py:104-128]",
+      "addedAtIteration": 6,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/config.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_protected_paths.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_sandbox.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".dsh/plugins/repo-guards/README.md"
+      ]
+    },
+    {
+      "id": "finding-6-5-approval-modes-are-agent-safety-levels-safe-neutral-destructive-smart-yolo-with-",
+      "text": "Approval modes are agent safety levels: `SAFE`, `NEUTRAL`, `DESTRUCTIVE`, `SMART`, `YOLO`, with builtin agents `ask`, `accept-edits`, `smart-approve` and `auto-approve` plus `explore` and `lean`; a dispatch selects one with `--agent`, and per-tool permission is `ALWAYS`, `NEVER` or `ASK`. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py:6-18] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py:15-30] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/models.py:14-18]",
+      "addedAtIteration": 6,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/config.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_protected_paths.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_sandbox.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".dsh/plugins/repo-guards/README.md"
+      ]
+    },
+    {
+      "id": "finding-6-3-hook-provenance-and-protocol-are-first-class-hooksource-distinguishes-host-proje",
+      "text": "Hook provenance and protocol are first-class: `HookSource` distinguishes host, project, project-plugin, global, global-plugin and client hooks, and `HookProtocol` accepts `VIBE`, `CLAUDE_CODE` and `KIMI_CODE`. Claude Code hook scripts and Kimi hooks are therefore usable as a protocol, which is an odd but real porting shortcut for any guard that already exists in a Claude hook form. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py:44-60]",
+      "addedAtIteration": 6,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/config.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_protected_paths.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_sandbox.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".dsh/plugins/repo-guards/README.md"
+      ]
+    },
+    {
+      "id": "finding-6-1-hooks-are-declared-not-programmed-vibe-hooks-toml-project-or-vibe-hooks-toml-glo",
+      "text": "Hooks are declared, not programmed: `.vibe/hooks.toml` (project) or `~/.vibe/hooks.toml` (global) holds `[[hooks]]` entries with `name`, `type`, `command`, optional `match`, `timeout` (default 60s), `strict` and `description`, and the binary's own changelog records hooks as stable since 2.21 with \"no opt-in flag\". [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/config.py:1-70] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py:53-100] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py:140-143]",
+      "addedAtIteration": 6,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/config.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_protected_paths.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_sandbox.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".dsh/plugins/repo-guards/README.md"
+      ]
+    },
+    {
+      "id": "finding-6-7-protected-paths-escalate-to-a-human-regardless-of-the-classifier-writes-that-wou",
+      "text": "Protected paths escalate to a human regardless of the classifier: writes that would decide what executes next — `.vibe` config, `.git/hooks`, `.git/config`, shell startup files — are held for approval, and the module says plainly it is a heuristic over argument text, not a boundary (\"only an OS sandbox can make that a guarantee\"). [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_protected_paths.py:1-40]",
+      "addedAtIteration": 6,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/config.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_protected_paths.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_sandbox.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".dsh/plugins/repo-guards/README.md"
+      ]
+    },
+    {
+      "id": "finding-6-2-seven-events-exist-post-agent-pre-tool-post-tool-pre-agent-notification-session-",
+      "text": "Seven events exist: `post_agent`, `pre_tool`, `post_tool`, `pre_agent`, `notification`, `session_start`, `session_end`. Only `pre_tool`, `post_tool` and `pre_agent` accept `strict`, and the model's own comment defines strict as where \"a failing hook may block instead of letting things through\". A hook can therefore block a tool call — at those three events only. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py:19-41,80-100]",
+      "addedAtIteration": 6,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/config.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_protected_paths.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_sandbox.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".dsh/plugins/repo-guards/README.md"
+      ]
+    },
+    {
+      "id": "finding-6-9-the-eight-enforcement-guards-are-expressible-with-one-payload-caveat-each-spec-g",
+      "text": "The eight enforcement guards are expressible, with one payload caveat each: spec gate, dispatch preflight, git message gate, MCP route guard, overlay guard, env secret guard and task dispatch guard all run before a named tool, so `pre_tool` + `strict` is the direct analogue; post-edit quality runs after a named tool, so `post_tool` + `strict`. What does not carry over is the OpenCode payload shape (`tool.execute.before/after` arguments) and each guard's state directory, which must move under `.vibe/` or the packet. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py:19-41] [SOURCE: .dsh/plugins/repo-guards/README.md:80-93]",
+      "addedAtIteration": 6,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/config.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_protected_paths.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_sandbox.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".dsh/plugins/repo-guards/README.md"
+      ]
+    },
+    {
+      "id": "finding-6-10-the-turn-stopping-guards-are-the-real-gap-completion-evidence-and-ask-surface-gu",
+      "text": "The turn-stopping guards are the real gap: `completion-evidence` and `ask-surface-guard` run on DSH's `agent/turn-stopping`, and Vibe's nearest event is `post_agent`, which cannot be strict. They can report but cannot block a turn, and the goal/session context adapters (`agent/created`, `session/event` compaction, `agent/disposed`) have no Vibe event at all. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py:19-41] [SOURCE: .dsh/plugins/repo-guards/README.md:84-100]",
+      "addedAtIteration": 6,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/config.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_protected_paths.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_sandbox.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".dsh/plugins/repo-guards/README.md"
+      ]
+    },
+    {
+      "id": "finding-6-6-the-workspace-boundary-is-a-policy-not-a-container-outside-workdir-is-ask-defaul",
+      "text": "The workspace boundary is a policy, not a container: `outside_workdir` is `ask` (default) or `deny`, overridable per tool, with allowlisted paths unaffected; `enable_auto_approve` lets an admin forbid YOLO entirely, and project config plus `AGENTS.md` are gated by folder trust (`--trust` for one invocation). [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py:813-822,900-932]",
+      "addedAtIteration": 6,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/config.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_protected_paths.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_sandbox.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".dsh/plugins/repo-guards/README.md"
+      ]
+    },
+    {
+      "id": "finding-6-8-there-is-no-user-facing-sandbox-mode-in-3-1-2-the-config-schema-exposes-no-sandb",
+      "text": "There is no user-facing sandbox mode in 3.1.2: the config schema exposes no sandbox field and `vibe --help` no sandbox flag, while the harness ships a `Sandbox Environment` adapter that runs workspace tools inside a sandbox through a digest-checked helper. Sandboxing is a runtime deployment choice, not a CLI mode a governed executor can turn on per dispatch. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_sandbox.py:1-20] [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt:17-67]",
+      "addedAtIteration": 6,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/hooks/config.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/harness_files/_harness_manager.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/vibe_schema.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/agents.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/agents/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/tools/models.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_protected_paths.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/mistralai_vibe_local_harness/vibe/_sandbox.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".dsh/plugins/repo-guards/README.md"
+      ]
+    },
+    {
+      "id": "finding-7-4-a-closed-model-roster-is-mandatory-because-model-takes-an-alias-that-config-may-",
+      "text": "A closed model roster is mandatory because `--model` takes an **alias** that config may not define: an off-roster alias fails late or resolves to whatever `active_model` is. A `VIBE_SUPPORTED_MODELS` list plus `isVibeModelAllowed` follows the `PI_SUPPORTED_MODELS`/`DSH_SUPPORTED_MODELS` pattern. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:263-279]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-deep-loop/runtime/tests (executor and fan-out tests)",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt"
+      ]
+    },
+    {
+      "id": "finding-7-1-a-new-kind-starts-with-registration-in-two-places-executor-kinds-the-executorkin",
+      "text": "A new kind starts with registration in two places: `EXECUTOR_KINDS` (the `ExecutorKind` union) and the zod `kind` enum, plus an entry in `EXECUTOR_KIND_FLAG_SUPPORT` naming which config fields that kind accepts. For Vibe the honest entry is `model`, `sandboxMode` (if mapped), `timeoutSeconds`, `liveTools` — **not** `reasoningEffort`, because Vibe has no reasoning flag. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:11-21,87-138]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-deep-loop/runtime/tests (executor and fan-out tests)",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt"
+      ]
+    },
+    {
+      "id": "finding-7-7-dispatch-audit-recognition-has-three-tables-to-extend-executor-sandbox-is-os-bou",
+      "text": "Dispatch-audit recognition has three tables to extend: `EXECUTOR_SANDBOX_IS_OS_BOUNDARY` (`false` for Vibe, because there is no sandbox flag), `EXECUTOR_WEB_SEARCH_POLICY` (`inherit` only, because Vibe exposes no web-search switch), and the session-env map. The session-env entry should be omitted rather than guessed — cli-devin sets that precedent — until a Vibe session-id variable is observed. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:140-220]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-deep-loop/runtime/tests (executor and fan-out tests)",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt"
+      ]
+    },
+    {
+      "id": "finding-7-9-stress-coverage-already-has-a-home-runtime-tests-stress-cli-adapter-plus-the-fan",
+      "text": "Stress coverage already has a home: `runtime/tests/stress/cli-adapter` plus the fan-out tests for pwd, stderr, in-process prompt and receipts (`fanout-lineage-pwd.test.ts`, `fanout-lineage-stderr.test.ts`, `fanout-loop-prompt-in-process.test.ts`, `executor-audit-cli-branch-receipts.test.ts`). A new kind needs one adapter fixture in the stress folder and a receipt assertion in the audit test, matching how the shipped kinds are covered. [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter] [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-deep-loop/runtime/tests (executor and fan-out tests)",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt"
+      ]
+    },
+    {
+      "id": "finding-7-2-the-command-builder-is-a-table-entry-not-a-new-code-path-lineage-command-adapter",
+      "text": "The command builder is a table entry, not a new code path: `LINEAGE_COMMAND_ADAPTERS` maps each kind to a builder and `buildLineageCommand` throws on an unknown kind. A `buildVibeLineageCommand` would emit `vibe -p <prompt> --model <alias> --agent <profile> --output text --output-dir <lineage>/vibe-export --max-turns <n> --time-limit <s> --workdir <repo> --trust`, with stdin closed because `-p` carries the prompt. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3099-3121] [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt:17-67]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-deep-loop/runtime/tests (executor and fan-out tests)",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt"
+      ]
+    },
+    {
+      "id": "finding-7-3-the-environment-allowlist-is-per-kind-and-additive-executor-common-env-allowlist",
+      "text": "The environment allowlist is per kind and additive: `EXECUTOR_COMMON_ENV_ALLOWLIST` covers PATH/HOME/LANG/TMPDIR/NODE_PATH/TERM/USER/LOGNAME/locale plus the spec-gate and child-session keys, and each kind adds a prefix list. Vibe needs `VIBE_` (VIBE_HOME, VIBE_CWD) and `MISTRAL_` (MISTRAL_API_KEY) prefixes; without them a dispatched Vibe reports a missing credential, exactly the failure the cli-pi comment records for `LLMGATEWAY_`. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:121-177]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-deep-loop/runtime/tests (executor and fan-out tests)",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt"
+      ]
+    },
+    {
+      "id": "finding-7-6-the-recursion-guard-is-generic-the-dispatch-stack-is-stamped-with-the-kind-and-d",
+      "text": "The recursion guard is generic: the dispatch stack is stamped with the kind and `detectSameKindFromStack` refuses a lineage that tries to launch its own kind again. A `cli-mistral-vibe` kind joins by being added to the stampable kinds; no Vibe-specific code is needed, and `vibe` dispatching `vibe` would then be refused before spawn. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3746-3765]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-deep-loop/runtime/tests (executor and fan-out tests)",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt"
+      ]
+    },
+    {
+      "id": "finding-7-5-the-roster-must-be-a-pair-alias-expected-thinking-level-not-a-bare-model-id-vibe",
+      "text": "The roster must be a pair (alias, expected thinking level), not a bare model id. Vibe's reasoning effort is a per-model config field, while the runtime pins DeepSeek V4 Flash and GLM-5.3 Flash to `max` through `isFlashMaxPinnedModel`/`pinReasoningEffortForModel`; with no CLI flag, the only way to honour that pin is a Vibe model row that already carries `thinking = \"max\"`, and the executor should reject an alias whose row does not. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:281-310] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py:551-566]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-deep-loop/runtime/tests (executor and fan-out tests)",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt"
+      ]
+    },
+    {
+      "id": "finding-7-8-vibe-s-exit-taxonomy-maps-onto-the-audit-s-outcome-classes-better-than-any-curre",
+      "text": "Vibe's exit taxonomy maps onto the audit's outcome classes better than any current CLI: `0` finished is success, `1` usage/config is a caller error, `2` infrastructure is a dispatch failure, `3` is \"stopped without finishing\" and must be scored as partial work, `4` is a server abort. The runner needs that mapping so a `3` is not recorded as a successful iteration. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py:32-84]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-deep-loop/runtime/tests (executor and fan-out tests)",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/core/config/models.py",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt"
+      ]
+    },
+    {
+      "id": "finding-8-2-acp-carries-permission-round-trips-not-denials-the-agent-calls-client-request-pe",
+      "text": "ACP carries permission round-trips, not denials: the agent calls `client.request_permission` with `allow_once`, `allow_always`, `reject_once` and `reject_always` options. That is the decisive difference from print mode, where a tool needing approval is denied because a headless run cannot prompt. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py:902-930] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/utils.py:28-120]",
+      "addedAtIteration": 8,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/utils.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/entrypoint.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-4-acp-has-no-per-run-exit-taxonomy-and-no-export-json-those-are-print-mode-artifac",
+      "text": "ACP has no per-run exit taxonomy and no `export.json`. Those are print-mode artifacts: `RunOutcome.exit_code` and `write_run_export` live on the headless path. An ACP supervisor would have to derive outcome, usage and cost from protocol events and session state instead. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py:32-84,217-247] [INFERENCE: based on the ACP method surface exposing no export or exit-code channel]",
+      "addedAtIteration": 8,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/utils.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/entrypoint.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-1-acp-is-a-stdio-json-rpc-agent-with-a-fixed-method-surface-initialize-authenticat",
+      "text": "ACP is a stdio JSON-RPC agent with a fixed method surface: `initialize`, `authenticate`, `new_session`, `load_session`, `prompt`, `cancel` and `close_session`. `vibe-acp` accepts only `-h`, `-v` and `--setup`, so every ACP behaviour is configured through the protocol and the config layers, not through flags. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py:475-600,810-1014] [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt:72-81]",
+      "addedAtIteration": 8,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/utils.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/entrypoint.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-3-acp-sessions-are-persistent-and-cancellable-new-session-load-session-close-sessi",
+      "text": "ACP sessions are persistent and cancellable: `new_session`, `load_session`, `close_session` and `cancel(session_id)` let one long-lived process hold many sessions, resume them and stop a turn without killing the process. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py:545-600,997-1020]",
+      "addedAtIteration": 8,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/utils.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/entrypoint.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-8-acp-would-change-four-fan-out-mechanics-if-adopted-one-process-per-lineage-inste",
+      "text": "ACP would change four fan-out mechanics if adopted: one process per lineage instead of per iteration; a new per-iteration completion record derived from protocol events; a permission answerer per lineage that encodes the repo's guard policy; and cancellation semantics that map onto the existing signal handlers rather than replacing them. [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py:902-1014] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:591-600]",
+      "addedAtIteration": 8,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/utils.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/entrypoint.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-6-print-mode-fits-the-existing-executor-contract-with-no-new-supervisor-one-proces",
+      "text": "Print mode fits the existing executor contract with no new supervisor: one process per iteration, a fixed exit taxonomy, `export.json` for usage, and the runner's receipts plus post-hoc write containment. ACP fits a different contract: a persistent per-lineage client, a completion signal built from the `prompt` result plus session events, client-side permission policy, cancellation instead of signal kill, and receipts anchored on session ids rather than process ids. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:179-200] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3099-3121] [INFERENCE: based on the ACP method surface and the runner's process-shaped audit]",
+      "addedAtIteration": 8,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/utils.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/entrypoint.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-7-recommendation-print-mode-is-the-better-first-dispatch-surface-acp-is-the-better",
+      "text": "Recommendation: print mode is the better first dispatch surface; ACP is the better second one. Print mode keeps the iteration model, exit-code handling and cost record unchanged, while ACP's permission round-trip and resume are real advantages only once the mode has a supervisor that can answer them, and `run-server` should wait until it leaves experimental. [INFERENCE: based on findings 1-6]",
+      "addedAtIteration": 8,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/utils.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/entrypoint.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ]
+    },
+    {
+      "id": "finding-8-5-three-further-seams-exist-beside-either-mode-output-streaming-emits-a-machine-re",
+      "text": "Three further seams exist beside either mode: `--output streaming` emits a machine-readable event stream from print mode, `--agent-socket` lets a server own the run and abort it (exit 4), and `run-server` serves \"many headless runs over JSON-RPC on stdin and stdout (experimental)\" with `--runs-per-app-server`. [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt:30-31,69-95] [SOURCE: ~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings: \"Serve many headless runs over JSON-RPC on stdin and stdout (experimental)\", \"--runs-per-app-server\")]",
+      "addedAtIteration": 8,
+      "sources": [
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/agent.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/utils.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/acp/entrypoint.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/app_server/run_export.py",
+        "~/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs (strings)",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence/vibe-help.txt",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-01c27f4226f4",
+      "text": "A live `vibe -p OK` smoke dispatch: `~/.vibe/` holds only `trusted_folders.toml`, no `config.toml` and no key, so the run would have exercised the auth-error branch (`config_error`, exit 1) rather than the dispatch contract. Deferred to the second allowed smoke dispatch once credentials exist.",
+      "contentHash": "01c27f4226f4",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-709b0e678ee0",
+      "text": "Reading the Python package as the CLI implementation: `launcher.py` only execs the Rust binary, so Python is the app-server/session half. The Rust parser has no local source in the wheel, only the help text and binary strings, so CLI-flag claims beyond those captures are `documented, unconfirmed`.",
+      "contentHash": "709b0e678ee0",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-e85164043f3e",
+      "text": "Treating `--output json` as the canonical machine record. It is the response channel; `export.json` is the run record. Building an executor around stdout JSON alone would lose `outcome`, `usage`, `cost_usd`, `steps` and `exit_code`.",
+      "contentHash": "e85164043f3e",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9c6a3a673f12",
+      "text": "Answering the OpenCode-versus-Vibe counter comparison from client code. Both clients send a key to a provider; which internal counter the platform debits is server-side and unobservable locally. Recorded as UNKNOWN with the exact measurement that would settle it.",
+      "contentHash": "9c6a3a673f12",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9a60268f9a58",
+      "text": "Reading `~/.vibe/config.toml` or any key to confirm the live provider: the directory holds only `trusted_folders.toml`, so there is no local provider state to observe, and reading a key value is out of scope by the angle's own rule.",
+      "contentHash": "9a60268f9a58",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-a6f3eb58611c",
+      "text": "Treating the model catalogue as a shipped roster: it is fetched from `/model-catalog` at runtime with a 5s cap and 30-day cache, so an offline install has only declared rows.",
+      "contentHash": "a6f3eb58611c",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8902d509814d",
+      "text": "Assuming a `.vibe/commands/` directory: it is absent from `find_local_config_dirs`, so slash commands cannot be mirrored by dropping markdown into a commands folder.",
+      "contentHash": "8902d509814d",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0498cce2e642",
+      "text": "Assuming project config applies by presence: `ProjectConfigLayer` requires trust, so the repo mirror must also be trusted per worktree (`--trust`) or it is inert.",
+      "contentHash": "0498cce2e642",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-dad812df990b",
+      "text": "Searching for a project-local plugin config file separate from `.vibe/config.toml`: plugin enablement (`enabled_plugins`/`disabled_plugins`) lives in the same layered config, so there is one config file to render, not two.",
+      "contentHash": "dad812df990b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9576a851bd27",
+      "text": "Looking for a Code Mode equivalent among builtin tools: the tool list has no script/execute member.",
+      "contentHash": "9576a851bd27",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-954e42e5422f",
+      "text": "Looking for a Vibe command-markdown directory: none exists, and `.vibe/prompts` is resolved by prompt id, not by user invocation.",
+      "contentHash": "954e42e5422f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-28715d446baf",
+      "text": "Mapping `session.compacted`/`session.idle` onto `post_agent`: the event timing and payload differ, so the relaunch loop's idempotency and context-withdrawal logic would not carry over.",
+      "contentHash": "28715d446baf",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4bbda4c4050e",
+      "text": "Packaging the repository's `.opencode/plugins/*.js` as a Vibe plugin and expecting them to run: `_foreign.py` refuses executable OpenCode components by design.",
+      "contentHash": "4bbda4c4050e",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-456195796bc5",
+      "text": "Reading the `task` tool as an unrestricted subagent dispatch: its default allowlist contains only `explore`, so a custom subagent is invisible until the allowlist names it.",
+      "contentHash": "456195796bc5",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-93505e412559",
+      "text": "Searching for a command-argument templating feature in the skill parser: there is no `$ARGUMENTS` or equivalent placeholder in `SkillMetadata` or the skill tool.",
+      "contentHash": "93505e412559",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-fa601e81f134",
+      "text": "Searching the builtin tool directory for a Code Mode tool: `run_typescript` lives in the Unified Harness runtime, not in `core/tools/builtins`, which is why the first pass missed it.",
+      "contentHash": "fa601e81f134",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-57dd9a21dc6f",
+      "text": "Treating the absence of `.vibe/commands` as proof that Vibe has no slash commands: user-invocable skills are the slash surface, so the correct verdict is \"commands map to skills, without `$ARGUMENTS`\".",
+      "contentHash": "57dd9a21dc6f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-51ca22631c33",
+      "text": "Porting `completion-evidence` as a blocking hook: `post_agent` has no `strict`, so the port degrades to an advisory.",
+      "contentHash": "51ca22631c33",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-fbb4cd82b170",
+      "text": "Searching the binary for a hook decision JSON schema: the decision protocol is not exposed as strings, so blocking is cited from the `strict` model contract rather than a wire format.",
+      "contentHash": "fbb4cd82b170",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-9f01ea3c718c",
+      "text": "Searching the config schema for a sandbox mode: there is no field, so any \"sandbox mode\" claim would be documentation-only and is marked UNKNOWN for the CLI.",
+      "contentHash": "9f01ea3c718c",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-043fec7982f1",
+      "text": "Treating `--auto-approve` as a sandbox: it suppresses prompts, and the only containment is `outside_workdir` plus protected-path escalation.",
+      "contentHash": "043fec7982f1",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-700cd69536c1",
+      "text": "Guessing a `VIBE_SESSION_ID` env var for the session-env map: unobserved, and cli-devin deliberately omits its equivalent rather than inventing one.",
+      "contentHash": "700cd69536c1",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-48b237765bb6",
+      "text": "Looking for a per-kind sandbox flag in Vibe: none exists, so `EXECUTOR_SANDBOX_IS_OS_BOUNDARY` must be `false` and containment must be post-hoc.",
+      "contentHash": "48b237765bb6",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-c0fe0f06b5c8",
+      "text": "Looking for a Vibe web-search policy switch: the CLI has no such option, so the policy is `inherit`.",
+      "contentHash": "c0fe0f06b5c8",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-d3e70661384a",
+      "text": "Mapping `reasoningEffort` to a Vibe flag: no such flag exists, so the field must be declared unsupported and the pin carried by the model row.",
+      "contentHash": "d3e70661384a",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-791244706d94",
+      "text": "Adopting ACP as the first executor surface: it requires a protocol supervisor, a new completion signal and a permission answerer before a single iteration can run, while print mode runs on the existing contract.",
+      "contentHash": "791244706d94",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-deb9c3e60c95",
+      "text": "Looking for ACP flags to pin a model or workdir: `vibe-acp` has no flags, so those come from config or from the session `new_session` payload, and the exact payload fields are UNKNOWN from the Python surface alone.",
+      "contentHash": "deb9c3e60c95",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-f01b46f062db",
+      "text": "Looking for an ACP export path: none exists; export is a headless-only artifact.",
+      "contentHash": "f01b46f062db",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-53be712e3cb4",
+      "text": "Using `run-server` now: the binary itself labels it experimental.",
+      "contentHash": "53be712e3cb4",
+      "addedAtIteration": 8
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 73,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "other": 57
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/lineages/devpass-deepseek/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "novelty_signal_inert",
+      "mode": "research",
+      "severity": "warning",
+      "metric": "newInfoRatio",
+      "run": 8,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "note": "newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and \"not exhausted\" claims derived from it are untrustworthy.",
+      "timestamp": "2026-11-14T12:37:35Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 8,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-11-14T12:37:35Z"
+    }
+  ],
+  "strategyWarnings": []
+}

@@ -34,7 +34,7 @@ Runtime code READMEs and sk-code alignment, plus artifact-certificate, alignment
 
 ## Root Purpose
 
-This phase groups the related child phases below so parent-level context stays a short thematic map. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
+Harden the shipped deep-loop runtime so its docs match its code and each certificate, gate, lock and parity check fails on the fault it exists to catch. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
 
 ## PHASE DOCUMENTATION MAP
 

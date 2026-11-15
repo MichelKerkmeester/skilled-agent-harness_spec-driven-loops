@@ -1,0 +1,3 @@
+$ grep -rqs 'Dist freshness after this tool call' "$VIBE_HOME/logs/session/unified" && grep -rqs 'STALE DIST WARNING' "$VIBE_HOME/logs/session/unified" && echo stale-warned
+stale-warned
+[exit 0]

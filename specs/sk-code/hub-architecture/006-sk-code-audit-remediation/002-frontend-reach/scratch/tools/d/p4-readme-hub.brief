@@ -1,0 +1,14 @@
+TASK: one literal edit in one file.
+
+FILE: .skilled/skills/sk-code/README.md (read lines 212 to 220 only)
+
+EDIT, line 216, the table row for `hub-router.json`. Replace this text at the end of the row:
+that lets a host hub fold all intents of a surface into one parent intent for the router sync check |
+with:
+that lets a host hub fold all intents of a surface into one parent intent for the router sync check, and an optional `vocabularyMirrors` list of surface packets whose keywords that check compares across `hub-router.json`, the hub `ROUTER.md` rows and the packet's own rows |
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'vocabularyMirrors' .skilled/skills/sk-code/README.md
+Expected output: `1`

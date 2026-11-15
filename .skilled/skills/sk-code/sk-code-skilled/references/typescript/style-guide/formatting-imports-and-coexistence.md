@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript typescript coexistence"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Formatting, Imports, Commenting & JS/TS Coexistence
@@ -74,7 +74,7 @@ const template = `Value: ${value}`;  // Template literals OK
 
 ### Line Length
 
-- **Maximum**: 100 characters
+- **Maximum**: 100 characters, stricter than the shared maximum of 120 in `assets/checklists/universal-checklist.md`
 - **Preferred**: 80 characters
 - **Exception**: URLs, long type signatures, and import paths
 

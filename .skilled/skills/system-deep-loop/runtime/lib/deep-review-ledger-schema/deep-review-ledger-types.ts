@@ -383,6 +383,13 @@ export type BlockedStopRecordedData = JsonObject & {
   readonly recoveryHint?: string;
 };
 
+export type TerminalGatesRecordedData = JsonObject & {
+  readonly stopReason: 'converged' | 'maxIterationsReached';
+  readonly gateResults: GateResult[];
+  readonly failedRequiredGateIds: string[];
+  readonly appendPosition: Uint32;
+};
+
 export interface PauseRecordedData extends JsonObject {
   readonly normalizedStopReason: string;
   readonly sentinelCause: string;
@@ -573,6 +580,7 @@ export const DeepReviewEventStems = Object.freeze([
   'deep_review.convergence_evaluated',
   'deep_review.graph_convergence_evaluated',
   'deep_review.blocked_stop_recorded',
+  'deep_review.terminal_gates_recorded',
   'deep_review.pause_recorded',
   'deep_review.recovery_started',
   'deep_review.synthesis_started',
@@ -602,9 +610,9 @@ export type DeepReviewStemProducerStatus =
   | { readonly status: 'reserved'; readonly reason: string };
 
 export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
-  'deep_review.run_initialized': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
-  'deep_review.run_resumed': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
-  'deep_review.run_restarted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
+  'deep_review.run_initialized': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.run_resumed': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.run_restarted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.scope_resolved': { status: 'reserved', reason: 'No writer emits it today: scope lives in workflow step text. A scope step would speak it once selected and omitted targets are appended with their digests.' },
   'deep_review.dimension_ordered': { status: 'reserved', reason: 'No writer emits it today: dimension order is computed in the workflow. An ordering step would speak it once the order and its policy version are appended.' },
   'deep_review.protocol_plan_recorded': { status: 'reserved', reason: 'No writer emits it today: the protocol plan is an operator-facing asset. A plan step would speak it once protocol selection and its contract digest are appended.' },
@@ -618,22 +626,23 @@ export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
   'deep_review.finding_state_changed': { status: 'reserved', reason: 'No writer emits it today: state changes are reducer-derived. A state step would speak it once registry transitions are appended under the gateway.' },
   'deep_review.review_depth_recorded': { status: 'reserved', reason: 'No writer emits it today: depth accounting is derived from the report. A depth step would speak it once coverage and ruled-out classes are appended as proof.' },
   'deep_review.convergence_evaluated': { status: 'reserved', reason: 'No writer emits it today: convergence is recomputed by the reducer from flat rows. A convergence step would speak it once the decision is appended rather than inferred.' },
-  'deep_review.graph_convergence_evaluated': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
-  'deep_review.blocked_stop_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
-  'deep_review.pause_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
-  'deep_review.recovery_started': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
+  'deep_review.graph_convergence_evaluated': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.blocked_stop_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.terminal_gates_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.pause_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.recovery_started': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.synthesis_started': { status: 'reserved', reason: 'No writer emits it today: synthesis is a workflow phase. The synthesis step would speak it once the report phase opens with its finalized event range.' },
   'deep_review.review_report_committed': { status: 'reserved', reason: 'No writer emits it today: reports are written as files. The synthesis step would speak it once the report digest and section manifest are appended.' },
   'deep_review.continuity_save_requested': { status: 'reserved', reason: 'No writer emits it today: continuity saves route through the save command. The save step would speak it once a request is appended for replay.' },
   'deep_review.continuity_save_completed': { status: 'reserved', reason: 'No writer emits it today: the save command writes its own artifacts. The save step would speak it once completion records its persistence receipts.' },
   'deep_review.continuity_save_failed': { status: 'reserved', reason: 'No writer emits it today: a failed save surfaces to the operator directly. The save step would speak it once failure records its retryable reason code.' },
   'deep_review.run_completed': { status: 'reserved', reason: 'No writer emits it today: closure is the reducer inference from flat rows. The finalization step would speak it once terminal status and counts are appended.' },
-  'deep_review.migration': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
-  'deep_review.recovery_baseline': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml'] },
+  'deep_review.migration': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.recovery_baseline': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs'] },
   'deep_review.synthesis_incomplete': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs'] },
   'deep_review.synthesis_complete': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs'] },
-  'deep_review.claim_adjudication': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
-  'deep_review.iteration_error': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
+  'deep_review.claim_adjudication': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.iteration_error': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.iteration_recorded': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs'] },
 } as const satisfies Readonly<Record<DeepReviewEventStem, DeepReviewStemProducerStatus>>);
 
@@ -656,6 +665,7 @@ export const DeepReviewWireEventTypes = Object.freeze({
   'deep_review.convergence_evaluated': 'deep-review.ledger.convergence-evaluated',
   'deep_review.graph_convergence_evaluated': 'deep-review.ledger.graph-convergence-evaluated',
   'deep_review.blocked_stop_recorded': 'deep-review.ledger.blocked-stop-recorded',
+  'deep_review.terminal_gates_recorded': 'deep-review.ledger.terminal-gates-recorded',
   'deep_review.pause_recorded': 'deep-review.ledger.pause-recorded',
   'deep_review.recovery_started': 'deep-review.ledger.recovery-started',
   'deep_review.synthesis_started': 'deep-review.ledger.synthesis-started',
@@ -695,6 +705,7 @@ export interface DeepReviewPayloadMap {
   readonly 'deep_review.convergence_evaluated': ConvergenceEvaluatedData;
   readonly 'deep_review.graph_convergence_evaluated': GraphConvergenceEvaluatedData;
   readonly 'deep_review.blocked_stop_recorded': BlockedStopRecordedData;
+  readonly 'deep_review.terminal_gates_recorded': TerminalGatesRecordedData;
   readonly 'deep_review.pause_recorded': PauseRecordedData;
   readonly 'deep_review.recovery_started': RecoveryStartedData;
   readonly 'deep_review.synthesis_started': SynthesisStartedData;
@@ -731,6 +742,7 @@ export interface DeepReviewScopeMap {
   readonly 'deep_review.convergence_evaluated': DeepReviewIterationScope;
   readonly 'deep_review.graph_convergence_evaluated': DeepReviewIterationScope;
   readonly 'deep_review.blocked_stop_recorded': DeepReviewIterationScope;
+  readonly 'deep_review.terminal_gates_recorded': DeepReviewIterationScope;
   readonly 'deep_review.pause_recorded': DeepReviewIterationScope;
   readonly 'deep_review.recovery_started': DeepReviewDimensionScope;
   readonly 'deep_review.synthesis_started': DeepReviewReportScope;

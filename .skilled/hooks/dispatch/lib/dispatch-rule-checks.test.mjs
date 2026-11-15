@@ -10,7 +10,14 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { readHardRules, evaluate, evaluateDispatch, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
+import {
+  readHardRules,
+  evaluate,
+  evaluateDispatch,
+  CHECKS,
+  KNOWN_CHECKS,
+  VIBE_ROSTER_ALIASES,
+} from './dispatch-rule-checks.mjs';
 import { DISPATCH_SHAPES, matchDispatchShape, resolveDispatchPacket } from './dispatch-audit.mjs';
 import {
   clearOpencodeVersionCache,
@@ -154,6 +161,23 @@ test('each repeated dispatch is held to the stdin and model checks on its own', 
 
   assert.equal(stdin(complete), true);
   assert.equal(model(complete), true);
+});
+
+test('stdin-redirect-required covers vibe print mode and its prompt-file form', () => {
+  const stdin = CHECKS['stdin-redirect-required'];
+
+  assert.equal(stdin('vibe -p hi'), false);
+  assert.equal(stdin('vibe --prompt-file p.md'), false);
+  assert.equal(stdin('vibe -p hi </dev/null'), true);
+  assert.equal(stdin('vibe --prompt-file p.md </dev/null'), true);
+  // A pipe into the bare print form already supplies stdin; the assignment prefix is shell syntax.
+  assert.equal(stdin('printf hi | VIBE_HOME=/tmp/h vibe -p'), true);
+  // The `vibe-rs` binary takes the same print flags.
+  assert.equal(stdin('vibe-rs -p hi'), false);
+  assert.equal(stdin('vibe-rs -p hi </dev/null'), true);
+  // A redirect on an earlier run cannot close stdin for the vibe run that follows it.
+  assert.equal(stdin('opencode run x </dev/null && vibe -p hi'), false);
+  assert.equal(stdin('vibe --version'), true); // starts no run → n/a
 });
 
 test('availability checks pass for a resolvable binary and never refuse without PATH', () => {
@@ -608,8 +632,24 @@ test('dsh prompt text does not hide another headless runtime missing stdin handl
   const stdin = CHECKS['stdin-redirect-required'];
   assert.equal(stdin('opencode run "explain dsh --profile headless"'), false);
   assert.equal(stdin('claude -p "explain dsh --profile headless"'), false);
-  assert.equal(stdin('npx -y @deepseek-ai/dsh@0.2.2-rc.1 --profile headless --json -'), false);
-  assert.equal(stdin('cat prompt.md | npx -y @deepseek-ai/dsh@0.2.2-rc.1 --profile headless --json -'), true);
+  assert.equal(stdin('npx -y @deepseek-ai/dsh@0.2.2-rc.3 --profile headless --json -'), false);
+  assert.equal(stdin('cat prompt.md | npx -y @deepseek-ai/dsh@0.2.2-rc.3 --profile headless --json -'), true);
+});
+
+test('dsh hard rules accept the Mistral route as a roster route', () => {
+  const rules = readHardRules(DSH).filter((r) => r.check !== 'command-v-dsh-required');
+  const mistral = DSH_FULL_DISPATCH.replace('route-llmgateway-deepseek', 'route-mistral-deepseek');
+  assert.deepEqual(evaluate(mistral, rules), []);
+  // A second route beside it is still refused: a dispatch names exactly one route.
+  assert.notDeepEqual(evaluate(mistral.replace(' --json -', ' --patch ../patches/route-llmgateway-deepseek.patch.yml --json -'), rules), []);
+});
+
+test('dsh hard rules accept the Mistral route as a roster route', () => {
+  const rules = readHardRules(DSH).filter((r) => r.check !== 'command-v-dsh-required');
+  const mistral = DSH_FULL_DISPATCH.replace('route-llmgateway-deepseek', 'route-mistral-deepseek');
+  assert.deepEqual(evaluate(mistral, rules), []);
+  // A second route beside it is still refused: a dispatch names exactly one route.
+  assert.notDeepEqual(evaluate(mistral.replace(' --json -', ' --patch ../patches/route-llmgateway-deepseek.patch.yml --json -'), rules), []);
 });
 
 test('dsh hard rules accept a complete isolated, pipe-fed dispatch', () => {
@@ -750,17 +790,185 @@ test('a variable directory with a literal patch file name and a variable DSH_HOM
 
 test('pinned-version-required evaluates npx DSH dispatches and rejects other versions', () => {
   const skillsRoot = path.resolve(HERE, '../../../skills');
-  const pinned = 'npx -y @deepseek-ai/dsh@0.2.2-rc.1 --profile headless --json -';
+  const pinned = 'npx -y @deepseek-ai/dsh@0.2.2-rc.3 --profile headless --json -';
   const violations = (command) => evaluateDispatch(command, skillsRoot)
     .flatMap(({ violations: dispatchViolations }) => dispatchViolations)
     .filter(({ check }) => check === 'pinned-version-required');
 
   assert.deepEqual(violations(pinned), []);
-  for (const version of ['0.2.2', '0.2.2-rc.2', 'latest']) {
+  for (const version of ['0.2.2', '0.2.2-rc.1', '0.2.2-rc.2', 'latest']) {
     const command = `npx -y @deepseek-ai/dsh@${version} --profile headless --json -`;
     assert.equal(violations(command).length, 1, version);
   }
   assert.equal(violations('npx -y @deepseek-ai/dsh --profile headless --json -').length, 1);
+});
+
+test('print-mode-only refuses interactive vibe and vibe-acp dispatches', () => {
+  const check = CHECKS['print-mode-only'];
+  for (const command of [
+    'vibe',
+    'vibe-acp',
+    'VIBE_HOME=/tmp/h vibe --model deepseek-flash',
+  ]) {
+    assert.equal(check(command), false, `accepted a non-print dispatch: ${command}`);
+  }
+  for (const command of [
+    'vibe -p hi </dev/null',
+    'vibe --prompt-file p.md </dev/null',
+    'printf hi | vibe -p',
+    'vibe-rs -p hi </dev/null',
+    'vibe --version',
+    'ls -la',
+  ]) {
+    assert.equal(check(command), true, `refused a print-mode or non-dispatch command: ${command}`);
+  }
+});
+
+test('isolated-vibe-home requires a disposable VIBE_HOME outside the checkout', () => {
+  const check = CHECKS['isolated-vibe-home'];
+  for (const command of [
+    'vibe -p hi </dev/null',
+    'VIBE_HOME=~/.vibe vibe -p hi </dev/null',
+    'VIBE_HOME=$HOME/.vibe vibe -p hi </dev/null',
+    'VIBE_HOME=$PWD/.vibe vibe -p hi </dev/null',
+    'VIBE_HOME= vibe -p hi </dev/null',
+    `VIBE_HOME=${path.join(DSH_REPO_ROOT, '.vibe-home')} vibe -p hi </dev/null`,
+    // One run's home cannot answer for the run that follows it.
+    'VIBE_HOME=/tmp/h vibe -p a </dev/null && vibe -p b </dev/null',
+  ]) {
+    assert.equal(check(command), false, `accepted a home that is not disposable: ${command}`);
+  }
+  // The checkout is the caller's repoRoot, not a hard-coded path.
+  assert.equal(check('VIBE_HOME=/tmp/h vibe -p hi </dev/null', { repoRoot: '/tmp' }), false);
+
+  for (const command of [
+    'VIBE_HOME=/tmp/h vibe -p hi </dev/null',
+    'VIBE_HOME=/private/tmp/h vibe -p hi </dev/null',
+    'VIBE_HOME=/var/folders/xy/h vibe -p hi </dev/null',
+    'VIBE_HOME=$TMPDIR/h vibe -p hi </dev/null',
+    'VIBE_HOME="$H" vibe -p hi </dev/null',
+    'cd "$RUN_DIR" && VIBE_HOME="$RUN_DIR/.vibe-home" vibe -p "$PROMPT" --output-dir "$RUN_DIR/out" </dev/null',
+    'cd "$RUN_DIR" && AI_SESSION_CHILD=1 VIBE_SPEC_FOLDER="$REPO/specs/t/001-x" VIBE_HOME="$RUN_DIR/.vibe-home" vibe -p "$PROMPT" --output-dir "$RUN_DIR/out" </dev/null',
+    'vibe --version',
+    'ls',
+  ]) {
+    assert.equal(check(command), true, `refused a disposable home or a non-dispatch: ${command}`);
+  }
+});
+
+test('isolated-vibe-home resolves a relative home from the folder the run starts in', () => {
+  const check = CHECKS['isolated-vibe-home'];
+  // A `cd` before the run decides where a relative home lands, exactly as it
+  // does for `output-dir-required`; the caller's cwd is only the base when no
+  // `cd` names one.
+  assert.equal(
+    check('cd /tmp && VIBE_HOME=vibe-home vibe -p hi </dev/null', { cwd: DSH_REPO_ROOT }),
+    true,
+    'refused a relative home that a cd places outside the checkout',
+  );
+  assert.equal(
+    check(`cd ${DSH_REPO_ROOT} && VIBE_HOME=vibe-home vibe -p hi </dev/null`, { cwd: '/tmp' }),
+    false,
+    'accepted a relative home that a cd places inside the checkout',
+  );
+});
+
+test('output-dir-required requires a non-empty output folder outside the checkout', () => {
+  const check = CHECKS['output-dir-required'];
+  for (const command of [
+    'VIBE_HOME=/tmp/h vibe -p hi </dev/null',
+    'VIBE_HOME=/tmp/h vibe -p hi --output-dir= </dev/null',
+    `VIBE_HOME=/tmp/h vibe -p hi --output-dir ${path.join(DSH_REPO_ROOT, '.vibe-out')} </dev/null`,
+    // One run's output folder cannot answer for the run that follows it.
+    'VIBE_HOME=/tmp/h vibe -p a --output-dir /tmp/o </dev/null && VIBE_HOME=/tmp/h vibe -p b </dev/null',
+  ]) {
+    assert.equal(check(command), false, `accepted a missing or in-checkout output folder: ${command}`);
+  }
+  // The checkout is the caller's repoRoot, not a hard-coded path.
+  assert.equal(check('VIBE_HOME=/tmp/h vibe -p hi --output-dir /tmp/o </dev/null', { repoRoot: '/tmp' }), false);
+
+  for (const command of [
+    'VIBE_HOME=/tmp/h vibe -p hi --output-dir /tmp/o </dev/null',
+    // A relative folder resolves against the `cd` the dispatch runs behind, not the test runner.
+    'cd /tmp/run && VIBE_HOME=/tmp/run/h vibe -p hi --output-dir out </dev/null',
+    'cd "$RUN_DIR" && VIBE_HOME="$RUN_DIR/.vibe-home" vibe -p "$PROMPT" --model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null',
+    'vibe --version',
+    'ls',
+  ]) {
+    assert.equal(check(command), true, `refused a disposable output folder or a non-dispatch: ${command}`);
+  }
+});
+
+test('no-repo-root-cwd refuses a run started in the checkout root', () => {
+  const check = CHECKS['no-repo-root-cwd'];
+  // A fixed root keeps these assertions independent of where this suite runs.
+  const repoRoot = path.join(path.sep, 'repo-root');
+  const context = { repoRoot };
+  for (const command of [
+    `cd ${repoRoot} && VIBE_HOME=/tmp/h vibe -p hi </dev/null`,
+    `VIBE_HOME=/tmp/h vibe -p hi --workdir ${repoRoot} </dev/null`,
+    // A trailing slash and a `.` still name the root.
+    `VIBE_HOME=/tmp/h vibe -p hi --workdir ${repoRoot}/ </dev/null`,
+    `cd ${repoRoot}/. && VIBE_HOME=/tmp/h vibe -p hi </dev/null`,
+    // An explicit `--workdir` wins over the directory the shell starts in.
+    `cd /tmp/run && VIBE_HOME=/tmp/run/h vibe -p hi --workdir ${repoRoot} </dev/null`,
+  ]) {
+    assert.equal(check(command, context), false, `accepted a run started in the checkout root: ${command}`);
+  }
+  // With no `--workdir` and no `cd`, the caller's cwd is the working directory.
+  assert.equal(
+    check('VIBE_HOME=/tmp/h vibe -p hi </dev/null', { ...context, cwd: repoRoot }),
+    false,
+  );
+
+  for (const command of [
+    'cd /tmp/run && VIBE_HOME=/tmp/run/h vibe -p hi </dev/null',
+    `VIBE_HOME=/tmp/h vibe -p hi --workdir ${path.join(repoRoot, 'specs')} </dev/null`,
+    // A `cd` to a variable names no folder text can resolve, so it is not refused.
+    'cd "$RUN_DIR" && VIBE_HOME="$RUN_DIR/h" vibe -p hi </dev/null',
+    'vibe --version',
+    'ls',
+  ]) {
+    assert.equal(check(command, context), true, `refused a run outside the root or a non-dispatch: ${command}`);
+  }
+  // A subdirectory of the checkout is a different directory.
+  assert.equal(
+    check('VIBE_HOME=/tmp/h vibe -p hi </dev/null', { ...context, cwd: path.join(repoRoot, 'specs') }),
+    true,
+  );
+});
+
+test('vibe-closed-roster refuses a model that is not a roster alias', () => {
+  const check = CHECKS['vibe-closed-roster'];
+  for (const command of [
+    'VIBE_HOME=/tmp/h vibe -p hi </dev/null',
+    'VIBE_HOME=/tmp/h vibe -p hi --model mistral-medium-3.5 </dev/null',
+    'VIBE_HOME=/tmp/h vibe -p hi --model deepseek-v4-1-flash-1017 </dev/null',
+    'VIBE_HOME=/tmp/h vibe -p hi --model "$M" </dev/null',
+  ]) {
+    assert.equal(check(command), false, `accepted a model outside the roster: ${command}`);
+  }
+
+  for (const command of [
+    'VIBE_HOME=/tmp/h vibe -p hi --model deepseek-flash </dev/null',
+    'VIBE_HOME=/tmp/h vibe -p hi --model=glm-flash </dev/null',
+    'vibe --version',
+  ]) {
+    assert.equal(check(command), true, `refused a roster alias or a non-dispatch: ${command}`);
+  }
+});
+
+// The roster is a fact about the providers reference, so a row added or renamed there must not
+// leave the check accepting an alias Vibe cannot resolve, or refusing one it can.
+test('the Vibe roster aliases are the alias rows in the providers reference', () => {
+  const reference = path.join(CLI_ORCHESTRATION, 'cli-mistral-vibe/references/providers-and-models.md');
+  const blocks = [...fs.readFileSync(reference, 'utf8').matchAll(/```toml\n([\s\S]*?)```/g)]
+    .map((match) => match[1]);
+  const rows = blocks.find((block) => block.includes('[[models]]'));
+  assert.ok(rows, `no toml model-rows block in ${reference}`);
+
+  const aliases = [...rows.matchAll(/^\s*alias\s*=\s*"([^"]+)"/gm)].map((match) => match[1]);
+  assert.deepEqual([...VIBE_ROSTER_ALIASES].sort(), aliases.sort());
 });
 
 test('fail-open: a check that throws never produces a violation', () => {
@@ -974,7 +1182,7 @@ const CHECK_FIXTURES = {
     violated: DSH_FULL_DISPATCH.replace(' --json', ''),
   },
   'pinned-version-required': {
-    satisfied: 'npx @deepseek-ai/dsh@0.2.2-rc.1 --profile headless --json -',
+    satisfied: 'npx @deepseek-ai/dsh@0.2.2-rc.3 --profile headless --json -',
     violated: 'npx @deepseek-ai/dsh@0.2.2 --profile headless --json -',
   },
   'guards-patch-required': {
@@ -990,6 +1198,31 @@ const CHECK_FIXTURES = {
   'mcp-opt-in-only': {
     satisfied: DSH_FULL_DISPATCH.replace(' --json -', ' --patch ../patches/mcp-code-mode.patch.yml --json -'),
     violated: DSH_FULL_DISPATCH.replace(' --json -', ' --patch ../patches/mcp-extra.patch.yml --json -'),
+  },
+  'print-mode-only': {
+    satisfied: 'vibe -p hi </dev/null',
+    violated: 'vibe',
+  },
+  'isolated-vibe-home': {
+    satisfied: 'VIBE_HOME=/tmp/h vibe -p hi </dev/null',
+    violated: 'vibe -p hi </dev/null',
+  },
+  'rendered-home-hooks': {
+    satisfied: 'node /repo/.vibe/plugins/repo-guards/render-home-hooks.cjs /tmp/h && VIBE_HOME=/tmp/h vibe -p hi --output-dir /tmp/o </dev/null',
+    violated: 'VIBE_HOME=/tmp/h vibe -p hi --output-dir /tmp/o </dev/null',
+  },
+  'output-dir-required': {
+    satisfied: 'VIBE_HOME=/tmp/h vibe -p hi --output-dir /tmp/o </dev/null',
+    violated: 'VIBE_HOME=/tmp/h vibe -p hi </dev/null',
+  },
+  'vibe-closed-roster': {
+    satisfied: 'VIBE_HOME=/tmp/h vibe -p hi --model deepseek-flash </dev/null',
+    violated: 'VIBE_HOME=/tmp/h vibe -p hi --model mistral-medium-3.5 </dev/null',
+  },
+  'no-repo-root-cwd': {
+    satisfied: 'cd /tmp/run && VIBE_HOME=/tmp/run/h vibe -p hi </dev/null',
+    violated: 'VIBE_HOME=/tmp/h vibe -p hi </dev/null',
+    violatedContext: { cwd: DSH_REPO_ROOT, repoRoot: DSH_REPO_ROOT },
   },
 };
 
@@ -1162,4 +1395,119 @@ test('ENFORCEMENT GUARD: declared checks and implemented checks are a bijection'
   assert.deepEqual(orphanRules, [], `declared but never implemented: ${orphanRules.join(', ')}`);
   const orphanChecks = KNOWN_CHECKS.filter((c) => !declared.has(c));
   assert.deepEqual(orphanChecks, [], `implemented but no packet declares them: ${orphanChecks.join(', ')}`);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// cli-mistral-vibe hard rules
+// ─────────────────────────────────────────────────────────────────────────────
+
+const MV = path.join(CLI_ORCHESTRATION, 'cli-mistral-vibe/SKILL.md');
+const VIBE_SKILLS_ROOT = path.resolve(HERE, '../../../skills');
+const VIBE_RENDER = 'node /repo/.vibe/plugins/repo-guards/render-home-hooks.cjs /tmp/run/h';
+const VIBE_FULL_DISPATCH = `${VIBE_RENDER} && cd /tmp/run && VIBE_HOME=/tmp/run/h vibe -p hi --model deepseek-flash --output-dir /tmp/run/out </dev/null`;
+
+// The dsh packet owns `closed-roster`, so a vibe rule that borrowed the id would pass the CI
+// guard above (the id is known) while enforcing another runtime's roster.
+function assertVibeRuleChecks(rules) {
+  const unknown = rules.filter((rule) => !KNOWN_CHECKS.includes(rule.check)).map((rule) => rule.check);
+  assert.deepEqual(unknown, [], `unknown check ids: ${unknown.join(', ')}`);
+  const borrowed = rules.filter((rule) => rule.check === 'closed-roster').map((rule) => rule.id);
+  assert.deepEqual(borrowed, [], `dsh-only closed-roster rules: ${borrowed.join(', ')}`);
+}
+
+test('every vibe hard rule names an implemented check and never borrows the dsh roster check', () => {
+  const rules = readHardRules(MV);
+  assert.ok(rules.length > 0, 'cli-mistral-vibe declares no hard rules');
+  assertVibeRuleChecks(rules);
+
+  assert.throws(
+    () => assertVibeRuleChecks(rules.map((rule, index) => (
+      index === 0 ? { ...rule, check: 'no-such-check' } : rule))),
+    /unknown check ids: no-such-check/,
+  );
+  assert.throws(
+    () => assertVibeRuleChecks(rules.map((rule, index) => (
+      index === 0 ? { ...rule, check: 'closed-roster' } : rule))),
+    /dsh-only closed-roster rules/,
+  );
+});
+
+test('each vibe hard rule refuses its own violation through evaluateDispatch', () => {
+  const cases = [
+    ['print-mode-only', VIBE_FULL_DISPATCH.replace(' vibe -p hi', ' vibe hi')],
+    ['isolated-vibe-home', VIBE_FULL_DISPATCH.replace('VIBE_HOME=/tmp/run/h ', '')],
+    ['rendered-home-hooks', VIBE_FULL_DISPATCH.replace(`${VIBE_RENDER} && `, '')],
+    ['output-dir-required', VIBE_FULL_DISPATCH.replace(' --output-dir /tmp/run/out', '')],
+    ['vibe-closed-roster', VIBE_FULL_DISPATCH.replace('--model deepseek-flash', '--model mistral-medium-3.5')],
+    ['no-repo-root-cwd', VIBE_FULL_DISPATCH.replace('cd /tmp/run', `cd ${DSH_REPO_ROOT}`)],
+    ['stdin-redirect-required', VIBE_FULL_DISPATCH.replace(' </dev/null', '')],
+  ];
+
+  for (const [id, command] of cases) {
+    assert.notEqual(command, VIBE_FULL_DISPATCH, `${id} fixture did not change the command`);
+    assert.deepEqual(evaluateDispatch(VIBE_FULL_DISPATCH, VIBE_SKILLS_ROOT), [], `${id} refused the valid dispatch`);
+    const verdicts = evaluateDispatch(command, VIBE_SKILLS_ROOT);
+    assert.deepEqual(verdicts.map(({ skill }) => skill), ['cli-mistral-vibe'], `${id} did not resolve as a vibe dispatch`);
+    assert.deepEqual(
+      verdicts.flatMap(({ violations }) => violations.map((violation) => violation.id)),
+      [id],
+      `${id} did not name exactly its own rule`,
+    );
+  }
+});
+
+test('the documented vibe dispatch line passes every hard rule', () => {
+  const documented = 'cd "$RUN_DIR" && node "$REPO/.vibe/plugins/repo-guards/render-home-hooks.cjs" '
+    + '"$RUN_DIR/.vibe-home" && VIBE_HOME="$RUN_DIR/.vibe-home" vibe -p "$PROMPT" '
+    + '--model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null';
+  assert.deepEqual(evaluateDispatch(documented, VIBE_SKILLS_ROOT), []);
+});
+
+test('rendered-home-hooks refuses a literal home with no render step', () => {
+  const check = CHECKS['rendered-home-hooks'];
+  assert.equal(
+    check('VIBE_HOME=/tmp/h vibe -p hi --output-dir /tmp/o </dev/null'),
+    false,
+    'accepted a literal home with no render',
+  );
+});
+
+test('rendered-home-hooks refuses a variable home whose render step was removed', () => {
+  const check = CHECKS['rendered-home-hooks'];
+  assert.equal(
+    check('cd "$RUN_DIR" && VIBE_HOME="$RUN_DIR/.vibe-home" vibe -p "$PROMPT" --output-dir "$RUN_DIR/out" </dev/null'),
+    false,
+    'accepted a variable home with the render removed',
+  );
+});
+
+test('rendered-home-hooks refuses a render that names a different home', () => {
+  const check = CHECKS['rendered-home-hooks'];
+  assert.equal(
+    check('node /repo/.vibe/plugins/repo-guards/render-home-hooks.cjs /tmp/other && VIBE_HOME=/tmp/h vibe -p hi --output-dir /tmp/o </dev/null'),
+    false,
+    'accepted a render for another home',
+  );
+  assert.equal(
+    check('VIBE_HOME=/tmp/h vibe -p hi --output-dir /tmp/o </dev/null && node /repo/.vibe/plugins/repo-guards/render-home-hooks.cjs /tmp/h'),
+    false,
+    'accepted a render chained after the run',
+  );
+});
+
+test('rendered-home-hooks accepts the documented dispatch with the render chained first', () => {
+  const check = CHECKS['rendered-home-hooks'];
+  assert.equal(
+    check('cd "$RUN_DIR" && node "$REPO/.vibe/plugins/repo-guards/render-home-hooks.cjs" '
+      + '"$RUN_DIR/.vibe-home" && VIBE_HOME="$RUN_DIR/.vibe-home" vibe -p "$PROMPT" '
+      + '--model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null'),
+    true,
+    'refused the documented dispatch with a matching render',
+  );
+});
+
+test('vibe session-free commands start no run and pass every hard rule', () => {
+  for (const command of ['vibe --version', 'vibe --help', 'vibe config schema', 'vibe mcp list']) {
+    assert.deepEqual(evaluateDispatch(command, VIBE_SKILLS_ROOT), [], command);
+  }
 });

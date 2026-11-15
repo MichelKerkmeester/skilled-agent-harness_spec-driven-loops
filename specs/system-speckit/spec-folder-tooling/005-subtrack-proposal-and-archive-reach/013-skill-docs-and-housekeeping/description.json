@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping",
+  "description": "Phase 13: skill-docs-and-housekeeping",
+  "keywords": [
+    "phase",
+    "skill-docs-and-housekeeping"
+  ],
+  "lastUpdated": "2026-11-14T14:16:24.827Z",
+  "specId": "013",
+  "folderSlug": "skill-docs-and-housekeeping",
+  "parentChain": [
+    "system-speckit",
+    "spec-folder-tooling",
+    "005-subtrack-proposal-and-archive-reach"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_15-16__built-phases-012-and-013-of-packet-005-in.md"
+  ]
+}

@@ -52,8 +52,8 @@
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
       "scratch/measured-before.txt",
-      ".skilled/bin/compiled-route-guard.cjs",
-      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ".skilled/skills/sk-doc/hub-router.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json"
     ],
     "entities": [
       {
@@ -141,15 +141,9 @@
         "source": "derived"
       },
       {
-        "name": "compiled-route-guard.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/compiled-route-guard.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/hub-router.json",
         "source": "derived"
       },
       {
@@ -199,12 +193,18 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Commit 7af52ef940 (command surfacing, 2026-11-13) added nine phrases to the `vocabularyClasses` of two `hub-router.json` files and did not carry them to the hubs' root `ROUTER.md`",
     "created_at": "2026-11-13T21:40:26Z",
-    "last_save_at": "2026-11-14T05:29:26.504Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-11-14T18:07:16.866Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe60e6b706ff54825e26b42d82db30281617d28bd086d849a4a6eb7c83e5f008",
+    "source_fingerprint": "sha256:968a0a55369da9c9659485a53859cb84735be1858b83871d473cbd3d50b68ccb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "352ca2a0262c3e3b66b633ab96560ce6f87f793ccb058a4307d7e43e79a9bac2",
+      "spec.md": "c8c2f97ef5b43cea73ad936d47f3c4a4313eab995e7823b26f8c6d9429664af3",
       "plan.md": "1f8ccd6139541fd89980b5d1c6aad37db5438376dad6a14dce25ee8e3904e90d",
-      "tasks.md": "e92ecba6fc85539d3276a61775c70c90dd82a669f5d5e212359207a72334f1d9",
-      "implementation-summary.md": "ff69824396063ebba987179666a7942d8d7d560473555cc21b4cdccef89fdf07"
+      "tasks.md": "e9630433f44cd2c2f6e9fcab0461c2e22eb19be599505bf05644a35def4eb2da",
+      "implementation-summary.md": "07094f46304449b05c9ca0e5130309e6daa442d438b46ed7cb63a14acfaf3aa5"
     },
     "last_active_at": null
   }

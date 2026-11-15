@@ -22,7 +22,6 @@ const RESEARCH_DELTAS_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-res
 const RESEARCH_PROJECTIONS_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-research-projections-contract.ts');
 const REVIEW_DELTAS_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-review-deltas-contract.ts');
 const REVIEW_PROJECTIONS_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-review-projections-contract.ts');
-const COUNCIL_CONFIG_STATE_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-ai-council-config-state-contract.ts');
 const REAL_MANIFEST = readFileSync(join(RUNTIME_ROOT, MANIFEST_REL), 'utf8');
 const REAL_CONTRACT = readFileSync(join(RUNTIME_ROOT, CONTRACT_REL), 'utf8');
 const REAL_REVIEW_CONTRACT = readFileSync(join(RUNTIME_ROOT, REVIEW_CONTRACT_REL), 'utf8');
@@ -36,7 +35,6 @@ const REAL_COVERED_CONTRACTS: Record<string, string> = {
   [RESEARCH_PROJECTIONS_CONTRACT_REL]: readFileSync(join(RUNTIME_ROOT, RESEARCH_PROJECTIONS_CONTRACT_REL), 'utf8'),
   [REVIEW_DELTAS_CONTRACT_REL]: readFileSync(join(RUNTIME_ROOT, REVIEW_DELTAS_CONTRACT_REL), 'utf8'),
   [REVIEW_PROJECTIONS_CONTRACT_REL]: readFileSync(join(RUNTIME_ROOT, REVIEW_PROJECTIONS_CONTRACT_REL), 'utf8'),
-  [COUNCIL_CONFIG_STATE_CONTRACT_REL]: readFileSync(join(RUNTIME_ROOT, COUNCIL_CONFIG_STATE_CONTRACT_REL), 'utf8'),
 };
 
 const dirs: string[] = [];
@@ -107,13 +105,13 @@ function rulesOf(payload: any): string[] {
 }
 
 describe('check-projection-coverage', () => {
-  it('case 1: real manifest passes today -> status 0, projectable 16, covered 7, uncovered 9', () => {
+  it('case 1: real manifest passes today -> status 0, projectable 14, covered 6, uncovered 8', () => {
     const r = runReal();
     expect(r.status).toBe(0);
     expect(r.payload.ok).toBe(true);
-    expect(r.payload.projectable).toBe(16);
-    expect(r.payload.covered).toBe(7);
-    expect(r.payload.uncovered).toBe(9);
+    expect(r.payload.projectable).toBe(14);
+    expect(r.payload.covered).toBe(6);
+    expect(r.payload.uncovered).toBe(8);
     expect(r.payload.violations).toEqual([]);
   });
 
@@ -151,7 +149,7 @@ describe('check-projection-coverage', () => {
 
   it('case 3: declared uncovered count drifts from actual -> status 2, UNCOVERED_COUNT_MISMATCH', () => {
     // Remove one uncovered projectable surface so the derived uncovered total
-    // drops to 8 while the declared count stays 9. Removing a declared
+    // drops to 7 while the declared count stays 8. Removing a declared
     // uncovered surface also makes its declaration stale, so
     // STALE_UNCOVERED_DECLARATION co-occurs; the count rule is the target.
     const manifest = REAL_MANIFEST.replace(
@@ -168,8 +166,8 @@ describe('check-projection-coverage', () => {
     const mismatch = r.payload.violations.find(
       (v: any) => v.rule === 'UNCOVERED_COUNT_MISMATCH',
     );
-    expect(mismatch.detail).toContain('9');
     expect(mismatch.detail).toContain('8');
+    expect(mismatch.detail).toContain('7');
   });
 
   it('case 4: a declared uncovered surface is reclassified to retain-legacy-input -> status 2, STALE_UNCOVERED_DECLARATION', () => {
@@ -245,21 +243,21 @@ describe('check-projection-coverage', () => {
     const r = runReal();
     expect(r.status).toBe(0);
     expect(r.payload.ok).toBe(true);
-    expect(r.payload.projectable).toBe(16);
-    expect(r.payload.covered).toBe(7);
-    expect(r.payload.uncovered).toBe(9);
+    expect(r.payload.projectable).toBe(14);
+    expect(r.payload.covered).toBe(6);
+    expect(r.payload.uncovered).toBe(8);
     expect(r.payload.violations).toEqual([]);
-    expect(r.payload.breakdown.modeOwned.total).toBe(7);
+    expect(r.payload.breakdown.modeOwned.total).toBe(6);
     expect(r.payload.breakdown.modeOwned.uncovered).toBe(0);
     expect(r.payload.breakdown.modeOwned.uncoveredSurfaceIds).toEqual([]);
-    expect(r.payload.breakdown.infrastructure.total).toBe(9);
-    expect(r.payload.breakdown.infrastructure.uncovered).toBe(9);
+    expect(r.payload.breakdown.infrastructure.total).toBe(8);
+    expect(r.payload.breakdown.infrastructure.uncovered).toBe(8);
   });
 
   it('case 8: reassigning a mode surface to an infrastructure writer fires MODE_OWNED_COUNT_MISMATCH', () => {
     // Rewrite one mode-owned entry's legacyWriter to an infrastructure-style
-    // value so the derived mode-owned total drops from 7 to 6 while the
-    // declared constant stays 7. The anchor must sit INSIDE the target
+    // value so the derived mode-owned total drops from 6 to 5 while the
+    // declared constant stays 6. The anchor must sit INSIDE the target
     // entry's own block: matching from its surfaceId line through to its own
     // legacyWriter line pins the replacement to research-deltas itself, so a
     // neighbouring block's fields cannot silently redirect the rewrite and
@@ -280,8 +278,8 @@ describe('check-projection-coverage', () => {
     const mismatch = r.payload.violations.find(
       (v: any) => v.rule === 'MODE_OWNED_COUNT_MISMATCH',
     );
-    expect(mismatch.detail).toContain('7');
     expect(mismatch.detail).toContain('6');
-    expect(r.payload.breakdown.modeOwned.total).toBe(6);
+    expect(mismatch.detail).toContain('5');
+    expect(r.payload.breakdown.modeOwned.total).toBe(5);
   });
 });

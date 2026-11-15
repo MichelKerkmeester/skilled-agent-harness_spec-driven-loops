@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit",
+  "description": "Remove the file-total line ceiling from release notes",
+  "keywords": [
+    "remove",
+    "file-total",
+    "line",
+    "ceiling",
+    "release",
+    "notes"
+  ],
+  "lastUpdated": "2026-11-15T06:26:05.316Z",
+  "specId": "006",
+  "folderSlug": "remove-release-size-limit",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_07-26__removed-the-release-note-size-ceilings-in-steps.md"
+  ]
+}

@@ -1,0 +1,29 @@
+TASK: replace one section of one file.
+
+FILE: .skilled/skills/sk-code/sk-code-frontend/ROUTER.md (read lines 40 to 58 only)
+
+EDIT. The section `## 2. INTENT MODEL` holds eleven bullet lines, each starting with `- **` and containing the words `fires on`. Replace all eleven bullet lines with the text between the two marker lines below. Keep the heading `## 2. INTENT MODEL`, the blank line under it, and the `---` line that follows the section.
+
+<<<TEXT
+The keywords and weights of each intent are authored once, in the `INTENT_SIGNALS` block of section 3. Read them there. `hub-router.json` holds the same keywords in the three `code-frontend` classes and the hub `ROUTER.md` holds them in its own rows. Check 2 of `verify-router-sync.cjs` fails when the three differ.
+
+What each intent loads:
+
+- **`FRONTEND_WEB`** loads `references/frontend-practice.md` and `references/web-markup-and-css.md`.
+- **`WEB_ELEMENTS`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-elements-and-attributes.md`.
+- **`WEB_CASCADE`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-cascade-and-selectors.md`.
+- **`WEB_LAYOUT`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-layout-and-sizing.md`.
+- **`WEB_A11Y`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-accessibility-patterns.md`.
+- **`WEB_PERF`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-performance-and-loading.md`.
+- **`WEB_I18N`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-internationalization.md`.
+- **`WEB_VISUAL_VALUES`** loads `references/frontend-practice.md` and `references/web-visual-values.md`.
+- **`WEB_VISUAL_HIERARCHY`** loads `references/frontend-practice.md`, `references/web-visual-hierarchy.md`, `references/web-visual-values.md`, and `references/web-accessibility-patterns.md`.
+- **`WEB_MOTION`** loads `references/frontend-practice.md` and `references/web-motion-and-interaction.md`.
+- **`FIGMA_TO_CODE`** loads `references/figma-to-code.md` and `references/frontend-practice.md`.
+TEXT>>>
+
+Change nothing else. One file changes. Do not touch the python block in section 3.
+
+VERIFY (run from the repository root):
+rg -c 'fires on' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md; echo "exit $?"; rg -c '^- \*\*`[A-Z_0-9]+`\*\* loads ' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md
+Expected output: `exit 1` then `11`

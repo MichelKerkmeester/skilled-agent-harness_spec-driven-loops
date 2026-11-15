@@ -1,0 +1,343 @@
+=================== spec-packet-relocation (commands extracted verbatim from the scenario)
+RELOCATE_COPY=/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/relocate-manual.NOwgXW
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/relocate-manual.NOwgXW/specs/demo/001-alpha
+demo: add 001-alpha (written)
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/relocate-manual.NOwgXW/specs/demo/004-beta
+demo: add 004-beta (written)
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/relocate-manual.NOwgXW/specs/demo/006-gamma
+demo: add 006-gamma (written)
+description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/relocate-manual.NOwgXW/specs/demo/002-old
+demo: add 002-old (written)
+SUCCESS: Archived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/relocate-manual.NOwgXW/specs/demo/002-old -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/relocate-manual.NOwgXW/specs/demo/z_archive/002-old
+demo: remove 002-old (written)
+relocate: dry run, nothing written (pass --apply to write)
+  move     specs/demo/004-beta -> specs/demo/003-beta
+  move     specs/demo/006-gamma -> specs/demo/004-gamma
+  rewrite  specs/demo/001-alpha/spec.md: 1 reference(s)
+  rewrite  specs/demo/003-beta/description.json (moved): 1 reference(s)
+  rewrite  specs/demo/003-beta/graph-metadata.json (moved): 2 reference(s)
+  rewrite  specs/demo/004-gamma/description.json (moved): 1 reference(s)
+  rewrite  specs/demo/004-gamma/graph-metadata.json (moved): 2 reference(s)
+  rewrite  specs/demo/graph-metadata.json: 2 reference(s)
+  identity specs/demo/003-beta: moved -> migrate-generated-json --only, repair-derived --apply
+  identity specs/demo/004-gamma: moved -> migrate-generated-json --only, repair-derived --apply
+  re-derive specs/demo/001-alpha (references rewritten)
+  roots    demo -> refresh-track-roots --apply
+  ledger   .skilled/skills/sk-doc/shared/scripts/relocation-ledger.json: record 2 move(s)
+  then     cite-drift-scan --rebuild-redirects, generate-trigger-index, sweep-track-roots, validate.sh --strict on 2 moved packet(s)
+
+moves=2 moved=0 rewrites=6 identity=2 roots=1 ledger=2
+RENUMBER_DRY_EXIT=1
+relocate: dry run, nothing written (pass --apply to write)
+  move     specs/demo/006-gamma -> specs/demo/005-gamma
+  rewrite  specs/demo/005-gamma/description.json (moved): 1 reference(s)
+  rewrite  specs/demo/005-gamma/graph-metadata.json (moved): 2 reference(s)
+  rewrite  specs/demo/graph-metadata.json: 1 reference(s)
+  identity specs/demo/005-gamma: moved -> migrate-generated-json --only, repair-derived --apply
+  roots    demo -> refresh-track-roots --apply
+  ledger   .skilled/skills/sk-doc/shared/scripts/relocation-ledger.json: record 1 move(s)
+  then     cite-drift-scan --rebuild-redirects, generate-trigger-index, sweep-track-roots, validate.sh --strict on 1 moved packet(s)
+
+moves=1 moved=0 rewrites=3 identity=1 roots=1 ledger=1
+MOVE_DRY_EXIT=1
+relocate: refused: to specs/demo/002-gamma: number 002 is already used by specs/demo/z_archive/002-old
+relocate: nothing was written
+REFUSED_EXIT=2
+specs/demo:
+001-alpha
+004-beta
+006-gamma
+description.json
+graph-metadata.json
+z_archive
+
+specs/demo/z_archive:
+002-old
+relocate: applying
+  move     specs/demo/004-beta -> specs/demo/003-beta
+  move     specs/demo/006-gamma -> specs/demo/004-gamma
+  rewrite  specs/demo/001-alpha/spec.md: 1 reference(s)
+  rewrite  specs/demo/003-beta/description.json (moved): 1 reference(s)
+  rewrite  specs/demo/003-beta/graph-metadata.json (moved): 2 reference(s)
+  rewrite  specs/demo/004-gamma/description.json (moved): 1 reference(s)
+  rewrite  specs/demo/004-gamma/graph-metadata.json (moved): 2 reference(s)
+  rewrite  specs/demo/graph-metadata.json: 2 reference(s)
+  identity specs/demo/003-beta: moved -> migrate-generated-json --only, repair-derived --apply
+  identity specs/demo/004-gamma: moved -> migrate-generated-json --only, repair-derived --apply
+  re-derive specs/demo/001-alpha (references rewritten)
+  roots    demo -> refresh-track-roots --apply
+  ledger   .skilled/skills/sk-doc/shared/scripts/relocation-ledger.json: record 2 move(s)
+  then     cite-drift-scan --rebuild-redirects, generate-trigger-index, sweep-track-roots, validate.sh --strict on 2 moved packet(s)
+
+moves=2 moved=0 rewrites=6 identity=2 roots=1 ledger=2
+
+step declare sub-tracks: ok (0)
+step move: ok (2 folder(s))
+step rewrite references: ok (6 file(s))
+step description identity (migrate-generated-json --only): ok
+step graph identity and pointers specs/demo/003-beta (repair-derived): ok
+step graph identity and pointers specs/demo/004-gamma (repair-derived): ok
+step re-derive packets whose references changed (repair-derived): ok
+step track roots (refresh-track-roots): ok
+step ledger: ok (2 move(s))
+step redirect table (cite-drift-scan --rebuild-redirects): ok
+step trigger index (generate-trigger-index): ok
+relocate: applied 2 move(s)
+
+close sweep-track-roots: ok
+close validate specs/demo/003-beta: RESULT: PASSED
+close validate specs/demo/004-gamma: RESULT: PASSED
+APPLY_EXIT=0
+specs/demo:
+001-alpha
+003-beta
+004-gamma
+description.json
+graph-metadata.json
+z_archive
+
+specs/demo/z_archive:
+002-old
+relocate: no moves to make; nothing to do
+RERUN_EXIT=0
+relocate: applying
+  move     specs/demo/004-gamma -> specs/demo/005-gamma
+  rewrite  specs/demo/005-gamma/description.json (moved): 1 reference(s)
+  rewrite  specs/demo/005-gamma/graph-metadata.json (moved): 2 reference(s)
+  rewrite  specs/demo/005-gamma/implementation-summary.md (moved): 1 reference(s)
+  rewrite  specs/demo/graph-metadata.json: 1 reference(s)
+  identity specs/demo/005-gamma: moved -> migrate-generated-json --only, repair-derived --apply
+  roots    demo -> refresh-track-roots --apply
+  ledger   .skilled/skills/sk-doc/shared/scripts/relocation-ledger.json: record 1 move(s)
+  then     cite-drift-scan --rebuild-redirects, generate-trigger-index, sweep-track-roots, validate.sh --strict on 1 moved packet(s)
+
+moves=1 moved=0 rewrites=4 identity=1 roots=1 ledger=1
+
+step declare sub-tracks: ok (0)
+step move: ok (1 folder(s))
+step rewrite references: ok (4 file(s))
+step description identity (migrate-generated-json --only): ok
+step graph identity and pointers specs/demo/005-gamma (repair-derived): ok
+step track roots (refresh-track-roots): ok
+step ledger: ok (1 move(s))
+step redirect table (cite-drift-scan --rebuild-redirects): ok
+step trigger index (generate-trigger-index): ok
+relocate: applied 1 move(s)
+
+close sweep-track-roots: ok
+    x FILE_EXISTS: Missing 1 required file(s) for Level 1
+    x LEVEL_MATCH: Level consistency errors
+    Summary: Errors: 2  Warnings: 4
+close validate specs/demo/005-gamma: RESULT: FAILED
+STATUS3_EXIT=3
+relocate: dry run, nothing written (pass --apply to write)
+  moved    specs/demo/004-gamma -> specs/demo/005-gamma (already at its destination)
+
+moves=0 moved=1 rewrites=0 identity=0 roots=0 ledger=0
+relocate: nothing to do
+STATUS3_RERUN_EXIT=0
+relocate: applying
+  move     specs/demo/003-beta -> specs/demo/007-beta
+  rewrite  specs/demo/001-alpha/spec.md: 1 reference(s)
+  rewrite  specs/demo/007-beta/description.json (moved): 1 reference(s)
+  rewrite  specs/demo/007-beta/graph-metadata.json (moved): 2 reference(s)
+  rewrite  specs/demo/007-beta/implementation-summary.md (moved): 1 reference(s)
+  rewrite  specs/demo/graph-metadata.json: 1 reference(s)
+  identity specs/demo/007-beta: moved -> migrate-generated-json --only, repair-derived --apply
+  re-derive specs/demo/001-alpha (references rewritten)
+  roots    demo -> refresh-track-roots --apply
+  ledger   .skilled/skills/sk-doc/shared/scripts/relocation-ledger.json: record 1 move(s)
+  then     cite-drift-scan --rebuild-redirects, generate-trigger-index, sweep-track-roots, validate.sh --strict on 1 moved packet(s)
+
+moves=1 moved=0 rewrites=5 identity=1 roots=1 ledger=1
+
+step declare sub-tracks: ok (0)
+step move: ok (1 folder(s))
+step rewrite references: ok (5 file(s))
+step description identity (migrate-generated-json --only): ok
+step graph identity and pointers specs/demo/007-beta (repair-derived): ok
+step re-derive packets whose references changed (repair-derived): ok
+step track roots (refresh-track-roots): ok
+step ledger: ok (1 move(s))
+step redirect table (cite-drift-scan --rebuild-redirects): ok
+step trigger index (generate-trigger-index): FAILED exit 1: 
+relocate: stopped; the report above names the failed step. Rerun the same map to finish it.
+LATE_FAIL_EXIT=2
+relocate: applying
+  moved    specs/demo/003-beta -> specs/demo/007-beta (already at its destination)
+  re-derive specs/demo/007-beta (finishing an earlier run)
+  re-derive specs/demo/001-alpha (names a moved packet; finishing an earlier run)
+  then     cite-drift-scan --rebuild-redirects, generate-trigger-index, sweep-track-roots, validate.sh --strict on 1 moved packet(s)
+
+moves=0 moved=1 rewrites=0 identity=0 roots=0 ledger=0
+
+step declare sub-tracks: ok (0)
+step move: ok (0 folder(s))
+step rewrite references: ok (0 file(s))
+step graph identity and pointers specs/demo/007-beta (repair-derived): ok
+step re-derive packets whose references changed (repair-derived): ok
+step redirect table (cite-drift-scan --rebuild-redirects): ok
+step trigger index (generate-trigger-index): ok
+relocate: applied 0 move(s), finished 1 earlier move(s)
+
+close sweep-track-roots: ok
+close validate specs/demo/007-beta: RESULT: PASSED
+LATE_RERUN_EXIT=0
+relocate: dry run, nothing written (pass --apply to write)
+  moved    specs/demo/003-beta -> specs/demo/007-beta (already at its destination)
+
+moves=0 moved=1 rewrites=0 identity=0 roots=0 ledger=0
+relocate: nothing to do
+LATE_FINAL_EXIT=0
+script-exit=0
+=================== sub-track-proposal (commands extracted verbatim from the scenario)
+SUBTRACK_DEMO=/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/subtrack-manual.Knfv68
+track tools has 5 live packets, below the threshold of 8; no map
+DEFAULT_EXIT=0
+suggest-subtracks: tools/ranking-search <- 001-rank-tuning, 002-rank-cache
+suggest-subtracks: tools/archive-restore <- 003-archive-restore, 004-archive-listing
+suggest-subtracks: tools/general <- 005-release-notes
+[
+  {
+    "from": "tools/001-rank-tuning",
+    "to": "tools/ranking-search/001-rank-tuning"
+  },
+  {
+    "from": "tools/002-rank-cache",
+    "to": "tools/ranking-search/002-rank-cache"
+  },
+  {
+    "from": "tools/003-archive-restore",
+    "to": "tools/archive-restore/001-archive-restore"
+  },
+  {
+    "from": "tools/004-archive-listing",
+    "to": "tools/archive-restore/002-archive-listing"
+  },
+  {
+    "from": "tools/005-release-notes",
+    "to": "tools/general/001-release-notes"
+  }
+]
+MAP_EXIT=0
+track tools is flat; no sub-track to fit
+DESCRIBE_EXIT=0
+suggest-subtracks: track missing does not exist
+MISSING_EXIT=2
+001-rank-tuning
+002-rank-cache
+003-archive-restore
+004-archive-listing
+005-release-notes
+suggest-subtracks: tools/ranking-search <- 001-rank-tuning, 002-rank-cache
+suggest-subtracks: tools/archive-restore <- 003-archive-restore, 004-archive-listing
+suggest-subtracks: tools/general <- 005-release-notes
+relocate: dry run, nothing written (pass --apply to write)
+  declare  specs/tools/archive-restore (sub-track)
+  declare  specs/tools/general (sub-track)
+  declare  specs/tools/ranking-search (sub-track)
+  move     specs/tools/001-rank-tuning -> specs/tools/ranking-search/001-rank-tuning
+  move     specs/tools/002-rank-cache -> specs/tools/ranking-search/002-rank-cache
+  move     specs/tools/003-archive-restore -> specs/tools/archive-restore/001-archive-restore
+  move     specs/tools/004-archive-listing -> specs/tools/archive-restore/002-archive-listing
+  move     specs/tools/005-release-notes -> specs/tools/general/001-release-notes
+  rewrite  specs/tools/ranking-search/001-rank-tuning/description.json (moved): 1 reference(s)
+  rewrite  specs/tools/ranking-search/002-rank-cache/description.json (moved): 1 reference(s)
+  rewrite  specs/tools/archive-restore/001-archive-restore/description.json (moved): 1 reference(s)
+  rewrite  specs/tools/archive-restore/002-archive-listing/description.json (moved): 1 reference(s)
+  rewrite  specs/tools/general/001-release-notes/description.json (moved): 1 reference(s)
+  identity specs/tools/ranking-search/001-rank-tuning: moved -> migrate-generated-json --only, repair-derived --apply
+  identity specs/tools/ranking-search/002-rank-cache: moved -> migrate-generated-json --only, repair-derived --apply
+  identity specs/tools/archive-restore/001-archive-restore: moved -> migrate-generated-json --only, repair-derived --apply
+  identity specs/tools/archive-restore/002-archive-listing: moved -> migrate-generated-json --only, repair-derived --apply
+  identity specs/tools/general/001-release-notes: moved -> migrate-generated-json --only, repair-derived --apply
+  roots    tools -> refresh-track-roots --apply
+  roots    tools/archive-restore -> refresh-track-roots --apply
+  roots    tools/general -> refresh-track-roots --apply
+  roots    tools/ranking-search -> refresh-track-roots --apply
+  ledger   .skilled/skills/sk-doc/shared/scripts/relocation-ledger.json: record 5 move(s)
+  then     cite-drift-scan --rebuild-redirects, generate-trigger-index, sweep-track-roots, validate.sh --strict on 5 moved packet(s)
+
+moves=5 moved=0 rewrites=5 identity=5 roots=4 ledger=5
+PREFLIGHT_EXIT=1
+script-exit=0
+=================== rg-archive-search (commands extracted verbatim from the scenario)
+RG_ARCHIVE_DEMO=/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/rg-archive-manual.hbm9lN
+recipe  : path
+command : rg --no-config --hidden --fixed-strings --ignore-case --files-with-matches --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' -- 'ledger reconciliation' specs
+exit    : 0 (match)
+paths   : 1
+  specs/demo/001-alpha/spec.md
+DEFAULT_EXIT=0
+recipe  : path
+command : rg --no-config --hidden --fixed-strings --ignore-case --files-with-matches --max-count 1 --glob '*.md' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' -- 'ledger reconciliation' specs
+exit    : 0 (match)
+paths   : 2
+  specs/demo/001-alpha/spec.md
+  specs/demo/z_archive/002-old/spec.md  [archived]
+json    : 1 archived metadata file(s)
+  specs/demo/z_archive/002-old/description.json  [archived]
+ARCHIVE_PATH_EXIT=0
+recipe  : structured
+command : rg --no-config --hidden --json --fixed-strings --ignore-case --glob '*.md' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' -- 'ledger reconciliation' specs
+exit    : 0 (match)
+ranked  : 2 match(es) in 2 file(s); showing 2 file(s) at limit 20
+  body                 specs/demo/001-alpha/spec.md:3
+  body                 specs/demo/z_archive/002-old/spec.md:3  [archived]
+json    : 1 archived metadata file(s)
+  specs/demo/z_archive/002-old/description.json  [archived]
+ARCHIVE_STRUCTURED_EXIT=0
+{
+  "command": "rg --no-config --hidden --fixed-strings --ignore-case --count --glob '*.md' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' -- 'ledger reconciliation' specs",
+  "counts": [
+    {
+      "archived": false,
+      "count": 1,
+      "path": "specs/demo/001-alpha/spec.md"
+    },
+    {
+      "archived": true,
+      "count": 1,
+      "path": "specs/demo/z_archive/002-old/spec.md"
+    }
+  ],
+  "exitCode": 0,
+  "fileCount": 2,
+  "hidden": {
+    "files": 0,
+    "matches": 0
+  },
+  "includeArchive": true,
+  "jsonLane": {
+    "command": "rg --no-config --hidden --fixed-strings --ignore-case --files-with-matches --max-count 1 --glob '**/z_archive/**/description.json' --glob '**/z_archive/**/graph-metadata.json' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' -- 'ledger reconciliation' specs",
+    "exitCode": 0,
+    "outcome": "match",
+    "paths": [
+      "specs/demo/z_archive/002-old/description.json"
+    ],
+    "stderr": ""
+  },
+  "limit": 20,
+  "matchCount": 2,
+  "outcome": "match",
+  "paths": null,
+  "recipe": "count",
+  "results": null,
+  "schemaVersion": 3,
+  "stderr": "",
+  "truncated": false,
+  "unparsedLines": 0
+}
+ARCHIVE_COUNT_EXIT=0
+PATH_JSON_EXIT=0
+{
+  "includeArchive": true,
+  "paths": [
+    "specs/demo/001-alpha/spec.md",
+    "specs/demo/z_archive/002-old/spec.md"
+  ],
+  "archivedPaths": [
+    "specs/demo/z_archive/002-old/spec.md"
+  ]
+}
+script-exit=0

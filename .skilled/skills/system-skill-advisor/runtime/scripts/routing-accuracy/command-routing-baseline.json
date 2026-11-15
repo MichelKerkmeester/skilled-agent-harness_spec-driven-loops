@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "60968af043",
-  "corpusSha256": "sha256:7b0ba01943dac2a6a284764e3b31464b9a81f58acf726a2a32986df1b215b43a",
+  "capturedAtSha": "b5b8e699a97",
+  "corpusSha256": "sha256:e08017b5d8face375de4b51e0768fbc451e9b4d7f474e41d4ea25703ea8dcbff",
   "bridgeCounts": {
     "commandMetadata": 27,
     "doctorRoutes": 36,
     "generated": 63,
-    "typescriptActive": 46,
-    "pythonActive": 52
+    "typescriptActive": 47,
+    "pythonActive": 53
   },
   "metrics": {
     "typed_recall_at_1": {
@@ -16,26 +16,26 @@
       "total": 44
     },
     "typed_reach_top3": {
-      "correct": 27,
+      "correct": 28,
       "total": 44
     },
     "plain_recall_at_1": {
       "tune": {
-        "correct": 13,
+        "correct": 14,
         "total": 45
       },
       "holdout": {
-        "correct": 1,
+        "correct": 2,
         "total": 44
       }
     },
     "plain_reach_top3": {
       "tune": {
-        "correct": 15,
+        "correct": 16,
         "total": 45
       },
       "holdout": {
-        "correct": 2,
+        "correct": 3,
         "total": 44
       }
     },
@@ -51,7 +51,7 @@
     },
     "agreement": {
       "correct": 6,
-      "total": 9
+      "total": 10
     }
   },
   "unreachable": [
@@ -66,7 +66,6 @@
     "/create:sk-skill",
     "/create:skill-parent",
     "/create:with-human-voice",
-    "/deep:ai-council",
     "/deep:research",
     "/deep:review",
     "/design:chart",
@@ -303,25 +302,6 @@
       }
     },
     "/create:with-human-voice": {
-      "typed": {
-        "rows": 1,
-        "top1": 0,
-        "top3": 0
-      },
-      "plain": {
-        "tune": {
-          "rows": 1,
-          "top1": 0,
-          "top3": 0
-        },
-        "holdout": {
-          "rows": 1,
-          "top1": 0,
-          "top3": 0
-        }
-      }
-    },
-    "/deep:ai-council": {
       "typed": {
         "rows": 1,
         "top1": 0,
@@ -774,6 +754,25 @@
           "rows": 1,
           "top1": 0,
           "top3": 0
+        }
+      }
+    },
+    "/speckit:ai-council": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
         }
       }
     },
@@ -1339,20 +1338,6 @@
       "top3": true,
       "offered": true
     },
-    "cmd-deep-ai-council-typed-01": {
-      "expected_command": "/deep:ai-council",
-      "top": "system-deep-loop",
-      "top1": false,
-      "top3": false,
-      "offered": false
-    },
-    "cmd-deep-ai-council-plain-tune-01": {
-      "expected_command": "/deep:ai-council",
-      "top": "system-deep-loop",
-      "top1": false,
-      "top3": false,
-      "offered": false
-    },
     "cmd-deep-research-typed-01": {
       "expected_command": "/deep:research",
       "top": "system-deep-loop",
@@ -1464,6 +1449,20 @@
       "top1": false,
       "top3": false,
       "offered": false
+    },
+    "cmd-speckit-ai-council-typed-01": {
+      "expected_command": "/speckit:ai-council",
+      "top": "sk-git",
+      "top1": false,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-speckit-ai-council-plain-tune-01": {
+      "expected_command": "/speckit:ai-council",
+      "top": "command-speckit-ai-council",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-speckit-implement-typed-01": {
       "expected_command": "/speckit:implement",
@@ -1840,36 +1839,36 @@
   "attachedMetrics": {
     "plain": {
       "tune": {
-        "own": 13,
-        "attached": 15,
+        "own": 14,
+        "attached": 14,
         "combined": 28,
         "total": 45
       },
       "holdout": {
-        "own": 1,
+        "own": 2,
         "attached": 0,
-        "combined": 1,
+        "combined": 2,
         "total": 44
       }
     },
     "plain_stages": {
       "tune": {
         "total": 45,
-        "own": 13,
-        "ownerLed": 23,
-        "routed": 21,
-        "withCommand": 15,
-        "attached": 15,
+        "own": 14,
+        "ownerLed": 22,
+        "routed": 20,
+        "withCommand": 14,
+        "attached": 14,
         "neither": 9
       },
       "holdout": {
         "total": 44,
-        "own": 1,
+        "own": 2,
         "ownerLed": 6,
         "routed": 3,
         "withCommand": 0,
         "attached": 0,
-        "neither": 37
+        "neither": 36
       }
     },
     "plain_by_family": {
@@ -1890,15 +1889,15 @@
       "deep": {
         "tune": {
           "own": 0,
-          "attached": 3,
-          "combined": 3,
-          "total": 3
+          "attached": 2,
+          "combined": 2,
+          "total": 2
         },
         "holdout": {
           "own": 0,
           "attached": 0,
           "combined": 0,
-          "total": 3
+          "total": 2
         }
       },
       "design": {
@@ -1945,16 +1944,16 @@
       },
       "speckit": {
         "tune": {
-          "own": 2,
+          "own": 3,
           "attached": 0,
-          "combined": 2,
-          "total": 7
+          "combined": 3,
+          "total": 8
         },
         "holdout": {
-          "own": 0,
+          "own": 1,
           "attached": 0,
-          "combined": 0,
-          "total": 7
+          "combined": 1,
+          "total": 8
         }
       }
     },
@@ -1992,8 +1991,8 @@
     },
     "typed": {
       "own": 24,
-      "attached": 20,
-      "combined": 44,
+      "attached": 19,
+      "combined": 43,
       "total": 44
     },
     "typedRows": {
@@ -2087,13 +2086,6 @@
         "carried": "attached",
         "command": "/create:with-human-voice",
         "policy": "start"
-      },
-      "cmd-deep-ai-council-typed-01": {
-        "expected_command": "/deep:ai-council",
-        "top": "system-deep-loop",
-        "carried": "attached",
-        "command": "/deep:ai-council",
-        "policy": "ask"
       },
       "cmd-deep-research-typed-01": {
         "expected_command": "/deep:research",
@@ -2256,6 +2248,13 @@
         "command": "/prompt:improve",
         "policy": "start"
       },
+      "cmd-speckit-ai-council-typed-01": {
+        "expected_command": "/speckit:ai-council",
+        "top": "sk-git",
+        "carried": null,
+        "command": null,
+        "policy": null
+      },
       "cmd-speckit-complete-typed-01": {
         "expected_command": "/speckit:complete",
         "top": "command-speckit-complete",
@@ -2328,8 +2327,6 @@
       "cmd-create-skill-typed-01": "/create:sk-skill",
       "cmd-create-skill-plain-tune-01": "/create:sk-skill",
       "cmd-create-with-human-voice-typed-01": "/create:with-human-voice",
-      "cmd-deep-ai-council-typed-01": "/deep:ai-council",
-      "cmd-deep-ai-council-plain-tune-01": "/deep:ai-council",
       "cmd-deep-research-plain-tune-01": "/deep:research",
       "cmd-deep-review-plain-tune-01": "/deep:review",
       "cmd-design-chart-typed-01": "/design:chart",

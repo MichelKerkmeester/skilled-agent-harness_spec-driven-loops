@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge",
+  "description": "The Pi prompt hook failed to deliver skill suggestions because it could not find the advisor CLI assets and its dedup receipt ignored recommendation",
+  "keywords": [
+    "prompt",
+    "hook",
+    "failed",
+    "deliver",
+    "skill",
+    "suggestions",
+    "because",
+    "find",
+    "advisor",
+    "cli",
+    "assets",
+    "dedup",
+    "receipt",
+    "ignored",
+    "recommendation"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.538Z",
+  "specId": "002",
+  "folderSlug": "pi-advisor-bridge",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

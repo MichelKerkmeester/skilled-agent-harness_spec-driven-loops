@@ -115,7 +115,7 @@ lib/
 | `resume/resume-ladder.ts` | Builds the continuity ladder a resume reads. |
 | `templates/level-contract-resolver.ts` | Resolves the per-level document contract the rules check against. |
 | `spec/is-phase-parent.ts` | Single-source-of-truth phase-parent detection: a numbered child that carries `spec.md` or `description.json`. |
-| `spec/packet-purpose.ts` | Reads a packet's one-sentence purpose for the post-compaction context. |
+| `spec/packet-purpose.ts` | Reads a packet's one-sentence purpose and problem for the compaction recovery and for the `packet_purpose` field each continuity save writes. |
 | `utils/canonical-path.ts` | Canonical path keying used for identity and deduplication. |
 | `utils/index-scope.ts` | Index scope invariants that decide what is in scope for indexing. |
 

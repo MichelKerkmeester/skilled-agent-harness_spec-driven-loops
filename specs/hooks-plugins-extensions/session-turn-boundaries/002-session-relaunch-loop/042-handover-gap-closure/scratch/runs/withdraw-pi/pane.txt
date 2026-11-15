@@ -1,0 +1,50 @@
+   │ ▌ 2+ │ status: open
+   │ ▌ 3+ │ session_id: 01a1ddae-282b-71d2-bbbd-4af0155a1f95
+   │ ▌ 4+ │ loop_id: 58718
+   │ ▌ 5+ │ runtime: pi
+   │ ▌ 6+ │ cwd: /Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity
+   │ ▌ 7+ │ spec_folder: none
+   │ ▌ 8+ │ created_at: 2026-11-15T05:29:08.822Z
+   │ ▌ 9+ │ ---
+   │ ▌10+ │ ## Goal
+   │ ▌11+ │ Report the line count of `.skilled/hooks/session-relaunch/README.md` and repeat the code word ORCHID-18034.
+   │ ▌12+ │
+   │ ▌13+ │ ## Done
+   │ ▌14+ │ - Read `.skilled/hooks/session-relaunch/README.md`; it contains 378 lines.
+   │ ▌15+ │
+   │ ▌16+ │ ## Remaining work
+   │ ▌17+ │ - Reply with the line count and code word ORCHID-18034.
+   │ ▌18+ │
+   │ ▌19+ │ ## In-flight state
+   │ ▌20+ │ Active command: none
+   │ ▌21+ │ Running workers: none
+   │ ▌22+ │ Scheduled: none
+   │ ▌23+ │ Added directories: none
+   └ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ● Bash Preparing the session handoff                                                                                                                                                               <1s
+   └ Done (1 lines) (ctrl+o to toggle)
+
+ ● 378 lines — ORCHID-18034
+
+ Observational memory: 2 observations recorded
+
+
+   Status check: what is the state of your hand-over right now, and what should you do next? Answer in one or two sentences.
+
+   Advisor: no skill matched.
+   Directives:
+   - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks
+     violations.
+
+
+ ● The handoff is prepared and open; prepare succeeded with exit 0. I should stop now so the loop can relaunch a fresh session to continue.
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · gpt-6-luna [openai] · low ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+                                                                                                                                                                                                    fast
+worktrees/392-cross-runtime-handover-parity | GPT-6 Luna | ctx: 87% left | used: 34.8k tok | $0.01

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "debug agent revert and handoff",
+      "phase 11 debug agent revert and handoff",
+      "debug agent revert and handoff plan",
+      "debug agent revert and handoff tasks",
+      "debug agent revert and handoff implementation summary"
+    ],
+    "key_topics": [
+      "debug",
+      "agent",
+      "revert",
+      "handoff",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "fails",
+      "goes",
+      "next"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/after.txt",
+      ".skilled/agents/debug.md",
+      ".claude/agents/debug.md",
+      ".pi/agents/debug.md",
+      ".codex/agents/debug.toml",
+      ".dsh/agents/debug.patch.yml",
+      ".opencode/agents/debug.md",
+      ".cursor/agents/debug.md",
+      ".devin/agents/debug/AGENT.md",
+      "scratch/baseline.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".skilled/agents/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug.toml",
+        "kind": "file",
+        "path": ".codex/agents/debug.toml",
+        "source": "derived"
+      },
+      {
+        "name": "debug.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/debug.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "AGENT.md",
+        "kind": "doc",
+        "path": ".devin/agents/debug/AGENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Debug Blocked",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Markdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview All",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Agent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When a fix fails, Phase 5 of the debug agent goes to the next hypothesis or back to Phase 1 and never undoes the failed edit, so fixes stack in the file against its own rule \"single fix at a time\"",
+    "created_at": "2026-11-14T20:19:22Z",
+    "last_save_at": "2026-11-15T00:06:58.739Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c85363691413cd3eb6d1019d56606b01ff79eb671a800d4f0b047bb9d9ed3204",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0b3141b1edd20e9c1cea8d8c5e1fc2241a170d1004031e227bc1a597107b2e14",
+      "plan.md": "116c27c942c89795d32d1fba6e6b361cbcac7e0b3df721ac9bcc9b1810a10965",
+      "tasks.md": "476922ca767dc972dade22d6e39d4501a297d9f1e630ebf5eaa19a29fc172624",
+      "implementation-summary.md": "4c3a9f6ed16c55b1e72b118f0617648f6944e781a26fcfc8d6aff7aa000347ee"
+    },
+    "last_active_at": null
+  }
+}

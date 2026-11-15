@@ -8,7 +8,7 @@ trigger_phrases:
   - "cli dispatch resource map"
 importance_tier: important
 contextType: general
-version: 1.7.12.0
+version: 1.7.14.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -28,7 +28,7 @@ This is cli-external-orchestration's second-layer (surface) router, first-class 
 as `ROUTER.md`. The hub
 selects a workflow mode in [`hub-router.json`](hub-router.json)
 (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`,
-`cli-pi` or `cli-deepseek-harness`); this doc maps a request's CLI-dispatch intent to the exact
+`cli-pi`, `cli-deepseek-harness` or `cli-mistral-vibe`); this doc maps a request's CLI-dispatch intent to the exact
 packet-local leaf resources that mode should load. Every path is
 packet-qualified (`<packet>/references|assets/…`, where
 `<packet>` is the mode's `mode-registry.json` `packet` field) and converts to
@@ -81,12 +81,24 @@ per-mode references, it is not part of the first slice.
   this card on every run, so the card takes that slot. The mode remains
   experimental. LLM Gateway answered a keyed run on 2026-11-06 and is the
   default. OpenCode Go answered one on 2026-11-07 and runs only when named.
+- **cli-mistral-vibe leaves** — the Mistral Vibe CLI command reference (the
+  `vibe 3.1.2` pin, the three prompt sources, the print-mode flag set and the four
+  budgets) and the packet's prompt-quality card a request to dispatch a one-task
+  `vibe -p` run loads. The packet carries no integration-pattern guide, and it
+  loads this card on every run, so the card takes that slot. The mode remains
+  experimental: the roster is closed at `deepseek-flash` and `glm-flash`, ACP
+  (`vibe-acp`) is deferred, and behavior outside the saved captures stays UNKNOWN.
 
 A DeepSeek model named on another runtime is a request for that runtime, not
 for the harness. "Use cli-opencode with deepseek-v4.1-flash" routes to
 `cli-opencode`. The harness
 intent fires only on harness vocabulary (`dsh`, `dsh headless`, `deepseek harness`,
 `delegate to dsh`), and no keyword in it is a bare model word such as `deepseek`.
+
+A bare `vibe` is design language ("a calmer vibe"), not an executor name, so it
+selects no mode. The Vibe intent fires only on Vibe vocabulary (`mistral vibe`,
+`vibe -p`, `delegate to vibe`, `vibe print mode`), and no keyword in it is the
+bare word.
 
 A bare CLI-dispatch phrase that names no executor (e.g. "dispatch this to a CLI
 executor") names no mode, so it fires no intent and falls back to the hub default
@@ -117,6 +129,7 @@ INTENT_SIGNALS = {
     "DEVIN":       {"weight": 4, "keywords": ["devin", "devin cli", "cli-devin", "cognition devin", "delegate to devin", "swe-2 dispatch", "autonomous swe agent", "devin cloud session", "devin headless", "grok 4.5 devin dispatch", "grok 4.6 devin dispatch", "cognition cli", "cognition cli second opinion", "devin handoff", "cognition-cli", "devin subagent", "devin cloud handoff", "swe-1.7 dispatch"]},
     "PI":          {"weight": 4, "keywords": ["pi cli", "cli-pi", "pi dispatch", "pi headless", "delegate to pi", "pi thinking", "pi passthrough", "pi print mode", "pi multi-provider", "pi agent", "pi.dev cli", "pi coding agent", "cli pi", "pi json event stream", "pi rpc integration", "pi community package", "pi headless dispatch"]},
     "DEEPSEEK_HARNESS": {"weight": 4, "keywords": ["dsh", "dsh headless", "deepseek harness", "delegate to dsh", "cli-deepseek-harness", "cli deepseek harness", "dsh cli", "deepseek harness cli", "dsh dispatch", "dsh headless dispatch", "dsh one-task run", "dsh json event stream", "dsh second opinion", "dsh review", "deepseek harness dispatch", "deepseek harness headless", "opencode go route"]},
+    "MISTRAL_VIBE": {"weight": 4, "keywords": ["mistral vibe", "vibe -p", "delegate to vibe", "vibe print mode", "cli-mistral-vibe", "mistral vibe print mode", "vibe one-task run", "vibe export.json", "vibe roster", "vibe headless", "vibe cli", "mistral vibe cli", "vibe second opinion", "vibe run finished", "delegating to vibe", "dispatch vibe", "vibe_home", "vibe is installed", "glm-flash roster"]},
 }
 
 RESOURCE_MAP = {
@@ -148,6 +161,10 @@ RESOURCE_MAP = {
         "cli-deepseek-harness/references/cli-reference.md",
         "cli-deepseek-harness/assets/prompt-quality-card.md"
     ],
+    "MISTRAL_VIBE": [
+        "cli-mistral-vibe/references/cli-reference.md",
+        "cli-mistral-vibe/assets/prompt-quality-card.md"
+    ],
 }
 ```
 
@@ -160,16 +177,17 @@ RESOURCE_MAP = {
   union is deduped by canonical pair and capped at the selected-map union limit —
   the `orderedBundle` outcome `hub-router.json` declares.
 - Each mode's first-slice leaves are its own CLI command reference plus its
-  integration-pattern guide (`cli-deepseek-harness` has no such guide and loads
-  its prompt-quality card in that slot); the deeper per-mode references (its
-  `providers-and-models.md` provider/model catalog, tool catalogs, permission
-  matrices, recursion guards) load on demand inside the packet, not on the
-  first slice.
+  integration-pattern guide (`cli-deepseek-harness` and `cli-mistral-vibe` have no
+  such guide and load their prompt-quality card in that slot); the deeper per-mode
+  references (its `providers-and-models.md` provider/model catalog, tool catalogs,
+  permission matrices, recursion guards) load on demand inside the packet, not on
+  the first slice.
 - No keyword match is the hub's `defer` fallback: confirm the target executor
   (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`,
-  `cli-pi`, `cli-deepseek-harness`) before loading anything.
+  `cli-pi`, `cli-deepseek-harness`, `cli-mistral-vibe`) before loading anything.
 - A DeepSeek model named next to another runtime's name loads that runtime's
-  leaves. Only harness vocabulary loads the `cli-deepseek-harness` leaves.
+  leaves. Only harness vocabulary loads the `cli-deepseek-harness` leaves, and
+  only Vibe vocabulary loads the `cli-mistral-vibe` leaves.
 
 ---
 
@@ -186,11 +204,11 @@ The hub's detailed routing prose lives here so the skill body can keep a short r
 ### Two-Axis Model
 
 - `packetKind: "workflow"`:
-  - `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness` orchestrate a CLI binary.
+  - `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe` orchestrate a CLI binary.
   - Their dispatched writes land in THIS repo's workspace (`mutatesWorkspace:true`).
   - None is a transport packet. All classify intent, choose/confirm a provider, and conduct the dispatched session.
   - `cli-cursor`'s native worktree/cloud-worker surfaces are opt-in escape hatches, not its default dispatch shape.
-- No extension is declared: the `transport-axis` left with the `cli-jev` transport, no mode here is read-only evidence, and none converges on a loop. The seven workflows stay primary, independently-routable dispatch modes.
+- No extension is declared: the `transport-axis` left with the `cli-jev` transport, no mode here is read-only evidence, and none converges on a loop. The eight workflows stay primary, independently-routable dispatch modes.
 
 ### Routing Rule
 
@@ -223,9 +241,9 @@ This router stays a separate document on purpose; [the parent-skill reference](.
 
 A specific-executor prompt is resolved by the system-skill-advisor's executor-delegation scorer. Examples include:
 - "use cli-opencode", "delegate to opencode", and "get a claude code second opinion".
-- "delegate to codex", "delegate to cursor", "delegate to devin", "delegate to pi" and "delegate to dsh".
+- "delegate to codex", "delegate to cursor", "delegate to devin", "delegate to pi", "delegate to dsh" and "delegate to vibe".
 - A small model that dispatches through one. A DeepSeek model named with a runtime resolves to that runtime, so "use cli-opencode with deepseek-v4.1-flash" is `cli-opencode`, never `cli-deepseek-harness`.
 
 The scorer sources its alias table from THIS hub's `mode-registry.json`, keyed by each mode's `packetSkillName`.
-It resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` or `cli-deepseek-harness`.
+It resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` or `cli-mistral-vibe`.
 See `system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.

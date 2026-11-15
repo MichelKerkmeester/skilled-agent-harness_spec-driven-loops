@@ -9,7 +9,7 @@ description: "Domain logic library for system-deep-loop, holding thirty-seven do
 
 ## 1. OVERVIEW
 
-Shared domain logic for the `system-deep-loop` hub, which routes research, review and ai-council. Active graph-backed workflow modes use `runtimeLoopType` values `research`, `review` or `council`. Legacy `context` handling remains only for historical artifacts. Most domains isolate their own concerns and write verified events through the shared `authorized-ledger` gateway on top of the `event-envelope` substrate, though a few domains such as `council/`, `coverage-graph/` and `write-set-conflict-graph/` stay outside that ledger-backed spine. This is the domain layer. CLI-specific infrastructure lives in `scripts/lib/` instead.
+Shared domain logic for the `system-deep-loop` hub, which routes research and review. Active graph-backed workflow modes use `runtimeLoopType` values `research` or `review`. Legacy `context` handling remains only for historical artifacts. Most domains isolate their own concerns and write verified events through the shared `authorized-ledger` gateway on top of the `event-envelope` substrate, though a few domains such as `council/`, `coverage-graph/` and `write-set-conflict-graph/` stay outside that ledger-backed spine. This is the domain layer. CLI-specific infrastructure lives in `scripts/lib/` instead.
 
 ---
 
@@ -24,7 +24,7 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `claim-continuity/` | Tracks claim identity across loop iterations by matching, folding and replaying claim events into a disposable frontier projection. |
 | `conditional-fanin/` | Decides when a fan-out wave has enough branch results to proceed and plans continuation for the branches left outstanding. |
 | `contradiction-supersession/` | Isolated shadow ledger recording contradiction and supersession between claims, with an audited replay-verified status projection. |
-| `council/` | Multi-seat dispatch, adjudicator-verdict stability and cost guards for the deep-ai-council mode. |
+| `council/` | Seat dispatch for the divergent pivot in `deep-loop/divergent-pivot.ts`. |
 | `coverage-graph/` | Schema, queries and Bayesian signals for deep-loop convergence detection. |
 | `cycle-detection/` | Detects unproductive repetition across iterations by comparing bounded state-signature history against a versioned policy. |
 | `deep-loop/` | Atomic state, loop locking, JSONL repair and executor config for the deep-loop runtime backend, plus the write-containment guard. Containment preserves what it cannot attribute rather than undoing it, because on a shared checkout the writer is often another session; restoring is opt-in per run. |

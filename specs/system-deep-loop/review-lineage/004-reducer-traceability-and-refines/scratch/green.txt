@@ -1,0 +1,124 @@
+# Green run: new owning test file after the reducer edit
+# Date: 2026-11-14
+
+$ env -u AI_SESSION_CHILD node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs
+✔ traceability checks do not become blocked dead ends (6.604958ms)
+✔ a refines row folds into its target (2.507458ms)
+✔ an unknown refines target falls back to the ordinary insert path (2.566375ms)
+✔ an id reuse without refines keeps both findings (5.689333ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 57.392292
+EXIT: 0
+
+## Compatibility runs after the edit
+
+$ env -u AI_SESSION_CHILD node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-summary-fallback.test.cjs
+[deep-review] reduce-state summary fallback regression passed
+✔ .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-summary-fallback.test.cjs (171.528333ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 174.894167
+EXIT: 0
+
+$ env -u AI_SESSION_CHILD node --test .skilled/skills/system-deep-loop/shared/progress/progress-record.test.cjs
+[progress-record] 13/13 assertions passed
+✔ .skilled/skills/system-deep-loop/shared/progress/progress-record.test.cjs (37.145416ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40.451666
+EXIT: 0
+
+## vitest: deep-loop runtime unit tests that require runtime/scripts/reduce-state.cjs
+$ env -u AI_SESSION_CHILD ../../../node_modules/.bin/vitest run tests/unit/deep-review-deltas-contract.vitest.ts tests/unit/deep-review-state-contract.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts tests/unit/deep-review-strategy-heading.vitest.ts  (workdir .skilled/skills/system-deep-loop/runtime)
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  4 passed (4)
+      Tests  34 passed (34)
+   Start at  18:17:01
+   Duration  252ms (transform 40%, import 23%, tests 19%, setup 12%, worker 6%)
+
+EXIT: 0
+
+## vitest: system-spec-kit root project test that requires runtime/scripts/reduce-state.cjs
+$ env -u AI_SESSION_CHILD node_modules/.bin/vitest run --config skills/system-spec-kit/runtime/vitest.config.ts skills/system-spec-kit/runtime/tests/review-depth-reducer.vitest.ts  (workdir .skilled)
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/skills/system-spec-kit
+
+ ✓ runtime/tests/review-depth-reducer.vitest.ts (1 test) 8ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  18:17:02
+   Duration  76ms (tests 41%, import 18%, setup 18%, transform 12%, worker 11%)
+
+EXIT: 0
+
+## vitest: system-spec-kit cli project tests that require or spawn runtime/scripts/reduce-state.cjs
+$ env -u AI_SESSION_CHILD ../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/reducer-backlog-remediation.vitest.ts tests/review-reducer-fail-closed.vitest.ts tests/deep-review-reducer-schema.vitest.ts  (workdir .skilled/skills/system-spec-kit/runtime/cli)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  3 passed (3)
+      Tests  22 passed (22)
+   Start at  18:17:02
+   Duration  90ms (tests 44%, setup 17%, import 17%, worker 12%, transform 10%)
+
+EXIT: 0
+
+## Final-state confirmation after the packet docs were completed
+$ env -u AI_SESSION_CHILD node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs
+✔ traceability checks do not become blocked dead ends (7.049125ms)
+✔ a refines row folds into its target (2.305083ms)
+✔ an unknown refines target falls back to the ordinary insert path (2.159125ms)
+✔ an id reuse without refines keeps both findings (6.268292ms)
+ℹ tests 4
+ℹ pass 4
+ℹ fail 0
+EXIT: 0
+
+## Final-state compatibility confirmation
+$ env -u AI_SESSION_CHILD node --test reduce-state-summary-fallback.test.cjs and progress-record.test.cjs
+ℹ tests 2
+ℹ pass 2
+ℹ fail 0
+EXIT: 0
+$ env -u AI_SESSION_CHILD ../../../node_modules/.bin/vitest run tests/unit/deep-review-deltas-contract.vitest.ts tests/unit/deep-review-state-contract.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts tests/unit/deep-review-strategy-heading.vitest.ts  (workdir .skilled/skills/system-deep-loop/runtime)
+ Test Files  4 passed (4)
+      Tests  34 passed (34)
+EXIT: 0
+$ env -u AI_SESSION_CHILD node_modules/.bin/vitest run --config skills/system-spec-kit/runtime/vitest.config.ts skills/system-spec-kit/runtime/tests/review-depth-reducer.vitest.ts  (workdir .skilled)
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+EXIT: 0
+$ env -u AI_SESSION_CHILD ../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/reducer-backlog-remediation.vitest.ts tests/review-reducer-fail-closed.vitest.ts tests/deep-review-reducer-schema.vitest.ts  (workdir .skilled/skills/system-spec-kit/runtime/cli)
+ Test Files  3 passed (3)
+      Tests  22 passed (22)
+EXIT: 0

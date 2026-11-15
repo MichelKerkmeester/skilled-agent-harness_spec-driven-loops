@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe contract pin",
+      "phase 4 vibe contract pin",
+      "vibe authenticated dispatch evidence",
+      "vibe contract pin plan",
+      "vibe contract pin tasks",
+      "vibe contract pin goal",
+      "vibe contract pin implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "contract",
+      "pin",
+      "phase",
+      "authenticated",
+      "dispatch",
+      "evidence",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/vibe-model-rows.toml",
+      "scratch/ancestors.sh",
+      "scratch/run-start.marker",
+      "evidence/export-glm.json",
+      "evidence/export.json",
+      "evidence/exit-code.txt",
+      "evidence/output-json.txt",
+      "evidence/output-streaming.txt",
+      "evidence/stdin.md",
+      "evidence/ancestors.txt",
+      "evidence/catalog.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vibe-model-rows.toml",
+        "kind": "file",
+        "path": "scratch/vibe-model-rows.toml",
+        "source": "derived"
+      },
+      {
+        "name": "ancestors.sh",
+        "kind": "script",
+        "path": "scratch/ancestors.sh",
+        "source": "derived"
+      },
+      {
+        "name": "run-start.marker",
+        "kind": "file",
+        "path": "scratch/run-start.marker",
+        "source": "derived"
+      },
+      {
+        "name": "export-glm.json",
+        "kind": "config",
+        "path": "evidence/export-glm.json",
+        "source": "derived"
+      },
+      {
+        "name": "export.json",
+        "kind": "config",
+        "path": "evidence/export.json",
+        "source": "derived"
+      },
+      {
+        "name": "exit-code.txt",
+        "kind": "file",
+        "path": "evidence/exit-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "output-json.txt",
+        "kind": "file",
+        "path": "evidence/output-json.txt",
+        "source": "derived"
+      },
+      {
+        "name": "output-streaming.txt",
+        "kind": "file",
+        "path": "evidence/output-streaming.txt",
+        "source": "derived"
+      },
+      {
+        "name": "stdin.md",
+        "kind": "doc",
+        "path": "evidence/stdin.md",
+        "source": "derived"
+      },
+      {
+        "name": "ancestors.txt",
+        "kind": "file",
+        "path": "evidence/ancestors.txt",
+        "source": "derived"
+      },
+      {
+        "name": "catalog.md",
+        "kind": "doc",
+        "path": "evidence/catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The research behind this build ran no authenticated Vibe dispatch, so the output payload shapes, stdin handling, the process name a recursion guard sees and the catalog listing of the two roster models are all unconfirmed",
+    "created_at": "2026-11-14T12:56:15Z",
+    "last_save_at": "2026-11-14T14:02:11.917Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c099e39a3d21338367f1a87aac71ce8a87c7cea855bdd2153774d0eb16e9b78",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eaaf48cd96a468b540af710ef3152358bdf1fb0a5d006c52ca3d00b314374ca4",
+      "plan.md": "234af8ab3bfdb8f3a559be23d0f09e28ccaf170a4f61f73ccad1021bc72ef489",
+      "tasks.md": "17f6b8f1371122497838d67bbb78314c82ff9da6b2a34af1138f1254ebcfe865",
+      "implementation-summary.md": "9868c09c39195f42b3383c0678fe841dbc8ab0550842319391ac6a7ab2c9f3eb"
+    },
+    "last_active_at": null
+  }
+}

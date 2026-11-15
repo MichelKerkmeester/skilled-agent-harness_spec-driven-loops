@@ -6,7 +6,8 @@
   "children_ids": [
     "cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation",
     "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation",
-    "cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation"
+    "cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation"
   ],
   "manual": {
     "depends_on": [],

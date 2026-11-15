@@ -1,0 +1,83 @@
+ROLE: You are a YAML editor. Copy dry-run keys from one file into another. Edit ONE file.
+
+CONTEXT: deep-research.yaml serves both execution modes. Dry run must halt it in both modes, so
+every dry-run key the confirm twin carries on a step moves onto the same step here. Line numbers
+below are lines of deep-research-confirm.yaml (the SOURCE). Find each step in deep-research.yaml
+(the TARGET) with grep -n: its line numbers differ.
+
+ALLOWED WRITE PATHS (only this file):
+- .skilled/commands/deep/assets/deep-research.yaml
+SOURCE, read only: .skilled/commands/deep/assets/deep-research-confirm.yaml
+
+RULE FOR EVERY ROW: read the named SOURCE lines with sed -n. Insert them into the same step of
+the TARGET, with the indentation that step's other keys have in the TARGET, directly after the
+same sibling key that precedes them in the SOURCE. If that sibling key is missing in the TARGET,
+insert them directly after the step's first key. Copy each line's text exactly. Do not change,
+move or delete any existing TARGET line.
+
+PART 0. In the top-level `dry_run_control:` block of the TARGET, make two edits.
+  a. Add this line directly after the `optional_fields:` line, at the indentation of `event_name:`:
+    default_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"{dry_run_boundary}","step":"{step_name}","timestamp":"{ISO_8601_NOW}"}'
+  b. Replace the whole `halt_hook_rule:` line with
+  halt_hook_rule: "Before executing any command, dispatch, edit, output, template write, append_to_jsonl, append_jsonl, log_event, mcp_tool, write, or git-index mutation in a step tagged with dry_run_boundary, emit event_policy.default_halt_event with that step's name and boundary to the terminal and halt. This holds in both execution modes."
+
+PART 1. Rows "step: SOURCE lines". Every `dry_run_halt_event:` line stays in the SOURCE: the
+default halt event of PART 0 replaces them, so never copy one.
+  step_fanout_spawn: 222
+  step_create_directories: 270
+  step_acquire_lock: 304
+  step_create_config: 425
+  step_create_state_log: 461
+  step_record_restarted_run: 523
+  step_create_strategy: 529
+  step_create_registry: 543
+  step_enrich_strategy_context: 551
+  step_enrich_strategy_resource_map: 558
+  step_detect_spec_present: 564
+  step_preinit_spec_branch: 610
+  step_record_artifact_migration: 733
+  step_check_pause_sentinel: 778   (it sits under `if_exists:`)
+  step_validate_convergence_config: 789, 793, 797   (one line under each of `if_min_iterations_missing:`, `if_min_iterations_clamped:`, `if_convergence_mode_invalid:`)
+  step_graph_convergence: 803
+  step_emit_blocked_stop: 876   (under `if_blocked:`)
+  step_emit_min_iterations_guard_pass: 887   (under `if_pass:`)
+  step_prepare_divergent_pivot: 924
+  step_dispatch_pivot_seat_001: 979
+  step_dispatch_pivot_seat_002: 1013
+  step_dispatch_pivot_seat_003: 1047
+  step_handle_convergence, under `if_stuck_recovery:`: 1181
+  step_dispatch_iteration: 1258-1263   (the boundary and the whole `dry_run_preview:` list)
+  step_dispatch_iteration, under `pre_dispatch:` then `render_prompt_pack:`: 1279
+  step_reduce_state: 1504
+  step_graph_upsert: 1523
+  step_fanout_merge: 1695
+  step_emit_resource_map: 1768
+  step_compile_research: 1788
+  step_convergence_report: 1811
+  step_writeback_spec_findings: 1884
+  step_update_config_status: 1910
+  step_stage_artifact_dir: 1918
+  step_compose_save_payload: 1958
+  step_generate_context: 1976
+  step_release_lock: 1988
+
+PART 2. Three edits that are not plain copies.
+  a. In step_preflight_contract, under `verify:`, add the one item the SOURCE has at line 262
+     (the `dry_run_normalized` item), at the same place in the list as in the SOURCE.
+  b. In step_dispatch_iteration, under `pre_dispatch_audit:`, replace the line
+       skip_when: "config.executor.kind == 'native'"
+     with
+       skip_when: "config.executor.kind == 'native' or dry_run == true"
+  c. In step_apply_lifecycle_request, add this line directly after the step's first key, at
+     that key's indentation:
+       dry_run_boundary: "state-mutation"
+
+DO NOT copy source lines 341, 342, 349, 350 or 1878. A later change carries them.
+
+CHECKS. Run from the repository root and fix the file until both pass:
+  python3 -c "import yaml;yaml.safe_load(open('.skilled/commands/deep/assets/deep-research.yaml'));print('YAML OK')"
+  grep -c 'dry_run_boundary' .skilled/commands/deep/assets/deep-research.yaml       must print 32
+  grep -c 'dry_run_halt_event' .skilled/commands/deep/assets/deep-research.yaml     must print 0
+  grep -c 'dry_run_event_policy' .skilled/commands/deep/assets/deep-research.yaml   must print 9
+
+REPORT: the rows you could not place, with the reason for each, then the output of both checks.

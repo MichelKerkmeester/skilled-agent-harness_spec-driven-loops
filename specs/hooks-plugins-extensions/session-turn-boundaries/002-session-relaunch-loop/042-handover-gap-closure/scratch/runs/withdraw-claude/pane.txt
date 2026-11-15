@@ -1,0 +1,50 @@
+
+ ▐▛███▛█   Claude Code v2.1.325
+▝▜██████▀  Sonnet 5.5 with medium effort · Claude Ultra
+ ▝▝   ▝▝   ~/worktrees/public/392-cross-runtime-handover-parity · /rc
+
+
+❯ [session-relaunch] claim and continue handoff
+  /Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity/.skilled/skills/.state/session-relaunch/handoffs/20261115T052900Z-7ab6a8fd-4bda-42e4-adff-9aed352b10c5.md | Spec folder:
+  none (Gate 3 answered D, Skip, in the sending session)
+
+  Ran 2 shell commands
+
+⏺ .skilled/hooks/session-relaunch/README.md has 377 lines (I recounted with wc -l), and the code word is ORCHID-31583.
+
+  The complete command printed nothing, so I can't confirm the handoff note closed.
+
+✻ Brewed for 10s · done 6:29 AM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── Session-relaunch README line count (2) ─
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ auto mode on (shift+tab to cycle)

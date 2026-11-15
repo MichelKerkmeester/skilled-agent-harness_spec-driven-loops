@@ -1,0 +1,16 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/completion",
+  "description": "Container folder for hooks-plugins-extensions/completion.",
+  "keywords": [
+    "completion"
+  ],
+  "lastUpdated": "2026-11-15T06:36:37.055Z",
+  "specId": "hooks-plugins-extensions/completion",
+  "folderSlug": "completion",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

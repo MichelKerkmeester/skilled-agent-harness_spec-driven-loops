@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-14T06:14:05Z"
     last_updated_by: "template-author"
     recent_action: "Planned seven edits that widen the purpose reader"
-    next_safe_action: "Review plan.md section 4, then build with /speckit:implement"
+    next_safe_action: "None. The phase is built and merged"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts"

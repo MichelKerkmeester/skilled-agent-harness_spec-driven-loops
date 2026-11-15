@@ -45,13 +45,13 @@ const FANOUT_RUN_SCRIPT = resolve(RUNTIME_ROOT, 'scripts', 'fanout-run.cjs');
 const MODE_CONTRACTS: readonly ModeContract[] = [
   {
     mode: 'review',
-    fileName: 'deep-review-auto.yaml',
+    fileName: 'deep-review.yaml',
     fallback: '{ISO_8601_NOW}',
     configSessionKey: 'sessionId',
   },
   {
     mode: 'research',
-    fileName: 'deep-research-auto.yaml',
+    fileName: 'deep-research.yaml',
     fallback: '{AUTO_SESSION_ID}',
     configSessionKey: 'lineage.sessionId',
   },
@@ -166,7 +166,7 @@ function assertSessionIdContract(contract: ModeContract): void {
 // ───────────────────────────────────────────────────────────────────
 
 describe('deep workflow session id parity', () => {
-  it('pins the auto-workflow resolve contract for review, context, and research', () => {
+  it('pins the single-workflow resolve contract for review and research', () => {
     for (const contract of MODE_CONTRACTS) {
       assertSessionIdContract(contract);
     }

@@ -34,7 +34,7 @@ Shared mode contracts and fixtures, mode and lane migrations, staged state migra
 
 ## Root Purpose
 
-This phase groups the related child phases below so parent-level context stays a short thematic map. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
+Move each deep-loop mode onto the new spine through shared contracts, staged state migration and authority cutover, then retire the legacy writers it replaces. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
 
 ## PHASE DOCUMENTATION MAP
 

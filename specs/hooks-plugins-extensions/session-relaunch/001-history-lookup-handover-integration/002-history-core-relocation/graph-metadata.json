@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/002-history-core-relocation",
+  "spec_folder": "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/002-history-core-relocation",
+  "parent_id": "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "history core relocation",
+      "phase 2 history core relocation",
+      "history core relocation plan",
+      "history core relocation tasks",
+      "history core relocation goal",
+      "history core relocation implementation summary"
+    ],
+    "key_topics": [
+      "history",
+      "core",
+      "relocation",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "lookup",
+      "typescript",
+      "compiled"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "dist/hooks/lib/history/cli.js",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/_support/history-fixtures.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/history-projection.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/history-locator-adapters.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/session-relaunch/bin/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli.js",
+        "kind": "code",
+        "path": "dist/hooks/lib/history/cli.js",
+        "source": "derived"
+      },
+      {
+        "name": "lookup-offer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "history-fixtures.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/_support/history-fixtures.ts",
+        "source": "derived"
+      },
+      {
+        "name": "history-projection.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/history-projection.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "history-locator-adapters.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/history-locator-adapters.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-start.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The lookup core is TypeScript compiled into `.skilled/skills/system-spec-kit/runtime/dist/`, and the command a model runs names that compiled file",
+    "created_at": "2026-11-15T06:24:19Z",
+    "last_save_at": "2026-11-15T07:58:28.139Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:456c9b72e7183eac6ee432b9e40219868a8c0ea7b2d70f8df69782d15ed05f17",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ac9d9f7bd56a583e8b53aeb85629c5353af621f0e0c756843ed9ec4cca36530e",
+      "plan.md": "5b9c6d3e273c87a9e3c12277a321a15fd0d5d3f86ec37ab14492f2e924ede402",
+      "tasks.md": "6220c14548bb774e9ccffe5f766120feb0f7b140f52dfaab588a409ce2e645ce",
+      "implementation-summary.md": "9a29948512fe737c80b9306940595c46424eb5ad018f00d9709f6cde02609c55"
+    },
+    "last_active_at": null
+  }
+}

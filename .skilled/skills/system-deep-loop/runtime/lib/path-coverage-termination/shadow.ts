@@ -3,14 +3,14 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type {
-  LegacyCouncilBridge,
+  LegacyConvergenceBridge,
   PathCoverageEvaluation,
   PathCoverageShadowEvaluation,
 } from './types.js';
 
 /** Attach coverage proof diagnostics while leaving the legacy decision authoritative. */
 export function createPathCoverageShadowEvaluation(
-  legacyBridge: Readonly<LegacyCouncilBridge>,
+  legacyBridge: Readonly<LegacyConvergenceBridge>,
   pathCoverage: PathCoverageEvaluation,
 ): PathCoverageShadowEvaluation {
   const bridge = Object.freeze({

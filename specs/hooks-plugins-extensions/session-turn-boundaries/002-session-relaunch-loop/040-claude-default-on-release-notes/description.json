@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes",
+  "description": "Claude Code session handover on by default and v4.0.2.1 release notes",
+  "keywords": [
+    "claude",
+    "code",
+    "session",
+    "handover",
+    "default",
+    "release",
+    "notes"
+  ],
+  "lastUpdated": "2026-11-15T07:18:44.651Z",
+  "specId": "040",
+  "folderSlug": "claude-default-on-release-notes",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "14-11-26_21-01__claude-code-session-handover-is-now-on-by-default.md",
+    "14-11-26_23-27__recorded-the-operator-answers-that-landed-phase.md",
+    "15-11-26_08-18__manual-context-save.md"
+  ]
+}

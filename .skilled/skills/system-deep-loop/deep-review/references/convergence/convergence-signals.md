@@ -8,7 +8,7 @@ trigger_phrases:
   - "review blocked stop"
 importance_tier: normal
 contextType: implementation
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Deep Review Convergence Signals
@@ -80,7 +80,6 @@ Do not carry thresholds across deep skills:
 |-------|----------------|-------------------|
 | `deep-review` | Severity-weighted P0/P1/P2 new findings | `0.10` |
 | `deep-research` | Novelty/newInfoRatio over research knowledge | `0.05` |
-| `deep-ai-council` | Planning agreement with critique blocker check | Council-specific, not interchangeable |
 
 ---
 

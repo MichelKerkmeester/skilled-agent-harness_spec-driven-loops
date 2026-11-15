@@ -22,7 +22,7 @@ const {
   sep,
 } = require('node:path');
 
-const DSH_VERSION = '0.2.2-rc.1';
+const DSH_VERSION = '0.2.2-rc.3';
 const SHIM_KIND = 'cli-deepseek-harness';
 
 function readControl() {

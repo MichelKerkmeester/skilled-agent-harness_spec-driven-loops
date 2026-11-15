@@ -178,6 +178,7 @@ function scopeFor<TStem extends DeepReviewEventStem>(
     || stem === 'deep_review.convergence_evaluated'
     || stem === 'deep_review.graph_convergence_evaluated'
     || stem === 'deep_review.blocked_stop_recorded'
+    || stem === 'deep_review.terminal_gates_recorded'
     || stem === 'deep_review.pause_recorded') {
     return iteration as DeepReviewScopeMap[TStem];
   }
@@ -425,6 +426,16 @@ function dataFor<TStem extends DeepReviewEventStem>(
       targetDimensionId: 'correctness',
       originatingConvergenceEventId: 'event-16',
       appendPosition: 18,
+    },
+    'deep_review.terminal_gates_recorded': {
+      stopReason: 'converged',
+      gateResults: [
+        { gateId: 'evidence', status: 'pass', reasonCode: 'all-findings-cited', evidenceDigest: hash },
+        { gateId: 'scope', status: 'pass', reasonCode: 'all-findings-cited', evidenceDigest: hash },
+        { gateId: 'coverage', status: 'pass', reasonCode: 'all-findings-cited', evidenceDigest: hash },
+      ],
+      failedRequiredGateIds: [],
+      appendPosition: 19,
     },
     'deep_review.pause_recorded': {
       normalizedStopReason: 'operator-pause',
@@ -1062,6 +1073,59 @@ describe('deep-review typed ledger schema', () => {
         ...input.data,
         recoveryHint: 42,
       } as unknown as DeepReviewPayloadMap['deep_review.blocked_stop_recorded'],
+    }, registry)).toThrow();
+  });
+
+  // The terminal gate row names the required gates that failed, so a reader
+  // never reconciles the same fact from two disagreeing sources.
+  it('accepts a terminal gate record and refuses one whose failed ids disagree with its gate results', () => {
+    const registry = createDeepReviewEventRegistry();
+    const input = eventInput('deep_review.terminal_gates_recorded', 19, '0'.repeat(64));
+    const gateReport = (gateId: string, status: 'pass' | 'fail') => ({
+      gateId,
+      status,
+      reasonCode: status === 'pass' ? 'all-findings-cited' : 'coverage-gap',
+      evidenceDigest: digest(gateId),
+    });
+
+    expect(() => prepareDeepReviewEvent(input, registry)).not.toThrow();
+    expect(() => prepareDeepReviewEvent({
+      ...input,
+      data: {
+        ...input.data,
+        stopReason: 'maxIterationsReached',
+        gateResults: [
+          gateReport('evidence', 'pass'),
+          gateReport('scope', 'pass'),
+          gateReport('coverage', 'fail'),
+        ],
+        failedRequiredGateIds: ['coverage'],
+      },
+    }, registry)).not.toThrow();
+
+    expect(() => prepareDeepReviewEvent({
+      ...input,
+      data: {
+        ...input.data,
+        gateResults: [
+          gateReport('evidence', 'pass'),
+          gateReport('scope', 'pass'),
+          gateReport('coverage', 'pass'),
+        ],
+        failedRequiredGateIds: ['scope'],
+      },
+    }, registry)).toThrow();
+
+    expect(() => prepareDeepReviewEvent({
+      ...input,
+      data: {
+        ...input.data,
+        gateResults: [
+          gateReport('evidence', 'pass'),
+          gateReport('scope', 'pass'),
+        ],
+        failedRequiredGateIds: [],
+      },
     }, registry)).toThrow();
   });
 

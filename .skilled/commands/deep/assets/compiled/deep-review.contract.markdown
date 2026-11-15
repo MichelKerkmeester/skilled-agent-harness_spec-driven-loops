@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "0c993a336080961ef3675e1a91fe4896aa61777f5a5f6b97b7857b93a3504ee4",
+      "sha256": "99f77d123118e3f5e42f04be0ed97cd764abc3070703423cfb64106a58181688",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "14ba8c5ac057ab2d4ec325b1546d138be2a1c1567d5bbff955ecd7ab04bb02dc",
+      "sha256": "51dbd5da949e73564df55e76666c04118e3dc39f39c91983891560a5fd073920",
       "section": "full"
     },
     {
@@ -21,63 +21,58 @@
       "section": "full"
     },
     {
-      "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "a14de252dc32835e8236478e0599256975a59e2ae1b220d657ee3527b99ede56",
-      "section": "full"
-    },
-    {
-      "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "6bae62d52edc99db7de9a0ad0596743acd440e2a2e98730c1c82d074b3cfb074",
+      "path": ".skilled/commands/deep/assets/deep-review.yaml",
+      "sha256": "02bbb22add56290170a786df5a56181253d3013ae5fbeaf809f2fbb18412a297",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "ef2d16ecfd6e9946ffc753ed8d3e5de3c879ef2a371a6aef6906d79c9eec0a0b",
+      "sha256": "0b76ffb1f6ac23436637e403a766afaa053e71353de88874161e8aefdf0e0a5e",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "cc59065acdf16da29a994cb76ea7e732e6304a13caf46e6cfab23875af817183",
+      "sha256": "39d8f1a14ba89192ac9cdaf82248b82ee11655aca72bb3d8c7fe661e20cb10e2",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "0b70e8815059318b2c2eb23405e2121d878ad48d5f716456b4aaa8b5873d8787",
+      "sha256": "37c6e69780e5c2d1f0089f2cf4d6726b689d2b9875bbe1b138312d4b47d727c8",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "f2abb7d154cfd71a8473eec52aadce15e0be2ec2fddf5f213b90c3fdee66b872",
+      "sha256": "7e41df3ca42d9475e06626cf00880a4c4aaa4c7753edd9ec9513e3fd5fc57bee",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "453f38920e171541152b2c6ba2ef1a408148612aa937d89fbf8dc3492e53d5a7",
+      "sha256": "75be5e46f9a4df6c98a2d5f83aa7e5f037ed026e182cbbaaaf86e541f4889de8",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
-      "sha256": "de092fff8160aeae41f6fa9f892afb6bce6171d24b12306f28481cdc9204a00c",
+      "sha256": "5a0a6b1eb809c4ce95f4e8086acf0756a53508eab57b9b58e00afb1deaace772",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "0402faeca60d778ee6665d78c794a6ebc3288c6447ac6c99a2b53065c3169c53",
+      "sha256": "e67e33bc2b78e80e5b7f90ae35b89ac8179f38b1a0b478400fe70d8070788c2b",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
-      "sha256": "072d35003ddf6fa9915ed521f44b7045fd24c7ef9ce0a9ceade2877ad26d73e3",
+      "sha256": "d0d4715bf781985515e4ced469c9b12ff8f4c5b481f9ffe9b8f706987f42a438",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "45a0a3fb47673020204cdf537f63deb991a35c04ecec3c8bf5a9d4d7723cc862",
+      "sha256": "b697d88fc6457211c623debcb9b8c2c073358e355a3547d09d0cd9ea549559c1",
       "section": "full"
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "4cca5268f81acd2e38c2a57e3945f78a182e0dc8b409b4e1ba0585989d1104cb",
+      "sha256": "b01965518d45ef15a09be3cbab6c25badc9d0bfc4e1c4d1ff446cee087e9068b",
       "section": "full"
     },
     {
@@ -86,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "8caff3a88e5cfd88d0691dca47dc28e7a5fb97cf48bb5273b843100d5dd19fd1"
+  "compiledBodyDigest": "3452494fcc44cd3da22330d7e3a17a2fc573d773f59fc47da839aa924f8f3d23"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -112,19 +107,18 @@ Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop ov
 1. `.skilled/commands/deep/review.md`
 2. `.skilled/commands/deep/assets/deep-review-presentation.txt`
 3. `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`
-4. `.skilled/commands/deep/assets/deep-review-auto.yaml`
-5. `.skilled/commands/deep/assets/deep-review-confirm.yaml`
-6. `.skilled/skills/system-deep-loop/mode-registry.json`
-7. `.skilled/skills/system-deep-loop/SKILL.md`
-8. `.skilled/skills/system-deep-loop/deep-review/SKILL.md`
-9. `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`
-10. `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md`
-11. `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml`
-12. `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-13. `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json`
-14. `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl`
-15. `.skilled/agents/deep-review.md`
-16. `.skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
+4. `.skilled/commands/deep/assets/deep-review.yaml`
+5. `.skilled/skills/system-deep-loop/mode-registry.json`
+6. `.skilled/skills/system-deep-loop/SKILL.md`
+7. `.skilled/skills/system-deep-loop/deep-review/SKILL.md`
+8. `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`
+9. `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md`
+10. `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml`
+11. `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+12. `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json`
+13. `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl`
+14. `.skilled/agents/deep-review.md`
+15. `.skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
 
 ## gate3Precedence
 
@@ -159,7 +153,7 @@ Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-m
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `reviewFocus`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-review-auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `reviewFocus`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-review.yaml` with `execution_mode` bound to `auto`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
@@ -270,7 +264,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
-   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`, the last one fan-out only; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`, the last one a single lineage in `:auto` or a fan-out, and `:confirm` runs only `native`, `cli-claude-code` and `cli-opencode`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -354,7 +348,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
      G) cli-pi — requires `pi`. Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`, no sandbox flag.
-     H) cli-deepseek-harness (experimental, explicit choice only, fan-out only) — a single-executor run exits 2, so give it a fan-out shape such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash --count=2`. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
+     H) cli-deepseek-harness (experimental, explicit choice only) — a single lineage such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash` runs in `:auto` through the shared fan-out command builder, and a fan-out shape such as `--count=2` also works. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
      D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
 
    Reply format examples:
@@ -424,8 +418,7 @@ optionalFields:
   - "config.fanout_lineage_artifact_dir"
   - "fanout_executors"
   - "fanout_concurrency"
-autoWorkflow: .skilled/commands/deep/assets/deep-review-auto.yaml
-confirmWorkflow: .skilled/commands/deep/assets/deep-review-confirm.yaml
+workflow: .skilled/commands/deep/assets/deep-review.yaml
 ```
 
 ## outputTemplate

@@ -79,7 +79,7 @@ ask-surface-guard.js:102: core.markTurn(projectDir, `opencode:${sessionID}:${tur
 ask-surface-guard.mjs:107: const turnKey = `dsh:${agent?.session?.id ?? agent?.id ?? 'session'}:${turn}`;
 
 $ find . -path ./node_modules -prune -o -type d -path "*/.skilled/logs" -print | grep -v "^./.skilled/logs$"
-./specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/.skilled/logs
+./specs/hooks-plugins-extensions/decision-capture/001-decision-capture/.skilled/logs
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -95,7 +95,7 @@ $ find . -path ./node_modules -prune -o -type d -path "*/.skilled/logs" -print |
 - Root every dispatch-audit adapter's log at the git top-level of its starting directory (V47).
 
 ### Out of Scope
-- Deleting the stray `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/.skilled/logs` - untracked and gitignored, so deletion is in the irreversible tier; recorded for the operator.
+- Deleting the stray `specs/hooks-plugins-extensions/decision-capture/001-decision-capture/.skilled/logs` - untracked and gitignored, so deletion is in the irreversible tier; recorded for the operator.
 - The 27 OpenCode plugin tests that fail only under `AI_SESSION_CHILD=1` - a test-isolation trap the research downgraded; unchanged by this phase.
 
 ### Files to Change

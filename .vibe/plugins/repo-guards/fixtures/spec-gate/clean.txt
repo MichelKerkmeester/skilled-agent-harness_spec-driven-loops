@@ -1,0 +1,1 @@
+Read the file notes.txt in the current folder with your file-read tool and reply with its first line.

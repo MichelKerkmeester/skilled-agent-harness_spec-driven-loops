@@ -1,0 +1,38 @@
+## advisor replay, final vocabulary: one new phrase, agent registry
+# agent roster and roster check were tried and dropped. With them, 'build a team roster page in react' returned sk-doc 0.168 above sk-code 0.128.
+# Without them it returns sk-code first, as below. The advisor was given time to load the recompiled graph before this replay.
+add my agent to the agent registry -> sk-doc 0.590, sk-code 0.233, mcp-tooling 0.198
+the agent registry needs a record for my new persona -> sk-doc 0.545
+the roster check fails for my new agent file -> sk-doc 0.632, create:agent 0.476
+build a team roster page in react -> sk-code 0.128, sk-doc 0.112, sk-prompt 0.063
+update the mode registry of the mcp hub with a new mode -> sk-code 0.712, cli-external-orchestration 0.661, mcp-tooling 0.619
+register a package in the npm registry -> (none)
+check the staff roster spreadsheet for next week -> (none)
+
+## probes
+pass       P01    want=sk-doc/sk-create-agent                   got=sk-doc/sk-create-agent
+pass       P02    want=sk-doc/sk-create-agent                   got=sk-doc/sk-create-agent
+pass       P03    want=sk-doc/sk-create-agent                   got=sk-doc/sk-create-agent
+pass       P04    want=sk-doc/sk-create-agent                   got=sk-doc/sk-create-agent
+pass       P05    want=sk-doc/sk-create-agent                   got=sk-doc/sk-create-agent
+pass       P06    want=sk-doc/sk-create-agent                   got=sk-doc/sk-create-agent
+pass       P07    want=sk-git                                   got=sk-git
+pass       P08    want=sk-code/sk-code-review                   got=sk-code/sk-code-review
+pass       P09    want=sk-code/sk-code-frontend                 got=sk-code/sk-code-frontend
+pass       P10    want=sk-doc/sk-create-skill                   got=sk-doc/sk-create-skill
+pass       P11    want=sk-doc/sk-create-changelog               got=sk-doc/sk-create-changelog
+pass       P12    want=sk-design/sk-design-md-generator         got=sk-design/sk-design-md-generator
+pass       P13    want=sk-prompt                                got=sk-prompt
+STATUS=OK run-probes: pass=13 fail=0 cannot_run=0
+
+exit=0 node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub sk-doc
+exit=0 node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub sk-doc
+exit=0 node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub sk-doc
+exit=0 node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs --strict
+exit=0 node .skilled/bin/compiled-route-guard.cjs
+exit=0 node .skilled/bin/compiled-route-admission.cjs --all
+exit=0 node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc
+exit=0 node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
+exit=0 node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs
+exit=0 node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+exit=0 node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc

@@ -25,7 +25,7 @@
         "/deep:research",
         "orchestrate"
       ],
-      "taskType": "Evidence / iterative investigation",
+      "taskType": "Evidence / iterative investigation (`/deep:research` only — run the command, which creates the loop state and dispatches this leaf)",
       "skills": "`system-spec-kit`, `deep-research`",
       "notes": "LEAF agent; iterative autonomous research loop with externalized state",
       "summary": "autonomous deep-research iterations with externalized state"
@@ -35,18 +35,18 @@
       "tier": "LEAF",
       "priority": 3,
       "dispatchers": [
-        "/deep:ai-council",
+        "/speckit:ai-council",
         "orchestrate",
         "operator"
       ],
       "taskType": "Multi-strategy planning and architecture synthesis",
       "skills": "Multi-lens planning rubric (planning-only)",
-      "notes": "Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). If the LEAF's returned report shows `max_rounds` reached without a converged plan (check `current_round >= max_rounds` in `ai-council-config.json`), add `--not-converged` to that invocation — the helper cannot detect max-round exhaustion on its own and defaults to `convergence:true` otherwise.",
+      "notes": "Multi-strategy planning architect (max 3 seats). Writes its own `ai-council/**` artifacts and its state log with Write and Edit, and runs every round up to `max_rounds` (default 3), so @orchestrate runs nothing after it returns. The plan is in `council-report.md` inside the bound packet. `/speckit:ai-council` binds the spec folder and dispatches it once.",
       "summary": "multi-strategy AI Council planning, writes only ai-council artifacts",
       "templateExceptions": [
         {
           "section": "HOOK-INJECTED CONTEXT ROUTING",
-          "reason": "Twelve files in the deep-ai-council skill cite this agent's sections 3 to 17 by number, so the section sits after them and no cited number moves."
+          "reason": "The council's own cross-references and the /speckit:ai-council command cite sections 0 to 11 by number, so the section sits after them and no cited number moves."
         }
       ]
     },
@@ -104,7 +104,7 @@
       ],
       "taskType": "Implementation / testing",
       "skills": "`sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review",
-      "notes": "Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify",
+      "notes": "Application-code LEAF; sk-code stack delegation; usually dispatched by @orchestrate; fail-closed verify",
       "summary": "application-code implementation via sk-code, write-capable LEAF dispatched only by orchestrate",
       "templateExceptions": [
         {

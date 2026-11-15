@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/004-advisor-council-removal",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/004-advisor-council-removal",
+  "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor council removal",
+      "phase 4 advisor council removal",
+      "advisor council removal plan",
+      "advisor council removal tasks",
+      "advisor council removal acceptance criteria",
+      "advisor council removal goal",
+      "advisor council removal implementation summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "council",
+      "removal",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "stage"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".github/workflows/routing-registry-drift.yml",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      "runtime/tests/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "aliases.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Follow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow After",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor is stage one of hub routing, and it still maps council words to the `ai-council` mode of `system-deep-loop` through an alias group, explicit lane anchors, a command projection, a tracked `/deep:ai-council` row and the Python router",
+    "created_at": "2026-11-14T20:19:51Z",
+    "last_save_at": "2026-11-15T00:22:48.377Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:75a12767c15f6578e3c54a2dcebb45b28373fd9f8aeab2dffb8c2d92ba187160",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "dce0f566edfde6ab1a424b2e92f2df5e98cde4189406dc331329b73ec02b294c",
+      "plan.md": "7712d3590411c89bf5d577936f5e82b356b3643d8562a400a01e3798e9bf39a4",
+      "tasks.md": "8ba160e7d04d503cf74a865d959c4e91d39399abaf2745e277e3f3f0ed4bc65f",
+      "implementation-summary.md": "6963bf5f7688b190cd022256c9db738531669deb54be5044679e37248ed3c04f"
+    },
+    "last_active_at": null
+  }
+}

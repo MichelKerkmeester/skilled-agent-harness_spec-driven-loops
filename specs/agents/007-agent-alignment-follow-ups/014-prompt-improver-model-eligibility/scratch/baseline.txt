@@ -1,0 +1,102 @@
+$ git rev-parse --short HEAD
+152ed6b564
+exit=0
+$ git diff --stat 09f1d6499a HEAD -- .skilled/agents/prompt-improver.md .claude/agents/prompt-improver.md
+ .claude/agents/prompt-improver.md  | 5 +++--
+ .skilled/agents/prompt-improver.md | 5 +++--
+ 2 files changed, 6 insertions(+), 4 deletions(-)
+exit=0
+$ wc -l .skilled/agents/prompt-improver.md .claude/agents/prompt-improver.md
+     400 .skilled/agents/prompt-improver.md
+     385 .claude/agents/prompt-improver.md
+     785 total
+exit=0
+$ rg -n 'Denied under no circumstances|ineligible model that finds itself' .skilled/agents/prompt-improver.md
+54:| any route | Opus | No | Denied under no circumstances |
+55:| any route | Fable | No | Denied under no circumstances |
+74:An ineligible model that finds itself acting as this agent must refuse the prompt-improve work, name the rule that denied it, and name an eligible (model, route) pair in its place. It must not do the work anyway with a caveat.
+exit=0
+$ sed -n 14,16p .skilled/agents/README.txt
+Model and effort: no agent file here pins a model. Dispatched routes pass model and effort
+  explicitly; manual invocation inherits the runtime default, so a silent tree means no pin,
+  not an unowned setting.
+exit=0
+$ rg -n '^model' .claude/agents/prompt-improver.md .pi/agents/prompt-improver.md .dsh/agents/prompt-improver.patch.yml .codex/agents/prompt-improver.toml
+.codex/agents/prompt-improver.toml:6:model = "gpt-6-luna"
+.codex/agents/prompt-improver.toml:7:model_reasoning_effort = "high"
+exit=0
+$ rg -c -i model .skilled/commands/prompt/assets/prompt_improve_auto.yaml .skilled/commands/prompt/assets/prompt_improve_confirm.yaml
+exit=1
+$ rg -n 'dispatch Task\(subagent_type=prompt-improver' .skilled/commands/prompt/assets/prompt_improve_auto.yaml .skilled/commands/prompt/assets/prompt_improve_confirm.yaml
+.skilled/commands/prompt/assets/prompt_improve_auto.yaml:85:      - "dispatch_mode AGENT: dispatch Task(subagent_type=prompt-improver) with raw_task, task_type, complexity_hint, constraints; capture FRAMEWORK, CLEAR_SCORE, TEST, CHANGES, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES."
+.skilled/commands/prompt/assets/prompt_improve_confirm.yaml:106:      - "dispatch_mode AGENT: dispatch Task(subagent_type=prompt-improver) with raw_task, task_type, complexity_hint, constraints; capture FRAMEWORK, CLEAR_SCORE, TEST, CHANGES, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES."
+exit=0
+$ git log -S'Denied under no circumstances' --format='%h %ad %s' --date=short -- .skilled/agents/prompt-improver.md .opencode/agents/prompt-improver.md
+f2ed64975c 2026-09-11 feat(agents): gate prompt-improver on eligible model and route pairs
+exit=0
+$ rg -n 'NEVER execute the prompt|quick test|Never execute, test|^TEST: ' .skilled/agents/prompt-improver.md
+40:- NEVER execute the prompt it constructs. This agent returns a dispatch-ready package; the caller dispatches it.
+85:4. **VALIDATE** → Apply the CLEAR screen, repair up to 3 cycles if the prompt misses the threshold, record the quick test result or NOT RUN, and verify that no unsupported repo, policy, integration, or completion claim slipped in
+178:    │   └─► Run the thorough checklist + quick test + CLEAR screening
+205:- Never execute, test, or claim completion of the enhanced prompt's underlying task.
+232:TEST: <ran: summary of old vs new on 2-3 inputs | NOT RUN>
+exit=0
+$ sed -n '1,20p' .skilled/agents/prompt-improver.md | rg -n 'edit:|bash:|task:'
+9:  edit: deny
+10:  bash: deny
+16:  task: deny
+exit=0
+$ rg -n 'general-purpose|/prompt-improve' .skilled/agents/prompt-improver.md
+103:| `INT-CALLER-GENERAL` | `@general-purpose` | Primary caller/orchestrator may dispatch this specialist and then dispatch the returned prompt elsewhere; this agent does not call back or delegate |
+104:| `INT-CMD-PROMPT-IMPROVER` | `/prompt-improve` via `.skilled/commands/prompt/improve.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
+119:| `@general-purpose` | `INT-CALLER-GENERAL` | Primary caller/orchestrator that may dispatch this specialist for a prompt package |
+125:| `/prompt-improve` | `INT-CMD-PROMPT-IMPROVER` | Shared prompt-improvement command surface with inline vs agent routing | `.skilled/commands/prompt/improve.md` |
+206:- Never invoke, simulate, or claim results from `/prompt-improve`, target CLIs, skills, MCP tools, or caller agents.
+282:caller_agent: <@general-purpose|other caller>           # optional
+283:command_surface: </prompt-improve|other command>       # optional
+398:- `.skilled/commands/prompt/improve.md` — the `/prompt-improve` command surface routing to inline or agent flow.
+exit=0
+$ node -e 'const r=require("./.skilled/agents/agent-registry.json");const a=(r.agents||r).find?.(x=>x.name==="prompt-improver")||r.agents?.["prompt-improver"];console.log(JSON.stringify(a&&(a.dispatchers||a.dispatchedBy||a)).slice(0,300))'
+["/prompt:improve","orchestrate"]
+exit=0
+$ ls .codex/prompts/prompt-improve.md .pi/prompts/prompt-improve.md .cursor/commands/prompt-improve.md
+.codex/prompts/prompt-improve.md
+.cursor/commands/prompt-improve.md
+.pi/prompts/prompt-improve.md
+exit=0
+$ rg -c 'INT-[A-Z-]+|Integration ID' .skilled/agents/prompt-improver.md
+17
+exit=0
+$ rg -n 'INT-[A-Z]|Integration ID' .skilled/agents/prompt-improver.md
+103:| `INT-CALLER-GENERAL` | `@general-purpose` | Primary caller/orchestrator may dispatch this specialist and then dispatch the returned prompt elsewhere; this agent does not call back or delegate |
+104:| `INT-CMD-PROMPT-IMPROVER` | `/prompt-improve` via `.skilled/commands/prompt/improve.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
+105:| `INT-SKILL-PROMPT-IMPROVER` | `.skilled/skills/sk-prompt/SKILL.md` | Canonical source for the checklist, skeleton and presets, and CLEAR; read before composing |
+106:| `INT-SKILL-SK-DOC` | `sk-doc` | Documentation-shape guidance may inform prompt constraints when the caller asks for documentation packaging or template alignment |
+107:| `INT-TARGET-CLI` | `target_cli` values such as `claude-code`, `codex`, or `copilot` | Downstream executor context for prompt wording only; do not claim the executor was invoked |
+108:| `INT-MCP-CALLER-SUPPLIED` | `mcp_tools` field | Caller-supplied downstream MCP tool constraints only; include or warn about them without inventing or invoking tools |
+109:| `INT-RUNTIME-MIRRORS` | `.claude/agents` | Downstream packaging surface only; never use it as canonical prompt authority |
+117:| Agent | Integration ID | Purpose |
+119:| `@general-purpose` | `INT-CALLER-GENERAL` | Primary caller/orchestrator that may dispatch this specialist for a prompt package |
+123:| Command | Integration ID | Purpose | Path |
+125:| `/prompt-improve` | `INT-CMD-PROMPT-IMPROVER` | Shared prompt-improvement command surface with inline vs agent routing | `.skilled/commands/prompt/improve.md` |
+129:| Skill | Integration ID | Domain | Use When | Entry File | Key Features |
+131:| `sk-prompt` | `INT-SKILL-PROMPT-IMPROVER` | Prompt engineering | High-stakes prompt improvement is needed | `.skilled/skills/sk-prompt/SKILL.md` | One-pass checklist, presets, CLEAR screening |
+132:| `sk-doc` | `INT-SKILL-SK-DOC` | Agent-template alignment | Agent structure or formatting must match current template conventions | `.skilled/skills/sk-doc/SKILL.md` | Canonical agent template and runtime guidance |
+172:    │   └─► Preserve exact names, map known surfaces to Integration IDs, and put unknowns in ESCALATION_NOTES
+234:RATIONALE: <1-2 lines; include Integration IDs when they materially affected the prompt>
+335:□ Known integration points map to Integration IDs when they materially affect the prompt
+exit=0
+$ rg -n 'Denied under no circumstances|ran: summary|Quick test|canonical home|^version:' .skilled/skills/sk-prompt/SKILL.md
+5:version: 4.0.4.0
+140:   - Added, Changed, Removed, Skipped, plus `Quick test: NOT RUN` when the test did not run
+235:| any route | Opus | No | Denied under no circumstances |
+236:| any route | Fable | No | Denied under no circumstances |
+255:The canonical home of this contract is `.skilled/agents/prompt-improver.md`, so future edits land in one place.
+270:TEST: <ran: summary of old vs new on 2-3 inputs | NOT RUN>
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs | tail -1
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0

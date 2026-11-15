@@ -1,0 +1,19 @@
+FILES (all under .skilled/skills/system-deep-loop/runtime/tests unless a full path is given):
+- unit/lifecycle-taxonomy-yaml-parity.vitest.ts
+- unit/stop-policy-yaml-parity.vitest.ts
+- unit/workflow-session-id-parity.vitest.ts
+- unit/render-command-contract.vitest.ts
+- unit/compile-command-contracts.vitest.ts
+- unit/fanout-merge.vitest.ts
+- unit/workflow-lock-lifetime.vitest.ts
+- unit/workflow-max-duration.vitest.ts
+
+PER-FILE NOTES.
+- The three *-parity files compared auto with confirm. Apply rule 3.
+- render-command-contract read `confirm_parity`. Replace that with the equivalent single-file
+  fact where one exists (a confirm gate carries `applies_to: confirm`), else apply rule 5.
+- compile-command-contracts: do NOT touch the block under the comment "WORKFLOW DRIFT GUARD" at
+  the end of the file. Above it, change only expectations that name `autoWorkflow`,
+  `confirmWorkflow` or an old file for the research and review commands. Council expectations stay.
+  After this change the whole file must pass, guard included. If a guard case fails, report its
+  message under CONTENT MISMATCH and change nothing for it.

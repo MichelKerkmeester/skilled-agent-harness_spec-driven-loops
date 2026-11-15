@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop executor kind",
+      "phase 9 deep loop executor kind",
+      "cli-mistral-vibe executor kind",
+      "deep loop executor kind plan",
+      "deep loop executor kind tasks",
+      "deep loop executor kind acceptance criteria",
+      "deep loop executor kind goal",
+      "deep loop executor kind decision record",
+      "ac-012 superseded rationale",
+      "deep loop executor kind implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "executor",
+      "kind",
+      "phase",
+      "cli-mistral-vibe",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "decision"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/live-contracts.json",
+      ".vibe/config.toml",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      "research/keyed-lineage-run/lineages/vibe-1/vibe-output/export.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli-mistral-vibe.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "live-contracts.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/live-contracts.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".vibe/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "export.json",
+        "kind": "config",
+        "path": "research/keyed-lineage-run/lineages/vibe-1/vibe-output/export.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop fan-out runs a lineage only through an executor kind with its own adapter, env allowlist and recursion guard, and none of the seven runtime, test and command files searched in Measured Behavior mentions Vibe",
+    "created_at": "2026-11-14T12:56:32Z",
+    "last_save_at": "2026-11-14T19:11:07.569Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0ba53f8d47ba21d317b52e0e8258bb6aee9117819ce56a9c94c9926c524dcfa0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6d5f01ce49e5a4732b447cf17017c3d934577cdaf064c208fafb1b8f7468dbe6",
+      "plan.md": "4ba21f3d24c510c7d23d0def5d540158fd32fd534b4d36750c2b2a6e3debbbd6",
+      "tasks.md": "5ccd5e268f9085661d5da30ea280e91e18860b8ec86eec18ca2d34e076800433",
+      "decision-record.md": "37ca4279e9673981cb91cd4ea7a5b1f4128595ad94d0876ccd3b50f5cd78d934",
+      "implementation-summary.md": "db7ff687485bf539670548de1fe9f2eeee19681c5bbb06f64a056ba7a5b6eba3"
+    },
+    "last_active_at": null
+  }
+}

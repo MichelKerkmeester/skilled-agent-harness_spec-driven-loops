@@ -1,0 +1,51 @@
+
+  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
+  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+
+Hello Michel, how can I help you?
+
+
+
+> Please spawn a subagent with this exact message, copied from our review run: Deep Route: workflow=deep-research mode=review target_agent=@deep-research -- review the dist-freshness hook and report
+  findings.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⏵ Called 4 tools, thought                                                                                                     
+
+  The spawn was blocked before it started. A guard parses the message and rejects it:
+
+  ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Deep Route mode mismatch -- dispatch targets subagent_type="deep-research"                                                                                                                       │
+  │ (registry modes="research") but the prompt declares mode="review"                                                                                                                                │
+  └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  I tried twice — once as a configured child, once as a generic child — and got the identical rejection both times, so the block is on the message text itself, not on how I spawn. The @deep-research
+  agent only registers mode=research, and the copied prompt declares mode=review. Nothing was created; no agent is running.
+
+  I can't send that message verbatim. Which adjustment do you want?
+
+✓ Answered "The exact message is rejected by the Deep Route guard. How should I adjust it before spawning?" → (Other) Stop there. The refusal is the result I wanted, so do not retry the dispatch and
+           do not change the mode token.
+
+⏵ Thought 
+
+  Stopping. No retry, no token change.
+
+  Result as it stands:
+
+  • Two spawn attempts, both rejected pre-dispatch with tool_skipped — no child agent was created, nothing is running, no files or git hooks were touched.
+  • The guard reads the message body, not the spawn config: a configured child and a generic child failed identically, so target_agent=@deep-research plus mode=review in the prompt text is what       
+    trips it.                                                                                                                                                                                           
+  • The registry constraint is deep-research → modes=research, so any prompt declaring mode=review against that target is refused regardless of who dispatches it.                                      
+                                                                                                                                                                                                        
+  That's the whole finding. The message is unchanged and unsent.                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                                                                                                                                                                       
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.5aFO3YIbgS/vibe                                                                                                         ctx ▍      14k/256k
+

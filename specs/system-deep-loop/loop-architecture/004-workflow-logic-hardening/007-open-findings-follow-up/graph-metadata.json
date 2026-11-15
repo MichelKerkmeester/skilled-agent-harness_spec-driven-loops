@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up",
+  "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "open findings follow up",
+      "phase 7 open findings follow up",
+      "deep loop stdin eagain",
+      "spec kit stale dist build",
+      "open findings follow up plan",
+      "open findings follow up tasks",
+      "open findings follow up goal",
+      "open findings follow up implementation summary"
+    ],
+    "key_topics": [
+      "open",
+      "findings",
+      "follow",
+      "phase",
+      "deep",
+      "loop",
+      "stdin",
+      "eagain",
+      "spec",
+      "kit",
+      "stale",
+      "dist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/integration/bootstrap-stdin.vitest.ts",
+      ".skilled/skills/system-spec-kit/package.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-dist-freshness.sh",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl",
+      "runtime/package.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "bootstrap-stdin.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/integration/bootstrap-stdin.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "test-dist-freshness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-dist-freshness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gate2-golden-prompts.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Six",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor sends \"deep review this branch\" to `sk-git` and \"what is an ai council and how does it compare to a review\" to `sk-code`, so a reader is offered the wrong skill",
+    "created_at": "2026-11-15T05:25:50Z",
+    "last_save_at": "2026-11-15T07:45:10.379Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9e551474b6c9bb0e18ea64903f9127bad31c6f44fe9ba47abc6539e3d5d95a93",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7b50998364ff9b74e9a6bbdbc5af9e9ac4a12b5f959409d0b39261ce43894cca",
+      "plan.md": "8f1917c014fedea546e7ee9852f09dd00e981bc314e30dbcf256d76b6c33c4da",
+      "tasks.md": "a0f05bdefc0dbe36007a2a5a8e3140fbf1a6e7ef871fe7876280a99724524521",
+      "implementation-summary.md": "4ed167c15fd2372bbdc6dfe49335c77aa11cd6cbb81ace908844dc0682eabe7c"
+    },
+    "last_active_at": null
+  }
+}

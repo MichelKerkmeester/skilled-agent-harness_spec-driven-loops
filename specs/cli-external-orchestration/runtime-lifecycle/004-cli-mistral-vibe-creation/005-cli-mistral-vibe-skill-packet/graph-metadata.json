@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/005-cli-mistral-vibe-skill-packet",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/005-cli-mistral-vibe-skill-packet",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli mistral vibe skill packet",
+      "phase 5 cli mistral vibe skill packet",
+      "cli-mistral-vibe mode packet",
+      "cli mistral vibe skill packet plan",
+      "cli mistral vibe skill packet tasks",
+      "cli mistral vibe skill packet goal",
+      "cli mistral vibe skill packet implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "mistral",
+      "vibe",
+      "skill",
+      "packet",
+      "phase",
+      "cli-mistral-vibe",
+      "mode",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/ROUTER.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/cli-reference.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/runtime-folder-and-sync.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/assets/prompt-quality-card.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      "scratch/status-before.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-folder-and-sync.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/runtime-folder-and-sync.md",
+        "source": "derived"
+      },
+      {
+        "name": "guards-and-hooks.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/assets/prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "status-before.txt",
+        "kind": "file",
+        "path": "scratch/status-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-external-orchestration hub has a mode packet for each governed runtime, but none for Vibe",
+    "created_at": "2026-11-14T12:56:16Z",
+    "last_save_at": "2026-11-14T14:57:05.573Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d352c7b016438692deec1ae808830acc107d009a8b53a122a0b53ee3fc9a72ae",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "08b11b1c9a2318be9e732b3364a5a3f2df64e0a97cf7127f67f455865f85898e",
+      "plan.md": "ae5aad271a55ee177672d66a7f4574e618a3cc8303c4d9f5ebf0d352cf8941cf",
+      "tasks.md": "edc234088d8ed43d1d947c1378be158f9b1a76d77d1db5315ce11bfc26d87f7b",
+      "implementation-summary.md": "cbc8b1e1b75c89aeb6c471f4e277d2fd0e542b5bcfdfccaca1b2439b1f519040"
+    },
+    "last_active_at": null
+  }
+}

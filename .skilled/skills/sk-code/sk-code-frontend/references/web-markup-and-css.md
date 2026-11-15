@@ -7,7 +7,7 @@ trigger_phrases:
   - "web forms and layout"
 importance_tier: important
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Web Markup and CSS Practice
@@ -150,6 +150,8 @@ Form behavior such as label focus, the form wrapper, input `type`, `required`, d
 ## 8. FRAMEWORK SECTIONS
 
 The entries below are examples of how common frameworks express shared DOM and CSS rules. Apply an example only when that framework is in use; the underlying rule remains the platform rule.
+
+This file carries React and Next.js only. Rules for another framework, such as Vue, Svelte or Angular, live in the project mode that owns that stack, under the `Frontend overrides` heading of its `SKILL.md`.
 
 ### React
 

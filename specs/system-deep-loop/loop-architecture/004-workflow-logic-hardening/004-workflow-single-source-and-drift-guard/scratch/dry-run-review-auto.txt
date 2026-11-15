@@ -1,0 +1,13 @@
+COMMAND: /deep:review:auto .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs --spec-folder=specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/scratch/901-dry-run-probe --max-iterations=1 --dry-run
+WORKFLOW: .skilled/commands/deep/assets/deep-review.yaml
+EXECUTION_MODE: auto
+STEP step_resolve_artifact_root: ran read-only
+STEP step_bind_reducer_artifact_arg: ran read-only
+STEP step_apply_lifecycle_request: skipped by skip_when
+STEP step_fanout_spawn: skipped by skip_when
+STEP step_preflight_contract: ran read-only
+STEP step_create_directories: halted
+{"type":"event","event":"dry_run_halt","mode":"review","boundary":"state-mutation","step":"step_create_directories","timestamp":"2026-11-14T19:00:57Z"}
+WRITES: none
+DISPATCHES: none
+DRY-RUN CONTRADICTION: halt_hook_rule says to halt "before executing any command" in a dry_run_boundary step, while dry_run_control.safe_operations and event_policy.preview_only say read-only reads and prompt rendering still run inside such steps, leaving unclear whether a read-only command in a boundary-tagged step (for example step_post_iteration_claim_adjudication's verify reads) runs or halts first; this run is unaffected because step_create_directories' only command is a mutation.

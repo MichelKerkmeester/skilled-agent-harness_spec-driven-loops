@@ -110,7 +110,6 @@ function normalizeMode(mode) {
   const trimmed = mode.trim();
   if (trimmed === 'research' || trimmed === 'deep-research') return 'deep-research';
   if (trimmed === 'review' || trimmed === 'deep-review') return 'deep-review';
-  if (trimmed === 'ai-council' || trimmed === 'council' || trimmed === 'deep-ai-council' || trimmed === 'deep-council') return 'deep-ai-council';
   return trimmed;
 }
 
@@ -133,15 +132,6 @@ async function resolveModeAdapter(mode) {
         createRegistry: mod.createDeepReviewEventRegistry,
         prepareEvent: mod.prepareDeepReviewEvent,
         isEventStem: mod.isDeepReviewEventStem,
-      };
-    }
-    case 'deep-ai-council': {
-      const mod = await import('../lib/deep-ai-council-ledger-schema/index.ts');
-      return {
-        normalizedMode: 'deep-ai-council',
-        createRegistry: mod.createDeepAiCouncilEventRegistry,
-        prepareEvent: mod.prepareDeepAiCouncilEvent,
-        isEventStem: mod.isDeepAiCouncilEventStem,
       };
     }
     default:
@@ -440,11 +430,22 @@ async function main() {
     && rawEvent
     && typeof rawEvent === 'object'
     && !Array.isArray(rawEvent)
-    && rawEvent.type === 'iteration'
+    && (rawEvent.type === 'iteration' || rawEvent.type === 'iteration_start'
+      || (rawEvent.type === 'event'
+        && [
+          'dispatch_failure',
+          'dispatch_receipt_write_failed',
+          'verification_degraded',
+          'containment_violation',
+          'containment_contested',
+        ].includes(rawEvent.event)))
   ) {
     // The review agent, its iteration prompt and its workflow all hand the gateway the canonical
-    // iteration record itself. Its optional fields vary with review depth and executor, so it
-    // travels whole under one stem, and the state projection writes it back as the same row.
+    // iteration record itself, the pre-dispatch executor audit hands it the iteration's opening
+    // row, the audited executor runner hands it a dispatch's failure rows, the post-dispatch
+    // validator its verification_degraded row and the write-containment guard its findings.
+    // Their optional fields vary with review depth and executor, so each travels whole under one
+    // stem, and the state projection writes it back as the same row.
     const sessionId = typeof rawEvent.sessionId === 'string' && rawEvent.sessionId
       ? rawEvent.sessionId
       : 'run-cli';

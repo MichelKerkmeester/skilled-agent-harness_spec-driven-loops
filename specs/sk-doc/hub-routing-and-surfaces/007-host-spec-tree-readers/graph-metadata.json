@@ -46,7 +46,7 @@
       ".skilled/bin/tests/compiled-route-sync-host.test.cjs",
       ".skilled/skills/system-skill-advisor/runtime/tests/helpers/activation-matrix-evidence.mjs",
       ".skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts",
-      "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs",
+      "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs",
       ".skilled/skills/system-skill-advisor/runtime/tests/helpers/README.md",
       ".skilled/skills/system-skill-advisor/runtime/tests/README.md",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/host-index.mjs",
@@ -116,7 +116,7 @@
       {
         "name": "activation-matrix.test.mjs",
         "kind": "file",
-        "path": "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs",
+        "path": "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Skilled is vendored into host repositories",
     "created_at": "2026-11-13T18:46:08Z",
-    "last_save_at": "2026-11-13T19:06:39.244Z",
+    "last_save_at": "2026-11-15T07:10:07.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6071552684c4ed03f828f29770ecf196072951f8e58ee1091720d23c6c43ba0",
+    "source_fingerprint": "sha256:e4ebde3ecaac53f82c9858fc42eb952c09d91d89bde993f327a7b381c20602f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4931c47c1bf30eb72147e43dfb160b96136bef1747461541f0503ee1cec927a8",
-      "plan.md": "bf1b7927910998fe17d82d5417233f9947cfc4152f996d6032b2317f0758e525",
-      "tasks.md": "45fd00e06f88bb5cde819682d35c7e9443240f5df4d0b138b83744f64d1e2fda",
-      "implementation-summary.md": "e17c69e5f9ed509fcf8d14d3d7d621977fb508d6012ce5bcecdd2d5f2b28350b"
+      "spec.md": "7be43ba32827da950e069c45f1041cbe682e114d5bc012b0230aaa93f38fbd38",
+      "plan.md": "681b16b9fda3bdbaae14e2b3030bfd8499c90ea92a28b6014f38dc58aae4b870",
+      "tasks.md": "df3f24067c921edd0f0307be7f58b147529188375b55c87e6192d4de8582e53e",
+      "implementation-summary.md": "fa99e78b708dd36f77d041fab1ebf108d57c21df099a4924bbd861f2a281306d"
     },
     "last_active_at": null
   }

@@ -1,0 +1,160 @@
+{
+ "date": "2026-11-14",
+ "title": "Phase 6: skilled-packet-fixes",
+ "hook": "Every `SK` row of the audit is closed: twelve are fixed in the packet's documents, one was fixed in phase 005 and two carry a recorded reason for no change. The packet's entry documents no longer contradict each other or the tree.",
+ "recent": "Fixed twelve SK rows in the skilled packet and recorded no change for two",
+ "next": "Start 007-review-packet-fixes",
+ "what": "You can read `SKILL.md` and `README.md` and get one answer on who edits: the paired workflow mode. The shared doctrine path in `SKILL.md` resolves. The scripts README has a row for each of the nine test files. The guard checks and legs are listed once, in the alignment reference, and `SKILL.md` and the scripts README link to it. `SKILL.md` states what the wrapper does when Git is missing. The router no longer promises a no-match section and names the hub router as the owner of that fallback. The README carries the packet's name, names how an outside surface declares itself and says which file holds the packet version. The TypeScript and Python line-length limits are stated the same way, and the universal checklist links the Rust style guide. The packet is at version 2.2.0.0.",
+ "files": [
+  [
+   "`sk-code-skilled/SKILL.md`",
+   "Modified",
+   "Rows SK-01, SK-02, SK-05 and SK-06, and version 2.2.0.0"
+  ],
+  [
+   "`sk-code-skilled/README.md`",
+   "Modified",
+   "Rows SK-09, SK-13 and SK-14"
+  ],
+  [
+   "`sk-code-skilled/ROUTER.md`",
+   "Modified",
+   "Row SK-08, the selector sentence for SK-07 and one comment for SK-05"
+  ],
+  [
+   "`sk-code-skilled/scripts/README.md`",
+   "Modified",
+   "Rows SK-03 and SK-05"
+  ],
+  [
+   "`references/shared/alignment-verification-automation.md`",
+   "Modified",
+   "One sentence that said no router lists the workflow docs"
+  ],
+  [
+   "`references/typescript/style-guide/formatting-imports-and-coexistence.md`, `references/python/quick-reference.md`",
+   "Modified",
+   "Rows SK-04 and SK-10"
+  ],
+  [
+   "`assets/checklists/universal-checklist.md`",
+   "Modified",
+   "Row SK-15"
+  ],
+  [
+   "`manual-testing-playbook/manual-testing-playbook.md`",
+   "Modified",
+   "One table cell reworded for SK-05"
+  ],
+  [
+   "`changelog/v2.2.0.0.md`",
+   "Created",
+   "The packet release note"
+  ]
+ ],
+ "how": "Each cited line was read and each edit was designed as literal text. Nineteen briefs went to DeepSeek V4.1 Flash at max thinking through cli-pi, in four chains of one file each and seven single-file dispatches, and every diff was read. The orchestrating session ran each task's verify command, the drift guards, the packet tests, the playbook validator, the README reference check and the setup battery. The code landed as `ac50644619`.",
+ "decisions": [
+  [
+   "One commit for the phase, not one for each row",
+   "The operator's commit policy for this packet is one code commit for each phase. The edge case in `spec.md` assumed one commit for each task"
+  ],
+  [
+   "SK-08 removes the promise and adds no section",
+   "The task allows either. A surface packet has no fallback of its own: section 6 of the hub router owns it, and the overview now says so"
+  ],
+  [
+   "SK-12 is left unchanged",
+   "Its verdict is `Judgment`, and decision D1 fixes only `Confirmed` and `Changed` rows"
+  ],
+  [
+   "SK-11 keeps all 15 files",
+   "Decision D2 forbids splitting a script here, and a reference split changes the router, the manifest and the playbook gold"
+  ],
+  [
+   "The scripts README lists test files in its table, not its tree",
+   "The task's verify compares the file count with the lines that hold `.test.cjs`, and two table rows already did"
+  ],
+  [
+   "`README.md` and the playbook scenario still name the four guards",
+   "Each names the command set it runs in one sentence. Only the check and leg enumeration was duplicated verbatim"
+  ],
+  [
+   "The version rose to 2.2.0.0, a minor step",
+   "The note also covers the two guard rules phases 004 and 005 added to this packet's scripts"
+  ]
+ ],
+ "verify": [
+  [
+   "`grep -c '^| SK-.*| - |$'` on the findings ledger",
+   "`0`"
+  ],
+  [
+   "`node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests`",
+   "55 pass, 0 fail"
+  ],
+  [
+   "The verify command of tasks T003 to T017",
+   "Each printed what its task states, except T014, whose row is `Judgment`"
+  ],
+  [
+   "`run-all-drift-guards.sh`",
+   "`all 4 guards PASSED`, exit 0"
+  ],
+  [
+   "`run-all-drift-guards.sh` with one dead path added to `SKILL.md`",
+   "`FAIL: doc-claims`, exit 1, then exit 0 after the revert, saved in `scratch/failure-path.txt`"
+  ],
+  [
+   "`validate-playbook-package.cjs --package` on the packet playbook",
+   "`PASS`, 12 scenarios, 0 violations"
+  ],
+  [
+   "`check_readme_references.py` on the packet `README.md`",
+   "`PASS`, 48 references, 0 unresolved"
+  ],
+  [
+   "`sk-code-setup-check.cjs`",
+   "`STATUS=OK legs=9`, exit 0"
+  ],
+  [
+   "`git show --stat ac50644619`",
+   "Ten files, all under `sk-code-skilled/`"
+  ]
+ ],
+ "limits": "1. **`check_readme_references.py` fails on `scripts/README.md`.** It reports two unresolved paths on line 13, `assets/scripts/verify-router-sync.cjs` and `assets/scripts/verify-doc-claims.cjs`. Both were unresolved before this phase, and no ledger row names them.\n2. **The playbook's test table lists seven of the nine test files.** `router-file-resolver.test.cjs` and `router-replay-lib-resolver.test.cjs` are missing from section 11, and line 420 says seven. No ledger row names this.\n3. **`SKILL.md` line 13 still says `OpenCode system code`.** Row SK-09 names the README only.\n4. **SK-12 has one reader's verdict.** Phase 001 marked it `Judgment` and no second reader checked that call.",
+ "open": [],
+ "chk": {
+  "CHK-001": "spec.md section 4 rows REQ-001 to REQ-006 each name a command and its expected output",
+  "CHK-002": "plan.md section 3 and the Affected Surfaces table name the packet's entry documents and references",
+  "CHK-003": "phase 005 closed in `a7ecde5730`, and the battery ends `STATUS=OK legs=9` with exit 0",
+  "CHK-010": "N/A: no JSON file changed in this phase. The hook re-minted both manifests with no diff",
+  "CHK-011": "all four guards PASS",
+  "CHK-012": "`git show --stat ac50644619` lists ten files, all under `sk-code-skilled/`",
+  "CHK-013": "the changed documents keep their frontmatter and section order, and the doc-claims guard passes 4 of 4",
+  "CHK-020": "AC-001 to AC-006 are Met",
+  "CHK-021": "the count is 0",
+  "CHK-022": "no row was `Refuted`, so the empty case did not arise. Twelve rows were fixed here in one commit, not one commit each. Both logged in goal.md",
+  "CHK-023": "a dead path added to `SKILL.md` made the runner print `FAIL: doc-claims` and exit 1. The line was reverted and the runner exited 0, saved in `scratch/failure-path.txt`",
+  "CHK-FIX-001": "all 15 rows had a verdict from phase 001: 14 `Confirmed` and SK-12 `Judgment`",
+  "CHK-FIX-002": "`rg` found the ownership claim a second time on line 13 of `SKILL.md`, which is fixed, and `Leg 1b` in the playbook root and the router comment, which are reworded",
+  "CHK-FIX-003": "the task verify commands, the drift guards and the packet tests all ran",
+  "CHK-FIX-004": "each `SK` row names its proving command or its reason for no change",
+  "CHK-FIX-005": "each fixed row names `ac50644619`, and SK-07 names `19214454c5`",
+  "CHK-030": "the diff holds prose, one release note and one version string",
+  "CHK-031": "N/A as the line states",
+  "CHK-040": "the three documents name the same files and the same validate.sh command",
+  "CHK-041": "the one comment changed in `ROUTER.md` names the orphan-doc leg and carries no id or path",
+  "CHK-042": "`sk-code-skilled/changelog/v2.2.0.0.md` names rows SK-01 to SK-10 and SK-13 to SK-15",
+  "CHK-050": "`scratch/failure-path.txt` is the only working file",
+  "CHK-051": "the parent goal replay reads `scratch/failure-path.txt` as the failure-path evidence"
+ },
+ "ac": {
+  "AC-001": "`0` on 2026-11-14 at `ac50644619`.",
+  "AC-002": "55 pass, 0 fail.",
+  "AC-003": "nothing printed, exit 1.",
+  "AC-004": "nothing printed, exit 1.",
+  "AC-005": "`git show --stat ac50644619` lists ten files, all under `sk-code-skilled/`. The docs commit holds the ledger and this packet's own documents.",
+  "AC-006": "`v2.2.0.0.md` is the newest file and `SKILL.md` holds `version: 2.2.0.0`."
+ },
+ "closure": "Six criteria are met with the outputs observed on 2026-11-14 at commit `ac50644619`."
+}

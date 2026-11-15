@@ -1,0 +1,3 @@
+$ grep -rqs 'Jev injection screen' "$VIBE_HOME/logs/session/unified" && grep -rqs 'classifier-injection-screen' "$VIBE_HOME/logs/session/unified" && echo advisory-appended
+advisory-appended
+[exit 0]

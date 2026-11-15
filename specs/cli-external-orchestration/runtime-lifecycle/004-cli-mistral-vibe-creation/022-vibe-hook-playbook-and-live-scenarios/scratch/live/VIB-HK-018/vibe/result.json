@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "SKIP",
+  "blocker": "no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session",
+  "seed": 330637499,
+  "socket": "conv-31662-vibe",
+  "session_id": "4a2f9738-30fe-4ee3-9a41-ed99d1606fec",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.vIu69q6bpJ/vibe",
+  "started_at": "2026-11-15T00:43:33.361Z",
+  "finished_at": "2026-11-15T00:44:00.391Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "validate",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session",
+      "observed": "no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session",
+      "evidence": "turns/validate"
+    },
+    {
+      "id": "build-state",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session",
+      "observed": "no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session",
+      "evidence": "turns/build-state"
+    }
+  ]
+}

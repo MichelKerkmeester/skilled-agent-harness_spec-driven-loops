@@ -1,0 +1,5 @@
+Wrote `proof.txt` (3 bytes: `ok` + newline) in the current folder.
+
+The line from my context:
+
+> **Objective:** Give every Vibe dispatch bound to a packet that packet's goal slice and the session context in its first turn.

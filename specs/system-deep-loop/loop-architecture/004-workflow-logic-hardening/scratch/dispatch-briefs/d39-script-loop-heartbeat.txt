@@ -1,0 +1,32 @@
+ROLE: You are a Node.js engineer. Write one CommonJS script and one test file.
+
+CONTEXT: the deep-research workflow holds three inline Node bodies that write telemetry heartbeat
+rows. They move into one script so the workflow shrinks and both execution modes share the code.
+
+SECTION: "## 2. `loop-heartbeat.cjs`" (lines 65 to 166 of the spec named above).
+
+ONE CHANGE TO THE SPEC: the script takes one more required flag on every phase,
+`--execution-mode auto|confirm` (any other value is a usage error). The meta `producer` is
+`deep-research-${executionMode}` instead of the constant 'deep-research-auto'. Add the flag to
+the usage line.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs   (new)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/loop-heartbeat.vitest.ts   (new)
+
+TEST FILE: three cases, modelled on tests/unit/deep-research-graph-upsert.vitest.ts in the same
+runtime folder for temp folders and for spawning a script.
+  1. No argument: exit status 64 and stderr names `--phase`.
+  2. `--phase started` with a temp config file, ledger path and packet dir: exit 0 and the status
+     ledger holds one row with event "started" and loop_type "research".
+  3. The same started call run twice: the ledger still holds one row.
+
+CHECKS, run from .skilled/skills/system-deep-loop/runtime:
+  node --check scripts/loop-heartbeat.cjs
+  node scripts/loop-heartbeat.cjs ; echo "status=$?"        must print a usage line naming --phase and status=64
+  node_modules/.bin/vitest run --no-coverage tests/unit/loop-heartbeat.vitest.ts     must pass 3 tests
+  npm run typecheck                                           must exit 0
+  The script must read no environment variable: search it for the text `process` followed by
+  `.env` and expect no hit.
+
+REPORT: the output of each check, and any place where the inline bodies disagreed with the spec.

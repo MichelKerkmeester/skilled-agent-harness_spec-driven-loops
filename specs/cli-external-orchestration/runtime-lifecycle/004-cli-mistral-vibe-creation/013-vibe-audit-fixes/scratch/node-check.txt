@@ -1,0 +1,24 @@
+T037 — node --check on every touched .mjs and .cjs file
+
+OK .vibe/plugins/repo-guards/lib/hook-io.mjs
+OK .vibe/plugins/repo-guards/overlay-guard.mjs
+OK .vibe/plugins/repo-guards/spec-gate.mjs
+OK .vibe/plugins/repo-guards/spec-gate-classify.mjs
+OK .vibe/plugins/repo-guards/post-edit-quality.mjs
+OK .vibe/plugins/repo-guards/env-secret-guard.mjs
+OK .vibe/plugins/repo-guards/render-home-hooks.cjs
+OK .vibe/plugins/repo-guards/fixtures/spec-gate/seed-state.mjs
+OK .vibe/plugins/repo-guards/tests/env-secret-guard.test.mjs
+OK .vibe/plugins/repo-guards/tests/render-home-hooks.test.mjs
+OK .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs
+OK .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+OK .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+OK .skilled/hooks/goal/vibe/goal-inject.mjs
+OK .skilled/hooks/goal/vibe/goal-vibe.test.mjs
+OK .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+OK .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs
+OK .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs
+OK .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs
+OK .skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-vibe.test.mjs
+
+Summary: 20 OK, 0 FAIL

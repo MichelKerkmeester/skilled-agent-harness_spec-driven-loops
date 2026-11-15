@@ -57,28 +57,21 @@ def test_the_model_entry_passes_every_rule():
     assert notes == []
 
 
-def test_file_total_fails_one_line_past_280():
+def test_an_expanded_entry_has_no_line_ceiling():
     base = expanded()
-    at_ceiling = base + "Filler line.\n" * (280 - body_lines(base))
-    assert body_lines(at_ceiling) == 280
-    assert rules(at_ceiling) == []
-    assert rules(at_ceiling + "One more.\n") == ["file-total"]
+    long_entry = base + "Filler line.\n" * (1000 - body_lines(base))
+    assert body_lines(long_entry) == 1000
+    assert rules(long_entry) == []
 
 
-def test_a_compact_entry_has_no_file_total_or_h4_rule():
+def test_a_compact_entry_has_no_line_or_h4_rule():
     compact = FRONTMATTER + "Summary.\n\n&nbsp;\n\n## What's New at a Glance\n\n- **A fix.** It works.\n\n## Upgrade\n\nNo migration required.\n"
     assert rules(compact + "Filler line.\n" * 300) == []
 
 
-def test_h4_items_fail_past_32():
-    assert rules(expanded(sections=[("Alpha", 16), ("Beta", 16)])) == []
-    assert rules(expanded(sections=[("Alpha", 17), ("Beta", 16)])) == ["h4-items"]
-
-
-def test_glance_bullets_fail_past_14():
-    bullets = [f"- **Gain {n}.** It helps." for n in range(14)]
-    assert rules(expanded(glance=bullets)) == []
-    assert rules(expanded(glance=bullets + ["- **Gain 15.** It helps."])) == ["glance-bullets"]
+def test_an_entry_has_no_h4_or_glance_ceiling():
+    bullets = [f"- **Gain {n}.** It helps." for n in range(30)]
+    assert rules(expanded(glance=bullets, sections=[("Alpha", 30), ("Beta", 30)])) == []
 
 
 def test_glance_order_follows_the_tagged_sections():
@@ -153,11 +146,20 @@ def test_the_template_ceilings_match_the_checker():
                     return int(numbers[0])
         raise AssertionError(f"no ceiling row named {row}")
 
-    assert ceiling("Expanded file total") == shape.EXPANDED_MAX_BODY_LINES
-    assert ceiling("Expanded H4 items") == shape.EXPANDED_MAX_H4_ITEMS
-    assert ceiling("What's New at a Glance") == shape.GLANCE_MAX_BULLETS
     assert ceiling("Sentence") == shape.SENTENCE_MAX_WORDS
     assert ceiling("Sentence average") == shape.SENTENCE_MEAN_WORDS
+
+
+def test_the_workflow_ceilings_match_the_checker():
+    """A writer drafts from the workflow's ceiling line, so it must name the numbers the checker enforces."""
+    import re
+    import check_changelog_shape as shape
+
+    for mode in ("auto", "confirm"):
+        workflow = (REPO_ROOT / ".skilled" / "commands" / "create" / "assets" / f"create-changelog-{mode}.yaml").read_text(encoding="utf-8")
+        line = workflow.split("Expanded ceilings", 1)[1]
+        assert int(re.search(r"(\d+) words a sentence,", line).group(1)) == shape.SENTENCE_MAX_WORDS, mode
+        assert int(re.search(r"(\d+) words a sentence on average", line).group(1)) == shape.SENTENCE_MEAN_WORDS, mode
 
 
 def test_an_expanded_entry_needs_the_checked_section():

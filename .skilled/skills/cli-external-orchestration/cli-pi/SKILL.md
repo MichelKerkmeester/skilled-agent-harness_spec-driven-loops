@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.21.0
+version: 1.5.22.0
 ---
 
 # Pi CLI Orchestrator - Cross-AI Task Delegation
@@ -62,12 +62,12 @@ For research and review lineages, the shared deep-loop runtime owns process cons
 That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
 Do not add a packet-local wrapper, spawn path, or command builder.
 
-**Four providers are reachable:** `openai` (the ChatGPT sign-in, named `openai-codex` before Pi 1.0), `opencode-go`, `llmgateway` (**DevPass**, the operator's LLM Gateway plan, metered per token with a 3x credit bonus) and `minimax`.
+**Five providers are reachable:** `openai` (the ChatGPT sign-in, named `openai-codex` before Pi 1.0), `opencode-go`, `llmgateway` (**DevPass**, the operator's LLM Gateway plan, metered per token with a 3x credit bonus), `minimax` and `mistral` (the operator's Mistral subscription, a Pi builtin, direct dispatch only).
 `llmgateway` is not a Pi builtin. It exists only because `.pi/models.json` declares it, and its setup, credentials and removal are in [.pi/custom-providers.md](../../../../.pi/custom-providers.md).
 
 **Closed roster: non-roster models are FORBIDDEN.** Dispatch ONLY the models in [references/providers-and-models.md](./references/providers-and-models.md) §2. That file is the single place the ids, thinking ceilings and per-provider id shapes are recorded, and this file names the providers without restating their models.
 The deep-loop fan-out hard-rejects any off-roster id (`isPiModelAllowed` over `PI_SUPPORTED_MODELS`). Even a direct `pi --model` invocation must not use an unlisted id.
-To add a model, amend the roster first, in the spec packet and in `PI_SUPPORTED_MODELS`.
+To add a fan-out model, amend the roster and `PI_SUPPORTED_MODELS`; a direct-dispatch-only row needs the roster alone.
 
 The pinned contract confirms that headless Pi uses print mode, that JSON mode emits JSONL events, and that RPC mode is a persistent JSONL protocol. These are different contracts. Do not treat RPC as a one-shot print invocation. See [cli-reference.md](./references/cli-reference.md) and [integration-patterns.md](./references/integration-patterns.md).
 

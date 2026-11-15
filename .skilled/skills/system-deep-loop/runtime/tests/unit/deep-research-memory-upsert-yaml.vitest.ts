@@ -17,7 +17,7 @@ import { runtimeRoot } from '../helpers/spawn-cjs';
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research-auto.yaml');
+const YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research.yaml');
 
 // Every retrieval and persistence tool the retired memory MCP surface exposed to this workflow.
 const RETIRED_MEMORY_TOOLS = [

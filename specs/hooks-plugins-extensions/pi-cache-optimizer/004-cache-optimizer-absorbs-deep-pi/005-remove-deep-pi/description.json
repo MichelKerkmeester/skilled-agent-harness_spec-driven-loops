@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi",
+  "description": "The extension directory is 53 tracked files and a large vendored dependency tree that nothing",
+  "keywords": [
+    "extension",
+    "directory",
+    "tracked",
+    "files",
+    "large",
+    "vendored",
+    "dependency",
+    "tree",
+    "nothing"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.330Z",
+  "specId": "005",
+  "folderSlug": "remove-deep-pi",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-cache-optimizer",
+    "004-cache-optimizer-absorbs-deep-pi"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

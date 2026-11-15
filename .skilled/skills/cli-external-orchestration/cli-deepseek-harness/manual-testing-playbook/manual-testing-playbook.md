@@ -1,7 +1,7 @@
 ---
 title: "cli-deepseek-harness: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-deepseek-harness skill."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # cli-deepseek-harness: Manual Testing Playbook
@@ -69,7 +69,7 @@ Coverage note: this package covers the keyless boot contract on both roster rout
 ## 2. GLOBAL PRECONDITIONS
 
 1. The working directory is the repository root and contains `.git/`.
-2. For any live dsh step, `command -v dsh` returns a path and `dsh --version </dev/null` reports `0.2.2-rc.1`.
+2. For any live dsh step, `command -v dsh` returns a path and `dsh --version </dev/null` reports `0.2.2-rc.3`.
 3. Every dsh command runs from a scratch folder created by `mktemp -d`, never from the repository root.
 4. Every dsh command sets `DSH_HOME` to a disposable folder inside that scratch folder.
 5. Patches are named by absolute path as `"$REPO/.dsh/patches/<file>"`, where `$REPO` is the checkout root and `<file>` is the literal patch file name.

@@ -1,0 +1,23 @@
+{
+  "specFolder": "commands/006-alignment-lane-result-parser",
+  "description": "Plan a robust last-findings-object parser for the private alignment lane runner",
+  "keywords": [
+    "plan",
+    "robust",
+    "last-findings-object",
+    "parser",
+    "private",
+    "alignment",
+    "lane",
+    "runner"
+  ],
+  "lastUpdated": "2026-11-14T17:02:14.273Z",
+  "specId": "006",
+  "folderSlug": "alignment-lane-result-parser",
+  "parentChain": [
+    "commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

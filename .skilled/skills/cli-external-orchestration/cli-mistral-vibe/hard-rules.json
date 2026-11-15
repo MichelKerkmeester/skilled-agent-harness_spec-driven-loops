@@ -1,0 +1,44 @@
+[
+  {
+    "id": "print-mode-only",
+    "check": "print-mode-only",
+    "message": "A vibe dispatch MUST run print mode: `vibe -p TEXT`, a pipe into a bare `vibe -p`, or `vibe --prompt-file PATH`. Interactive `vibe` and `vibe-acp` are refused, because an unattended run has no terminal: a bare `vibe` exits 1 with `Error: Interactive mode needs a terminal. Use -p/--prompt to run without one.`",
+    "severity": "error"
+  },
+  {
+    "id": "isolated-vibe-home",
+    "check": "isolated-vibe-home",
+    "message": "Every vibe dispatch MUST set `VIBE_HOME` to a fresh temp directory on the same command line. An unset `VIBE_HOME` falls back to `~/.vibe`, where Vibe writes its logs, `vibehistory` and `trusted_folders.toml` into the operator's home, and a `VIBE_HOME` inside the checkout leaks the same state into the repository.",
+    "severity": "error"
+  },
+  {
+    "id": "output-dir-required",
+    "check": "output-dir-required",
+    "message": "Every vibe dispatch MUST pass `--output-dir DIR`, and the caller reads the outcome from `DIR/export.json` (`exit_code`, `outcome`), never from stdout. A run whose tool calls were denied can still exit 0, and `--output json` and `--output streaming` carry no exit code, so a clean stdout proves nothing.",
+    "severity": "error"
+  },
+  {
+    "id": "vibe-closed-roster",
+    "check": "vibe-closed-roster",
+    "message": "`--model` MUST name a roster alias, `deepseek-flash` or `glm-flash` (rows for `deepseek-v4-1-flash-1017` and `zai-glm-5-3-flash` on provider `mistral`, both `thinking = \"max\"`). Vibe refuses an unknown id (exit 1, `Error: Unknown model`), but its built-in `mistral-medium-3.5` stays selectable beside the roster unless `allowed_models` closes it, so this check is the gate. The built-in free `zai-glm-5-3-flash` row is not selectable. The full roster lives in references/providers-and-models.md.",
+    "severity": "error"
+  },
+  {
+    "id": "no-repo-root-cwd",
+    "check": "no-repo-root-cwd",
+    "message": "A vibe dispatch MUST NOT run with the repository root as its working directory. The root holds a dotenv file and the root `AGENTS.md`, so a root-cwd run puts both in reach of Vibe's project discovery. Use a temp directory. Whether Vibe loads a working-directory `.env` is UNKNOWN, and the rule refuses the root either way.",
+    "severity": "error"
+  },
+  {
+    "id": "stdin-redirect-required",
+    "check": "stdin-redirect-required",
+    "message": "A `vibe -p TEXT` or `vibe --prompt-file` dispatch MUST end with `</dev/null`, so an inherited stdin cannot hang the run. A pipe into a bare `vibe -p` already supplies stdin and needs no redirect; a pipe with no `-p` exits 1 with the interactive-mode error.",
+    "severity": "error"
+  },
+  {
+    "id": "rendered-home-hooks",
+    "check": "rendered-home-hooks",
+    "message": "Every vibe dispatch MUST chain the repository hook render before the run, with the render argument repeating the run's `VIBE_HOME`: `node \"$REPO/.vibe/plugins/repo-guards/render-home-hooks.cjs\" \"$RUN_DIR/.vibe-home\" && VIBE_HOME=\"$RUN_DIR/.vibe-home\" vibe ...`. Vibe loads `.vibe/hooks.toml` from the home, so a home with no rendered copy runs every tool with no guard and can still exit 0.",
+    "severity": "error"
+  }
+]

@@ -1,7 +1,7 @@
 ---
 title: "DRV-010 -- Strategy next focus and dimension rotation"
 description: "Verify that the strategy rotates through dimensions and respects exhausted approaches."
-version: 1.11.0.15
+version: 1.11.1.0
 ---
 
 # DRV-010 -- Strategy next focus and dimension rotation
@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review dimension rotation through strategy Next Focus and skipped exhausted dimensions.
 ### Commands
-1. `bash: rg -n 'next_dimension|next_focus|dimensions_covered|dimension_queue|Next Focus' .skilled/commands/deep/assets/deep-review-auto.yaml`
+1. `bash: rg -n 'next_dimension|next_focus|dimensions_covered|dimension_queue|Next Focus' .skilled/commands/deep/assets/deep-review.yaml`
 2. `bash: rg -n 'Next Focus|dimension.*rotation|dimension.*coverage|exhausted' .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
 3. `bash: rg -n 'Dimension Coverage|dimensions.*covered|minStabilization' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
 ### Expected
@@ -71,7 +71,7 @@ Check the strategy template for explicit dimension tracking sections and verify 
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Loop dimension extraction and dispatch, inspect `step_read_state` and `step_dispatch_review_agent` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Loop dimension extraction and dispatch, inspect `step_read_state` and `step_dispatch_review_agent` |
 | `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template, inspect "Next Focus" and dimension tracking sections |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence signals, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
 | `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Shared convergence algorithm, inspect dimension coverage signal |

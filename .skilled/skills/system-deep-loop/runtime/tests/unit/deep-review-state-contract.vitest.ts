@@ -239,3 +239,163 @@ describe('deep-review-state projection contract', () => {
     expect(result.dashboard).toMatch(/PAUSED|RECOVERING/);
   });
 });
+
+describe('terminal gate verdict', () => {
+  it('projects a terminal gate record into a terminal_gates row and the registry', () => {
+    const contract = createDeepReviewStateProjectionContract();
+    const gateResults = [
+      { gateId: 'evidence', status: 'pass', reasonCode: 'all-findings-cited', evidenceDigest: 'a'.repeat(64) },
+      { gateId: 'scope', status: 'pass', reasonCode: 'all-findings-cited', evidenceDigest: 'a'.repeat(64) },
+      { gateId: 'coverage', status: 'fail', reasonCode: 'coverage-gap-remains', evidenceDigest: 'a'.repeat(64) },
+    ];
+    const state = contract.reduce(
+      contract.base.state,
+      reviewEvent(
+        'deep_review.terminal_gates_recorded',
+        { runId: 'rev-1', sessionId: 's-1', generation: 1, iterationId: 'rev-1-i4' },
+        { stopReason: 'maxIterationsReached', gateResults, failedRequiredGateIds: ['coverage'], appendPosition: 4 },
+        FIXED_TS,
+      ),
+    );
+
+    const payload = new TextDecoder().decode(contract.serialize(state));
+    const lines = payload
+      .trimEnd()
+      .split('\n')
+      .map((line) => JSON.parse(line));
+
+    // One row on the `event` shape: the failed gate list is the field the
+    // reducer's verdict reads, so its survival is the projection's contract.
+    expect(lines).toHaveLength(1);
+    expect(lines[0]).toMatchObject({
+      type: 'event',
+      event: 'terminal_gates',
+      stopReason: 'maxIterationsReached',
+      failedRequiredGateIds: ['coverage'],
+    });
+    // The run number comes from the numeric tail of the iteration id; a raw
+    // string id is zeroed by the reducer's finite-number guard.
+    expect(lines[0].run).toBe(4);
+
+    const specFolder = mkdtempSync(join(tmpdir(), 'review-terminal-gate-projection-'));
+    scratchDirs.push(specFolder);
+    const reviewDir = join(specFolder, 'review');
+    mkdirSync(reviewDir, { recursive: true });
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'terminal-gate-projection-proof' }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), payload);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    expect(result.hasCorruption).toBe(false);
+    const registry = result.registry as unknown as {
+      terminalGates: { stopReason: string; failedRequiredGateIds: string[] } | null;
+    };
+    expect(registry.terminalGates?.failedRequiredGateIds).toEqual(['coverage']);
+    expect(registry.terminalGates?.stopReason).toBe('maxIterationsReached');
+  });
+
+  it('fails a max-iterations stop whose coverage gate still fails with no P0', () => {
+    const contract = createDeepReviewStateProjectionContract();
+    const gateResults = [
+      { gateId: 'evidence', status: 'pass', reasonCode: 'all-findings-cited', evidenceDigest: 'a'.repeat(64) },
+      { gateId: 'scope', status: 'pass', reasonCode: 'all-findings-cited', evidenceDigest: 'a'.repeat(64) },
+      { gateId: 'coverage', status: 'fail', reasonCode: 'coverage-gap-remains', evidenceDigest: 'a'.repeat(64) },
+    ];
+    const events: EventReadResult[] = [
+      reviewEvent('deep_review.run_initialized', { runId: 'rev-1', generation: 1 }, { maxIterations: 5 }, FIXED_TS),
+      reviewEvent('deep_review.dimension_pass_completed', {}, { passNumber: 1, passStatus: 'complete', nextFocusRef: 'dim-a' }, FIXED_TS),
+      reviewEvent(
+        'deep_review.terminal_gates_recorded',
+        { runId: 'rev-1', sessionId: 's-1', generation: 1, iterationId: 'rev-1-i4' },
+        { stopReason: 'maxIterationsReached', gateResults, failedRequiredGateIds: ['coverage'], appendPosition: 4 },
+        FIXED_TS,
+      ),
+    ];
+
+    let state = contract.base.state;
+    for (const event of events) {
+      state = contract.reduce(state, event);
+    }
+
+    const specFolder = mkdtempSync(join(tmpdir(), 'review-terminal-gate-fail-verdict-'));
+    scratchDirs.push(specFolder);
+    const reviewDir = join(specFolder, 'review');
+    mkdirSync(reviewDir, { recursive: true });
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'terminal-gate-fail-proof' }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), new TextDecoder().decode(contract.serialize(state)));
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    // The run has no P0 and no search debt, so the only reason to fail is the
+    // failed gate list the terminal record carried.
+    expect(result.dashboard).toContain('Provisional Verdict: FAIL');
+    expect(result.dashboard).toContain('Failed required gates at stop: coverage');
+  });
+
+  it('passes a run whose earlier blocked stop later converged with every gate passing', () => {
+    const contract = createDeepReviewStateProjectionContract();
+    const passingGates = [
+      { gateId: 'evidence', status: 'pass', reasonCode: 'all-findings-cited', evidenceDigest: 'a'.repeat(64) },
+      { gateId: 'scope', status: 'pass', reasonCode: 'all-findings-cited', evidenceDigest: 'a'.repeat(64) },
+      { gateId: 'coverage', status: 'pass', reasonCode: 'all-findings-cited', evidenceDigest: 'a'.repeat(64) },
+    ];
+    const events: EventReadResult[] = [
+      reviewEvent(
+        'deep_review.blocked_stop_recorded',
+        { runId: 'rev-1', sessionId: 's-1', generation: 2, iterationId: 'rev-1-i3' },
+        {
+          blockedGateIds: ['coverage'],
+          gateResults: [{ gateId: 'coverage', status: 'fail', reasonCode: 'coverage-gap-remains', evidenceDigest: 'a'.repeat(64) }],
+          recoveryStrategy: 'retry-with-evidence',
+        },
+        FIXED_TS,
+      ),
+      reviewEvent(
+        'deep_review.terminal_gates_recorded',
+        { runId: 'rev-1', sessionId: 's-1', generation: 2, iterationId: 'rev-1-i4' },
+        { stopReason: 'converged', gateResults: passingGates, failedRequiredGateIds: [], appendPosition: 5 },
+        FIXED_TS,
+      ),
+    ];
+
+    let state = contract.base.state;
+    for (const event of events) {
+      state = contract.reduce(state, event);
+    }
+
+    const specFolder = mkdtempSync(join(tmpdir(), 'review-terminal-gate-pass-verdict-'));
+    scratchDirs.push(specFolder);
+    const reviewDir = join(specFolder, 'review');
+    mkdirSync(reviewDir, { recursive: true });
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'terminal-gate-pass-proof' }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), new TextDecoder().decode(contract.serialize(state)));
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    // The earlier blocked stop stays in the history, but the latest terminal
+    // gate record carries no failed id, so the verdict is not held back by it.
+    const registry = result.registry as unknown as {
+      terminalGates: { failedRequiredGateIds: string[] } | null;
+    };
+    expect(registry.terminalGates?.failedRequiredGateIds).toEqual([]);
+    expect(result.dashboard).toContain('Provisional Verdict: PASS');
+  });
+
+  it('keeps the P0-only verdict when the log has no terminal gate row', () => {
+    const specFolder = mkdtempSync(join(tmpdir(), 'review-terminal-gate-absent-verdict-'));
+    scratchDirs.push(specFolder);
+    const reviewDir = join(specFolder, 'review');
+    mkdirSync(reviewDir, { recursive: true });
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'terminal-gate-absent-proof' }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), foldFixtureRun());
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    const registry = result.registry as unknown as { terminalGates: unknown };
+    expect(registry.terminalGates).toBeNull();
+    // With no terminal record the verdict falls back to severity, and the
+    // fixture resolves nothing, so nothing can fail it.
+    expect(result.dashboard).toContain('Provisional Verdict: PASS');
+    expect(result.dashboard).not.toContain('Failed required gates at stop');
+  });
+});

@@ -126,6 +126,7 @@ export const DEEP_REVIEW_EVENT_ROUTING = Object.freeze({
   'deep_review.convergence_evaluated': Object.freeze(['reviewLoop', 'status']),
   'deep_review.graph_convergence_evaluated': Object.freeze(['reviewLoop', 'status']),
   'deep_review.blocked_stop_recorded': Object.freeze(['reviewLoop', 'status']),
+  'deep_review.terminal_gates_recorded': Object.freeze(['reviewLoop', 'status']),
   'deep_review.pause_recorded': Object.freeze(['reviewLoop', 'status']),
   'deep_review.recovery_started': Object.freeze(['reviewLoop', 'status']),
   'deep_review.synthesis_started': Object.freeze(['reviewLoop', 'status']),
@@ -656,6 +657,15 @@ function foldReviewLoopEvent(
         ...reviewLoop,
         obligations: upsertObligations(reviewLoop.obligations, obligations),
         blockerIds: sortStrings([...reviewLoop.blockerIds, ...payload.data.blockedGateIds]),
+        outcome: 'blocked',
+      };
+    }
+    case 'deep_review.terminal_gates_recorded': {
+      const payload = payloadFor(event, 'deep_review.terminal_gates_recorded');
+      if (payload.data.failedRequiredGateIds.length === 0) return reviewLoop;
+      return {
+        ...reviewLoop,
+        blockerIds: sortStrings([...reviewLoop.blockerIds, ...payload.data.failedRequiredGateIds]),
         outcome: 'blocked',
       };
     }
@@ -1393,6 +1403,7 @@ function artifactFromEvent(
     case 'deep_review.convergence_evaluated':
     case 'deep_review.graph_convergence_evaluated':
     case 'deep_review.blocked_stop_recorded':
+    case 'deep_review.terminal_gates_recorded':
     case 'deep_review.pause_recorded':
     case 'deep_review.recovery_started':
     case 'deep_review.synthesis_started':
@@ -1604,6 +1615,7 @@ function transitionForEvent(
     case 'deep_review.synthesis_started':
       return { ...base, state: 'converging' };
     case 'deep_review.review_report_committed':
+    case 'deep_review.terminal_gates_recorded':
     case 'deep_review.continuity_save_requested':
     case 'deep_review.continuity_save_completed':
     case 'deep_review.migration':

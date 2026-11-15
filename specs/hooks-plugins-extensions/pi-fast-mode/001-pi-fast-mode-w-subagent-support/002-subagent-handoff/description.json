@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/002-subagent-handoff",
+  "description": "A child Pi process inherits the parent process environment, but the fast-mode preference is not currently represented by a fork-owned contract",
+  "keywords": [
+    "child",
+    "process",
+    "inherits",
+    "parent",
+    "environment",
+    "fast-mode",
+    "preference",
+    "currently",
+    "represented",
+    "fork-owned",
+    "contract"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.309Z",
+  "specId": "002",
+  "folderSlug": "subagent-handoff",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-fast-mode",
+    "001-pi-fast-mode-w-subagent-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

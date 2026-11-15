@@ -13,7 +13,10 @@
     "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites",
     "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering",
     "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing",
-    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests"
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping"
   ],
   "manual": {
     "depends_on": [],
@@ -47,11 +50,13 @@
       "search"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
       "decision-record.md",
+      "review/review-report.md",
+      "review/fable-5-2-review.md",
       "001-relocation-engine/spec.md",
       "runtime/cli/spec/relocate.mjs",
       "runtime/cli/spec/repair-derived.cjs",
@@ -66,9 +71,7 @@
       "references/structure/phase-definitions.md",
       "references/workflows/quick-reference.md",
       "runtime/cli/spec/refresh-track-roots.mjs",
-      "runtime/cli/spec/sweep-track-roots.mjs",
-      "runtime/cli/retrieval/rg-wrapper.mjs",
-      "runtime/cli/retrieval/lib/rg-lane.mjs"
+      "runtime/cli/spec/sweep-track-roots.mjs"
     ],
     "entities": [
       {
@@ -87,6 +90,18 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "fable-5-2-review.md",
+        "kind": "doc",
+        "path": "review/fable-5-2-review.md",
         "source": "derived"
       },
       {
@@ -174,19 +189,13 @@
         "source": "derived"
       },
       {
-        "name": "rg-wrapper.mjs",
-        "kind": "file",
-        "path": "runtime/cli/retrieval/rg-wrapper.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "rg-lane.mjs",
-        "kind": "file",
-        "path": "runtime/cli/retrieval/lib/rg-lane.mjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -208,17 +217,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Subtracks",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
     "created_at": "2026-11-13T10:07:28Z",
-    "last_save_at": "2026-11-14T09:42:30.855Z",
+    "last_save_at": "2026-11-14T16:22:21.362Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,13 +229,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:928246296cecc6c5d98190744b1442aea65cc8b0c90ef52b5b098bdd9b1a87ce",
+    "source_fingerprint": "sha256:6445d373aa38de4f5efca330f918f776496369f0521a36728a7797ec92eac0a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b9c528633d6050a8d5624de521c874122aa447e00848a21a01bdea7a64798ffb",
-      "decision-record.md": "ebdebdebb539cc7dcfccd32acc8b3b33cde9e6c226b9adce30fef8cbfb74e5a0"
+      "spec.md": "b806c40a5fbb1de6dc5e8e041bb82eeaf7f91b5fe8f2dab93cf4215c5a9aca91",
+      "decision-record.md": "54f4168d65cc16cd0c0d4b0ffb7c6ef4773610b7669dc4f6d6950679fb475cf3"
     },
-    "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout",
-    "last_active_at": "2026-11-13T15:00:54.317Z"
+    "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping",
+    "last_active_at": "2026-11-14T14:16:24.850Z"
   }
 }

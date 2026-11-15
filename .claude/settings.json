@@ -10,7 +10,7 @@
       "Edit(.env.*)",
       "Edit(!.env.example)"
     ],
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "auto"
   },
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,

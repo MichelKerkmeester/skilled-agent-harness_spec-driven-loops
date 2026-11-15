@@ -1,7 +1,7 @@
 ---
 title: "DR-016 -- Resume after pause sentinel removal"
 description: "Verify that removing the pause sentinel lets the loop resume from read-state rather than re-initializing."
-version: 1.14.0.17
+version: 1.14.1.0
 ---
 
 # DR-016 -- Resume after pause sentinel removal
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate removing pause sentinels logs resumed events and continues from state reads.
 ### Commands
 1. `bash: rg -n 'On resume|resumed|Continue from step_read_state|review/.deep-research-pause' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
-2. `bash: rg -n 'resumed|on_resume|skip_to: phase_loop|skip_to: gate_init_approval|review/.deep-research-pause|research/.deep-research-pause' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'resumed|on_resume|skip_to: phase_loop|skip_to: gate_init_approval|review/.deep-research-pause|research/.deep-research-pause' .skilled/commands/deep/assets/deep-research.yaml .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'Delete the file to resume|Auto-resume|review/.deep-research-pause' .skilled/skills/system-deep-loop/deep-research/README.md`
 ### Expected
 The loop logs `resumed`, continues from state read, and does not recreate config or strategy files during a valid resume in either research or review mode.
@@ -73,8 +73,7 @@ Check both the pause subsection and the broader auto-resume classification rules
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Pause-resume flow; use `ANCHOR:phase-iteration-loop` and `ANCHOR:phase-initialization` |
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Resumed event schema; use `ANCHOR:state-log` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Resume branch behavior |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Resume branch behavior |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Resume branch behavior |
 | `.skilled/skills/system-deep-loop/deep-research/README.md` | User-facing pause and resume language; use `ANCHOR:faq` |
 
 ---

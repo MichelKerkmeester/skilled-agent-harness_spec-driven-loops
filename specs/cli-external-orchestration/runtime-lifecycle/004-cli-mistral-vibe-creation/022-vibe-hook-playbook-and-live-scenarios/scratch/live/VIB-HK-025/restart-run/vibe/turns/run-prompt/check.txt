@@ -1,0 +1,3 @@
+$ mkdir -p "$VIBE_HOME/prompts" && cp "$CONVERSATION_REPO_ROOT"/.vibe/prompts/create-goal.md "$VIBE_HOME/prompts/" && { printf 'system_prompt_id = "create-goal"\n'; cat "$VIBE_HOME/config.toml"; } > "$VIBE_HOME/config.toml.new" && mv "$VIBE_HOME/config.toml.new" "$VIBE_HOME/config.toml" && grep -q 'system_prompt_id = "create-goal"' "$VIBE_HOME/config.toml" && echo prompt-named
+prompt-named
+[exit 0]

@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 877821082,
+  "socket": "conv-23451-vibe",
+  "session_id": "17a94263-6ed0-4392-935d-70a445cf070b",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.j2nzXaU0Hp/vibe",
+  "started_at": "2026-11-15T00:14:12.273Z",
+  "finished_at": "2026-11-15T00:15:06.212Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "claim",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "advisory-recorded baseline=0",
+      "evidence": "turns/claim"
+    },
+    {
+      "id": "follow-up",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "advisory-delivered turn1=0 turn2=14 pending=consumed",
+      "evidence": "turns/follow-up"
+    }
+  ]
+}

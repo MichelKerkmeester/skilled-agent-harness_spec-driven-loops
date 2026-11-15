@@ -1,0 +1,3 @@
+$ f=$(grep -rlF '[decision-capture] 1 operator answer(s) captured this session are not in a decision record yet. Run /speckit:save to record them.' "$VIBE_HOME/logs/session/unified" | head -1); [ -n "$f" ] && grep -qF '"hook":"pre_agent_turn"' "$f" && grep -qx 1 .skilled/skills/.state/decision-capture/*/*.nudge && echo save-nudge-in-turn-start-context
+save-nudge-in-turn-start-context
+[exit 0]

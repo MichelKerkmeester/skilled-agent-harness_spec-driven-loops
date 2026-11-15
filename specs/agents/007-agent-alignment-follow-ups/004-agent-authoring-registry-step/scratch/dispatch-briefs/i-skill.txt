@@ -1,0 +1,6 @@
+Add one step to the ordered creation workflow of the agent authoring skill: add a registry
+record before the roster check runs. The validation step also quotes the error an author sees
+without a record, and the last two steps move down by one.
+
+In this file the frontmatter `version` line IS one of the changes below, so apply it. It
+overrides the frontmatter note below.

@@ -1,0 +1,77 @@
+TASK: literal edits in one file, the playbook root index. Eight new scenario files exist beside the three it already lists.
+
+FILE: .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md (read the whole file, 180 lines)
+
+EDIT 1, line 3. Replace:
+the routing-recall scenarios for its web and Figma-check intents,
+with:
+the routing-recall scenarios for its 11 intents,
+
+EDIT 2, line 4. Replace:
+version: 1.0.2.0
+with:
+version: 1.0.3.0
+
+EDIT 3, line 27. Replace the whole sentence:
+Two scenarios live here, one per intent family the surface routes: a web request that names `semantic html markup`, and a Figma check that names `figma frame check`.
+with:
+Eleven scenarios live here, one per intent the surface routes.
+
+EDIT 4, line 37. Replace the cell:
+frontend-surface-web, frontend-surface-figma-check, frontend-surface-visual-values |
+with:
+frontend-surface-web, frontend-surface-figma-check, frontend-surface-visual-values, frontend-surface-web-elements, frontend-surface-web-cascade, frontend-surface-web-layout, frontend-surface-web-accessibility, frontend-surface-web-performance, frontend-surface-web-internationalization, frontend-surface-visual-hierarchy, frontend-surface-motion-interaction |
+
+EDIT 5, after line 45 (the row that starts `| 3 | frontend-surface-visual-values |`), add these eight rows:
+| 4 | frontend-surface-web-elements | WEB_ELEMENTS | [web-elements.md](frontend-surface/web-elements.md) |
+| 5 | frontend-surface-web-cascade | WEB_CASCADE | [web-cascade.md](frontend-surface/web-cascade.md) |
+| 6 | frontend-surface-web-layout | WEB_LAYOUT | [web-layout.md](frontend-surface/web-layout.md) |
+| 7 | frontend-surface-web-accessibility | WEB_A11Y | [web-accessibility.md](frontend-surface/web-accessibility.md) |
+| 8 | frontend-surface-web-performance | WEB_PERF | [web-performance.md](frontend-surface/web-performance.md) |
+| 9 | frontend-surface-web-internationalization | WEB_I18N | [web-internationalization.md](frontend-surface/web-internationalization.md) |
+| 10 | frontend-surface-visual-hierarchy | WEB_VISUAL_HIERARCHY | [visual-hierarchy.md](frontend-surface/visual-hierarchy.md) |
+| 11 | frontend-surface-motion-interaction | WEB_MOTION | [motion-interaction.md](frontend-surface/motion-interaction.md) |
+
+EDIT 6, line 109. Replace these three sentences:
+A `FAIL` on either blocks the release, because each scenario proves a different intent family and the two together are the surface's only routing evidence. A web scenario that passes while the Figma scenario fails leaves that intent unverified, and the guard would replay the failing one on every future run.
+with:
+A `FAIL` on any one blocks the release, because each scenario proves a different intent and together they are the surface's only routing evidence. A scenario that fails leaves its intent unverified, and the guard would replay the failing one on every future run.
+
+EDIT 7, line 141. Replace:
+1. The two scenarios read the same router, the same references and the same guard, so they run in one operator session. Splitting them saves no wall time and makes the family harder to read.
+with:
+1. The eleven scenarios read the same router, the same references and the same guard, so they run in one operator session. Splitting them saves no wall time and makes the family harder to read.
+
+EDIT 8, line 150. Replace the whole table row with:
+| 1 | Frontend Surface | All eleven scenarios in the section 1 table | All eleven read one router and one replay command, with no fixture to schedule. Run them serially in one session. |
+
+EDIT 9, line 166. In the row for `verify-router-sync.cjs` (check `4`), replace the last cell:
+frontend-surface-web, frontend-surface-figma-check, frontend-surface-visual-values |
+with:
+All eleven scenarios |
+
+EDIT 10, line 168. In the row for `parent-skill-check.cjs`, replace the last cell:
+frontend-surface-web, frontend-surface-figma-check, frontend-surface-visual-values (the machine router all three read) |
+with:
+All eleven scenarios (the machine router every one reads) |
+
+EDIT 11, after line 178 (the row that starts `| frontend-surface-visual-values | Visual values routing |`), add these eight rows:
+| frontend-surface-web-elements | Web elements routing | Frontend Surface | [web-elements](frontend-surface/web-elements.md) |
+| frontend-surface-web-cascade | Web cascade routing | Frontend Surface | [web-cascade](frontend-surface/web-cascade.md) |
+| frontend-surface-web-layout | Web layout routing | Frontend Surface | [web-layout](frontend-surface/web-layout.md) |
+| frontend-surface-web-accessibility | Web accessibility routing | Frontend Surface | [web-accessibility](frontend-surface/web-accessibility.md) |
+| frontend-surface-web-performance | Web performance routing | Frontend Surface | [web-performance](frontend-surface/web-performance.md) |
+| frontend-surface-web-internationalization | Web internationalization routing | Frontend Surface | [web-internationalization](frontend-surface/web-internationalization.md) |
+| frontend-surface-visual-hierarchy | Visual hierarchy routing | Frontend Surface | [visual-hierarchy](frontend-surface/visual-hierarchy.md) |
+| frontend-surface-motion-interaction | Motion and interaction routing | Frontend Surface | [motion-interaction](frontend-surface/motion-interaction.md) |
+
+EDIT 12, line 180. Replace:
+The reference families behind the scenarios, which are the core, the web layer and the Figma check, have no separate catalog entry,
+with:
+The reference families behind the scenarios, which are the core, the web layer, the topic files and the Figma check, have no separate catalog entry,
+
+Change nothing else. One file changes. Line numbers are those of the file before any edit, so find each old text by its content.
+
+VERIFY (run from the repository root):
+rg -c 'frontend-surface/[a-z-]+\.md\)' .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md; rg -c 'Two scenarios|The two scenarios|on either blocks' .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md; echo "exit $?"
+Expected output: `22` then `exit 1`

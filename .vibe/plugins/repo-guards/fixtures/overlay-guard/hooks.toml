@@ -1,0 +1,7 @@
+# Refuses a write to a file a vendored tree's overlay owns and names the overlay file to edit instead.
+[[hooks]]
+name = "overlay-guard"
+type = "pre_tool"
+strict = true
+match = "re:bash|process_start|write_file|edit"
+command = "node @REPO@/.vibe/plugins/repo-guards/overlay-guard.mjs"

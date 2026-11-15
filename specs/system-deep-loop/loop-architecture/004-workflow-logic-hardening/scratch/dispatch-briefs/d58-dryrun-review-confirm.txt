@@ -1,0 +1,2 @@
+TASK: execute `/deep:review:confirm .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs --spec-folder=SPEC --max-iterations=1 --dry-run`.
+Command document: .skilled/commands/deep/review.md

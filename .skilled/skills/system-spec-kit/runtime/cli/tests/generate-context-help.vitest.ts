@@ -14,7 +14,7 @@ describe('generate-context --help planner mode copy', () => {
 });
 
 describe('generate-context --runtime', () => {
-  const runtimes = ['claude', 'codex', 'opencode', 'pi', 'devin', 'dsh'] as const;
+  const runtimes = ['claude', 'codex', 'opencode', 'pi', 'devin', 'dsh', 'vibe'] as const;
 
   it('documents the runtime flag, every slug and the continuity pointer in help', () => {
     expect(HELP_TEXT).toContain('--runtime <slug>');

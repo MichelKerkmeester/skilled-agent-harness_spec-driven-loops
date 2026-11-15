@@ -28,6 +28,7 @@ const QUESTION_TOOLS = Object.freeze({
   dsh: ['ask_user_question'],
   opencode: ['question'],
   pi: ['ask_user_question', 'question'],
+  vibe: ['ask_user_question'],
 });
 
 // Numbered lines can be steps, so they need a closing question that asks the reader to choose.

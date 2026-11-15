@@ -1,0 +1,50 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a code implementation worker. Make exactly the change below, nothing else.
+Do not refactor, reformat or fix anything adjacent. Do not write spec ids, task ids or
+spec paths in code comments. Do not commit.
+
+ALLOWED WRITE PATHS (only these two files):
+- .skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs
+- .skilled/skills/system-deep-loop/runtime/tests/unit/lifecycle-taxonomy.vitest.ts
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any
+write outside the two allowed paths, any package install.
+
+TASK: add one new stop reason, `maxDurationReached`, as the LAST member.
+
+1. In lifecycle-taxonomy.cjs, inside `const STOP_REASONS = Object.freeze({ ... })`, add this
+   line directly after the line `  userPaused: 'userPaused',`:
+     maxDurationReached: 'maxDurationReached',
+2. In the same file, in the `LoopStopReasonValue` typedef on line 14, add
+   ` | 'maxDurationReached'` directly after `'userPaused'`.
+3. In lifecycle-taxonomy.vitest.ts, in the expected STOP_REASONS array, add
+   `'maxDurationReached',` directly after the line `'userPaused',` (near line 27).
+
+VERIFY (run both, from the repository root, and print their output):
+  node -e "console.log(Object.values(require('./.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs').STOP_REASONS).join(','))"
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/lifecycle-taxonomy.vitest.ts)
+
+EXPECTED: the first prints
+  converged,maxIterationsReached,blockedStop,manualStop,error,stuckRecovery,userPaused,maxDurationReached
+and the second reports 0 failed.
+
+RETURN: the two command outputs and the list of files you changed. If another test file
+fails because of this change, report its name and do NOT edit it.

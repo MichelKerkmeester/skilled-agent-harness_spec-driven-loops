@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe dispatch hardening",
+      "phase 20 vibe dispatch hardening",
+      "vibe render step hard rule",
+      "vibe lineage auto-approve posture",
+      "vibe dispatch hardening plan",
+      "vibe dispatch hardening tasks",
+      "vibe dispatch hardening goal",
+      "vibe dispatch hardening implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "dispatch",
+      "hardening",
+      "phase",
+      "render",
+      "step",
+      "hard",
+      "rule",
+      "lineage",
+      "auto-approve",
+      "posture",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json",
+      ".github/workflows/opencode-plugin-tests.yml",
+      ".github/workflows/advisory-checks.yml",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-vibe.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-vibe.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-vibe.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/cli-reference.md",
+      "scratch/ci-collection.txt",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "scratch/baseline.txt",
+      "scratch/pre-commit-tests.md",
+      "scratch/posture-options.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-plugin-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-vibe.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-vibe.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-vibe.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-vibe.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-vibe.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-vibe.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-collection.txt",
+        "kind": "file",
+        "path": "scratch/ci-collection.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit-tests.md",
+        "kind": "doc",
+        "path": "scratch/pre-commit-tests.md",
+        "source": "derived"
+      },
+      {
+        "name": "posture-options.md",
+        "kind": "doc",
+        "path": "scratch/posture-options.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The six Vibe hard rules (Measured Behavior) check print mode, home isolation, the output folder, the roster, the cwd and stdin, but none checks that `render-home-hooks.cjs` wrote the run's `hooks.toml`, so a hand-composed dispatch that skips that step runs every tool with no guard",
+    "created_at": "2026-11-14T20:13:12Z",
+    "last_save_at": "2026-11-14T22:19:06.010Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e3547ea1c211af8923d13192acfdf1237eedae8e43582fa5e1097e61ae2e5e43",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "73e37c954f8a74ec86b7326544032a04eb0b7decc45b4048f448a85de8a6a408",
+      "plan.md": "bd7be57b0e6c77fe4f8da7f2a49c80dd9fdc60f89dcbaf71f41210a3e453b091",
+      "tasks.md": "f55f27e564fe6cde5a2985ceeffefc8bdd2e78a3b499529cd8b5a86f7bf13f5d",
+      "implementation-summary.md": "d6c301f76526bbb25c4b1b45485793664fe7920804a9a553689455ad5fdc06ca"
+    },
+    "last_active_at": null
+  }
+}

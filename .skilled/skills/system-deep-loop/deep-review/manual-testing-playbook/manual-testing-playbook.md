@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.11.0.22
+version: 1.11.1.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -44,7 +44,7 @@ This playbook provides 55 deterministic scenarios across 10 categories validatin
 - `deep-review` skill exists at `.skilled/skills/system-deep-loop/deep-review/`.
 - `/deep:review` command exists at `.skilled/commands/deep/review.md`.
 - `@deep-review` agent definition exists at `.skilled/agents/deep-review.md` plus runtime variants.
-- Review YAML workflows exist at `.skilled/commands/deep/assets/deep-review-auto.yaml` and `.skilled/commands/deep/assets/deep-review-confirm.yaml`.
+- Review YAML workflow exists at `.skilled/commands/deep/assets/deep-review.yaml`.
 - `review-mode-contract.yaml` exists at `.skilled/skills/system-deep-loop/deep-review/assets/`.
 
 ---
@@ -131,7 +131,7 @@ This category covers 3 scenario summaries while the linked feature files remain 
 ### DRV-001 | Auto mode deep-review kickoff
 
 #### Description
-Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and auto YAML workflow.
+Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and the workflow in auto mode.
 
 #### Scenario Contract
 Prompt: `Validate the autonomous deep-review entrypoint and report whether docs, command routing, YAML, and expected artifacts agree.`
@@ -149,7 +149,7 @@ Verify that `/deep:review:confirm` pauses at each phase for user approval before
 #### Scenario Contract
 Prompt: `Validate the confirm-mode deep-review entrypoint and report whether approval gates appear at every phase transition.`
 
-Expected signals: The confirm YAML has `approvals: multi_gate`, pause/approval steps appear in the loop, and the command entrypoint routes `:confirm` to the confirm YAML.
+Expected signals: The workflow has `approvals: multi_gate` in confirm mode, pause/approval steps appear in the loop, and the command entrypoint routes `:confirm` to that mode.
 
 #### Test Execution
 > **Feature File:** [DRV-002](../manual-testing-playbook/entry-points-and-modes/confirm-mode-checkpointed-review.md)
@@ -160,9 +160,9 @@ Expected signals: The confirm YAML has `approvals: multi_gate`, pause/approval s
 Verify that `--max-iterations` (default 7) and `--convergence` (default 0.10) parameters work and are documented consistently.
 
 #### Scenario Contract
-Prompt: `Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and YAML workflows.`
+Prompt: `Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and the workflow.`
 
-Expected signals: Default values of 7 and 0.10 appear consistently across all sources. The YAML writes these into `deep-review-config.json` during init.
+Expected signals: Default values of 7 and 0.10 appear consistently across all sources. The workflow writes these into `deep-review-config.json` during init.
 
 #### Test Execution
 > **Feature File:** [DRV-003](../manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md)
@@ -304,7 +304,7 @@ Verify that the dashboard with Findings Summary, Progress Table, Coverage, and T
 #### Scenario Contract
 Prompt: `Validate deep-review dashboard generation after each iteration from JSONL and strategy state.`
 
-Expected signals: The step_generate_dashboard runs after step_validate_iteration. It reads JSONL and strategy. It writes to deep-review-dashboard.md. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
+Expected signals: The `step_reduce_review_state` reducer pass runs after iteration validation. It reads JSONL and strategy. It writes `deep-review-dashboard.md`. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
 
 #### Test Execution
 > **Feature File:** [DRV-013](../manual-testing-playbook/iteration-execution-and-state-discipline/review-dashboard-generation-after-iteration.md)
@@ -835,7 +835,7 @@ Verify ledger-led upserts emit the canonical graph vocabulary (BUG_CLASS, INVARI
 
 ## 17. FAN-OUT
 
-This category covers 4 scenarios validating the opt-in fan-out dispatch layer added in the review loop: CLI lineage pool dispatch, strongest-restriction verdict binding, native sequential agent dispatch, and single-executor parity.
+This category covers 4 scenarios validating the opt-in fan-out dispatch layer added in the review loop: CLI lineage pool dispatch, strongest-restriction verdict binding, native sequential command dispatch, and single-executor parity.
 
 ### DRV-064 | Fan-out review with two CLI lineages
 
@@ -866,12 +866,12 @@ Expected signals: 5/5 review strongest-restriction tests pass; `SEVERITY_RANK` c
 ### DRV-066 | Fan-out native sequential review dispatch
 
 #### Description
-Validate that native fan-out dispatches sequential `agent: deep-review` runs (not `agent: deep-research`) with per-lineage isolated artifact dirs.
+Validate that native fan-out runs sequential `deep/review` command lineages through `fanout-run.cjs` with per-lineage isolated artifact dirs, not full-loop `@deep-review` agent dispatches.
 
 #### Scenario Contract
-Prompt summary: Validate native fan-out for deep-review: confirm `step_fanout_spawn_native` uses `agent: deep-review` and passes the correct lineage artifact dir override.
+Prompt summary: Validate native fan-out for deep-review: confirm `step_fanout_spawn` runs native lineages through `fanout-run.cjs` and passes the correct lineage artifact dir override.
 
-Expected signals: `agent: deep-review` (not `deep-research`) in native dispatch block; `config.fanout_lineage_artifact_dir` in context; correct `skip_when`.
+Expected signals: `fanout-run.cjs --loop-type review` in `step_fanout_spawn_cli`, `config.fanout_lineage_artifact_dir` in context, and the correct `skip_when`.
 
 #### Test Execution
 > **Feature File:** [DRV-066](../manual-testing-playbook/fanout/fanout-native-sequential-review.md)

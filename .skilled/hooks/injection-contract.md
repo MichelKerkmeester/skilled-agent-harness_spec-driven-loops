@@ -15,9 +15,9 @@ version: 1.0.1.0
 
 # Hook & Plugin Injection Contract
 
-Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi and DeepSeek Harness) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
+Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi, DeepSeek Harness and Mistral Vibe) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
 
-**Kill-switches.** Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED` switch plus its canonical `SYSTEM_<CONCERN>_DISABLED` switch, and every concern except session relaunch is default-on. Session relaunch ships off: a runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime when it holds a value, and `SYSTEM_SESSION_RELAUNCH_ENABLED` decides otherwise. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index). This contract does not duplicate it.
+**Kill-switches.** Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED` switch plus its canonical `SYSTEM_<CONCERN>_DISABLED` switch, and every concern except session relaunch is default-on. Session relaunch ships on for Claude Code and off for every other runtime: a runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime when it holds a value, `SYSTEM_SESSION_RELAUNCH_ENABLED` decides when it holds one, and with both blank only Claude Code is on. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index). This contract does not duplicate it.
 
 ---
 
@@ -26,6 +26,8 @@ Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCo
 ### Purpose
 
 Answer, for any hook or plugin in this repo: what does it add to the session, on what trigger, and can a human watching the terminal see it without special tooling?
+
+The per-runtime channel lines below cover the first seven runtimes. Mistral Vibe wires the same cores through the `[[hooks]]` entries in `.vibe/hooks.toml`, and [guards-and-hooks.md](../skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md) maps each entry to its Vibe event and to what it adds: a `pre_tool` deny reaches the model as a tool error, and the session-start, `pre_agent` and `post_tool` hooks return `additional_context`, which is model-context-only.
 
 ### Why this exists
 
@@ -124,7 +126,7 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 |---|---|---|---|
 | Session relaunch | Claude Code: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
 | Session relaunch | Codex: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
-| Session relaunch | Pi: `message_end` decides and `agent_end` delivers the held nudge | `pi.sendMessage` with `display: false` | Once per reached threshold level in a session |
+| Session relaunch | Pi: `message_end` decides, `turn_end` steers the held nudge into a run whose tools ran and `agent_end` delivers it when the run ended | `pi.sendMessage` with `display: false` | Once per reached threshold level in a session |
 | Session relaunch | OpenCode: `experimental.chat.system.transform` pushes the pending nudge, fed by message events | an entry in the system array | Once per reached threshold level in a session |
 
 The Codex nudge reads its fill from the transcript rollout's latest `token_count` record and emits the same `[SYS]` envelope the Claude adapter uses, so it is model-context-only by default. Neither the arming nor the usage records inject content: both are `[NONE]` side effects. Cursor, Devin and DSH carry no adapter, so `/speckit:handoff` is the only trigger on those runtimes and this table adds no row for them.
@@ -211,7 +213,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 ### Session Start Context
 
-**Injects:** a startup or resume brief: a session-context surface on cold start, or a cached compaction/resume payload.
+**Injects:** a startup or resume brief: a session-context surface on cold start, or a cached compaction/resume payload. On `source=compact` a `## Packet Purpose` section leads the output: one line with the last active packet's purpose and a `Problem:` line when the packet states one.
 
 - **Trigger:** `session_start` (Pi) / `SessionStart` (Claude/Cursor/Devin/Codex) / `agent/created` (DSH).
 - **Owning module:** `system-spec-kit/runtime/hooks/claude/session-prime.ts`. Emits **plain text**, not a JSON envelope. Every proxy that wraps it (`emitDevinContext`, Pi's `session-start-context.ts`) constructs the envelope on the way out. `session-prime.js` itself does not.
@@ -239,7 +241,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 ### Post-Compaction Recovery (Devin/Pi/DSH)
 
-**Injects:** a composed recovery block: retained summary and active spec-folder pointer.
+**Injects:** a composed recovery block: retained summary and active spec-folder pointer. Pi and DSH lead it with the same `## Packet Purpose` section as Session Start Context. Devin's block carries none.
 
 - **Trigger:** `PostCompaction` (Devin) / `session_compact` (Pi) / `session/event` `compaction/end` (DSH). Devin's `PostCompaction` fires *after* compaction with only `session_id` and a possibly-null summary, a materially different contract from Claude's `PreCompact`-then-cached-`SessionStart` chain, per `post-compaction.cjs`'s own header comment.
 - **Owning module:** `system-spec-kit/runtime/hooks/devin/post-compaction.cjs`. Pi's `session-compact-context.ts` is a native port of the same recovery chain, not a proxy. DSH's `session-compact-context.mjs` injects the session-prime `compact` output.

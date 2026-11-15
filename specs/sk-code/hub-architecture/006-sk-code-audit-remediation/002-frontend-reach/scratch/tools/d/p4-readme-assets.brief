@@ -1,0 +1,14 @@
+TASK: one literal edit in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md (read lines 76 to 82 only)
+
+EDIT, line 79, the table row for `verify-router-sync.cjs`. Replace this text inside the row:
+one PASS or FAIL line per leg. Usage:
+with:
+one PASS or FAIL line per leg. Check 2 also compares the vocabulary copies: every registry alias must be a keyword in a `hub-router.json` class its mode routes on, and a surface listed under `vocabularyMirrors` in `hub-router.json` must hold one keyword set in its classes, the hub `INTENT_SIGNALS` rows and its own `INTENT_SIGNALS` rows. Usage:
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'vocabularyMirrors' .skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md
+Expected output: `1`

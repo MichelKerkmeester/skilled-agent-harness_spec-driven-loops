@@ -2,7 +2,7 @@
 name: cli-opencode
 description: "OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback with full runtime context."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.10.0
+version: 1.5.12.0
 ---
 
 # OpenCode CLI Orchestrator - Full-Runtime Cross-AI Dispatch
@@ -75,8 +75,9 @@ Do not add a packet-local wrapper, spawn path or command builder. Direct `openco
 
 ### Prerequisites
 
-**Verified versions.** This skill was verified against OpenCode 2.1.4 and OpenCode 1.19.4 on 2026-10-24.
-Flag and provider observations naming 2.0.32 or 1.19.3 were read on those releases, not re-read on 2.1.4 or 1.19.4.
+**Verified versions.** This skill was verified against OpenCode 2.3.0 and OpenCode 1.19.4 on 2026-11-14.
+Flag and provider observations naming 2.0.32 or 1.19.3 were read on those releases, not re-read on 2.3.0 or 1.19.4.
+Two subcommands moved in 2.3.0: credentials are under `opencode auth`, and agents are listed by `opencode debug agents`.
 OpenCode 2 is expected and recommended; OpenCode 1 remains supported for now as a fallback for users who have not updated.
 The skill loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified.
 The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
@@ -88,16 +89,16 @@ This skill's OpenCode 1 command lines name `opencode`, which is right on a v1-on
 ```bash
 # Binary pick and version check: references/install-and-versions.md §4-5.
 OC=${OPENCODE_BIN:-}; if [ -z "$OC" ]; then OC=$(command -v opencode2 2>/dev/null); [ -z "$OC" ] && OC=$(command -v opencode 2>/dev/null); fi
-"$OC" --version   # `opencode v2.1.4` = OpenCode 2 (expected), `1.19.4` = OpenCode 1 (fallback); either major passes
+"$OC" --version   # `opencode v2.3.0` = OpenCode 2 (expected), `1.19.4` = OpenCode 1 (fallback); either major passes
 
 # Self-invocation guard. OPENCODE_API_KEY is a provider key an operator exports, not a session marker.
 env | grep -v '^OPENCODE_API_KEY=' | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
 
-# Authentication
-opencode providers
+# Authentication. OpenCode 1 lists them with `opencode providers list`.
+opencode auth list
 ```
 
-**Authentication options**: `opencode providers login <provider>` (or `opencode auth login` for subscription plans). Full per-provider login shapes: `references/cli-reference.md` §4.
+**Authentication options**: `opencode auth login <provider>` on OpenCode 2, because 2.3.0 has no `providers` subcommand, and `opencode providers login <provider>` on OpenCode 1. A subscription plan uses `opencode auth login` with no provider and an interactive pick. Full per-provider login shapes: `references/cli-reference.md` §4.
 
 ### Provider Auth Pre-Flight (Smart Fallback)
 
@@ -128,7 +129,8 @@ Honor explicit user model, port, and handback phrasing verbatim. Otherwise use t
 
 Core flags on OpenCode 2:
 - Effort goes in `-m provider/model#<level>`; `--dir` becomes a start-in-directory `cd`.
-- `run` adds `--standalone` and `--server`. Log flags are global.
+- `--standalone`, `--server` and the log flags are global, and `run` accepts them on its command line.
+- `run` also takes `--worktree` and `--archived`, neither of which this skill passes.
 - `--share`, `--port` and `--pure` are absent on `run`.
 
 OpenCode 1 fallback supports:
@@ -144,7 +146,7 @@ OpenCode 1 fallback supports:
 
 On OpenCode 2, run `opencode models --standalone` filtered for the `<provider>/` prefix (2.0.32's `models` takes no provider argument). On OpenCode 1 (fallback), run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Defaults live in §3 Default Invocation, and the roster is [references/providers-and-models.md](references/providers-and-models.md).
 
-**Four providers are reachable** (`opencode-go`, `openai`, `llmgateway` (**DevPass**), `minimax`), with `llmgateway/deepseek-v4.1-flash-1017` the single default on both OpenCode 2 and OpenCode 1, and the full roster and per-provider caveats in [references/providers-and-models.md](references/providers-and-models.md).
+**Five providers are reachable** (`opencode-go`, `openai`, `llmgateway` (**DevPass**), `minimax`, `mistral`), with `llmgateway/deepseek-v4.1-flash-1017` the single default on both OpenCode 2 and OpenCode 1, and the full roster and per-provider caveats in [references/providers-and-models.md](references/providers-and-models.md).
 One cross-provider footgun is worth carrying here: **id shape differs per provider**, and copying a form between providers returns a 400 (see [references/providers-and-models.md](references/providers-and-models.md) §2).
 
 **Closed roster: only models catalogued in that reference may be dispatched. Any model outside it is FORBIDDEN for cli-opencode** (a hard discipline rule, since cli-opencode has no code-enforced allowlist).
@@ -162,7 +164,7 @@ Pin `--agent plan|orchestrate` only when the task needs that profile and `openco
 #### Subagents, dispatched as Task subagents from a primary
 
 These subagents live at `.opencode/agents/<slug>.md` with `mode: subagent`. They are NOT directly invokable via `opencode run --agent`.
-Route generic subagents (`context`, `review`, `write`, `debug`) through `--agent orchestrate`. Route `ai-council` through `/deep:ai-council` or `orchestrate`.
+Route generic subagents (`context`, `review`, `write`, `debug`) through `--agent orchestrate`. Route `ai-council` through `/speckit:ai-council` or `orchestrate`.
 The parent `/deep:*` commands own the loop executors `deep-research`, `deep-review` and `prompt-improver`. Never dispatch them by raw `--agent <slug>`.
 `orchestrate` may make one bounded hand-off but MUST NOT re-implement the loop.
 
@@ -193,7 +195,7 @@ On OpenCode 1 (fallback), `--port <N>` serves explicit detached sessions and `--
 
 ### ✅ ALWAYS
 
-1. Verify OpenCode CLI is installed before first invocation. Confirm the version baseline for OpenCode 2 (2.1.4, the expected version) or OpenCode 1 (1.19.4, supported for now as a fallback), with drift handling per `references/cli-reference.md` §9.
+1. Verify OpenCode CLI is installed before first invocation. Confirm the version baseline for OpenCode 2 (2.3.0, the expected version) or OpenCode 1 (1.19.4, supported for now as a fallback), with drift handling per `references/cli-reference.md` §9.
 2. **Run the self-invocation guard before dispatch** (ADR-001): Layer 1 env-var lookup for any `OPENCODE_*` other than `OPENCODE_API_KEY`, Layer 2 process-ancestry probe for `opencode` parent, Layer 3 `~/.opencode/state/<id>/lock` probe. Trip on ANY positive. Refuse unless the prompt has explicit parallel-session keywords.
 3. Pin model, variant, format and dir explicitly.
    - OpenCode 2 default: `-m llmgateway/deepseek-v4.1-flash-1017#max --format json` with a start-in-directory `cd`.
@@ -277,7 +279,7 @@ On OpenCode 1 (fallback), `--port <N>` serves explicit detached sessions and `--
 
 1. OpenCode CLI is not installed and user has not acknowledged (provide `brew install opencode` or `curl -fsSL https://opencode.ai/install | bash`).
 2. Operator asks for a share URL. OpenCode 2 `run` has no share flag, and OpenCode 1.19.3 discontinued session sharing, so say there is no URL to publish.
-3. Binary version differs from the OpenCode 2 (2.1.4, expected) or OpenCode 1 (1.19.4, fallback) baseline. Run `opencode --version` (`opencode1 --version` for the side-by-side OpenCode 1) and `run --help`, then surface drift and fall back or require approval.
+3. Binary version differs from the OpenCode 2 (2.3.0, expected) or OpenCode 1 (1.19.4, fallback) baseline. Run `opencode --version` (`opencode1 --version` for the side-by-side OpenCode 1) and `run --help`, then surface drift and fall back or require approval.
 4. Smart router cannot map the prompt to one of the three use cases. Surface the disambiguation checklist from UNKNOWN_FALLBACK.
 5. Self-invocation guard trips AND the prompt is ambiguous. Surface the refusal with three remediation options (sibling cli-* / fresh shell / parallel-session keywords).
 

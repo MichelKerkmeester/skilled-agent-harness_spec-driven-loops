@@ -1,6 +1,6 @@
 ---
 title: "runtime council tests"
-description: "Vitest coverage for council dispatch, scoring, cost guards and session state."
+description: "Vitest coverage for the seat dispatch used by the divergent pivot."
 trigger_phrases:
   - "runtime council tests"
   - "council test suite"
@@ -12,9 +12,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder tests the council runtime contracts. It covers multi-seat dispatch, adjudicator verdict scoring, budget and cost guard behavior, round-state JSONL records and session-state hierarchy.
+This folder tests the one council runtime contract that remains: the parallel seat dispatch in `lib/council/multi-seat-dispatch.cjs`.
 
-The suite is the executable verification surface for council primitives used by the mode workflow.
+The suite is the executable verification surface for `dispatchCouncilSeats`, the helper the divergent pivot calls to convene seats for a stalled research or review run.
 
 ---
 
@@ -22,11 +22,7 @@ The suite is the executable verification surface for council primitives used by 
 
 | File | Responsibility |
 |---|---|
-| `adjudicator-verdict-scoring.vitest.ts` | Checks adjudicator verdict scoring and evidence weighting. |
-| `cost-guards.vitest.ts` | Checks council cost limits and fail-closed guard behavior. |
-| `multi-seat-dispatch.vitest.ts` | Checks multi-seat dispatch requests and returned seat outcomes. |
-| `round-state-jsonl.vitest.ts` | Checks round-state JSONL serialization and recovery. |
-| `session-state-hierarchy.vitest.ts` | Checks council session-state hierarchy and ownership. |
+| `multi-seat-dispatch.vitest.ts` | Checks multi-seat dispatch requests, order-preserving results and returned seat outcomes. |
 
 ---
 
@@ -35,15 +31,15 @@ The suite is the executable verification surface for council primitives used by 
 | Surface | Entry |
 |---|---|
 | Test command | `vitest run -- tests/council` |
-| Covered boundary | Council dispatch and durable round-state contracts |
+| Covered boundary | Seat dispatch and per-seat outcome aggregation |
 
-The files are tests rather than importable production modules. They protect the council APIs exposed by the runtime library.
+The file is a test rather than an importable production module. It protects the seat-dispatch API exposed by the runtime library.
 
 ---
 
 ## 4. SPINE ROLE
 
-Council tests verify the multi-seat branch of the runtime spine after event and state contracts are established. They assert that dispatch outcomes, scored verdicts and session state remain durable and bounded.
+Council tests verify the multi-seat branch of the runtime spine after event and state contracts are established. They assert that dispatch outcomes stay ordered and that per-seat failures are captured rather than thrown.
 
 ---
 

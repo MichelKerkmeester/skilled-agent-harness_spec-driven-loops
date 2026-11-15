@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes",
+  "description": "Phase 13: context-markdown-design-fixes",
+  "keywords": [
+    "phase",
+    "context-markdown-design-fixes"
+  ],
+  "lastUpdated": "2026-11-15T00:18:08.366Z",
+  "specId": "013",
+  "folderSlug": "context-markdown-design-fixes",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "14-11-26_21-48__phase-013-findings-reproduced-before-planning.md",
+    "15-11-26_01-17__phase-013-built-context-markdown-and-design.md",
+    "15-11-26_01-18__phase-013-built-context-markdown-and-design.md"
+  ]
+}

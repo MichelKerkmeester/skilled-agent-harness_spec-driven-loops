@@ -1,0 +1,12 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='async killer spawn error|once the record is armed' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs
+✔ stop-arm logs an async killer spawn error and leaves the record armed (250.485625ms)
+✔ subagent-guard lets a question dialog through once the record is armed (81.450542ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 296.993208
+exit=0

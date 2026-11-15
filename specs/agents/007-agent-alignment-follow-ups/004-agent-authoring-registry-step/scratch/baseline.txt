@@ -1,0 +1,27 @@
+# Baseline, phase 004, read from commit 63e6261895 before any edit
+
+$ git show 63e6261895:.skilled/skills/sk-doc/sk-create-agent/SKILL.md | rg -c 'agent-registry' || echo 0
+0
+$ cp .skilled/agents/context.md .skilled/agents/zz-probe.md; node .skilled/bin/sync-agent-roster.cjs --check; echo "exit=$?"; rm .skilled/agents/zz-probe.md   # run at planning on the same tree
+agent file without a registry record: zz-probe
+agent-roster: FAIL (1 problem(s))
+exit=1
+$ node -e 'console.log(Object.keys(require("./.skilled/agents/agent-registry.json").agents[0]).join(" "))'
+name tier priority dispatchers taskType skills notes summary
+# Four of the eleven records also carry templateExceptions, a list of required sections the agent file leaves out.
+
+## T002
+$ rg -c 'agent-registry|sync-agent-roster' .skilled/commands/create/agent.md .skilled/commands/create/assets/create-agent-auto.yaml .skilled/commands/create/assets/create-agent-confirm.yaml || echo 0
+0
+$ rg -n '^    - id: step_' .skilled/commands/create/assets/create-agent-auto.yaml
+229:    - id: step_1_request_analysis
+231:    - id: step_2_understanding
+233:    - id: step_3_planning
+235:    - id: step_4_generation
+237:    - id: step_5_validation
+239:    - id: step_6_save_context
+create-agent assets restate steps: no. The two workflow assets run their own short workflow, listed above, and do not copy the skill's ordered steps. They also never name the registry or run the roster check, so /create:agent can still produce an agent file that fails it. That is a follow-up outside this phase.
+
+## T003
+version files: .skilled/skills/sk-doc/sk-create-agent/SKILL.md (the `version` frontmatter, 5:version: 1.0.7.0) and one new file under .skilled/skills/sk-doc/sk-create-agent/changelog/ named after the new version. The newest entry is v1.0.7.0.md.
+# Rule: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md section 3. A mode packet's SKILL.md version equals its own newest changelog entry and is never compared with the hub's. The commit gate never touches SKILL.md, so the version line is changed by hand with the release. The hub version (sk-doc/SKILL.md line 19) is bound to the hub's own changelog and does not move.

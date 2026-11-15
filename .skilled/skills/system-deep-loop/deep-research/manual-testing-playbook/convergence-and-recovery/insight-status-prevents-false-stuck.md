@@ -1,7 +1,7 @@
 ---
 title: "DR-034 -- Insight status prevents false stuck detection"
 description: "Verify that an iteration with status insight does not increment stuck count despite low newInfoRatio."
-version: 1.14.0.16
+version: 1.14.1.0
 ---
 
 # DR-034 -- Insight status prevents false stuck detection
@@ -48,7 +48,7 @@ Validate insight-status iterations avoid false stuck counting despite low raw no
 1. `bash: rg -n 'insight' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
 2. `bash: rg -n 'stuckCount\|stuck_count\|insight' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
 3. `bash: rg -n 'insight\|thought\|stuck' .skilled/skills/system-deep-loop/deep-research/SKILL.md`
-4. `bash: rg -n 'stuck_count.*insight\|insight.*stuck' .skilled/commands/deep/assets/deep-research-auto.yaml`
+4. `bash: rg -n 'insight|deriveLoopCounters|stuckCount' .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`
 ### Expected
 Iteration with status="insight" and low newInfoRatio, stuck_count NOT incremented.
 ### Evidence
@@ -56,7 +56,7 @@ Capture the state-format.md insight status definition, the convergence.md stuckC
 ### Pass/Fail
 PASS if state-format.md defines "insight" status as preventing stuck counting AND convergence.md confirms stuckCount excludes insight iterations; FAIL if insight iterations are counted toward stuck or the documentation is contradictory.
 ### Failure Triage
-Privilege state-format.md for the status taxonomy and convergence.md for the stuckCount algorithm; use SKILL.md only as secondary confirmation.
+Privilege state-format.md for the status taxonomy and convergence.md for the stuckCount algorithm; use SKILL.md and the convergence script only as secondary confirmation.
 ---
 
 ## 4. SOURCE FILES
@@ -75,7 +75,8 @@ Privilege state-format.md for the status taxonomy and convergence.md for the stu
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical JSONL schema; insight status definition and its relationship to stuck counting |
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Convergence math; stuckCount computation and which statuses increment it |
 | `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Skill overview; iteration status taxonomy including insight |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; stuck_count update logic in step_update_state |
+| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Computes the stop decision; `deriveLoopCounters` rebuilds `stuckCount` from the state log and resets it for insight iterations |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow algorithm; `step_graph_convergence` runs convergence.cjs and binds its counters |
 
 ---
 

@@ -5,21 +5,23 @@ name: OpenCode Plugin Tests
 # unseen. The suites import the plugins, the shared hook libraries, compiled
 # spec-kit and advisor runtimes and read skill, command
 # and Pi files to check what the plugins cite, so the job provisions every listed
-# tree and runs on any change under the three source roots, the runtime and spec
+# tree and runs on any change under the source roots, the runtime and spec
 # files the goal checks read, or the root files that tell a project checkout from
 # this repository.
 #
-# The hook suites written for `node --test`, and the hook installer test, ran in no
-# workflow either: vitest skips those files because they run on their own, and the
-# dispatch guard runs only its rule-check suite. They import the hook libraries and
-# spawn the hook scripts, and the installer test provisions throwaway repositories,
-# so this job provisions once and runs them beside the plugin suites.
+# The hook suites written for `node --test`, the Vibe repo-guards suite under
+# `.vibe/plugins/repo-guards/tests`, and the hook installer test ran in no workflow
+# either: vitest skips those files because they run on their own, and the dispatch
+# guard runs only its rule-check suite. They import the hook libraries and spawn the
+# hook scripts, and the installer test provisions throwaway repositories, so this job
+# provisions once and runs them beside the plugin suites.
 on:
   pull_request:
     branches: [main, 'skilled/**']
     paths:
       - '.skilled/**'
       - '.opencode/**'
+      - '.vibe/**'
       - '.pi/**'
       - '.claude/**'
       - '.codex/**'
@@ -38,6 +40,7 @@ on:
     paths:
       - '.skilled/**'
       - '.opencode/**'
+      - '.vibe/**'
       - '.pi/**'
       - '.claude/**'
       - '.codex/**'
@@ -114,16 +117,16 @@ jobs:
           git config --global user.name "hook-tests-ci"
           git config --global user.email "hook-tests-ci@example.invalid"
 
-      # Every JavaScript test file under the hooks tree that does not import vitest,
-      # outside node_modules. An empty selection fails the step instead of reporting a
-      # run that tested nothing.
-      - name: Run the hook node:test suites
+      # Every JavaScript test file under the hooks tree and the Vibe repo-guards tree
+      # that does not import vitest, outside node_modules. An empty selection fails the
+      # step instead of reporting a run that tested nothing.
+      - name: Run the hook and Vibe repo-guard node:test suites
         run: |
           set -euo pipefail
           files=()
           while IFS= read -r file; do
             files+=("$file")
-          done < <(find .skilled/hooks -type f \
+          done < <(find .skilled/hooks .vibe/plugins/repo-guards/tests -type f \
             \( -name '*.test.mjs' -o -name '*.test.cjs' -o -name '*.test.js' \) \
             -not -path '*/node_modules/*' -print \
             | sort \
@@ -131,10 +134,10 @@ jobs:
                 grep -qE "(from[[:space:]]+|require\()['\"]vitest['\"]" "$file" || printf '%s\n' "$file"
               done)
           if [[ "${#files[@]}" -eq 0 ]]; then
-            echo "::error::no node:test hook files were found; the collection rule matched nothing"
+            echo "::error::no node:test hook or Vibe repo-guard files were found; the collection rule matched nothing"
             exit 1
           fi
-          echo "Collected ${#files[@]} node:test hook files"
+          echo "Collected ${#files[@]} node:test hook and Vibe repo-guard files"
           node --test "${files[@]}"
 
       - name: Run the hook installer test

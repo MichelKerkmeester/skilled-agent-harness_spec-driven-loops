@@ -43,7 +43,7 @@ Each skill name links to its own README. One-line descriptions reflect current b
 | Skill | What it does |
 |---|---|
 | [`cli-classifier`](cli-classifier/README.md) | Parent hub for typed judgments from classifier models: routes by `workflowMode` to the `packetKind: "transport"` mode `cli-jev` (over the `cli-jev` packet, bridging the Jev CLI and MCP surface), returning one typed value and never mutating the workspace |
-| [`cli-external-orchestration`](cli-external-orchestration/README.md) | Parent hub for external CLI dispatch, holding no per-mode logic: routes by `workflowMode` to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and the experimental `cli-deepseek-harness`, whose LLM Gateway route passed a keyed run |
+| [`cli-external-orchestration`](cli-external-orchestration/README.md) | Parent hub for external CLI dispatch, holding no per-mode logic: routes by `workflowMode` to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-mistral-vibe` and the experimental `cli-deepseek-harness`, whose LLM Gateway route passed a keyed run |
 | [`cli-orca`](cli-orca/README.md) | Standalone class-S skill for Orca CLI work: managed worktrees, terminals, the embedded browser, automations, artifacts, handoffs and skill sharing, plus one authored reference and one verbatim snapshot for each of the eight official Orca skills |
 
 ### mcp-*: External Tool Surfaces
@@ -67,7 +67,7 @@ Each skill name links to its own README. One-line descriptions reflect current b
 
 | Skill | What it does |
 |---|---|
-| [`system-deep-loop`](system-deep-loop/README.md) | Routes research, review, and AI Council modes through registry-selected packets over nested `runtime/` infrastructure |
+| [`system-deep-loop`](system-deep-loop/README.md) | Routes research and review modes through registry-selected packets over nested `runtime/` infrastructure |
 | [`system-skilled-doctor`](system-skilled-doctor/README.md) | Owns the doctor commands that put Skilled into a project repo and keep it current there, including `/doctor:overlay` for a vendored copy's own changes |
 | [`system-skill-advisor`](system-skill-advisor/README.md) | Routes non-trivial requests to matching skills through standalone MCP metadata and stable advisor tool ids, with the daemon-backed `skill-advisor` CLI as fallback |
 | [`system-spec-kit`](system-spec-kit/README.md) | Unified spec-folder workflow plus context preservation: Levels 1-3+, strict validation, and packet continuity with lexical retrieval. Required for file modifications |

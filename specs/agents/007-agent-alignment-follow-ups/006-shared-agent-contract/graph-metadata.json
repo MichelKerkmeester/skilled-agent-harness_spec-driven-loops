@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/006-shared-agent-contract",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/006-shared-agent-contract",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared agent contract",
+      "phase 6 shared agent contract",
+      "agent tool call budget",
+      "canonical refuse line",
+      "shared agent contract plan",
+      "shared agent contract tasks",
+      "shared agent contract acceptance criteria",
+      "shared agent contract implementation summary"
+    ],
+    "key_topics": [
+      "shared",
+      "agent",
+      "contract",
+      "phase",
+      "tool",
+      "call",
+      "budget",
+      "canonical",
+      "refuse",
+      "line",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+      "scratch/before.txt",
+      "scratch/baseline.txt",
+      "scratch/after.txt",
+      ".skilled/agents/context.md",
+      ".skilled/agents/code.md",
+      ".skilled/agents/deep-research.md",
+      ".skilled/agents/orchestrate.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".skilled/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-config.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The rules every agent shares have no single home, so each agent file carries its own copy and the copies disagree",
+    "created_at": "2026-11-14T20:19:16Z",
+    "last_save_at": "2026-11-14T21:54:08.031Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:89df7cb17e2c76bf229eb91eff710051efee129e30c7aad382cd4e964fbe503b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f215e7af7cc732caec652f07dcef1a3a039b90d3d0545d2a1c0b581d3d0298ac",
+      "plan.md": "d6a71c2bfe8c1c0bb9efb18072b49921729565d3a1197f3ef96232c4494142a7",
+      "tasks.md": "8ae6dcbd247a8159cff58ee81da78c7241c5eafc96e7f7538380c45237400ae1",
+      "implementation-summary.md": "fb7d984bc8e6fba92c1cf2d5397dd81e7c97785fcdf7fe1a41fb7af3559e64ba"
+    },
+    "last_active_at": null
+  }
+}

@@ -11,7 +11,7 @@ trigger_phrases:
   - "convergence threshold tuning"
 importance_tier: normal
 contextType: implementation
-version: 1.14.0.3
+version: 1.14.1.0
 ---
 
 # Convergence Signals Reference
@@ -46,7 +46,7 @@ The live model uses three weighted signals and normalizes by the weight of the s
 | MAD Noise Floor | `0.35` | 4 evidence iterations | Latest `newInfoRatio` is at or below `MAD * 1.4826` |
 | Question Entropy | `0.35` | At least 1 key question | Evidence-backed coverage is at least `0.85` |
 
-`thought` iterations are excluded from rolling average, MAD, and stuck counting because they are analytical-only. `insight` iterations are included in convergence signals but do not count as stuck.
+`thought` iterations are excluded from rolling average, MAD, and stuck counting because they are analytical-only. `error` and `timeout` iterations stay out of the ratio signals and count only toward the consecutive failure count. `insight` iterations are included in convergence signals but do not count as stuck.
 
 ---
 
@@ -99,7 +99,7 @@ Default threshold behavior:
 Rolling average uses the last three evidence iterations.
 
 ```text
-evidenceIterations = iterations where status != "thought"
+evidenceIterations = iterations where status is not "thought", "error" or "timeout"
 recent = last 3 evidenceIterations
 rollingAvg = mean(recent.newInfoRatio)
 rollingStop = rollingAvg < convergenceThreshold
@@ -165,7 +165,7 @@ Every completed loop should report:
 ```text
 CONVERGENCE REPORT
 ------------------
-Stop reason: converged | maxIterationsReached | userPaused | stuckRecovery | error
+Stop reason: converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery | userPaused | maxDurationReached
 Iterations completed: N
 Questions answered: X/Y
 Average newInfoRatio trend: [...]

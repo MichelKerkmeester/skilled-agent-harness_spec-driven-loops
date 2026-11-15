@@ -1,0 +1,3 @@
+$ grep -qs '"retries": 3' config/settings.json && cmp -s config/settings.json skilled-overlays/files/settings.json && echo applied-through-overlay
+applied-through-overlay
+[exit 0]

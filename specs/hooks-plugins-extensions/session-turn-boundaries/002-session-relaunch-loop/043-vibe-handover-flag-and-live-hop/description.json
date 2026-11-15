@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop",
+  "description": "Phase 43: vibe-handover-flag-and-live-hop",
+  "keywords": [
+    "phase",
+    "vibe-handover-flag-and-live-hop"
+  ],
+  "lastUpdated": "2026-11-15T07:23:59.141Z",
+  "specId": "043",
+  "folderSlug": "vibe-handover-flag-and-live-hop",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_08-23__taught-both-relaunch-flag-readers-the-vibe.md"
+  ]
+}

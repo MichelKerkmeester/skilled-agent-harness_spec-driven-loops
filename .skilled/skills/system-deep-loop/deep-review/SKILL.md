@@ -2,7 +2,7 @@
 name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
 argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]"
-version: 1.11.14.0
+version: 1.11.17.0
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
 ---
 <!-- Note: Task is for the command executor (loop management); @deep-review agent is LEAF-only (no Task). No WebFetch: review is code-only. -->
@@ -15,7 +15,7 @@ Runtime path resolution:
 - OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 
-Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05 vs deep-ai-council 0.20) live in `references/convergence/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
+Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05) live in `references/convergence/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
 
 ## 1. WHEN TO USE
 
@@ -54,9 +54,9 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 
 **ALWAYS:**
 - Invoke via `/deep:review :auto` or `/deep:review :confirm`
-- Let the command's YAML workflow own dispatch (auto: `.skilled/commands/deep/assets/deep-review-auto.yaml`)
+- Let the command's YAML workflow own dispatch (auto: `.skilled/commands/deep/assets/deep-review.yaml`)
 - Record each leaf iteration through the append gateway (`runtime/scripts/append-mode-event.cjs --mode review --run-directory <spec folder> --event-json <file>`) — the gateway is the SINGLE state-log writer: it authorizes, fences, and receipts the write, then refreshes `{state_paths.state_log}` from the ledger
-- Treat `scripts/reduce-state.cjs` as the reducer for DERIVED artifacts only (finding registry, dashboard metrics, strategy updates); it never writes the state log
+- Treat `runtime/scripts/reduce-state.cjs` as the reducer for DERIVED artifacts only (finding registry, dashboard metrics, strategy updates); it never writes the state log
 - Require every iteration to produce BOTH the markdown narrative AND the JSONL delta (dispatch scripts must fail if either is missing)
 - Use `resolveArtifactRoot(specFolder, 'review')` from `.skilled/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical review root
 
@@ -223,6 +223,14 @@ Treat the final line as the leaf's self-report and the registry as the record.
 
 Executor settings are owned by the YAML workflow and rendered prompt pack -- never hand-dispatch review iterations; each iteration stays LEAF-only and produces the required markdown plus JSONL delta. Full contract (per-iteration invariants, failure modes, JSONL audit field, config surface/precedence, TrustState surface): `references/protocol/loop-protocol.md`.
 
+### Stop Decision, Counters and Limits
+
+`runtime/scripts/convergence.cjs` computes the whole stop decision once per pass from the config, the state log, the findings registry and the coverage graph. `deep-review.yaml` renders no stop arithmetic of its own. The frozen stop reasons are `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`, `userPaused` and `maxDurationReached`. A missing graph decision blocks every non-terminal STOP.
+
+The stuck count and the consecutive failure count are rebuilt from the state log on every pass, so a resumed run counts the same as one that never paused. Failed iterations stay out of the ratio signals. Three trailing failed iterations stop the loop with stop reason `error`. In confirm mode only, the workflow first asks the operator Retry, Skip or Cancel. Auto mode has no such question.
+
+Each pass also compares `maxDurationMinutes` with the config `createdAt`. When the limit is reached the loop skips the dispatch and goes to synthesis with stop reason `maxDurationReached`.
+
 ---
 
 ## 4. RULES
@@ -235,7 +243,7 @@ Executor settings are owned by the YAML workflow and rendered prompt pack -- nev
 4. Cite every finding with `[SOURCE: file:line]`. Reject inference-only findings.
 5. Re-read cited code before recording any P0.
 6. Keep target files read-only.
-7. Use `generate-context.js` for continuity saves. **Owner**: the YAML workflow (`deep_review_{auto,confirm}.yaml`) calls it at the save phase, not the reducer (`scripts/reduce-state.cjs`) directly — don't expect continuity-save side effects from the reducer alone.
+7. Use `generate-context.js` for continuity saves. **Owner**: the workflow (`deep-review.yaml`) calls it at the save phase, not the reducer (`runtime/scripts/reduce-state.cjs`) directly — don't expect continuity-save side effects from the reducer alone.
 8. Emit setup `BINDING:` lines before workflow output.
 9. Refuse nested dispatch with: `REFUSE: nested Task tool dispatch is forbidden for LEAF agents. Returning partial findings instead.`
 
@@ -243,8 +251,8 @@ Executor settings are owned by the YAML workflow and rendered prompt pack -- nev
 
 1. **Dispatch sub-agents**, `@deep-review` is LEAF-only. It cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 9).
 2. **Hold findings in context**, Write everything to iteration files. Context is discarded after each dispatch.
-3. **Exceed TCB**, Target 8-11 tool calls per iteration (max 12). Breadth over depth per cycle.
-4. **Ask the user**, Autonomous execution. The agent makes best-judgment decisions without pausing.
+3. **Exceed TCB**, Stay within `config.maxToolCallsPerIteration` tool calls per iteration. Breadth over depth per cycle.
+4. **Ask the user**, The leaf agent never asks. It makes best-judgment decisions without pausing. The workflow asks only in `:confirm` mode, at its approval gates.
 5. **Skip convergence checks**, Every iteration must be evaluated against convergence criteria before the next dispatch.
 6. **Modify config after init**, review parameters in `deep-review-config.json` are read-only after initialization; the terminal `step_update_config_status` flip to `status: complete` is the one permitted write.
 7. **Modify files under review**, The review loop is observation-only. No code changes during audit.
@@ -259,7 +267,7 @@ Executor settings are owned by the YAML workflow and rendered prompt pack -- nev
 
 ### ⚠️ ESCALATE IF
 
-1. **3+ consecutive timeouts**, Infrastructure issue. Pause loop and report to user.
+1. **3+ consecutive failed iterations**, The loop stops with stop reason `error` and enters synthesis with partial findings. In confirm mode the workflow asks Retry, Skip or Cancel first.
 2. **State file corruption**, Cannot reconstruct iteration history from JSONL or iteration files.
 3. **All dimensions covered with P0 findings remaining**, Human sign-off required before shipping.
 4. **Security vulnerabilities discovered in production code**, Escalate immediately. Do not defer to report synthesis.
@@ -284,7 +292,7 @@ Start with these, in order:
 
 Then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
-Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
+Scripts: `runtime/scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
 
 Detailed contracts:
 

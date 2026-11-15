@@ -204,7 +204,7 @@
     ],
     "causal_summary": "On Claude Code, `prepare` leaves the relaunch record `pending` and only the Stop hook `stop-arm.mjs` arms it",
     "created_at": "2026-11-13T15:46:08Z",
-    "last_save_at": "2026-11-13T19:55:56.678Z",
+    "last_save_at": "2026-11-14T17:34:25.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eea55f9739f3b52e27d51d1f6d8b82004eb0c03f567ada1a161c52a76d36d423",
+    "source_fingerprint": "sha256:c7d9bc919bc7d2adc40a3febc0476b4f8e8ce691d8ca96f88540184e33cde66d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8eb024511c57b2a8271646823137b78abc771c068c54d7d13605685696ed4183",
       "plan.md": "7bf0da5dd83222ee230f160374266f45b494c2f74b6c71d629bde81ac5ff4173",
       "tasks.md": "efe6719ad5dc3f89f01ec024cef966973c600b8f1739a4dc8ff43c1ef575b40f",
-      "implementation-summary.md": "581111835c45a4ebf8fa97c1dbc3479d979d1fe3db83e8da801332db8d403c6e"
+      "implementation-summary.md": "b5265ec18be040c550b37ce3944c82ec00f5710003dbb35ec7b0c98592f64f17"
     },
     "last_active_at": null
   }

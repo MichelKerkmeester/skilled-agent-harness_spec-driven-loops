@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/005-alignment-report-fixes",
+  "description": "Phase 5: alignment-report-fixes",
+  "keywords": [
+    "phase",
+    "alignment-report-fixes"
+  ],
+  "lastUpdated": "2026-11-14T18:24:12.228Z",
+  "specId": "005",
+  "folderSlug": "alignment-report-fixes",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_19-24__ran-local-skilled-alignment-on-the-phase-1-to-4.md"
+  ]
+}

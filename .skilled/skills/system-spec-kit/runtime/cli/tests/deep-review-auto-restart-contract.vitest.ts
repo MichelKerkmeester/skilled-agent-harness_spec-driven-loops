@@ -19,7 +19,7 @@ describe('deep-review auto restart command contract', () => {
   it('exposes restart as a first-class auto setup input', () => {
     const command = readWorkspaceFile('.skilled/commands/deep/review.md');
     const presentation = readWorkspaceFile('.skilled/commands/deep/assets/deep-review-presentation.txt');
-    const autoWorkflow = readWorkspaceFile('.skilled/commands/deep/assets/deep-review-auto.yaml');
+    const autoWorkflow = readWorkspaceFile('.skilled/commands/deep/assets/deep-review.yaml');
     const fanoutRun = readWorkspaceFile('.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
     expect(command).toContain('--restart|--lineage-mode=restart');
@@ -48,8 +48,8 @@ describe('deep-review auto restart command contract', () => {
     expect(autoWorkflow).toContain('--stop-policy {stop_policy}');
     expect(autoWorkflow).toContain('stopPolicy: "{stop_policy}"');
     expect(autoWorkflow).toContain('config.fanout_lineage_artifact_dir: "[optional internal path]');
-    expect(autoWorkflow).toContain('treat convergence signals as telemetry');
-    expect(autoWorkflow).toContain('the explicit restart flag is operator');
+    expect(autoWorkflow).toContain('the vote is telemetry only and the decision is CONTINUE');
+    expect(autoWorkflow).toMatch(/The explicit\s+restart flag is operator authorization/);
     expect(autoWorkflow).toContain('A cli-opencode lineage inside this fan-out is an explicit parallel-detached OpenCode');
     expect(autoWorkflow).toContain('fanout-run.cjs owns native and CLI lineage execution');
     expect(autoWorkflow).toContain('deep/review command surface with config.fanout_lineage_artifact_dir');
@@ -71,7 +71,7 @@ describe('deep-review auto restart command contract', () => {
   });
 
   it('applies restart before fan-out can spawn lineages', () => {
-    const autoWorkflow = readWorkspaceFile('.skilled/commands/deep/assets/deep-review-auto.yaml');
+    const autoWorkflow = readWorkspaceFile('.skilled/commands/deep/assets/deep-review.yaml');
     const restartStepIndex = autoWorkflow.indexOf('step_apply_lifecycle_request:');
     const fanoutStepIndex = autoWorkflow.indexOf('step_fanout_spawn:');
 

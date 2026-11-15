@@ -305,6 +305,7 @@ and findings belong here.
 | Phase 025 release notes and doc sync | Complete | advisor changelog v1.1.0.0 extended for phases 019 to 028 (168 to 251 lines, 14 tags, 32 items) and six pages corrected (lib, tests and command bridges READMEs, advisor-recommend, command-meaning-matching, doctor-command-routing); fact trace UNTRACED 0, independent verifier PASS after 8 wording fixes |
 | Full advisor suite, idle rerun | Met | at b5805efeccd with no worker running: 185 files, 2121 passed, 6 skipped, 0 failed (029 scratch/before.txt). Floors 24/44, 0/35, 1/44 and eval [160,51,21,5] unchanged |
 | Phase 029 direct-call kill switch | Complete | 0bc486b1637 plus follow-up 01788431d19: the direct call abstains whenever the hooks are off, 14 of 14 matrix lines match, suite 2139 passed 0 failed, review SHIP |
+| Merge onto origin/main e263e5481e7 | Approved | operator chose 2026-11-15 to merge and hand-apply main's four ai-council table edits to the branch's command-attach.ts (35 conflicts, one in runtime code), regenerate generated files with committed scripts, and record any floor move caused by the retired /deep:ai-council as main's change |
 
 ### Deviations and findings
 

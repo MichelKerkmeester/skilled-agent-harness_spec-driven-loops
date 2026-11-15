@@ -17,6 +17,7 @@ export const EXECUTOR_KINDS = [
   'cli-devin',
   'cli-pi',
   'cli-deepseek-harness',
+  'cli-mistral-vibe',
 ] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
@@ -134,6 +135,10 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // dsh selects a route through its model patch and a persona through a separate patch.
   // The route patch pins the supported DeepSeek Flash models to max reasoning.
   'cli-deepseek-harness': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona'],
+  // Vibe has no reasoning flag — thinking is pinned per roster row in `.vibe/config.toml` —
+  // and no OS sandbox or persona surface, so the config carries only the model alias, the
+  // per-iteration timeout, and the live-tool policy.
+  'cli-mistral-vibe': ['model', 'timeoutSeconds', 'liveTools'],
 };
 
 /**
@@ -160,6 +165,7 @@ export const EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY: Record<ExecutorKind, boolea
   'cli-devin': false, // --sandbox is deliberately never passed (conflicts with non-interactive auto-approval); confinement is the fan-out's post-hoc write-containment guard, not an OS boundary
   'cli-pi': false, // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind; read-only is a tool-allowlist restriction only
   'cli-deepseek-harness': true, // Workspace-write blocks home writes; OS temp remains writable.
+  'cli-mistral-vibe': false, // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind; the roster row decides what the model may reach
 };
 
 /** Proven web-search policies for every shipped executor kind. */
@@ -213,6 +219,14 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
   },
   // dsh receives no per-dispatch web-search switch; its route profile has no web tool.
   'cli-deepseek-harness': {
+    inherit: true,
+    disabled: false,
+    cached: false,
+    live: false,
+  },
+  // No Vibe web-search switch is confirmed; same flag-less shape as cli-cursor and
+  // cli-devin — inherit only, nothing enforceable either way.
+  'cli-mistral-vibe': {
     inherit: true,
     disabled: false,
     cached: false,
@@ -276,6 +290,20 @@ export const DSH_DEFAULT_MODEL: DshSupportedModel = 'deepseek-v4.1-flash-1017';
 
 export function isDshModelAllowed(model: string): model is DshSupportedModel {
   return (DSH_SUPPORTED_MODELS as readonly string[]).includes(model);
+}
+
+/**
+ * Vibe selects a model by the alias on its roster row, not by the provider's own model
+ * name: the roster maps `deepseek-flash` and `glm-flash` onto the two allowed rows, and a
+ * row without a max thinking pin is off-roster. Vibe has no reasoning flag, so the pin
+ * lives on the row and the config never carries a reasoningEffort.
+ */
+export const VIBE_SUPPORTED_MODELS = ['deepseek-flash', 'glm-flash'] as const;
+export type VibeSupportedModel = typeof VIBE_SUPPORTED_MODELS[number];
+
+/** True when `model` is in the enforced cli-mistral-vibe allowlist. */
+export function isVibeSupportedModel(model: string): model is VibeSupportedModel {
+  return (VIBE_SUPPORTED_MODELS as readonly string[]).includes(model);
 }
 
 /**
@@ -674,6 +702,15 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
     });
   }
 
+  if (config.kind === 'cli-mistral-vibe' && config.model !== null && !isVibeSupportedModel(config.model)) {
+    throw new ExecutorConfigError({
+      issues: [{
+        path: ['model'],
+        message: `cli-mistral-vibe model '${config.model}' is not in the enforced allowlist: ${VIBE_SUPPORTED_MODELS.join(', ')}`,
+      }],
+    });
+  }
+
   if (config.kind === 'cli-codex' && config.reasoningEffort) {
     const model = config.model ?? CODEX_UNPINNED_MODEL;
     const ceiling = CODEX_EFFORT_CEILINGS[model];
@@ -711,6 +748,7 @@ export const EXECUTOR_MCP_SERVER_CAPABILITY: Record<ExecutorKind, boolean> = {
   'cli-devin': false,
   'cli-pi': false,
   'cli-deepseek-harness': true,
+  'cli-mistral-vibe': false,
 };
 
 /**

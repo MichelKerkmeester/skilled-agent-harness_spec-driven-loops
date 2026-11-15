@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "a1c31b6f38",
+  "capturedAtSha": "b5b8e699a97",
   "corpusSha256": "sha256:4146b002802d010e4d9d3ddf4c07b0738e59a55fab590b2c51e1ed3d4da1e115",
-  "holdoutSha256": "sha256:51cb48eb8b10e501fd8536eb403deb7674583f89adc5418c1cb583c5c6b02d6a",
+  "holdoutSha256": "sha256:918265c278fd51fe5198d2a88df357ed40f5bab8d9a14298ae4e7dac6c7b3b21",
   "ambiguitySha256": "sha256:62423738cab74cf499d98f2e835e8e78c25e2b57e3c1b6994d8a2bd0bfb88491",
   "env": {
     "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC": "1",
@@ -23,9 +23,9 @@
       "value": 5
     },
     "holdout_top1": {
-      "correct": 51,
-      "total": 65,
-      "accuracy": 0.7846
+      "correct": 49,
+      "total": 63,
+      "accuracy": 0.7778
     },
     "ambiguity_top1": {
       "correct": 21,
@@ -45,8 +45,8 @@
         "accuracy": 0.875
       },
       "delegation": {
-        "correct": 20,
-        "total": 20,
+        "correct": 22,
+        "total": 22,
         "accuracy": 1
       }
     }

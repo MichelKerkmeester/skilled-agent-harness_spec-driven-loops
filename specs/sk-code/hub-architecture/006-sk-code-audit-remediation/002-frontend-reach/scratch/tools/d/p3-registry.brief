@@ -1,0 +1,28 @@
+TASK: add one `quality` block to one entry of one JSON file.
+
+FILE: .skilled/skills/sk-code/mode-registry.json (read lines 118 to 156 only)
+
+WHY: the frontend surface has a pre-completion checklist, and the quality runner only loads a checklist a surface declares.
+
+EDIT, lines 146 to 153, the end of the `sk-code-frontend` entry. Replace:
+        "contentMarkers": []
+      }
+    }
+  ]
+with:
+        "contentMarkers": []
+      },
+      "quality": {
+        "checklists": [
+          {"extensions": [".css", ".scss", ".html", ".tsx", ".jsx", ".vue", ".svelte"], "file": "sk-code-frontend/references/frontend-practice.md"}
+        ]
+      }
+    }
+  ]
+
+This old text is the LAST `"contentMarkers": []` in the file, the one inside the entry whose `"label"` is `"FRONTEND"`. Do not edit the earlier `contentMarkers` line of the SKILLED entry.
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+node -e "const m=require('./.skilled/skills/sk-code/mode-registry.json').modes.find(x=>x.workflowMode==='sk-code-frontend');console.log(JSON.stringify(m.quality))"
+Expected output: {"checklists":[{"extensions":[".css",".scss",".html",".tsx",".jsx",".vue",".svelte"],"file":"sk-code-frontend/references/frontend-practice.md"}]}

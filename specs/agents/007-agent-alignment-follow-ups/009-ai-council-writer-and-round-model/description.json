@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model",
+  "description": "Phase 9: ai-council-writer-and-round-model",
+  "keywords": [
+    "phase",
+    "ai-council-writer-and-round-model"
+  ],
+  "lastUpdated": "2026-11-14T23:47:18.636Z",
+  "specId": "009",
+  "folderSlug": "ai-council-writer-and-round-model",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "14-11-26_21-47__phase-009-findings-reproduced-before-planning.md",
+    "15-11-26_00-47__phase-009-built-ai-council-names-itself-the-one.md"
+  ]
+}

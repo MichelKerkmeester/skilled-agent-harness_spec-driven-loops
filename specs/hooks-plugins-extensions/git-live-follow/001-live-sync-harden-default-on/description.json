@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/git-live-follow/001-live-sync-harden-default-on",
+  "description": "The continuous-integration model built by `007-continuous-integration-workflow` publishes every launch-wrapper session commit to a shared live branch",
+  "keywords": [
+    "continuous-integration",
+    "model",
+    "007-continuous-integration-workflow",
+    "publishes",
+    "every",
+    "launch-wrapper",
+    "session",
+    "commit",
+    "shared",
+    "live",
+    "branch"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.526Z",
+  "specId": "001",
+  "folderSlug": "live-sync-harden-default-on",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "git-live-follow"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "15-08-26_14-02__a-unified-master-disable-flag-and-document-it-for.md",
+    "15-08-26_14-07__a-unified-master-disable-flag-and-document-it-for.md",
+    "15-08-26_14-11__a-unified-master-disable-flag-and-document-it-for.md",
+    "15-08-26_14-13__a-unified-master-disable-flag-and-document-it-for.md"
+  ]
+}

@@ -1,0 +1,4 @@
+$ total=$(grep -c '^\[\[hooks\]\]' "$CONVERSATION_REPO_ROOT/.vibe/hooks.toml"); missing=0; for name in $(sed -n 's/^name = "\([^"]*\)"/\1/p' "$CONVERSATION_REPO_ROOT/.vibe/hooks.toml"); do case "$name" in session-start|session-cleanup-end) continue;; esac; grep -rqsF "user:$name" "$VIBE_HOME/logs/session/unified" || missing=$((missing+1)); done; grep -rqsF 'builtin:session_start_context' "$VIBE_HOME/logs/session/unified" || missing=$((missing+1)); echo "hooks=$total turn_missing=$missing"; [ "$total" -eq 18 ] && [ "$missing" -eq 0 ] && echo turn-hooks-and-session-start-bound
+hooks=18 turn_missing=0
+turn-hooks-and-session-start-bound
+[exit 0]

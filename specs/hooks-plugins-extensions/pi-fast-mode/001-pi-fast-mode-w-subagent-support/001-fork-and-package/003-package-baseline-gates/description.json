@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates",
+  "description": "A correct source tree is not enough for Pi to load or discover the extension",
+  "keywords": [
+    "correct",
+    "source",
+    "tree",
+    "enough",
+    "load",
+    "discover",
+    "extension"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.300Z",
+  "specId": "003",
+  "folderSlug": "package-baseline-gates",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-fast-mode",
+    "001-pi-fast-mode-w-subagent-support",
+    "001-fork-and-package"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

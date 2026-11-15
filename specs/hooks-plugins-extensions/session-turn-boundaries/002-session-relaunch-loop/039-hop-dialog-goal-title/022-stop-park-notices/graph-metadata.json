@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stop park notices",
+      "phase 22 stop park notices",
+      "claude stop cannot arm prints a notice",
+      "target pid arm error systemMessage",
+      "stop park notices plan",
+      "stop park notices tasks",
+      "stop park notices acceptance criteria",
+      "stop park notices goal",
+      "stop park notices implementation summary"
+    ],
+    "key_topics": [
+      "stop",
+      "park",
+      "notices",
+      "phase",
+      "claude",
+      "cannot",
+      "arm",
+      "prints",
+      "notice",
+      "target",
+      "pid",
+      "error"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+      ".skilled/hooks/session-relaunch/claude/README.md",
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/claude-conformance.txt",
+      "scratch/final-suite.txt",
+      "scratch/baseline.txt",
+      "scratch/existing-notices.txt",
+      "scratch/write-throw.mjs",
+      "scratch/write-throw.txt",
+      "scratch/current.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/claude/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "claude-conformance.txt",
+        "kind": "file",
+        "path": "scratch/claude-conformance.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "existing-notices.txt",
+        "kind": "file",
+        "path": "scratch/existing-notices.txt",
+        "source": "derived"
+      },
+      {
+        "name": "write-throw.mjs",
+        "kind": "file",
+        "path": "scratch/write-throw.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "write-throw.txt",
+        "kind": "file",
+        "path": "scratch/write-throw.txt",
+        "source": "derived"
+      },
+      {
+        "name": "current.txt",
+        "kind": "file",
+        "path": "scratch/current.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`stop-arm.mjs` parks a prepared hand-over on three branches",
+    "created_at": "2026-11-14T16:13:55Z",
+    "last_save_at": "2026-11-14T17:21:53.260Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:19e87cf722b6268510f511489909777a2c70773c91253b083be2c7cce349559e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fb3b7ab208293d7854f9abb200df6ef04607de6d0160225e1060e49c20e07cd6",
+      "plan.md": "f7f9ec0fecc2abc45fd90a5928fd0bef3e9cc474f4699674876395440aa6fdfd",
+      "tasks.md": "6888efb09b07d733811a5e18c2767e09a050784ab76a20d88c678f3a2178c104",
+      "implementation-summary.md": "895c19090d77a862fb33a4e87a7993e1e50ad6c1460ccd7943e2f98046c5cfe8"
+    },
+    "last_active_at": null
+  }
+}

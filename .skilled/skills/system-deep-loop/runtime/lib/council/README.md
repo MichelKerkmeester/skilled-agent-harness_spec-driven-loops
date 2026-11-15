@@ -1,6 +1,6 @@
 ---
 title: "Council Primitives"
-description: "Multi-seat dispatch, adjudicator-verdict stability, and cost guards for deep-ai-council deep mode."
+description: "Parallel seat dispatch for the divergent pivot in research and review runs."
 ---
 
 # Council Primitives
@@ -9,7 +9,9 @@ description: "Multi-seat dispatch, adjudicator-verdict stability, and cost guard
 
 ## 1. OVERVIEW
 
-Runtime primitives consumed by deep-ai-council orchestrators for iterative multi-topic deliberation. Implements 3-level state hierarchy (session to topic to round) with verdict-delta convergence scoring.
+`multi-seat-dispatch.cjs` runs seat executors in parallel for one deliberation round, preserves seat result order and returns fulfilled or rejected per-seat outcomes plus round summary counts. The divergent pivot in `lib/deep-loop/divergent-pivot.ts` is its only caller, convening seats when a stalled research or review run is ready to pivot.
+
+The folder holds nothing else.
 
 ---
 
@@ -17,27 +19,16 @@ Runtime primitives consumed by deep-ai-council orchestrators for iterative multi
 
 | File | Purpose |
 |------|---------|
-| `multi-seat-dispatch.cjs` | Parallel seat dispatch helper |
-| `round-state-jsonl.cjs` | Atomic-append round state with flock parity |
-| `adjudicator-verdict-scoring.cjs` | Round-N to Round-N+1 verdict-delta scoring |
-| `cost-guards.cjs` | `max_rounds_per_topic`, `max_topics_per_session`, and `saturation_threshold` enforcement |
-| `session-state-hierarchy.cjs` | 3-level state shape: session, topic, round |
-| `council-graph-db.ts` | Runtime-owned SQLite projection for derived council graph state |
-| `council-graph-query.ts` | Prompt-safe council graph query helpers |
-| `convergence.cjs` | Council-specific convergence signals, blockers, trace, and JSON bridge payload helpers |
+| `multi-seat-dispatch.cjs` | Exports `dispatchCouncilSeats(options)`: normalizes seats, dispatches them under a concurrency cap and returns `round_id`, timestamps, per-seat `results` and a `summary` of total, succeeded, failed and all_failed. |
 
 ---
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-topic.cjs`
-- `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs`
-- `.skilled/skills/system-deep-loop/runtime/scripts/{upsert,query,status,convergence}.cjs` for `loopType=council` graph operations
+- `lib/deep-loop/divergent-pivot.ts`, the only caller, through `dispatchCouncilSeats`.
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/council/`
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/council-graph-query.vitest.ts`
-- `.skilled/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts`
+- `tests/council/multi-seat-dispatch.vitest.ts`

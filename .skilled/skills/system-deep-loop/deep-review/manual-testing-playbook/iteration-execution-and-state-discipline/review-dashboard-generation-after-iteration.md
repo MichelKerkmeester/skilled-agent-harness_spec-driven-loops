@@ -1,7 +1,7 @@
 ---
 title: "DRV-013 -- Review dashboard generation after iteration"
 description: "Verify that the review dashboard with Findings Summary, Progress Table, Coverage, and Trend is generated after each iteration."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-013 -- Review dashboard generation after iteration
@@ -27,9 +27,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify that the dashboard with Findings Summary, Progress Table, Coverage, and Trend is generated after each iteration.
 - Real user request: Where do I look to see how the review is progressing? Is there a dashboard?
 - Prompt: `Validate deep-review dashboard generation after each iteration from JSONL and strategy state.`
-- Expected execution process: Inspect the YAML step_generate_dashboard for its position in the loop, then its read sources and output format, then the dashboard template in the assets for the expected sections.
+- Expected execution process: Inspect the `step_reduce_review_state` reducer pass for its position in the loop, then its read sources and output format, then the dashboard template in the assets for the expected sections.
 - Desired user-facing outcome: The user is told that a dashboard file is auto-generated after each iteration showing current findings, progress, coverage, and trend at a glance.
-- Expected signals: The step_generate_dashboard runs after step_validate_iteration. It reads JSONL and strategy. It writes to deep-review-dashboard.md. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
+- Expected signals: The `step_reduce_review_state` reducer pass runs after iteration validation. It reads JSONL and strategy. It writes `deep-review-dashboard.md`. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
 - Pass/fail posture: PASS if the dashboard step runs after each iteration and produces all expected sections. FAIL if the step is missing from the loop or the output template is incomplete.
 
 ---
@@ -45,17 +45,17 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review dashboard generation after each iteration from JSONL and strategy state.
 ### Commands
-1. `bash: rg -n 'step_generate_dashboard|dashboard' .skilled/commands/deep/assets/deep-review-auto.yaml`
+1. `bash: rg -n 'step_reduce_review_state|dashboard' .skilled/commands/deep/assets/deep-review.yaml`
 2. `bash: sed -n '1,220p' .skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md`
-3. `bash: rg -n 'dashboard|deep-review-dashboard' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'dashboard|deep-review-dashboard' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/commands/deep/assets/deep-review.yaml`
 ### Expected
-The step_generate_dashboard runs after validation. It reads JSONL and strategy. It writes deep-review-dashboard.md. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
+The `step_reduce_review_state` reducer pass runs after validation. It reads JSONL and strategy. It writes `deep-review-dashboard.md`. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
 ### Evidence
-Capture the dashboard step position in the loop, the output template format, and the state_paths dashboard entry.
+Capture the reducer pass position in the loop, the output template format, and the state_paths dashboard entry.
 ### Pass/Fail
 PASS if the dashboard step runs after each iteration and produces all expected sections. FAIL if the step is missing from the loop or the output template is incomplete.
 ### Failure Triage
-Compare the dashboard template in assets/ with the YAML step_generate_dashboard format block to verify they agree on section structure.
+Compare the dashboard template in assets/ with the reducer render output to verify they agree on section structure.
 ---
 
 ## 4. SOURCE FILES
@@ -71,8 +71,8 @@ Compare the dashboard template in assets/ with the YAML step_generate_dashboard 
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Dashboard generation step, inspect `step_generate_dashboard` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Dashboard generation step, inspect `step_generate_dashboard` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Reducer invocation in the loop, inspect `step_reduce_review_state` |
+| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Dashboard renderer and the only dashboard writer |
 | `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md` | Dashboard template |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | State files table, use `ANCHOR:state-files` |
 

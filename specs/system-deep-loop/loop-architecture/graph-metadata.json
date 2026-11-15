@@ -6,7 +6,8 @@
   "children_ids": [
     "system-deep-loop/loop-architecture/001-deep-loop-innovation",
     "system-deep-loop/loop-architecture/002-graph-engineering",
-    "system-deep-loop/loop-architecture/003-deprecate-improvement-modes"
+    "system-deep-loop/loop-architecture/003-deprecate-improvement-modes",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening"
   ],
   "manual": {
     "depends_on": [],

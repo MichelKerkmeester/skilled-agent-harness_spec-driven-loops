@@ -7,7 +7,7 @@ trigger_phrases:
   - "rejectedPatternIndex"
   - "suppressedCandidates"
   - "rejected idea reset"
-version: 1.14.0.13
+version: 1.14.1.0
 ---
 
 # Rejected-pattern cache
@@ -24,7 +24,7 @@ Rejected ideas and rejected question patterns become durable state instead of di
 
 The JSONL protocol accepts `idea_rejected`, `idea_rejected_removed`, and `idea_rejected_reset` events, with legacy camelCase aliases still replayable. The reducer derives `rejectedPatternIndex` from those events, caps the active cache at 100 entries, and evicts the oldest active entry with a warning when the cap is exceeded.
 
-Candidate filtering checks exact normalized text first, then applies category-compatible fuzzy matching using `rejectedPatternFuzzyThreshold` when present. The auto workflow consults reducer-derived `rejectedPatterns`, `rejectedPatternIndex`, and `suppressedCandidates` before next-focus, recovery, or ideas-backed candidates are dispatched.
+Candidate filtering checks exact normalized text first, then applies category-compatible fuzzy matching using `rejectedPatternFuzzyThreshold` when present. The workflow consults reducer-derived `rejectedPatterns`, `rejectedPatternIndex`, and `suppressedCandidates` before next-focus, recovery, or ideas-backed candidates are dispatched.
 
 ---
 
@@ -37,7 +37,7 @@ Candidate filtering checks exact normalized text first, then applies category-co
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Derives the bounded rejected-pattern index and filters rejected candidates. |
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | Reference | Defines rejected-pattern lifecycle event records. |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Documents suppression ordering, fuzzy matching, and overflow policy. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Runs the rejected-pattern check before candidate selection. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Runs the rejected-pattern check before candidate selection. |
 
 ### Validation And Tests
 

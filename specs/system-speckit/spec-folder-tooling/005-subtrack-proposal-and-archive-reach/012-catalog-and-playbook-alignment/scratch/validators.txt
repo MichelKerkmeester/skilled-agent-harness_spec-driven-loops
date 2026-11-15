@@ -1,0 +1,60 @@
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+Document type: readme
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md, so README rules were applied. Pass --type to choose the rule set.
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-packet-relocation.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-packet-relocation.md
+Document type: feature_catalog
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md
+Document type: feature_catalog
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/retrieval/rg-archive-search.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/retrieval/rg-archive-search.md
+Document type: feature_catalog
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/sub-track-proposal.md
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/sub-track-proposal.md
+Document type: feature_catalog
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-packet-relocation.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-packet-relocation.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/sub-track-proposal.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/sub-track-proposal.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/rg-archive-search.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/rg-archive-search.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+PASS package=system-spec-kit tier=FAIL_CLOSED scenarios=119 categories=9 operator=105 routing_gold_excluded=14 violations=0 warnings=2
+  WARN BACKTICK_PATH_UNRESOLVED retrieval/stale-index-fallback.md:30 backticked path resolves from no scenario, playbook, skill, hub or repository base: specs/demo/001-zr7-ledger/spec.md
+  WARN PROMPT_UNSYNCED ux-hooks/comment-hygiene-checker-baseline.md:52 ux-hooks/comment-hygiene-checker-baseline.md:32 scenario contract prompt differs from the execution table's Exact Prompt
+exit=0
+exit=0

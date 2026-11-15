@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence",
+  "description": "The Pi flag registry exposes a boolean default, so a plain false value cannot prove that the operator explicitly supplied a false flag",
+  "keywords": [
+    "flag",
+    "registry",
+    "exposes",
+    "boolean",
+    "default",
+    "plain",
+    "false",
+    "value",
+    "cannot",
+    "prove",
+    "operator",
+    "explicitly",
+    "supplied"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.305Z",
+  "specId": "002",
+  "folderSlug": "session-precedence",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-fast-mode",
+    "001-pi-fast-mode-w-subagent-support",
+    "002-subagent-handoff"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

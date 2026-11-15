@@ -7,7 +7,7 @@ trigger_phrases:
   - "append-only ledger"
   - "iteration event records"
   - "packet event trail"
-version: 1.14.0.11
+version: 1.14.1.0
 ---
 
 # JSONL state log
@@ -37,8 +37,7 @@ The log is append-only by contract. The agent may add one iteration line, the wo
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference | Defines the JSONL schema for config, iteration, and event lines. |
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines how convergence readers parse JSONL safely and interpret stuck, insight, and thought statuses. |
 | `.skilled/agents/deep-research.md` | Agent | Defines the one-line iteration append contract and required JSONL fields. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Appends workflow-owned events such as `graph_convergence` and `blocked_stop`. |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Mirrors the same event-writing path in confirm mode. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Appends workflow-owned events such as `graph_convergence` and `blocked_stop`. Confirm mode adds approval gates. |
 
 ### Validation And Tests
 

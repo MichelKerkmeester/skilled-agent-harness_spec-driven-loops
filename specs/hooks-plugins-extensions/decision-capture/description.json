@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/decision-capture",
+  "description": "Container folder for hooks-plugins-extensions/decision-capture.",
+  "keywords": [
+    "decision",
+    "capture"
+  ],
+  "lastUpdated": "2026-11-15T06:36:37.268Z",
+  "specId": "hooks-plugins-extensions/decision-capture",
+  "folderSlug": "decision-capture",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

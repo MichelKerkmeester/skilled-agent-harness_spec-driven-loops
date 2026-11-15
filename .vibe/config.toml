@@ -1,0 +1,26 @@
+# Mistral Vibe project config. Hand-authored; .vibe/SYNC.md lists what is generated.
+# Applies in place only when this checkout root is trusted. --trust from a subdirectory does not
+# reach it, so a print-mode dispatch copies this file into its fresh VIBE_HOME instead.
+
+# allowed_models matches each row's `name`, not its alias. An alias list only
+# warns and leaves every configured model selectable, mistral-medium-3.5 included.
+allowed_models = ["deepseek-v4-1-flash-1017", "zai-glm-5-3-flash"]
+
+[[providers]]
+name = "mistral"
+api_base = "https://api.mistral.ai/v1"
+api_key_env_var = "MISTRAL_API_KEY"
+backend = "mistral"
+
+# Vibe has no reasoning flag, so effort is pinned here. A row without max is off-roster.
+[[models]]
+name = "deepseek-v4-1-flash-1017"
+provider = "mistral"
+alias = "deepseek-flash"
+thinking = "max"
+
+[[models]]
+name = "zai-glm-5-3-flash"
+provider = "mistral"
+alias = "glm-flash"
+thinking = "max"

@@ -1,0 +1,25 @@
+## Context Package: First Heading of `.skilled/agents/README.txt`
+
+### Memory Context
+_No relevant spec-doc records found_ — this dispatch was a single-file read with no continuity scope.
+
+### Codebase Findings
+- `.skilled/agents/README.txt:1` — first heading line, verbatim: **`AGENTS DIRECTORY`**
+- `.skilled/agents/README.txt:2` — setext underline (`================`), confirming it is a heading, not an emphasized line.
+
+### Pattern Analysis
+- Document shape: setext-style top-level heading followed by prose and a generated roster block (`README.txt:18-31`).
+
+### Nested Dispatch Status
+- Status: `_No sub-agents dispatched (policy)_`
+- Boundary: No delegation or mutation requested; read-only honored.
+
+### Gaps & Unknowns
+- None. Scope was a single file, read in full (31 lines).
+
+### Recommendation
+- **Verdict**: proceed
+- **Rationale**: The requested evidence was retrieved and verified directly at `README.txt:1`.
+- **Suggested next**: Use the literal line `AGENTS DIRECTORY` as the heading answer.
+
+FILES READ: .skilled/agents/README.txt

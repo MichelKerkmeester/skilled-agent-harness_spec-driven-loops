@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule",
+  "description": "Phase 15: review-verdict-gate-rule",
+  "keywords": [
+    "phase",
+    "review-verdict-gate-rule"
+  ],
+  "lastUpdated": "2026-11-15T07:16:04.761Z",
+  "specId": "015",
+  "folderSlug": "review-verdict-gate-rule",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "15-11-26_06-51__planned-child-015-deep-review-verdict-follows-the.md",
+    "15-11-26_08-16__the-deep-review-verdict-now-fails-on-an-active-p0.md"
+  ]
+}

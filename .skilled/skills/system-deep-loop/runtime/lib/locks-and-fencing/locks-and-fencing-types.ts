@@ -20,7 +20,6 @@ export const AtomicityDomains = {
 export type AtomicityDomain = typeof AtomicityDomains[keyof typeof AtomicityDomains];
 
 export const ProtectedResourceKinds = {
-  COUNCIL_ROUND: 'council-round',
   FANOUT_STATUS: 'fanout-status',
   LEDGER: 'ledger',
   LINEAGE_STATE: 'lineage-state',

@@ -34,7 +34,7 @@ Whole-system gate, integrate-latest closeout, and drift census and plan revalida
 
 ## Root Purpose
 
-This phase groups the related child phases below so parent-level context stays a short thematic map. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
+Prove the program before it closes, through a whole-system gate, an integration onto the moving mainline and a drift census that revalidates each later phase plan. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
 
 ## PHASE DOCUMENTATION MAP
 

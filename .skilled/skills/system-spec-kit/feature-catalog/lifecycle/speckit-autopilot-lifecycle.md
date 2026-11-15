@@ -7,7 +7,7 @@ trigger_phrases:
   - "SPECKIT_AUTOPILOT_RESULT"
   - "branch-preserved speckit failure"
   - "unattended task metadata"
-version: 1.6.0.99
+version: 1.6.2.0
 ---
 
 # Speckit autopilot lifecycle
@@ -24,7 +24,7 @@ This is distinct from `:auto`: `:auto` removes ordinary confirmation prompts, wh
 
 ### Router Contract
 
-The three command routers parse `:autopilot`, `:unattended` and `--unattended` as execution mode `autopilot`. They explicitly do not alias those flags to `:auto`. `/speckit:complete` and `/speckit:implement` route to their auto workflow assets with branch-preserved failure semantics, while `/speckit:plan` routes to its auto workflow with unattended task metadata required.
+The three command routers parse `:autopilot`, `:unattended` and `--unattended` as execution mode `autopilot`. They explicitly do not alias those flags to `:auto`. All three route to their single workflow asset with `execution_mode` bound to `autopilot`. Each asset's `unattended_autopilot` block carries the same contract: the workspace choice, the terminal result, the merge rule, branch-preserved failure semantics and the unattended task metadata.
 
 ### Terminal Result Contract
 
@@ -32,7 +32,7 @@ Autopilot failures and no-op exits must emit one machine-readable line prefixed 
 
 ### Branch Preservation
 
-The complete workflow asset defines the unattended sequence as branch first, propose unattended work, apply unattended work, archive in place, verify clean and merge only on clean verification. On every hard failure, the branch is preserved and merge is skipped.
+The complete workflow asset defines the unattended sequence as bind workspace, propose unattended work, apply unattended work, archive in place and verify clean. The operator chooses the workspace at startup, a worktree or the current branch, and autopilot creates a branch only with `git worktree add -b`. Autopilot never merges and never pushes: a run that passed verification reports its branch with `"merged":false` and leaves the merge to the operator. On every hard failure, the branch is preserved.
 
 ### Planning Metadata
 

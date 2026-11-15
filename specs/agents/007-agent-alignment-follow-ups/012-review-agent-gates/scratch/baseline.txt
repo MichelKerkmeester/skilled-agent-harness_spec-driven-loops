@@ -1,0 +1,74 @@
+$ git diff 09f1d6499a c1dbb1bcc4 -- .skilled/agents/review.md .claude/agents/review.md | wc -l
+       0
+exit=0
+$ wc -l .skilled/agents/review.md .claude/agents/review.md
+     462 .skilled/agents/review.md
+     447 .claude/agents/review.md
+     909 total
+exit=0
+$ rg -n 'Skip in Fast Path mode|Did I run adversarial self-check|If ANY is NO' .skilled/agents/review.md
+362:6. Did I run adversarial self-check on all P0/P1 findings?
+364:If ANY is NO → DO NOT SEND. Fix verification gaps first.
+386:**When:** Required for all P0/P1 findings before they enter the final report. Skip in Fast Path mode (low complexity reviews).
+exit=0
+$ rg -n 'Missing key verification steps|Fix gaps|insufficient evidence -> .low_confidence.' .skilled/agents/review.md | cut -c1-110
+290:Map `failure_type` from existing severity vocabulary only: any P0 blocker -> `p0`, unresolved P1 required 
+372:| **LOW**    | Missing key verification steps              | DO NOT send until fixed |
+380:**Violation Recovery:** STOP → State "I need to verify my findings" → Run verification → Fix gaps → Then s
+exit=0
+$ node .skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js < .skilled/skills/sk-code/sk-code-review/scripts/tests/fixtures/review-output/status-commented-open-p1.md; echo "exit=$?"
+FAIL: Review status "COMMENTED" contradicts P1 finding 1, which blocks approval
+exit=1
+exit=0
+$ rg -n 'final-line checker' .skilled/agents/review.md; rg -c 'check-review-final-line|check-review-findings' .skilled/agents/review.md; echo "exit=$?"
+250:The mode's final-line checker fails a report where they disagree.
+exit=1
+exit=0
+$ ls .skilled/skills/sk-code/sk-code-review/scripts/*.js
+.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js
+.skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js
+.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
+exit=0
+$ rg -n 'readFileSync\(0' .skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js; rg -n 'readCliInput\(' .skilled/skills/sk-code/sk-code-review/scripts/check-review-findings.js
+269:    return inputPath === null ? fs.readFileSync(0, 'utf8') : fs.readFileSync(inputPath, 'utf8');
+150:  const text = readCliInput('check-review-findings.js');
+exit=0
+$ sed -n '168,186p' .skilled/agents/review.md | wc -l
+      19
+exit=0
+$ sed -n '/^### Advisory Score/,/^## 7\./p' .skilled/agents/review.md | wc -l
+      23
+exit=0
+$ rg -n 'score is advisory|no score, band|never the verdict|No score threshold|score traceable|Let a score|with the score advisory|Never let the score|No score turns' .skilled/agents/review.md | cut -c1-90
+24:Read-only code review specialist that applies the sk-code review mode to PRs and code c
+153:The gate result is this table read off the findings. It is not a second verdict, and n
+170:The score is information for the reader, never the verdict and never a gate. It sums f
+223:**Input**: gate_type (pre/mid/post_execution), task_id, artifact (code/file path), con
+303:- Derive the verdict from severity alone, and keep the advisory score traceable to its
+317:- Let a score, band or threshold decide the verdict
+358:2. Does the verdict follow from the findings' severity alone, with the score advisory?
+426:**Never let the score decide**
+429:- No score turns a pass into a fail, or a fail into a pass
+exit=0
+$ rg -n 'pre_execution|mid_execution|pre/mid' .skilled/agents/review.md | cut -c1-80
+223:**Input**: gate_type (pre/mid/post_execution), task_id, artifact (code/file 
+231:| **pre_execution**  | Before task starts | Scope validation, pattern check 
+232:| **mid_execution**  | At checkpoint      | Progress validation, early issue
+460:- `.skilled/agents/orchestrate.md`: the dispatcher for review-gate validatio
+exit=0
+$ rg -n 'gate_type' .skilled/agents/orchestrate.md .skilled/commands --glob '!**/create-*'
+.skilled/commands/speckit/assets/speckit-implement.yaml:277:    review_mode: "Gate Validation with gate_type post_execution. One dispatch per run, and one more after a REQUESTED_CHANGES verdict."
+.skilled/commands/speckit/assets/speckit-implement.yaml:574:        gate_type: post_execution
+.skilled/commands/speckit/assets/speckit-complete.yaml:300:    review_mode: "Gate Validation with gate_type post_execution. One dispatch per run, and one more after a REQUESTED_CHANGES verdict."
+.skilled/commands/speckit/assets/speckit-complete.yaml:984:        gate_type: post_execution
+exit=0
+$ rg -n 'mid_execution' .skilled .claude --glob '!**/z_archive/**'
+.claude/agents/review.md:217:| **mid_execution**  | At checkpoint      | Progress validation, early issues |
+.skilled/agents/review.md:232:| **mid_execution**  | At checkpoint      | Progress validation, early issues |
+exit=0
+$ step-7 command on pr-shape-valid.md
+final-line=0 findings=0
+$ step-7 command on status-commented-open-p1.md
+final-line=0 findings=1
+$ step-7 command on overall-contradicts-status.md
+final-line=1 findings=1

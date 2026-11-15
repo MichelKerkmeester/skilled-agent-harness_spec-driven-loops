@@ -1,0 +1,14 @@
+{
+  "session_id": "<session_id>",
+  "transcript_path": "<transcript_path>",
+  "cwd": "<cwd>",
+  "parent_session_id": null,
+  "hook_event_name": "pre_tool",
+  "tool_name": "agents_spawn",
+  "tool_call_id": "<tool_call_id>",
+  "tool_input": {
+    "name": "folder-explore",
+    "config_name": "explore",
+    "message": "List the files in the current folder and report their names."
+  }
+}

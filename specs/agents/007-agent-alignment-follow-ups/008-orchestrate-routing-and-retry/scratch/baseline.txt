@@ -1,0 +1,58 @@
+# T002 baseline at 168eb17b16, rerun by search because phases 6 and 7 moved lines
+     910 .skilled/agents/orchestrate.md
+     898 .claude/agents/orchestrate.md
+    1808 total
+# orchestrate-1
+80:| 2 | Evidence / iterative investigation | `@deep-research` | LEAF | `system-spec-kit`,
+140:**For `/deep:*` requests, resolve the target leaf agent directly from the Priority table above (registry-backed) and
+233:**`Deep Route:` resolution rule (registry-backed, not judgment):** You MUST resolve `mode`, `target_agent`, and `execution` for any of t
+# orchestrate-2
+602:STOP (do not synthesize rejected output) → provide specific feedback stating exactly what failed → retry w
+624:| 50-69  | NEEDS REVISION | Auto-retry (up to 2x) |
+627:**Auto-Retry:** Score < 70 → execute verification actions above → provide specific feedback → retry with r
+645:1. **RETRY (Attempts 1-2):** Provide additional context from other sub-agents, clarify success criteria, r
+646:2. **REASSIGN (Attempt 3):** Try different agent type (e.g., @general-purpose instead of @context), or sur
+647:3. **ESCALATE (After 3+ failures):** Report to user with complete attempt history, all partial findings, a
+661:Isolate failures to prevent cascading issues. States: CLOSED (normal) → OPEN (3 consecutive failures, 60s 
+693:After 3 failed attempts on the same error, prepare a diagnostic summary and prompt the user to dispatch `@
+728:| Sub-agent failures   | 2+              | Consider debug delegation                          |
+# orchestrate-4
+444:**Action:** Route actual `/create:*` component commands, scoped markdown authoring, and spec-doc creation through `@
+461:**Action:** The main agent writes spec-folder docs directly using `spec-authoring-card.md` and the level's `template
+# orchestrate-5
+152:2. **INCLUDE** the agent file's content in the delegation prompt (or a focused summary for large files)
+153:3. **SET** `subagent_type` to the agent's own name, for example `subagent_type: "context"`, so the runtime
+# orchestrate-6
+335:- **Write To**: File path where the agent writes detailed findings. Required for Pattern C (§9).
+781:- **Pattern C (10-20):** Agents write to `[spec-folder]/scratch/agent-N-[topic].md`, return 3-line summary
+856:**Rule**: Before dispatching, calculate `total_expected_results = agent_count × result_size_per_agent`. If
+# orchestrate-7
+66:Steps 1-4 and 9-10 run linear; step 5 (CWB CHECK) branches to parallel or sequential dispatch (step 6) base
+555:□ Quality score ≥ 70 (see Scoring Dimensions below)
+634:| **Mid-execution**  | Every 5 tasks or 10 tool calls | Progress checkpoint (Score ≥ 70, soft - warning on
+687:| Sub-agent no response (2 min) | Report timeout, offer retry or reassign                   |
+763:The orchestrator's context window is finite (~150K available tokens). When many sub-agents return large re
+789:| Step 9 (SYNTHESIZE) | Context approaching 80%?              | Stop collecting, synthesize what we have  
+854:| **Available for results** | **~150K tokens** | **Must be shared across ALL agent returns** |
+876:**Default workflow budget:** 50,000 tokens (if not specified)
+# orchestrate-8
+83:| 5 | Code review / security | `@review` | LEAF | `sk-code` code-review mode (findings-first baseline + rou
+406:├─ Skills: sk-code code-review mode (findings-first baseline + router-selected surface evidence)
+452:**Action:** Mandate sub-agents to run `/speckit:save` or `save context`.
+535:- @general-purpose, @review, @debug
+# phase-6 P2 fold-in: split row 8 vs footer 12
+816:| **13+**         | 🚫 MUST SPLIT | Split so each part fits the target agent's `Tool Calls` budget, or 8 calls when it states none |
+# T004 baselines
+agent-roster: OK
+exit=0
+mirror-exit=0
+ℹ pass 5
+ℹ fail 0
+ℹ pass 1
+ℹ fail 0
+Result: PASS
+# T001: phase 6 is 6c1fca5106 and phase 7 is a87fa5cad2, both in `git log -- .skilled/agents/orchestrate.md .skilled/agents/code.md`.
+# T002 differences from measured-behavior.txt: none in orchestrate.md line numbers or text the findings cite. code.md:129 moved
+#   (phase 7 cut the dispatch gate); the `Excluded` code-review row is unchanged. Every owned finding still reproduces.
+# T004 difference: sk-skill-check now prints `Result: PASS` where the plan recorded `Result: NO FINDINGS (1 UNKNOWN)`. The
+#   checker's wording changed on main; it reports no finding either way. T025 compares against `Result: PASS`.

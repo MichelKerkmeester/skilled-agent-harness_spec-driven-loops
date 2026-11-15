@@ -25,9 +25,12 @@ const GOAL_GUIDANCE = '   When spec_folder names a packet, open ## Goal with one
   + '`Purpose: <sentence>`, where <sentence> is the first sentence of that packet\'s purpose in '
   + 'its spec.md, copied word for word and cut to 300 characters. Read it under ### Purpose, or '
   + 'without that heading in the paragraph that opens with Purpose: inside the ## PROBLEM & '
-  + 'PURPOSE section, or else that section\'s opening paragraph. When it is empty, a template '
-  + 'placeholder or the scaffold sentence that begins Keep parent documentation lean, use the '
-  + 'nearest phase parent that has one and write `Parent purpose (<parent folder>): <sentence>`. '
+  + 'PURPOSE, ## PURPOSE or ## ROOT PURPOSE section, or else the opening paragraph of a '
+  + '## PURPOSE or ## ROOT PURPOSE section. The opening paragraph of a ## PROBLEM & PURPOSE '
+  + 'section states the problem, so it is never the purpose. When the text is empty, UNKNOWN, a '
+  + 'template placeholder or a scaffold sentence that begins Keep parent documentation lean or '
+  + 'This phase groups the related child phases below, use the nearest phase parent that has one '
+  + 'and write `Parent purpose (<repo-relative parent folder>): <sentence>`. '
   + 'When neither exists and the packet holds a goal.md, write `Goal objective: <sentence>` from '
   + 'its Objective. Leave the line out when there is no such text. Then say what this session '
   + 'works toward.';
@@ -569,6 +572,39 @@ function handoffPending({ sessionId, env = process.env } = {}) {
   }
 }
 
+// A prepared hand-over only goes live once the turn or run ends, and a question dialog holds
+// it open until the operator answers, so a session that asks after prepare sits at its
+// context limit with a record nothing acts on. Every record that can still be armed holds the
+// dialog. A live killer ends the idle session itself, so the dialog is allowed once one owns
+// the loop's lock.
+/**
+ * Name why this session must not open a question dialog now, or return null when it may.
+ *
+ * @param {Object} options - The asking session.
+ * @param {string} options.sessionId - Session that wants to ask.
+ * @param {string} options.runtime - Runtime the record must have been prepared for.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @returns {string|null} The refusal text, naming the note and the cancel command.
+ */
+function questionHoldReason({ sessionId, runtime, env = process.env } = {}) {
+  const loopId = env?.SKILLED_LOOP_ID;
+  if (typeof loopId !== 'string' || !loopId.trim()) return null;
+  let record;
+  try {
+    record = core.readRelaunchFile(loopId, env);
+  } catch {
+    return null;
+  }
+  if (!core.armableRecord(record, { loopId, sessionId, runtime, env }).armable) return null;
+  return [
+    '[session-relaunch] A hand-over is prepared for this session and only goes live when',
+    'this turn ends. A question dialog keeps the turn open, so the hop would never run.',
+    `End this turn now and put the question in the handoff note at ${record.handoff} for`,
+    'the next session, or call the hand-over off first with',
+    `\`node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs cancel --loop-id ${record.loopId}\`.`,
+  ].join(' ');
+}
+
 // After a compaction the session's open note is normally claimed. A note whose hand-over
 // the operator withdrew is the exception: it was written before the work that followed,
 // unless the session has updated it since the withdraw.
@@ -856,6 +892,7 @@ module.exports = {
   plannedNotePath,
   openNotePathFor,
   handoffPending,
+  questionHoldReason,
   handoffWithdrawn,
   armedRecordStillCurrent,
   hopLimitReached,

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes",
+  "description": "Phase 7: review-packet-fixes",
+  "keywords": [
+    "phase",
+    "review-packet-fixes"
+  ],
+  "lastUpdated": "2026-11-14T12:01:56.485Z",
+  "specId": "007",
+  "folderSlug": "review-packet-fixes",
+  "parentChain": [
+    "sk-code",
+    "hub-architecture",
+    "006-sk-code-audit-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

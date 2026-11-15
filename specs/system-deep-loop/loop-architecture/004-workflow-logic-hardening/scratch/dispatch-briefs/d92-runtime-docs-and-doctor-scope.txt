@@ -1,0 +1,63 @@
+
+ALLOWED WRITE PATHS (R = .skilled/skills/system-deep-loop/runtime, C = .skilled/commands):
+R/README.md  R/scripts/README.md  R/database/README.md
+R/lib/README.md  R/lib/council/README.md  R/lib/hierarchical-budgets/README.md
+R/lib/mode-append-gateway/README.md  R/lib/mode-contracts/README.md
+R/references/script-interface-contract.md  R/references/integration-points.md
+R/tests/README.md  R/tests/council/README.md  R/tests/fixtures/README.md
+R/tests/integration/README.md  R/tests/unit/README.md
+R/feature-catalog/feature-catalog.md  R/feature-catalog/observability/unified-observability-event-envelope.md
+R/manual-testing-playbook/manual-testing-playbook.md
+R/manual-testing-playbook/observability/unified-observability-event-envelope.md
+R/manual-testing-playbook/validation/mk-deep-loop-guard.md
+C/doctor/deep-loop.md  C/doctor/assets/doctor-deep-loop.yaml  C/doctor/assets/doctor-deep-loop-presentation.txt
+C/doctor/_routes.yaml  C/doctor/assets/doctor-setup-presentation.txt
+.skilled/skills/system-deep-loop/SKILL.md  .skilled/skills/system-deep-loop/README.md
+.skilled/skills/system-deep-loop/ARCHITECTURE.md
+NOT any .cjs, .ts or .json file. NOT R/feature-catalog/council/multi-seat-dispatch.md and NOT
+R/manual-testing-playbook/council/multi-seat-dispatch.md (they describe the kept file).
+
+TASK: these docs and the doctor command still describe council runtime code that is deleted.
+Make them describe what exists. Work file by file. List the anchors per file with rg -n -i 'council'.
+
+1. R/lib/council/README.md: rewrite it to describe ONE file, `multi-seat-dispatch.cjs`: what it
+   exports (read the file's `module.exports`), that the divergent pivot in
+   `lib/deep-loop/divergent-pivot.ts` is its only caller, and that the folder holds nothing else.
+   Keep the existing frontmatter keys and heading style. Delete every row or line about a deleted
+   file and every path under `deep-ai-council/`.
+2. R/tests/council/README.md: same, for the one kept test `multi-seat-dispatch.vitest.ts`.
+3. Every other README, reference, catalog and playbook file in the list: delete each row, list
+   item, tree line or sentence about a deleted file, the `council` loop type, the council graph
+   scripts, the council ledger, reducer or sealed-artifact libraries, the `council-value`
+   fixtures, or a `deep-ai-council` path. Recount every total that included them. A catalog or
+   playbook index row whose file is deleted goes. The multi-seat dispatch rows stay.
+   R/references/integration-points.md lines near 156 and 157 name deleted workflow and packet
+   files: delete those rows.
+4. R/database/README.md: `council-graph.sqlite` still exists on disk. Say it is a legacy file
+   that no script reads or writes any more. Do not say it was deleted.
+5. C/doctor/deep-loop.md, C/doctor/assets/doctor-deep-loop.yaml,
+   C/doctor/assets/doctor-deep-loop-presentation.txt, C/doctor/_routes.yaml and
+   C/doctor/assets/doctor-setup-presentation.txt: remove the `council` scope. The scope list
+   becomes `research|review|both|all` wherever it is listed, `all` means research and review,
+   and every step, branch, question option and output row that exists only for the council
+   scope is deleted. Keep the YAML valid: after the edit run
+   python3 -c "import yaml,sys;yaml.safe_load(open(sys.argv[1]))" C/doctor/assets/doctor-deep-loop.yaml
+6. The three hub docs (SKILL.md, README.md, ARCHITECTURE.md): a sentence that says `runtime/`
+   holds "council primitives", a council graph, `council/convergence.cjs` or
+   `--scope=...council...` is reworded to what exists: the one seat-dispatch file the divergent
+   pivot uses, and the doctor scopes `research|review|both|all`. The sentence
+   "A planning council is not a mode of this hub. It runs as the standalone `@ai-council` agent,
+   reached through `/speckit:ai-council`." stays byte for byte.
+7. A sentence that is still true stays byte for byte. Do not rewrite a paragraph for style.
+   Do not change a `version:` line.
+
+CHECKS (repository root):
+  rg -n -i 'deep-ai-council|council-graph-(db|query)|adjudicator-verdict|cost-guards|round-state-jsonl|session-state-hierarchy|council-value' .skilled/skills/system-deep-loop/runtime -g '*.md' -g '!**/changelog/**' -g '!**/node_modules/**'      prints nothing
+  rg -n -i 'council' .skilled/commands/doctor/deep-loop.md .skilled/commands/doctor/assets/doctor-deep-loop.yaml .skilled/commands/doctor/assets/doctor-deep-loop-presentation.txt .skilled/commands/doctor/_routes.yaml      prints nothing
+  python3 -c "import yaml,sys;yaml.safe_load(open(sys.argv[1]))" .skilled/commands/doctor/assets/doctor-deep-loop.yaml      exits 0
+  node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs --facts      prints an empty "errors" list
+  ls .skilled/skills/system-deep-loop/runtime/feature-catalog/council .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council      lists multi-seat-dispatch.md only
+
+REPORT: per file what you removed or reworded, every remaining line that says "council" in the
+allowed files with one line why it stays, then the output of each check. Do NOT run any
+generator, sync script or test suite.

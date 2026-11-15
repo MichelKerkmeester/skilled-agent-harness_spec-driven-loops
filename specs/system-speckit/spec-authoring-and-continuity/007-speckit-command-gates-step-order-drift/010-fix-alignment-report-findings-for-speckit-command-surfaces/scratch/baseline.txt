@@ -1,0 +1,28 @@
+## test-phase-command-workflows
+
+Result: passed=131 failed=0
+exit=0
+## derive --check
+  },
+  "changed": []
+}
+## contract drift
+exit=2
+## autopilot vitest
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  20:48:22
+   Duration  95ms (transform 18ms, setup 17ms, import 9ms, tests 3ms, environment 0ms)
+
+## ratchet + drift guard
+ Test Files  4 passed (4)
+      Tests  31 passed (31)
+   Start at  20:48:22
+   Duration  6.35s (transform 162ms, setup 24ms, import 36ms, tests 6.06s, environment 0ms)
+
+## frontmatter-version
+[verify] 262 files | ok=262
+[verify] 364 files | ok=357  skip-no-frontmatter=7
+[verify] 125 files | ok=125
+[verify] 440 files | ok=440
+[verify] 452 files | ok=452

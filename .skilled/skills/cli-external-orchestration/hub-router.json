@@ -1,6 +1,6 @@
 {
   "skill": "cli-external-orchestration",
-  "version": "2.0.0.0",
+  "version": "2.1.0.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -11,7 +11,8 @@
       "cli-cursor",
       "cli-devin",
       "cli-pi",
-      "cli-deepseek-harness"
+      "cli-deepseek-harness",
+      "cli-mistral-vibe"
     ],
     "outcomes": {
       "single": "one dominant executor signal routes to one mode",
@@ -98,6 +99,16 @@
       ],
       "resources": [
         "cli-deepseek-harness/SKILL.md"
+      ]
+    },
+    "cli-mistral-vibe": {
+      "weight": 4,
+      "classes": [
+        "cli-mistral-vibe-aliases",
+        "mistral-vibe-dispatch"
+      ],
+      "resources": [
+        "cli-mistral-vibe/SKILL.md"
       ]
     }
   },
@@ -256,6 +267,31 @@
         "dsh headless dispatch",
         "deepseek harness dispatch",
         "opencode go route"
+      ]
+    },
+    "cli-mistral-vibe-aliases": {
+      "keywords": [
+        "mistral vibe",
+        "vibe -p",
+        "delegate to vibe",
+        "vibe print mode",
+        "cli-mistral-vibe"
+      ]
+    },
+    "mistral-vibe-dispatch": {
+      "keywords": [
+        "vibe print mode",
+        "mistral vibe print mode",
+        "vibe one-task run",
+        "vibe export.json",
+        "vibe roster",
+        "vibe headless",
+        "vibe run finished",
+        "delegating to vibe",
+        "dispatch vibe",
+        "vibe_home",
+        "vibe is installed",
+        "glm-flash roster"
       ]
     }
   }

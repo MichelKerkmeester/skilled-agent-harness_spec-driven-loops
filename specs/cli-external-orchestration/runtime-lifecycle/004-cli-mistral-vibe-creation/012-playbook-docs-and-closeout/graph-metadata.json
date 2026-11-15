@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook docs and closeout",
+      "phase 12 playbook docs and closeout",
+      "cli-mistral-vibe manual testing playbook",
+      "mistral vibe closeout",
+      "playbook docs and closeout plan",
+      "playbook docs and closeout tasks",
+      "playbook docs and closeout goal",
+      "playbook docs and closeout implementation summary"
+    ],
+    "key_topics": [
+      "playbook",
+      "docs",
+      "closeout",
+      "phase",
+      "cli-mistral-vibe",
+      "manual",
+      "testing",
+      "mistral",
+      "vibe",
+      "plan",
+      "tasks",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/README.txt",
+      "feature-catalog/feature-catalog.md",
+      ".skilled/CROSS-CLI.md",
+      ".skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md",
+      ".skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/bin/compiled-route.cjs",
+      ".skilled/hooks/goal/vibe/goal-vibe.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "mistral-vibe-dispatch-mode.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-vibe.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/vibe/goal-vibe.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No playbook exercises the mode end to end, so nothing records whether the built pieces work together on a real dispatch",
+    "created_at": "2026-11-14T12:56:37Z",
+    "last_save_at": "2026-11-14T19:11:07.741Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:85c2f3f310f2ee7566647b4d133c63cf40b4e824d40f1b09709bdeb56dc29c1a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2204694033e530cbbd912b8b4c2e510af882dcac821ee1de14afc0345ebd5405",
+      "plan.md": "9d11b633ad9b50d1ced66fe306e7a0630c07486ba1961280bc81e9520988e7b9",
+      "tasks.md": "0b88d16f018a1bd63fb673dd8e6ac2236abcc4a0afd2584d709678915e206c03",
+      "implementation-summary.md": "fc1996cebeee63a084fa5c498817f4e123bd78484d30f6d5d4d6bcdce754ad8c"
+    },
+    "last_active_at": null
+  }
+}

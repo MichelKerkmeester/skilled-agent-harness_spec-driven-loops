@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe relaunch command tier",
+      "phase 19 vibe relaunch command tier",
+      "skilled-loop vibe",
+      "vibe session relaunch",
+      "vibe relaunch command tier plan",
+      "vibe relaunch command tier tasks",
+      "vibe relaunch command tier goal",
+      "vibe relaunch command tier implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "relaunch",
+      "command",
+      "tier",
+      "phase",
+      "skilled-loop",
+      "session",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+      "scratch/baseline.txt",
+      "scratch/vibe-options.md",
+      "scratch/final-suite.txt",
+      "scratch/manual-hop/procedure.md",
+      "scratch/manual-hop.md",
+      "scratch/resume-probe.md",
+      ".vibe/prompts/speckit-handoff.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-launch-arguments.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "vibe-options.md",
+        "kind": "doc",
+        "path": "scratch/vibe-options.md",
+        "source": "derived"
+      },
+      {
+        "name": "final-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "procedure.md",
+        "kind": "doc",
+        "path": "scratch/manual-hop/procedure.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-hop.md",
+        "kind": "doc",
+        "path": "scratch/manual-hop.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume-probe.md",
+        "kind": "doc",
+        "path": "scratch/resume-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-handoff.md",
+        "kind": "doc",
+        "path": ".vibe/prompts/speckit-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`relaunch-core.cjs:35` freezes the loop's runtimes as `claude pi opencode codex cursor devin`, and `skilled-loop` has no `vibe` case, so `skilled-loop vibe` falls through to Claude and `session-relaunch.cjs` refuses `--runtime vibe`",
+    "created_at": "2026-11-14T20:13:11Z",
+    "last_save_at": "2026-11-14T21:42:48.755Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:828c152554e1292d9da4fe90d00e8573b323b8ba0ff8aa872a3800bfc104837f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f3378b7534087b4201c1f93a242bf787c0e9b068fac3307bafeccb7b46c52f0d",
+      "plan.md": "1dddd540dc91376764a437158e6265ab0f763df9789fb0b92e853db9d1597e8f",
+      "tasks.md": "fde8cde2707f46ac56a94a4ee6772032c510ce385b025e120bf4f16b117a9cc4",
+      "implementation-summary.md": "ea02df1750622fd3976a1380350fbb49dee378aad044b5cca5aceca92e6f7ea0"
+    },
+    "last_active_at": null
+  }
+}

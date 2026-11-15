@@ -7,7 +7,7 @@ trigger_phrases:
   - "fresh-context iteration"
   - "reducer-owned packet state"
   - "loop body execution"
-version: 1.14.0.7
+version: 1.14.1.0
 ---
 
 # Iteration dispatch
@@ -35,8 +35,7 @@ After the agent finishes, the loop does not treat the strategy, dashboard, or fi
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/commands/deep/research.md` | Command | Describes the iterate phase, state-summary injection, and reducer sync boundary. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Dispatches the LEAF agent, checks the pause sentinel, and runs the reducer after each iteration. |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Mirrors dispatch flow with confirm-mode pause and review gates. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Dispatches the LEAF agent, checks the pause sentinel and runs the reducer after each iteration. Confirm mode adds pause and review gates. |
 | `.skilled/agents/deep-research.md` | Agent | Defines the single-iteration read, research, write, and progressive-synthesis rules. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Synchronizes strategy, findings registry, and dashboard from iteration artifacts and events. |
 

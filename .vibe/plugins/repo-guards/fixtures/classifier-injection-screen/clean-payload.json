@@ -1,0 +1,23 @@
+{
+  "session_id": "<session_id>",
+  "transcript_path": "<transcript_path>",
+  "cwd": "<cwd>",
+  "parent_session_id": null,
+  "hook_event_name": "post_tool",
+  "tool_name": "web_fetch",
+  "tool_call_id": "<tool_call_id>",
+  "tool_input": {
+    "url": "http://127.0.0.1:8766/page.txt",
+    "timeout": null
+  },
+  "tool_status": "success",
+  "tool_output": {
+    "url": "http://127.0.0.1:8766/page.txt",
+    "content": "# Release notes\nVersion 3.1.2 fixes a crash when the settings file is missing.\nThe command prints a summary of the changes since the last release.\nRun the test suite before upgrading a production installation.\nThe download page lists checksums for every published archive.\n",
+    "content_type": "text/plain",
+    "was_truncated": false
+  },
+  "tool_output_text": "# Release notes\nVersion 3.1.2 fixes a crash when the settings file is missing.\nThe command prints a summary of the changes since the last release.\nRun the test suite before upgrading a production installation.\nThe download page lists checksums for every published archive.\n",
+  "tool_error": null,
+  "duration_ms": 0
+}

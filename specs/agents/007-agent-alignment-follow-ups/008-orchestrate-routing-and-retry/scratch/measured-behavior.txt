@@ -1,0 +1,91 @@
+$ git diff --quiet 09f1d6499a HEAD -- .skilled/agents/; echo "agents-changed-since-review=$?"
+agents-changed-since-review=0
+$ wc -l .skilled/agents/orchestrate.md .claude/agents/orchestrate.md
+     910 .skilled/agents/orchestrate.md
+     898 .claude/agents/orchestrate.md
+    1808 total
+$ sed -n 62p .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md | cut -c1-70
+Production agent files should stay at or below **600 lines**. If an ag
+# orchestrate-1
+$ sed -n 80p orchestrate.md | cut -c1-70
+| 2 | Evidence / iterative investigation | `@deep-research` | LEAF | `
+$ sed -n 140p orchestrate.md | cut -c1-150
+**For `/deep:*` requests, resolve the target leaf agent directly from the Priority table above (registry-backed) and dispatch that leaf at depth 1.** 
+$ sed -n 113,116p .skilled/agents/deep-research.md | cut -c1-110
+**HARD BLOCK -- Missing or unreadable state**:
+- If `deep-research-config.json`, `deep-research-state.jsonl`, or `deep-research-strategy.md` is missing, unre
+- Do not create replacement config, state, strategy, dashboard, or registry files.
+- Return an iteration completion report with `Status: error`, naming the missing or corrupt state file(s), and
+$ grep -n "\"taskType\"" .skilled/agents/agent-registry.json | sed -n "2p;6p" | cut -c1-75
+28:      "taskType": "Evidence / iterative investigation",
+87:      "taskType": "Deep-loop iterative code-audit pass (`/deep:review` o
+$ sed -n 233p orchestrate.md | cut -c1-170
+**`Deep Route:` resolution rule (registry-backed, not judgment):** You MUST resolve `mode`, `target_agent`, and `execution` for any of the 4 `@deep-*`/`@ai-council` agent
+$ node -e (each mode-registry mode with its agent, command and execution field)
+research deep-research /deep:research no-execution-field
+review deep-review /deep:review no-execution-field
+ai-council ai-council /deep:ai-council no-execution-field
+# orchestrate-2
+$ sed -n "602p;624p;627p;645,647p;661p;693p;728p" orchestrate.md | cut -c1-110
+STOP (do not synthesize rejected output) → provide specific feedback stating exactly what failed → retry with 
+| 50-69  | NEEDS REVISION | Auto-retry (up to 2x) |
+**Auto-Retry:** Score < 70 → execute verification actions above → provide specific feedback → retry with revis
+1. **RETRY (Attempts 1-2):** Provide additional context from other sub-agents, clarify success criteria, re-di
+2. **REASSIGN (Attempt 3):** Try different agent type (e.g., @general-purpose instead of @context), or surface
+3. **ESCALATE (After 3+ failures):** Report to user with complete attempt history, all partial findings, and s
+Isolate failures to prevent cascading issues. States: CLOSED (normal) → OPEN (3 consecutive failures, 60s cool
+After 3 failed attempts on the same error, prepare a diagnostic summary and prompt the user to dispatch `@debu
+| Sub-agent failures   | 2+              | Consider debug delegation                          |
+$ sed -n 602p orchestrate.md | grep -o "escalate to user after 2 rejections"
+escalate to user after 2 rejections
+# orchestrate-4
+$ sed -n "444p;461p;499p" orchestrate.md | cut -c1-130
+**Action:** Route actual `/create:*` component commands, scoped markdown authoring, and spec-doc creation through `@markdown` or a
+**Action:** The main agent writes spec-folder docs directly using `spec-authoring-card.md` and the level's `templates/core/*.md.tm
+   - REJECT output
+# orchestrate-5
+$ sed -n "152p;153p" orchestrate.md | cut -c1-130
+2. **INCLUDE** the agent file's content in the delegation prompt (or a focused summary for large files)
+3. **SET** `subagent_type` to the agent's own name, for example `subagent_type: "context"`, so the runtime loads that agent's own 
+# orchestrate-6
+$ sed -n 781p orchestrate.md | cut -c1-100; sed -n 43p .skilled/agents/context.md
+- **Pattern C (10-20):** Agents write to `[spec-folder]/scratch/agent-N-[topic].md`, return 3-line s
+- NEVER emit a file path for @context to write later, even when the orchestrator asks for "file-based" output.
+# orchestrate-7
+$ sed -n "555p;634p;687p;789p;854p;876p" orchestrate.md | cut -c1-110
+□ Quality score ≥ 70 (see Scoring Dimensions below)
+| **Mid-execution**  | Every 5 tasks or 10 tool calls | Progress checkpoint (Score ≥ 70, soft - warning only) 
+| Sub-agent no response (2 min) | Report timeout, offer retry or reassign                   |
+| Step 9 (SYNTHESIZE) | Context approaching 80%?              | Stop collecting, synthesize what we have  |
+| **Available for results** | **~150K tokens** | **Must be shared across ALL agent returns** |
+**Default workflow budget:** 50,000 tokens (if not specified)
+# orchestrate-8
+$ sed -n "406p;452p;535p" orchestrate.md; sed -n 129p .skilled/agents/code.md | cut -c1-90
+├─ Skills: sk-code code-review mode (findings-first baseline + router-selected surface evidence)
+**Action:** Mandate sub-agents to run `/speckit:save` or `save context`.
+- @general-purpose, @review, @debug
+| **Excluded** | `sk-code`'s code-review mode | Always excluded inside @code | Review-side
+$ frontmatter write permission of three leaves
+context write=deny
+review write=deny
+prompt-improver write=deny
+# consumers and baselines
+$ rg -n "Deep Route:|target_agent=" .opencode/hooks/task-dispatch/lib/dispatch-guard.cjs | cut -c1-100
+135:  const deepRouteMatch = /(?:^|\n)\s*Deep Route:[^\n]*?\bmode=([a-z0-9-]+)/i.exec(text);
+260: * the target. Parse the prompt's "Agent: @<name>" / "Deep Route: ... target_agent=@<name>"
+271:  const deepRouteMatch = /target_agent=@?([a-z0-9-]+)/i.exec(text);
+$ rg -c "execution" .opencode/hooks/task-dispatch/lib/dispatch-guard.cjs || echo 0
+0
+$ node .skilled/bin/sync-agent-roster.cjs --check; echo exit=$?
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs >/dev/null; echo exit=$?
+exit=0
+$ node --test .opencode/plugins/tests/speckit-review-dispatch-contract.test.cjs | grep -E "^. (pass|fail)"
+ℹ pass 5
+ℹ fail 0
+$ node --test .opencode/plugins/tests/system-deep-loop-guard.test.cjs | grep -E "^. (pass|fail)"
+ℹ pass 1
+ℹ fail 0
+$ node .skilled/commands/doctor/scripts/sk-skill-check.cjs .skilled/skills/system-spec-kit | tail -1
+Result: NO FINDINGS (1 UNKNOWN)

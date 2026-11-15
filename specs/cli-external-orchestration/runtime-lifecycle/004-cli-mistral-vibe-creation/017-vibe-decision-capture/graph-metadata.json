@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe decision capture",
+      "phase 17 vibe decision capture",
+      "vibe ask_user_question capture",
+      "vibe sweep decisions",
+      "vibe decision capture plan",
+      "vibe decision capture tasks",
+      "vibe decision capture goal",
+      "vibe decision capture implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "decision",
+      "capture",
+      "phase",
+      "sweep",
+      "decisions",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "skilled"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/decision-capture/bin/sweep-vibe.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-vibe.test.mjs",
+      ".skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs",
+      ".skilled/hooks/decision-capture/vibe/ask-capture-post-tool.test.mjs",
+      ".skilled/hooks/decision-capture/vibe/README.md",
+      ".skilled/hooks/decision-capture/bin/README.md",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.test.mjs",
+      ".vibe/hooks.toml",
+      ".skilled/commands/speckit/save.md",
+      ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+      "scratch/live-capture/procedure.md",
+      "scratch/norm-probe.mjs",
+      ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+      "scratch/question-tool-facts.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-vibe.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-vibe.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-vibe.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-vibe.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ask-capture-post-tool.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ask-capture-post-tool.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/vibe/ask-capture-post-tool.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/decision-capture/vibe/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "save-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "procedure.md",
+        "kind": "doc",
+        "path": "scratch/live-capture/procedure.md",
+        "source": "derived"
+      },
+      {
+        "name": "norm-probe.mjs",
+        "kind": "file",
+        "path": "scratch/norm-probe.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "capture-core.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "question-tool-facts.md",
+        "kind": "doc",
+        "path": "scratch/question-tool-facts.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.skilled/hooks/decision-capture/` has adapters for Claude, Devin, DSH and Pi but none for Vibe, so an answer the operator gives through Vibe's `askuserquestion` tool (`vibe/core/tools/builtins/askuserquestion.py`) is lost to `/speckit:save`",
+    "created_at": "2026-11-14T20:13:09Z",
+    "last_save_at": "2026-11-14T22:28:54.297Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aa8ef62b87932f6d5c1ebaccb71df7c1c3982613bbb75ba12d608f4135994212",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ec5cc4e0d501fa417380f9bc37f662b234b9721e1268550e94171f7762b84263",
+      "plan.md": "8077cf1870c1072951a6fe082595b0aed94e603818b3034dde60ffeaf5be8965",
+      "tasks.md": "683762bf7eed9e13d8f218a8c0b44ced0f359c0bfd2c77d08f356122e9b2c063",
+      "implementation-summary.md": "61bfa2508955db053f5e3fa0861a261a30982f551b3a079565c6ee0f66b15ad9"
+    },
+    "last_active_at": null
+  }
+}

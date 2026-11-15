@@ -1,0 +1,33 @@
+{
+  "runtime": "opencode",
+  "label": "base1",
+  "steps": {
+    "notePrepared": false,
+    "signalled": false,
+    "relaunched": false,
+    "noteClosed": false,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": false,
+    "codeWord": true
+  },
+  "noteStatus": "open",
+  "carry": {
+    "model": "not-set",
+    "effort": "not-set",
+    "name": "not-set",
+    "provider": "not-set"
+  },
+  "seconds": {
+    "startToPrepare": null,
+    "prepareToSignal": null,
+    "signalToRelaunch": null,
+    "total": 650.2
+  },
+  "problems": [],
+  "firstLaunch": "opencode --standalone --auto --prompt Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-relaunch/README.md, name its first heading and repeat the code word ORCHID-372. Start by reading the README. Gate 3: D) Skip, no spec folder.",
+  "relaunchArgs": null,
+  "score": "1/5"
+}

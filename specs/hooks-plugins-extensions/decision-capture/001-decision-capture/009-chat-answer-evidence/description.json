@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/009-chat-answer-evidence",
+  "description": "The detector turns every asking paragraph into a candidate against the next typed prompt",
+  "keywords": [
+    "detector",
+    "turns",
+    "every",
+    "asking",
+    "paragraph",
+    "candidate",
+    "against",
+    "next",
+    "typed",
+    "prompt"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.566Z",
+  "specId": "009",
+  "folderSlug": "chat-answer-evidence",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

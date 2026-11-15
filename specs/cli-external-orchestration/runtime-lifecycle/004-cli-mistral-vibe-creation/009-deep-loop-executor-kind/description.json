@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind",
+  "description": "The deep-loop fan-out runs a lineage only through an executor kind with its own adapter, env allowlist and recursion guard",
+  "keywords": [
+    "deep-loop",
+    "fan-out",
+    "runs",
+    "lineage",
+    "only",
+    "executor",
+    "kind",
+    "own",
+    "adapter",
+    "env",
+    "allowlist",
+    "recursion",
+    "guard"
+  ],
+  "lastUpdated": "2026-11-14T14:06:17.870Z",
+  "specId": "009",
+  "folderSlug": "deep-loop-executor-kind",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "004-cli-mistral-vibe-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,50 @@
+> Run a quick headless Vibe smoke test: its own VIBE_HOME, an output dir under /tmp, stdin closed, and the model alias gpt-5. I want to know whether that alias still resolves here.                    
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+⏵ Ran 1 command, thought                                                                                                                                                                                
+                                                                                                                                                                                                        
+  Smoke test passed: exit_code 0, outcome finished, stdout OK. Let me confirm which model actually ran and what the catalog offered.                                                                    
+                                                                                                                                                                                                        
+⏵ Ran 4 commands, thought                                                                                                                                                                               
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+  Answer: gpt-5 does not resolve here                                                                                                                                                                   
+                                                                                                                                                                                                        
+  It is not a roster alias, not a built-in, and no config row defines it — there is no ~/.vibe/config.toml on this machine at all. Vibe's behavior for an unknown alias is pinned in the repo's         
+  captured evidence: exit 1, Error: Unknown model: gpt-5. Available: …, outcome: usage_error.                                                                                                           
+                                                                                                                                                                                                        
+  Selectable aliases in this environment:                                                                                                                                                               
+                                                                                                                                                                                                        
+  ┌────────────────────────────────────────────┬─────────────────────────────────────────────────────────────────┬──────────────────────┬───────────────────────────────────────────────────────────┐   
+  │ Alias                                      │ Model name                                                      │ Thinking             │ Status                                                    │   
+  ├────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────┼──────────────────────┼───────────────────────────────────────────────────────────┤   
+  │ deepseek-flash                             │ deepseek-v4-1-flash-1017                                        │ max                  │ roster                                                    │   
+  ├────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────┼──────────────────────┼───────────────────────────────────────────────────────────┤   
+  │ glm-flash                                  │ zai-glm-5-3-flash                                               │ max                  │ roster                                                    │   
+  ├────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────┼──────────────────────┼───────────────────────────────────────────────────────────┤   
+  │ mistral-medium-3.5                         │ mistral-vibe-cli-latest                                         │ high                 │ closed by allowed_models                                  │   
+  ├────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────┼──────────────────────┼───────────────────────────────────────────────────────────┤   
+  │ zai-glm-5-3-flash                          │ zai-glm-5-3-flash-vibe-free                                     │ high                 │ closed by allowed_models                                  │   
+  └────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────┴──────────────────────┴───────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+  The smoke test itself works                                                                                                                                                                           
+                                                                                                                                                                                                        
+  I ran it with deepseek-flash instead, since the repo's dispatch-preflight hook hard-blocks any --model outside the roster. Result: exit_code 0, outcome finished, stdout OK, vibe 3.1.2. Artifact:    
+  /tmp/vibe-smoke.qDZWpo/out/export.json.                                                                                                                                                               
+                                                                                                                                                                                                        
+  Two things worth knowing:                                                                                                                                                                             
+                                                                                                                                                                                                        
+  • A truly empty VIBE_HOME cannot resolve any roster alias. With no config.toml it offers only mistral-medium-3.5, so --model deepseek-flash exits 1 with usage_error. I copied the repo config into   
+    the home first — that copy is what makes the roster exist.                                                                                                                                          
+  • The gpt-5 verdict is from the catalog and captured evidence, not a live run. The gate refused to dispatch it, so I could not observe the rejection directly.                                        
+                                                                                                                                                                                                        
+  The dispatch also ran nested inside this Vibe session, which the skill's prose discourages even though the blocking gate permits it.                                                                  
+
+                                                 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>   
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.5W9I075Iqb/vibe                                                                                                       ctx █▋     67.7k/256k

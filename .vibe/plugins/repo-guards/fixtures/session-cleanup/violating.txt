@@ -1,0 +1,1 @@
+Report any startup warnings you received, then run pwd with a shell command.

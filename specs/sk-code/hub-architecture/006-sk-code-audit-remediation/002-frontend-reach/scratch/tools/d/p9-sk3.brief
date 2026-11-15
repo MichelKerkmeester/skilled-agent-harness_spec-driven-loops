@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md (read lines 11 to 14 only)
+
+EDIT. In the paragraph that starts with `**Domain evidence** and shared workflow doctrine`, replace the literal text
+doctrine for OpenCode system code
+with the literal text
+doctrine for SKILLED system code
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'OpenCode system code' .skilled/skills/sk-code/sk-code-skilled/SKILL.md; echo "exit $?"
+Expected output: `exit 1`

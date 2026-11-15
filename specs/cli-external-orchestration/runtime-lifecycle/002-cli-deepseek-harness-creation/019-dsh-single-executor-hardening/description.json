@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening",
+  "description": "Phase 19: dsh-single-executor-hardening",
+  "keywords": [
+    "phase",
+    "dsh-single-executor-hardening"
+  ],
+  "lastUpdated": "2026-11-14T22:56:51.279Z",
+  "specId": "019",
+  "folderSlug": "dsh-single-executor-hardening",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "002-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "14-11-26_20-47__the-single-deepseek-harness-lineage-was-hardened.md",
+    "14-11-26_23-25__deep-review-of-the-uncommitted-c6-executor.md",
+    "14-11-26_23-56__manual-context-save.md"
+  ]
+}

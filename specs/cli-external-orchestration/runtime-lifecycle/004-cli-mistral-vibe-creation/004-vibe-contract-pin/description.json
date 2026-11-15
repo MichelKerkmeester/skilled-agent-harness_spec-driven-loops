@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin",
+  "description": "Phase 4: vibe-contract-pin",
+  "keywords": [
+    "phase",
+    "vibe-contract-pin"
+  ],
+  "lastUpdated": "2026-11-14T13:35:59.423Z",
+  "specId": "004",
+  "folderSlug": "vibe-contract-pin",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "004-cli-mistral-vibe-creation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_14-35__scaffolded-and-planned-phases-004-to-012-of-the.md"
+  ]
+}

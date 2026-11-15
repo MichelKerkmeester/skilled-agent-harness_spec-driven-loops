@@ -1,0 +1,27 @@
+# T001 baseline: rule and audit suites before the phase's code changes
+
+Run on 2026-11-14 in the repository root.
+
+## Dispatch rule suite
+
+$ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+...
+ℹ tests 60
+ℹ suites 0
+ℹ pass 60
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3561.967125
+
+Pass count recorded: 60. T008's expected count is therefore 64.
+
+## Dispatch audit suite
+
+$ cd .skilled && npx vitest run hooks/dispatch/lib/dispatch-audit.test.mjs
+
+ Test Files  1 passed (1)
+      Tests  130 passed (130)
+   Start at  23:06:50
+   Duration  289ms (tests 91%, import 5%, transform 3%, worker 1%)

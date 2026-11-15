@@ -1,0 +1,30 @@
+fix the responsive grid layout on the pricing page => route sk-code-frontend
+make the navbar sticky with css => route sk-code-frontend
+build a modal with a focus trap in React => route sk-code-frontend
+improve LCP on the landing page => route sk-code-frontend
+add a dark mode toggle to the site => route sk-code-frontend
+the button text has poor contrast => route sk-code-frontend
+style the form inputs and error messages => route sk-code-frontend
+write a css animation for the loading spinner => route sk-code-frontend
+implement the checkout page from the figma file => route sk-code-frontend
+center a div vertically => route sk-code-frontend
+add i18n support with rtl languages => route sk-code-frontend
+optimize images and lazy loading on the homepage => route sk-code-frontend
+make the table scroll horizontally on mobile => route sk-code-frontend
+review my react component for accessibility issues => route sk-code-review,sk-code-frontend
+add left padding to the binary buffer before hashing => defer 
+hover over the symbol to debug the typescript type error => route sk-code-skilled
+pad the string with zeros in the python formatter => route sk-code-skilled
+easing the migration of the shell scripts to bash 5 => route sk-code-skilled
+the transition between workflow states fails in the reducer => defer 
+add a hover provider to the language server => defer 
+fix the contrast stretch in the image processing python script => route sk-code-skilled
+the shadow copy of the config file is stale => route sk-code-skilled
+fix the github actions workflow so the ci job has a timeout => route sk-code-ci
+add paths-ignore and a concurrency group to .github/workflows/ci.yml => route sk-code-ci
+pin every action to a sha in the release workflow yaml => route sk-code-ci
+set timeout-minutes and fail-fast: false on the strategy matrix => route sk-code-ci
+rename a python helper function => route sk-code-skilled
+packet: edit .github/workflows/ci.yml to add a job => intents=CI_WORKFLOW resources=4
+packet: set timeout-minutes on the ci job => intents=CI_WORKFLOW resources=4
+packet: rename a python helper function => intents= resources=1
