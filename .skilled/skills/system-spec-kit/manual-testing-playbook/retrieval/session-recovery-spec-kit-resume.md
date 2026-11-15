@@ -3,7 +3,7 @@ title: "190 -- Session recovery via /speckit:resume"
 description: "This scenario validates interrupted-session recovery via /speckit:resume for `190`."
 audited_post_018: true
 phase_018_change: Removed CONTINUE_SESSION from the active ladder and aligned the recovery order to `handover.md -> _memory.continuity -> spec docs`.
-version: 2.0.2.0
+version: 2.0.4.0
 id: retrieval-session-recovery-spec-kit-resume
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:
@@ -63,7 +63,7 @@ Command transcript; the ripgrep invocations when the fallback lane fired; eviden
 
 ### Failure Triage
 
-Verify `/speckit:resume` command routing against `.skilled/commands/speckit/resume.md`; confirm the anchor names the workflow reads match the packet templates; re-run the ripgrep recipe by hand to see whether the miss is the recipe or the corpus; when detection opens the wrong packet, check the calling session id against the notes under `.skilled/skills/.state/session-relaunch/handoffs/`
+Verify `/speckit:resume` command routing against `.skilled/commands/speckit/resume.md`; confirm the anchor names the workflow reads match the packet templates; re-run the ripgrep recipe by hand to see whether the miss is the recipe or the corpus; when detection opens the wrong packet, check the calling session id against the notes under `.skilled/skills/.state/session-handover/handoffs/`
 
 ---
 

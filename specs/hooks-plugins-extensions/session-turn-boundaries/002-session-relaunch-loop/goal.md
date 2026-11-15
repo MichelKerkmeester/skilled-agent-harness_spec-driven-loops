@@ -1,5 +1,5 @@
 ---
-title: "Goal: Session relaunch loop"
+title: "Goal: Session handover loop"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
   - "packet goal"
@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Goal: Session relaunch loop
+# Goal: Session handover loop
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -94,7 +94,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] All 43 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
+- [x] All 44 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
 - [x] `validate.sh` on this packet with `--recursive --strict` prints `RESULT: PASSED`
 - [x] A live Claude Code relaunch through `skilled-loop` is recorded with its `relaunch.log` hop line
 - [x] `sync-hook-registrations.cjs --check`, `sync-runtime-mirrors.cjs --check` and `run-all-drift-guards.sh` all exit 0
@@ -130,6 +130,8 @@ and findings belong here.
 | Phase 041 added | Done | 2026-11-14: packet 041-cross-runtime-handover-parity joins as phase 41 (live harness, Pi, OpenCode and Codex hop fixes). Criterion 1 now says 41 phase folders, same length, slice unchanged in size |
 | Phase 042 added | Done | 2026-11-15: packet 042-handover-gap-closure joins as phase 42 (question guard and withdraw notice on Pi and OpenCode, Codex compaction pointer). Criterion 1 now says 42 phase folders, same length, slice unchanged in size |
 | Phase 043 added | Done | 2026-11-15: packet 043-vibe-handover-flag-and-live-hop joins as phase 43 (Vibe switch in both flag readers, Vibe in the handoff command and continuity writer, first live Vibe hop). Criterion 1 now says 43 phase folders, same length |
+| Phase 044 added | In progress | 2026-11-15: packet 044-in-session-handover-rename joins as phase 44 (session relaunch renamed to in-session handover on every live surface, no aliases; suites at baseline, live Claude hop 5/5; release note pending). Criterion 1 now says 44 phase folders and is open until AC-004 is met |
+| Phase 044 closed | Done | 2026-11-15: session handover is the main name (folder, switches, seed); SYSTEM_IN_SESSION_HANDOVER_* read for the on and off switches while the main one is blank; three phrasings route to /speckit:handoff; goal retitled Session handover loop; gate at baseline, flags 31/0, live Claude hop 5/5; v4.0.2.2 note. Criterion 1 ticked again |
 
 ### Deviations and findings
 

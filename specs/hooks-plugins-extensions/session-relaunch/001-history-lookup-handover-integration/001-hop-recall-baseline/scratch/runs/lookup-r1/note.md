@@ -1,0 +1,152 @@
+---
+status: claimed
+session_id: 103310cb-7374-43b1-b833-41e92f556d0d
+loop_id: 3752
+runtime: claude
+cwd: /Users/michelkerkmeester/worktrees/public/399-hook-feature-subtracks
+spec_folder: none
+created_at: 2026-11-15T08:10:14.776Z
+claimed_at: 2026-11-15T08:10:59.873Z
+claimed_by: a149d1eb-7c83-49ae-a2cb-0e0d918e7c96
+---
+
+## Goal
+
+Read-only measurement task (Gate 3 pre-answered D) Skip, no file changes). The operator asked to run show-codes.sh in the hop-recall-baseline lookup-r1 run and show exactly what it printed. A follow-up question about that output comes later.
+
+## Done
+
+Ran `sh .../001-hop-recall-baseline/scratch/harness/../runs/lookup-r1/work/show-codes.sh` (exit 0). The script cats codes.txt and then deletes it, so the codes are gone from disk and a rerun prints "codes already issued". The exact output was shown to the operator. It is preserved verbatim below, one `Knnn CODE` line per row (K001-K120):
+
+K001 9DRRJKMF
+K002 UWJ489G6
+K003 H8W69VBH
+K004 58DGSUDE
+K005 CV3QYCED
+K006 9YG2NN7V
+K007 FVM3RDXS
+K008 FKRA3RJ9
+K009 NCMYQHWB
+K010 MDTRSVFX
+K011 UNTDPUT3
+K012 JYEZN8BF
+K013 87KFZ98P
+K014 9B94CN2S
+K015 K7TSNU5F
+K016 8MNVXRVZ
+K017 U9G34K9E
+K018 23MH94MF
+K019 FYWP37G5
+K020 ZTY26SGZ
+K021 VEQFH7HK
+K022 9DEBGUP2
+K023 KVCTK8VT
+K024 YGXX3UP3
+K025 AKD6B5SY
+K026 MURXM2HP
+K027 VCTEPXST
+K028 U6XB7U9Q
+K029 ETA65YVA
+K030 EF9MT3JB
+K031 Z8BWJGE2
+K032 S27964R8
+K033 3R7N4JQR
+K034 UBKW3KJU
+K035 K6WSKQQ7
+K036 A3WH4V97
+K037 E2S9RJFR
+K038 3SNNTG83
+K039 FZUCY5VS
+K040 PW3KA7CN
+K041 6ZKN3U6W
+K042 5WRBD35X
+K043 GGSGGNCE
+K044 9VRDKZYZ
+K045 UQEUTGCD
+K046 4J95EAQT
+K047 MMY4D6WY
+K048 3EEESVEM
+K049 7M48FQ8E
+K050 7KN8PK2U
+K051 HQJQ48D8
+K052 SPW83S2U
+K053 ECS4N6NZ
+K054 98Y87ZEW
+K055 YRT9JQ23
+K056 3SWSZXK2
+K057 KPQ5RBGQ
+K058 Y4X4Y389
+K059 APS7D58P
+K060 WHEZ3BSR
+K061 Y6H4XKSX
+K062 3Z6N4SS8
+K063 TT96568E
+K064 MQ2Y8T9T
+K065 KZ4NURW6
+K066 U2EF4P9C
+K067 BDXHERHM
+K068 RMV6YRKA
+K069 ERZACN7V
+K070 XFY4T6QS
+K071 65WFYGZN
+K072 SZDZ84N3
+K073 PDSNMMBW
+K074 6EHU3JCA
+K075 7XYVFEY2
+K076 3PTWCKCM
+K077 Y3Z68QB5
+K078 Y4CJYTH8
+K079 YGHB7UAC
+K080 TRRWJK7P
+K081 6JEB5UCX
+K082 E8JX9PPK
+K083 C3RB4NS2
+K084 PW7BCSZS
+K085 E5ZUSKK4
+K086 S6W9A564
+K087 3QQUFDWQ
+K088 7YNZSVDJ
+K089 2Y3AA9Z2
+K090 BEDT2TYY
+K091 B3HWZ9FF
+K092 RJ3MT827
+K093 SS9AXYY2
+K094 62NE2EV7
+K095 ZMTH8UUF
+K096 TVTM7326
+K097 4FXSN7TB
+K098 8Q9B9V5J
+K099 TANA74WN
+K100 QG2959R8
+K101 T7DTB2E6
+K102 FG4NQ5EX
+K103 58HGVZPH
+K104 NREENC8R
+K105 3MQW92RR
+K106 M6TXCCT2
+K107 YMY6RPKB
+K108 6W899T43
+K109 UDWYBX5P
+K110 KG53597W
+K111 6V7P778B
+K112 WQSWHMRE
+K113 E2FSWA9F
+K114 CVS4369V
+K115 K87PMBRQ
+K116 XKK5ZVS5
+K117 JKJ9SZ3A
+K118 VZ9ETFUE
+K119 AFD6YJC3
+K120 284HJTPY
+
+## Remaining work
+
+Answer the operator's follow-up question about the show-codes.sh output. Answer from the list above; do not rerun the script, since codes.txt no longer exists.
+
+## In-flight state
+
+Active command: none
+Running workers: none
+Scheduled: none
+Added directories: none
+No files were changed in the repository by this task. The only deletion was codes.txt, as the script is designed to do.

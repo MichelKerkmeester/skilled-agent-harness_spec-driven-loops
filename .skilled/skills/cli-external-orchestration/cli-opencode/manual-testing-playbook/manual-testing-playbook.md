@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.28.0
+version: 1.4.30.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -917,7 +917,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 - CO-043: [MCP route guard](../manual-testing-playbook/plugin-utilization/mcp-route-guard.md)
 - CO-044: [OpenCode goal](../manual-testing-playbook/plugin-utilization/opencode-goal.md)
 - CO-045: [Session cleanup](../manual-testing-playbook/plugin-utilization/session-cleanup.md)
-- CO-046: [Session relaunch](../manual-testing-playbook/plugin-utilization/session-relaunch.md)
+- CO-046: [Session handover](../manual-testing-playbook/plugin-utilization/session-handover.md)
 - CO-047: [sk-code post-edit quality](../manual-testing-playbook/plugin-utilization/sk-code-post-edit-quality.md)
 - CO-048: [sk-git message gate](../manual-testing-playbook/plugin-utilization/sk-git-message-gate.md)
 - CO-049: [sk-git preflight advisory](../manual-testing-playbook/plugin-utilization/sk-git-preflight-advisory.md)
@@ -989,7 +989,7 @@ external OpenCode process. There is no operator-facing prompt beyond the run-thi
 
 ## 22. PLUGIN UTILIZATION (`CO-040..CO-056`)
 
-The plugin-utilization scenarios exercise plugin effects in a live OpenCode session. The command-level scenarios use `plugin-utilization/run-plugin-scenario.sh` through `plugin-utilization/capture-proxy.mjs` to inspect captured system prompts and events; CO-046 uses the conversation runner to check that the session-relaunch nudge reaches a later turn in the same session.
+The plugin-utilization scenarios exercise plugin effects in a live OpenCode session. The command-level scenarios use `plugin-utilization/run-plugin-scenario.sh` through `plugin-utilization/capture-proxy.mjs` to inspect captured system prompts and events; CO-046 uses the conversation runner to check that the session-handover nudge reaches a later turn in the same session.
 
 Run results live in the skill's `benchmark/reports/` folder; the first run is `2026-10-20--manual-testing-playbook--plugin-utilization`, and its findings name the plugins whose expected effects were missing on OpenCode 2, and why.
 
@@ -999,7 +999,7 @@ Run results live in the skill's `benchmark/reports/` folder; the first run is `2
 - `CO-043`: [MCP route guard](plugin-utilization/mcp-route-guard.md)
 - `CO-044`: [OpenCode goal](plugin-utilization/opencode-goal.md)
 - `CO-045`: [Session cleanup](plugin-utilization/session-cleanup.md)
-- `CO-046`: [Session relaunch later-turn conversation](plugin-utilization/session-relaunch.md)
+- `CO-046`: [Session handover later-turn conversation](plugin-utilization/session-handover.md)
 - `CO-047`: [sk-code post-edit quality](plugin-utilization/sk-code-post-edit-quality.md)
 - `CO-048`: [sk-git message gate](plugin-utilization/sk-git-message-gate.md)
 - `CO-049`: [sk-git preflight advisory](plugin-utilization/sk-git-preflight-advisory.md)

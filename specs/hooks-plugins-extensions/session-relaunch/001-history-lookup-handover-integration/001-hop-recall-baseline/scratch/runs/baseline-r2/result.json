@@ -1,0 +1,19 @@
+{
+  "arm": "baseline",
+  "label": "r2",
+  "runtime": "claude-code",
+  "asked": 1,
+  "trustDialogs": 0,
+  "cliReappeared": 0,
+  "sender": "11be8580-e793-4a31-941c-377ca7871939",
+  "receiver": "15da920a-e378-42c6-a740-73155999cd83",
+  "note": "20261115T091707Z-11be8580-e793-4a31-941c-377ca7871939.md",
+  "note_status": "done",
+  "note_leaked": 0,
+  "sender_saw_code": 1,
+  "answer": "missing",
+  "lookup_attempted": 0,
+  "native_recall": 0,
+  "transcript_read": 0,
+  "reply": "UNKNOWN"
+}
