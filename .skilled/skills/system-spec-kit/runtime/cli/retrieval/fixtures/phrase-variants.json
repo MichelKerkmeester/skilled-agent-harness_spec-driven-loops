@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5f45e98f3d23153de2fccb250b8a4d9eef4d764a78d6566541c7d46ddcabff2f",
+  "manifestHash": "103f93bdce984ffb7d32718470143175e7adc0b14b05cb6bb768eaf424cb0fe4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37112,6 +37112,9 @@
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
     ],
+    "deep loop save full auto": [
+      "deep loop save full-auto"
+    ],
     "deep loop scenario contract": [
       "deep-loop scenario contract"
     ],
@@ -41775,6 +41778,9 @@
     ],
     "dispatch failure row lost on refresh": [
       "dispatch failure row lost on refresh"
+    ],
+    "dispatch failure row through the append gateway": [
+      "dispatch failure row through the append gateway"
     ],
     "dispatch guard": [
       "dispatch guard"
@@ -121551,6 +121557,9 @@
     "system deep loop 1 6 27 0": [
       "system-deep-loop 1.6.27.0"
     ],
+    "system deep loop 1 6 28 0": [
+      "system-deep-loop 1.6.28.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -121757,6 +121766,9 @@
     ],
     "system deep loop v1 6 27 0": [
       "system-deep-loop v1.6.27.0"
+    ],
+    "system deep loop v1 6 28 0": [
+      "system-deep-loop v1.6.28.0"
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
