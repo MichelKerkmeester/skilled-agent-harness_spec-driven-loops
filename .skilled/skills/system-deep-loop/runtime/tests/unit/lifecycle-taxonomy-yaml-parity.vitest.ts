@@ -22,10 +22,8 @@ const ASSETS = resolve(__dirname, '..', '..', '..', '..', '..', 'commands', 'dee
 // The runtime-loop modes are the only ones that pin a userPaused-bearing enum in
 // their YAML.
 const RUNTIME_LOOP_YAMLS = [
-  'deep-research-auto.yaml',
-  'deep-research-confirm.yaml',
-  'deep-review-auto.yaml',
-  'deep-review-confirm.yaml',
+  'deep-research.yaml',
+  'deep-review.yaml',
 ];
 
 // Two declaration shapes coexist: a structured `stop_reasons_enum: [a, b, c]`

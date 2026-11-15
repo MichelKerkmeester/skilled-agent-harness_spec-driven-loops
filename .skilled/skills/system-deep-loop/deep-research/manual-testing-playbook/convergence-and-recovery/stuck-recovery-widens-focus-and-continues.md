@@ -1,7 +1,7 @@
 ---
 title: "DR-014 -- Stuck recovery widens focus and continues"
 description: "Verify that stuck detection triggers a recovery path that widens focus before giving up."
-version: 1.14.0.15
+version: 1.14.1.0
 ---
 
 # DR-014 -- Stuck recovery widens focus and continues
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate stuck recovery widens focus, uses deferred ideas, and continues before final synthesis.
 ### Commands
 1. `bash: rg -n 'stuckThreshold|STUCK_RECOVERY|least-explored|recovery' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'stuck_count|least_explored|RECOVERY: Widen scope|research-ideas' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+2. `bash: rg -n 'stuck_count|least_explored|RECOVERY: Widen scope|research-ideas' .skilled/commands/deep/assets/deep-research.yaml`
 3. `bash: rg -n 'RECOVERY MODE|research-ideas|Exhausted Approaches' .skilled/agents/deep-research.md`
 ### Expected
 Stuck threshold is enforced, recovery resets the counter, the next focus widens scope, and the ideas backlog can be consulted during recovery.
@@ -73,8 +73,7 @@ Check the convergence reference and loop protocol together because one defines t
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Stuck recovery protocol; use `ANCHOR:stuck-recovery-protocol` |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Ideas backlog and stuck recovery; use `ANCHOR:phase-iteration-loop` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Recovery logic; inspect `step_handle_convergence` |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Recovery logic; inspect `step_handle_convergence` |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Recovery logic; inspect `step_handle_convergence` |
 | `.skilled/agents/deep-research.md` | Runtime recovery behavior; inspect `Recovery Mode` |
 
 ---

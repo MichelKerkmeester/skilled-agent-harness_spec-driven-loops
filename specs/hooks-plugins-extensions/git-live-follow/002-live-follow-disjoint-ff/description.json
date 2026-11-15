@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/git-live-follow/002-live-follow-disjoint-ff",
+  "description": "Relax the primary-checkout reconcile and follower so a behind-only checkout fast-forwards through git's own --ff-only even while carrying unrelated",
+  "keywords": [
+    "relax",
+    "primary-checkout",
+    "reconcile",
+    "follower",
+    "behind-only",
+    "checkout",
+    "fast-forwards",
+    "git",
+    "own",
+    "ff-only",
+    "even",
+    "while",
+    "carrying",
+    "unrelated"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.530Z",
+  "specId": "002",
+  "folderSlug": "live-follow-disjoint-ff",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "git-live-follow"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

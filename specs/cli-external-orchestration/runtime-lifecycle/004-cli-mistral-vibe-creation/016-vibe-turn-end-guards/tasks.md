@@ -63,7 +63,7 @@ contextType: "implementation"
 - [x] T014 Run the turn-end fixture tests (`L/turn-end.test.mjs`). Verify: `node --test L/turn-end.test.mjs` prints `pass 10` and `fail 0`.
 - [x] T015 Run the ask-surface core suite after the new row (`A/lib/ask-surface-core.test.mjs`). Verify: `node --test A/lib/ask-surface-core.test.mjs` prints `fail 0`.
 - [x] T016 Run the renderer test so the new entry still renders with an absolute path (`.vibe/plugins/repo-guards/tests/render-home-hooks.test.mjs`). Verify: `node --test .vibe/plugins/repo-guards/tests/render-home-hooks.test.mjs` prints `fail 0`.
-- [B] T017 Write the operator TUI procedure and run it with the operator: an interactive `vibe` session in a trusted scratch checkout with the rendered home hooks, a prompt that asks for a reply ending in a lettered option menu, then a copy of the journal (`scratch/turn-end-retry/procedure.md`). A print-mode run has no question tool, so the part passes it by design and cannot show the retry. Verify: the copied journal holds a user entry whose text starts with `[ask-surface]`, and `.skilled/skills/.state/ask-surface/fires.jsonl` gains one `"runtime":"vibe"` line. [B] Requires an operator at an interactive TUI; this non-interactive dispatch cannot answer the question widget, and a print-mode run has no question tool. A print-mode smoke run exited 0, bound `user:turn-end` and returned `accept` (`scratch/turn-end-retry/print-mode-smoke.md`).
+- [x] T017 Write the operator TUI procedure and run it with the operator: an interactive `vibe` session in a trusted scratch checkout with the rendered home hooks, a prompt that asks for a reply ending in a lettered option menu, then a copy of the journal (`scratch/turn-end-retry/procedure.md`). A print-mode run has no question tool, so the part passes it by design and cannot show the retry. Verify: the copied journal holds a user entry whose text starts with `[ask-surface]`, and `.skilled/skills/.state/ask-surface/fires.jsonl` gains one `"runtime":"vibe"` line. Evidence (2026-11-15): phase 022 `VIB-HK-008` ran an interactive Vibe TUI through the shared runner and passed 2/2. `scratch/turn-end-retry/live/journal/` holds the user entry `[ask-surface] Your reply ended with a prose option menu`, and `scratch/turn-end-retry/live/fires.jsonl` holds one `"runtime":"vibe"` line (`scratch/turn-end-retry/live-run.md`).
 - [x] T018 Validate this phase folder (`spec.md`). Verify: `validate.sh <this folder> --strict --quiet` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
@@ -72,9 +72,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: the retry run's journal and fire log are saved in `scratch/turn-end-retry/`
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed: the retry run's journal and fire log are saved in `scratch/turn-end-retry/live/`
 <!-- /ANCHOR:completion -->
 
 ---

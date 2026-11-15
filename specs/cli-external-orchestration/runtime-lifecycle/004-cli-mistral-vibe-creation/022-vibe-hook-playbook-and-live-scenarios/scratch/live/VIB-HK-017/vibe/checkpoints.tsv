@@ -1,3 +1,4 @@
 turn	status	attempts	evidence	observed
 edit	PASS	1	turns/edit	stale-warned
 package	PASS	1	turns/package	package-named
+outside-package	PASS	1	turns/outside-package	outside-edit-earned-no-warning

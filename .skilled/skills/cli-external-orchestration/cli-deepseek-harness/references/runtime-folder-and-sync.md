@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh sync manifest"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # DeepSeek Harness - Runtime Folder and Sync
@@ -67,7 +67,6 @@ A fresh dsh home works for a dispatch, because headless reads keys from the laun
   patches/
     route-llmgateway-deepseek.patch.yml   llm-pi-ai provider row and agent-default-model row
     route-opencode-go-deepseek.patch.yml  same shape, second route
-    route-mistral-deepseek.patch.yml      same shape, third route, no DeepSeek thinking format
     lineage.patch.yml                     telemetry off, session log off, goal and plan off
     guards.patch.yml                      inserts the repo-guards plugin rows
     mcp-code-mode.patch.yml               optional, one MCP client row

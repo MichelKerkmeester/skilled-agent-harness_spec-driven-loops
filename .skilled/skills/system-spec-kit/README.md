@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.41.0
+version: 2.7.44.0
 ---
 
 # System Spec Kit
@@ -79,19 +79,19 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 |---|---|
 | **Gate 1 trigger lookup** | a committed index over author-declared `trigger_phrases`, answered from a cold Node process with no service running. A host repository keeps its own index in `.speckit-index/`, or in the folder its `.skilled-host.json` names |
 | **Free-text retrieval** | literal ripgrep recipes scoped by track and packet, ordered by a caller-side ranking tuple; `rg-wrapper.mjs` keeps one row per file, cuts at `--limit` files and reports what it hid |
-| **Continuity** | the `handover.md` then `_memory.continuity` then packet-docs ladder, written by `generate-context.js` and kept as the primary recovery path, plus one bounded history lookup a compaction may add when a fresh locator verifies |
-| **Session relaunch** | Relaunches a near-limit session in a fresh runtime in the same terminal, gated per runtime and carrying a handoff note |
+| **Continuity** | the `handover.md` then `_memory.continuity` then packet-docs ladder, written by `generate-context.js` and kept as the primary recovery path, plus one bounded history lookup a compaction may add when a fresh locator verifies. The resume brief, the relaunch note, the context recovered after a compaction and the continuity save all repeat the packet purpose line, the opening sentence of the packet's purpose in `spec.md` |
+| **Session handover** | Relaunches a near-limit session in a fresh runtime in the same terminal, gated per runtime and carrying a handoff note |
 | **Decision capture** | Queues the answers you give to the AI's questions and writes them into the bound packet's `decision-record.md` on a full-auto save |
 | **Declared loss** | semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal are retired with no successor |
 
-**Session relaunch**
+**Session handover**
 
-- Ships on for Claude Code and off for every other runtime until `SYSTEM_SESSION_RELAUNCH_ENABLED` turns it on, or a runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime.
-- `skilled-loop` (`.skilled/bin/`) then relaunches a near-limit session in a fresh runtime in the same terminal, on its own for Claude Code, Codex, Pi and OpenCode and through `/speckit:handoff` for Cursor and Devin: the handoff note links to the bound packet, `/speckit:save` runs before the hop and `/speckit:resume` after the claim, while the seed carries the session's Gate 3 answer.
+- Ships on for Claude Code and off for every other runtime until `SYSTEM_SESSION_HANDOVER_ENABLED` turns it on, or a runtime's own `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` turns it on or off for that runtime.
+- `skilled-loop` (`.skilled/bin/`) then relaunches a near-limit session in a fresh runtime in the same terminal, on its own for Claude Code, Codex, Pi and OpenCode and through `/speckit:handoff` for Cursor and Devin: the handoff note opens its `## Goal` with the packet purpose line and links to the bound packet, `/speckit:save` runs before the hop and `/speckit:resume` after the claim, while the seed carries the session's Gate 3 answer.
 - Inside the loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction.
 - Sourcing `.skilled/bin/skilled-loop-shell.sh` from the shell profile starts every interactive runtime under the wrapper, also in a repository that links `.skilled`. The shim runs only a wrapper inside the sourced checkout, a linked worktree registered to it or a checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS`.
-- Every hop also adds a line to a gitignored hop history that `session-relaunch.cjs history` and `/doctor:setup` show.
-- Its handoff note is gitignored runtime state for the next session, not the packet's `handover.md` ([`/speckit:handoff`](../../commands/speckit/handoff.md), [session-relaunch](../../hooks/session-relaunch/README.md)).
+- Every hop also adds a line to a gitignored hop history that `session-handover.cjs history` and `/doctor:setup` show.
+- Its handoff note is gitignored runtime state for the next session, not the packet's `handover.md` ([`/speckit:handoff`](../../commands/speckit/handoff.md), [session-handover](../../hooks/session-handover/README.md)).
 
 **Decision capture**
 
@@ -142,7 +142,7 @@ The command updates the canonical continuity surfaces for the target folder, ref
 /speckit:resume
 ```
 
-The system resolves the requested folder first. For a phase parent it follows the valid `derived.last_active_child_id` pointer into the active child. It then compares folder-local `handover.md` and `_memory.continuity` freshness and falls back to the packet's canonical spec docs. It presents the current state, prior decisions, touched files and next steps before you start.
+The system resolves the requested folder first. For a phase parent it follows the valid `derived.last_active_child_id` pointer into the active child. It then compares folder-local `handover.md` and `_memory.continuity` freshness and falls back to the packet's canonical spec docs. It presents the packet's purpose, the current state, prior decisions, touched files and next steps before you start. The Purpose row quotes the opening sentence of the packet's purpose in `spec.md`. A packet with none falls back to its nearest phase parent's purpose, then to its `goal.md` Objective, and the row is left out when none exists.
 
 **Step 4: Search for context.**
 
@@ -462,7 +462,7 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 │   ├── algorithms/             # Fusion, reranking, lab algorithms
 │   ├── embeddings/             # Provider implementations
 │   └── ...                     # Chunker, scoring, parsing, utilities
-├── references/                 # Reference documentation (42 files)
+├── references/                 # Reference documentation (43 files)
 ├── assets/                     # Decision matrices, YAML configs
 ├── feature-catalog/            # Feature documentation catalog
 └── manual-testing-playbook/    # Manual validation scenarios

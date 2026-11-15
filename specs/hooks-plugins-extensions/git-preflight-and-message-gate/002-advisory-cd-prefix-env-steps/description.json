@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/002-advisory-cd-prefix-env-steps",
+  "description": "The preflight advisory resolves the directory a git command runs in, so a command typed against a worktree is judged by that worktree's state",
+  "keywords": [
+    "preflight",
+    "advisory",
+    "resolves",
+    "directory",
+    "git",
+    "command",
+    "runs",
+    "typed",
+    "against",
+    "worktree",
+    "judged",
+    "state"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.524Z",
+  "specId": "002",
+  "folderSlug": "advisory-cd-prefix-env-steps",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "git-preflight-and-message-gate"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

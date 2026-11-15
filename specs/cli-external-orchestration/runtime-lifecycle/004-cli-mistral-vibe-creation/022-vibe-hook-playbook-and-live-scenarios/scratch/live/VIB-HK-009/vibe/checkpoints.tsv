@@ -1,3 +1,4 @@
 turn	status	attempts	evidence	observed
 claim	PASS	1	turns/claim	post-agent-accept advisory-recorded
 no-retry	PASS	1	turns/no-retry	no-retry advisory-holds-reread
+second-claim	PASS	1	turns/second-claim	second-claim-accepted lines=2 advisory-rewritten

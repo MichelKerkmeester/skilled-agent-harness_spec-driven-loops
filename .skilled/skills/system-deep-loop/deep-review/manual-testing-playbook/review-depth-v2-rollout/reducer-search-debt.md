@@ -1,7 +1,7 @@
 ---
 title: "DRV-060 -- Reducer search-debt registry + dashboard + report persistence"
 description: "Verify reducer registry exposes candidateCoverage / searchDebt / ruledOutCandidates / cleanSearchProof / searchCoverage. Dashboard renders ## Search Debt. Report renders ## Search Ledger."
-version: 1.11.0.7
+version: 1.11.1.0
 ---
 
 # DRV-060 -- Reducer search-debt registry + dashboard + report persistence
@@ -70,7 +70,7 @@ The reducer preserves `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `
 ## 4. SOURCE FILES
 
 - Reducer: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (registry return shape + dashboard verdict + active-risks rendering).
-- Report compiler: `.skilled/commands/deep/assets/deep-review-auto.yaml` (Search Ledger section in report-output step).
+- Report compiler: `.skilled/commands/deep/assets/deep-review.yaml` (Search Ledger section in report-output step).
 - Fixture: `.skilled/skills/system-spec-kit/runtime/tests/review-depth-reducer.vitest.ts`.
 - ADR: complexity-search-ledger-persistence decision record (see this skill's changelog for provenance).
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.

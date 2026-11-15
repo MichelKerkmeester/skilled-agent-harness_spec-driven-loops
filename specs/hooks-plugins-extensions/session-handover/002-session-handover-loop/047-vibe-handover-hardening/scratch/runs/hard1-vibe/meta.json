@@ -1,0 +1,19 @@
+{
+  "runtime": "vibe",
+  "label": "hard1",
+  "codeWord": "ORCHID-21559",
+  "sideWord": "LAGOON-159",
+  "name": "hoptest-hard1-vibe",
+  "startMs": 1794767747055,
+  "logOffset": 4259,
+  "stateDir": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-relaunch-501",
+  "notesDir": "/Users/michelkerkmeester/worktrees/public/418-vibe-handover-hardening/.skilled/skills/.state/session-handover/handoffs",
+  "launch": [
+    "--trust",
+    "--agent",
+    "auto-approve",
+    "Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat the code word ORCHID-21559. Start by reading the README. One more fact for later: the side word is LAGOON-159. Do not write the side word in the handoff note. The new session must report it too. Gate 3: D) Skip, no spec folder."
+  ],
+  "endMs": 1794767837756,
+  "trustDialogs": 0
+}

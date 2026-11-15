@@ -431,8 +431,8 @@
       "warnings": [
         {
           "auto_fixable": false,
-          "line": 303,
-          "line_number": 303,
+          "line": 314,
+          "line_number": 314,
           "message": "\"RELATED\" must be the last H2; it is followed by \"COVERAGE MATRIX\".",
           "severity": "warning",
           "type": "render_section_order"
@@ -694,6 +694,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/hooks/decision-capture/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/decision-capture/vibe/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -1353,6 +1363,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/hooks/goal/vibe/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/hooks/hook-install/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -1563,6 +1583,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/hooks/overlay-guard/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/hooks/overlay-guard/pi/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -1763,6 +1793,106 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/hooks/session-handover/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/session-handover/bin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/session-handover/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/session-handover/codex/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/session-handover/history/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/session-handover/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/session-handover/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/session-handover/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/session-handover/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "unknown",
+      "file": ".skilled/hooks/session-handover/tests/fixtures/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/hooks/session-lifecycle/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -1843,87 +1973,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/hooks/session-relaunch/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/hooks/session-relaunch/bin/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/hooks/session-relaunch/claude/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/hooks/session-relaunch/codex/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/hooks/session-relaunch/lib/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/hooks/session-relaunch/opencode/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/hooks/session-relaunch/pi/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/hooks/session-relaunch/tests/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "unknown",
-      "file": ".skilled/hooks/session-relaunch/tests/fixtures/README.md",
+      "file": ".skilled/hooks/session-lifecycle/vibe/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -2044,6 +2094,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/hooks/skill-advisor/pi/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/skill-advisor/vibe/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -3811,6 +3871,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/cli-external-orchestration/cli-devin/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -7529,46 +7599,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/tests/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -7760,36 +7790,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-deep-loop/runtime/lib/cycle-detection/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -8160,16 +8160,6 @@
       "blocking_errors": [],
       "document_type": "unknown",
       "file": ".skilled/skills/system-deep-loop/runtime/tests/fixtures/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "unknown",
-      "file": ".skilled/skills/system-deep-loop/runtime/tests/fixtures/council-value/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -9805,16 +9795,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -10404,6 +10384,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".vibe/plugins/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": "README.md",
       "return_code": 0,
       "total_issues": 1,
@@ -10654,7 +10644,24 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration/review/README.md",
+      "file": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/attempts/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/hooks-plugins-extensions/pi-cache-optimizer/008-compat-opt-in-and-image-declaration/review/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -12276,23 +12283,6 @@
       ],
       "document_type": "readme",
       "file": "specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/scratch/analysis/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/attempts/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,

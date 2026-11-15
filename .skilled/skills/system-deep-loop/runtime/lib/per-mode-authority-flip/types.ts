@@ -18,7 +18,6 @@ export const AUTHORITY_FLIP_SCHEMA_VERSION = 1;
 export const AUTHORITY_FLIP_EVENT_TYPE = 'deep-loop-authority-flip.ledger.transition-recorded';
 
 export type CutoverCertificateMode =
-  | 'deep-ai-council'
   | 'deep-research'
   | 'deep-review';
 
@@ -126,5 +125,4 @@ export type AuthoritySelectorResult =
 export const AUTHORITY_FLIP_MODE_ORDER: readonly CutoverCertificateMode[] = Object.freeze([
   'deep-research',
   'deep-review',
-  'deep-ai-council',
 ]);

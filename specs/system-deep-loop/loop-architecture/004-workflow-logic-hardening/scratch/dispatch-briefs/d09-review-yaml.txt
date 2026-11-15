@@ -1,0 +1,132 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a code implementation worker. Make exactly the five edits below in each of
+two YAML files, nothing else. Do not reformat, re-indent or fix anything adjacent. Do not
+commit.
+
+ALLOWED WRITE PATHS (only these two files, in .skilled/commands/deep/assets/):
+- deep-review-auto.yaml
+- deep-review-confirm.yaml
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any
+write outside the two allowed paths, any package install, any edit to a test file.
+Do NOT read these files whole (each is over 150 KB). Find the lines with grep -n, then
+read only the 180 lines starting at `      step_graph_convergence:`.
+
+CONTEXT: the step `step_check_convergence` holds stop-vote arithmetic in prose. The script
+convergence.cjs now computes the whole decision and prints it as `stop_decision`. The
+workflow must pass the new flags and only branch on that object. The same five edits apply
+to BOTH files. The two files hold the same text for these steps.
+
+EDIT 1. In `step_graph_convergence`, the `bash:` line ends with
+  --convergence-mode "{convergence_mode}"'
+Insert the new flags before the closing single quote, so the line ends with:
+  --convergence-mode "{convergence_mode}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.findings_registry}" --iteration-count "{iteration_count}" --stuck-count "{stuck_count}" --security-sensitive-fix-scope "{security_sensitive_fix_scope}" --fix-replay-required-rows "{fix_completeness_replay_required_rows}" --fix-replay-passing-rows "{fix_completeness_replay_passing_rows}"'
+
+EDIT 2. In the same step:
+- Replace the `action:` line with:
+        action: "Run convergence.cjs once: it evaluates the coverage graph and computes the whole review stop decision"
+- In `transform: |`, replace line 1 (`1. Call graph convergence on the current review lineage before the inline 3-signal vote.`) with:
+          1. Call convergence.cjs once on the current review lineage. It returns the graph decision and the stop_decision object.
+- Replace the `note:` line with:
+        note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output."
+- Under `outputs:`, add this line directly after the `- graph_decision:` line:
+          - stop_decision: "Tool stop_decision object: decision, stopReason, reasonDetail, weightedStopScore, signals, gates, blockedBy, graphDecision, inputs"
+
+EDIT 3. In `step_check_convergence`, replace the `action:` line and the WHOLE `algorithm: |`
+block (every line from `algorithm: |` down to, but not including, the line `        outputs:`)
+with exactly this text (keep the leading spaces exactly):
+
+        action: "Branch on the stop decision that convergence.cjs computed in step_graph_convergence"
+        algorithm: |
+          The whole stop decision is computed by convergence.cjs from the review config, the state log, the findings registry and the coverage graph. This step performs no arithmetic and never recomputes or overrides the result.
+          The script applies this fixed order, first match wins:
+          1. if iteration_count >= max_iterations: STOP (maxIterationsReached). This terminal cap is evaluated before every veto, the claim-adjudication veto included; failed legal-stop gates are recorded in stop_decision.blockedBy as synthesis evidence.
+          2. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
+          3. if convergence_mode == "off": skip convergence stop candidates and continue.
+          3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: the vote is telemetry only and the decision is CONTINUE.
+          4. a STOP candidate exists when every dimension is clean (all_dimensions_clean) or the weighted vote passes (composite_converged). The vote cutoffs follow the configured convergenceThreshold.
+          5. the nine legal-stop gates run on a candidate: convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate. Any failed gate gives BLOCKED (blockedStop).
+          6. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
+          Bind the outputs from stop_decision, where G is stop_decision.gates and I is stop_decision.inputs.review:
+            decision = stop_decision.decision
+            stopReason = stop_decision.stopReason
+            reason = stop_decision.stopReason when it is not null, else stop_decision.reasonDetail
+            reason_detail = stop_decision.reasonDetail
+            weighted_stop_score = stop_decision.weightedStopScore
+            stop_blocked = (stop_decision.decision == "BLOCKED")
+            blocked_by_json = stop_decision.blockedBy
+            blocked_by_csv = the members of stop_decision.blockedBy joined with commas
+            convergence_gate_pass = G.convergenceGate.pass
+            convergence_gate_score = G.convergenceGate.score
+            dimension_coverage_gate_pass = G.dimensionCoverageGate.pass
+            dimension_coverage_gate_missing_json = G.dimensionCoverageGate.missing
+            dimension_coverage_gate_covered_json = the configured review dimensions that are not in G.dimensionCoverageGate.missing
+            p0_resolution_gate_pass = G.p0ResolutionGate.pass
+            active_p0_count = G.p0ResolutionGate.activeP0
+            evidence_density_gate_pass = G.evidenceDensityGate.pass
+            avg_evidence_per_finding = I.evidenceBackedP0P1, the count of active P0 and P1 findings that carry file:line evidence
+            hotspot_saturation_gate_pass = G.hotspotSaturationGate.pass
+            claim_adjudication_gate_pass = G.claimAdjudicationGate.pass
+            claim_adjudication_active_count = I.activeP0 plus I.activeP1
+            fix_completeness_replay_gate_pass = G.fixCompletenessReplayGate.pass
+            security_sensitive_fix_scope = I.securitySensitiveFixScope
+            fix_completeness_replay_required_rows = I.fixReplayRequiredRows
+            fix_completeness_replay_passing_rows = I.fixReplayPassingRows
+            candidate_coverage_gate_pass = G.candidateCoverageGate.pass
+            candidate_coverage_search_debt_json = I.searchDebt
+            candidate_coverage_missing_json = the I.requiredBugClasses entries that are not in I.candidateCovered
+            graphless_fallback_gate_pass = G.graphlessFallbackGate.pass
+            graphless_fallback_mode = I.graphCoverageMode
+            graphless_fallback_missing_json = the I.requiredBugClasses entries that are not in I.fallbackCoveredBugClasses
+            graphless_fallback_unavailability_reason = the explicit reason when I.graphCoverageMode == "unavailable_blocked", else empty string
+            graph_blocker_detail_json = graph_blockers_json
+            recovery_strategy = one line naming the next review action for the gates in stop_decision.blockedBy. When claimAdjudicationGate is listed: "Reviewer must add typed claim-adjudication packets (claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, downgradeTrigger) for every active P0/P1 finding before STOP is allowed." When stop_decision.reasonDetail == "graphStopBlocked": "Resolve review coverage-graph blockers before stopping." When candidateCoverageGate and graphlessFallbackGate both fail, combine their guidance.
+          If stop_decision is missing from the step_graph_convergence output, do not decide by hand: halt and report the script output.
+
+Leave the step's `outputs:` list as it is, except replace its line
+          - reason: "Human-readable stop reason"
+with these three lines:
+          - reason: "stop_decision.stopReason when set, else stop_decision.reasonDetail"
+          - reason_detail: "stop_decision.reasonDetail, the fine cause behind the decision"
+          - weighted_stop_score: "stop_decision.weightedStopScore, for diagnostics only"
+
+EDIT 4. In `step_handle_convergence`, replace the line
+          branch_on: "convergence_mode == 'divergent' AND reason == 'all_dimensions_clean'"
+with
+          branch_on: "convergence_mode == 'divergent' AND stop_decision.reasonDetail == 'all_dimensions_clean'"
+
+EDIT 5. Far below, in the tracking step, there is exactly one line
+            if newFindingsRatio <= 0.05: stuck_count + 1
+Replace it with
+            if newFindingsRatio <= 0.5 x convergenceThreshold: stuck_count + 1
+Find it with: grep -n "newFindingsRatio <= 0.05" on each file.
+
+VERIFY (run from the repository root and print the output):
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/stop-decision-yaml-contract.vitest.ts tests/unit/stop-policy-yaml-parity.vitest.ts)
+  grep -c "0\.08\|0\.05\|Skip hard stops\|MAD(" .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  git diff --stat -- .skilled/commands
+
+EXPECTED: both test files report 0 failed (18 and 6 tests). The grep prints 0 for both
+files. `git diff --stat -- .skilled/commands` lists four YAML files: the two you edited plus
+two research files that were already modified before you started. Do not touch those.
+
+RETURN: the three command outputs. If a test still fails, report its name and the assertion
+message, and do NOT edit the test.

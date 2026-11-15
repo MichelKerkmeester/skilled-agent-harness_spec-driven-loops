@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.11.0
+version: 1.6.12.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -116,11 +116,11 @@ If the runtime does not surface command menus clearly, use this compact command 
 - `/speckit:plan` - define or refine a scoped spec and plan
 - `/speckit:implement` - execute an existing spec and plan packet
 - `/speckit:complete` - run the full spec-to-implementation lifecycle
+- `/speckit:ai-council` - convene the AI council on one planning question
 
 **Deep-loop workflow commands**
 - `/deep:research` - run iterative research before planning
 - `/deep:review` - run iterative review and finding synthesis
-- `/deep:ai-council` - run multi-seat planning deliberation
 
 **Memory commands**
 - `/speckit:save` - write the current session context into the packet's continuity documents

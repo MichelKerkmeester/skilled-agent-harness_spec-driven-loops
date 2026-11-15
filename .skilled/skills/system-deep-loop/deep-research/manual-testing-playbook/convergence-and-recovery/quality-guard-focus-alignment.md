@@ -1,7 +1,7 @@
 ---
 title: "DR-021 -- Quality Guard — Focus Alignment"
 description: "Verify that convergence STOP is blocked when answered questions don't map to original key questions."
-version: 1.14.0.15
+version: 1.14.1.0
 ---
 
 # DR-021 -- Quality Guard — Focus Alignment
@@ -27,10 +27,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify that convergence STOP is blocked when answered questions don't map to original key questions.
 - Real user request: What stops the loop from answering the wrong questions and calling it done?
 - Prompt: `Validate focus-alignment guards override STOP when answered questions drift from the original key questions.`
-- Expected execution process: Inspect the Quality Guard Protocol in the convergence reference first, then the YAML algorithm guard check, then the loop protocol Step 2c, then the state format guard_violation event schema.
+- Expected execution process: Inspect the Quality Guard Protocol in the convergence reference first, then the convergence.cjs guard evaluation, then the loop protocol Step 2c, then the state format guard_violation event schema.
 - Desired user-visible outcome: The user gets an accurate explanation of how the loop detects and blocks convergence on off-topic answers.
 - Expected signals: guard_violation event logged with guard="focus_alignment", STOP decision overridden to CONTINUE, misaligned question flagged in violation detail.
-- Pass/fail posture: PASS if the focus_alignment guard rule (answered questions must map to originalKeyQuestions), its violation logging, and its STOP-override behavior are consistent across convergence.md, loop-protocol.md, auto.yaml, and state-format.md; FAIL if any of those elements drift or contradict.
+- Pass/fail posture: PASS if the focus_alignment guard rule (answered questions must map to originalKeyQuestions), its violation logging, and its STOP-override behavior are consistent across convergence.md, loop-protocol.md, deep-research.yaml and state-format.md; FAIL if any of those elements drift or contradict.
 
 ---
 
@@ -49,15 +49,15 @@ Validate focus-alignment guards override STOP when answered questions drift from
 2. `bash: rg -n 'focus_alignment\|originalKeyQuestions\|guard_violation' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
 3. `bash: sed -n '97,107p' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
 4. `bash: rg -n 'guard_violation\|focus_alignment' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
-5. `bash: sed -n '236,243p' .skilled/commands/deep/assets/deep-research-auto.yaml`
+5. `bash: sed -n '236,243p' .skilled/commands/deep/assets/deep-research.yaml`
 ### Expected
 guard_violation event logged with guard="focus_alignment", STOP decision overridden to CONTINUE, misaligned question flagged in violation detail.
 ### Evidence
-Capture the guard rule table row for Focus Alignment, the pseudocode branch for q not in strategy.originalKeyQuestions, the YAML override logic, and the state_format supported guard values list.
+Capture the guard rule table row for Focus Alignment, the pseudocode branch for q not in strategy.originalKeyQuestions, the convergence.cjs guard evaluation and the workflow binding, and the state_format supported guard values list.
 ### Pass/Fail
-PASS if the focus_alignment guard rule (answered questions must map to originalKeyQuestions), its violation logging, and its STOP-override behavior are consistent across convergence.md, loop-protocol.md, auto.yaml, and state-format.md; FAIL if any of those elements drift or contradict.
+PASS if the focus_alignment guard rule (answered questions must map to originalKeyQuestions), its violation logging, and its STOP-override behavior are consistent across convergence.md, loop-protocol.md, deep-research.yaml and state-format.md; FAIL if any of those elements drift or contradict.
 ### Failure Triage
-Privilege convergence.md §2.4 for the canonical guard definition; use loop-protocol.md Step 2c and auto.yaml step_check_convergence as secondary confirmation of the override flow.
+Privilege convergence.md §2.4 for the canonical guard definition; use loop-protocol.md Step 2c and deep-research.yaml step_check_convergence as secondary confirmation of the override flow.
 ---
 
 ## 4. SOURCE FILES
@@ -76,7 +76,7 @@ Privilege convergence.md §2.4 for the canonical guard definition; use loop-prot
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Canonical quality guard definitions; use §2.4 Quality Guard Protocol |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check |
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | JSONL event schema; use guard_violation event definition and supported guard values |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; inspect `step_check_convergence` guard override logic |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow algorithm; inspect `step_check_convergence` guard rule and `stop_decision` binding |
 
 ---
 

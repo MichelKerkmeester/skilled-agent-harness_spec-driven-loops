@@ -24,21 +24,21 @@ const RESEARCH_TYPES_REL = join(
   RUNTIME_REL, 'lib', 'deep-research-ledger-schema', 'deep-research-ledger-types.ts',
 );
 
+const REVIEW_WORKFLOW = '.skilled/commands/deep/assets/deep-review.yaml';
+const RESEARCH_WORKFLOW = '.skilled/commands/deep/assets/deep-research.yaml';
+
 const PRODUCER_SURFACE = [
-  '.skilled/commands/deep/assets/deep-review-auto.yaml',
-  '.skilled/commands/deep/assets/deep-review-confirm.yaml',
-  '.skilled/commands/deep/assets/deep-research-auto.yaml',
-  '.skilled/commands/deep/assets/deep-research-confirm.yaml',
+  REVIEW_WORKFLOW,
+  RESEARCH_WORKFLOW,
   join(RUNTIME_REL, 'scripts', 'fanout-run.cjs'),
   join(RUNTIME_REL, 'scripts', 'append-mode-event.cjs'),
   join(RUNTIME_REL, 'scripts', 'reduce-state.cjs'),
   join(RUNTIME_REL, 'scripts', 'verify-iteration.cjs'),
   join(RUNTIME_REL, 'scripts', 'synthesis-closeout.cjs'),
+  join(RUNTIME_REL, 'scripts', 'run-now-sentinel.cjs'),
+  join(RUNTIME_REL, 'scripts', 'dispatch-iteration.cjs'),
   join('.skilled', 'skills', 'system-deep-loop', 'deep-research', 'scripts', 'reduce-state.cjs'),
 ];
-
-const REVIEW_AUTO = '.skilled/commands/deep/assets/deep-review-auto.yaml';
-const REVIEW_CONFIRM = '.skilled/commands/deep/assets/deep-review-confirm.yaml';
 
 const dirs: string[] = [];
 
@@ -80,7 +80,7 @@ function writeFixture(options: FixtureOptions = {}): string {
   const reviewStems = options.reviewStems ?? ['deep_review.alpha', 'deep_review.beta'];
   const researchStems = options.researchStems ?? ['deep_research.gamma'];
   const reviewCensus = options.reviewCensus ?? [
-    `  'deep_review.alpha': { status: 'spoken', producers: ['${REVIEW_AUTO}'] },`,
+    `  'deep_review.alpha': { status: 'spoken', producers: ['${REVIEW_WORKFLOW}'] },`,
     `  'deep_review.beta': { status: 'reserved', reason: 'No writer emits it today; a future step would speak it.' },`,
   ];
   const researchCensus = options.researchCensus ?? [
@@ -95,8 +95,8 @@ function writeFixture(options: FixtureOptions = {}): string {
     if (options.omitSurface?.includes(file)) continue;
     contents[file] = '';
   }
-  if (!options.omitSurface?.includes(REVIEW_AUTO)) {
-    contents[REVIEW_AUTO] = '{"stem":"deep_review.alpha"}\n';
+  if (!options.omitSurface?.includes(REVIEW_WORKFLOW)) {
+    contents[REVIEW_WORKFLOW] = '{"stem":"deep_review.alpha"}\n';
   }
   Object.assign(contents, options.files ?? {});
 
@@ -140,7 +140,7 @@ describe('check-ledger-stem-producers rule cases', () => {
 
   it('reads an emitter whose JSON record rides inside an escaped YAML command', () => {
     const r = runChecker(writeFixture({
-      files: { [REVIEW_AUTO]: 'printf \'%s\\n\' \'{\\"stem\\":\\"deep_review.alpha\\"}\'\n' },
+      files: { [REVIEW_WORKFLOW]: 'printf \'%s\\n\' \'{\\"stem\\":\\"deep_review.alpha\\"}\'\n' },
     }));
     expect(r.status, JSON.stringify(r.payload)).toBe(0);
     expect(r.payload.ok).toBe(true);
@@ -149,7 +149,7 @@ describe('check-ledger-stem-producers rule cases', () => {
   it('fails when a registered stem has no census entry', () => {
     const r = runChecker(writeFixture({
       reviewCensus: [
-        `  'deep_review.alpha': { status: 'spoken', producers: ['${REVIEW_AUTO}'] },`,
+        `  'deep_review.alpha': { status: 'spoken', producers: ['${REVIEW_WORKFLOW}'] },`,
       ],
     }));
     expect(r.status).toBe(2);
@@ -159,16 +159,16 @@ describe('check-ledger-stem-producers rule cases', () => {
   });
 
   it('fails when a stem declared spoken has no emitter on disk', () => {
-    const r = runChecker(writeFixture({ files: { [REVIEW_AUTO]: '' } }));
+    const r = runChecker(writeFixture({ files: { [REVIEW_WORKFLOW]: '' } }));
     expect(r.status).toBe(2);
     const violation = r.payload.violations.find((v: any) => v.rule === 'SPOKEN_WITHOUT_EMITTER');
     expect(violation).toBeDefined();
     expect(violation.stem).toBe('deep_review.alpha');
-    expect(violation.file).toBe(REVIEW_AUTO);
+    expect(violation.file).toBe(REVIEW_WORKFLOW);
   });
 
   it('fails when a declared producer is missing from the emitter surface', () => {
-    const r = runChecker(writeFixture({ omitSurface: [REVIEW_AUTO] }));
+    const r = runChecker(writeFixture({ omitSurface: [REVIEW_WORKFLOW] }));
     expect(r.status).toBe(2);
     const rules = r.payload.violations.map((v: any) => v.rule);
     expect(rules).toContain('PRODUCER_SURFACE_MISSING');
@@ -177,18 +177,20 @@ describe('check-ledger-stem-producers rule cases', () => {
 
   it('fails when a reserved stem is emitted', () => {
     const r = runChecker(writeFixture({
-      files: { [REVIEW_CONFIRM]: '{"stem":"deep_review.beta"}\n' },
+      files: {
+        [REVIEW_WORKFLOW]: '{"stem":"deep_review.alpha"}\n{"stem":"deep_review.beta"}\n',
+      },
     }));
     expect(r.status).toBe(2);
     const violation = r.payload.violations.find((v: any) => v.rule === 'RESERVED_STEM_EMITTED');
     expect(violation).toBeDefined();
     expect(violation.stem).toBe('deep_review.beta');
-    expect(violation.file).toBe(REVIEW_CONFIRM);
+    expect(violation.file).toBe(REVIEW_WORKFLOW);
   });
 
   it('fails when a producer emits an unregistered spelling', () => {
     const r = runChecker(writeFixture({
-      files: { [REVIEW_AUTO]: '{"stem":"deep_review.alpha"}\n{"stem":"deep_review.not_registered"}\n' },
+      files: { [REVIEW_WORKFLOW]: '{"stem":"deep_review.alpha"}\n{"stem":"deep_review.not_registered"}\n' },
     }));
     expect(r.status).toBe(2);
     const violation = r.payload.violations.find((v: any) => v.rule === 'UNREGISTERED_EMITTER');
@@ -203,13 +205,13 @@ describe('check-ledger-stem-producers against the committed tree', () => {
     expect(r.stderr).toBe('');
     expect(r.status, JSON.stringify(r.payload)).toBe(0);
     expect(r.payload.ok).toBe(true);
-    // The measured vocabulary: 33 review + 55 research registrations. Twenty-three
-    // are spoken: sixteen written as whole dotted literals, and seven more built
-    // as a prefix plus an interpolated event name, which an earlier literal-only
-    // scan reported as spoken by nobody while passing clean.
-    expect(r.payload.registered).toBe(88);
-    expect(r.payload.spoken).toBe(23);
-    expect(r.payload.reserved).toBe(65);
+    // The measured vocabulary: 34 review + 58 research registrations. Twenty-five
+    // are spoken. Some are written as whole dotted literals and others are built as a
+    // prefix plus an interpolated event name, which an earlier literal-only scan
+    // reported as spoken by nobody while passing clean.
+    expect(r.payload.registered).toBe(92);
+    expect(r.payload.spoken).toBe(25);
+    expect(r.payload.reserved).toBe(67);
     expect(r.payload.violations).toEqual([]);
     const stems = new Set(r.payload.emitters.map((entry: any) => entry.stem));
     expect([...stems].sort()).toEqual([
@@ -220,6 +222,7 @@ describe('check-ledger-stem-producers against the committed tree', () => {
       'deep_research.run_now_rejected',
       'deep_research.run_now_requested',
       'deep_research.run_now_restored',
+      'deep_research.run_restarted',
       'deep_research.synthesis_complete',
       'deep_research.synthesis_incomplete',
       'deep_review.blocked_stop_recorded',
@@ -236,6 +239,7 @@ describe('check-ledger-stem-producers against the committed tree', () => {
       'deep_review.run_resumed',
       'deep_review.synthesis_complete',
       'deep_review.synthesis_incomplete',
+      'deep_review.terminal_gates_recorded',
     ]);
   });
 });

@@ -99,8 +99,8 @@ A changed pi contribution delivers its full brief again, the advisor runtime bat
 | .skilled/skills/system-skill-advisor/hooks/pi/README.md | Modify | Lane H: describe the current dedup behavior |
 | .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md | Modify | Lane H: describe the current fallback behavior. Lane J: state which kill-switch name each surface reads |
 | .skilled/skills/system-skill-advisor/hooks/lib/README.md | Modify | Lane H: describe the current fallback behavior |
-| specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief/implementation-summary.md | Modify | Lane H: correction note, original numbers kept |
-| specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief/plan.md | Modify | Lane H: correction note, original numbers kept |
+| specs/hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/001-restore-pi-advisor-brief/implementation-summary.md | Modify | Lane H: correction note, original numbers kept |
+| specs/hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/001-restore-pi-advisor-brief/plan.md | Modify | Lane H: correction note, original numbers kept |
 | .skilled/bin/system-skill-advisor-launcher.cjs | Modify | Lane I: list `SYSTEM_SKILL_ADVISOR_DB_DIR` once in the child env allowlist |
 | .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py | Modify | Lane I: list `SYSTEM_SKILL_ADVISOR_DB_DIR` once in the native bridge allowlist |
 | .skilled/commands/doctor/scripts/skill-graph-freshness.cjs | Modify | Lane I: read `SYSTEM_SKILL_ADVISOR_DB_DIR` once |

@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/009-injection-contract-directive-sync",
+  "description": "The review's P3 finding requires `injection-contract.md` to document all three fixed advisor directives — comment hygiene, governor, and",
+  "keywords": [
+    "review",
+    "finding",
+    "requires",
+    "injection-contract",
+    "document",
+    "three",
+    "advisor",
+    "directives",
+    "comment",
+    "hygiene",
+    "governor"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.134Z",
+  "specId": "009",
+  "folderSlug": "injection-contract-directive-sync",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "directive-lifecycle",
+    "002-fable-governor-pi-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

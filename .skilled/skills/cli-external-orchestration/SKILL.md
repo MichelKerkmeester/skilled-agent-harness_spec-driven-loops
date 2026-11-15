@@ -29,7 +29,7 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 | **cli-cursor** | workflow | Cursor CLI orchestration: cursor-agent-backed coding, Composer-model dispatch, read-only plan/ask modes; fails closed when `cursor-agent` is absent | `cli-external-orchestration/cli-cursor/` |
 | **cli-devin** | workflow | Devin CLI orchestration: Cognition-backed coding, cloud handoff, subagent delegation, MCP host integration; fails closed when `devin` is absent | `cli-external-orchestration/cli-devin/` |
 | **cli-pi** | workflow | Pi CLI orchestration: guarded headless print, JSON event, RPC, native-resource, and community-package dispatch; fails closed when `pi` is absent | `cli-external-orchestration/cli-pi/` |
-| **cli-deepseek-harness** | workflow | DeepSeek Harness (`dsh`) CLI orchestration: pinned headless one-task dispatch over a closed three-route DeepSeek V4.1 Flash roster, JSON event stream, cross-AI validation. Experimental: LLM Gateway (the default, 2026-11-06) and OpenCode Go (when named, 2026-11-07) answered a keyed run; Mistral composes but has no keyed run yet. Fails closed when `dsh` is absent or not the pinned version | `cli-external-orchestration/cli-deepseek-harness/` |
+| **cli-deepseek-harness** | workflow | DeepSeek Harness (`dsh`) CLI orchestration: pinned headless one-task dispatch over a closed two-route DeepSeek V4.1 Flash roster, JSON event stream, cross-AI validation. Experimental: LLM Gateway (the default, 2026-11-06) and OpenCode Go (when named, 2026-11-07) answered a keyed run. Fails closed when `dsh` is absent or not the pinned version | `cli-external-orchestration/cli-deepseek-harness/` |
 | **cli-mistral-vibe** | workflow | Mistral Vibe (`vibe`) CLI orchestration: pinned print-mode one-task dispatch (`vibe -p`) over a closed two-alias `deepseek-flash` / `glm-flash` roster, `export.json` outcome record, cross-AI second opinions. Experimental: the pin is `vibe 3.1.2`, ACP (`vibe-acp`) is deferred, and behavior outside the saved captures stays UNKNOWN. Fails closed when `vibe` is absent, not the pinned version, or `MISTRAL_API_KEY` is unset | `cli-external-orchestration/cli-mistral-vibe/` |
 
 ### When NOT to Use
@@ -150,9 +150,11 @@ cli-external-orchestration/
   cli-mistral-vibe/
     SKILL.md
     ROUTER.md
+    README.md
     hard-rules.json
     references/
     assets/
+    manual-testing-playbook/
     changelog/
 ```
 

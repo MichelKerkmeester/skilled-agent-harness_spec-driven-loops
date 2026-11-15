@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/005-caller-sweep-and-verification",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/005-caller-sweep-and-verification",
+  "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "caller sweep and verification",
+      "phase 5 caller sweep and verification",
+      "caller sweep and verification plan",
+      "caller sweep and verification tasks",
+      "caller sweep and verification acceptance criteria",
+      "caller sweep and verification goal",
+      "caller sweep and verification implementation summary"
+    ],
+    "key_topics": [
+      "caller",
+      "sweep",
+      "verification",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "files"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts",
+      ".opencode/plugins/tests/system-deep-loop-guard.test.cjs",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+      ".skilled/skills/README.txt",
+      ".skilled/skills/.state/loop-guard/README.md",
+      ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+      ".skilled/bin/compiled-route.cjs",
+      "runtime/tests/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-deep-loop-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-deep-loop-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/.state/loop-guard/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Update",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Files outside the three owning skills still name `/deep:ai-council` and the `deep-ai-council` packet: the Gate 3 classifier resume phrase, a dispatch guard comment, plugin guard fixtures, spec-kit tests of deleted packet scripts, CLI skill docs, `sk-doc` templates, CI path filters, two environment variables and the root README",
+    "created_at": "2026-11-14T20:19:52Z",
+    "last_save_at": "2026-11-15T00:22:49.912Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3ec088dffd5c85cc2ad7ff84749e81ff4c725f767d67f5b5df30aacda0c087b6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1f7e2ebc3feb07ba13cd2fdfc712de0b201836846369062931f6bcf6fd9fcc58",
+      "plan.md": "36cc0e769ddde260c0e5e19f1ceb59301d45bebbb606ddedbb72bed563479245",
+      "tasks.md": "2a914047aac77ec8f609913ff07041f44c1ef06d64c2168fa8232f2c67ac2594",
+      "implementation-summary.md": "92f45c66d7d49fd0c002e2872e8793119f8b6d542a8acd070a3d0eec82a73f77"
+    },
+    "last_active_at": null
+  }
+}

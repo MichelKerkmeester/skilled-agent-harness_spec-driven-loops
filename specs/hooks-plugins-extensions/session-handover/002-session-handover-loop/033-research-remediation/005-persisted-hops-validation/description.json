@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/005-persisted-hops-validation",
+  "description": "`shouldRelaunch` reads `const hops = Number(record.hops)` and declines only when the result is not finite or reaches the limit",
+  "keywords": [
+    "shouldrelaunch",
+    "reads",
+    "const",
+    "hops",
+    "number",
+    "record",
+    "declines",
+    "only",
+    "result",
+    "finite",
+    "reaches",
+    "limit"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.919Z",
+  "specId": "005",
+  "folderSlug": "persisted-hops-validation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "033-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -23,7 +23,15 @@
     "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop",
     "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening",
     "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin",
-    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway"
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway",
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/021-dsh-remaining-direct-writers",
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/022-dsh-verify-iteration-executor",
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check",
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/024-dsh-docs-alignment",
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/025-alignment-open-findings",
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings",
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement",
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters"
   ],
   "manual": {
     "depends_on": [],
@@ -192,19 +200,19 @@
         "source": "derived"
       },
       {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cursor Task",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "exit",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "deepseek-v4.1-flash",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -224,7 +232,7 @@
     ],
     "causal_summary": "DeepSeek Harness is installed on this machine (`dsh` 0.2.2-rc.1) but the repository cannot dispatch to it",
     "created_at": "2026-11-05T21:56:17Z",
-    "last_save_at": "2026-11-15T05:29:11.797Z",
+    "last_save_at": "2026-11-15T15:33:24.923Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -232,11 +240,11 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:f878c28cfedab5805717dc3386a56b73d3184174745094d6aab91b8029977e5f",
+    "source_fingerprint": "sha256:69322c74181f9b1c77ff9701221c90c79eeebd2646160d5d554d87a66119169c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "39b5dae5a3e31efbe28edc393af2f15b0a27c058bbc6ce4d863980c00e7fb0de",
-      "handover.md": "691c795bd3a08eedbd6f97c3faf9350b33a5239d8b85afd29432b53937b8dabc"
+      "spec.md": "3a4023d0d4fd0c00799fe214d5e9f8a7aee5851696858a5a39234ba8b3ac48f3",
+      "handover.md": "cf9542ee10e916b8b5f22303b44a70240e38295cba97ba1d3f5f5f8793457753"
     },
     "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening",
     "last_active_at": "2026-11-15T05:21:53.844Z"

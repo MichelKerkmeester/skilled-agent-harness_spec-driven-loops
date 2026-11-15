@@ -1,7 +1,7 @@
 ---
 title: "DRV-027 -- Final synthesis memory save and guardrail behavior"
 description: "Verify memory save via generate-context.js after review completion, LEAF-only agent enforcement, and the boundary between live and reference-only features."
-version: 1.11.0.12
+version: 1.11.2.0
 ---
 
 # DRV-027 -- Final synthesis memory save and guardrail behavior
@@ -29,8 +29,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate deep-review finalization, memory-save routing, LEAF-only behavior, and read-only target handling.`
 - Expected execution process: Inspect the command and skill save rules first, then the runtime agent LEAF-only boundary, then the SKILL.md rules for read-only and memory save contracts.
 - Desired user-facing outcome: The user is told what final artifacts are produced, how memory is preserved, and what the agent is prevented from doing.
-- Expected signals: Synthesis produces `review/review-report.md`, memory save calls `generate-context.js`, the runtime agent forbids nested delegation (LEAF-only), the agent never modifies files under review (read-only), and memory save uses the spec folder established at setup.
-- Pass/fail posture: PASS if finalization and memory save use the supported contract and LEAF-only plus read-only behavior remain enforced. FAIL if memory is saved via Write tool, the agent dispatches sub-agents, or target files are modified.
+- Expected signals: Synthesis produces `review/review-report.md`, memory save calls `generate-context.js` with `--full-auto` and a payload carrying `recent_action`, `next_safe_action`, `blockers` and `key_files`, the runtime agent forbids nested delegation (LEAF-only), the agent never modifies files under review (read-only), and memory save uses the spec folder established at setup.
+- Pass/fail posture: PASS if finalization and memory save use the supported contract and LEAF-only plus read-only behavior remain enforced. FAIL if memory is saved via Write tool, the save runs without `--full-auto`, the agent dispatches sub-agents, or target files are modified.
 
 ---
 
@@ -47,13 +47,13 @@ Validate deep-review finalization, memory-save routing, LEAF-only behavior, and 
 ### Commands
 1. `bash: rg -n 'generate-context.js|memory.*save|synthesis_complete|review-report|memory' .skilled/commands/deep/review.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
 2. `bash: rg -n 'LEAF-only|Task tool|NEVER.*sub|NEVER.*dispatch|read.only|NEVER.*modify|observation.*only' .claude/agents/deep-review.md .skilled/agents/deep-review.md .skilled/skills/system-deep-loop/deep-review/SKILL.md`
-3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|continuity_save|review-report' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|continuity_save|review-report' .skilled/commands/deep/assets/deep-review.yaml`
 ### Expected
-Synthesis produces `review/review-report.md`, memory save calls `generate-context.js`, agent is LEAF-only, target files are read-only.
+Synthesis produces `review/review-report.md`, memory save calls `generate-context.js` with `--full-auto`, agent is LEAF-only, target files are read-only.
 ### Evidence
 Capture the synthesis/save contract, the LEAF-only prohibition from agent definitions, and the read-only rule from SKILL.md.
 ### Pass/Fail
-PASS if finalization and memory save use the supported contract and LEAF-only plus read-only behavior remain enforced. FAIL if memory is saved via Write tool, the agent dispatches sub-agents, or target files are modified.
+PASS if finalization and memory save use the supported contract and LEAF-only plus read-only behavior remain enforced. FAIL if memory is saved via Write tool, the save runs without `--full-auto`, the agent dispatches sub-agents, or target files are modified.
 ### Failure Triage
 Privilege the agent definitions for LEAF-only behavior and the skill rules for read-only and memory save contracts.
 ---
@@ -76,8 +76,7 @@ Privilege the agent definitions for LEAF-only behavior and the skill rules for r
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary for memory save and guardrails |
 | `.claude/agents/deep-review.md` | Claude runtime agent, LEAF-only enforcement and tool permissions |
 | `.opencode/agents/deep-review.md` | OpenCode runtime agent, LEAF-only enforcement and tool permissions |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Final synthesis/save steps and workflow events |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Final synthesis/save steps and workflow events |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Final synthesis/save steps and workflow events |
 
 ---
 

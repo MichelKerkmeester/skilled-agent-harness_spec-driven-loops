@@ -6,7 +6,7 @@ trigger_phrases:
   - "Claude compaction purpose section"
   - "SessionStart compact packet purpose"
 id: plugins-and-hooks-packet-purpose-claude-compaction
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Packet purpose after a Claude compaction
@@ -103,6 +103,8 @@ Capture the test command, its full output and its exit status. For each live com
 - Purpose reader: `runtime/lib/spec/packet-purpose.ts`
 - Claude SessionStart hook: `runtime/hooks/claude/session-prime.ts`
 - Session-start suite: `runtime/tests/hook-session-start.vitest.ts`
+
+Provenance: .skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts
 
 ---
 

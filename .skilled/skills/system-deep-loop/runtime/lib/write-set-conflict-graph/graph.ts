@@ -66,7 +66,7 @@ export const GRAPH_CONTRACT_SOURCE_PATHS = [
 
 const SEQUENCING_SOURCE = GRAPH_CONTRACT_SOURCE_PATHS[2];
 const RESEARCH_NODE_ID = '001-deep-research';
-const COUNCIL_NODE_ID = '003-deep-ai-council';
+const REVIEW_NODE_ID = '002-deep-review';
 
 // ───────────────────────────────────────────────────────────────────
 // 3. TYPE DEFINITIONS
@@ -728,17 +728,17 @@ function independentAssertion(
   edges: readonly ConflictEdge[],
 ): IndependentAssertion {
   const conflicts = edges.filter((edge) => edge.edge_type !== 'hard-order'
-    && ((edge.from === RESEARCH_NODE_ID && edge.to === COUNCIL_NODE_ID)
-      || (edge.from === COUNCIL_NODE_ID && edge.to === RESEARCH_NODE_ID)));
+    && ((edge.from === RESEARCH_NODE_ID && edge.to === REVIEW_NODE_ID)
+      || (edge.from === REVIEW_NODE_ID && edge.to === RESEARCH_NODE_ID)));
   const research = nodes.find((node) => node.id === RESEARCH_NODE_ID) as GraphNode;
-  const council = nodes.find((node) => node.id === COUNCIL_NODE_ID) as GraphNode;
+  const review = nodes.find((node) => node.id === REVIEW_NODE_ID) as GraphNode;
   return {
     left: RESEARCH_NODE_ID,
-    right: COUNCIL_NODE_ID,
+    right: REVIEW_NODE_ID,
     assertion: 'independent-if-resource-disjoint',
     validated: conflicts.length === 0,
     conflict_edge_ids: conflicts.map((edge) => edge.id).sort(compareText),
-    evidence: [research.source_digest, council.source_digest].sort(compareText),
+    evidence: [research.source_digest, review.source_digest].sort(compareText),
     reason: conflicts.length === 0
       ? 'The current canonical resource sets are disjoint for mutable access.'
       : 'Actual resource conflicts override the independence assertion.',
@@ -791,8 +791,8 @@ export function deriveWriteSetConflictGraph(input: GraphBuildInput): WriteSetCon
   if (!assertion.validated) {
     issues.push(graphIssue(
       'INDEPENDENCE_ASSERTION_CONFLICT',
-      'Research and council share an actual mutable resource despite the independence assertion.',
-      [RESEARCH_NODE_ID, COUNCIL_NODE_ID],
+      'Research and review share an actual mutable resource despite the independence assertion.',
+      [RESEARCH_NODE_ID, REVIEW_NODE_ID],
       edges
         .filter((edge) => assertion.conflict_edge_ids.includes(edge.id))
         .flatMap((edge) => edge.resources),

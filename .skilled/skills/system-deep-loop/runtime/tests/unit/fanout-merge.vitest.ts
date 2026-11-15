@@ -69,10 +69,16 @@ afterEach(() => {
 });
 
 const fanoutMergeScript = join(runtimeRoot, 'scripts', 'fanout-merge.cjs');
-const researchWorkflowPaths = [
-  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research-auto.yaml'),
-  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research-confirm.yaml'),
-];
+const researchWorkflowPath = resolve(
+  runtimeRoot,
+  '..',
+  '..',
+  '..',
+  'commands',
+  'deep',
+  'assets',
+  'deep-research.yaml',
+);
 
 function registryBytes(value: unknown): string {
   return JSON.stringify(value);
@@ -587,6 +593,88 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     expect(result.activeP1).toBe(0);
   });
 
+  it('merges FAIL when one lineage\'s terminal record names a failed required gate', () => {
+    // A lineage that stopped with a required gate still failing did not pass; with no
+    // findings to carry the failure, the terminal record is the only record of it.
+    const data = [
+      { label: 'clean', registry: { openFindings: [] }, stateRecords: [] },
+      {
+        label: 'gated',
+        registry: { openFindings: [] },
+        stateRecords: [
+          { type: 'event', event: 'terminal_gates', run: 3, stopReason: 'maxIterationsReached', failedRequiredGateIds: ['coverage'] },
+        ],
+      },
+    ];
+
+    const result = mergeReviewRegistries(data);
+    expect(result.mergedVerdict).toBe('FAIL');
+    expect(result.activeP0).toBe(0);
+    expect(result.failedRequiredGateIds).toEqual(['coverage']);
+  });
+
+  it('reads a lineage\'s failed gates from its registry when its state log has no terminal row', () => {
+    // The reducer can run before the terminal-gates row is written, so the registry is
+    // the fallback source; either way the failed gate must reach the merged verdict.
+    const data = [
+      { label: 'clean', registry: { openFindings: [] }, stateRecords: [] },
+      {
+        label: 'gated',
+        registry: { openFindings: [], terminalGates: { run: 2, stopReason: 'converged', failedRequiredGateIds: ['evidence'] } },
+        stateRecords: [],
+      },
+    ];
+
+    const result = mergeReviewRegistries(data);
+    expect(result.mergedVerdict).toBe('FAIL');
+    expect(result.failedRequiredGateIds).toEqual(['evidence']);
+  });
+  it('keeps a registry-less lineage whose state log holds only a failed terminal gate', () => {
+    // A lineage that stopped before reducing has no registry file, so its terminal row is
+    // the only trace that a required gate failed; losing it would merge a failed review
+    // to PASS.
+    const stateRecords = [
+      { type: 'event', event: 'terminal_gates', run: 2, stopReason: 'error', failedRequiredGateIds: ['coverage'] },
+    ];
+
+    const rebuilt = reconstructReviewRegistryFromState(stateRecords, 'gated');
+    expect(rebuilt).not.toBeNull();
+    expect(rebuilt).toMatchObject({ terminalGates: { failedRequiredGateIds: ['coverage'] } });
+
+    const merged = mergeReviewRegistries([
+      { label: 'clean', registry: { openFindings: [] }, stateRecords: [] },
+      { label: 'gated', registry: rebuilt, stateRecords },
+    ]);
+    expect(merged.mergedVerdict).toBe('FAIL');
+    expect(merged.failedRequiredGateIds).toEqual(['coverage']);
+
+    expect(reconstructReviewRegistryFromState([], 'empty')).toBeNull();
+  });
+
+  it('marks the failing lineage FAIL in the attribution table', () => {
+    // The table is read beside the merged verdict, so a lineage whose required gate is
+    // still failing must not report PASS next to a FAIL merge.
+    const lineageData = [
+      {
+        label: 'gated',
+        registry: { openFindings: [] },
+        stateRecords: [
+          { type: 'event', event: 'terminal_gates', run: 3, stopReason: 'maxIterationsReached', failedRequiredGateIds: ['coverage'] },
+        ],
+        kind: 'cli',
+        model: 'test-model',
+      },
+      { label: 'clean', registry: { openFindings: [] }, stateRecords: [], kind: 'cli', model: 'test-model' },
+    ];
+
+    const md = buildAttributionMd(lineageData, 'review');
+    const rows = md.split('\n').filter((line) => line.startsWith('| '));
+    const gatedRow = rows.find((line) => line.startsWith('| gated |'));
+    const cleanRow = rows.find((line) => line.startsWith('| clean |'));
+    expect(gatedRow?.endsWith('| FAIL |')).toBe(true);
+    expect(cleanRow?.endsWith('| PASS |')).toBe(true);
+  });
+
   it('reports an out-of-scale severity instead of letting it rank below every P2 in silence', () => {
     const result = mergeReviewRegistries([
       {
@@ -1020,56 +1108,50 @@ describe('reconstructResearchRegistryFromState — leaf-only lineage fallback', 
 });
 
 describe('research synthesis lineage evidence', () => {
-  it('keeps duplicate iteration basenames distinct and completes against all lineage findings in both workflows', () => {
-    for (const yamlPath of researchWorkflowPaths) {
-      const workflow = readFileSync(yamlPath, 'utf8');
-      expect(workflow).toContain('{state_paths.packet_dir}/lineages/*/iterations/iteration-*.md');
-      expect(workflow).toContain('Duplicate basenames from different lineages are distinct synthesis inputs');
-      expect(runSynthesisInvariant(yamlPath, ['alpha finding', 'beta finding'])).toMatchObject({
-        event: 'synthesis_complete',
-        totalIterations: 2,
-      });
-    }
+  it('keeps duplicate iteration basenames distinct and completes against all lineage findings', () => {
+    const workflow = readFileSync(researchWorkflowPath, 'utf8');
+    expect(workflow).toContain('{state_paths.packet_dir}/lineages/*/iterations/iteration-*.md');
+    expect(workflow).toContain('Duplicate basenames from different lineages are distinct synthesis inputs');
+    expect(runSynthesisInvariant(researchWorkflowPath, ['alpha finding', 'beta finding'])).toMatchObject({
+      event: 'synthesis_complete',
+      totalIterations: 2,
+    });
   });
 
-  it('reports incomplete synthesis when one lineage finding is missing from the registry in both workflows', () => {
-    for (const yamlPath of researchWorkflowPaths) {
-      expect(runSynthesisInvariant(yamlPath, ['alpha finding'], 2)).toMatchObject({
-        event: 'synthesis_incomplete',
-        severity: 'error',
-        totalIterations: 2,
-        identifiableFindingCount: 2,
-        missingStructuredFindingCount: 1,
-        invariantFailures: expect.arrayContaining([
-          'structured_state_findings_partially_reflected_in_registry',
-          'structured_state_findings_missing_from_registry',
-        ]),
-      });
-    }
+  it('reports incomplete synthesis when one lineage finding is missing from the registry', () => {
+    expect(runSynthesisInvariant(researchWorkflowPath, ['alpha finding'], 2)).toMatchObject({
+      event: 'synthesis_incomplete',
+      severity: 'error',
+      totalIterations: 2,
+      identifiableFindingCount: 2,
+      missingStructuredFindingCount: 1,
+      invariantFailures: expect.arrayContaining([
+        'structured_state_findings_partially_reflected_in_registry',
+        'structured_state_findings_missing_from_registry',
+      ]),
+    });
   });
 
-  it('fails synthesis when any lineage state row is malformed in both workflows', () => {
-    for (const yamlPath of researchWorkflowPaths) {
-      expect(runSynthesisInvariant(yamlPath, ['alpha finding', 'beta finding'], 2, true)).toMatchObject({
-        event: 'synthesis_incomplete',
-        severity: 'error',
-        stateParseFailureCount: 1,
-        invariantFailures: expect.arrayContaining(['state_jsonl_parse_failure']),
-      });
-    }
+  it('fails synthesis when any lineage state row is malformed', () => {
+    expect(runSynthesisInvariant(researchWorkflowPath, ['alpha finding', 'beta finding'], 2, true)).toMatchObject({
+      event: 'synthesis_incomplete',
+      severity: 'error',
+      stateParseFailureCount: 1,
+      invariantFailures: expect.arrayContaining(['state_jsonl_parse_failure']),
+    });
   });
 
-  it('keeps confirm-mode resource-map emission bound to the parsed command flag', () => {
-    const confirmWorkflow = readFileSync(researchWorkflowPaths[1], 'utf8');
-    expect(confirmWorkflow).toContain('resource_map.emit: "{resource_map_emit}"');
+  it('keeps resource-map emission bound to the parsed command flag', () => {
+    const workflow = readFileSync(researchWorkflowPath, 'utf8');
+    expect(workflow).toContain('resource_map.emit: "{resource_map_emit}"');
     // The run no longer writes the flat state-log row; it opens through the gateway and reads
     // every bound value, the emission flag included, from the config file the step is handed.
-    const runOpenStep = confirmWorkflow.slice(
-      confirmWorkflow.indexOf('      step_create_state_log:\n'),
-      confirmWorkflow.indexOf('      step_create_strategy:\n'),
+    const runOpenStep = workflow.slice(
+      workflow.indexOf('      step_create_state_log:\n'),
+      workflow.indexOf('      step_create_strategy:\n'),
     );
     expect(runOpenStep).toContain('fs.readFileSync(configPath)');
-    expect(confirmWorkflow).not.toContain('resource_map.emit: true');
+    expect(workflow).not.toContain('resource_map.emit: true');
   });
 });
 

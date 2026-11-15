@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/002-table-row-matching",
+  "description": "The writer reuses an id only through a `source:` HTML comment under an appendix heading or through an unkeyed appendix item with the same question and",
+  "keywords": [
+    "writer",
+    "reuses",
+    "only",
+    "source",
+    "html",
+    "comment",
+    "appendix",
+    "heading",
+    "unkeyed",
+    "item",
+    "same",
+    "question"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.546Z",
+  "specId": "002",
+  "folderSlug": "table-row-matching",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "02-11-26_15-13__re-proved-table-row-matching-in-the-006-claude.md",
+    "02-11-26_15-35__recorded-the-operator-answers-that-closed-table.md",
+    "02-11-26_15-35__refreshed-generated-metadata-after-002-closed-on.md",
+    "02-11-26_21-58__deep-review-of-the-series-luna-five-iterations.md"
+  ]
+}

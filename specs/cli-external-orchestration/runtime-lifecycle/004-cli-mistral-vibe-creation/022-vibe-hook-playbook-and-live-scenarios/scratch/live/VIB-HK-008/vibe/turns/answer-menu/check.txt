@@ -1,0 +1,3 @@
+$ [ "$(grep -c . .skilled/skills/.state/ask-surface/fires.jsonl)" -eq 1 ] && echo answered-menu-earned-no-second-retry
+answered-menu-earned-no-second-retry
+[exit 0]

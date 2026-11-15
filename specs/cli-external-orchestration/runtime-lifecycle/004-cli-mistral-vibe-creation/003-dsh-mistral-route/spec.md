@@ -21,14 +21,14 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 12 |
 | **Predecessor** | 002-mistral-provider-roster |
 | **Successor** | 004-vibe-contract-pin |
-| **Handoff Criteria** | A keyed dsh dispatch on the Mistral route exits 0 with `final.reason.kind` `completed` |
+| **Handoff Criteria** | A keyed dsh dispatch on the Mistral route exits 0 with `final.reason.kind` `completed`. Not met: the route was retired on 2026-11-15, see Outcome |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -47,6 +47,8 @@ This is **Phase 3** of the Mistral as a provider across the CLI runtimes and Mis
 **Deliverables**:
 - `.dsh/patches/route-mistral-deepseek.patch.yml`, drafted in `scratch/draft-route-mistral-deepseek.patch.yml`.
 - A third roster row in the cli-deepseek-harness references and `hard-rules.json`.
+
+**Outcome (2026-11-15)**: the route was built, then retired. Keyed runs on dsh 0.2.2-rc.3 failed: Mistral rejects the `store` field, and with any reasoning level it streams `thinking` chunks dsh cannot read. Only reasoning `off` completed. The operator decided Mistral work goes through Vibe, so the roster is back to two routes and REQ-002 and SC-002 are not met.
 <!-- /ANCHOR:phase-context -->
 
 ---

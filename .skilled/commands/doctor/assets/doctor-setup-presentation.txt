@@ -38,7 +38,7 @@ Render this table first, before any leg runs.
 | `/doctor:skill-advisor skill-graph-freshness` | Drift between the compiled, SQLite and on-disk skill graph |
 | `/doctor:skill-advisor router-reach` | Whether each declared routing phrase reaches its hub |
 | `/doctor:skill-advisor embedder` | Meaning matching for commands: whether the local embedder answers, what it costs, and the plan that pulls the model and starts the server after a yes |
-| `/doctor:deep-loop` | Deep-loop coverage graphs and convergence for research, review and council runs |
+| `/doctor:deep-loop` | Deep-loop coverage graphs and convergence for research and review runs |
 | `/doctor:mcp` | Code Mode install and debug, its UTCP configuration and runtime registration |
 | `/doctor:install [--root <dir>] [--runtimes <list>] [--json]` | Putting Skilled into your own project repo: the build check, what is already linked, and the ordered setup commands to run |
 | `/doctor:symlink [check|link|unlink] [--json] [--root <dir>]` | The framework links in a project repo: which runtime folders are linked, broken or missing, linking them over a printed plan and its digest, and undoing one recorded run |
@@ -73,15 +73,15 @@ Status: [OK|FAIL|ERROR]
 Mutation class: read-only
 Evidence: [N] legs, [N] passed, [N] failed, [N] skipped, [N] degraded, [N] errors
 Recommendation: [the doctor command for each failing or degraded leg, or none]
-Last session hop: [the first line `session-relaunch.cjs history --last 1` printed, or no hop recorded yet]
+Last session hop: [the first line `session-handover.cjs history --last 1` printed, or no hop recorded yet]
 [open notes: N handoff notes not claimed yet, oldest <filename>; shown only when history printed it]
-[the line `session-relaunch.cjs window` printed: Claude context window: N tokens, or Claude context window: none configured with the two settings that supply one]
+[the line `session-handover.cjs window` printed: Claude context window: N tokens, or Claude context window: none configured with the two settings that supply one]
 [orphans: N, about M MB; list them with node .skilled/commands/doctor/scripts/orphan-process-check.cjs --reap]
 STATUS=[status]
 ```
 
 The last session hop line is informational. It shows when a session last handed over, kept, claimed or finished a handoff, and it never changes the status. The open notes line appears only while a handoff note is still open, so a hand-over nobody finished stays visible.
-The Claude context window line is informational and never changes the status. It shows the window the Claude relaunch nudge measures against. When no window is configured it names `autoCompactWindow` and `SESSION_RELAUNCH_WINDOW_TOKENS`, and the nudge stays off until one is set or a `[1m]` model runs.
+The Claude context window line is informational and never changes the status. It shows the window the Claude relaunch nudge measures against. When no window is configured it names `autoCompactWindow` and `SESSION_HANDOVER_WINDOW_TOKENS`, and the nudge stays off until one is set or a `[1m]` model runs.
 The orphan line is informational only and never changes the doctor status. A model server kept on purpose with `SPECKIT_HF_MODEL_SERVER_ORPHAN_REAP=0` also shows as unsupervised, so do not reap it. With no orphan processes, print `orphans: none`. Run the listed `--reap` command to see each process, then use its confirmation command with `--yes` only when those are the processes to stop.
 
 ### Failure Summary

@@ -1,3 +1,4 @@
 turn	status	attempts	evidence	observed
 commit	PASS	1	turns/commit	refused
 no-commit	PASS	1	turns/no-commit	no-stuff-commit
+still-staged	PASS	1	turns/still-staged	compliant-commit-only: chore(repo): add a.txt

@@ -1,0 +1,17 @@
+.skilled/changelog/skilled/v4.0.2.1.md
+.skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.2.0.md
+.skilled/skills/cli-external-orchestration/cli-mistral-vibe/changelog/v1.0.0.0.md
+.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.12.0.md
+.skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.3.0.md
+.skilled/skills/sk-doc/sk-create-command/changelog/v1.0.12.0.md
+.skilled/skills/sk-doc/sk-create-command/changelog/v1.0.13.0.md
+.skilled/skills/sk-git/changelog/v1.11.12.0.md
+.skilled/skills/system-deep-loop/changelog/v1.6.29.0.md
+.skilled/skills/system-deep-loop/changelog/v2.0.0.0.md
+.skilled/skills/system-deep-loop/changelog/v2.0.1.0.md
+.skilled/skills/system-deep-loop/changelog/v2.0.2.0.md
+.skilled/skills/system-deep-loop/deep-research/changelog/v1.15.14.0.md
+.skilled/skills/system-deep-loop/deep-research/changelog/v1.15.15.0.md
+.skilled/skills/system-deep-loop/deep-review/changelog/v1.11.16.0.md
+.skilled/skills/system-deep-loop/deep-review/changelog/v1.11.17.0.md
+.skilled/skills/system-deep-loop/runtime/changelog/v1.9.17.0.md

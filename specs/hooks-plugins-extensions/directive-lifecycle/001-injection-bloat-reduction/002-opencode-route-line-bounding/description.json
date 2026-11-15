@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/002-opencode-route-line-bounding",
+  "description": "`renderCompiledRouteSummaryLine` in `.opencode/plugins/mk-skill-advisor.js` appends an additive line to every OpenCode advisor response: `Compiled",
+  "keywords": [
+    "rendercompiledroutesummaryline",
+    "opencode",
+    "plugins",
+    "mk-skill-advisor",
+    "appends",
+    "additive",
+    "line",
+    "every",
+    "advisor",
+    "response",
+    "compiled"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.168Z",
+  "specId": "002",
+  "folderSlug": "opencode-route-line-bounding",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "directive-lifecycle",
+    "001-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

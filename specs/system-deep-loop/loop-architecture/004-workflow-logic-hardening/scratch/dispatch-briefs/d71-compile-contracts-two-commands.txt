@@ -1,0 +1,31 @@
+ALLOWED WRITE PATHS (R = .skilled/skills/system-deep-loop/runtime):
+R/scripts/compile-command-contracts.cjs
+R/tests/unit/compile-command-contracts.vitest.ts  R/tests/unit/render-command-contract.vitest.ts
+R/tests/unit/check-contract-drift.vitest.ts
+and any other file under R/tests/unit whose test fails ONLY because it names the command
+`deep/ai-council` of this compiler.
+
+TASK: the contract compiler knows three commands. Make it know two, `deep/research` and
+`deep/review`.
+
+1. Find every anchor first: grep -n -i 'council' R/scripts/compile-command-contracts.cjs
+2. Delete the `'deep/ai-council'` entry from the command table, with all of its fields.
+3. Delete code that exists only for the council command: the branch near the comment
+   "Council convenes its seats in-CLI" and anything else guarded on the council id, mode or
+   loop type. A helper used by research or review stays.
+4. The usage string lists `deep/review|deep/research`.
+5. Update the unit tests: delete test cases that only cover `deep/ai-council`, and change
+   expected lists and counts from three commands to two. Do not weaken an assertion about
+   research or review.
+6. Do NOT run the compiler with --write. The compiled research and review contracts must not
+   change in this brief.
+
+CHECKS (run from R):
+  rg -n -i 'ai-council' scripts/compile-command-contracts.cjs      prints nothing
+  node --check scripts/compile-command-contracts.cjs      exits 0
+  node scripts/check-contract-drift.cjs      prints a line with OK commands=2
+  node_modules/.bin/vitest run --no-coverage tests/unit/compile-command-contracts.vitest.ts tests/unit/render-command-contract.vitest.ts tests/unit/check-contract-drift.vitest.ts      all pass
+  git status --porcelain -- ../../../commands/deep/assets/compiled | grep -E 'deep-(research|review)'      prints nothing
+
+REPORT: the line ranges you deleted in the script, each test you deleted or changed with one
+line why, then the output of each check.

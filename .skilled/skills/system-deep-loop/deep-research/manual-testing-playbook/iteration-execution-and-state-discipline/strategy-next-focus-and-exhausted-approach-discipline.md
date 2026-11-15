@@ -1,7 +1,7 @@
 ---
 title: "DR-009 -- Strategy “Next Focus” and exhausted-approach discipline"
 description: "Verify that the loop honors the strategy file’s Next Focus and avoids approaches marked exhausted or blocked."
-version: 1.14.0.15
+version: 1.14.1.0
 ---
 
 # DR-009 -- Strategy “Next Focus” and exhausted-approach discipline
@@ -47,7 +47,7 @@ Validate deep-research iterations follow Next Focus and avoid exhausted or block
 ### Commands
 1. `bash: rg -n 'Next Focus|Exhausted Approaches|What Worked|What Failed' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
 2. `bash: rg -n 'Exhausted Approaches|MANDATORY PRE-CHECK|RECOVERY' .skilled/agents/deep-research.md`
-3. `bash: rg -n 'least_explored|next_focus|remaining_questions_list' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+3. `bash: rg -n 'least_explored|next_focus|remaining_questions_list' .skilled/commands/deep/assets/deep-research.yaml`
 ### Expected
 Next Focus is read explicitly, exhausted approaches are treated as do-not-retry, and recovery mode consults deferred ideas instead of repeating blocked tactics.
 ### Evidence
@@ -74,8 +74,7 @@ If wording differs between docs, privilege the runtime pre-check plus the state-
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Strategy file requirements; use `ANCHOR:strategy-file` |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Ideas backlog and recovery focus; use `ANCHOR:phase-iteration-loop` |
 | `.skilled/agents/deep-research.md` | Exhausted-approach discipline and focus selection; inspect `Step 2: Determine Focus` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Loop focus extraction |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Loop focus extraction |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Loop focus extraction |
 
 ---
 

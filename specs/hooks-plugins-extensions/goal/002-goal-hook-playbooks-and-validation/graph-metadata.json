@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/goal/002-goal-hook-playbooks-and-validation",
+  "spec_folder": "hooks-plugins-extensions/goal/002-goal-hook-playbooks-and-validation",
+  "parent_id": "hooks-plugins-extensions/goal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "hooks/003-goal-hooks-cross-runtime",
+        "reason": "Validates and adds playbook coverage for the goal hook that packet 003 shipped",
+        "source": "author",
+        "spec_folder": "hooks/003-goal-hooks-cross-runtime",
+        "title": "Cross-runtime goal hooks + dispatch-shape coverage + OpenCode symlink mirror"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal hook playbook",
+      "goal hook validation",
+      "cross runtime goal hook testing",
+      "goal manage cli playbook",
+      "goal hook playbook plan",
+      "goal hook validation plan",
+      "cross runtime goal hook proof method",
+      "goal hook playbook tasks",
+      "tasks core",
+      "goal hook validation summary",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "goal",
+      "hook",
+      "playbook",
+      "validation",
+      "cross",
+      "runtime",
+      "testing",
+      "manage",
+      "cli",
+      "plan",
+      "proof",
+      "method"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "evidence/pi-injection-excerpt.txt",
+      "evidence/devin-injection-excerpt.txt",
+      "evidence/devin-model-reply.txt",
+      "evidence/cursor-recorded-evidence.txt",
+      "evidence/opencode-mkgoal-finding.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-injection-excerpt.txt",
+        "kind": "file",
+        "path": "evidence/pi-injection-excerpt.txt",
+        "source": "derived"
+      },
+      {
+        "name": "devin-injection-excerpt.txt",
+        "kind": "file",
+        "path": "evidence/devin-injection-excerpt.txt",
+        "source": "derived"
+      },
+      {
+        "name": "devin-model-reply.txt",
+        "kind": "file",
+        "path": "evidence/devin-model-reply.txt",
+        "source": "derived"
+      },
+      {
+        "name": "cursor-recorded-evidence.txt",
+        "kind": "file",
+        "path": "evidence/cursor-recorded-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-mkgoal-finding.txt",
+        "kind": "file",
+        "path": "evidence/opencode-mkgoal-finding.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Playbooks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Cross",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Record Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Packet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet `003-goal-hooks-cross-runtime` shipped the runtime-neutral session-goal hook for Devin, Cursor, and Pi (plus the OpenCode plugin symlink mirror), but it closed without any manual-testing-playbook coverage for the hook and without live evidence that the hook's injected `[activegoal]` block actually reaches the model turn in each runtime",
+    "created_at": "2026-07-29T09:41:34.533Z",
+    "last_save_at": "2026-11-15T07:08:31.836Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9e45fd86577724ec7426281a7d73e0f165891279fb57d47fb5b2df34c5c5972b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "aa80b3bf6c94f9c7de85bf470b11e90336938a257c47aced3d2f15f042d48605",
+      "plan.md": "861b74396e9b791ce5d907961935f1b00f0ee76409a536717b707fdf0ebe116f",
+      "tasks.md": "737528b039f422a702bcc06d5368a9e86f1aa07dca9f2a3fd396c2c61f4b1329",
+      "implementation-summary.md": "be354b84d27ef89265635ab07e205b5328e326bd2843110bafa71ef0cf04ac01"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

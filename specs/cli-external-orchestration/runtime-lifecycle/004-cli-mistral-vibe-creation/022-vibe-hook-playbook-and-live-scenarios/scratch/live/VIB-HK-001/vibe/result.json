@@ -2,12 +2,12 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 1733008094,
-  "socket": "conv-26878-vibe",
-  "session_id": "1217125b-fc54-4de8-af5c-e57906f22d37",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.fCfx0McNOD/vibe",
-  "started_at": "2026-11-14T23:59:31.806Z",
-  "finished_at": "2026-11-15T00:00:25.444Z",
+  "seed": 719636357,
+  "socket": "conv-75466-vibe",
+  "session_id": "c1d95fce-e5a7-46e0-bc36-22ebc7f0daf3",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.FZ8yzVhAXx/vibe",
+  "started_at": "2026-11-15T12:16:27.091Z",
+  "finished_at": "2026-11-15T12:17:39.968Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -39,6 +39,15 @@
       "blocker": null,
       "observed": "spec-gate-open",
       "evidence": "turns/request"
+    },
+    {
+      "id": "answer-skip",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "gate-closed-by-skip-answer",
+      "evidence": "turns/answer-skip"
     }
   ]
 }

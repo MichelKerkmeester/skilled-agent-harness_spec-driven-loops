@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/hook-platform/005-smart-rule-injection/003-shallow-evidence-claims",
+  "description": "A confident claim is cheap to write and expensive to unwind",
+  "keywords": [
+    "confident",
+    "claim",
+    "cheap",
+    "write",
+    "expensive",
+    "unwind"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.227Z",
+  "specId": "003",
+  "folderSlug": "shallow-evidence-claims",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform",
+    "005-smart-rule-injection"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index",
+  "description": "Equivalent hooks used different runtime adapters, module formats, and shell entrypoints",
+  "keywords": [
+    "equivalent",
+    "hooks",
+    "different",
+    "runtime",
+    "adapters",
+    "module",
+    "formats",
+    "shell",
+    "entrypoints"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.221Z",
+  "specId": "004",
+  "folderSlug": "hook-feature-flags-and-hub-index",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -9960,7 +9960,7 @@
       "lastUpdated": "2026-11-13T10:04:39.664Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime",
+      "specFolder": "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime",
       "description": "Port the OpenCode passive session-goal system to cli-devin, cli-cursor and cli-pi via a runtime-neutral goal hook concern, activate the dormant",
       "keywords": [
         "port",
@@ -9982,7 +9982,7 @@
       "lastUpdated": "2026-11-13T10:04:39.701Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state",
+      "specFolder": "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/001-goal-core-and-state",
       "description": "OpenCode sessions carry a passive session-goal system: `mk-goal.js` injects an `[activegoal:<goalId>]…[/activegoal]` block every turn via",
       "keywords": [
         "opencode",
@@ -10003,7 +10003,7 @@
       "lastUpdated": "2026-11-13T10:04:39.682Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/002-capability-probes",
+      "specFolder": "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/002-capability-probes",
       "description": "Phases 003-005 of the parent packet each need to build a per-runtime goal-hook adapter (devin, cursor, pi), but two of the three verify/continue",
       "keywords": [
         "phases",
@@ -10023,7 +10023,7 @@
       "lastUpdated": "2026-11-13T10:04:39.688Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/003-devin-goal-hooks",
+      "specFolder": "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/003-devin-goal-hooks",
       "description": "Devin sessions on this repo have no way to carry an operator-set goal across turns",
       "keywords": [
         "devin",
@@ -10039,7 +10039,7 @@
       "lastUpdated": "2026-11-13T10:04:39.690Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/004-cursor-goal-hooks",
+      "specFolder": "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/004-cursor-goal-hooks",
       "description": "A goal set for the work does not survive into a Cursor session",
       "keywords": [
         "goal",
@@ -10052,7 +10052,7 @@
       "lastUpdated": "2026-11-13T10:04:39.694Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/005-pi-goal-hooks",
+      "specFolder": "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/005-pi-goal-hooks",
       "description": "The runtime-neutral goal core (phase 001) and the capability-probe matrix (phase 002) give cli-pi sessions everything needed to carry an operator-set",
       "keywords": [
         "runtime-neutral",
@@ -10072,7 +10072,7 @@
       "lastUpdated": "2026-11-13T10:04:39.697Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/006-dispatch-shape-coverage",
+      "specFolder": "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/006-dispatch-shape-coverage",
       "description": "`cli-devin`, `cli-cursor`, and `cli-pi` already declare `hardrules:` in their SKILL.md frontmatter (availability check, self-invocation guard,",
       "keywords": [
         "cli-devin",
@@ -10091,7 +10091,7 @@
       "lastUpdated": "2026-11-13T10:04:39.699Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks",
+      "specFolder": "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks",
       "description": "Add relative, browsability-only symlinks inside .opencode/hooks/ concern folders pointing at the real OpenCode plugin files in .opencode/plugins/, so",
       "keywords": [
         "relative",
@@ -10111,7 +10111,7 @@
       "lastUpdated": "2026-11-13T10:04:39.700Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/008-goal-docs-hygiene",
+      "specFolder": "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/008-goal-docs-hygiene",
       "description": "The `/goal:goal-opencode` command's file moved into a `commands/goal/` subfolder during an earlier rename, but four references across the repo still",
       "keywords": [
         "goal",
@@ -10132,7 +10132,7 @@
       "lastUpdated": "2026-11-13T10:04:39.701Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/002-goal-hook-playbooks-and-validation",
+      "specFolder": "hooks-plugins-extensions/goal/002-goal-hook-playbooks-and-validation",
       "description": "Packet `003-goal-hooks-cross-runtime` shipped the runtime-neutral session-goal hook for Devin, Cursor, and Pi (plus the OpenCode plugin symlink",
       "keywords": [
         "packet",
@@ -10151,7 +10151,7 @@
       "lastUpdated": "2026-11-13T10:04:39.706Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook",
       "description": "The fable governor per-turn hook re-states a compact disposition capsule every turn, but AGENTS.md now embeds richer governor and",
       "keywords": [
         "fable",
@@ -10172,7 +10172,7 @@
       "lastUpdated": "2026-11-13T10:04:40.002Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/001-research",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/001-research",
       "description": "The fable governor per-turn hook re-states a compact disposition capsule (\"thermostat\") on every turn, while AGENTS.md now carries the durable",
       "keywords": [
         "fable",
@@ -10195,7 +10195,7 @@
       "lastUpdated": "2026-11-13T10:04:39.718Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/002-governor-parity",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/002-governor-parity",
       "description": "The per-turn governor capsule is inconsistent across runtimes: canonical composition points carry hygiene + governor + proof-over-appearance",
       "keywords": [
         "per-turn",
@@ -10214,7 +10214,7 @@
       "lastUpdated": "2026-11-13T10:04:39.724Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/003-pi-directive-capsule",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/003-pi-directive-capsule",
       "description": "Pi sessions get no per-turn direction about subagent dispatch: nothing says to prefer the native pi-subagents plugin over cli- routes, and AGENTS.md",
       "keywords": [
         "sessions",
@@ -10237,7 +10237,7 @@
       "lastUpdated": "2026-11-13T10:04:39.799Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/004-pi-directive-enforcement",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/004-pi-directive-enforcement",
       "description": "The capsule line (phase 003) is reminder-only: pi can still silently spawn `cursor-agent -p`, `devin -p`, `opencode run`, etc",
       "keywords": [
         "capsule",
@@ -10256,7 +10256,7 @@
       "lastUpdated": "2026-11-13T10:04:39.806Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/005-agents-md-pi-row",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/005-agents-md-pi-row",
       "description": "AGENTS.md §8 Runtime Agent Directory Resolution lists Opencode, Claude Code, and Codex CLI — pi is absent, so pi agents resolving their directory have",
       "keywords": [
         "agents",
@@ -10276,7 +10276,7 @@
       "lastUpdated": "2026-11-13T10:04:39.810Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/006-dispatch-authorization-hardening",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/006-dispatch-authorization-hardening",
       "description": "The current working tree contains a partial Pi guard: it denies `cli-pi`, stores an input event, strips known advisor/directive markers, and has a",
       "keywords": [
         "current",
@@ -10299,7 +10299,7 @@
       "lastUpdated": "2026-11-13T10:04:39.814Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/007-dispatch-validation-evidence",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/007-dispatch-validation-evidence",
       "description": "The packet currently mixes pure predicate assertions, shared matcher tests, registered Pi behavior, and live startup into one evidence story",
       "keywords": [
         "packet",
@@ -10322,7 +10322,7 @@
       "lastUpdated": "2026-11-13T10:04:39.818Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/008-phase-state-reconciliation",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/008-phase-state-reconciliation",
       "description": "The packet's phase implementation summaries contain contradictory state: some frontmatter says planned or not started while the body says implemented,",
       "keywords": [
         "packet",
@@ -10343,7 +10343,7 @@
       "lastUpdated": "2026-11-13T10:04:39.822Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/009-injection-contract-directive-sync",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/009-injection-contract-directive-sync",
       "description": "The review's P3 finding requires `injection-contract.md` to document all three fixed advisor directives — comment hygiene, governor, and",
       "keywords": [
         "review",
@@ -10361,7 +10361,7 @@
       "lastUpdated": "2026-11-13T10:04:39.824Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/010-cross-runtime-coverage-and-verification",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/010-cross-runtime-coverage-and-verification",
       "description": "A parked deep review of packet 007 (`review/deep-review-findings-registry.json`, session `review-1785915676506`) surfaced finding R1-P1-001: \"Quoted",
       "keywords": [
         "parked",
@@ -10380,7 +10380,7 @@
       "lastUpdated": "2026-11-13T10:04:39.829Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/011-pi-subagent-directive-removal",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/011-pi-subagent-directive-removal",
       "description": "Phase 003 injected a Pi-only per-turn directive mandating the native pi-subagents plugin for subagent delegation, and phase 006 added tool-call",
       "keywords": [
         "phase",
@@ -10399,7 +10399,7 @@
       "lastUpdated": "2026-11-13T10:04:39.833Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation",
+      "specFolder": "hooks-plugins-extensions/goal/003-goal-isolation",
       "description": "The cross-runtime core resolves every Pi and Cursor goal operation to one fixed file, `active-goal.json`",
       "keywords": [
         "cross-runtime",
@@ -10417,7 +10417,7 @@
       "lastUpdated": "2026-11-13T10:04:40.134Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/001-goal-isolation-research",
+      "specFolder": "hooks-plugins-extensions/goal/003-goal-isolation/001-goal-isolation-research",
       "description": "Pi and Cursor currently share one repository-level `active-goal.json`",
       "keywords": [
         "cursor",
@@ -10431,7 +10431,7 @@
       "lastUpdated": "2026-11-13T10:04:40.069Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/002-session-scoped-core",
+      "specFolder": "hooks-plugins-extensions/goal/003-goal-isolation/002-session-scoped-core",
       "description": "The shared core hardcodes one `active-goal.json` and exposes operations that receive no session identity",
       "keywords": [
         "shared",
@@ -10449,7 +10449,7 @@
       "lastUpdated": "2026-11-13T10:04:40.095Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/003-pi-and-runtime-bindings",
+      "specFolder": "hooks-plugins-extensions/goal/003-goal-isolation/003-pi-and-runtime-bindings",
       "description": "Pi and Cursor now bind every supported lifecycle operation to native session identity",
       "keywords": [
         "cursor",
@@ -10466,7 +10466,7 @@
       "lastUpdated": "2026-11-13T10:04:40.100Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/004-legacy-cutover-and-docs",
+      "specFolder": "hooks-plugins-extensions/goal/003-goal-isolation/004-legacy-cutover-and-docs",
       "description": "The legacy singleton may contain a real objective but has no trustworthy owner",
       "keywords": [
         "legacy",
@@ -10480,7 +10480,7 @@
       "lastUpdated": "2026-11-13T10:04:40.105Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/005-verification-and-validation",
+      "specFolder": "hooks-plugins-extensions/goal/003-goal-isolation/005-verification-and-validation",
       "description": "The final integrated checks now prove that native Pi management, scoped persistence, adapter injection, legacy cutover, registrations, and operator",
       "keywords": [
         "final",
@@ -10502,7 +10502,7 @@
       "lastUpdated": "2026-11-13T10:04:40.110Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/006-opencode-goal-optimization-and-devin-removal",
+      "specFolder": "hooks-plugins-extensions/goal/003-goal-isolation/006-opencode-goal-optimization-and-devin-removal",
       "description": "`mk-goal.js` derives a state filename by hex-encoding the full OpenCode session id",
       "keywords": [
         "mk-goal",
@@ -10517,7 +10517,7 @@
       "lastUpdated": "2026-11-13T10:04:40.122Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/005-retire-governor-and-proof-directives",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/003-retire-governor-and-proof-directives",
       "description": "Three constant directives were appended to every advisor brief on every user turn, on every",
       "keywords": [
         "three",
@@ -10533,7 +10533,7 @@
       "lastUpdated": "2026-11-13T10:04:40.138Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/001-hook-docs-relocation",
+      "specFolder": "hooks-plugins-extensions/hook-platform/002-hook-docs-relocation",
       "description": "The folder `.opencode/skills/system-spec-kit/references/hooks/` holds four documents that describe hooks, not the spec-kit itself: the injection",
       "keywords": [
         "folder",
@@ -10553,7 +10553,7 @@
       "lastUpdated": "2026-11-13T10:04:40.150Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction",
       "description": "The `hooks/001` research measured that the three always-on directives (comment-hygiene, governor, proof-over-appearance) are ~763 bytes / ~190",
       "keywords": [
         "hooks",
@@ -10570,7 +10570,7 @@
       "lastUpdated": "2026-11-13T10:04:40.816Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/001-measurement-and-receipts-foundation",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/001-measurement-and-receipts-foundation",
       "description": "No canonical, cross-runtime identity exists for the always-on directive, route, Gate, and Pi-dispatch blocks that `render.ts` and its six runtime",
       "keywords": [
         "canonical",
@@ -10590,7 +10590,7 @@
       "lastUpdated": "2026-11-13T10:04:40.154Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/002-opencode-route-line-bounding",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/002-opencode-route-line-bounding",
       "description": "`renderCompiledRouteSummaryLine` in `.opencode/plugins/mk-skill-advisor.js` appends an additive line to every OpenCode advisor response: `Compiled",
       "keywords": [
         "rendercompiledroutesummaryline",
@@ -10608,7 +10608,7 @@
       "lastUpdated": "2026-11-13T10:04:40.157Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/003-opencode-transform-dedup",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/003-opencode-transform-dedup",
       "description": "OpenCode's `mk-skill-advisor.js` and `mk-spec-memory.js` each register an independent `experimental.chat.system.transform` handler that can append to",
       "keywords": [
         "opencode",
@@ -10626,7 +10626,7 @@
       "lastUpdated": "2026-11-13T10:04:40.159Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/004-full-first-route-only-repeats",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/004-full-first-route-only-repeats",
       "description": "Today every qualifying turn on Claude Code, Codex, Devin, and the OpenCode advisor component delivers the full ~806-byte advisor-plus-directives",
       "keywords": [
         "today",
@@ -10648,7 +10648,7 @@
       "lastUpdated": "2026-11-13T10:04:40.161Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/005-gate3-relay-edge-triggering",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/005-gate3-relay-edge-triggering",
       "description": "Gate-3 relay (`GATE3QUESTION` in `spec-gate-core.mjs`) re-delivers the identical question on every mutation-positive turn while gate state remains",
       "keywords": [
         "gate-3",
@@ -10670,7 +10670,7 @@
       "lastUpdated": "2026-11-13T10:04:40.163Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/006-pi-dispatch-and-compaction",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/006-pi-dispatch-and-compaction",
       "description": "`PISUBAGENTDISPATCHDIRECTIVE` in `prompt-advisor.ts` emits a 554-byte dispatch directive on every non-empty parent input, even on advisor failure, and",
       "keywords": [
         "pisubagentdispatchdirective",
@@ -10690,7 +10690,7 @@
       "lastUpdated": "2026-11-13T10:04:40.165Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation",
       "description": "None of candidates 002-006 (OpenCode route bounding, transform dedup, full-first/route-only-repeats, Gate suppression, Pi compaction) can safely",
       "keywords": [
         "none",
@@ -10710,7 +10710,7 @@
       "lastUpdated": "2026-11-13T10:04:40.172Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/008-sk-code-alignment",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/008-sk-code-alignment",
       "description": "The injection-bloat shadow program (packet 002, phases 001-007) landed roughly sixteen changed code files across the `system-skill-advisor` runtime,",
       "keywords": [
         "injection-bloat",
@@ -10731,7 +10731,7 @@
       "lastUpdated": "2026-11-13T10:04:40.311Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/009-testing-doc-alignment",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/009-testing-doc-alignment",
       "description": "The injection-bloat changes (delivery confirmation now requires an observed receipt with `lifecycleEpoch >= 1`, Gate-3 delivery observers fire",
       "keywords": [
         "injection-bloat",
@@ -10750,7 +10750,7 @@
       "lastUpdated": "2026-11-13T10:04:40.496Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/010-playbook-cheapest-model",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/010-playbook-cheapest-model",
       "description": "Phase 009 established that the injection-bloat hooks were never exercised live inside their host runtimes and that the manual-testing-playbooks were",
       "keywords": [
         "phase",
@@ -10768,7 +10768,7 @@
       "lastUpdated": "2026-11-13T10:04:40.501Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/011-playbook-results-automation",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/011-playbook-results-automation",
       "description": "Packet 021 established the dated run-label grammar, automatic `benchmark/reports/` destination, seven-file output, and drift-proof index for Lane C",
       "keywords": [
         "packet",
@@ -10789,7 +10789,7 @@
       "lastUpdated": "2026-11-13T10:04:40.518Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/012-playbook-fails-remediation",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/012-playbook-fails-remediation",
       "description": "The 011 wrapper run produced 30 manual-testing-playbook FAIL records across Codex, OpenCode, Pi, Cursor, and Devin",
       "keywords": [
         "wrapper",
@@ -10807,7 +10807,7 @@
       "lastUpdated": "2026-11-13T10:04:40.521Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/013-pi-local-directive-dedup",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/013-pi-local-directive-dedup",
       "description": "Stop Pi from visibly re-appending the three constant advisor directives onto every prompt, by suppressing them on a confirmed session's proven",
       "keywords": [
         "stop",
@@ -10829,7 +10829,7 @@
       "lastUpdated": "2026-11-13T10:04:40.523Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/014-cross-runtime-directive-lifecycle",
       "description": "Extend the 013 lifecycle rule to the model-context [SYS] runtimes: a canonical directive-lifecycle core drops the three constant advisor directives on",
       "keywords": [
         "extend",
@@ -10850,7 +10850,7 @@
       "lastUpdated": "2026-11-13T10:04:40.526Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/015-directive-docs-alignment",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/015-directive-docs-alignment",
       "description": "Audit-driven documentation alignment for the live directive-lifecycle feature (013/014): register the three directive lifecycle envs in the canonical",
       "keywords": [
         "audit-driven",
@@ -10869,7 +10869,7 @@
       "lastUpdated": "2026-11-13T10:04:40.560Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/016-directive-playbook-alignment",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/016-directive-playbook-alignment",
       "description": "Close the playbook/catalog coverage gap left by the live directive-lifecycle feature (013/014): add manual scenario 457 validating first-message full,",
       "keywords": [
         "close",
@@ -10890,7 +10890,7 @@
       "lastUpdated": "2026-11-13T10:04:40.561Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/017-adapter-live-delivery-verification",
       "description": "This phase was created from a false diagnosis that treated `.codex/.cursor/.devin/hooks/user-prompt-submit.js` as stale regular-file copies with dead",
       "keywords": [
         "phase",
@@ -10910,7 +10910,7 @@
       "lastUpdated": "2026-11-13T10:04:40.563Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
       "description": "Before this phase, the canonical decision recorded transcript size only when it delivered the full directive block",
       "keywords": [
         "phase",
@@ -10928,7 +10928,7 @@
       "lastUpdated": "2026-11-13T10:04:40.775Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only",
+      "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/019-pi-directive-startup-compaction-only",
       "description": "Constant advisor directives shown on every cli-pi message.",
       "keywords": [
         "constant",
@@ -10942,7 +10942,7 @@
       "lastUpdated": "2026-11-13T10:04:40.779Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename",
+      "specFolder": "hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename",
       "description": "Every runtime hook entry point is named `mk-<concern>` (e.g",
       "keywords": [
         "every",
@@ -10956,7 +10956,7 @@
       "lastUpdated": "2026-11-13T10:04:40.818Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index",
+      "specFolder": "hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index",
       "description": "Equivalent hooks used different runtime adapters, module formats, and shell entrypoints",
       "keywords": [
         "equivalent",
@@ -10972,7 +10972,7 @@
       "lastUpdated": "2026-11-13T10:04:40.822Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection",
+      "specFolder": "hooks-plugins-extensions/hook-platform/005-smart-rule-injection",
       "description": "Decide from repository evidence which repo rules, if any, are better served by a prompt-time injection hook than by the Gate 5 load, and design the",
       "keywords": [
         "decide",
@@ -10992,7 +10992,7 @@
       "lastUpdated": "2026-11-13T10:04:40.854Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/001-deep-research",
+      "specFolder": "hooks-plugins-extensions/hook-platform/005-smart-rule-injection/001-deep-research",
       "description": "Repo rules load at Gate 5, which fires on the first write of a session",
       "keywords": [
         "repo",
@@ -11007,7 +11007,7 @@
       "lastUpdated": "2026-11-13T10:04:40.832Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/002-event-triggered-injection",
+      "specFolder": "hooks-plugins-extensions/hook-platform/005-smart-rule-injection/002-event-triggered-injection",
       "description": "An event carries a moment an always-loaded document cannot know about",
       "keywords": [
         "event",
@@ -11022,7 +11022,7 @@
       "lastUpdated": "2026-11-13T10:04:40.842Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/003-shallow-evidence-claims",
+      "specFolder": "hooks-plugins-extensions/hook-platform/005-smart-rule-injection/003-shallow-evidence-claims",
       "description": "A confident claim is cheap to write and expensive to unwind",
       "keywords": [
         "confident",
@@ -11035,7 +11035,7 @@
       "lastUpdated": "2026-11-13T10:04:40.849Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair",
+      "specFolder": "hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair",
       "description": "The OpenCode dual-compat build recorded two dispatch adapter suites as failing before it began and still failing after:",
       "keywords": [
         "opencode",
@@ -11052,7 +11052,7 @@
       "lastUpdated": "2026-11-13T10:04:40.862Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard",
+      "specFolder": "hooks-plugins-extensions/env-secret-guard/001-env-secret-guard",
       "description": "An agent in a Skilled checkout can read, edit or patch a `.env` file on every runtime this repository supports",
       "keywords": [
         "agent",
@@ -11071,7 +11071,7 @@
       "lastUpdated": "2026-11-13T10:04:40.880Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency",
+      "specFolder": "hooks-plugins-extensions/skill-advisor/001-pi-input-hook-latency",
       "description": "The operator observed that PI CLI adds delay before a message is sent, while the opencode plugin, the codex hooks, and the claude hooks do not",
       "keywords": [
         "operator",
@@ -11090,7 +11090,7 @@
       "lastUpdated": "2026-11-13T10:04:40.883Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix",
       "description": "A captured external-AI conversation (`lumo.md`) claims that Reasonix — a DeepSeek-native CLI agent — is engineered around prefix caching (asserting a",
       "keywords": [
         "captured",
@@ -11111,7 +11111,7 @@
       "lastUpdated": "2026-11-13T10:04:41.015Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/001-research",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research",
       "description": "`lumo.md` asserts specific, uncited figures — Reasonix at a ~99.8% cache-hit rate, a ~$61→$12 single-day cost drop, DeepSeek-native prefix caching —",
       "keywords": [
         "lumo",
@@ -11132,7 +11132,7 @@
       "lastUpdated": "2026-11-13T10:04:40.931Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/002-synthesis-and-decision",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/002-synthesis-and-decision",
       "description": "Phase 1 produces verified findings, a claims ledger, and a feasibility picture, but no decision",
       "keywords": [
         "phase",
@@ -11148,7 +11148,7 @@
       "lastUpdated": "2026-11-13T10:04:40.933Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer",
       "description": "`pi-cache-optimizer` v2.8.0 (installed, live stats confirm 89% hit rate / ~87% token-cache rate on `openai-codex/gpt-5.6-luna`) already has an",
       "keywords": [
         "pi-cache-optimizer",
@@ -11167,7 +11167,7 @@
       "lastUpdated": "2026-11-13T10:04:40.935Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/004-adopt-deep-pi-deepseek",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/004-adopt-deep-pi-deepseek",
       "description": "The operator intends to route more work through DeepSeek going forward",
       "keywords": [
         "operator",
@@ -11181,7 +11181,7 @@
       "lastUpdated": "2026-11-13T10:04:40.937Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/005-verification-and-decision-reconciliation",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/005-verification-and-decision-reconciliation",
       "description": "Phases 003 and 004 each verify their own piece in isolation (the fork's diff scope; deep-pi's self-gating)",
       "keywords": [
         "phases",
@@ -11198,7 +11198,7 @@
       "lastUpdated": "2026-11-13T10:04:40.940Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/006-fork-and-improve-deep-pi",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/006-fork-and-improve-deep-pi",
       "description": "A full read of `deep-pi`'s installed source (1,299 lines across 7 files) surfaced real, source-confirmed gaps: two silent failure counters nothing",
       "keywords": [
         "full",
@@ -11222,7 +11222,7 @@
       "lastUpdated": "2026-11-13T10:04:40.947Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi",
       "description": "A full read of `deep-pi`'s installed source (1,299 lines across 7 files — `deeppi.ts`, `eligibility.ts`, `stability.ts`, `stormbreaker.ts`,",
       "keywords": [
         "full",
@@ -11241,7 +11241,7 @@
       "lastUpdated": "2026-11-13T10:04:40.942Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/002-vendor-and-repoint",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/002-vendor-and-repoint",
       "description": "Phase 1 produces a patched fork in a working clone outside this repo",
       "keywords": [
         "phase",
@@ -11256,7 +11256,7 @@
       "lastUpdated": "2026-11-13T10:04:40.945Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout",
       "description": "Unit tests prove fixes #1 and #2 work against synthetic inputs in isolation",
       "keywords": [
         "unit",
@@ -11271,7 +11271,7 @@
       "lastUpdated": "2026-11-13T10:04:40.946Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/007-research-fork-improvements",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/007-research-fork-improvements",
       "description": "Packet 008 shipped two working forks — `pi-cache-optimizer` (003, DeepSeek-guarded) and `deep-pi` (006, hardened DeepSeek-direct telemetry) — both",
       "keywords": [
         "packet",
@@ -11289,7 +11289,7 @@
       "lastUpdated": "2026-11-13T10:04:40.974Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/008-implement-fork-improvements",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/008-implement-fork-improvements",
       "description": "Phase 007 ran four independent research lineages (`gpt-5.6-sol`, `gpt-5.6-luna`, Grok 4.5, `deepseek-v4-flash`) over 24 forced-full-depth iterations",
       "keywords": [
         "phase",
@@ -11309,7 +11309,7 @@
       "lastUpdated": "2026-11-13T10:04:40.980Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/008-implement-fork-improvements/001-correctness-floor",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/008-implement-fork-improvements/001-correctness-floor",
       "description": "Four P0 defects were found by 007's four-lineage research and re-confirmed against the live source while authoring this spec",
       "keywords": [
         "four",
@@ -11328,19 +11328,19 @@
       "lastUpdated": "2026-11-13T10:04:40.975Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/008-implement-fork-improvements/002-observability-and-economics",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/008-implement-fork-improvements/002-observability-and-economics",
       "description": "5",
       "keywords": [],
       "lastUpdated": "2026-11-13T10:04:40.977Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/008-implement-fork-improvements/003-maintainability-and-provenance",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/008-implement-fork-improvements/003-maintainability-and-provenance",
       "description": "10",
       "keywords": [],
       "lastUpdated": "2026-11-13T10:04:40.979Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/009-fork-attribution-and-changelog",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/009-fork-attribution-and-changelog",
       "description": "Both `.pi/extensions/pi-cache-optimizer/README.md` and `.pi/extensions/deep-pi/README.md` read as if they were the unmodified upstream package",
       "keywords": [
         "extensions",
@@ -11355,7 +11355,7 @@
       "lastUpdated": "2026-11-13T10:04:40.982Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/010-doc-template-and-code-readme-alignment",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/010-doc-template-and-code-readme-alignment",
       "description": "Both `CHANGES-FROM-UPSTREAM.md` files were authored as free-form prose sections (Upstream / What Changed / Why / Verification) without following any",
       "keywords": [
         "changes-from-upstream",
@@ -11373,7 +11373,7 @@
       "lastUpdated": "2026-11-13T10:04:40.984Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/011-research-non-deepseek-optimization",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/011-research-non-deepseek-optimization",
       "description": "Packet 008's fork work guards `pi-cache-optimizer`'s two mutation hooks against DeepSeek-matched models, leaving deep-pi as the exclusive",
       "keywords": [
         "packet",
@@ -11394,7 +11394,7 @@
       "lastUpdated": "2026-11-13T10:04:41.007Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/012-implement-non-deepseek-fixes",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/012-implement-non-deepseek-fixes",
       "description": "011's research produced 15 findings (K1-K15) about `pi-cache-optimizer`'s non-DeepSeek code path",
       "keywords": [
         "research",
@@ -11410,7 +11410,7 @@
       "lastUpdated": "2026-11-13T10:04:41.009Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/013-apply-opencode-go-cache-compat",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/013-apply-opencode-go-cache-compat",
       "description": "The vendored `pi-cache-optimizer` fork emits a startup warning that `opencode-go/deepseek-v4-pro` is DeepSeek-like but its merged compat lacks",
       "keywords": [
         "vendored",
@@ -11429,7 +11429,7 @@
       "lastUpdated": "2026-11-13T10:04:41.012Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/014-fix-deepseek-compat-snippet-consistency",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/014-fix-deepseek-compat-snippet-consistency",
       "description": "In the vendored `pi-cache-optimizer` fork, the DeepSeek compat path treated `supportsLongCacheRetention` as a required/missing flag: it appeared in",
       "keywords": [
         "vendored",
@@ -11448,7 +11448,7 @@
       "lastUpdated": "2026-11-13T10:04:41.014Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support",
       "description": "The fast-mode engine, child-process handoff, and installed-environment proof span separate ownership boundaries",
       "keywords": [
         "fast-mode",
@@ -11465,7 +11465,7 @@
       "lastUpdated": "2026-11-13T10:04:41.075Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/001-fork-and-package",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/001-fork-and-package",
       "description": "The implementation needs a stable fast-mode extension baseline before handoff behavior and environment installation are added",
       "keywords": [
         "implementation",
@@ -11482,7 +11482,7 @@
       "lastUpdated": "2026-11-13T10:04:41.029Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline",
       "description": "Later phases need a stable source boundary so package identity, compatibility, and handoff changes can be reviewed independently",
       "keywords": [
         "later",
@@ -11502,7 +11502,7 @@
       "lastUpdated": "2026-11-13T10:04:41.018Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat",
       "description": "Changing the package identity can strand an existing fast-mode configuration if the loader only looks at a new path",
       "keywords": [
         "changing",
@@ -11521,7 +11521,7 @@
       "lastUpdated": "2026-11-13T10:04:41.024Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates",
       "description": "A correct source tree is not enough for Pi to load or discover the extension",
       "keywords": [
         "correct",
@@ -11535,7 +11535,7 @@
       "lastUpdated": "2026-11-13T10:04:41.027Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/002-subagent-handoff",
       "description": "A child Pi process inherits the parent process environment, but the fast-mode preference is not currently represented by a fork-owned contract",
       "keywords": [
         "child",
@@ -11553,7 +11553,7 @@
       "lastUpdated": "2026-11-13T10:04:41.039Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract",
       "description": "Child Pi processes need a stable representation of the parent's fast-mode preference",
       "keywords": [
         "child",
@@ -11568,7 +11568,7 @@
       "lastUpdated": "2026-11-13T10:04:41.032Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence",
       "description": "The Pi flag registry exposes a boolean default, so a plain false value cannot prove that the operator explicitly supplied a false flag",
       "keywords": [
         "flag",
@@ -11588,7 +11588,7 @@
       "lastUpdated": "2026-11-13T10:04:41.035Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation",
       "description": "Unit calls to a parser cannot prove that the actual child process receives the parent's environment or that a child toggle remains local to its copied",
       "keywords": [
         "unit",
@@ -11610,7 +11610,7 @@
       "lastUpdated": "2026-11-13T10:04:41.038Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/003-integration-and-tests",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests",
       "description": "Unit tests cannot prove that the extension loader, settings transition, duplicate command registry, custom footer, RPC surface, and real child process",
       "keywords": [
         "unit",
@@ -11635,7 +11635,7 @@
       "lastUpdated": "2026-11-13T10:04:41.055Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite",
       "description": "Pure helper tests can pass while extension registration, lifecycle ordering, command ownership, or status calls are wired incorrectly",
       "keywords": [
         "pure",
@@ -11657,7 +11657,7 @@
       "lastUpdated": "2026-11-13T10:04:41.041Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition",
       "description": "Installing the fork beside another extension that registers `/fast` and `--fast` creates load-order ambiguity",
       "keywords": [
         "installing",
@@ -11673,7 +11673,7 @@
       "lastUpdated": "2026-11-13T10:04:41.047Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync",
       "description": "Source and package tests cannot prove real TUI/RPC status delivery, custom-footer coexistence, or a child Pi session inheriting the preference",
       "keywords": [
         "source",
@@ -11696,7 +11696,7 @@
       "lastUpdated": "2026-11-13T10:04:41.052Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/004-pi-extension-playbooks",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/002-pi-extension-playbooks",
       "description": "The `pi-cache-optimizer` and `deep-pi` Pi extensions ship unit tests but no operator-facing manual-testing playbook, unlike",
       "keywords": [
         "pi-cache-optimizer",
@@ -11713,7 +11713,7 @@
       "lastUpdated": "2026-11-13T10:04:41.082Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/004-pi-extension-playbooks/001-cache-optimizer-playbook",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/002-pi-extension-playbooks/001-cache-optimizer-playbook",
       "description": "`pi-cache-optimizer` has 53 unit tests but no operator-facing manual-testing playbook, so there is no reproducible way to validate its",
       "keywords": [
         "pi-cache-optimizer",
@@ -11729,7 +11729,7 @@
       "lastUpdated": "2026-11-13T10:04:41.079Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/004-pi-extension-playbooks/002-deep-pi-playbook",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/002-pi-extension-playbooks/002-deep-pi-playbook",
       "description": "`deep-pi` has 81 unit tests but no operator-facing manual-testing playbook, so there is no reproducible way to validate that `/deeppi` activates only",
       "keywords": [
         "deep-pi",
@@ -11748,7 +11748,7 @@
       "lastUpdated": "2026-11-13T10:04:41.082Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/005-pi-cache-affinity-compat",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/003-pi-cache-affinity-compat",
       "description": "The `pi-cache-optimizer` extension flags every OpenRouter `openai-completions` model whose merged compat lacks `sendSessionAffinityHeaders`",
       "keywords": [
         "pi-cache-optimizer",
@@ -11767,7 +11767,7 @@
       "lastUpdated": "2026-11-13T10:04:41.086Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi",
       "description": "Pi loads two cache extensions whose responsibilities are divided by a hand-maintained model",
       "keywords": [
         "loads",
@@ -11783,7 +11783,7 @@
       "lastUpdated": "2026-11-13T10:04:41.104Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership",
       "description": "`isDeepPiOwned` (`index.ts:1462`) returns true for exactly `provider === 'deepseek'` with id",
       "keywords": [
         "isdeeppiowned",
@@ -11797,7 +11797,7 @@
       "lastUpdated": "2026-11-13T10:04:41.090Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi/002-port-cache-economics",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi/002-port-cache-economics",
       "description": "`CacheStats` (`index.ts:265`) holds `day`, `totalRequests`, `hitRequests`, `cachedInputTokens`,",
       "keywords": [
         "cachestats",
@@ -11811,7 +11811,7 @@
       "lastUpdated": "2026-11-13T10:04:41.092Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard",
       "description": "A retry loop is expensive in a way that is invisible until the bill arrives: the same request is",
       "keywords": [
         "retry",
@@ -11828,7 +11828,7 @@
       "lastUpdated": "2026-11-13T10:04:41.095Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits",
       "description": "Exact-string editing has a failure mode that is silent and destructive: the model reads a file,",
       "keywords": [
         "exact-string",
@@ -11844,7 +11844,7 @@
       "lastUpdated": "2026-11-13T10:04:41.097Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi",
       "description": "The extension directory is 53 tracked files and a large vendored dependency tree that nothing",
       "keywords": [
         "extension",
@@ -11860,7 +11860,7 @@
       "lastUpdated": "2026-11-13T10:04:41.100Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation",
       "description": "Measured before this phase was written, the documentation surface is not where one would guess:",
       "keywords": [
         "measured",
@@ -11874,7 +11874,7 @@
       "lastUpdated": "2026-11-13T10:04:41.103Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/007-cache-optimizer-review-remediation",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/005-cache-optimizer-review-remediation",
       "description": "An independent review of the cache extension found three defects that the shipping packet's own",
       "keywords": [
         "independent",
@@ -11891,7 +11891,7 @@
       "lastUpdated": "2026-11-13T10:04:41.106Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/008-cache-optimizer-improvement-research",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/006-cache-optimizer-improvement-research",
       "description": "The Pi cache extension recently absorbed three capabilities and had three defects fixed, but no one",
       "keywords": [
         "cache",
@@ -11906,7 +11906,7 @@
       "lastUpdated": "2026-11-13T10:04:41.124Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/009-cache-optimizer-measurement-fixes",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/007-cache-optimizer-measurement-fixes",
       "description": "An eight-iteration, three-model research loop found that the cache extension cannot tell a real",
       "keywords": [
         "eight-iteration",
@@ -11923,7 +11923,7 @@
       "lastUpdated": "2026-11-13T10:04:41.313Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/008-compat-opt-in-and-image-declaration",
       "description": "`llmgateway/deepseek-v4.1-flash` produces a blocking-looking warning at every Pi launch:",
       "keywords": [
         "llmgateway",
@@ -11938,7 +11938,7 @@
       "lastUpdated": "2026-11-13T10:04:41.347Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard",
+      "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/009-cache-optimizer-single-copy-guard",
       "description": "A user-level link `~/.pi/agent/extensions/pi-cache-optimizer`, added on 2026-10-28",
       "keywords": [
         "user-level",
@@ -11950,7 +11950,7 @@
       "lastUpdated": "2026-11-13T10:04:41.349Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports",
+      "specFolder": "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports",
       "description": "Pi found this repository's hook adapters through 22 relative symlinks in `.pi/extensions/`",
       "keywords": [
         "found",
@@ -11964,7 +11964,7 @@
       "lastUpdated": "2026-11-13T10:04:41.352Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction",
+      "specFolder": "hooks-plugins-extensions/git-hooks/001-git-hook-gate-reduction",
       "description": "Thirteen blocking gates across three hooks",
       "keywords": [
         "thirteen",
@@ -11977,7 +11977,7 @@
       "lastUpdated": "2026-11-13T10:04:41.354Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/repo-commit-gates/002-routing-manifest-auto-remint",
+      "specFolder": "hooks-plugins-extensions/git-hooks/002-routing-manifest-auto-remint",
       "description": "A hub's compiled routing manifest pins a hash of its routing inputs",
       "keywords": [
         "hub",
@@ -11991,7 +11991,7 @@
       "lastUpdated": "2026-11-13T10:04:41.359Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/repo-commit-gates/003-prepush-naming-gate-residue",
+      "specFolder": "hooks-plugins-extensions/git-hooks/003-prepush-naming-gate-residue",
       "description": "`pre-push.test.sh` failed two of twenty-two cases",
       "keywords": [
         "pre-push",
@@ -12004,7 +12004,7 @@
       "lastUpdated": "2026-11-13T10:04:41.361Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/repo-commit-gates/004-spec-metadata-auto-remint",
+      "specFolder": "hooks-plugins-extensions/git-hooks/004-spec-metadata-auto-remint",
       "description": "Every spec packet carries a `graph-metadata.json` holding a fingerprint of the documents it was derived from, plus fields summarised out of them",
       "keywords": [
         "every",
@@ -12190,7 +12190,7 @@
       "lastUpdated": "2026-11-13T10:04:41.508Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise",
+      "specFolder": "hooks-plugins-extensions/spec-gate/001-spec-gate-question-noise",
       "description": "The SPEC FOLDER QUESTION is injected on nearly every user turn in the pi CLI, and re-asks every turn in every runtime once the gate has opened",
       "keywords": [
         "spec",
@@ -12210,7 +12210,7 @@
       "lastUpdated": "2026-11-13T10:04:41.510Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
       "description": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
       "keywords": [
         "session",
@@ -12229,7 +12229,7 @@
       "lastUpdated": "2026-11-13T10:04:42.341Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/001-claude-relaunch-loop",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/001-claude-relaunch-loop",
       "description": "Near the context limit, a Claude session needs a handoff note and a fresh session in the same terminal",
       "keywords": [
         "near",
@@ -12247,7 +12247,7 @@
       "lastUpdated": "2026-11-13T10:04:41.513Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/002-pi-opencode-adapters",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/002-pi-opencode-adapters",
       "description": "The approved plan marks Pi messageend usage and OpenCode event info.tokens as unverified",
       "keywords": [
         "approved",
@@ -12264,7 +12264,7 @@
       "lastUpdated": "2026-11-13T10:04:41.515Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/003-command-trigger-runtimes",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/003-command-trigger-runtimes",
       "description": "Codex, Cursor, Devin and Hermes expose no usage signal at all, so the context-threshold nudge and the Stop-event arming built for Claude, Pi and",
       "keywords": [
         "codex",
@@ -12283,7 +12283,7 @@
       "lastUpdated": "2026-11-13T10:04:41.518Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/004-integration-review-and-docs-closure",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/004-integration-review-and-docs-closure",
       "description": "Phases 001 to 003 each reviewed their own lane outputs, but no single pass covers the union of files the packet changed",
       "keywords": [
         "phases",
@@ -12302,7 +12302,7 @@
       "lastUpdated": "2026-11-13T10:04:41.521Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/005-deep-review-remediation",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/005-deep-review-remediation",
       "description": "The deep review passed the loop but left twelve advisories",
       "keywords": [
         "deep",
@@ -12316,7 +12316,7 @@
       "lastUpdated": "2026-11-13T10:04:41.524Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/006-deep-review-2-remediation",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/006-deep-review-2-remediation",
       "description": "The round-2 deep review passed the session relaunch loop with twelve confirmed P2 advisories and no P0 or P1",
       "keywords": [
         "round-2",
@@ -12333,7 +12333,7 @@
       "lastUpdated": "2026-11-13T10:04:41.538Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/007-handoff-gate-exemptions",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/007-handoff-gate-exemptions",
       "description": "A session that has no Gate 3 answer and reaches its context limit hands off by writing a note under `.skilled/skills/.state/`",
       "keywords": [
         "session",
@@ -12352,7 +12352,7 @@
       "lastUpdated": "2026-11-13T10:04:41.546Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/008-review-3-remediation",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/008-review-3-remediation",
       "description": "The third review returned CONDITIONAL with 2 P1 and 13 P2 findings",
       "keywords": [
         "third",
@@ -12364,7 +12364,7 @@
       "lastUpdated": "2026-11-13T10:04:41.549Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/009-research-fixes-and-core-consolidation",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/009-research-fixes-and-core-consolidation",
       "description": "The research found real defects past phase 008",
       "keywords": [
         "research",
@@ -12377,7 +12377,7 @@
       "lastUpdated": "2026-11-13T10:04:41.552Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/010-post-fix-research",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/010-post-fix-research",
       "description": "Phase 009 moved shared decisions into the core and changed every adapter",
       "keywords": [
         "phase",
@@ -12392,7 +12392,7 @@
       "lastUpdated": "2026-11-13T10:04:41.570Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/011-post-fix-remediation",
       "description": "A re-arm of an armed record kept its first `armedAt`, so after a killer died and the session idled past ten minutes, the wrapper printed the manual",
       "keywords": [
         "re-arm",
@@ -12415,7 +12415,7 @@
       "lastUpdated": "2026-11-13T10:04:41.572Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/012-ci-red-check-repairs",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/012-ci-red-check-repairs",
       "description": "Three CI checks failed on main before this phase",
       "keywords": [
         "three",
@@ -12427,7 +12427,7 @@
       "lastUpdated": "2026-11-13T10:04:41.579Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/013-live-hop-and-notice-reason",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/013-live-hop-and-notice-reason",
       "description": "When `SKILLEDLOOPMANUALTEMPLATE` held no note placeholder or more than one, the killer logged `killer-manual-template` but its macOS notice showed",
       "keywords": [
         "skilledloopmanualtemplate",
@@ -12445,7 +12445,7 @@
       "lastUpdated": "2026-11-13T10:04:41.581Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/014-handover-docs-promotion",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/014-handover-docs-promotion",
       "description": "Phase 013 made every interactive runtime launch hop to a fresh session in the same terminal, and live hops passed on Claude Code, Codex, Pi, OpenCode",
       "keywords": [
         "phase",
@@ -12469,7 +12469,7 @@
       "lastUpdated": "2026-11-13T10:04:41.583Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/015-v4-0-0-13-changelog",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/015-v4-0-0-13-changelog",
       "description": "Main had moved well past the v4.0.0.12 release at commit `0ead854621`",
       "keywords": [
         "main",
@@ -12483,7 +12483,7 @@
       "lastUpdated": "2026-11-13T10:04:41.585Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/016-handover-trigger-review",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/016-handover-trigger-review",
       "description": "The `/speckit:handoff` command doc used a section name the command template does not approve, \"RECEIVING A HANDOFF\"",
       "keywords": [
         "speckit",
@@ -12499,7 +12499,7 @@
       "lastUpdated": "2026-11-13T10:04:41.588Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/017-hop-history",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/017-hop-history",
       "description": "The operator has never seen an automatic hop happen, because they do not watch every terminal",
       "keywords": [
         "operator",
@@ -12516,7 +12516,7 @@
       "lastUpdated": "2026-11-13T10:04:41.591Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/018-outside-loop-handoff",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/018-outside-loop-handoff",
       "description": "On 2026-10-20 two Claude sessions on the figjam packet wrote handoff notes that never went anywhere, because they started before the shell shim and so",
       "keywords": [
         "two",
@@ -12538,7 +12538,7 @@
       "lastUpdated": "2026-11-13T10:04:41.593Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/019-fork-compact-pointer-research",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/019-fork-compact-pointer-research",
       "description": "On 2026-10-21 the compact-pointer hook fired six times for session `0b9dc60c`",
       "keywords": [
         "compact-pointer",
@@ -12552,7 +12552,7 @@
       "lastUpdated": "2026-11-13T10:04:41.649Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/020-fork-session-guards",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/020-fork-session-guards",
       "description": "On 2026-10-21 fork `ae7668a35ed03d742` compacted, and `session-prime` injected \"Recovered Context (Post-Compaction)\" from a cache keyed by the",
       "keywords": [
         "fork",
@@ -12569,7 +12569,7 @@
       "lastUpdated": "2026-11-13T10:04:41.650Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/021-fork-nudge-and-precompact-guards",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/021-fork-nudge-and-precompact-guards",
       "description": "A probe on Claude Code 2.1.306 showed that a fork's PostToolUse payload carries `agentid` and `agenttype` with the parent's session id and transcript",
       "keywords": [
         "probe",
@@ -12589,7 +12589,7 @@
       "lastUpdated": "2026-11-13T10:04:41.651Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/022-runtime-certainty-claude-pi-opencode",
       "description": "A probe on OpenCode 1.19.3 showed that a `task` sub-agent runs as a child session with its own session id",
       "keywords": [
         "probe",
@@ -12605,7 +12605,7 @@
       "lastUpdated": "2026-11-13T10:04:41.653Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/023-relaunch-cancel-and-test-isolation",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/023-relaunch-cancel-and-test-isolation",
       "description": "Run from inside a looped session, the relaunch suite inherits the wrapper's `SKILLEDLOOP` variables and 13 of 682 tests fail",
       "keywords": [
         "run",
@@ -12624,7 +12624,7 @@
       "lastUpdated": "2026-11-13T10:04:41.655Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/024-goal-rebind-claude-codex-hermes-probes",
       "description": "After a hand-over the new session has a new session id, and each runtime keeps its goal under the id of the session that set it, so the new session",
       "keywords": [
         "hand-over",
@@ -12638,7 +12638,7 @@
       "lastUpdated": "2026-11-13T10:04:41.669Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/025-goal-binding-record-and-launcher",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/025-goal-binding-record-and-launcher",
       "description": "The hand-over note already carries `specfolder`, but the receiver cannot tell whether the sending session had a goal, and whether that goal came from",
       "keywords": [
         "hand-over",
@@ -12658,7 +12658,7 @@
       "lastUpdated": "2026-11-13T10:04:41.671Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/026-goal-rebind-shared-core-and-opencode",
       "description": "A goal record is keyed by the session id, and a hop creates a new session, so the Pi, Devin, Cursor, Hermes and OpenCode receivers start with no",
       "keywords": [
         "goal",
@@ -12677,7 +12677,7 @@
       "lastUpdated": "2026-11-13T10:04:41.673Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/027-goal-rebind-claude-and-codex",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/027-goal-rebind-claude-and-codex",
       "description": "Claude has a built-in `/goal` command and Codex creates a goal through the model, so a hop receiver on either has no way to bind a record",
       "keywords": [
         "claude",
@@ -12695,7 +12695,7 @@
       "lastUpdated": "2026-11-13T10:04:41.682Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/028-goal-rebind-live-proof-and-docs",
       "description": "The goal-persistence work is only proven where a unit test can reach",
       "keywords": [
         "goal-persistence",
@@ -12709,7 +12709,7 @@
       "lastUpdated": "2026-11-13T10:04:41.712Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/029-relaunch-evidence-gaps-and-playbook-drift",
       "description": "The phase 23 live runs showed that Codex withdraw output was never captured because the wait was 30 seconds, that Claude extra nudge arrived only",
       "keywords": [
         "phase",
@@ -12733,7 +12733,7 @@
       "lastUpdated": "2026-11-13T10:04:41.728Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/030-opencode2-killer-target",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/030-opencode2-killer-target",
       "description": "The OpenCode relaunch plugin passes its own `process.pid` to the killer",
       "keywords": [
         "opencode",
@@ -12748,7 +12748,7 @@
       "lastUpdated": "2026-11-13T10:04:41.733Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/031-relaunch-model-and-effort",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/031-relaunch-model-and-effort",
       "description": "`buildrelauncharguments` in `.skilled/bin/skilled-loop` rebuilds the relaunch command from the model, provider, name and Pi extension flags only",
       "keywords": [
         "buildrelauncharguments",
@@ -12768,7 +12768,7 @@
       "lastUpdated": "2026-11-13T10:04:41.742Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/032-opencode2-standalone-replay",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/032-opencode2-standalone-replay",
       "description": "The wrapper rebuilds an OpenCode relaunch as `[-m model] --prompt seed`, so a `--standalone` the operator passed is never replayed",
       "keywords": [
         "wrapper",
@@ -12787,7 +12787,7 @@
       "lastUpdated": "2026-11-13T10:04:41.745Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation",
       "description": "The ten-iteration research after phase 032 (`../research/research.md` sections 9, 9a, 11, 11a and 15) and an independent review against the code left",
       "keywords": [
         "ten-iteration",
@@ -12804,7 +12804,7 @@
       "lastUpdated": "2026-11-13T10:04:41.803Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/001-model-effort-atomic-replay",
       "description": "The wrapper takes the live model at `.skilled/bin/skilled-loop:789-800` and the live effort separately at `:814-823`",
       "keywords": [
         "wrapper",
@@ -12820,7 +12820,7 @@
       "lastUpdated": "2026-11-13T10:04:41.772Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/002-consume-locked-withdraw",
       "description": "`consume` reads the relaunch record outside its lock (`.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:692`, `core.readRelaunchFile(loopId)`)",
       "keywords": [
         "consume",
@@ -12841,7 +12841,7 @@
       "lastUpdated": "2026-11-13T10:04:41.775Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/003-manual-claim-live-settings",
       "description": "The printed manual claim command replays a template built once, before the loop starts: `SKILLEDLOOPMANUALTEMPLATE=$(buildmanualcommandtemplate)` at",
       "keywords": [
         "printed",
@@ -12858,7 +12858,7 @@
       "lastUpdated": "2026-11-13T10:04:41.777Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/004-manual-claim-goal-binding",
       "description": "A first launch unsets the goal packet and claim seed so an outer session's values never leak in (`.skilled/bin/skilled-loop:470-474`)",
       "keywords": [
         "first",
@@ -12880,7 +12880,7 @@
       "lastUpdated": "2026-11-13T10:04:41.781Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/005-persisted-hops-validation",
       "description": "`shouldRelaunch` reads `const hops = Number(record.hops)` and declines only when the result is not finite or reaches the limit",
       "keywords": [
         "shouldrelaunch",
@@ -12899,7 +12899,7 @@
       "lastUpdated": "2026-11-13T10:04:41.784Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/006-relaunch-coverage-gaps",
       "description": "Four relaunch paths have no test (research section 9, findings 6 to 9, and section 15)",
       "keywords": [
         "four",
@@ -12913,7 +12913,7 @@
       "lastUpdated": "2026-11-13T10:04:41.788Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/007-compaction-pointer-staleness",
       "description": "After a compaction, the pointer tells the session to claim its note and continue \"Remaining work\"",
       "keywords": [
         "compaction",
@@ -12929,7 +12929,7 @@
       "lastUpdated": "2026-11-13T10:04:41.789Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/008-claim-error-per-state",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/008-claim-error-per-state",
       "description": "`claimHandoff` refuses any non-open note with one message, `cannot claim handoff with status ${status || 'missing'}`",
       "keywords": [
         "claimhandoff",
@@ -12947,7 +12947,7 @@
       "lastUpdated": "2026-11-13T10:04:41.791Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/009-pi-arm-on-agent-settled",
       "description": "The Pi extension arms the prepared record on `agentend` (`.skilled/hooks/session-relaunch/pi/session-relaunch.ts:526`) and withdraws an arm on",
       "keywords": [
         "extension",
@@ -12964,7 +12964,7 @@
       "lastUpdated": "2026-11-13T10:04:41.800Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/034-default-off-opt-in",
       "description": "`isHookEnabled` in `.skilled/hooks/shared/hook-flags.cjs` returns true unless the master switch or one of the concern's kill switches resolves truthy",
       "keywords": [
         "ishookenabled",
@@ -12988,7 +12988,7 @@
       "lastUpdated": "2026-11-13T10:04:41.811Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/035-known-gap-fixes",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/035-known-gap-fixes",
       "description": "Eight gaps remain after phase 34",
       "keywords": [
         "eight",
@@ -12999,7 +12999,7 @@
       "lastUpdated": "2026-11-13T10:04:41.836Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/036-review-remediation",
       "description": "A code review of the session relaunch loop on 2026-11-12 read 18 files and returned eight findings",
       "keywords": [
         "code",
@@ -13016,7 +13016,7 @@
       "lastUpdated": "2026-11-13T10:04:41.870Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/036-review-remediation/001-shim-wrapper-trust",
       "description": "`skilledloopfindwrapper` walks up from `$PWD` and prints the first `.skilled/bin/skilled-loop` it finds",
       "keywords": [
         "skilledloopfindwrapper",
@@ -13032,7 +13032,7 @@
       "lastUpdated": "2026-11-13T10:04:41.841Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/036-review-remediation/002-state-dir-read-check",
       "description": "`ensureStateDir` rejects a state directory that is a symlink or is owned by another account, and only write paths call it",
       "keywords": [
         "ensurestatedir",
@@ -13051,7 +13051,7 @@
       "lastUpdated": "2026-11-13T10:04:41.844Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/036-review-remediation/003-launch-flag-replay",
       "description": "A hop rebuilds its argument list from the carried model, effort, name, provider and Pi extension settings alone",
       "keywords": [
         "hop",
@@ -13070,7 +13070,7 @@
       "lastUpdated": "2026-11-13T10:04:41.850Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/036-review-remediation/004-claude-window-unknown",
       "description": "When a Claude checkout has neither `SESSIONRELAUNCHWINDOWTOKENS` nor `autoCompactWindow`",
       "keywords": [
         "claude",
@@ -13081,7 +13081,7 @@
       "lastUpdated": "2026-11-13T10:04:41.855Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/036-review-remediation/005-subagent-guard-cancel-consume",
       "description": "The Claude sub-agent guard builds `LIFECYCLECOMMAND` at `.skilled/hooks/session-relaunch/claude/subagent-guard.mjs:18` from four subcommands only",
       "keywords": [
         "claude",
@@ -13100,7 +13100,7 @@
       "lastUpdated": "2026-11-13T10:04:41.859Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/036-review-remediation/006-append-lock-stale-reclaim",
       "description": "`withAppendLock` at `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1397` reclaims a stale append lock by reading its age and then calling",
       "keywords": [
         "withappendlock",
@@ -13121,7 +13121,7 @@
       "lastUpdated": "2026-11-13T10:04:41.862Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/036-review-remediation/007-loop-start-record-cleanup",
       "description": "`.skilled/bin/skilled-loop` exports `SKILLEDLOOPID=\"$$\"` at line 799 and never removes the record file `relaunch-<loop id>.json` that carries that id",
       "keywords": [
         "skilled",
@@ -13142,7 +13142,7 @@
       "lastUpdated": "2026-11-13T10:04:41.864Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/036-review-remediation/008-alignment-findings",
       "description": "`skilledlooprealpath` follows a symlink at the wrapper path with no hop bound, so a cyclic pair of links hangs the sourced shell with no output",
       "keywords": [
         "skilledlooprealpath",
@@ -13163,7 +13163,7 @@
       "lastUpdated": "2026-11-13T10:04:41.868Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/037-relaunch-test-speed",
       "description": "The relaunch suite took 130 seconds because `skilled-loop.test.cjs` alone ran for about 123 seconds and `node --test` waits for its slowest file",
       "keywords": [
         "relaunch",
@@ -13185,7 +13185,7 @@
       "lastUpdated": "2026-11-13T10:04:41.873Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume",
       "description": "A review of 2026-11-12, checked by a second reviewer, found that a session hop carries the goal on Claude Code, Pi and OpenCode but loses work around",
       "keywords": [
         "review",
@@ -13207,7 +13207,7 @@
       "lastUpdated": "2026-11-13T10:04:42.025Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/001-workflow-reentry-seed",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/001-workflow-reentry-seed",
       "description": "A claim seed tells the receiver to continue the note's Remaining work and nothing else",
       "keywords": [
         "claim",
@@ -13224,7 +13224,7 @@
       "lastUpdated": "2026-11-13T10:04:41.875Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/002-pi-bind-once",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/002-pi-bind-once",
       "description": "Pi 1.5.2 starts a new session inside the receiving process",
       "keywords": [
         "starts",
@@ -13237,7 +13237,7 @@
       "lastUpdated": "2026-11-13T10:04:41.877Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/003-goal-resolver-prepare",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/003-goal-resolver-prepare",
       "description": "Devin and Cursor receivers start under a fresh native id, so the goal record the sender wrote under the old id never matches and the next manual hop",
       "keywords": [
         "devin",
@@ -13260,7 +13260,7 @@
       "lastUpdated": "2026-11-13T10:04:41.879Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/004-claude-start-claim",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/004-claude-start-claim",
       "description": "The Claude start hook returns before it reads a startup payload when the Claude relaunch switch is off (`SYSTEMSESSIONRELAUNCHCLAUDEENABLED=0`)",
       "keywords": [
         "claude",
@@ -13277,7 +13277,7 @@
       "lastUpdated": "2026-11-13T10:04:41.882Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/005-opencode-continuation-hop",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/005-opencode-continuation-hop",
       "description": "A prepared OpenCode hop can be withdrawn by the goal continuation",
       "keywords": [
         "prepared",
@@ -13290,7 +13290,7 @@
       "lastUpdated": "2026-11-13T10:04:41.884Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/006-skilled-loop-command",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/006-skilled-loop-command",
       "description": "The wrapper prints `skilled-loop <runtime>` as the manual claim command, and so does `relaunch-core.cjs`",
       "keywords": [
         "wrapper",
@@ -13306,7 +13306,7 @@
       "lastUpdated": "2026-11-13T10:04:41.886Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/007-goal-handover-docs",
       "description": "The relaunch README still says the Claude start claim arrives only while the switch is on, which hides the shipped fix in phase 004",
       "keywords": [
         "relaunch",
@@ -13327,7 +13327,7 @@
       "lastUpdated": "2026-11-13T10:04:41.888Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/008-review-advisories",
       "description": "The Claude start claim can report `PostToolUse` when a startup payload carries no `hookeventname`",
       "keywords": [
         "claude",
@@ -13343,7 +13343,7 @@
       "lastUpdated": "2026-11-13T10:04:41.896Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/009-nudge-note-lines",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/009-nudge-note-lines",
       "description": "The nudge tells a session to release a held deep-loop lock before `prepare` and says nothing about the fan-out runner",
       "keywords": [
         "nudge",
@@ -13363,7 +13363,7 @@
       "lastUpdated": "2026-11-13T10:04:41.900Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness",
       "description": "`detectOrphanedLineages` counts a label as orphaned when it has a `started` row and no later `completed`, `failed` or `orphanrequeued` row",
       "keywords": [
         "detectorphanedlineages",
@@ -13380,7 +13380,7 @@
       "lastUpdated": "2026-11-13T10:04:41.905Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry",
       "description": "A Claude session moved into another permission mode after launch, for example with Shift+Tab into `acceptEdits`",
       "keywords": [
         "claude",
@@ -13398,7 +13398,7 @@
       "lastUpdated": "2026-11-13T10:04:41.910Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/012-session-name-carry",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/012-session-name-carry",
       "description": "A Claude session renamed with `/rename` loses that name on a hop",
       "keywords": [
         "claude",
@@ -13412,7 +13412,7 @@
       "lastUpdated": "2026-11-13T10:04:41.914Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/013-opencode-child-and-title",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title",
       "description": "The plugin puts every sub-agent session in a skip set and returns before reading any later event for it (`.opencode/plugins/session-relaunch.js:335`",
       "keywords": [
         "plugin",
@@ -13433,7 +13433,7 @@
       "lastUpdated": "2026-11-13T10:04:41.918Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons",
       "description": "When background tasks run at Stop, `armPendingRecord` logs `deferred-background-tasks`",
       "keywords": [
         "background",
@@ -13447,7 +13447,7 @@
       "lastUpdated": "2026-11-13T10:04:41.921Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk",
       "description": "A Pi session that switched to Plan or Build mode restarts in the mode its first launch named, because `liveSettings` returns only model",
       "keywords": [
         "session",
@@ -13467,7 +13467,7 @@
       "lastUpdated": "2026-11-13T10:04:41.927Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal",
       "description": "A Claude receiver whose hop carries a goal starts on `/goal <slice>`, and its claim instructions arrive only as `SessionStart` start context",
       "keywords": [
         "claude",
@@ -13489,7 +13489,7 @@
       "lastUpdated": "2026-11-13T10:04:41.933Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/017-handover-docs-and-harness",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/017-handover-docs-and-harness",
       "description": "Phases 009 to 016 change what a hand-over note asks for, what a hop carries and when a hop is refused or deferred",
       "keywords": [
         "phases",
@@ -13505,7 +13505,7 @@
       "lastUpdated": "2026-11-13T10:04:41.937Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title",
       "description": "A Claude Code hop refuses a question dialog after prepare, starts the receiver on the packet goal and keeps the generated session title",
       "keywords": [
         "claude",
@@ -13526,7 +13526,7 @@
       "lastUpdated": "2026-11-13T18:47:10.139Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare",
       "description": "Phase 1: sender-dialog-after-prepare",
       "keywords": [
         "phase",
@@ -13535,7 +13535,7 @@
       "lastUpdated": "2026-11-13T15:46:09.641Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/002-packet-goal-fallback",
       "description": "Phase 2: packet-goal-fallback",
       "keywords": [
         "phase",
@@ -13544,7 +13544,7 @@
       "lastUpdated": "2026-11-13T16:59:14.405Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry",
+      "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/003-generated-title-carry",
       "description": "Phase 3: generated-title-carry",
       "keywords": [
         "phase",
@@ -13553,7 +13553,7 @@
       "lastUpdated": "2026-11-13T16:59:16.164Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement",
+      "specFolder": "hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement",
       "description": "Agents end turns with a prose menu of lettered options and a closing question instead of calling the runtime's ask-question tool",
       "keywords": [
         "agents",
@@ -20764,7 +20764,7 @@
       "lastUpdated": "2026-11-13T10:04:47.207Z"
     },
     {
-      "specFolder": "sk-code/verification-guards/002-dist-staleness-rebuild-on-drift",
+      "specFolder": "hooks-plugins-extensions/dist-freshness/001-dist-staleness-rebuild-on-drift",
       "description": "Make the dist-staleness guard self-heal a stale checked-out build at session start instead of only printing a warning that persists across sessions.",
       "keywords": [
         "dist-staleness",
@@ -20785,7 +20785,7 @@
       "lastUpdated": "2026-11-13T10:04:47.211Z"
     },
     {
-      "specFolder": "sk-code/verification-guards/003-dist-guard-skip-unprovisioned",
+      "specFolder": "hooks-plugins-extensions/dist-freshness/002-dist-guard-skip-unprovisioned",
       "description": "Teach the dist-staleness checker to report a package as unprovisioned (skip) instead of stale when it is not buildable in this checkout, so bare",
       "keywords": [
         "teach",
@@ -41980,7 +41980,7 @@
       "lastUpdated": "2026-11-13T10:04:54.148Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/004-template-driven-message-enforcement",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement",
       "description": "The sk-git commit contract is written three times: as prose in `SKILL.md` and `assets/commit-message-template.md`, and as hardcoded regexes in",
       "keywords": [
         "sk-git",
@@ -41999,7 +41999,7 @@
       "lastUpdated": "2026-11-13T10:04:54.170Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes",
       "description": "The hooks are installed machine-wide through `core.hooksPath`, but they choose their source root from a file inside whatever repository they fire in,",
       "keywords": [
         "hooks",
@@ -42019,7 +42019,7 @@
       "lastUpdated": "2026-11-13T10:04:54.159Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/004-template-driven-message-enforcement/002-git-hook-review-residuals",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/002-git-hook-review-residuals",
       "description": "The legacy pre-commit treats a crashed comment checker as a pass",
       "keywords": [
         "legacy",
@@ -42033,7 +42033,7 @@
       "lastUpdated": "2026-11-13T10:04:54.161Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/004-template-driven-message-enforcement/003-hook-docs-and-standards-alignment",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/003-hook-docs-and-standards-alignment",
       "description": "The hook changes in phases 1 and 2 left their docs behind",
       "keywords": [
         "hook",
@@ -42046,7 +42046,7 @@
       "lastUpdated": "2026-11-13T10:04:54.162Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/004-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo",
       "description": "The stamper minted ids only through the allocator in the repository's own toolchain",
       "keywords": [
         "stamper",
@@ -42295,7 +42295,7 @@
       "lastUpdated": "2026-11-13T10:04:54.272Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/007-advisory-cd-prefix-env-steps",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/002-advisory-cd-prefix-env-steps",
       "description": "The preflight advisory resolves the directory a git command runs in, so a command typed against a worktree is judged by that worktree's state",
       "keywords": [
         "preflight",
@@ -42331,7 +42331,7 @@
       "lastUpdated": "2026-11-13T18:46:10.001Z"
     },
     {
-      "specFolder": "sk-git/live-sync-and-publishing/001-live-sync-harden-default-on",
+      "specFolder": "hooks-plugins-extensions/git-live-follow/001-live-sync-harden-default-on",
       "description": "The continuous-integration model built by `007-continuous-integration-workflow` publishes every launch-wrapper session commit to a shared live branch",
       "keywords": [
         "continuous-integration",
@@ -42349,7 +42349,7 @@
       "lastUpdated": "2026-11-13T10:04:54.279Z"
     },
     {
-      "specFolder": "sk-git/live-sync-and-publishing/002-hook-gate-hardening",
+      "specFolder": "hooks-plugins-extensions/git-primary-reconcile/001-hook-gate-hardening",
       "description": "Work Item 1 addressed silent live-sync gate failures: the publisher discarded `git push` stderr, misreported policy rejections as races, and lacked a",
       "keywords": [
         "work",
@@ -42373,7 +42373,7 @@
       "lastUpdated": "2026-11-13T10:04:54.281Z"
     },
     {
-      "specFolder": "sk-git/live-sync-and-publishing/003-live-follow-disjoint-ff",
+      "specFolder": "hooks-plugins-extensions/git-live-follow/002-live-follow-disjoint-ff",
       "description": "Relax the primary-checkout reconcile and follower so a behind-only checkout fast-forwards through git's own --ff-only even while carrying unrelated",
       "keywords": [
         "relax",
@@ -42394,7 +42394,7 @@
       "lastUpdated": "2026-11-13T10:04:54.283Z"
     },
     {
-      "specFolder": "sk-git/live-sync-and-publishing/004-rebase-abort-head-preservation",
+      "specFolder": "hooks-plugins-extensions/git-primary-reconcile/002-rebase-abort-head-preservation",
       "description": "The live-sync reconcilers publish a session's commits onto the shared live branch",
       "keywords": [
         "live-sync",
@@ -50511,7 +50511,7 @@
       "lastUpdated": "2026-11-13T10:04:56.372Z"
     },
     {
-      "specFolder": "system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/002-cli-pi-worktree-extension-clash",
       "description": "A cli-pi dispatch started inside a git worktree of this repo exits 1 before it reaches the model: `Failed to load extension",
       "keywords": [
         "cli-pi",
@@ -59904,7 +59904,7 @@
       "lastUpdated": "2026-11-13T10:05:01.282Z"
     },
     {
-      "specFolder": "system-skill-advisor/host-integrations/002-pi-advisor-bridge",
+      "specFolder": "hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge",
       "description": "The Pi prompt hook failed to deliver skill suggestions because it could not find the advisor CLI assets and its dedup receipt ignored recommendation",
       "keywords": [
         "prompt",
@@ -59926,7 +59926,7 @@
       "lastUpdated": "2026-11-13T10:05:01.285Z"
     },
     {
-      "specFolder": "system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief",
+      "specFolder": "hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/001-restore-pi-advisor-brief",
       "description": "Since the source-root migration, the pi prompt-advisor hook fails on every prompt in ~2 ms without contacting anything: its warm-CLI fallback probe",
       "keywords": [
         "since",
@@ -59947,7 +59947,7 @@
       "lastUpdated": "2026-11-13T10:05:01.284Z"
     },
     {
-      "specFolder": "system-skill-advisor/host-integrations/002-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr",
+      "specFolder": "hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr",
       "description": "Every prompt in an interactive Pi session prints a line such as `{\"timestamp\":\"…\",\"runtime\":\"pi\",…}` into Pi's input area",
       "keywords": [
         "every",
@@ -86263,7 +86263,7 @@
       "lastUpdated": "2026-11-13T10:05:29.347Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture",
       "description": "The artifact this series changes is the automatic operator decision capture pipeline: the capture core and runtime adapters under",
       "keywords": [
         "artifact",
@@ -86281,7 +86281,7 @@
       "lastUpdated": "2026-11-13T10:05:30.572Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/001-decision-capture-build",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build",
       "description": "Operator answers to AI questions are not captured in a consistent decision record",
       "keywords": [
         "operator",
@@ -86295,7 +86295,7 @@
       "lastUpdated": "2026-11-13T10:05:29.613Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/002-table-row-matching",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/002-table-row-matching",
       "description": "The writer reuses an id only through a `source:` HTML comment under an appendix heading or through an unkeyed appendix item with the same question and",
       "keywords": [
         "writer",
@@ -86314,7 +86314,7 @@
       "lastUpdated": "2026-11-13T10:05:29.655Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/003-codex-and-pi-capture",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/003-codex-and-pi-capture",
       "description": "An operator who answers a question in Codex or Pi gets no decision entry at save time, because 001 left both runtimes `UNKNOWN` and disabled",
       "keywords": [
         "operator",
@@ -86335,7 +86335,7 @@
       "lastUpdated": "2026-11-13T10:05:29.659Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/004-opencode-devin-live-capture",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/004-opencode-devin-live-capture",
       "description": "An operator who answers a question in OpenCode or Devin has that answer queued only when a later save runs `bin/sweep-opencode.mjs` or",
       "keywords": [
         "operator",
@@ -86356,7 +86356,7 @@
       "lastUpdated": "2026-11-13T10:05:29.666Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/005-chat-question-detection",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/005-chat-question-detection",
       "description": "`chatCandidate` in `sweep-transcript.mjs` reads only the last paragraph of an assistant message and returns null unless that paragraph contains `?`",
       "keywords": [
         "chatcandidate",
@@ -86376,7 +86376,7 @@
       "lastUpdated": "2026-11-13T10:05:29.672Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/006-live-conversation-test",
       "description": "The three decision-capture playbook scenarios feed a redacted fixture payload to the hook",
       "keywords": [
         "three",
@@ -86392,7 +86392,7 @@
       "lastUpdated": "2026-11-13T10:05:30.389Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/007-gap-closure",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/007-gap-closure",
       "description": "The Codex and Pi sweeps exit 0 with no output when a named transcript cannot be read, so a save cannot tell a failed read from an empty one",
       "keywords": [
         "codex",
@@ -86412,7 +86412,7 @@
       "lastUpdated": "2026-11-13T10:05:30.395Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/008-project-scoped-state",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/008-project-scoped-state",
       "description": "`doctor:symlink` links `.skilled` whole, so every linked project resolves `.skilled/skills/.state/decision-capture/` to one shared folder",
       "keywords": [
         "doctor",
@@ -86434,7 +86434,7 @@
       "lastUpdated": "2026-11-13T10:05:30.407Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/009-chat-answer-evidence",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/009-chat-answer-evidence",
       "description": "The detector turns every asking paragraph into a candidate against the next typed prompt",
       "keywords": [
         "detector",
@@ -86451,7 +86451,7 @@
       "lastUpdated": "2026-11-13T10:05:30.418Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/010-decision-routing-vocabulary",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary",
       "description": "An operator who types \"record this as a decision\" or \"Record my chat reply as a decision\" gets no skill recommendation",
       "keywords": [
         "operator",

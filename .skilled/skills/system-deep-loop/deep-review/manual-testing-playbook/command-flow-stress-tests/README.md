@@ -1,7 +1,7 @@
 ---
 title: "Command-Flow Stress Tests: deep-review CP-05x scenarios"
 description: "Sandboxed scenarios validating the /deep:review command-level entrypoint, write boundary and leaf refusal behavior."
-version: 1.11.0.1
+version: 1.11.1.0
 ---
 
 # Command-Flow Stress Tests
@@ -26,7 +26,7 @@ Each scenario is one Markdown file named for its topic. Its sections follow the 
 
 | File | Scenario |
 |------|----------|
-| `setup-yaml-handoff.md` | CP-052. Proves target, mode, dimensions, spec folder, max iterations and convergence bind before the auto YAML workflow loads |
+| `setup-yaml-handoff.md` | CP-052. Proves target, mode, dimensions, spec folder, max iterations and convergence bind before the workflow loads in auto mode |
 | `three-artifact-iteration-contract.md` | CP-053. Proves a valid iteration leaves iteration markdown, state-log JSONL and per-iteration delta JSONL, not a transcript summary |
 | `resource-map-coverage-gate.md` | CP-054. Proves a spec's `resource-map.md` is treated as a first-class audit input |
 | `synthesis-save-boundary.md` | CP-055. Proves synthesis writes reducer-owned review artifacts and routes continuity through `generate-context.js`, not retired memory paths |

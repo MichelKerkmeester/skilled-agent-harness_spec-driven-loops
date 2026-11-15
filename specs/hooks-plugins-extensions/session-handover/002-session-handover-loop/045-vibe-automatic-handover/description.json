@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/045-vibe-automatic-handover",
+  "description": "A Vibe session near its context limit gets no warning and never hands over on its own",
+  "keywords": [
+    "vibe",
+    "session",
+    "near",
+    "context",
+    "limit",
+    "gets",
+    "warning",
+    "never",
+    "hands",
+    "own"
+  ],
+  "lastUpdated": "2026-11-15T16:26:00.617Z",
+  "specId": "045",
+  "folderSlug": "vibe-automatic-handover",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "15-11-26_13-20__manual-context-save.md",
+    "15-11-26_17-25__recorded-the-three-post-build-operator-answers.md"
+  ]
+}

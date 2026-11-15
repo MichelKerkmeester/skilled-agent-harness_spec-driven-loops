@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.14.3.0
+version: 1.14.4.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -43,7 +43,7 @@ This playbook provides 54 deterministic scenarios across 8 categories validating
 - `deep-research` skill exists at `.skilled/skills/system-deep-loop/deep-research/`.
 - `/deep:research` command exists at `.skilled/commands/deep/research.md`.
 - `@deep-research` agent definition exists at `.skilled/agents/deep-research.md` plus runtime variants.
-- Deep-research YAML workflows and reducer/runtime assets are available in the repository.
+- The deep-research workflow and reducer/runtime assets are available in the repository.
 
 ---
 
@@ -88,10 +88,10 @@ This category covers 4 scenario summaries while the linked feature files remain 
 ### DR-001 | Auto mode deep-research kickoff
 
 #### Description
-Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and auto YAML workflow.
+Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint and the `deep-research.yaml` workflow.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the autonomous entrypoint for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify /deep:research:auto is documented consistently across the README, quick reference, command entrypoint, and autonomous YAML workflow. Return a concise user-facing pass/fail verdict with the expected artifact summary.
+Prompt summary: As a manual-testing orchestrator, validate the autonomous entrypoint for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify /deep:research:auto is documented consistently across the README, quick reference, command entrypoint and the deep-research.yaml workflow. Return a concise user-facing pass/fail verdict with the expected artifact summary.
 
 Expected signals: The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `research/research.md`.
 
@@ -130,7 +130,7 @@ Expected signals: The command explicitly names topic, spec folder, execution mod
 Verify that `--dry-run` performs safe preflight reads and halts before dispatch, state mutation, reducer refresh, or child spawn.
 
 #### Scenario Contract
-Prompt summary: Validate deep-research dry-run flag parsing and confirm-YAML halt boundaries.
+Prompt summary: Validate deep-research dry-run flag parsing and workflow halt boundaries.
 
 Expected signals: `--dry-run` normalizes to boolean input, non-mutating setup/read steps can run, and `dry_run_halt` events exist for dispatch, state-mutation, reducer-refresh, and child-spawn boundaries.
 
@@ -177,7 +177,7 @@ Verify that partial or contradictory scratch artifacts trigger a halt for repair
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, validate the invalid-state halt contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify contradictory or partial deep-research artifacts stop the workflow for repair instead of guessing through initialization. Return a concise user-facing pass/fail verdict.
 
-Expected signals: Invalid-state is a named class, both YAML files halt with a repair message, and the docs do not promise silent guessing for contradictory state.
+Expected signals: Invalid-state is a named class, the workflow halts in both execution modes with a repair message, and the docs do not promise silent guessing for contradictory state.
 
 #### Test Execution
 > **Feature File:** [DR-006](../manual-testing-playbook/initialization-and-state-setup/invalid-or-contradictory-state-halts-for-repair.md)
@@ -502,7 +502,7 @@ Expected signals: guard_violation event logged with guard="single_weak_source", 
 Verify the full override path: composite score >0.60 triggers STOP, quality guards check fires, guard fails, decision overridden to CONTINUE.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the convergence-guard override path for deep-research. Trace the full sequence: composite convergence votes STOP (score >0.60), then checkQualityGuards runs, then a guard violation is detected, then the STOP is overridden to CONTINUE and the loop resumes against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify this flow exists in convergence.md Decision Priority step 4.5, the YAML algorithm, and loop-protocol.md Step 2c. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the convergence-guard override path for deep-research. Trace the full sequence: composite convergence votes STOP (score >0.60), then evaluateResearchQualityGuards runs, then a guard violation is detected, then the STOP is overridden to CONTINUE and the loop resumes against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify this flow exists in convergence.md Decision Priority step 4.5, convergence.cjs, and loop-protocol.md Step 2c. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
 Expected signals: convergence_check with decision STOP and score >0.60, followed by guard_violation event, followed by decision override to CONTINUE and loop resumption.
 
@@ -564,12 +564,12 @@ Expected signals: `blockedStopHistory` is non-empty; each entry exposes `run`, `
 ### DR-033 | Research graph-aware stop gate surfaces convergence verdict and workflow hooks
 
 #### Description
-verify that `graph_convergence` events become reducer-owned `graphConvergenceScore`, `graphDecision`, and `graphBlockers`, that the dashboard renders those graph signals, and that the live auto workflow invokes the graph tools before the inline 3-signal vote.
+verify that `graph_convergence` events become reducer-owned `graphConvergenceScore`, `graphDecision`, and `graphBlockers`, that the dashboard renders those graph signals, and that the live workflow runs the convergence script that persists the graph snapshot and computes the whole stop decision.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate graph-aware stop-gate integration for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify graph_convergence reducer output populates graphConvergenceScore, graphDecision, and graphBlockers, that the dashboard renders GRAPH CONVERGENCE, and that the research auto workflow calls deep_loop_graph_upsert plus deep_loop_graph_convergence before the inline 3-signal vote. Return a concise operator-facing verdict.
+Prompt summary: As a manual-testing orchestrator, validate graph-aware stop-gate integration for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify graph_convergence reducer output populates graphConvergenceScore, graphDecision, and graphBlockers, that the dashboard renders GRAPH CONVERGENCE, and that the workflow runs convergence.cjs with --persist-snapshot and --stop-decision before the loop acts on the result. Return a concise operator-facing verdict.
 
-Expected signals: `graphConvergenceScore`, `graphDecision`, and `graphBlockers` appear in the registry; `GRAPH CONVERGENCE` appears in the dashboard; YAML includes `deep_loop_graph_upsert` and `deep_loop_graph_convergence` before the inline 3-signal vote.
+Expected signals: `graphConvergenceScore`, `graphDecision`, and `graphBlockers` appear in the registry; `GRAPH CONVERGENCE` appears in the dashboard; YAML runs `step_graph_convergence` with convergence.cjs before the loop reads the stop decision.
 
 #### Test Execution
 > **Feature File:** [DR-033](../manual-testing-playbook/convergence-and-recovery/graph-aware-stop-gate.md)
@@ -638,7 +638,7 @@ Expected signals: The reconstruction algorithm scans iteration files, extracts a
 Verify that the `.deep-research-run-now` sentinel triggers one immediate iteration with pause precedence and audit events.
 
 #### Scenario Contract
-Prompt summary: Validate the run-now sentinel lifecycle against auto YAML and its unit tests.
+Prompt summary: Validate the run-now sentinel lifecycle against the workflow and its unit tests.
 
 Expected signals: `run_now_requested`, `run_now_accepted`, `run_now_rejected`, and `run_now_restored` events are documented or tested; accepted runs consume the sentinel before dispatch.
 

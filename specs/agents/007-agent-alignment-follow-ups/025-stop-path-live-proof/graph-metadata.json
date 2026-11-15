@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/025-stop-path-live-proof",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/025-stop-path-live-proof",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stop path live proof",
+      "phase 25 stop path live proof",
+      "stop path live proof plan",
+      "stop path live proof tasks",
+      "stop path live proof implementation summary"
+    ],
+    "key_topics": [
+      "stop",
+      "path",
+      "live",
+      "proof",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "phases",
+      "every",
+      "terminal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-stop-path-replay.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern End",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Stop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 15 to 17 made every terminal stop record its gates and fail the verdict on a failed gate, but each step was tested alone",
+    "created_at": "2026-11-15T17:32:08Z",
+    "last_save_at": "2026-11-15T18:28:35.632Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:28549175e042c7d6281ff021a860f97e98e17b17a182403172e392ec4165fba2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "32242b20b561bae7458245fedd6e600e75d335062c7ec79a20af28fd47125bd4",
+      "plan.md": "e6299a5efc77aa259f45129dd1beaa055bc36a8faf8529b23e67ff5431e2faf0",
+      "tasks.md": "a2930e064a6b1a524cb3f62bbca2cb9b2cc69d7cd589cfad1c388aba231bcd9f",
+      "implementation-summary.md": "eca5d811e6bdfb1be64196f7495f996765894656f5d596409726e447b35de43a"
+    },
+    "last_active_at": null
+  }
+}

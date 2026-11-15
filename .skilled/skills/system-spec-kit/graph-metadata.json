@@ -94,7 +94,7 @@
     "trigger index",
     "trigger phrase",
     "unindexed spec",
-    "session relaunch",
+    "session handover",
     "relaunch nudge",
     "context window the nudge measures against",
     "relaunch my session with the same flags",
@@ -112,7 +112,10 @@
     "autopilot mode",
     "autopilot execution mode",
     "spec folders for the phrase",
-    "which spec packets mention"
+    "which spec packets mention",
+    "packet purpose",
+    "keep the packet purpose",
+    "purpose across relaunch and compaction"
   ],
   "derived": {
     "trigger_phrases": [

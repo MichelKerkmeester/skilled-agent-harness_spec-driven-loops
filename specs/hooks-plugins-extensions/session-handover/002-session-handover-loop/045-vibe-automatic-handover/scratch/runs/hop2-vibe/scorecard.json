@@ -1,0 +1,34 @@
+{
+  "runtime": "vibe",
+  "label": "hop2",
+  "trustDialogs": 0,
+  "steps": {
+    "notePrepared": true,
+    "signalled": true,
+    "relaunched": true,
+    "noteClosed": true,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "noteStatus": "done",
+  "carry": {
+    "model": "not-set",
+    "effort": "not-set",
+    "name": "not-set",
+    "provider": "not-set"
+  },
+  "seconds": {
+    "startToPrepare": 12.8,
+    "prepareToSignal": 19.4,
+    "signalToRelaunch": 0.4,
+    "startToClosed": 42.1
+  },
+  "problems": [],
+  "firstLaunch": "/Users/michelkerkmeester/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs --trust --agent auto-approve Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat the code word ORCHID-29699. Start by reading the README. Gate 3: D) Skip, no spec folder.",
+  "relaunchArgs": "/Users/michelkerkmeester/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs [session-handover] claim and continue handoff /Users/michelkerkmeester/worktrees/public/406-vibe-automatic-handover/.skilled/skills/.state/session-handover/handoffs/20261115T115612Z-84025e59-e2ee-73a6-a278-944667ff98fa.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session) --trust --agent auto-approve",
+  "score": "5/5"
+}

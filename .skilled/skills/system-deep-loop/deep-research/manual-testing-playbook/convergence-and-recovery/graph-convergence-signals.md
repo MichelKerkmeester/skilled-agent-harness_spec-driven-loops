@@ -1,7 +1,7 @@
 ---
 title: "DR-031 -- Graph convergence signals act as STOP-blocking guards"
 description: "Verify that low sourceDiversity blocks a STOP vote and records blocked-stop evidence for deep research."
-version: 1.14.0.14
+version: 1.14.1.0
 ---
 
 # DR-031 -- Graph convergence signals act as STOP-blocking guards
@@ -48,7 +48,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate source-diversity threshold blocks STOP and records blockedStop persistence.
 ### Commands
-1. `bash: rg -n 'gate_evidence_density_pass|sourceDiversity|STOP_BLOCKED' .skilled/commands/deep/assets/deep-research-auto.yaml`
+1. `bash: rg -n 'gate_evidence_density_pass|sourceDiversity|STOP_BLOCKED' .skilled/commands/deep/assets/deep-research.yaml`
 2. `bash: rg -n 'blockedStop|blocked_stop|graph-aware convergence|graphEvents|sourceDiversity' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
 3. `bash: rg -n 'sourceDiversity' .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts`
 ### Expected
@@ -73,7 +73,7 @@ Privilege the command contract for the enforcement rule and `references/converge
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | The stop rule: inline vote plus `graph_decision`, with `sourceDiversity` and `evidenceDepth` as the evidence-density blockers |
+| `.skilled/commands/deep/assets/deep-research.yaml` | The stop rule: convergence.cjs computes the stop decision from the coverage graph, with `sourceDiversity` and `evidenceDepth` as the evidence-density blockers |
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Deep-research legal-stop and blocked-stop contract, including graph-aware convergence |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts` | `sourceDiversity` as a typed convergence gate status |
 

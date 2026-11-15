@@ -1,4 +1,4 @@
-specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection | Summary: Errors: 0  Warnings: 0
+specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection | Summary: Errors: 0  Warnings: 0
 specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack | Summary: Errors: 0  Warnings: 1
 specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack | Summary: Errors: 0  Warnings: 4
 specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment | Summary: Errors: 0  Warnings: 0

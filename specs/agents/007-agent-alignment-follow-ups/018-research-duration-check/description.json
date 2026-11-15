@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/018-research-duration-check",
+  "description": "Phase 18: research-duration-check",
+  "keywords": [
+    "phase",
+    "research-duration-check"
+  ],
+  "lastUpdated": "2026-11-15T11:42:50.047Z",
+  "specId": "018",
+  "folderSlug": "research-duration-check",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "15-11-26_12-32__moved-the-deep-research-duration-check-after-step.md",
+    "15-11-26_12-42__018-shipped-research-duration-check-after-step.md"
+  ]
+}

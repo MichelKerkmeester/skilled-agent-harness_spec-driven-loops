@@ -56,7 +56,7 @@
       "routes"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "decision-record.md",
@@ -115,12 +115,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -134,6 +128,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -163,28 +163,28 @@
         "source": "derived"
       },
       {
-        "name": "text",
-        "kind": "technology",
+        "name": "The Vibe",
+        "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The operator subscribed to Mistral, whose plan serves DeepSeek V4.1 Flash 1017 and GLM-5.3-Flash beside Mistral's own models and its Vibe coding agent",
     "created_at": "2026-11-14T12:01:21Z",
-    "last_save_at": "2026-11-14T22:47:43.259Z",
+    "last_save_at": "2026-11-15T17:26:26.592Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:8fe3674ea1dad203936244c4af4be190002b7a1b1d93bfc4d2893a83177181d5",
+    "source_fingerprint": "sha256:13f53723dd7c244b104f7bccfd0b5505ae12ae38ba912c7c0f23a09a1fe96473",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee7137e27e533c87cf57fa73a256a25130bcbb756308d9214ea957b7a5a40e1e",
-      "decision-record.md": "bc226ed884f7a69a70931f415cb83b3cd1d40d1b41784c494ee85a410083f784"
+      "spec.md": "dc2ce426bdb45fd567a9333c70f42e3a042ca5c794ffbe46e2f3b5dfed0ac66d",
+      "decision-record.md": "402d177ba91912474789bd8fe6dae7266c9b820726fdd90524d3d7ef7e83521d"
     },
-    "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios",
-    "last_active_at": "2026-11-14T22:33:40.948Z"
+    "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier",
+    "last_active_at": "2026-11-15T17:26:17.774Z"
   }
 }

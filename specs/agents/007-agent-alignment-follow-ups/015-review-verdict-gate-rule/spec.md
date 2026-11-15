@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
@@ -150,7 +150,7 @@ The terminal-stop line at `:781` keeps failed gates only as prose evidence. The 
 
 ### Out of Scope
 - The deep-review agent's FAIL row - it defers to the session verdict, which stays correct after this phase.
-- `userPaused`, `error` and `manualStop` - the first two halt without synthesis (`deep-review-auto.yaml:1138`, `:2186`) and `manualStop` has no emitter, so none derives a verdict.
+- `userPaused`, `error` and `manualStop` - `userPaused` and a single dispatch error halt without synthesis (`deep-review-auto.yaml:1138`, `:2186`). The error-recovery rule "After 3 consecutive errors, halt loop and enter synthesis with partial findings" (`deep-review-auto.yaml` `error_recovery.consecutive_failures`) does reach synthesis without passing `if_stop`, so that run writes no terminal record and keeps the P0-only verdict. Widening the stop enum to cover it is left out of scope and reported. In the confirm workflow an operator's manual stop after a pivot records the terminal gates under `converged`, because the stop enum has no `manualStop` member; the verdict it yields is still correct.
 - The dashboard's blocked-stop rendering reads `gateResults` as an object while the schema stores an array (`reduce-state.cjs:2186-2190`), and the fan-out CLI emits no `active_p2` for the `p2_count` binding (`fanout-merge.cjs:1541-1542`) - both predate this phase; reported, not fixed.
 - The reserved `deep_review.run_completed` stem - speaking it needs four other reserved stems' event ids.
 - Research and ai-council verdicts - neither has a required-gate rule in its contract.

@@ -130,6 +130,8 @@ All 12 phases are Complete. A final check ran `measure-voice.py` and the house c
 - `.skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md` keeps its original text and fails both sentence rules. Three waves restored it, because each draft lost its "as each unit needed" condition. Phase 012's evidence records the last finding.
 - `.skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.10.0.md` keeps one voice-scan hard blocker. The word is part of the name `harness-diagram`, which the entry must keep. Phase 010 records it.
 
+Follow-up: 17 changelogs reached main after the scope list was cut, and no phase rewrote them. `scratch/followup-main-changelogs.txt` lists them. On 2026-11-15, 5 of them held a sentence over 22 words and 1 held a voice-scan hard blocker. The operator chose to leave them for later.
+
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

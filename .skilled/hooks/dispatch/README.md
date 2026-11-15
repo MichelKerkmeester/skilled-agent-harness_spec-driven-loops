@@ -127,7 +127,8 @@ dispatch/
 +-- codex/    (same pair), codex-shell-tool.test.mjs  # vitest, hooks config
 +-- cursor/   dispatch-preflight-lint.mjs (Shell preflight), post-tool-use.mjs  # multiplexed proxy (Shell -> dispatch audit, Write -> post-edit-quality)
 +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real files; `.pi/extensions/` re-exports them), dispatch-preflight-lint.test.ts, directive-dedup.test.ts  # vitest, hooks config
-`-- opencode/ cli-dispatch-audit.js (browsability symlink -> .opencode/plugins/; real file loaded from .opencode/plugins/)
++-- opencode/ cli-dispatch-audit.js (browsability symlink -> .opencode/plugins/; real file loaded from .opencode/plugins/)
+`-- vibe/     dispatch-preflight.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 ```
 
 ---

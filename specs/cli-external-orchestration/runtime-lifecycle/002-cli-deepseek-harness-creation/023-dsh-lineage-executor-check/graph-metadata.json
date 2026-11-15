@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dsh lineage executor check",
+      "phase 23 dsh lineage executor check",
+      "lineage invocation metadata executor check",
+      "fan-out lineage executor_missing",
+      "dsh lineage executor check plan",
+      "lineage invocation metadata plan",
+      "dsh lineage executor check tasks",
+      "dsh lineage executor check goal",
+      "dsh lineage executor check implementation summary"
+    ],
+    "key_topics": [
+      "dsh",
+      "lineage",
+      "executor",
+      "check",
+      "phase",
+      "invocation",
+      "metadata",
+      "fan-out",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/post-dispatch-validate.vitest.ts",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+      ".skilled/skills/system-deep-loop/changelog/v2.0.2.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/post-dispatch-validate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "v2.0.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/changelog/v2.0.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`verify-iteration.cjs` returns early for any fan-out lineage, so a CLI lineage passes the executor check whether or not anything records its executor",
+    "created_at": "2026-11-15T09:17:29Z",
+    "last_save_at": "2026-11-15T09:40:41.480Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a442887d0ca4b775b3971919346fc3d8b2683c69d2c8e7d143ae2e6729c24ce4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "91b519b20eebbe6ec13de54755aeec27e214189b2ae040b7eae315345f72546f",
+      "plan.md": "1d177f380ee1b6db16730c9e02a8a6007277eabedffc2a612802e06ed10da546",
+      "tasks.md": "5d71e5d49889b9ec450dbb74244b17641eae0e1c869067332085636c3b6b64d3",
+      "implementation-summary.md": "eb914a4e6bcf192ee733b0aedd7fba6efc6e18f0dd7d5e837a09df32c8d3fe76"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: "DLR-049 -- Unified observability event envelope"
 description: "Manual validation scenario for Unified observability event envelope in the runtime/ skill."
-version: 1.4.0.15
+version: 1.4.2.0
 ---
 
 # DLR-049 -- Unified observability event envelope
@@ -45,16 +45,15 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Commands
 
 1. Inspect `lib/deep-loop/observability-events.cjs` for the implementation contract.
-2. Inspect `lib/council/round-state-jsonl.cjs` for the implementation contract.
-3. Inspect `scripts/convergence.cjs` for the implementation contract.
-4. Inspect `scripts/fanout-run.cjs` for the implementation contract.
-5. Inspect `scripts/status.cjs` for the implementation contract.
-6. Inspect `.skilled/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
-7. Inspect `tests/unit/observability-events.vitest.ts` for the matching regression coverage.
-8. Inspect `tests/integration/status-script.vitest.ts` for the matching regression coverage.
-9. Run or inspect the matching test assertions for this feature.
-10. Capture the source lines, command output, or test assertions that prove the expected signals.
-11. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
+2. Inspect `scripts/convergence.cjs` for the implementation contract.
+3. Inspect `scripts/fanout-run.cjs` for the implementation contract.
+4. Inspect `scripts/status.cjs` for the implementation contract.
+5. Inspect `.skilled/commands/deep/assets/deep-research.yaml` for the implementation contract.
+6. Inspect `tests/unit/observability-events.vitest.ts` for the matching regression coverage.
+7. Inspect `tests/integration/status-script.vitest.ts` for the matching regression coverage.
+8. Run or inspect the matching test assertions for this feature.
+9. Capture the source lines, command output, or test assertions that prove the expected signals.
+10. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
 ### Expected Outcome
 
@@ -62,7 +61,7 @@ Unified observability event envelope matches the documented current reality, the
 
 ### Evidence
 
-- Source excerpts from `lib/deep-loop/observability-events.cjs`, `lib/council/round-state-jsonl.cjs`, `scripts/convergence.cjs`, `scripts/fanout-run.cjs`, `scripts/status.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Source excerpts from `lib/deep-loop/observability-events.cjs`, `scripts/convergence.cjs`, `scripts/fanout-run.cjs`, `scripts/status.cjs`, `.skilled/commands/deep/assets/deep-research.yaml` showing the anchors named in the commands above, read from the current files rather than recalled.
 - Captured stdout and exit status for every command run in this section.
 - Output from `tests/unit/observability-events.vitest.ts`, `tests/integration/status-script.vitest.ts` naming the assertions that carry the expected signals.
 - A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
@@ -83,11 +82,10 @@ Unified observability event envelope matches the documented current reality, the
 | File | Role |
 |---|---|
 | `lib/deep-loop/observability-events.cjs` | unified observability event envelope. |
-| `lib/council/round-state-jsonl.cjs` | unified observability event envelope. |
 | `scripts/convergence.cjs` | unified observability event envelope. |
 | `scripts/fanout-run.cjs` | unified observability event envelope. |
 | `scripts/status.cjs` | unified observability event envelope. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | unified observability event envelope. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | unified observability event envelope. |
 
 ### Validation
 

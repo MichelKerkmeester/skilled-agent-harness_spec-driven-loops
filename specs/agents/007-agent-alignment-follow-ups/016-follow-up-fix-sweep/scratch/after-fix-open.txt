@@ -1,0 +1,38 @@
+commit: 91c76c650d7 + working tree (Fix open: council drift + reducer)
+$ (cd R && npm test)
+exit=0
+ Test Files  177 passed (177)
+      Tests  2994 passed | 9 skipped (3003)
+---
+$ typecheck
+exit=0
+---
+$ census
+{"ok":true,"repoRoot":"/Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups","registered":92,"spoken":24,"reserved":68,"emitters":[{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.blocked_stop_recorded"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.blocked_stop_recorded"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.claim_adjudication"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.claim_adjudication"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.claim_adjudication"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.claim_adjudication"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.graph_convergence_evaluated"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.graph_convergence_evaluated"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.iteration_error"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.iteration_error"},{"file":".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs","stem":"deep_review.iteration_recorded"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.migration"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.migration"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.pause_recorded"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.pause_recorded"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.recovery_baseline"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.recovery_started"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.recovery_started"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.run_initialized"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.run_initialized"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.run_restarted"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.run_restarted"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.run_resumed"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.run_resumed"},{"file":".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs","stem":"deep_review.synthesis_complete"},{"file":".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs","stem":"deep_review.synthesis_incomplete"},{"file":".skilled/commands/deep/assets/deep-review-auto.yaml","stem":"deep_review.terminal_gates_recorded"},{"file":".skilled/commands/deep/assets/deep-review-confirm.yaml","stem":"deep_review.terminal_gates_recorded"},{"file":".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs","stem":"deep_research.idea_promoted"},{"file":".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs","stem":"deep_research.question_conflict"},{"file":".skilled/commands/deep/assets/deep-research-auto.yaml","stem":"deep_research.run_initialized"},{"file":".skilled/commands/deep/assets/deep-research-confirm.yaml","stem":"deep_research.run_initialized"},{"file":".skilled/commands/deep/assets/deep-research-auto.yaml","stem":"deep_research.run_now_accepted"},{"file":".skilled/commands/deep/assets/deep-research-auto.yaml","stem":"deep_research.run_now_rejected"},{"file":".skilled/commands/deep/assets/deep-research-auto.yaml","stem":"deep_research.run_now_requested"},{"file":".skilled/commands/deep/assets/deep-research-auto.yaml","stem":"deep_research.run_now_restored"},{"file":".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs","stem":"deep_research.synthesis_complete"},{"file":".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs","stem":"deep_research.synthesis_incomplete"}],"violations":[]}
+$ drift
+[CONTRACT DRIFT] OK commands=3
+$ mirror
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+$ stale council name (expect nothing)
+.skilled/skills/system-deep-loop/deep-ai-council/feature-catalog/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:5:  - "runtime agent renamed to deep-ai-council"
+$ stale reducer comment (expect nothing)
+
+== after @review round 1 fixes ==
+$ (cd R && npm test)
+exit=0
+ Test Files  177 passed (177)
+      Tests  2996 passed | 9 skipped (3005)
+$ typecheck
+exit=0
+$ census
+92 24 68 []
+$ drift
+[CONTRACT DRIFT] OK commands=3
+$ mirror
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+$ mutation checks
+dropping the cleared-gate filter fails "clears a blocked stop that comes right before a passing terminal record"; dropping the blocked-only guard fails "accepts a passing terminal record after synthesis has started" (each 1 failed | 94 passed)
+$ rg -n '@deep-ai-council' deep-ai-council (no changelog)
+rg exit=1
+$ drift after output-schema P2
+[CONTRACT DRIFT] OK commands=3

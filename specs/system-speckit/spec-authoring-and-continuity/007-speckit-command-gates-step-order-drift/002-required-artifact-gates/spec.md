@@ -25,7 +25,7 @@ contextType: "general"
 | **Created** | 2026-11-14 |
 | **Branch** | `scaffold/002-required-artifact-gates` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 8 |
+| **Phase** | 2 of 11 |
 | **Predecessor** | 001-step-order-acceptance-after-development |
 | **Successor** | 003-execution-mode-and-autopilot-contract |
 | **Handoff Criteria** | Every gate under `quality_gates` in the three lifecycle workflows is a list of required checks with no points. Findings G1 to G7 are closed. This phase's `acceptance-criteria.md` has no `Unmet` row |

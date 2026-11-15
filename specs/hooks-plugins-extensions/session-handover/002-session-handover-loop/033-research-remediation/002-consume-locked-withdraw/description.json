@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/002-consume-locked-withdraw",
+  "description": "`consume` reads the relaunch record outside its lock (`.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:692`, `core.readRelaunchFile(loopId)`)",
+  "keywords": [
+    "consume",
+    "reads",
+    "relaunch",
+    "record",
+    "outside",
+    "lock",
+    "skilled",
+    "hooks",
+    "session-relaunch",
+    "bin",
+    "cjs",
+    "core",
+    "readrelaunchfile",
+    "loopid"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.915Z",
+  "specId": "002",
+  "folderSlug": "consume-locked-withdraw",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "033-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -12,7 +12,7 @@ trigger_phrases:
   - "DeepSeek Harness Dispatch Mode"
   - "Mistral Vibe Dispatch Mode"
 last_updated: "2026-11-14"
-version: 1.7.7.0
+version: 1.7.9.0
 ---
 
 # cli-external-orchestration: Feature Catalog
@@ -141,7 +141,7 @@ See [`opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`](opencod
 
 #### Description
 
-`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed three-route DeepSeek V4.1 Flash roster, and it remains experimental. LLM Gateway (2026-11-06) and OpenCode Go (2026-11-07) answered a keyed run, and the Mistral route composes but has no keyed run yet.
+`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental. LLM Gateway (2026-11-06) and OpenCode Go (2026-11-07) answered a keyed run.
 
 #### Current Reality
 
@@ -163,7 +163,7 @@ See [`deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md`](deepsee
 
 #### Current Reality
 
-The mode routes on Vibe vocabulary only: `mistral vibe`, `vibe -p`, `vibe print mode` and `delegate to vibe`. The bare word "vibe" stays ordinary design language and selects nothing. A dispatch runs from a scratch cwd with a disposable `VIBE_HOME`, names one of `deepseek-flash` and `glm-flash`, and counts as complete only when `export.json` records `exit_code` 0 and `outcome` `finished`. The shared dispatch inspector classifies a Vibe print run as `direct cli-mistral-vibe`, and the rule engine judges it against the packet's six hard rules before it spawns.
+The mode routes on Vibe vocabulary only: `mistral vibe`, `vibe -p`, `vibe print mode` and `delegate to vibe`. The bare word "vibe" stays ordinary design language and selects nothing. A dispatch runs from a scratch cwd with a disposable `VIBE_HOME`, names one of `deepseek-flash` and `glm-flash`, and counts as complete only when `export.json` records `exit_code` 0 and `outcome` `finished`. The shared dispatch inspector classifies a Vibe print run as `direct cli-mistral-vibe`, and the rule engine judges it against the packet's seven hard rules before it spawns.
 
 #### Source Files
 

@@ -1,12 +1,12 @@
 ---
-description: "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime."
+description: "Write the handoff note and prepare the session handover loop: the manual trigger on every runtime."
 argument-hint: "(no arguments)"
 allowed-tools: Read, Write, Bash
 ---
 
 # /speckit:handoff
 
-Manual entry point for the session relaunch loop. Writes this session's handoff note and prepares a pending record. Automatic runtimes arm it at their end event. Command-only runtimes leave it pending and use a manual claim command.
+Manual entry point for the session handover loop. Writes this session's handoff note and prepares a pending record. Automatic runtimes arm it at their end event. Command-only runtimes leave it pending and use a manual claim command.
 
 ---
 
@@ -16,12 +16,12 @@ The relaunch loop carries work into a fresh session near the end of this session
 This session writes a standalone handoff note.
 The wrapper relaunches the runtime with a claim seed, on the sender's model and effort where the runtime takes them at launch.
 The new session picks up the remaining work.
-This command is the manual trigger on runtimes wired with the session-relaunch hooks and the only trigger on runtimes without a hook.
+This command is the manual trigger on runtimes wired with the session-handover hooks and the only trigger on runtimes without a hook.
 Inside `skilled-loop` the automatic nudge asks for a hop.
-Outside the loop it asks only for a note the session keeps with `session-relaunch.cjs keep` and claims after auto-compaction, and the session runs this command only when the operator explicitly asks for a manual handoff.
+Outside the loop it asks only for a note the session keeps with `session-handover.cjs keep` and claims after auto-compaction, and the session runs this command only when the operator explicitly asks for a manual handoff.
 Sourcing `.skilled/bin/skilled-loop-shell.sh` from `~/.zshrc` or `~/.bashrc` starts every interactive runtime launch inside the loop, so nobody has to start the wrapper by hand.
 The note this command writes is gitignored runtime state for the next session, not a spec packet's `handover.md`.
-Section 5 covers a session seeded with `[session-relaunch] claim and continue handoff <path>`.
+Section 5 covers a session seeded with `[session-handover] claim and continue handoff <path>`.
 
 ---
 
@@ -29,15 +29,15 @@ Section 5 covers a session seeded with `[session-relaunch] claim and continue ha
 
 **Inputs:** nothing through `$ARGUMENTS`.
 Both `prepare` and `claim` require `--session <id>`.
-Only Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`.
+Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`, and so can a Vibe session started through `skilled-loop`, which uses the id its turn-start hook recorded.
 On Claude, `CLAUDE_PID` supplies the runtime process id for the shell-child check and the killer's target, both only while it descends from the loop.
 Other runtimes must pass the session id.
-If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` once and reuse that id for the session.
+A Vibe session started through `skilled-loop` gets its id from `node .skilled/hooks/session-handover/bin/session-handover.cjs session-id --runtime vibe`. When that command fails, run `uuidgen` instead. If a runtime has no session-id variable, such as Devin, Cursor or a Vibe session outside the loop, run `uuidgen` once and reuse that id for the session.
 `spec_folder` records the Gate 3 answer: the repo-relative packet path, `none` after D) Skip or empty when Gate 3 was never answered.
 
 **Outputs:**
 
-- A handoff note at `.skilled/skills/.state/session-relaunch/handoffs/<UTC yyyymmddThhmmssZ>-<session id>.md`, with the full session id because Pi and OpenCode ids share a time-based prefix.
+- A handoff note at `.skilled/skills/.state/session-handover/handoffs/<UTC yyyymmddThhmmssZ>-<session id>.md`, with the full session id because Pi and OpenCode ids share a time-based prefix.
 - One `STATUS=` line, taken from the STATUS table below.
 - When a spec packet is bound: save continuity before `prepare` runs. The nudge asks for the note first, and either order works. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to the continuity writer.
 
@@ -50,11 +50,11 @@ If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` 
 | refused | `prepare` exits `2` and the refusal cannot be repaired | `STATUS=FAIL ERROR="<reason>"` |
 | save failed | The Step 2 continuity save fails | `STATUS=FAIL ERROR="continuity save failed: <reason>"` |
 
-**CLI:** `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs`
+**CLI:** `node .skilled/hooks/session-handover/bin/session-handover.cjs`
 
 | Invocation | Effect | Exit |
 |---|---|---|
-| `prepare --handoff <path> --session <id> [--runtime <name>]` | Validate the note and write the pending relaunch record | `0` prepared (pending until an automatic arm event, or manual on command-only runtimes), `2` refused (reason on stderr, including a runtime conflict, or the session-relaunch concern being off for this runtime, inside or outside the loop, when the reason names the switch that turned it off and the note is left unchanged), `3` no automatic hop: not under `skilled-loop`, or the hop limit is reached |
+| `prepare --handoff <path> --session <id> [--runtime <name>]` | Validate the note and write the pending relaunch record | `0` prepared (pending until an automatic arm event, or manual on command-only runtimes), `2` refused (reason on stderr, including a runtime conflict, or the session-handover concern being off for this runtime, inside or outside the loop, when the reason names the switch that turned it off and the note is left unchanged), `3` no automatic hop: not under `skilled-loop`, or the hop limit is reached |
 | `claim <path> --session <id>` | Move the note `open -> claimed` and print its body | `0` ok, `2` refused |
 | `complete <path>` | Move the note `claimed -> done` | `0` ok, `2` refused |
 | `keep --handoff <path> --session <id> [--runtime <name>]` | Outside the loop only: validate the note, record it in the hop history and print the claim command to run after auto-compaction | `0` kept, `2` refused, including a call from inside the loop |
@@ -78,7 +78,7 @@ If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` 
 
 ### Step 1: Resolve Inputs
 
-- Session id: both commands require `--session <id>`. Claude Code can omit the flag because the CLI reads `$CLAUDE_CODE_SESSION_ID`. Other runtimes pass the id directly. If a runtime exposes no session-id variable, such as Devin or Cursor, run `uuidgen` once and reuse that value for the rest of the session. The id fills the note's `session_id`, the filename suffix and `--session`.
+- Session id: both commands require `--session <id>`. Claude Code can omit the flag because the CLI reads `$CLAUDE_CODE_SESSION_ID`. Other runtimes pass the id directly. A Vibe session started through `skilled-loop` prints its id with `node .skilled/hooks/session-handover/bin/session-handover.cjs session-id --runtime vibe`. When that command fails, run `uuidgen` instead. If a runtime exposes no session-id variable, such as Devin, Cursor or a Vibe session outside the loop, run `uuidgen` once and reuse that value for the rest of the session. Never search the disk or a runtime's log folder for an id. The id fills the note's `session_id`, the filename suffix and `--session`.
 - cwd: the absolute working directory.
 - Spec binding: use the repo-relative packet path when one is bound. Use `none` when Gate 3 was answered D) Skip. Leave the field empty when Gate 3 was never answered.
 
@@ -89,7 +89,7 @@ The automatic nudge asks for the note first and the save second.
 Both orders meet that need.
 Claude runs `/speckit:save` in its explicit full-auto mode, because the default response is a save plan that writes nothing.
 Continue only when the result reports the writer ran.
-Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto --session-id <id> --runtime <slug> <spec-folder>`, where `<id>` is the Step 1 session id and `<slug>` is one of the writer's own runtime values: claude, codex, opencode, pi, devin, dsh or cursor.
+Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto --session-id <id> --runtime <slug> <spec-folder>`, where `<id>` is the Step 1 session id and `<slug>` is one of the writer's own runtime values: claude, codex, opencode, pi, devin, dsh, cursor or vibe.
 Record the repo-relative packet path in `spec_folder`.
 When Gate 3 was answered D) Skip, set `spec_folder` to `none` and skip the save.
 When Gate 3 was never answered, leave `spec_folder` empty.
@@ -101,7 +101,7 @@ If the save fails, stop here. Do not write the note or run `prepare`, because th
 Create the directory first:
 
 ```bash
-mkdir -p .skilled/skills/.state/session-relaunch/handoffs
+mkdir -p .skilled/skills/.state/session-handover/handoffs
 ```
 
 Name the file `<UTC yyyymmddThhmmssZ>-<session id>.md`. `date -u +%Y%m%dT%H%M%SZ` produces the stamp and the full session id is the suffix. Do not shorten it, because Pi and OpenCode ids share a time-based prefix and a short form would collide. The note format is exact:
@@ -137,8 +137,9 @@ Frontmatter is flat `key: value` lines only: no nesting, no lists.
 `prepare` and `keep` set it, never you: each call writes the repo-relative directory of the packet whose `goal.md` holds the goal the session works under, and removes the field when that goal cannot be proven, so Codex notes never carry it.
 Leave it out of the note, because a value you write is replaced or removed.
 `prepare` and `keep` also own the optional `goal_ended` field, which they write when a Claude goal was met, failed or cleared and remove any value you write by hand.
-`SESSION_RELAUNCH_GOAL=0` turns both fields off, `goal_packet` and `goal_ended` alike.
-On Cursor and Devin the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal.
+`SESSION_HANDOVER_GOAL=0` turns both fields off, `goal_packet` and `goal_ended` alike.
+On Cursor and Devin, a receiver started from the manual command that `prepare` prints does not get the goal.
+On Vibe, `prepare` records the packet the session's goal came from, `VIBE_SPEC_FOLDER` first and then a claimed note's packet, and the receiver's session-start hook renders that goal.
 Every section must be non-empty.
 Goal states what the work is for.
 When `spec_folder` names a packet, open Goal with the packet's purpose line, `Purpose: <sentence>`, where `<sentence>` is the first sentence of that packet's purpose in its `spec.md`, copied word for word and cut to 300 characters.
@@ -172,10 +173,10 @@ The `release --owner-pid` operation also requires the captured lock path and non
 Skip this command when no deep-loop lock is held.
 
 ```bash
-node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff <path> --session <session id> --runtime <runtime>
+node .skilled/hooks/session-handover/bin/session-handover.cjs prepare --handoff <path> --session <session id> --runtime <runtime>
 ```
 
-Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE_CODE_SESSION_ID`. The `session-relaunch.cjs --runtime` value must be one of `claude`, `pi`, `opencode`, `codex`, `cursor` or `devin`, the `RUNTIMES` list in `relaunch-core.cjs`. A DSH session saves through the continuity writer, which takes `dsh` as a runtime value, but `prepare` refuses `--runtime dsh`, so a DSH session gets no relaunch record. Outside the loop, it overrides the environment or Claude default. Inside the loop, it must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. The handoff nudge passes the session id and runtime.
+Pass `--session <id>` to `prepare`. Claude Code can omit it and use `CLAUDE_CODE_SESSION_ID`, and a Vibe session started through `skilled-loop` can omit it and use the id its turn-start hook recorded. The `session-handover.cjs --runtime` value must be one of `claude`, `pi`, `opencode`, `codex`, `cursor`, `devin` or `vibe`, the `RUNTIMES` list in `relaunch-core.cjs`. A DSH session saves through the continuity writer, which takes `dsh` as a runtime value, but `prepare` refuses `--runtime dsh`, so a DSH session gets no relaunch record. Outside the loop, it overrides the environment or Claude default. Inside the loop, it must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. The handoff nudge passes the session id and runtime.
 
 ### Step 5: Report By Exit Code
 
@@ -184,25 +185,26 @@ Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE
   Show the stderr reason verbatim.
   Fix the cause it names, then run `prepare` again.
   The cause may be an invalid note, a note owned by another session or a live shell child of the runtime process.
-  A reason that starts `session relaunch is disabled` or `session relaunch is off for` means the concern is off for this runtime, inside or outside the loop, because a master or kill switch is set, the runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` holds a falsy value, `SYSTEM_SESSION_RELAUNCH_ENABLED` holds one, or no enable flag is set on a runtime other than Claude Code.
+  A reason that starts `session handover is disabled` or `session handover is off for` means the concern is off for this runtime, inside or outside the loop, because a master or kill switch is set, the runtime's own `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` holds a falsy value, `SYSTEM_SESSION_HANDOVER_ENABLED` holds one, or no enable flag is set on a runtime other than Claude Code.
   Turning it on is the operator's choice, so report the `refused` row and change no flag.
   Report the `refused` row only when the refusal cannot be repaired.
 - `3`: no automatic hop.
   Either the session is not running under `skilled-loop`, or the loop has reached its hop limit, in which case the CLI first prints `hop limit reached; continue in this session` and auto-compaction stays the fallback.
   Both cases print the claim command for the selected runtime.
   Show it verbatim and report the `manual` row.
-  For automatic hops in later sessions, start the runtime through `skilled-loop`, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain `claude`, `pi`, `opencode`, `codex`, `devin` or `cursor-agent` launch starts under it.
+  For automatic hops in later sessions, start the runtime through `skilled-loop`, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent` or `vibe` launch starts under it.
 
 | Runtime | Printed command |
 |---|---|
-| Claude | `skilled-loop claude "[session-relaunch] claim and continue handoff <path>"` |
-| Pi | `skilled-loop pi "[session-relaunch] claim and continue handoff <path>"` |
-| OpenCode | `skilled-loop opencode --prompt "[session-relaunch] claim and continue handoff <path>"` |
-| Codex | `skilled-loop codex "[session-relaunch] claim and continue handoff <path>"` |
-| Cursor | `skilled-loop cursor "[session-relaunch] claim and continue handoff <path>"` |
-| Devin | `skilled-loop devin -- "[session-relaunch] claim and continue handoff <path>"` |
+| Claude | `skilled-loop claude "[session-handover] claim and continue handoff <path>"` |
+| Pi | `skilled-loop pi "[session-handover] claim and continue handoff <path>"` |
+| OpenCode | `skilled-loop opencode --prompt "[session-handover] claim and continue handoff <path>"` |
+| Codex | `skilled-loop codex "[session-handover] claim and continue handoff <path>"` |
+| Cursor | `skilled-loop cursor "[session-handover] claim and continue handoff <path>"` |
+| Devin | `skilled-loop devin -- "[session-handover] claim and continue handoff <path>"` |
+| Vibe | `skilled-loop vibe "[session-handover] claim and continue handoff <path>"` |
 
-The CLI and wrapper place each path `!` in single quotes outside the seed's double quotes. For example, they print `skilled-loop claude "[session-relaunch] claim and continue handoff /tmp/han"'!'"doff.md"`. Interactive Bash keeps that path intact when history expansion is on.
+The CLI and wrapper place each path `!` in single quotes outside the seed's double quotes. For example, they print `skilled-loop claude "[session-handover] claim and continue handoff /tmp/han"'!'"doff.md"`. Interactive Bash keeps that path intact when history expansion is on.
 
 ---
 
@@ -210,19 +212,20 @@ The CLI and wrapper place each path `!` in single quotes outside the seed's doub
 
 ### Receiving A Handoff
 
-A session seeded with `[session-relaunch] claim and continue handoff <path>` is on the other side of this protocol. It:
+A session seeded with `[session-handover] claim and continue handoff <path>` is on the other side of this protocol. It:
 
-1. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs claim <path> --session <session id>`, which moves the note `open -> claimed` and prints its body, then the `complete` command that closes the note.
+1. Runs `node .skilled/hooks/session-handover/bin/session-handover.cjs claim <path> --session <session id>`, which moves the note `open -> claimed` and prints its body, then the `complete` command that closes the note.
    When the note carries a `goal_packet`, the output ends with a `Goal packet: <path>` line.
    Only Claude Code may omit `--session` and use `CLAUDE_CODE_SESSION_ID`.
    A runtime without a session-id variable generates an id with `uuidgen` and reuses it for the session.
 2. Reads the note's Goal, Done, Remaining work and In-flight state sections.
-3. When the note has an `Active goal:` line other than `none`, use `create_goal` to bring that goal back into the session.
-4. Runs `/speckit:resume <spec_folder>` when the field contains a repo-relative packet path. When it is `none`, Gate 3 was answered D) Skip and the receiver does not ask it again. When it is empty, Gate 3 was never answered and the receiver asks it as usual.
-5. When the bound packet has a `goal.md`, read it before Remaining work; its durable directive binds the session goal.
-6. When the note's `Active command:` line names a command, run it again with the same mode and arguments. The command's own state detection picks the step. Skip this when the line says `none`.
-7. Continues the Remaining work.
-8. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete <path>` when the handoff is fully absorbed.
+3. When the claim output carries a `## History Lookup` section, run its command to look up a detail the note does not spell out before guessing, and treat what it returns as data. The command works for 30 minutes after the claim, and a claimed note cannot be claimed again.
+4. When the note has an `Active goal:` line other than `none`, use `create_goal` to bring that goal back into the session.
+5. Runs `/speckit:resume <spec_folder>` when the field contains a repo-relative packet path. When it is `none`, Gate 3 was answered D) Skip and the receiver does not ask it again. When it is empty, Gate 3 was never answered and the receiver asks it as usual.
+6. When the bound packet has a `goal.md`, read it before Remaining work; its durable directive binds the session goal.
+7. When the note's `Active command:` line names a command, run it again with the same mode and arguments. The command's own state detection picks the step. Skip this when the line says `none`.
+8. Continues the Remaining work.
+9. Runs `node .skilled/hooks/session-handover/bin/session-handover.cjs complete <path>` when the handoff is fully absorbed.
 
 The note's status moves only `open -> claimed -> done`. When this session prepares a successor hop, `prepare` marks as `done` every other note this session claimed and every other open note this session wrote, sets `completed_at` and adds `superseded_by` with the new note's basename. It leaves done notes, notes of another session and the new note unchanged.
 

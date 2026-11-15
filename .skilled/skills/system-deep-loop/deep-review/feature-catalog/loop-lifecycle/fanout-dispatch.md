@@ -7,7 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "strongest-restriction verdict"
   - "multi-executor review"
-version: 1.11.1.0
+version: 1.11.3.0
 ---
 
 # Fan-out loop dispatch
@@ -47,12 +47,12 @@ P0 in ANY lineage reaches the final verdict.
 
 ## 2. HOW IT WORKS
 
-Fully shipped in both `deep-review-auto.yaml` and `confirm.yaml`. Parity gate:
+Fully shipped in `deep-review.yaml`. Parity gate:
 `if_absent` branch is byte-identical to the original command; `skip_when` guards ensure
 zero behavioral change for single-executor mode. Full vitest suite (197/197) confirms no
 single-executor regression. Command surface: `--executor` (repeatable), `--executors <json>`,
 `--concurrency N`. Review fan-out verdict note: strongest-restriction means any lineage
-active P0 → merged FAIL.
+active P0, or any lineage required gate still failing at its stop → merged FAIL.
 
 An optional `--review-focus "TEXT"` (or a pre-bound `review_focus` answer) carries the
 operator's focus to every lineage. `step_fanout_spawn_cli` passes it to `fanout-run.cjs`,
@@ -71,8 +71,7 @@ ones, and the iteration prompt differs only by one empty line under the dimensio
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | `step_resolve_artifact_root` (if_present/if_absent), `step_fanout_spawn`, `step_fanout_merge` (with `bind_from_output` for p0/p1/p2 counts) |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Same steps (confirm variant) |
+| `.skilled/commands/deep/assets/deep-review.yaml` | `step_resolve_artifact_root` (if_present/if_absent), `step_fanout_spawn`, `step_fanout_merge` (with `bind_from_output` for p0/p1/p2 counts), in both execution modes |
 | `.skilled/commands/deep/review.md` | `--executor`/`--executors`/`--concurrency` flag docs, strongest-restriction note, fan-out examples |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | CLI lineage pool driver called by `step_fanout_spawn_cli` |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Strongest-restriction merger called by `step_fanout_merge` |
@@ -91,6 +90,6 @@ ones, and the iteration prompt differs only by one empty line under the dimensio
 
 - Group: Loop Lifecycle
 - Catalog source: `feature-catalog/loop-lifecycle/fanout-dispatch.md`
-- Primary source files: `deep-review-auto.yaml`, `review.md`
+- Primary source files: `deep-review.yaml`, `review.md`
 Related references:
 - [executor-selection-contract.md](../../feature-catalog/loop-lifecycle/executor-selection-contract.md) — Executor Selection Contract

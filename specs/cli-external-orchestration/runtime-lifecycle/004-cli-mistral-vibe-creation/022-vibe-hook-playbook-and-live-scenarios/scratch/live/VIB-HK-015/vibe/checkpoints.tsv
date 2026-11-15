@@ -1,3 +1,4 @@
 turn	status	attempts	evidence	observed
 dispatch	PASS	1	turns/dispatch	refused
 reason	PASS	1	turns/reason	reason-recorded
+reason-carried	PASS	1	turns/reason-carried	reason-carried: Deep Route mode mismatch -- dispatch targets subagent_type="deep-research" (registry modes="research") but the prompt declares mode="review"

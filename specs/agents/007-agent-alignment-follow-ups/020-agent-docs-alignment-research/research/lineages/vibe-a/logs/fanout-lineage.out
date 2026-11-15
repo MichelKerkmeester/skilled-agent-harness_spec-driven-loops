@@ -1,0 +1,9 @@
+The `vibe-a` lineage ran all three iterations inline and closed out synthesis. 23 findings across three documentation surfaces, all cited against the agent or generator file that contradicts them.
+
+- **Iteration 1** (0.94, 8 findings) — `README.md:963` omits `.dsh`/`.vibe` from the mirror list and calls `.opencode/agents/` a link when it is a copy; `agent-mirror-crosswalk.md` claims six trees and "ten `subagent`" agents where there are eight trees and nine; `check-agent-mirror-sync.cjs` treats `.opencode/agents` as authored.
+- **Iteration 2** (0.86, 7 findings) — deep-review's status enum drops `thought`; deep-research's README understates the tool set by three tools; `claude-tools.md:247` omits `code` and `design`, misassigns `prompt-improver` to `/deep:*`, and denies `ai-council` a direct route it has.
+- **Iteration 3** (0.88, 8 findings) — the doctor roster check measures against `.claude/agents`, labels `.skilled/agents` as the OpenCode surface, and never inspects `.dsh`/`.vibe`; both playbooks diff a sandbox path their setup script never creates, so the drift check cannot fail.
+
+State went through the append gateway every time: 5 ledger frames (run-open, 3 iterations, synthesis), projection refreshed after each, reducer run after every iteration and at synthesis. Terminal record carries `stopReason: maxIterationsReached`. One question stays open — which tree is canonical, since the two dissenters are the enforcement points. No writes landed outside the lineage directory.
+
+FANOUT_LINEAGE_COMPLETE:vibe-a

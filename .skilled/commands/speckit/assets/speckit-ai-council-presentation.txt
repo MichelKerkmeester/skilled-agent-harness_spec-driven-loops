@@ -1,0 +1,99 @@
+# SpecKit AI Council Presentation Contract
+
+Presentation source of truth for `/speckit:ai-council`. The command router owns only mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, checkpoint layout, and final result displays.
+
+## 1. Startup Presentation
+
+For `:confirm` or no suffix, the consolidated setup prompt is the first visible response. Ask all applicable questions once, then wait.
+
+For `:auto`, do not show the consolidated prompt by default. Resolve setup through the auto-mode table below. Ask targeted questions only for fields marked Tier 2.
+
+### Auto Pre-Bound Setup Answers
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  question: <planning question or task>
+  spec_folder: <spec-folder>
+  context: ""
+```
+
+Unknown fields warn. Malformed lines are parse errors. Marker values override flags; omitted fields fall back to defaults.
+
+### Auto Resolution Table
+
+| Field         | Required | Default                    | Tier 2                                         |
+| ---------------| ----------| ----------------------------| ------------------------------------------------|
+| `question`    | Yes      | the argument text          | Yes, when the argument text is empty           |
+| `spec_folder` | Yes      | none                       | Yes, when `--spec-folder` did not bind one     |
+| `context`     | No       | inferred from the question | No                                             |
+
+### Consolidated Prompt Template
+
+```text
+SpecKit AI Council setup
+
+Q0. Question, if not provided: what should the council plan or decide?
+Q1. Spec Folder (required): A) Existing  B) New  C) Related  D) Skip
+Q2. Execution Mode, if no suffix: A) Autonomous  B) Interactive
+
+Reply format covers Q0-Q2 in order, with `-` for omitted conditional answers: "-, specs/example/, A".
+```
+
+Never split these questions into separate visible prompts. Ask Q1 through the question tool the runtime provides when it has one. Answer D stops the run, because a council run needs a spec folder to write to.
+
+### Auto Fail-Fast Display
+
+```text
+SpecKit AI Council auto setup failed
+Missing required inputs: [field-list]
+Provide the missing inputs or rerun with :confirm.
+STATUS=FAIL ERROR="missing required setup inputs"
+```
+
+## 2. Checkpoint Layout
+
+### Before Dispatch
+
+```text
+SPECKIT AI COUNCIL
+Question: [question]
+Spec: [spec_path]
+Run: [first run|continues round N]
+Writes: [spec_path]/ai-council/ only
+A) Convene the council  B) Change the question or folder  C) Cancel
+```
+
+## 3. Results Display
+
+### Success
+
+```text
+SpecKit AI Council Complete - 1 council run.
+Recommended plan: [one-line summary]
+Confidence: [score]
+Dissent: [strongest dropped alternative, or none]
+Artifacts: [spec_path]/ai-council/council-report.md
+STATUS=OK PATH=[spec-folder-path]
+```
+
+Show the full Multi-AI Council Report above this block, as the agent returned it.
+
+### Failure
+
+```text
+SpecKit AI Council Failed
+Error: [description] | Step: [number]
+Missing artifact: [path|none]
+STATUS=FAIL ERROR="[message]"
+```
+
+### Next-Step Suggestions
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| The plan should become spec docs | `/speckit:plan [spec-folder-path]` | Turn the recommendation into a plan |
+| The plan is already planned work | `/speckit:implement [spec-folder-path]` | Build it |
+| The council did not converge | `/speckit:ai-council [spec-folder-path]` | Run the next round on the same folder |
+| Need continuity refresh | `/speckit:save [spec-folder-path]` | Refresh canonical continuity |
+
+End interactive presentations with: `What would you like to do next?`

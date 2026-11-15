@@ -1,0 +1,23 @@
+commit: dca0402aaf9 (merge of origin/main; council skill retired upstream, review YAMLs merged into deep-review.yaml)
+$ (cd R && npm test)
+exit=0
+ Test Files  177 passed (177)
+      Tests  3016 passed | 9 skipped (3025)
+$ typecheck
+exit=0
+$ census
+92 25 67 []
+$ drift
+[CONTRACT DRIFT] OK commands=2
+$ mirror
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+$ ported YAML sites
+1143:              terminal_stop_reason = the run's stopReason (or reason) when it is maxIterationsReached, manualStop or error, else "converged"
+1411:        on_C: { set: { reason: "manualStop" }, run_first: record_terminal_gates, proceed_to: gate_pre_synthesis }
+1795:        on_C: { set: { reason: "manualStop" }, run_first: record_terminal_gates, proceed_to: gate_pre_synthesis }
+
+== after port review round 1 ==
+1143:              terminal_stop_reason = reason when it is maxIterationsReached, manualStop or error, else "converged". Read reason, never stopReason: every manual stop sets reason to manualStop whil
+1267:                    order: "Under confirm this gate runs before the run_first, log and skip_to of this branch."
+1283:                    on_A: { continue: "Fail closed: run the run_first, log and skip_to of this branch." }
+[CONTRACT DRIFT] OK commands=2

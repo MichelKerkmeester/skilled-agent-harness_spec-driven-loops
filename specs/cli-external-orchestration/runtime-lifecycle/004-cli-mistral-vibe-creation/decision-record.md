@@ -36,9 +36,12 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | Build the DeepSeek Harness Mistral route now and prove it once MISTRAL_API_KEY is exported. | Not stated. | None | 003-dsh-mistral-route T004-T010 |
 | Q002 | A direct-dispatch-only Pi row needs the roster alone; a fan-out model also needs PI_SUPPORTED_MODELS. | Not stated. | None | cli-pi/SKILL.md, cli-pi/references/providers-and-models.md |
-| Q003 | Review phases 013 to 021 with a fresh Opus 5.5 at medium effort, as a native subagent. | Opus 5.2 does not exist on the Claude CLI (`unrecognized_model`). | None | Review of 013-021 planning docs |
-| Q004 | Vibe lineages keep `--auto-approve`; the compensating guards are recorded instead of tightening approval. Approved by the operator 2026-11-14. | Not stated. | None | 020-vibe-dispatch-hardening T005, T009, T020 |
-| Q005 | Vibe lineages keep both `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_DISABLED=1`. Approved by the operator 2026-11-14. | Not stated. | None | 020-vibe-dispatch-hardening T005 |
+| Q003 | Merge origin/main into the Vibe branch by resolving each of the 82 conflicts by hand, keeping both sides and regenerating generated files. | Not stated. | None | Merge commits 1e6742548a2 and c7b8a6ff1d9 |
+| Q004 | Push the .vibe roster doc edits to main right away instead of holding them for one final push. | Not stated. | None | Commit e122448415c, pushed to main |
+| Q005 | Push the .vibe/plugins/README.md plugin map to main right away. | Not stated. | None | Commit 544fb7345ec, pushed to main |
+| Q006 | Push the Vibe branch to origin/main as a fast-forward. Main moved before the push, so the pushed tip e263e5481e7 adds one more merge of main's own commits and a regenerated trigger index. | The branch was five commits ahead as a fast-forward with every gate green. | None | origin/main e263e5481e7 |
+| Q007 | Push the dsh Mistral route retirement to origin/main, confirming that the answer 'why use dsh, use vibe cli' meant retiring the route. | The operator confirmed the reading the question stated, so the retirement shipped as 9e5d600ab4f. | None | origin/main 9e5d600ab4f, 003 T011 |
+| Q008 | Apply all four code fixes: launch flags in the manual claim command, the Vibe goal fallback to the claimed packet, an opt-in --remove-home for the runner, and Vibe in the re-pin folders and the runtime-mirrors doctor. | Each was confirmed against the code before the question was asked. | None | T097, T098, T099, 019 T011 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -86,6 +89,125 @@ Leave as is
 Answer:
 ```text
 Apply the fix (Recommended)
+```
+
+### Q003
+<!-- source: claude:abd87731-caa8-451c-b4f8-279c696fc7c1:toolu_01FGePnsqTrSaUyKBdgKQF2n:0 -->
+
+Question:
+```text
+Merging origin/main into the Vibe branch (commit 36ddad5062d) hits 82 conflicts. origin/main already carries an earlier copy of this work: 7c2073a7dc1 'add the Mistral Vibe runtime packet' (249 files) and 5a1a516b082 'add the Mistral routes'. About 48 conflicts are that packet's own spec docs, about 15 are hub, agent and skill docs both sides edited, and about 8 are generated indexes (trigger index, skill graph, retrieval fixtures). I've aborted the merge, so the branch is clean and nothing is pushed. How should I resolve it?
+```
+
+Options:
+```text
+Branch wins on Vibe (Recommended)
+Merge every file by hand
+Push the branch only
+```
+
+Answer:
+```text
+Merge every file by hand
+```
+
+### Q004
+<!-- source: claude:ad8b9098-fc02-46dd-b031-024bfd7e15c9:toolu_01S4e8EazEuwiXoxpM9tbVg3:0 -->
+
+Question:
+```text
+The .vibe roster edits are done locally (root README, CROSS-CLI.md, PUBLIC-RELEASE.md, SECURITY.md, .claude/SYNC.md, hooks README). The alignment lanes are still running and may produce more fixes. When should these reach origin/main?
+```
+
+Options:
+```text
+One push at the end (Recommended)
+Push the doc edits now
+Commit, don't push
+```
+
+Answer:
+```text
+Push the doc edits now
+```
+
+### Q005
+<!-- source: claude:ad8b9098-fc02-46dd-b031-024bfd7e15c9:toolu_01YFQrihtnG2U61RVVNHETtm:0 -->
+
+Question:
+```text
+I added .vibe/plugins/README.md: a map from each of the 21 OpenCode plugins to the hooks.toml entry, event and script that does its job in Vibe (no symlinks, because Vibe would skip or refuse them). It's committed locally as 544fb7345ec. Push it to main now too?
+```
+
+Options:
+```text
+Push it now (Recommended)
+Hold for the final push
+```
+
+Answer:
+```text
+Push it now (Recommended)
+```
+
+### Q006
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_01NDMvHQQ4RzE6qo5LKJiZPr:0 -->
+
+Question:
+```text
+Branch worktrees/383-mistral-vibe-runtime is ready to push. It is 5 commits ahead of origin/main as a fast-forward: the alignment fixes, the 022 evidence and decisions, a trigger-index rebuild and two merges of main. Validation passes 23/23 and the gates are green. Push it to origin/main with `git push origin HEAD:main`?
+```
+
+Options:
+```text
+Push it now (Recommended)
+Don't push yet
+```
+
+Answer:
+```text
+Push it now (Recommended)
+```
+
+### Q007
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_01L2qhyd8msoTF9VeN5puyxW:0 -->
+
+Question:
+```text
+This push REMOVES the dsh Mistral route from main. I read your answer "why use dsh, use vibe cli" as "retire the route, Mistral work goes through Vibe". Push to origin/main now?
+```
+
+Options:
+```text
+Push it now (Recommended)
+Keep the route instead
+Don't push yet
+```
+
+Answer:
+```text
+Push it now (Recommended)
+```
+
+### Q008
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_01KhHKzXT1KYXJkBb58h2RMs:0 -->
+
+Question:
+```text
+Which code fixes from the Fable review should I apply? I've checked each one against the code. (F1, P1) A manual claim command printed after `skilled-loop vibe --trust` drops `--trust` and any other extra launch flags: `skilled-loop` replays them only in hop mode, at lines 807 and 820. (F5) The Vibe goal hook reads only VIBE_SPEC_FOLDER, but the wrapper exports SESSION_HANDOVER_GOAL_PACKET, so a claimed note's packet never reaches the receiver. A fallback plus one test would close 019's last blocked task. (F2) The runner leaves every Vibe home behind; add an opt-in --remove-home. (F11) overlay-engine's DEFAULT_RUNTIME_FOLDERS lacks .vibe, and /doctor:runtime-mirrors has no Vibe checks.
+```
+
+Options:
+```text
+F1 claim-command flags
+F5 goal packet fallback
+F2 runner --remove-home
+F11 overlay + doctor Vibe
+```
+
+Answer:
+```text
+F1 claim-command flags, F5 goal packet fallback, F2 runner --remove-home, F11 overlay + doctor Vibe
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

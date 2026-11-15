@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research",
+  "description": "The eleven agents in `.skilled/agents/` and their copies in nine runtime folders changed across phases 1 to 19",
+  "keywords": [
+    "eleven",
+    "agents",
+    "skilled",
+    "copies",
+    "nine",
+    "runtime",
+    "folders",
+    "changed",
+    "across",
+    "phases"
+  ],
+  "lastUpdated": "2026-11-15T15:10:00.131Z",
+  "specId": "020",
+  "folderSlug": "agent-docs-alignment-research",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_16-09__ran-five-deepseek-iterations-through-mistral-vibe.md"
+  ]
+}

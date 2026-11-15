@@ -1,0 +1,1335 @@
+{
+  "mergedFrom": [
+    "vibe-a",
+    "vibe-b"
+  ],
+  "lineageExecutors": {
+    "vibe-a": {
+      "kind": "cli-mistral-vibe",
+      "model": "deepseek-flash",
+      "reasoningEffort": null
+    },
+    "vibe-b": {
+      "kind": "cli-mistral-vibe",
+      "model": "deepseek-flash",
+      "reasoningEffort": null
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "question-1-does-the-canonical-agent-inventory-in-skilled-agents-md-plus-skilled-agents-agen",
+      "inboxId": null,
+      "text": "Does the canonical agent inventory in `.skilled/agents/*.md` plus `.skilled/agents/agent-registry.json` match what the top-level docs (`README.md`, `AGENTS.md`, `CROSS-CLI.md`) say about the eleven agents' names, roles, tiers, tools and model pins?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "vibe-a"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-doc-lines-in-readme-md-agents-md-cross-cli-md-and-the-runtime-sync-docs-st",
+      "inboxId": null,
+      "text": "Which doc lines in README.md, AGENTS.md, CROSS-CLI.md and the runtime sync docs state an agent count, roster, or agent file location that disagrees with `.skilled/agents/*.md` and `agent-registry.json`?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "question-2-do-the-runtime-sync-docs-and-the-generator-scripts-describe-the-same-sync-mechan",
+      "inboxId": null,
+      "text": "Do the runtime sync docs and the generator scripts describe the same sync mechanism, source-of-truth path and runtime copy locations (`.claude`, `.codex`, `.cursor`, `.devin`, `.dsh`, `.opencode`, `.pi`, `.vibe`) that the generators actually implement?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "question-2-which-doc-lines-misdescribe-an-individual-agent-s-role-tool-allowlist-or-permiss",
+      "inboxId": null,
+      "text": "Which doc lines misdescribe an individual agent's role, tool allowlist, or permission block relative to that agent's `.skilled/agents/<name>.md` frontmatter?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "question-3-do-the-skill-and-command-docs-skilled-skills-skilled-commands-describe-each-agen",
+      "inboxId": null,
+      "text": "Do the skill and command docs (`.skilled/skills/**`, `.skilled/commands/**`) describe each agent's role, allowed tools, status values and routing correctly?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "question-3-which-doc-lines-state-agent-status-values-routing-rules-or-model-pins-that-contr",
+      "inboxId": null,
+      "text": "Which doc lines state agent status values, routing rules, or model pins that contradict the agent frontmatter, the registry, or the runtime generator?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "question-4-do-the-feature-catalogs-and-manual-testing-playbooks-describe-agent-status-value",
+      "inboxId": null,
+      "text": "Do the feature catalogs and manual testing playbooks describe agent status values, routing, file locations and sync behaviour correctly?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "question-4-which-skill-command-feature-catalog-and-manual-testing-playbook-docs-describe-ag",
+      "inboxId": null,
+      "text": "Which skill, command, feature-catalog and manual-testing-playbook docs describe agent sync mechanisms or runtime copy locations that no longer match the generator and the checked-in runtime agent folders?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "question-5-which-runtime-agent-copies-claude-codex-cursor-devin-dsh-opencode-pi-vibe-diverg",
+      "inboxId": null,
+      "text": "Which runtime agent copies (.claude, .codex, .cursor, .devin, .dsh, .opencode, .pi, .vibe) diverge from their `.skilled/agents/*.md` source in a way a doc claims is synchronized?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "question-5-which-specific-doc-lines-misdescribe-an-agent-s-role-tools-status-values-routing",
+      "inboxId": null,
+      "text": "Which specific doc lines misdescribe an agent's role, tools, status values, routing, file location, model pin or sync mechanism, and which agent or generator file contradicts each one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "vibe-a"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-readme-md-963-says-the-eleven-agents-are-mirrored-for-claude-code-codex-cursor-d",
+      "text": "`README.md:963` says the eleven agents are \"mirrored for Claude Code, Codex, Cursor, Devin and Pi (`.<runtime>/agents/`)\". That list omits two runtime agent trees that ship all eleven agents: `.dsh/agents/` (eleven `<name>.patch.yml` persona patches) and `.vibe/agents/` (eleven `<name>.toml` profiles). Both are documented as generated agent trees by their own runtime docs, so the README's mirror list is stale by two runtimes. [SOURCE: README.md:963] [SOURCE: .dsh/README.md:43] [SOURCE: .vibe/SYNC.md:28]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:24, README.md:69, README.md:963",
+        "AGENTS.md:280",
+        ".skilled/agents/README.txt",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md, code.md, context.md, debug.md, deep-research.md, deep-review.md, design.md, markdown.md, orchestrate.md, prompt-improver.md, review.md (frontmatter)",
+        ".skilled/bin/agent-mirror-crosswalk.md",
+        ".skilled/bin/check-agent-mirror-sync.cjs",
+        ".claude/README.md, .claude/agents/*.md",
+        ".dsh/README.md, .dsh/agents/",
+        ".vibe/SYNC.md, .vibe/agents/*.toml",
+        ".opencode/agents/",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-1-1-skilled-bin-agent-mirror-crosswalk-md-16-states-six-runtime-trees-ship-the-same-",
+      "text": "`.skilled/bin/agent-mirror-crosswalk.md:16` states \"Six runtime trees ship the same eleven agents: `.skilled/agents/`, `.claude/agents/`, `.cursor/agents/`, `.pi/agents/`, `.codex/agents/` and `.devin/agents/`.\" Two further trees ship all eleven and are omitted: `.dsh/agents/` (11 `.patch.yml`) and `.vibe/agents/` (11 `.toml`). The same file's frontmatter description repeats the \"six runtime agent trees\" count. [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:16] [SOURCE: .skilled/CROSS-CLI.md:77] [SOURCE: .skilled/CROSS-CLI.md:78]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/agents/agent-registry.json`",
+        "`.skilled/agents/README.txt:4`, `:5`, `:8`",
+        "`.skilled/agents/markdown.md:5`, `.skilled/agents/orchestrate.md:5`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:16`, `:30`, `:58`, `:68`, `:121`, and sections 2.1-2.5",
+        "`.skilled/bin/check-agent-mirror-sync.cjs:6`",
+        "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:52`, `:57`, `:65`",
+        "`.skilled/CROSS-CLI.md:36`, `:37`, `:55`, `:57`, `:77`, `:78`",
+        "`README.md:963`",
+        "`AGENTS.md:282`",
+        "`.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md:65`, `:184`",
+        "Directory listings of `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.devin/agents/`, `.dsh/agents/`, `.opencode/agents/`, `.pi/agents/`, `.vibe/agents/`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-1-2-readme-md-963-also-says-opencode-reads-opencode-agents-which-links-to-the-same-s",
+      "text": "`README.md:963` also says \"OpenCode reads `.opencode/agents/`, which links to the same `.skilled/agents/` source.\" `.opencode/agents/` is a real directory of regular files, not links: every entry is `-rw-r--r--`, and each file is byte-identical to its `.skilled/agents/` twin. The sync mechanism is a copy, not a link, so the sentence misdescribes how OpenCode resolves its agents. [SOURCE: README.md:963] [SOURCE: .opencode/agents/] [SOURCE: .skilled/agents/README.txt:5]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:24, README.md:69, README.md:963",
+        "AGENTS.md:280",
+        ".skilled/agents/README.txt",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md, code.md, context.md, debug.md, deep-research.md, deep-review.md, design.md, markdown.md, orchestrate.md, prompt-improver.md, review.md (frontmatter)",
+        ".skilled/bin/agent-mirror-crosswalk.md",
+        ".skilled/bin/check-agent-mirror-sync.cjs",
+        ".claude/README.md, .claude/agents/*.md",
+        ".dsh/README.md, .dsh/agents/",
+        ".vibe/SYNC.md, .vibe/agents/*.toml",
+        ".opencode/agents/",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-1-2-skilled-bin-agent-mirror-crosswalk-md-121-states-skilled-declares-mode-subagent-",
+      "text": "`.skilled/bin/agent-mirror-crosswalk.md:121` states \"`.skilled` declares `mode: subagent` for ten agents, `mode: all` for `markdown` and `mode: primary` for `orchestrate`.\" The actual split is nine / one / one: `mode: subagent` is declared by `ai-council`, `code`, `context`, `debug`, `deep-research`, `deep-review`, `design`, `prompt-improver` and `review`; `markdown` is `mode: all`; `orchestrate` is `mode: primary`. The sentence overcounts subagents by one and its three-way split sums to twelve against an eleven-agent roster. [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:121] [SOURCE: .skilled/agents/markdown.md:5] [SOURCE: .skilled/agents/orchestrate.md:5]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/agents/agent-registry.json`",
+        "`.skilled/agents/README.txt:4`, `:5`, `:8`",
+        "`.skilled/agents/markdown.md:5`, `.skilled/agents/orchestrate.md:5`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:16`, `:30`, `:58`, `:68`, `:121`, and sections 2.1-2.5",
+        "`.skilled/bin/check-agent-mirror-sync.cjs:6`",
+        "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:52`, `:57`, `:65`",
+        "`.skilled/CROSS-CLI.md:36`, `:37`, `:55`, `:57`, `:77`, `:78`",
+        "`README.md:963`",
+        "`AGENTS.md:282`",
+        "`.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md:65`, `:184`",
+        "Directory listings of `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.devin/agents/`, `.dsh/agents/`, `.opencode/agents/`, `.pi/agents/`, `.vibe/agents/`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-1-3-readme-md-963-states-the-eleven-agents-are-mirrored-for-claude-code-codex-cursor",
+      "text": "`README.md:963` states the eleven agents are \"mirrored for Claude Code, Codex, Cursor, Devin and Pi (`.<runtime>/agents/`)\". `.dsh/agents/` and `.vibe/agents/` are omitted, so the README names five of the seven runtime copies. `AGENTS.md:282` names all eight agent directories, including `.dsh/agents/` and `.vibe/agents/`, so the two root docs disagree with each other as well as with the tree. [SOURCE: README.md:963] [SOURCE: AGENTS.md:282]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/agents/agent-registry.json`",
+        "`.skilled/agents/README.txt:4`, `:5`, `:8`",
+        "`.skilled/agents/markdown.md:5`, `.skilled/agents/orchestrate.md:5`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:16`, `:30`, `:58`, `:68`, `:121`, and sections 2.1-2.5",
+        "`.skilled/bin/check-agent-mirror-sync.cjs:6`",
+        "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:52`, `:57`, `:65`",
+        "`.skilled/CROSS-CLI.md:36`, `:37`, `:55`, `:57`, `:77`, `:78`",
+        "`README.md:963`",
+        "`AGENTS.md:282`",
+        "`.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md:65`, `:184`",
+        "Directory listings of `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.devin/agents/`, `.dsh/agents/`, `.opencode/agents/`, `.pi/agents/`, `.vibe/agents/`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-1-3-skilled-bin-agent-mirror-crosswalk-md-17-19-opens-with-six-runtime-trees-ship-th",
+      "text": "`.skilled/bin/agent-mirror-crosswalk.md:17-19` opens with \"Six runtime trees ship the same eleven agents\" and names only `.skilled/agents/`, `.claude/agents/`, `.cursor/agents/`, `.pi/agents/`, `.codex/agents/` and `.devin/agents/`. Three further trees ship the same eleven agents and are absent from the crosswalk's tree table: `.opencode/agents/`, `.dsh/agents/` and `.vibe/agents/`. The crosswalk is the declared translation contract, so a tree missing from it is an untranslated declaration by its own definition. [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:17] [SOURCE: .dsh/README.md:43] [SOURCE: .vibe/SYNC.md:28] [SOURCE: .opencode/agents/]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:24, README.md:69, README.md:963",
+        "AGENTS.md:280",
+        ".skilled/agents/README.txt",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md, code.md, context.md, debug.md, deep-research.md, deep-review.md, design.md, markdown.md, orchestrate.md, prompt-improver.md, review.md (frontmatter)",
+        ".skilled/bin/agent-mirror-crosswalk.md",
+        ".skilled/bin/check-agent-mirror-sync.cjs",
+        ".claude/README.md, .claude/agents/*.md",
+        ".dsh/README.md, .dsh/agents/",
+        ".vibe/SYNC.md, .vibe/agents/*.toml",
+        ".opencode/agents/",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-1-4-skilled-bin-agent-mirror-crosswalk-md-2-3-states-skilled-declares-mode-subagent-",
+      "text": "`.skilled/bin/agent-mirror-crosswalk.md` §2.3 states \"`.skilled` declares `mode: subagent` for ten agents, `mode: all` for `markdown` and `mode: primary` for `orchestrate`.\" The actual split is nine `subagent`, one `all`, one `primary` — eleven total. The count is off by one, and the sentence's own arithmetic (ten plus one plus one) would make twelve agents. [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:2.3] [SOURCE: .skilled/agents/ai-council.md:4] [SOURCE: .skilled/agents/markdown.md:4] [SOURCE: .skilled/agents/orchestrate.md:4]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:24, README.md:69, README.md:963",
+        "AGENTS.md:280",
+        ".skilled/agents/README.txt",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md, code.md, context.md, debug.md, deep-research.md, deep-review.md, design.md, markdown.md, orchestrate.md, prompt-improver.md, review.md (frontmatter)",
+        ".skilled/bin/agent-mirror-crosswalk.md",
+        ".skilled/bin/check-agent-mirror-sync.cjs",
+        ".claude/README.md, .claude/agents/*.md",
+        ".dsh/README.md, .dsh/agents/",
+        ".vibe/SYNC.md, .vibe/agents/*.toml",
+        ".opencode/agents/",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-1-4-skilled-cross-cli-md-57-states-skilled-agents-is-canonical-for-the-claude-fork-t",
+      "text": "`.skilled/CROSS-CLI.md:57` states \"`.skilled/agents/` is canonical for the Claude fork, the Codex TOMLs and the Pi copies, while `.claude/agents/` is canonical for Cursor and Devin.\" The same file's generator table two sections later attributes `.dsh/agents/` to `sync-agents-dsh.cjs` and `.vibe/agents/` to `sync-agents-vibe.cjs`, both reading `.skilled/agents/`, so the \"two upstreams\" enumeration is missing two generated trees it documents itself. [SOURCE: .skilled/CROSS-CLI.md:57] [SOURCE: .skilled/CROSS-CLI.md:77] [SOURCE: .skilled/CROSS-CLI.md:78]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/agents/agent-registry.json`",
+        "`.skilled/agents/README.txt:4`, `:5`, `:8`",
+        "`.skilled/agents/markdown.md:5`, `.skilled/agents/orchestrate.md:5`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:16`, `:30`, `:58`, `:68`, `:121`, and sections 2.1-2.5",
+        "`.skilled/bin/check-agent-mirror-sync.cjs:6`",
+        "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:52`, `:57`, `:65`",
+        "`.skilled/CROSS-CLI.md:36`, `:37`, `:55`, `:57`, `:77`, `:78`",
+        "`README.md:963`",
+        "`AGENTS.md:282`",
+        "`.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md:65`, `:184`",
+        "Directory listings of `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.devin/agents/`, `.dsh/agents/`, `.opencode/agents/`, `.pi/agents/`, `.vibe/agents/`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-1-5-skilled-agents-readme-txt-8-states-sibling-runtime-claude-agents-md-one-sibling-",
+      "text": "`.skilled/agents/README.txt:8` states \"Sibling runtime: .claude/agents/ (.md)\" — one sibling. Seven runtime copies exist (`.claude`, `.codex`, `.cursor`, `.devin`, `.dsh`, `.pi`, `.vibe`), and the same file's next paragraph already refers to \"the `.codex` and `.pi` trees\", so the sibling line contradicts its own file. [SOURCE: .skilled/agents/README.txt:8] [SOURCE: .skilled/agents/README.txt:5]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/agents/agent-registry.json`",
+        "`.skilled/agents/README.txt:4`, `:5`, `:8`",
+        "`.skilled/agents/markdown.md:5`, `.skilled/agents/orchestrate.md:5`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:16`, `:30`, `:58`, `:68`, `:121`, and sections 2.1-2.5",
+        "`.skilled/bin/check-agent-mirror-sync.cjs:6`",
+        "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:52`, `:57`, `:65`",
+        "`.skilled/CROSS-CLI.md:36`, `:37`, `:55`, `:57`, `:77`, `:78`",
+        "`README.md:963`",
+        "`AGENTS.md:282`",
+        "`.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md:65`, `:184`",
+        "Directory listings of `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.devin/agents/`, `.dsh/agents/`, `.opencode/agents/`, `.pi/agents/`, `.vibe/agents/`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-1-5-skilled-bin-check-agent-mirror-sync-cjs-8-13-documents-the-source-of-truth-as-op",
+      "text": "`.skilled/bin/check-agent-mirror-sync.cjs:8-13` documents the source of truth as `.opencode/agents/<name>.md` (\"Every agent is authored once under `.opencode/agents/<name>.md`\"), and line 30 binds `AGENTS_DIR = path.join(REPO_ROOT, '.opencode', 'agents')`. Four other surfaces name `.skilled/agents/` as the authored source: `.skilled/agents/README.txt:5`, the `agent-registry.json` description (\"One record per agent file in this directory\"), `agent-mirror-crosswalk.md:17` (\"authored source of truth\"), and `README.md:963` (\"source of truth\"). The gate therefore validates against a tree the rest of the repository calls a mirror. [SOURCE: .skilled/bin/check-agent-mirror-sync.cjs:8] [SOURCE: .skilled/bin/check-agent-mirror-sync.cjs:30] [SOURCE: .skilled/agents/README.txt:5] [SOURCE: .skilled/agents/agent-registry.json:3] [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:17]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:24, README.md:69, README.md:963",
+        "AGENTS.md:280",
+        ".skilled/agents/README.txt",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md, code.md, context.md, debug.md, deep-research.md, deep-review.md, design.md, markdown.md, orchestrate.md, prompt-improver.md, review.md (frontmatter)",
+        ".skilled/bin/agent-mirror-crosswalk.md",
+        ".skilled/bin/check-agent-mirror-sync.cjs",
+        ".claude/README.md, .claude/agents/*.md",
+        ".dsh/README.md, .dsh/agents/",
+        ".vibe/SYNC.md, .vibe/agents/*.toml",
+        ".opencode/agents/",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-1-6-skilled-bin-check-agent-mirror-sync-cjs-6-states-every-agent-is-authored-once-un",
+      "text": "`.skilled/bin/check-agent-mirror-sync.cjs:6` states \"Every agent is authored once under `.opencode/agents/<name>.md`\". `.skilled/bin/agent-mirror-crosswalk.md:30` designates `.skilled/agents/` as the \"authored source of truth\", and `.opencode/agents` is a symlink to `../.skilled/agents`, so `.opencode/agents/<name>.md` is the same file as `.skilled/agents/<name>.md` rather than a separate authoring location. The checker's own `AGENTS_DIR` constant points at `.opencode/agents`, which resolves through the symlink, so the comment names a path that only exists because of the link it does not mention. [SOURCE: .skilled/bin/check-agent-mirror-sync.cjs:6] [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:30]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/agents/agent-registry.json`",
+        "`.skilled/agents/README.txt:4`, `:5`, `:8`",
+        "`.skilled/agents/markdown.md:5`, `.skilled/agents/orchestrate.md:5`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:16`, `:30`, `:58`, `:68`, `:121`, and sections 2.1-2.5",
+        "`.skilled/bin/check-agent-mirror-sync.cjs:6`",
+        "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:52`, `:57`, `:65`",
+        "`.skilled/CROSS-CLI.md:36`, `:37`, `:55`, `:57`, `:77`, `:78`",
+        "`README.md:963`",
+        "`AGENTS.md:282`",
+        "`.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md:65`, `:184`",
+        "Directory listings of `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.devin/agents/`, `.dsh/agents/`, `.opencode/agents/`, `.pi/agents/`, `.vibe/agents/`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-1-6-vibe-sync-md-37-says-one-toml-per-skilled-agents-md-readme-md-excepted-the-file-",
+      "text": "`.vibe/SYNC.md:37` says \"One `.toml` per `.skilled/agents/*.md`, `README.md` excepted\". The file it excepts is `.skilled/agents/README.txt`, not `README.md`; no `README.md` exists in that directory. The generator's exclusion rule is described against a filename that is not there. [SOURCE: .vibe/SYNC.md:37] [SOURCE: .skilled/agents/README.txt:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:24, README.md:69, README.md:963",
+        "AGENTS.md:280",
+        ".skilled/agents/README.txt",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md, code.md, context.md, debug.md, deep-research.md, deep-review.md, design.md, markdown.md, orchestrate.md, prompt-improver.md, review.md (frontmatter)",
+        ".skilled/bin/agent-mirror-crosswalk.md",
+        ".skilled/bin/check-agent-mirror-sync.cjs",
+        ".claude/README.md, .claude/agents/*.md",
+        ".dsh/README.md, .dsh/agents/",
+        ".vibe/SYNC.md, .vibe/agents/*.toml",
+        ".opencode/agents/",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-1-7-skilled-commands-doctor-scripts-agent-roster-mirror-check-cjs-57-68-enumerates-t",
+      "text": "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:57`-`:68` enumerates the roster surfaces as `cursor`, `devin`, `opencode`, `codex` and `pi`. `.dsh/agents/` and `.vibe/agents/` are absent from both the `LINKED` and `AUTHORED` lists, so the check that `.skilled/bin/agent-mirror-crosswalk.md:58` advertises as failing \"when a runtime is missing an agent\" cannot see two of the eight runtime trees. [SOURCE: .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:57] [SOURCE: .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:65] [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:58]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/agents/agent-registry.json`",
+        "`.skilled/agents/README.txt:4`, `:5`, `:8`",
+        "`.skilled/agents/markdown.md:5`, `.skilled/agents/orchestrate.md:5`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:16`, `:30`, `:58`, `:68`, `:121`, and sections 2.1-2.5",
+        "`.skilled/bin/check-agent-mirror-sync.cjs:6`",
+        "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:52`, `:57`, `:65`",
+        "`.skilled/CROSS-CLI.md:36`, `:37`, `:55`, `:57`, `:77`, `:78`",
+        "`README.md:963`",
+        "`AGENTS.md:282`",
+        "`.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md:65`, `:184`",
+        "Directory listings of `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.devin/agents/`, `.dsh/agents/`, `.opencode/agents/`, `.pi/agents/`, `.vibe/agents/`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-1-7-vibe-sync-md-53-concludes-a-generated-profile-therefore-carries-no-tool-restrict",
+      "text": "`.vibe/SYNC.md:53` concludes \"A generated profile therefore carries no tool restriction and no primary/subagent distinction\". Nine of the eleven generated profiles carry `agent_type = \"subagent\"`, which is precisely the primary/subagent distinction, and the same section's table lists a `mode` value per profile. The sentence contradicts both the generator output and its own table. [SOURCE: .vibe/SYNC.md:53] [SOURCE: .vibe/agents/context.toml] [SOURCE: .vibe/agents/orchestrate.toml]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:24, README.md:69, README.md:963",
+        "AGENTS.md:280",
+        ".skilled/agents/README.txt",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md, code.md, context.md, debug.md, deep-research.md, deep-review.md, design.md, markdown.md, orchestrate.md, prompt-improver.md, review.md (frontmatter)",
+        ".skilled/bin/agent-mirror-crosswalk.md",
+        ".skilled/bin/check-agent-mirror-sync.cjs",
+        ".claude/README.md, .claude/agents/*.md",
+        ".dsh/README.md, .dsh/agents/",
+        ".vibe/SYNC.md, .vibe/agents/*.toml",
+        ".opencode/agents/",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-1-8-claude-agents-deep-research-md-4-declares-tools-read-write-edit-bash-grep-glob-w",
+      "text": "`.claude/agents/deep-research.md:4` declares `tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch`. `WebSearch` has no counterpart key in `.skilled/agents/deep-research.md`'s permission map, whose vocabulary the crosswalk fixes at `read`, `write`, `edit`, `bash`, `grep`, `glob`, `webfetch`, `chrome_devtools`, `browser`, `task`, `list`, `patch` and `external_directory`. Either the crosswalk omits a `websearch` source key or the Claude mirror grants a tool the source does not. [SOURCE: .claude/agents/deep-research.md:4] [SOURCE: .skilled/agents/deep-research.md:6] [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:2.1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "README.md:24, README.md:69, README.md:963",
+        "AGENTS.md:280",
+        ".skilled/agents/README.txt",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md, code.md, context.md, debug.md, deep-research.md, deep-review.md, design.md, markdown.md, orchestrate.md, prompt-improver.md, review.md (frontmatter)",
+        ".skilled/bin/agent-mirror-crosswalk.md",
+        ".skilled/bin/check-agent-mirror-sync.cjs",
+        ".claude/README.md, .claude/agents/*.md",
+        ".dsh/README.md, .dsh/agents/",
+        ".vibe/SYNC.md, .vibe/agents/*.toml",
+        ".opencode/agents/",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-1-8-skilled-skills-system-spec-kit-manual-testing-playbook-tooling-and-scripts-templ",
+      "text": "`.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md:184` tells the operator to \"Inspect ... `.skilled/agents/speckit.toml`\". No `speckit` agent exists in the eleven-agent roster, and `.skilled/agents/` holds `.md` files, not `.toml`. The same file's evidence block at lines 64-68 already records `MISSING .skilled/agents/speckit.md` and `MISSING .skilled/agents/speckit.toml`, so the follow-up line points at a path the file itself proves absent. [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md:184] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md:65]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/agents/agent-registry.json`",
+        "`.skilled/agents/README.txt:4`, `:5`, `:8`",
+        "`.skilled/agents/markdown.md:5`, `.skilled/agents/orchestrate.md:5`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:16`, `:30`, `:58`, `:68`, `:121`, and sections 2.1-2.5",
+        "`.skilled/bin/check-agent-mirror-sync.cjs:6`",
+        "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:52`, `:57`, `:65`",
+        "`.skilled/CROSS-CLI.md:36`, `:37`, `:55`, `:57`, `:77`, `:78`",
+        "`README.md:963`",
+        "`AGENTS.md:282`",
+        "`.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md:65`, `:184`",
+        "Directory listings of `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.devin/agents/`, `.dsh/agents/`, `.opencode/agents/`, `.pi/agents/`, `.vibe/agents/`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-2-1-skilled-skills-system-deep-loop-deep-research-skill-md-15-states-runtime-path-re",
+      "text": "`.skilled/skills/system-deep-loop/deep-research/SKILL.md:15` states \"Runtime path resolution: OpenCode/Copilot runtime uses `.opencode/agents/*.md`; Claude runtime uses `.claude/agents/*.md`.\" Two problems: it names only two of the eight runtime agent trees that ship the eleven agents, and \"Copilot\" has no agent tree anywhere in this repository. The trees it omits are `.codex/agents/`, `.cursor/agents/`, `.devin/agents/`, `.dsh/agents/`, `.pi/agents/` and `.vibe/agents/`. [SOURCE: .skilled/skills/system-deep-loop/deep-research/SKILL.md:15] [SOURCE: .codex/agents/] [SOURCE: .vibe/agents/] [SOURCE: .dsh/agents/]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:15, :225",
+        ".skilled/skills/system-deep-loop/deep-research/README.md:28, :88",
+        ".skilled/skills/system-deep-loop/deep-review/SKILL.md:14, :262",
+        ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md:76",
+        ".skilled/skills/system-deep-loop/SKILL.md:28, :33",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md:38, .skilled/agents/deep-research.md:6, .skilled/agents/deep-review.md:236, .skilled/agents/review.md:110",
+        ".skilled/agents/orchestrate.md:76, :98, :171",
+        ".skilled/commands/deep/research.md:13, :24, :31",
+        ".codex/agents/, .cursor/agents/, .dsh/agents/, .pi/agents/, .vibe/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-2-1-vibe-sync-md-37-states-one-toml-per-skilled-agents-md-readme-md-excepted-named-b",
+      "text": "`.vibe/SYNC.md:37` states \"One `.toml` per `.skilled/agents/*.md`, `README.md` excepted, named by the source stem.\" The exception file is `.skilled/agents/README.txt`, not `README.md`; there is no `README.md` in `.skilled/agents/`. The same wrong filename appears in the generated-block comment convention the roster writer emits. [SOURCE: .vibe/SYNC.md:37] [SOURCE: .skilled/agents/README.txt:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.vibe/SYNC.md:37`, `:39`, `:48`, `:53`",
+        "`.vibe/agents/context.toml:3` and the other eight `.vibe/agents/*.toml` carrying `agent_type`",
+        "`.skilled/skills/system-deep-loop/deep-review/SKILL.md:260`, `:262`, `:264`, `:266`",
+        "`.skilled/skills/system-deep-loop/deep-research/SKILL.md:225`",
+        "`.skilled/agents/deep-review.md:7`, `:8`, `:9`, `:236`",
+        "`.skilled/agents/README.txt:1`, `:8`, `:9`, `:24`",
+        "`.skilled/agents/orchestrate.md:77`, `:88`, `:98`, `:171`",
+        "`.skilled/agents/ai-council.md:44`, `:389`",
+        "`.skilled/agents/markdown.md:4`, `:24`",
+        "`.skilled/agents/code.md:261`",
+        "`.skilled/agents/debug.md:26`",
+        "`.skilled/agents/agent-registry.json:123`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:121`, section 2.4",
+        "`.skilled/bin/README.md:180`",
+        "`.skilled/skills/system-spec-kit/references/debugging/universal-debugging-methodology.md:29`",
+        "`README.md:975`, `:977`, `:983`, `:1017`",
+        "`.claude/agents/Explore.md:1`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-2-2-skilled-skills-system-deep-loop-deep-review-skill-md-14-16-repeats-the-same-two-",
+      "text": "`.skilled/skills/system-deep-loop/deep-review/SKILL.md:14-16` repeats the same two-runtime resolution list (\"OpenCode/Copilot runtime: `.opencode/agents/*.md`\", \"Claude runtime: `.claude/agents/*.md`\"), so the deep-review skill carries the same omission of six runtime agent trees. [SOURCE: .skilled/skills/system-deep-loop/deep-review/SKILL.md:14] [SOURCE: .pi/agents/] [SOURCE: .cursor/agents/]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:15, :225",
+        ".skilled/skills/system-deep-loop/deep-research/README.md:28, :88",
+        ".skilled/skills/system-deep-loop/deep-review/SKILL.md:14, :262",
+        ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md:76",
+        ".skilled/skills/system-deep-loop/SKILL.md:28, :33",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md:38, .skilled/agents/deep-research.md:6, .skilled/agents/deep-review.md:236, .skilled/agents/review.md:110",
+        ".skilled/agents/orchestrate.md:76, :98, :171",
+        ".skilled/commands/deep/research.md:13, :24, :31",
+        ".codex/agents/, .cursor/agents/, .dsh/agents/, .pi/agents/, .vibe/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-2-2-vibe-sync-md-39-labels-its-second-column-mode-dropped-and-vibe-sync-md-53-states",
+      "text": "`.vibe/SYNC.md:39` labels its second column \"`mode` (dropped)\" and `.vibe/SYNC.md:53` states \"the OpenCode `permission` map and the `mode` value do not travel into Vibe.\" Both contradict `.vibe/SYNC.md:37` in the same section, which says the render \"adds `agent_type = \\\"subagent\\\"` when the source declares `mode: subagent`\", and contradict the generated tree: nine of the eleven `.vibe/agents/*.toml` files carry `agent_type = \"subagent\"`. `mode` does travel, as `agent_type`; only the `all` and `primary` values are dropped. [SOURCE: .vibe/SYNC.md:39] [SOURCE: .vibe/SYNC.md:53] [SOURCE: .vibe/SYNC.md:37] [SOURCE: .vibe/agents/context.toml:3]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.vibe/SYNC.md:37`, `:39`, `:48`, `:53`",
+        "`.vibe/agents/context.toml:3` and the other eight `.vibe/agents/*.toml` carrying `agent_type`",
+        "`.skilled/skills/system-deep-loop/deep-review/SKILL.md:260`, `:262`, `:264`, `:266`",
+        "`.skilled/skills/system-deep-loop/deep-research/SKILL.md:225`",
+        "`.skilled/agents/deep-review.md:7`, `:8`, `:9`, `:236`",
+        "`.skilled/agents/README.txt:1`, `:8`, `:9`, `:24`",
+        "`.skilled/agents/orchestrate.md:77`, `:88`, `:98`, `:171`",
+        "`.skilled/agents/ai-council.md:44`, `:389`",
+        "`.skilled/agents/markdown.md:4`, `:24`",
+        "`.skilled/agents/code.md:261`",
+        "`.skilled/agents/debug.md:26`",
+        "`.skilled/agents/agent-registry.json:123`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:121`, section 2.4",
+        "`.skilled/bin/README.md:180`",
+        "`.skilled/skills/system-spec-kit/references/debugging/universal-debugging-methodology.md:29`",
+        "`README.md:975`, `:977`, `:983`, `:1017`",
+        "`.claude/agents/Explore.md:1`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-2-3-skilled-skills-cli-external-orchestration-cli-claude-code-references-claude-tool",
+      "text": "`.skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247` describes the OpenCode column as \"11 agents via `.skilled/agents/*.md`, split into 3 classes\". The split it then gives names nine project agents — `orchestrate` under primary, `context`, `markdown`, `review`, `debug`, `ai-council` under subagent, and `deep-research`, `deep-review`, `prompt-improver` under command-owned — and pads the count with `general` and `plan`, which are Claude Code built-ins with no file in `.skilled/agents/`. The two project agents missing from the classification are `code` and `design`. [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247] [SOURCE: .skilled/agents/agent-registry.json:1] [SOURCE: .skilled/agents/code.md:1] [SOURCE: .skilled/agents/design.md:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:15, :225",
+        ".skilled/skills/system-deep-loop/deep-research/README.md:28, :88",
+        ".skilled/skills/system-deep-loop/deep-review/SKILL.md:14, :262",
+        ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md:76",
+        ".skilled/skills/system-deep-loop/SKILL.md:28, :33",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md:38, .skilled/agents/deep-research.md:6, .skilled/agents/deep-review.md:236, .skilled/agents/review.md:110",
+        ".skilled/agents/orchestrate.md:76, :98, :171",
+        ".skilled/commands/deep/research.md:13, :24, :31",
+        ".codex/agents/, .cursor/agents/, .dsh/agents/, .pi/agents/, .vibe/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-2-3-skilled-skills-system-deep-loop-deep-review-skill-md-264-gives-the-iteration-sta",
+      "text": "`.skilled/skills/system-deep-loop/deep-review/SKILL.md:264` gives the iteration status enum as `complete | timeout | error | stuck | insight` — five values. `.skilled/agents/deep-review.md:236` allows six, `complete | timeout | error | stuck | insight | thought`, and the deep-research sibling at `.skilled/skills/system-deep-loop/deep-research/SKILL.md:225` lists all six. The deep-review skill doc therefore omits `thought`, the analytical-only status, and its explanatory list at `:266` explains only `insight`. [SOURCE: .skilled/skills/system-deep-loop/deep-review/SKILL.md:264] [SOURCE: .skilled/agents/deep-review.md:236] [SOURCE: .skilled/skills/system-deep-loop/deep-research/SKILL.md:225]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.vibe/SYNC.md:37`, `:39`, `:48`, `:53`",
+        "`.vibe/agents/context.toml:3` and the other eight `.vibe/agents/*.toml` carrying `agent_type`",
+        "`.skilled/skills/system-deep-loop/deep-review/SKILL.md:260`, `:262`, `:264`, `:266`",
+        "`.skilled/skills/system-deep-loop/deep-research/SKILL.md:225`",
+        "`.skilled/agents/deep-review.md:7`, `:8`, `:9`, `:236`",
+        "`.skilled/agents/README.txt:1`, `:8`, `:9`, `:24`",
+        "`.skilled/agents/orchestrate.md:77`, `:88`, `:98`, `:171`",
+        "`.skilled/agents/ai-council.md:44`, `:389`",
+        "`.skilled/agents/markdown.md:4`, `:24`",
+        "`.skilled/agents/code.md:261`",
+        "`.skilled/agents/debug.md:26`",
+        "`.skilled/agents/agent-registry.json:123`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:121`, section 2.4",
+        "`.skilled/bin/README.md:180`",
+        "`.skilled/skills/system-spec-kit/references/debugging/universal-debugging-methodology.md:29`",
+        "`README.md:975`, `:977`, `:983`, `:1017`",
+        "`.claude/agents/Explore.md:1`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-2-4-readme-md-1017-describes-deep-review-as-audits-one-review-pass-read-only-on-code",
+      "text": "`README.md:1017` describes Deep Review as \"audits one review pass, read-only on code\". `.skilled/agents/deep-review.md:7`-`:9` grants `write: allow`, `edit: allow` and `bash: allow`, so the agent is not read-only by tool surface; only its behavioral rule forbids code changes (`.skilled/skills/system-deep-loop/deep-review/SKILL.md:260`, \"The review loop is observation-only. No code changes during audit.\"). The contrast is sharpest against `review`, which genuinely is read-only (`write: deny`, `edit: deny`) and which `README.md:983` describes as \"never edits\". [SOURCE: README.md:1017] [SOURCE: .skilled/agents/deep-review.md:7] [SOURCE: .skilled/skills/system-deep-loop/deep-review/SKILL.md:260] [SOURCE: README.md:983]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.vibe/SYNC.md:37`, `:39`, `:48`, `:53`",
+        "`.vibe/agents/context.toml:3` and the other eight `.vibe/agents/*.toml` carrying `agent_type`",
+        "`.skilled/skills/system-deep-loop/deep-review/SKILL.md:260`, `:262`, `:264`, `:266`",
+        "`.skilled/skills/system-deep-loop/deep-research/SKILL.md:225`",
+        "`.skilled/agents/deep-review.md:7`, `:8`, `:9`, `:236`",
+        "`.skilled/agents/README.txt:1`, `:8`, `:9`, `:24`",
+        "`.skilled/agents/orchestrate.md:77`, `:88`, `:98`, `:171`",
+        "`.skilled/agents/ai-council.md:44`, `:389`",
+        "`.skilled/agents/markdown.md:4`, `:24`",
+        "`.skilled/agents/code.md:261`",
+        "`.skilled/agents/debug.md:26`",
+        "`.skilled/agents/agent-registry.json:123`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:121`, section 2.4",
+        "`.skilled/bin/README.md:180`",
+        "`.skilled/skills/system-spec-kit/references/debugging/universal-debugging-methodology.md:29`",
+        "`README.md:975`, `:977`, `:983`, `:1017`",
+        "`.claude/agents/Explore.md:1`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-same-line-classifies-prompt-improver-as-command-owned-dispatched-only-by-the",
+      "text": "The same line classifies `prompt-improver` as \"command-owned ... dispatched only by their parent `/deep:*` command\". Its registry dispatchers are `/prompt:improve` and `orchestrate`; no `/deep:*` command dispatches it. The two genuinely `/deep:*`-owned agents are `deep-research` and `deep-review`. [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247] [SOURCE: .skilled/agents/agent-registry.json:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:15, :225",
+        ".skilled/skills/system-deep-loop/deep-research/README.md:28, :88",
+        ".skilled/skills/system-deep-loop/deep-review/SKILL.md:14, :262",
+        ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md:76",
+        ".skilled/skills/system-deep-loop/SKILL.md:28, :33",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md:38, .skilled/agents/deep-research.md:6, .skilled/agents/deep-review.md:236, .skilled/agents/review.md:110",
+        ".skilled/agents/orchestrate.md:76, :98, :171",
+        ".skilled/commands/deep/research.md:13, :24, :31",
+        ".codex/agents/, .cursor/agents/, .dsh/agents/, .pi/agents/, .vibe/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-2-5-skilled-agents-readme-txt-9-states-inventory-rule-if-an-agent-file-is-not-presen",
+      "text": "`.skilled/agents/README.txt:9` states \"Inventory rule: if an agent file is not present in this directory, it is not a live runtime surface here.\" `.claude/agents/Explore.md` is a live runtime surface in the sibling tree the next line names, and is not present in `.skilled/agents/`. The rule is defensible only if \"here\" is read as strictly `.skilled/agents/` (and, through the symlink, `.opencode/agents/`); read as an inventory rule for the roster it is falsified by the file the same README's model paragraph goes on to name. [SOURCE: .skilled/agents/README.txt:9] [SOURCE: .skilled/agents/README.txt:8] [SOURCE: .claude/agents/Explore.md:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.vibe/SYNC.md:37`, `:39`, `:48`, `:53`",
+        "`.vibe/agents/context.toml:3` and the other eight `.vibe/agents/*.toml` carrying `agent_type`",
+        "`.skilled/skills/system-deep-loop/deep-review/SKILL.md:260`, `:262`, `:264`, `:266`",
+        "`.skilled/skills/system-deep-loop/deep-research/SKILL.md:225`",
+        "`.skilled/agents/deep-review.md:7`, `:8`, `:9`, `:236`",
+        "`.skilled/agents/README.txt:1`, `:8`, `:9`, `:24`",
+        "`.skilled/agents/orchestrate.md:77`, `:88`, `:98`, `:171`",
+        "`.skilled/agents/ai-council.md:44`, `:389`",
+        "`.skilled/agents/markdown.md:4`, `:24`",
+        "`.skilled/agents/code.md:261`",
+        "`.skilled/agents/debug.md:26`",
+        "`.skilled/agents/agent-registry.json:123`",
+        "`.skilled/bin/agent-mirror-crosswalk.md:121`, section 2.4",
+        "`.skilled/bin/README.md:180`",
+        "`.skilled/skills/system-spec-kit/references/debugging/universal-debugging-methodology.md:29`",
+        "`README.md:975`, `:977`, `:983`, `:1017`",
+        "`.claude/agents/Explore.md:1`"
+      ],
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-same-line-says-ai-council-is-routed-via-agent-orchestrate-never-direct-the-r",
+      "text": "The same line says `ai-council` is \"routed via `--agent orchestrate`, never direct\". The registry lists `/speckit:ai-council` and `operator` among its dispatchers, and `.skilled/skills/system-deep-loop/SKILL.md:33` states the council \"runs as the standalone `@ai-council` agent, reached through `/speckit:ai-council`\". The \"never direct\" clause contradicts both. [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247] [SOURCE: .skilled/agents/agent-registry.json:1] [SOURCE: .skilled/skills/system-deep-loop/SKILL.md:33]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:15, :225",
+        ".skilled/skills/system-deep-loop/deep-research/README.md:28, :88",
+        ".skilled/skills/system-deep-loop/deep-review/SKILL.md:14, :262",
+        ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md:76",
+        ".skilled/skills/system-deep-loop/SKILL.md:28, :33",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md:38, .skilled/agents/deep-research.md:6, .skilled/agents/deep-review.md:236, .skilled/agents/review.md:110",
+        ".skilled/agents/orchestrate.md:76, :98, :171",
+        ".skilled/commands/deep/research.md:13, :24, :31",
+        ".codex/agents/, .cursor/agents/, .dsh/agents/, .pi/agents/, .vibe/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-2-6-skilled-skills-system-deep-loop-deep-review-skill-md-262-and-skilled-skills-syst",
+      "text": "`.skilled/skills/system-deep-loop/deep-review/SKILL.md:262` and `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md:76` both give the deep-review iteration status enum as `complete | timeout | error | stuck | insight` — five values. `.skilled/agents/deep-review.md:236` allows six: `complete | timeout | error | stuck | insight | thought`. The skill surface therefore omits `thought`, the analytical-only status the agent is permitted to record. [SOURCE: .skilled/skills/system-deep-loop/deep-review/SKILL.md:262] [SOURCE: .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md:76] [SOURCE: .skilled/agents/deep-review.md:236]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:15, :225",
+        ".skilled/skills/system-deep-loop/deep-research/README.md:28, :88",
+        ".skilled/skills/system-deep-loop/deep-review/SKILL.md:14, :262",
+        ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md:76",
+        ".skilled/skills/system-deep-loop/SKILL.md:28, :33",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md:38, .skilled/agents/deep-research.md:6, .skilled/agents/deep-review.md:236, .skilled/agents/review.md:110",
+        ".skilled/agents/orchestrate.md:76, :98, :171",
+        ".skilled/commands/deep/research.md:13, :24, :31",
+        ".codex/agents/, .cursor/agents/, .dsh/agents/, .pi/agents/, .vibe/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-2-7-skilled-skills-system-deep-loop-deep-research-readme-md-28-describes-the-loop-as",
+      "text": "`.skilled/skills/system-deep-loop/deep-research/README.md:28` describes the loop as running \"through the LEAF agent's Read, WebFetch, Grep and Glob tool set\". The agent's permission map also grants `write`, `edit` and `bash`, and the same README relies on the write grant at line 88 (\"**Agent:** writes only iteration files and JSONL records\"). The tool set is understated by three tools, one of which the doc itself depends on. [SOURCE: .skilled/skills/system-deep-loop/deep-research/README.md:28] [SOURCE: .skilled/skills/system-deep-loop/deep-research/README.md:88] [SOURCE: .skilled/agents/deep-research.md:6]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:15, :225",
+        ".skilled/skills/system-deep-loop/deep-research/README.md:28, :88",
+        ".skilled/skills/system-deep-loop/deep-review/SKILL.md:14, :262",
+        ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md:76",
+        ".skilled/skills/system-deep-loop/SKILL.md:28, :33",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247",
+        ".skilled/agents/agent-registry.json",
+        ".skilled/agents/ai-council.md:38, .skilled/agents/deep-research.md:6, .skilled/agents/deep-review.md:236, .skilled/agents/review.md:110",
+        ".skilled/agents/orchestrate.md:76, :98, :171",
+        ".skilled/commands/deep/research.md:13, :24, :31",
+        ".codex/agents/, .cursor/agents/, .dsh/agents/, .pi/agents/, .vibe/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-3-1-skilled-commands-doctor-scripts-agent-roster-mirror-check-cjs-9-states-the-same-",
+      "text": "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:9` states \"the same agent roster is exposed to five runtimes\". The script's `LINKED` and `AUTHORED` tables cover five surfaces (`cursor`, `devin`, `opencode`, `codex`, `pi`) plus the canonical tree, but eight runtime agent trees ship the eleven agents. `.dsh/agents/` and `.vibe/agents/` are never inspected, so a new agent that reaches neither is reported as full coverage. [SOURCE: .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:9] [SOURCE: .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:57] [SOURCE: .dsh/agents/] [SOURCE: .vibe/agents/]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:9, :11, :45, :57, :65",
+        ".skilled/commands/doctor/runtime-mirrors.md:59",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:101, :123",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md:87, :110",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md:84, :106",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md:84",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:84",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md:63",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md:78",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/agents/deep-research.md:39, :424, :439",
+        ".cursor/agents/, .devin/agents/, .dsh/agents/, .vibe/agents/, .opencode/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-3-2-skilled-commands-doctor-scripts-agent-roster-mirror-check-cjs-45-binds-canonical",
+      "text": "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:45` binds `CANONICAL_REL = '.claude/agents'` under the comment \"The Claude tree is canonical\". Four other surfaces name `.skilled/agents/` as the authored source: `README.md:963`, the `agent-registry.json` description, `agent-mirror-crosswalk.md:17` and `.skilled/agents/README.txt:5`. The doctor check therefore measures every runtime against a mirror rather than against the source. [SOURCE: .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:45] [SOURCE: README.md:963] [SOURCE: .skilled/agents/agent-registry.json:3] [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:17] [SOURCE: .skilled/agents/README.txt:5]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:9, :11, :45, :57, :65",
+        ".skilled/commands/doctor/runtime-mirrors.md:59",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:101, :123",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md:87, :110",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md:84, :106",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md:84",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:84",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md:63",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md:78",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/agents/deep-research.md:39, :424, :439",
+        ".cursor/agents/, .devin/agents/, .dsh/agents/, .vibe/agents/, .opencode/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-3-3-skilled-commands-doctor-scripts-agent-roster-mirror-check-cjs-65-declares-id-ope",
+      "text": "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:65` declares `{ id: 'opencode', dir: '.skilled/agents', entry: (n) => \\`${n}.md\\`, ext: '.md' }`. The surface labelled `opencode` is therefore `.skilled/agents`, and the real OpenCode tree `.opencode/agents/` is never read by the check. A drift confined to `.opencode/agents/` passes silently. [SOURCE: .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:65] [SOURCE: .opencode/agents/] [SOURCE: .skilled/agents/README.txt:5]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:9, :11, :45, :57, :65",
+        ".skilled/commands/doctor/runtime-mirrors.md:59",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:101, :123",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md:87, :110",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md:84, :106",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md:84",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:84",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md:63",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md:78",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/agents/deep-research.md:39, :424, :439",
+        ".cursor/agents/, .devin/agents/, .dsh/agents/, .vibe/agents/, .opencode/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-3-4-skilled-commands-doctor-scripts-agent-roster-mirror-check-cjs-11-13-explains-the",
+      "text": "`.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:11-13` explains the design as \"Cursor and Devin are served by symlinks into the canonical Claude tree, while OpenCode and Codex keep independently-authored files in their own dialects.\" The symlink half is correct (`.cursor/agents/*.md` and `.devin/agents/*/AGENT.md` are symlinks into `.claude/agents/`), but the second half is not: every `.opencode/agents/*.md` file is byte-identical to its `.skilled/agents/` twin, and `.codex/agents/*.toml` is generated from `.skilled` per the crosswalk. Neither tree is independently authored. [SOURCE: .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:11] [SOURCE: .cursor/agents/] [SOURCE: .devin/agents/] [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:17]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:9, :11, :45, :57, :65",
+        ".skilled/commands/doctor/runtime-mirrors.md:59",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:101, :123",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md:87, :110",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md:84, :106",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md:84",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:84",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md:63",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md:78",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/agents/deep-research.md:39, :424, :439",
+        ".cursor/agents/, .devin/agents/, .dsh/agents/, .vibe/agents/, .opencode/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-3-5-skilled-skills-system-deep-loop-deep-research-manual-testing-playbook-command-fl",
+      "text": "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104-105` copies only `.skilled/agents/deep-research.md` and `.claude/agents/deep-research.md` into the sandbox. The playbook's canonical-drift checks then diff `.opencode/agents/deep-research.md` between the baseline and the sandbox (`exhausted-approach-respect.md:101`, `pause-sentinel-halt.md:87`, `spec-fence-writeback.md:84`, `setup-yaml-handoff.md:84`, `iteration-citation-jsonl.md:84`). The sandbox never creates that path, so each diff compares two absent files and reports no drift regardless of what the run did. [SOURCE: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104] [SOURCE: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:101] [SOURCE: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md:87]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:9, :11, :45, :57, :65",
+        ".skilled/commands/doctor/runtime-mirrors.md:59",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:101, :123",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md:87, :110",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md:84, :106",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md:84",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:84",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md:63",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md:78",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/agents/deep-research.md:39, :424, :439",
+        ".cursor/agents/, .devin/agents/, .dsh/agents/, .vibe/agents/, .opencode/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-deep-review-playbook-carries-the-same-defect-setup-cp-sandbox-sh-104-105-cop",
+      "text": "The deep-review playbook carries the same defect: `setup-cp-sandbox.sh:104-105` copies `.skilled/agents/deep-review.md` and `.claude/agents/deep-review.md`, while `leaf-only-nested-dispatch-refusal.md:63` reads `/tmp/cp-056-sandbox/.opencode/agents/deep-review.md` and `final-synthesis-memory-save-and-guardrail-behavior.md:78` lists `.opencode/agents/deep-review.md` as a checked surface. [SOURCE: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104] [SOURCE: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md:63] [SOURCE: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md:78]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:9, :11, :45, :57, :65",
+        ".skilled/commands/doctor/runtime-mirrors.md:59",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:101, :123",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md:87, :110",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md:84, :106",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md:84",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:84",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md:63",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md:78",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/agents/deep-research.md:39, :424, :439",
+        ".cursor/agents/, .devin/agents/, .dsh/agents/, .vibe/agents/, .opencode/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-3-7-skilled-skills-system-deep-loop-deep-research-manual-testing-playbook-command-fl",
+      "text": "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:123` cites `.skilled/agents/deep-research.md:399-428` for \"always and never rules for state discipline\". The rules live at lines 424-464 (`## 6. RULES` at 424, `### ALWAYS` at 426, `### NEVER` at 439), so the cited range starts 25 lines early and ends before the NEVER list it claims to cover. [SOURCE: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:123] [SOURCE: .skilled/agents/deep-research.md:424] [SOURCE: .skilled/agents/deep-research.md:439]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:9, :11, :45, :57, :65",
+        ".skilled/commands/doctor/runtime-mirrors.md:59",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:101, :123",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md:87, :110",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md:84, :106",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md:84",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:84",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md:63",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md:78",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/agents/deep-research.md:39, :424, :439",
+        ".cursor/agents/, .devin/agents/, .dsh/agents/, .vibe/agents/, .opencode/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "finding-3-8-skilled-skills-system-deep-loop-deep-research-manual-testing-playbook-command-fl",
+      "text": "`.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md:106` cites `.skilled/agents/deep-research.md:51-55` for \"agent may not repair reducer or control files\". Lines 51-55 are the nested-dispatch REFUSE line and the scope-lock write targets; the no-repair rule is the `No speculative recovery` invariant at line 39. [SOURCE: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md:106] [SOURCE: .skilled/agents/deep-research.md:39] [SOURCE: .skilled/agents/deep-research.md:51]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:9, :11, :45, :57, :65",
+        ".skilled/commands/doctor/runtime-mirrors.md:59",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:101, :123",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md:87, :110",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md:84, :106",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md:84",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:84",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh:104",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md:63",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md:78",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/iteration-dispatch.md",
+        ".skilled/agents/deep-research.md:39, :424, :439",
+        ".cursor/agents/, .devin/agents/, .dsh/agents/, .vibe/agents/, .opencode/agents/"
+      ],
+      "_lineages": [
+        "vibe-a"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-012dbab7e180",
+      "text": "**`.codex` model pin** (`.skilled/bin/agent-mirror-crosswalk.md:2.5`). Verified: all eleven `.codex/agents/*.toml` carry `model = \"gpt-6-luna\"`, with `model_reasoning_effort = \"high\"` except `context` (`low`) and `markdown` (`medium`). The claim holds exactly.",
+      "contentHash": "012dbab7e180",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-09a588fde5bc",
+      "text": "**`.pi` model absence** (same section). Verified: no `model:` key in any `.pi/agents/*.md`. The claim holds.",
+      "contentHash": "09a588fde5bc",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-0cded61e0ef7",
+      "text": "**`temperature` split** (`.skilled/bin/agent-mirror-crosswalk.md:2.2`). Verified: `0.2` for `debug` and `design`, `0.1` for the other nine. The claim holds.",
+      "contentHash": "0cded61e0ef7",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-1bf381ff79a7",
+      "text": "**`.opencode/agents/` as a non-symlinked copy.** `ls -la .opencode` shows `agents -> ../.skilled/agents`, so `CROSS-CLI.md:36` (\"Symlinked ... `agents`\") and `README.md:963` (\"links to the same `.skilled/agents/` source\") are both correct. The apparent \"real files\" in a directory listing are the symlink target's files.",
+      "contentHash": "1bf381ff79a7",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-5a4547718015",
+      "text": "**`.claude` model pins** (same section). Verified: `context.md`, `markdown.md` and `Explore.md` declare `model: haiku`; `prompt-improver.md` declares `model: sonnet`; no other `.claude` agent declares a model. The claim holds.",
+      "contentHash": "5a4547718015",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-72269f3a1a28",
+      "text": "`.skilled/CROSS-CLI.md` is the only `CROSS-CLI.md` in the repository (there is none at the root). It is a cross-CLI dispatch doc, not an agent-inventory doc; its agent references are dispatch examples rather than role or tool claims.",
+      "contentHash": "72269f3a1a28",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-7c48c4174c5b",
+      "text": "Grepping for a numeric agent count (`eleven agents`, `11 agents`) across the repo returns almost nothing outside the crosswalk and `README.md:963`; the roster is described by enumeration rather than by count, so count-based greps are a weak detector for this topic.",
+      "contentHash": "7c48c4174c5b",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-8770eec89325",
+      "text": "Treating `.claude/agents/Explore.md` as an undocumented twelfth agent: `.claude/README.md:41` documents it (\"plus `Explore.md`, which only Claude has\") and `check-agent-mirror-sync.cjs:40` carries it in `CLAUDE_ONLY_AGENTS`. Not a finding.",
+      "contentHash": "8770eec89325",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-8a015d33b333",
+      "text": "Treating `.skilled/agents/README.txt`'s model-pin claim as wrong: the claim that the Claude tree pins `context`, `markdown` and `Explore` to haiku and `prompt-improver` to sonnet matches `.claude/agents/*.md` exactly. Not a finding.",
+      "contentHash": "8a015d33b333",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-9c8b4ae593e2",
+      "text": "`AGENTS.md` carries no per-agent inventory: its only agent section is §9 \"AGENT ROUTING\" at line 280, which names runtime directories generically and makes no role, tool or count claim. There is nothing there to contradict, so `AGENTS.md` is not a productive target for this topic.",
+      "contentHash": "9c8b4ae593e2",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-a1ceadc6bf53",
+      "text": "**`.skilled/agents/README.txt:4` \"agent definitions for the OpenCode runtime\".** Literally true because `.opencode/agents` is a symlink to this directory. Not reported as drift.",
+      "contentHash": "a1ceadc6bf53",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-e69fea988ac2",
+      "text": "**`.claude/agents/Explore.md` as an orphaned mirror.** It is documented as deliberate in three places: `.skilled/bin/agent-mirror-crosswalk.md:2.5` (\"`Explore.md` is not a roster agent\"), `.skilled/CROSS-CLI.md:55` (\"a Claude-only agent with no counterpart in `.skilled/agents/`\"), and `.skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs:52` (`CLAUDE_ONLY_AGENTS = new Set(['Explore'])`). Not drift.",
+      "contentHash": "e69fea988ac2",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-eaae17805b8c",
+      "text": "**`.skilled` as \"the only tree that carries a permission map\"** (`.skilled/bin/agent-mirror-crosswalk.md:68`). `.opencode/agents` resolves to `.skilled/agents`, so no second distinct tree carries a permission map. The claim holds.",
+      "contentHash": "eaae17805b8c",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-ed40b18ac5b5",
+      "text": "**`Agent`/`task` grant** (`.skilled/bin/agent-mirror-crosswalk.md:2.4`). Verified: only `ai-council` and `orchestrate` carry `task: allow`; the other nine carry `task: deny`. The claim holds.",
+      "contentHash": "ed40b18ac5b5",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-edeef679c464",
+      "text": "The feature catalogs contain no agent-roster claims. The only hits are handler-table rows naming `.skilled/agents/review.md`, `.skilled/agents/orchestrate.md` and `.skilled/agents/debug.md`, all of which exist and match their described roles.",
+      "contentHash": "edeef679c464",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-f7561d7cf198",
+      "text": "Counting the CLI bridges as an agent-inventory error: `README.md:69`'s \"Eight CLI bridges\" resolves correctly against `.skilled/skills/cli-external-orchestration/mode-registry.json`, which declares exactly eight `workflow` modes (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness`, `cli-mistral-vibe`). Not a finding.",
+      "contentHash": "f7561d7cf198",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-03b29b3cdd83",
+      "text": "`.skilled/agents/orchestrate.md`'s three generated blocks (`routing-table` at line 76, `tier-table` at line 98, `agent-files` at line 171) match `agent-registry.json` exactly, including the eleven priorities and the LEAF/ORCHESTRATOR split. The generator is in sync.",
+      "contentHash": "03b29b3cdd83",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-35297eae6a54",
+      "text": "**`Only @orchestrate dispatches it` (`README.md:977`) for `@code`.** `agent-registry.json` gives `code` exactly one dispatcher, `orchestrate`. The claim holds.",
+      "contentHash": "35297eae6a54",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-398f1ede38c8",
+      "text": "**`code`'s \"seven dispatch modes\" (`README.md:975`).** `.skilled/agents/code.md:261` states \"Mode: <one of the 7 dispatch modes>\". The count matches.",
+      "contentHash": "398f1ede38c8",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-3df3067d633f",
+      "text": "**`never auto-dispatched` for `@debug`.** Consistent across `agent-registry.json:123`, `.skilled/agents/debug.md:26`, `.skilled/agents/README.txt:24` and `.skilled/skills/system-spec-kit/references/debugging/universal-debugging-methodology.md:29`. The registry's `dispatchers: [\"operator\"]` matches. No drift.",
+      "contentHash": "3df3067d633f",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-50aa6a1674c5",
+      "text": "`.skilled/skills/system-deep-loop/SKILL.md`'s mode table (lines 28-31) names only `deep-research` and `deep-review` as agents, which is correct for a two-mode hub; the council is correctly called out as standalone at line 33. Not a finding.",
+      "contentHash": "50aa6a1674c5",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-57be1402b151",
+      "text": "Treating the deep-research status enum as wrong: `.skilled/skills/system-deep-loop/deep-research/SKILL.md:225` lists all six values and matches `.skilled/agents/deep-research.md`. Only the deep-review sibling is short a value.",
+      "contentHash": "57be1402b151",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-70de70057afa",
+      "text": "`.skilled/commands/deep/research.md` makes no per-agent role, tool or status claim: it is a thin router that explicitly refuses to dispatch (lines 13-14, 24, 31) and defers every agent claim to the workflow YAML. Nothing there to contradict.",
+      "contentHash": "70de70057afa",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-73572f2a238b",
+      "text": "**`markdown` as `mode: all` while the registry calls it LEAF.** The crosswalk (`.skilled/bin/agent-mirror-crosswalk.md:121`) and `.vibe/SYNC.md:48` both report `mode: all` correctly. The tension is inside the agent file itself (`.skilled/agents/markdown.md:4` `mode: all` against `:24` \"Dedicated LEAF executor\"), not between a doc and the agent. Out of scope for a docs-drift finding; recorded for the next focus.",
+      "contentHash": "73572f2a238b",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-773a5ca80a99",
+      "text": "**`ai-council` as a LEAF that grants `task: allow`.** Not a contradiction: `.skilled/agents/ai-council.md:44` states \"The AI Council is a LEAF by default. It dispatches council seats only when the prompt states that the operator invoked it directly\", and `.skilled/bin/agent-mirror-crosswalk.md:2.4` documents `Agent`/`task` as the nested-delegation grant. The registry's `tier: LEAF` and the frontmatter agree on the default.",
+      "contentHash": "773a5ca80a99",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-a7fb45b2cc48",
+      "text": "Treating `review`'s `bash: allow` as contradicting its \"READ-ONLY file access\" claim: `.skilled/agents/review.md:110` scopes Bash to `git diff`, `git log` and `gh pr view`, which are read-only commands. Not a finding.",
+      "contentHash": "a7fb45b2cc48",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-b0eafec33d1b",
+      "text": "Treating `ai-council`'s `task: allow` as a LEAF violation: `.skilled/agents/ai-council.md:38-47` defines an explicit Depth 0 / Depth 1 split, where seats are dispatched only when the prompt states operator invocation and Depth 1 refuses nested dispatch. The permission is consistent with the agent's own contract, so the registry's flat `LEAF` tier is a simplification rather than a contradiction.",
+      "contentHash": "b0eafec33d1b",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-d41be1c46309",
+      "text": "**`sync-agent-roster.cjs` as a broken reference.** The script exists at `.skilled/bin/sync-agent-roster.cjs` and is documented at `.skilled/bin/README.md:180`. The generated-block comments that name it are accurate.",
+      "contentHash": "d41be1c46309",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-d909cbf17f7a",
+      "text": "Grepping for a status enum by its literal pipe-separated form finds only five files, and four of them agree. The vocabulary is restated in prose in most places, so a grep for `status` alone returns hundreds of unrelated hits. The enum is a narrow, high-yield target; the surrounding prose is not.",
+      "contentHash": "d909cbf17f7a",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-e93a111766bd",
+      "text": "**`ai-council`'s `max_rounds` default of 3 (`agent-registry.json:47`).** `.skilled/agents/ai-council.md:389` states \"up to `max_rounds` (default 3)\". The claim holds.",
+      "contentHash": "e93a111766bd",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-ed843f043308",
+      "text": "**`orchestrate.md`'s generated roster blocks as drift.** The routing table at `.skilled/agents/orchestrate.md:77`-`:88`, the tier table at `:98` and the agent-files block at `:171` are all generated from `agent-registry.json` and match it row for row: eleven rows, priorities 1-11, every tier `LEAF` except the orchestrator itself. No drift.",
+      "contentHash": "ed843f043308",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-f01c360a3c7b",
+      "text": "The README's per-agent role paragraphs are accurate for nine of the eleven agents. Only the Deep Review paragraph makes a tool-surface claim that the frontmatter contradicts, so this angle is close to exhausted after one pass.",
+      "contentHash": "f01c360a3c7b",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "vibe-b"
+      ]
+    },
+    {
+      "id": "ruled-out-05b644067516",
+      "text": "Treating the feature catalogs as a misdescription surface: the two catalogs that name an agent — `deep-research/feature-catalog/loop-lifecycle/iteration-dispatch.md` and `deep-review/feature-catalog/loop-lifecycle/iteration-dispatch.md` — describe the LEAF contract, the reducer boundary and the file locations correctly, and `deep-research/feature-catalog/feature-catalog.md:54` matches the workflow. No finding.",
+      "contentHash": "05b644067516",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-72e0ccd594dc",
+      "text": "`.skilled/commands/doctor/runtime-mirrors.md:59` describes the roster check only as \"the agent roster\" without naming a runtime count or a canonical tree, so the command doc itself carries no contradictable claim. The misdescription lives in the script it invokes.",
+      "contentHash": "72e0ccd594dc",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-7ae44003d3fe",
+      "text": "Treating `pause-sentinel-halt.md:110`'s citation of `.skilled/agents/deep-research.md:43-55` as stale: those lines are the ILLEGAL NESTING AND SCOPE LOCK block, which is what the row claims to anchor. Not a finding.",
+      "contentHash": "7ae44003d3fe",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-8e149a430c82",
+      "text": "Treating the `.cursor`/`.devin` symlink claim as wrong: `ls -la` confirms `.cursor/agents/*.md` and `.devin/agents/*/AGENT.md` are symlinks into `.claude/agents/`. Only the OpenCode/Codex half of that sentence is wrong.",
+      "contentHash": "8e149a430c82",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "vibe-a"
+      ]
+    },
+    {
+      "id": "ruled-out-9313e76a1b60",
+      "text": "The feature catalogs are not a productive surface for this topic. Of the thirteen catalog files that mention an `agents/` path, only the two iteration-dispatch files make an agent claim, and both are accurate. The remaining eleven reference agent paths as evidence links rather than as role, tool or status claims.",
+      "contentHash": "9313e76a1b60",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "vibe-a"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 1,
+    "resolvedQuestions": 9,
+    "keyFindings": 36,
+    "sourceFindings": 36,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.89,
+    "coverageBySources": {}
+  }
+}

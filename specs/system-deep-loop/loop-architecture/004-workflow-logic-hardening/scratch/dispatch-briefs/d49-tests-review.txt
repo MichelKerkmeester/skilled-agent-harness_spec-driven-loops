@@ -1,0 +1,14 @@
+FILES (all under .skilled/skills/system-deep-loop/runtime/tests unless a full path is given):
+- unit/deep-review-bookkeeping-emission.vitest.ts
+- unit/deep-review-lock-refresh.vitest.ts
+- unit/deep-review-marker-scan.vitest.ts
+- unit/deep-review-run-open.vitest.ts
+- unit/deep-review-stage-skip.vitest.ts
+- unit/fanout-run.vitest.ts
+- integration/review-depth-convergence.vitest.ts
+
+PER-FILE NOTES.
+- deep-review-run-open and integration/review-depth-convergence build the file name from a
+  template literal such as `deep-review-${variant}.yaml`. They read deep-review.yaml once.
+- deep-review-run-open expected `dry_run_boundary: "state-mutation"` only for the confirm
+  variant. The single file carries it in both modes, so assert it without the variant condition.

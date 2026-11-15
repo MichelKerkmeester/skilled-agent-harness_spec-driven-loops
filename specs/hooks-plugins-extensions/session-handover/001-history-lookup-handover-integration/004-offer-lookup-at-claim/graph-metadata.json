@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim",
+  "spec_folder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim",
+  "parent_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "offer lookup at claim",
+      "phase 4 offer lookup at claim",
+      "offer lookup at claim plan",
+      "offer lookup at claim tasks",
+      "offer lookup at claim goal",
+      "offer lookup at claim implementation summary"
+    ],
+    "key_topics": [
+      "offer",
+      "lookup",
+      "claim",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "session",
+      "claims",
+      "handoff"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-handover/bin/session-handover.cjs",
+      ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
+      ".skilled/commands/speckit/handoff.md",
+      "tests/history-locator.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/bin/session-handover.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "history-locator.vitest.ts",
+        "kind": "test",
+        "path": "tests/history-locator.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "History Lookup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A session that claims a handoff receives the note's four sections, the complete command and the goal packet, and nothing else (`session-handover.cjs:706-720`)",
+    "created_at": "2026-11-15T06:24:23Z",
+    "last_save_at": "2026-11-15T14:30:50.661Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:44139c25426d881d5942f067f1f5c41a974c186a15ff68934c585313432ebeba",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ae714133271c6a78b56ef8d75a70684eea3fe82419e7e84ba8a0b5cdcdb8e79c",
+      "plan.md": "1e5924d62792d3d5a9af46695323db0b5179b66d54493e858a7475d09a3bea9d",
+      "tasks.md": "fce47e0cc05338196caa5e0ef170ee6f2e22a199d6cd175e3639338796e9a7d0",
+      "implementation-summary.md": "bbbbcb8220b42b912700105bd880ac3fd524c6bd9092c5d1effbfbbbdff27ddc"
+    },
+    "last_active_at": null
+  }
+}

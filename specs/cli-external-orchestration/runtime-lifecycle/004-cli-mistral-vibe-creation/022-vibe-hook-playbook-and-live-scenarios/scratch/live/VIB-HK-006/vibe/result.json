@@ -1,0 +1,71 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1409565350,
+  "socket": "conv-20003-vibe",
+  "session_id": "2874569c-f0f0-4ff8-9142-eb39c411950b",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.s45REfUPTk/vibe",
+  "started_at": "2026-11-15T06:34:48.628Z",
+  "finished_at": "2026-11-15T06:36:40.417Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "first-turn",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "turn-start-with-no-compaction-context",
+      "evidence": "turns/first-turn"
+    },
+    {
+      "id": "compact",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "compaction-checkpoint-recorded",
+      "evidence": "turns/compact"
+    },
+    {
+      "id": "reinject",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "reinjection-with-goal-slice",
+      "evidence": "turns/reinject"
+    },
+    {
+      "id": "history-offer",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "history-lookup-offer-injected",
+      "evidence": "turns/history-offer"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.1.0
+version: 1.4.4.0
 ---
 
 # runtime/: Feature Catalog
@@ -16,7 +16,7 @@ This document combines the current feature inventory for the `runtime/` skill in
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 55 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor:deep-loop`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 51 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, `/doctor:deep-loop`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
@@ -27,10 +27,10 @@ Use this catalog as the canonical inventory for the live `runtime/` feature surf
 | [scoring](scoring/) | 2 features | `lib/deep-loop/bayesian-scorer.ts` |
 | [coverage-graph](../feature-catalog/coverage-graph) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
 | [script-entry-points](../feature-catalog/script-entry-points) | 5 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
-| [council](council/) | 5 features | `lib/council/multi-seat-dispatch.cjs`, `lib/council/round-state-jsonl.cjs`, `lib/council/adjudicator-verdict-scoring.cjs`, `lib/council/cost-guards.cjs`, `lib/council/session-state-hierarchy.cjs` |
+| [council](council/) | 1 feature | `lib/council/multi-seat-dispatch.cjs` |
 | [fanout](fanout/) | 9 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
 | [lifecycle](lifecycle/) | 2 features | `lib/deep-loop/sleep.ts`, `lib/deep-loop/lifecycle-taxonomy.cjs` |
-| [observability](observability/) | 3 features | `lib/deep-loop/observability-events.cjs`, `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research-auto.yaml` |
+| [observability](observability/) | 3 features | `lib/deep-loop/observability-events.cjs`, `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research.yaml` |
 | [testing](testing/) | 2 features | `tests/helpers/spawn-cjs.ts`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/fanout-run.vitest.ts` |
 
 **Shared backend contracts (consolidation promotions).** Beyond the numbered entries above, the backend hosts a small set of generic plumbing the consumer modes import rather than duplicate: `lib/deep-loop/runtime-capabilities.cjs` (parameterized capability resolver, with byte-compatible per-skill shims), `lib/deep-loop/artifact-root.cjs` (canonical seam re-exporting `resolveArtifactRoot` from `system-spec-kit/shared/review-research-paths.cjs`), `lib/deep-loop/lifecycle-taxonomy.cjs` (terminal lifecycle enum: seven `stopReason` plus four `sessionOutcome` values) and `scripts/loop-lock.cjs` (CLI adapter over `loop-lock.ts`). These contracts register no MCP tools and carry no public workflow routing; resource-map emission stays in the workflow shared-synthesis layer, not in this runtime.
@@ -611,7 +611,7 @@ See [`script-entry-points/append-mode-event-script.md`](../feature-catalog/scrip
 
 ## 9. COUNCIL
 
-These entries cover the 5 council durability primitives that downstream `deep-ai-council` consumes, per the Runtime Boundary Decision (ADR-001). The council surface mirrors the deep-loop durability contract in a council-scoped CJS surface.
+These entries cover the seat-dispatch helper that the divergent pivot in `deep-loop/divergent-pivot.ts` calls when a stalled research or review run convenes seats. The council folder holds this one CJS helper.
 
 ### Multi-seat dispatch
 
@@ -622,54 +622,6 @@ Runs seat executors in parallel for one council round; preserves seat result ord
 #### Source Files
 
 See [`council/multi-seat-dispatch.md`](../feature-catalog/council/multi-seat-dispatch.md) for full implementation and validation file listings.
-
----
-
-### Round-state JSONL
-
-#### Description
-
-Appends per-round JSONL records with a lock-file single-writer guard; repairs corrupt trailing JSONL before append; fsyncs writes; exposes round-state readers for resume.
-
-#### Source Files
-
-See [`council/round-state-jsonl.md`](../feature-catalog/council/round-state-jsonl.md) for full implementation and validation file listings.
-
----
-
-### Adjudicator verdict scoring
-
-#### Description
-
-Scores Round-N to Round-N+1 adjudicator verdict deltas using ADR-003 weights for option change, confidence delta, material-risk Jaccard delta, axis flip rate, and blocking-disagreement delta.
-
-#### Source Files
-
-See [`council/adjudicator-verdict-scoring.md`](../feature-catalog/council/adjudicator-verdict-scoring.md) for full implementation and validation file listings.
-
----
-
-### Cost guards
-
-#### Description
-
-Normalizes and enforces ADR-004 defaults for max_rounds_per_topic, max_topics_per_session, saturation_threshold, and seats_per_round; computes upper-bound seat-output budgets.
-
-#### Source Files
-
-See [`council/cost-guards.md`](../feature-catalog/council/cost-guards.md) for full implementation and validation file listings.
-
----
-
-### Session state hierarchy
-
-#### Description
-
-Creates and validates the ADR-002 session->topic->round state shape, including stable topic-NNN-slug and round-NNN ids.
-
-#### Source Files
-
-See [`council/session-state-hierarchy.md`](../feature-catalog/council/session-state-hierarchy.md) for full implementation and validation file listings.
 
 ---
 
@@ -738,7 +690,7 @@ See [`fanout/fanout-salvage.md`](../feature-catalog/fanout/fanout-salvage.md) fo
 #### Description
 
 Cross-lineage merge: research (dedup by `findingId` + cross-model attribution) or review
-(strongest-restriction: any active P0 → merged FAIL). Writes consolidated registry and
+(strongest-restriction: any active P0 or failed required gate → merged FAIL). Writes consolidated registry and
 `fanout-attribution.md`.
 
 #### Source Files
@@ -875,7 +827,7 @@ Adds single-loop telemetry heartbeat rows for started, progress, and terminal li
 
 #### How It Works
 
-`deep-research-auto.yaml` emits heartbeat rows tagged `label:"single"` with fan-out-shaped gauges, while `atomic-state.ts` suppresses unchanged telemetry rows through serialized-diff gating.
+`deep-research.yaml` emits heartbeat rows tagged `label:"single"` with fan-out-shaped gauges, while `atomic-state.ts` suppresses unchanged telemetry rows through serialized-diff gating.
 
 #### Source Files
 
@@ -891,7 +843,7 @@ Adds a unified observability event envelope and routes core runtime emitters thr
 
 #### How It Works
 
-`observability-events.cjs` normalizes payloads into `schema_version`, `event_id`, `producer`, `stream`, `subject`, `event`, `status`, and native `payload`; fanout-run, convergence, status, council round-state, and research YAML producers append through it.
+`observability-events.cjs` normalizes payloads into `schema_version`, `event_id`, `producer`, `stream`, `subject`, `event`, `status`, and native `payload`; fanout-run, convergence, status, and research YAML producers append through it.
 
 #### Source Files
 

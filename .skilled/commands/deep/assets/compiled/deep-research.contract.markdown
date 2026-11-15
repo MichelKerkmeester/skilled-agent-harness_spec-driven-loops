@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "56d3c68b1c2332084cbc150199aaeefaff496343fc93a575487ee575d520284f",
+      "sha256": "32360b72e5e0b228ea1a76c78c8c50e8305de02d9862ff6c09547ccdc56758d7",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "eee287516e9aae9ebb27d4d5b4653af4b4c6cde5dcef56c1f5eb095b2138aca2",
+      "sha256": "dd28d8c163b8ddabbce01b63a2315ba5288c5f73bfd8ce9ea7dee703832b471d",
       "section": "full"
     },
     {
@@ -21,33 +21,28 @@
       "section": "full"
     },
     {
-      "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "ede9d9fbc0f4a709b36870c259606d6f13a78a083a0b8e2cefc18ba118526b43",
-      "section": "full"
-    },
-    {
-      "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "3bbbc7ed27ecab937668e82a482a60da8635a2fe133909fb384714a409bf3df7",
+      "path": ".skilled/commands/deep/assets/deep-research.yaml",
+      "sha256": "74049eabd5e099d8d4de4220bfffdff1d67ebda67889de067a717a0dc248478e",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "2e8dbb77026ac54baa214c211e6bbc63130f64c5a3ef58538149af8ccc6ae3f7",
+      "sha256": "266b74cd721ea99b7a549eda4b08003780820d07b7d4dac3b47571b686ade63b",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "f99034b7c9ec7a9ef9678358789cfed4b1914eb8f241da6abcdf66a086573c2e",
+      "sha256": "4a255948afdd26643b655f447790673b8165d165a872fa3527fdae41f45c5957",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "104aa65549290fb1f53804c8dadd0f778ba211261c727cb7a5235eccf3a3e37a",
+      "sha256": "aba0b3eb4d1cbcb5b55e0896c99c3bae1817b84d3905a43feab5c48eb755c963",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "9d027d4f277884a4cceb3a51a9409e1fbcf814897c495491d64db8fe85aad8d4",
+      "sha256": "d8ffc7f482c8c9ae7f2a18fecd116b9d4e7eb3e1de99a7f91220f2e65953db55",
       "section": "full"
     },
     {
@@ -62,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "cf64e3a90734d4be99e66f25ec2f57bd4658ccde3b485e730f956d2e598fc32e",
+      "sha256": "4546e6c827dc671f239d5bd00dd8dc768ee4b80a35978bff62e303302077da9e",
       "section": "full"
     },
     {
@@ -77,12 +72,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "ae9c0895641fb31a84d7fa2736c405f0fe79beffc98e804ad8f0c78f43dc5496",
+      "sha256": "d00b5bcb3305f196d00d254d9de4e6a0f9c98b1f82e2b6dfafd7037b55188ea6",
       "section": "full"
     },
     {
       "path": ".skilled/agents/deep-research.md",
-      "sha256": "1591ba199ad36289661138c7037ded44b359e8fefff0a2888f3b371223bff899",
+      "sha256": "d69ca8fb5d34778fd0d3ca65f56633a79a033d0c87f6b9b8b1e7929c274f6d25",
       "section": "full"
     },
     {
@@ -91,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "4d968489760f9ac456cc500ab360c8b3ba081a7038fb1dcc9cf0f1fd28485ae8"
+  "compiledBodyDigest": "c598b0a8d6f547b30bb8ae6c1f05be093960ddea7c2214015b860c39c8cefc50"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -117,20 +112,19 @@ Your job is to DISPATCH `deep-research` to run ONE iteration of the research loo
 1. `.skilled/commands/deep/research.md`
 2. `.skilled/commands/deep/assets/deep-research-presentation.txt`
 3. `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`
-4. `.skilled/commands/deep/assets/deep-research-auto.yaml`
-5. `.skilled/commands/deep/assets/deep-research-confirm.yaml`
-6. `.skilled/skills/system-deep-loop/mode-registry.json`
-7. `.skilled/skills/system-deep-loop/SKILL.md`
-8. `.skilled/skills/system-deep-loop/deep-research/SKILL.md`
-9. `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-10. `.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md`
-11. `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
-12. `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-13. `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json`
-14. `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
-15. `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl`
-16. `.skilled/agents/deep-research.md`
-17. `.skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
+4. `.skilled/commands/deep/assets/deep-research.yaml`
+5. `.skilled/skills/system-deep-loop/mode-registry.json`
+6. `.skilled/skills/system-deep-loop/SKILL.md`
+7. `.skilled/skills/system-deep-loop/deep-research/SKILL.md`
+8. `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+9. `.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md`
+10. `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
+11. `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+12. `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json`
+13. `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
+14. `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl`
+15. `.skilled/agents/deep-research.md`
+16. `.skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
 
 ## gate3Precedence
 
@@ -165,13 +159,21 @@ Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-m
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research-auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
 
 3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:research:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### Dry-Run Halt
+
+`--dry-run` binds `dry_run=true` in both execution modes.
+Setup then binds its values in memory and skips the Tier 1 config persist, so no `deep-research-config.json` is written.
+The workflow then prints `dry_run_halt` preview lines and stops before any dispatch or state write.
+Show the operator the halt line and say that nothing was written.
+Both execution modes run the telemetry heartbeat and the run-now check.
 
 ### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
 
@@ -185,7 +187,8 @@ PRE-BOUND SETUP ANSWERS:
   maxIterations: 10  # positive integer
   convergenceThreshold: 0.05  # decimal 0..1
   convergence_mode: default  # default | off | sliding-window | divergent
-  executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-deepseek-harness (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
+  lineage_mode: auto  # one of: auto | resume | restart
+  executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-deepseek-harness | cli-mistral-vibe, the last one fan-out only (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. llmgateway/glm-5.3-flash, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
   executor_reasoning: ""  # optional reasoning effort
@@ -207,6 +210,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 | `convergenceThreshold`  | Y        | flag `--convergence`, marker `convergenceThreshold`, or default                                                                                                                                        | `0.05`                             | N                                                       |
 | `convergence_mode`      | Y        | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default                                                                                                  | `default`                          | N                                                       |
 | `stop_policy`           | Y        | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default                                                                                                                      | `convergence`                      | N                                                       |
+| `lineage_mode`          | Y        | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default                                                                                                         | `auto`                             | N                                                       |
 | `executor`              | N        | flag `--executor`, marker `executor`, config file, or default                                                                                                                                          | `native`                           | N                                                       |
 | `executor_model`        | N        | flag `--model`, marker `executor_model`, or executor-specific validation                                                                                                                               | none                               | N                                                       |
 | `executor_config_dir`   | N        | flag `--config-dir`, marker `executor_config_dir`, or executor-specific default                                                                                                                        | none                               | N                                                       |
@@ -216,6 +220,8 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 | `resource_map_emit`     | N        | flag `--no-resource-map`, marker `resource_map_emit`, or default                                                                                                                                       | `true`                             | N                                                       |
 | `fanout_executors`      | N        | repeatable `--executor=<type>` flags or `--executors=<json>`; each group accepts `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`; one expanded lineage selects `config.executor`, two or more select `config.fanout` | none (single-executor when absent) | N                                                       |
 | `fanout_concurrency`    | N        | flag `--concurrency=N`                                                                                                                                                                                 | `2`                                | N                                                       |
+
+**Lifecycle policy:** `lineage_mode=auto` preserves the existing classifier behavior, `lineage_mode=resume` continues a valid packet, and `lineage_mode=restart` archives the resolved `{artifact_dir}` before any config write, phase init, or fan-out spawn. In `:auto`, an explicit `--restart` or `--lineage-mode=restart` flag is operator authorization for this archive move, so do not ask for a second confirmation. Preserve rollback by moving the timestamped archive back to `research/` if needed. A restart request must never silently downgrade to resume; if the archive step cannot run, halt with `STATUS=FAIL`.
 
 **Fan-out default policy:** 0–1 `--executor` flags and no `--executors`, or an `--executors` matrix that expands to exactly one lineage → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, an `--executors` matrix that expands to two or more lineages, or any `--count > 1` → `config.fanout`. Native fan-out (count N for `native` executor) runs N sequential `@deep-research` agent dispatches with isolated dirs. CLI fan-out runs N headless subprocesses concurrently in the capped pool.
 ~~~
@@ -249,7 +255,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
-   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`, the last one a single lineage in `:auto` or a fan-out, and `:confirm` runs only `native`, `cli-claude-code` and `cli-opencode`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+   |-- --restart -> lineage_mode = restart
+   |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
+   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness` | `cli-mistral-vibe`, `cli-deepseek-harness` as a single lineage or a fan-out and `cli-mistral-vibe` only as a fan-out lineage. `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -266,7 +274,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |   - --executors matrix that expands to exactly one lineage (one entry, count 1 or absent): write config.executor from that entry (kind, model, configDir, reasoningEffort, serviceTier, timeoutSeconds); its iterations value binds to config.maxIterations, and leave config.fanout unset
    |   - 2+ --executor flags, an --executors matrix that expands to two or more lineages, or any count>1: write config.fanout
    |
-   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
    - CLI flag > config file > schema defaults
@@ -377,8 +385,7 @@ optionalFields:
   - "resource_map_emit"
   - "fanout_executors"
   - "fanout_concurrency"
-autoWorkflow: .skilled/commands/deep/assets/deep-research-auto.yaml
-confirmWorkflow: .skilled/commands/deep/assets/deep-research-confirm.yaml
+workflow: .skilled/commands/deep/assets/deep-research.yaml
 ```
 
 ## outputTemplate

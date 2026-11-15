@@ -121,7 +121,7 @@ The draft sentences for B1 and B7 are in `scratch/sentences.md`. B7's `sk-design
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/00{1..8}-*/spec.md` | Modify | B1, line 37 of each of the eight |
-| `specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/spec.md` | Modify | B7 |
+| `specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/spec.md` | Modify | B7 |
 | `specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/spec.md` | Modify | B7 |
 | `specs/sk-design/020-chart-and-diagram-review/spec.md` | Modify | B7 |
 | `.skilled/skills/system-spec-kit/feature-catalog/context-preservation/packet-purpose-carry.md` | Create | B2 per-feature entry |

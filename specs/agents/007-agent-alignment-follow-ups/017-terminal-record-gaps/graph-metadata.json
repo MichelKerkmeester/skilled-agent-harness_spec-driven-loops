@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/017-terminal-record-gaps",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/017-terminal-record-gaps",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "terminal record gaps",
+      "phase 17 terminal record gaps",
+      "maxDurationReached terminal gate record",
+      "terminal record gaps plan",
+      "terminal record gaps tasks",
+      "terminal record gaps acceptance criteria",
+      "terminal record gaps implementation summary"
+    ],
+    "key_topics": [
+      "terminal",
+      "record",
+      "gaps",
+      "phase",
+      "maxdurationreached",
+      "gate",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      "scratch/baseline.txt",
+      "scratch/after.txt",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-schema.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Widen",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the 120-minute default, `stepcheckmaxduration` jumps to `phasesynthesis` at `deep-review.yaml:903` without writing the terminal gate record",
+    "created_at": "2026-11-15T10:10:52Z",
+    "last_save_at": "2026-11-15T11:33:48.726Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:30ffe15759559ead2cf926fecc2d1471f516051ca8c9cb21b5fe953bd07f7435",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fa82422c32ea97362a9d6952b67399c35af2a066036782981f329ba944bf6ce0",
+      "plan.md": "91be06ac86726d0dae270350e1e250cb98065691e8112f0eb9c833f1b1d380ad",
+      "tasks.md": "f34dd0cb14b1f8470f70b6e27652b50b31c6cac5078b4f66e71b4198108e8006",
+      "implementation-summary.md": "77c6485203c41b9ff0bd7a22a5523fe03ee385451438b98e896da33140690a01"
+    },
+    "last_active_at": null
+  }
+}

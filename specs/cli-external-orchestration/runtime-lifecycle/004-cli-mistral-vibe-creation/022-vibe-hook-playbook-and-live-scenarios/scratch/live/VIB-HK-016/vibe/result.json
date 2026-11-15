@@ -2,12 +2,12 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 69368204,
-  "socket": "conv-32937-vibe",
-  "session_id": "85371e3f-d82d-4f73-9a40-3d36f54f298a",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ILuwSN3Efu/vibe",
-  "started_at": "2026-11-15T00:30:02.001Z",
-  "finished_at": "2026-11-15T00:30:41.048Z",
+  "seed": 512889803,
+  "socket": "conv-47314-vibe",
+  "session_id": "aa48cc19-3f51-44da-a648-4be527c2fba7",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.YSRTP8UckI/vibe",
+  "started_at": "2026-11-15T13:14:10.077Z",
+  "finished_at": "2026-11-15T13:15:23.506Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -48,6 +48,15 @@
       "blocker": null,
       "observed": "rule-named",
       "evidence": "turns/rule"
+    },
+    {
+      "id": "clean-edit",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "clean-edit-earned-no-hygiene-finding",
+      "evidence": "turns/clean-edit"
     }
   ]
 }

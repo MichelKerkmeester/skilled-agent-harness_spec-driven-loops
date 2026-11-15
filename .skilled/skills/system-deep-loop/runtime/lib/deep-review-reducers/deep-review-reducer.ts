@@ -126,6 +126,7 @@ export const DEEP_REVIEW_EVENT_ROUTING = Object.freeze({
   'deep_review.convergence_evaluated': Object.freeze(['reviewLoop', 'status']),
   'deep_review.graph_convergence_evaluated': Object.freeze(['reviewLoop', 'status']),
   'deep_review.blocked_stop_recorded': Object.freeze(['reviewLoop', 'status']),
+  'deep_review.terminal_gates_recorded': Object.freeze(['reviewLoop', 'status']),
   'deep_review.pause_recorded': Object.freeze(['reviewLoop', 'status']),
   'deep_review.recovery_started': Object.freeze(['reviewLoop', 'status']),
   'deep_review.synthesis_started': Object.freeze(['reviewLoop', 'status']),
@@ -656,6 +657,39 @@ function foldReviewLoopEvent(
         ...reviewLoop,
         obligations: upsertObligations(reviewLoop.obligations, obligations),
         blockerIds: sortStrings([...reviewLoop.blockerIds, ...payload.data.blockedGateIds]),
+        outcome: 'blocked',
+      };
+    }
+    case 'deep_review.terminal_gates_recorded': {
+      const payload = payloadFor(event, 'deep_review.terminal_gates_recorded');
+      // A passing terminal record supersedes an earlier blocked stop: only the gates still
+      // failing at the terminal stop are outstanding, so each blocked-stop gate obligation
+      // resolves and its blocker, bare or prefixed, clears with it.
+      if (payload.data.failedRequiredGateIds.length === 0) {
+        const clearedGateIds = new Set(
+          reviewLoop.obligations
+            .filter((obligation) => obligation.obligationId.startsWith('gate:'))
+            .map((obligation) => obligation.obligationId.slice('gate:'.length)),
+        );
+        const blockerIds = reviewLoop.blockerIds.filter((blockerId) => (
+          !blockerId.startsWith('gate:') && !clearedGateIds.has(blockerId)
+        ));
+        return {
+          ...reviewLoop,
+          obligations: reviewLoop.obligations.map((obligation) => (
+            obligation.obligationId.startsWith('gate:')
+              ? { ...obligation, status: 'resolved' as const }
+              : obligation
+          )),
+          blockerIds: sortStrings(blockerIds),
+          outcome: blockerIds.length > 0
+            ? reviewLoop.outcome
+            : payload.data.stopReason === 'converged' ? 'converged' : 'active',
+        };
+      }
+      return {
+        ...reviewLoop,
+        blockerIds: sortStrings([...reviewLoop.blockerIds, ...payload.data.failedRequiredGateIds]),
         outcome: 'blocked',
       };
     }
@@ -1393,6 +1427,7 @@ function artifactFromEvent(
     case 'deep_review.convergence_evaluated':
     case 'deep_review.graph_convergence_evaluated':
     case 'deep_review.blocked_stop_recorded':
+    case 'deep_review.terminal_gates_recorded':
     case 'deep_review.pause_recorded':
     case 'deep_review.recovery_started':
     case 'deep_review.synthesis_started':
@@ -1565,6 +1600,7 @@ const STATUS_TRANSITIONS = Object.freeze({
 function transitionForEvent(
   event: DeepReviewLedgerEvent,
   reviewLoop: DeepReviewIterationConvergenceProjection,
+  priorState: DeepReviewModeStatus,
 ): DeepReviewStatusTransition | null {
   const base = {
     producerEventId: event.event_id,
@@ -1599,6 +1635,13 @@ function transitionForEvent(
         : { ...base, state: 'active' };
     case 'deep_review.blocked_stop_recorded':
       return { ...base, state: 'blocked', blockingReason: 'blocked-stop' };
+    case 'deep_review.terminal_gates_recorded': {
+      const payload = payloadFor(event, 'deep_review.terminal_gates_recorded');
+      // Only a blocked run returns to active; any other state keeps its own status.
+      return payload.data.failedRequiredGateIds.length === 0 && priorState === 'blocked'
+        ? { ...base, state: 'active' }
+        : null;
+    }
     case 'deep_review.pause_recorded':
       return { ...base, state: 'paused' };
     case 'deep_review.synthesis_started':
@@ -1942,7 +1985,7 @@ function applyEvent(
     );
   }
 
-  const transition = transitionForEvent(event, reviewLoop);
+  const transition = transitionForEvent(event, reviewLoop, state.status.state);
   const provenance = transition === null
     ? [...state.status.provenance]
     : [...state.status.provenance, transition];

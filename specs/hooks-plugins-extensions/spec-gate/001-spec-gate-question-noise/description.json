@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/spec-gate/001-spec-gate-question-noise",
+  "description": "The SPEC FOLDER QUESTION is injected on nearly every user turn in the pi CLI, and re-asks every turn in every runtime once the gate has opened",
+  "keywords": [
+    "spec",
+    "folder",
+    "question",
+    "injected",
+    "nearly",
+    "every",
+    "user",
+    "turn",
+    "cli",
+    "re-asks",
+    "runtime",
+    "gate",
+    "opened"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.350Z",
+  "specId": "001",
+  "folderSlug": "spec-gate-question-noise",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "spec-gate"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,62 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1834477893,
+  "socket": "conv-84570-vibe",
+  "session_id": "208ad622-6c84-4396-bc3c-a546dd1f6d01",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ggfRQjiJgT/vibe",
+  "started_at": "2026-11-15T12:41:55.138Z",
+  "finished_at": "2026-11-15T12:43:05.266Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "mcp",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "mcp-route-refused",
+      "evidence": "turns/mcp"
+    },
+    {
+      "id": "deny-notice",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "deny-notice-and-no-server-call",
+      "evidence": "turns/deny-notice"
+    },
+    {
+      "id": "follow-up",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "notes-written-without-mcp",
+      "evidence": "turns/follow-up"
+    }
+  ]
+}

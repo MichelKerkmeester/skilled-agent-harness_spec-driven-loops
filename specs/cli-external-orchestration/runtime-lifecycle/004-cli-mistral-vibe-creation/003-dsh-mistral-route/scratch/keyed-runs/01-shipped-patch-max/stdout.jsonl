@@ -1,0 +1,6 @@
+{"type":"session","sessionId":"session-8354345d-ffe7-429c-aa69-eb8923921e47","cwd":"/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/425e79e1-c5de-4edb-b8bb-77ee620d2538/scratchpad/dsh-mistral-run1"}
+{"type":"status","phase":"turn_start","turn":1}
+{"type":"status","phase":"step_start","turn":1,"step":1}
+{"type":"status","phase":"step_end","turn":1,"step":1,"usage":{"inputTokens":0,"outputTokens":0,"totalTokens":0}}
+{"type":"status","phase":"turn_end","turn":1,"reason":{"kind":"error","error":{"message":"422: {\"object\":\"error\",\"message\":{\"detail\":[{\"type\":\"extra_forbidden\",\"loc\":[\"body\",\"store\"],\"msg\":\"Extra inputs are not permitted\",\"input\":false}]},\"type\":\"invalid_request_error\",\"param\":null,\"code\":null,\"raw_status_code\":422}","code":"INVALID_REQUEST"}}}
+{"type":"final","sessionId":"session-8354345d-ffe7-429c-aa69-eb8923921e47","reason":{"kind":"error","error":{"message":"422: {\"object\":\"error\",\"message\":{\"detail\":[{\"type\":\"extra_forbidden\",\"loc\":[\"body\",\"store\"],\"msg\":\"Extra inputs are not permitted\",\"input\":false}]},\"type\":\"invalid_request_error\",\"param\":null,\"code\":null,\"raw_status_code\":422}","code":"INVALID_REQUEST"}},"text":""}

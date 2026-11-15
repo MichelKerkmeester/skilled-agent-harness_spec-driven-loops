@@ -1,6 +1,6 @@
 ---
 title: "Mistral Vibe Dispatch Mode"
-description: "`cli-mistral-vibe` is the eighth workflow mode. It composes and checks a one-task `vibe -p` print-mode dispatch over a closed two-alias DeepSeek and GLM roster, and it remains experimental. Print mode is pinned on vibe 3.1.2 from captures in this repository, and ACP (`vibe-acp`) is deferred."
+description: "`cli-mistral-vibe` is the eighth workflow mode. It composes and checks a one-task `vibe -p` print-mode dispatch over a closed two-alias DeepSeek and GLM roster, and it remains experimental. Print mode is pinned on vibe 3.1.2 from captures in this repository; both roster rows are hand-written, `allowed_models` closes the roster by model name, and ACP (`vibe-acp`) is deferred."
 trigger_phrases:
   - "Mistral Vibe Dispatch Mode"
   - "mistral vibe"

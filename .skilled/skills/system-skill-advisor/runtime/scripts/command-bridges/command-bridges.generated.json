@@ -5,8 +5,8 @@
     "commandMetadata": 27,
     "doctorRoutes": 36,
     "generated": 63,
-    "typescriptActive": 46,
-    "pythonActive": 52
+    "typescriptActive": 47,
+    "pythonActive": 53
   },
   "entries": [
     {
@@ -399,29 +399,6 @@
       "standalone": false,
       "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
-      "id": "command-deep-ai-council",
-      "command": "/deep:ai-council",
-      "skillId": "system-deep-loop",
-      "ownerMode": "ai-council",
-      "description": "Multi-topic deep-ai-council session loop with adjudicator-verdict stability. Modes :auto, :confirm.",
-      "ownedSignals": [
-        "convene an AI council",
-        "run multi-seat deliberation",
-        "make a planning decision with several perspectives"
-      ],
-      "standalone": false,
-      "mutating": "mutates",
-      "source": ".skilled/skills/system-deep-loop/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -843,7 +820,7 @@
       "skillId": "system-deep-loop",
       "ownerMode": "system-deep-loop",
       "source": ".skilled/commands/doctor/_routes.yaml",
-      "embeddingText": "Diagnose deep-loop coverage graphs and convergence for research, review and council runs. deep-loop coverage graph check. deep-loop graph empty or stale. deep-research convergence drift. deep-review iteration graph. deep loop convergence check",
+      "embeddingText": "Diagnose deep-loop coverage graphs and convergence for research and review runs. deep-loop coverage graph check. deep-loop graph empty or stale. deep-research convergence drift. deep-review iteration graph. deep loop convergence check",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2231,6 +2208,64 @@
       }
     },
     {
+      "id": "command-speckit-ai-council",
+      "command": "/speckit:ai-council",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "description": "AI Council, 3 steps: bind the spec folder, dispatch @ai-council once, report the plan. Modes :auto, :confirm.",
+      "ownedSignals": [
+        "/speckit:ai-council",
+        "convene an ai council",
+        "ask the council",
+        "ai council",
+        "get a council verdict on this plan"
+      ],
+      "standalone": true,
+      "mutating": "mutates",
+      "source": ".skilled/skills/system-spec-kit/command-metadata.json",
+      "embeddingText": "I want several AI seats with different lenses to weigh a planning question and return one recommended plan. convene an ai council. ask the council. ai council. get a council verdict on this plan",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-speckit-ai-council",
+          "order": 42,
+          "id": "command-speckit-ai-council",
+          "name": "command-speckit-ai-council",
+          "description": "AI Council, 3 steps: bind the spec folder, dispatch @ai-council once, report the plan. Modes :auto, :confirm.",
+          "keywords": [
+            "/speckit:ai-council",
+            "convene an ai council",
+            "ask the council",
+            "ai council",
+            "get a council verdict on this plan"
+          ],
+          "domains": [
+            "speckit",
+            "command"
+          ],
+          "intentSignals": [
+            "/speckit:ai-council",
+            "convene an ai council",
+            "ask the council",
+            "ai council",
+            "get a council verdict on this plan"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-speckit-ai-council",
+          "order": 53,
+          "id": "command-speckit-ai-council",
+          "description": "AI Council, 3 steps: bind the spec folder, dispatch @ai-council once, report the plan. Modes :auto, :confirm.",
+          "slashMarkers": [
+            "/speckit:ai-council",
+            "speckit:ai-council"
+          ],
+          "owningSkill": "system-spec-kit"
+        }
+      }
+    },
+    {
       "id": "command-speckit-complete",
       "command": "/speckit:complete",
       "skillId": "system-spec-kit",
@@ -2250,7 +2285,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-complete",
-          "order": 42,
+          "order": 43,
           "id": "command-speckit-complete",
           "name": "command-speckit-complete",
           "description": "End-to-end SpecKit workflow, 13 steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
@@ -2290,32 +2325,38 @@
       "command": "/speckit:handoff",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+      "description": "Write the handoff note and prepare the session handover loop: the manual trigger on every runtime.",
       "ownedSignals": [
         "/speckit:handoff",
         "hand this off",
         "write a handoff note",
         "wrap up this session",
-        "running out of context"
+        "running out of context",
+        "session handover",
+        "in session handover",
+        "session-handover"
       ],
       "standalone": true,
       "mutating": "mutates",
       "source": ".skilled/skills/system-spec-kit/command-metadata.json",
-      "embeddingText": "I want to stop cleanly and hand this work to a fresh session through a written handoff note. hand this off. write a handoff note. wrap up this session. running out of context",
+      "embeddingText": "I want to stop cleanly and hand this work to a fresh session through a written handoff note. hand this off. write a handoff note. wrap up this session. running out of context. session handover. in session handover. session-handover",
       "runtime": {
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-handoff",
-          "order": 43,
+          "order": 44,
           "id": "command-speckit-handoff",
           "name": "command-speckit-handoff",
-          "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+          "description": "Write the handoff note and prepare the session handover loop: the manual trigger on every runtime.",
           "keywords": [
             "/speckit:handoff",
             "hand this off",
             "write a handoff note",
             "wrap up this session",
-            "running out of context"
+            "running out of context",
+            "session handover",
+            "in session handover",
+            "session-handover"
           ],
           "domains": [
             "speckit",
@@ -2326,15 +2367,18 @@
             "hand this off",
             "write a handoff note",
             "wrap up this session",
-            "running out of context"
+            "running out of context",
+            "session handover",
+            "in session handover",
+            "session-handover"
           ]
         },
         "python": {
           "enabled": true,
           "inventoryId": "command-speckit-handoff",
-          "order": 53,
+          "order": 54,
           "id": "command-speckit-handoff",
-          "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+          "description": "Write the handoff note and prepare the session handover loop: the manual trigger on every runtime.",
           "slashMarkers": [
             "/speckit:handoff",
             "speckit:handoff"
@@ -2364,7 +2408,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-implement",
-          "order": 44,
+          "order": 45,
           "id": "command-speckit-implement",
           "name": "command-speckit-implement",
           "description": "Implementation workflow, 9 steps: execute pre-planned work from plan.md. Modes :auto, :confirm, :autopilot.",
@@ -2422,7 +2466,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-plan",
-          "order": 45,
+          "order": 46,
           "id": "command-speckit-plan",
           "name": "command-speckit-plan",
           "description": "Planning workflow, 7 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
@@ -2482,7 +2526,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-resume",
-          "order": 46,
+          "order": 47,
           "id": "command-speckit-resume",
           "name": "command-speckit-resume",
           "description": "Resume or recover work on a spec folder: canonical continuity recovery with one next step.",
@@ -2547,7 +2591,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-save",
-          "order": 47,
+          "order": 48,
           "id": "command-speckit-save",
           "name": "command-speckit-save",
           "description": "Save current conversation context into canonical spec-doc continuity surfaces",
@@ -2579,7 +2623,7 @@
         "python": {
           "enabled": true,
           "inventoryId": "command-speckit-save",
-          "order": 54,
+          "order": 55,
           "id": "command-speckit-save",
           "description": "Save current conversation context into canonical spec-doc continuity surfaces",
           "slashMarkers": [
@@ -2612,7 +2656,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-search",
-          "order": 48,
+          "order": 49,
           "id": "command-speckit-search",
           "name": "command-speckit-search",
           "description": "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs.",
@@ -2641,7 +2685,7 @@
         "python": {
           "enabled": true,
           "inventoryId": "command-speckit-search",
-          "order": 55,
+          "order": 56,
           "id": "command-speckit-search",
           "description": "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs.",
           "slashMarkers": [
@@ -2746,15 +2790,6 @@
       "mutating": "mutates",
       "askFirst": [],
       "policy": "start"
-    },
-    {
-      "command": "/deep:ai-council",
-      "route": null,
-      "mutating": "mutates",
-      "askFirst": [
-        "spend"
-      ],
-      "policy": "ask"
     },
     {
       "command": "/deep:research",
@@ -3098,6 +3133,15 @@
       "mutating": "mutates",
       "askFirst": [],
       "policy": "start"
+    },
+    {
+      "command": "/speckit:ai-council",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [
+        "spend"
+      ],
+      "policy": "ask"
     },
     {
       "command": "/speckit:complete",

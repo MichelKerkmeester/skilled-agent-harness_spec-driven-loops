@@ -410,7 +410,7 @@ render:
 # tripwire that does not require full rendering.
 authoredArtifacts:
   - id: workflow-auto
-    path: .skilled/commands/deep/assets/deep-review-auto.yaml
+    path: .skilled/commands/deep/assets/deep-review.yaml
     ownership: authored
     format: yaml
     enumParityChecked:
@@ -420,7 +420,7 @@ authoredArtifacts:
       - cross-reference-protocols
     note: Hand-maintained workflow YAML for the :auto command path. References this contract's taxonomy in prose; not machine-rendered from this manifest.
   - id: workflow-confirm
-    path: .skilled/commands/deep/assets/deep-review-confirm.yaml
+    path: .skilled/commands/deep/assets/deep-review.yaml
     ownership: authored
     format: yaml
     enumParityChecked:

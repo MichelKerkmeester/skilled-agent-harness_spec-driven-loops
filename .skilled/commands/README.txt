@@ -23,11 +23,11 @@ Commands are organized into six groups:
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
-| **deep** | `commands/deep/` | 3 | Deep research, review and AI council loops |
+| **deep** | `commands/deep/` | 2 | Deep research and review loops |
 | **doctor** | `commands/doctor/` | 17 | Setup overview, problem-to-command routing, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, CI workflow switches, skill format check, git hook and standards, MCP, release-update, project-repo symlink check, link and unlink, ordered install guide, vendored-tree overlay status, apply and re-pin, root instruction-file check and embed, and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
-| **speckit** | `commands/speckit/` | 7 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search) and the manual trigger for the session relaunch loop (handoff) |
+| **speckit** | `commands/speckit/` | 8 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search), the manual trigger for the session handover loop (handoff) and a single-round AI council (ai-council) |
 
 One OpenCode-only command lives outside this tree: `/goal-opencode` manages the passive session goal via the `opencode-goal` plugin, so it is authored in `.opencode/commands/goal-opencode.md`, beside that directory's links to these groups. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
 
@@ -66,7 +66,6 @@ command/
 │   ├── with-human-voice.md   # Apply or score prose against the Human Voice Rules
 │   └── assets/               # YAML workflow and presentation contracts
 ├── deep/                     # Deep-loop commands
-│   ├── ai-council.md         # Multi-seat AI council planning
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
 │   └── assets/               # YAML workflow definitions
@@ -90,8 +89,9 @@ command/
 │   ├── diagram.md            # Create an HTML/SVG diagram or a validated ASCII flowchart
 │   └── assets/                # Auto/confirm/presentation workflow assets
 └── speckit/                  # Spec folder workflow, continuity write and retrieval commands
+    ├── ai-council.md         # Single-round AI council on a planning question
     ├── complete.md           # Full end-to-end workflow
-    ├── handoff.md            # Write the handoff note and prepare the session relaunch loop
+    ├── handoff.md            # Write the handoff note and prepare the session handover loop
     ├── implement.md          # Execute pre-planned work
     ├── plan.md               # Spec through plan only
     ├── resume.md             # Resume existing spec work
@@ -134,7 +134,7 @@ Seventeen command files cover the diagnostic surface, one per owner, with one en
 | Helper | `/doctor:helper [<problem in plain words>] [--json]` | Rank the doctor commands that fit a described problem from its route phrases, show the class and the reason on every line, run a read-only pick in place and hand a writing pick back as one line |
 | Spec-Kit Retrieval | `/doctor:speckit` | Diagnose the generated trigger index, its lookup and the ripgrep retrieval recipes |
 | Skill Advisor | `/doctor:skill-advisor <target> [flags]` | Re-tune routing, rebuild the skill graph, or audit graph freshness, router reach, description budget and parent-skill structure |
-| Deep-Loop | `/doctor:deep-loop [--scope=<scope>]` | Diagnose deep-loop coverage graphs and convergence for research, review and council runs |
+| Deep-Loop | `/doctor:deep-loop [--scope=<scope>]` | Diagnose deep-loop coverage graphs and convergence for research and review runs |
 | Runtime Mirrors | `/doctor:runtime-mirrors` | Check that the agent, command, prompt and hook mirrors are in sync with `.skilled` |
 | sk-code Setup | `/doctor:sk-code [setup\|quality] [--prompt=<text>] [--dry-run]` | Run the sk-code setup battery read-only, or check the repository quality config and create `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` once after an approved plan, naming each repair |
 | CI | `/doctor:ci [report\|scaffold\|toggle] [--json] [--sha=<sha>] [--no-gh]` | List GitHub Actions workflows with their switch state, scaffold a new workflow or toggle one CI switch |
@@ -155,7 +155,6 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| AI Council | `/deep:ai-council <question> [:auto\|:confirm]` | Multi-seat planning and convergence checks |
 | Research Loop | `/deep:research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
 | Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
 
@@ -184,8 +183,9 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
+| AI Council | `/speckit:ai-council <question-or-task> [:auto\|:confirm] [--spec-folder=PATH]` | Bind the spec folder, dispatch `@ai-council` once and report its plan |
 | Complete | `/speckit:complete <description>` | Full end-to-end workflow (13 steps) |
-| Handoff | `/speckit:handoff (no arguments)` | Write the handoff note and prepare the session relaunch loop |
+| Handoff | `/speckit:handoff (no arguments)` | Write the handoff note and prepare the session handover loop |
 | Implement | `/speckit:implement <spec-folder>` | Execute pre-planned work (requires plan.md) |
 | Plan | `/speckit:plan <description> [--intake-only] [:with-phases]` | Planning workflow (spec through plan only). `--intake-only` publishes just `spec.md`, `description.json` and `graph-metadata.json`. `:with-phases` adds phase decomposition |
 | Resume | `/speckit:resume [spec-folder]` | Resume work on existing spec folder |

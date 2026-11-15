@@ -1,7 +1,7 @@
 ---
 title: "Fan-out research with two CLI lineages"
 description: "Validate that a two-CLI-lineage fan-out research config triggers step_fanout_spawn → fanout-run.cjs pool → two isolated lineages sub-packets → step_fanout_merge → canonical research.md."
-version: 1.14.0.3
+version: 1.14.1.0
 ---
 
 # DR-052 -- Fan-out research with two CLI lineages
@@ -37,7 +37,7 @@ two executors are specified, no fan-out dispatch happens silently.
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-research-auto.yaml` and `research.md` present.
+- `deep-research.yaml` and `research.md` present.
 - `fanout-run.cjs` and `fanout-merge.cjs` present.
 
 ### Prompt
@@ -46,12 +46,12 @@ two executors are specified, no fan-out dispatch happens silently.
 
 ### Commands
 
-1. `bash: grep -n "step_fanout_spawn\|step_fanout_merge\|fanout_lineage_artifact_dir\|skip_when" .skilled/commands/deep/assets/deep-research-auto.yaml | head -20`
+1. `bash: grep -n "step_fanout_spawn\|step_fanout_merge\|fanout_lineage_artifact_dir\|skip_when" .skilled/commands/deep/assets/deep-research.yaml | head -20`
 2. Confirm `step_fanout_spawn_cli` calls `fanout-run.cjs --loop-type research`.
 3. Confirm `step_fanout_merge` calls `fanout-merge.cjs --loop-type research` and has `skip_when: "config.fanout is absent"`.
 4. `bash: grep -n "fanout_executors\|--executor\|--executors\|--concurrency\|config.fanout\|config.executor" .skilled/commands/deep/research.md | head -20`
 5. Confirm default policy: 2+ `--executor` → `config.fanout`.
-6. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-run.vitest.ts`
+6. `bash: npx vitest run --no-coverage --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`
 7. Confirm 5/5 pass (pool dispatch + lineage isolation confirmed by unit tests).
 
 ### RECOMMENDED ORCHESTRATION PROCESS
@@ -84,7 +84,7 @@ Source inspection confirms dispatch chain. Unit tests confirm pool isolation and
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | `step_fanout_spawn`, `step_fanout_merge`, `step_resolve_artifact_root` |
+| `.skilled/commands/deep/assets/deep-research.yaml` | `step_fanout_spawn`, `step_fanout_merge`, `step_resolve_artifact_root` |
 | `.skilled/commands/deep/research.md` | `--executor` flag docs, default policy, fan-out examples |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Pool driver for CLI lineages |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Research dedup merge |

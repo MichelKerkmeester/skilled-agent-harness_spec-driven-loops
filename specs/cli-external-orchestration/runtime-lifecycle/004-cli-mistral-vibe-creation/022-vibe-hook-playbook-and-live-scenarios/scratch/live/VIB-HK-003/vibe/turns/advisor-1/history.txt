@@ -1,50 +1,50 @@
+                                                                                                                                                                                                        
 Hello Michel, how can I help you?                                                                                                                                                                       
                                                                                                                                                                                                         
+                                                                                                                                                                                                       ▃
                                                                                                                                                                                                         
-                                                                                                                                                                                                        
-> I need to write a README for a brand new skill, where do I start?                                                                                                                                    ▅
+> I need to write a README for a brand new skill, where do I start?                                                                                                                                     
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
                                                                                                                                                                                                         
 ⏵ Thought                                                                                                                                                                                               
                                                                                                                                                                                                         
-  I'll load the skill-authoring guidance first, then look at what's already in your workspace so the README matches your conventions.                                                                   
+  This is a Vibe skills question, so let me load the skill-creator reference first — it covers exactly what belongs in a new skill's files.                                                             
                                                                                                                                                                                                         
-⏵ Loaded 1 skill, ran 2 commands, thought                                                                                                                                                               
+⏵ Loaded 1 skill, thought                                                                                                                                                                               
                                                                                                                                                                                                         
-  Start with the description, not the README. In a skill, SKILL.md is the entry point — a README is optional support material that only gets read after the skill has already loaded, so it can't do    
-  the routing work.                                                                                                                                                                                     
+  Quick correction that saves you time: a Vibe skill doesn't have a README — its entry point is a SKILL.md file. That's the file to write.                                                              
                                                                                                                                                                                                         
-  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
-  │ .vibe/skills/<name>/          # project scope; ~/.vibe/skills/ for global                                                                                                                       │   
-  │ ├── SKILL.md                  # required: frontmatter + instructions                                                                                                                            │   
-  │ ├── README.md                 # optional: for humans browsing the repo                                                                                                                          │   
-  │ └── reference.md              # optional: detail SKILL.md points to                                                                                                                             │   
-  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+  Where to start:                                                                                                                                                                                       
                                                                                                                                                                                                         
-  Three things to settle before writing a line:                                                                                                                                                         
-                                                                                                                                                                                                        
-   1. Name — lowercase slug, matching the directory (run-migrations).                                                                                                                                   
-   2. Description — when to load it. This is the only text the model sees before choosing the skill, so write it as a trigger ("Load when the user wants to…"), not a summary of contents.              
-   3. Instructions — the steps, commands, and gotchas the body should carry.                                                                                                                            
-                                                                                                                                                                                                        
+   1. Pick a directory (this is the "scope" decision):                                                                                                                                                  
+      ▪ .vibe/skills/<slug>/SKILL.md — this project only                                                                                                                                                
+      ▪ ~/.vibe/skills/<slug>/SKILL.md — available in every project                                                                                                                                     
+   2. Write the file with YAML frontmatter plus a Markdown body:                                                                                                                                        
   ┌─ markdown ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
   │ ---                                                                                                                                                                                             │   
   │ name: my-skill                                                                                                                                                                                  │   
-  │ description: Load this skill when ...                                                                                                                                                           │   
+  │ description: Load this skill when ... (the "when", not the "what")                                                                                                                              │   
   │ ---                                                                                                                                                                                             │   
   │                                                                                                                                                                                                 │   
   │ # My Skill                                                                                                                                                                                      │   
+  │                                                                                                                                                                                                 │   
+  │ Durable instructions: steps, conventions, commands, gotchas.                                                                                                                                    │   
   └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+   3. Rules that matter:                                                                                                                                                                                
+      ▪ name: lowercase/hyphens only, matches the directory name, never collides with a built-in (vibe:*) or existing skill — collisions are silently skipped.                                          
+      ▪ description: this is the only text I see before deciding to load the skill, so make it a routing hint ("Load this skill when the user wants X"), not a summary.                                 
+      ▪ The body is loaded only after selection, so keep it focused on instructions the model should follow every time.                                                                                 
+      ▪ Anything that speculates or references spec/task IDs belongs in the description-routing or nowhere — don't put bookkeeping junk in comments or body text.                                       
+   4. Support files: add extra Markdown/JSON/YAML files next to SKILL.md in the same directory only when they earn their place, and reference them by relative path.                                    
                                                                                                                                                                                                         
-  You have nothing in ~/.vibe/skills or ~/.agents/skills yet, so there's no house style to match. One note: the advisor flagged sk-doc, which isn't available in this session — I used the built-in     
-  vibe:skill-creator guidance instead.                                                                                                                                                                  
+  After writing, the skill is picked up in a running session automatically — otherwise /reload.                                                                                                         
                                                                                                                                                                                                         
-  What does the skill actually do? Tell me that and whether it's project or global, and I'll scaffold the directory with valid frontmatter plus a README stub.                                          
+  If you tell me the skill's name and what it should do (and whether it's project or global), I'll scaffold the directory and SKILL.md for you.                                                         
 
-                                                
-─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
->   
+                                              
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── GLM-5.3 Flash (Mistral Hosted)[high] · auto approve ─
+>                                                                   
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.Tr39hDMhAn/vibe                                                                                                       ctx ▍      13.4k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ayzleBaVib/vibe                                                                                     usage ▏      0% · ctx ▏      11.5k/400k

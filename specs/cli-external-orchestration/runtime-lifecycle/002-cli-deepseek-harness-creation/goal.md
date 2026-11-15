@@ -142,6 +142,11 @@ and findings belong here.
 | 015 follow-up drift fixes | Done | Spec gate classifies only operator prompts, advisor reports runtime dsh, leaves have no native goal tools, orphan sweeper keeps DSH session helpers, /doctor:git setup checks the DSH row. Bundle 78/78, setup check 78/78, advisor 1373 pass. Evidence: 015-dsh-hook-parity/evidence/followup-fixes-2026-11-06.txt |
 | Goal amendment | Done | D3 now covers interactive hook parity, 015 bound by its spec.md, slice 3727 of 4000 |
 | Criteria re-proof on 485864e769 | Green | strict recursive exit 0 with 16 RESULT PASSED, generators 56/45/11, rules 50/50, guards 78/78, audit 128/128, executor and stress 534 pass 9 skip, 8 modes, canary to cli-opencode, routing 48/48 |
+| 024 doc alignment | done | release notes, READMEs, loop protocols and deep-research SKILL.md match the executor and save changes; 024 and parent strict PASSED; contract drift OK |
+| 025 alignment open findings | done | link and playbook CI checks green, deep-review FAIL gate rule, Mistral Vibe handover docs, coverage OK, two advisor probes route, routing suites green; 025 and parent strict PASSED |
+| 026 alignment remaining findings | done | corpus pin recaptured (holdout 49/64), executor-selection, save and presentation docs fixed, Claude session id documented; routing suites green; 026 and parent strict PASSED |
+| 027 CI red checks | done | Cursor Task guard case on deep-review, v4.0.0.14 history body restored; hooks 1837/0, plugins 591/0, doctor 7/0 suites; 027 and parent strict PASSED |
+| 028 CI red checks | done | Vibe local stubs ignored, six provenance lines, deep contract single workflow, lazy tsx in convergence.cjs, 118 hook bindings; CLI vitest 210/0, convergence 204/0; 028 and parent strict PASSED |
 
 ### Deviations and findings
 

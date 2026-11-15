@@ -10,7 +10,7 @@ trigger_phrases:
   - "research event records"
 importance_tier: normal
 contextType: implementation
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Deep Research JSONL State Reference
@@ -350,7 +350,7 @@ The reducer derives a bounded active rejected-pattern cache from these events. `
 
 Candidate checks compare normalized exact text first, then apply fuzzy matching only when the candidate category is compatible with the rejected category. Omit `category` for a general rejection that can suppress candidates across next-focus, recovery, or ideas surfaces.
 
-When every candidate matches an active rejected pattern, the auto workflow halts for operator input. In a ledger-backed run, one with a `deep-research-ledger/frames` folder beside the state log, the next projection replaces a hand-edited state log, so record the removal or reset through the append gateway. Write the row to a file, then hand it over:
+When every candidate matches an active rejected pattern, the workflow halts for operator input. In a ledger-backed run, one with a `deep-research-ledger/frames` folder beside the state log, the next projection replaces a hand-edited state log, so record the removal or reset through the append gateway. Write the row to a file, then hand it over:
 
 ```bash
 node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \

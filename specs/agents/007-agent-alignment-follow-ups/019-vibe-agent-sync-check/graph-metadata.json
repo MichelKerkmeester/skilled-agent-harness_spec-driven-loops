@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe agent sync check",
+      "phase 19 vibe agent sync check",
+      "vibe mirror ci check",
+      "vibe agent sync check plan",
+      "vibe agent sync check tasks",
+      "vibe agent sync check implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "agent",
+      "sync",
+      "check",
+      "phase",
+      "mirror",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "agents",
+      "toml"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".vibe/agents/markdown.toml",
+      ".vibe/agents/orchestrate.toml",
+      ".github/workflows/command-tree-parity.yml",
+      ".vibe/SYNC.md",
+      ".github/workflows/README.md",
+      "scratch/baseline.txt",
+      "scratch/after.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.toml",
+        "kind": "file",
+        "path": ".vibe/agents/markdown.toml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".vibe/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "command-tree-parity.yml",
+        "kind": "config",
+        "path": ".github/workflows/command-tree-parity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".vibe/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.vibe/agents/.toml` is generated from `.skilled/agents/.md` by `sync-agents-vibe.cjs`",
+    "created_at": "2026-11-15T14:23:30Z",
+    "last_save_at": "2026-11-15T14:27:43.040Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2dfac3ef96b5462813928c8b0ef71f20188a37cc4c8364dfb134da0df1567ce3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7cb065517e1d3742cb8dfe7ecee55cb43d55c901d41763e59d1ce94d02050352",
+      "plan.md": "d72d41b0fb6f7a5fc21c3f58f77196eaae178b4696f4f3482c9d502c725fb953",
+      "tasks.md": "53cfeb21d80f7360b65c07658062ca9c803af52fc37ee0fcd89ff97cc30a38e4",
+      "implementation-summary.md": "df30fc8e7e93c1e897eb811bf2faf7528cb159f7afce2061b6a8cb683595310c"
+    },
+    "last_active_at": null
+  }
+}

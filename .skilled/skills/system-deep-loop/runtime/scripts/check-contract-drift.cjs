@@ -264,12 +264,17 @@ function addYamlAuthoritySources(sources, yamlText) {
   }
 }
 
+function workflowPathsFor(definition) {
+  return definition.workflowPath
+    ? [definition.workflowPath]
+    : [definition.autoWorkflowPath, definition.confirmWorkflowPath];
+}
+
 function addSpineAuthoritySources(sources, definition) {
   const spinePaths = [
     definition.commandPath,
     definition.presentationPath,
-    definition.autoWorkflowPath,
-    definition.confirmWorkflowPath,
+    ...workflowPathsFor(definition),
     ...SHARED_AUTHORITY_SOURCES,
     definition.modeSkillPath,
     definition.agentPath,
@@ -303,8 +308,9 @@ function deriveAuthoritySources(command) {
   for (const candidate of extractPathCandidates(readText(definition.presentationPath))) {
     if (/\/auto_mode_contract\.md$/.test(candidate)) addAuthoritySource(sources, candidate);
   }
-  addYamlAuthoritySources(sources, readText(definition.autoWorkflowPath));
-  addYamlAuthoritySources(sources, readText(definition.confirmWorkflowPath));
+  for (const workflowPath of workflowPathsFor(definition)) {
+    addYamlAuthoritySources(sources, readText(workflowPath));
+  }
   addDeclaredModeSources(sources, definition);
 
   return Array.from(sources).sort();
@@ -583,7 +589,7 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  process.stdout.write('Usage: node check-contract-drift.cjs [--command deep/ai-council|deep/review|deep/research] [--accept-compiled-drift]\n');
+  process.stdout.write('Usage: node check-contract-drift.cjs [--command deep/review|deep/research] [--accept-compiled-drift]\n');
 }
 
 function formatDrift(prefix, drift) {

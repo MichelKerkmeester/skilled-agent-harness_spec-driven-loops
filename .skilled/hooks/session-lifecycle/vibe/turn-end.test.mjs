@@ -27,9 +27,11 @@ import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 import { composeTurnEnd } from './turn-end.mjs';
+import { armHandoverTurnEnd } from '../../session-handover/vibe/handover-parts.mjs';
 
 const require = createRequire(import.meta.url);
 const core = require('../../ask-surface-guard/lib/ask-surface-core.cjs');
+const { withoutRelaunchSwitches } = require('../../session-handover/tests/fixtures/relaunch-env.cjs');
 
 const HOOK_DIR = dirname(fileURLToPath(import.meta.url));
 const TURN_END = join(HOOK_DIR, 'turn-end.mjs');
@@ -53,16 +55,21 @@ const MENU_REPLY = [
 const CLAIM_REPLY = 'Implemented the parser change and finished the task.';
 const ADVISORY_DETAIL = 'claimed done but no implementation-summary.md recorded in a missing packet; reread the request and confirm each outcome it asks for is met or named not done';
 
-// The kill switches an operator may export for a live session would otherwise
-// decide these cases, so every spawn starts from a clean flag state and a
-// nonexistent flag file.
+// The kill switches and the hop count an operator may export for a live session
+// would otherwise decide these cases, so every spawn starts from a clean flag
+// state, a fresh session's zero hops and a nonexistent flag file.
 const FLAG_NAMES = [
+  'SESSION_HANDOVER_MAX_HOPS',
+  'SKILLED_LOOP_HOPS',
   'SYSTEM_HOOKS_DISABLED',
   'SYSTEM_ASK_SURFACE_DISABLED',
   'SYSTEM_COMPLETION_DISABLED',
   'SYSTEM_COMPLETION_SENTINEL_DISABLED',
   'SYSTEM_SPECKIT_COMPLETION_DISABLED',
   'SYSTEM_SKILL_ADVISOR_DISABLED',
+  'SYSTEM_SESSION_HANDOVER_DISABLED',
+  'SYSTEM_SESSION_HANDOVER_ENABLED',
+  'SYSTEM_SESSION_HANDOVER_VIBE_ENABLED',
 ];
 
 function makeTempDir(t, prefix) {
@@ -337,4 +344,122 @@ test('a throwing part prints nothing and the later part still runs', async () =>
       () => ({ decision: 'deny', reason: 'kept' }),
     ],
   }), { decision: 'deny', reason: 'kept' });
+});
+
+test('the hand-over part arms nothing while its switch is off', (t) => {
+  const session = copySession(t, { reply: 'probe-ok' });
+  const project = makeTempDir(t, 'vibe-turn-end-project-');
+  const runtimeDir = makeTempDir(t, 'vibe-turn-end-runtime-');
+  const stateDir = join(runtimeDir, 'skilled-relaunch');
+  mkdirSync(stateDir, { recursive: true });
+  const recordPath = join(stateDir, 'relaunch-555.json');
+  const record = {
+    version: 1,
+    status: 'pending',
+    loopId: '555',
+    handoff: join(project, 'handoff.md'),
+    sessionId: SESSION_ID,
+    runtime: 'vibe',
+    name: null,
+    cwd: project,
+    hops: 0,
+    preparedAt: new Date().toISOString(),
+  };
+  writeFileSync(recordPath, JSON.stringify(record));
+
+  const result = runHook(TURN_END, postAgentPayload(session, project), {
+    env: { SKILLED_LOOP_ID: '555', XDG_RUNTIME_DIR: runtimeDir },
+    tmpDir: makeTempDir(t, 'vibe-turn-end-markers-'),
+  });
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(readFileSync(recordPath, 'utf8')), record);
+});
+
+// The composer stops at the first deny, so the hand-over part must never run on a turn
+// Vibe sends back: arming there would end a session whose turn is still going.
+test('a deny ahead of the hand-over part keeps the record pending', async (t) => {
+  const project = makeTempDir(t, 'vibe-turn-end-project-');
+  const root = makeTempDir(t, 'vibe-turn-end-handover-');
+  const runtimeDir = join(root, 'runtime');
+  mkdirSync(runtimeDir, { recursive: true });
+
+  const loopId = '555';
+  const env = {
+    ...withoutRelaunchSwitches(process.env),
+    XDG_RUNTIME_DIR: runtimeDir,
+    SESSION_HANDOVER_REPO_ROOT: join(root, 'repo'),
+    HOOK_FLAGS_CONFIG: join(root, 'hook-flags.env'),
+    SYSTEM_SESSION_HANDOVER_ENABLED: '1',
+    SKILLED_LOOP_ID: loopId,
+  };
+  for (const name of [
+    'SKILLED_LOOP_HOPS',
+    'SESSION_HANDOVER_THRESHOLD',
+    'SESSION_HANDOVER_WINDOW_TOKENS',
+    'SESSION_HANDOVER_MAX_HOPS',
+    'AI_SESSION_CHILD',
+  ]) {
+    delete env[name];
+  }
+
+  // The record is armed by a part that has everything it needs, so a pending record
+  // afterwards can only mean the deny short-circuited the part.
+  const stateDir = join(runtimeDir, 'skilled-relaunch');
+  mkdirSync(stateDir, { recursive: true });
+  const recordPath = join(stateDir, `relaunch-${loopId}.json`);
+  writeFileSync(recordPath, JSON.stringify({
+    version: 1,
+    status: 'pending',
+    loopId,
+    handoff: join(project, 'handoff.md'),
+    sessionId: SESSION_ID,
+    runtime: 'vibe',
+    name: null,
+    cwd: project,
+    hops: 0,
+    preparedAt: new Date().toISOString(),
+  }));
+
+  const session = copySession(t, { reply: 'probe-ok' });
+  const payload = postAgentPayload(session, project);
+
+  // configPath() reads the live environment, not the one handed to the part.
+  const previousFlagsConfig = process.env.HOOK_FLAGS_CONFIG;
+  process.env.HOOK_FLAGS_CONFIG = env.HOOK_FLAGS_CONFIG;
+  t.after(() => {
+    if (previousFlagsConfig === undefined) delete process.env.HOOK_FLAGS_CONFIG;
+    else process.env.HOOK_FLAGS_CONFIG = previousFlagsConfig;
+  });
+
+  let handoverRan = false;
+  const spawns = [];
+  const deny = await composeTurnEnd(payload, {
+    parts: [
+      () => ({ decision: 'deny', reason: 'x' }),
+      (value) => {
+        handoverRan = true;
+        return armHandoverTurnEnd(value, {
+          env,
+          pid: 41,
+          processTable: '41 50\n50 60\n60 555\n555 1\n',
+          spawn: (command, args, options) => {
+            spawns.push({ command, args, options });
+            return { unref() {} };
+          },
+        });
+      },
+    ],
+  });
+
+  assert.deepEqual(deny, { decision: 'deny', reason: 'x' });
+  assert.equal(handoverRan, false);
+  assert.equal(spawns.length, 0);
+  assert.equal(JSON.parse(readFileSync(recordPath, 'utf8')).status, 'pending');
+
+  const source = readFileSync(TURN_END, 'utf8');
+  const partsLine = source.split('\n').find((line) => line.includes('const PARTS = ['));
+  assert.ok(partsLine, 'turn-end.mjs declares the part list');
+  assert.match(partsLine, /handoverPart\];\s*$/);
 });

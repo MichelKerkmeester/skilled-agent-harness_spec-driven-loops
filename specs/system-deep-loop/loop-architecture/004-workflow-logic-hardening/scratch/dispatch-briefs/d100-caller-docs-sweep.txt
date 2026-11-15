@@ -1,0 +1,90 @@
+
+ALLOWED WRITE PATHS (O = .skilled/skills/cli-external-orchestration/cli-opencode,
+BB = .skilled/skills/sk-doc/sk-create-benchmark, PB = .skilled/manual-testing-playbook/doctor-commands):
+O/SKILL.md  O/README.md  O/assets/prompt-templates.md  O/references/agent-delegation.md
+O/manual-testing-playbook/manual-testing-playbook.md
+README.md  .env.example
+.skilled/commands/speckit/README.txt
+.skilled/skills/system-spec-kit/references/workflows/quick-reference.md
+.skilled/agents/deep-research.md  .skilled/agents/deep-review.md
+.skilled/commands/deep/assets/deep-research-presentation.txt
+.skilled/commands/deep/assets/deep-review-presentation.txt
+.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs   (ONE comment only, see step 7)
+.skilled/skills/README.txt  .skilled/skills/.state/loop-guard/README.md
+PB/doctor-deep-loop-convergence.md  PB/doctor-deep-loop-scope.md
+BB/SKILL.md  BB/assets/behavior-benchmark/behavior-benchmark-scenario-template.md
+BB/assets/behavior-benchmark/behavior-benchmark-index-template.md
+BB/assets/behavior-benchmark/behavior-benchmark-baseline-template.md
+BB/references/behavior-benchmark/behavior-benchmark-guide.md
+.skilled/skills/system-skill-advisor/graph-metadata.json   (ONE string only, see step 10)
+.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json   (ONE array only, see step 11)
+NOT any other file. NOT a `version:` line. NOT any file under a `changelog/` folder.
+
+TASK: these files still send a reader to the deleted command `/deep:ai-council` or describe
+`ai-council` as a third deep-loop mode. Make each line true. The `ai-council` AGENT still
+exists and `/speckit:ai-council` is its command, so a line about the agent itself stays.
+Find anchors per file with: rg -n -i 'council' <file>
+
+1. The five O/ files: every `/deep:ai-council` becomes `/speckit:ai-council`. Nothing else in
+   those lines changes. Lines that only name the agent `ai-council` stay byte for byte.
+2. README.md (repository root), two lines near 660 and 1271. Line 660 becomes:
+   Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/speckit:ai-council` binds the spec folder and dispatches it.
+   The bullet near 1271 names a command in a list of `/deep:*` commands. Delete that bullet.
+   Then check whether a `/speckit:*` command list in the same section already has a
+   `/speckit:ai-council` bullet (rg -n 'speckit:ai-council' README.md). If it has none, add one
+   bullet in that list, in the same style as its neighbours:
+   - **`/speckit:ai-council`** - plan hard decisions with several models, planning-only
+   If a count of deep commands sits next to the deleted bullet, lower it by one.
+3. .skilled/commands/speckit/README.txt, the tree near line 155: the heading comment
+   `# Deep workflows (research, review, AI council)` becomes `# Deep workflows (research, review)`,
+   and the two tree lines `ai-council.md` and `deep-ai-council-auto.yaml` are deleted. Fix the
+   tree connectors so the last remaining entry of each level uses `└──`.
+4. quick-reference.md near line 123: the bullet `/deep:ai-council` becomes
+   - `/speckit:ai-council` - convene the AI council on one planning question
+   Move it next to the other `/speckit:` bullets if the list it sits in is a `/deep:` list.
+5. .env.example: delete the line that starts `# DEEP_LOOP_COUNCIL_DB_DIR=` and the line that
+   starts `# DEEP_AI_COUNCIL_AUTHORIZED_SPEC_ROOTS=`. No script reads either any more.
+6. .skilled/agents/deep-research.md and .skilled/agents/deep-review.md: delete the one bullet
+   that starts "- `deep-ai-council` uses 0.20 default". In the two presentation .txt files delete
+   the one bullet that starts "- `deep-ai-council` (proposed) uses 0.20 default". If a sentence
+   just above introduces "three" loops or siblings, make the count match what is left.
+7. dispatch-guard.cjs lines 82 to 84 are a comment. Replace those three comment lines with:
+// Generic subagents (context/review/write/debug) and ai-council (a single-pass
+// planning agent with no iteration state) are intentionally excluded from
+// loop-repeat counting.
+   Change no code in that file.
+8. .skilled/skills/README.txt line 70: the row description becomes
+   Routes research and review modes through registry-selected packets over nested `runtime/` infrastructure
+   .skilled/skills/.state/loop-guard/README.md: the sentence saying the hub routes "deep
+   research, deep review and AI council workflows" names research and review only, and
+   "research, review or council artifacts" becomes "research or review artifacts". The sentence
+   that the repeated-handoff check excludes `ai-council` stays byte for byte.
+9. The two PB/ files: the doctor command now takes `--scope=research|review|both|all`. Remove
+   the `council` scope wherever it is listed, tested or described, including the step that
+   repeats with `--scope=council`, the `find specs -path '*/ai-council/*'` command, and any
+   expected signal about an ai-council source or the council graph database. `all` means
+   research and review. Keep the scenario structure, frontmatter keys and headings.
+10. graph-metadata.json line 52, inside one "context" string: delete the clause
+    "; routes deep-ai-council delegation requests". The JSON must still parse.
+11. command-contract.json line 377, the "invocation_aliases" array: delete the element
+    "/deep:ai-council". The JSON must still parse.
+12. The five BB/ files describe behavior benchmarks for deep-loop modes. The `ai-council` mode
+    is gone, so: mode lists become research/review/context, the `ACB` prefix leaves the prefix
+    list, the `seat_artifacts` evidence kind and the `min_seats` field leave the templates and
+    the field reference (delete the JSON key lines and the placeholder alternatives that name
+    SEAT_ARTIFACTS, keep each JSON block valid with no trailing comma), and the 1500000 ms
+    ai-council budget clause is deleted so the budget sentence names research and review only.
+13. A sentence that is still true stays byte for byte. Do not rewrite a paragraph for style.
+
+CHECKS (repository root):
+  rg -n '/deep:ai-council' README.md .env.example .skilled/commands/speckit/README.txt .skilled/skills/system-spec-kit/references/workflows/quick-reference.md .skilled/skills/cli-external-orchestration/cli-opencode -g '!**/changelog/**' -g '!**/benchmark/**'      prints nothing
+  rg -n 'deep-ai-council' .skilled/agents/deep-research.md .skilled/agents/deep-review.md .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/deep-review-presentation.txt .skilled/commands/speckit/README.txt .skilled/skills/system-skill-advisor/graph-metadata.json .skilled/skills/sk-doc/sk-create-command/assets/command-contract.json      prints nothing
+  rg -n 'COUNCIL' .env.example      prints nothing
+  rg -n -i 'council' .skilled/manual-testing-playbook/doctor-commands/doctor-deep-loop-convergence.md .skilled/manual-testing-playbook/doctor-commands/doctor-deep-loop-scope.md      prints nothing
+  rg -n -i 'council|seat_artifacts|min_seats|ACB' .skilled/skills/sk-doc/sk-create-benchmark -g '!**/changelog/**'      prints nothing
+  node --check .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs      exits 0
+  node -e "JSON.parse(require('fs').readFileSync('.skilled/skills/system-skill-advisor/graph-metadata.json','utf8'));JSON.parse(require('fs').readFileSync('.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json','utf8'))"      exits 0
+  git status --short      lists no file outside the ALLOWED WRITE PATHS that you changed
+
+REPORT: one line per file with what changed, each CHECK with its real output, and every line
+you kept because you were unsure.

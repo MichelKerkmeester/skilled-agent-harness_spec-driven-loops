@@ -1,11 +1,11 @@
 {
   "skill": "system-deep-loop",
-  "version": "1.6.28.0",
+  "version": "2.0.2.0",
   "resourceContractVersion": 1,
   "description": "Declarative mode registry: the single source of truth for the three-tier discriminator (workflowMode/runtimeLoopType/backendKind) PLUS the advisorRouting projection. The advisor keeps its hardcoded projection maps (Python DEEP_ROUTING_MODE_BY_KEY, TypeScript DEEP_MODE_BY_CANONICAL) in sync with this registry via a CI drift-guard test (maps == registry projection); the advisor does NOT read this file at runtime, which avoids cross-skill import coupling on the advisor hot path.",
   "discriminator": {
     "workflowMode": "Public command/advisor/mode key. Stable identity used in commands, advisor aliases, and this registry. Carried by every mode.",
-    "runtimeLoopType": "The graph-backed convergence loop key consumed by runtime/scripts/convergence.cjs. Validated against exactly research|review|council. NEVER inferred from workflowMode.",
+    "runtimeLoopType": "The graph-backed convergence loop key consumed by runtime/scripts/convergence.cjs. Validated against exactly research|review. NEVER inferred from workflowMode.",
     "backendKind": "Which backend actually runs the mode: runtime-loop-type (runtime/ convergence)."
   },
   "advisorRoutingContract": {
@@ -13,13 +13,13 @@
     "legacyAdvisorId": "The legacy deep-* skill id the projection maps key on (present for lexical + alias-fold modes only).",
     "advisorDefaultMode": "Marks the default mode a multi-mode legacy id folds to. Never inferred from array order.",
     "legacyAliases": "The TypeScript scorer alias set (aliases.ts SKILL_ALIAS_GROUPS[legacyAdvisorId]) the merged-identity layer keys on; the drift-guard asserts these match it order-insensitive. The Python deep-router uses its own alias set + regex patterns by design (same keys, different values), so the guard only cross-checks that each legacyAdvisorId key also exists in the Python SKILL_ALIAS_GROUPS.",
-    "packetSkillName": "The packet's SKILL.md name. Most packets use folder == packetSkillName == deep-<mode> (e.g. deep-ai-council). The legacy public key 'ai-council' is preserved only on the command/agent surfaces, not on the packet folder/name.",
+    "packetSkillName": "The packet's SKILL.md name. Most packets use folder == packetSkillName == deep-<mode> (e.g. deep-research).",
     "driftGuard": ".skilled/skills/system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts"
   },
   "extensions": {
     "runtime-loop": {
-      "description": "Declares the runtime-loop backend: modes with backendKind 'runtime-loop-type' converge over runtime/, keyed by runtimeLoopType (research|review|council). Custom backends carry an explicit null runtimeLoopType and name their backend path. runtimeLoopType is never inferred from workflowMode.",
-      "runtimeLoopTypes": ["research", "review", "council"]
+      "description": "Declares the runtime-loop backend: modes with backendKind 'runtime-loop-type' converge over runtime/, keyed by runtimeLoopType (research|review). Custom backends carry an explicit null runtimeLoopType and name their backend path. runtimeLoopType is never inferred from workflowMode.",
+      "runtimeLoopTypes": ["research", "review"]
     },
     "advisor-projection": {
       "description": "Declares that the advisor keeps hardcoded projection maps (Python DEEP_ROUTING_MODE_BY_KEY, TypeScript DEEP_MODE_BY_CANONICAL) in sync with this registry's advisorRouting projection. The advisor does not read this file at runtime; a CI drift-guard asserts maps == registry projection.",
@@ -74,30 +74,6 @@
         "routingClass": "lexical",
         "legacyAdvisorId": "deep-review",
         "legacyAliases": ["command-spec-kit-deep-review", "/deep:review", "spec_kit:deep-review", "deep-review", "sk-deep-review"]
-      }
-    },
-    {
-      "workflowMode": "ai-council",
-      "runtimeLoopType": "council",
-      "backendKind": "runtime-loop-type",
-      "packetKind": "workflow",
-      "grandfatheredFolderMismatch": false,
-      "toolSurface": {
-        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
-        "forbidden": [],
-        "mutatesWorkspace": true,
-        "bashAllowlist": []
-      },
-      "packet": "deep-ai-council",
-      "packetSkillName": "deep-ai-council",
-      "command": "/deep:ai-council",
-      "agent": "ai-council",
-      "artifactRoot": "ai-council/",
-      "aliases": ["deep-ai-council", "ai council deliberation", "multi-seat planning council", "council convergence", "planning council"],
-      "advisorRouting": {
-        "routingClass": "lexical",
-        "legacyAdvisorId": "deep-ai-council",
-        "legacyAliases": ["@deep-ai-council", "deep-ai-council", "deep ai council", "ai council", "planning council", "council deliberation", "multi-ai-council"]
       }
     }
   ]

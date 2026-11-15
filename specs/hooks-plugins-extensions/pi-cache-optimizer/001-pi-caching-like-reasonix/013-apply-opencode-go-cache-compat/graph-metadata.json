@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/013-apply-opencode-go-cache-compat",
+  "spec_folder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/013-apply-opencode-go-cache-compat",
+  "parent_id": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode-go cache compat",
+      "pi models.json overlay",
+      "sendSessionAffinityHeaders opencode",
+      "deepseek-v4-pro compat warning",
+      "pi cache affinity override",
+      "opencode-go compat plan",
+      "models.json overlay plan",
+      "pi cache affinity plan",
+      "opencode-go compat tasks",
+      "models.json overlay tasks",
+      "opencode-go compat summary",
+      "models.json overlay summary"
+    ],
+    "key_topics": [
+      "opencode-go",
+      "cache",
+      "compat",
+      "models",
+      "json",
+      "overlay",
+      "sendsessionaffinityheaders",
+      "opencode",
+      "deepseek-v4-pro",
+      "warning",
+      "affinity",
+      "override"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/models.json",
+      ".pi/SYNC.md",
+      ".pi/PLUGINS.md",
+      ".pi/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".pi/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "PLUGINS.md",
+        "kind": "doc",
+        "path": ".pi/PLUGINS.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affinity Compat Overlay",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Zen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Silence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The vendored `pi-cache-optimizer` fork emits a startup warning that `opencode-go/deepseek-v4-pro` is DeepSeek-like but its merged compat lacks `sendSessionAffinityHeaders` (and `supportsLongCacheRetention`), so a multi-upstream proxy may split provider-side prompt caches and reduce or hide cache hits",
+    "created_at": "2026-08-13T00:00:00.000Z",
+    "last_save_at": "2026-11-15T07:08:33.128Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:974be42cb5a2188bc1ad4f393ba30ff13c56e76bec0d56c1cd4de26e6b4d1ab4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "48479b28ec8445ae15dd49d4788b02d99fda558a2f8d91e7fb4562d37ba80b63",
+      "plan.md": "3e7eed248f85e0b55eae30853ea3d93c1fcb2fc17bc24b6441a7b14de9cf1a29",
+      "tasks.md": "66515bfa72ba7500449521294724fed27eed6d479c45bc92efb42caa2a4035b3",
+      "implementation-summary.md": "2bcb9c88e0813ce32b295fb633af491572c22a34baa60d9300de83f9554e49d2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

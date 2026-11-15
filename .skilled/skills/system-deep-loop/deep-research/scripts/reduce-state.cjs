@@ -21,6 +21,7 @@ const {
   formatCarriedForwardOpenQuestions,
 } = require('../../runtime/lib/deep-loop/continuity-thread.cjs');
 const { filterCompletionBearingRecords } = require('../../shared/progress/progress-record.cjs');
+const { deriveLoopCounters } = require('../../runtime/scripts/convergence.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -2844,7 +2845,7 @@ function formatQuestionWithOrigin(question) {
   return question.origin ? `${question.text} [${question.origin}]` : question.text;
 }
 
-function renderDashboard(config, registry, iterationRecords, iterationFiles) {
+function renderDashboard(config, registry, iterationRecords, iterationFiles, stateRows) {
   const latestIteration = iterationRecords.at(-1);
   const terminalStop = registry.terminalStop && typeof registry.terminalStop === 'object'
     ? registry.terminalStop
@@ -2865,6 +2866,14 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     .filter(isFiniteNumber);
   const ratioSparkline = renderSparkline(ratios);
   const scoreSparkline = renderSparkline(scores);
+  // The dashboard reports the same stuck count the stop decision acts on, so both
+  // read one derivation over the whole log, recovery events included.
+  const stuckCount = deriveLoopCounters(stateRows, {
+    loopType: 'research',
+    convergenceThreshold: isFiniteNumber(config.convergenceThreshold)
+      ? config.convergenceThreshold
+      : undefined,
+  }).stuckCount;
   const advisoryEvents = Array.isArray(registry.advisoryEvents) ? registry.advisoryEvents : [];
   const lastThreeRatios = ratios.slice(-3).map((value) => value.toFixed(2)).join(' -> ') || 'N/A';
   const nextFocus = resolveNextFocus(registry, iterationFiles, iterationRecords);
@@ -3018,7 +3027,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     `- newInfoRatio sparkline: ${ratioSparkline || 'N/A'}`,
     `- score sparkline: ${scoreSparkline || 'N/A'}`,
     `- Last 3 ratios: ${lastThreeRatios}`,
-    `- Stuck count: ${iterationRecords.filter((r) => r.status !== 'thought' && r.status !== 'insight' && (r.status === 'stuck' || (typeof r.newInfoRatio === 'number' && r.newInfoRatio === 0))).length}`,
+    `- Stuck count: ${stuckCount}`,
     '- Guard violations: none recorded by the reducer pass',
     `- convergenceScore: ${Number(registry.metrics.convergenceScore || 0).toFixed(2)}`,
     `- coverageBySources: ${JSON.stringify(registry.metrics.coverageBySources)}`,
@@ -3212,7 +3221,7 @@ function reduceResearchState(specFolder, options = {}) {
     console.warn(`[deep-research] strategy file left unchanged: ${error.message}`);
   }
   registry.strategyWarnings = strategyWarnings;
-  const dashboard = renderDashboard(config, registry, records, iterationFiles);
+  const dashboard = renderDashboard(config, registry, records, iterationFiles, parsedRecords);
   let resourceMap = null;
   let resourceMapSkipped = true;
   let resourceMapSkipReason = null;

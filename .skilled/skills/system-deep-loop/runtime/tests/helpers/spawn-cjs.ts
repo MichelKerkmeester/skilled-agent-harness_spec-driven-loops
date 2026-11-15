@@ -13,23 +13,10 @@ const helperDir = dirname(fileURLToPath(import.meta.url));
 export const runtimeRoot = resolve(helperDir, '..', '..');
 
 // Every script these helpers spawn inherits process.env, so setting this once
-// sends each council graph write to a scratch directory rather than the
+// sends each coverage graph write to a scratch directory rather than the
 // database checked into the repository. Each test file that imports this helper
 // gets its own directory, so remove it once the file finishes; otherwise every
 // run leaves one behind in the system temp dir.
-if (!process.env.DEEP_LOOP_COUNCIL_DB_DIR) {
-  const councilDbDir = mkdtempSync(join(tmpdir(), 'dlr-council-db-'));
-  process.env.DEEP_LOOP_COUNCIL_DB_DIR = councilDbDir;
-  afterAll(() => {
-    rmSync(councilDbDir, { recursive: true, force: true });
-    if (process.env.DEEP_LOOP_COUNCIL_DB_DIR === councilDbDir) {
-      delete process.env.DEEP_LOOP_COUNCIL_DB_DIR;
-    }
-  });
-}
-
-// The coverage graph scripts write to their own database the same way, and test
-// files run side by side, so each file gets its own directory here too.
 if (!process.env.DEEP_LOOP_COVERAGE_DB_DIR) {
   const coverageDbDir = mkdtempSync(join(tmpdir(), 'dlr-coverage-db-'));
   process.env.DEEP_LOOP_COVERAGE_DB_DIR = coverageDbDir;
@@ -83,7 +70,7 @@ export type RunScriptOptions = {
 
 export type ScriptNamespace = {
   specFolder: string;
-  loopType: 'research' | 'review' | 'council';
+  loopType: 'research' | 'review';
   sessionId: string;
 };
 
@@ -470,16 +457,6 @@ export function seedReviewNode(namespace: ScriptNamespace, id = 'dimension-1'): 
  * Deletes all coverage graph rows for a namespace to clean up after a test.
  */
 export async function cleanupNamespace(namespace: ScriptNamespace): Promise<void> {
-  if (namespace.loopType === 'council') {
-    const db = await import('../../lib/council/council-graph-db.js');
-    db.cleanupNamespace({
-      specFolder: namespace.specFolder,
-      sessionId: namespace.sessionId,
-    });
-    db.closeDb();
-    return;
-  }
-
   const db = await import('../../lib/coverage-graph/coverage-graph-db.js');
   const connection = db.getDb();
   connection.prepare(

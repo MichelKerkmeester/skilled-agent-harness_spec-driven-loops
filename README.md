@@ -79,7 +79,7 @@ The six bridges for repository-opening runtimes refuse self-dispatch except `cli
 The framework extends each runtime through plugins, hooks and extensions rather than asking you to wire anything by hand.
 
 - **Goal Plugin:** binds a session to a spec packet's `goal.md`. On every turn (at session start on Cursor) it injects a pointer to that file plus its completion criteria, so intent survives context resets instead of fading with the window
-- **In-Session Handover:** on by default for Claude Code and off for the other runtimes until you turn it on. A session near its context limit hands its work to a fresh session in the same terminal. See [In-Session Handover](#in-session-handover)
+- **Session Handover:** on by default for Claude Code and off for the other runtimes until you turn it on. A session near its context limit hands its work to a fresh session in the same terminal. See [Session Handover](#session-handover)
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches. `pi-fast-mode-w-subagent-support` sits beside it for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, a guard that keeps dotenv secrets out of the model, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories. These are thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
@@ -533,11 +533,13 @@ Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, a
 
 When the index has no scored candidate, Gate 1 also scores declared trigger phrases in unindexed spec docs in a git work tree and reports the scan in the answer's `staleFallback` field.
 
-**History after compaction**
+**History across a handover**
 
-After a compaction on Claude, Codex, Pi, Devin, DSH or OpenCode, the returned context can carry a `## History Lookup` section with one read-only command. The command searches, browses, loads and pages the session's own earlier turns, at most 16 KiB per reply. It returns only what the conversation showed.
+When a session claims a handoff note, the claim can carry a `## History Lookup` section after the note body. It holds one read-only command that searches, browses, loads and pages the sender's earlier turns, at most 16 KiB per reply. It returns only what the conversation showed, and it ends with `Use it for a detail this note does not spell out, before you guess.`
 
-Search finds a turn from part of what the model remembers. `MARKER` or `dv-2b7e` finds the turn that said `LIVE-MARKER-dv-2b7e`, and the preview shows the match. The handle works for 30 minutes and only for the session and checkout that minted it, including a session started in a subfolder. Cursor is not offered yet.
+`prepare` stores a locator for the sending session, and `claim` mints a fresh one for it. Only Claude Code, Codex and Vibe senders get one. The section is left out when the sender has no transcript, when the note names another runtime, when the sender ran in another checkout, or when the runtime is not built, and the claim then prints what it printed before.
+
+The printed command is `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. The locator works for 30 minutes from the claim and only for the session and checkout that minted it. Search matches whole identifier parts, split on `-`, `.`, `/`, `:` and `_` and on case changes. A query matches whole word parts, so 'live' does not match 'delivery'.
 
 The command runs the compiled helper, so run `npm run build` in `.skilled/skills/system-spec-kit/runtime` first.
 
@@ -551,13 +553,21 @@ The command runs the compiled helper, so run `npm run build` in `.skilled/skills
 
 &nbsp;
 
+#### Multi AI Council
+
+Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/speckit:ai-council` binds the spec folder and dispatches it. The council is a standalone agent, not a Deep Loop mode.
+
+Different AI seats reason from different angles, then critique each other. They converge on a recommendation with the evidence behind it. The council plans only, so it never touches your implementation files. The plan and its reasoning persist as `ai-council/**` files in the packet.
+
+&nbsp;
+
 ## 7. 🔄 DEEP LOOP
 
 The Deep Loop system runs autonomous, iterative agent workflows.
 
 Each loop dispatches a fresh-context worker against externalized state. It keeps going until a convergence check, not the agent's own claim, decides a stop is safe.
 
-Three loop families (research, review and AI council) live as nested mode packets inside one parent skill, `system-deep-loop`. All consume one shared runtime, `runtime/`, for state, scoring and fan-out. Research, review and AI council also share its loop contract.
+Two loop families (research and review) live as nested mode packets inside one parent skill, `system-deep-loop`. All consume one shared runtime, `runtime/`, for state, scoring and fan-out. Research and review also share its loop contract.
 
 &nbsp;
 
@@ -599,7 +609,7 @@ Once a stop is legal, the loop synthesizes. It writes its report and saves conti
 
 #### Deep Loop Runtime (the shared foundation)
 
-One engine sits under every loop, so they all work the same way and you learn the workflow once. Research, review and council dispatch, track and stop the same way.
+One engine sits under every loop, so they all work the same way and you learn the workflow once. Research and review dispatch, track and stop the same way.
 
 Progress is saved outside the chat, so you can pause and resume anytime. A loop survives crashes, new sessions and long runs. A loop ends only when the work has converged and passed its quality checks, never because an agent says it is done.
 
@@ -607,7 +617,7 @@ Run fully autonomous with `:auto` or pause at each step with `:confirm`. You can
 
 Autonomy stays bounded. Cross-AI fan-out lineages can run with elevated CLI permissions in their own sandboxed workdir. A stall watchdog, a per-lineage cost cap and a lag-ceiling guard bound and observe those subprocesses, so autonomy stays supervised, not unattended.
 
-The runtime is self-contained and MCP-free. It declares its own dependency manifest and resolves `zod`, `better-sqlite3` and the `tsx` loader from its own `node_modules`. Its one sibling dependency is system-spec-kit's shared package, and it type-checks with that skill's TypeScript. It carries executor config, atomic state, scoring, fallback routing and the coverage / council graph scripts.
+The runtime is self-contained and MCP-free. It declares its own dependency manifest and resolves `zod`, `better-sqlite3` and the `tsx` loader from its own `node_modules`. Its one sibling dependency is system-spec-kit's shared package, and it type-checks with that skill's TypeScript. It carries executor config, atomic state, scoring, fallback routing and the coverage graph scripts.
 
 &nbsp;
 
@@ -615,7 +625,7 @@ The runtime is self-contained and MCP-free. It declares its own dependency manif
 
 Every loop keeps its progress in files, not in the chat, and those files are the single source of truth. A typed, append-only event ledger records each iteration. The `deep-*-state.jsonl` you read is a projection the runtime rebuilds from that ledger.
 
-There is one way in. A leaf records its iteration through the append gateway. The gateway authorizes the write, fences it behind the ledger, returns a receipt, then refreshes the state projection. Nothing writes the state file directly, so the log never drifts from the ledger.
+There is one way in. A leaf records its iteration through the append gateway. The gateway authorizes the write, fences it behind the ledger, returns a receipt, then refreshes the state projection. On a ledger-backed log every row the loop writes goes through the append gateway, so the log never drifts from the ledger. A log with no ledger keeps direct writes. A failure row the gateway refuses is written directly, and stderr warns that the next refresh drops it.
 
 A record is durable or refused, never half-written. The gateway either commits the record and hands back a receipt, or refuses it and names the failed check so the leaf halts. There is no partial append and no silent fallback to a direct write.
 
@@ -631,7 +641,7 @@ A loop can spread its iterations across several AI models at once, then merge wh
 
 You can run the same review or research across native agents and CLI bridges in parallel: Codex, Claude Code, OpenCode, Cursor, Devin, Pi, DeepSeek Harness and Mistral Vibe. Each lineage runs on its own state, and a pool caps how many run at once.
 
-For a review, the merge follows the strongest restriction. Any lineage that reports an active P0 pulls the merged verdict to FAIL, so the safest reading wins rather than the average one.
+For a review, the merge follows the strongest restriction. Any lineage that reports an active P0, or a required quality gate still failing at its stop, pulls the merged verdict to FAIL, so the safest reading wins rather than the average one.
 
 Fan-out is supervised, not unattended. A stall watchdog aborts a lineage that stops emitting progress, and a per-lineage cost cap bounds spend. A dead or rate-limited lineage is tolerated without failing the whole run.
 
@@ -651,15 +661,7 @@ It knows when it is done: it stops once findings stabilize, not after a fixed nu
 
 Audits your code in passes and never edits it. `/deep:review` runs `@deep-review`.
 
-Every issue is ranked P0/P1/P2 across correctness, security, traceability and maintainability, so you fix what matters first. Each critical finding is re-challenged before it sticks, which cuts false alarms. An open P0 forces another pass, and the audit must clear its quality checks before it can stop. The result is a `review-report.md` that ends in a PASS, CONDITIONAL or FAIL verdict.
-
-&nbsp;
-
-#### Multi AI Council
-
-Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/deep:ai-council` handles multi-topic sessions.
-
-Different AI seats reason from different angles, then critique each other. They converge on a recommendation with the evidence behind it. The council plans only, so it never touches your implementation files. The plan and its reasoning persist as `ai-council/**` files in the packet.
+Every issue is ranked P0/P1/P2 across correctness, security, traceability and maintainability, so you fix what matters first. Each critical finding is re-challenged before it sticks, which cuts false alarms. An open P0 forces another pass, and the audit must clear its quality checks before it can stop. The result is a `review-report.md` that ends in a PASS, CONDITIONAL or FAIL verdict. It is FAIL when a P0 is open or a required quality gate (evidence, scope or coverage) still fails at the stop.
 
 For details, see the [Deep Loop Runtime README](.skilled/skills/system-deep-loop/runtime/README.md), or the [system-deep-loop README](.skilled/skills/system-deep-loop/README.md), which documents each mode.
 
@@ -852,7 +854,7 @@ It reviews before you ship (`code-review` mode). The security and correctness fl
 
 #### DEEP LOOP
 
-One skill powers the autonomous loops described in [Deep Loop](#7--deep-loop), in two layers. **`runtime/`** is the shared MCP-free execution layer every active loop consumes. **`system-deep-loop`** is the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`).
+One skill powers the autonomous loops described in [Deep Loop](#7--deep-loop), in two layers. **`runtime/`** is the shared MCP-free execution layer every active loop consumes. **`system-deep-loop`** is the parent skill routing to active nested modes (`deep-research`, `deep-review`).
 
 Use `@context` separately for one-shot retrieval. This parent-nested-skill pattern is the reusable standard behind `/create:skill-parent`.
 
@@ -864,7 +866,7 @@ Run **cross-CLI agent teams from supported runtimes**. Claude Code, OpenCode or 
 
 A bridge works with any model its CLI supports. Point it at another provider or model and the next dispatch uses it.
 
-The bridges are built for deep-loop fan-out. Bind several bridges to one research, review or council run, and each becomes its own lineage with its own state, budget and stall watchdog. The safest verdict wins the merge.
+The bridges are built for deep-loop fan-out. Bind several bridges to one research or review run, and each becomes its own lineage with its own state, budget and stall watchdog. The safest verdict wins the merge.
 
 Skills, agents and commands travel with the dispatch. Each bridge mirrors them into the runtime's own config, and commit hooks plus a CI check keep those mirrors in step with `.skilled/`. Each runtime folder's README says what is generated there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [OpenCode](.opencode/README.md), [Cursor](.cursor/README.md), [Pi](.pi/README.md) and [Devin](.devin/README.md).
 
@@ -872,7 +874,7 @@ A bridge checks before it runs. It confirms its CLI is installed and usable, so 
 
 **`cli-external-orchestration`** - parent hub for external CLI dispatch
 
-One skill with eight bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe`. Each bridge checks a dispatch against the rules in its own `hard-rules.json` before the command runs, and the `dsh` bridge carries 13 of them. That bridge is experimental. Its LLM Gateway `deepseek-v4.1-flash-1017` route passed a keyed run on 2026-11-06 and is the default. Its OpenCode Go route passed one on 2026-11-07 and runs only when you name it. All eight bridges are also deep-loop fan-out executors, so a research, review or council run can bind any of them as a lineage.
+One skill with eight bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe`. Each bridge checks a dispatch against the rules in its own `hard-rules.json` before the command runs, and the `dsh` bridge carries 13 of them. That bridge is experimental. Its LLM Gateway `deepseek-v4.1-flash-1017` route passed a keyed run on 2026-11-06 and is the default. Its OpenCode Go route passed one on 2026-11-07 and runs only when you name it. All eight bridges are also deep-loop fan-out executors, so a research or review run can bind any of them as a lineage.
 
 &nbsp;
 
@@ -958,7 +960,7 @@ Orca work routes here, not to the mcp-tooling hub, which names `cli-orca` as the
 
 ## 10. 🤖 AGENT LIBRARY
 
-11 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code, Codex, Cursor, Devin and Pi (`.<runtime>/agents/`). OpenCode reads `.opencode/agents/`, which links to the same `.skilled/agents/` source.
+11 custom specialist agents. Defined in `.skilled/agents/` (source of truth). The Codex, Pi, DSH and Mistral Vibe copies are generated from it, Claude Code keeps a hand-carried fork in `.claude/agents/`, and Cursor and Devin link to that fork. OpenCode reads `.opencode/agents/`, which links to the same `.skilled/agents/` source.
 
 &nbsp;
 
@@ -1000,19 +1002,19 @@ Picks the best `sk-prompt` framework, applies DEPTH at the right energy and vali
 
 Decides values and behavior through the visual references in `sk-code-frontend`. It measures an existing surface into a Style Reference through `sk-design-md-generator`. It authors charts and diagrams through `sk-design-chart` and `sk-design-diagram`.
 
+**AI Council** - several AI strategies, one vetted plan
+
+Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and native for multi-round deliberation. Planning-only. `/speckit:ai-council` dispatches it. See [Spec Kit](#6--spec-kit).
+
 &nbsp;
 
 #### DEEP LOOP
-
-**AI Council** - several AI strategies, one vetted plan
-
-Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and native for multi-round deliberation. Planning-only. See [Deep Loop](#7--deep-loop).
 
 **Deep Research** - one research iteration at a time, state on disk
 
 Executes a single LEAF pass. The `/deep:research` command owns the loop. See [Deep Loop](#7--deep-loop).
 
-**Deep Review** - audits one review pass, read-only on code
+**Deep Review** - audits one review pass and changes no code
 
 Produces `file:line` findings. The `/deep:review` command owns the loop. See [Deep Loop](#7--deep-loop).
 
@@ -1045,13 +1047,13 @@ Autonomous continuation is default-off and gated by caps, a cooldown and a kill-
 
 &nbsp;
 
-#### In-Session Handover
+#### Session Handover
 
-In-session handover ships on for Claude Code and off for every other runtime. A project that installs Skilled and runs Claude Code gets it without setting anything. Codex, Pi, OpenCode, Cursor and Devin stay as they were until you turn it on for them.
+Session handover ships on for Claude Code and off for every other runtime. A project that installs Skilled and runs Claude Code gets it without setting anything. Codex, Pi, OpenCode, Mistral Vibe, Cursor and Devin stay as they were until you turn it on for them.
 
-A session that reaches 80% of its context window writes a handoff note, saves its spec packet if one is bound and ends. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note and carries on. Claude Code, Codex, Pi and OpenCode hand over on their own, while Cursor and Devin hand over only when you run `/speckit:handoff`. The note's Goal opens with the packet's purpose line, copied from its `spec.md`, so the purpose survives every hop.
+A session that reaches 80% of its context window writes a handoff note, saves its spec packet if one is bound and ends. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note and carries on. Claude Code, Codex, Pi, OpenCode and Mistral Vibe hand over on their own, while Cursor and Devin hand over only when you run `/speckit:handoff`. The note's Goal opens with the packet's purpose line, copied from its `spec.md`, so the purpose survives every hop.
 
-A Claude Code session started without the wrapper cannot restart itself. At 80% it writes the same note, keeps it with `session-relaunch.cjs keep` and works on. After the next auto-compaction the session is pointed back at the note, so the detail a summary drops is still on disk.
+A Claude Code session started without the wrapper cannot restart itself. At 80% it writes the same note, keeps it with `session-handover.cjs keep` and works on. After the next auto-compaction the session is pointed back at the note, so the detail a summary drops is still on disk.
 
 The note and the relaunch record carry what the next session needs:
 
@@ -1071,14 +1073,14 @@ source /abs/path/to/skilled-agent-harness_spec-driven-loops/.skilled/bin/skilled
 To turn it on for every runtime, set the global flag in `.skilled/hooks/hook-flags.env`, which git ignores, or export it from your shell profile:
 
 ```bash
-echo 'SYSTEM_SESSION_RELAUNCH_ENABLED=1' >> .skilled/hooks/hook-flags.env
+echo 'SYSTEM_SESSION_HANDOVER_ENABLED=1' >> .skilled/hooks/hook-flags.env
 ```
 
-Each runtime also has its own flag, `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED`, with `<RUNTIME>` one of `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR` or `DEVIN`. It overrides the global flag for that runtime whenever it holds a value. `1` turns it on and `0` turns it off. The global flag decides for every runtime without its own value, Claude Code included, and with neither set only Claude Code is on. So `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` turns the Claude Code default off, and `SYSTEM_SESSION_RELAUNCH_ENABLED=1` with `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` hands over everywhere except Claude Code.
+Each runtime also has its own flag, `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED`, with `<RUNTIME>` one of `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR` or `DEVIN`. It overrides the global flag for that runtime whenever it holds a value. `1` turns it on and `0` turns it off. The global flag decides for every runtime without its own value, Claude Code included, and with neither set only Claude Code is on. So `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` turns the Claude Code default off, and `SYSTEM_SESSION_HANDOVER_ENABLED=1` with `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` hands over everywhere except Claude Code.
 
-`SYSTEM_SESSION_RELAUNCH_DISABLED=1` and `SYSTEM_HOOKS_DISABLED=1` beat every enable flag. While handover is off for a runtime, `/speckit:handoff` refuses there and the runtime's own auto-compaction handles a full context window.
+`SYSTEM_SESSION_HANDOVER_DISABLED=1` and `SYSTEM_HOOKS_DISABLED=1` beat every enable flag. While handover is off for a runtime, `/speckit:handoff` refuses there and the runtime's own auto-compaction handles a full context window.
 
-The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the per-runtime adapters, hop history, safety limits and troubleshooting.
+The [session-handover README](.skilled/hooks/session-handover/README.md) covers the per-runtime adapters, hop history, safety limits and troubleshooting.
 
 &nbsp;
 
@@ -1098,12 +1100,12 @@ In linked projects, each project keeps its answers in its own folder under `.ski
 
 #### OpenCode Plugins
 
-Twenty-one JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
+Twenty JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
 
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
 - **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit, a screen for instructions hidden in fetched web pages, a dotenv guard that refuses reading or writing `.env` files, undoes a dotenv write a shell call made anyway, reports a dotenv value in its output and offers three value-free inspection tools instead, an overlay guard that refuses a write to a file an overlay owns in a vendored tree, and a guard that sends a turn ending in a typed option menu back to ask through the question tool
-- **Sessions:** the goal plugin, session cleanup, the in-session handover relaunch and the history lookup offer after a compaction
+- **Sessions:** the goal plugin, session cleanup, the session handover relaunch and the history lookup at a claimed handoff note
 
 Every plugin except the git message gate has an off switch, listed in the [hooks README](.skilled/hooks/README.md). `SYSTEM_HOOKS_DISABLED=1` turns them all off at once.
 
@@ -1113,7 +1115,7 @@ Every plugin except the git message gate has an off switch, listed in the [hooks
 
 `.pi/extensions/` holds Pi's discovery mirror: `*.ts` extension entries (one-line files that re-export their adapter from its owner's tree) plus two local extension packages.
 
-`tsconfig.pi.json` at the repository root type-checks three of those adapters at their real paths, `session-relaunch.ts`, `spec-gate-classify.ts` and `spec-gate-enforce.ts`, against the local Pi type stubs in `.pi/types/`, with no emit.
+`tsconfig.pi.json` at the repository root type-checks three of those adapters at their real paths, `session-handover.ts`, `spec-gate-classify.ts` and `spec-gate-enforce.ts`, against the local Pi type stubs in `.pi/types/`, with no emit.
 
 ##### ⭐ `pi-cache-optimizer` ("Cache Pi")
 
@@ -1125,7 +1127,7 @@ Our custom extension, vendored in `.pi/extensions/` as the live runtime source. 
 - Read-only footer cache stats, plus `/cache-optimizer stats` showing input cost and savings against an uncached baseline
 - Stops paid retry loops by tracking tool-call batches and escalating only when a whole batch fails repeatedly
 
-`.pi/extensions/` also holds `pi-fast-mode-w-subagent-support`, for fast mode with subagent support. Its re-exported guard bridges run the same shared cores as the OpenCode plugins, from the spec gate and session context to the advisor brief, goal, git checks and the in-session handover relaunch. Community packages load via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`, `pi-claude-code-ui`.
+`.pi/extensions/` also holds `pi-fast-mode-w-subagent-support`, for fast mode with subagent support. Its re-exported guard bridges run the same shared cores as the OpenCode plugins, from the spec gate and session context to the advisor brief, goal, git checks and the session handover relaunch. Community packages load via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`, `pi-claude-code-ui`.
 
 &nbsp;
 
@@ -1161,7 +1163,7 @@ The hooks load only in a trusted checkout. A dispatch from a scratch folder gets
 
 `.skilled/hooks/` carries the runtime-agnostic cores the plugin adapters call into.
 
-The cores are `goal`, `dispatch`, `decision-capture`, `spec-gate`, `completion`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen` and `ask-surface`. The git cores are `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard` and `hook-install`. The rest are `session-cleanup`, `session-lifecycle`, `session-relaunch`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness` and `codex-watchdog`, plus `shared` for the helpers they all use.
+The cores are `goal`, `dispatch`, `decision-capture`, `spec-gate`, `completion`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen` and `ask-surface`. The git cores are `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard` and `hook-install`. The rest are `session-cleanup`, `session-lifecycle`, `session-handover`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness` and `codex-watchdog`, plus `shared` for the helpers they all use.
 
 The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which runtime runs each hook, and why a runtime that skips one cannot carry it. Codex runs a repository hook only after you approve that entry. Open `/hooks` after an update and approve every entry it lists as needing review. Its shell matchers name both `exec` and `Bash`, the tool's name from Codex 0.160 on.
 
@@ -1198,6 +1200,8 @@ Requires `plan.md` to already exist. A 9-step workflow covers task breakdown, im
 
 Continues a previous session by auto-loading continuity from the spec folder. It presents a session summary and shows progress against `tasks.md`. It works after crashes, compactions or new sessions. The summary opens with a Purpose row quoted from the packet's `spec.md`, or from its phase parent or `goal.md` when the packet states none.
 
+**`/speckit:ai-council`** - plan hard decisions with several models, planning-only
+
 **Spec-first command chains**
 
 ```text
@@ -1222,7 +1226,7 @@ Updates packet continuity and supporting generated context artifacts via `genera
 
 Writes the handoff note and prepares the relaunch record. Under the wrapper the runtime then restarts in the same terminal and the new session claims the note. Outside the wrapper it prints the command that continues the work in a new session. Its Goal section opens with the packet's purpose, copied word for word.
 
-It is the only trigger on Cursor and Devin. Claude Code, Codex, Pi and OpenCode reach the same steps on their own near the context limit. It refuses while in-session handover is off, see [In-Session Handover](#in-session-handover).
+It is the only trigger on Cursor and Devin. Claude Code, Codex, Pi, OpenCode and Mistral Vibe reach the same steps on their own near the context limit. It refuses while session handover is off, see [Session Handover](#session-handover).
 
 **`/speckit:search`**
 
@@ -1290,9 +1294,8 @@ Applies the Human Voice Rules to a file or passage, or scores it against them, t
 
 #### DEEP
 
-The active autonomous loop families. See [Deep Loop](#7--deep-loop) for how they run. Use `@context` for one-shot retrieval before planning. All three accept the modes `:auto` and `:confirm`.
+The active autonomous loop families. See [Deep Loop](#7--deep-loop) for how they run. Use `@context` for one-shot retrieval before planning. Both accept the modes `:auto` and `:confirm`.
 
-- **`/deep:ai-council`** - plan hard decisions with several models. Multi-seat planning for complex decisions, planning-only
 - **`/deep:research`** - research until the answer holds. Iterative research until convergence, anchored to a real `spec.md`, with `new`/`resume`/`restart` lifecycle
 - **`/deep:review`** - audit code until it is clean. Iterative code audit until convergence, ending in a PASS/CONDITIONAL/FAIL verdict
 
@@ -1322,7 +1325,7 @@ Every target that writes asks for your yes first. When a prompt describes a prob
 | `/doctor:symlink` | `check`, `link`, `unlink` | `check` | `link`, `unlink` |
 | `/doctor:speckit` | retrieval | the index, lookup and recipe checks | a report and state file in the packet's `scratch/` |
 | `/doctor:skill-advisor` | `tune`, `rebuild`, `skill-graph-freshness`, `router-reach`, `skill-budget`, `parent-skill` | the four audits | `tune`, `rebuild` |
-| `/doctor:deep-loop` | `--scope=research\|review\|council\|both\|all` | the graph and convergence read | a state file in the active spec folder's `scratch/` |
+| `/doctor:deep-loop` | `--scope=research\|review\|both\|all` | the graph and convergence read | a state file in the active spec folder's `scratch/` |
 | `/doctor:runtime-mirrors` | none | the mirror check | none |
 | `/doctor:sk-code` | `setup`, `quality` | `setup` | `quality` (creates the quality config once) |
 | `/doctor:sk-skill` | `check`, `convert` | `check` | `convert` |
@@ -1368,7 +1371,7 @@ It also offers the citation-drift census over all docs or skill docs only, read-
 
 With no target it shows an interactive menu. Examples: `/doctor:skill-advisor rebuild --dry-run`, `/doctor:skill-advisor router-reach --hub=sk-doc`.
 
-**`/doctor:deep-loop [--scope=research|review|council|both|all]`** - deep-loop coverage graphs and convergence, read through the loop's own scripts
+**`/doctor:deep-loop [--scope=research|review|both|all]`** - deep-loop coverage graphs and convergence, read through the loop's own scripts
 
 For research and review scopes, it also lists the unresolved `[SOURCE: path:line]` tags per lineage.
 
@@ -1561,9 +1564,9 @@ Every other shipped skill is codebase-agnostic:
 | **`system-skill-advisor`** | Prompt-time skill routing over the shared skill graph. Works for any project |
 | **`system-skilled-doctor`** | Doctor commands that install, link, update and check Skilled in a project, and keep a vendored copy's overlays. Works for any project |
 | **`mcp-code-mode`** | Multi-tool MCP orchestration. Works for any project |
-| **`system-deep-loop`** | Parent hub for the unified deep-loop skill (research, review and ai-council modes) over nested `runtime/` infrastructure. Works for any topic / target |
+| **`system-deep-loop`** | Parent hub for the unified deep-loop skill (research and review modes) over nested `runtime/` infrastructure. Works for any topic / target |
 | **`sk-prompt`** | Prompt-engineering framework. Works for any project |
-| **`cli-external-orchestration`** | Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness`. Stack-independent |
+| **`cli-external-orchestration`** | Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe`. Stack-independent |
 | **`cli-classifier`** | Parent hub for typed-judgment transports: routes to `cli-jev` (Pi's classifier first for yes-or-no and choice questions, the `jev` CLI otherwise) for a probability, an option key, a score position or a batch of keyed answers. Stack-independent. Needs the `jev` CLI on PATH (`uv tool install jev-cli`) and a key stored with `jev auth set --provider official`, which also turns on its four measured features |
 | **`mcp-tooling`** | Parent hub for eight MCP tool bridges, each described under [MCP Integration](#mcp-integration). Stack-independent |
 | **`cli-orca`** | Drives the Orca app's worktrees, terminals, browser and automations from a dispatch. Works for any project that runs Orca |
@@ -1644,7 +1647,7 @@ cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
 # then uncomment the switches you want on
 ```
 
-- **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once except the git message gate. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md). The session-relaunch hooks are the one exception to on-by-default: they are on for Claude Code and stay off on every other runtime until you turn them on globally or per runtime, see [In-Session Handover](#in-session-handover)
+- **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once except the git message gate. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md). The session-handover hooks are the one exception to on-by-default: they are on for Claude Code and stay off on every other runtime until you turn them on globally or per runtime, see [Session Handover](#session-handover)
 - **Validation.** `SPECKIT_SKIP_VALIDATION=1` switches spec folder validation off and `SKDOC_SKIP_VALIDATION=1` switches off the sk-doc validators. A skipped run says so and exits 0, so it is no evidence that a document is valid. CI sets neither
 - **CI workflows.** These switches are repository variables, not environment variables, so set them under Settings, Secrets and variables, Actions, Variables. Every workflow except `dependabot-auto-merge.yml` reads the master switch `SKILLED_CI` and one group variable (`SKILLED_CI_FRESHNESS`, `SKILLED_CI_TESTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_REPORTS` or `SKILLED_CI_MESSAGES`). Only `off`, in any letter case, skips a job. An unset variable runs it. An empty value, `0`, `false`, `no` or a typo runs it too. Leave `SKILLED_CI` and `SKILLED_CI_MESSAGES` unset while the ruleset requires the message-contract check. A switched-off job reports success, so a required check that is switched off stops blocking a merge. `/doctor:ci report` shows each state. The [workflows README](.github/workflows/README.md#onoff-switches) maps each variable to its workflows
 - **Git hooks, one command.** Each blocking gate names its bypass in its message, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. These bypasses are read from the environment only
@@ -1705,7 +1708,7 @@ For recovery, start with `/speckit:resume` and the packet-local continuity ladde
 
 **Q: What happens when a session runs out of context?**
 
-On Claude Code, in-session handover is on by default: under the `skilled-loop` wrapper the work moves to a fresh session, and without it the session keeps a handoff note it returns to after auto-compaction. On the other runtimes the runtime's own auto-compaction takes over, as it always did, until you turn handover on for them, see [In-Session Handover](#in-session-handover).
+On Claude Code, session handover is on by default: under the `skilled-loop` wrapper the work moves to a fresh session, and without it the session keeps a handoff note it returns to after auto-compaction. On the other runtimes the runtime's own auto-compaction takes over, as it always did, until you turn handover on for them, see [Session Handover](#session-handover).
 
 &nbsp;
 
@@ -1753,7 +1756,7 @@ The canonical feature inventory for the `system-spec-kit` engine, at `.skilled/s
 - **[→ Install Guide](INSTALL-SKILLED.md)** - install a Skilled checkout, then bring it into your own project by linking it or by copying it in with overlays
 - **[→ Spec Kit README](.skilled/skills/system-spec-kit/README.md)** - spec folder workflow, Level contract template set, validation rules
 - **[→ Spec-Kit Engine README](.skilled/skills/system-spec-kit/runtime/README.md)** - validation, generated metadata and runtime hook adapters
-- **[→ Session Relaunch README](.skilled/hooks/session-relaunch/README.md)** - in-session handover, on by default for Claude Code only: the handoff note, the `skilled-loop` wrapper and the shell shim
+- **[→ Session Handover README](.skilled/hooks/session-handover/README.md)** - session handover, on by default for Claude Code only: the handoff note, the `skilled-loop` wrapper and the shell shim
 - **[→ Hooks README](.skilled/hooks/README.md)** - every runtime hook and plugin, which runtimes run each one and its off switch
 - **[→ Git Hooks README](.skilled/scripts/git-hooks/README.md)** - each git hook gate, what it blocks and how to bypass it
 - **[→ sk-code README](.skilled/skills/sk-code/README.md)** - the code skill and the step-by-step guide to adapting it to your stack

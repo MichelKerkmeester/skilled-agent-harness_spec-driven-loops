@@ -1,6 +1,6 @@
 ---
 title: Agent Mirror Crosswalk
-description: How one agent declaration translates into each of the six runtime agent trees, which differences are sanctioned, and what stands in place of a declaration a runtime cannot carry.
+description: How one agent declaration translates into each of the eight runtime agent trees, which differences are sanctioned, and what stands in place of a declaration a runtime cannot carry.
 trigger_phrases:
   - "agent mirror crosswalk"
   - "agent frontmatter translation"
@@ -13,9 +13,11 @@ version: 1.17.0.0
 
 # Agent Mirror Crosswalk
 
-Six runtime trees ship the same twelve agents: `.skilled/agents/`, `.claude/agents/`,
-`.cursor/agents/`, `.pi/agents/`, `.codex/agents/` and `.devin/agents/`. Each tree speaks a
-different dialect, so a declaration made once lands six different ways — or does not land at all.
+Eight runtime trees ship the same eleven agents: `.skilled/agents/`, `.claude/agents/`,
+`.cursor/agents/`, `.devin/agents/`, `.codex/agents/`, `.pi/agents/`, `.dsh/agents/` and
+`.vibe/agents/`. OpenCode reads `.opencode/agents/` instead, a directory link onto
+`.skilled/agents/`, so it sees the source files themselves. Each tree speaks a different dialect,
+so a declaration made once lands eight different ways — or does not land at all.
 This document is the contract between them: for each source key it names where the declaration
 ends up in every tree, and what stands in its place when the runtime cannot carry it. A frontmatter
 change without a matching row here is an untranslated declaration, and the tree that silently drops
@@ -23,7 +25,7 @@ it is the failure mode this document exists to prevent.
 
 ---
 
-## 1. THE SIX TREES
+## 1. THE EIGHT TREES
 
 | Tree | Shape | What it is | How to change it |
 |------|-------|------------|------------------|
@@ -33,11 +35,13 @@ it is the failure mode this document exists to prevent.
 | `.devin/agents/` | `<name>/AGENT.md` | symlink onto the `.claude` file | never — edit `.claude` instead |
 | `.codex/agents/` | `<name>.toml` | generated from `.skilled` | edit `.skilled`, then run the Codex generator |
 | `.pi/agents/` | `<name>.md` | generated from `.skilled` | edit `.skilled`, then run the Pi generator |
+| `.dsh/agents/` | `<name>.patch.yml` | generated from `.skilled`; the body only | edit `.skilled`, then run the DSH generator |
+| `.vibe/agents/` | `<name>.toml` | generated from `.skilled`; description, body and `agent_type` | edit `.skilled`, then run the Vibe generator |
 
-There are two upstreams, deliberately: `.skilled` is canonical for `.codex` and `.pi`, while
-`.claude` is canonical for `.cursor` and `.devin` because those runtimes parse the Claude dialect.
-`.claude` is itself kept in step with `.skilled` by hand. `.skilled/agents/` and `.claude/agents/`
-are the only two trees that carry a `README.txt`; the other four have none.
+There are two upstreams, deliberately: `.skilled` is canonical for `.codex`, `.pi`, `.dsh` and
+`.vibe`, while `.claude` is canonical for `.cursor` and `.devin` because those runtimes parse the
+Claude dialect. `.claude` is itself kept in step with `.skilled` by hand. `.skilled/agents/` and
+`.claude/agents/` are the only two trees that carry a `README.txt`; the other six have none.
 
 A generated tree is never hand-edited — write mode prunes anything the canonical tree no longer
 justifies, so an edit there survives only until the next sync:
@@ -45,6 +49,8 @@ justifies, so an edit there survives only until the next sync:
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
 node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs
 ```
 
 What fails when a mirror drifts:
@@ -52,12 +58,15 @@ What fails when a mirror drifts:
 - `node .skilled/bin/check-agent-mirror-sync.cjs --all`
   compares every agent body and declared tool surface from `.skilled` to `.claude` and `.codex`,
   and fails on a missing or orphaned mirror.
-- `node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check` and
-  `node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check` fail when a
+- `node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check`,
+  `node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check`,
+  `node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check` and
+  `node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs --check` fail when a
   generated tree is stale against its canonical source.
-- `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` fails when a runtime is
-  missing an agent, when a `.cursor`/`.devin` entry stops being a symlink onto `.claude`, or when a
-  mirror survives an agent the repository no longer defines.
+- `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` takes its roster from
+  `.skilled/agents` and fails when `.claude`, `.opencode`, `.codex`, `.pi`, `.dsh` or `.vibe` is
+  missing an agent, when a `.cursor` or `.devin` entry stops being a symlink onto the `.claude`
+  file, or when a mirror survives an agent the repository no longer defines.
 
 ---
 
@@ -67,7 +76,7 @@ What fails when a mirror drifts:
 
 `.skilled` is the only tree that carries a permission map, and the only one where it is enforced
 by the runtime. Each agent declares its own vocabulary of `read`, `write`, `edit`, `bash`, `grep`,
-`glob`, `webfetch`, `chrome_devtools`, `browser`, `task`, `list`, `patch` and `external_directory`, each
+`glob`, `webfetch`, `websearch`, `chrome_devtools`, `browser`, `task`, `list`, `patch` and `external_directory`, each
 `allow` or `deny`.
 
 | Tree | The allow half lands as | The deny half stands in as |
@@ -78,10 +87,13 @@ by the runtime. Each agent declares its own vocabulary of `read`, `write`, `edit
 | `.devin` | the `.claude` file, unchanged | as `.claude` |
 | `.pi` | a lowercase `tools:` list; `glob` becomes `find` and `list` becomes `ls` | the key is absent from the list; a denied key is never named anywhere |
 | `.codex` | `sandbox_mode` — a filesystem boundary, not a tool list | `sandbox_mode = "read-only"` when the map grants no `write`, `edit` or `bash`; otherwise `workspace-write` and the body's prose carries the scope |
+| `.dsh` | nothing; the frontmatter is stripped | the body's prose only |
+| `.vibe` | nothing; the profile has no tool restriction | the body's prose only |
 
 Three permission keys have no counterpart in the Claude dialect — `list`, `patch` and
-`external_directory` — and four have none in Pi's toolset — `webfetch`, `task`, `patch` and
-`external_directory` — which is exactly the set the Pi comment records. `list` maps only in Pi,
+`external_directory` — and five have none in Pi's toolset — `webfetch`, `websearch`, `task`,
+`patch` and `external_directory` — which is exactly the set the Pi comment records. `websearch`
+lands in the Claude dialect as `WebSearch`. `list` maps only in Pi,
 to `ls`. `chrome_devtools` and `browser` are denied in every map that carries them,
 and `browser` is the name OpenCode 2 enforces. `.codex` declares no tools at all.
 
@@ -96,7 +108,7 @@ emitted (even empty) so a Pi loader can never fall back to its full built-in too
 
 **The `.codex` boundary.** The Codex generator owns the translation: `deriveSandboxMode()` grants
 `workspace-write` when the frontmatter grants `write`, `edit` or `bash`, and `read-only` otherwise.
-Its per-agent settings table pins the boundary for the twelve shipped agents and for two effort
+Its per-agent settings table pins the boundary for the eleven shipped agents and for two effort
 tiers, and a new agent falls through to the derivation. `sandbox_mode` is coarser than the
 permission map: it confines what the agent may touch, not which tools it may call.
 
@@ -111,6 +123,7 @@ permission map: it confines what the agent may touch, not which tools it may cal
 | `.claude`, `.cursor`, `.devin` | no key; `ai-council` alone keeps the prose sentence about operating at a chosen temperature |
 | `.pi` | nothing — the generator emits `name`, `description` and `tools` only |
 | `.codex` | a different knob: `model_reasoning_effort`, not a sampling temperature |
+| `.dsh`, `.vibe` | nothing |
 
 This is the declaration with the largest sanctioned loss. A dispatched route that needs determinism
 states it in the dispatch; a manual invocation runs at the runtime default, and no artifact in this
@@ -118,8 +131,7 @@ repository promises otherwise.
 
 ### 2.3 `mode` — the role
 
-`.skilled` declares `mode: subagent` for ten agents, `mode: all` for `markdown` and
-`mode: primary` for `orchestrate`.
+`.skilled` declares `mode: subagent` for ten agents and `mode: primary` for `orchestrate`.
 
 | Tree | Lands as |
 |------|----------|
@@ -127,9 +139,11 @@ repository promises otherwise.
 | `.claude`, `.cursor`, `.devin` | no key; the role survives only as description prose where the body states it |
 | `.pi` | nothing |
 | `.codex` | nothing |
+| `.dsh` | nothing |
+| `.vibe` | `agent_type = "subagent"` on the ten `mode: subagent` agents; `orchestrate` has none |
 
-The role key translates nowhere as a key. Routing that depends on it must be read from the
-`.skilled` tree.
+The role key translates as a key only into `.vibe`. Routing that depends on it must be read from
+the `.skilled` tree.
 
 ### 2.4 `tools` — the lexicon
 
@@ -142,6 +156,7 @@ each dialect re-expresses it.
 | `.claude`, `.cursor`, `.devin` | `Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, Agent` — TitleCase CSV; only `ai-council` and `orchestrate` carry `Agent`, which is how nested delegation is granted |
 | `.pi` | `read, write, edit, bash, grep, find, ls` — lowercase list, `find` replaces `glob` and `ls` replaces `list` |
 | `.codex` | none; confinement is `sandbox_mode` and the body's prose |
+| `.dsh`, `.vibe` | none; the body's prose carries the scope |
 
 Provenance markers exist in one tree: every `.codex` agent opens with `# Agent: <name>` and
 `# Converted from: .skilled/agents/<name>.md`, so a reader of the TOML can find its source.
@@ -151,11 +166,11 @@ Provenance markers exist in one tree: every `.codex` agent opens with `# Agent: 
 Four files in the Claude tree declare a model: `context.md`, `markdown.md` and the Claude-only
 `Explore.md` override declare `model: haiku`, and `prompt-improver.md` declares `model: sonnet`,
 because the `sk-prompt` Model Eligibility table denies Opus and Fable on every route.
-`.cursor` also reaches `prompt-improver.md` through its symlink.
+`.cursor` and `.devin` also reach `prompt-improver.md` through their symlinks.
 `.cursor` and `.devin` reach `context.md` and `markdown.md` through their symlinks, so they carry
-the line too, and whether either runtime honors it is untested. No other agent file
-in `.skilled`, `.claude`, `.pi`, `.cursor` or `.devin` declares a model. `.codex` pins one on all
-twelve: `model = "gpt-5.5"` with `model_reasoning_effort`, `high` for most, `low` for `context`
+the line too, and whether either runtime honors it is untested. No other agent file in `.skilled`,
+`.claude`, `.pi`, `.cursor`, `.devin`, `.dsh` or `.vibe` declares a model. `.codex` pins one on all
+eleven: `model = "gpt-6-luna"` with `model_reasoning_effort`, `high` for most, `low` for `context`
 and `medium` for `markdown`, alongside `sandbox_mode`.
 
 `Explore.md` is not a roster agent. Claude Code resolves a subagent by exact name and lets a
@@ -164,7 +179,7 @@ The roster check and the symlink sync both skip it.
 
 Model and effort are otherwise dispatch decisions, not agent declarations. A dispatched route
 passes both explicitly, and a model passed on a Claude Code Agent call wins over the file's
-`model:`, so a pin governs only invocation that reads the agent file directly.
+`model:`, so a pin governs any invocation that passes no model, dispatched or manual.
 
 ---
 
@@ -183,7 +198,9 @@ differs is drift and fails the gate:
   saying the canonical source lives in another tree. The clause is dropped before comparison.
 - **The generated dialects.** The `.pi` frontmatter is single-key-per-line with a quoted name and
   a lowercase tool list; the `.codex` body lives in a triple-quoted `developer_instructions`
-  string behind the two provenance comments.
+  string behind the two provenance comments. The `.dsh` patch carries the body as a YAML block
+  scalar and the `.vibe` profile carries it as a TOML string, and neither is compared by the
+  mirror gate; their own `--check` runs guard them.
 
 Everything else in the body — duties, checklists, prohibitions, output contracts — is expected to
 be the same text in every tree. When the gate reports drift, fix the tree that is out of step
@@ -195,8 +212,8 @@ rather than widening the normalization.
 
 A dispatched route passes model and effort explicitly, so the drift surface is manual invocation
 alone. Read the silence correctly: a tree that declares no model means "no pin", not "unowned
-setting". `.codex` pins one on every agent, and the Claude tree pins `context`, `markdown`, `Explore` and `prompt-improver`. Only a
-manual invocation reads those pins; the other trees run whatever the runtime default is for the
+setting". `.codex` pins one on every agent, and the Claude tree pins `context`, `markdown`, `Explore` and `prompt-improver`. Any
+invocation that passes no model reads those pins; the other trees run whatever the runtime default is for the
 invoking session.
 Manual invokers who need a specific model or effort should pass it at invocation time instead of
 expecting an agent file to carry it.
@@ -208,9 +225,9 @@ expecting an agent file to carry it.
 1. Edit `.skilled/agents/<name>.md` — the canonical declaration.
 2. Mirror the same body change into `.claude/agents/<name>.md` in the same change, including its
    `tools:` line when the permission map changed; `.cursor` and `.devin` follow by symlink.
-3. Regenerate both generated trees with the two sync scripts above.
+3. Regenerate the four generated trees with the four sync scripts above.
 4. Add the agent to both `README.txt` rosters.
-5. Run the three gates from section 1 — they are also wired into the pre-commit and CI paths, so a
+5. Run the gates from section 1 — they are also wired into the pre-commit and CI paths, so a
    missed step fails there rather than at dispatch time.
 
 ---
@@ -219,5 +236,6 @@ expecting an agent file to carry it.
 
 - `.skilled/agents/README.txt` and `.claude/agents/README.txt` — the human rosters, which point
   back at this crosswalk.
-- `.claude/SYNC.md`, `.codex/SYNC.md` and `.pi/SYNC.md` — the per-runtime sync manifests: which
-  surfaces are symlinks, which are generated, and which command regenerates them.
+- `.claude/SYNC.md`, `.codex/SYNC.md`, `.pi/SYNC.md`, `.dsh/SYNC.md` and `.vibe/SYNC.md` — the
+  per-runtime sync manifests: which surfaces are symlinks, which are generated, and which command
+  regenerates them.

@@ -1,8 +1,8 @@
 {
   "source": {
     "command": "git log -M --diff-filter=R --name-status --format= HEAD",
-    "commit": "e13f670cb913efbf2c96388293653ee855af43b4",
-    "renameRecords": 579755,
+    "commit": "5bb5eef0232fc9310aecf349684a33e058cfa737",
+    "renameRecords": 590745,
     "minRecords": 50,
     "minAgreement": 0.95,
     "derivedBy": "deriveRedirects in cite-drift-scan.mjs"
@@ -3855,6 +3855,18 @@
       "agreement": 1
     },
     {
+      "from": ".skilled/hooks/in-session-handover/",
+      "to": ".skilled/hooks/session-handover/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".skilled/hooks/session-relaunch/",
+      "to": ".skilled/hooks/in-session-handover/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
       "from": ".skilled/skills/cli-classifier/cli-usage/",
       "to": ".skilled/skills/cli-classifier/cli-jev/",
       "records": 56,
@@ -4093,6 +4105,96 @@
       "to": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/",
       "records": 316,
       "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/goal-and-directive-hooks/",
+      "to": "specs/hooks-plugins-extensions/goal/",
+      "records": 63,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/",
+      "to": "specs/hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/",
+      "records": 95,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/",
+      "to": "specs/hooks-plugins-extensions/goal/003-goal-isolation/",
+      "records": 58,
+      "agreement": 0.983
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/hook-injection-pipeline/",
+      "to": "specs/hooks-plugins-extensions/hook-platform/",
+      "records": 117,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/",
+      "to": "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/",
+      "records": 463,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/",
+      "to": "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/",
+      "records": 51,
+      "agreement": 0.9807
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/",
+      "to": "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/",
+      "records": 428,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/",
+      "to": "specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/",
+      "records": 120,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi/",
+      "to": "specs/hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/pi-extensions/008-cache-optimizer-improvement-research/",
+      "to": "specs/hooks-plugins-extensions/pi-cache-optimizer/006-cache-optimizer-improvement-research/",
+      "records": 51,
+      "agreement": 0.9807
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration/",
+      "to": "specs/hooks-plugins-extensions/pi-cache-optimizer/008-compat-opt-in-and-image-declaration/",
+      "records": 100,
+      "agreement": 0.99
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/",
+      "to": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/",
+      "records": 3488,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/session-relaunch/",
+      "to": "specs/hooks-plugins-extensions/session-handover/",
+      "records": 121,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/",
+      "to": "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/",
+      "records": 3436,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/",
+      "to": "specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement/",
+      "records": 179,
+      "agreement": 0.9944
     },
     {
       "from": "specs/hooks/",
@@ -4477,6 +4579,12 @@
       "to": "specs/sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/",
       "records": 166,
       "agreement": 1
+    },
+    {
+      "from": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/",
+      "to": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/",
+      "records": 80,
+      "agreement": 0.9876
     },
     {
       "from": "specs/system-deep-loop/",
@@ -5010,6 +5118,12 @@
       "from": "specs/system-speckit/054-weak-model-spec-authoring/review/lineages/pi-deepseek-2/",
       "to": "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/lineages/pi-deepseek-2/",
       "records": 60,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/",
+      "to": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/",
+      "records": 1597,
       "agreement": 1
     }
   ]

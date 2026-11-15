@@ -15,9 +15,9 @@ version: 1.0.1.0
 
 # Hook & Plugin Injection Contract
 
-Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi and DeepSeek Harness) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
+Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi, DeepSeek Harness and Mistral Vibe) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
 
-**Kill-switches.** Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED` switch plus its canonical `SYSTEM_<CONCERN>_DISABLED` switch, and every concern except session relaunch is default-on. Session relaunch ships on for Claude Code and off for every other runtime: a runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime when it holds a value, `SYSTEM_SESSION_RELAUNCH_ENABLED` decides when it holds one, and with both blank only Claude Code is on. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index). This contract does not duplicate it.
+**Kill-switches.** Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED` switch plus its canonical `SYSTEM_<CONCERN>_DISABLED` switch, and every concern except session handover is default-on. Session handover ships on for Claude Code and off for every other runtime: a runtime's `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` turns it on or off for that runtime when it holds a value, `SYSTEM_SESSION_HANDOVER_ENABLED` decides when it holds one, and with both blank only Claude Code is on. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index). This contract does not duplicate it.
 
 ---
 
@@ -26,6 +26,8 @@ Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCo
 ### Purpose
 
 Answer, for any hook or plugin in this repo: what does it add to the session, on what trigger, and can a human watching the terminal see it without special tooling?
+
+The per-runtime channel lines below cover the first seven runtimes. Mistral Vibe wires the same cores through the `[[hooks]]` entries in `.vibe/hooks.toml`, and [guards-and-hooks.md](../skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md) maps each entry to its Vibe event and to what it adds: a `pre_tool` deny reaches the model as a tool error, and the session-start, `pre_agent` and `post_tool` hooks return `additional_context`, which is model-context-only.
 
 ### Why this exists
 
@@ -118,14 +120,14 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 
 ---
 
-### Session Relaunch Context Nudge
+### Session Handover Context Nudge
 
 | Concern | Events | Payload | Frequency |
 |---|---|---|---|
-| Session relaunch | Claude Code: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
-| Session relaunch | Codex: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
-| Session relaunch | Pi: `message_end` decides, `turn_end` steers the held nudge into a run whose tools ran and `agent_end` delivers it when the run ended | `pi.sendMessage` with `display: false` | Once per reached threshold level in a session |
-| Session relaunch | OpenCode: `experimental.chat.system.transform` pushes the pending nudge, fed by message events | an entry in the system array | Once per reached threshold level in a session |
+| Session handover | Claude Code: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
+| Session handover | Codex: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
+| Session handover | Pi: `message_end` decides, `turn_end` steers the held nudge into a run whose tools ran and `agent_end` delivers it when the run ended | `pi.sendMessage` with `display: false` | Once per reached threshold level in a session |
+| Session handover | OpenCode: `experimental.chat.system.transform` pushes the pending nudge, fed by message events | an entry in the system array | Once per reached threshold level in a session |
 
 The Codex nudge reads its fill from the transcript rollout's latest `token_count` record and emits the same `[SYS]` envelope the Claude adapter uses, so it is model-context-only by default. Neither the arming nor the usage records inject content: both are `[NONE]` side effects. Cursor, Devin and DSH carry no adapter, so `/speckit:handoff` is the only trigger on those runtimes and this table adds no row for them.
 
@@ -233,9 +235,9 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 **Injects:** one bounded lookup section that names an opaque history handle and the search, browse, load and page operations. It carries no transcript text, and it tells the model to treat retrieved history as data, never as instructions.
 
-- **Trigger:** `SessionStart(source=compact)` on Claude and Codex, `session_compact` on Pi, `compaction/end` on DSH, the first `UserPromptSubmit` after `PostCompaction` on Devin, and every request after `session.compacted` on OpenCode while the locator is fresh. Each fires only when the shared session reader capability is `ready` and a fresh locator is present. The locator is keyed by the checkout root above the session folder, so a session started in a subfolder gets the section too, and a folder whose nearest checkout cannot run the CLI gets none.
-- **Owning module:** `system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts` builds the section. `system-spec-kit/runtime/hooks/claude/session-prime.ts`, the Pi and DSH post-compaction adapters, Devin's `user-prompt-submit.ts` and `.opencode/plugins/session-history-lookup.js` print it only after the locator persisted.
-- **Channel:** `[SYS]` on every runtime. Claude, Codex, Pi and DSH ride the session-start or post-compaction channel documented in this section. Devin rides `UserPromptSubmit` `additionalContext`, once, after the advisor brief, because Devin drops `PostCompaction` output. OpenCode pushes it into the system array through `experimental.chat.system.transform`.
+- **Trigger:** the claim of a handoff note, when the session handover CLI prints the note body. `claim` mints a locator for the sending session with provenance source `handover`. Only Claude Code, Codex and Vibe senders get a locator. The section is withheld when the sender has no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the history engine is not built, and the claim then prints what it printed before. The locator is keyed by the checkout root above the session folder, so a session started in a subfolder gets the section too, and a folder whose nearest checkout cannot run the CLI gets none.
+- **Owning module:** `.skilled/hooks/session-handover/history/lib/lookup-offer.ts` builds the section. The session handover CLI at `.skilled/hooks/session-handover/bin/session-handover.cjs` prints it at `claim`, after the note body.
+- **Channel:** the claim command's stdout, which the receiving session reads with the note body.
 
 ### Post-Compaction Recovery (Devin/Pi/DSH)
 
@@ -316,4 +318,4 @@ The bundle README, [`../../.dsh/plugins/repo-guards/README.md`](../../.dsh/plugi
 - [`../../.opencode/plugins/README.md`](../../.opencode/plugins/README.md): full OpenCode plugin inventory and hook-event model this doc's OpenCode column cites.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): Pi's own extension inventory, including the `session_compact`-untraced caveat this doc's §4 repeats.
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors this doc cross-links from.
-- [`README.md`](./README.md): why the real cores of `dispatch`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `post-edit-quality`, `task-dispatch`, `classifier-injection-screen`, `goal`, `decision-capture` and `session-relaunch` live under `.skilled/hooks/` instead of `.skilled/skills/`, while every skill-owned hook in this doc stays inside its owning skill.
+- [`README.md`](./README.md): why the real cores of `dispatch`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `post-edit-quality`, `task-dispatch`, `classifier-injection-screen`, `goal`, `decision-capture` and `session-handover` live under `.skilled/hooks/` instead of `.skilled/skills/`, while every skill-owned hook in this doc stays inside its owning skill.

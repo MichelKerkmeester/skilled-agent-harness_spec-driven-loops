@@ -9,7 +9,7 @@ description: "Persistent SQLite state for deep-loop execution history and conver
 
 ## 1. OVERVIEW
 
-Persistence layer for deep-loop graph state. Research, review and context scripts read and write `deep-loop-graph.sqlite` through `lib/coverage-graph/`; council mode switches to `council-graph.sqlite` through `lib/council/council-graph-db.ts`.
+Persistence layer for deep-loop graph state. Research, review and context scripts read and write `deep-loop-graph.sqlite` through `lib/coverage-graph/`. `council-graph.sqlite` is a legacy file that no script reads or writes any more.
 
 ---
 
@@ -18,7 +18,7 @@ Persistence layer for deep-loop graph state. Research, review and context script
 | File | Purpose |
 |------|---------|
 | `deep-loop-graph.sqlite` | SQLite database holding coverage-graph state across deep-* sessions |
-| `council-graph.sqlite` | SQLite database holding AI Council graph state across council sessions |
+| `council-graph.sqlite` | Legacy AI Council graph database, kept on disk; no current script reads or writes it |
 
 ---
 
@@ -33,5 +33,4 @@ Persistence layer for deep-loop graph state. Research, review and context script
 ## 4. RELATED RESOURCES
 
 - Schema: `lib/coverage-graph/`
-- Council schema: `lib/council/council-graph-db.ts`
 - Writer-lock contract: `scripts/lib/cli-guards.cjs`

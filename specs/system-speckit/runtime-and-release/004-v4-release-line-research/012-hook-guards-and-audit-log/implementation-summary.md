@@ -104,7 +104,7 @@ Baselines ran first. Four cli-codex `gpt-6-luna` high-fast briefs made the chang
 ## Known Limitations
 
 1. **A numbered summary followed by a choice-worded question can fire.** Example: a `1.` list of done steps then "Which file should I open?"; the cost is one reprompt. Recorded in ADR-003.
-2. **The stray `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/.skilled/logs` stays.** It is untracked and gitignored; deleting it is the operator's call.
+2. **The stray `specs/hooks-plugins-extensions/decision-capture/001-decision-capture/.skilled/logs` stays.** It is untracked and gitignored; deleting it is the operator's call.
 <!-- /ANCHOR:limitations -->
 
 ---

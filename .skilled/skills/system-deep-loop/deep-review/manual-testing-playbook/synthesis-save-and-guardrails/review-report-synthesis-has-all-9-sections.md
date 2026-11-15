@@ -1,7 +1,7 @@
 ---
 title: "DRV-025 -- Review report synthesis has all 9 sections"
 description: "Verify that review-report.md contains all 9 required sections: Executive Summary, Planning Trigger, Active Finding Registry, Remediation Workstreams, Spec Seed, Plan Seed, Traceability Status, Deferred Items, Audit Appendix."
-version: 1.11.0.13
+version: 1.11.1.0
 ---
 
 # DRV-025 -- Review report synthesis has all 9 sections
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review report synthesis and confirm review-report.md contains all 9 required sections.
 ### Commands
 1. `bash: rg -n 'Executive Summary|Planning Trigger|Active Finding Registry|Remediation Workstreams|Spec Seed|Plan Seed|Traceability Status|Deferred Items|Audit Appendix|review-report' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
-2. `bash: rg -n 'review-report|synthesis|9.*section|Executive Summary|Planning Trigger|Active Finding|Remediation|Spec Seed|Plan Seed|Traceability|Deferred|Audit Appendix' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'review-report|synthesis|9.*section|Executive Summary|Planning Trigger|Active Finding|Remediation|Spec Seed|Plan Seed|Traceability|Deferred|Audit Appendix' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'review-report|synthesis|9.*section|report.*section|Executive Summary|verdict|hasAdvisories' .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/commands/deep/review.md`
 ### Expected
 All 9 section headers present, Executive Summary contains verdict and P0/P1/P2 counts, Active Finding Registry has deduplicated findings, Audit Appendix includes convergence data.
@@ -72,8 +72,7 @@ Privilege the quick reference section table as the canonical list and verify the
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Canonical 9-section table, use `ANCHOR:review-report-sections` |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Synthesis step producing review-report.md |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Synthesis step producing review-report.md |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Synthesis step producing review-report.md |
 | `.skilled/commands/deep/review.md` | Command entrypoint, output format documentation |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Review report structure and verdict rules, use `ANCHOR:how-it-works` |
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary for review report synthesis |

@@ -25,10 +25,10 @@ contextType: "general"
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 8 |
+| **Phase** | 8 of 11 |
 | **Predecessor** | 007-shared-blocks-and-retired-mechanisms |
-| **Successor** | None |
-| **Handoff Criteria** | Every CHECK block in `plan.md` section 5 prints its expected output, `acceptance-criteria.md` has no `Unmet` row and `validate.sh --strict` prints `RESULT: PASSED`. This is the last phase, so the parent closes next |
+| **Successor** | 009-resume-contract-owned-assets |
+| **Handoff Criteria** | Every CHECK block in `plan.md` section 5 prints its expected output, `acceptance-criteria.md` has no `Unmet` row and `validate.sh --strict` prints `RESULT: PASSED`. Phase 9 follows |
 <!-- /ANCHOR:metadata -->
 
 ---

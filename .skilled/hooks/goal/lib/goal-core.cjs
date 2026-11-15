@@ -43,8 +43,8 @@ const STATE_DIR_ENV = 'OPENCODE_GOAL_STATE_DIR';
 const DISABLED_ENV = 'OPENCODE_GOAL_DISABLED';
 // The hand-over wrapper exports the packet under the first name, and the second one turns
 // the whole behavior off, in the environment or in the operator flags file.
-const RELAUNCH_GOAL_PACKET_ENV = 'SESSION_RELAUNCH_GOAL_PACKET';
-const RELAUNCH_GOAL_SWITCH_ENV = 'SESSION_RELAUNCH_GOAL';
+const RELAUNCH_GOAL_PACKET_ENV = 'SESSION_HANDOVER_GOAL_PACKET';
+const RELAUNCH_GOAL_SWITCH_ENV = 'SESSION_HANDOVER_GOAL';
 const RELAUNCH_GOAL_OFF_VALUES = Object.freeze(['0', 'false', 'off', 'no']);
 // A dispatched child session inherits the receiver's environment, packet variable included,
 // and is not the receiver. This marker is how every repo hook tells such a child apart.
@@ -1173,7 +1173,7 @@ function bindGoalInScope(goalScope, { packetPath, tokenBudget = null, runtimeLab
  * switches do, so a test never reads the operator's file.
  *
  * @param {Object<string, string|undefined>} [env] - Environment to read, the live one by default.
- * @returns {boolean} False only when SESSION_RELAUNCH_GOAL is an off value.
+ * @returns {boolean} False only when SESSION_HANDOVER_GOAL is an off value.
  */
 function relaunchGoalEnabled(env = process.env) {
   let raw = env[RELAUNCH_GOAL_SWITCH_ENV];
@@ -1245,7 +1245,7 @@ function bindGoalIfUnbound({ packetPath = '', runtimeLabel = null } = {}, rawOpt
 }
 
 /**
- * Bind the packet a relaunch hand-over named, read from `SESSION_RELAUNCH_GOAL_PACKET`, to a
+ * Bind the packet a relaunch hand-over named, read from `SESSION_HANDOVER_GOAL_PACKET`, to a
  * session that has no goal of its own. Reads nothing but the environment until a packet is
  * named, so a session that was never handed one pays no file access. A session running with
  * `AI_SESSION_CHILD=1` never binds: it is a dispatched child, not the receiver.

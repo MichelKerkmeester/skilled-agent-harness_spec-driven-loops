@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.8.0
+version: 1.11.11.0
 ---
 
 # Deep Review Loop Protocol
@@ -60,8 +60,8 @@ Each agent dispatch gets a fresh context window. State continuity comes from fil
 | Resource | Path | Purpose |
 |----------|------|---------|
 | Review contract | `assets/review-mode-contract.yaml` | Dimensions, verdicts, gates, protocols |
-| Auto workflow | `.skilled/commands/deep/assets/deep-review-auto.yaml` | Unattended review loop |
-| Confirm workflow | `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Step-by-step review with approval gates |
+| Auto workflow | `.skilled/commands/deep/assets/deep-review.yaml` | Unattended review loop |
+| Confirm workflow | `.skilled/commands/deep/assets/deep-review.yaml` | Step-by-step review with approval gates |
 | Agent | `@deep-review` (LEAF) | Single iteration executor, no sub-agents, no WebFetch |
 | Memory save | `generate-context.js` | Context preservation script |
 
@@ -189,7 +189,7 @@ Run `shouldContinue_review()` (see `../deep-research/references/convergence/conv
   - Evidence, scope, and coverage gates pass
 - Otherwise: `CONTINUE`
 
-If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records nine review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate` (see `../convergence/convergence.md` §1 blocked_stop event example for the authoritative shape). The Step 4a claim-adjudication path treats `claimAdjudicationGate` as a hard STOP gate, so the count covers both the convergence decision tree and the adjudication enforcement path. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
+If convergence math or a hard-stop candidate points to STOP, `runtime/scripts/convergence.cjs` runs the review legal-stop decision tree before the loop stops. That decision tree records nine review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate` (see `../convergence/convergence.md` §1 blocked_stop event example for the authoritative shape). The Step 4a claim-adjudication path treats `claimAdjudicationGate` as a hard STOP gate, so the count covers both the convergence decision tree and the adjudication enforcement path. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
 
 - `blockedBy`: array of the failed review gate names
 - `gateResults`: per-gate pass/fail payloads using the review gate names above
@@ -279,7 +279,7 @@ Before dispatching, the YAML resolves the executor via `parseExecutorConfig` fro
 
 - `native`: dispatch `@deep-review` agent with model Opus.
 - `cli-opencode`: pipe rendered prompt via stdin to `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y]`. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt (`assets/prompt-pack-iteration.md.tmpl`), which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation (`validateIterationOutputs`) catching some violations after the fact. Because review targets are arbitrary code/spec files, they MUST be treated as potentially adversarial content (untrusted) for prompt-injection purposes — the same containment posture as untrusted fetched content in deep-research.
-- `cli-claude-code`: `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only). We override to `acceptEdits` so iteration writes succeed. The inline workflow branches are not the complete schema: `cli-codex` is also an inline branch, while `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness` (experimental) use the shared fan-out adapters; the executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
+- `cli-claude-code`: `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only). We override to `acceptEdits` so iteration writes succeed. The inline workflow branches are not the complete schema: `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness` (experimental) also have inline branches that run `dispatch-iteration.cjs`, and `cli-mistral-vibe` runs only as a fan-out lineage. The executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
 
 All branches share:
 1. Pre-dispatch prompt rendering via `renderPromptPack` (writes to `{artifact_dir}/prompts/iteration-{n}.md`).
@@ -302,7 +302,7 @@ Two containment rules bind every CLI lineage (any `cli-*` executor kind):
   - One exemption still applies to attribution: another run's lineage directory under the same top-level packet is treated as that run's own write surface while its loop lock is live, so two lineages can run in sibling phases of one packet at the same time; a directory with no lock, or a stale one, is still attributed here.
   - The runtime records each finding's diff under the lineage directory at `containment/quarantine/<iteration>[-attempt-<n>]/`, in a `containment-out-of-scope/` subdirectory on the default preserve path and `containment-reverted/` only under restore, where bytes really were rolled back; each pass keeps its own directory so a retry never overwrites an earlier pass's evidence. The pre-dispatch baseline bytes go to `<lineage dir>/containment/baseline/`, so an out-of-scope change stays recoverable either way.
 
-Failure handling is unchanged: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
+Failure handling is unchanged: `schema_mismatch` → conflict event → retry. Three consecutive failures stop the loop with stop reason `error`.
 
 **Agent constraints**:
 - `@deep-review` is LEAF-only: it cannot dispatch sub-agents
@@ -549,11 +549,11 @@ Preserve review context to the memory system for future session recovery and cro
 
 ### Steps
 
-1. **Compose context payload**: Create a structured JSON payload with the review summary, active findings, verdict, next action, and relevant artifacts. Use `specFolder` for the target packet and include curated `observations`, `recent_context`, `toolCalls`, and `exchanges` when available.
+1. **Compose context payload**: Create a structured JSON payload with the review summary, active findings, verdict, next action, and relevant artifacts. Use `specFolder` for the target packet and include curated `observations`, `recent_context`, `toolCalls`, and `exchanges` when available. A full-auto save writes continuity only from `recent_action`, `next_safe_action`, `blockers` and `key_files`, so the payload carries all four. Write it to the session-scoped file `/tmp/save-context-data-<session-id>.json`.
 
-2. **Generate context**: Run the memory save script with structured JSON via `--stdin`, `--json`, or a session-scoped JSON file:
+2. **Generate context**: Run the continuity writer on that file with `--full-auto`. Without `--full-auto` the writer only plans and writes no continuity.
    ```bash
-   node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"{spec_folder}","sessionSummary":"Deep review completed; see review/review-report.md for verdict and findings."}' {spec_folder}
+   node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder} --full-auto
    ```
 
 3. **No extra indexing step in the live contract**: `generate-context.js` is the supported save boundary for this workflow.
@@ -678,7 +678,7 @@ On the next invocation:
 
 ### Confirm Mode Approval Gates
 
-In confirm mode (`deep-review-confirm.yaml`), the workflow adds explicit approval gates instead of relying on the pause sentinel:
+In confirm mode (`deep-review.yaml`), the workflow adds explicit approval gates instead of relying on the pause sentinel:
 
 | Gate Location | Behavior |
 |---------------|----------|
@@ -714,11 +714,12 @@ Every executor path MUST satisfy:
 - JSONL not appended: `jsonl_not_appended`.
 - JSONL missing required fields: `jsonl_missing_fields`.
 - JSONL malformed: `jsonl_parse_error`.
-- 3 consecutive failures: existing `stuck_recovery` event (unchanged).
+- Missing executor identity: `executor_missing` from `runtime/scripts/verify-iteration.cjs`, when the run config names a non-native executor and the iteration records none. A fan-out lineage is checked against the `invocation-metadata.json` in its folder instead, and a missing file or a different executor kind fails it.
+- 3 consecutive failed iterations: the loop stops with stop reason `error`.
 
 ### JSONL Audit Field
 
-Non-native executor runs append an `executor` block with model and runtime settings to the iteration's JSONL record via `executor-audit.ts`. Native runs are recoverable from YAML alone.
+Non-native executor runs record an `executor` block with model and runtime settings through `executor-audit.ts`. On a ledger-backed state log it lands on the iteration's opening `iteration_start` row, which the append gateway keeps through every refresh. On a log with no ledger it is merged onto the iteration's JSONL record. Native runs are recoverable from YAML alone.
 
 ### Template And Config Surface
 
@@ -727,8 +728,8 @@ The executor-agnostic iteration prompt lives at `assets/prompt-pack-iteration.md
 ### What Never Changes Regardless Of Executor Route
 
 - YAML owns state (`deep-review-state.jsonl`, strategy.md, registry, dashboard).
-- `reduce-state.cjs` is the single state writer.
-- Convergence detection, lifecycle events (new/resume/restart), the review dimensions pass, and stuck_recovery stay YAML-driven.
+- The append gateway (`runtime/scripts/append-mode-event.cjs`) is the single writer of a ledger-backed state log. A log with no ledger keeps direct writes. `reduce-state.cjs` never writes the state log. It derives the strategy, the registry and the dashboard.
+- Lifecycle events (new/resume/restart) and the review dimensions pass stay workflow-driven. The stop decision comes from `runtime/scripts/convergence.cjs`.
 - The `@deep-review` LEAF agent definition is untouched: it is the native executor, not the only one.
 
 ### Code-Graph Readiness TrustState Surface
@@ -763,8 +764,8 @@ Protocol documents from `deep-research` are cross-referenced, not duplicated:
 
 | Mode | Path |
 |------|------|
-| Auto (unattended) | `.skilled/commands/deep/assets/deep-review-auto.yaml` |
-| Confirm (step-by-step) | `.skilled/commands/deep/assets/deep-review-confirm.yaml` |
+| Auto (unattended) | `.skilled/commands/deep/assets/deep-review.yaml` |
+| Confirm (step-by-step) | `.skilled/commands/deep/assets/deep-review.yaml` |
 
 ### Agent
 

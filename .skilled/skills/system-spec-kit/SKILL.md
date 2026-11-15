@@ -140,7 +140,7 @@ Recovery follows the continuity ladder, which stays the primary path, rather tha
 3. Packet-first spec docs
 4. The bounded context recipe
 
-`/speckit:resume` owns the ladder. A compaction may add one bounded `## History Lookup` section when a fresh locator verifies, and that lookup never replaces the ladder.
+`/speckit:resume` owns the ladder. A claimed handoff note can add one bounded `## History Lookup` section, and that lookup never replaces the ladder.
 Saves go through `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`, invoked by `/speckit:save`.
 The writer updates the packet's continuity surfaces in place.
 

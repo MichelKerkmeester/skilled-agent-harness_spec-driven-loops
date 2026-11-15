@@ -38,7 +38,7 @@ Each sweep is also a module. The live adapters import the Devin, DSH, Pi and Vib
 | `sweep-transcript.test.mjs` | `node --test` suite | Covers transcript replay, chat candidates and deduplication. | Not applicable. |
 | `sweep-vibe.mjs` | Vibe sweep, CLI and module | Exports `isQuestionTool` and `vibeAnswerRecords` for the live adapter and `sweepVibeSession` for the save path. Reads a Vibe session journal and appends the answered question calls it records. | Prints a JSON error object and exits 1 when the journal cannot be read. |
 | `sweep-vibe.test.mjs` | `node --test` suite | Covers the answer mapping, a cancelled question and a sweep whose answer the hook already queued. | Not applicable. |
-| `runtime-refusal.test.mjs` | `node --test` suite | Checks that the concern README carries a coverage row for all seven runtimes and that every cell has a known state with a non-empty reason. | Not applicable. |
+| `runtime-refusal.test.mjs` | `node --test` suite | Checks that the concern README carries a coverage row for all eight runtimes and that every cell has a known state with a non-empty reason. | Not applicable. |
 
 The `fixtures/` folder holds the recorded runtime payloads these suites replay.
 

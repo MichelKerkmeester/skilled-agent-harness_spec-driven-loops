@@ -25,6 +25,7 @@ describe('lifecycle taxonomy (promoted contract)', () => {
       'error',
       'stuckRecovery',
       'userPaused',
+      'maxDurationReached',
     ]);
   });
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "packet purpose across handovers"
   - "compaction packet purpose"
   - "purpose line on resume"
-version: 1.0.1.0
+version: 1.0.5.0
 ---
 
 # Packet purpose carry
@@ -53,7 +53,7 @@ Each save stores the sentence as `packet_purpose` in the continuity block. Devin
 | `runtime/hooks/claude/session-prime.ts` | Handler | Leads a Claude or Codex compaction recovery with the `## Packet Purpose` section. |
 | `runtime/hooks/pi/session-compact-context.ts` | Handler | Adds the same section to the Pi compaction message, including from a subfolder. |
 | `runtime/cli/core/workflow.ts` | Handler | Writes `packet_purpose` into the continuity block on save. |
-| `.skilled/hooks/session-relaunch/lib/nudge.cjs` | Shared | Tells the relaunch note to open `## Goal` with the purpose line. |
+| `.skilled/hooks/session-handover/lib/nudge.cjs` | Shared | Tells the relaunch note to open `## Goal` with the purpose line. |
 | `.skilled/commands/speckit/handoff.md` | Script | Defines the note rules, including the purpose line and the parent and goal fallbacks. |
 | `.skilled/commands/speckit/assets/speckit-resume.yaml` | Script | Carries the purpose row for the resume brief in both modes. |
 
@@ -63,8 +63,8 @@ Each save stores the sentence as `packet_purpose` in the continuity block. Devin
 |---|---|---|
 | `runtime/tests/packet-purpose.vitest.ts` | Vitest | Resolution from the packet, the nearest parent and the goal Objective, the three line shapes and the excluded text. |
 | `runtime/tests/hook-session-start.vitest.ts` | Vitest | The Claude compact recovery leads with the section and omits it when no packet purpose exists. |
-| `runtime/tests/history-locator-adapters.vitest.ts` | Vitest | The Pi adapter carries the section, walks up from a subfolder and keeps the recovery when the purpose is absent. |
-| `.skilled/hooks/session-relaunch/tests/nudge.test.cjs` | Node test | The relaunch note opens its Goal with the purpose line and keeps the parent and goal fallbacks. |
+| `runtime/tests/compaction-adapters.vitest.ts` | Vitest | The Pi adapter carries the section, walks up from a subfolder and keeps the recovery when the purpose is absent. |
+| `.skilled/hooks/session-handover/tests/nudge.test.cjs` | Node test | The relaunch note opens its Goal with the purpose line and keeps the parent and goal fallbacks. |
 | `runtime/cli/tests/test-phase-command-workflows.js` | Node test | The resume and handoff workflow assets keep the shared purpose row and line shapes. |
 
 ---
@@ -76,8 +76,8 @@ Each save stores the sentence as `packet_purpose` in the continuity block. Devin
 - Feature file path: `context-preservation/packet-purpose-carry.md`
 
 Related references:
-- [Session relaunch loop](session-relaunch-loop.md) - the handoff note that opens with the purpose line.
-- [Compaction history lookup](compaction-history-lookup.md) - the post-compaction recovery that the purpose section leads.
+- [Session handover loop](session-handover-loop.md) - the handoff note that opens with the purpose line.
+- [Handoff history lookup](compaction-history-lookup.md) - the lookup a claimed handoff offers for the sender's earlier turns.
 - [Packet purpose on resume](../../manual-testing-playbook/plugins-and-hooks/packet-purpose-resume.md) - the operator scenario for the resume brief.
 - [Packet purpose on relaunch](../../manual-testing-playbook/plugins-and-hooks/packet-purpose-relaunch.md) - the operator scenario for the relaunch note.
 - [Packet purpose after a Claude compaction](../../manual-testing-playbook/plugins-and-hooks/packet-purpose-claude-compaction.md) - the operator scenario for the Claude recovery.

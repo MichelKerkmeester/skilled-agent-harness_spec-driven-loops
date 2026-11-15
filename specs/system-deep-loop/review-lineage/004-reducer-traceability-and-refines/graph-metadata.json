@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`parseIterationFile` maps the `Traceability Checks` section to dead ends when an iteration has no `Dead Ends` section (`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:349`)",
     "created_at": "2026-11-14T17:02:08Z",
-    "last_save_at": "2026-11-14T17:22:36.067Z",
+    "last_save_at": "2026-11-15T14:29:15.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80161cdfe9ebaeb07667464967aeca1c1be116a49a630cf2f8dac959cadc8206",
+    "source_fingerprint": "sha256:8aa54c6261a77e14ad6559f6a1b1e3609ffe7f321da2e6c87f639be750ea9934",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "466b5291faa32de85861c0803242e4379e9e1f87426b32bc2be8366aa7971d51",
+      "spec.md": "b0bfa3c5f2a480b366554acfe39fe1c02bde3b1b2ab92788671e2ad7e65cd27e",
       "plan.md": "b2c8ce8d3cf92624d84b2c70d43abb05d92bb5adb6bd5d6fcf9e04c759fc3576",
       "tasks.md": "e4d4540005bc00310ddb053c4d516307e2064683cdb0a70e0fb0cdbf0b9b1161",
       "implementation-summary.md": "37aa0d3daf3e1807defef16866cede1fd13ae4af1e273419382ba59718dbf65f"

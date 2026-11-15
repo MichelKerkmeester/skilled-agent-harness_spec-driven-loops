@@ -7,7 +7,7 @@ trigger_phrases:
   - "select review executor"
   - "per-kind flag compatibility"
   - "native cli-opencode dispatch"
-version: 1.11.0.6
+version: 1.11.1.0
 ---
 
 # Executor Selection Contract
@@ -24,17 +24,19 @@ The contract lets the same review loop run on different model backends without c
 
 ### Entry Point & Routing
 
-Before each dispatch, the workflow resolves the executor via `parseExecutorConfig` from `runtime//lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects one of three dispatch branches:
+Before each dispatch, the workflow resolves the executor via `parseExecutorConfig` from `runtime//lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch. Every CLI kind runs through `dispatch-iteration.cjs --executor <kind>`:
 
 | Kind | Dispatch |
 |---|---|
 | `native` | `@deep-review` agent with model Opus |
 | `cli-opencode` | rendered prompt piped via stdin to `opencode run --dangerously-skip-permissions`, granting full OS-level workspace write access. There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT honored. The only real containment is the prompt-level "ALLOWED WRITE PATHS"/"BANNED OPERATIONS" contract (model-obeyed, not OS-enforced) plus post-dispatch validation. Review targets must be treated as potentially adversarial content. |
 | `cli-claude-code` | `claude -p` with `--permission-mode acceptEdits` (overriding the read-only `plan` default so iteration writes succeed) |
+| `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` | the kind's own CLI, started by `dispatch-iteration.cjs` with the rendered prompt |
+| `cli-mistral-vibe` | none in a single-executor run, which refuses it. It runs only as a fan-out lineage |
 
 ### Core Behavior
 
-All branches share three steps: pre-dispatch prompt rendering (`renderPromptPack`), post-dispatch validation (`validateIterationOutputs` asserting iteration file plus JSONL delta plus required fields), and an executor audit append (`appendExecutorAuditToLastRecord`, skipped when kind is `native`).
+All branches share three steps: pre-dispatch prompt rendering (`renderPromptPack`), post-dispatch validation (`validateIterationOutputs` asserting iteration file plus JSONL delta plus required fields), and an executor audit append (`appendExecutorAuditToLastRecord`, skipped when kind is `native`). On a ledger-backed state log the executor row goes through the append gateway. `verify-iteration.cjs` then fails a non-native iteration whose state log or lineage metadata names no executor, with `executor_missing`.
 
 ### Configuration
 

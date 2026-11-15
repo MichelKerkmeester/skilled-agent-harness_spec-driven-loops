@@ -1,3 +1,4 @@
 turn	status	attempts	evidence	observed
 request	PASS	1	turns/request	turn-start-bound
-close	PASS	1	turns/close	2026-11-15T01:05:29+0100 action=skip reason=no-session-pid
+close	PASS	1	turns/close	2026-11-15T17:17:43+0100 action=skip reason=no-session-pid
+resumed	PASS	1	turns/resumed	resumed-with-history: Tell me in one sentence what this project contains.

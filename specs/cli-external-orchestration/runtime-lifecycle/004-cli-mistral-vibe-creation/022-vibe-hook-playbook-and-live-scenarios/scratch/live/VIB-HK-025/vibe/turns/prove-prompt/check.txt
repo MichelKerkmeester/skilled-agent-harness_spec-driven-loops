@@ -1,2 +1,0 @@
-$ find "$VIBE_HOME/logs/session/unified" -type f -newer "$CONVERSATION_RUN_DIR/turns/new-conversation/new-marker" -exec grep -l 'Mistral Vibe prompt: /create-goal' {} + | grep -q . && echo prompt-in-first-input
-[exit 1]

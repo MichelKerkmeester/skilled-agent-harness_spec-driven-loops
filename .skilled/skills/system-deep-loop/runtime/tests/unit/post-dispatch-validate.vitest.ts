@@ -465,6 +465,31 @@ describe('post-dispatch-validate', () => {
     });
   });
 
+  it('takes the executor from the iteration_start row of a log with no ledger', () => {
+    withTempPaths(({ iterationFile, stateLogPath }) => {
+      writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');
+      const openingRow = `${JSON.stringify({ type: 'iteration_start', iteration: 1, executor: { kind: 'cli-deepseek-harness', model: 'deepseek-v4.1-flash-1017' } })}\n`;
+      writeFileSync(stateLogPath, openingRow, 'utf8');
+      const previousStateLogSize = statSync(stateLogPath).size;
+
+      writeFileSync(
+        stateLogPath,
+        `${openingRow}${'{"type":"iteration","iteration":1,"newInfoRatio":0.4,"status":"continue","focus":"coverage"}\n'}`,
+        'utf8',
+      );
+
+      expect(
+        validateIterationOutputs({
+          iterationFile,
+          stateLogPath,
+          previousStateLogSize,
+          requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+          executorKind: 'cli-deepseek-harness',
+        }),
+      ).toEqual({ ok: true });
+    });
+  });
+
   it('allows native executor validation to pass without executor provenance for back-compat', () => {
     withTempPaths(({ iterationFile, stateLogPath }) => {
       writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');

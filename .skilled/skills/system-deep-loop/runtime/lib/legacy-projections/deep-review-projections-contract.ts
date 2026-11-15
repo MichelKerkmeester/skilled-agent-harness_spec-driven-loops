@@ -38,8 +38,7 @@ import type {
 // prose a human author composes around them. Projecting fabricated prose
 // would be dishonest, so this contract folds only the findings registry
 // and omits the two prose artifacts, recording the gap rather than
-// inventing bytes. This mirrors the council config-state contract's
-// omission of ai-council-config.json.
+// inventing bytes.
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPES

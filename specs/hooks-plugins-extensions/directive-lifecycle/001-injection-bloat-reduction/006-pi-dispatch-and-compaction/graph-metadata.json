@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/006-pi-dispatch-and-compaction",
+  "spec_folder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/006-pi-dispatch-and-compaction",
+  "parent_id": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi dispatch directive compaction",
+      "pi subagent dispatch shrink",
+      "compact pi arbitration",
+      "pi dedup reset after compaction",
+      "pi dispatch directive plan",
+      "compact pi arbitration plan",
+      "pi compaction dedup reset",
+      "pi dispatch directive tasks",
+      "compact pi arbitration tasks",
+      "pi dispatch directive implementation summary",
+      "compact pi arbitration shadow prototype",
+      "pi dispatch compaction reset verification"
+    ],
+    "key_topics": [
+      "dispatch",
+      "directive",
+      "compaction",
+      "subagent",
+      "shrink",
+      "compact",
+      "arbitration",
+      "dedup",
+      "reset",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eliminated Alternatives",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Enumerate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`PISUBAGENTDISPATCHDIRECTIVE` in `prompt-advisor.ts` emits a 554-byte dispatch directive on every non-empty parent input, even on advisor failure, and by policy is never copied into child prompts",
+    "created_at": "2026-08-06T11:07:29.467Z",
+    "last_save_at": "2026-11-15T07:08:32.157Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:edec94be3121f9db3f10cb3b1036a6cc01f56a54dc2e4e7fb32aeec4f6304240",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bcb0c46095e49aec0defc386c67933f2309232c12ad3cc3d3cfaac0e5f1806ce",
+      "plan.md": "016c4dce92073d229d0fcd7b4221dbc6ffe37e569b7315c6e04ad801491ced79",
+      "tasks.md": "f81eccc12a430649bd69f9790f7c655485669d6c585f36e81f527ac2a209bc59",
+      "implementation-summary.md": "9397ce9abaea465f0e152bdb874ee5cd9ea4016ec29f14ffad881e178edc00f5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

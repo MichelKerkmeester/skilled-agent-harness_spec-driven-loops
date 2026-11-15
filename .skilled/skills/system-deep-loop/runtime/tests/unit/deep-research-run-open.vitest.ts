@@ -58,9 +58,9 @@ function researchDir(sessionId: string, relativeDir = 'research'): string {
   return dir;
 }
 
-function initStepCommand(variant: 'auto' | 'confirm'): string {
+function initStepCommand(): string {
   const yaml = readFileSync(
-    join(REPO_ROOT, '.skilled/commands/deep/assets/deep-research-' + variant + '.yaml'),
+    join(REPO_ROOT, '.skilled/commands/deep/assets/deep-research.yaml'),
     'utf8',
   );
   const lines = yaml.split('\n');
@@ -75,8 +75,8 @@ function initStepCommand(variant: 'auto' | 'confirm'): string {
   return body.join('\n');
 }
 
-function runInit(variant: 'auto' | 'confirm', dir: string): ReturnType<typeof spawnSync> {
-  const command = initStepCommand(variant)
+function runInit(dir: string): ReturnType<typeof spawnSync> {
+  const command = initStepCommand()
     .replaceAll('{state_paths.config}', join(dir, 'deep-research-config.json'))
     .replaceAll('{state_paths.state_log}', join(dir, 'deep-research-state.jsonl'));
   return spawnSync('bash', ['-c', command], { cwd: REPO_ROOT, encoding: 'utf8' });
@@ -142,14 +142,11 @@ function expectRunOpenAndIteration(dir: string, init: ReturnType<typeof spawnSyn
 }
 
 describe('deep-research run open', () => {
-  it.each(['auto', 'confirm'] as const)(
-    'the %s init step opens the run for later gateway appends',
-    (variant) => {
-      const sessionId = 'research-' + variant + '-run';
-      const dir = researchDir(sessionId);
-      expectRunOpenAndIteration(dir, runInit(variant, dir), sessionId);
-    },
-  );
+  it('the init step opens the run for later gateway appends', () => {
+    const sessionId = 'research-run';
+    const dir = researchDir(sessionId);
+    expectRunOpenAndIteration(dir, runInit(dir), sessionId);
+  });
 
   it('uses the same init step for a fan-out lineage directory', () => {
     const sessionId = 'fanout-research-seat-run';
@@ -164,23 +161,20 @@ describe('deep-research run open', () => {
     );
     expect(prompt).toContain('config.fanout_lineage_artifact_dir: ' + dir);
     expect(prompt).toContain('Run phase_init, phase_main_loop');
-    expectRunOpenAndIteration(dir, runInit('auto', dir), sessionId);
+    expectRunOpenAndIteration(dir, runInit(dir), sessionId);
   });
 
-  it.each(['auto', 'confirm'] as const)(
-    'the %s init step projects the configured topic into the opening config row',
-    (variant) => {
-      const sessionId = 'research-' + variant + '-topic-run';
-      const dir = researchDir(sessionId);
-      const init = runInit(variant, dir);
-      expect(init.status, String(init.stdout) + String(init.stderr)).toBe(0);
-      expect(stateRows(dir)[0]).toMatchObject({
-        type: 'config',
-        topic: 'Inspect gateway initialization behavior',
-        maxIterations: 3,
-      });
-    },
-  );
+  it('the init step projects the configured topic into the opening config row', () => {
+    const sessionId = 'research-topic-run';
+    const dir = researchDir(sessionId);
+    const init = runInit(dir);
+    expect(init.status, String(init.stdout) + String(init.stderr)).toBe(0);
+    expect(stateRows(dir)[0]).toMatchObject({
+      type: 'config',
+      topic: 'Inspect gateway initialization behavior',
+      maxIterations: 3,
+    });
+  });
 
   // A lineage that writes its own config row leaves the ledger with no run-open
   // event. Every later append used to land in the ledger and then fail its
@@ -264,7 +258,7 @@ describe('deep-research run open', () => {
   it('stores a retried identical event once', () => {
     const sessionId = 'research-retry-run';
     const dir = researchDir(sessionId);
-    expect(runInit('auto', dir).status).toBe(0);
+    expect(runInit(dir).status).toBe(0);
     for (let attempt = 1; attempt <= 2; attempt += 1) {
       const append = gateway(dir, iterationRecord(sessionId));
       expect(append.status, append.stdout).toBe(0);
@@ -273,12 +267,11 @@ describe('deep-research run open', () => {
     expect(stateRows(dir).map((row) => row.type)).toEqual(['config', 'iteration']);
   });
 
-  it('declares initialization as spoken by both research workflow variants', () => {
+  it('declares initialization as spoken by the research workflow', () => {
     expect(DEEP_RESEARCH_STEM_PRODUCERS['deep_research.run_initialized']).toEqual({
       status: 'spoken',
       producers: [
-        '.skilled/commands/deep/assets/deep-research-auto.yaml',
-        '.skilled/commands/deep/assets/deep-research-confirm.yaml',
+        '.skilled/commands/deep/assets/deep-research.yaml',
       ],
     });
   });

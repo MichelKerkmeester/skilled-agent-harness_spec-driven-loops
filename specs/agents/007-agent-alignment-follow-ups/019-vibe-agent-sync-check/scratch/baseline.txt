@@ -1,0 +1,17 @@
+commit: 64dd47d07ef
+$ sync-agents-vibe.cjs --check
+[vibe-agent-sync] Drift detected:
+[vibe-agent-sync] STALE .vibe/agents/markdown.toml
+[vibe-agent-sync] STALE .vibe/agents/orchestrate.toml
+[vibe-agent-sync] FAIL: 2 drift item(s); run without --check to regenerate
+exit=(not captured: zsh has no PIPESTATUS)
+$ sync-skills-vibe.cjs --check
+[vibe-skill-sync] LINKS: 55
+[vibe-skill-sync] PASS: 55 skill links are in sync.
+exit=(not captured: zsh has no PIPESTATUS)
+$ sync-prompts-vibe.cjs --check
+[vibe-prompt-sync] PASS: 45 prompt stubs are in sync.
+exit=(not captured: zsh has no PIPESTATUS)
+$ grep -c vibe command-tree-parity.yml
+0
+note: a separate run of sync-agents-vibe.cjs --check at this commit, with no pipe, exited 1

@@ -265,10 +265,10 @@
   {
     "command": "/speckit:handoff",
     "ownerMode": "system-spec-kit",
-    "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+    "description": "Write the handoff note and prepare the session handover loop: the manual trigger on every runtime.",
     "argumentHint": "(no arguments)",
     "mutating": "mutates",
-    "gate3_location": "a handoff note in the bound spec folder, then a session relaunch",
+    "gate3_location": "a handoff note in the bound spec folder, then a session handover",
     "ask_first": [
       "relaunch"
     ],
@@ -279,7 +279,10 @@
         "hand this off",
         "write a handoff note",
         "wrap up this session",
-        "running out of context"
+        "running out of context",
+        "session handover",
+        "in session handover",
+        "session-handover"
       ]
     },
     "choreography": [
@@ -288,6 +291,47 @@
         "skill": "system-spec-kit",
         "resource": ".skilled/skills/system-spec-kit/SKILL.md",
         "action": "load the system-spec-kit workflow contract and continuity rules"
+      }
+    ]
+  },
+  {
+    "command": "/speckit:ai-council",
+    "ownerMode": "system-spec-kit",
+    "description": "AI Council, 3 steps: bind the spec folder, dispatch @ai-council once, report the plan. Modes :auto, :confirm.",
+    "argumentHint": "<question-or-task> [:auto|:confirm] [--spec-folder=PATH]",
+    "mutating": "mutates",
+    "gate3_location": "ai-council artifacts under the bound spec folder, written by the ai-council agent",
+    "ask_first": [
+      "spend"
+    ],
+    "userIntent": {
+      "job": "I want several AI seats with different lenses to weigh a planning question and return one recommended plan.",
+      "ownedSignals": [
+        "/speckit:ai-council",
+        "convene an ai council",
+        "ask the council",
+        "ai council",
+        "get a council verdict on this plan"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/skills/system-spec-kit/SKILL.md",
+        "action": "load the system-spec-kit workflow contract and the spec folder rules"
+      },
+      {
+        "order": 2,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-ai-council-presentation.txt",
+        "action": "load the presentation source of truth before rendering any prompt, checkpoint or result block"
+      },
+      {
+        "order": 3,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-ai-council.yaml",
+        "action": "load the workflow definition and follow it for the resolved execution mode"
       }
     ]
   }

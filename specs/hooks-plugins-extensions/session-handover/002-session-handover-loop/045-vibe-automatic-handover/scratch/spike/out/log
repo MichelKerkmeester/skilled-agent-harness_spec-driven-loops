@@ -1,0 +1,9 @@
+turn1 answered
+breakdown file: /Users/michelkerkmeester/worktrees/public/406-vibe-automatic-handover/specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/045-vibe-automatic-handover/scratch/spike/out/vibe-home/logs/session/unified/5c2b8c2e-98f6-325d-bd8c-e69009d2bb73/context-breakdown.json
+after turn1 mtime=1794742489 {"system": 59832, "tools": 17599, "skills": 0, "conversation": 33}
+turn2 answered
+after turn2 mtime=1794742495 {"system": 59832, "tools": 17599, "skills": 0, "conversation": 3380}
+pane pid 57086
+target pid 57090 comm /Users/michelkerkmeester/.local/share/uv/tools/mistral-vibe/lib/python3.12/site-packages/vibe/_bin/vibe-rs
+exit after 1s: VIBE_EXIT=0
+leftover vibe processes: 2

@@ -8,26 +8,28 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards"
-    last_updated_at: "2026-11-14T23:45:00Z"
-    last_updated_by: "code-worker"
-    recent_action: "Built the turn-end composer and its parts"
-    next_safe_action: "Run T017 with an operator"
-    blockers:
-      - "T017: an interactive Vibe TUI session needs an operator, and a print-mode run has no question tool"
+    last_updated_at: "2026-11-15T13:28:55Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed the turn-end guards' live check with a live Vibe run"
+    next_safe_action: "None: the phase is complete"
+    packet_purpose: "Purpose: A main Vibe turn that closes with a prose option menu is sent back once with the ask-surface reprompt, and a completion claim leaves an advisory the model sees on its next turn."
+    blockers: []
     key_files:
-      - ".skilled/hooks/session-lifecycle/vibe/turn-end.mjs"
-      - ".skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs"
-      - ".skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs"
-      - ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs"
+      - "tasks.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a7e6fe0b7cb73c00289430c623d83ddb6d1da02b1a635415bb2023a1e1fa0fbe"
       session_id: "mistral-support-2026-11-14"
       parent_session_id: null
-    completion_pct: 90
+    session_ref:
+      runtime: "claude"
+      sessionId: "425e79e1-c5de-4edb-b8bb-77ee620d2538"
+      workspace: "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime"
+      savedAt: "2026-11-15T13:28:55Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
-    answered_questions:
-      - "The reply is on disk at post_agent time as a completion record; the reader's lastAssistantText prefers it"
-      - "turn_id is stable across a post_agent retry, so the once-per-turn marker keys on it"
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary

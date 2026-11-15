@@ -1,3 +1,3 @@
-$ if ! grep -rqs '"kind":"compaction"' "$VIBE_HOME/logs/session/unified"; then echo 'no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window'; exit 77; fi; for i in $(seq 1 20); do if grep -rqsF 'Context restored after a compaction.\n\n# Goal' "$VIBE_HOME/logs/session/unified" && grep -rqs '"hook":"post_tool_call"' "$VIBE_HOME/logs/session/unified"; then echo reinjection-on-next-tool-call; exit 0; fi; sleep 1; done; echo no-reinjection-after-compaction; exit 1
-no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window
-[exit 77]
+$ for i in $(seq 1 20); do node "$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs" "$VIBE_HOME/logs/session/unified" reinjection && exit 0; sleep 1; done; exit 1
+reinjection in post_tool_call at sequence 78, after compaction at 54
+[exit 0]

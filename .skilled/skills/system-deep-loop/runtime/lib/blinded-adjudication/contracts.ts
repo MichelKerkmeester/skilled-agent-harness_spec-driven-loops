@@ -12,7 +12,6 @@ import type { JsonObject } from '../event-envelope/index.js';
 
 export const AdjudicationDecisionKinds = {
   DEEP_REVIEW: 'deep-review',
-  DEEP_AI_COUNCIL: 'deep-ai-council',
 } as const;
 
 export type AdjudicationDecisionKind =
@@ -38,13 +37,6 @@ Record<AdjudicationDecisionKind, readonly CounterfactualKind[]>
     CounterfactualKinds.IDENTITY_LABEL,
     CounterfactualKinds.DECLARED_CONFIDENCE,
     CounterfactualKinds.POLICY_SPECIFIC,
-  ]),
-  [AdjudicationDecisionKinds.DEEP_AI_COUNCIL]: Object.freeze([
-    CounterfactualKinds.ORDER,
-    CounterfactualKinds.IDENTITY_LABEL,
-    CounterfactualKinds.CLAIMED_EXPERTISE,
-    CounterfactualKinds.DECLARED_CONFIDENCE,
-    CounterfactualKinds.MAJORITY_SIGNAL,
   ]),
 });
 

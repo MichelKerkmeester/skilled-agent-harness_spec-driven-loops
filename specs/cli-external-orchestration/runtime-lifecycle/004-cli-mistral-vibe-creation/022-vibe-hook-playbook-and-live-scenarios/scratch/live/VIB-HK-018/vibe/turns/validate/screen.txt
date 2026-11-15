@@ -2,44 +2,44 @@
   validator-finished                                                                                                                                                                                    
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
                                                                                                                                                                                                         
-  Validator ran and reported FAILED — 5 errors, 1 warning. Note the shell returncode was 0 only because echo validator-finished was the last command; the validator itself failed.                      
+  I'll run the validator as specified.                                                                                                                                                                  
+                                                                                                                                                                                                        
+⏵ Ran 1 command, thought                                                                                                                                                                                
+                                                                                                                                                                                                        
+  Validator ran and reported FAILED — 5 errors, 1 warning.                                                                                                                                             ▃
                                                                                                                                                                                                         
                                                                                                                                                                                                         
   Errors                                                                                                                                                                                                
                                                                                                                                                                                                         
-  ┌─────────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
-  │ Check                       │ Finding                                                                                                                                                           │   
-  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ FILE_EXISTS                 │ Missing 2 required files for Level 1: plan.md, tasks.md                                                                                                           │   
-  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ TEMPLATE_SOURCE             │ spec.md has no template source header                                                                                                                             │   
-  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ ANCHORS_VALID               │ spec.md: no anchors found                                                                                                                                         │   
-  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ GREP_CONVENTION             │ spec.md line 0: no frontmatter block, so no retrievable trigger phrases                                                                                           │   
-  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ LEVEL_MATCH                 │ Missing plan.md and tasks.md for Level 1; spec.md does not declare a level (expected Level 1)                                                                     │   
-  └─────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+  ┌──────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ Check                        │ Detail                                                                                                                                                           │   
+  ├──────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ FILE_EXISTS                  │ Missing 2 required files for Level 1: plan.md, tasks.md                                                                                                          │   
+  ├──────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ TEMPLATE_SOURCE              │ spec.md has no template source header                                                                                                                            │   
+  ├──────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ ANCHORS_VALID                │ spec.md: no anchors found                                                                                                                                        │   
+  ├──────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ GREP_CONVENTION              │ spec.md has no frontmatter block, so it carries no retrievable trigger phrases                                                                                   │   
+  ├──────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ LEVEL_MATCH                  │ spec.md does not declare a level (expected Level 1); plus the two missing Level 1 files                                                                          │   
+  └──────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
                                                                                                                                                                                                         
                                                                                                                                                                                                         
   Warning                                                                                                                                                                                               
                                                                                                                                                                                                         
-  GRAPH_METADATA_PRESENT — graph metadata checked (informational, not a failure).                                                                                                                       
+  GRAPH_METADATA_PRESENT — reported as "Graph metadata checked" (the ! marker, no detail line).                                                                                                         
                                                                                                                                                                                                         
                                                                                                                                                                                                         
-  What passed                                                                                                                                                                                           
+  What it means                                                                                                                                                                                         
                                                                                                                                                                                                         
-  Placeholder fill, frontmatter continuity basics, memory blocks, spec-doc sufficiency, comment hygiene, TOC policy, folder naming, frontmatter values, wikilinks, and all                              
-  canonical-save/graph-metadata checks (mostly "not applicable" for this folder).                                                                                                                       
+  The packet is a bare spec.md with no frontmatter and no anchors, sitting in a folder the validator infers as Level 1. Three of the five errors trace back to that one root cause: no frontmatter →    
+  no trigger phrases, no declared level, no template stamp. The other two are simply absent scaffolding (plan.md, tasks.md).                                                                            
                                                                                                                                                                                                         
+  Everything else passed — placeholder fill, frontmatter memory block, spec-doc sufficiency, folder naming, wikilinks, and the comment-hygiene marker check.                                            
                                                                                                                                                                                                         
-  Reading of it                                                                                                                                                                                         
-                                                                                                                                                                                                        
-  The packet is a stub: spec.md exists but has no frontmatter block and no anchors, and the Level 1 companions plan.md and tasks.md were never created. The LEVEL_MATCH and FILE_EXISTS errors are      
-  the same root cause counted twice, and GREP_CONVENTION plus TEMPLATE_SOURCE both trace back to the missing frontmatter. Fixing spec.md's frontmatter and adding the two companion files should        
-  clear all five.                                                                                                                                                                                       
-                                                                                                                                                                                                        
-  Want me to scaffold plan.md and tasks.md and add the frontmatter to spec.md?                                                                                                                          
+  One caveat on the invocation: the trailing ; echo validator-finished means the shell's exit code came from echo, not the validator, so the returncode: 0 above is not the validator's status. If      
+  you want the real exit code for scripting, drop the echo or capture $? before it.                                                                                                                     
 
                                                 
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
@@ -47,5 +47,5 @@
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.vIu69q6bpJ/vibe                                                                                                       ctx ▎      11.5k/256k
+/private/tmp/vib-hk-018/vibe                                                                                                                                                       ctx ▎      11.8k/256k
 

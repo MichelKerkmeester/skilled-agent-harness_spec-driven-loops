@@ -137,7 +137,7 @@ ILLEGAL: Orch(0) → @review(1) → @general-purpose(2)
 ILLEGAL: Orch(0) → Sub-Orch(1) → @leaf(2)
 ```
 
-**For `/deep:*` requests, run the command (`/deep:research`, `/deep:review` or `/deep:ai-council`) and never dispatch a deep-loop leaf yourself.** The command creates the loop state and dispatches its leaf at depth 1 with a `Deep Route:` line. Do not route a `/deep:*` request through any intermediary primary agent — dispatching a router at depth 1 that then dispatches the leaf at depth 2 would create an illegal `Orch(0) → intermediary(1) → @leaf(2)` chain.
+**For `/deep:*` requests, run the command (`/deep:research` or `/deep:review`) and never dispatch a deep-loop leaf yourself.** The command creates the loop state and dispatches its leaf at depth 1 with a `Deep Route:` line. Do not route a `/deep:*` request through any intermediary primary agent — dispatching a router at depth 1 that then dispatches the leaf at depth 2 would create an illegal `Orch(0) → intermediary(1) → @leaf(2)` chain.
 
 #### 🔒 LEAF Enforcement Instruction
 
@@ -173,7 +173,7 @@ Before every sub-agent dispatch, compare the selected route, loaded agent defini
 | --- | --- | --- |
 | @context | `.skilled/agents/context.md` | Sub-agent with direct retrieval only. Routes ALL exploration tasks |
 | @deep-research | `.skilled/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state |
-| @ai-council | `.skilled/agents/ai-council.md` | Multi-strategy planning architect (max 3 seats). Writes its own `ai-council/**` artifacts with Write and Edit and names each state event in order for the caller to record through the append gateway; the caller runs no persistence step afterwards. One round per invocation: the caller owns the round loop, the resume and `max_rounds` (default 3). |
+| @ai-council | `.skilled/agents/ai-council.md` | Multi-strategy planning architect (max 3 seats). Writes its own `ai-council/**` artifacts and its state log with Write and Edit, and runs every round up to `max_rounds` (default 3), so @orchestrate runs nothing after it returns. The plan is in `council-report.md` inside the bound packet. `/speckit:ai-council` binds the spec folder and dispatches it once. |
 | @markdown | `.skilled/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
 | @review | `.skilled/agents/review.md` | Codebase-agnostic code review; verdict follows severity, score is advisory |
 | @deep-review | `.skilled/agents/deep-review.md` | LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state |
@@ -230,7 +230,7 @@ TASK #N: [Descriptive Title]
 └─ Est. Tool Calls: [N] ([breakdown]) → [Single agent | Split: M agents × ~K calls] (TCB, `orchestrator-dispatch.md` §6)
 ```
 
-**`Deep Route:` resolution rule (registry-backed, not judgment):** You MUST resolve `mode` and `target_agent` directly from the matching entry in `.skilled/skills/system-deep-loop/mode-registry.json`, which holds three modes: `research` (`@deep-research`), `review` (`@deep-review`) and `ai-council` (`@ai-council`).
+**`Deep Route:` resolution rule (registry-backed, not judgment):** You MUST resolve `mode` and `target_agent` directly from the matching entry in `.skilled/skills/system-deep-loop/mode-registry.json`, which holds two modes: `research` (`@deep-research`) and `review` (`@deep-review`). The council is not a mode: dispatch `@ai-council` directly or run `/speckit:ai-council`.
 The entry supplies `workflowMode` and `agent` — never infer or guess them.
 A reviewer must be able to verify correctness by diffing the emitted `Deep Route:` line against the registry entry.
 If the registry has no matching entry for the requested mode, stop before dispatch rather than fabricating a route.
@@ -335,7 +335,7 @@ Conditional Branching and an Example Decomposition: `orchestrator-dispatch.md` �
 
 ### Rule 7: External CLI Delegation — Explicit User Request Only
 
-**Trigger:** The user names an external CLI executor in their own words, one of the eight `cli-external-orchestration` executor modes: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness`, `cli-mistral-vibe`. A DeepSeek model named with another runtime names that runtime, so "use cli-opencode with deepseek-v4.1-flash" is `cli-opencode`. Only harness words such as `dsh`, `dsh headless`, `deepseek harness` or `delegate to dsh` name `cli-deepseek-harness`, an experimental mode with no route proven live yet. Only Vibe words such as `vibe`, `vibe -p`, `mistral vibe` or `delegate to vibe` name `cli-mistral-vibe`, an experimental print-mode executor whose roster is closed at `deepseek-flash` and `glm-flash`.
+**Trigger:** The user names an external CLI executor in their own words, one of the eight `cli-external-orchestration` executor modes: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness`, `cli-mistral-vibe`. A DeepSeek model named with another runtime names that runtime, so "use cli-opencode with deepseek-v4.1-flash" is `cli-opencode`. Only harness words such as `dsh`, `dsh headless`, `deepseek harness` or `delegate to dsh` name `cli-deepseek-harness`, an experimental mode with no route proven live yet. Only Vibe words such as `vibe -p`, `mistral vibe` or `delegate to vibe` name `cli-mistral-vibe`, an experimental print-mode executor whose roster is closed at `deepseek-flash` and `glm-flash`. A bare `vibe` is design language ("a calmer vibe") and names no executor.
 
 The transport that answers a typed judgment question lives in the classifier hub: mode `cli-jev` of `.skilled/skills/cli-classifier/`, over the packet `cli-jev`. It runs nothing, so it is never a delegation target, though it can be named the same way — as the object of a request for a judgment rather than for work — and its contract is dispatchable only when the user asks for a judgment.
 
@@ -376,7 +376,7 @@ The transport that answers a typed judgment question lives in the classifier hub
 □ Advisory hints treated as optional: focus steers attention only; drift is surfaced without auto-mutation
 □ Context Package includes all 6 sections (if from @context — includes Nested Dispatch Status section)
 □ @code's `Quality Gate` field read and handled (if from @code: see Reading @code's Quality Gate below)
-□ @review's verdict read from its final `Review status:` line (if from @review: the score is advisory)
+□ @review's verdict read from its final `Review status:` line (if from @review: the score is advisory; a pass at LOW confidence goes to synthesis with its `Not checked:` line quoted, and @review is dispatched once more to close that gap)
 ```
 
 ### Reading @code's Quality Gate

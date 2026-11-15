@@ -1,0 +1,20 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate",
+  "description": "Container folder for hooks-plugins-extensions/git-preflight-and-message-gate.",
+  "keywords": [
+    "git",
+    "preflight",
+    "and",
+    "message",
+    "gate"
+  ],
+  "lastUpdated": "2026-11-15T06:36:38.455Z",
+  "specId": "hooks-plugins-extensions/git-preflight-and-message-gate",
+  "folderSlug": "git-preflight-and-message-gate",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

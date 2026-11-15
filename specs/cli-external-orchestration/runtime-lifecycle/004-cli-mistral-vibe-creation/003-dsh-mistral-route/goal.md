@@ -8,19 +8,18 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route"
-    last_updated_at: "2026-11-14T13:00:00Z"
+    last_updated_at: "2026-11-15T10:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Authored the durable directive from the feasibility check"
-    next_safe_action: "Operator exports MISTRAL_API_KEY, then run T003"
-    blockers:
-      - "MISTRAL_API_KEY is not exported for dispatched shells"
+    recent_action: "Keyed runs failed on reasoning output, so the route was retired"
+    next_safe_action: "None: the phase is closed, and Mistral work goes through cli-mistral-vibe"
+    blockers: []
     key_files:
       - "scratch/draft-route-mistral-deepseek.patch.yml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "mistral-support-2026-11-14"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Mistral rejects the thinking field with 422 and accepts reasoning_effort high and max"

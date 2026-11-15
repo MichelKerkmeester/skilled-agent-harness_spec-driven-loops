@@ -8,26 +8,28 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture"
-    last_updated_at: "2026-11-14T23:45:00Z"
-    last_updated_by: "deepseek-v4.1-flash-1017"
-    recent_action: "Built save nudge and adapter registration"
-    next_safe_action: "Run the TUI procedure in scratch/live-capture/procedure.md with an operator"
-    blockers:
-      - "T017 needs an interactive operator at the Vibe TUI"
+    last_updated_at: "2026-11-15T13:28:58Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed the decision-capture live check with a live Vibe run"
+    next_safe_action: "None: the phase is complete"
+    packet_purpose: "Purpose: Every answered Vibe `ask_user_question` call lands in the decision queue with the same key whether the live hook or the save-time sweep wrote it."
+    blockers: []
     key_files:
-      - ".skilled/hooks/decision-capture/bin/sweep-vibe.mjs"
-      - ".skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs"
-      - ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs"
-      - ".vibe/hooks.toml"
+      - "tasks.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:51b0a0bfbb0b4a4cfa034bc91603c5907dfb7c5b7d5f7eed40703e8f75b30bf3"
       session_id: "mistral-support-2026-11-14"
       parent_session_id: null
-    completion_pct: 90
-    open_questions:
-      - "Does post_tool reach the adapter for the real question tool? Only an interactive TUI run shows it."
-    answered_questions:
-      - "Vibe's answer list maps to the shared normalizer through one Vibe mapper, so the hook and the sweep write one key."
+    session_ref:
+      runtime: "claude"
+      sessionId: "425e79e1-c5de-4edb-b8bb-77ee620d2538"
+      workspace: "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime"
+      savedAt: "2026-11-15T13:28:58Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary

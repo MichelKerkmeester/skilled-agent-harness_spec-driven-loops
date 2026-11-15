@@ -1,45 +1,45 @@
 > Use the sk-prompt skill to turn this rough request into a structured prompt for a coding agent: make the build faster.                                                                                
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 2    │ Role                                       │ absent → added           │ Measurement discipline is the whole task; the role sets it                                                       │   
-  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 3    │ Context                                    │ absent → added           │ Repo has no root manifest and no build script; that fact drives step 1                                           │   
-  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 4    │ Constraints and priorities                 │ absent → added           │ Priority order stated: measure, preserve behaviour, minimal diff                                                 │   
-  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 5    │ Steps                                      │ absent → added           │ The task is a process, not a single edit                                                                         │   
-  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 6    │ Output format                              │ absent → added           │ Numbers need a fixed shape to be comparable                                                                      │   
-  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 7    │ Examples                                   │ not needed               │ No format to imitate; examples would add noise                                                                   │   
-  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 8    │ Success criteria                           │ absent → added           │ Reproducible numbers plus passing checks                                                                         │   
-  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 9    │ Assumptions                                │ absent → added           │ "The build" is undefined; surfaced as open item 1                                                                │   
-  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ 10   │ Wording                                    │ present → kept           │ Plain imperatives, no capitals, reasons given                                                                    │   
-  └──────┴────────────────────────────────────────────┴──────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+   4. The comment-hygiene rule is stated as a durable-why rule, with no ids or spec paths, per the session directive.                                                                                   
                                                                                                                                                                                                         
-  CLEAR screen: 44/50 — C 9 (no contradictions; the undefined build is handled by a stop condition), L 9 (measure → profile → change → re-measure → verify, with a branch for "cannot identify"), E     
-  13 (concrete commands and named phases, no filler), A 9 (output format mirrors the steps), R 4 (method transfers to any repo; only the path is a placeholder). All per-dimension floors met.          
+  Checklist pass (standard effort)                                                                                                                                                                      
                                                                                                                                                                                                         
-  Open items                                                                                                                                                                                            
+  ┌──────────────────────────────────────┬───────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ Row                                  │ Mark                  │ Reason                                                                                                                           │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 1 Task                               │ present               │ Reduce build wall-clock time, proven by re-measurement                                                                           │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 2 Role                               │ present               │ Build-performance engineer; changes the method, not the tone                                                                     │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 3 Context                            │ present               │ Toolchain unknown, so read-first plus cold/warm and noise caveats                                                                │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 4 Constraints                        │ present               │ Output equivalence outranks speed; priority order stated                                                                         │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 5 Process                            │ present               │ Measure → profile → rank → implement → re-measure                                                                                │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 6 Output format                      │ present               │ Seven ordered sections, tables named                                                                                             │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 7 Examples                           │ not needed            │ No format ambiguity to demonstrate                                                                                               │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 8 Success criteria                   │ present               │ Same-method delta, clean-cache parity, checks still pass                                                                         │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 9 Assumptions                        │ present               │ Moved to open items, not embedded in the prompt                                                                                  │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤  ▂
+  │ 10 Wording                           │ present               │ Reasons given instead of capitals; no CRITICAL/MUST                                                                              │   
+  └──────────────────────────────────────┴───────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
                                                                                                                                                                                                         
-   1. "The build" is undefined in this repo — no root package.json, no build script in any of the three manifests. The prompt makes identifying it step 1 rather than assuming one.                    ▄
-   2. <repo-root> is a placeholder; substitute the actual path before dispatch.                                                                                                                         
-   3. I assumed the target is the local contributor build, not CI. If CI is the real complaint, say so and I will retarget steps 2 and 5.                                                               
-   4. No performance target is set. If you have one ("under 60s"), add it to the success criteria — a number beats "faster".                                                                            
+  CLEAR: 44/50 (C:9 L:9 E:13 A:9 R:4) — passes 40 and every per-dimension floor. Correctness and logic hold because the measure-profile-remeasure loop closes and the cold/warm and install-dominated   
+  cases are handled. Expression loses points for length; reusability loses one because the build target is described rather than parameterized.                                                         
                                                                                                                                                                                                         
   Change report                                                                                                                                                                                         
                                                                                                                                                                                                         
-  • Added — role, repo context, six steps, eight constraints including the comment-hygiene hard block, eight-section output format, five success criteria.                                              
-  • Changed — "make the build faster" became a measured before/after task with a stop condition for an unidentifiable build.                                                                            
-  • Removed — nothing; the source carried no material.                                                                                                                                                  
-  • Skipped — row 7, examples: no format to imitate.                                                                                                                                                    
-  • Quick test: NOT RUN — no target model was dispatched to compare old versus new output.                                                                                                              
+  • Added — task outcome, read-first context, five-step process, seven constraints with a stated priority order, seven-section output contract, success criteria, three edge cases.                     
+  • Changed — "make the build faster" became a measured, evidence-gated loop rather than an open-ended optimization request.                                                                            
+  • Removed — nothing; the original carried no content to remove.                                                                                                                                       
+  • Skipped — examples (row 7), since no output format needed demonstrating.                                                                                                                            
+  • Quick test: NOT RUN — no target model available to run representative inputs old versus new.                                                                                                        
                                                                                                                                                                                                         
-  The prompt is roughly 40 times the source, well past the 3x growth warning. That is inherent: the source was four words, and the growth is the measurement discipline the task needs, not imported    
-  scope.                                                                                                                                                                                                
+  The prompt is roughly 40x the original four words. That growth is inherent: the original carried no task detail, so every component had to be supplied rather than expanded.                          
 
                                                 
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
@@ -47,5 +47,5 @@
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.7J0vUgGSN5/vibe                                                                                                         ctx ▊      34k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.tQVPx0MZ1Q/vibe                                                                                                       ctx ▊      32.7k/256k
 

@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/030-opencode2-killer-target",
+  "description": "The OpenCode relaunch plugin passes its own `process.pid` to the killer",
+  "keywords": [
+    "opencode",
+    "relaunch",
+    "plugin",
+    "passes",
+    "own",
+    "process",
+    "pid",
+    "killer"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.910Z",
+  "specId": "030",
+  "folderSlug": "opencode2-killer-target",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

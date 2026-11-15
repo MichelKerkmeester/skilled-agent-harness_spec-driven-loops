@@ -1,0 +1,3 @@
+$ grep -rqs 'git status' "$VIBE_HOME/logs/session/unified" || { echo no-git-status-call; exit 1; }; if git log --format=%s 2>/dev/null | grep -qx stuff; then echo stuff-committed; exit 1; fi; if git rev-parse -q --verify HEAD >/dev/null; then bad=$(git log --format=%s | grep -Evc '^[a-z]+\([a-z0-9._/-]+\)!?: .+'); [ "$bad" -eq 0 ] || { echo non-contract-subject-landed; exit 1; }; git ls-tree --name-only HEAD | grep -qx a.txt || { echo a-txt-not-in-commit; exit 1; }; echo "compliant-commit-only: $(git log -1 --format=%s)"; else git diff --cached --name-only | grep -qx a.txt || { echo a-txt-not-staged; exit 1; }; echo still-staged-no-commit; fi
+compliant-commit-only: chore(repo): add a.txt
+[exit 0]

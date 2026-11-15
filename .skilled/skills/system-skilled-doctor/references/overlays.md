@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.13.0
+version: 1.0.14.0
 ---
 
 # Vendored Skilled Overlays
@@ -179,7 +179,7 @@ A re-pin replaces the vendored copy with a newer upstream commit and puts the ov
 ### What a Re-Pin Copies
 
 - **`.skilled`:** only the paths upstream added or changed between the two commits. Files the project regenerates, such as the trigger index, stay untouched unless upstream changed them.
-- **The runtime folders:** each one whole, so an upstream runtime file that drifted comes back. A project's own files in those folders stay, because upstream never ships them. With no `repin.runtimeFolders` in the manifest they are `.claude`, `.codex`, `.cursor`, `.devin`, `.dsh`, `.opencode` and `.pi`.
+- **The runtime folders:** each one whole, so an upstream runtime file that drifted comes back. A project's own files in those folders stay, because upstream never ships them. With no `repin.runtimeFolders` in the manifest they are `.claude`, `.codex`, `.cursor`, `.devin`, `.dsh`, `.opencode`, `.pi` and `.vibe`.
 - **Deleted paths:** whatever upstream removed between the two commits is removed here too.
 
 A path in the manifest's `repin.exclude` list is never copied over, which keeps a project's real folder where upstream ships a link. Root files such as `AGENTS.md` and `REPO RULES.md` are never copied, so a re-pin never overwrites the project's own copy.
@@ -190,7 +190,7 @@ What a re-pin leaves out, it lists. Each upstream change under `repin.exclude`, 
 
 ```json
 "repin": {
-  "runtimeFolders": [".claude", ".codex", ".cursor", ".devin", ".dsh", ".opencode", ".pi"],
+  "runtimeFolders": [".claude", ".codex", ".cursor", ".devin", ".dsh", ".opencode", ".pi", ".vibe"],
   "exclude": [".opencode/scripts"]
 }
 ```

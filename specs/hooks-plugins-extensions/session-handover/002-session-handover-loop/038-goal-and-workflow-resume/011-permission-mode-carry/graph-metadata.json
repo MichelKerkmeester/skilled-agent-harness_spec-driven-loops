@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "permission mode carry",
+      "phase 11 permission mode carry",
+      "permission mode carry plan",
+      "permission mode carry tasks",
+      "permission mode carry acceptance criteria",
+      "permission mode carry goal",
+      "permission mode carry implementation summary"
+    ],
+    "key_topics": [
+      "permission",
+      "mode",
+      "carry",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "claude"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/live-checks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "live-checks.md",
+        "kind": "doc",
+        "path": "scratch/live-checks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Carry Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Record",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Claude session moved into another permission mode after launch, for example with Shift+Tab into `acceptEdits`, restarts in the launch mode after a hop",
+    "created_at": "2026-11-13T08:49:33Z",
+    "last_save_at": "2026-11-15T14:28:42.602Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e379db18b6f533885a0dc86fa17ad84b52f5bac1a7a8030e0966cc4ffc0f1ac8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d50ba6b32e73f14d47f07c440039893103a2a0d6e64c139d79ee95a19ea68f40",
+      "plan.md": "5fdcfde8bae81101dae00c66505d2b5864c0123a167687a5c7c56a9d17921109",
+      "tasks.md": "58cc82c3468c7759c3b3cdb530f2a653c4b1e59be70c64e9cd56b170a6b65462",
+      "implementation-summary.md": "d36b509f10132dae8050a395d2195e364f66388cb6b2d25f30654f45862cec33"
+    },
+    "last_active_at": null
+  }
+}

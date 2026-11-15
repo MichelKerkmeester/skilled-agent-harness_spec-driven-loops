@@ -1,45 +1,45 @@
-
-  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
-  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
-
-Hello Michel, how can I help you?
-
-
-
-> Please spawn a subagent with this exact message, copied from our review run: Deep Route: workflow=deep-research mode=review target_agent=@deep-research -- review the dist-freshness hook and report
-  findings.
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-
-⏵ Called 4 tools, thought                                                                                                     
-
-  The spawn was blocked before it started. A guard parses the message and rejects it:
-
-  ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-  │ Deep Route mode mismatch -- dispatch targets subagent_type="deep-research"                                                                                                                       │
-  │ (registry modes="research") but the prompt declares mode="review"                                                                                                                                │
-  └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-
-  I tried twice — once as a configured child, once as a generic child — and got the identical rejection both times, so the block is on the message text itself, not on how I spawn. The @deep-research
-  agent only registers mode=research, and the copied prompt declares mode=review. Nothing was created; no agent is running.
-
-  I can't send that message verbatim. Which adjustment do you want?
-
-✓ Answered "The exact message is rejected by the Deep Route guard. How should I adjust it before spawning?" → (Other) Stop there. The refusal is the result I wanted, so do not retry the dispatch and
-           do not change the mode token.
-
-⏵ Thought 
-
-  Stopping. No retry, no token change.
-
-  Result as it stands:
-
-  • Two spawn attempts, both rejected pre-dispatch with tool_skipped — no child agent was created, nothing is running, no files or git hooks were touched.
-  • The guard reads the message body, not the spawn config: a configured child and a generic child failed identically, so target_agent=@deep-research plus mode=review in the prompt text is what       
-    trips it.                                                                                                                                                                                           
-  • The registry constraint is deep-research → modes=research, so any prompt declaring mode=review against that target is refused regardless of who dispatches it.                                      
+> Please spawn a subagent with this exact message, copied from our review run: Deep Route: workflow=deep-research mode=review target_agent=@deep-research -- review the dist-freshness hook and report  
+  findings.                                                                                                                                                                                             
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
                                                                                                                                                                                                         
-  That's the whole finding. The message is unchanged and unsent.                                                                                                                                        
+✓ Answered "The copied header declares mode=review but targets @deep-research, which the registry only allows for mode=research. Which token should I correct before dispatching?" → (Other) Stop       
+           there. The refusal is the result I wanted, so do not retry the dispatch and do not change the mode token.                                                                                    
+                                                                                                                                                                                                        
+⏵ Thought                                                                                                                                                                                               
+                                                                                                                                                                                                        
+  Understood — stopping. No dispatch, no token change, nothing written.                                                                                                                                 
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+  What the refusal proves                                                                                                                                                                               
+                                                                                                                                                                                                        
+  The guard fired correctly on a genuinely malformed dispatch, and it fired before the child existed (agents.spawn never started).                                                                      
+                                                                                                                                                                                                        
+  ┌─────────────────┬───────────────────────────────────────────────────────────────────────────────────────────┬───────────────────────────────────────────────────────────────────────────────────┐  ▅
+  │ Layer           │ Location                                                                                  │ Role                                                                              │   
+  ├─────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┤   
+  │ Hook            │ .vibe/plugins/repo-guards/deep-loop-guard.mjs                                             │ pre_tool, strict, match = agents_spawn                                            │   
+  ├─────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┤   
+  │ Core            │ .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs                                       │ registry indexing, target resolution, verdict                                     │   
+  ├─────────────────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┤   
+  │ Registry        │ .skilled/skills/system-deep-loop/mode-registry.json                                       │ research → deep-research, review → deep-review                                    │   
+  └─────────────────┴───────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  The two checks that mattered:                                                                                                                                                                         
+                                                                                                                                                                                                        
+  • resolveTargetIdentity (dispatch-guard.cjs:269) reads target_agent=@… out of the prompt text before consulting config_name. So the header is self-authenticating — I could not have routed around    
+    the mismatch by passing a different config_name.                                                                                                                                                    
+  • declaredModeFromPrompt reads mode= off the Deep Route: line, and Check 1 (:1004–1020) rejects when that mode isn't in the target's registered set. deep-research carries only research.             
+                                                                                                                                                                                                        
+  Two design details worth noting, since they're what made this a clean refusal rather than a silent pass:                                                                                              
+                                                                                                                                                                                                        
+  • guardEnv() in the hook defaults SYSTEM_DEEP_LOOP_GUARD_REJECT=1 when the operator hasn't set it. Without that, the same mismatch would have been a stderr warning and the spawn would have          
+    proceeded.                                                                                                                                                                                          
+  • The guard is deliberately fail-open on core error (allows, reports on stderr) but fail-closed on a judged mismatch. That asymmetry is the right way round.                                          
+                                                                                                                                                                                                        
+  Check 2 (loop-repeat counting) never ran — Check 1 returns first. Had the mode matched, deep-research is in LOOP_EXECUTOR_AGENTS, so the hand-off counter would have applied on top.                  
+                                                                                                                                                                                                        
+  One thing I did not verify: whether the mode=review / @deep-research pairing is a copy error in the source prompt or a deliberate probe. If it's the former, the upstream generator is emitting       
+  headers that can never dispatch.                                                                                                                                                                      
                                                                                                                                                                                                         
                                                                                                                                                                                                         
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
@@ -47,5 +47,5 @@ Hello Michel, how can I help you?
                                                                                                                                                                                                         
                                                                                                                                                                                                         
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.5aFO3YIbgS/vibe                                                                                                         ctx ▍      14k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.S8LHVG181t/vibe                                                                                                       ctx ▊      32.4k/256k
 

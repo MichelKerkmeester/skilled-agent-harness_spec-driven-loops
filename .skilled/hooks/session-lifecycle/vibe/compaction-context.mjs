@@ -3,10 +3,10 @@
 // MODULE: Vibe Compaction Context Detector
 // ───────────────────────────────────────────────────────────────────
 // Vibe has no compaction hook, and session_start does not run again after an
-// automatic compaction, so the bound packet's goal slice, the history lookup
-// offer and the open handoff pointer are gone for the rest of the run. The
-// journal records every compaction, so this detector compares those entries
-// with a per-session watermark and rebuilds that context once per compaction.
+// automatic compaction, so the bound packet's goal slice and the open handoff
+// pointer are gone for the rest of the run. The journal records every
+// compaction, so this detector compares those entries with a per-session
+// watermark and rebuilds that context once per compaction.
 // The turn-start composer runs it at the next operator message; the post_tool
 // binding runs it at the next tool call when a long headless turn compacted
 // mid-turn. Every path fails open: a missing journal, an unreadable watermark
@@ -23,11 +23,18 @@ import { dirname, isAbsolute, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { renderVibeGoalSlice } from '../../goal/vibe/goal-inject.mjs';
-import { capabilities } from '../../shared/session-readers/index.mjs';
 import { compactionsSince, loadVibeSession } from '../../shared/session-readers/vibe.mjs';
 
 const require = createRequire(import.meta.url);
-const { claimCommandFor, openNotePathFor, resolveRepoRoot } = require('../../session-relaunch/lib/nudge.cjs');
+const {
+  claimCommandFor,
+  handoffPending,
+  handoffWithdrawn,
+  openNotePathFor,
+  resolveRepoRoot,
+  staleNoteText,
+  writeState,
+} = require('../../session-handover/lib/nudge.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -39,32 +46,7 @@ const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..'
 const STATE_RELATIVE_DIR = '.skilled/skills/.state/vibe-compaction';
 const MAX_STATE_BYTES = 4096;
 
-const HISTORY_LOCATOR_VERSION = 1;
-const HISTORY_LOCATOR_KIND = 'transcript_path';
-const HISTORY_LOCATOR_SOURCE = 'post_compaction';
 const COMPACTION_HEADING = 'Context restored after a compaction.';
-
-// The compiled helpers are the one digest, state writer and offer builder every
-// runtime and the CLI share. A missing build disables the offer rather than
-// failing the detector, which still re-injects the goal slice.
-let historySupport = null;
-try {
-  const [digest, state, offer] = await Promise.all([
-    import('../../../skills/system-spec-kit/runtime/dist/hooks/lib/history/locator-digest.js'),
-    import('../../../skills/system-spec-kit/runtime/dist/hooks/claude/hook-state.js'),
-    import('../../../skills/system-spec-kit/runtime/dist/hooks/lib/history/lookup-offer.js'),
-  ]);
-  if (typeof digest.historyHandle === 'function'
-    && typeof digest.persistHistoryLocator === 'function'
-    && typeof state.updateState === 'function'
-    && typeof state.ensureStateDir === 'function'
-    && typeof offer.buildHistoryLookupSection === 'function'
-    && typeof offer.placeLookup === 'function') {
-    historySupport = { digest, state, offer };
-  }
-} catch {
-  historySupport = null;
-}
 
 // The directive store is what keeps the constant advisor block from repeating.
 // Advancing this session's epoch is the compaction boundary the other runtimes
@@ -175,68 +157,23 @@ function writeJournalSize(stateDir, sessionId, size) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. HISTORY LOOKUP
+// 4. HANDOFF POINTER
 // ─────────────────────────────────────────────────────────────────────────────
 
-function historyReady() {
-  return capabilities.vibe?.status === 'ready';
-}
-
-/**
- * Mint the locator for one compacted session.
- *
- * The handle binds the session root the hook received, which is the same path
- * the CLI resolves from `VIBE_HOME` for this session id. The placement is keyed
- * by the checkout root above the session folder, where the printed command runs.
- */
-function mintLocator({ sessionId, workspace, transcriptPath, mintedAt }) {
-  if (!historySupport) return null;
-  const placement = historySupport.offer.placeLookup(workspace);
-  if (!placement) return null;
-  const identity = {
-    runtime: 'vibe',
-    sessionId,
-    ...placement,
-    locatorKind: HISTORY_LOCATOR_KIND,
-  };
-  return {
-    version: HISTORY_LOCATOR_VERSION,
-    ...identity,
-    handle: historySupport.digest.historyHandle(identity, transcriptPath),
-    mintedAt,
-    provenance: { source: HISTORY_LOCATOR_SOURCE, capturedAt: mintedAt },
-  };
-}
-
-// The CLI reads the locator from the hook state keyed by the workspace, so the
-// offer is printed only after that write succeeded.
-function persistLocator(locator) {
-  if (!historySupport) return false;
-  return historySupport.digest.persistHistoryLocator(locator, () => {
-    historySupport.state.ensureStateDir();
-    return historySupport.state.updateState(locator.sessionId, { historyLocator: locator });
-  });
-}
-
-function historySection({ sessionId, workspace, transcriptPath, mintedAt }) {
+function handoffSection(sessionId, env, {
+  pending = handoffPending,
+  withdrawn = handoffWithdrawn,
+  notePathFor = openNotePathFor,
+} = {}) {
   try {
-    if (!historyReady()) return '';
-    const locator = mintLocator({ sessionId, workspace, transcriptPath, mintedAt });
-    if (!locator || !persistLocator(locator)) return '';
-    return historySupport.offer.buildHistoryLookupSection(locator, true) ?? '';
-  } catch {
-    return '';
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 5. HANDOFF POINTER
-// ─────────────────────────────────────────────────────────────────────────────
-
-function handoffSection(sessionId, env) {
-  try {
-    const notePath = openNotePathFor({ repoRoot: resolveRepoRoot(env), sessionId });
+    // A prepared hop already owns the note; pointing this session at a claim would leave
+    // the fresh session nothing to claim.
+    if (pending({ sessionId, env })) return '';
+    const notePath = notePathFor({ repoRoot: resolveRepoRoot(env), sessionId });
     if (!notePath) return '';
+    // The operator withdrew the hand-over after this note was written, so the work since is
+    // not in it, and claiming it would resume work that is already done.
+    if (withdrawn({ sessionId, notePath, env })) return staleNoteText({ notePath });
     return [
       '## Handoff',
       `An open handoff note survives this compaction: ${notePath}`,
@@ -247,8 +184,19 @@ function handoffSection(sessionId, env) {
   }
 }
 
+// A compaction frees the context, so the next fill climbs from the start and earns its nudges
+// again. Best effort: a level that cannot be written only costs a nudge.
+function resetNudgeLevel(sessionId, env) {
+  try {
+    writeState(sessionId, 0, env);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
-// 6. DETECTOR
+// 5. DETECTOR
 // ─────────────────────────────────────────────────────────────────────────────
 
 function resetDirectiveReceipt(sessionId) {
@@ -275,7 +223,8 @@ function resetDirectiveReceipt(sessionId) {
  * @param {Function} [options.listCompactions] - The compaction list, replaced in tests.
  * @param {Function} [options.goalSlice] - The slice renderer, replaced in tests.
  * @param {Function} [options.resetReceipt] - The directive boundary, replaced in tests.
- * @param {Function} [options.now] - The clock, replaced in tests.
+ * @param {Function} [options.resetNudge] - The nudge level reset, replaced in tests.
+ * @param {Object} [options.handoff] - The hand-over state readers, replaced in tests.
  * @returns {string} The re-injected text, or an empty string.
  */
 export function buildCompactionPart(payload, {
@@ -286,7 +235,8 @@ export function buildCompactionPart(payload, {
   listCompactions = compactionsSince,
   goalSlice = renderVibeGoalSlice,
   resetReceipt = resetDirectiveReceipt,
-  now = () => new Date(),
+  resetNudge = resetNudgeLevel,
+  handoff = {},
 } = {}) {
   try {
     if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return '';
@@ -321,6 +271,8 @@ export function buildCompactionPart(payload, {
       // A receipt that cannot be advanced only costs a suppressed directive.
     }
 
+    resetNudge(sessionId, env);
+
     const sections = [];
     try {
       const slice = String(goalSlice({ env, workspace }) ?? '').trim();
@@ -329,20 +281,8 @@ export function buildCompactionPart(payload, {
       // A missing packet or goal document leaves the other sections intact.
     }
 
-    const sessionDirectory = typeof payload.cwd === 'string' && payload.cwd.trim()
-      ? payload.cwd.trim()
-      : workspace;
-    const mintedAt = now().toISOString();
-    const lookup = historySection({
-      sessionId,
-      workspace: sessionDirectory,
-      transcriptPath,
-      mintedAt,
-    });
-    if (lookup) sections.push(lookup);
-
-    const handoff = handoffSection(sessionId, env);
-    if (handoff) sections.push(handoff);
+    const handoffText = handoffSection(sessionId, env, handoff);
+    if (handoffText) sections.push(handoffText);
 
     if (sections.length === 0) return '';
     return [COMPACTION_HEADING, ...sections].join('\n\n');
@@ -352,7 +292,7 @@ export function buildCompactionPart(payload, {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 7. POST-TOOL BINDING
+// 6. POST-TOOL BINDING
 // ─────────────────────────────────────────────────────────────────────────────
 
 const JOURNAL_NAME = /^\d+\.jsonl$/;

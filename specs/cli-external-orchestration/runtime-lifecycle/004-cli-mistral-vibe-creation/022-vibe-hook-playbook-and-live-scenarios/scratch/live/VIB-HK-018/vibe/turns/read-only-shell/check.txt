@@ -1,0 +1,4 @@
+$ for i in $(seq 1 20); do node "$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs" "$VIBE_HOME/logs/session/unified" post-tool-lacks 'spec.md' 'STALE DIST WARNING' && echo read-only-call-earned-no-warning && exit 0; sleep 1; done; exit 1
+latest matching post_tool_call result does not carry the second text
+read-only-call-earned-no-warning
+[exit 0]

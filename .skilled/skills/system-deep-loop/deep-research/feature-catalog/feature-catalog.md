@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.2.0
+version: 1.14.4.0
 ---
 
 # deep-research: Feature Catalog
@@ -16,7 +16,7 @@ Use this catalog as the canonical inventory for the live `deep-research` feature
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
-| Loop lifecycle | 10 features | [`.skilled/commands/deep/research.md`](../../../../commands/deep/research.md), auto and confirm YAML workflows, fan-out runtime primitives, operator controls |
+| Loop lifecycle | 10 features | [`.skilled/commands/deep/research.md`](../../../../commands/deep/research.md), the `deep-research.yaml` workflow across both execution modes, fan-out runtime primitives, operator controls |
 | State management | 8 features | `research/deep-research-*.json`, `research/findings-registry.json`, reducer-owned strategy and dashboard surfaces |
 | Convergence | 6 features | [`references/convergence/convergence.md`](../references/convergence/convergence.md), workflow legal-stop gates, graph convergence hooks, minimum-iteration floor, divergent pivots |
 | Research output | 2 features | the research synthesis under `research/`, iteration files, reducer-backed negative knowledge surfaces |
@@ -99,7 +99,7 @@ Preserves the finished packet through the supported continuity save boundary.
 
 #### How It Works
 
-The save phase calls `generate-context.js` with the spec folder payload and treats that script as the live continuity boundary. Manual authoring under `memory/` is explicitly disallowed, and the workflow expects the save step to refresh the support artifact after synthesis completes.
+The save phase calls `generate-context.js` with a JSON payload, the spec folder and `--full-auto`, and treats that command as the live continuity boundary. Manual authoring under `memory/` is explicitly disallowed, and the workflow expects the save step to refresh the support artifact after synthesis completes.
 
 #### Source Files
 
@@ -136,7 +136,7 @@ See [`loop-lifecycle/fanout-dispatch.md`](../feature-catalog/loop-lifecycle/fano
 
 #### Description
 
-Consumes a one-shot sentinel to force the next auto-mode iteration out of cadence.
+Consumes a one-shot sentinel to force the next iteration out of cadence.
 
 #### How It Works
 
@@ -156,7 +156,7 @@ Refreshes the next prompt's context line from lineage-local state.
 
 #### How It Works
 
-After iteration validation, reducer refresh, and graph upsert, the auto workflow reads the dashboard, findings registry and strategy file the reducer has just rewritten, and turns them into the context line for the next dispatch prompt. A missing or unreadable state file is advisory: the previous context line stands and the loop continues.
+After iteration validation, reducer refresh, and graph upsert, the workflow reads the dashboard, findings registry and strategy file the reducer has just rewritten, and turns them into the context line for the next dispatch prompt. A missing or unreadable state file is advisory: the previous context line stands and the loop continues.
 
 #### Source Files
 
@@ -168,11 +168,11 @@ See [`loop-lifecycle/per-iteration-memory-upsert.md`](../feature-catalog/loop-li
 
 #### Description
 
-Previews confirm-mode work while halting before mutation boundaries.
+Previews workflow work while halting before mutation boundaries.
 
 #### How It Works
 
-`--dry-run` is normalized as a workflow input, not a third execution mode. The confirm YAML can perform safe setup, focus selection, prompt rendering, and convergence reads, then emits `dry_run_halt` preview events before dispatch, state mutation, reducer refresh, child-spawn, memory, and other persistent side effects.
+`--dry-run` is normalized as a workflow input, not a third execution mode. The workflow can perform safe setup, focus selection, prompt rendering and convergence reads, then emits `dry_run_halt` preview events before dispatch, state mutation, reducer refresh, child-spawn, memory, and other persistent side effects.
 
 #### Source Files
 
@@ -288,7 +288,7 @@ Suppresses rejected candidates before they re-enter next-focus or recovery selec
 
 #### How It Works
 
-JSONL rejection events derive a bounded active cache with exact and category-compatible fuzzy matching. The reducer exposes rejected patterns and suppressed candidates, while the auto workflow checks those surfaces before selecting next-focus, recovery, or ideas-backed candidates. Removal and reset events can re-admit a previously rejected direction.
+JSONL rejection events derive a bounded active cache with exact and category-compatible fuzzy matching. The reducer exposes rejected patterns and suppressed candidates, while the workflow checks those surfaces before selecting next-focus, recovery, or ideas-backed candidates. Removal and reset events can re-admit a previously rejected direction.
 
 #### Source Files
 
@@ -356,7 +356,7 @@ Blocks convergence STOP until the configured minimum iteration floor clears.
 
 #### How It Works
 
-The config template defines the anti-convergence defaults and the auto workflow reads them before accepting a convergence STOP. A STOP candidate is overridden while `iterationCount < minIterations`; when the floor clears, the workflow emits `min_iterations_guard_pass`. `convergenceMode: "off"` disables convergence STOP while preserving hard caps, pause, and halt behavior.
+The config template defines the anti-convergence defaults and the workflow reads them before accepting a convergence STOP. A STOP candidate is overridden while `iterationCount < minIterations`; when the floor clears, the workflow emits `min_iterations_guard_pass`. `convergenceMode: "off"` disables convergence STOP while preserving hard caps, pause, and halt behavior.
 
 #### Source Files
 
@@ -404,7 +404,7 @@ Adds coverage-graph evidence to the stop decision when iterations emit graph eve
 
 #### How It Works
 
-When `graphEvents` are present, the workflow calls the graph convergence tool, appends a `graph_convergence` event, and folds graph score and blockers into the legal-stop gate path. The reducer surfaces the latest graph decision and blockers in `findings-registry.json` and `deep-research-dashboard.md`, while the system degrades cleanly when no graph data is available.
+When `graphEvents` are present, the workflow runs convergence.cjs, appends a `graph_convergence` event, and folds graph score and blockers into the legal-stop gate path. The reducer surfaces the latest graph decision and blockers in `findings-registry.json` and `deep-research-dashboard.md`. Without a graph decision, a non-terminal STOP candidate continues with the reason detail `graphDecisionMissing`.
 
 #### Source Files
 

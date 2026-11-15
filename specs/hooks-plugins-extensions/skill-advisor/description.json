@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/skill-advisor",
+  "description": "Container folder for hooks-plugins-extensions/skill-advisor.",
+  "keywords": [
+    "skill",
+    "advisor"
+  ],
+  "lastUpdated": "2026-11-15T06:36:39.780Z",
+  "specId": "hooks-plugins-extensions/skill-advisor",
+  "folderSlug": "skill-advisor",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

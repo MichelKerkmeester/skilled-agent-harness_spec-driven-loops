@@ -1,7 +1,7 @@
 ---
 title: "DR-064 -- Divergent convergence mode"
 description: "Verify eligible research STOP pivots, hard terminal boundaries, and unchanged non-divergent mode routing."
-version: 1.14.0.1
+version: 1.14.1.0
 ---
 
 # DR-064 -- Divergent convergence mode
@@ -50,8 +50,8 @@ Validate the shipped deep-research divergent convergence branch, hard terminal b
 ### Commands
 
 1. `bash: rg -n "VALID_CONVERGENCE_MODES|parseConvergenceModeValue|sliding-window|divergent" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`
-2. `bash: rg -n -C 8 "if iteration_count >= max_iterations|convergence_mode == \"off\"|reason = \"composite_converged\"|if_divergent_eligible|eligible_reasons|excluded_reasons" .skilled/commands/deep/assets/deep-research-auto.yaml`
-3. `bash: rg -n -C 10 "step_apply_divergent_pivot_result|next_focus|proceed_to: step_rejected_pattern_cache|skip_to: phase_synthesis" .skilled/commands/deep/assets/deep-research-auto.yaml`
+2. `bash: rg -n -C 8 "if iteration_count >= max_iterations|convergence_mode == \"off\"|reason = \"composite_converged\"|if_divergent_eligible|eligible_reasons|excluded_reasons" .skilled/commands/deep/assets/deep-research.yaml`
+3. `bash: rg -n -C 10 "step_apply_divergent_pivot_result|next_focus|proceed_to: step_rejected_pattern_cache|skip_to: phase_synthesis" .skilled/commands/deep/assets/deep-research.yaml`
 4. `bash: rg -n "Exactly three Council seat mandates|round: 1|recursionAllowed: false|divergent.*pivots|pivot_completed|next: 'CONTINUE'" .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts`
 
 ### Expected
@@ -86,7 +86,7 @@ Privilege `step_handle_convergence` for eligibility and `step_check_convergence`
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Four-value enum and unchanged shared convergence computation |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Hard-stop precedence, exact eligibility reasons, native seat dispatch, and continuation path |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Hard-stop precedence, exact eligibility reasons, native seat dispatch, and continuation path |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` | Research candidate sources and native seat mandates |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Three-seat transaction, event lifecycle, agreement, and artifact path |
 

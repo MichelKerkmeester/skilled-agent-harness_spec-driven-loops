@@ -40,7 +40,7 @@ Tests are CJS (`*.test.cjs`) so they can `require()` Node builtins and the share
 | `opencode-goal-supervisor.test.cjs` | `opencode-goal.js` | Verifier results and durable goal state. |
 | `opencode-goal-tool-path.test.cjs` | `opencode-goal.js` | Tool-context session resolution, packet bind, resent, packet read and the injected resend reminder. |
 | `session-cleanup.test.cjs` | `session-cleanup.js` | Lifecycle cleanup and safety gating. |
-| `session-relaunch.test.cjs` | `session-relaunch.js` | The kill switch and hook flags silence the relaunch nudge, an active nudge repeats on consecutive transforms, a re-nudge replaces the text and keeps its note path, and the nudge stops once its planned note exists. |
+| `session-handover.test.cjs` | `session-handover.js` | The kill switch and hook flags silence the relaunch nudge, an active nudge repeats on consecutive transforms, a re-nudge replaces the text and keeps its note path, and the nudge stops once its planned note exists. |
 | `sk-code-post-edit-quality.test.cjs` | `sk-code-post-edit-quality.js` | Post-edit routing and adapter behavior, including `tool.execute.before`/`after` callID correlation. |
 | `sk-git-message-gate.test.cjs` | `sk-git-message-gate.js` | Refuses a nonconforming commit in a throwaway repository with its rule id, passes a conforming one, a non-bash tool and a repository without a contract, and refuses when the rules block cannot be read. |
 | `source-root-consumers.test.cjs` | `cli-dispatch-audit.js`, `sk-git-preflight-advisory.js`, `codex-hooks-watchdog.js` | Each reads its rules or installer under whichever source root a consumer project carries, and stays silent with neither. |
@@ -81,7 +81,7 @@ tests/
 +-- plugin-inventory.json
 +-- plugin-inventory.test.cjs
 +-- session-cleanup.test.cjs
-+-- session-relaunch.test.cjs
++-- session-handover.test.cjs
 +-- sk-code-post-edit-quality.test.cjs
 +-- sk-git-message-gate.test.cjs
 +-- source-root-consumers.test.cjs

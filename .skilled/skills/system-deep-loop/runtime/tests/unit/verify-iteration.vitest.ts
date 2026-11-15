@@ -728,3 +728,147 @@ describe('verify-iteration findings enumeration', () => {
     expect(rejected.reason).toBe('findings_not_enumerated');
   });
 });
+
+// The pre-dispatch audit records a non-native executor on the iteration's
+// iteration_start row, through the append gateway on a ledger-backed log and
+// straight into the log without one. Each case pairs the passing shape with the
+// same iteration missing its executor, so the gate is shown to bite where it should.
+describe('verify-iteration executor provenance', () => {
+  let root: string;
+  const previousLineageId = process.env.SPECKIT_FANOUT_LINEAGE_ID;
+  const executor = { kind: 'cli-deepseek-harness', model: 'deepseek-v4.1-flash-1017', executable: 'cli-deepseek-harness' };
+
+  beforeEach(() => {
+    root = fs.mkdtempSync(path.join(os.tmpdir(), 'verify-iter-executor-'));
+    process.env.DEEP_LOOP_LEDGER_BACKING_GATE = '0';
+    delete process.env.SPECKIT_FANOUT_LINEAGE_ID;
+  });
+
+  afterEach(() => {
+    fs.rmSync(root, { recursive: true, force: true });
+    delete process.env.DEEP_LOOP_LEDGER_BACKING_GATE;
+    if (previousLineageId === undefined) delete process.env.SPECKIT_FANOUT_LINEAGE_ID;
+    else process.env.SPECKIT_FANOUT_LINEAGE_ID = previousLineageId;
+  });
+
+  function reviewRun(relativeDir: string, config: Record<string, unknown> | null, stateRows: Record<string, unknown>[]): string {
+    const dir = path.join(root, relativeDir);
+    writeComplete(dir, 1);
+    fs.writeFileSync(path.join(dir, 'deep-review-state.jsonl'), `${stateRows.map((row) => JSON.stringify(row)).join('\n')}\n`);
+    if (config) fs.writeFileSync(path.join(dir, 'deep-review-config.json'), JSON.stringify(config));
+    return dir;
+  }
+
+  function researchRun(relativeDir: string, stateRows: Record<string, unknown>[]): string {
+    const dir = path.join(root, relativeDir);
+    const record = {
+      type: 'iteration',
+      iteration: 1,
+      mode: 'research',
+      target_agent: 'deep-research',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+      run: 1,
+      status: 'complete',
+    };
+    fs.mkdirSync(path.join(dir, 'iterations'), { recursive: true });
+    fs.mkdirSync(path.join(dir, 'deltas'), { recursive: true });
+    fs.writeFileSync(path.join(dir, 'iterations', 'iteration-001.md'), '# Iteration 1\n\n## Findings\n\nNone.\n');
+    fs.writeFileSync(path.join(dir, 'deltas', 'iter-001.jsonl'), `${JSON.stringify(record)}\n`);
+    fs.writeFileSync(path.join(dir, 'deep-research-state.jsonl'), `${[...stateRows, record].map((row) => JSON.stringify(row)).join('\n')}\n`);
+    fs.writeFileSync(path.join(dir, 'deep-research-config.json'), JSON.stringify({ executor }));
+    return dir;
+  }
+
+  const nonNative = { executor };
+  const start = (iteration: number, extra: Record<string, unknown> = {}) => ({ type: 'iteration_start', iteration, executor, ...extra });
+
+  it('fails executor_missing when a non-native iteration names no executor anywhere', () => {
+    const dir = reviewRun('review', nonNative, [reviewRecord(1)]);
+    const r = verify('review', dir, 1);
+    expect(r.ok).toBe(false);
+    expect(r.reason).toBe('executor_missing');
+    expect(r.detail).toContain("'cli-deepseek-harness'");
+  });
+
+  it('does not take an executor row filed under another iteration', () => {
+    const dir = reviewRun('review', nonNative, [start(2), reviewRecord(1)]);
+    expect(verify('review', dir, 1).reason).toBe('executor_missing');
+  });
+
+  it('accepts the executor on the iteration_start row of a log with no ledger', () => {
+    expect(verify('review', reviewRun('bare', nonNative, [reviewRecord(1)]), 1).reason).toBe('executor_missing');
+    expect(verify('review', reviewRun('opened', nonNative, [start(1), reviewRecord(1)]), 1).ok).toBe(true);
+  });
+
+  it('accepts the executor on the gateway-written iteration_start row of a ledger-backed log', () => {
+    const withLedger = (name: string, rows: Record<string, unknown>[]) => {
+      const dir = reviewRun(name, nonNative, rows);
+      fs.mkdirSync(path.join(dir, 'deep-review-ledger', 'frames'), { recursive: true });
+      fs.writeFileSync(path.join(dir, 'deep-review-ledger', 'frames', '0000000000000001.frame'), '{}\n');
+      return dir;
+    };
+    expect(verify('review', withLedger('bare', [reviewRecord(1)]), 1).reason).toBe('executor_missing');
+    const opened = withLedger('opened', [start(1, { runId: 's1', sessionId: 's1', lineageId: 's1' }), reviewRecord(1)]);
+    expect(verify('review', opened, 1).ok).toBe(true);
+  });
+
+  it('accepts the executor merged onto the iteration record itself', () => {
+    expect(verify('review', reviewRun('bare', nonNative, [reviewRecord(1)]), 1).reason).toBe('executor_missing');
+    expect(verify('review', reviewRun('merged', nonNative, [reviewRecord(1, { executor })]), 1).ok).toBe(true);
+  });
+
+  it('checks a research run the same way', () => {
+    const bare = researchRun('bare', []);
+    expect(verify('research', bare, 1).reason).toBe('executor_missing');
+    expect(verify('research', researchRun('opened', [start(1)]), 1).ok).toBe(true);
+  });
+
+  it('leaves native runs and runs with no executor block unchecked', () => {
+    expect(verify('review', reviewRun('cli', nonNative, [reviewRecord(1)]), 1).reason).toBe('executor_missing');
+    expect(verify('review', reviewRun('native', { executor: { kind: 'native' } }, [reviewRecord(1)]), 1).ok).toBe(true);
+    expect(verify('review', reviewRun('no-block', { mode: 'review' }, [reviewRecord(1)]), 1).ok).toBe(true);
+    expect(verify('review', reviewRun('no-config', null, [reviewRecord(1)]), 1).ok).toBe(true);
+  });
+
+  // A fan-out lineage runs its iterations inline with no executor row, so the gate
+  // reads the invocation metadata the fan-out runner writes before it spawns one.
+  function writeInvocationMetadata(dir: string, effectiveConfig: Record<string, unknown> | null) {
+    fs.writeFileSync(path.join(dir, 'invocation-metadata.json'), `${JSON.stringify({ effectiveConfig, invocationFingerprint: 'inv:test' })}\n`);
+  }
+
+  it('passes a fan-out lineage whose invocation metadata names the configured executor', () => {
+    const underLineages = reviewRun('review/lineages/luna', nonNative, [reviewRecord(1)]);
+    const overridden = reviewRun('elsewhere', { ...nonNative, fanout_lineage_artifact_dir: 'specs/x/review/lineages/luna' }, [reviewRecord(1)]);
+    const flagged = reviewRun('flagged', nonNative, [reviewRecord(1)]);
+    process.env.SPECKIT_FANOUT_LINEAGE_ID = 'luna';
+    for (const dir of [underLineages, overridden, flagged]) {
+      expect(verify('review', dir, 1).reason).toBe('executor_missing');
+      writeInvocationMetadata(dir, { kind: executor.kind, model: executor.model });
+      expect(verify('review', dir, 1).ok).toBe(true);
+    }
+  });
+
+  it('fails a fan-out lineage whose invocation metadata is missing or names no matching executor', () => {
+    const dir = reviewRun('review/lineages/luna', nonNative, [reviewRecord(1)]);
+    const missing = verify('review', dir, 1);
+    expect(missing.reason).toBe('executor_missing');
+    expect(missing.detail).toContain('invocation-metadata.json');
+    writeInvocationMetadata(dir, null);
+    expect(verify('review', dir, 1).reason).toBe('executor_missing');
+    writeInvocationMetadata(dir, { model: executor.model });
+    expect(verify('review', dir, 1).reason).toBe('executor_missing');
+    fs.writeFileSync(path.join(dir, 'invocation-metadata.json'), '{not json\n');
+    expect(verify('review', dir, 1).reason).toBe('executor_missing');
+    writeInvocationMetadata(dir, { kind: 'cli-codex' });
+    const other = verify('review', dir, 1);
+    expect(other.reason).toBe('executor_missing');
+    expect(other.detail).toContain("names 'cli-codex'");
+  });
+
+  it('leaves a native lineage and a lineage with no executor block unchecked', () => {
+    expect(verify('review', reviewRun('review/lineages/cli', nonNative, [reviewRecord(1)]), 1).reason).toBe('executor_missing');
+    expect(verify('review', reviewRun('review/lineages/native', { executor: { kind: 'native' } }, [reviewRecord(1)]), 1).ok).toBe(true);
+    expect(verify('review', reviewRun('review/lineages/no-block', { mode: 'review' }, [reviewRecord(1)]), 1).ok).toBe(true);
+  });
+});

@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/046-vibe-history-locator",
+  "description": "Phase 46: vibe-history-locator",
+  "keywords": [
+    "phase",
+    "vibe-history-locator"
+  ],
+  "lastUpdated": "2026-11-15T16:25:44.877Z",
+  "specId": "046",
+  "folderSlug": "vibe-history-locator",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_17-25__built-the-vibe-branch-of-the-handover-locator.md"
+  ]
+}

@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | None, this is the packet root |
@@ -139,7 +139,17 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 12 | 012-review-agent-gates/ | Give the review agent's fast path, low-confidence case and final-line checker an exit the agent can take | Complete |
 | 13 | 013-context-markdown-design-fixes/ | Fix the context, markdown and design agents' instructions their granted tools cannot carry out | Complete |
 | 14 | 014-prompt-improver-model-eligibility/ | Settle the prompt-improver's model deny rows, its TEST field and its caller names | Complete |
-| 15 | 015-review-verdict-gate-rule/ | Make the deep-review verdict follow the contract: a required quality gate still failing at the stop forces FAIL, read from one typed terminal-gates record | Planned |
+| 15 | 015-review-verdict-gate-rule/ | Make the deep-review verdict follow the contract: a required quality gate still failing at the stop forces FAIL, read from one typed terminal-gates record | Complete |
+| 16 | 016-follow-up-fix-sweep/ | Write the terminal gate record on every stop path with its real stop reason, refuse an unknown gate, keep a registry-less lineage in the merge and fix stale lines from 008 to 014 | Complete |
+| 17 | 017-terminal-record-gaps/ | Write the terminal gate record on the duration stop with stop reason `maxDurationReached`, and send every manual stop through the verdict step | Complete |
+| 18 | 018-research-duration-check/ | Move the deep-research duration check after `step_read_state` so it runs on every pass | Complete |
+| 19 | 019-vibe-agent-sync-check/ | Regenerate the two stale Vibe agent profiles and add the three Vibe drift checks to CI | Complete |
+| 20 | 020-agent-docs-alignment-research/ | Run five deep-research iterations on whether the READMEs and docs across the repo describe the current agents correctly | Complete |
+| 21 | 021-vibe-budget-default/ | Make a Mistral Vibe lineage bill the Vibe budget by default, count a budget refusal as a quota stop, and update the Mistral docs | Complete |
+| 22 | 022-agent-source-and-drift-checks/ | Make the roster check and playbook sandboxes able to fail, and settle the deep-research search grant and the markdown mode | Complete |
+| 23 | 023-agent-docs-fixes/ | Fix every phase 20 doc finding that phase 22 left | Complete |
+| 24 | 024-terminal-gates-script/ | Compute the deep-review terminal gates with a script and record its result | Complete |
+| 25 | 025-stop-path-live-proof/ | Prove each review stop reason reaches the recorded gates and the verdict | Complete |
 
 ### Phase Transition Rules
 
@@ -166,6 +176,16 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 012-review-agent-gates | 013-context-markdown-design-fixes | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
 | 013-context-markdown-design-fixes | 014-prompt-improver-model-eligibility | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
 | 014-prompt-improver-model-eligibility | 015-review-verdict-gate-rule | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 |
+| 015-review-verdict-gate-rule | 016-follow-up-fix-sweep | 015 is pushed and a fresh review names its open items | `validate.sh --strict` on 015 prints `RESULT: PASSED` |
+| 016-follow-up-fix-sweep | 017-terminal-record-gaps | 016 is pushed and its merge-port review names the two upstream gaps | `validate.sh --strict` on 016 prints `RESULT: PASSED` |
+| 017-terminal-record-gaps | 018-research-duration-check | 017 is pushed and records the research limitation | `validate.sh --strict` on 017 prints `RESULT: PASSED` |
+| 018-research-duration-check | 019-vibe-agent-sync-check | The research duration check runs on every pass | `workflow-max-duration.vitest.ts` passes |
+| 019-vibe-agent-sync-check | 020-agent-docs-alignment-research | The Vibe mirrors match their sources and CI checks them | `sync-agents-vibe.cjs --check` exits 0 |
+| 020-agent-docs-alignment-research | 021-vibe-budget-default | Run findings V1 and V2 are recorded with evidence | `research/research.md` §7 lists V1 and V2 as merge-verified |
+| 021-vibe-budget-default | 022-agent-source-and-drift-checks | Mistral lineages bill the Vibe budget | Runtime suite 3,024 passed |
+| 022-agent-source-and-drift-checks | 023-agent-docs-fixes | Every agent tree is checked and the two agent decisions are carried | Roster check prints eight OK rows |
+| 023-agent-docs-fixes | 024-terminal-gates-script | Every phase 20 doc finding is closed | The implementation summary lists each outcome |
+| 024-terminal-gates-script | 025-stop-path-live-proof | The terminal gates are computed from state | `terminal-gates.vitest.ts` passes and the workflow runs the script |
 <!-- /ANCHOR:phase-map -->
 
 ---

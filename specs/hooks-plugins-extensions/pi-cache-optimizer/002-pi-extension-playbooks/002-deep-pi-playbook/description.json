@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/002-pi-extension-playbooks/002-deep-pi-playbook",
+  "description": "`deep-pi` has 81 unit tests but no operator-facing manual-testing playbook, so there is no reproducible way to validate that `/deeppi` activates only",
+  "keywords": [
+    "deep-pi",
+    "unit",
+    "tests",
+    "operator-facing",
+    "manual-testing",
+    "playbook",
+    "reproducible",
+    "way",
+    "validate",
+    "deeppi",
+    "activates",
+    "only"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.321Z",
+  "specId": "002",
+  "folderSlug": "deep-pi-playbook",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-cache-optimizer",
+    "002-pi-extension-playbooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

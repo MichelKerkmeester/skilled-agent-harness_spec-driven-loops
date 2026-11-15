@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/009-testing-doc-alignment",
+  "spec_folder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/009-testing-doc-alignment",
+  "parent_id": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "testing playbook alignment",
+      "feature catalog freshness",
+      "playbook snippet staleness",
+      "gate3 shadow delivery doc sweep",
+      "testing doc alignment plan",
+      "feature catalog sweep plan",
+      "testing doc alignment tasks",
+      "feature catalog sweep tasks",
+      "testing doc alignment summary",
+      "feature catalog sweep result"
+    ],
+    "key_topics": [
+      "testing",
+      "playbook",
+      "alignment",
+      "feature",
+      "catalog",
+      "freshness",
+      "snippet",
+      "staleness",
+      "gate3",
+      "shadow",
+      "delivery",
+      "doc"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/lineages/luna/research.md",
+      "research/lineages/deepseek-go/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Catalog Alignment Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Sweep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Two",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The injection-bloat changes (delivery confirmation now requires an observed receipt with `lifecycleEpoch >= 1`, Gate-3 delivery observers fire strictly post-emission, and the shadow-delivery state machine keeps every candidate flag off) may have left manual-testing-playbook snippets and feature-catalog entries repo-wide describing or exercising the older behavior",
+    "created_at": "2026-08-07T16:28:47.746Z",
+    "last_save_at": "2026-11-15T07:08:32.236Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a855f65c3aa9caa3b07859d52fe7ab1bf463fe172c091a225855cfd2757fd1ae",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "27ba9bee208650bfeaf68b07f27d89950bce6f9dc3c38a9b201a3d096dd2c1a4",
+      "plan.md": "6248cc914e9033f3a8198bebc0474a9c03e4d149e701a5967c33cfc8b00efde7",
+      "tasks.md": "6118e7caab66625214913deb2a435f786dd52f71db42047af93b43aba7614aec",
+      "implementation-summary.md": "10bc22ebbbac64f82afa477c108420b0120cfb40cb8844c8868ed1024338ddf6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

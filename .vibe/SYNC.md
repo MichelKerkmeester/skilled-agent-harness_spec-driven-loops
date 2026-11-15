@@ -11,7 +11,7 @@ description: "How .vibe/ derives from .skilled: a hand-authored config under a t
 
 ## 1. OVERVIEW
 
-Vibe walks up from the working directory to find `.vibe/config.toml`, nearest first, and reads `config.toml`, `hooks.toml` and the `tools/`, `skills/`, `plugins/`, `agents/` and `prompts/` folders from that root only. The config applies only when its own folder, the checkout root, is trusted. `--trust` from a subdirectory trusts only that subdirectory and does not apply it, so a dispatch writes `trusted = ["<checkout root>"]` into its fresh `VIBE_HOME/trusted_folders.toml`.
+Vibe walks up from the working directory to find `.vibe/config.toml`, nearest first, and reads `config.toml`, `hooks.toml` and the `tools/`, `skills/`, `plugins/`, `agents/` and `prompts/` folders from that root only. The config applies only when its own folder, the checkout root, is trusted. `--trust` from a subdirectory trusts only that subdirectory and does not apply it. A print-mode dispatch runs from a scratch cwd outside the checkout, so it never reads this file in place: it copies `config.toml` into its fresh `VIBE_HOME` and needs no trust entry. A fan-out lineage writes its own lineage directory into the trust store, never the checkout root.
 
 `allowed_models` matches each `[[models]]` row's `name`, not its `alias`. An alias list closes nothing: it warns and leaves every configured model selectable, the built-in `mistral-medium-3.5` included. The list therefore names `deepseek-v4-1-flash-1017` and `zai-glm-5-3-flash`, and each row pins `thinking = "max"` because Vibe has no reasoning flag.
 
@@ -34,9 +34,9 @@ The folder follows the `.dsh/` split: hand-authored files, three generated trees
 
 ### Agents
 
-One `.toml` per `.skilled/agents/*.md`, `README.md` excepted, named by the source stem. The render keeps `description` from the frontmatter and `instructions` from the markdown body, and adds `agent_type = "subagent"` when the source declares `mode: subagent`, because Vibe refuses to spawn a profile without it. Every other frontmatter key is dropped, so the body is the only place a rule survives.
+One `.toml` per `.skilled/agents/*.md`, `README.txt` excepted, named by the source stem. The render keeps `description` from the frontmatter and `instructions` from the markdown body, and adds `agent_type = "subagent"` when the source declares `mode: subagent`, because Vibe refuses to spawn a profile without it. Every other frontmatter key is dropped, so the body is the only place a rule survives.
 
-| Profile | `mode` (dropped) | Other dropped keys |
+| Profile | `mode` | Other dropped keys |
 |---|---|---|
 | `ai-council.toml` | subagent | `name`, `temperature`, `permission` |
 | `code.toml` | subagent | `name`, `temperature`, `permission` |
@@ -45,12 +45,12 @@ One `.toml` per `.skilled/agents/*.md`, `README.md` excepted, named by the sourc
 | `deep-research.toml` | subagent | `name`, `temperature`, `permission` |
 | `deep-review.toml` | subagent | `name`, `temperature`, `permission` |
 | `design.toml` | subagent | `name`, `temperature`, `permission` |
-| `markdown.toml` | all | `name`, `temperature`, `permission` |
+| `markdown.toml` | subagent | `name`, `temperature`, `permission` |
 | `orchestrate.toml` | primary | `name`, `temperature`, `permission` |
 | `prompt-improver.toml` | subagent | `name`, `temperature`, `permission` |
 | `review.toml` | subagent | `name`, `temperature`, `permission` |
 
-A generated profile therefore carries no tool restriction and no primary/subagent distinction: the OpenCode `permission` map and the `mode` value do not travel into Vibe. Vibe reserves the agent stem `main` for its built-in agent, so the generator refuses a source named `main.md`.
+A generated profile therefore carries no tool restriction, because the OpenCode `permission` map does not travel into Vibe. The `mode` value travels only as `agent_type = "subagent"` on the ten subagent profiles; `orchestrate.toml` carries none. Vibe reserves the agent stem `main` for its built-in agent, so the generator refuses a source named `main.md`.
 
 ### Skills
 
@@ -112,4 +112,4 @@ node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs --che
 node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs --check
 ```
 
-Nothing runs these checks automatically yet: no pre-commit hook and no CI job names a Vibe generator. Run them by hand after any source change in section 4, and treat a non-zero exit as a tree that no longer matches its source.
+CI runs the three checks in the `vibe-mirror` job of `.github/workflows/command-tree-parity.yml`, on a pull request or push that touches `.vibe/`, an agent, a command or a `SKILL.md`. No pre-commit hook runs them. Regenerate after any source change in section 4, and treat a non-zero exit as a tree that no longer matches its source.

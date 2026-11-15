@@ -201,6 +201,31 @@ const EXECUTOR_ENV_DENY_KEYS_BY_KIND: Partial<Record<ExecutorKind, readonly stri
   'cli-mistral-vibe': ['VIBE_HOME'],
 };
 
+// Two separate Mistral budgets stand behind one variable name: a key minted by the Vibe
+// browser sign-in bills the Vibe budget, and any other Mistral key bills the API budget.
+// A lineage otherwise inherits whichever key the operator's shell carries, so the sign-in
+// key is read from the keychain and taking it keeps the dispatch on the budget it belongs to.
+let cachedMistralSignInKey: string | null | undefined;
+
+export function readMistralVibeSignInKey(): string | null {
+  if (cachedMistralSignInKey !== undefined) {
+    return cachedMistralSignInKey;
+  }
+  if (process.platform !== 'darwin') {
+    cachedMistralSignInKey = null;
+    return cachedMistralSignInKey;
+  }
+
+  const result = spawnSync(
+    '/usr/bin/security',
+    ['find-generic-password', '-s', 'ai.mistral.vibe', '-a', 'MISTRAL_API_KEY', '-w'],
+    { encoding: 'utf8', timeout: 5000, stdio: ['ignore', 'pipe', 'ignore'] },
+  );
+  const stdout = result.status === 0 && typeof result.stdout === 'string' ? result.stdout.trim() : '';
+  cachedMistralSignInKey = stdout !== '' ? stdout : null;
+  return cachedMistralSignInKey;
+}
+
 type RunAuditedExecutorCommandInput = {
   command: string;
   args: string[];
@@ -1042,15 +1067,18 @@ export function formatRecursionGuardRefusal(
  * Build the environment for a dispatched executor.
  *
  * Filters the parent environment to only include allowed keys per executor kind
- * and appends the current kind to the dispatch stack.
+ * and appends the current kind to the dispatch stack. A cli-mistral-vibe lineage
+ * prefers the Vibe sign-in key over the MISTRAL_API_KEY the parent carries.
  *
  * @param config - Executor configuration.
  * @param parentEnv - Parent environment (defaults to process.env).
+ * @param options - Replaceable lookups; mistralSignInKey stands in for the keychain read.
  * @returns Filtered environment with dispatch stack updated.
  */
 export function buildExecutorDispatchEnv(
   config: ExecutorConfig,
   parentEnv: Record<string, string | undefined> = process.env,
+  options: { mistralSignInKey?: () => string | null } = {},
 ): Record<string, string | undefined> {
   const kind = getExecutorKind(config);
   if (kind === 'native') {
@@ -1061,6 +1089,12 @@ export function buildExecutorDispatchEnv(
   for (const [key, value] of Object.entries(parentEnv)) {
     if (value !== undefined && isAllowedExecutorEnvKey(key, kind)) {
       nextEnv[key] = value;
+    }
+  }
+  if (kind === 'cli-mistral-vibe') {
+    const signInKey = (options.mistralSignInKey ?? readMistralVibeSignInKey)();
+    if (signInKey !== null && signInKey.trim() !== '') {
+      nextEnv.MISTRAL_API_KEY = signInKey;
     }
   }
   nextEnv[CLI_DISPATCH_STACK_ENV] = [...splitDispatchStack(parentEnv[CLI_DISPATCH_STACK_ENV]), kind].join(':');
@@ -1102,7 +1136,7 @@ const LEDGER_MODES = Object.freeze([
 // A state log beside a ledger with frames is a projection the append gateway
 // rebuilds from that ledger, so a row written straight into it is dropped at
 // the next refresh.
-function ledgerModeFor(stateLogPath: string): 'review' | 'research' | null {
+export function ledgerModeFor(stateLogPath: string): 'review' | 'research' | null {
   for (const { ledgerDirectory, mode } of LEDGER_MODES) {
     try {
       if (readdirSync(join(dirname(stateLogPath), ledgerDirectory, 'frames')).some((name) => name.endsWith('.frame'))) {
@@ -1168,7 +1202,7 @@ function canonicalJson(value: unknown): string | undefined {
 // names no session id or the gateway refuses, the row is written straight into
 // the state log, where the steps that read it right after the dispatch still
 // find it, and stderr says why it will not last.
-function appendFailureRow(stateLogPath: string, row: Record<string, unknown>, sessionId: string | undefined): void {
+export function appendFailureRow(stateLogPath: string, row: Record<string, unknown>, sessionId: string | undefined): void {
   const ledgerMode = ledgerModeFor(stateLogPath);
   if (ledgerMode !== null) {
     if (!sessionId) {
@@ -1342,6 +1376,7 @@ export function classifyExecutorUnavailable(stdout: string, stderr: string): str
     /usage[\s_-]*limit/i,
     /quota/i,
     /insufficient\s+credits?/i,
+    /budget[\s_-]+exhausted/i,
     /too\s+many\s+requests/i,
     /\b429\b/,
     /not\s+authenticated/i,

@@ -25,7 +25,7 @@ contextType: research
 
 ## 2. BACKGROUND & CONTEXT
 
-The operator asked what v4.0.0.3 must add about the doctor command changes and the git workflow and hook changes, including the hook hardening in `specs/sk-git/commit-standards/004-template-driven-message-enforcement`. The run was research only and did not edit the changelog. Before work began, the entry's spec line named three packets: `sk-communication/007`, `sk-git/032` and `system-deep-loop/039`.
+The operator asked what v4.0.0.3 must add about the doctor command changes and the git workflow and hook changes, including the hook hardening in `specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement`. The run was research only and did not edit the changelog. Before work began, the entry's spec line named three packets: `sk-communication/007`, `sk-git/032` and `system-deep-loop/039`.
 
 ## 3. RESEARCH QUESTIONS
 
