@@ -25,9 +25,9 @@ contextType: "general"
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 20 of 20 |
+| **Phase** | 20 of 21 |
 | **Predecessor** | 019-vibe-agent-sync-check |
-| **Successor** | None |
+| **Successor** | 021-vibe-budget-default |
 | **Handoff Criteria** | `research/research.md` lists each doc that misdescribes an agent, with `[SOURCE: path:line]` evidence, and `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` for every folder |
 <!-- /ANCHOR:metadata -->
 

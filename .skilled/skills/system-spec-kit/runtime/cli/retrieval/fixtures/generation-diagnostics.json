@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6820,
-    "ok": 19116,
+    "ok": 19120,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27563,
+  "documentsScanned": 27567,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1a09988ee9eb508d2853d183659d9ae38886cb4e0443b583a785fac3e5520683",
+  "manifestHash": "c9e1ce18bfbebae2db5d65731d416eb6039cce5026243913bb5b017ffe61de92",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44034,
+      "ok": 44039,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -53554,6 +53554,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/021-vibe-budget-default/scratch",
       "reason": "excluded directory"
     },
     {

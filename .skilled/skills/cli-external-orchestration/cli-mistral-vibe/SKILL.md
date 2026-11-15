@@ -38,7 +38,7 @@ Each live result applies only to the route and behavior the saved capture exerci
 
 - **You ARE Vibe already.** If `VIBE_SESSION=1` is set, or `vibe-rs` or `vibe-app-server` is in the process ancestry, this skill refuses to load. Self-invocation creates a circular dispatch loop and burns tokens for no value. Do the work in the current session instead.
 - `vibe` is not on PATH, or `vibe --version` does not print `vibe 3.1.2`.
-- `MISTRAL_API_KEY` is not exported in the child's environment.
+- Neither the Vibe sign-in key in the macOS keychain nor an exported `MISTRAL_API_KEY` is available.
 - The task needs ACP (`vibe-acp`), an interactive session, a human answer mid-run or a persistent client.
 - The task needs a model outside `deepseek-flash` and `glm-flash`, or reasoning effort other than the row's `max`.
 - The task needs the `.vibe/` runtime folder, a hook or the deep-loop executor kind, none of which this packet builds.
@@ -94,8 +94,8 @@ cd "$RUN_DIR" && node "$REPO/.vibe/plugins/repo-guards/render-home-hooks.cjs" "$
 
 ### Provider Preflight
 
-Export `MISTRAL_API_KEY` in the child's environment before launch. The `mistral` provider otherwise falls back to browser sign-in, which an unattended run cannot complete, and a keyless run has exited 1 with `Missing MISTRAL_API_KEY`.
-Fail closed — do not build a command — when the variable is absent, when `command -v vibe` fails, or when `vibe --version` does not print `vibe 3.1.2`. Surface the missing item and stop. Never pass a key in a prompt or write one into the checkout.
+Use the key the Vibe browser sign-in (`vibe --setup`) stores in the macOS keychain, item `ai.mistral.vibe`, account `MISTRAL_API_KEY`. Mistral bills that key to the plan's Vibe budget and any other Mistral key to the separate API budget, and a `MISTRAL_API_KEY` in the environment overrides the keychain. Export `MISTRAL_API_KEY="$(/usr/bin/security find-generic-password -s ai.mistral.vibe -a MISTRAL_API_KEY -w)"` before launch, and fall back to another key only when the keychain has none. The deep-loop runner makes this swap itself for a `cli-mistral-vibe` lineage. With no key and no sign-in, the provider falls back to browser sign-in, which an unattended run cannot complete, and a keyless run has exited 1 with `Missing MISTRAL_API_KEY`.
+Fail closed — do not build a command — when neither key is available, when `command -v vibe` fails, or when `vibe --version` does not print `vibe 3.1.2`. Surface the missing item and stop. Never pass a key in a prompt or write one into the checkout.
 
 ---
 
@@ -106,7 +106,7 @@ The seven fail-closed rules live in [hard-rules.json](./hard-rules.json): `print
 ### ✅ ALWAYS
 
 1. Run `command -v vibe` and `vibe --version </dev/null` before every dispatch, and refuse anything but `vibe 3.1.2`.
-2. Export `MISTRAL_API_KEY` in the child's environment, and name the variable in the prompt rather than its value.
+2. Export `MISTRAL_API_KEY` in the child's environment, set to the Vibe sign-in key when the keychain holds one, and name the variable in the prompt rather than its value.
 3. Dispatch print mode: `vibe -p TEXT ... </dev/null`, a pipe into a bare `vibe -p`, or `vibe --prompt-file PATH ... </dev/null`.
 4. Set `VIBE_HOME` to a fresh directory outside the checkout, on the same command line as the run, and render the repository hooks into it before the run.
 5. Set `AI_SESSION_CHILD=1` on the run, and `VIBE_SPEC_FOLDER` to the absolute packet path when the task is bound to a packet.
@@ -134,11 +134,11 @@ The seven fail-closed rules live in [hard-rules.json](./hard-rules.json): `print
 ### ⚠️ ESCALATE IF
 
 1. `vibe` is missing from PATH or `vibe --version` does not print `vibe 3.1.2`.
-2. `MISTRAL_API_KEY` is not exported.
+2. Neither the sign-in key nor `MISTRAL_API_KEY` is available, or a run fails with `402 API budget exhausted`.
 3. The task needs a model outside the two aliases, or reasoning effort other than the row's `max`.
 4. The task needs ACP, a hook, the `.vibe/` runtime folder or the deep-loop executor kind.
 5. `export.json` is absent, or its pair is not `0`/`finished`.
-6. The task depends on behavior still marked UNKNOWN: a keyless run, the `allowed_models` close or the billing pool.
+6. The task depends on behavior still marked UNKNOWN: a keyless run without a sign-in, or the `allowed_models` close.
 
 ---
 
@@ -147,7 +147,7 @@ The seven fail-closed rules live in [hard-rules.json](./hard-rules.json): `print
 ### Core References
 
 - [cli-reference.md](./references/cli-reference.md) - The version pin, the three prompt sources, the flag set, the four budgets, the dispatch shape, the output payloads, the `export.json` fields, the exit taxonomy and the process names
-- [providers-and-models.md](./references/providers-and-models.md) - The `mistral` provider row, the two roster aliases, the `allowed_models` close, the catalog result, the default route and the billing question
+- [providers-and-models.md](./references/providers-and-models.md) - The `mistral` provider row, the two roster aliases, the `allowed_models` close, the catalog result, the default route and the two billing budgets
 - [runtime-folder-and-sync.md](./references/runtime-folder-and-sync.md) - The `.vibe/` folder, the trust gate, the generators and `VIBE_HOME` isolation, built by the runtime-folder packet
 - [guards-and-hooks.md](./references/guards-and-hooks.md) - The seven hook types, the per-plugin seam that phases 014 to 019 built, and the captured wire format
 
