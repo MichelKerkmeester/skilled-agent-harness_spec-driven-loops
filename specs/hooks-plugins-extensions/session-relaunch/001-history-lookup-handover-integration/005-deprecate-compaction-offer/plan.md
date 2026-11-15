@@ -89,7 +89,7 @@ What stays untouched:
 Before: a compaction event mints a locator, writes it beside the compact cache, and the recovery message carries the summary, the lookup section and the `/speckit:resume` pointer. After: the compaction event writes the cache only, and the recovery message carries the summary and the pointer. The handover's `prepare` mints and its `claim` prints the one offer.
 
 ### Precondition
-Deleting a producer's mint is safe only when the handover does not import it. `tasks.md` T002 checks `.skilled/hooks/session-relaunch` for the name. If it appears, keep that one export and delete only its call site; the rest of the plan is unchanged.
+Deleting a producer's mint is safe only when the handover does not import it. `tasks.md` T002 checks `.skilled/hooks/session-handover` for the name. If it appears, keep that one export and delete only its call site; the rest of the plan is unchanged.
 <!-- /ANCHOR:architecture -->
 
 ---

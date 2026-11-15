@@ -19,7 +19,7 @@ import {
 } from 'node:fs';
 import os from 'node:os';
 import { dirname, join, resolve } from 'node:path';
-import test, { after } from 'node:test';
+import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 import { buildCompactionPart, buildPostToolPart } from './compaction-context.mjs';
@@ -37,11 +37,6 @@ const PACKET = 'specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistr
 const SESSION_ID = '99e62469-699f-4aac-eb50-4c187ff1fdc5';
 const COMPACTION_ID = 'd95bb2db-5e4c-5126-9a1d-002ba102d8c4';
 const COMPACTION_SEQUENCE = 8;
-
-// The compiled hook state keys its file by the working folder, so the cleanup
-// resolves the path from the same checkout the detector writes under.
-const originalCwd = process.cwd();
-process.chdir(REPO_ROOT);
 
 function tempStateDir(t) {
   const directory = mkdtempSync(join(os.tmpdir(), 'vibe-compaction-state-'));
@@ -94,13 +89,11 @@ function runBinding(payload) {
   });
 }
 
-test('a new compaction returns the goal slice and the history lookup offer', (t) => {
+test('a new compaction returns the goal slice', (t) => {
   const stateDir = tempStateDir(t);
   const text = buildCompactionPart(payloadFor(), optionsFor(stateDir));
 
   assert.match(text, /\*\*Objective:\*\*/);
-  assert.match(text, /## History Lookup/);
-  assert.match(text, /hl1_[a-f0-9]{32}/);
 
   const file = watermarkFile(stateDir);
   assert.ok(file, 'the watermark file was written');
@@ -259,14 +252,4 @@ test('a repeat leaves the advisor directive receipt alone', (t) => {
   buildCompactionPart(payloadFor(), optionsFor(stateDir, { resetReceipt }));
 
   assert.deepEqual(seen, [SESSION_ID]);
-});
-
-// The locator the offer prints is written to the shared hook state, so the one
-// case that renders a real offer removes it again.
-after(async () => {
-  const { getStatePath } = await import(
-    '../../../skills/system-spec-kit/runtime/dist/hooks/claude/hook-state.js'
-  );
-  try { rmSync(getStatePath(SESSION_ID)); } catch { /* no locator was written */ }
-  process.chdir(originalCwd);
 });
