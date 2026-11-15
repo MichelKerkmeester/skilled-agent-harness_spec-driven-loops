@@ -312,6 +312,7 @@ and findings belong here.
 | Phase 030 vibe runtime parity | Planned | Level 2 plan: Vibe gets a scorer tool table read from its journal entries, a not-measured runner reason, a doctor wiring row and three mirror rows, a command-document line in its brief, its own observation label and a real-brief proof test, 19 tasks in five lanes, floors at main's merge 24/44, 0/35, 2/44, eval [160,49,21,5], G7 G8 G9 G10 G12 handed back |
 | Phase 030 probe cleanup | Fixed | LEFT used an ls glob that zsh aborts on no match, so T002 printed 0 with 8 probe folders left. Folders removed, probe removes its scope until it stays gone, LEFT now uses find |
 | Phase 030 vibe runtime parity | Complete | 6c026746381 and follow-up 0c4de1808e7: Vibe is scored, named not measured, checked by the doctor and briefed with command documents, observations carry their runtime. Review SHIP, 0 P0 and 0 P1, floors cmp equal, suite 2157 passed 0 failed |
+| Final catch-up merge | Done | 682ca792315 merges main 28a6d40f81f, 0 behind. Changelog ranges combined, Claude reader declaration, trigger index and fixtures regenerated, Vibe markdown and orchestrate profiles regenerated after main changed their sources. Gates: suite 2157 passed 0 failed, doctor 1229, Vibe 79, mirrors in sync, floors 24/44 and 0/35, switch matrix 14 of 14 |
 
 ### Deviations and findings
 
