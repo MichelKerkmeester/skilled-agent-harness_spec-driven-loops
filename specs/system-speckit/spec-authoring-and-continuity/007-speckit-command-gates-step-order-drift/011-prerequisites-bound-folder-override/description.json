@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override",
+  "description": "Phase 11: prerequisites-bound-folder-override",
+  "keywords": [
+    "phase",
+    "prerequisites-bound-folder-override"
+  ],
+  "lastUpdated": "2026-11-15T06:06:10.723Z",
+  "specId": "011",
+  "folderSlug": "prerequisites-bound-folder-override",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "007-speckit-command-gates-step-order-drift"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_07-06__the-plan-implement-and-complete-workflows-run.md"
+  ]
+}

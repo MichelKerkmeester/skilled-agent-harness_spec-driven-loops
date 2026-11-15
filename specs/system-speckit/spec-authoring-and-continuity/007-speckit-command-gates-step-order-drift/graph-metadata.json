@@ -13,7 +13,8 @@
     "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms",
     "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment",
     "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets",
-    "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces"
+    "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces",
+    "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override"
   ],
   "manual": {
     "depends_on": [],
@@ -92,18 +93,18 @@
     ],
     "causal_summary": "The `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, `/speckit:resume`, `/speckit:save`, `/speckit:search` and `/speckit:handoff` commands are executed by AI agents on every runtime, and an agent follows the workflow text literally",
     "created_at": "2026-11-14T11:33:17Z",
-    "last_save_at": "2026-11-14T21:33:20.070Z",
+    "last_save_at": "2026-11-15T06:07:54.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:677bd8d511027d78677fc1707663915878e8ea3f5f7697d0bb6678f1c6493552",
+    "source_fingerprint": "sha256:e340ddf41deed83c0afaf1dab7076da25ee88c617b2199f5528888095385f71e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "32c02363c32a1c5052c828553c7add755af25abca744b0717709fa5a2726508d"
+      "spec.md": "9d8c1df74ec8d289f8cb59be8cce6596bfc69fb4582141243d2b011f055ce741"
     },
-    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces",
-    "last_active_at": "2026-11-14T21:33:20.070Z"
+    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override",
+    "last_active_at": "2026-11-15T06:06:10.743Z"
   }
 }

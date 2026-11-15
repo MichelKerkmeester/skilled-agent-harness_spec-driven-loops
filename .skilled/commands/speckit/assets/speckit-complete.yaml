@@ -745,7 +745,7 @@ workflow:
       fallback: { on_failure: "Use inline planning activities below" }
 
     activities:
-    - Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --paths-only to get feature paths
+    - Run SPECIFY_FEATURE=<[SPEC_FOLDER] without its leading specs/> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --paths-only to get feature paths
     - Load FEATURE_SPEC and AGENTS.md
     - Load plan.md and preserve exact structure
     - Fill Technical Context (mark unknowns as NEEDS CLARIFICATION)
@@ -805,7 +805,7 @@ workflow:
       applies_to: autopilot
       rule: "Every task row carries agent, deps and touched-files. When a field cannot be set, end with reason uncertainty_blocked, as unattended_autopilot.task_metadata_contract states."
     activities:
-    - Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json to get FEATURE_DIR
+    - Run SPECIFY_FEATURE=<[SPEC_FOLDER] without its leading specs/> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json to get FEATURE_DIR
     - Load plan.md for tech stack and architecture
     - Load spec.md for user stories and priorities
     - Load optional artifacts (research)
@@ -876,7 +876,7 @@ workflow:
   step_9_implementation_check:
     purpose: Verify all prerequisites for implementation
     activities:
-    - Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --require-tasks
+    - Run SPECIFY_FEATURE=<[SPEC_FOLDER] without its leading specs/> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --require-tasks
     - Verify plan.md and tasks.md exist
     - Confirm each requirement has an acceptance-criteria row
     - Verify no blockers exist

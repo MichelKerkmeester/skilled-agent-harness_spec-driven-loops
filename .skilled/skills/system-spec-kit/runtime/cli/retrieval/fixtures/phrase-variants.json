@@ -1,5 +1,5 @@
 {
-  "manifestHash": "58d48e8b7f592e554485eee72c780f74d9cc82b1bdc5cfe79c943da304f44c27",
+  "manifestHash": "b7cd482a6a5c88e6c2cf380bad260bfeb6c95410856a8c37a4b529f4a97211be",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -81860,6 +81860,9 @@
     "phase 11 pre existing gate failures": [
       "phase 11 pre existing gate failures"
     ],
+    "phase 11 prerequisites bound folder override": [
+      "phase 11 prerequisites bound folder override"
+    ],
     "phase 11 relocate and restore fixes": [
       "phase 11 relocate and restore fixes"
     ],
@@ -87951,6 +87954,18 @@
     ],
     "prerelease versioning and residue tasks": [
       "prerelease versioning and residue tasks"
+    ],
+    "prerequisites bound folder override": [
+      "prerequisites bound folder override"
+    ],
+    "prerequisites bound folder override implementation summary": [
+      "prerequisites bound folder override implementation summary"
+    ],
+    "prerequisites bound folder override plan": [
+      "prerequisites bound folder override plan"
+    ],
+    "prerequisites bound folder override tasks": [
+      "prerequisites bound folder override tasks"
     ],
     "presentation adherence research": [
       "presentation adherence research"
