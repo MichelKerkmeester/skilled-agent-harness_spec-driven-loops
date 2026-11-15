@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/399-hook-feature-subtracks` |
 | **Parent Spec** | None |
@@ -121,7 +121,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 4 | 004-offer-lookup-at-claim/ | `claim` re-mints and prints the lookup section, and the receiver steps gain one line. | Complete |
 | 5 | 005-deprecate-compaction-offer/ | No runtime mints or offers the lookup after a compaction. | Complete |
 | 6 | 006-docs-and-live-hop-proof/ | Docs, catalog and playbooks updated, one live hop recorded, the phase 1 measurement rerun. | Complete |
-| 7 | 007-review-remediation/ | The claim mints only for a transcript in the receiver's checkout, the command reads `CLAUDE_CONFIG_DIR`, `prepare` mints nothing, and the docs match the code. | In Progress |
+| 7 | 007-review-remediation/ | The claim mints only for a transcript in the receiver's checkout, the command reads `CLAUDE_CONFIG_DIR`, `prepare` mints nothing, and the docs match the code. | Complete |
 
 ### Phase Transition Rules
 

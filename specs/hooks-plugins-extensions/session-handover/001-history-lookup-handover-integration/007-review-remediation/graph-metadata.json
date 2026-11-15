@@ -153,12 +153,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -178,6 +172,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Vibe",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A claimed note can print a lookup command that answers `sessionnotfound` when `CLAUDECONFIGDIR` is set, can mint a locator for a transcript from another project, and writes the sender's hook state before it checks that the receiver shares the checkout",
     "created_at": "2026-11-15T14:13:29Z",
-    "last_save_at": "2026-11-15T14:43:47.520Z",
+    "last_save_at": "2026-11-15T14:50:39.549Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f96fca4d74f720e6f9c0a995f2be289341634a269175824a42368788584a35b",
+    "source_fingerprint": "sha256:ad735159de51e3f1819c865f70006691adbf09aa0e9120ab2e0a14befbc93140",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f575649f67a63763790414cf7c2d85fe8db31876c2aed7bb5357c57fd7ee2eb3",
+      "spec.md": "cbd6e54db49c9268ff7a36c9df83be6ce301302a64acf6a198d19e7dd7410873",
       "plan.md": "685a7bb5525a9c00ce711f58b65ccc65572aff9ea5f7f4b5f02a7b30b3e33823",
       "tasks.md": "9ca22d37b79426fd2656d69c2397c1bcb46ffe19622687b3a83dfed5b9170eac",
-      "implementation-summary.md": "81eec16f60042447b99999bdd3a675eff85d6d0ce959135cf94888b11efb77d8"
+      "implementation-summary.md": "e8ddbdfe62e02270fee504d1e3f25f1cd31768bbd0dc30d57e2d68d2e6b3a58c"
     },
     "last_active_at": null
   }
