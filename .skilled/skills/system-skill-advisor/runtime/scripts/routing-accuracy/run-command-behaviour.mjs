@@ -78,11 +78,12 @@ const CAP_MS = Object.freeze({
 
 const CLAUDE_MODEL = 'claude-sonnet-5-5';
 const CODEX_MODEL = 'gpt-6-luna';
-// A variant would ride the model string, because `opencode run` has no flag for
-// it. The default effort is used, as on Pi: the max variant took about three
-// minutes a turn, which made OpenCode the slowest runtime by far.
-const OPENCODE_MODEL = 'llmgateway/deepseek-v4.1-flash-1017';
-const PI_MODEL = 'llmgateway/deepseek-v4.1-flash-1017';
+// OpenCode and Pi run the flat-rate OpenCode Go flash model, the fastest and
+// cheapest DeepSeek route, because the max variant took about three minutes a
+// turn. Pi takes its thinking level after the colon and would otherwise use the
+// max level its settings file names.
+const OPENCODE_MODEL = 'opencode-go/deepseek-v4.1-flash';
+const PI_MODEL = 'opencode-go/deepseek-v4.1-flash:off';
 const DEVIN_MODEL = 'swe-2-max';
 const DSH_MODEL = 'deepseek-v4.1-flash-1017';
 
