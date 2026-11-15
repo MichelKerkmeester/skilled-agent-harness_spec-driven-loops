@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 2: skilled-release-line"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The 62 Skilled release entries had long sentences, and 626 ran past 22 words. This phase rewrites them with the phase 001 driver and syncs the 52 published GitHub release bodies."
 trigger_phrases:
   - "skilled release line"
   - "phase 2 skilled release line"
@@ -20,10 +20,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
-| **Branch** | `scaffold/002-skilled-release-line` |
+| **Branch** | `worktrees/401-changelog-voice-rewrite` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 12 |
 | **Predecessor** | 001-voice-rule-tooling-and-pilot |
@@ -38,14 +38,14 @@ contextType: "general"
 
 This is **Phase 2** of the Rewrite every skill and release changelog to the Human Voice Rules with shorter sentences specification.
 
-**Scope Boundary**: 62 Skilled release entries under `.skilled/changelog/skilled/`, including the `v1+/`, `v2+/` and `v3+/` folders, then the 60 published GitHub release bodies, listed in `../scratch/lists/002.txt`. Only the files on that list change in this phase.
+**Scope Boundary**: 62 Skilled release entries under `.skilled/changelog/skilled/`, including the `v1+/`, `v2+/` and `v3+/` folders, then the 52 published GitHub release bodies (v1.0.0.0 has no release), listed in `../scratch/lists/002.txt`. Only the files on that list change in this phase.
 
 **Dependencies**:
 - Phase 001: the amended voice rule, the briefs and the driver in `../scratch/`.
 - The previous phase passing `validate.sh --strict`.
 
 **Deliverables**:
-- Rewrite the 62 release entries and sync the 60 published release bodies with `gh release edit`. Tags do not move.
+- Rewrite the 62 release entries and sync the 52 published release bodies with `gh release edit`. Tags do not move.
 - One `state.jsonl` row per file, kept or restored, and `measure-voice.py` numbers before and after.
 <!-- /ANCHOR:phase-context -->
 
@@ -56,18 +56,23 @@ This is **Phase 2** of the Rewrite every skill and release changelog to the Huma
 <!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The Skilled release entries under `.skilled/changelog/skilled/` hold long sentences. Across the 60 entries this phase queues, 626 sentences run past 22 words and 50 files have at least one. One file also holds a hard blocker under the voice rules.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+Every entry on the list reads in short plain sentences with every fact kept, and each published release body shows the same text.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 <!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ python3 ../scratch/measure-voice.py <the 60 queued files at HEAD>
+files=60 sentences=5001 avg_words=13.7
+sentences_over_15=1731 sentences_over_22=626
+files_with_a_sentence_over_22=50 files_with_hvr_hard_blockers=1
 ```
+
+The list holds 62 files. The pilot already rewrote `v4.0.0.0.md` and `v4.0.0.12.md` and committed them in `e673c77ba93`, so the driver queued 60.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -77,19 +82,24 @@ This is **Phase 2** of the Rewrite every skill and release changelog to the Huma
 <!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Rewrite the 60 queued entries in `../scratch/lists/002.txt` with `../scratch/rewrite-driver.cjs`.
+- Retry the files the first wave restored, once, with `--retry-failed`.
+- Check the wave with `../scratch/wave-verify.cjs` and measure it with `../scratch/measure-voice.py`.
+- Sync the GitHub release body of each changed entry that has a published release, after saving the old body.
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- Any file outside `../scratch/lists/002.txt` - the later phases own them.
+- Moving a release tag - only the release bodies change.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.skilled/changelog/skilled/**/v*.md` (51 files) | Modify | Rewritten entries that passed every gate |
+| `../scratch/state.jsonl` | Modify | One record per dispatch with its tokens and verdict |
+| `../scratch/wave-002.log`, `../scratch/wave-002-retry.log` | Create | Driver logs for the two waves |
+| `scratch/release-bodies-before/`, `scratch/release-bodies-after/` | Create | 52 saved bodies and the 52 bodies sent |
+| `scratch/evidence.txt` | Create | Measure, wave-verify and sync results |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -103,13 +113,16 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-001 | Each of the 62 files on the list ends with a `pass` or `unchanged` record in `../scratch/state.jsonl`, or is restored to HEAD with its last finding recorded. |
+| REQ-002 | `wave-verify.cjs` reports no problem for a file this phase rewrote, and no missing file. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-003 | `measure-voice.py` on the 60 queued files after the waves prints `sentences_over_22=0` and `files_with_hvr_hard_blockers=0`. |
+| REQ-004 | Each changed entry with a published release gets its body replaced by the new entry text, and each old body is saved first. Tags do not move. |
+| REQ-005 | The run state records tokens for every dispatch, so the phase total can be reported. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -121,8 +134,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 <!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: `measure-voice.py` prints `avg_words` of 10 or less and `sentences_over_22=0` on the 60 queued files.
+- **SC-002**: Each synced release body read back with `gh release view` equals the text sent.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -133,8 +146,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Dependency | Vibe quota for the worker and Codex quota for the fact check | The wave stalls | The driver stops on a usage limit and restores in-flight files. The run then asks the operator and never moves the fact check to another provider |
+| Risk | A split sentence changes a fact, such as a "could" made definite | High | The fact check rejects it, and a file that fails three attempts is restored to HEAD |
+| Risk | A synced release body loses text the operator wants | Med | Each old body is saved in `scratch/release-bodies-before/` and can be restored with `gh release edit <tag> --notes-file` |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -148,16 +162,16 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
-- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: A file finishes all gates within 15 minutes. The slowest kept file took 252 seconds.
+- **NFR-P02**: N/A: throughput is set by the two driver slots.
 
 ### Security
-- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: The fact check runs in a read-only sandbox. The worker gets no tools.
+- **NFR-S02**: N/A: no credential or personal data is read.
 
 ### Reliability
-- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
-- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
+- **NFR-R01**: A failed or interrupted run leaves every file either rewritten and gated, or byte-identical to HEAD.
+- **NFR-R02**: `wave-verify.cjs` checks each kept file and each unchanged file against HEAD before the commit.
 
 ---
 
@@ -165,9 +179,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## L2: EDGE CASES
 <!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
-- Empty input: [YOUR_VALUE_HERE: How system handles]
-- Maximum input: [YOUR_VALUE_HERE: Limit and behavior]
-- Failure path: [YOUR_VALUE_HERE: Exit code and message]
+- Empty input: an entry that already passes both sentence rules is recorded `unchanged` and not dispatched. Nine were.
+- Maximum input: a file already rewritten in the pilot is skipped, so the list's 62 files queue 60.
+- Failure path: a file that fails three attempts is restored to HEAD with its last finding. Five were, and the retry wave kept all five.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -178,10 +192,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
-| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
-| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
-| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
+| Scope | 10/25 | 60 entries and 52 release bodies |
+| Risk | 14/25 | A rewrite can change a fact, and the release bodies are public |
+| Research | 3/20 | Phase 001 settled the method and the cost |
+| **Total** | **27/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
@@ -190,8 +204,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- Sync the release bodies now or after the last phase? Decision: the operator chose to sync now, through AskUserQuestion on 2026-11-15.
+- None of the others blocks this phase.
 <!-- /ANCHOR:questions -->
 
 ---

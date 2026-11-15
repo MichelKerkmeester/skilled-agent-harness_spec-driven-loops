@@ -177,9 +177,9 @@ N/A: this packet fixes no reported finding.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 0/8 |
-| P1 Items | 10 | 0/10 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 10 | 10/10 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-15
 <!-- /ANCHOR:summary -->

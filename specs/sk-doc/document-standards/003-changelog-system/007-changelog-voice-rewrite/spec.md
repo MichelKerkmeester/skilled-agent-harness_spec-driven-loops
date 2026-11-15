@@ -80,7 +80,7 @@ Every skill and release changelog reads in short, plain sentences that pass the 
 - The 1,571 files in `scratch/scope-list.txt`: every skill changelog under `.skilled/skills/**/changelog/` and every Skilled release entry under `.skilled/changelog/skilled/`, including the `v1+/`, `v2+/` and `v3+/` generation folders. Two `system-spec-kit/templates/changelog/` files were dropped from the original 1,573 on 2026-11-15, because they are templates and not release entries. The operator decided this.
 - An amendment to the voice rule that forbids editing a released changelog, so an operator-approved retrofit recorded in a spec packet may edit one.
 - The rewrite and fact-check tooling, adapted from the earlier skill changelog retrofit.
-- The GitHub release bodies of the 60 Skilled releases whose entry changes, synced with `gh release edit`.
+- The GitHub release bodies of the Skilled releases whose entry changes, synced with `gh release edit`.
 
 ### Out of Scope
 - Packet-local changelogs under `specs/`. They are deprecated and sit inside shipped spec packets.
@@ -111,7 +111,7 @@ Every skill and release changelog reads in short, plain sentences that pass the 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-voice-rule-tooling-and-pilot/ | Amend the voice rule, adapt the rewrite and fact-check tooling, and pilot it on 20 files | Complete |
-| 2 | 002-skilled-release-line/ | 62 Skilled release entries, then sync the 60 published release bodies | Pending |
+| 2 | 002-skilled-release-line/ | 62 Skilled release entries, then sync the 52 published release bodies | Complete |
 | 3 | 003-sk-doc-changelogs/ | 298 sk-doc changelogs | Pending |
 | 4 | 004-system-spec-kit-changelogs/ | 167 system-spec-kit changelogs | Pending |
 | 5 | 005-sk-code-changelogs/ | 204 sk-code changelogs | Pending |
