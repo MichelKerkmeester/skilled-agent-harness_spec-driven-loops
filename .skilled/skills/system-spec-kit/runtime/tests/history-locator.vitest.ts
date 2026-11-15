@@ -146,6 +146,14 @@ describe('history locator schema', () => {
     expect(parsed.success).toBe(false);
   });
 
+  it('accepts the handover provenance source', () => {
+    const parsed = HistoryLocatorSchema.safeParse({
+      ...validLocator(),
+      provenance: { source: 'handover', capturedAt: new Date(NOW_MS).toISOString() },
+    });
+    expect(parsed.success).toBe(true);
+  });
+
   it('rejects an unknown provenance source', () => {
     const parsed = HistoryLocatorSchema.safeParse({
       ...validLocator(),

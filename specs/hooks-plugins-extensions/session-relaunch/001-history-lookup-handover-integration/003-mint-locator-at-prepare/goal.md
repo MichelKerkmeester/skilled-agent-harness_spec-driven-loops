@@ -55,7 +55,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] A prepare with a Claude session log stores one locator whose `provenance.source` is `handover`, and `node --test .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs` exits 0 with `# fail 0`.
+- [ ] A prepare with a Claude session log stores one locator whose `provenance.source` is `handover`, and `node --test .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` exits 0 with `# fail 0`.
 - [ ] With the hook-state directory unwritable, `prepare` exits 0 and the relaunch record exists.
 - [ ] `cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/history-locator.vitest.ts` exits 0.
 - [ ] The measured command prints a non-zero count for both handover files, against 0 for both before the change.

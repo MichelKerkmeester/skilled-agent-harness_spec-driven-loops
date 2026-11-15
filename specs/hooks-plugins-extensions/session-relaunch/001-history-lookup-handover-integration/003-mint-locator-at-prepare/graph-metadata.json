@@ -33,18 +33,18 @@
       "writes"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-handover/bin/session-handover.cjs",
+      ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
-      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
-      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts",
-      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts"
     ],
     "entities": [
@@ -79,33 +79,33 @@
         "source": "derived"
       },
       {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/bin/session-handover.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "hook-state.ts",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
         "source": "derived"
       },
       {
-        "name": "relaunch-core.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "session-relaunch.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
-        "source": "derived"
-      },
-      {
         "name": "history-locator.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-relaunch-cli.test.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`prepare` validates the note and writes the relaunch record, and the receiving session then starts with only the note's four sections",
     "created_at": "2026-11-15T06:24:21Z",
-    "last_save_at": "2026-11-15T06:42:27.413Z",
+    "last_save_at": "2026-11-15T10:05:36.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a62c8c72d0df29dfa44ab86713906e504ee4a7cae6e82eaad45403c1e1db57c",
+    "source_fingerprint": "sha256:9c7a6dbf4254bf9da56d2368a000ff8366e0089458d0724bd1624caa3f7c4566",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b2e8d287d5de06652694fcff47e755d61da1179b26451a5d3fac1bd8e14b57e6",
-      "plan.md": "ac5bc5e1b691233ba501cdcc8f1ade2e2cae16fa58c5d0fa6d57591116ab52ae",
-      "tasks.md": "c3b2bd5d07f341e923907e6c81ec1aebea6174f9356d175b176643538909f981",
-      "implementation-summary.md": "bfc13805e5fced2c9d0351925d0961591db293405cddd038a911f4fdf74db62f"
+      "spec.md": "0382d1befc935afce71e5409a42f1f68defa60a0273cecd03cf5c9debfc7ca24",
+      "plan.md": "33640f90e364ab24a91534da22390addb8d676507a0df8e730a3abc83304fa34",
+      "tasks.md": "4cfafac48486a972283b2c60d207562d756fd5c4293982d604399af71604fb25",
+      "implementation-summary.md": "2f97f8cbf07e1cf666de71878196bb02f540efaa7d1b1f34309b3674c25bdc46"
     },
     "last_active_at": null
   }

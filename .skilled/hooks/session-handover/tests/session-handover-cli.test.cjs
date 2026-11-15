@@ -10,6 +10,7 @@ const { createHash } = require('node:crypto');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { pathToFileURL } = require('node:url');
 const core = require('../lib/relaunch-core.cjs');
 const { specFolderFromSeed } = require('../lib/nudge.cjs');
 const { runNested } = require('./fixtures/nested-run.cjs');
@@ -44,10 +45,13 @@ function createSandbox(t) {
   const xdgRuntimeDir = path.join(root, 'runtime');
   const home = path.join(root, 'home');
   const binDir = path.join(root, 'bin');
+  // The hook state lives under the process temp folder, so the sandbox carries its own.
+  const tmpDir = path.join(root, 'tmp');
   fs.mkdirSync(repoRoot, { recursive: true });
   fs.mkdirSync(xdgRuntimeDir, { recursive: true });
   fs.mkdirSync(home, { recursive: true });
   fs.mkdirSync(binDir, { recursive: true });
+  fs.mkdirSync(tmpDir, { recursive: true });
   const psPath = path.join(binDir, 'ps');
   fs.writeFileSync(
     psPath,
@@ -72,6 +76,7 @@ function createSandbox(t) {
   const env = {
     ...withoutRelaunchSwitches(process.env),
     HOME: home,
+    TMPDIR: tmpDir,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_HANDOVER_REPO_ROOT: repoRoot,
     HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),
@@ -102,7 +107,7 @@ function createSandbox(t) {
     'SYSTEM_SESSION_HANDOVER_DISABLED',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  return { root, repoRoot, xdgRuntimeDir, home, binDir, env };
+  return { root, repoRoot, xdgRuntimeDir, home, binDir, tmpDir, env };
 }
 
 function handoffText(
@@ -186,6 +191,41 @@ function runCli(sandbox, args, env = sandbox.env) {
     encoding: 'utf8',
     timeout: 5000,
   });
+}
+
+// The hook-state writer keys its file by the folder the write ran in and the session, and the
+// spawned CLI reports that folder as a real path, so the sandbox root is resolved the same way.
+function hookStatePath(sandbox, workspace, sessionId) {
+  const projectHash = createHash('sha256').update(workspace).digest('hex').slice(0, 12);
+  const sessionHash = createHash('sha256').update(sessionId).digest('hex').slice(0, 16);
+  return path.join(sandbox.tmpDir, 'speckit-claude-hooks', projectHash, `${sessionHash}.json`);
+}
+
+// A locator is minted only where the printed lookup command can be redeemed, so the sandbox
+// carries the entry and the compiled core the offer checks for.
+function markCheckoutRoot(sandbox) {
+  fs.mkdirSync(path.join(sandbox.repoRoot, '.git'), { recursive: true });
+  for (const relativePath of [
+    '.skilled/hooks/session-handover/bin/history-lookup.mjs',
+    '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js',
+  ]) {
+    const filePath = path.join(sandbox.repoRoot, relativePath);
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    fs.writeFileSync(filePath, '');
+  }
+}
+
+function writeClaudeSessionLog(sandbox, sessionId) {
+  const logPath = path.join(
+    sandbox.home, '.claude', 'projects', 'sandbox-project', `${sessionId}.jsonl`,
+  );
+  fs.mkdirSync(path.dirname(logPath), { recursive: true });
+  fs.writeFileSync(logPath, '');
+  return logPath;
+}
+
+function readHookState(sandbox, workspace, sessionId) {
+  return JSON.parse(fs.readFileSync(hookStatePath(sandbox, workspace, sessionId), 'utf8'));
 }
 
 test('window names the missing settings when no window is configured', (t) => {
@@ -452,6 +492,92 @@ test('prepare still arms a pending record below the hop limit', (t) => {
   const record = JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8'));
   assert.equal(record.status, 'pending');
   assert.equal(record.hops, 0);
+});
+
+test('prepare saves a handover locator for the sending session', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const workspace = fs.realpathSync(sandbox.repoRoot);
+  markCheckoutRoot(sandbox);
+  writeClaudeSessionLog(sandbox, SESSION_ID);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 0, result.stderr);
+  const { historyLocator } = readHookState(sandbox, workspace, SESSION_ID);
+  assert.equal(historyLocator.provenance.source, 'handover');
+  assert.match(historyLocator.handle, /^hl1_[a-f0-9]{32}$/);
+});
+
+test('the saved locator recomputes to its handle and names the checkout root', async (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const workspace = fs.realpathSync(sandbox.repoRoot);
+  markCheckoutRoot(sandbox);
+  const transcriptPath = writeClaudeSessionLog(sandbox, SESSION_ID);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+  assert.equal(result.status, 0, result.stderr);
+
+  const { historyLocator } = readHookState(sandbox, workspace, SESSION_ID);
+  const digest = await import(pathToFileURL(path.join(
+    __dirname, '..', '..', '..', 'skills', 'system-spec-kit', 'runtime', 'dist',
+    'hooks', 'lib', 'history', 'locator-digest.js',
+  )).href);
+  assert.equal(digest.historyHandle(historyLocator, transcriptPath), historyLocator.handle);
+  assert.equal(historyLocator.workspace, workspace);
+  assert.equal(historyLocator.sessionDirectory, undefined);
+});
+
+test('prepare still prepares when the hook state folder cannot be written', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  markCheckoutRoot(sandbox);
+  writeClaudeSessionLog(sandbox, SESSION_ID);
+  fs.writeFileSync(path.join(sandbox.tmpDir, 'speckit-claude-hooks'), 'not a directory');
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(
+    result.stdout,
+    '[session-handover] handoff prepared; stop now and end this turn.'
+      + ' The loop ends this session when it goes idle and a fresh session continues from '
+      + `${handoffPath}.\n`,
+  );
+  assert.equal(JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8')).status, 'pending');
+});
+
+test('prepare leaves no locator for a runtime with no locator contract', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const workspace = fs.realpathSync(sandbox.repoRoot);
+  markCheckoutRoot(sandbox);
+  writeClaudeSessionLog(sandbox, SESSION_ID);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'cursor';
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+
+  const result = runCli(sandbox, [
+    'prepare',
+    '--handoff',
+    handoffPath,
+    '--session',
+    SESSION_ID,
+  ]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(fs.existsSync(hookStatePath(sandbox, workspace, SESSION_ID)), false);
+  assert.equal(JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8')).runtime, 'cursor');
 });
 
 // The loop can end a running session, so a checkout that never opted in must not

@@ -851,6 +851,94 @@ function safeDirectory(directory) {
   }
 }
 
+// The history helpers are compiled into the spec-kit runtime's build output, which a checkout
+// may not have built yet. Requiring them inside the mint keeps this core loadable without that
+// build: a missing build is one more reason to skip the locator, never to fail the hand-over.
+const HISTORY_RUNTIME_DIST = path.resolve(
+  __dirname,
+  '..',
+  '..',
+  '..',
+  'skills',
+  'system-spec-kit',
+  'runtime',
+  'dist',
+);
+
+function loadHistoryRuntime() {
+  return {
+    hookState: require(path.join(HISTORY_RUNTIME_DIST, 'hooks', 'claude', 'hook-state.js')),
+    digest: require(path.join(
+      HISTORY_RUNTIME_DIST,
+      'hooks',
+      'lib',
+      'history',
+      'locator-digest.js',
+    )),
+    offer: require(path.join(
+      HISTORY_RUNTIME_DIST,
+      'hooks',
+      'lib',
+      'history',
+      'lookup-offer.js',
+    )),
+  };
+}
+
+/**
+ * Mint and save the locator a later session uses to read this session's earlier turns.
+ *
+ * The locator is the shape a compaction mints, keyed by the checkout root above the folder
+ * the session ran in, so the reader proves the session the same way. The transcript comes
+ * from the runtime's own store rather than from a caller-supplied path, because a hand-over
+ * has no host payload to trust.
+ *
+ * @param {Object} options - The sending session.
+ * @param {string} options.runtime - Runtime that owns the session.
+ * @param {string} options.sessionId - The session's identifier.
+ * @param {string} [options.cwd=process.cwd()] - Folder the session ran in.
+ * @param {Date|number|string} [options.now] - Clock value for a deterministic locator.
+ * @returns {Object|null} The stored locator, or null when none could be minted.
+ */
+function mintHandoverLocator({ runtime, sessionId, cwd = process.cwd(), now } = {}) {
+  try {
+    if (!nonEmptyString(runtime) || !nonEmptyString(sessionId)) return null;
+    const { hookState, digest, offer } = loadHistoryRuntime();
+    const locatorKind = hookState.HISTORY_LOCATOR_KINDS[runtime];
+    if (!nonEmptyString(locatorKind)) return null;
+    const transcriptPath = runtime === 'claude'
+      ? claudeSessionLogPath(sessionId, process.env)
+      : runtime === 'codex'
+        ? codexRolloutPath(sessionId, process.env)
+        : null;
+    if (transcriptPath === null) return null;
+    const placement = offer.placeLookup(cwd);
+    if (placement === null) return null;
+
+    const mintedAt = toIsoTimestamp(now);
+    const identity = { runtime, sessionId, ...placement, locatorKind };
+    const locator = {
+      version: hookState.HISTORY_LOCATOR_VERSION,
+      ...identity,
+      handle: digest.historyHandle(identity, transcriptPath),
+      mintedAt,
+      provenance: { source: 'handover', capturedAt: mintedAt },
+    };
+    // The writer keys its file by the process folder, so it moves there for the write and
+    // only reports success when the stored locator still carries the handle minted here.
+    let stored = null;
+    const kept = digest.persistHistoryLocator(locator, () => {
+      hookState.ensureStateDir();
+      const result = hookState.updateState(sessionId, { historyLocator: locator });
+      stored = result?.merged?.historyLocator ?? null;
+      return result;
+    });
+    return kept ? (stored ?? locator) : null;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Find the model and effort the sending session is using now, so the relaunched session can
  * start on them. Claude is read from the last main-chain assistant entry, Codex from the last
@@ -2271,6 +2359,7 @@ module.exports = {
   resolveGoalPacketReason,
   resolveSessionSettings,
   recordGoalPacket,
+  mintHandoverLocator,
   parentMapFromTable,
   stateDir,
   inspectStateDir,

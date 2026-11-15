@@ -41,7 +41,7 @@ A new provenance value lets the locator schema record a handover as its source, 
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] `node --test .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs` exits 0 with `# fail 0`
+- [ ] `node --test .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` exits 0 with `# fail 0`
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -57,7 +57,7 @@ Shared helper, one new caller.
 - **`mintHandoverLocator` in `relaunch-core.cjs`**: resolves the sender's transcript with the resolvers already there, `claudeSessionLogPath` (`relaunch-core.cjs:685`) and `codexRolloutPath` (`relaunch-core.cjs:798`), places the workspace with `placeLookup` (`lookup-offer.ts:116`), and builds the locator with `historyHandle` (`locator-digest.ts:29`). It returns the locator or null and never throws.
 - **`persistHistoryLocator`** (`locator-digest.ts:65`): scopes the process cwd to the locator workspace for the write (`locator-digest.ts:79`) and counts the write only when the stored locator carries the minted handle (`locator-digest.ts:72`).
 - **`HistoryLocatorSchema`** (`hook-state.ts:285`): the closed schema whose provenance source enum gains `handover` (`hook-state.ts:306`).
-- **`prepare`** (`session-relaunch.cjs:513`): the one call site, after the `preparePending` call (`session-relaunch.cjs:588`).
+- **`prepare`** (`session-handover.cjs:513`): the one call site, after the `preparePending` call (`session-handover.cjs:588`).
 
 ### Data Flow
 `prepare` runs in the sender's working directory. `placeLookup` walks up to the checkout root and returns it as `workspace`, plus `sessionDirectory` when the sender sat below it (`lookup-offer.ts:116`). `historyHandle` hashes runtime, session id, workspace, locator kind and, for Claude and Codex, the transcript path (`locator-digest.ts:33`). `persistHistoryLocator` changes the process cwd to that workspace for the write, so `getStatePath` names the file from the session id under a directory named from that cwd (`hook-state.ts:469`, `hook-state.ts:459`), which is the directory the printed command changes to before it runs the CLI.
@@ -79,7 +79,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Two suites, both already in the repository. `node --test .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs` must exit 0 and cover the mint, the stored identity, the fail-open path and the runtime with no locator kind; its sandbox already writes a Claude session log through `writeClaudeGoalLog` (`session-relaunch-cli.test.cjs:2411`). `npx vitest run tests/history-locator.vitest.ts` from `.skilled/skills/system-spec-kit/runtime` must exit 0 and keep rejecting an unknown provenance source (`history-locator.vitest.ts:149`).
+Two suites, both already in the repository. `node --test .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` must exit 0 and cover the mint, the stored identity, the fail-open path and the runtime with no locator kind; its sandbox already writes a Claude session log through `writeClaudeGoalLog` (`session-handover-cli.test.cjs:2411`). `npx vitest run tests/history-locator.vitest.ts` from `.skilled/skills/system-spec-kit/runtime` must exit 0 and keep rejecting an unknown provenance source (`history-locator.vitest.ts:149`).
 <!-- /ANCHOR:testing -->
 
 ---

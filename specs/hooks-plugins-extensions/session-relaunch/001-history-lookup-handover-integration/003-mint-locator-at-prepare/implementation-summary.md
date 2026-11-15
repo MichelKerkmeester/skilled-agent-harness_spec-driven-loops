@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/003-mint-locator-at-prepare"
     last_updated_at: "2026-11-15T06:24:23Z"
     last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    recent_action: "Phase built and verified"
+    next_safe_action: "Build phase 004"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-mint-locator-at-prepare"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,60 +45,63 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+`prepare` now saves a history locator for the sending session, marked with provenance source `handover`. A session that takes over can therefore be given a command that reads the sender's earlier turns, which the next phase prints.
 
 ### Phase 3: mint-locator-at-prepare
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+When you prepare a handover from Claude Code or Codex, the handover core finds the session's own transcript, places it at the checkout root and stores the same locator a compaction would store. Nothing else about `prepare` changes. A mint that cannot finish, for any reason, leaves the output, the exit code and the relaunch record as they were.
 
 ### Files Changed
 
 | File | Action | Purpose |
-|------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+|---|---|---|
+| `.skilled/hooks/session-handover/lib/relaunch-core.cjs` | Modified | Adds `mintHandoverLocator`, which loads the compiled history helpers lazily and never throws |
+| `.skilled/hooks/session-handover/bin/session-handover.cjs` | Modified | `prepare` calls the mint once after `preparePending`, inside its own guard |
+| `.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` | Modified | Four cases: stored locator, re-derived handle, unwritable state folder, runtime with no locator kind |
+| `.skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts` | Modified | Provenance source enum accepts `handover` |
+| `.skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts` | Modified | Schema accepts `handover` and rejects an unknown source |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+A DeepSeek V4.1 Flash worker made the change from a literal brief. The orchestrating session read the full diff, confirmed the lookup CLI does not test the provenance source, rebuilt the runtime and reran every suite from the final state.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
-|----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+|---|---|
+| Only Claude and Codex senders get a locator | The handover core has transcript resolvers for those two runtimes only. Pi, Devin, DSH, OpenCode and Vibe have a locator kind but no resolver here, so they return null. |
+| Helpers are loaded inside the mint | A checkout without a built runtime must still load the handover core, so a missing build skips the locator and nothing else. |
+| The transcript comes from the runtime's own store | A handover has no host payload that names a transcript, so the path is resolved from the session id. |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
-|-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+|---|---|
+| `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-handover/tests/*.test.cjs` | 979 tests, 979 pass, 0 fail |
+| `npx vitest run tests/history-*.vitest.ts tests/hook-session-start.vitest.ts` | `Test Files 14 passed (14)`, `Tests 222 passed (222)`, one new schema test |
+| `npx tsc --noEmit -p tsconfig.json` | Exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The concern suite fails inside a dispatched worker.** With `AI_SESSION_CHILD=1` in the environment, 30 nudge cases report a child session and print nothing. Unset the variable for the run, as the check above does.
+2. **The SessionStart offer ignores this locator.** `session-prime.ts` offers only a `precompact` locator, so the handover locator is stored and redeemable but not printed until the claim prints it.
 <!-- /ANCHOR:limitations -->
 
 ---

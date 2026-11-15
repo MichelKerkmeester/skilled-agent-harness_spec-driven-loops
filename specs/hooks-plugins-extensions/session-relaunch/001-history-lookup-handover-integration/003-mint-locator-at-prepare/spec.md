@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/399-hook-feature-subtracks` |
 | **Parent Spec** | ../spec.md |
@@ -64,10 +64,10 @@ A handover prepared in this checkout leaves a locator for the sending session th
 ### Measured Behavior
 
 ```text
-$ rg -n --count-matches --include-zero "historyHandle|persistHistoryLocator|historyLocator" .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts .skilled/hooks/session-relaunch/bin/session-relaunch.cjs .skilled/hooks/session-relaunch/lib/relaunch-core.cjs
-.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:0
+$ rg -n --count-matches --include-zero "historyHandle|persistHistoryLocator|historyLocator" .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts .skilled/hooks/session-handover/bin/session-handover.cjs .skilled/hooks/session-handover/lib/relaunch-core.cjs
+.skilled/hooks/session-handover/bin/session-handover.cjs:0
 .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:20
-.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:0
+.skilled/hooks/session-handover/lib/relaunch-core.cjs:0
 ```
 
 The 20 matches are the PreCompact producer. The two 0 counts are `prepare` and the handover core, which name no locator helper at all.
@@ -94,10 +94,10 @@ The 20 matches are the PreCompact producer. The two 0 counts are `prepare` and t
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts` | Modify | Add `handover` to the locator's provenance source enum. |
-| `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs` | Modify | Mint and persist the sender's locator, beside the transcript resolvers it needs. |
-| `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs` | Modify | Call the mint from `prepare` after the record is written. |
+| `.skilled/hooks/session-handover/lib/relaunch-core.cjs` | Modify | Mint and persist the sender's locator, beside the transcript resolvers it needs. |
+| `.skilled/hooks/session-handover/bin/session-handover.cjs` | Modify | Call the mint from `prepare` after the record is written. |
 | `.skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts` | Modify | Cover the new provenance source in the schema contract. |
-| `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs` | Modify | Cover the mint, the identity it stores and the fail-open path. |
+| `.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` | Modify | Cover the mint, the identity it stores and the fail-open path. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -126,7 +126,7 @@ The 20 matches are the PreCompact producer. The two 0 counts are `prepare` and t
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A prepare in a sandbox holding a Claude session log leaves exactly one stored locator with source `handover`, and `node --test .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs` exits 0.
+- **SC-001**: A prepare in a sandbox holding a Claude session log leaves exactly one stored locator with source `handover`, and `node --test .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` exits 0.
 - **SC-002**: `npx vitest run tests/history-locator.vitest.ts` exits 0 with the new provenance source covered.
 - **SC-003**: The measured command prints a non-zero count for both handover files after the change, against 0 for both before it.
 <!-- /ANCHOR:success-criteria -->
