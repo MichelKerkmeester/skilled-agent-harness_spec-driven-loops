@@ -33,13 +33,22 @@
       "eleven"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".skilled/agents/README.txt"
+      "research/research.md",
+      "research/findings-registry.json",
+      ".skilled/agents/README.txt",
+      ".vibe/SYNC.md",
+      ".skilled/CROSS-CLI.md",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".claude/README.md",
+      ".dsh/README.md",
+      ".opencode/agents/deep-research.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/providers-and-models.md"
     ],
     "entities": [
       {
@@ -67,19 +76,61 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
         "name": "README.txt",
         "kind": "file",
         "path": ".skilled/agents/README.txt",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".vibe/SYNC.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".claude/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -117,7 +174,7 @@
       {
         "name": "Mistral Vibe",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -137,74 +194,28 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "two",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The eleven agents in `.skilled/agents/` and their copies in nine runtime folders changed across phases 1 to 19",
     "created_at": "2026-11-15T14:23:32Z",
-    "last_save_at": "2026-11-15T14:30:08.674Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T16:21:56.511Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:186e7d2abeabad1753ecfd511494faa72dcc4a6625521fb4eaec2cdc0a86d580",
+    "source_fingerprint": "sha256:1de5c77c3c8fb94944c011cc707e4207c237647e83cf5699930110112643132b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "598cc83f755961131cdd2d883aca4c69a0c51c93acd5da960dbacb32d95986fc",
-      "plan.md": "f917e7bea18c8a67d5053b210407ebe0473c5bd88b89b1554569f1dbaed1372b",
-      "tasks.md": "e7daa0d9a2ca4009f79ea197e7e0fead0a2f85f0feea478e4751fe3d04935292",
-      "implementation-summary.md": "5a202637432dfa3364f0fb3723ec01bdfa51d1657d3807e16d2a6197d1b7bd5b"
+      "spec.md": "cd59731499f656ec51745acab2e01cdccf8729627e354a9580285e43854c579d",
+      "plan.md": "7a5cd0fb88550966cfb7c41d27f4b50f0904e199b4d211e8f7acf6f0d5432c75",
+      "tasks.md": "bbb1b6d34f1b1374b711799a43e31829ee555ef8483063db4397db605e1f44f5",
+      "implementation-summary.md": "42e0fe388ee7256abe10c8cb41241ab0a2d935f50fa5cc34e38678a64c63a06a",
+      "research/research.md": "e78586a2db4f27865501485accb650ffc5d7fbf99fe29c5ceb35b37b9f032523"
     },
     "last_active_at": null
   }

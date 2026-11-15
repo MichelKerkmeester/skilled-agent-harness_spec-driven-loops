@@ -804,7 +804,7 @@ build_relaunch_arguments() {
       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
       fi
-      if [[ "$mode" == 'hop' ]] && [[ ${#replayed_extra_arguments[@]} -gt 0 ]]; then
+      if [[ ${#replayed_extra_arguments[@]} -gt 0 ]]; then
         launch_arguments+=("${replayed_extra_arguments[@]}")
       fi
       launch_arguments+=(-- "$seed")
@@ -817,8 +817,10 @@ build_relaunch_arguments() {
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
   esac
-  if [[ "$mode" == 'hop' && "$runtime" != 'devin' ]] \
-    && [[ ${#replayed_extra_arguments[@]} -gt 0 ]]; then
+  # A manual claim command replays the same launch flags as an automatic hop: it starts
+  # the receiver the operator would otherwise get, so a flag such as Vibe's --trust must
+  # survive into the printed command.
+  if [[ "$runtime" != 'devin' ]] && [[ ${#replayed_extra_arguments[@]} -gt 0 ]]; then
     if [[ "$runtime" == 'pi' ]] && [[ -n "$pi_hop_mode" ]]; then
       for argument in "${replayed_extra_arguments[@]}"; do
         case "$argument" in

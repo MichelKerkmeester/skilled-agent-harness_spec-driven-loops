@@ -35,7 +35,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -130,12 +130,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -155,6 +149,12 @@
       },
       {
         "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`relaunch-core.cjs:35` freezes the loop's runtimes as `claude pi opencode codex cursor devin`, and `skilled-loop` has no `vibe` case, so `skilled-loop vibe` falls through to Claude and `session-relaunch.cjs` refuses `--runtime vibe`",
     "created_at": "2026-11-14T20:13:11Z",
-    "last_save_at": "2026-11-15T13:31:21.061Z",
+    "last_save_at": "2026-11-15T16:28:59.764Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a618ebbcaa1ed09d0a6f68ca8006c8ac1403c3a8f71303d04f9751f61395cbe",
+    "source_fingerprint": "sha256:9890ae12890dbf2dd0810904b9444d946bbebbaaefe9113ad4ddf5c236292493",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f3378b7534087b4201c1f93a242bf787c0e9b068fac3307bafeccb7b46c52f0d",
+      "spec.md": "fe99a341294630d342eefc8a8a1e00b1ee53d7589a63d768e7d8ea56a37a7312",
       "plan.md": "1dddd540dc91376764a437158e6265ab0f763df9789fb0b92e853db9d1597e8f",
-      "tasks.md": "7909aa14652975aede6d33cbaa50ac4f6b6d7846e103697c63d6da50a9c2983e",
-      "implementation-summary.md": "54913b21e806ad97ccb4ce6652f68ac044ecf54ac5654490c0f75aa3e23798c3"
+      "tasks.md": "ba7bd7647d97b1187547a055c54ae7b0781762798492044e62bee34f7cd3eaea",
+      "implementation-summary.md": "02a3f1d3f473804fef8bfc066c602eb78f759f2379090181058c0ad4ffdd273e"
     },
     "last_active_at": null
   }

@@ -42,6 +42,8 @@ _memory:
 | Q006 | The self-invocation guard for cli-mistral-vibe is the SKILL.md section that names the refusal, as in the sibling packets. | Not stated. | None | T086, cli-mistral-vibe/SKILL.md |
 | Q007 | Push the aligned Vibe plugins README to origin/main. | Not stated. | None | origin/main 1ce8ff5b78d, T088 |
 | Q008 | Unblock the five operator-only Vibe scenarios and give every one-turn scenario a second sent turn, so each hook is tested as a real conversation. | The operator ruled out single-prompt playbook checks; the choice was read as covering every one-send scenario, not only the five the question counted, so the remaining ten were converted too. | None | T089 to T095, scratch/verdicts.md |
+| Q009 | Verify each review proposal against the code, then let the operator pick which to apply; nothing changes until they choose. | The review was asked to propose fixes only, so applying them needs the operator's choice. | None | T097 to T104 |
+| Q010 | Harden the HK-003, 009, 021, 022 and 024 checks and rerun them live, close the stale handoff note, correct the record drift, and name the handover switch in the skill. | The review showed each of these checks could pass for the wrong reason or read shared state. | None | T100 to T104 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -204,6 +206,46 @@ Only the blocked five
 Answer:
 ```text
 All ten (Recommended)
+```
+
+### Q009
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_01D5NBfzWqa6oKEcQkm1PvMG:1 -->
+
+Question:
+```text
+When the review report comes back, how do you want its fix proposals handled?
+```
+
+Options:
+```text
+Show me, I pick (Recommended)
+Report only
+```
+
+Answer:
+```text
+Show me, I pick (Recommended)
+```
+
+### Q010
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_01KhHKzXT1KYXJkBb58h2RMs:1 -->
+
+Question:
+```text
+Which scenario and record fixes should I apply? F6 to F9 each need a live Vibe rerun of the changed scenario, about 2 minutes each. (F6) HK-009's second claim could pass on the first turn's advisory file. (F7) HK-003 can't tell 'deduped' from 'hook did not run'. (F8) HK-021 and HK-022 read the machine-wide cleanup log. (F9) HK-024 has no negative control. (F3) The refused hop attempt's handoff note is still open. (F10) Five stale record facts, e.g. the summary still says the push hasn't happened, plus a leftover HK-006 turn folder. (F4) cli-mistral-vibe SKILL.md never says Vibe handover needs its switch.
+```
+
+Options:
+```text
+F6-F9 harden + rerun
+F3 close stale note
+F10 record drift
+F4 SKILL.md switch line
+```
+
+Answer:
+```text
+F6-F9 harden + rerun, F3 close stale note, F10 record drift, F4 SKILL.md switch line
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

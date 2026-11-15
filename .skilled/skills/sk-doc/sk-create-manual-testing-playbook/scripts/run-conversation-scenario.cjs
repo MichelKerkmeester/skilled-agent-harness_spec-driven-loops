@@ -1279,6 +1279,43 @@ function prepareVibeHome(ctx) {
 }
 
 /**
+ * Delete a Vibe home and everything under it.
+ *
+ * Vibe extracts its bundled plugin files read-only, so a plain recursive delete fails on them;
+ * every folder and file is made owner-writable first. A link is left as a link, never followed.
+ *
+ * @param {string} home - Absolute home path.
+ * @returns {boolean} True when the home no longer exists.
+ */
+function removeVibeHome(home) {
+  if (!home) return false;
+  const makeWritable = (target) => {
+    let stat;
+    try {
+      stat = fs.lstatSync(target);
+    } catch {
+      return;
+    }
+    if (stat.isSymbolicLink()) return;
+    try {
+      fs.chmodSync(target, stat.mode | 0o200);
+    } catch {
+      // A file that cannot be made writable surfaces as a failed delete below.
+    }
+    if (stat.isDirectory()) {
+      for (const name of fs.readdirSync(target)) makeWritable(path.join(target, name));
+    }
+  };
+  try {
+    makeWritable(home);
+    fs.rmSync(home, { recursive: true, force: true });
+  } catch {
+    // The existence check below reports the outcome.
+  }
+  return !fs.existsSync(home);
+}
+
+/**
  * Find the session id Vibe wrote into the home's journal tree.
  *
  * Vibe names its own sessions, so the folder it creates under `logs/session/unified` is the only
@@ -3017,6 +3054,7 @@ function createContext(options) {
     adapter: options.adapter,
     trustHooks: Boolean(options.script && options.script.trust_hooks === true),
     launchSetup: options.script && Array.isArray(options.script.launch_setup) ? options.script.launch_setup : [],
+    removeHome: Boolean(options.removeHome),
     project: options.project,
     outDir,
     outRoot: options.out,
@@ -3182,6 +3220,9 @@ async function runRuntime(options) {
   }
 
   const cleanup = cleanupContext(ctx);
+  // The home is removed only after the subject has stopped, so nothing writes into it again.
+  const vibeHome = ctx.vibeHome || null;
+  const vibeHomeRemoved = Boolean(vibeHome && ctx.removeHome && removeVibeHome(vibeHome));
 
   const after = snapshotRepo(ctx.repoRoot, ctx.watched, ctx.outRoot);
   fs.writeFileSync(path.join(ctx.outDir, 'repo-after.txt'), after.join('\n'));
@@ -3230,6 +3271,8 @@ async function runRuntime(options) {
     socket: ctx.socket,
     session_id: ctx.sessionId,
     project: ctx.project,
+    vibe_home: vibeHome,
+    vibe_home_removed: vibeHomeRemoved,
     started_at: startedAt,
     finished_at: new Date().toISOString(),
     adapter: { bin: adapter.bin, probed: adapter.probed },
@@ -3299,7 +3342,7 @@ function skipRuntime(runtime, out, blocker, total, noSandbox) {
 function usage() {
   return [
     'Usage: node run-conversation-scenario.cjs --scenario <file.md> --runtime <id[,id...]>',
-    '       --scratch <dir> --out <dir> [--seed N] [--overwrite] [--repo-root <dir>]',
+    '       --scratch <dir> --out <dir> [--seed N] [--overwrite] [--repo-root <dir>] [--remove-home]',
     '',
     'Plays a scenario\'s json conversation block into each runtime\'s interactive CLI inside a',
     'marked scratch project, then writes screens, checks and a matrix as evidence.',
@@ -3313,6 +3356,7 @@ function usage() {
     '  --overwrite         Replace existing evidence for a runtime',
     '  --repo-root DIR     Repository to snapshot (default: git top level)',
     '  --no-sandbox        Disable the macOS write sandbox wrapper',
+    '  --remove-home       Delete the Vibe home after the run; its journal is then gone',
     '  --help              Show this message',
     '',
     'Exit: 0 every runtime PASS or SKIP, 1 any FAIL, 2 usage error or refusal.',
@@ -3335,6 +3379,7 @@ function parseArgs(argv) {
     overwrite: false,
     repoRoot: null,
     noSandbox: false,
+    removeHome: false,
     help: false,
     errors: [],
   };
@@ -3350,6 +3395,7 @@ function parseArgs(argv) {
     if (arg === '--help' || arg === '-h') opts.help = true;
     else if (arg === '--overwrite') opts.overwrite = true;
     else if (arg === '--no-sandbox') opts.noSandbox = true;
+    else if (arg === '--remove-home') opts.removeHome = true;
     else if (arg === '--scenario') {
       opts.scenario = take(index, arg);
       index += 1;
@@ -3651,6 +3697,7 @@ async function main(argv) {
       seed,
       overwrite: opts.overwrite,
       noSandbox: opts.noSandbox,
+      removeHome: opts.removeHome,
     });
     process.stdout.write(
       `runtime ${entry.runtime}: ${row.verdict} ${row.passed}/${row.total}${row.blocker ? ` ${row.blocker}` : ''}\n`,
@@ -3685,6 +3732,7 @@ module.exports = {
   parseOpenCodeQuestion,
   parseCodexQuestion,
   findOptionIndex,
+  removeVibeHome,
 };
 
 if (require.main === module) {

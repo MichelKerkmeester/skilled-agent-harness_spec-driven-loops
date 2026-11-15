@@ -8,25 +8,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios"
-    last_updated_at: "2026-11-15T13:49:05Z"
+    last_updated_at: "2026-11-15T16:28:25Z"
     last_updated_by: "generate-context"
-    recent_action: "Scoped the 022 records after the main merge"
-    next_safe_action: "Await operator approval to push the branch to origin/main"
+    recent_action: "Reran the five hardened scenarios live; all passed"
+    next_safe_action: "Await the operator's go-ahead to push the closeout to origin/main"
     packet_purpose: "Purpose: Every Vibe hook, hook part, generated mirror and the hooks renderer has a conversation scenario that a live Vibe session passed, and the branch carries no open in-scope alignment finding."
     blockers: []
     key_files:
+      - "tasks.md"
       - "scratch/verdicts.md"
       - "implementation-summary.md"
-      - "goal.md"
     session_dedup:
-      fingerprint: "sha256:2653e4111927e913f8576c778b70c91e39c04490f1ff40b8bb1741f73f215b83"
+      fingerprint: "sha256:fae0c9e06aab9359072a2c35bad25df6cb9fbe87b4b2ebab0fd57afa14f23878"
       session_id: "mistral-support-2026-11-14"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "425e79e1-c5de-4edb-b8bb-77ee620d2538"
       workspace: "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime"
-      savedAt: "2026-11-15T13:49:05Z"
+      savedAt: "2026-11-15T16:28:25Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -105,9 +105,9 @@ Each scenario ran live against Vibe 3.1.2 on `deepseek-flash`, one at a time, an
 
 | Check | Result |
 |-------|--------|
-| Live verdicts | 26 PASS, 0 FAIL, 0 OPERATOR-ONLY (`scratch/verdicts.md`) |
+| Live verdicts | 26 PASS, 0 FAIL, 0 OPERATOR-ONLY (`scratch/verdicts.md`); the five checks hardened after the review passed a live rerun |
 | Playbook validator on the Vibe package | `scenarios=51 violations=0` at `af1a00789b8`; `scenarios=52 violations=0` after the merge brought VIB-HK-027 |
-| Runner suite | 27 pass, 0 fail |
+| Runner suite | 27 pass, 0 fail at `af1a00789b8`; 29 pass, 0 fail after the review fixes |
 | Dist checker suite | 9 pass, 0 fail |
 | Vibe hook suites | 41 pass, 0 fail at `af1a00789b8`; 46 pass, 0 fail after the merge |
 | `validate.sh <this folder> --strict` | RESULT: PASSED |
@@ -119,10 +119,9 @@ Each scenario ran live against Vibe 3.1.2 on `deepseek-flash`, one at a time, an
 ## Known Limitations
 
 1. **The hop stays outside the runner.** VIB-HK-026 has a hand-run record, not a runner row.
-2. **The printed claim command drops launch flags.** `skilled-loop`'s `build_manual_command_template` replays extra arguments only in hop mode, so a manual claim command printed in an untrusted checkout leaves out `--trust`.
-3. **Vibe handover needs its switch.** Handover is default-on for Claude Code only, so a Vibe hop needs `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`.
-4. **VIB-HK-027 is not covered here.** The automatic handover tier's scenario arrived with the merge of origin/main and belongs to that work.
-5. **The runner leaves the Vibe home behind.** A fixed scratch path (VIB-HK-017, VIB-HK-018) must be cleared with `chmod -R u+w` before a rerun, because Vibe's extracted plugin files are read-only.
+2. **Vibe handover needs its switch.** Handover is default-on for Claude Code only, so a Vibe hop needs `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`. This is intended, and the cli-mistral-vibe skill now says so.
+3. **VIB-HK-027 is not covered here.** The automatic handover tier's scenario arrived with the merge of origin/main and belongs to that work.
+4. **The runner keeps the Vibe home by default.** Its journal is the only copy, so removal is opt-in with `--remove-home`. Without the flag, a fixed scratch path (VIB-HK-017, VIB-HK-018) must still be cleared with `chmod -R u+w` before a rerun.
 <!-- /ANCHOR:limitations -->
 
 ---

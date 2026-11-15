@@ -172,10 +172,13 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '22'
-      - name: Install the spec-kit workspace
+      # The agent sync reads the frontmatter parser from the shared package's build,
+      # which only exists once the package is compiled.
+      - name: Install the spec-kit workspace and build its shared package
         run: |
           set -euo pipefail
           npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
       - name: Compare the Vibe mirrors with their sources
         run: |
           set -euo pipefail

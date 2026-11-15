@@ -1,6 +1,6 @@
 ---
 title: "Mistral Vibe - Providers and Models"
-description: "The first-party mistral provider row, the closed two-alias model roster with its toml rows, the allowed_models close by model name, the catalog result and the billing question."
+description: "The first-party mistral provider row, the closed two-alias model roster with its toml rows, the allowed_models close by model name, the catalog result and the two billing budgets."
 trigger_phrases:
   - "vibe model roster"
   - "vibe provider row"
@@ -10,7 +10,7 @@ trigger_phrases:
   - "vibe glm-flash alias"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Mistral Vibe - Providers and Models
@@ -23,7 +23,7 @@ Open this file to pick the alias for `--model` and to check that a config closes
 
 ### Purpose
 
-Records the one provider a Vibe dispatch uses, the two model rows that make up the closed roster, how `allowed_models` closes the selectable set, what the catalog offered without those rows, and what remains unproven about billing.
+Records the one provider a Vibe dispatch uses, the two model rows that make up the closed roster, how `allowed_models` closes the selectable set, what the catalog offered without those rows, and which budget each key bills.
 
 ### When to Use
 
@@ -50,7 +50,7 @@ Vibe resolves an alias only against a model row, and its built-in catalog adds r
 
 ## 2. PROVIDER
 
-One provider serves both roster rows: the first-party `mistral` provider. Its key comes from `MISTRAL_API_KEY`, or from a browser sign-in when no key is set. Vibe already configures it: `export.json` records it under `config.providers` beside `llamacpp`, and the phase's only hand-written config artifact holds model rows (`vibe-model-rows.toml`).
+One provider serves both roster rows: the first-party `mistral` provider. Its key comes from `MISTRAL_API_KEY`, or from a browser sign-in when no key is set. The sign-in key bills the Vibe budget and any other key the API budget, as section 7 records. Vibe already configures it: `export.json` records it under `config.providers` beside `llamacpp`, and the phase's only hand-written config artifact holds model rows (`vibe-model-rows.toml`).
 
 | Field | Meaning | Value |
 |---|---|---|
@@ -155,9 +155,9 @@ Nothing in this packet changes a default. The deep-loop executor kind is phase 0
 
 ## 7. BILLING
 
-Whether a Vibe turn draws on the same Mistral usage pool as an API turn is UNKNOWN. Vibe reads the plan's Vibe Code allowance from `/v1/billing/budget` and the plan from `/v1/billing/subscription`, and Mistral's docs describe one pool shared across Studio, the API and Vibe Code. The two research lineages disagreed on whether a key-based turn draws on that allowance, and the merge kept the question open (`research.md` section 4).
+Mistral bills two separate budgets. On 2026-11-15, `GET /v1/billing/budget` returned a `vibe_budget` and an `api_budget` side by side. A Vibe dispatch with an API key in `MISTRAL_API_KEY` billed the API budget and, once that budget ran out, failed with `402 API budget exhausted` (`billing_api_budget_exhausted`, code 2303). The key the browser sign-in stores in the macOS keychain billed the Vibe budget and left the API budget unchanged, and the same key sent through Pi's and OpenCode's `mistral` provider billed the Vibe budget too.
 
-The settling check is a budget read before and after one identical turn per client, and no run in this repository has made it. Until one does, no cost claim may combine a Vibe turn with an API turn.
+A `MISTRAL_API_KEY` in the environment overrides the keychain, so the dispatch shape exports the sign-in key, and the deep-loop runner swaps it in for a `cli-mistral-vibe` lineage. The evidence is run finding V1 in `specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/research.md`.
 
 ---
 

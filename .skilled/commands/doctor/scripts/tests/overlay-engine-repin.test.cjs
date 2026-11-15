@@ -639,6 +639,15 @@ test('a re-pin copies .dsh with the other runtime folders when the manifest name
   assert.equal(read(fixture.tree, '.dsh/skills/hub.md'), 'dsh hub\n');
 });
 
+test('a re-pin copies .vibe with the other runtime folders when the manifest names none', (t) => {
+  const fixture = createRepinFixture(t, { newEntries: { '.vibe/hooks.toml': 'vibe hooks\n' } });
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  // The base set plus the one new .vibe file, and nothing else.
+  assert.match(result.output, /^copy 10 paths, delete 2 paths$/m);
+  assert.equal(read(fixture.tree, '.vibe/hooks.toml'), 'vibe hooks\n');
+});
+
 test('a re-pin lists upstream changes it does not copy and skips a top-level link', (t) => {
   const fixture = createRepinFixture(t, {
     newEntries: { 'repo-rules/new-rule.md': 'rule\n', 'specs/notes.md': 'notes\n', 'docs/guide.md': 'guide\n' },

@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/021-vibe-budget-default",
+  "description": "Phase 21: vibe-budget-default",
+  "keywords": [
+    "phase",
+    "vibe-budget-default"
+  ],
+  "lastUpdated": "2026-11-15T16:20:20.242Z",
+  "specId": "021",
+  "folderSlug": "vibe-budget-default",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_17-20__a-mistral-vibe-lineage-now-bills-the-vibe-budget.md"
+  ]
+}

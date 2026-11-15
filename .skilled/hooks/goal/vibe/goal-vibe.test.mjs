@@ -1,8 +1,8 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Goal-Vibe Tests
 // ───────────────────────────────────────────────────────────────────
-// Goal slice injection through the Vibe session_start hook, plus the
-// no-packet and malformed-input fail-open paths
+// Goal slice injection through the Vibe session_start hook, from a named or a
+// handover-claimed packet, plus the no-packet and malformed-input fail-open paths
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -11,6 +11,8 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { renderVibeGoalSlice } from './goal-inject.mjs';
 
 const require = createRequire(import.meta.url);
 const core = require('../lib/goal-core.cjs');
@@ -106,9 +108,47 @@ test('bound packet', () => {
   }
 });
 
+test('claimed packet', () => {
+  const { root, packet } = makeFixturePacket();
+  try {
+    const expected = core.describePacketGoal(packet, { workspace: REPO_ROOT }).chatSlice;
+    const env = hookEnv({ SESSION_HANDOVER_GOAL_PACKET: packet });
+    delete env.VIBE_SPEC_FOLDER;
+
+    const result = spawnSync(process.execPath, [HOOK_PATH], {
+      input: payload(),
+      env,
+      encoding: 'utf8',
+    });
+    assert.equal(result.status, 0);
+    const response = JSON.parse(result.stdout);
+    assert.equal(response.hook_specific_output.additional_context, expected);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('named packet wins over a claimed one', () => {
+  const asked = [];
+  const stub = {
+    describePacketGoal(packetPath) {
+      asked.push(packetPath);
+      return { chatSlice: packetPath };
+    },
+  };
+  const slice = renderVibeGoalSlice({
+    env: { VIBE_SPEC_FOLDER: 'specs/t/002-named', SESSION_HANDOVER_GOAL_PACKET: 'specs/t/001-claimed' },
+    workspace: REPO_ROOT,
+    core: stub,
+  });
+  assert.equal(slice, 'specs/t/002-named');
+  assert.deepEqual(asked, ['specs/t/002-named']);
+});
+
 test('no packet', () => {
   const env = hookEnv();
   delete env.VIBE_SPEC_FOLDER;
+  delete env.SESSION_HANDOVER_GOAL_PACKET;
 
   const result = spawnSync(process.execPath, [HOOK_PATH], {
     input: payload(),

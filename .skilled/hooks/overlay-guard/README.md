@@ -84,6 +84,7 @@ overlay-guard/
 +-- dsh/      overlay-guard.mjs  # tools/pre-execute adapter (linked from the .dsh repo-guards bundle)
 +-- opencode/ overlay-guard.js   # tool.execute.before adapter (symlink to .opencode/plugins/overlay-guard.js)
 +-- pi/       overlay-guard.ts   # Pi tool_call extension (re-exported from .pi/extensions/)
++-- vibe/     overlay-guard.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 `-- tests/
     +-- dsh-overlay-guard.test.mjs  # node --test suite for the DSH adapter
     `-- opencode-overlay-guard.test.mjs  # node --test suite for the OpenCode plugin

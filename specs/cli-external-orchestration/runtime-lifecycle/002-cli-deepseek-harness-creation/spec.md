@@ -153,6 +153,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 25 | 025-alignment-open-findings/ | Fix the findings the alignment run left open: two red CI checks, the deep-review FAIL rule for a failed required gate, Mistral Vibe in the handover docs, a release coverage miss and two advisor routing misses. Docs, intent signals and one allowlist entry | Complete |
 | 26 | 026-alignment-remaining-findings/ | Close the alignment findings phase 025 left: recapture the routing corpus pin the AI Council retirement made stale, and fix the executor-selection, save and presentation docs, the benchmark packet labels and the Claude session id entry. Docs, one baseline capture and two regenerated contracts | Complete |
 | 27 | 027-ci-red-checks-after-council-retirement/ | Fix the two CI workflows left red on main: a Cursor Task guard test still dispatching the retired council agent, and a shipped AGENTS.md history body two rename sweeps rewrote. One test line and one regenerated manifest line | Complete |
+| 28 | 028-ci-red-checks-after-vibe-and-loop-counters/ | Fix the CI checks a later merge left red: a tracked Vibe stub for a private command, six playbook files with no provenance line, a deep command contract still naming split workflows, a reducer import that needed tsx at load and a stale hook binding count. Config, docs, two tests and one lazy require | Complete |
 
 ### Phase Transition Rules
 
@@ -191,6 +192,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 024-dsh-docs-alignment | 025-alignment-open-findings | Phase 024 is in the base, because phase 025 edits the release notes and README lines it wrote | `rg -c "Each Pass Keeps Its Executor" .skilled/changelog/skilled/v4.0.2.1.md` prints 1 |
 | 025-alignment-open-findings | 026-alignment-remaining-findings | Phase 025 is in the base, because phase 026 records the probe trials 025 started | `rg -c "names no executor" .skilled/skills/system-deep-loop/graph-metadata.json` prints 1 |
 | 026-alignment-remaining-findings | 027-ci-red-checks-after-council-retirement | Phase 026 is pushed, because phase 027 fixes the two workflows that stayed red on its head | `git merge-base --is-ancestor d67182e887b HEAD` exits 0 |
+| 027-ci-red-checks-after-council-retirement | 028-ci-red-checks-after-vibe-and-loop-counters | Phase 027 is pushed, because phase 028 fixes the checks still red on its head | `git merge-base --is-ancestor cc03003b665 HEAD` exits 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---

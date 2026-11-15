@@ -146,6 +146,7 @@ and findings belong here.
 | 025 alignment open findings | done | link and playbook CI checks green, deep-review FAIL gate rule, Mistral Vibe handover docs, coverage OK, two advisor probes route, routing suites green; 025 and parent strict PASSED |
 | 026 alignment remaining findings | done | corpus pin recaptured (holdout 49/64), executor-selection, save and presentation docs fixed, Claude session id documented; routing suites green; 026 and parent strict PASSED |
 | 027 CI red checks | done | Cursor Task guard case on deep-review, v4.0.0.14 history body restored; hooks 1837/0, plugins 591/0, doctor 7/0 suites; 027 and parent strict PASSED |
+| 028 CI red checks | done | Vibe local stubs ignored, six provenance lines, deep contract single workflow, lazy tsx in convergence.cjs, 118 hook bindings; CLI vitest 210/0, convergence 204/0; 028 and parent strict PASSED |
 
 ### Deviations and findings
 

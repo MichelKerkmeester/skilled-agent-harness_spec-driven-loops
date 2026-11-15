@@ -621,6 +621,42 @@ function launchSetupRunsOnce() {
   );
 }
 
+/** The home removal clears a tree whose folder and file Vibe left read-only. */
+function removeHomeClearsReadOnlyTree() {
+  const home = path.join(tempDir('remove-home'), 'vibe-home-x');
+  const plugin = path.join(home, 'plugins', 'bundled');
+  fs.mkdirSync(plugin, { recursive: true });
+  fs.writeFileSync(path.join(plugin, 'hook.py'), 'pass\n');
+  fs.chmodSync(path.join(plugin, 'hook.py'), 0o444);
+  fs.chmodSync(plugin, 0o555);
+  assert.strictEqual(runner.removeVibeHome(home), true, 'the read-only tree is removed');
+  assert.strictEqual(fs.existsSync(home), false);
+  assert.strictEqual(runner.removeVibeHome(''), false, 'no home means nothing to remove');
+}
+
+/** --remove-home is accepted, and a runtime without a Vibe home records none. */
+function removeHomeFlagAccepted() {
+  const dir = tempDir('remove-home-flag');
+  const repo = makeRepo('remove-home-flag-repo');
+  const scenario = writeScenario(dir, 'remove-home.md', {
+    runtimes: ['claude-code'],
+    turns: [{ id: 'first', send: 'hello', delay_ms: 0, timeout_ms: 20000, check: 'test -s session.log' }],
+  });
+  const out = path.join(dir, 'out');
+  const run = runCli([
+    '--scenario', scenario,
+    '--runtime', 'fake',
+    '--scratch', path.join(dir, 'scratch'),
+    '--out', out,
+    '--repo-root', repo,
+    '--remove-home',
+  ]);
+  assert.strictEqual(run.code, 0, `run should pass: ${run.stdout}\n${run.stderr}`);
+  const result = readResult(out, 'fake');
+  assert.strictEqual(result.vibe_home, null);
+  assert.strictEqual(result.vibe_home_removed, false);
+}
+
 /** A failing launch setup blocks the run before the subject starts. */
 function launchSetupFailureBlocks() {
   const dir = tempDir('launch-setup-fail');
@@ -1991,6 +2027,7 @@ async function runSuite() {
       : 'PASS sandbox policy'
   ));
   await group('empty repository snapshot', emptyRepoSnapshot);
+  await group('remove home clears a read-only tree', removeHomeClearsReadOnlyTree);
   await group(hasTmux ? 'refusals' : 'refusals (no tmux needed)', refusals);
   await group('setup exit 77 skips runtime', setupExit77SkipsRuntime);
   await group('multi-runtime guards before side effects', multiRuntimeGuardsBeforeSideEffects);
@@ -1999,6 +2036,7 @@ async function runSuite() {
     await group('fake subject conversation', fakeSubjectRun);
     await group('launch setup runs once', launchSetupRunsOnce);
     await group('launch setup failure blocks', launchSetupFailureBlocks);
+    await group('remove-home flag accepted', removeHomeFlagAccepted);
     await group('check reads turn evidence', checkReadsTurnEvidence);
     await group('literal text sends', literalTextSends);
     await group('startup screen waits for redraw', startupScreenWaitsForRedraw);

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/021-vibe-budget-default",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/021-vibe-budget-default",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe budget default",
+      "phase 21 vibe budget default",
+      "vibe budget default plan",
+      "vibe budget default tasks",
+      "vibe budget default implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "budget",
+      "default",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "mistral",
+      "bills",
+      "api",
+      "separately"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-needs-input.vitest.ts",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli-guards.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli-guards-needs-input.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-needs-input.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Mistral bills a Vibe budget and an API budget separately",
+    "created_at": "2026-11-15T16:05:23Z",
+    "last_save_at": "2026-11-15T16:20:20.242Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ec84238a3181b89622372fc151bd987d340dd831b1768e7cc9ec1ed083fe9f9a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "552e7522c324d8cc95fa9c8cb04c8bf780d5fe5306792af823e519ba802aa5e4",
+      "plan.md": "aa4a3022570423f3fd7dcce98b33dfaa87320de12643d7183b6f8499ab5d4f23",
+      "tasks.md": "47127d0d8105ca1f9731a77302803c6dbf197c1631f69cd870a169c1454b4f80",
+      "implementation-summary.md": "dcdcfc5324e810639dc4967d1791e1d2f4657d69a0ebbda56a0c8bbe8c85fbb2"
+    },
+    "last_active_at": null
+  }
+}

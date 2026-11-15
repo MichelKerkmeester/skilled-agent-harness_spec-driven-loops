@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Every gate in the three lifecycle workflows sums points against a threshold of 70, so an agent that follows it literally passes a gate with a required artifact missing",
     "created_at": "2026-11-14T11:33:19Z",
-    "last_save_at": "2026-11-14T13:06:23.608Z",
+    "last_save_at": "2026-11-15T16:19:11.956Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24711732063bba43db22deba4e2c79f52602ff27231f69e1c1349867953ec45e",
+    "source_fingerprint": "sha256:7baea8a32f4adb143d03a3342f3ef31f4915abed450959cdc0e6d277d220df28",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bc847bbd1128584480d7b1b263bfa57c4e86b6b686344012455bd0c1c8b874dc",
+      "spec.md": "0072709821fc9ff3d0accc456fb118cecd7b98aba2d918ac771a14d2d9a3ea9a",
       "plan.md": "9842b261d76142891349c7d1e8ed026f26da8e5e32163c1c203c0cbc3cca7b28",
       "tasks.md": "c466c1181a7d98bba97634f814b3d978a6678f3cb8c174d2830c1bdad5758ed0",
       "implementation-summary.md": "afd907c60c955106acb37b81f6299efcd93f2affcabb12772c68939c503774fb"
