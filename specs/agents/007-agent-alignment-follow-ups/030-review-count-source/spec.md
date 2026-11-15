@@ -65,11 +65,12 @@ adj {"exit":1,"out":"{\"ok\":false,\"phase\":\"runtime\",\"reason\":\"Invalid cl
 adj-schema-only 0
 projected [{"passed":true}]
 
-$ python3 drift.py regs.txt   # reviews with a registry and a report, 2026-10-01 onward
-reviews with report 52 mismatch 17 report counts unparsed 10
-specs/system-deep-loop/z_archive/034-skill-benchmark-codex-executor/review reg {'P0': 0, 'P1': 4, 'P2': 8} report {'P0': 0, 'P1': 2, 'P2': 4} CONDITIONAL
-specs/sk-code/quality-and-review-modes/001-code-modes-research/review reg {'P0': 0, 'P1': 5, 'P2': 14} report {'P0': 0, 'P1': 2, 'P2': 14} CONDITIONAL
-# both reports state post-self-check counts: "post-adversarial adjudication", "4 are refuted", "two lineage P1 findings were downgraded"
+$ python3 - < drift-strict   # inline: explicit P0/P1/P2 triple in each report's Executive Summary vs the registry's active findings, 2026-10-01 onward
+reports 52 parsed 34 differ 10 report<=registry 4 report>registry somewhere 6
+LOWER  system-deep-loop/z_archive/034-skill-benchmark-codex-executor/review reg (0, 4, 8) rep (0, 2, 4)
+LOWER  sk-code/quality-and-review-modes/001-code-modes-research/review reg (0, 5, 14) rep (0, 2, 14)
+# both LOWER reports state post-self-check counts: "post-adversarial adjudication", "4 are refuted", "two lineage P1 findings were downgraded"
+# five of the six HIGHER rows read a registry with no active findings, so they are not a self-check effect"
 ```
 <!-- /ANCHOR:measured-behavior -->
 

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "112bbe98d59443ded73bad8fd4268eccc6bd80387f5001f32aa253ae430583e0",
+  "corpusHash": "7dd532c413d6e0a02b2778718fafc78bb2c430595513e7733a44a7269dde96d4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27780,7 +27780,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "10270cc00e7c44f0da4c365f0d886e08a05f8ea1b093d9c5ab1f8b8238476fc3",
+  "manifestHash": "61026b4a99b92f750a07ad161b944dba6a9d3e1b83121f1d4fe7f47aae3207a3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

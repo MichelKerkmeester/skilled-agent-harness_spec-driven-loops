@@ -109,6 +109,7 @@ DeepSeek V4.1 Flash at `--thinking max` through cli-pi built each task in its ow
 |-------|--------|
 | Rollup, stop-decision and replay tests | PASS: 125 of 125 in five files |
 | Prompt-pack tests | PASS: 21 of 21 |
+| Evidence rule on 12 recorded reviews with three or more iterations | Core coverage 2 before, 1 after; 16 recorded partial-to-pass upgrades, 3 with a file:line reference. The 13 refused carry no evidence at all |
 | Runtime suite | PASS: 184 files, 3,092 passed, 9 skipped (baseline 184 files, 3,087 passed) |
 | `npm run typecheck` | PASS: no errors |
 | Contract drift | PASS: `OK commands=2` |
@@ -122,6 +123,7 @@ DeepSeek V4.1 Flash at `--thinking max` through cli-pi built each task in its ow
 
 1. **The steer is workflow guidance.** The loop agent reads the focus rule and the prompt; no script forces the dimension.
 2. **A run that hits its duration budget is not steered.** The duration stop has no last-iteration notice.
+3. **The evidence rule refuses most past upgrades.** Recorded runs were never told about it, so 13 of 16 upgrades in recent reviews would now stay partial. Every iteration prompt now states the rule, not only the last one.
 <!-- /ANCHOR:limitations -->
 
 ---
