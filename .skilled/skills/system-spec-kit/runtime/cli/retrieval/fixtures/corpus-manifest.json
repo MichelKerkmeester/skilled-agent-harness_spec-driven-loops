@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2a8f257e672ff7baec5eda70e32a76f8520095cbdc63b83437f89cb9030102b1",
+  "corpusHash": "16b6d4b8f65275bac6962780b848e43e05a1cac196da76e63b22a34f67ca01ea",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27536,
+  "includedPathCount": 27540,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10714,6 +10714,10 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/025-alignment-open-findings/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/025-alignment-open-findings/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/025-alignment-open-findings/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -27568,7 +27572,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7b48caedaa8e2c2ff41c60cba2f4255bca9e6dec561a7dc160c092f508e1b86d",
+  "manifestHash": "ad7db2d35ea406c995e880e84bff5254670c56d94f8b6eb71f9159f367c0deb9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30032,6 +30036,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/025-alignment-open-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings/scratch",
       "reason": "excluded directory"
     },
     {

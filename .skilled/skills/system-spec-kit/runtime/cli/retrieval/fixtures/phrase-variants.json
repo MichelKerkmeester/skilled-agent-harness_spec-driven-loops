@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7b48caedaa8e2c2ff41c60cba2f4255bca9e6dec561a7dc160c092f508e1b86d",
+  "manifestHash": "ad7db2d35ea406c995e880e84bff5254670c56d94f8b6eb71f9159f367c0deb9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11532,6 +11532,18 @@
     ],
     "alignment registry sealing tasks": [
       "alignment registry sealing tasks"
+    ],
+    "alignment remaining findings": [
+      "alignment remaining findings"
+    ],
+    "alignment remaining findings implementation summary": [
+      "alignment remaining findings implementation summary"
+    ],
+    "alignment remaining findings plan": [
+      "alignment remaining findings plan"
+    ],
+    "alignment remaining findings tasks": [
+      "alignment remaining findings tasks"
     ],
     "alignment remediation": [
       "alignment remediation"
@@ -36409,6 +36421,9 @@
     ],
     "deep loop policy core": [
       "deep loop policy core"
+    ],
+    "deep loop presentation mistral vibe executor": [
+      "deep loop presentation mistral vibe executor"
     ],
     "deep loop promotion integrity": [
       "deep loop promotion integrity"
@@ -82673,6 +82688,9 @@
     "phase 26 alignment findings fixes": [
       "phase 26 alignment findings fixes"
     ],
+    "phase 26 alignment remaining findings": [
+      "phase 26 alignment remaining findings"
+    ],
     "phase 26 ci and test runners": [
       "phase 26 ci and test runners"
     ],
@@ -100007,6 +100025,9 @@
     ],
     "routing corpus baseline recapture": [
       "routing corpus baseline recapture"
+    ],
+    "routing corpus pin recapture": [
+      "routing corpus pin recapture"
     ],
     "routing corpus proof commands": [
       "routing corpus proof commands"
