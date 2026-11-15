@@ -6,7 +6,7 @@
     "phase",
     "vibe-relaunch-command-tier"
   ],
-  "lastUpdated": "2026-11-15T13:29:02.033Z",
+  "lastUpdated": "2026-11-15T15:01:08.523Z",
   "specId": "019",
   "folderSlug": "vibe-relaunch-command-tier",
   "parentChain": [
@@ -14,8 +14,9 @@
     "runtime-lifecycle",
     "004-cli-mistral-vibe-creation"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "15-11-26_14-29__a-live-manual-hop-on-vibe-passed-and-confirmed.md"
+    "15-11-26_14-29__a-live-manual-hop-on-vibe-passed-and-confirmed.md",
+    "15-11-26_16-01__decision-2-settled-in-code-the-vibe-goal-adapter.md"
   ]
 }

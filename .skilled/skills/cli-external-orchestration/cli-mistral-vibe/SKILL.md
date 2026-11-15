@@ -192,6 +192,10 @@ The shared runtime is the sole process adapter for lineages, through its `cli-mi
 
 sk-code owns code verification. system-spec-kit owns Gate 3, spec folders and continuity. Name the established spec folder in a delegated prompt when the parent workflow has one.
 
+### Session Handover Integration
+
+Session handover is on by default for Claude Code only. A Vibe session hands over only when `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`, or the master `SYSTEM_SESSION_HANDOVER_ENABLED=1`, is set in the shell before `skilled-loop vibe` starts; without it, `prepare` refuses and names both switches. In an untrusted checkout, start the loop as `skilled-loop vibe --trust`, so both the sender and the receiver load `.vibe/config.toml` and `.vibe/hooks.toml`. The tiers and the claim flow are in `.skilled/hooks/session-handover/README.md`.
+
 ### Tool Roles
 
 - Bash runs the probes and the dispatch.

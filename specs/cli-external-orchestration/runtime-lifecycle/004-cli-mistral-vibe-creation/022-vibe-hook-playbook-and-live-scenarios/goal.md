@@ -85,6 +85,7 @@ and findings belong here.
 | Multi-turn conversions | Done | Every runner scenario sends two or more user messages; the last ten each passed 3/3 on 2026-11-15 |
 | Criterion 1 | Met at `af1a00789b8` | `scenarios=51 violations=0`. The merge of origin/main as `2d4fb4d0f92` brought VIB-HK-027, the automatic handover tier, from separate work, so the merged tree prints `scenarios=52 violations=0`; this phase owns 26 scenarios and does not run VIB-HK-027 |
 | Criteria 2 to 4 | Met | 26 `VIB-HK` rows with no FAIL; recheck lists no in-scope finding still open; runner suite 27 PASS, 0 FAIL |
+| Review fixes, 2026-11-15 | Done except one rerun | A fresh review found one P1, the manual claim command dropping launch flags, now fixed. Its P2 items were applied as T097 to T103. The live rerun of five hardened scenarios (T104) is blocked: Mistral answered `402 API budget exhausted` |
 
 ### Deviations and findings
 

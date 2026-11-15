@@ -86,6 +86,12 @@ Two facts the offline record did not have:
 What this hop decides:
 
 1. **Turn-start claim part: confirmed not needed.** The receiver claimed from the seed alone.
-2. **`VIBE_SPEC_FOLDER` export: still open.** This hop bound no packet, so it could not show
-   whether a relaunched session misses its goal slice at start. A hop with a bound packet
-   decides it.
+2. **`VIBE_SPEC_FOLDER` export: not needed; decided in code.** This hop bound no packet. The
+   gap it left open is closed in the Vibe goal adapter instead: `renderVibeGoalSlice` in
+   `.skilled/hooks/goal/vibe/goal-inject.mjs` now falls back to `SESSION_HANDOVER_GOAL_PACKET`,
+   the packet `skilled-loop` exports from the claimed note, when `VIBE_SPEC_FOLDER` is unset, and
+   an operator-named `VIBE_SPEC_FOLDER` still wins. The wrapper therefore needs no new export.
+   `goal-vibe.test.mjs` proves it through the real `session_start` hook: with only
+   `SESSION_HANDOVER_GOAL_PACKET` set, the hook returns the packet's chat slice (5 pass, 0 fail;
+   the claimed-packet case fails without the fallback). A live hop with a bound packet was not
+   run, because Mistral's API answered `402 API budget exhausted` on 2026-11-15.

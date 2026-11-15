@@ -206,7 +206,7 @@
     ],
     "causal_summary": "An agent that runs `/speckit:plan`, `/speckit:implement` or `/speckit:complete` reads the same goal block, checkpoint options and documentation levels three times, and the copies already disagree",
     "created_at": "2026-11-14T11:33:24Z",
-    "last_save_at": "2026-11-14T16:15:33.268Z",
+    "last_save_at": "2026-11-15T16:19:22.161Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9471ef782c17c4c8810a91c720543ccd4478e0aa3a02bf0ab279eb3008f4ac11",
+    "source_fingerprint": "sha256:b4b113dbdd513eb5a0cfd1f62e86e6971b2244b4db55b82c70c98192648d2de8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4d63c7287d74f2f3d0873f4e36da24536ca96c310465c72201a72b88dbc1b91",
+      "spec.md": "fc6b530259d75bbeab07530dfaae85b66ffc63774d9f9759db303ee0692a3549",
       "plan.md": "a7868923a779a90fba536f985dc09f67b4050a29d6fe02d5fac54fce74c2b139",
       "tasks.md": "475229fb573ffe46305229feeccc1ea314898cb3d29c8e677ed264deba53f66f",
       "implementation-summary.md": "cddcdbfb81073839de335aad965a759af184bf89f7aa0138f1fe988304f157d4"

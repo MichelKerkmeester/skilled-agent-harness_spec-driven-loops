@@ -142,6 +142,14 @@ contextType: "implementation"
 - [x] T094 Drive one live VIB-HK-026 hop by hand from a terminal and record it (`scratch/live/VIB-HK-026/hop-record.md`, `hop/`). Verify: the note reads `status: done` with `claimed_by` set, and `session-handover.cjs history` prints `claimed` and `done` lines with runtime `vibe`. Evidence (2026-11-15): both, after the handover switch was set; the first attempt without it was refused and its note stays open.
 - [x] T095 Rewrite the verdict table from the reruns (`scratch/verdicts.md`). Verify: `rg -c '^\| VIB-HK-' scratch/verdicts.md` prints 26 and `rg -c 'OPERATOR-ONLY \|' scratch/verdicts.md` exits 1. Evidence (2026-11-15): 26 rows, 26 PASS, and the OPERATOR-ONLY search exits 1.
 - [x] T096 Close the live checks that kept phases 016 and 017 open, and narrow phase 019's blocked task to the one decision the hop could not reach (`016/tasks.md`, `017/tasks.md`, `019/tasks.md`, `019/scratch/manual-hop.md`). Verify: `validate.sh --strict` prints `RESULT: PASSED` on 016, 017 and 019.
+- [x] T097 Carry the sender's extra launch flags, such as Vibe's `--trust`, into the printed manual claim command, as an automatic hop already does (`.skilled/bin/skilled-loop`), from the 2026-11-15 review. Verify: the wrapper's manual-command test gains `vibe --trust` and `cursor --trust` cases that fail before the change, and `node --test .skilled/hooks/session-handover/tests/*.test.cjs` prints `fail 0`. Evidence (2026-11-15): 999 pass, 0 fail.
+- [x] T098 Record each Vibe run's home in `result.json` as `vibe_home`, and add an opt-in `--remove-home` that deletes it after the subject stops, read-only plugin files included (`run-conversation-scenario.cjs`, `references/conversation-scenarios.md`). Verify: the runner suite prints no FAIL. Evidence (2026-11-15): 29 PASS, 0 FAIL (27 before plus `remove home clears a read-only tree` and `remove-home flag accepted`); a plain recursive delete fails on the same tree with `ENOTEMPTY`.
+- [x] T099 Add `.vibe` to the folders a re-pin copies, and the three Vibe mirror checks to `/doctor:runtime-mirrors` (`overlay-engine.cjs`, `doctor-runtime-mirrors.yaml`, `runtime-mirrors.md`, `system-skilled-doctor/references/overlays.md`). Regenerate the two Vibe agent profiles that had drifted on main. Verify: overlay suites and `doctor-runtime-mirrors-contract.test.cjs` print `fail 0`, the new re-pin test fails without the change, and `sync-agents-vibe.cjs --check` passes. Evidence (2026-11-15): all overlay suites fail 0, contract 9 pass, Vibe agents 11 in sync.
+- [x] T100 Name the Vibe handover switch and `--trust` in the cli-mistral-vibe skill (`SKILL.md` section 7). Verify: `validate_document.py` prints `Total issues: 0`.
+- [x] T101 Close the note the refused hop attempt left open (`scratch/live/VIB-HK-026/hop-record.md`). Verify: `session-handover.cjs history` prints no open-notes line. Evidence (2026-11-15): the note reads `status: done` and history lists no open notes.
+- [x] T102 Correct the stale record facts the review found (`scratch/live/VIB-HK-026/procedure.md`, `hop-record.md`). Two review items were kept on purpose: the `scenarios=25` line in `spec.md` is the measured baseline from authoring, and `VIB-HK-006/vibe/turns/history-offer/` is evidence that the four-turn run's `result.json` and `checkpoints.tsv` point to.
+- [x] T103 Harden five scenario checks from the review: VIB-HK-009 requires the advisory rewritten after turn 1, VIB-HK-003 requires a new `pre_agent` hook-run notice on turn 2, VIB-HK-021 and VIB-HK-022 use a per-scenario cleanup log, and VIB-HK-024 requires no child session before the mirror exists. Verify: `validate-playbook-package.cjs` prints `violations=0`.
+- [B] T104 Rerun VIB-HK-003, 009, 021, 022 and 024 live with the hardened checks (`scratch/live/`). Verify: each `matrix.md` row reads PASS. Blocked (2026-11-15): Mistral's API answered `402 API budget exhausted`. The rerun was stopped and the earlier PASS evidence restored from git. Until this runs, those five rows rest on the earlier, weaker checks.
 - [x] T070 Validate this phase folder (`spec.md`). Verify: `validate.sh <this folder> --strict --quiet` prints `RESULT: PASSED`. Evidence (2026-11-15): `RESULT: PASSED`, errors 0, warnings 1.
 <!-- /ANCHOR:phase-3 -->
 
@@ -150,8 +158,8 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`
-- [x] No `[B]` blocked tasks remaining
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: no OPERATOR-ONLY row remains. The one hand-run check, the VIB-HK-026 hop, was driven live by the agent in a tmux pane, not by the operator, and its record is saved beside its procedure
 <!-- /ANCHOR:completion -->
 

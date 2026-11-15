@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6833a48d7a3d24141a4a844adfeab8a22b476cb258bbdc76d5cdad36c6a28d9f",
+  "corpusHash": "ef11ef7c18d4d5dcaaed80bde3f520396affd819c4c3546cf0e54f80c1a47bcf",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27567,
+  "includedPathCount": 27572,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10735,6 +10735,10 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -12098,6 +12102,7 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/spec.md",
@@ -27599,7 +27604,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c9e1ce18bfbebae2db5d65731d416eb6039cce5026243913bb5b017ffe61de92",
+  "manifestHash": "3e72f579ebddff5b592b8bbb81cf8db5c0e1e461f2c17eaae92e07a47d512404",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30159,6 +30164,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/scratch",
       "reason": "excluded directory"
     },
     {

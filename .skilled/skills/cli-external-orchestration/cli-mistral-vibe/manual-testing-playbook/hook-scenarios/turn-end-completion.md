@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-009 -- Turn-end leaves a completion advisory and never blocks"
 description: "This scenario validates that a Vibe turn that ends on a completion claim with no recorded evidence leaves one pending advisory and still ends on a post_agent accept, judged from the session journal and the hook-written file."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # VIB-HK-009 -- Turn-end leaves a completion advisory and never blocks
@@ -60,7 +60,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
     {
       "id": "claim",
       "send": "Create notes.txt in this folder with one line of text, then reply with one short sentence that says the work is completed.",
-      "check": "f=.skilled/skills/.state/completion-sentinel/vibe-pending-advisory.txt; test -s \"$f\" || { echo no-pending-advisory; exit 1; }; grep -rqsF '\"kind\":\"hook_run_completed\",\"scope\":\"post_agent\"' \"$VIBE_HOME/logs/session/unified\" || { echo no-post-agent-run; exit 1; }; if grep -rqsF '\"kind\":\"hook_completed\",\"scope\":\"post_agent\"' \"$VIBE_HOME/logs/session/unified\"; then echo post-agent-denied; exit 1; fi; echo \"post-agent-accept advisory-recorded\""
+      "check": "f=.skilled/skills/.state/completion-sentinel/vibe-pending-advisory.txt; test -s \"$f\" || { echo no-pending-advisory; exit 1; }; grep -rqsF '\"kind\":\"hook_run_completed\",\"scope\":\"post_agent\"' \"$VIBE_HOME/logs/session/unified\" || { echo no-post-agent-run; exit 1; }; if grep -rqsF '\"kind\":\"hook_completed\",\"scope\":\"post_agent\"' \"$VIBE_HOME/logs/session/unified\"; then echo post-agent-denied; exit 1; fi; stat -f %m \"$f\" > \"$CONVERSATION_RUN_DIR/advisory-mtime-turn1.txt\"; echo \"post-agent-accept advisory-recorded\""
     },
     {
       "id": "no-retry",
@@ -78,7 +78,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
           "optional": true
         }
       ],
-      "check": "n=$(wc -l < notes.txt | tr -d ' '); [ \"$n\" -ge 2 ] || { echo notes-has-$n-lines; exit 1; }; grep -qF 'claimed done' .skilled/skills/.state/completion-sentinel/vibe-pending-advisory.txt || { echo no-advisory-after-second-claim; exit 1; }; if grep -rqsF '\"kind\":\"hook_completed\",\"scope\":\"post_agent\"' \"$VIBE_HOME/logs/session/unified\"; then echo post-agent-denied; exit 1; fi; echo \"second-claim-accepted lines=$n advisory-rewritten\""
+      "check": "n=$(wc -l < notes.txt | tr -d ' '); [ \"$n\" -ge 2 ] || { echo notes-has-$n-lines; exit 1; }; f=.skilled/skills/.state/completion-sentinel/vibe-pending-advisory.txt; grep -qF 'claimed done' \"$f\" || { echo no-advisory-after-second-claim; exit 1; }; first=$(tr -d ' ' < \"$CONVERSATION_RUN_DIR/advisory-mtime-turn1.txt\"); now=$(stat -f %m \"$f\"); [ \"$now\" -gt \"$first\" ] || { echo advisory-not-rewritten first=$first now=$now; exit 1; }; if grep -rqsF '\"kind\":\"hook_completed\",\"scope\":\"post_agent\"' \"$VIBE_HOME/logs/session/unified\"; then echo post-agent-denied; exit 1; fi; echo \"second-claim-accepted lines=$n advisory-rewritten\""
     }
   ]
 }
@@ -88,7 +88,7 @@ The completion part only runs for an operator-named packet, so the script names 
 
 ### Expected
 
-Turn `claim` leaves the journal with a completed `post_agent` hook run, no `post_agent` deny notice, and the pending advisory file holding `claimed done` plus the reread reminder. Turn `no-retry` finds no deny notice and the advisory still in place. Turn `second-claim` asks for a second line and a second completion claim: notes.txt holds two lines, the advisory file again holds `claimed done`, and the journal still holds no `post_agent` deny notice, so the guard fires on every claim turn and never blocks one.
+Turn `claim` leaves the journal with a completed `post_agent` hook run, no `post_agent` deny notice, and the pending advisory file holding `claimed done` plus the reread reminder. Turn `no-retry` finds no deny notice and the advisory still in place. Turn `second-claim` asks for a second line and a second completion claim: notes.txt holds two lines, the advisory file again holds `claimed done` with a later modification time than turn 1 left it, and the journal still holds no `post_agent` deny notice, so the guard fires on every claim turn and never blocks one.
 
 ### Evidence
 

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c9e1ce18bfbebae2db5d65731d416eb6039cce5026243913bb5b017ffe61de92",
+  "manifestHash": "3e72f579ebddff5b592b8bbb81cf8db5c0e1e461f2c17eaae92e07a47d512404",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1911,6 +1911,9 @@
     ],
     "007 plan voyage cleanup": [
       "007 plan voyage cleanup"
+    ],
+    "007 review remediation operator decisions": [
+      "007-review-remediation operator decisions"
     ],
     "007 runtime command agent alignment audit": [
       "007-runtime-command-agent-alignment-audit"
@@ -19667,6 +19670,18 @@
     "ci red checks after council retirement tasks": [
       "ci red checks after council retirement tasks"
     ],
+    "ci red checks after vibe and loop counters": [
+      "ci red checks after vibe and loop counters"
+    ],
+    "ci red checks after vibe and loop counters implementation summary": [
+      "ci red checks after vibe and loop counters implementation summary"
+    ],
+    "ci red checks after vibe and loop counters plan": [
+      "ci red checks after vibe and loop counters plan"
+    ],
+    "ci red checks after vibe and loop counters tasks": [
+      "ci red checks after vibe and loop counters tasks"
+    ],
     "ci regression gate comparison rule sets": [
       "ci regression gate comparison rule sets"
     ],
@@ -30918,6 +30933,9 @@
     ],
     "convergence trajectory": [
       "convergence trajectory"
+    ],
+    "convergence tsx lazy resolve": [
+      "convergence tsx lazy resolve"
     ],
     "convergencemode off": [
       "convergenceMode off"
@@ -82778,6 +82796,9 @@
     "phase 28 changelog release extension": [
       "phase 28 changelog release extension"
     ],
+    "phase 28 ci red checks": [
+      "phase 28 ci red checks"
+    ],
     "phase 28 goal rebind live proof and docs": [
       "phase 28 goal rebind live proof and docs"
     ],
@@ -130528,6 +130549,9 @@
     ],
     "vibe live hop": [
       "vibe live hop"
+    ],
+    "vibe local prompt stub gitignore": [
+      "vibe local prompt stub gitignore"
     ],
     "vibe mirror ci check": [
       "vibe mirror ci check"

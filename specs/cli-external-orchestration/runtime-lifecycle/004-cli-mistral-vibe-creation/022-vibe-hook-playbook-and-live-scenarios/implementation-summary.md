@@ -8,16 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios"
-    last_updated_at: "2026-11-15T13:49:05Z"
+    last_updated_at: "2026-11-15T15:00:48Z"
     last_updated_by: "generate-context"
-    recent_action: "Scoped the 022 records after the main merge"
-    next_safe_action: "Await operator approval to push the branch to origin/main"
+    recent_action: "Applied the review fixes; the live rerun is blocked on the Mistral budget"
+    next_safe_action: "Rerun VIB-HK-003, 009, 021, 022 and 024 live once the Mistral budget is back"
     packet_purpose: "Purpose: Every Vibe hook, hook part, generated mirror and the hooks renderer has a conversation scenario that a live Vibe session passed, and the branch carries no open in-scope alignment finding."
-    blockers: []
+    blockers:
+      - "T104 blocked: Mistral API budget exhausted"
     key_files:
+      - "tasks.md"
       - "scratch/verdicts.md"
       - "implementation-summary.md"
-      - "goal.md"
     session_dedup:
       fingerprint: "sha256:2653e4111927e913f8576c778b70c91e39c04490f1ff40b8bb1741f73f215b83"
       session_id: "mistral-support-2026-11-14"
@@ -26,10 +27,10 @@ _memory:
       runtime: "claude"
       sessionId: "425e79e1-c5de-4edb-b8bb-77ee620d2538"
       workspace: "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime"
-      savedAt: "2026-11-15T13:49:05Z"
+      savedAt: "2026-11-15T15:00:48Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -119,10 +120,10 @@ Each scenario ran live against Vibe 3.1.2 on `deepseek-flash`, one at a time, an
 ## Known Limitations
 
 1. **The hop stays outside the runner.** VIB-HK-026 has a hand-run record, not a runner row.
-2. **The printed claim command drops launch flags.** `skilled-loop`'s `build_manual_command_template` replays extra arguments only in hop mode, so a manual claim command printed in an untrusted checkout leaves out `--trust`.
-3. **Vibe handover needs its switch.** Handover is default-on for Claude Code only, so a Vibe hop needs `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`.
+2. **Five hardened checks have not passed live.** After the review, the checks of VIB-HK-003, 009, 021, 022 and 024 were tightened, and their live rerun stopped on Mistral's `402 API budget exhausted`. Their rows still rest on the earlier checks (T104).
+3. **Vibe handover needs its switch.** Handover is default-on for Claude Code only, so a Vibe hop needs `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`. This is intended, and the cli-mistral-vibe skill now says so.
 4. **VIB-HK-027 is not covered here.** The automatic handover tier's scenario arrived with the merge of origin/main and belongs to that work.
-5. **The runner leaves the Vibe home behind.** A fixed scratch path (VIB-HK-017, VIB-HK-018) must be cleared with `chmod -R u+w` before a rerun, because Vibe's extracted plugin files are read-only.
+5. **The runner keeps the Vibe home by default.** Its journal is the only copy, so removal is opt-in with `--remove-home`. Without the flag, a fixed scratch path (VIB-HK-017, VIB-HK-018) must still be cleared with `chmod -R u+w` before a rerun.
 <!-- /ANCHOR:limitations -->
 
 ---

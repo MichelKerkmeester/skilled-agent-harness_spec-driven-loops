@@ -25,9 +25,9 @@ contextType: "implementation"
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/381-speckit-command-gates-step-order-drift` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 10 of 10 |
+| **Phase** | 10 of 11 |
 | **Predecessor** | 009-resume-contract-owned-assets |
-| **Successor** | None |
+| **Successor** | 011-prerequisites-bound-folder-override |
 | **Handoff Criteria** | Every row of `acceptance-criteria.md` is Met, the alignment recheck reports no finding still open that this phase owns, and `validate.sh --strict` prints `RESULT: PASSED` for this folder |
 <!-- /ANCHOR:metadata -->
 

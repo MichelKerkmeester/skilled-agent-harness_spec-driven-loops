@@ -93,16 +93,16 @@
     ],
     "causal_summary": "The `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, `/speckit:resume`, `/speckit:save`, `/speckit:search` and `/speckit:handoff` commands are executed by AI agents on every runtime, and an agent follows the workflow text literally",
     "created_at": "2026-11-14T11:33:17Z",
-    "last_save_at": "2026-11-15T06:07:54.292Z",
+    "last_save_at": "2026-11-15T16:19:07.678Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e340ddf41deed83c0afaf1dab7076da25ee88c617b2199f5528888095385f71e",
+    "source_fingerprint": "sha256:884811609d18e608857dc28807fd6b3a019379d953625596cad109ce06f31eff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9d8c1df74ec8d289f8cb59be8cce6596bfc69fb4582141243d2b011f055ce741"
+      "spec.md": "e438d0f543e1de657a1c1c9dd5f4a2e9e5de9c0479bb7c192e6cb6543c5fd08a"
     },
     "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override",
     "last_active_at": "2026-11-15T06:06:10.743Z"

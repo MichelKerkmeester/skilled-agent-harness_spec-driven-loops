@@ -26,7 +26,7 @@ contextType: "general"
 | **Created** | 2026-11-14 |
 | **Branch** | `scaffold/007-shared-blocks-and-retired-mechanisms` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 8 |
+| **Phase** | 7 of 11 |
 | **Predecessor** | 006-save-search-handoff-contracts |
 | **Successor** | 008-router-readme-presentation-alignment |
 | **Handoff Criteria** | Findings B1 to B11 are closed, `acceptance-criteria.md` has no `Unmet` row, both workflow contract tests exit 0 and `validate.sh --strict` prints `RESULT: PASSED` for this folder |
