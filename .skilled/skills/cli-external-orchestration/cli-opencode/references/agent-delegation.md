@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.16.0
+version: 1.4.17.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -35,9 +35,9 @@ The cli-opencode skill exposes the project's full agent roster. The calling AI s
 
 | Command | Purpose |
 |---------|---------|
-| `opencode agent list` | List all registered agent slugs across project + user scopes |
-| `opencode debug agent <slug>` | Print resolved frontmatter and system prompt for a slug |
-| `opencode debug skill <slug>` | Print skill resolution if the agent loads one |
+| `opencode debug agents` on 2.3.0, `opencode agent list` on earlier releases | List all registered agent slugs across project + user scopes |
+| `opencode debug agent <slug>` (earlier releases; on 2.3.0 `debug agents` prints every resolved prompt) | Print resolved frontmatter and system prompt for a slug |
+| `opencode debug skill <slug>` (earlier releases; 2.3.0 has no `debug skill`) | Print skill resolution if the agent loads one |
 
 OpenCode loads `.opencode/agents/<slug>.md`, which in this repository links to `.skilled/agents/`, where the files are edited. On OpenCode 1.19.3, user-level agents fall back from `~/.config/opencode/` (or `$XDG_CONFIG_HOME/opencode/`), `~/.opencode/` and `$OPENCODE_CONFIG_DIR` when the project file is missing. Which of those OpenCode 2.0.32 reads is unverified. The `debug agent` subcommand prints the merged result so the calling AI can confirm which file the dispatch will load.
 
@@ -449,12 +449,12 @@ jq -r 'select(.type == "text") | .part.text' /tmp/review-events.jsonl
 
 | Symptom | Likely cause | Recovery |
 |---------|--------------|----------|
-| `unknown agent <slug>` | Slug not present in `.opencode/agents/` or user-level fallback | Run `opencode agent list` to enumerate, fix the slug, retry |
+| `unknown agent <slug>` | Slug not present in `.opencode/agents/` or user-level fallback | Run `opencode debug agents` on 2.3.0 or `opencode agent list` on earlier releases to enumerate, fix the slug, retry |
 | Agent loaded but writes refused | LEAF agent constraint or read-only sandbox | Re-route to `general` / `orchestrate` for write operations |
 | Session never finishes | Tool call hung or infinite loop | Inspect `~/.opencode/state/<sessionID>/messages.jsonl`, abort the session, retry with refined scope |
 | Empty output stream | `--format default` with non-TTY parent | Pass `--format json` and parse the event stream |
 | Plugin load crash | Misconfigured plugin in agent context | On OpenCode 1, rerun with `--pure` to bypass plugins, then root-cause the plugin. OpenCode 2 `run` has no `--pure` (see `./install-and-versions.md`) |
-| `provider/model not found` | Model not configured for the agent's chosen provider | Run `opencode providers` to enumerate, then `auth login <provider>` |
+| `provider/model not found` | Model not configured for the agent's chosen provider | Run `opencode auth list` on OpenCode 2 or `opencode providers list` on OpenCode 1 to enumerate, then `opencode auth login <provider>` |
 | Self-invocation refused | cli-opencode detected an in-OpenCode runtime | Use a sibling cli-* skill or restate the request with parallel-session keywords (see ADR-001) |
 | Low-quality agent output | Wrong agent for the task or under-specified prompt | Re-route per the routing matrix, refine the prompt with more context |
 

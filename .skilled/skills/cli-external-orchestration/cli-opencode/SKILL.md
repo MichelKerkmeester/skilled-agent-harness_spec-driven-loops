@@ -2,7 +2,7 @@
 name: cli-opencode
 description: "OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback with full runtime context."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.10.0
+version: 1.5.11.0
 ---
 
 # OpenCode CLI Orchestrator - Full-Runtime Cross-AI Dispatch
@@ -75,7 +75,8 @@ Do not add a packet-local wrapper, spawn path or command builder. Direct `openco
 
 ### Prerequisites
 
-**Verified versions.** This skill was verified against OpenCode 2.1.4 and OpenCode 1.19.4 on 2026-10-24.
+**Verified versions.** This skill was verified against OpenCode 2.3.0 on 2026-11-15, and against OpenCode 2.1.4 and OpenCode 1.19.4 on 2026-10-24.
+On 2.3.0 the `run` flags match the OpenCode 2 delta below. Two subcommands moved: credentials are under `opencode auth`, and agents are listed by `opencode debug agents`.
 Flag and provider observations naming 2.0.32 or 1.19.3 were read on those releases, not re-read on 2.1.4 or 1.19.4.
 OpenCode 2 is expected and recommended; OpenCode 1 remains supported for now as a fallback for users who have not updated.
 The skill loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified.
@@ -88,16 +89,16 @@ This skill's OpenCode 1 command lines name `opencode`, which is right on a v1-on
 ```bash
 # Binary pick and version check: references/install-and-versions.md §4-5.
 OC=${OPENCODE_BIN:-}; if [ -z "$OC" ]; then OC=$(command -v opencode2 2>/dev/null); [ -z "$OC" ] && OC=$(command -v opencode 2>/dev/null); fi
-"$OC" --version   # `opencode v2.1.4` = OpenCode 2 (expected), `1.19.4` = OpenCode 1 (fallback); either major passes
+"$OC" --version   # `opencode v2.3.0` or `v2.1.4` = OpenCode 2 (expected), `1.19.4` = OpenCode 1 (fallback); either major passes
 
 # Self-invocation guard. OPENCODE_API_KEY is a provider key an operator exports, not a session marker.
 env | grep -v '^OPENCODE_API_KEY=' | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
 
-# Authentication
-opencode providers
+# Authentication. OpenCode 1 lists them with `opencode providers list`.
+opencode auth list
 ```
 
-**Authentication options**: `opencode providers login <provider>` (or `opencode auth login` for subscription plans). Full per-provider login shapes: `references/cli-reference.md` §4.
+**Authentication options**: `opencode auth login <provider>` on OpenCode 2, because 2.3.0 has no `providers` subcommand, and `opencode providers login <provider>` on OpenCode 1. A subscription plan uses `opencode auth login` with no provider and an interactive pick. Full per-provider login shapes: `references/cli-reference.md` §4.
 
 ### Provider Auth Pre-Flight (Smart Fallback)
 

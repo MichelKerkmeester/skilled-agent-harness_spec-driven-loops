@@ -10,7 +10,7 @@ trigger_phrases:
   - "minimax dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.15.0
+version: 1.4.16.0
 ---
 
 # OpenCode CLI - Prompt Templates
@@ -93,7 +93,7 @@ opencode run \
   "<prompt-from-template>" 2>&1
 ```
 
-The default model is `llmgateway/deepseek-v4.1-flash-1017` (LLM Gateway, DevPass) on both versions, so one provider serves both: OpenCode 2 dispatches `llmgateway/deepseek-v4.1-flash-1017#max`, while OpenCode 1 dispatches it at `--variant max`. Confirm that `opencode models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first. `opencode-go` stays a selectable provider, but it is no longer the default, and a typical v2 install lists none, so that route needs its own login first (`opencode providers login opencode-go`) before `-m opencode-go/deepseek-v4.1-flash#max` resolves.
+The default model is `llmgateway/deepseek-v4.1-flash-1017` (LLM Gateway, DevPass) on both versions, so one provider serves both: OpenCode 2 dispatches `llmgateway/deepseek-v4.1-flash-1017#max`, while OpenCode 1 dispatches it at `--variant max`. Confirm that `opencode models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first. `opencode-go` stays a selectable provider, but it is no longer the default, and a typical v2 install lists none, so that route needs its own login first (`opencode auth login opencode-go`) before `-m opencode-go/deepseek-v4.1-flash#max` resolves.
 
 ---
 

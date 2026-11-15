@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.26.0
+version: 1.4.27.0
 ---
 
 # cli-opencode
@@ -48,7 +48,7 @@ An external session that needs the project's whole runtime has no native path to
 | **Provider and model surface** | reaches every configured provider catalog through `references/providers-and-models.md`, which is the roster |
 | **Agent delegation** | routes to project-local agents under `.skilled/agents/` with the primary-versus-subagent caveats in `references/agent-delegation.md` |
 
-**Verified versions.** Verified against OpenCode 2.1.4 and OpenCode 1.19.4 on 2026-10-24. Flag and provider observations that name 2.0.32 or 1.19.3 were read on those releases and have not been re-read on 2.1.4 or 1.19.4. OpenCode 2 is the expected and recommended version. OpenCode 1 is supported for now as a fallback for users who have not updated. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
+**Verified versions.** Verified against OpenCode 2.3.0 on 2026-11-15, and against OpenCode 2.1.4 and OpenCode 1.19.4 on 2026-10-24. Flag and provider observations that name 2.0.32 or 1.19.3 were read on those releases and have not been re-read on 2.1.4 or 1.19.4. OpenCode 2 is the expected and recommended version. OpenCode 1 is supported for now as a fallback for users who have not updated. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
 
 ---
 
@@ -65,7 +65,7 @@ If nothing prints, install with `brew install opencode` (macOS) or `curl -fsSL h
 **Step 2: Run the provider auth pre-flight.**
 
 ```bash
-opencode providers list
+opencode auth list    # OpenCode 2. On OpenCode 1: opencode providers list
 ```
 
 Expected when configured: a table of providers with status and default indicators. If the default provider is missing (`llmgateway` on both versions), the skill asks before falling back rather than substituting a model you did not approve.
