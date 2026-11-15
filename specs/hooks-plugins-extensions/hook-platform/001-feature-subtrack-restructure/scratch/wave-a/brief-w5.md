@@ -28,7 +28,7 @@ FEATURES (name => where its code lives)
 - post-edit-quality => .skilled/hooks/post-edit-quality/
 - session-cleanup => .skilled/hooks/session-cleanup/
 - session-lifecycle => .skilled/hooks/session-lifecycle/
-- session-relaunch => .skilled/hooks/session-relaunch/ (search specs for session-relaunch; the big packet is specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop, list it once and do not list its children)
+- session-relaunch => .skilled/hooks/session-relaunch/ (search specs for session-relaunch; the big packet is specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop, list it once and do not list its children)
 - skill-advisor => .skilled/hooks/skill-advisor/ (search specs for 'skill-advisor hook' and 'prompt-advisor')
 
 HOW TO BUILD EACH CARD

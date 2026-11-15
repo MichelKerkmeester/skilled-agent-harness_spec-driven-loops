@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "document corrections",
+      "phase 9 document corrections",
+      "parent goal binding rows 038 and 039",
+      "phase 033 complete",
+      "playbook case names",
+      "document corrections plan",
+      "document corrections tasks",
+      "document corrections acceptance criteria",
+      "document corrections goal",
+      "document corrections implementation summary"
+    ],
+    "key_topics": [
+      "document",
+      "corrections",
+      "phase",
+      "parent",
+      "goal",
+      "binding",
+      "rows",
+      "complete",
+      "playbook",
+      "case",
+      "names",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/goal.md",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/spec.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/graph-metadata.json",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/goal.md",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/graph-metadata.json",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry/implementation-summary.md",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry/acceptance-criteria.md",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry/goal.md",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry/graph-metadata.json",
+      "scratch/goal-002-parent.txt",
+      "scratch/validate-033.txt",
+      "scratch/criterion-5-033.txt",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/scratch/goal-002-parent.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-002-parent.txt",
+        "kind": "file",
+        "path": "scratch/goal-002-parent.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-033.txt",
+        "kind": "file",
+        "path": "scratch/validate-033.txt",
+        "source": "derived"
+      },
+      {
+        "name": "criterion-5-033.txt",
+        "kind": "file",
+        "path": "scratch/criterion-5-033.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-11-13 research found five places where a document said something the code or the recorded evidence no longer supported",
+    "created_at": "2026-11-14T04:47:42Z",
+    "last_save_at": "2026-11-15T14:18:56.611Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:99339670670c5456d9133994b219a7e620872f98cea3001106fc492935536aa2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "044215c382c1f36a5e3aa657f65fe7ac68febb625d35c075cc2c9d5133315ece",
+      "plan.md": "5df4337a90a38a03da72723516ade3e489e9ff2c6d01eeaadbc114f397af3b25",
+      "tasks.md": "6ac999b9e80e3521a0932c47059c9f4c6ee992090f4dedb385e75e1da3c5f5e1",
+      "implementation-summary.md": "d282e44f412bb732b86dfb5add8ba949574dafd795bc4ee03891a5dd7ac8de74"
+    },
+    "last_active_at": null
+  }
+}

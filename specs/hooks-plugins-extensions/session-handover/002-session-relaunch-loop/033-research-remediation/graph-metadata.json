@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop",
+  "children_ids": [
+    "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay",
+    "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw",
+    "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings",
+    "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding",
+    "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation",
+    "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps",
+    "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness",
+    "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/008-claim-error-per-state",
+    "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "research remediation phase parent spec",
+      "relaunch research remediation",
+      "research remediation goal"
+    ],
+    "key_topics": [
+      "research",
+      "remediation",
+      "phase",
+      "parent",
+      "spec",
+      "relaunch",
+      "goal",
+      "ten-iteration",
+      "sections",
+      "11a",
+      "independent",
+      "review"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-model-effort-atomic-replay/goal.md",
+      "002-consume-locked-withdraw/goal.md",
+      "003-manual-claim-live-settings/goal.md",
+      "004-manual-claim-goal-binding/goal.md",
+      "005-persisted-hops-validation/goal.md",
+      "006-relaunch-coverage-gaps/goal.md",
+      "007-compaction-pointer-staleness/goal.md",
+      "008-claim-error-per-state/goal.md",
+      "009-pi-arm-on-agent-settled/goal.md",
+      "009-pi-arm-on-agent-settled/scratch/pi-settled-live/relaunch-record-armed.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-record-armed.json",
+        "kind": "config",
+        "path": "009-pi-arm-on-agent-settled/scratch/pi-settled-live/relaunch-record-armed.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The ten-iteration research after phase 032 (`../research/research.md` sections 9, 9a, 11, 11a and 15) and an independent review against the code left nine fixable items in the session relaunch loop",
+    "created_at": "2026-10-25T13:42:16Z",
+    "last_save_at": "2026-11-15T14:18:55.856Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:ddeb00821dd6c274e16290a531216fe98e040ea472ce3f89d715eac38153dfb5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "36bc1c5e778bddf1fdb85216eea7ea55c93af7b0356edd671b4e8ce4c06e151e"
+    },
+    "last_active_at": null
+  }
+}

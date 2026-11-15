@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings",
+  "description": "The printed manual claim command replays a template built once, before the loop starts: `SKILLEDLOOPMANUALTEMPLATE=$(buildmanualcommandtemplate)` at",
+  "keywords": [
+    "printed",
+    "manual",
+    "claim",
+    "command",
+    "replays",
+    "template",
+    "loop",
+    "starts",
+    "skilledloopmanualtemplate",
+    "buildmanualcommandtemplate"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.213Z",
+  "specId": "003",
+  "folderSlug": "manual-claim-live-settings",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "033-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

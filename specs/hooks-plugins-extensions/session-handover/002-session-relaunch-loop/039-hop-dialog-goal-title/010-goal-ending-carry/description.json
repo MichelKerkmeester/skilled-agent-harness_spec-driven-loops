@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry",
+  "description": "A Claude sender whose goal was met, failed or cleared hands over no goal",
+  "keywords": [
+    "claude",
+    "sender",
+    "whose",
+    "goal",
+    "met",
+    "failed",
+    "cleared",
+    "hands"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.700Z",
+  "specId": "010",
+  "folderSlug": "goal-ending-carry",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

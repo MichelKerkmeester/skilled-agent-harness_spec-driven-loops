@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",
+  "description": "A probe on OpenCode 1.19.3 showed that a `task` sub-agent runs as a child session with its own session id",
+  "keywords": [
+    "probe",
+    "opencode",
+    "showed",
+    "task",
+    "sub-agent",
+    "runs",
+    "child",
+    "session",
+    "own"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.152Z",
+  "specId": "022",
+  "folderSlug": "runtime-certainty-claude-pi-opencode",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "22-10-26_10-34__session-relaunch-handoff-state.md",
+    "22-10-26_12-28__pi-session-relaunch-handoff.md"
+  ]
+}

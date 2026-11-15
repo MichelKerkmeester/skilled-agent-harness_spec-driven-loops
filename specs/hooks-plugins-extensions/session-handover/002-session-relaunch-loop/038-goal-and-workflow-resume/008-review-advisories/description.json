@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories",
+  "description": "The Claude start claim can report `PostToolUse` when a startup payload carries no `hookeventname`",
+  "keywords": [
+    "claude",
+    "start",
+    "claim",
+    "report",
+    "posttooluse",
+    "startup",
+    "payload",
+    "carries",
+    "hookeventname"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.376Z",
+  "specId": "008",
+  "folderSlug": "review-advisories",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-11-26_06-44__closed-child-008-of-the-goal-and-workflow-resume.md"
+  ]
+}

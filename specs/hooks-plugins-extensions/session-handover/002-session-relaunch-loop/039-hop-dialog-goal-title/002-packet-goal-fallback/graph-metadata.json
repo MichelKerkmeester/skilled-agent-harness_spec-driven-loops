@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "packet goal fallback",
+      "phase 2 packet goal fallback",
+      "claude receiver starts on packet goal",
+      "no goal entry hop",
+      "packet goal fallback plan",
+      "packet goal fallback tasks",
+      "packet goal fallback acceptance criteria",
+      "packet goal fallback goal",
+      "packet goal fallback decision record",
+      "over-cap goal log superseded criterion",
+      "packet goal fallback implementation summary"
+    ],
+    "key_topics": [
+      "packet",
+      "goal",
+      "fallback",
+      "phase",
+      "claude",
+      "receiver",
+      "starts",
+      "entry",
+      "hop",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      ".skilled/hooks/goal/lib/goal-slice.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "goal-slice.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-slice.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A hop carried a goal only when the Claude sender had set one itself",
+    "created_at": "2026-11-13T16:59:12Z",
+    "last_save_at": "2026-11-15T14:18:56.516Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:66b4f653d245b2d3d735882aa47b71cf0fbb1eb23969af33cfb06d6d4253cdd7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d6fa17d6e2e09b580a3501acb6a3c3305253f6b85ee48169674a125244b0f41c",
+      "plan.md": "ffeac66efac92ec47c0d4371c9423cb38550fb7fbe0993af84d0b9c795137cc2",
+      "tasks.md": "bd348305aea33da9b3cb41efa830869f35a2975905c7e14b538255cc423a9b02",
+      "decision-record.md": "22fb01e29ff4d25ccda02793800bd2ce16c55a4023ea861d4eab3d2fd920c16c",
+      "implementation-summary.md": "52e8051833af3eb18341fcc52a8d9b1871252dd5c4df34498e13eb285766b777"
+    },
+    "last_active_at": null
+  }
+}

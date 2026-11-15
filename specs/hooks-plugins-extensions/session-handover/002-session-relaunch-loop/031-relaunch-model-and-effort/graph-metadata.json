@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/031-relaunch-model-and-effort",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/031-relaunch-model-and-effort",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relaunch model and effort",
+      "phase 31 relaunch model and effort",
+      "hop keeps model",
+      "relaunch effort flag",
+      "relaunch model and effort plan",
+      "relaunch model and effort tasks",
+      "relaunch model and effort acceptance criteria",
+      "relaunch model and effort implementation summary"
+    ],
+    "key_topics": [
+      "relaunch",
+      "model",
+      "effort",
+      "phase",
+      "hop",
+      "keeps",
+      "flag",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/speckit/handoff.md",
+      "scratch/claude-effort-live/transcript-settings.txt",
+      "scratch/codex-effort-live/levels-probe.txt",
+      "scratch/claude-effort-live/summary.txt",
+      "scratch/codex-effort-live/summary.txt",
+      "scratch/pi-effort-live/summary.txt",
+      "scratch/hermes-effort-live/summary.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "transcript-settings.txt",
+        "kind": "file",
+        "path": "scratch/claude-effort-live/transcript-settings.txt",
+        "source": "derived"
+      },
+      {
+        "name": "levels-probe.txt",
+        "kind": "file",
+        "path": "scratch/codex-effort-live/levels-probe.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary.txt",
+        "kind": "file",
+        "path": "scratch/claude-effort-live/summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Session",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`buildrelauncharguments` in `.skilled/bin/skilled-loop` rebuilds the relaunch command from the model, provider, name and Pi extension flags only",
+    "created_at": "2026-10-25T07:25:52Z",
+    "last_save_at": "2026-11-15T14:18:55.827Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:931d7b6d5ba7010f71933e26df7fbe2dd1f9b91f3e94b64ca58be883ed2d422d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e1d0dec76661953a73a3ca1e356b849a2627ffc81e304ed3b3ff6c0485a1c6b2",
+      "plan.md": "46c2e739614f681dd0b527513f4e1859b470241cdab79792d284a1180299a646",
+      "tasks.md": "3b97c3654f2bca5a03f423b33fde918a348e957cfbf23ff793d07ffd05902b2a",
+      "implementation-summary.md": "2cd830959bc1922c6789be8a61288cbc5ccdcfe783f726c6f345070776b5f64a"
+    },
+    "last_active_at": null
+  }
+}

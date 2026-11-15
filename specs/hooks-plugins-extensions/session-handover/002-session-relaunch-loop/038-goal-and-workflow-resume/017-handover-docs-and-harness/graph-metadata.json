@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume/017-handover-docs-and-harness",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume/017-handover-docs-and-harness",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "handover docs and harness",
+      "phase 17 handover docs and harness",
+      "handover docs and harness plan",
+      "handover docs and harness tasks",
+      "handover docs and harness acceptance criteria",
+      "handover docs and harness goal",
+      "handover docs and harness implementation summary"
+    ],
+    "key_topics": [
+      "handover",
+      "docs",
+      "harness",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "phases"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/hs-checks.txt",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/finish-run.sh",
+      "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/test-finish-run.sh",
+      "scratch/late-write.txt",
+      "scratch/red.txt",
+      "scratch/green.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hs-checks.txt",
+        "kind": "file",
+        "path": "scratch/hs-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "finish-run.sh",
+        "kind": "script",
+        "path": "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/finish-run.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-finish-run.sh",
+        "kind": "script",
+        "path": "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/test-finish-run.sh",
+        "source": "derived"
+      },
+      {
+        "name": "late-write.txt",
+        "kind": "file",
+        "path": "scratch/late-write.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Over State Checks",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 009 to 016 change what a hand-over note asks for, what a hop carries and when a hop is refused or deferred, and neither the README nor the Claude playbook mentions any of it",
+    "created_at": "2026-11-13T08:49:39Z",
+    "last_save_at": "2026-11-15T14:18:56.462Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7384cc162c0c847b101056b94c689e997daf9b9b172a3bcf225236e032020b67",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c5d2edad2436654b92d5aae37860b1f16b2752212c80cdf8ab9eb656d30bf4a9",
+      "plan.md": "040093618b14aa81f1d2578bd0bfd30a9744010f981ec8a97bcb2d559e74b383",
+      "tasks.md": "34d747eb917b4d2e159dec1afb2289e6467e0db78db83f51154a2c3890356f37",
+      "implementation-summary.md": "bb938f11107193e9521e73f8ed8486bfde4e76d0a3bcef2dceb53b4c0a3e7322"
+    },
+    "last_active_at": null
+  }
+}

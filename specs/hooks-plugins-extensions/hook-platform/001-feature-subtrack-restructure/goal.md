@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] The track validates: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions --strict --recursive --quiet | grep '^RESULT:' | grep -vc '^RESULT: PASSED'` prints 0.
 - [ ] The track root metadata names `hooks-plugins-extensions`: `rg -n '"specFolder": "hooks"|"specId": "hooks"|"folderSlug": "hooks"|"packet_id": "hooks"|"spec_folder": "hooks"' specs/hooks-plugins-extensions/description.json specs/hooks-plugins-extensions/graph-metadata.json | wc -l` prints 0.
 - [ ] The overview covers every feature: the three loops in `acceptance-criteria.md` AC-008, AC-009 and AC-010 print 0, 0 and 0.
-- [ ] The two held packets are untouched and named with their destinations: `ls -d specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | wc -l` prints 2, and `rg -c '^- 002-session-relaunch-loop|^- 012-file-relative-adapter-imports' specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/spec.md` prints 2.
+- [ ] The two held packets are untouched and named with their destinations: `ls -d specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | wc -l` prints 2, and `rg -c '^- 002-session-relaunch-loop|^- 012-file-relative-adapter-imports' specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/spec.md` prints 2.
 <!-- /ANCHOR:completion -->
 
 ---

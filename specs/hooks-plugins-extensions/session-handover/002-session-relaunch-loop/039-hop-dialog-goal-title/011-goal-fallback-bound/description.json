@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound",
+  "description": "A Claude sender whose session log holds no goal entry is started on the nearest unfinished packet goal above its note's spec folder",
+  "keywords": [
+    "claude",
+    "sender",
+    "whose",
+    "session",
+    "log",
+    "holds",
+    "goal",
+    "entry",
+    "started",
+    "nearest",
+    "unfinished",
+    "packet",
+    "note",
+    "spec",
+    "folder"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.710Z",
+  "specId": "011",
+  "folderSlug": "goal-fallback-bound",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

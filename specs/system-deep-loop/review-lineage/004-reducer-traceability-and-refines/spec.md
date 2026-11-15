@@ -41,16 +41,16 @@ Make the reducer show only real dead ends as BLOCKED and fold an explicitly link
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-Measured read-only on the review run at `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/`:
+Measured read-only on the review run at `specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/review/`:
 
 ```text
-$ rg -c 'BLOCKED \(iteration' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-strategy.md
+$ rg -c 'BLOCKED \(iteration' specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-strategy.md
 75
-$ rg -c '^### .*(checklist_evidence|feature_catalog_code|agent_cross_runtime|playbook_capability).*BLOCKED' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-strategy.md
+$ rg -c '^### .*(checklist_evidence|feature_catalog_code|agent_cross_runtime|playbook_capability).*BLOCKED' specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-strategy.md
 33
-$ jq '[.openFindings[] | select(.findingId=="R1-P2-001")] | length' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-findings-registry.json
+$ jq '[.openFindings[] | select(.findingId=="R1-P2-001")] | length' specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-findings-registry.json
 2
-$ jq '[.openFindings[] | select(.severity=="P2")] | length' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-findings-registry.json
+$ jq '[.openFindings[] | select(.severity=="P2")] | length' specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-findings-registry.json
 3
 ```
 

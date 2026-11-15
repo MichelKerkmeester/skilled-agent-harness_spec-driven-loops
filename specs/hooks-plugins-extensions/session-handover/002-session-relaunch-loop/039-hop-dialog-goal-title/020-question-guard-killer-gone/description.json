@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone",
+  "description": "`pendingHandOver` denies a question dialog only when `armableRecord` reports `reason === 'pending'` (`claude/subagent-guard.mjs:84`)",
+  "keywords": [
+    "pendinghandover",
+    "denies",
+    "question",
+    "dialog",
+    "only",
+    "armablerecord",
+    "reports",
+    "reason",
+    "pending",
+    "claude",
+    "subagent-guard",
+    "mjs"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.806Z",
+  "specId": "020",
+  "folderSlug": "question-guard-killer-gone",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

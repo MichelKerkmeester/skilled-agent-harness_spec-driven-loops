@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/005-deep-review-remediation",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/005-deep-review-remediation",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review remediation",
+      "phase 5 deep review remediation",
+      "deep review remediation plan",
+      "deep review remediation tasks",
+      "deep review remediation acceptance criteria",
+      "deep review remediation goal",
+      "deep review remediation implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "remediation",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "passed"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/README.md",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+      ".skilled/skills/sk-doc/shared/scripts/extract_structure.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_extract_structure_regressions.py",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      "tests/README.md",
+      "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/009-findings-summary-integrity/acceptance-criteria.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "extract_structure.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/extract_structure.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_extract_structure_regressions.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_extract_structure_regressions.py",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep review passed the loop but left twelve advisories",
+    "created_at": "2026-10-18T13:25:35Z",
+    "last_save_at": "2026-11-15T14:18:55.424Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f86216365b6d73a65b3828529774a01616bac3970f8174e27a49627d81b33899",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "520a5cf81c368a17b1ca6e48f77e841b0f76f30f094c043c2c8e8f23c0427ae7",
+      "plan.md": "21c072bf443d54720b660b93910875565e20eb0d4c64d21558d3a6d31d8cc930",
+      "tasks.md": "25035ff3e25f81c5541aa8921144a45b91ea37b3c13f265d7f488e107a9a11a4",
+      "implementation-summary.md": "60ed75d1fcdcf2e35cdd853a0db9259c285a738c9988df8c934ec6b15fc972e0"
+    },
+    "last_active_at": null
+  }
+}

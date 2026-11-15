@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/003-command-trigger-runtimes",
+  "description": "Codex, Cursor, Devin and Hermes expose no usage signal at all, so the context-threshold nudge and the Stop-event arming built for Claude, Pi and",
+  "keywords": [
+    "codex",
+    "cursor",
+    "devin",
+    "hermes",
+    "expose",
+    "usage",
+    "signal",
+    "context-threshold",
+    "nudge",
+    "stop-event",
+    "arming",
+    "claude"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.132Z",
+  "specId": "003",
+  "folderSlug": "command-trigger-runtimes",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "18-10-26_12-56__closed-the-last-two-phase-003-checklist-items-the.md",
+    "18-10-26_12-56__restored-phase-003-key-files-after-the-writer.md"
+  ]
+}

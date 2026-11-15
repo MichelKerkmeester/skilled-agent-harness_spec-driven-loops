@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes",
+  "description": "Two reviews of 2026-11-14 found texts that say something the code does not do",
+  "keywords": [
+    "two",
+    "reviews",
+    "found",
+    "texts",
+    "say",
+    "something",
+    "code"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.736Z",
+  "specId": "014",
+  "folderSlug": "review-wording-fixes",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

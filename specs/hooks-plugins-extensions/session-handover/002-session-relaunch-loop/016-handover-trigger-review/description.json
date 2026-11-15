@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/016-handover-trigger-review",
+  "description": "The `/speckit:handoff` command doc used a section name the command template does not approve, \"RECEIVING A HANDOFF\"",
+  "keywords": [
+    "speckit",
+    "handoff",
+    "command",
+    "doc",
+    "section",
+    "name",
+    "template",
+    "approve",
+    "receiving"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.147Z",
+  "specId": "016",
+  "folderSlug": "handover-trigger-review",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop",
+  "description": "The relaunch loop accepts `--runtime vibe`, but `hook-flags.cjs` and `hook-flags.sh` list only six runtimes",
+  "keywords": [
+    "relaunch",
+    "loop",
+    "accepts",
+    "runtime",
+    "vibe",
+    "hook-flags",
+    "cjs",
+    "list",
+    "only",
+    "six",
+    "runtimes"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.975Z",
+  "specId": "043",
+  "folderSlug": "vibe-handover-flag-and-live-hop",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_08-23__taught-both-relaunch-flag-readers-the-vibe.md"
+  ]
+}

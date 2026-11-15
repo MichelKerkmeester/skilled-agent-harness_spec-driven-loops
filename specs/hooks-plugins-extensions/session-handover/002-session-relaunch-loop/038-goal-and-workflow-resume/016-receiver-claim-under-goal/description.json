@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal",
+  "description": "A Claude receiver whose hop carries a goal starts on `/goal <slice>`, and its claim instructions arrive only as `SessionStart` start context",
+  "keywords": [
+    "claude",
+    "receiver",
+    "whose",
+    "hop",
+    "carries",
+    "goal",
+    "starts",
+    "slice",
+    "claim",
+    "instructions",
+    "arrive",
+    "only",
+    "sessionstart",
+    "start",
+    "context"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.441Z",
+  "specId": "016",
+  "folderSlug": "receiver-claim-under-goal",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

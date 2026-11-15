@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume",
+  "description": "The Claude sub-agent guard builds `LIFECYCLECOMMAND` at `.skilled/hooks/session-relaunch/claude/subagent-guard.mjs:18` from four subcommands only",
+  "keywords": [
+    "claude",
+    "sub-agent",
+    "guard",
+    "lifecyclecommand",
+    "skilled",
+    "hooks",
+    "session-relaunch",
+    "subagent-guard",
+    "mjs",
+    "four",
+    "subcommands",
+    "only"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.276Z",
+  "specId": "005",
+  "folderSlug": "subagent-guard-cancel-consume",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "036-review-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_14-02__closed-phase-005-the-claude-sub-agent-guard.md"
+  ]
+}

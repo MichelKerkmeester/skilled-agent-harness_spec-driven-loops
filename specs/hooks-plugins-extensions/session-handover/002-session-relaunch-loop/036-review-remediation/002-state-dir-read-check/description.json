@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check",
+  "description": "`ensureStateDir` rejects a state directory that is a symlink or is owned by another account, and only write paths call it",
+  "keywords": [
+    "ensurestatedir",
+    "rejects",
+    "state",
+    "directory",
+    "symlink",
+    "owned",
+    "another",
+    "account",
+    "only",
+    "write",
+    "paths",
+    "call"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.262Z",
+  "specId": "002",
+  "folderSlug": "state-dir-read-check",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "036-review-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_11-34__relaunch-records-and-the-nudge-state-are-read.md"
+  ]
+}

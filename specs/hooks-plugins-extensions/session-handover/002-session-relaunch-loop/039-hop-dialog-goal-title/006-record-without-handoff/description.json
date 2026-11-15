@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff",
+  "description": "A relaunch record that parsed as JSON but held no `handoff` field was read as a real pending record",
+  "keywords": [
+    "relaunch",
+    "record",
+    "parsed",
+    "json",
+    "held",
+    "handoff",
+    "field",
+    "read",
+    "real",
+    "pending"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.657Z",
+  "specId": "006",
+  "folderSlug": "record-without-handoff",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

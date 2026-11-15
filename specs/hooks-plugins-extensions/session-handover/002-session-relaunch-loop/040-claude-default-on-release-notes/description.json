@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/040-claude-default-on-release-notes",
+  "description": "`hookFlagDecision` in `.skilled/hooks/shared/hook-flags.cjs` returns off for the `session-relaunch` concern on every runtime when no enable switch",
+  "keywords": [
+    "hookflagdecision",
+    "skilled",
+    "hooks",
+    "shared",
+    "hook-flags",
+    "cjs",
+    "returns",
+    "session-relaunch",
+    "concern",
+    "every",
+    "runtime",
+    "enable",
+    "switch"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.964Z",
+  "specId": "040",
+  "folderSlug": "claude-default-on-release-notes",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "14-11-26_21-01__claude-code-session-handover-is-now-on-by-default.md",
+    "14-11-26_23-27__recorded-the-operator-answers-that-landed-phase.md",
+    "15-11-26_08-18__manual-context-save.md"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env",
+  "description": "The history lookup reader takes its database name from `OPENCODEDB` (`.skilled/hooks/shared/session-readers/opencode.mjs:58`)",
+  "keywords": [
+    "history",
+    "lookup",
+    "reader",
+    "takes",
+    "database",
+    "name",
+    "opencodedb",
+    "skilled",
+    "hooks",
+    "shared",
+    "session-readers",
+    "opencode",
+    "mjs"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.668Z",
+  "specId": "008",
+  "folderSlug": "history-test-database-env",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

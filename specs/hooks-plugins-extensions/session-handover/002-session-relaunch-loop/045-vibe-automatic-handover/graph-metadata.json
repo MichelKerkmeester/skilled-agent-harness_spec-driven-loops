@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/045-vibe-automatic-handover",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/045-vibe-automatic-handover",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe automatic handover",
+      "vibe session handover",
+      "vibe context nudge",
+      "vibe stop arm",
+      "vibe automatic handover plan",
+      "vibe automatic handover tasks",
+      "vibe automatic handover acceptance criteria",
+      "045-vibe-automatic-handover operator decisions",
+      "vibe automatic handover implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "automatic",
+      "handover",
+      "session",
+      "context",
+      "nudge",
+      "stop",
+      "arm",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+      ".skilled/hooks/session-handover/lib/context-usage.cjs",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+      ".skilled/hooks/README.md",
+      ".vibe/plugins/README.md",
+      ".vibe/hooks.toml",
+      ".skilled/hooks/session-handover/README.md",
+      "scratch/spike/spike.sh",
+      "scratch/gate-baseline.txt",
+      "scratch/briefs/01-read-vibe-usage.md",
+      "scratch/gate-final.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover-parts.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-usage.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/context-usage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "spike.sh",
+        "kind": "script",
+        "path": "scratch/spike/spike.sh",
+        "source": "derived"
+      },
+      {
+        "name": "gate-baseline.txt",
+        "kind": "file",
+        "path": "scratch/gate-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "01-read-vibe-usage.md",
+        "kind": "doc",
+        "path": "scratch/briefs/01-read-vibe-usage.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-final.txt",
+        "kind": "file",
+        "path": "scratch/gate-final.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Vibe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Vibe session near its context limit gets no warning and never hands over on its own",
+    "created_at": "2026-11-15T11:21:53Z",
+    "last_save_at": "2026-11-15T14:18:56.899Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dcf068189aaeae99169d18ff22378026aab60ad7314665ac73b2398f9ed41345",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6d1b49ff8d4c76b38ece9b935698231db26405ef60140a43767ee705191c7d1a",
+      "plan.md": "c3230a76754545433caac29ab5e13825fea80d9dcf188bfb7471a17b22978273",
+      "tasks.md": "f66f89c12610ae0f481395e439fc297b679cd0c031a831bee7e9eb4c84becab1",
+      "decision-record.md": "abe42dee756bf7b7ad48a4787ece3c1efe1b87e1d67c257ea0d7dbb473218133",
+      "implementation-summary.md": "b6d135d28716be910b09e4a3f7f057e25358f79a21914993fd21088cbf4aa837"
+    },
+    "last_active_at": null
+  }
+}

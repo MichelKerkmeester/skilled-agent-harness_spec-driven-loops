@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare",
+  "description": "On Claude Code, `prepare` leaves the relaunch record `pending` and only the Stop hook `stop-arm.mjs` arms it",
+  "keywords": [
+    "claude",
+    "code",
+    "prepare",
+    "leaves",
+    "relaunch",
+    "record",
+    "pending",
+    "only",
+    "stop",
+    "hook",
+    "stop-arm",
+    "mjs",
+    "arms"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.570Z",
+  "specId": "001",
+  "folderSlug": "sender-dialog-after-prepare",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/025-goal-binding-record-and-launcher",
+  "description": "The hand-over note already carries `specfolder`, but the receiver cannot tell whether the sending session had a goal, and whether that goal came from",
+  "keywords": [
+    "hand-over",
+    "note",
+    "already",
+    "carries",
+    "specfolder",
+    "receiver",
+    "cannot",
+    "tell",
+    "whether",
+    "sending",
+    "session",
+    "goal",
+    "came"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.154Z",
+  "specId": "025",
+  "folderSlug": "goal-binding-record-and-launcher",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

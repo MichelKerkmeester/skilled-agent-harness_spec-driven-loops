@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust",
+  "description": "`skilledloopfindwrapper` walks up from `$PWD` and prints the first `.skilled/bin/skilled-loop` it finds",
+  "keywords": [
+    "skilledloopfindwrapper",
+    "walks",
+    "pwd",
+    "prints",
+    "first",
+    "skilled",
+    "bin",
+    "skilled-loop",
+    "finds"
+  ],
+  "lastUpdated": "2026-11-15T14:18:54.253Z",
+  "specId": "001",
+  "folderSlug": "shim-wrapper-trust",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-relaunch-loop",
+    "036-review-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_11-01__the-shell-shim-runs-a-wrapper-only-when-its-real.md"
+  ]
+}
