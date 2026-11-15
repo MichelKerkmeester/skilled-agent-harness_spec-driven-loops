@@ -36,7 +36,7 @@
       "022-vibe-hook-playbook-and-live-scenarios"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -187,12 +187,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,11 +197,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.vibe/hooks.toml` registers 18 hook entries, and the Vibe playbook's 25 scenarios cover only the goal slice as a live conversation; the spec-gate and hard-rule rows are test-suite runs, and 14 entries are named in no scenario at all (Measured Behavior)",
     "created_at": "2026-11-14T22:25:49Z",
-    "last_save_at": "2026-11-15T15:00:48.254Z",
+    "last_save_at": "2026-11-15T17:34:49.697Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:679bd56b2464e583ba7687bc26f328b81e3fdd38a6acbd040c162202a7bced94",
+    "source_fingerprint": "sha256:10a1dae53595ed2026394008af387fffc84145a89ac8baba1112cf2db7f1b08d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1d0fe04956355fa67b62f0abe5e808bb87051a4f394595392e332e5dd10ce44",
+      "spec.md": "b31b841eb4459c2672fa3b2f5d775fd906000f7bc30a447a44d6d0b385e03a9a",
       "plan.md": "a3bf0bbb0ec4a9cba5ff2da6e23a89c49bb592d1159b14bbf0a255e1c21f13ef",
-      "tasks.md": "82138623ff3f98279433fe35d134a8777cb9c51c00851e3679a8c6ad579f146b",
+      "tasks.md": "e14c448fc66c64a22c98b1a245c5c375553b98cf502db3d0ac618c579cdf4b58",
       "decision-record.md": "e0c5afaea4cd401aa2ee4bb14e6ce61a834f1fc7e1d21b7952ff21108f81fdf7",
-      "implementation-summary.md": "c20d49f7a2a0dbe3f9f9b52c70b3d5c2ab94f05c7c412c0c41d7d160f5ac78b7"
+      "implementation-summary.md": "518563841c14d4b5ca394230511db5de748db346f53ae016cc3bc9b8cafac0e4"
     },
     "last_active_at": null
   }

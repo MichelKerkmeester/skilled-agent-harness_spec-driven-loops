@@ -6,7 +6,7 @@
     "phase",
     "vibe-hook-playbook-and-live-scenarios"
   ],
-  "lastUpdated": "2026-11-15T15:00:48.254Z",
+  "lastUpdated": "2026-11-15T16:28:25.631Z",
   "specId": "022",
   "folderSlug": "vibe-hook-playbook-and-live-scenarios",
   "parentChain": [
@@ -14,7 +14,7 @@
     "runtime-lifecycle",
     "004-cli-mistral-vibe-creation"
   ],
-  "memorySequence": 9,
+  "memorySequence": 11,
   "memoryNameHistory": [
     "15-11-26_08-01__merged-origin-main-by-hand-82-conflicts-and.md",
     "15-11-26_08-02__merged-origin-main-by-hand-82-conflicts-and.md",
@@ -24,6 +24,8 @@
     "15-11-26_11-33__aligned-vibe-plugins-readme-md-with-the-sk-create.md",
     "15-11-26_14-28__turned-every-one-send-vibe-hook-scenario-into-a.md",
     "15-11-26_14-49__scoped-the-022-records-to-the-26-scenarios-this.md",
-    "15-11-26_16-00__applied-the-fable-review-fixes-the-operator.md"
+    "15-11-26_16-00__applied-the-fable-review-fixes-the-operator.md",
+    "15-11-26_17-27__t104-closed-vib-hk-003-2-2-vib-hk-009-021-022-and.md",
+    "15-11-26_17-28__t104-closed-vib-hk-003-2-2-vib-hk-009-021-022-and.md"
   ]
 }

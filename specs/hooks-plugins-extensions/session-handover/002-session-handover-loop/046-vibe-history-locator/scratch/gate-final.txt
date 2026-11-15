@@ -1,0 +1,14 @@
+relaunch               ℹ pass 1600 ℹ fail 0 
+flags                  ℹ pass 31 ℹ fail 0 
+pi                           Tests  67 passed (67)
+tsc                    exit=0
+goal                   ℹ pass 203 ℹ fail 0 
+vibe                   ℹ pass 53 ℹ fail 0 
+doctor-orphan          ℹ pass 17 ℹ fail 0 
+spec-gate-core         ℹ pass 107 ℹ fail 0 
+sk-doc-fm              ℹ pass 1 ℹ fail 0 
+writer                       Tests  75 passed (75)
+advisor-py             no tests ran in 0.01s
+hook-sync              [hook-registration-sync] PASS: 4 registration files match the 35-hook registry; 22 Pi extensions resolve.
+mirror-sync            [runtime-mirror-sync] PASS: 257 mirrors across 10 trees are in sync.
+drift                  run-all-drift-guards: all 4 guards PASSED, 28 non-blocking warning(s)

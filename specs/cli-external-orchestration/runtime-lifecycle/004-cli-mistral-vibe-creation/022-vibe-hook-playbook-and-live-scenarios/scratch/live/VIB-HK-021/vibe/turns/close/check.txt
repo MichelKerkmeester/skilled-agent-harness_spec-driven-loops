@@ -1,3 +1,3 @@
 $ log=${SESSION_CLEANUP_LOG_PATH:-${CLAUDE_SESSION_CLEANUP_LOG_PATH:-$HOME/.local/share/session-cleanup.log}}; before=$(cat .cleanup-lines-before); after=$(wc -l < "$log" 2>/dev/null || echo 0); after=$(printf '%s' "$after" | tr -d ' '); line=$(tail -n 1 "$log" 2>/dev/null); if printf '%s\n' "$line" | grep -qF 'action=skip reason=no-session-pid' && [ "$after" -gt "$before" ]; then echo "$line"; else echo "no-new-cleanup-line before=$before after=$after last=$line"; exit 1; fi
-2026-11-15T14:18:21+0100 action=skip reason=no-session-pid
+2026-11-15T17:17:43+0100 action=skip reason=no-session-pid
 [exit 0]

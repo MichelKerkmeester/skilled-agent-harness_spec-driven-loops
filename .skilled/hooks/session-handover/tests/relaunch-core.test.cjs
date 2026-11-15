@@ -3193,6 +3193,33 @@ test('hands a devin or cursor session the hand-over packet', (t) => {
   ]);
 });
 
+test('hands a vibe session its named or claimed packet', (t) => {
+  const sandbox = createSandbox(t);
+  const namedPacket = 'specs/hooks/043-named-goal';
+  writeGoalPacket(sandbox.repoRoot);
+  writeGoalPacket(sandbox.repoRoot, namedPacket);
+  const resolve = (overrides) => resolveGoalPacket({
+    runtime: 'vibe',
+    sessionId: 'a8bb5429-9c44-4a93-89d3-f8ee3d53bb2c',
+    roots: [sandbox.repoRoot],
+    env: { ...sandbox.env, ...overrides },
+  });
+
+  assert.deepEqual({
+    claimed: resolve({ SESSION_HANDOVER_GOAL_PACKET: GOAL_PACKET }),
+    named: resolve({ VIBE_SPEC_FOLDER: namedPacket }),
+    both: resolve({ VIBE_SPEC_FOLDER: namedPacket, SESSION_HANDOVER_GOAL_PACKET: GOAL_PACKET }),
+    refused: resolve({ VIBE_SPEC_FOLDER: '../outside' }),
+    none: resolve({}),
+  }, {
+    claimed: GOAL_PACKET,
+    named: namedPacket,
+    both: namedPacket,
+    refused: '',
+    none: '',
+  });
+});
+
 test('keeps the hand-over packet off', (t) => {
   const sandbox = createSandbox(t);
   writeGoalPacket(sandbox.repoRoot);

@@ -37,6 +37,9 @@ _memory:
 | Q001 | Port the full automatic tier to Vibe: nudge, arm at turn end, killer and relaunch on the claim seed. | Not stated. | The command-only tier Vibe shipped with | REQ-001, REQ-002, REQ-003, handover-parts.mjs |
 | Q002 | Run the live Vibe hops on deepseek-flash. | Not stated. | None | REQ-007, scratch/harness/live-hop.sh |
 | Q003 | For this phase DeepSeek V4.1 Flash max through LLM Gateway builds and a fresh Opus medium agent reviews, amending the parent's D5. The earlier 041 to 044 deviation from D5 is recorded beside it in the parent goal. | Not stated. | Parent goal D5 for this phase | plan.md, scratch/briefs, parent goal.md Deviations and findings |
+| Q004 | Phase 045 merges to main and is pushed. | Not stated. | None | implementation-summary.md |
+| Q005 | Phase 045 is folded into the v4.0.2.1 release notes and the tag is republished. | Not stated. | None | .skilled/changelog/skilled/v4.0.2.1.md |
+| Q006 | The three conflicting docs keep main's history-lookup removals with the Vibe hand-over text on top. | Not stated. | None | session-lifecycle/vibe/README.md, cli-mistral-vibe/references/guards-and-hooks.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -102,6 +105,65 @@ I build, no amendment
 Answer:
 ```text
 Use deepseek v4.1 flash max llmgateway for build, let freshnopus medium review
+```
+
+### Q004
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01A7gz4o9xwcH8Nrv7CqhJo9:0 -->
+
+Question:
+```text
+Vibe automatic session handover (phase 045) is committed as e5b8611a4fa in worktree 406: two live Vibe hops scored 5/5 like Claude Code, withdraw and switch-off worked live, gate at baseline plus new tests, parent strict 46/46. May I merge it to main and push origin/main?
+```
+
+Options:
+```text
+Merge and push (Recommended)
+Merge locally only
+Leave on the branch
+```
+
+Answer:
+```text
+Merge and push (Recommended)
+```
+
+### Q005
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01A7gz4o9xwcH8Nrv7CqhJo9:1 -->
+
+Question:
+```text
+Phases 041 to 044 were folded into the published v4.0.2.1 release notes and the tag was republished. What should happen with phase 045 (Vibe joins the automatic tier)?
+```
+
+Options:
+```text
+Fold into v4.0.2.1 (Recommended)
+New v4.0.2.2 entry
+No release note now
+```
+
+Answer:
+```text
+Fold into v4.0.2.1 (Recommended)
+```
+
+### Q006
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01NLKv4w39LFY1PFmBFt4AhY:0 -->
+
+Question:
+```text
+Merging main into the Vibe handover branch conflicts in three docs. Main's commit f320d9d9bcd (another session's history-lookup work) removed the '## History Lookup offer' wording from the Vibe compaction rows and deleted the session-history-lookup.js row; my branch rewrote those same lines to add Vibe's hand-over part. Plan: take main's text for each hunk, then re-apply only my hand-over additions on top (the four generated index files get main's copy plus a regenerate, as usual). How should I resolve?
+```
+
+Options:
+```text
+Combine both (Recommended)
+Abort the merge
+```
+
+Answer:
+```text
+Combine both (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

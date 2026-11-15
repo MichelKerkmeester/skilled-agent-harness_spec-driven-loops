@@ -1,50 +1,50 @@
 > Spawn a child from the prompt-improver agent type (config_name prompt-improver) to rewrite this rough request into a dispatch-ready prompt: make the build faster. One attempt only; report the       
   result.                                                                                                                                                                                               
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-⏵ Called 1 tool, ran 3 commands, thought                                                                                                                                                                
                                                                                                                                                                                                         
-  Spawn accepted this time — the agent type now exists — but the child failed on its own eligibility gate.                                                                                              
+  The spawn failed — prompt-improver is not a valid subagent config. I made only the one spawn attempt, as instructed. Let me check what agent types actually exist so the report is actionable.        
                                                                                                                                                                                                         
-  Result                                                                                                                                                                                                
+⏵ Listed subagents                                                                                                                                                                                      
                                                                                                                                                                                                         
-  ┌───────────────────────────────────────────────────────────────────────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
-  │ Step                                                                  │ Outcome                                                                                                                 │   
-  ├───────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ agents.spawn (config_name: prompt-improver)                           │ Accepted, {"type":"success"}                                                                                            │   
-  ├───────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ Child session                                                         │ Failed immediately: child Session does not retain the requested generation                                              │   
-  ├───────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ agents.list                                                           │ prompt-improver → status: failed, pending_turn: false                                                                   │   
-  ├───────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
-  │ Retries                                                               │ None, per your one-attempt constraint                                                                                   │   
-  └───────────────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+  Result: spawn failed.                                                                                                                                                                                 
                                                                                                                                                                                                         
-  Root cause                                                                                                                                                                                            
+  • Single attempt made: tools.agents.spawn with config_name: "prompt-improver", name prompt-improver, and the task being the rewrite of "make the build faster" into a dispatch-ready prompt.          
+  • Error: subagent_not_found — "Unknown subagent type". The prompt-improver config does not exist in this session.                                                                                     
+  • I did not retry, per the one-attempt constraint. agents.list (read-only, not another attempt) shows zero registered child agents.                                                                  ▁
                                                                                                                                                                                                         
-  The agent definition carries a ## 0.1 MODEL ELIGIBILITY (HARD BLOCK) table, and this session's route is explicitly ineligible:                                                                        
+  To proceed, you'd need a prompt-improver subagent config (e.g., defined in ~/.vibe/agents/ or project .vibe/agents/), or I can spawn a generic child with hand-written instructions for the rewrite   
+  instead.                                                                                                                                                                                              
                                                                                                                                                                                                         
-  ▌ cli-mistral-vibe | DeepSeek V4.1 Flash or GLM Flash through the mistral provider roster | No | Experimental mode: no pair is admitted yet. Print mode is pinned on vibe 3.1.2, the roster is       ▆
-  ▌ closed at deepseek-flash and glm-flash, and neither is Luna, Opus or Fable                                                                                                                          
-                                                                                                                                                                                                        
-  $VIBE_HOME/config.toml confirms the match: allowed_models = ["deepseek-v4-1-flash-1017", "zai-glm-5-3-flash"] on the mistral provider. So the child was spawned onto exactly the pair its own         
-  instructions forbid, and the runtime refused to retain the generation.                                                                                                                                
-                                                                                                                                                                                                        
-  This is a different failure from last turn. Last time the type was missing (subagent_type_not_found); now the type resolves but the model gate blocks it. Retrying on this route will fail            
-  identically — the gate is deterministic, not transient.                                                                                                                                               
-                                                                                                                                                                                                        
-  To get the rewrite                                                                                                                                                                                    
-                                                                                                                                                                                                        
-  The eligible pairs are native Claude Sonnet/Haiku, cli-claude-code Sonnet/Haiku, cli-codex GPT Luna, and cli-pi/cli-opencode on anything except Luna. Running the child from one of those routes      
-  would work.                                                                                                                                                                                           
-                                                                                                                                                                                                        
-  Otherwise I can produce the dispatch-ready prompt for "make the build faster" inline right now — no child, no gate. Say which.                                                                        
+✓ Resumed session 8a5a51cf.                                                                                                                                                                             
                                                                                                                                                                                                         
                                                                                                                                                                                                         
-─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
->                                                        
+> Spawn a child from the prompt-improver agent type (config_name prompt-improver) to rewrite this rough request into a dispatch-ready prompt: make the build faster. One attempt only; report the       
+  result.                                                                                                                                                                                               
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+⏵ Thought                                                                                                                                                                                               
+                                                                                                                                                                                                        
+  One attempt, as instructed — retrying the spawn this turn.                                                                                                                                            
+                                                                                                                                                                                                        
+⏵ Ran 1 subagent, thought                                                                                                                                                                               
+                                                                                                                                                                                                        
+  The spawn call itself returned success, but the runtime reports the child failed. Let me confirm the child's state before reporting.                                                                  
+                                                                                                                                                                                                        
+⏵ Listed subagents                                                                                                                                                                                      
+                                                                                                                                                                                                        
+  Result: spawn succeeded, but the child failed immediately.                                                                                                                                            
+                                                                                                                                                                                                        
+  • Single attempt: tools.agents.spawn with config_name: "prompt-improver" — the call returned success, and the child registered as /root/prompt-improver.                                              
+  • The child then failed before doing any work: child Session does not retain the requested generation. agents.list confirms status failed with no pending turn, so no prompt rewrite was produced.    
+  • I have not retried, per the one-attempt constraint. The child /root/prompt-improver exists (in failed state) and its name can't be reused, but the same config should be spawnable under a fresh    
+    name if you want another go — the generation error looks like a runtime/session issue rather than a bad config.                                                                                     
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── GLM-5.3 Flash (Mistral Hosted)[high] · auto approve ─
+>                                          
                                                                                                                                                                                                         
     
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
  › Main conversation
-   Prompt Improver (Prompt Improver) [running] · 11.2k tokens                                                                                                                                           
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CVxvwv35kW/vibe                                                                                                       ctx ▌      23.9k/256k
+   Prompt Improver (Prompt Improver) [running] · 8.63k tokens                                                                                                                                           
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.6l1bZVmHk8/vibe                                                                                       usage ▏      0% · ctx ▏      12k/400k

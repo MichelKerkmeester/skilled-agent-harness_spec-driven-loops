@@ -28,7 +28,7 @@ const { tmpdir } = require('node:os');
 
 let lookupOffer = null;
 try {
-  lookupOffer = require('../../dist/hooks/lib/history/lookup-offer.js');
+  lookupOffer = require('../../../../../hooks/session-handover/history/dist/lookup-offer.js');
 } catch (_) {
   lookupOffer = null;
 }

@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-13"
-version: 2.1.37.0
+version: 2.1.38.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -1109,7 +1109,7 @@ Offers one bounded, read-only history lookup when a handoff note is claimed, so 
 
 #### Current Reality
 
-Inside the loop, `claim` mints a locator for the sending session, then prints a `## History Lookup` section after the note body that names the handle plus one runnable, read-only command. Only a Claude Code or Codex sender gets one, and the section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the runtime is not built. The locator is fresh for 30 minutes from the claim. A compaction no longer offers the lookup on any runtime, and compaction summaries and the `/speckit:resume` pointer are unchanged.
+Inside the loop, `claim` mints a locator for the sending session, then prints a `## History Lookup` section after the note body that names the handle plus one runnable, read-only command. Only a Claude Code, Codex or Vibe sender gets one, and the section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the runtime is not built. The locator is fresh for 30 minutes from the claim. A compaction no longer offers the lookup on any runtime, and compaction summaries and the `/speckit:resume` pointer are unchanged.
 
 #### Source Files
 
