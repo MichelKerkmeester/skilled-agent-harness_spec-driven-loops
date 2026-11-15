@@ -229,6 +229,8 @@ Evidence: the filtered log, the pane text, the wrapper line and the note status.
 | `.vibe/hooks.toml` | The hook bindings a Vibe session runs. |
 | `.skilled/hooks/session-handover/tests/vibe-adapters.test.cjs` | The adapter suite for this scenario. |
 
+Provenance: .skilled/hooks/session-handover/tests/vibe-adapters.test.cjs
+
 ---
 
 ## 5. SOURCE METADATA

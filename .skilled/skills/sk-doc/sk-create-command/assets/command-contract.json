@@ -340,8 +340,7 @@
         "argument_hint": "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=<type>] [--concurrency=N] [--dry-run]"
       },
       "execution_targets": [
-        { "selector": ":auto", "target": ".skilled/commands/deep/assets/deep-<name>-auto.yaml (dispatches LEAF iteration agents)" },
-        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/deep/assets/deep-<name>-confirm.yaml" }
+        { "selector": ":auto | :confirm | interactive choice", "target": ".skilled/commands/deep/assets/deep-<name>.yaml (execution_mode auto or confirm; dispatches LEAF iteration agents)" }
       ],
       "mode_matrix": {
         "default_policy": "ask",
@@ -349,8 +348,7 @@
       },
       "owned_assets": [
         { "purpose": "presentation", "path": ".skilled/commands/deep/assets/deep-<name>-presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".skilled/commands/deep/assets/deep-<name>-auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".skilled/commands/deep/assets/deep-<name>-confirm.yaml" },
+        { "purpose": "workflow", "path": ".skilled/commands/deep/assets/deep-<name>.yaml" },
         { "purpose": "other", "path": ".skilled/commands/deep/assets/compiled/ (generated *.contract.markdown + manifest.jsonl digest ledger)" },
         { "purpose": "other", "path": ".skilled/commands/deep/assets/legacy/ (fallback injection bodies)" }
       ],
