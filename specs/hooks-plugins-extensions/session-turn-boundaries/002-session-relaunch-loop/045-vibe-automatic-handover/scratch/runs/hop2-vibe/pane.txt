@@ -1,0 +1,50 @@
+> [session-handover] claim and continue handoff
+  /Users/michelkerkmeester/worktrees/public/406-vibe-automatic-handover/.skilled/skills/.state/session-handover/handoffs/20261115T115612Z-84025e59-e2ee-73a6-a278-944667ff98fa.md | Spec folder: none
+  (Gate 3 answered D, Skip, in the sending session)
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+⏵ Ran 2 commands, thought
+
+  All three facts confirmed against the file. Closing the note.
+
+⏵ Ran cd /Users/michelkerkmeester/worktrees/public/406-vibe-automatic-handover && node .skilled/hooks/session-handover/bin/session-handover.cjs complete '/Users/michelkerkmeester/worktrees/public/40…
+
+  Handoff claimed, worked, and closed.
+                                                                                                                                                                                                       ▄
+
+  The three facts
+
+  ┌─────────────────────────────────────────────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Fact                                                            │ Value                                                                                                                         │
+  ├─────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Line count                                                      │ 382                                                                                                                           │
+  ├─────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ First heading                                                   │ # Session Handover (line 9)                                                                                                   │
+  ├─────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Code word                                                       │ ORCHID-29699                                                                                                                  │
+  └─────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  All three survived the hop intact. I re-verified the first two against the file rather than trusting the note: wc -l returns 382, and grep -n -m1 '^#' returns 9:# Session Handover. The YAML
+  frontmatter above it carries title: "Session Handover Hook: Context-Limit Handoff and Fresh-Session Handover", but that is frontmatter, not a heading — so the first heading is the H1 at line 9.
+  File size is 90,296 bytes, matching the note.
+
+
+  Handoff mechanics
+
+  • Active goal: — absent, so no goal to restore.
+  • Active command: — none, so nothing to re-run.
+  • Running workers: — none, so no kill -0 checks and no collection step.
+  • Scheduled: and Added directories: — both none, so nothing to recreate or re-add.
+  • Gate 3 carried as D) Skip from the sending session; no spec folder bound, no continuity save applies.
+
+  Note closed with session-handover.cjs complete, exit 0, no output.
+
+  Nothing is yours to do. One unrelated thing worth flagging: the startup sweep reported six mismatched git hook symlinks (commit-msg, post-commit, post-merge, post-rewrite, pre-commit, pre-push).
+  Fix is bash .opencode/scripts/install-git-hooks.sh — I have not run it, since it was outside this task's scope.
+
+
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+~/worktrees/public/406-vibe-automatic-handover                                                                                                                                     ctx ▌      22.6k/256k

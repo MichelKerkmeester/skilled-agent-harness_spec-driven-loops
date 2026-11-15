@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6816,
-    "ok": 19075,
+    "missing-frontmatter": 6817,
+    "ok": 19082,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27518,
+  "documentsScanned": 27526,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "9a57e07b4e2c21515471f19258e3bd2e0700da316caefe20ae355c007c54849e",
+  "manifestHash": "1627fd0ed6851cd66d96eedb73ad77c8935409abe70b44bc69dc7b09a6f589cf",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43970,
+      "ok": 43983,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -5013,6 +5013,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/prompts-mirror-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-automatic-tier-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -56450,6 +56456,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/045-vibe-automatic-handover/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,8 +1,8 @@
 ---
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
-last_updated: "2026-11-13"
-version: 2.1.29.0
+last_updated: "2026-11-15"
+version: 2.1.30.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -310,6 +310,7 @@ Doctor command scenarios for system-spec-kit now live in the [central manual tes
 | session-handover-claude | Claude session handover loop, with the hop history (CL-1), operator-prompt withdraw (CL-2, CL-3), task-notification control (CL-4), cancel (CL-5), the model-free probe (CL-6), the window subcommand (CL-8) and the unknown-window skip (CL-9) | [session-handover-claude](plugins-and-hooks/session-handover-claude.md) | [session-handover-loop](../feature-catalog/context-preservation/session-handover-loop.md) |
 | session-handover-pi-opencode | Pi and OpenCode session handover adapters, with the hop history (PO-1), new-turn withdraw (PO-2), extra nudge (PO-3), cancel (PO-4) and the non-interactive withdraw run (PO-5) | [session-handover-pi-opencode](plugins-and-hooks/session-handover-pi-opencode.md) | [session-handover-loop](../feature-catalog/context-preservation/session-handover-loop.md) |
 | session-handover-command-runtimes | Codex, Cursor and Devin session handover, with the Codex hop history (CX-1), operator-prompt withdraw and extra nudge (CX-2), cancel (CX-3) and the model-free probe (CX-4) | [session-handover-command-runtimes](plugins-and-hooks/session-handover-command-runtimes.md) | [session-handover-loop](../feature-catalog/context-preservation/session-handover-loop.md) |
+| session-handover-vibe | Vibe automatic session handover, with a full hop (VB-1), an operator-prompt withdraw (VB-2) and the switch-off control with the hand-typed claim command (VB-3) | [session-handover-vibe](plugins-and-hooks/session-handover-vibe.md) | [session-handover-loop](../feature-catalog/context-preservation/session-handover-loop.md) |
 
 ### 7.6 UX Hooks
 

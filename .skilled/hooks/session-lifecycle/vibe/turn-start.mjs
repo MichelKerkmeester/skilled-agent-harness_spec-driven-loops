@@ -41,6 +41,10 @@ const IS_CLI_ENTRY = process.argv[1]
 // session's advisory.
 const PENDING_ADVISORY_RELATIVE_PATH = '.skilled/skills/.state/completion-sentinel/vibe-pending-advisory.txt';
 const DEFAULT_PROJECT_DIR = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
+const HANDOVER_PART_URL = new URL(
+  '../../session-handover/vibe/handover-parts.mjs',
+  import.meta.url,
+).href;
 
 function pendingCompletionAdvisoryPart(payload) {
   if (isHookEnabled('completion') === false) return '';
@@ -78,6 +82,13 @@ export function buildSaveNudgePart(payload, { core = { takeNudge } } = {}) {
   return `[decision-capture] ${count} operator answer(s) captured this session are not in a decision record yet. Run /speckit:save to record them.`;
 }
 
+// The hand-over module is imported when its part runs, so a load error costs that
+// one part and the parts before it still land.
+async function handoverPart(payload) {
+  const { buildHandoverContextPart } = await import(HANDOVER_PART_URL);
+  return buildHandoverContextPart(payload);
+}
+
 const PARTS = [
   (payload) => pendingCompletionAdvisoryPart(payload),
   // The compaction part runs before the advisor part, so the receipt it
@@ -85,6 +96,8 @@ const PARTS = [
   (payload) => buildCompactionPart(payload),
   (payload) => buildAdvisorPart(payload),
   (payload) => buildSaveNudgePart(payload),
+  // The hand-over part runs last, so its claim or nudge text ends the context.
+  handoverPart,
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

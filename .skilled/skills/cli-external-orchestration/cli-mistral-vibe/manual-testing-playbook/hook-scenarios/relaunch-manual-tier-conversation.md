@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-026 -- The manual relaunch tier hands off and a fresh session claims it"
 description: "This scenario validates the Vibe manual relaunch tier: a sender prepares a handoff note, the operator ends the session, and a fresh Vibe session started from the wrapper's claim seed claims the note."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # VIB-HK-026 -- The manual relaunch tier hands off and a fresh session claims it
@@ -12,11 +12,11 @@ This document captures the operator contract for `VIB-HK-026`.
 
 ## 1. OVERVIEW
 
-This scenario covers the command-only relaunch tier Vibe shares with Cursor and Devin: the sender writes a handoff note and prepares it, the operator exits the session, `skilled-loop vibe` consumes the pending record and prints the claim command, and the fresh Vibe session started from that seed claims the note and continues its remaining work.
+This scenario covers the manual relaunch tier, now the fallback for a hand-typed `/speckit-handoff`. The sender writes a handoff note and prepares it, the operator exits the session, `skilled-loop vibe` consumes the pending record and prints the claim command, and the fresh Vibe session started from that seed claims the note and continues its remaining work. The automatic tier covers the nudge, the arm and the relaunch in `VIB-HK-027`, and this scenario keeps the route an operator still reaches by hand.
 
 ### Why This Matters
 
-Vibe arms no hook that ends a session and no hook that expands a claim seed, so the hop is the operator's: the wrapper prints a command, the operator runs it, and the new session claims the note from the seed. A broken claim leaves the note open and the sender's work stranded, and nothing in a session's reply proves which of the two happened.
+Vibe exports no session id to its tools, so `/speckit-handoff` typed by hand prepares the record under an id the session never reports. The turn end matches only the payload's session id, so that record stays pending and the manual tier applies: the wrapper prints a command, the operator runs it, and the new session claims the note from the seed. With the switch off no nudge fires and prepare refuses, so that route needs the switch on. A broken claim leaves the note open and the sender's work stranded, and nothing in a session's reply proves which of the two happened.
 
 ---
 
@@ -60,17 +60,17 @@ Operators run the conversation script through the shared runner with the `vibe` 
   "turns": [
     {
       "id": "preflight",
-      "check": "echo 'the manual relaunch tier needs skilled-loop vibe and a claim seed carrying this run absolute note path; the runner cannot run the wrapper, cannot type a per-run path, and starts its subject in a scratch project with no relaunch CLI'; if [ -d .skilled/hooks/session-handover ]; then echo relaunch-cli-in-project; else echo no-relaunch-cli-in-project; fi; if grep -rqs 'claim and continue handoff' \"$CONVERSATION_REPO_ROOT/.skilled/hooks/session-lifecycle/vibe\"; then echo claim-seed-part-present; else echo no-vibe-claim-seed-part; fi; exit 77"
+      "check": "echo 'the manual relaunch tier needs skilled-loop vibe and a claim seed carrying this run absolute note path; the runner cannot run the wrapper, cannot type a per-run path, and starts its subject in a scratch project with no relaunch CLI'; if [ -d .skilled/hooks/session-handover ]; then echo relaunch-cli-in-project; else echo no-relaunch-cli-in-project; fi; if [ -f \"$CONVERSATION_REPO_ROOT/.skilled/hooks/session-handover/vibe/handover-parts.mjs\" ]; then echo automatic-tier-present; else echo automatic-tier-missing; fi; exit 77"
     }
   ]
 }
 ```
 
-The preflight turn measures the two facts that keep this hop out of the runner: the scratch project holds no relaunch CLI, and no Vibe hook expands a claim seed, so the receiver must run the claim command the seed names through its absolute path. The hop itself starts with `skilled-loop vibe`, which owns the terminal across the sender's exit and the fresh session's launch, so the operator runs it from the repository root as procedure.md records.
+The preflight turn measures the two facts that keep this hop out of the runner: the scratch project holds no relaunch CLI, and the automatic part lives in the repository, so a scratch subject that starts without it never arms the record. That keeps the receiver on the claim command the seed names through its absolute path. The hop itself starts with `skilled-loop vibe`, which owns the terminal across the sender's exit and the fresh session's launch, so the operator runs it from the repository root as procedure.md records.
 
 ### Expected
 
-Turn `preflight` reports SKIP with the blocker sentence above and prints both probe results: no relaunch CLI in the scratch project and no Vibe claim-seed part. The operator procedure then runs the hop and records the note's claimed state and the fresh session's first turn.
+Turn `preflight` reports SKIP with the blocker sentence above and prints both probe results: no relaunch CLI in the scratch project and `automatic-tier-present`. The operator procedure then runs the hop and records the note's claimed state and the fresh session's first turn.
 
 ### Evidence
 

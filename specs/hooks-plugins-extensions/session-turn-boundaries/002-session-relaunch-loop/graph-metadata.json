@@ -47,7 +47,8 @@
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/045-vibe-automatic-handover"
   ],
   "manual": {
     "depends_on": [],
@@ -250,7 +251,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-15T10:09:02.543Z",
+    "last_save_at": "2026-11-15T12:22:49.343Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -258,13 +259,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:364b835a6269b4a2f7c2cbe48f392d996bbd7ea5bb59326aa2be3add07ac2fd5",
+    "source_fingerprint": "sha256:73d9ba6268bb48550f8d90cad84e2287239203051756f9b05aca5a045acda6d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0060786fbbe1e7273101d9bb591ad2c49669e8bcf57bd2d8ddce4f2f33a2d076",
+      "spec.md": "f8d8247dc910c1c185cea1c00effde6f09b1a82f29fe15a70773ae1c0364e573",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename",
-    "last_active_at": "2026-11-15T10:09:02.543Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/045-vibe-automatic-handover",
+    "last_active_at": "2026-11-15T12:20:49.902Z"
   }
 }

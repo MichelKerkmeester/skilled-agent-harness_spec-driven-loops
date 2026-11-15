@@ -94,7 +94,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] All 44 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
+- [x] All 45 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
 - [x] `validate.sh` on this packet with `--recursive --strict` prints `RESULT: PASSED`
 - [x] A live Claude Code relaunch through `skilled-loop` is recorded with its `relaunch.log` hop line
 - [x] `sync-hook-registrations.cjs --check`, `sync-runtime-mirrors.cjs --check` and `run-all-drift-guards.sh` all exit 0
@@ -132,6 +132,7 @@ and findings belong here.
 | Phase 043 added | Done | 2026-11-15: packet 043-vibe-handover-flag-and-live-hop joins as phase 43 (Vibe switch in both flag readers, Vibe in the handoff command and continuity writer, first live Vibe hop). Criterion 1 now says 43 phase folders, same length |
 | Phase 044 added | In progress | 2026-11-15: packet 044-in-session-handover-rename joins as phase 44 (session relaunch renamed to in-session handover on every live surface, no aliases; suites at baseline, live Claude hop 5/5; release note pending). Criterion 1 now says 44 phase folders and is open until AC-004 is met |
 | Phase 044 closed | Done | 2026-11-15: session handover is the main name (folder, switches, seed); SYSTEM_IN_SESSION_HANDOVER_* read for the on and off switches while the main one is blank; three phrasings route to /speckit:handoff; goal retitled Session handover loop; gate at baseline, flags 31/0, live Claude hop 5/5; v4.0.2.2 note. Criterion 1 ticked again |
+| Phase 045 added | Complete | 2026-11-15: Vibe joins the automatic tier; live hops 5/5 twice like the Claude Code baseline, withdraw and switch-off live, gate at baseline plus new tests, review no P0 or P1 |
 
 ### Deviations and findings
 
@@ -157,4 +158,6 @@ and findings belong here.
 | Binding row 036 | 2026-11-12: phase 036 was added with a `goal.md`, so its row is in the binding table. The row took the slice to 4,043 characters. Decision prose was shortened in the budget-and-handoff section 3 order (step 5): D3 says "the seed" for "the claim seed" and drops "in the seed", D4 joins its two sentences, D5 shortens its last clause, and D1, D2, D6 and D7 lose their closing full stop. No decision or criterion was removed or changed in meaning. The binding exception below still holds, so the chat slice is not resent |
 | Binding exception | Operator, 2026-10-25: "Record as exception". Children 012 to 032 predate goal files and hold no `goal.md`, so `check-goal.cjs` keeps reporting missing binding rows for them. Phase 037 holds no `goal.md` either, so since 2026-11-14 the exception covers it too. That finding is a recorded exception, not a defect. It stays open, so the chat slice is resent only when the durable text changes |
 | Binding rows 038 and 039 | 2026-11-13: phases 038 and 039 each hold a `goal.md` and had no row in the binding table, and the slice had 7 characters to spare. 2026-11-14: the operator answered "Approve as shown (Recommended)" to two compact rows, `038` and `039`, paid for by shorter wording in D1 and D7. D1 names "the other runtimes" for Codex, Cursor, Devin and Hermes and "review" for review and closure. D7 drops "provider", "live run", "variant" and "Nothing else is substituted" for shorter words. No decision or criterion was removed or changed in meaning. `goal.cjs packet` prints `packet_durable_chars=3993` and `packet_budget=ok`. The durable text changed, so the chat slice is resent once. Phase 037 holds no `goal.md` and gets no row, under the exception above |
+| D5 deviation 041 to 044 | Phases 041 to 044 were built by the orchestrator directly, outside D5, and the deviation was not recorded until 2026-11-15, when it was named to the operator before phase 045 |
+| D5 amendment 2 | Operator, 2026-11-15, for phase 045: "Use deepseek v4.1 flash max llmgateway for build, let freshnopus medium review". DeepSeek V4.1 Flash max through cli-opencode built from nine briefs and a fresh Opus medium agent reviewed |
 <!-- /ANCHOR:log -->
