@@ -1,5 +1,5 @@
 {
-  "manifestHash": "75f9a8be2e517b5bd5d4413aa9759a8d25f82bf028fb3bf288065190f5d14f35",
+  "manifestHash": "c2b7c47e12885d906379729877c22ba2a30f6205f87b5cd6d2070b7a1a8b558b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -30112,6 +30112,9 @@
     "containment ring hierarchy": [
       "containment ring hierarchy"
     ],
+    "containment rows through the append gateway": [
+      "containment rows through the append gateway"
+    ],
     "containment same packet write": [
       "containment same packet write"
     ],
@@ -30141,6 +30144,9 @@
     ],
     "containment violation": [
       "containment_violation"
+    ],
+    "containment violation row gateway": [
+      "containment violation row gateway"
     ],
     "content addressed causal edge plan": [
       "content-addressed causal edge plan"
@@ -45313,6 +45319,21 @@
     ],
     "dsh release v4 0 2 0": [
       "dsh release v4.0.2.0"
+    ],
+    "dsh remaining direct writers": [
+      "dsh remaining direct writers"
+    ],
+    "dsh remaining direct writers goal": [
+      "dsh remaining direct writers goal"
+    ],
+    "dsh remaining direct writers implementation summary": [
+      "dsh remaining direct writers implementation summary"
+    ],
+    "dsh remaining direct writers plan": [
+      "dsh remaining direct writers plan"
+    ],
+    "dsh remaining direct writers tasks": [
+      "dsh remaining direct writers tasks"
     ],
     "dsh repo guards plugin": [
       "dsh repo-guards plugin"
@@ -82738,6 +82759,9 @@
     ],
     "phase 21 closure gate": [
       "phase 21 closure gate"
+    ],
+    "phase 21 dsh remaining direct writers": [
+      "phase 21 dsh remaining direct writers"
     ],
     "phase 21 follow up defect fixes": [
       "phase 21 follow up defect fixes"
@@ -121722,6 +121746,9 @@
     "system deep loop 1 6 28 0": [
       "system-deep-loop 1.6.28.0"
     ],
+    "system deep loop 1 6 29 0": [
+      "system-deep-loop 1.6.29.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -121931,6 +121958,9 @@
     ],
     "system deep loop v1 6 28 0": [
       "system-deep-loop v1.6.28.0"
+    ],
+    "system deep loop v1 6 29 0": [
+      "system-deep-loop v1.6.29.0"
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
@@ -130039,6 +130069,15 @@
     ],
     "verification confidence scoring": [
       "verification confidence scoring"
+    ],
+    "verification degraded gateway plan": [
+      "verification degraded gateway plan"
+    ],
+    "verification degraded row lost on refresh": [
+      "verification degraded row lost on refresh"
+    ],
+    "verification degraded row through the append gateway": [
+      "verification_degraded row through the append gateway"
     ],
     "verification evidence": [
       "verification evidence"

@@ -134,7 +134,8 @@ describe('deep-loop executor branch contract', () => {
   it('runs a single cli-deepseek-harness lineage through the shared builder in both auto workflows', () => {
     for (const file of ['deep-research-auto.yaml', 'deep-review-auto.yaml']) {
       const yaml = workflows.get(file)!;
-      expect(yaml).not.toContain('runs only as a fan-out lineage');
+      // Other kinds may still refuse a single lineage. Only the harness refusal must be gone.
+      expect(yaml).not.toContain('cli-deepseek-harness runs only as a fan-out lineage');
       expect(dshSingleBranchGaps(yaml)).toEqual([]);
     }
     expect(dshSingleBranchGaps('if_cli_deepseek_harness:\n  command: dsh\nif_cli_pi:\n  DSH_HOME\n'))

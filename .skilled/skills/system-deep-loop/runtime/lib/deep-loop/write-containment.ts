@@ -44,6 +44,10 @@ import { tmpdir } from 'node:os';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import type { LoopLockData } from './loop-lock.js';
 
+// The fan-out runner loads this module under plain Node, where executor-audit.ts cannot resolve
+// its own .js imports. Those callers pass no state log, so there the module loads without it.
+const gatewayAppend = await import('./executor-audit.js').catch(() => null);
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. TYPES
 // ─────────────────────────────────────────────────────────────────────────────
@@ -258,6 +262,11 @@ export interface EnforceInput extends DetectOptions {
    * event for the contested ones are appended to this JSONL log, each only when it has paths.
    */
   stateLogPath?: string;
+  /**
+   * The run's session id. On a ledger-backed state log it scopes the rows the guard hands the
+   * append gateway.
+   */
+  sessionId?: string;
   iteration?: number;
   /**
    * Which dispatch of `iteration` this pass is, for a caller that retries one iteration.
@@ -1938,8 +1947,15 @@ export function buildContainmentViolationEvent(input: {
 function appendContainmentEvent(
   stateLogPath: string,
   event: ContainmentViolationEvent | ContainmentContestedEvent,
+  sessionId: string | undefined,
 ): void {
   try {
+    // A state log beside a ledger is rebuilt from it, so the row goes through the append
+    // gateway there, or the next refresh drops it.
+    if (gatewayAppend !== null && gatewayAppend.ledgerModeFor(stateLogPath) !== null) {
+      gatewayAppend.appendFailureRow(stateLogPath, { ...event }, sessionId);
+      return;
+    }
     mkdirSync(dirname(stateLogPath), { recursive: true });
     appendFileSync(stateLogPath, `${JSON.stringify(event)}\n`, 'utf8');
   } catch {
@@ -2045,7 +2061,7 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
       paths: contested.map((v) => ({ path: v.path, kind: v.kind, status: v.status })),
       note: CONTESTED_NOTE,
       timestamp: new Date().toISOString(),
-    });
+    }, input.sessionId);
   }
   if (detected.length === 0) {
     return {
@@ -2130,7 +2146,7 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
     patch,
   });
   if (input.stateLogPath) {
-    appendContainmentEvent(input.stateLogPath, event);
+    appendContainmentEvent(input.stateLogPath, event, input.sessionId);
   }
   const recoveryHint = patch.path ? `recoverable patch: ${patch.path}` : null;
   return {

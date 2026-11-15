@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7db089604b14ed619e9821e50fa7f57d2b63a0ae0d6d4167bdb4275fe7a25e9c",
+  "corpusHash": "ed07a8b318c217a45102806584c74cda26b88b74cca172baf7f83b9b02b03d19",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27491,
+  "includedPathCount": 27497,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7590,6 +7590,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.26.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.27.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.28.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.29.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.5.0.md",
@@ -10795,6 +10796,11 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/021-dsh-remaining-direct-writers/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/021-dsh-remaining-direct-writers/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/021-dsh-remaining-direct-writers/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/021-dsh-remaining-direct-writers/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/021-dsh-remaining-direct-writers/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -27523,7 +27529,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "75f9a8be2e517b5bd5d4413aa9759a8d25f82bf028fb3bf288065190f5d14f35",
+  "manifestHash": "c2b7c47e12885d906379729877c22ba2a30f6205f87b5cd6d2070b7a1a8b558b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29955,6 +29961,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/021-dsh-remaining-direct-writers/scratch",
       "reason": "excluded directory"
     },
     {
