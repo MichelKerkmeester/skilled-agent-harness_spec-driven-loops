@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The operator wants the next AI to see why a packet exists after a compaction or a continuity save",
     "created_at": "2026-11-14T06:14:04Z",
-    "last_save_at": "2026-11-14T13:46:19.954Z",
+    "last_save_at": "2026-11-15T07:10:07.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:430b0df2524eba0ee8e761f54187f0958b4c117bc9c4176a6a8bc83c917c6e16",
+    "source_fingerprint": "sha256:77b56e4f606246339ffbefeddd6835201327db0f95a44b416b3a0a15e714676c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b1cd33a540101a7179e10643462e90ce8598f415cbc1de725047b30ea83b08be",
-      "plan.md": "32772208a59c3369517829aecd2a7ccac9daf66e8e0df915d477cc13c29444f9",
-      "tasks.md": "ccb34b9a2e883678de91f8bcb626d7feb70d0ba5123dc00b2c51a7a3aeb83928",
+      "plan.md": "988aab83e6ed1d6e2a056d1dde0ea2325bc563dbeacac66ec18077468c4be68a",
+      "tasks.md": "b68e3a5641deab92d82a73cfa2a50a50fa7689d8b4ef58ea565c0c4c7bdf1ca9",
       "implementation-summary.md": "0ee7b16a9c551e6c35f4d069ae0207908519a1bd6ba61a14df1943070ef8d27e"
     },
     "last_active_at": null

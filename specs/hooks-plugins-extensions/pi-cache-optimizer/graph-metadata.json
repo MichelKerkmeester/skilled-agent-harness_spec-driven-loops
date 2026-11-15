@@ -3,7 +3,17 @@
   "packet_id": "hooks-plugins-extensions/pi-cache-optimizer",
   "spec_folder": "hooks-plugins-extensions/pi-cache-optimizer",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [],
+  "children_ids": [
+    "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix",
+    "hooks-plugins-extensions/pi-cache-optimizer/002-pi-extension-playbooks",
+    "hooks-plugins-extensions/pi-cache-optimizer/003-pi-cache-affinity-compat",
+    "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi",
+    "hooks-plugins-extensions/pi-cache-optimizer/005-cache-optimizer-review-remediation",
+    "hooks-plugins-extensions/pi-cache-optimizer/006-cache-optimizer-improvement-research",
+    "hooks-plugins-extensions/pi-cache-optimizer/007-cache-optimizer-measurement-fixes",
+    "hooks-plugins-extensions/pi-cache-optimizer/008-compat-opt-in-and-image-declaration",
+    "hooks-plugins-extensions/pi-cache-optimizer/009-cache-optimizer-single-copy-guard"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

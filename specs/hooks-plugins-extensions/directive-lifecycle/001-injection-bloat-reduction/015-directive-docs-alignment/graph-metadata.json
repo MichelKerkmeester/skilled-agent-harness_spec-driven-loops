@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/015-directive-docs-alignment",
+  "spec_folder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/015-directive-docs-alignment",
+  "parent_id": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "hooks/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle",
+        "reason": "Documents/validates the 014 lifecycle feature",
+        "source": "derived"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "directive lifecycle docs alignment",
+      "directive lifecycle documentation",
+      "hook-level lifecycle flags",
+      "SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP docs",
+      "directive lifecycle env reference",
+      "directive lifecycle docs alignment plan",
+      "directive lifecycle documentation plan",
+      "hook-level lifecycle flags plan",
+      "directive lifecycle docs alignment tasks",
+      "directive lifecycle documentation tasks",
+      "directive lifecycle docs alignment implementation",
+      "directive lifecycle documentation summary"
+    ],
+    "key_topics": [
+      "directive",
+      "lifecycle",
+      "docs",
+      "alignment",
+      "documentation",
+      "hook-level",
+      "flags",
+      "env",
+      "reference",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/README.md",
+      ".pi/extensions/README.md",
+      ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "cursor-hooks-and-spec-gate.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lifecycle Documentation Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Flags",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Note",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "fail-open",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "defaults",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Canonical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Environment Ownership",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Four",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Audit-driven documentation alignment for the live directive-lifecycle feature (013/014): register the three directive lifecycle envs in the canonical ENV-REFERENCE.md hook-level block, state the lifecycle rule in every runtime-facing document (skill-advisor README, .pi extensions README, cursor hooks/spec-gate catalog), and verify-and-note SAD-003 as session-less fail-open compatible — docs only, zero behavior change.",
+    "created_at": "2026-08-11T10:10:08.000Z",
+    "last_save_at": "2026-11-15T07:08:32.414Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1fcc2a0edb2f33e930df0705633d965ce0d731a8e4cc3734ed14f7185db8e679",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e1ae77ed303a5bc2659e5c75232a6a6013cab6bc6ead3ce0c9a4c784ba6aaa84",
+      "plan.md": "bca5627e62431b1a3f24d2881f750d7595590b4f0376f5180a95edeff70b6ef5",
+      "tasks.md": "29c06b858d0b7f450337b445f1a02dea7f896b855b54ccc89daa89bf500da5f6",
+      "implementation-summary.md": "ca94268c3231fd651432dc7da6b2290fd44c06246727f542c7c804eb6746b0a9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

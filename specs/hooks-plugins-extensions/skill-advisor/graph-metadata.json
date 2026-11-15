@@ -3,7 +3,9 @@
   "packet_id": "hooks-plugins-extensions/skill-advisor",
   "spec_folder": "hooks-plugins-extensions/skill-advisor",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [],
+  "children_ids": [
+    "hooks-plugins-extensions/skill-advisor/001-pi-input-hook-latency"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

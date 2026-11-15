@@ -3,7 +3,9 @@
   "packet_id": "hooks-plugins-extensions/spec-gate",
   "spec_folder": "hooks-plugins-extensions/spec-gate",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [],
+  "children_ids": [
+    "hooks-plugins-extensions/spec-gate/001-spec-gate-question-noise"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

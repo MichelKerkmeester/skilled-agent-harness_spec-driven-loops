@@ -3,7 +3,9 @@
   "packet_id": "hooks-plugins-extensions/ask-surface-guard",
   "spec_folder": "hooks-plugins-extensions/ask-surface-guard",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [],
+  "children_ids": [
+    "hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

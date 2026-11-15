@@ -75,7 +75,7 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json | Cited | OK | Citations=1; Iterations=1 |
+| specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json | Cited | OK | Citations=1; Iterations=1 |
 | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json | Cited | OK | Citations=1; Iterations=1 |
 | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json | Cited | OK | Citations=1; Iterations=1 |
 | specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py | Cited | OK | Citations=1; Iterations=1 |

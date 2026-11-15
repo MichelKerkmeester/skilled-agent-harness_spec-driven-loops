@@ -3,7 +3,12 @@
   "packet_id": "hooks-plugins-extensions/git-hooks",
   "spec_folder": "hooks-plugins-extensions/git-hooks",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [],
+  "children_ids": [
+    "hooks-plugins-extensions/git-hooks/001-git-hook-gate-reduction",
+    "hooks-plugins-extensions/git-hooks/002-routing-manifest-auto-remint",
+    "hooks-plugins-extensions/git-hooks/003-prepush-naming-gate-residue",
+    "hooks-plugins-extensions/git-hooks/004-spec-metadata-auto-remint"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

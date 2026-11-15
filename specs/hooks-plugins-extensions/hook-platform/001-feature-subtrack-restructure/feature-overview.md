@@ -28,7 +28,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Mirrors: .opencode/plugins/ask-surface-guard.js; .pi/extensions/ask-surface-guard.ts
 - Kill switch: SYSTEM_ASK_SURFACE_DISABLED
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/007-dispatch-recognition-and-hard-rules | Phase 7: dispatch-recognition-and-hard-rules
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards | Phase 8: vibe-repo-guards
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind | Phase 9: deep-loop-executor-kind
@@ -95,7 +95,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment | Completion gate and catalog alignment
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/055-advisory-false-alarms | Stop the sk-git pathspec advisory and the completion-evidence sentinel from raising false alarms
   - MENTIONS | CHILD | specs/cli-classifier/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow | Goal Verifier Pi Census, Zero-Call Arms and Opt-In Jev Shadow Mode
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/007-spec-kit-hook-deadlines | Phase 7: spec-kit-hook-deadlines
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/005-skills-runtime-state-consolidation | Consolidate the seven skills-root state directories into .state
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports | Phase 1: hook-adapter-thin-transports
@@ -125,7 +125,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/008-project-scoped-state | Phase 8: project-scoped-state
   - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/009-chat-answer-evidence | Phase 9: chat-answer-evidence
   - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/010-decision-routing-vocabulary | Phase 10: decision-routing-vocabulary
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
 - Evidence: .skilled/hooks/decision-capture/lib/capture-core.mjs:4, .skilled/hooks/decision-capture/lib/capture-core.mjs:7, .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs:5, .skilled/hooks/decision-capture/bin/README.md:17
 - Unsure: The feature folder has no top-level README.md; the Purpose comes from the lib, claude and bin READMEs and the code headers. Ten more MENTIONS are omitted (22 packets match; 11 OWNS and 11 MENTIONS). .skilled/hooks/README.md:239 records that there is no opencode/ mirror in this tree.
 
@@ -139,15 +139,15 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Mirrors: none
 - Kill switch: SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED (.skilled/hooks/hook-flags.env.example:29)
 - Packets:
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle | Spec: Cross-Runtime Directive Lifecycle
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/015-directive-docs-alignment | Spec: Directive-Lifecycle Documentation Alignment
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/016-directive-playbook-alignment | Spec: Directive-Lifecycle Playbook Alignment
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/017-adapter-live-delivery-verification | Spec: Adapter Live-Delivery Verification
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery | Feature Specification: Fix Code-Review P0-P3 Findings for Directive-Lifecycle Delivery
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only | Feature Specification: Directive Delivery — Startup + Compaction Only (Pi directives-only gap fix)
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/013-pi-local-directive-dedup | Spec: Pi-Local Directive De-Duplication
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction | Per-Prompt Injection Bloat Reduction
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/goal-and-directive-hooks/005-retire-governor-and-proof-directives | Feature Specification: Retire the Governor and Proof-Over-Appearance Directives
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/014-cross-runtime-directive-lifecycle | Spec: Cross-Runtime Directive Lifecycle
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/015-directive-docs-alignment | Spec: Directive-Lifecycle Documentation Alignment
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/016-directive-playbook-alignment | Spec: Directive-Lifecycle Playbook Alignment
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/017-adapter-live-delivery-verification | Spec: Adapter Live-Delivery Verification
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery | Feature Specification: Fix Code-Review P0-P3 Findings for Directive-Lifecycle Delivery
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/019-pi-directive-startup-compaction-only | Feature Specification: Directive Delivery — Startup + Compaction Only (Pi directives-only gap fix)
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/013-pi-local-directive-dedup | Spec: Pi-Local Directive De-Duplication
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction | Per-Prompt Injection Bloat Reduction
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/directive-lifecycle/003-retire-governor-and-proof-directives | Feature Specification: Retire the Governor and Proof-Over-Appearance Directives
   - MENTIONS | CHILD | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup | Feature Specification: Headless Fallback Status and Dedup
   - MENTIONS | CHILD | specs/system-skill-advisor/runtime-lifecycle/004-defect-and-hardening-fixes/003-fix-remaining-advisor-defects | Feature Specification: Restore the pi advisor dedup return, renew the drifted advisor battery and close the stale documentation surfaces
   - MENTIONS | CHILD | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief | Feature Specification: restore the pi skill advisor brief: probe either root name for the warm-CLI assets and key the directive dedup receipt on the full contribution
@@ -165,10 +165,10 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Mirrors: .opencode/plugins/cli-dispatch-audit.js; .pi/extensions/dispatch-audit.ts, .pi/extensions/dispatch-preflight-lint.ts
 - Kill switch: SYSTEM_DISPATCH_DISABLED, SYSTEM_DISPATCH_GUARD_DISABLED (.skilled/hooks/hook-flags.env.example:30-31)
 - Packets:
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/006-dispatch-shape-coverage | Feature Specification: Dispatch-shape coverage for devin/cursor/pi + Codex fold-in
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/006-dispatch-authorization-hardening | Pi Dispatch Authorization Boundary Hardening
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/007-dispatch-validation-evidence | Dispatch Validation, Evidence, and Corpus Baseline
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair | Feature Specification: Document the owning runner for the dispatch adapter vitest suites
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/006-dispatch-shape-coverage | Feature Specification: Dispatch-shape coverage for devin/cursor/pi + Codex fold-in
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/006-dispatch-authorization-hardening | Pi Dispatch Authorization Boundary Hardening
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/007-dispatch-validation-evidence | Dispatch Validation, Evidence, and Corpus Baseline
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair | Feature Specification: Document the owning runner for the dispatch adapter vitest suites
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes | Feature Specification: Phase 40: dispatch-lint-held-fixes
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/051-dispatch-lint-nested-quote-gap | Feature Specification: Phase 51: dispatch-lint-nested-quote-gap
   - OWNS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/007-dispatch-recognition-and-stress-adapter | Feature Specification: Phase 7: dispatch-recognition-and-stress-adapter
@@ -198,7 +198,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - MENTIONS | TOP-LEVEL | specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record | Feature Specification: Record the advisor runtime dist build so a fresh build writes its own freshness attestation
   - MENTIONS | CHILD | specs/system-skill-advisor/codebase-conformance/004-advisor-status-truthfulness/001-freshness-and-scan-truth | Feature Specification: Phase 1: freshness-and-scan-truth
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage | Feature Specification: Phase 28: plugin-kill-switch-coverage
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/002-pins-imports-dual-export | Feature Specification: Phase 2: pins-imports-dual-export
   - MENTIONS | CHILD | specs/sk-code/quality-and-review-modes/002-quality-agnostic-gate/010-alignment-audit | Feature Specification: Phase 10: alignment-audit
@@ -217,7 +217,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Mirrors: .opencode/plugins/env-secret-guard.js; .pi/extensions/env-secret-guard.ts
 - Kill switch: SYSTEM_ENV_SECRET_GUARD_DISABLED (.skilled/hooks/hook-flags.env.example:33, which notes it is environment-only and not read from that file)
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard | Feature Specification: env secret guard for every runtime
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard | Feature Specification: env secret guard for every runtime
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - MENTIONS | TOP-LEVEL | specs/system-speckit/repo-operations/005-main-ci-red-checks | Feature Specification: Repair the five checks that fail on main
 - Evidence: .skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:770 (`evaluateToolCall`); .skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:998 (`fingerprint`, keyed by `ENV_SECRET_GUARD_PEPPER` at line 25); .skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs:277 (`reviewToolResult`)
@@ -303,7 +303,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - OWNS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/002-hook-gate-hardening | Feature Specification: git hook gate hardening
   - OWNS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/003-live-follow-disjoint-ff | Feature Specification: Live-Sync Disjoint Fast-Forward
   - OWNS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/004-rebase-abort-head-preservation | Feature Specification: Rebase-Abort HEAD Preservation
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/repo-commit-gates/003-prepush-naming-gate-residue | Feature Specification: Remove the deleted pre-push naming gate's residue
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/git-hooks/003-prepush-naming-gate-residue | Feature Specification: Remove the deleted pre-push naming gate's residue
   - MENTIONS | TOP-LEVEL | specs/cli-classifier/003-cli-jev-workflow-integration/055-alignment-and-hook-parity | Feature Specification: Phase 55: alignment-and-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - MENTIONS | CHILD | specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/030-cursor-reconcile-test-exemption | Feature Specification: Phase 30: cursor-reconcile-test-exemption
@@ -340,10 +340,10 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - OWNS | TOP-LEVEL | specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps | Feature Specification: Teach the git preflight advisory that environment assignments between cd and git keep the cd
   - MENTIONS | TOP-LEVEL | specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar | Feature Specification: Phase 40: hard-rules-sidecar
   - MENTIONS | CHILD | specs/sk-git/commit-standards/005-git-setup-customization/005-setup-check-hardening | Feature Specification: Phase 5: setup-check-hardening
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/012-post-merge-deep-review/001-hook-stdin-deadlines | Feature Specification: Phase 1: hook-stdin-deadlines
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/012-playbook-fails-remediation | Design Specification: Manual Testing Playbook FAIL Remediation
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/012-playbook-fails-remediation | Design Specification: Manual Testing Playbook FAIL Remediation
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge | Feature Specification: Phase 9: dsh-context-guards-and-goal-bridge
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage | Feature Specification: Phase 28: plugin-kill-switch-coverage
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/002-pins-imports-dual-export | Feature Specification: Phase 2: pins-imports-dual-export
@@ -362,14 +362,14 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Mirrors: .opencode/plugins/opencode-goal.js, .pi/extensions/goal-context.ts
 - Kill switch: OPENCODE_GOAL_DISABLED
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime | Feature Specification: Cross-runtime goal hooks + dispatch-shape coverage + OpenCode symlink mirror
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state | Feature Specification: Runtime-neutral goal core + shared active-goal state + manage CLI
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/003-devin-goal-hooks | Feature Specification: Devin goal hooks (UserPromptSubmit inject, SessionStart restore, Stop verify/continue)
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/004-cursor-goal-hooks | Feature Specification: Cursor goal hooks
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/005-pi-goal-hooks | Feature Specification: Pi goal extension (input-transform injection, session_start restore, turn-end verify)
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal-and-directive-hooks/002-goal-hook-playbooks-and-validation | Feature Specification: Goal-Hook Playbooks and Live Cross-Runtime Validation
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation | Feature Specification: Cross-Runtime Goal Isolation
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/002-session-scoped-core | Implementation Phase: Session-Scoped Goal Core
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime | Feature Specification: Cross-runtime goal hooks + dispatch-shape coverage + OpenCode symlink mirror
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/001-goal-core-and-state | Feature Specification: Runtime-neutral goal core + shared active-goal state + manage CLI
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/003-devin-goal-hooks | Feature Specification: Devin goal hooks (UserPromptSubmit inject, SessionStart restore, Stop verify/continue)
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/004-cursor-goal-hooks | Feature Specification: Cursor goal hooks
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/005-pi-goal-hooks | Feature Specification: Pi goal extension (input-transform injection, session_start restore, turn-end verify)
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal/002-goal-hook-playbooks-and-validation | Feature Specification: Goal-Hook Playbooks and Live Cross-Runtime Validation
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal/003-goal-isolation | Feature Specification: Cross-Runtime Goal Isolation
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/003-goal-isolation/002-session-scoped-core | Implementation Phase: Session-Scoped Goal Core
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification | Feature Specification: Goal unification
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/004-goal-core-packet-backed | Feature Specification: Goal core packet-backed
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume | Feature Specification: Goals and running workflows survive a session hop on every runtime
@@ -390,7 +390,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Packets:
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/010-hermes-hook-parity | Feature Specification: Phase 1: hermes-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/012-playbook-fails-remediation | Design Specification: Manual Testing Playbook FAIL Remediation
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/012-playbook-fails-remediation | Design Specification: Manual Testing Playbook FAIL Remediation
   - MENTIONS | CHILD | specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/011-pre-existing-gate-failures | Feature Specification: Phase 11: pre-existing-gate-failures
   - MENTIONS | CHILD | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation | Feature Specification: Remediating the Cross-CLI Test Findings
 - Evidence: .skilled/bin/install-codex-hooks.mjs:138 (`reconcileHooks` builds the reconciled target from the source identities and leaves every other entry untouched), .skilled/bin/install-codex-hooks.mjs:202 (`analyzeDrift` classifies `duplicate`, `orphaned` and structural drift for the non-mutating check), .skilled/bin/install-codex-hooks.mjs:318 (`main()` returns immediately when `isHookEnabled('hook-install')` is false)
@@ -413,8 +413,8 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/008-dsh-repo-guards-safety-wave | Feature Specification: Phase 8: dsh-repo-guards-safety-wave
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/010-dsh-mcp-code-mode | Feature Specification: Phase 10: dsh-mcp-code-mode
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines | Feature Specification: Phase 5: hook-stdin-deadlines
   - MENTIONS | CHILD | specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/012-mcp-code-mode | Feature Specification: Phase 12: mcp-code-mode
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/016-sequential-thinking-residue-removal | Feature Specification: Retire the decommissioned MCP server from the doctor tooling and clear stale spec residue
@@ -472,12 +472,12 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts | Feature Specification: Phase 6: dual-root-code-and-contracts
   - MENTIONS | CHILD | specs/sk-code/verification-guards/001-code-conformance-alignment/001-conformance-rulings-and-gate-repair | Feature Specification: Conformance Rulings and Gate Repair
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/003-quality-mode | Feature Specification: Phase 3: quality-mode
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
   - MENTIONS | TOP-LEVEL | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat | Research Record: OpenCode v1 and v2 dual compatibility research
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes | Feature Specification: Phase 42: hooks-and-plugins-held-fixes
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/006-deep-review-2-remediation | Feature Specification: Phase 6: deep-review-2-remediation
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
   - 15 more MENTIONS omitted
 - Evidence: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:246 (`resolveDispatch` maps an edited file to its applicable checker and returns the first match only), .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:444 (`runChecks` spawns the resolved checker under a shared deadline and collects findings), .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:157 (findings leave as a PostToolUse `hookSpecificOutput.additionalContext` envelope; a clean edit writes nothing)
 - Unsure: The hub README's per-runtime table covers Claude, Codex, Devin, Cursor, Pi and OpenCode but not DSH, while `dsh/post-edit-quality.mjs` and its own README exist and `.dsh/plugins/repo-guards/adapters/post-edit-quality.mjs` links to it. No `spec.md` takes the router as its main subject under this name: all 27 hits are references, and the closest, `001-honest-checker`, is about the comment-hygiene checker the router spawns.
@@ -529,7 +529,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - MENTIONS | CHILD | specs/sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup | Feature Specification: Phase 6: numbered-worktree-cleanup
   - MENTIONS | CHILD | specs/sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening | Feature Specification: Phase 5: reaper-hardening
   - MENTIONS | CHILD | specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build | Feature Specification: Conversation adoption build
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/skill-advisor/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
 - Evidence: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:6 (the SessionStart hook injects context by branching on the session source: compact, startup, resume, clear), .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:8 (PreCompact caches the merged context to hook state and deliberately emits no stdout), .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:5 (the Stop hook parses the transcript for token usage and updates session state)
 - Unsure: No `spec.md` takes this concern as its main subject under the name `session-lifecycle`; all 12 hits are references. The closest, `004-runtime-agnostic-session-lifecycle-scripts`, is about the shell cleanup scripts (session-cleanup), not these adapters. The hub entries are symlinks into `system-spec-kit/runtime/hooks/` and their `.js` siblings point at `dist/`, so the executed files resolve only after a build.
 
@@ -550,7 +550,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter | Feature Specification: Phase 48: skilled-loop-shared-nudge-formatter
   - OWNS | CHILD | specs/system-speckit/repo-operations/002-ci-workflow-efficiency/013-killer-test-spawn-race | Feature Specification: Phase 13: killer-test-spawn-race
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement | Feature Specification: Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement | Feature Specification: Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
   - MENTIONS | CHILD | specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity | Feature Specification: Phase 8: hop-purpose-rule-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards | Feature Specification: Phase 8: vibe-repo-guards
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/019-plugins-compat-docs | Feature Specification: Phase 19: plugins-compat-docs
@@ -570,12 +570,12 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Kill switch: SYSTEM_SKILL_ADVISOR_DISABLED
 - Packets:
   - OWNS | TOP-LEVEL | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge | Feature Specification: Pi advisor bridge: brief restore and stderr diagnostic
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/skill-advisor/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
   - OWNS | CHILD | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief | Feature Specification: restore the pi skill advisor brief: probe either root name for the warm-CLI assets and key the directive dedup receipt on the full contribution
   - OWNS | CHILD | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr | Feature Specification: Pi advisor diagnostic on stderr
   - OWNS | CHILD | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics | Feature Specification: Hook Deadline and Diagnostics
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/001-hook-docs-relocation | Feature Specification: Hook Reference Docs Relocation
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/002-hook-docs-relocation | Feature Specification: Hook Reference Docs Relocation
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
   - MENTIONS | CHILD | specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-opencode-plugin-loader-bridge | ...ystem-spec-kit/026-graph-and-context-optimization/007-hook-parity/005-fix-opencode-plugin-loader-bridge/spec]
   - MENTIONS | TOP-LEVEL | specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door | Feature Specification: skill advisor MCP decommission
   - MENTIONS | TOP-LEVEL | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement | Phase Parent: Pi Skill Orchestrator Research for Skill Advisor Refinement
@@ -595,16 +595,16 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Mirrors: .opencode/plugins/system-spec-gate.js, .pi/extensions/spec-gate-classify.ts, .pi/extensions/spec-gate-enforce.ts
 - Kill switch: SYSTEM_SPEC_GATE_DISABLED
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise | Feature Specification: Spec-gate question noise (stop per-turn re-injection across all runtimes)
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/spec-gate/001-spec-gate-question-noise | Feature Specification: Spec-gate question noise (stop per-turn re-injection across all runtimes)
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/048-gate-3-mutation-time-delivery | Feature Specification: Phase 1: gate-3-mutation-time-delivery
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/005-gate3-relay-edge-triggering | Feature Specification: Gate-3 Relay Edge-Triggering
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/005-gate3-relay-edge-triggering | Feature Specification: Gate-3 Relay Edge-Triggering
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/040-gate-3-option-merge | Feature Specification: Phase 1: gate-3-option-merge
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/049-gate-3-delivery-residue | Feature Specification: Phase 49: Gate-3 delivery residue
   - OWNS | CHILD | specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/009-gate-3-menu-series-parent | Feature Specification: Carry the series parent into the runtime Gate 3 menu
   - OWNS | CHILD | specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity | Feature Specification: Gate 3 menu parity
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/004-v4-release-line-research/009-gate3-and-continuity-root | Feature Specification: Phase 9: gate3-and-continuity-root
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/skill-advisor/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports | Feature Specification: Phase 1: hook-adapter-thin-transports
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - 46 more hits omitted
@@ -625,7 +625,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - MENTIONS | CHILD | specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/023-cross-runtime-dispatch | Feature Specification: Retire the deep/* Dispatch-Context (Phase-0) Gate
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/010-hermes-hook-parity | Feature Specification: Phase 1: hermes-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline | Feature Specification: Phase 4: hook-stdin-deadline
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines | Feature Specification: Phase 5: hook-stdin-deadlines
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups | Feature Specification: Phase 43: v2-default-model-and-follow-ups
@@ -671,17 +671,17 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Mirrors: none
 - Kill switch: none found in hook-flags.env.example; the extension has its own `/cache-optimizer disable` command and `PI_CACHE_OPTIMIZER_NO_*` opt-outs
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/008-cache-optimizer-improvement-research | Feature Specification: cache optimizer improvement research
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/009-cache-optimizer-measurement-fixes | Feature Specification: cache optimizer measurement and pricing fixes
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/007-cache-optimizer-review-remediation | Feature Specification: cache optimizer review remediation
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard | Feature Specification: Let a second pi-cache-optimizer copy stand down so pi starts in git worktrees
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/005-pi-cache-affinity-compat | Feature Specification: pi-cache-optimizer OpenRouter session-affinity compat
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi | Feature Specification: One cache extension covering every Pi model, with measured economics and paid-retry guards
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer | Feature Specification: Fork pi-cache-optimizer with a DeepSeek Exclusion Guard
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration | Feature Specification: Gate DeepSeek cache-compat advice on an explicit wire-protocol opt-in and declare image input for the llmgateway model
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/004-pi-extension-playbooks/001-cache-optimizer-playbook | Feature Specification: Phase 1 cache-optimizer playbook
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix | Phase Parent: Pi Reasonix-Style Prompt Caching — Research → Build Decision
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/006-fork-and-improve-deep-pi | Phase Parent: Fork and Improve deep-pi
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/006-cache-optimizer-improvement-research | Feature Specification: cache optimizer improvement research
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/007-cache-optimizer-measurement-fixes | Feature Specification: cache optimizer measurement and pricing fixes
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/005-cache-optimizer-review-remediation | Feature Specification: cache optimizer review remediation
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/009-cache-optimizer-single-copy-guard | Feature Specification: Let a second pi-cache-optimizer copy stand down so pi starts in git worktrees
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/003-pi-cache-affinity-compat | Feature Specification: pi-cache-optimizer OpenRouter session-affinity compat
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi | Feature Specification: One cache extension covering every Pi model, with measured economics and paid-retry guards
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer | Feature Specification: Fork pi-cache-optimizer with a DeepSeek Exclusion Guard
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/008-compat-opt-in-and-image-declaration | Feature Specification: Gate DeepSeek cache-compat advice on an explicit wire-protocol opt-in and declare image input for the llmgateway model
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-cache-optimizer/002-pi-extension-playbooks/001-cache-optimizer-playbook | Feature Specification: Phase 1 cache-optimizer playbook
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix | Phase Parent: Pi Reasonix-Style Prompt Caching — Research → Build Decision
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/006-fork-and-improve-deep-pi | Phase Parent: Fork and Improve deep-pi
   - MENTIONS | TOP-LEVEL | specs/cli-external-orchestration/dispatch-surface-maintenance/004-pi-extension-brace-expansion | Feature Specification: Bump brace-expansion in two Pi extension lockfiles to close four Dependabot alerts
   - 39 more hits omitted
 - Evidence: .pi/extensions/pi-cache-optimizer/index.ts:104 ("Reorders Pi's system prompt so stable content is sent before dynamic context"), .pi/extensions/pi-cache-optimizer/index.ts:844 (`optimizeSystemPrompt` builds the stable prefix and reorders only when every marker survives), .pi/extensions/pi-cache-optimizer/index.ts:1400 (`shouldInjectOpenAIPromptCacheKey` gates the OpenAI-compatible cache-key fallback)
@@ -697,16 +697,16 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Mirrors: none
 - Kill switch: none found in hook-flags.env.example; `/fast off` and the persisted config are the extension's own switches
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support | Feature Specification: pi-fast-mode-w-subagent-support [hooks/011-pi-fast-mode-w-subagent-support/spec]
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/001-fork-and-package | Feature Specification: fork-and-package workstream [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/spec]
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff | Feature Specification: subagent-handoff workstream [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/spec]
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/003-integration-and-tests | Feature Specification: integration-and-tests [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/spec]
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support | Feature Specification: pi-fast-mode-w-subagent-support [hooks/011-pi-fast-mode-w-subagent-support/spec]
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/001-fork-and-package | Feature Specification: fork-and-package workstream [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/spec]
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/002-subagent-handoff | Feature Specification: subagent-handoff workstream [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/spec]
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests | Feature Specification: integration-and-tests [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/spec]
   - OWNS | TOP-LEVEL | specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash | Feature Specification: Let a second copy of the Pi fast-mode extension stand down, so cli-pi runs from a git worktree
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag | Feature Specification: Phase 21: pi-fast-mode-trusted-flag
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline | Feature Specification: Phase [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline/spec]
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract | Feature Specification: [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract/spec]
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite | Feature [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite/spec]
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/004-pi-extension-playbooks | Feature Specification: Pi extension manual-testing playbooks
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline | Feature Specification: Phase [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline/spec]
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract | Feature Specification: [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract/spec]
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite | Feature [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite/spec]
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/002-pi-extension-playbooks | Feature Specification: Pi extension manual-testing playbooks
   - MENTIONS | TOP-LEVEL | specs/cli-external-orchestration/dispatch-surface-maintenance/004-pi-extension-brace-expansion | Feature Specification: Bump brace-expansion in two Pi extension lockfiles to close four Dependabot alerts
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - 14 more hits omitted
@@ -723,13 +723,13 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Mirrors: .opencode/plugins/ (19 plugin files reference `.skilled/hooks/shared/hook-flags.cjs`), .pi/extensions/ (22 one-line entries re-export the runtime adapters), .pi/extensions/lib/claude-hook-adapter.ts
 - Kill switch: SYSTEM_HOOKS_DISABLED (master) plus SYSTEM_<CONCERN>_DISABLED per concern
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage | Feature Specification: Phase 28: plugin-kill-switch-coverage
   - MENTIONS | TOP-LEVEL | specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches | Feature Specification: Doc validation off switches
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in | Feature Specification: Session relaunch hooks off by default, opt in with SYSTEM_SESSION_RELAUNCH_ENABLED
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction | Feature Specification: Git Hook Gate Reduction
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/git-hooks/001-git-hook-gate-reduction | Feature Specification: Git Hook Gate Reduction
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards | Feature Specification: Phase 8: vibe-repo-guards
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/049-gate-3-delivery-residue | Feature Specification: Phase 49: Gate-3 delivery residue

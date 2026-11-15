@@ -1,8 +1,8 @@
 {
   "source": {
     "command": "git log -M --diff-filter=R --name-status --format= HEAD",
-    "commit": "e13f670cb913efbf2c96388293653ee855af43b4",
-    "renameRecords": 579755,
+    "commit": "1f24d7a264076e71477d1a0da9fe1c3689edd164",
+    "renameRecords": 579764,
     "minRecords": 50,
     "minAgreement": 0.95,
     "derivedBy": "deriveRedirects in cite-drift-scan.mjs"

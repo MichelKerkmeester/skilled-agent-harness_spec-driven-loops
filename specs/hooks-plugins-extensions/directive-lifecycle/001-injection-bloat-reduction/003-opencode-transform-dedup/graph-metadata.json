@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/003-opencode-transform-dedup",
+  "spec_folder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/003-opencode-transform-dedup",
+  "parent_id": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode transform dedup",
+      "same message system transform dedup",
+      "stable message identity opencode",
+      "transform dedup plan",
+      "message identity resolver plan",
+      "transform dedup tasks",
+      "message identity resolver task list",
+      "OpenCode transform dedup implementation",
+      "message identity resolver"
+    ],
+    "key_topics": [
+      "opencode",
+      "transform",
+      "dedup",
+      "same",
+      "message",
+      "system",
+      "stable",
+      "identity",
+      "plan",
+      "resolver",
+      "tasks",
+      "task"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/lib/opencode-message-identity.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-message-identity.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/opencode-message-identity.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Transform Dedup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ranked Reductions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eliminated Alternatives",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode's `mk-skill-advisor.js` and `mk-spec-memory.js` each register an independent `experimental.chat.system.transform` handler that can append to `output.system` for the same user message, with no shared coordination proving whether a policy/advisor block was already delivered for that exact message",
+    "created_at": "2026-08-06T11:07:41.298Z",
+    "last_save_at": "2026-11-15T07:08:32.068Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aea02ed93c2c3fd193d315b9902dde7e89618ed4c56c6eb6e01f3d0795258196",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1550fbe105b422603abbc4d9400e5fc514866881d957cea5e1e2a6ae4df2cdd7",
+      "plan.md": "51ca3bc8c26869c5980b50ba41f8dedf7849958b6d196538f7fd2dbd3778ef35",
+      "tasks.md": "5b3a0836ccd6150bf1113ddfe9ba0c7e218b620cd45c1e91c2e910942dde7afa",
+      "implementation-summary.md": "d2de3b476bbc7ad65aed7540c554b1190fcdf84c7534371a091e1c66be419274"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

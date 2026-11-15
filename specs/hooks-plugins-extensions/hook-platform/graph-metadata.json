@@ -4,7 +4,11 @@
   "spec_folder": "hooks-plugins-extensions/hook-platform",
   "parent_id": "hooks-plugins-extensions",
   "children_ids": [
-    "hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure"
+    "hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure",
+    "hooks-plugins-extensions/hook-platform/002-hook-docs-relocation",
+    "hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename",
+    "hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index",
+    "hooks-plugins-extensions/hook-platform/005-smart-rule-injection"
   ],
   "manual": {
     "depends_on": [],

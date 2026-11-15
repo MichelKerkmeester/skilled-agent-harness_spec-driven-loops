@@ -3,7 +3,11 @@
   "packet_id": "hooks-plugins-extensions/goal",
   "spec_folder": "hooks-plugins-extensions/goal",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [],
+  "children_ids": [
+    "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime",
+    "hooks-plugins-extensions/goal/002-goal-hook-playbooks-and-validation",
+    "hooks-plugins-extensions/goal/003-goal-isolation"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

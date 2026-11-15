@@ -50,7 +50,7 @@
   - OWNS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/002-hook-gate-hardening | Feature Specification: git hook gate hardening
   - OWNS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/003-live-follow-disjoint-ff | Feature Specification: Live-Sync Disjoint Fast-Forward
   - OWNS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/004-rebase-abort-head-preservation | Feature Specification: Rebase-Abort HEAD Preservation
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/repo-commit-gates/003-prepush-naming-gate-residue | Feature Specification: Remove the deleted pre-push naming gate's residue
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/git-hooks/003-prepush-naming-gate-residue | Feature Specification: Remove the deleted pre-push naming gate's residue
   - MENTIONS | TOP-LEVEL | specs/cli-classifier/003-cli-jev-workflow-integration/055-alignment-and-hook-parity | Feature Specification: Phase 55: alignment-and-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - MENTIONS | CHILD | specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/030-cursor-reconcile-test-exemption | Feature Specification: Phase 30: cursor-reconcile-test-exemption
@@ -87,10 +87,10 @@
   - OWNS | TOP-LEVEL | specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps | Feature Specification: Teach the git preflight advisory that environment assignments between cd and git keep the cd
   - MENTIONS | TOP-LEVEL | specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar | Feature Specification: Phase 40: hard-rules-sidecar
   - MENTIONS | CHILD | specs/sk-git/commit-standards/005-git-setup-customization/005-setup-check-hardening | Feature Specification: Phase 5: setup-check-hardening
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/012-post-merge-deep-review/001-hook-stdin-deadlines | Feature Specification: Phase 1: hook-stdin-deadlines
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/012-playbook-fails-remediation | Design Specification: Manual Testing Playbook FAIL Remediation
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/012-playbook-fails-remediation | Design Specification: Manual Testing Playbook FAIL Remediation
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge | Feature Specification: Phase 9: dsh-context-guards-and-goal-bridge
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage | Feature Specification: Phase 28: plugin-kill-switch-coverage
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/002-pins-imports-dual-export | Feature Specification: Phase 2: pins-imports-dual-export

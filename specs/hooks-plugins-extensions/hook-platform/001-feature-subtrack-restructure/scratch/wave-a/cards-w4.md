@@ -6,14 +6,14 @@
 - Mirrors: .opencode/plugins/opencode-goal.js, .pi/extensions/goal-context.ts
 - Kill switch: OPENCODE_GOAL_DISABLED
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime | Feature Specification: Cross-runtime goal hooks + dispatch-shape coverage + OpenCode symlink mirror
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state | Feature Specification: Runtime-neutral goal core + shared active-goal state + manage CLI
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/003-devin-goal-hooks | Feature Specification: Devin goal hooks (UserPromptSubmit inject, SessionStart restore, Stop verify/continue)
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/004-cursor-goal-hooks | Feature Specification: Cursor goal hooks
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/005-pi-goal-hooks | Feature Specification: Pi goal extension (input-transform injection, session_start restore, turn-end verify)
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal-and-directive-hooks/002-goal-hook-playbooks-and-validation | Feature Specification: Goal-Hook Playbooks and Live Cross-Runtime Validation
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation | Feature Specification: Cross-Runtime Goal Isolation
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/002-session-scoped-core | Implementation Phase: Session-Scoped Goal Core
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime | Feature Specification: Cross-runtime goal hooks + dispatch-shape coverage + OpenCode symlink mirror
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/001-goal-core-and-state | Feature Specification: Runtime-neutral goal core + shared active-goal state + manage CLI
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/003-devin-goal-hooks | Feature Specification: Devin goal hooks (UserPromptSubmit inject, SessionStart restore, Stop verify/continue)
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/004-cursor-goal-hooks | Feature Specification: Cursor goal hooks
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/005-pi-goal-hooks | Feature Specification: Pi goal extension (input-transform injection, session_start restore, turn-end verify)
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal/002-goal-hook-playbooks-and-validation | Feature Specification: Goal-Hook Playbooks and Live Cross-Runtime Validation
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/goal/003-goal-isolation | Feature Specification: Cross-Runtime Goal Isolation
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/003-goal-isolation/002-session-scoped-core | Implementation Phase: Session-Scoped Goal Core
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification | Feature Specification: Goal unification
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/004-goal-core-packet-backed | Feature Specification: Goal core packet-backed
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume | Feature Specification: Goals and running workflows survive a session hop on every runtime
@@ -34,7 +34,7 @@
 - Packets:
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/010-hermes-hook-parity | Feature Specification: Phase 1: hermes-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/012-playbook-fails-remediation | Design Specification: Manual Testing Playbook FAIL Remediation
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/012-playbook-fails-remediation | Design Specification: Manual Testing Playbook FAIL Remediation
   - MENTIONS | CHILD | specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/011-pre-existing-gate-failures | Feature Specification: Phase 11: pre-existing-gate-failures
   - MENTIONS | CHILD | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation | Feature Specification: Remediating the Cross-CLI Test Findings
 - Evidence: .skilled/bin/install-codex-hooks.mjs:138 (`reconcileHooks` builds the reconciled target from the source identities and leaves every other entry untouched), .skilled/bin/install-codex-hooks.mjs:202 (`analyzeDrift` classifies `duplicate`, `orphaned` and structural drift for the non-mutating check), .skilled/bin/install-codex-hooks.mjs:318 (`main()` returns immediately when `isHookEnabled('hook-install')` is false)
@@ -57,8 +57,8 @@
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/008-dsh-repo-guards-safety-wave | Feature Specification: Phase 8: dsh-repo-guards-safety-wave
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/010-dsh-mcp-code-mode | Feature Specification: Phase 10: dsh-mcp-code-mode
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines | Feature Specification: Phase 5: hook-stdin-deadlines
   - MENTIONS | CHILD | specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/012-mcp-code-mode | Feature Specification: Phase 12: mcp-code-mode
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/016-sequential-thinking-residue-removal | Feature Specification: Retire the decommissioned MCP server from the doctor tooling and clear stale spec residue

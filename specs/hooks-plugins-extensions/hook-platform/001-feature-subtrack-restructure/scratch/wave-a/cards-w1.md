@@ -6,7 +6,7 @@
 - Mirrors: .opencode/plugins/ask-surface-guard.js; .pi/extensions/ask-surface-guard.ts
 - Kill switch: SYSTEM_ASK_SURFACE_DISABLED
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/007-dispatch-recognition-and-hard-rules | Phase 7: dispatch-recognition-and-hard-rules
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards | Phase 8: vibe-repo-guards
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind | Phase 9: deep-loop-executor-kind
@@ -73,7 +73,7 @@
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment | Completion gate and catalog alignment
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/055-advisory-false-alarms | Stop the sk-git pathspec advisory and the completion-evidence sentinel from raising false alarms
   - MENTIONS | CHILD | specs/cli-classifier/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow | Goal Verifier Pi Census, Zero-Call Arms and Opt-In Jev Shadow Mode
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/007-spec-kit-hook-deadlines | Phase 7: spec-kit-hook-deadlines
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/005-skills-runtime-state-consolidation | Consolidate the seven skills-root state directories into .state
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports | Phase 1: hook-adapter-thin-transports
@@ -103,6 +103,6 @@
   - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/008-project-scoped-state | Phase 8: project-scoped-state
   - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/009-chat-answer-evidence | Phase 9: chat-answer-evidence
   - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/010-decision-routing-vocabulary | Phase 10: decision-routing-vocabulary
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
 - Evidence: .skilled/hooks/decision-capture/lib/capture-core.mjs:4, .skilled/hooks/decision-capture/lib/capture-core.mjs:7, .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs:5, .skilled/hooks/decision-capture/bin/README.md:17
 - Unsure: The feature folder has no top-level README.md; the Purpose comes from the lib, claude and bin READMEs and the code headers. Ten more MENTIONS are omitted (22 packets match; 11 OWNS and 11 MENTIONS). .skilled/hooks/README.md:239 records that there is no opencode/ mirror in this tree.

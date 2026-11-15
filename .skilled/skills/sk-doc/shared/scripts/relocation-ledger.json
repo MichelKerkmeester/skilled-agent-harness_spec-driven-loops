@@ -15,6 +15,133 @@
           "to": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces"
         }
       ]
+    },
+    {
+      "applied_at": "2026-11-15T07:10:12.808Z",
+      "base_commit": "1f24d7a264076e71477d1a0da9fe1c3689edd164",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime",
+          "to": "hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime"
+        },
+        {
+          "from": "hooks-plugins-extensions/goal-and-directive-hooks/002-goal-hook-playbooks-and-validation",
+          "to": "hooks-plugins-extensions/goal/002-goal-hook-playbooks-and-validation"
+        },
+        {
+          "from": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation",
+          "to": "hooks-plugins-extensions/goal/003-goal-isolation"
+        },
+        {
+          "from": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction",
+          "to": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction"
+        },
+        {
+          "from": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook",
+          "to": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook"
+        },
+        {
+          "from": "hooks-plugins-extensions/goal-and-directive-hooks/005-retire-governor-and-proof-directives",
+          "to": "hooks-plugins-extensions/directive-lifecycle/003-retire-governor-and-proof-directives"
+        },
+        {
+          "from": "hooks-plugins-extensions/hook-injection-pipeline/001-hook-docs-relocation",
+          "to": "hooks-plugins-extensions/hook-platform/002-hook-docs-relocation"
+        },
+        {
+          "from": "hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename",
+          "to": "hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename"
+        },
+        {
+          "from": "hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index",
+          "to": "hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index"
+        },
+        {
+          "from": "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection",
+          "to": "hooks-plugins-extensions/hook-platform/005-smart-rule-injection"
+        },
+        {
+          "from": "hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair",
+          "to": "hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair"
+        },
+        {
+          "from": "hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard",
+          "to": "hooks-plugins-extensions/env-secret-guard/001-env-secret-guard"
+        },
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency",
+          "to": "hooks-plugins-extensions/skill-advisor/001-pi-input-hook-latency"
+        },
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix",
+          "to": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix"
+        },
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/004-pi-extension-playbooks",
+          "to": "hooks-plugins-extensions/pi-cache-optimizer/002-pi-extension-playbooks"
+        },
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/005-pi-cache-affinity-compat",
+          "to": "hooks-plugins-extensions/pi-cache-optimizer/003-pi-cache-affinity-compat"
+        },
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi",
+          "to": "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi"
+        },
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/007-cache-optimizer-review-remediation",
+          "to": "hooks-plugins-extensions/pi-cache-optimizer/005-cache-optimizer-review-remediation"
+        },
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/008-cache-optimizer-improvement-research",
+          "to": "hooks-plugins-extensions/pi-cache-optimizer/006-cache-optimizer-improvement-research"
+        },
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/009-cache-optimizer-measurement-fixes",
+          "to": "hooks-plugins-extensions/pi-cache-optimizer/007-cache-optimizer-measurement-fixes"
+        },
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration",
+          "to": "hooks-plugins-extensions/pi-cache-optimizer/008-compat-opt-in-and-image-declaration"
+        },
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard",
+          "to": "hooks-plugins-extensions/pi-cache-optimizer/009-cache-optimizer-single-copy-guard"
+        },
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support",
+          "to": "hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support"
+        },
+        {
+          "from": "hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction",
+          "to": "hooks-plugins-extensions/git-hooks/001-git-hook-gate-reduction"
+        },
+        {
+          "from": "hooks-plugins-extensions/repo-commit-gates/002-routing-manifest-auto-remint",
+          "to": "hooks-plugins-extensions/git-hooks/002-routing-manifest-auto-remint"
+        },
+        {
+          "from": "hooks-plugins-extensions/repo-commit-gates/003-prepush-naming-gate-residue",
+          "to": "hooks-plugins-extensions/git-hooks/003-prepush-naming-gate-residue"
+        },
+        {
+          "from": "hooks-plugins-extensions/repo-commit-gates/004-spec-metadata-auto-remint",
+          "to": "hooks-plugins-extensions/git-hooks/004-spec-metadata-auto-remint"
+        },
+        {
+          "from": "hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise",
+          "to": "hooks-plugins-extensions/spec-gate/001-spec-gate-question-noise"
+        },
+        {
+          "from": "hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement",
+          "to": "hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement"
+        }
+      ]
     }
   ]
 }

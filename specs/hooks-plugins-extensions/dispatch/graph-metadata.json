@@ -3,7 +3,9 @@
   "packet_id": "hooks-plugins-extensions/dispatch",
   "spec_folder": "hooks-plugins-extensions/dispatch",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [],
+  "children_ids": [
+    "hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

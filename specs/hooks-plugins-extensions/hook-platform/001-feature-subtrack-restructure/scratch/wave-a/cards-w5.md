@@ -12,12 +12,12 @@
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts | Feature Specification: Phase 6: dual-root-code-and-contracts
   - MENTIONS | CHILD | specs/sk-code/verification-guards/001-code-conformance-alignment/001-conformance-rulings-and-gate-repair | Feature Specification: Conformance Rulings and Gate Repair
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/003-quality-mode | Feature Specification: Phase 3: quality-mode
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
   - MENTIONS | TOP-LEVEL | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat | Research Record: OpenCode v1 and v2 dual compatibility research
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes | Feature Specification: Phase 42: hooks-and-plugins-held-fixes
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/006-deep-review-2-remediation | Feature Specification: Phase 6: deep-review-2-remediation
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
   - 15 more MENTIONS omitted
 - Evidence: .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:246 (`resolveDispatch` maps an edited file to its applicable checker and returns the first match only), .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:444 (`runChecks` spawns the resolved checker under a shared deadline and collects findings), .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:157 (findings leave as a PostToolUse `hookSpecificOutput.additionalContext` envelope; a clean edit writes nothing)
 - Unsure: The hub README's per-runtime table covers Claude, Codex, Devin, Cursor, Pi and OpenCode but not DSH, while `dsh/post-edit-quality.mjs` and its own README exist and `.dsh/plugins/repo-guards/adapters/post-edit-quality.mjs` links to it. No `spec.md` takes the router as its main subject under this name: all 27 hits are references, and the closest, `001-honest-checker`, is about the comment-hygiene checker the router spawns.
@@ -69,7 +69,7 @@
   - MENTIONS | CHILD | specs/sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup | Feature Specification: Phase 6: numbered-worktree-cleanup
   - MENTIONS | CHILD | specs/sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/005-reaper-hardening | Feature Specification: Phase 5: reaper-hardening
   - MENTIONS | CHILD | specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build | Feature Specification: Conversation adoption build
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/skill-advisor/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
 - Evidence: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:6 (the SessionStart hook injects context by branching on the session source: compact, startup, resume, clear), .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:8 (PreCompact caches the merged context to hook state and deliberately emits no stdout), .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:5 (the Stop hook parses the transcript for token usage and updates session state)
 - Unsure: No `spec.md` takes this concern as its main subject under the name `session-lifecycle`; all 12 hits are references. The closest, `004-runtime-agnostic-session-lifecycle-scripts`, is about the shell cleanup scripts (session-cleanup), not these adapters. The hub entries are symlinks into `system-spec-kit/runtime/hooks/` and their `.js` siblings point at `dist/`, so the executed files resolve only after a build.
 
@@ -90,7 +90,7 @@
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter | Feature Specification: Phase 48: skilled-loop-shared-nudge-formatter
   - OWNS | CHILD | specs/system-speckit/repo-operations/002-ci-workflow-efficiency/013-killer-test-spawn-race | Feature Specification: Phase 13: killer-test-spawn-race
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement | Feature Specification: Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement | Feature Specification: Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
   - MENTIONS | CHILD | specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity | Feature Specification: Phase 8: hop-purpose-rule-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards | Feature Specification: Phase 8: vibe-repo-guards
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/019-plugins-compat-docs | Feature Specification: Phase 19: plugins-compat-docs
@@ -110,12 +110,12 @@
 - Kill switch: SYSTEM_SKILL_ADVISOR_DISABLED
 - Packets:
   - OWNS | TOP-LEVEL | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge | Feature Specification: Pi advisor bridge: brief restore and stderr diagnostic
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/skill-advisor/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
   - OWNS | CHILD | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief | Feature Specification: restore the pi skill advisor brief: probe either root name for the warm-CLI assets and key the directive dedup receipt on the full contribution
   - OWNS | CHILD | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr | Feature Specification: Pi advisor diagnostic on stderr
   - OWNS | CHILD | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics | Feature Specification: Hook Deadline and Diagnostics
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/001-hook-docs-relocation | Feature Specification: Hook Reference Docs Relocation
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/002-hook-docs-relocation | Feature Specification: Hook Reference Docs Relocation
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
   - MENTIONS | CHILD | specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-opencode-plugin-loader-bridge | ...ystem-spec-kit/026-graph-and-context-optimization/007-hook-parity/005-fix-opencode-plugin-loader-bridge/spec]
   - MENTIONS | TOP-LEVEL | specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door | Feature Specification: skill advisor MCP decommission
   - MENTIONS | TOP-LEVEL | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement | Phase Parent: Pi Skill Orchestrator Research for Skill Advisor Refinement

@@ -3,13 +3,7 @@
   "packet_id": "hooks-plugins-extensions/goal-and-directive-hooks",
   "spec_folder": "hooks-plugins-extensions/goal-and-directive-hooks",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [
-    "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime",
-    "hooks-plugins-extensions/goal-and-directive-hooks/002-goal-hook-playbooks-and-validation",
-    "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook",
-    "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation",
-    "hooks-plugins-extensions/goal-and-directive-hooks/005-retire-governor-and-proof-directives"
-  ],
+  "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],

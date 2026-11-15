@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/git-hooks/002-routing-manifest-auto-remint",
+  "description": "A hub's compiled routing manifest pins a hash of its routing inputs",
+  "keywords": [
+    "hub",
+    "compiled",
+    "routing",
+    "manifest",
+    "pins",
+    "hash",
+    "inputs"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.342Z",
+  "specId": "002",
+  "folderSlug": "routing-manifest-auto-remint",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "git-hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

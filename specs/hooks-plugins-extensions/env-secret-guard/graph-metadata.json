@@ -3,7 +3,9 @@
   "packet_id": "hooks-plugins-extensions/env-secret-guard",
   "spec_folder": "hooks-plugins-extensions/env-secret-guard",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [],
+  "children_ids": [
+    "hooks-plugins-extensions/env-secret-guard/001-env-secret-guard"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

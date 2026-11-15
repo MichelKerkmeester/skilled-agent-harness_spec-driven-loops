@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/005-verification-and-decision-reconciliation",
+  "spec_folder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/005-verification-and-decision-reconciliation",
+  "parent_id": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cache split verification",
+      "superseding decision record deepseek",
+      "deepseek cache overlap check",
+      "cache split verification plan",
+      "cache split verification tasks",
+      "fork-and-split deepseek cache split",
+      "supersede pi caching build gate",
+      "cache split verification status"
+    ],
+    "key_topics": [
+      "cache",
+      "split",
+      "verification",
+      "superseding",
+      "decision",
+      "record",
+      "deepseek",
+      "overlap",
+      "check",
+      "plan",
+      "tasks",
+      "fork-and-split"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".pi/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extension Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Superseding Decision Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview With",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Composition Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Decision Reconciliation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Caching Ownership",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claim Resolution",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 003 and 004 each verify their own piece in isolation (the fork's diff scope; deep-pi's self-gating)",
+    "created_at": "2026-08-07T05:55:45Z",
+    "last_save_at": "2026-11-15T07:08:32.929Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:93d08f012490bb5b7fd32468737453348a619fc5d782f89e109dd70f42eba6d5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3aa15a0d4b51977b7212c8839419e4231020a6a8736d5b28f03b2062b0718cd1",
+      "plan.md": "829628c59697dcfdbdff480d2af95923aef5ab849bd33e39bb07d1633dfe2774",
+      "tasks.md": "4ecad0d97f9930a2b90f90f4ed37e9b74bff205d35793331fb56598f8479ca33",
+      "decision-record.md": "a260e00024cf5b95d0d5d6327cf2cfff8aabfaba388d3d74b42adfe1f167f828",
+      "implementation-summary.md": "e53fe0b549750a8804d796811867d123d40e1ad985314fbca4c75aaaad47ed56"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

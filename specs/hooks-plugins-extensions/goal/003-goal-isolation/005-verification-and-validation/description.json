@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/goal/003-goal-isolation/005-verification-and-validation",
+  "description": "The final integrated checks now prove that native Pi management, scoped persistence, adapter injection, legacy cutover, registrations, and operator",
+  "keywords": [
+    "final",
+    "integrated",
+    "checks",
+    "now",
+    "prove",
+    "native",
+    "management",
+    "scoped",
+    "persistence",
+    "adapter",
+    "injection",
+    "legacy",
+    "cutover",
+    "registrations",
+    "operator"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.153Z",
+  "specId": "005",
+  "folderSlug": "verification-and-validation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "goal",
+    "003-goal-isolation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-08-26_18-10__detailed-handover.md"
+  ]
+}

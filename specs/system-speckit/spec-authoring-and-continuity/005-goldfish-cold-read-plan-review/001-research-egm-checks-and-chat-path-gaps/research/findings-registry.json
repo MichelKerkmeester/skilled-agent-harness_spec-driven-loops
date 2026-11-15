@@ -728,7 +728,7 @@
       "text": "**`--allow-single-lineage` is mandatory, not optional: at least three stress cases invoke the CLI with exactly one executor.** `fanout.vitest.ts` builds its configs as `executors: [{...}]` — one entry at `165`, one at `756`, one at `794` — and pins one shim capture per run, so a second entry would break the assertion, not just the setup. The unit suites do not exercise `fanout-config-json` at all (`rg` over `tests/unit` returns no executor matrices passed to the CLI), so the fixture cost is confined to the stress suite. Without the escape flag, change 1 makes three existing green tests red. [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165]",
       "addedAtIteration": 4,
       "sources": [
-        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
         ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
@@ -748,7 +748,7 @@
       "text": "**Change 2 must amend the trigger sentence itself, or code and doc contradict each other.** Both command docs currently say fan-out begins on \"an `--executors` value\" — a one-entry `--executors` matrix included — and \"one independent lineage per label\". With the guard in place a one-entry `--executors` value is refused, so appending a clarifying sentence to the same paragraph (iteration 3's plan) leaves the preceding line promising the exact call the code now rejects. The edit has to restate the trigger as *two or more expanded lineages*: two or more `--executor` groups, a `--count` above 1, or an `--executors` matrix that expands to two or more. Same wording in `research.md:125-128` and `review.md:97-98`, and the two presentation policy lines that repeat the trigger (`deep-research-presentation.txt:71`, `deep-review-presentation.txt:88`). [SOURCE: .skilled/commands/deep/research.md:125]",
       "addedAtIteration": 4,
       "sources": [
-        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
         ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
@@ -768,7 +768,7 @@
       "text": "**Iteration 3's third false-positive candidate is empty: nothing re-enters the guard from a persisted matrix, because nothing reads a persisted matrix.** Resume is decided inside `phase_init` (`on_resume` branch, state-artifact reconciliation), and the fan-out matrix is a render-time binding computed from the invocation flags — no runtime script reads a stored `fanout.executors`. A lineage child is marked by `config.fanout_lineage_artifact_dir` plus a `fanout` block holding `{label, concurrency, siblingLineage}` and **no** `executors` key, which is also why the YAML's `no entries in config.fanout.executors` skip keeps working inside a lineage. The escape flag is therefore needed for fixtures and for declared-flagless re-runs, not for resume. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:310]",
       "addedAtIteration": 4,
       "sources": [
-        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
         ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
@@ -788,7 +788,7 @@
       "text": "**The carried-forward status question is answered, and it clears the status field of the false-positive charge: the correct fan-out path does write `status: complete`, unconditionally.** `step_update_config_status` has no `skip_when` and no fan-out branch, it sits in `phase_synthesis`, and every fan-out continuation jumps to `phase_synthesis` (`research-auto.yaml:1053,1056,1059`; `review-auto.yaml:420,1105-1111`; `review-confirm.yaml:408`). The writer exists in all three generated YAMLs (`research-auto.yaml:2340`, `review-auto.yaml:2451`, `review-confirm.yaml:2011`). So a packet left at `initialized` after a run is a *true* discriminator, and a check on it cannot false-positive a correct fan-out run — it still fires only after the damage, which is why it remains a report rather than a gate. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:2340]",
       "addedAtIteration": 4,
       "sources": [
-        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
         ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
@@ -808,7 +808,7 @@
       "text": "**The loop-type conjunction in the predicate is an optimization, not load-bearing: the council is refused by a code check two lines into the run.** `ACTIVE_FANOUT_LOOP_TYPES` is `{research, review}` and `assertActiveFanoutLoopType` throws `inputError` for anything else with the deprecation message, so no `council` lineage can reach the expansion at all. Iteration 3 proved this by import graph; this is a second, independent proof in code. Practical consequence: the reviewer may drop `(loopType === 'research' || loopType === 'review')` from the new condition without changing behaviour — keeping it costs nothing and documents intent, so keep it, but nobody should argue the change is council-unsafe. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:475]",
       "addedAtIteration": 4,
       "sources": [
-        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
         ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
@@ -825,10 +825,10 @@
     },
     {
       "id": "finding-4-2-the-one-false-positive-is-real-it-is-already-in-tree-and-it-does-not-come-from-r",
-      "text": "**The one false positive is real, it is already in-tree, and it does not come from resume — it comes from a packet whose stored matrix has one executor.** `specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json` persists `fanout.executors` of length one (`sol`, `iterations: 15`, `concurrency: 1`). Re-invoking that packet's matrix after the guard lands is refused unless `--allow-single-lineage` is passed. That is a *declared behaviour change*, not a defect: the run is the incident shape, so refusing it is the intent, but the change note must say that this packet needs the flag to continue. Contrast with a genuine two-lineage packet (`006-fanout-deep-review/review/deep-review-config.json`, `mimo` + `deepseek`), whose resume is unaffected. [SOURCE: specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5]",
+      "text": "**The one false positive is real, it is already in-tree, and it does not come from resume — it comes from a packet whose stored matrix has one executor.** `specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json` persists `fanout.executors` of length one (`sol`, `iterations: 15`, `concurrency: 1`). Re-invoking that packet's matrix after the guard lands is refused unless `--allow-single-lineage` is passed. That is a *declared behaviour change*, not a defect: the run is the incident shape, so refusing it is the intent, but the change note must say that this packet needs the flag to continue. Contrast with a genuine two-lineage packet (`006-fanout-deep-review/review/deep-review-config.json`, `mimo` + `deepseek`), whose resume is unaffected. [SOURCE: specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5]",
       "addedAtIteration": 4,
       "sources": [
-        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
         ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
@@ -848,7 +848,7 @@
       "text": "**The predicate is right as written, but only because `count` expansion runs first — a \"two or more labels\" guard written literally over the *base* labels would refuse a documented path.** `expandLineages` keeps a `count: 1` entry as one lineage and expands `count > 1` into `${label}-1 … ${label}-N`, each carrying `count: 1`. So a single `--executor X --count 5` — documented as native fan-out that \"runs N sequential `@deep-research` agent dispatches\" — expands to five lineages and passes `allLineages.length < 2`. Counting *distinct base labels* instead would refuse it. The predicate as proposed (`allLineages.length < 2`, after expansion) is therefore the correct one, and the refusal message must say \"expanded lineages\", not \"labels\", or it will read as forbidding `--count`. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1158]",
       "addedAtIteration": 4,
       "sources": [
-        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
         ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
@@ -868,7 +868,7 @@
       "text": "**The repository already ships the refusal this change adds, one layer up, and its wording is the one to reuse.** The research YAML's non-fan-out dispatch branch refuses `cli-deepseek-harness` with a stderr message — `'cli-deepseek-harness runs only as a fan-out lineage; rerun with --count=2 or a second --executor group, or choose another executor kind'` — followed by `process.exit(2)`, and its note records that it \"fails closed before any dispatch receipt is written\". That is the house style for \"this executor needs a fan-out, pick another route\": name the two legal routes, fail closed before any side effect. `fanout-run.cjs`'s `inputError` path produces the same fail-closed shape (`{status:'error', code:'INPUT_VALIDATION'}`) before the pool spawns, so the new refusal should borrow this sentence rather than invent new wording. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:1212]",
       "addedAtIteration": 4,
       "sources": [
-        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
         "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
         ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",

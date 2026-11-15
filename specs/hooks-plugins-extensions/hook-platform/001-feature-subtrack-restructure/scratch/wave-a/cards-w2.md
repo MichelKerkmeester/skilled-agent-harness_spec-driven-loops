@@ -6,15 +6,15 @@
 - Mirrors: none
 - Kill switch: SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED (.skilled/hooks/hook-flags.env.example:29)
 - Packets:
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle | Spec: Cross-Runtime Directive Lifecycle
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/015-directive-docs-alignment | Spec: Directive-Lifecycle Documentation Alignment
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/016-directive-playbook-alignment | Spec: Directive-Lifecycle Playbook Alignment
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/017-adapter-live-delivery-verification | Spec: Adapter Live-Delivery Verification
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery | Feature Specification: Fix Code-Review P0-P3 Findings for Directive-Lifecycle Delivery
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only | Feature Specification: Directive Delivery — Startup + Compaction Only (Pi directives-only gap fix)
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/013-pi-local-directive-dedup | Spec: Pi-Local Directive De-Duplication
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction | Per-Prompt Injection Bloat Reduction
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/goal-and-directive-hooks/005-retire-governor-and-proof-directives | Feature Specification: Retire the Governor and Proof-Over-Appearance Directives
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/014-cross-runtime-directive-lifecycle | Spec: Cross-Runtime Directive Lifecycle
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/015-directive-docs-alignment | Spec: Directive-Lifecycle Documentation Alignment
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/016-directive-playbook-alignment | Spec: Directive-Lifecycle Playbook Alignment
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/017-adapter-live-delivery-verification | Spec: Adapter Live-Delivery Verification
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery | Feature Specification: Fix Code-Review P0-P3 Findings for Directive-Lifecycle Delivery
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/019-pi-directive-startup-compaction-only | Feature Specification: Directive Delivery — Startup + Compaction Only (Pi directives-only gap fix)
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/013-pi-local-directive-dedup | Spec: Pi-Local Directive De-Duplication
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction | Per-Prompt Injection Bloat Reduction
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/directive-lifecycle/003-retire-governor-and-proof-directives | Feature Specification: Retire the Governor and Proof-Over-Appearance Directives
   - MENTIONS | CHILD | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup | Feature Specification: Headless Fallback Status and Dedup
   - MENTIONS | CHILD | specs/system-skill-advisor/runtime-lifecycle/004-defect-and-hardening-fixes/003-fix-remaining-advisor-defects | Feature Specification: Restore the pi advisor dedup return, renew the drifted advisor battery and close the stale documentation surfaces
   - MENTIONS | CHILD | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief | Feature Specification: restore the pi skill advisor brief: probe either root name for the warm-CLI assets and key the directive dedup receipt on the full contribution
@@ -32,10 +32,10 @@
 - Mirrors: .opencode/plugins/cli-dispatch-audit.js; .pi/extensions/dispatch-audit.ts, .pi/extensions/dispatch-preflight-lint.ts
 - Kill switch: SYSTEM_DISPATCH_DISABLED, SYSTEM_DISPATCH_GUARD_DISABLED (.skilled/hooks/hook-flags.env.example:30-31)
 - Packets:
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/006-dispatch-shape-coverage | Feature Specification: Dispatch-shape coverage for devin/cursor/pi + Codex fold-in
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/006-dispatch-authorization-hardening | Pi Dispatch Authorization Boundary Hardening
-  - OWNS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/007-dispatch-validation-evidence | Dispatch Validation, Evidence, and Corpus Baseline
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair | Feature Specification: Document the owning runner for the dispatch adapter vitest suites
+  - OWNS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/006-dispatch-shape-coverage | Feature Specification: Dispatch-shape coverage for devin/cursor/pi + Codex fold-in
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/006-dispatch-authorization-hardening | Pi Dispatch Authorization Boundary Hardening
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/007-dispatch-validation-evidence | Dispatch Validation, Evidence, and Corpus Baseline
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair | Feature Specification: Document the owning runner for the dispatch adapter vitest suites
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes | Feature Specification: Phase 40: dispatch-lint-held-fixes
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/051-dispatch-lint-nested-quote-gap | Feature Specification: Phase 51: dispatch-lint-nested-quote-gap
   - OWNS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/007-dispatch-recognition-and-stress-adapter | Feature Specification: Phase 7: dispatch-recognition-and-stress-adapter
@@ -65,7 +65,7 @@
   - MENTIONS | TOP-LEVEL | specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record | Feature Specification: Record the advisor runtime dist build so a fresh build writes its own freshness attestation
   - MENTIONS | CHILD | specs/system-skill-advisor/codebase-conformance/004-advisor-status-truthfulness/001-freshness-and-scan-truth | Feature Specification: Phase 1: freshness-and-scan-truth
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage | Feature Specification: Phase 28: plugin-kill-switch-coverage
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/002-pins-imports-dual-export | Feature Specification: Phase 2: pins-imports-dual-export
   - MENTIONS | CHILD | specs/sk-code/quality-and-review-modes/002-quality-agnostic-gate/010-alignment-audit | Feature Specification: Phase 10: alignment-audit
@@ -84,7 +84,7 @@
 - Mirrors: .opencode/plugins/env-secret-guard.js; .pi/extensions/env-secret-guard.ts
 - Kill switch: SYSTEM_ENV_SECRET_GUARD_DISABLED (.skilled/hooks/hook-flags.env.example:33, which notes it is environment-only and not read from that file)
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard | Feature Specification: env secret guard for every runtime
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard | Feature Specification: env secret guard for every runtime
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - MENTIONS | TOP-LEVEL | specs/system-speckit/repo-operations/005-main-ci-red-checks | Feature Specification: Repair the five checks that fail on main
 - Evidence: .skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:770 (`evaluateToolCall`); .skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:998 (`fingerprint`, keyed by `ENV_SECRET_GUARD_PEPPER` at line 25); .skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs:277 (`reviewToolResult`)

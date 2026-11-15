@@ -3,12 +3,7 @@
   "packet_id": "hooks-plugins-extensions/repo-commit-gates",
   "spec_folder": "hooks-plugins-extensions/repo-commit-gates",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [
-    "hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction",
-    "hooks-plugins-extensions/repo-commit-gates/002-routing-manifest-auto-remint",
-    "hooks-plugins-extensions/repo-commit-gates/003-prepush-naming-gate-residue",
-    "hooks-plugins-extensions/repo-commit-gates/004-spec-metadata-auto-remint"
-  ],
+  "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],

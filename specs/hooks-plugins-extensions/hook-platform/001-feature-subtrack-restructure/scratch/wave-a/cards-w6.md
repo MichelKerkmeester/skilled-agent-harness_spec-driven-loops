@@ -6,16 +6,16 @@
 - Mirrors: .opencode/plugins/system-spec-gate.js, .pi/extensions/spec-gate-classify.ts, .pi/extensions/spec-gate-enforce.ts
 - Kill switch: SYSTEM_SPEC_GATE_DISABLED
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise | Feature Specification: Spec-gate question noise (stop per-turn re-injection across all runtimes)
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/spec-gate/001-spec-gate-question-noise | Feature Specification: Spec-gate question noise (stop per-turn re-injection across all runtimes)
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/048-gate-3-mutation-time-delivery | Feature Specification: Phase 1: gate-3-mutation-time-delivery
-  - OWNS | CHILD | specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/005-gate3-relay-edge-triggering | Feature Specification: Gate-3 Relay Edge-Triggering
+  - OWNS | CHILD | specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/005-gate3-relay-edge-triggering | Feature Specification: Gate-3 Relay Edge-Triggering
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/040-gate-3-option-merge | Feature Specification: Phase 1: gate-3-option-merge
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/049-gate-3-delivery-residue | Feature Specification: Phase 49: Gate-3 delivery residue
   - OWNS | CHILD | specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/009-gate-3-menu-series-parent | Feature Specification: Carry the series parent into the runtime Gate 3 menu
   - OWNS | CHILD | specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/014-gate-3-menu-parity | Feature Specification: Gate 3 menu parity
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/004-v4-release-line-research/009-gate3-and-continuity-root | Feature Specification: Phase 9: gate3-and-continuity-root
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/skill-advisor/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports | Feature Specification: Phase 1: hook-adapter-thin-transports
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - 46 more hits omitted
@@ -36,7 +36,7 @@
   - MENTIONS | CHILD | specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/023-cross-runtime-dispatch | Feature Specification: Retire the deep/* Dispatch-Context (Phase-0) Gate
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/010-hermes-hook-parity | Feature Specification: Phase 1: hermes-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline | Feature Specification: Phase 4: hook-stdin-deadline
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/009-round-two-follow-ups/005-hook-stdin-deadlines | Feature Specification: Phase 5: hook-stdin-deadlines
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups | Feature Specification: Phase 43: v2-default-model-and-follow-ups
@@ -82,17 +82,17 @@
 - Mirrors: none
 - Kill switch: none found in hook-flags.env.example; the extension has its own `/cache-optimizer disable` command and `PI_CACHE_OPTIMIZER_NO_*` opt-outs
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/008-cache-optimizer-improvement-research | Feature Specification: cache optimizer improvement research
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/009-cache-optimizer-measurement-fixes | Feature Specification: cache optimizer measurement and pricing fixes
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/007-cache-optimizer-review-remediation | Feature Specification: cache optimizer review remediation
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard | Feature Specification: Let a second pi-cache-optimizer copy stand down so pi starts in git worktrees
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/005-pi-cache-affinity-compat | Feature Specification: pi-cache-optimizer OpenRouter session-affinity compat
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi | Feature Specification: One cache extension covering every Pi model, with measured economics and paid-retry guards
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer | Feature Specification: Fork pi-cache-optimizer with a DeepSeek Exclusion Guard
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration | Feature Specification: Gate DeepSeek cache-compat advice on an explicit wire-protocol opt-in and declare image input for the llmgateway model
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/004-pi-extension-playbooks/001-cache-optimizer-playbook | Feature Specification: Phase 1 cache-optimizer playbook
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix | Phase Parent: Pi Reasonix-Style Prompt Caching — Research → Build Decision
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/006-fork-and-improve-deep-pi | Phase Parent: Fork and Improve deep-pi
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/006-cache-optimizer-improvement-research | Feature Specification: cache optimizer improvement research
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/007-cache-optimizer-measurement-fixes | Feature Specification: cache optimizer measurement and pricing fixes
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/005-cache-optimizer-review-remediation | Feature Specification: cache optimizer review remediation
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/009-cache-optimizer-single-copy-guard | Feature Specification: Let a second pi-cache-optimizer copy stand down so pi starts in git worktrees
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/003-pi-cache-affinity-compat | Feature Specification: pi-cache-optimizer OpenRouter session-affinity compat
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi | Feature Specification: One cache extension covering every Pi model, with measured economics and paid-retry guards
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer | Feature Specification: Fork pi-cache-optimizer with a DeepSeek Exclusion Guard
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/008-compat-opt-in-and-image-declaration | Feature Specification: Gate DeepSeek cache-compat advice on an explicit wire-protocol opt-in and declare image input for the llmgateway model
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-cache-optimizer/002-pi-extension-playbooks/001-cache-optimizer-playbook | Feature Specification: Phase 1 cache-optimizer playbook
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix | Phase Parent: Pi Reasonix-Style Prompt Caching — Research → Build Decision
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/006-fork-and-improve-deep-pi | Phase Parent: Fork and Improve deep-pi
   - MENTIONS | TOP-LEVEL | specs/cli-external-orchestration/dispatch-surface-maintenance/004-pi-extension-brace-expansion | Feature Specification: Bump brace-expansion in two Pi extension lockfiles to close four Dependabot alerts
   - 39 more hits omitted
 - Evidence: .pi/extensions/pi-cache-optimizer/index.ts:104 ("Reorders Pi's system prompt so stable content is sent before dynamic context"), .pi/extensions/pi-cache-optimizer/index.ts:844 (`optimizeSystemPrompt` builds the stable prefix and reorders only when every marker survives), .pi/extensions/pi-cache-optimizer/index.ts:1400 (`shouldInjectOpenAIPromptCacheKey` gates the OpenAI-compatible cache-key fallback)
@@ -108,16 +108,16 @@
 - Mirrors: none
 - Kill switch: none found in hook-flags.env.example; `/fast off` and the persisted config are the extension's own switches
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support | Feature Specification: pi-fast-mode-w-subagent-support [hooks/011-pi-fast-mode-w-subagent-support/spec]
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/001-fork-and-package | Feature Specification: fork-and-package workstream [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/spec]
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff | Feature Specification: subagent-handoff workstream [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/spec]
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/003-integration-and-tests | Feature Specification: integration-and-tests [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/spec]
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support | Feature Specification: pi-fast-mode-w-subagent-support [hooks/011-pi-fast-mode-w-subagent-support/spec]
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/001-fork-and-package | Feature Specification: fork-and-package workstream [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/spec]
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/002-subagent-handoff | Feature Specification: subagent-handoff workstream [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/spec]
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests | Feature Specification: integration-and-tests [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/spec]
   - OWNS | TOP-LEVEL | specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash | Feature Specification: Let a second copy of the Pi fast-mode extension stand down, so cli-pi runs from a git worktree
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag | Feature Specification: Phase 21: pi-fast-mode-trusted-flag
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline | Feature Specification: Phase [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline/spec]
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract | Feature Specification: [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract/spec]
-  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite | Feature [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite/spec]
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/004-pi-extension-playbooks | Feature Specification: Pi extension manual-testing playbooks
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline | Feature Specification: Phase [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline/spec]
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract | Feature Specification: [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract/spec]
+  - OWNS | CHILD | specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite | Feature [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite/spec]
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-cache-optimizer/002-pi-extension-playbooks | Feature Specification: Pi extension manual-testing playbooks
   - MENTIONS | TOP-LEVEL | specs/cli-external-orchestration/dispatch-surface-maintenance/004-pi-extension-brace-expansion | Feature Specification: Bump brace-expansion in two Pi extension lockfiles to close four Dependabot alerts
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - 14 more hits omitted
@@ -134,13 +134,13 @@
 - Mirrors: .opencode/plugins/ (19 plugin files reference `.skilled/hooks/shared/hook-flags.cjs`), .pi/extensions/ (22 one-line entries re-export the runtime adapters), .pi/extensions/lib/claude-hook-adapter.ts
 - Kill switch: SYSTEM_HOOKS_DISABLED (master) plus SYSTEM_<CONCERN>_DISABLED per concern
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage | Feature Specification: Phase 28: plugin-kill-switch-coverage
   - MENTIONS | TOP-LEVEL | specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches | Feature Specification: Doc validation off switches
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in | Feature Specification: Session relaunch hooks off by default, opt in with SYSTEM_SESSION_RELAUNCH_ENABLED
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction | Feature Specification: Git Hook Gate Reduction
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/git-hooks/001-git-hook-gate-reduction | Feature Specification: Git Hook Gate Reduction
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards | Feature Specification: Phase 8: vibe-repo-guards
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/049-gate-3-delivery-residue | Feature Specification: Phase 49: Gate-3 delivery residue

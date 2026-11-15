@@ -25,7 +25,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`SYNC` is `.skilled/bin/compiled-route-sync.cjs`. `RS` is `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs`. `RST` is `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs`. `ADV` is `.skilled/skills/system-skill-advisor/runtime`. `S` is `specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation`. `HOST` is a throwaway host in the session scratchpad, never inside the repository. Edit numbers refer to `plan.md` section 3.
+`SYNC` is `.skilled/bin/compiled-route-sync.cjs`. `RS` is `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs`. `RST` is `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs`. `ADV` is `.skilled/skills/system-skill-advisor/runtime`. `S` is `specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation`. `HOST` is a throwaway host in the session scratchpad, never inside the repository. Edit numbers refer to `plan.md` section 3.
 <!-- /ANCHOR:notation -->
 
 ---

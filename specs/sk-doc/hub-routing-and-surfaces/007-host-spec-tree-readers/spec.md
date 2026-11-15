@@ -74,7 +74,7 @@ fail 0
 $ (cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/policy-observation-sink.vitest.ts)
 Test Files  1 passed (1)
      Tests  5 passed (5)
-$ node --test specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs
+$ node --test specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs
 tests 5
 pass 4
 fail 1
@@ -103,7 +103,7 @@ The one failure is `activated cells require the shipped validator`: ERR_MODULE_N
 
 ### Files to Change
 
-`S` is `specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation`. `H` is `.skilled/skills/system-skill-advisor/runtime/tests/helpers`.
+`S` is `specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation`. `H` is `.skilled/skills/system-skill-advisor/runtime/tests/helpers`.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
