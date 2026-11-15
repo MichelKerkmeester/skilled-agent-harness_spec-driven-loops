@@ -1,0 +1,28 @@
+lib AGENTS.md .vibe hooks unchanged exit=0
+spec-kit playbook and cli hub unchanged exit=0
+command-prompts.jsonl equals BASE exit=0
+holdout-prompts.jsonl equals BASE exit=0
+behaviour-fresh-prompts.jsonl equals BASE exit=0
+baselines unchanged exit=0
+package diff: []
+ids in added code comments: []
+ids in added workflow comments: []
+em dashes in added doc lines: [ ]
+probe-031 in playbook: []
+status (.skilled .opencode .github .vibe AGENTS.md):
+ M .github/workflows/README.md
+ M .github/workflows/command-tree-parity.yml
+ M .github/workflows/spec-kit-check.yml
+ M .skilled/commands/scripts/validate-command-references.cjs
+ M .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md
+ M .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+ M .skilled/skills/system-skill-advisor/graph-metadata.json
+ M .skilled/skills/system-skill-advisor/leaf-aliases.json
+ M .skilled/skills/system-skill-advisor/leaf-manifest.json
+ M .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json
+ M .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts
+?? .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md
+?? .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/vibe-command-documents.md
+?? .skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md
+LEFT        0

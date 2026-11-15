@@ -316,6 +316,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md",
+    "diskPath": "manual-testing-playbook/cli-hooks-and-plugin/brief-command-policy-word.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md",
     "diskPath": "manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md"
   },
@@ -338,6 +343,11 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/cli-hooks-and-plugin/skill-advisor-cli-fallback.md",
     "diskPath": "manual-testing-playbook/cli-hooks-and-plugin/skill-advisor-cli-fallback.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/cli-hooks-and-plugin/vibe-command-documents.md",
+    "diskPath": "manual-testing-playbook/cli-hooks-and-plugin/vibe-command-documents.md"
   },
   {
     "workflowMode": "system-skill-advisor",
@@ -393,6 +403,11 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md",
     "diskPath": "manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/command-offer-fit-gates.md"
   },
   {
     "workflowMode": "system-skill-advisor",

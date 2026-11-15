@@ -1,0 +1,5 @@
+P02 kept: [["system-skill-advisor",null,0.8847,null,null],["sk-prompt",null,0.8357,null,null]] | paraphrase none
+P04 kept: [["system-skill-advisor",null,0.8591,null,null],["sk-prompt",null,0.82,null,null]] | paraphrase sk-prompt
+P11 kept: [["system-skill-advisor",null,0.82,null,null],["sk-doc","sk-create-quality-control",0.82,null,null]] | paraphrase none
+P07 declined: read-only explainer floor in the scorer pins confidence at 0.25, a scorer change is outside FILES. floor: {"correct":24,"total":44} {"count":0,"total":35} {"own":2,"attached":0,"combined":2,"total":44}  eval: [160,49,21,5] blocked=1 probe=[]
+P01 declined: cli-mistral-vibe owns the Vibe hook wiring and the advisor already ranks second, see plan.md D5 | [["cli-external-orchestration","cli-mistral-vibe",0.95,null,null],["system-skill-advisor",null,0.8665,null,null]]

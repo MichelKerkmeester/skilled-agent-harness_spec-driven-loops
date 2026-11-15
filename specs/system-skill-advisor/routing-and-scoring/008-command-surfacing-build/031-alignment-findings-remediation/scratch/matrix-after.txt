@@ -1,0 +1,18 @@
+D01 validator   exit=0 OK  command references resolve across 85 asset file(s) [create, deep, design, doctor, prompt, speckit].
+D01 self-test   [self-test] real tree resolves clean: PASS (0 unresolved)
+X01 command-tree-parity   vibe-checks=3 vibe-filters=2 dsh-filters=2
+X01 spec-kit-check   vibe-checks=3 vibe-filters=0 dsh-filters=0
+D03 docs        only-mentions=0
+D03 cli         ["the /create:sk-skill command is slow","sk-doc","/create:sk-skill","start"]
+D03 cli         ["what does /create:sk-skill do","sk-doc",null,null]
+BS401 playbook  scenario-files=53 new-ids=3 test-pin="live 53-scenario"
+PRB P01         [["cli-external-orchestration","cli-mistral-vibe",0.95],["system-skill-advisor",null,0.8665]]
+PRB P02         [["system-skill-advisor",null,0.9098],["sk-prompt",null,0.8356]]
+PRB P04         [["system-skill-advisor",null,0.8591],["sk-prompt",null,0.82]]
+PRB P07         []
+PRB P11         [["system-skill-advisor",null,0.82],["sk-doc","sk-create-quality-control",0.82]]
+BAT01 dist      system-spec-kit/runtime=fresh
+BAT01 dist      system-spec-kit/runtime/cli=fresh
+BAT02 package   FAIL package=system-spec-kit scenarios=124 violations=1
+BAT06 links     check-markdown-links: 7606 files, 14907 links checked, 5 broken
+BAT07 strict    failed-packages=[package=system-spec-kit]

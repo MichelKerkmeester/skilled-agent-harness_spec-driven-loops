@@ -1,0 +1,136 @@
+SA before:        0
+
+## BUILD
+
+@spec-kit/system-skill-advisor dist build attestation recorded
+@spec-kit/system-skill-advisor dist build attestation recorded
+exit=0
+
+## TC
+> typecheck
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+
+exit=0
+
+## VX manual-testing-playbook
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  16:41:00
+   Duration  111ms (transform 18ms, setup 16ms, import 10ms, tests 11ms, environment 0ms)
+
+exit=0
+
+## VX command-attach-guards
+
+ Test Files  1 passed (1)
+      Tests  146 passed (146)
+   Start at  16:41:01
+   Duration  130ms (transform 24ms, setup 14ms, import 20ms, tests 31ms, environment 0ms)
+
+exit=0
+
+## VALL
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+[system-skill-advisor-launcher] reclaimed stale bootstrap lock at ../../../../../var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/system-skill-advisor-launcher-VQA2BZ/runtime/database/.system-skill-advisor-launcher.lockdir (10s old)
+
+ Test Files  185 passed (185)
+      Tests  2157 passed | 6 skipped (2163)
+   Start at  16:41:01
+   Duration  267.72s (transform 2.01s, setup 931ms, import 10.45s, tests 242.50s, environment 8ms)
+
+exit=0
+
+## DT
+✔ setup keeps a host-relative specs alias out of the ignore list (436.107416ms)
+ℹ tests 1229
+ℹ suites 0
+ℹ pass 1229
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 183542.115833
+exit=0
+
+## VMIR prompts
+[vibe-prompt-sync] PASS: 45 prompt stubs are in sync.
+exit=0
+
+## VMIR agents
+[vibe-agent-sync] PASS: 11 agent profiles are in sync.
+exit=0
+
+## VMIR skills
+[vibe-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/templates/scratch: excluded directory name: scratch
+[vibe-skill-sync] PASS: 55 skill links are in sync.
+exit=0
+
+## META compiler
+VALIDATION PASSED: all metadata files are valid
+exit=0
+
+## META freshness
+  NULL derived timestamp: none
+  (report-only — the canonical reindex is operator-gated; nothing was written)
+exit=0
+
+## META root-metadata
+
+checked=14 passed=14 failed=0 fixed=0
+exit=0
+
+## META derived
+checked=14 fresh=14 stale=0 errored=0
+exit=0
+
+## META leaf
+checked=14 fresh=14 failed=0
+exit=0
+
+## META intent
+RESULT: PASSED
+exit=0
+
+## VCR
+OK  command references resolve across 85 asset file(s) [create, deep, design, doctor, prompt, speckit].
+exit=0
+
+## VCR self-test
+[self-test] broken fixture flags a violation: PASS (3 found)
+[self-test] real tree resolves clean:         PASS (0 unresolved)
+[self-test] four command topologies resolve: PASS ({"workflow router":1,"subaction router":1,"direct-tool/plugin router":1,"monolithic":1,"UNCLASSIFIED":0})
+exit=0
+
+## PBV
+PASS package=system-skill-advisor tier=FAIL_CLOSED scenarios=53 categories=9 operator=28 routing_gold_excluded=25 violations=0 warnings=0
+exit=0
+exit=0
+
+## actionlint
+exit=0
+
+## links
+Fix the link, or — if it is an intentional placeholder/example — add it to the ALLOWLIST in this script.
+exit=0
+SA after:        0
+
+## links (rerun alone, the scripted line kept only the tail)
+check-markdown-links: 7606 files, 14907 links checked, 5 broken (before: 5, the pre-existing BAT-06 links)
+
+## scenario reruns after lane R (NC-012, CL-009, CL-010)
+NC refusal: [["sk-doc",null,null],["system-spec-kit",null,null],["cli-external-orchestration",null,null]]
+NC question: [["sk-doc",null,null],["system-spec-kit",null,null],["mcp-tooling",null,null]]
+NC plain: [["sk-doc","/create:readme","start"],["system-spec-kit",null,null],["mcp-tooling",null,null]]
+NC no-edit: [["sk-doc",null,null],["system-spec-kit",null,null],["mcp-tooling",null,null]]
+NC typo: [["sk-doc",null,null],["sk-code",null,null],["mcp-tooling",null,null]]
+NC git: [["sk-git",null,null],["command-doctor-git-setup","/doctor:git setup","run"]]
+CL9 git-parent: Advisor: live; use sk-git 0.83/0.16 pass.|Also: /doctor:git setup (run)|
+CL9 git-child: Advisor: live; use sk-git 0.83/0.16 pass.|Also: /doctor:git setup (run)|
+CL9 update-parent: Advisor: live; use system-skilled-doctor → /doctor:update (ask) 0.82/0.20 pass.|Directives:|
+CL9 update-child: Advisor: live; use system-skilled-doctor → /doctor:update (parent-named only) 0.82/0.20 pass.|Directives:|
+CL9 speckit-parent: Advisor: live; use sk-code 0.82/0.12 pass.|Also: /doctor:speckit (run)|
+CL9 speckit-child: Advisor: live; use sk-code 0.82/0.12 pass.|Also: /doctor:speckit (parent-named only)|
+CL10 parent: Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.|Command documents (read in full before taking one): /create:readme is .skilled/commands/create/readme.md.|
+CL10 child: |
+LEFT        0

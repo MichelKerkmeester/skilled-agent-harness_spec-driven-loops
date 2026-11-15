@@ -42,20 +42,20 @@ function actualScenarioFiles(): string[] {
 }
 
 describe('skill advisor manual testing playbook inventory', () => {
-  it('keeps the root playbook aligned with the live 50-scenario corpus', () => {
+  it('keeps the root playbook aligned with the live 53-scenario corpus', () => {
     const markdown = readFileSync(rootPlaybook, 'utf8');
     const rows = listedScenarioRows(markdown);
     const files = actualScenarioFiles();
 
-    expect(markdown).toContain('50 scenario files across 9 categories');
-    expect(markdown).toContain('all 50 scenario files are `PASS`');
+    expect(markdown).toContain('53 scenario files across 9 categories');
+    expect(markdown).toContain('all 53 scenario files are `PASS`');
     expect(markdown).not.toMatch(/\b24-scenario\b|\b24 scenarios\b/);
-    expect(rows).toHaveLength(50);
-    expect(new Set(rows.map((row) => row.id)).size).toBe(50);
-    expect(files).toHaveLength(50);
+    expect(rows).toHaveLength(53);
+    expect(new Set(rows.map((row) => row.id)).size).toBe(53);
+    expect(files).toHaveLength(53);
     expect(files.filter((file) => /\/\d{3}-[^/]*\.md$/.test(file))).toHaveLength(0);
     expect(markdown).toContain(
-      'The category tree holds 50 scenario files named by feature, none of them',
+      'The category tree holds 53 scenario files named by feature, none of them',
     );
     expect(markdown).not.toContain('scenario files plus no');
 

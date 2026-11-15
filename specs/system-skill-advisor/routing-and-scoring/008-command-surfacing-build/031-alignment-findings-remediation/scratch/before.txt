@@ -1,0 +1,173 @@
+FILES count 14
+
+## 030 complete
+1
+exit=0
+
+## ancestor 682ca792315
+exit=0
+
+## status FILES
+exit=0
+
+## BASE
+ea3b7ab4460
+exit=0
+
+## RUN exists
+exit=0
+SA before:        0
+
+## BUILD
+> tsc --build
+
+
+> postbuild
+> mkdir -p dist/runtime/data && cp data/*.json dist/runtime/data/ && (node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs record-build --package system-skill-advisor/runtime --entry default || node -e "const r=require('../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs').writePackageSourceHashCache('system-skill-advisor/runtime',{entry:'default'});if(r.status!=='cached')throw new Error(r.message)") && (node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs record-build --package system-skill-advisor/runtime --entry skill-advisor-cli || node -e "const r=require('../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs').writePackageSourceHashCache('system-skill-advisor/runtime',{entry:'skill-advisor-cli'});if(r.status!=='cached')throw new Error(r.message)")
+
+@spec-kit/system-skill-advisor dist build attestation recorded
+@spec-kit/system-skill-advisor dist build attestation recorded
+exit=0
+
+## TC
+
+> typecheck
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+
+exit=0
+
+## VX manual-testing-playbook
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/skills/system-skill-advisor/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  15:45:51
+   Duration  160ms (transform 27ms, setup 28ms, import 13ms, tests 7ms, environment 0ms)
+
+exit=0
+
+## VX command-attach-guards
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/skills/system-skill-advisor/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  146 passed (146)
+   Start at  15:45:51
+   Duration  199ms (transform 41ms, setup 25ms, import 35ms, tests 39ms, environment 0ms)
+
+exit=0
+
+## VALL
+ Test Files  185 passed (185)
+      Tests  2157 passed | 6 skipped (2163)
+exit=0
+
+## DT
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 168167.05125
+exit=0
+
+## VMIR prompts
+[vibe-prompt-sync] PASS: 45 prompt stubs are in sync.
+exit=0
+
+## VMIR agents
+[vibe-agent-sync] PASS: 11 agent profiles are in sync.
+exit=0
+
+## VMIR skills
+[vibe-skill-sync] LINKS: 55
+[vibe-skill-sync] PASS: 55 skill links are in sync.
+exit=0
+
+## META compiler
+Discovered 14 skill graph-metadata.json files
+VALIDATION PASSED: all metadata files are valid
+exit=0
+
+## META freshness
+  MISSING (on disk, not in SQLite): none
+  FAMILY MISMATCH SQLite vs disk: none
+  GHOST (in compiled json, not on disk): none
+  MISSING (on disk, not in compiled json): none
+  FAMILY MISMATCH compiled vs disk: none
+  SIGNAL DRIFT compiled vs disk: none
+  NULL derived timestamp: none
+  (report-only — the canonical reindex is operator-gated; nothing was written)
+exit=0
+
+## META root-metadata
+OK   [S] sk-git
+OK   [S] sk-prompt
+OK   [H] system-deep-loop
+OK   [S] system-skill-advisor
+OK   [S] system-skilled-doctor
+OK   [S] system-spec-kit
+
+checked=14 passed=14 failed=0 fixed=0
+exit=0
+
+## META derived
+
+checked=14 fresh=14 stale=0 errored=0
+exit=0
+
+## META leaf
+OK    sk-git  91e132631e97035c3634819c646c46e548ba5902a6085f75177775ee1030896f
+OK    sk-prompt  70d1097221f5ff4bf52bbe829aae461a2a4025fd051b9f97d3e95303f15c5dd8
+OK    system-deep-loop  eae1c4aea9fd71652ccb85c163cc5115bbee0acf67e97b4bfdb5e4135245fdc0
+OK    system-skill-advisor  b1ea4ec95492a192363fd43794e59c0e391a99d97b5c95c66f7d337529673523
+OK    system-skilled-doctor  d44855015589c6f828f8cac99dc141a32105246b0a2423b4fbd3e04976aca8c0
+OK    system-spec-kit  8462beef205aee8b261edff06fe47d257002fe074048e87681eb46bd8c3ae0f5
+
+checked=14 fresh=14 failed=0
+exit=0
+
+## META intent
+OK    mcp-tooling                  declared=130 signals=146 missing=  0 orphans=  0
+OK    sk-code                      declared=238 signals=292 missing=  0 orphans=  0
+OK    sk-design                    declared= 99 signals=126 missing=  0 orphans=  0
+OK    sk-doc                       declared=264 signals=281 missing=  0 orphans=  0
+OK    system-deep-loop             declared= 24 signals= 28 missing=  0 orphans=  0
+
+checked=7 hub(s), missing=0, orphans=0
+RESULT: PASSED
+exit=0
+
+## VCR
+FAIL  1 unresolved command reference(s):
+  .skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:160  [runtime-dir]  .vibe/agents/  — not an allowlisted runtime dir (.skilled, .opencode, .claude, .codex, .cursor, .devin, .pi, .dsh)
+exit=1
+
+## VCR self-test
+[self-test] broken fixture flags a violation: PASS (3 found)
+[self-test] real tree resolves clean:         FAIL (1 unresolved)
+[self-test] four command topologies resolve: PASS ({"workflow router":1,"subaction router":1,"direct-tool/plugin router":1,"monolithic":1,"UNCLASSIFIED":0})
+    .skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:160  [runtime-dir]  .vibe/agents/  — not an allowlisted runtime dir (.skilled, .opencode, .claude, .codex, .cursor, .devin, .pi, .dsh)
+exit=1
+
+## PBV
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+PASS package=system-skill-advisor tier=FAIL_CLOSED scenarios=50 categories=9 operator=25 routing_gold_excluded=25 violations=0 warnings=0
+exit=0
+exit=0
+
+## actionlint
+exit=0
+SA after:        0
+
+## MATRIX exit=0 stderr:
+
+## FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+## EVAL
+[160,49,21,5]
+LEFT:        0
+DONE

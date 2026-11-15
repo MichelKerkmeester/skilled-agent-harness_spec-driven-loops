@@ -1,0 +1,91 @@
+origin/main: bcd15801196
+
+$ zsh /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/scratch/planning/extract-check.sh 28a6d40f81f
+ref 28a6d40f81f 28a6d40f81f
+links    check-markdown-links: 7601 files, 14899 links checked, 5 broken
+package  FAIL package=system-spec-kit tier=FAIL_CLOSED scenarios=124 categories=9 operator=110 routing_gold_excluded=14 violations=1 warnings=2   BAKED_RUN_TRANSCRIPT tooling-and-scripts/setup-native-module-health-and-mcp-installation.md:55 dated run evidence appears in scenario truth 
+strict   failed-packages=[package=system-spec-kit] errors=0
+exit=0
+
+$ zsh /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/scratch/planning/extract-check.sh origin/main
+ref origin/main bcd15801196
+links    check-markdown-links: 7603 files, 14910 links checked, 0 broken
+package  PASS package=system-spec-kit tier=FAIL_CLOSED scenarios=125 categories=9 operator=111 routing_gold_excluded=14 violations=0 warnings=2 
+strict   failed-packages=[] errors=0
+exit=0
+
+$ zsh /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/scratch/planning/extract-check.sh HEAD
+ref HEAD ea3b7ab4460
+links    check-markdown-links: 7601 files, 14899 links checked, 5 broken
+package  FAIL package=system-spec-kit tier=FAIL_CLOSED scenarios=124 categories=9 operator=110 routing_gold_excluded=14 violations=1 warnings=2   BAKED_RUN_TRANSCRIPT tooling-and-scripts/setup-native-module-health-and-mcp-installation.md:55 dated run evidence appears in scenario truth 
+strict   failed-packages=[package=system-spec-kit] errors=0
+exit=0
+LEFT after extracts:        0
+
+$ git -c core.fsmonitor=false diff --quiet 28a6d40f81f -- .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md
+exit=0
+
+$ git -c core.fsmonitor=false diff --quiet 28a6d40f81f -- .skilled/skills/cli-external-orchestration/cli-cursor/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/source.md
+exit=0
+
+$ git -c core.fsmonitor=false diff --quiet 28a6d40f81f -- .skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/source.md
+exit=0
+
+$ git -c core.fsmonitor=false diff --quiet 28a6d40f81f -- .skilled/skills/cli-external-orchestration/cli-pi/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/source.md
+exit=0
+
+$ git -c core.fsmonitor=false check-ignore -v .skilled/skills/system-spec-kit/runtime/dist .skilled/skills/system-spec-kit/runtime/cli/dist
+.gitignore:60:dist/	.skilled/skills/system-spec-kit/runtime/dist
+.gitignore:60:dist/	.skilled/skills/system-spec-kit/runtime/cli/dist
+exit=0
+
+$ check before rebuild (tail)
+
+  Stale dist for system-spec-kit/runtime entry default; build with: cd .skilled/skills/system-spec-kit/runtime && npm run build
+  Stale dist for system-spec-kit/runtime/cli entry default; build with: cd .skilled/skills/system-spec-kit/runtime/cli && npm run build
+  compiled siblings beside a source: 0 undeclared, 0 declared
+exit=1
+
+$ build runtime
+
+@spec-kit/runtime dist build preparation recorded
+@spec-kit/runtime dist build preparation recorded
+exit=0
+
+$ build cli
+
+@spec-kit/cli dist build attestation recorded
+@spec-kit/cli dist build attestation recorded
+exit=0
+
+$ check after rebuild (tail)
+Source/dist alignment check passed: every scanned dist *.js file maps to a source .ts file,
+and no compiled file shadows the source it came from.
+AST import policy check passed: no prohibited @spec-kit/runtime/{lib,core,handlers} internal imports found.
+AST handler cycle check passed: no circular dependencies across 2 handler files.
+exit=0
+
+$ git -c core.fsmonitor=false status --porcelain
+ M specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/tasks.md
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/scratch/battery-origin.txt
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/scratch/before.txt
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/scratch/eval-before.txt
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/scratch/floor-before.txt
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation/scratch/matrix-before.txt
+exit=0
+
+floor after rebuild:
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+floor cmp exit=0
+eval after rebuild:
+[160,49,21,5]
+eval cmp exit=0
+LEFT end:        0
+DONE
+
+BAT-02 pre-existing: fails on MB and on HEAD, passes on origin/main bcd15801196, files byte-equal to MB
+BAT-06 pre-existing: fails on MB and on HEAD, passes on origin/main bcd15801196, files byte-equal to MB
+BAT-07 pre-existing: fails on MB and on HEAD, passes on origin/main bcd15801196, files byte-equal to MB
+BAT-01 resolved: local build state, check exit 0 after rebuild

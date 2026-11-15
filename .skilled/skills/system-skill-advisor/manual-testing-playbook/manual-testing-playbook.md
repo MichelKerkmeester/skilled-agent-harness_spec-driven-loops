@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.11.0
+version: 0.8.12.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -33,11 +33,11 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome, its 
 
 ## 1. OVERVIEW
 
-This playbook provides 50 scenario files across 9 categories, one of them a live conversation scenario, validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion and `PC` for Python compatibility.
+This playbook provides 53 scenario files across 9 categories, one of them a live conversation scenario, validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion and `PC` for Python compatibility.
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `scorer-fusion` and `python-compat`. This mirrors the `feature-catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
-Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual-testing-playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 42 scenarios. The category tree holds 50 scenario files named by feature, none of them `NNN-*.md`, and still no `CL-002`. This root playbook reflects the live file inventory.
+Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual-testing-playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 42 scenarios. The category tree holds 53 scenario files named by feature, none of them `NNN-*.md`, and still no `CL-002`. This root playbook reflects the live file inventory.
 
 ### Realistic Test Model
 
@@ -130,7 +130,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 50 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 53 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -151,8 +151,8 @@ This section records wave planning for the canonical Skill Advisor manual test p
 
 ### Recommended Wave Plan
 
-- **Wave 1**: `NC-001..NC-011` native command-surface behavior.
-- **Wave 2**: `CL-001`, `CL-004..CL-008` runtime hooks, the OpenCode plugin, CLI fallback and the goal plugin.
+- **Wave 1**: `NC-001..NC-012` native command-surface behavior.
+- **Wave 2**: `CL-001`, `CL-004..CL-010` runtime hooks, the OpenCode plugin, CLI fallback and the goal plugin.
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
@@ -165,7 +165,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 
 ## 7. NATIVE COMMAND SURFACE
 
-This category validates native command-surface scenarios `NC-001..NC-011`.
+This category validates native command-surface scenarios `NC-001..NC-012`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -180,12 +180,13 @@ This category validates native command-surface scenarios `NC-001..NC-011`.
 | NC-009 | Skill Graph Validate | [skill-graph-validate.md](native-cli-tools/skill-graph-validate.md) |
 | NC-010 | Shadow-Delta Sink Opt-In | [shadow-delta-sink.md](native-cli-tools/shadow-delta-sink.md) |
 | NC-011 | Hub Recommendation Names Its Slash Command | [hub-command-attachment.md](native-cli-tools/hub-command-attachment.md) |
+| NC-012 | A Command the Prompt Does Not Ask For Is Not Offered | [command-offer-fit-gates.md](native-cli-tools/command-offer-fit-gates.md) |
 
 ---
 
 ## 8. CLI HOOKS AND PLUGIN
 
-This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-008`.
+This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-010`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -195,6 +196,8 @@ This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-008
 | CL-006 | skill-advisor CLI Fallback Surface (028) | [006-skill-advisor-cli-fallback.md](cli-hooks-and-plugin/skill-advisor-cli-fallback.md) |
 | CL-007 | Goal OpenCode Plugin | [goal-opencode-plugin.md](cli-hooks-and-plugin/goal-opencode-plugin.md) |
 | CL-008 | Goal OpenCode Later-Turn Injection | [goal-opencode-plugin-conversation.md](cli-hooks-and-plugin/goal-opencode-plugin-conversation.md) |
+| CL-009 | The Brief's Command Policy Word in a Parent and a Child Session | [brief-command-policy-word.md](cli-hooks-and-plugin/brief-command-policy-word.md) |
+| CL-010 | The Vibe Brief Names Each Command's Document | [vibe-command-documents.md](cli-hooks-and-plugin/vibe-command-documents.md) |
 
 ---
 

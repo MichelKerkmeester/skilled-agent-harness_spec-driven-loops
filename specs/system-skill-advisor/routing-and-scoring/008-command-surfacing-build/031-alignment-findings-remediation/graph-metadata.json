@@ -41,19 +41,22 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "scratch/matrix-after.txt",
       "scratch/handback.md",
       ".skilled/commands/scripts/validate-command-references.cjs",
       ".github/workflows/command-tree-parity.yml",
       ".github/workflows/spec-kit-check.yml",
       ".github/workflows/README.md",
       ".skilled/skills/system-skilled-doctor/graph-metadata.json",
+      "scratch/battery-origin.txt",
+      "scratch/probe-decisions.txt",
+      "scratch/floor-before.txt",
+      "scratch/eval-before.txt",
+      "scratch/matrix-before.txt",
+      "scratch/before.txt",
       ".vibe/hooks.toml",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md",
-      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
-      ".skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js",
-      ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
-      "scratch/planning/finding-matrix.sh",
-      "scratch/planning/extract-check.sh"
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
     ],
     "entities": [
       {
@@ -78,6 +81,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-after.txt",
+        "kind": "file",
+        "path": "scratch/matrix-after.txt",
         "source": "derived"
       },
       {
@@ -117,6 +126,42 @@
         "source": "derived"
       },
       {
+        "name": "battery-origin.txt",
+        "kind": "file",
+        "path": "scratch/battery-origin.txt",
+        "source": "derived"
+      },
+      {
+        "name": "probe-decisions.txt",
+        "kind": "file",
+        "path": "scratch/probe-decisions.txt",
+        "source": "derived"
+      },
+      {
+        "name": "floor-before.txt",
+        "kind": "file",
+        "path": "scratch/floor-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "eval-before.txt",
+        "kind": "file",
+        "path": "scratch/eval-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-before.txt",
+        "kind": "file",
+        "path": "scratch/matrix-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
         "name": "hooks.toml",
         "kind": "file",
         "path": ".vibe/hooks.toml",
@@ -132,30 +177,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "user-prompt-submit.js",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-advisor.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "finding-matrix.sh",
-        "kind": "script",
-        "path": "scratch/planning/finding-matrix.sh",
-        "source": "derived"
-      },
-      {
-        "name": "extract-check.sh",
-        "kind": "script",
-        "path": "scratch/planning/extract-check.sh",
         "source": "derived"
       },
       {
@@ -181,29 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The branch ships the Vibe runtime rows, but the command-reference validator rejects the `.vibe/agents/` row this branch added and no CI job checks a Vibe mirror, so a Vibe drift can merge with every check green",
     "created_at": "2026-11-15T14:27:31Z",
-    "last_save_at": "2026-11-15T14:42:48.626Z",
+    "last_save_at": "2026-11-15T15:51:05.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +215,12 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:0ac942d70fa4f0e3939f3a7616146471882d5f2ce59f168c7fcda900149b5940",
+    "source_fingerprint": "sha256:b3a2caac2badd8446160885dd7a0285bfe85d1cd1cc9b97c3f89fa9a969cc6da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8b8e3587f7d4751253d9e378b60d723385c2fa3992c3bebf5a59403ed45ec0ca",
-      "plan.md": "b1c006a3a4587e2b59374e0c34a6fa616e6a40776b98b2092de0d754b2cd9ff1",
-      "tasks.md": "ceda5c1b9ab616f15e8e62835bf712b3c76d2a2107ecde178ff680add95877b3"
+      "plan.md": "b9bd8e3ac384d928b29048e0f3372a4a0eec8212c84900be74ada01afaa165bd",
+      "tasks.md": "f7da64bfb7603d32ce08d3f82d3171aa3d8fee2a2bd63b14fe1dfea7a81838e6"
     },
     "last_active_at": null
   }

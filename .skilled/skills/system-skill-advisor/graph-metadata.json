@@ -89,7 +89,13 @@
     "prompt-time brief",
     "skill advice before the agent handles my prompt",
     "advisor skipped my prompt",
-    "advisor skip my prompt"
+    "advisor skip my prompt",
+    "vibe prompt advisor",
+    "not offering a skill",
+    "local fallback scorer",
+    "prompt hook health",
+    "command transcripts",
+    "workflow measure"
   ],
   "derived": {
     "trigger_phrases": [
