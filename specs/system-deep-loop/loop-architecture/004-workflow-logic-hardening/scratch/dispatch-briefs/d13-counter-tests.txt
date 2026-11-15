@@ -1,0 +1,152 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+
+ROLE: You are a test author. Write the test file below and nothing else. Do not edit any
+other file. Do not implement the function under test. Do not commit.
+
+ALLOWED WRITE PATHS (only this one new file):
+- .skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any write
+outside the allowed path, any package install.
+
+READ FIRST (for the harness you copy from, use grep -n and read only the regions you need):
+- .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts lines 1 to 310:
+  how a unit test loads convergence.cjs with createRequire, and the helpers researchInput and
+  reviewInput that build an input for buildStopDecision.
+- .skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts: the
+  helpers runScript, uniqueNamespace, namespaceArgs, seedConvergedResearchGraph, and inside
+  describe('convergence.cjs stop-decision') the helpers writeFixtureFiles, researchFixture,
+  reviewFixture and stopDecisionArgs, and the test 'treats a graph failure as a missing graph
+  decision', which forces a graph failure with env DEEP_LOOP_TEST_FAULT.
+
+CONTRACT of deriveLoopCounters (file .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs):
+
+  deriveLoopCounters(records, options) returns { stuckCount, consecutiveFailureCount }
+
+  records: array of parsed state-log rows in file order. An entry that is not a plain object is ignored.
+  options: { loopType: 'research' | 'review', convergenceThreshold?: number }
+
+  Rules:
+  R1. An iteration row has type === 'iteration'. Its number is a finite `iteration`, else a finite
+      `run`. When several iteration rows share a number, only the LAST one in file order counts,
+      and it counts at the position of that last row. A row with no number counts at its own position.
+  R2. Walk the rows in file order, starting with stuckCount 0 and consecutiveFailureCount 0:
+      a. A recovery event sets stuckCount to 0. A recovery event is a row with type === 'event' and
+         event === 'stuckRecovery', or a row with stem === 'deep_review.recovery_started'.
+      b. An iteration with status 'thought' changes nothing.
+      c. An iteration with status 'error' or 'timeout' adds 1 to consecutiveFailureCount and leaves
+         stuckCount unchanged.
+      d. Any other iteration sets consecutiveFailureCount to 0. Then: status 'insight' sets
+         stuckCount to 0. Otherwise read the ratio: `newInfoRatio` for research, `newFindingsRatio`
+         for review. Research: the iteration is low when the ratio is a finite number below the
+         threshold (options.convergenceThreshold when it is a finite number above 0, else 0.05).
+         Review: low when the ratio is a finite number at or below
+         mapReviewThresholds(options.convergenceThreshold).noProgressCutoff, which is 0.5 x the
+         threshold with a default threshold of 0.1. A low iteration adds 1 to stuckCount. Any
+         other iteration, a missing ratio included, sets stuckCount to 0.
+      e. Every other row is ignored.
+  R3. An empty array returns { stuckCount: 0, consecutiveFailureCount: 0 }.
+  R4. The function is pure: no file read, no clock, no mutation of its arguments.
+
+CONTRACT of the rest of the change these tests pin (not implemented yet, the tests must fail first):
+  C1. buildStopDecisionInput(args, loopType, files, graph), exported from convergence.cjs, takes
+      files = { config, registry, stateLogRows }. Its result will:
+      - leave iterations whose status is 'thought', 'error' or 'timeout' out of `ratios`;
+      - set `stuckCount` and a new field `consecutiveFailureCount` from deriveLoopCounters over
+        files.stateLogRows, and no longer read a --stuck-count flag.
+  C2. buildStopDecision(input) returns decision 'STOP', stopReason 'error' and reasonDetail
+      'consecutiveFailures' when input.consecutiveFailureCount >= 3 and the iteration cap is not
+      reached. The cap still wins when both hold.
+  C3. `convergence.cjs --stop-decision` adds a top-level output field `loop_counters_json` holding
+      { stuckCount, consecutiveFailureCount }. It is present when the graph failed too.
+  C4. `--state-log` is checked by validateNamespaceValue: a value with a `..` segment, or an
+      absolute path outside the repository root, exits 3 with {"status":"error"}.
+
+WRITE these test cases. Use the group names and keep the quoted words in the test titles,
+because the packet filters on them with -t:
+
+describe('deriveLoopCounters')
+  1. 'returns zero counters for an empty log'
+  2. 'resume: a full log and a prefix replayed with the remaining records give equal counters'
+     Build one research log of 8 rows with mixed statuses. Compare deriveLoopCounters(log) with
+     deriveLoopCounters([...log.slice(0, 3), ...log.slice(3)]), and assert the expected values too.
+  3. 'stuck count is unchanged by error and timeout rows'
+     Two low research iterations, then an error row and a timeout row: stuckCount 2,
+     consecutiveFailureCount 2.
+  4. 'consecutive failures: three trailing failed runs give 3'
+     and a second case where a completed iteration after two failures resets it to 0.
+  5. 'counts a failure row appended last'
+     Derive, push one error row, derive again: consecutiveFailureCount grows by 1.
+  6. 'recovery: a research stuckRecovery event resets the stuck count'
+     Two low iterations, the event, one low iteration: stuckCount 1.
+  7. 'recovery: a review recovery event resets the stuck count'
+     Same shape for loopType 'review', once with the row
+     { type: 'event', event: 'stuckRecovery' } and once with { stem: 'deep_review.recovery_started' }.
+  8. 'counts a redispatched run once, by its latest row'
+     Iteration 2 appears first as status 'error', later as status 'complete' with a high ratio:
+     consecutiveFailureCount 0.
+  9. 'thought leaves both counters unchanged, insight resets the stuck count'
+  10. 'review uses half the configured threshold'
+     With convergenceThreshold 0.2 a ratio of 0.1 is low and 0.11 is not.
+
+describe('failed iterations and the stop vote')
+  11. 'four failed research iterations do not give a converged stop'
+     stateLogRows: three complete iterations with newInfoRatio 0.4, 0.5, 0.6, then four rows with
+     status 'error' and newInfoRatio 0. Registry: { metrics: { resolvedQuestions: 0, openQuestions: 2 } }.
+     Config: { maxIterations: 20, convergenceThreshold: 0.05, stuckThreshold: 3 }.
+     Call buildStopDecisionInput({}, 'research', files, { decision: 'STOP_ALLOWED', blockers: [] }).
+     Assert input.ratios equals [0.4, 0.5, 0.6] and input.consecutiveFailureCount is 4. Then
+     assert buildStopDecision(input) has stopReason 'error', reasonDetail 'consecutiveFailures'
+     and is not 'converged'.
+  12. 'review ratio signals ignore four failed iterations'
+     Review rows with newFindingsRatio 0.5, 0.4, 0.45 and dimensions ['correctness'], then four
+     error rows with newFindingsRatio 0. Build the input twice, with and without the four error
+     rows. Assert both inputs have equal `ratios`, and that computeStopSignals over each gives
+     equal signals.rollingAverage.value and signals.madNoiseFloor.value.
+  13. 'consecutive failures: the cap outranks the failure halt'
+     buildStopDecision on an input with iterationCount at maxIterations and
+     consecutiveFailureCount 3 gives stopReason 'maxIterationsReached'.
+
+describe('convergence.cjs loop counters')   (command-line cases, copy the harness helpers you need)
+  14. 'prints loop_counters_json with no graph available'
+     Run --stop-decision on a research fixture whose state log ends with two error rows, with env
+     DEEP_LOOP_TEST_FAULT 'db'. Assert exit 0 and result.json.loop_counters_json equals
+     { stuckCount: <expected>, consecutiveFailureCount: 2 }.
+  15. 'rejects a state log path with a .. segment or outside the repository'
+     One run with --state-log '../outside/state.jsonl' and one with an absolute path under
+     os.tmpdir(): each exits 3 and prints status 'error'.
+
+FIXTURE DIRECTORY RULE: command-line fixtures must live inside the repository, because C4
+rejects paths outside it. Create them with
+  fs.mkdirSync(base, { recursive: true }); fs.mkdtempSync(join(base, 'loop-counters-'))
+where base is fileURLToPath(new URL('../.tmp/', import.meta.url)). That directory is
+git-ignored. Remove every fixture directory in afterEach.
+
+STYLE: match the file header and style of stop-decision.vitest.ts. No comment may name a
+spec path, a task id, a requirement id or a finding id.
+
+VERIFY (run from the repository root and print the output):
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/loop-counters-derivation.vitest.ts)
+
+EXPECTED: the file loads and its tests FAIL, because deriveLoopCounters is not a function yet.
+Failing tests are the correct result of this task. Do not make them pass.
+
+RETURN: the command output and the list of test titles.

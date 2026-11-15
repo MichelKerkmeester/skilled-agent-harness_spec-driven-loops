@@ -1,7 +1,7 @@
 ---
 title: "DR-033 -- Research graph-aware stop gate surfaces convergence verdict and workflow hooks"
-description: "Verify that graph_convergence reducer fields render in registry and dashboard, and that the research auto workflow calls graph upsert plus convergence before the inline stop vote."
-version: 1.14.0.14
+description: "Verify that graph_convergence reducer fields render in registry and dashboard, and that the research workflow runs the convergence script that persists the graph snapshot and computes the whole stop decision."
+version: 1.14.1.0
 ---
 
 # DR-033 -- Research graph-aware stop gate surfaces convergence verdict and workflow hooks
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates graph-aware stop-gate surfacing for `DR-033`. The objective is to verify that `graph_convergence` events become reducer-owned `graphConvergenceScore`, `graphDecision`, and `graphBlockers`, that the dashboard renders those graph signals, and that the live auto workflow invokes the graph tools before the inline 3-signal vote.
+This scenario validates graph-aware stop-gate surfacing for `DR-033`. The objective is to verify that `graph_convergence` events become reducer-owned `graphConvergenceScore`, `graphDecision`, and `graphBlockers`, that the dashboard renders those graph signals, and that the live workflow runs convergence.cjs, which persists the graph snapshot and computes the whole stop decision.
 
 ### WHY THIS MATTERS
 
-Graph-aware stop logic only protects the loop if two things stay true at the same time: the reducer must surface the graph decision into operator-facing artifacts, and the live workflow must actually call the graph tools before evaluating the inline STOP candidate. If either side drifts, operators can no longer trust the graph-aware stop gate.
+Graph-aware stop logic only protects the loop if two things stay true at the same time: the reducer must surface the graph decision into operator-facing artifacts, and the live workflow must actually run the convergence script that consumes the graph before it decides to stop. If either side drifts, operators can no longer trust the graph-aware stop gate.
 
 ---
 
@@ -26,14 +26,14 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Title: Research graph-aware stop gate surfaces convergence verdict and workflow hooks.
 - Given: A research packet with one or more `graph_convergence` events in its JSONL state.
-- When: The operator runs the reducer and inspects the live auto workflow definition.
-- Then: `findings-registry.json` exposes `graphConvergenceScore`, `graphDecision`, and `graphBlockers`; `deep-research-dashboard.md` renders a `GRAPH CONVERGENCE` section; and `.skilled/commands/deep/assets/deep-research-auto.yaml` calls `deep_loop_graph_upsert` and `deep_loop_graph_convergence` before the inline 3-signal vote.
+- When: The operator runs the reducer and inspects the live workflow definition.
+- Then: `findings-registry.json` exposes `graphConvergenceScore`, `graphDecision`, and `graphBlockers`; `deep-research-dashboard.md` renders a `GRAPH CONVERGENCE` section; and `.skilled/commands/deep/assets/deep-research.yaml` runs `step_graph_convergence`, which calls convergence.cjs with `--persist-snapshot` and `--stop-decision`, then branches on the returned stop decision.
 - Real user request: How do I know the research reducer is surfacing graph convergence output and that the autonomous workflow actually consults the graph before it decides to stop?
-- Prompt: `Validate graph-aware stop gates use reducer graph convergence output before the inline stop vote.`
-- Expected execution process: Run the reducer first to refresh generated artifacts, inspect the reducer-owned registry and dashboard second, then inspect the workflow YAML to verify the live graph-tool call order.
-- Desired user-visible outcome: The user gets a plain-language explanation that graph signals are visible in reducer outputs and that the autonomous workflow consults graph convergence before allowing inline STOP to become legal.
-- Expected signals: `graphConvergenceScore`, `graphDecision`, and `graphBlockers` appear in the registry; `GRAPH CONVERGENCE` appears in the dashboard; YAML includes `deep_loop_graph_upsert` and `deep_loop_graph_convergence` before the inline 3-signal vote.
-- Pass/fail posture: PASS if graph signals appear in the registry and dashboard and the YAML shows the graph-tool calls in the pre-inline-vote path; FAIL if graph data is missing from any reducer surface or the workflow no longer calls the graph tools before the inline vote.
+- Prompt: `Validate graph-aware stop gates use reducer graph convergence output before the stop decision.`
+- Expected execution process: Run the reducer first to refresh generated artifacts, inspect the reducer-owned registry and dashboard second, then inspect the workflow YAML to verify the convergence step that persists the graph snapshot and computes the stop decision.
+- Desired user-visible outcome: The user gets a plain-language explanation that graph signals are visible in reducer outputs and that the workflow consults graph convergence before allowing STOP.
+- Expected signals: `graphConvergenceScore`, `graphDecision`, and `graphBlockers` appear in the registry; `GRAPH CONVERGENCE` appears in the dashboard; the YAML runs `step_graph_convergence` with convergence.cjs before the loop reads the stop decision.
+- Pass/fail posture: PASS if graph signals appear in the registry and dashboard and the YAML shows convergence.cjs persisting the graph snapshot in the stop path; FAIL if graph data is missing from any reducer surface or the workflow no longer runs the graph-aware convergence step before the stop decision.
 
 ---
 
@@ -47,25 +47,25 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 4. Return a short user-facing explanation, not just raw implementation notes.
 
 ### Prompt
-Validate graph-aware stop gates use reducer graph convergence output before the inline stop vote.
+Validate graph-aware stop gates use reducer graph convergence output before the stop decision.
 
 ### Commands
 1. `bash: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}`
 2. `bash: cat {spec_folder}/research/findings-registry.json | jq '.graphConvergenceScore, .graphDecision, .graphBlockers'`
 3. `bash: grep -A 3 "GRAPH CONVERGENCE" {spec_folder}/research/deep-research-dashboard.md`
-4. `bash: grep -n "deep_loop_graph_upsert\\|deep_loop_graph_convergence" .skilled/commands/deep/assets/deep-research-auto.yaml`
+4. `bash: grep -n "step_graph_convergence\|convergence.cjs\|persist-snapshot\|stop-decision" .skilled/commands/deep/assets/deep-research.yaml`
 
 ### Expected
-Registry surfaces `graphConvergenceScore`, `graphDecision`, and `graphBlockers`; dashboard renders `GRAPH CONVERGENCE`; workflow YAML calls both graph tools before the inline 3-signal vote.
+Registry surfaces `graphConvergenceScore`, `graphDecision`, and `graphBlockers`; dashboard renders `GRAPH CONVERGENCE`; the workflow runs convergence.cjs with the graph snapshot and stop decision inputs before the loop acts on the result.
 
 ### Evidence
-Capture the registry graph fields, the dashboard `GRAPH CONVERGENCE` excerpt, and the YAML lines that show `deep_loop_graph_upsert` and `deep_loop_graph_convergence`.
+Capture the registry graph fields, the dashboard `GRAPH CONVERGENCE` excerpt, and the workflow lines that show `step_graph_convergence` running convergence.cjs with `--persist-snapshot` and `--stop-decision`.
 
 ### Pass/Fail
-PASS if graph signals appear in the registry and dashboard and the workflow YAML still calls the graph tools in the graph-aware stop path; FAIL if graph data is missing from any reducer surface or the YAML no longer shows the graph-tool hooks.
+PASS if graph signals appear in the registry and dashboard and the workflow still runs the graph-aware convergence step in the stop path; FAIL if graph data is missing from any reducer surface or the YAML no longer runs convergence.cjs before the stop decision.
 
 ### Failure Triage
-Privilege reducer-owned registry output for surfaced state and the workflow YAML for live orchestration order. If reducer fields exist but the YAML lacks graph-tool calls, treat that as graph-aware stop-gate wiring drift rather than a reducer regression.
+Privilege reducer-owned registry output for surfaced state and the workflow YAML for live orchestration order. If reducer fields exist but the YAML lacks the convergence step, treat that as graph-aware stop-gate wiring drift rather than a reducer regression.
 
 ---
 
@@ -83,7 +83,7 @@ Privilege reducer-owned registry output for surfaced state and the workflow YAML
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Canonical reducer implementation; surfaces `graphConvergenceScore`, `graphDecision`, `graphBlockers`, and dashboard `GRAPH CONVERGENCE` |
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Research state contract; defines reducer-owned graph convergence fields and dashboard rendering expectations |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Live research auto workflow; invokes `deep_loop_graph_upsert` and `deep_loop_graph_convergence` before the inline 3-signal vote |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Live research workflow; runs `step_graph_convergence`, which calls convergence.cjs with `--persist-snapshot` and `--stop-decision` before the loop branches on the result |
 
 ---
 

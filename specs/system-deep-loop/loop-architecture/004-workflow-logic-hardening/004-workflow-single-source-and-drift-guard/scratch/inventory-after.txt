@@ -1,0 +1,16 @@
+# rg -l over the T073 folders after the merge. Every hit is a doc surface phase 005 owns, or the drift guard test's own fixture name.
+.skilled/commands/speckit/README.txt
+.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fixed-rate-overrun-accounting.md
+.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/persisted-wait-crash-resume.md
+.skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md
+.skilled/skills/system-deep-loop/runtime/feature-catalog/observability/byte-offset-log-regions.md
+.skilled/skills/system-deep-loop/runtime/feature-catalog/observability/single-loop-telemetry-heartbeat.md
+.skilled/skills/system-deep-loop/runtime/feature-catalog/observability/unified-observability-event-envelope.md
+.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/artifact-dir-override-parity.md
+.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fixed-rate-overrun-accounting.md
+.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/persisted-wait-crash-resume.md
+.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/observability/byte-offset-log-regions.md
+.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/observability/single-loop-telemetry-heartbeat.md
+.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/observability/unified-observability-event-envelope.md
+.skilled/skills/system-deep-loop/runtime/references/integration-points.md
+.skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts

@@ -26,7 +26,6 @@ import type {
 
 const RESOURCE_COMPONENTS: Readonly<Record<ProtectedResourceKind, readonly string[]>> =
   Object.freeze({
-    [ProtectedResourceKinds.COUNCIL_ROUND]: ['topicId', 'roundId'],
     [ProtectedResourceKinds.FANOUT_STATUS]: ['packetId', 'runId', 'statusStreamId'],
     [ProtectedResourceKinds.LEDGER]: ['ledgerId'],
     [ProtectedResourceKinds.LINEAGE_STATE]: ['packetId', 'runId', 'lineageId'],
@@ -50,7 +49,6 @@ const RESOURCE_KIND_ORDER: Readonly<Record<ProtectedResourceKind, number>> = Obj
   [ProtectedResourceKinds.FANOUT_STATUS]: 50,
   [ProtectedResourceKinds.WAIT_CHECKPOINT]: 60,
   [ProtectedResourceKinds.MERGE_TARGET]: 70,
-  [ProtectedResourceKinds.COUNCIL_ROUND]: 80,
   [ProtectedResourceKinds.WRITER]: 90,
 });
 
@@ -235,14 +233,6 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       resourceKind: ProtectedResourceKinds.WRITER,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
       replacementSeam: 'FencedLeaseCoordinator.withFence',
-    },
-    {
-      surfaceId: 'council-round-state',
-      sourcePath: 'runtime/lib/council/round-state-jsonl.cjs',
-      operation: 'repair and append council round state',
-      resourceKind: ProtectedResourceKinds.COUNCIL_ROUND,
-      atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      replacementSeam: 'FencedStateStore.replace',
     },
     {
       surfaceId: 'jsonl-repair-merge',

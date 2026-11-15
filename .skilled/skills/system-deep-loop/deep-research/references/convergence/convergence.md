@@ -9,7 +9,7 @@ trigger_phrases:
   - "research convergence decision order"
 importance_tier: important
 contextType: implementation
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Convergence Detection Reference
@@ -31,7 +31,7 @@ Load this hub when deciding whether a deep-research loop should continue, recove
 ### Key Sources
 
 - Command syntax: `.skilled/commands/deep/research.md`
-- Workflow algorithm: `.skilled/commands/deep/assets/deep-research-auto.yaml` and `_confirm.yaml`
+- Workflow algorithm: `.skilled/commands/deep/assets/deep-research.yaml`
 - Signal details: `references/convergence/convergence-signals.md`
 - Recovery details: `references/convergence/convergence-recovery.md`
 - Graph stop gates: `references/convergence/convergence-graph.md`
@@ -50,7 +50,7 @@ The live deep-research algorithm evaluates:
 | Stuck detection | Enter recovery after configured consecutive no-progress iterations |
 | Composite convergence | Nominate STOP when weighted signal score is above `0.60` |
 | Legal-stop gates | Allow or block the STOP candidate |
-| Graph gates | Add STOP-blocking graph checks when `graphEvents` exist |
+| Graph gates | Block every non-terminal STOP until a graph decision exists |
 
 ### Convergence Modes
 
@@ -86,10 +86,12 @@ Every pivot dispatches three seats, so a run that pivots has proportionally high
 |-------|-----------------|
 | `converged` | Legal-stop gates passed and the loop may exit normally |
 | `maxIterationsReached` | The loop hit the configured iteration cap |
-| `userPaused` | A pause sentinel or equivalent user pause request halted execution |
 | `blockedStop` | A STOP candidate was blocked by legal-stop or graph gates |
-| `stuckRecovery` | Stuck detection triggered or failed recovery |
+| `manualStop` | The operator asked the run to stop |
 | `error` | The loop hit an unrecoverable workflow or state error |
+| `stuckRecovery` | Stuck detection triggered or failed recovery |
+| `userPaused` | A pause sentinel or equivalent user pause request halted execution |
+| `maxDurationReached` | The run hit the wall-clock limit set by `maxDurationMinutes` |
 
 ### Legacy Stop Labels
 
@@ -118,7 +120,7 @@ Legacy labels are normalized before persistence:
 4. Compute composite convergence signals.
 5. If weighted stop score > 0.60, nominate STOP.
 6. Evaluate legal-stop gates for every STOP candidate except hard max-iteration stop.
-7. If graphEvents exist, evaluate graph-aware STOP blockers.
+7. Block every non-terminal STOP until a graph decision exists.
 8. If gates pass, pivot for an eligible divergent reason or STOP normally; otherwise emit blockedStop and CONTINUE with recovery focus.
 ```
 
@@ -143,7 +145,7 @@ Every non-terminal STOP candidate must pass the gate bundle before the workflow 
 | Convergence Gate | Low novelty holds for the required consecutive evidence iterations | Emit `blocked_stop`, continue |
 | Coverage Gate | Every key question has an evidence-backed answer | Emit `blocked_stop`, continue |
 | Quality Gate | Source diversity, focus alignment, and no single weak-source dominance pass | Emit `blocked_stop`, continue |
-| Graph Gate | When graph data exists, graph coverage has no STOP blockers | Emit `graph_convergence`/`blocked_stop`, continue |
+| Graph Gate | A graph decision exists and graph coverage has no STOP blockers | Emit `graph_convergence`/`blocked_stop`, continue |
 
 The reducer surfaces legal-stop evidence through the findings registry and dashboard. The JSONL event shapes live in `../state/state-jsonl.md`.
 

@@ -1,7 +1,7 @@
 ---
 title: "DRV-063 -- Ledger-led graph vocabulary upserts (BUG_CLASS / INVARIANT / PRODUCER / CONSUMER / TEST)"
 description: "Verify the review-loop coverage-graph allow-list accepts and persists BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, and TEST node kinds without dropping them."
-version: 1.11.0.8
+version: 1.11.1.0
 ---
 
 # DRV-063 -- Ledger-led graph vocabulary upserts
@@ -21,7 +21,7 @@ Without graph-side persistence, the ledger has nowhere to project its richer sem
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the review-loop coverage-graph accepts and persists upserts for all five new node kinds: `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, `TEST`.
-- Layer partition: graph database allow-list (`coverage-graph-db.ts`) + upsert handler (`upsert.ts`) + YAML event filter.
+- Layer partition: graph database allow-list and upsert handler (`coverage-graph-db.ts`) + YAML event filter.
 - Real user request: `Upsert a BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, and TEST node into the review coverage-graph and confirm all five persist.`
 - Expected signals: each upsert returns success. Subsequent graph query (or graph state inspection) shows all five node kinds present in the review-loop namespace. YAML event filter does not drop them.
 - Pass/fail: PASS if all five upserts succeed AND all five nodes are observable after persistence. FAIL if any kind is rejected with `unsupported_kind` OR disappears after upsert.
@@ -63,7 +63,7 @@ The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`,
 
 - A node kind is rejected with `unsupported_kind`: confirm the test runs against `loopType: 'review'` and that `coverage-graph-db.ts` `VALID_KINDS['review']` includes all five new entries.
 - A node kind disappears after upsert: inspect persistence (graph DB query) rather than only the upsert response.
-- The YAML event filter drops the event upstream: inspect `deep-review-auto.yaml` event-filter normalization block.
+- The YAML event filter drops the event upstream: inspect `deep-review.yaml` event-filter normalization block.
 
 ---
 
@@ -71,8 +71,7 @@ The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`,
 
 - Allow-list: `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts` (`VALID_KINDS['review']` constant).
 - Upsert handler: `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts` (dynamic kind validation via `VALID_KINDS[loopType]`).
-- YAML event filter: `.skilled/commands/deep/assets/deep-review-auto.yaml` (event-normalization block).
-- Confirm mirror: `.skilled/commands/deep/assets/deep-review-confirm.yaml`.
+- YAML event filter: `.skilled/commands/deep/assets/deep-review.yaml` (event-normalization block).
 - Fixture: `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts`.
 - Phase spec: complexity-ledger-led graph-vocab spec (see this skill's changelog for provenance).
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.

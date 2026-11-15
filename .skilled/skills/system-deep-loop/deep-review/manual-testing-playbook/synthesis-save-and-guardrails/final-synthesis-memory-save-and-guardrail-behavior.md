@@ -1,7 +1,7 @@
 ---
 title: "DRV-027 -- Final synthesis memory save and guardrail behavior"
 description: "Verify memory save via generate-context.js after review completion, LEAF-only agent enforcement, and the boundary between live and reference-only features."
-version: 1.11.0.12
+version: 1.11.1.0
 ---
 
 # DRV-027 -- Final synthesis memory save and guardrail behavior
@@ -47,7 +47,7 @@ Validate deep-review finalization, memory-save routing, LEAF-only behavior, and 
 ### Commands
 1. `bash: rg -n 'generate-context.js|memory.*save|synthesis_complete|review-report|memory' .skilled/commands/deep/review.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
 2. `bash: rg -n 'LEAF-only|Task tool|NEVER.*sub|NEVER.*dispatch|read.only|NEVER.*modify|observation.*only' .claude/agents/deep-review.md .skilled/agents/deep-review.md .skilled/skills/system-deep-loop/deep-review/SKILL.md`
-3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|continuity_save|review-report' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|continuity_save|review-report' .skilled/commands/deep/assets/deep-review.yaml`
 ### Expected
 Synthesis produces `review/review-report.md`, memory save calls `generate-context.js`, agent is LEAF-only, target files are read-only.
 ### Evidence
@@ -76,8 +76,7 @@ Privilege the agent definitions for LEAF-only behavior and the skill rules for r
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary for memory save and guardrails |
 | `.claude/agents/deep-review.md` | Claude runtime agent, LEAF-only enforcement and tool permissions |
 | `.opencode/agents/deep-review.md` | OpenCode runtime agent, LEAF-only enforcement and tool permissions |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Final synthesis/save steps and workflow events |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Final synthesis/save steps and workflow events |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Final synthesis/save steps and workflow events |
 
 ---
 

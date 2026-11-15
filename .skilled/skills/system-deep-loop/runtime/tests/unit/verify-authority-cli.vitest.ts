@@ -31,7 +31,6 @@ const CLI_PATH = resolve(here, '..', '..', 'scripts', 'verify-authority.cjs');
 const MODES = [
   'deep-research',
   'deep-review',
-  'deep-ai-council',
 ];
 
 const dirs: string[] = [];
@@ -163,11 +162,11 @@ describe('verify-authority CLI', () => {
   it('exits 2 when one mode is still on the default record', () => {
     const authRoot = freshAuthRoot();
     writeAll(authRoot, 'new_authoritative_final');
-    rmSync(join(authRoot, 'authority-deep-ai-council.json'));
+    rmSync(join(authRoot, 'authority-deep-research.json'));
     const r = run('--authority-root', authRoot);
     expect(r.exit).toBe(2);
     expect(r.j.allOnLedger).toBe(false);
-    expect(records(r.j).find((rec) => rec.mode === 'deep-ai-council')).toMatchObject({
+    expect(records(r.j).find((rec) => rec.mode === 'deep-research')).toMatchObject({
       source: 'default',
       state: 'legacy_authoritative',
     });

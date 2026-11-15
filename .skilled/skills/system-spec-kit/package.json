@@ -12,7 +12,7 @@
     "node": "^22.23.4 || ^24.22.1 || >=26.12.1"
   },
   "scripts": {
-    "build": "tsc --build",
+    "build": "npm --prefix runtime run prepare-build && tsc --build && node runtime/scripts/finalize-dist.mjs",
     "typecheck": "npm run --workspaces=false typecheck:root",
     "typecheck:root": "tsc -p shared/tsconfig.json && tsc --noEmit --composite false -p runtime/tsconfig.json && tsc --noEmit --composite false -p runtime/cli/tsconfig.json",
     "build:watch": "tsc --build --watch",

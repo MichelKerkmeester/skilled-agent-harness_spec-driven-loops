@@ -1,0 +1,14 @@
+FILES (all under .skilled/skills/system-deep-loop/runtime/tests unless a full path is given):
+- unit/deep-research-bookkeeping-emission.vitest.ts
+- unit/deep-research-convergence-floor.vitest.ts
+- unit/deep-research-lock-release.vitest.ts
+- unit/deep-research-marker-scan.vitest.ts
+- unit/deep-research-memory-upsert-yaml.vitest.ts
+- unit/deep-research-run-open.vitest.ts
+- unit/workflow-restart-lifecycle.vitest.ts
+- unit/fanout-root-resource-map.vitest.ts
+
+PER-FILE NOTES.
+- deep-research-bookkeeping-emission renders placeholders with a small table. If a directive in
+  the single file uses a placeholder the table lacks (for example `{execution_mode}`), add a
+  valid sample value to the table.

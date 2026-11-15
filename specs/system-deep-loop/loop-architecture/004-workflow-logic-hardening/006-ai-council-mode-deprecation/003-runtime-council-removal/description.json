@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/003-runtime-council-removal",
+  "description": "Phase 3: runtime-council-removal",
+  "keywords": [
+    "phase",
+    "runtime-council-removal"
+  ],
+  "lastUpdated": "2026-11-14T20:19:51.701Z",
+  "specId": "003",
+  "folderSlug": "runtime-council-removal",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "004-workflow-logic-hardening",
+    "006-ai-council-mode-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

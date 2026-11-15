@@ -575,10 +575,9 @@ const fanoutRunScript = resolve(runtimeRoot, 'scripts', 'fanout-run.cjs');
 const { withAgentPersona } = requireCjs(fanoutRunScript) as {
   withAgentPersona: (agentName: string, prompt: string, repoRoot: string) => string;
 };
-const reviewWorkflowPaths = [
-  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review-auto.yaml'),
-  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review-confirm.yaml'),
-];
+const reviewWorkflowPath = resolve(
+  runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review.yaml',
+);
 
 type ReviewInitSessionIds = {
   config: string;
@@ -3268,18 +3267,16 @@ describe('fanout-run.cjs — review session id propagation templates', () => {
       OPENCODE_BIN: undefined,
     };
 
-    for (const workflowPath of reviewWorkflowPaths) {
-      expect(renderReviewInitSessionIds(workflowPath, suppliedSessionId)).toEqual({
-        config: suppliedSessionId,
-        stateLog: suppliedSessionId,
-        findingsRegistry: suppliedSessionId,
-      });
-      expect(renderReviewInitSessionIds(workflowPath)).toEqual({
-        config: '2035-02-03T04:05:06.000Z',
-        stateLog: '2035-02-03T04:05:06.000Z',
-        findingsRegistry: '2035-02-03T04:05:06.000Z',
-      });
-    }
+    expect(renderReviewInitSessionIds(reviewWorkflowPath, suppliedSessionId)).toEqual({
+      config: suppliedSessionId,
+      stateLog: suppliedSessionId,
+      findingsRegistry: suppliedSessionId,
+    });
+    expect(renderReviewInitSessionIds(reviewWorkflowPath)).toEqual({
+      config: '2035-02-03T04:05:06.000Z',
+      stateLog: '2035-02-03T04:05:06.000Z',
+      findingsRegistry: '2035-02-03T04:05:06.000Z',
+    });
 
     const withSession = buildLineageCommand(
       { kind: 'native', iterations: 2 },

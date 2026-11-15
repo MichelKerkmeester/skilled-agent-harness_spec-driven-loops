@@ -54,8 +54,8 @@ Rows: 58, one per `findings.json` entry. out of scope 6, confirmed in scope 51, 
 | 44 | X-03 | critic | P2 | S2 | confirmed in scope | fixed: `.skilled/hooks/decision-capture/bin/README.md` says eight runtimes. |
 | 45 | B-09 | B | P2 | S3 | confirmed in scope | fixed: `feature-catalog/feature-catalog.md` says seven hard rules. |
 | 46 | B-09 | critic | P2 | S3 | confirmed in scope | fixed: `feature-catalog/feature-catalog.md` says seven hard rules. |
-| 47 | B-11 | B | P2 | S4 | confirmed in scope | fixed: `hub-routing/front-door-compiled-decision.md` and the root playbook record policy hash `1f77e1ab...` at generation 5 from a 2026-11-15 rerun (`match=true`). |
-| 48 | B-11 | critic | P2 | S4 | confirmed in scope | fixed: `hub-routing/front-door-compiled-decision.md` and the root playbook record policy hash `1f77e1ab...` at generation 5 from a 2026-11-15 rerun (`match=true`). |
+| 47 | B-11 | B | P2 | S4 | confirmed in scope | fixed: `hub-routing/front-door-compiled-decision.md` and the root playbook record policy hash `ee55d93a...` at generation 5 from a 2026-11-15 rerun after the second main merge (`match=true`). |
+| 48 | B-11 | critic | P2 | S4 | confirmed in scope | fixed: `hub-routing/front-door-compiled-decision.md` and the root playbook record policy hash `ee55d93a...` at generation 5 from a 2026-11-15 rerun after the second main merge (`match=true`). |
 | 49 | BAT-04 | battery | P2 | S5 | out of scope | Pre-existing: `.skilled/hooks/README.md:206` (blame `73d5a9b6408`) and `system-spec-kit/README.md:465` (blame `9a0b4a935e5`) both come from ancestors of the base. |
 | 50 | BAT-05 | battery | P2 | S5 | confirmed in scope | fixed: `cli-mistral-vibe/README.md` (`$RUN_DIR/out/export.json`), the hub `README.md` roster row, and `check_readme_references.py`, which now reads `.vibe/` from the repository root as it already read `.dsh/`, with a new test in `tests/test_readme_references.py`. The checker passes on all five touched READMEs. |
 | 51 | C-1 | C | P2 | S5 | confirmed in scope | fixed: root `README.md` skill catalog lists `cli-mistral-vibe`. |

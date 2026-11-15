@@ -1,0 +1,94 @@
+ROLE: You are a workflow-file editor. Make exactly the edits below, nothing else. Do not refactor,
+reformat, reorder or fix anything adjacent. Keep the indentation of the surrounding lines exactly.
+All four files must still parse as YAML afterwards. Do not edit any test.
+
+CONTEXT: the packet lock must stay valid for the longest allowed dispatch, and every terminal
+path that runs while the lock is held must name the one shared release step. The exact text is in
+the WORKFLOW TEXT CONTRACT above, parts C7, C8 and C9.
+
+ALLOWED WRITE PATHS (only these four files, all in .skilled/commands/deep/assets/):
+- deep-research-auto.yaml
+- deep-research-confirm.yaml
+- deep-review-auto.yaml
+- deep-review-confirm.yaml
+You may also write and delete ONE helper script at /tmp/route-release-lock.py.
+
+Apply every edit to all four files unless it says otherwise.
+
+EDIT 1 (by hand). In step_acquire_lock:
+  a. Directly after its `action:` line add the `ttl_ms:` line of contract C7 (eight spaces).
+  b. In its `command:` line replace `--ttl-ms 1800000` with `--ttl-ms {lock_ttl_ms}`.
+  c. In its `on_halt:` block replace the `action:` value with:
+          action: "Every terminal halt after the acquire runs step_release_lock before it returns control"
+  d. In deep-research-auto.yaml and deep-review-auto.yaml only: delete the whole `applies_to: [...]`
+     line inside that `on_halt:` block. Keep the comment lines above `on_halt:`.
+
+EDIT 2 (by hand). In step_dispatch_iteration, directly after its `action:` line, add the two keys
+of contract C8 (`pre_dispatch_refresh_lock:` and `post_dispatch_refresh_lock:`, eight spaces).
+
+EDIT 3 (by script). Write this script to /tmp/route-release-lock.py, run it once with the four
+file paths, then delete it. It only changes lines after `      step_acquire_lock:`.
+
+import re, sys
+for path in sys.argv[1:]:
+    lines = open(path).read().split("\n")
+    start = lines.index("      step_acquire_lock:")
+    out = lines[: start + 1]
+    i = start + 1
+    counts = {"halt": 0, "lost": 0, "counters": 0, "cancel": 0}
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+        indent = line[: len(line) - len(line.lstrip())]
+        if "fail closed: lost the packet lock" in line and "step_release_lock" not in line:
+            new = line.replace(
+                "This run no longer holds the packet and must stop",
+                "This run no longer holds the packet, so run step_release_lock and stop",
+            )
+            if new == line:
+                raise SystemExit(f"{path}:{i + 1}: lost-lock line has an unexpected wording")
+            line = new
+            counts["lost"] += 1
+        if stripped.startswith("on_missing_counters:") and "step_release_lock" not in line:
+            if not line.endswith('"'):
+                raise SystemExit(f"{path}:{i + 1}: on_missing_counters line does not end with a quote")
+            line = line[:-1] + ' Run step_release_lock before the halt returns control."'
+            counts["counters"] += 1
+        if 'status: "CANCELLED"' in line and "release_lock: step_release_lock" not in line:
+            line = line.replace('status: "CANCELLED"', 'status: "CANCELLED", release_lock: step_release_lock')
+            counts["cancel"] += 1
+        out.append(line)
+        if stripped == "halt: true":
+            nxt = lines[i + 1] if i + 1 < len(lines) else ""
+            if nxt.strip() != "release_lock: step_release_lock":
+                out.append(indent + "release_lock: step_release_lock")
+                counts["halt"] += 1
+        i += 1
+    open(path, "w").write("\n".join(out))
+    print(path, counts)
+
+Run: python3 /tmp/route-release-lock.py .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+If the script stops with an error, print the error and the named line, fix that one line by hand
+so it names step_release_lock, and run the script again. Then: python3 -c "import os; os.remove('/tmp/route-release-lock.py')"
+
+EDIT 4 (by hand, after the script). Run
+  rg -n 'on_fail:.*[Hh]alt' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+For each printed line that is AFTER the `      step_acquire_lock:` line of its file and does not
+contain `step_release_lock`: change the start of its text from `Halt with STATUS=FAIL` to
+`Halt with STATUS=FAIL through step_release_lock`. If such a line has another wording, print it
+and add ` Run step_release_lock before the halt returns control.` before its closing quote.
+Do NOT change any such line that is BEFORE the acquire line: no lock is held there.
+
+VERIFY (run from the repository root and print each output):
+  python3 -c "import sys, yaml; [yaml.safe_load(open(p)) for p in sys.argv[1:]]; print('yaml ok')" .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -c -e '--ttl-ms 1800000' -e 'applies_to: \[' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -c 'step_release_lock' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/workflow-lock-lifetime.vitest.ts tests/unit/deep-research-lock-release.vitest.ts tests/unit/stop-policy-yaml-parity.vitest.ts tests/unit/stop-decision-yaml-contract.vitest.ts 2>&1 | tail -40)
+  git status --short
+
+EXPECTED: `yaml ok`. The second command prints nothing. The third prints a count above 1 for each
+file. The four test files report 0 failed. If a test fails for a workflow-text reason, fix the
+workflow file, never the test. If stop-policy-yaml-parity fails, print the failure and stop: do
+not edit it.
+
+RETURN: the outputs of the verify commands and the counts the script printed.

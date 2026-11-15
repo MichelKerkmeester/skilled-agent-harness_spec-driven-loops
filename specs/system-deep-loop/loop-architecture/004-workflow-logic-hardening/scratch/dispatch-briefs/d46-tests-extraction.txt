@@ -1,0 +1,34 @@
+FILES (all under .skilled/skills/system-deep-loop/runtime/tests unless a full path is given):
+- unit/run-now-yaml-control.vitest.ts
+- unit/deep-review-recovery-baseline-drain.vitest.ts
+- unit/stop-decision-yaml-contract.vitest.ts
+- unit/write-containment-yaml-call-sites.vitest.ts
+- unit/executor-branch-contract.vitest.ts
+- unit/check-ledger-stem-producers.vitest.ts
+- unit/deep-research-graph-upsert.vitest.ts
+
+PER-FILE NOTES. These tests pinned inline text that moved into scripts.
+- run-now-yaml-control: the two run-now steps now call `node .skilled/.../run-now-sentinel.cjs`,
+  a path relative to the repository root. In the helper that runs the rendered run-now command
+  (`runCommand`), change the working directory from the runtime folder to the repository root.
+  Leave the other helper (`runRenderedCommand`) alone. Keep the row assertions.
+- deep-review-recovery-baseline-drain: the drain left the YAML. Require
+  ../../scripts/dispatch-iteration.cjs and call its exported
+  `drainStagedEvents({ eventDir, mode: 'review', runDirectory, gatewayPath })`. Keep both cases:
+  the happy path projects one recovery_baseline row and removes the directory, and a refused
+  event returns the non-zero gateway status and removes the directory.
+- stop-decision-yaml-contract: the case that expected exactly one line containing `triggerReason:`
+  now expects exactly one line containing `--trigger-reason "{reason_detail}"` in each single file.
+- write-containment-yaml-call-sites: no YAML holds `enforceWriteContainment({` any more. Read
+  scripts/dispatch-iteration.cjs, find each call site and end its slice at the end of the
+  enclosing function. Keep the four pattern checks (`stateLogPath:`,
+  `containment.contested.length > 0`, `containment.contested.map(`, `containment.contestedNote`).
+- executor-branch-contract: assert that each of the eight branches (if_native,
+  if_cli_claude_code, if_cli_codex, if_cli_cursor, if_cli_devin, if_cli_pi, if_cli_opencode,
+  if_cli_deepseek_harness) appears exactly once inside `step_dispatch_iteration` of each single
+  file, that `if_cli_opencode` calls `dispatch-iteration.cjs --executor cli-opencode`, and that
+  dispatch-iteration.cjs contains `buildLineageCommand`.
+- check-ledger-stem-producers: the test's own `PRODUCER_SURFACE` list takes the two single files
+  plus scripts/run-now-sentinel.cjs and scripts/dispatch-iteration.cjs, the same list the script
+  under test now holds. Keep the expected counts and stem list.
+- deep-research-graph-upsert: path repoint only.

@@ -1,7 +1,7 @@
 ---
 title: "RV-069 -- Divergent convergence mode"
 description: "Verify eligible clean-review pivots preserve synthesis-only verdict derivation, security gates, and target read-only authority."
-version: 1.11.0.1
+version: 1.11.1.0
 ---
 
 # RV-069 -- Divergent convergence mode
@@ -27,7 +27,7 @@ Operators should run this as a deterministic control-flow and boundary inspectio
 - Objective: Verify only `all_dimensions_clean` enters the divergent review pivot, a successful pivot continues with a new dimension direction, verdict and security gates are unaffected, and the target remains read-only.
 - Real user request: Check that divergent review can explore another in-scope dimension without changing the verdict, fixing code, or writing to the reviewed target.
 - Prompt: `Validate the shipped deep-review divergent pivot, synthesis-only verdict mapping, security-gate preservation, and read-only target boundary.`
-- Expected execution process: Inspect the review legal-stop tree and exact divergent predicate, trace the successful branch away from synthesis, inspect `phase_synthesis` verdict derivation, then inspect candidate and seat-prompt read-only enforcement.
+- Expected execution process: Inspect the `convergence.cjs` legal-stop decision and exact divergent predicate, trace the successful branch away from synthesis, inspect `phase_synthesis` verdict derivation, then inspect candidate and seat-prompt read-only enforcement.
 - Desired user-visible outcome: The user gets a PASS only when `all_dimensions_clean` restores a new read-only direction and loops, while verdict derivation remains reachable only through `phase_synthesis` and mutation-shaped candidates are rejected.
 - Expected signals: Exact eligible reason `all_dimensions_clean`; nine gates run before the pivot branch; successful pivot binds `next_dimension` and proceeds to `step_normalize_pause_events`; `step_derive_verdict` exists only under `phase_synthesis`; PASS/CONDITIONAL/FAIL depends only on active P0/P1 counts; candidate generation rejects fix, mutation, write, and target-expansion language; every seat prompt declares the target read-only.
 - Pass/fail posture: PASS if all control-flow and boundary signals agree. FAIL if pivot handling can derive a verdict, bypass a failed gate, authorize a fix, expand the target, or mutate reviewed files.
@@ -49,9 +49,9 @@ Validate the shipped deep-review divergent pivot, synthesis-only verdict mapping
 
 ### Commands
 
-1. `bash: rg -n -C 12 "LEGAL-STOP DECISION TREE|fixCompletenessReplayGate|if_divergent_eligible|eligible_reasons|excluded_reasons" .skilled/commands/deep/assets/deep-review-auto.yaml`
-2. `bash: rg -n -C 10 "step_apply_divergent_pivot_result|next_dimension|proceed_to: step_normalize_pause_events|skip_to: phase_synthesis" .skilled/commands/deep/assets/deep-review-auto.yaml`
-3. `bash: rg -n -C 12 "phase_synthesis:|step_derive_verdict|if p0_count > 0|elif p1_count > 0|verdict = \"PASS\"" .skilled/commands/deep/assets/deep-review-auto.yaml`
+1. `bash: rg -n -C 12 "LEGAL-STOP DECISION TREE|fixCompletenessReplayGate|if_divergent_eligible|eligible_reasons|excluded_reasons" .skilled/commands/deep/assets/deep-review.yaml`
+2. `bash: rg -n -C 10 "step_apply_divergent_pivot_result|next_dimension|proceed_to: step_normalize_pause_events|skip_to: phase_synthesis" .skilled/commands/deep/assets/deep-review.yaml`
+3. `bash: rg -n -C 12 "phase_synthesis:|step_derive_verdict|if p0_count > 0|elif p1_count > 0|verdict = \"PASS\"" .skilled/commands/deep/assets/deep-review.yaml`
 4. `bash: rg -n -C 5 "seedViolatesReadOnlyBoundary|implement|apply (?:a )?fix|modify|expand (?:the )?(?:scope|target)|Review target is READ-ONLY|Do not implement fixes" .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts`
 
 ### Expected
@@ -85,7 +85,7 @@ Privilege YAML indentation and branch destinations for reachability. `phase_synt
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Nine-gate order, exact pivot eligibility, continuation path, and synthesis-only verdict derivation |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Divergent pivot branch, exact pivot eligibility, continuation path, and synthesis-only verdict derivation |
 | `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` | Read-only candidate sources, mutation rejection, and seat-prompt prohibitions |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Mechanics-only three-seat transaction and continuation lifecycle |
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Four-value convergence-mode enum without verdict ownership |

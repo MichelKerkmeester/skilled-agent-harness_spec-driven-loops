@@ -1,0 +1,156 @@
+WORKFLOW TEXT CONTRACT FOR PHASE 003
+The four workflow files are in .skilled/commands/deep/assets/:
+  deep-research-auto.yaml, deep-research-confirm.yaml, deep-review-auto.yaml, deep-review-confirm.yaml
+Labels used in test titles: "research auto", "research confirm", "review auto", "review confirm".
+"After the acquire" means: at a text position after the line `      step_acquire_lock:` (six spaces).
+"Before the acquire" means: at a text position before that line.
+A step inside a phase starts with six spaces: `      step_name:`. A top-level step starts with two
+spaces: `  step_name:`. A step block ends at the next line with the same indentation that ends in `:`.
+
+C1. PRIOR LINEAGE BINDING. Every restart block holds this key. The restart block is the top-level
+`step_apply_lifecycle_request` in the two auto files and `on_restart_choice` (inside
+step_classify_session, under on_resume) in the two confirm files. The key comes before the archive
+`command:` key of the same block. `<I>` is the indentation of the block's own keys.
+<I>bind_prior_lineage:
+<I>  action: "Read the session id and generation of the packet that is about to be archived"
+<I>  command: |
+<I>    node -e '
+<I>      const fs = require("fs");
+<I>      const crypto = require("crypto");
+<I>      let priorSessionId = null;
+<I>      let priorGeneration = 0;
+<I>      try {
+<I>        const config = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+<I>        const lineage = config.lineage || config;
+<I>        priorSessionId = typeof lineage.sessionId === "string" ? lineage.sessionId : null;
+<I>        priorGeneration = Number(lineage.generation) || 0;
+<I>      } catch (error) {
+<I>        if (error.code !== "ENOENT") {
+<I>          console.error("The old config cannot be read: " + error.message);
+<I>          process.exit(1);
+<I>        }
+<I>      }
+<I>      let priorTailDigest = crypto.createHash("sha256").update("").digest("hex");
+<I>      try {
+<I>        priorTailDigest = crypto.createHash("sha256").update(fs.readFileSync(process.argv[2])).digest("hex");
+<I>      } catch (error) {
+<I>        if (error.code !== "ENOENT") throw error;
+<I>      }
+<I>      console.log(JSON.stringify({ priorSessionId, priorGeneration, priorTailDigest }));
+<I>    ' "{state_paths.config}" "{state_paths.state_log}"
+<I>  outputs:
+<I>    - prior_session_id: "priorSessionId from the JSON output, null when no old config exists"
+<I>    - prior_generation: "priorGeneration from the JSON output, 0 when no old config exists"
+<I>    - prior_tail_digest: "priorTailDigest from the JSON output: the sha256 of the old state log bytes, or of zero bytes when no old state log exists"
+<I>  on_fail: "Halt with STATUS=FAIL. The old config is unreadable, so repair or archive the packet by hand."
+In the two confirm files this last line reads instead, because there the lock is already held:
+<I>  on_fail: "Halt with STATUS=FAIL through step_release_lock. The old config is unreadable, so repair or archive the packet by hand."
+
+C2. AUTO ARCHIVE COMMAND. In both auto files the `command:` of the top-level
+step_apply_lifecycle_request is this block scalar (four spaces before `command:`):
+    command: |
+      if [ -e "{state_paths.archive_root}/{timestamp_slug}" ]; then
+        echo "The archive folder {state_paths.archive_root}/{timestamp_slug} is already there." >&2
+        exit 1
+      fi
+      if [ -d "{state_paths.packet_dir}" ]; then
+        mkdir -p "{state_paths.archive_root}" && mv "{state_paths.packet_dir}" "{state_paths.archive_root}/{timestamp_slug}" || exit 1
+      fi
+      mkdir -p "{state_paths.packet_dir}"
+
+C3. CONFIRM ARCHIVE COMMAND. In both confirm files the `command:` of on_restart_choice is this block
+scalar. It moves the packet contents and leaves the held lock file where it is.
+            command: |
+              if [ -e "{state_paths.archive_root}/{timestamp_slug}" ]; then
+                echo "The archive folder {state_paths.archive_root}/{timestamp_slug} is already there." >&2
+                exit 1
+              fi
+              mkdir -p "{state_paths.archive_root}/{timestamp_slug}" || exit 1
+              find "{state_paths.packet_dir}" -mindepth 1 -maxdepth 1 ! -name "$(basename "{state_paths.lock_file}")" -exec mv {} "{state_paths.archive_root}/{timestamp_slug}/" \; || exit 1
+              mkdir -p "{state_paths.prompt_dir}" "{state_paths.iteration_dir}" "{state_paths.delta_dir}"
+            on_fail: "Halt with STATUS=FAIL through step_release_lock. Never fall back to resume."
+
+C4. NO POST-LOCK MOVE. After the acquire, no line of any of the four files contains the text
+`mv {state_paths.packet_dir}` or `mv "{state_paths.packet_dir}"`.
+
+C5. CONFIG LINEAGE. In all four files step_create_config holds this key directly before `populate:`
+(eight spaces before `lineage_values:`):
+        lineage_values:
+          generation_init: "{prior_generation + 1} when lineage_mode == 'restart', else 1"
+          lineage_mode_init: "restart when lineage_mode == 'restart', else new"
+          parent_session_id_init: "{prior_session_id} when lineage_mode == 'restart', else null"
+The populate map then reads, in the research files:
+          lineage.parentSessionId: "{parent_session_id_init}"
+          lineage.lineageMode: "{lineage_mode_init}"
+          lineage.generation: "{generation_init}"
+and in the review files:
+          parentSessionId: "{parent_session_id_init}"
+          lineageMode: "{lineage_mode_init}"
+          generation: "{generation_init}"
+No line of the four files ends with `lineageMode: "new"` or with `generation: 1`.
+In the two review files the `content:` of step_create_findings_registry starts with
+  {"sessionId":"{session_id_init}","generation":{generation_init},"lineageMode":"{lineage_mode_init}",
+
+C6. RESTARTED EVENT. Both research files hold `step_record_restarted_run` directly after
+step_create_state_log and before step_create_strategy:
+      step_record_restarted_run:
+        skip_when: "lineage_mode != 'restart'"
+        action: "Record deep_research.run_restarted after the run-open row, so the restart marker never precedes deep_research.run_initialized"
+        bind:
+          restart_lineage_id: "{prior_session_id} when it is not null, else {session_id_init}"
+        append_jsonl: '{"stem":"deep_research.run_restarted","scope":{"runId":"{session_id_init}","lineageId":"{restart_lineage_id}"},"data":{"priorTailDigest":"{prior_tail_digest}","archivedLineageId":"{restart_lineage_id}","restartReason":"Restart requested: the prior research packet was archived and a new lineage segment opened.","generation":{generation_init},"compatibilityDecision":"exact","recoveryReceiptRef":"none"}}'
+The step_classify_session block of both research files holds no text `"event":"restarted"` and no text `run_restarted`.
+
+C7. LOCK TTL. In all four files step_acquire_lock holds, directly after its `action:` line:
+        ttl_ms: "lock_ttl_ms = max(1800000, executor_timeout * 1000). executor_timeout is the bound dispatch timeout in seconds, 900 when unset. The lock is stale after twice this value, so it outlives the longest allowed dispatch."
+and its acquire command ends with `--ttl-ms {lock_ttl_ms}`. No file holds `--ttl-ms 1800000`.
+
+C8. DISPATCH REFRESH. In all four files step_dispatch_iteration holds these two keys directly after
+its `action:` line:
+        pre_dispatch_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately before the dispatch starts"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. Run step_release_lock and stop rather than dispatch without it."
+        post_dispatch_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately after the dispatch returns"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. Run step_release_lock and stop rather than continue without it."
+
+C9. SHARED RELEASE. Each file keeps its one `step_release_lock` step. After the acquire:
+  a. every line that is exactly `halt: true` (after its indentation) is followed directly by a line
+     with the same indentation that reads `release_lock: step_release_lock`;
+  b. every line that contains `fail closed: lost the packet lock` also contains `step_release_lock`;
+  c. every line that starts (after its indentation) with `on_fail:` or `on_missing_counters:` and
+     contains the word `halt` or `Halt` also contains `step_release_lock`;
+  d. every line that contains `status: "CANCELLED"` also contains `release_lock: step_release_lock`.
+Before the acquire, no line contains `step_release_lock`.
+No file holds a line that contains `applies_to: [`.
+
+C10. DURATION STOP. In all four files phase_loop holds this step directly after step_refresh_lock.
+`<SID>` is `{config.lineage.sessionId}` and `<GEN>` is `{config.lineage.generation}` in the research
+files, `{session_id}` and `{generation}` in the review files. `<MODE>` is research or review.
+      step_check_max_duration:
+        action: "Stop the loop when the run has used its wall-clock budget, and still synthesize"
+        command: |
+          node -e '
+            const config = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+            const maxDurationMinutes = Number(config.maxDurationMinutes);
+            const startedMs = Date.parse(config.createdAt);
+            const elapsedMinutes = Math.floor((Date.now() - startedMs) / 60000);
+            const reached = Number.isFinite(maxDurationMinutes) && maxDurationMinutes > 0
+              && Number.isFinite(startedMs) && elapsedMinutes >= maxDurationMinutes;
+            console.log(JSON.stringify({ elapsedMinutes, maxDurationMinutes, reached }));
+          ' "{state_paths.config}"
+        outputs:
+          - duration_reached: "reached from the JSON output"
+          - elapsed_minutes: "elapsedMinutes from the JSON output"
+        note: "The clock starts at the createdAt of the current generation's config. A resume keeps it and a restart resets it, so paused and waiting time counts."
+        if_reached:
+          when: "duration_reached == true"
+          set: { decision: "STOP", reason: "maxDurationReached", stopReason: "maxDurationReached" }
+          bookkeeping_log: '{"type":"event","event":"maxDurationReached","mode":"<MODE>","run":{current_iteration},"stopReason":"maxDurationReached","elapsedMinutes":{elapsed_minutes},"maxDurationMinutes":{config.maxDurationMinutes},"timestamp":"{ISO_8601_NOW}","sessionId":"<SID>","generation":<GEN>}'
+          log: "Duration limit reached after {elapsed_minutes} minutes. Skipping dispatch and entering synthesis with partial findings."
+          skip_to: phase_synthesis
+          note: "The stop row is printed, not appended: the gateway refuses an event it has no ledger stem for. The reason reaches the synthesis report through the bound reason."
+        if_not_reached:
+          action: "Continue with the iteration"

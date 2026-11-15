@@ -1,7 +1,7 @@
 ---
 title: "CP-046 -- SETUP_YAML_HANDOFF command binding fidelity **(SANDBOXED)**"
-description: "Validate that /deep:research resolves setup inputs before loading the auto YAML workflow and leaves grep-checkable state evidence."
-version: 1.14.1.0
+description: "Validate that /deep:research resolves setup inputs before loading the workflow and leaves grep-checkable state evidence."
+version: 1.14.2.0
 ---
 
 # CP-046 -- SETUP_YAML_HANDOFF command binding fidelity **(SANDBOXED)**
@@ -29,7 +29,7 @@ Operators run the exact command sequence for `CP-046` and confirm the expected s
 - Real user request: `Run a one-iteration deep research loop and prove setup values were handed to YAML before dispatch.`
 - Prompt: `Run one deep-research iteration and prove setup values reach YAML before dispatch.`
 - Expected process: create sandbox, seed `/tmp/cp-046-spec/spec.md`, capture repo tripwire, run Call A as generic task, reset sandbox, run Call B through `/deep:research:auto`, then grep artifacts and diffs.
-- Expected signals: config carries `maxIterations` 1, state log records the topic, prompt pack exists, iteration output exists, command transcript or artifacts mention the auto workflow, sandbox target diff is empty, project tripwire is empty.
+- Expected signals: config carries `maxIterations` 1, state log records the topic, prompt pack exists, iteration output exists, command transcript or artifacts mention the workflow, sandbox target diff is empty, project tripwire is empty.
 - Pass/fail: PASS if every B signal is non-zero and both diffs are clean. FAIL if setup is inferred inside the agent body, YAML starts with unresolved values, or canonical agent files change.
 
 ---
@@ -86,7 +86,7 @@ find /tmp/cp-046-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-046-B
 cat /tmp/cp-046-B-command.txt /tmp/cp-046-B-artifacts.txt > /tmp/cp-046-B-combined.txt
 git status --porcelain > /tmp/cp-046-post.txt
 diff /tmp/cp-046-pre.txt /tmp/cp-046-post.txt > /tmp/cp-046-tripwire.diff; echo "TRIPWIRE_DIFF_EXIT=$?" | tee /tmp/cp-046-tripwire-exit.txt
-{ grep -c 'deep-research-config.json\|"maxIterations"[[:space:]]*:[[:space:]]*1' /tmp/cp-046-B-combined.txt; grep -c 'CP-046 setup binding handoff\|setup-binding\|cp-046' /tmp/cp-046-B-combined.txt; grep -c 'deep-research-strategy.md' /tmp/cp-046-B-combined.txt; grep -c 'prompts/iteration-1.md\|prompts/iteration-001.md' /tmp/cp-046-B-combined.txt; grep -c 'iterations/iteration-001.md' /tmp/cp-046-B-combined.txt; grep -c 'deep-research-auto.yaml\|AUTONOMOUS' /tmp/cp-046-B-combined.txt; grep -q 'POST_B_CANONICAL_DIFF=0' /tmp/cp-046-B-canonical-exit.txt && echo 1 || echo 0; grep -q 'TRIPWIRE_DIFF_EXIT=0' /tmp/cp-046-tripwire-exit.txt && echo 1 || echo 0; } | tee /tmp/cp-046-B-field-counts.txt
+{ grep -c 'deep-research-config.json\|"maxIterations"[[:space:]]*:[[:space:]]*1' /tmp/cp-046-B-combined.txt; grep -c 'CP-046 setup binding handoff\|setup-binding\|cp-046' /tmp/cp-046-B-combined.txt; grep -c 'deep-research-strategy.md' /tmp/cp-046-B-combined.txt; grep -c 'prompts/iteration-1.md\|prompts/iteration-001.md' /tmp/cp-046-B-combined.txt; grep -c 'iterations/iteration-001.md' /tmp/cp-046-B-combined.txt; grep -c 'deep-research.yaml\|AUTONOMOUS' /tmp/cp-046-B-combined.txt; grep -q 'POST_B_CANONICAL_DIFF=0' /tmp/cp-046-B-canonical-exit.txt && echo 1 || echo 0; grep -q 'TRIPWIRE_DIFF_EXIT=0' /tmp/cp-046-tripwire-exit.txt && echo 1 || echo 0; } | tee /tmp/cp-046-B-field-counts.txt
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
@@ -101,7 +101,7 @@ diff /tmp/cp-046-pre.txt /tmp/cp-046-post.txt > /tmp/cp-046-tripwire.diff; echo 
 |---|---|
 | `.skilled/commands/deep/research.md:7-23` | Markdown setup must resolve inputs before YAML load |
 | `.skilled/commands/deep/research.md:46-149` | single setup prompt and required bindings |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml:143-150` | preflight rejects missing bindings |
+| `.skilled/commands/deep/assets/deep-research.yaml:143-150` | preflight rejects missing bindings |
 | `.skilled/skills/system-deep-loop/deep-research/SKILL.md:86` | command-owned workflow is mandatory |
 | `.skilled/agents/deep-research.md:34-39` | agent body hard-blocks missing state |
 

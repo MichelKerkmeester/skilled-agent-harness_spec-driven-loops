@@ -17,14 +17,14 @@ expected_leaf_resources:
     leaf_resource_id: references/state/state-jsonl.md
   - workflow_mode: research
     leaf_resource_id: references/convergence/convergence.md
-version: "1.2.0.0"
+version: "1.2.1.0"
 ---
 
 # MO-001: Research Mode Routing
 
 ## 1. OVERVIEW
 
-This scenario verifies that an outward web-plus-code investigation request resolves to `workflowMode: research` and does not route to review or ai-council.
+This scenario verifies that an outward web-plus-code investigation request resolves to `workflowMode: research` and does not route to review.
 
 ---
 

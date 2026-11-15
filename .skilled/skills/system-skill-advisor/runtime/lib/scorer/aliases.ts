@@ -17,18 +17,9 @@ export const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Ob
 
 // BEGIN GENERATED DEEP ROUTING PROJECTION
 /** Hash of the generated deep-loop routing projection embedded below. */
-export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:fcec7a8c9c11fb7db486bcf721ff90bf2c7af64d18b91f015a52cb70026bb945';
+export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:843813c3acce6018a7b5c32b786019a9e05db3bd6e9867dcbb47938ddea49517';
 
 const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
-  'deep-ai-council': [
-    '@deep-ai-council',
-    'deep-ai-council',
-    'deep ai council',
-    'ai council',
-    'planning council',
-    'council deliberation',
-    'multi-ai-council',
-  ],
   'deep-research': [
     'command-spec-kit-deep-research',
     '/deep:research',
@@ -46,7 +37,6 @@ const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> =
 });
 
 export const DEEP_MODE_BY_CANONICAL: Readonly<Record<string, string>> = Object.freeze({
-  'deep-ai-council': 'ai-council',
   'deep-research': 'research',
   'deep-review': 'review',
 });
@@ -85,8 +75,8 @@ export function skillInAliasSet(actual: string, expected: readonly string[]): bo
 // 3. MERGED DEEP-LOOP IDENTITY + MODE LAYER
 // ───────────────────────────────────────────────────────────────────
 //
-// The active legacy deep-loop modes (deep-research, deep-review,
-// deep-ai-council) are folded into one public skill,
+// The active legacy deep-loop modes (deep-research, deep-review) are folded
+// into one public skill,
 // system-deep-loop, discriminated by workflowMode (see
 // system-deep-loop/mode-registry.json). canonicalSkillId above is
 // deliberately UNCHANGED: an alias still resolves to its mode-level legacy id

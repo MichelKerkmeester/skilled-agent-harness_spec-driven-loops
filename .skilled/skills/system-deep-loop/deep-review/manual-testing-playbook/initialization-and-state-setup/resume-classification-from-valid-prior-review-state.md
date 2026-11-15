@@ -1,7 +1,7 @@
 ---
 title: "DRV-005 -- Resume classification from valid prior review state"
 description: "Verify that resume detects existing review state and continues from the last completed iteration."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # DRV-005 -- Resume classification from valid prior review state
@@ -45,8 +45,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review resume classification from existing review state and report whether it skips directly to phase_loop.
 ### Commands
-1. `bash: rg -n 'step_classify_session|classify:|fresh|resume|invalid.state|completed.session' .skilled/commands/deep/assets/deep-review-auto.yaml`
-2. `bash: rg -n 'step_classify_session|resume|skip_to' .skilled/commands/deep/assets/deep-review-confirm.yaml`
+1. `bash: rg -n 'step_classify_session|classify:|fresh|resume|invalid.state|completed.session' .skilled/commands/deep/assets/deep-review.yaml`
+2. `bash: rg -n 'step_classify_session|resume|skip_to' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'resume|prior state|existing state|pick up' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md`
 ### Expected
 The classify step checks for config, JSONL, and strategy presence. Classifies as "resume" when all three exist and are consistent. And skips to phase_loop.
@@ -71,8 +71,7 @@ Verify the classify step inspects all three state files (config, JSONL, strategy
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Session classification logic, inspect `step_classify_session` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Session classification logic, inspect `step_classify_session` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Session classification logic, inspect `step_classify_session` |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Resume behavior documentation, use `ANCHOR:troubleshooting` |
 | `.skilled/skills/system-deep-loop/deep-review/ROUTER.md §3` | Phase detection guidance |
 

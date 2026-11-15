@@ -7,7 +7,7 @@ trigger_phrases:
   - "resource-map.md"
   - "coverage ledger"
   - "delta evidence opt-out"
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Resource Map Emission
@@ -36,8 +36,7 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 |---|---|---|
 | `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs` | Shared script | Normalizes research evidence and renders the ten-category resource map. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Adds the `--emit-resource-map` path and honors `config.resource_map.emit`. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Triggers emission during synthesis before final `research.md` compilation. |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Mirrors the same synthesis-time emission path in confirm mode. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Triggers emission during synthesis before final `research.md` compilation. Confirm mode adds approval gates. |
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Documents the convergence-to-synthesis emission step and operator opt-out. |
 
 ### Validation And Tests
@@ -54,7 +53,7 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 - Group: Loop lifecycle
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `loop-lifecycle/resource-map-emission.md`
-- Primary sources: `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `.skilled/commands/deep/assets/deep-research-confirm.yaml`
+- Primary sources: `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`, `.skilled/commands/deep/assets/deep-research.yaml`
 Related references:
 - [memory-save.md](../../feature-catalog/loop-lifecycle/memory-save.md) — Memory save
 - [fanout-dispatch.md](../../feature-catalog/loop-lifecycle/fanout-dispatch.md) — Fan-out loop dispatch

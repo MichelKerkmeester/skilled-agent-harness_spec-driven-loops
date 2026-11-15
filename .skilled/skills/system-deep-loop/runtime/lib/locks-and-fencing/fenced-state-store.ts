@@ -69,7 +69,6 @@ export interface VerifiedFencedState<TState extends JsonObject> {
 }
 
 const MUTABLE_RESOURCE_KINDS: ReadonlySet<ProtectedResourceKind> = new Set([
-  ProtectedResourceKinds.COUNCIL_ROUND,
   ProtectedResourceKinds.FANOUT_STATUS,
   ProtectedResourceKinds.LINEAGE_STATE,
   ProtectedResourceKinds.MERGE_TARGET,

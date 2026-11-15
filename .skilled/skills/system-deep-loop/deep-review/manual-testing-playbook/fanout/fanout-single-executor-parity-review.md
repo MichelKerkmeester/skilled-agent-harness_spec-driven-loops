@@ -1,7 +1,7 @@
 ---
 title: "Fan-out single-executor parity for review loop"
 description: "Validate that all three fan-out YAML steps are fully bypassed in single-executor review mode, and that the if_absent branch is byte-identical to the original resolver."
-version: 1.11.0.3
+version: 1.11.1.0
 ---
 
 # DRV-067 -- Fan-out single-executor parity for review loop
@@ -45,13 +45,12 @@ verdict.
 
 ### Commands
 
-1. `bash: grep -n "if_absent\|skip_when\|resolveArtifactRoot" .skilled/commands/deep/assets/deep-review-auto.yaml | head -20`
+1. `bash: grep -n "if_absent\|skip_when\|resolveArtifactRoot" .skilled/commands/deep/assets/deep-review.yaml | head -20`
 2. Confirm `if_absent.command` = `node -e "...resolveArtifactRoot('{spec_folder}', 'review')..."` (unchanged from pre-fan-out).
 3. Confirm `step_fanout_spawn:` has `skip_when: "config.fanout is absent"`.
 4. Confirm `step_fanout_merge:` has `skip_when: "config.fanout is absent"`.
-5. Repeat for `deep-review-confirm.yaml`.
-6. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/`
-7. Confirm 197/197 pass.
+5. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/`
+6. Confirm 197/197 pass.
 
 ### RECOMMENDED ORCHESTRATION PROCESS
 
@@ -65,8 +64,8 @@ Source inspection confirms all guards. vitest 197/197.
 
 ### Evidence
 
-- Grep output from steps 1 and 5, saved to `/tmp/drv-067-grep.txt`, showing the `if_absent` branch and both `skip_when` guards in `deep-review-auto.yaml` and `deep-review-confirm.yaml`.
-- Full vitest suite output from step 6, saved to `/tmp/drv-067-vitest.txt`, showing 197/197 passing.
+- Grep output from step 1, saved to `/tmp/drv-067-grep.txt`, showing the `if_absent` branch and both `skip_when` guards in `deep-review.yaml`.
+- Full vitest suite output from step 5, saved to `/tmp/drv-067-vitest.txt`, showing 197/197 passing.
 
 ### Failure Triage
 
@@ -82,8 +81,7 @@ Source inspection confirms all guards. vitest 197/197.
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | `step_resolve_artifact_root` if_absent branch, `step_fanout_spawn` skip_when, `step_fanout_merge` skip_when |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Same (confirm variant) |
+| `.skilled/commands/deep/assets/deep-review.yaml` | `step_resolve_artifact_root` if_absent branch, `step_fanout_spawn` skip_when, `step_fanout_merge` skip_when, in both execution modes |
 
 ### Validation
 

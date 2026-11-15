@@ -1,0 +1,60 @@
+ROLE: You are a test and workflow-file editor. Make exactly the edits below, nothing else. Do not
+refactor, reformat, reorder or fix anything adjacent. Keep the indentation of the surrounding
+lines exactly. All four workflow files must still parse as YAML afterwards.
+
+CONTEXT: the packet lock lifetime assumes no dispatch runs longer than the configured dispatch
+timeout. Every CLI branch of step_dispatch_iteration holds the line
+`timeout_seconds: "{config.executor.timeoutSeconds}"`. The native branch (`if_native:`) holds no
+timeout, so a native dispatch is not bounded. This change gives the native branch the same line.
+The WORKFLOW TEXT CONTRACT above is background only: it has no part for this change.
+
+ALLOWED WRITE PATHS (only these five files):
+- .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-lock-lifetime.vitest.ts
+- .skilled/commands/deep/assets/deep-research-auto.yaml
+- .skilled/commands/deep/assets/deep-research-confirm.yaml
+- .skilled/commands/deep/assets/deep-review-auto.yaml
+- .skilled/commands/deep/assets/deep-review-confirm.yaml
+
+STEP 1 (test first). In workflow-lock-lifetime.vitest.ts, inside the `for (const name of FILES)`
+loop, directly after the closing `});` of the test titled
+`${name} refreshes the lock before and after dispatch`, add one blank line and this test:
+
+    it(`${name} bounds the native dispatch by the dispatch timeout`, () => {
+      const step = phaseStep(text, 'step_dispatch_iteration');
+      expect(step).not.toBe('');
+
+      const native = keyBlock(step, 'if_native');
+      expect(native).not.toBe('');
+      expect(native).toContain('timeout_seconds: "{config.executor.timeoutSeconds}"');
+    });
+
+STEP 2. Run the test file and print the tail. It must report exactly 4 failed, one per workflow
+file, each in the new test:
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/workflow-lock-lifetime.vitest.ts 2>&1 | tail -40)
+If the failed count is not 4, print the output and stop.
+
+STEP 3 (all four workflow files). Find the native branch of step_dispatch_iteration with
+  grep -n '^        if_native:' <file>
+It prints exactly one line per file (eight spaces before `if_native:`). The block reads:
+        if_native:
+          dispatch:
+            agent: <deep-research or deep-review>
+            model: opus
+            context_source: "rendered_prompt_pack"
+          wait_for_completion: true
+Add one line directly before its `wait_for_completion: true` line, with ten spaces:
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+Do NOT touch any other `if_native:` block. The others are indented deeper (sixteen spaces) and
+belong to the pivot seats.
+
+VERIFY (run from the repository root and print each output):
+  python3 -c "import sys, yaml; [yaml.safe_load(open(p)) for p in sys.argv[1:]]; print('yaml ok')" .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  grep -n -A6 '^        if_native:' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/workflow-lock-lifetime.vitest.ts tests/unit/stop-policy-yaml-parity.vitest.ts 2>&1 | tail -30)
+  git status --short
+
+EXPECTED: `yaml ok`. Each native block shows the new line. Both test files report 0 failed. If a
+test fails for a workflow-text reason, fix the workflow file, never the test. If
+stop-policy-yaml-parity fails, print the failure and stop: do not edit it.
+
+RETURN: the STEP 2 tail and the outputs of the verify commands.

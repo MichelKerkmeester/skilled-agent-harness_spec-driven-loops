@@ -47,7 +47,7 @@ const parityPrompts: ReadonlyArray<{ readonly skill: string; readonly prompt: st
   { skill: 'sk-prompt', prompt: 'Use sk-prompt to improve this prompt and score it with the CLEAR rubric.' },
   { skill: 'mcp-code-mode', prompt: 'Use mcp-code-mode for external MCP orchestration with search_tools, list_tools, and call_tool_chain.' },
   { skill: 'mcp-tooling', prompt: 'Use mcp-tooling to inspect the local page and capture console failures.' },
-  { skill: 'system-deep-loop', prompt: 'Use system-deep-loop for a multi-seat planning council with persisted artifacts.' },
+  { skill: 'system-deep-loop', prompt: 'Use system-deep-loop for a multi-pass review loop with persisted artifacts.' },
 ];
 
 function pythonFixtureUnavailableReason(): string | null {

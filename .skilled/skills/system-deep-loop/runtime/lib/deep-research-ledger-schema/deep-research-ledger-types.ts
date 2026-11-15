@@ -756,9 +756,9 @@ export type DeepResearchStemProducerStatus =
   | { readonly status: 'reserved'; readonly reason: string };
 
 export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
-  'deep_research.run_initialized': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml', '.skilled/commands/deep/assets/deep-research-confirm.yaml'] },
+  'deep_research.run_initialized': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research.yaml'] },
   'deep_research.run_resumed': { status: 'reserved', reason: 'No writer emits it today: resume rebuilds the flat config and state in place. The resume step would speak it once a resumed run records its compatibility decision as an event.' },
-  'deep_research.run_restarted': { status: 'reserved', reason: 'No writer emits it today: restart rebinds the flat config in place. The restart step would speak it once the archived lineage and restart reason are appended.' },
+  'deep_research.run_restarted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research.yaml'] },
   'deep_research.question_registered': { status: 'reserved', reason: 'No writer emits it today: questions are flat rows in the state log. A question step would speak it once registration appends its dependency and source-class contract.' },
   'deep_research.branch_planned': { status: 'reserved', reason: 'No writer emits it today: branch plans live in strategy prose. A branch step would speak it once a planned branch and its budget are appended.' },
   'deep_research.branch_selected': { status: 'reserved', reason: 'No writer emits it today: selection is a strategy update. A branch step would speak it once the selected branch and its rationale are appended.' },
@@ -779,10 +779,10 @@ export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
   'deep_research.memory_save_completed': { status: 'reserved', reason: 'No writer emits it today: the save command writes its own artifacts. The save step would speak it once completion records its persistence receipts.' },
   'deep_research.memory_save_failed': { status: 'reserved', reason: 'No writer emits it today: a failed save surfaces to the operator directly. The save step would speak it once failure records its retryable reason code.' },
   'deep_research.run_completed': { status: 'reserved', reason: 'No writer emits it today: closure is the reducer inference from flat rows. The finalization step would speak it once terminal status and counts are appended.' },
-  'deep_research.run_now_requested': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml'] },
-  'deep_research.run_now_rejected': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml'] },
-  'deep_research.run_now_accepted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml'] },
-  'deep_research.run_now_restored': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml'] },
+  'deep_research.run_now_requested': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs'] },
+  'deep_research.run_now_rejected': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs'] },
+  'deep_research.run_now_accepted': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs'] },
+  'deep_research.run_now_restored': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs'] },
   'deep_research.synthesis_incomplete': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs'] },
   'deep_research.synthesis_complete': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs'] },
   'deep_research.spec_check_result': { status: 'reserved', reason: 'No workflow stages it: the research workflows write the legacy spec-protocol row, which the append gateway upcasts to this stem. A workflow step would speak it once it stages the stem itself.' },

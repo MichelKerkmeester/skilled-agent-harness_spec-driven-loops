@@ -1,0 +1,17 @@
+**COMMAND:** `/deep:review:confirm .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs --spec-folder=specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/scratch/901-dry-run-probe --max-iterations=1 --dry-run`
+**WORKFLOW:** `.skilled/commands/deep/assets/deep-review.yaml` — `EXECUTION_MODE: confirm` (`dry_run: true`)
+Bound from the task line and setup answers: `review_target=.skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs`, `review_target_type=files`, `review_dimensions=all`, `spec_folder=specs/…/scratch/901-dry-run-probe`, `maxIterations=1`, `convergenceThreshold=0.10`, `convergence_mode=default`, `stop_policy=convergence`, `lineage_mode=auto`, `executor=native`, no fan-out, `resource_map_emit=true`.
+```
+STEP step_resolve_artifact_root: ran read-only
+STEP step_bind_reducer_artifact_arg: ran read-only
+STEP step_apply_lifecycle_request: skipped by skip_when
+STEP step_fanout_spawn: skipped by skip_when
+STEP step_preflight_contract: ran read-only
+STEP step_create_directories: halted
+```
+```json
+{"type":"event","event":"dry_run_halt","mode":"review","boundary":"state-mutation","step":"step_create_directories","timestamp":"2026-11-14T19:02:15Z"}
+```
+**WRITES:** none
+**DISPATCHES:** none
+**DRY-RUN AMBIGUITY:** In `:confirm` mode the first dry-run boundary (`step_create_directories`, `state-mutation`) fires before `gate_init_approval`, so no GATE line is reached and the confirm-mode scope approval is never shown; that same halt also precedes `step_read_state`, `step_graph_convergence` and `step_dispatch_iteration.dry_run_preview`, so the prompt-render/convergence preview that `dry_run_control.safe_operations` and the presentation asset promise is unreachable for a fresh packet, and the command document's "emits `dry_run_halt` JSONL preview lines" (plural) reads against `halt_hook_rule`'s halt-at-the-first.

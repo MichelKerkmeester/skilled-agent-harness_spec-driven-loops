@@ -1,7 +1,7 @@
 ---
 title: "Fan-out single-executor parity for research loop"
 description: "Validate that all three fan-out YAML steps (step_resolve_artifact_root if_absent, step_fanout_spawn, step_fanout_merge) are fully bypassed in single-executor mode, preserving byte-identical behavior."
-version: 1.14.0.3
+version: 1.14.1.0
 ---
 
 # DR-054 -- Fan-out single-executor parity for research loop
@@ -43,11 +43,11 @@ If any `skip_when` guard is missing or `if_absent` was modified, every existing 
 
 ### Commands
 
-1. `bash: grep -n "if_absent\|skip_when\|resolveArtifactRoot" .skilled/commands/deep/assets/deep-research-auto.yaml | head -20`
+1. `bash: grep -n "if_absent\|skip_when\|resolveArtifactRoot" .skilled/commands/deep/assets/deep-research.yaml | head -20`
 2. Confirm `if_absent.command` = `node -e "const { resolveArtifactRoot } = require('.skilled/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'research')));"` (unchanged from pre-fan-out).
 3. Confirm `step_fanout_spawn:` has `skip_when: "config.fanout is absent"`.
 4. Confirm `step_fanout_merge:` has `skip_when: "config.fanout is absent"`.
-5. Repeat for `deep-research-confirm.yaml`.
+5. Repeat for `deep-research.yaml`.
 6. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/`
 7. Confirm 197/197 pass.
 
@@ -63,7 +63,7 @@ Source inspection confirms all guards. vitest suite passes 197/197 with no new f
 
 ### Evidence
 
-- Grep output from steps 1 and 5, saved to `/tmp/dr-054-grep.txt`, showing the `if_absent` branch and both `skip_when` guards in `deep-research-auto.yaml` and `deep-research-confirm.yaml`.
+- Grep output from steps 1 and 5, saved to `/tmp/dr-054-grep.txt`, showing the `if_absent` branch and both `skip_when` guards in `deep-research.yaml`.
 - Full vitest suite output from step 6, saved to `/tmp/dr-054-vitest.txt`, showing 197/197 passing.
 
 ### Failure Triage
@@ -80,8 +80,7 @@ Source inspection confirms all guards. vitest suite passes 197/197 with no new f
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | `step_resolve_artifact_root` if_absent branch, `step_fanout_spawn` skip_when, `step_fanout_merge` skip_when |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Same (confirm variant) |
+| `.skilled/commands/deep/assets/deep-research.yaml` | `step_resolve_artifact_root` if_absent branch, `step_fanout_spawn` skip_when, `step_fanout_merge` skip_when |
 
 ### Validation
 

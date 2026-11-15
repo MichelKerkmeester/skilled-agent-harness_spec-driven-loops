@@ -40,11 +40,6 @@ export const LEGACY_DARK_BOUNDARIES = Object.freeze([
     legacyBehavior: 'Legacy tail-repair semantics remain authoritative for legacy files only',
   },
   {
-    boundaryId: 'council-round-state',
-    source: 'runtime/lib/council/round-state-jsonl.cjs',
-    legacyBehavior: 'Council round JSONL and writer result remain authoritative',
-  },
-  {
     boundaryId: 'fanout-status-ledger',
     source: 'runtime/scripts/fanout-pool.cjs',
     legacyBehavior: 'Fan-out status lines and process outcome remain authoritative',

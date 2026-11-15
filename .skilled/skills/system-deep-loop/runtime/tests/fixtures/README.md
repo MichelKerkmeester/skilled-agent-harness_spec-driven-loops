@@ -1,6 +1,6 @@
 ---
 title: "runtime test fixtures"
-description: "Shared event, ledger and council graph fixtures for runtime tests."
+description: "Shared event and ledger fixtures for runtime tests."
 trigger_phrases:
   - "runtime test fixtures"
   - "authorized ledger fixtures"
@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder contains reusable inputs and child-process workers for runtime tests. The fixtures build validated event envelopes, authorized-ledger requests and council graph value scenarios without changing production state.
+This folder contains reusable inputs and child-process workers for runtime tests. The fixtures build validated event envelopes and authorized-ledger requests without changing production state.
 
 The fixture surface is test-only. Each consumer suite owns the assertion that gives a fixture meaning.
 
@@ -22,7 +22,10 @@ The fixture surface is test-only. Each consumer suite owns the assertion that gi
 
 ```text
 fixtures/
-└── council-value/      # Scenario fixtures: per-scenario modules, scenarios.cjs and seed helpers
+├── authorized-ledger-fixtures.ts
+├── authorized-ledger-test-helper.ts
+├── authorized-ledger-worker.ts
+└── event-envelope-producers.ts
 ```
 
 ---
@@ -45,7 +48,6 @@ fixtures/
 | Ledger fixtures | `authorized-ledger-fixtures.ts` |
 | Worker fixtures | `authorized-ledger-worker.ts` |
 | Event fixtures | `event-envelope-producers.ts` |
-| Scenario fixtures | [`council-value/README.md`](council-value/README.md) |
 
 These files are imported by tests and are not runtime production entry points.
 
@@ -68,5 +70,4 @@ Fixtures provide deterministic inputs at the test edge of the runtime spine. The
 ## 7. RELATED
 
 - [Runtime test index](../README.md)
-- [Council value fixtures](council-value/README.md)
 - [Runtime library](../../lib/README.md)

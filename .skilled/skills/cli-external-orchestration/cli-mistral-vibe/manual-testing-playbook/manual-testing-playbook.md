@@ -1,7 +1,7 @@
 ---
 title: "cli-mistral-vibe: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-mistral-vibe skill."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # cli-mistral-vibe: Manual Testing Playbook
@@ -320,7 +320,7 @@ The keyed lineage also finished on `deepseek-flash` with `exit_code` `0`, `outco
 
 The three generated mirrors are in sync at 11 agent profiles, 56 skill links and 45 prompt stubs. The dispatch rule-check suite passes 65 tests, the spec-gate suite passes 3, the goal-hook suite passes 3, and the adapter stress file passes 22 with the live probe skipped. The goal hook is registered once, and the recorded journal carries the packet's slice in a block tagged `vibe.hookContext: true`.
 
-The routing front door serves the compiled decision for the `cli-external-orchestration` hub: `delegate to vibe` routes to `cli-mistral-vibe`, the activation manifest and the snapshot share policy hash `1f77e1ab...` at generation `5`, and the legacy hub router carries both the mode row and the keyword as the fallback.
+The routing front door serves the compiled decision for the `cli-external-orchestration` hub: `delegate to vibe` routes to `cli-mistral-vibe`, the activation manifest and the snapshot share policy hash `ee55d93a...` at generation `5`, and the legacy hub router carries both the mode row and the keyword as the fallback.
 
 ---
 

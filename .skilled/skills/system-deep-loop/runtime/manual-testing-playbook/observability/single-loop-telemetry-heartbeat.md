@@ -1,7 +1,7 @@
 ---
 title: "DLR-048 -- Single-loop telemetry heartbeat"
 description: "Manual validation scenario for Single-loop telemetry heartbeat in the runtime/ skill."
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # DLR-048 -- Single-loop telemetry heartbeat
@@ -44,7 +44,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 ### Commands
 
-1. Inspect `.skilled/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
+1. Inspect `.skilled/commands/deep/assets/deep-research.yaml` for the implementation contract.
 2. Inspect `lib/deep-loop/atomic-state.ts` for the implementation contract.
 3. Inspect `tests/unit/atomic-state.vitest.ts` for the matching regression coverage.
 4. Run `bash: cd .skilled/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
@@ -57,7 +57,7 @@ Single-loop telemetry heartbeat matches the documented current reality, the sour
 
 ### Evidence
 
-- Source excerpts from `.skilled/commands/deep/assets/deep-research-auto.yaml`, `lib/deep-loop/atomic-state.ts` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Source excerpts from `.skilled/commands/deep/assets/deep-research.yaml`, `lib/deep-loop/atomic-state.ts` showing the anchors named in the commands above, read from the current files rather than recalled.
 - Captured stdout and exit status for every command run in this section.
 - Output from `tests/unit/atomic-state.vitest.ts` naming the assertions that carry the expected signals.
 - A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
@@ -77,7 +77,7 @@ Single-loop telemetry heartbeat matches the documented current reality, the sour
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | single-loop telemetry heartbeat. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | single-loop telemetry heartbeat. |
 | `lib/deep-loop/atomic-state.ts` | single-loop telemetry heartbeat. |
 
 ### Validation

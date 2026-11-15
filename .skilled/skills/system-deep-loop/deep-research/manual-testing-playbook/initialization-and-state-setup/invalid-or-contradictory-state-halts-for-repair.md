@@ -1,7 +1,7 @@
 ---
 title: "DR-006 -- Invalid or contradictory state halts for repair"
 description: "Verify that partial or contradictory scratch artifacts trigger a halt for repair instead of a guessed resume path."
-version: 1.14.0.15
+version: 1.14.1.0
 ---
 
 # DR-006 -- Invalid or contradictory state halts for repair
@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate invalid deep-research state halts for repair instead of guessing through partial or contradictory artifacts.`
 - Expected execution process: Inspect the protocol rules, inspect YAML invalid-state handling, then compare the result against README troubleshooting language.
 - Desired user-visible outcome: The user is warned clearly that broken state must be repaired or archived before continuing.
-- Expected signals: Invalid-state is a named class, both YAML files halt with a repair message, and the docs do not promise silent guessing for contradictory state.
+- Expected signals: Invalid-state is a named class, the workflow halts in both execution modes with a repair message, and the docs do not promise silent guessing for contradictory state.
 - Pass/fail posture: PASS if the contract consistently halts on contradictory state; FAIL if any source implies silent auto-repair for invalid-state.
 
 ---
@@ -46,16 +46,16 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate invalid deep-research state halts for repair instead of guessing through partial or contradictory artifacts.
 ### Commands
 1. `bash: rg -n 'invalid-state|halt for repair|contradictory|guessing' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-research/SKILL.md`
-2. `bash: rg -n 'on_invalid_state|halt: true|incomplete or contradictory' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+2. `bash: rg -n 'on_invalid_state|halt: true|incomplete or contradictory' .skilled/commands/deep/assets/deep-research.yaml`
 3. `bash: rg -n 'State file corrupt|repair|recover' .skilled/skills/system-deep-loop/deep-research/README.md`
 ### Expected
-Invalid-state is a named class, both YAML files halt with a repair message, and the docs do not promise silent guessing for contradictory state.
+Invalid-state is a named class, the workflow halts in both execution modes with a repair message, and the docs do not promise silent guessing for contradictory state.
 ### Evidence
 Capture the invalid-state rules, the YAML halt messages, and the troubleshooting wording together.
 ### Pass/Fail
 PASS if the contract consistently halts on contradictory state; FAIL if any source implies silent auto-repair for invalid-state.
 ### Failure Triage
-Distinguish invalid-state from recoverable JSONL corruption and verify both YAML files stop rather than continue.
+Distinguish invalid-state from recoverable JSONL corruption and verify the workflow stops in both execution modes rather than continue.
 ---
 
 ## 4. SOURCE FILES
@@ -73,8 +73,7 @@ Distinguish invalid-state from recoverable JSONL corruption and verify both YAML
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Invalid-state contract; use `ANCHOR:phase-initialization` |
 | `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Rule-level guardrails; use `ANCHOR:rules` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Halt behavior; inspect `step_classify_session` |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Halt behavior; inspect `step_classify_session` |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Halt behavior; inspect `step_classify_session` |
 | `.skilled/skills/system-deep-loop/deep-research/README.md` | Troubleshooting boundary; use `ANCHOR:troubleshooting` |
 
 ---
