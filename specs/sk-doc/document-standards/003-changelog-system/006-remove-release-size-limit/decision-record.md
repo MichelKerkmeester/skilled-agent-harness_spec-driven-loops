@@ -38,6 +38,8 @@ _memory:
 | Q002 | Move the v4.0.2.1 tag to the commit with the sk-code notes and republish the release. | Not stated. | None | .skilled/changelog/skilled/v4.0.2.1.md, tag v4.0.2.1 |
 | Q003 | Give sk-code its own Code Skill section in the v4.0.2.1 notes once the item ceilings are gone, then republish with the tag moved. | Not stated. | The file-total-only scope choice, after the operator asked for the H4 item and glance bullet ceilings to go too | T012, .skilled/changelog/skilled/v4.0.2.1.md |
 | Q004 | Update the v4.0.2.1 notes with this session's changes and also move the tag and republish the release. | Not stated. Evidence: alternative, option false, overlap 0, imperative false, shift false. | None | .skilled/changelog/skilled/v4.0.2.1.md, tag v4.0.2.1 |
+| Q005 | Fix the test_validation_switch.py failure so the sk-doc CI goes green. | Not stated. Evidence: yes_no, option true, overlap 0, imperative false, shift false. | None | commit b6a0ce6bb9e, .skilled/hooks/hook-flags.env.example |
+| Q006 | Refresh the frozen README manifest for the two Mistral Vibe hook directories now rather than leave it to the Vibe session. | Not stated. | None | commit 230a2bcb60d, .skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -118,6 +120,40 @@ Options: none
 Answer:
 ```text
 Yes yes
+```
+
+### Q005
+<!-- source: claude:309bc6f7-fcbc-4b75-830c-186ea0a707b1:chat:55ffcf38-dfe8-4f4e-a952-ae016e9fd930:521076ba-b20d-4bb7-ae1c-9b3b005ab3c3 -->
+
+Question:
+```text
+Your call: should I fix the `test_validation_switch.py` failure so the sk-doc CI goes green?
+```
+
+Options: none
+
+Answer:
+```text
+Yes
+```
+
+### Q006
+<!-- source: claude:309bc6f7-fcbc-4b75-830c-186ea0a707b1:toolu_01TSdRW3UuDawR26Up7q5a8X:0 -->
+
+Question:
+```text
+The sk-doc CI now fails only on test_readme_manifest.py, because the Mistral Vibe merge (36ddad5062d) added .skilled/hooks/decision-capture/vibe and .skilled/hooks/skill-advisor/vibe without refreshing the frozen manifest. Should I refresh it with the test's own --write command, or leave it to the Vibe session?
+```
+
+Options:
+```text
+Refresh it now (Recommended)
+Leave it to Vibe
+```
+
+Answer:
+```text
+Refresh it now (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
