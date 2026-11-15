@@ -101,6 +101,11 @@ _memory:
 | Q065 | Merge `origin/main` and apply main's move: hand-apply main's four ai-council table edits to `command-attach.ts`, regenerate the generated files, and record the floor move the retired command caused as main's change, not this packet's. At the merge the plain holdout reads 2 of 44 and the eval holdout 49, where phase 029 recorded 1 of 44 and 51. | Not stated. | None | goal.md log, phase 030 T001 |
 | Q066 | The Vibe parity work goes in a new phase of this packet, phase 030, not in the Vibe packet or a new packet (answer "C) New 008 phase"). | Not stated. | None | phase 030 |
 | Q067 | The request of 2026-11-15, verbatim: "Analyze the .vibe mistral stuff we've added. Make sure all chat automation stuff also works for that cli runtime." It scopes phase 030 to the packet's own surfaces and hands the rest back. | Not stated. | None | phase 030 spec.md, scratch/handback.md |
+| Q068 | Decisions that need the operator are asked through the question tool. This amends D1, which said to ask the operator nothing. The operator's words, 2026-11-15: "use ask qiestopm tpp; fpr decosopms meeded" (use the ask question tool for decisions needed). | Not stated. | D1, in part | goal.md log |
+| Q069 | The behaviour arms run again under D5, in a throwaway clone with no remote and credentials off, so the behaviour criterion can close with real numbers. This supersedes the earlier stop of the arms. | Not stated. | The earlier stop of the behaviour arms | the behaviour arm phase after 031 |
+| Q070 | After phase 031 and its alignment recheck, run /deep:review to convergence, then /deep:research, building or declining each recommendation. | Not stated. | None | the loops after phase 031 |
+| Q071 | The Vibe gaps of phase 030's hand-back stay with the Vibe packet 004 and are handed over with scratch/handback.md. | Not stated. | None | 030 scratch/handback.md |
+| Q072 | The advisor keeps offering a typed command unless the prompt refuses it or asks about it, and the release note and docs are corrected to say so. The typed-recall floor depends on typed commands being offered. | Not stated. | None | phase 031 |
 
 ### Answer Log, 2026-11-14
 
@@ -114,6 +119,17 @@ Q059 to Q062 above, as asked.
 | Q062 | 2026-11-14 | Push | When the packet's last gates pass, what should happen to the branch worktrees/352-command-surfacing-research? | Leave unpushed (Recommended); Push and open a PR | Leave unpushed (Recommended) |
 | Q063 | 2026-11-14 | Arm size | Token cost of the new behaviour arm, measured from the last arm's 144 stored sessions (24 per CLI). Typical (median) tokens per session: claude 167K (Sonnet 5.5), codex 113K (Luna), pi 235K, devin 362K (swe-2-max), opencode 715K and dsh 729K (both DeepSeek flash). 85 to 95 percent of it is cache reads. A few long sessions push the averages far higher. 864 sessions (2 runs per row) come to about 334M tokens at the median and 621M at the mean. 288 sessions (1 run per row) come to about a third of that. OpenCode and pi record money cost: about $8 and $2 for 144 sessions each. Which size should phase 026 plan for? | 864 sessions (Recommended); 288 sessions; 864, with a turn cap | 864 sessions (Recommended) |
 | Q064 | 2026-11-14 | Arm size | Fable's design for the new behaviour arm is 864 live sessions: 36 fresh blind rows, two runs each, brief off and on, six runtimes. The last arm took about 33 seconds a run, so this is roughly 1.5 to 3 hours with the runtimes side by side. My earlier option said about an hour. Fable's stated minimum for the pooled sign test is one run per row, 288 sessions. Which size should phase 026 plan for? | 864 sessions (Recommended); 288 sessions | token usage per ci? |
+
+### Answer Log, 2026-11-15
+
+Q069 to Q072 above, as asked.
+
+| ID | Date | Topic | Question | Options | Answer |
+|----|------|-------|----------|---------|--------|
+| Q069 | 2026-11-15 | Behaviour | The goal's behaviour criterion needs a before and after start rate on claude, codex, opencode, pi, devin and dsh, and you stopped the behaviour arms earlier. What should happen to that criterion? | Run it in an arena (Recommended); Waive the criterion; Keep it waiting | Run it in an arena (Recommended) |
+| Q070 | 2026-11-15 | Deep loops | Decision D3 calls for a /deep:review loop over the packet code and a /deep:research loop on UX, performance and cross-CLI usefulness, and neither has run. These are long multi-iteration loops with paid model calls. When should they run? | Both, after 031 (Recommended); Review only; Neither now | Both, after 031 (Recommended) |
+| Q071 | 2026-11-15 | Vibe gaps | Phase 030 handed back Vibe gaps that live in the Vibe packet (004) and the hooks docs, owned by another session: goal binding and resend for interactive Vibe sessions, a git advisory on Vibe through a post_tool hook, doc drift and a guard matcher that may miss process.start. Who builds them? | Leave to packet 004 (Recommended); Build here in a new phase; Only the guard matcher here | Leave to packet 004 (Recommended) |
+| Q072 | 2026-11-15 | Mention rule | The alignment check found that the advisor still offers a command the prompt only mentions, for example 'the /create:sk-skill command is slow' gets offered with policy start, while the release note says a mentioned command is not offered. Which side should change? | Fix the note (Recommended); Change the code | Fix the note (Recommended) |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1339,6 +1355,85 @@ Push and open a PR
 Answer:
 ```text
 Leave unpushed (Recommended)
+```
+
+### Q069
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:AskUserQuestion:2026-11-15 -->
+
+Question:
+```text
+The goal's behaviour criterion needs a before and after start rate on claude, codex, opencode, pi, devin and dsh, and you stopped the behaviour arms earlier. What should happen to that criterion?
+```
+
+Options:
+```text
+Run it in an arena (Recommended)
+Waive the criterion
+Keep it waiting
+```
+
+Answer:
+```text
+Run it in an arena (Recommended)
+```
+
+### Q070
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:AskUserQuestion:2026-11-15 -->
+
+Question:
+```text
+Decision D3 calls for a /deep:review loop over the packet code and a /deep:research loop on UX, performance and cross-CLI usefulness, and neither has run. These are long multi-iteration loops with paid model calls. When should they run?
+```
+
+Options:
+```text
+Both, after 031 (Recommended)
+Review only
+Neither now
+```
+
+Answer:
+```text
+Both, after 031 (Recommended)
+```
+
+### Q071
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:AskUserQuestion:2026-11-15 -->
+
+Question:
+```text
+Phase 030 handed back Vibe gaps that live in the Vibe packet (004) and the hooks docs, owned by another session: goal binding and resend for interactive Vibe sessions, a git advisory on Vibe through a post_tool hook, doc drift and a guard matcher that may miss process.start. Who builds them?
+```
+
+Options:
+```text
+Leave to packet 004 (Recommended)
+Build here in a new phase
+Only the guard matcher here
+```
+
+Answer:
+```text
+Leave to packet 004 (Recommended)
+```
+
+### Q072
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:AskUserQuestion:2026-11-15 -->
+
+Question:
+```text
+The alignment check found that the advisor still offers a command the prompt only mentions, for example 'the /create:sk-skill command is slow' gets offered with policy start, while the release note says a mentioned command is not offered. Which side should change?
+```
+
+Options:
+```text
+Fix the note (Recommended)
+Change the code
+```
+
+Answer:
+```text
+Fix the note (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

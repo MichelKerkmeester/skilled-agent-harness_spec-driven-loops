@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment findings remediation",
+      "phase 31 alignment findings remediation",
+      "vibe command reference allowlist",
+      "vibe mirror checks in ci",
+      "mention is not a request release note",
+      "alignment findings remediation plan",
+      "alignment findings remediation tasks",
+      "alignment findings remediation acceptance criteria"
+    ],
+    "key_topics": [
+      "alignment",
+      "findings",
+      "remediation",
+      "phase",
+      "vibe",
+      "command",
+      "reference",
+      "allowlist",
+      "mirror",
+      "checks",
+      "mention",
+      "request"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "scratch/handback.md",
+      ".skilled/commands/scripts/validate-command-references.cjs",
+      ".github/workflows/command-tree-parity.yml",
+      ".github/workflows/spec-kit-check.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/system-skilled-doctor/graph-metadata.json",
+      ".vibe/hooks.toml",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      ".skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js",
+      ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      "scratch/planning/finding-matrix.sh",
+      "scratch/planning/extract-check.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "handback.md",
+        "kind": "doc",
+        "path": "scratch/handback.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-tree-parity.yml",
+        "kind": "config",
+        "path": ".github/workflows/command-tree-parity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skilled-doctor/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "setup-native-module-health-and-mcp-installation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "finding-matrix.sh",
+        "kind": "script",
+        "path": "scratch/planning/finding-matrix.sh",
+        "source": "derived"
+      },
+      {
+        "name": "extract-check.sh",
+        "kind": "script",
+        "path": "scratch/planning/extract-check.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The branch ships the Vibe runtime rows, but the command-reference validator rejects the `.vibe/agents/` row this branch added and no CI job checks a Vibe mirror, so a Vibe drift can merge with every check green",
+    "created_at": "2026-11-15T14:27:31Z",
+    "last_save_at": "2026-11-15T14:42:48.626Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md"
+    ],
+    "source_fingerprint": "sha256:0ac942d70fa4f0e3939f3a7616146471882d5f2ce59f168c7fcda900149b5940",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8b8e3587f7d4751253d9e378b60d723385c2fa3992c3bebf5a59403ed45ec0ca",
+      "plan.md": "b1c006a3a4587e2b59374e0c34a6fa616e6a40776b98b2092de0d754b2cd9ff1",
+      "tasks.md": "ceda5c1b9ab616f15e8e62835bf712b3c76d2a2107ecde178ff680add95877b3"
+    },
+    "last_active_at": null
+  }
+}
