@@ -1,0 +1,1 @@
+../../../../.vibe/plugins/repo-guards/overlay-guard.mjs

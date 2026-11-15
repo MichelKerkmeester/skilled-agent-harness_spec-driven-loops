@@ -40,9 +40,9 @@ The research loop fans out two Vibe lineages, each running `deepseek-flash` with
 - [x] `vibe --version` prints `vibe 3.1.2` and `MISTRAL_API_KEY` is set
 
 ### Definition of Done
-- [ ] `research/research.md` exists with cited findings
-- [ ] Spot-checked findings are confirmed or marked refuted
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `research/research.md` exists with cited findings
+- [x] Spot-checked findings are confirmed or marked refuted
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

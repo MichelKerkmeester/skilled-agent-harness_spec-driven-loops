@@ -82,7 +82,8 @@ dist-freshness/
 +-- codex/    check-dist-staleness.sh  (symlink)
 +-- cursor/   check-dist-staleness.sh  (symlink)
 +-- devin/    check-dist-staleness.sh  (symlink)
-`-- opencode/ system-dist-freshness-guard.js (browsability symlink -> .opencode/plugins/system-dist-freshness-guard.js)
++-- opencode/ system-dist-freshness-guard.js (browsability symlink -> .opencode/plugins/system-dist-freshness-guard.js)
+`-- vibe/     dist-freshness.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 ```
 
 ---

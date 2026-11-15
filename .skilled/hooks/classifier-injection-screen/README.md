@@ -71,7 +71,8 @@ classifier-injection-screen/
 +-- claude/   classifier-injection-screen-posttooluse.mjs (+ test)
 +-- devin/    classifier-injection-screen-posttooluse.mjs (+ test)
 +-- opencode/ classifier-injection-screen.js (browsability symlink -> ../../../plugins/)
-`-- pi/       classifier-injection-screen.ts (+ test; `.pi/extensions/` holds a one-line entry file that re-exports it)
++-- pi/       classifier-injection-screen.ts (+ test; `.pi/extensions/` holds a one-line entry file that re-exports it)
+`-- vibe/     classifier-injection-screen.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 ```
 
 | Runtime | Adapter | Event | Fetch tool | Delivery |

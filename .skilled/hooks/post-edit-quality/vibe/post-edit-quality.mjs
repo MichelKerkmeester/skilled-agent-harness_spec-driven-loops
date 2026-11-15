@@ -1,0 +1,1 @@
+../../../../.vibe/plugins/repo-guards/post-edit-quality.mjs

@@ -1,0 +1,1 @@
+../../../../.vibe/plugins/repo-guards/env-secret-guard.mjs
