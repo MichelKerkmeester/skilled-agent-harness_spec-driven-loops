@@ -318,6 +318,7 @@ and findings belong here.
 | Phase 031 alignment findings remediation | Complete | d509e9d5c07 + 2efe3204e3e: validator, CI Vibe checks, offer-rule docs, NC-012/CL-009/CL-010, P02 P04 P11 routed, P07 P01 declined, floors equal, review SHIP twice, recheck new=0 |
 | Q073 P1 probe declines | Accepted | operator accepted P07 and P01 declines as a waiver of the 0-P1 alignment criterion |
 | Catch-up merge with origin/main | Done | 2427bc4c4b6 merges 9414e518bd5: took main's Vibe CI job and doctor rows, regenerated the index, skill graph and Vibe agents; BAT-02/06/07 now pass, links 0 broken, suite 2157/0, doctor 1230/0, floors 24/44 0/35 2/44 and eval [160,49,21,5] unchanged |
+| Phase 032 review pass five remediation | Planned | 43 tasks fix 2 P1 and 29 P2 in four lanes test first (scorer writes, arena provenance, remote guard, kill-switch names, Vibe and doctor, docs), record R1-P2-002 and five items, rescore stored arms, Opus review and DeepSeek 5b |
 
 ### Deviations and findings
 
