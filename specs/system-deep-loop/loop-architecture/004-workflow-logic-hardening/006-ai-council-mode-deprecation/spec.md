@@ -32,7 +32,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -159,11 +159,11 @@ The output reads as follows. 451 files outside `specs/` name the council. The re
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-standalone-agent-and-council-command/ | The agent stands alone in all eight agent folders and `/speckit:ai-council` exists in six runtime folders. The gate baseline is captured first. Nothing is deleted. | Pending |
-| 2 | 002-hub-two-mode-wiring/ | The hub routes two modes on every routing surface, and the mode packet and the `/deep:ai-council` command are deleted | Pending |
-| 3 | 003-runtime-council-removal/ | The runtime keeps only the council file the divergent pivot reads, and its suite and typecheck pass | Pending |
-| 4 | 004-advisor-council-removal/ | The advisor names no deep council mode, and research and review routing and every threshold stay unchanged | Pending |
-| 5 | 005-caller-sweep-and-verification/ | Callers in other skills, hooks, plugins and CI are updated, and the whole phase is proven on the final tree | Pending |
+| 1 | 001-standalone-agent-and-council-command/ | The agent stands alone in all eight agent folders and `/speckit:ai-council` exists in six runtime folders. The gate baseline is captured first. Nothing is deleted. | Complete |
+| 2 | 002-hub-two-mode-wiring/ | The hub routes two modes on every routing surface, and the mode packet and the `/deep:ai-council` command are deleted | Complete |
+| 3 | 003-runtime-council-removal/ | The runtime keeps only the council file the divergent pivot reads, and its suite and typecheck pass | Complete |
+| 4 | 004-advisor-council-removal/ | The advisor names no deep council mode, and research and review routing and every threshold stay unchanged | Complete |
+| 5 | 005-caller-sweep-and-verification/ | Callers in other skills, hooks, plugins and CI are updated, and the whole phase is proven on the final tree | Complete |
 
 The children run in folder order. The agent is rewritten first, because it reads packet scripts that child 002 deletes. The hub wiring goes before the runtime and the advisor, because both mirror the registry. The runtime and advisor suites can fail on the branch between children 002 and 004, since they still name the deleted packet until their own child runs. Child 005 reruns every gate on the final tree.
 

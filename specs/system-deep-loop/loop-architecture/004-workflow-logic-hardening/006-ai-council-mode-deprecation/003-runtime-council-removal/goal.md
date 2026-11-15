@@ -55,12 +55,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts` exits 0.
-- [ ] `ls .skilled/skills/system-deep-loop/runtime/lib/council` prints `README.md` and `multi-seat-dispatch.cjs` only.
-- [ ] `git ls-files .skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema .skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers .skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts` prints nothing.
-- [ ] `node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` with `--loop-type council` prints an `INPUT_VALIDATION` error starting `loopType must be` that does not name `council`.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npm test && npm run typecheck` exits 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts` exits 0.
+- [x] `ls .skilled/skills/system-deep-loop/runtime/lib/council` prints `README.md` and `multi-seat-dispatch.cjs` only.
+- [x] `git ls-files .skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema .skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers .skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts` prints nothing.
+- [x] `node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` with `--loop-type council` prints an `INPUT_VALIDATION` error starting `loopType must be` that does not name `council`.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npm test && npm run typecheck` exits 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +77,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Child docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` written on 2026-11-14 when phase 006 was split into five children. Implementation has not started. |
+| Runtime removal T039 to T056 | Done | Commit 5a9e04f242. 51 council files deleted. Typecheck 0 errors. Runtime suite 172 files and 2904 tests passed at close. |
+| Hand decisions | Deviation | The conflict graph independence check now compares research with review. LegacyCouncilBridge became LegacyConvergenceBridge. convergence.cjs drops --round-id. runtime/database/council-graph.sqlite stays as a legacy file nothing reads. |
 
 ### Deviations and findings
 

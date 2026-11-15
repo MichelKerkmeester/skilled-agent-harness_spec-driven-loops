@@ -82,13 +82,13 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `mode-registry.json` in `.skilled/skills/system-deep-loop` lists exactly two `workflowMode` values, `research` and `review`.
-- [ ] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop` prints `declares 2 modes` and `OK: parent-skill-check`.
-- [ ] For "convene an ai council to compare three migration plans", `skill_advisor.py` prints no `ai-council`, `research` or `review` mode row and `compiled-route.cjs --hub system-deep-loop` prints no `deep-` packet id.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts` exits 0.
-- [ ] `node .skilled/bin/check-agent-mirror-sync.cjs --all` exits 0, and `rg -n 'system-deep-loop|deep-ai-council|node ' .skilled/agents/ai-council.md` prints nothing.
-- [ ] `npm test` and `npm run typecheck` exit 0 in the deep-loop runtime and in the advisor runtime.
-- [ ] `validate.sh` on this folder with `--recursive --strict` prints `RESULT: PASSED` for it and all five children.
+- [x] `mode-registry.json` in `.skilled/skills/system-deep-loop` lists exactly two `workflowMode` values, `research` and `review`.
+- [x] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop` prints `declares 2 modes` and `OK: parent-skill-check`.
+- [x] For "convene an ai council to compare three migration plans", `skill_advisor.py` prints no `ai-council`, `research` or `review` mode row and `compiled-route.cjs --hub system-deep-loop` prints no `deep-` packet id.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts` exits 0.
+- [x] `node .skilled/bin/check-agent-mirror-sync.cjs --all` exits 0, and `rg -n 'system-deep-loop|deep-ai-council|node ' .skilled/agents/ai-council.md` prints nothing.
+- [x] `npm test` and `npm run typecheck` exit 0 in the deep-loop runtime and in the advisor runtime.
+- [x] `validate.sh` on this folder with `--recursive --strict` prints `RESULT: PASSED` for it and all five children.
 <!-- /ANCHOR:completion -->
 
 ---

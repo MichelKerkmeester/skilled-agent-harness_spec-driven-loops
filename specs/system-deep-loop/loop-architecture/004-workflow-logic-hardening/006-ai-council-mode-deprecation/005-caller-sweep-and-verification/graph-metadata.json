@@ -34,7 +34,7 @@
       "files"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,13 +43,15 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts",
-      ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
       ".opencode/plugins/tests/system-deep-loop-guard.test.cjs",
-      ".skilled/skills/README.txt",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+      ".skilled/skills/README.txt",
       ".skilled/skills/.state/loop-guard/README.md",
       ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
-      ".skilled/bin/compiled-route.cjs"
+      ".skilled/bin/compiled-route.cjs",
+      "runtime/tests/README.md"
     ],
     "entities": [
       {
@@ -95,27 +97,33 @@
         "source": "derived"
       },
       {
-        "name": "dispatch-guard.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
-        "source": "derived"
-      },
-      {
         "name": "system-deep-loop-guard.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/system-deep-loop-guard.test.cjs",
         "source": "derived"
       },
       {
-        "name": "README.txt",
+        "name": "parent-skill-check.cjs",
         "kind": "file",
-        "path": ".skilled/skills/README.txt",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
         "name": "trigger-index.json",
         "kind": "config",
         "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
         "source": "derived"
       },
       {
@@ -189,17 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Sweep",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Files outside the three owning skills still name `/deep:ai-council` and the `deep-ai-council` packet: the Gate 3 classifier resume phrase, a dispatch guard comment, plugin guard fixtures, spec-kit tests of deleted packet scripts, CLI skill docs, `sk-doc` templates, CI path filters, two environment variables and the root README",
     "created_at": "2026-11-14T20:19:52Z",
-    "last_save_at": "2026-11-14T20:32:23.973Z",
+    "last_save_at": "2026-11-15T00:22:49.912Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43e33a136b7ae04926287540131bf5ffec1373e4bb0839484335f2cc413951da",
+    "source_fingerprint": "sha256:3ec088dffd5c85cc2ad7ff84749e81ff4c725f767d67f5b5df30aacda0c087b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "84f2d961b9d8ec05bd29f978ba9e042b0b4cc6cea62a5f4d5f0ffc7d41d6ac7c",
+      "spec.md": "1f7e2ebc3feb07ba13cd2fdfc712de0b201836846369062931f6bcf6fd9fcc58",
       "plan.md": "36cc0e769ddde260c0e5e19f1ceb59301d45bebbb606ddedbb72bed563479245",
-      "tasks.md": "c17113720116c7c4b3423a59e3e01892ac03a03d5bb87eb6bc4f2fdd4726f227",
-      "implementation-summary.md": "fa023911935c790da102faa6835a3ecfbe2d817ade759933416eda279f092cc3"
+      "tasks.md": "2a914047aac77ec8f609913ff07041f44c1ef06d64c2168fa8232f2c67ac2594",
+      "implementation-summary.md": "92f45c66d7d49fd0c002e2872e8793119f8b6d542a8acd070a3d0eec82a73f77"
     },
     "last_active_at": null
   }

@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 006-ai-council-mode-deprecation/005-caller-sweep-and-verification
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -51,11 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-004 | REQ-004 | Given the prompt "convene an ai council to compare three migration plans", When both routing stages replay it, Then neither stage selects the council, research or review | `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<prompt>" --threshold 0.5 \| rg '"mode": "(ai-council\|research\|review)"' \| wc -l` prints 0 and `node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt "<prompt>" \| rg '"packetId":"deep-' \| wc -l` prints 0 | Unmet | - |
-| AC-005 | REQ-005 | Given one research and one review prompt, When both stages replay them, Then each routes to its own mode | Task T081 output logged in `goal.md`, with mode `research` and `packetId` `deep-research` for the first and mode `review` and `packetId` `deep-review` for the second | Unmet | - |
-| AC-015 | REQ-015 | Given the vocabulary sweep, When it runs outside `specs/`, Then it finds only allowlisted history files | Task T086 output matches `scratch/exceptions.md` | Unmet | - |
-| AC-016 | REQ-016 | Given the start SHA, When the diff of spec-folder council artifacts is listed, Then nothing changed and the plan names the revert path | `git diff --name-only <start-sha> -- 'specs/**/ai-council/**'` prints nothing and `rg -n 'git revert' plan.md` prints at least 1 line | Unmet | - |
-| AC-021 | REQ-021 | Given the gate baseline and the final tree, When every gate is rerun and the doc drift guard runs, Then no gate is worse than its start value and the guard passes | `../scratch/gate-baseline.md` holds a start and a final value for every gate with none worse, and `node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs` exits 0 with `"errors": []` | Unmet | - |
+| AC-004 | REQ-004 | Given the prompt "convene an ai council to compare three migration plans", When both routing stages replay it, Then neither stage selects the council, research or review | `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<prompt>" --threshold 0.5 \| rg '"mode": "(ai-council\|research\|review)"' \| wc -l` prints 0 and `node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt "<prompt>" \| rg '"packetId":"deep-' \| wc -l` prints 0. Observed with the council prompt: the `skill_advisor.py` count prints `0` and the `compiled-route.cjs` count prints `0`. Stage two returns `defer`. Evidence at `tasks.md:65` | Met | - |
+| AC-005 | REQ-005 | Given one research and one review prompt, When both stages replay them, Then each routes to its own mode | Task T081 output logged in `goal.md`, with mode `research` and `packetId` `deep-research` for the first and mode `review` and `packetId` `deep-review` for the second. `goal.md` has the `Route replay T080 and T081` row: mode `research` and `packetId` `deep-research` for the first prompt, mode `review` and `packetId` `deep-review` for the second. Evidence at `tasks.md:66` | Met | - |
+| AC-015 | REQ-015 | Given the vocabulary sweep, When it runs outside `specs/`, Then it finds only allowlisted history files | Task T086 output matches `scratch/exceptions.md`. The T086 sweep, filtered against `scratch/exceptions.md`, prints 0 paths. Evidence at `tasks.md:68` | Met | - |
+| AC-016 | REQ-016 | Given the start SHA, When the diff of spec-folder council artifacts is listed, Then nothing changed and the plan names the revert path | `git diff --name-only <start-sha> -- 'specs/**/ai-council/**'` prints nothing and `rg -n 'git revert' plan.md` prints at least 1 line. Observed: the `git diff` prints nothing, and `rg -n 'git revert' plan.md` in this folder prints line 138. Evidence at `tasks.md:69` | Met | - |
+| AC-021 | REQ-021 | Given the gate baseline and the final tree, When every gate is rerun and the doc drift guard runs, Then no gate is worse than its start value and the guard passes | `../scratch/gate-baseline.md` holds a start and a final value for every gate with none worse, and `node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs` exits 0 with `"errors": []`. Observed: all 58 gates have a start and a final value with none worse, and the drift check exits 0 with `"errors": []`. Evidence at `tasks.md:70` | Met | - |
 
 ### Status values
 
@@ -80,7 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Implementation has not started, so every criterion is still Unmet.
+Yes. Every criterion is met, with the observed result written in its Verification cell.
 <!-- /ANCHOR:closure -->

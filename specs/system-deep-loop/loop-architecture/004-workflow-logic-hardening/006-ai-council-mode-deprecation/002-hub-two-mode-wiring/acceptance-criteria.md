@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 006-ai-council-mode-deprecation/002-hub-two-mode-wiring
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -51,11 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the final tree, When the registry modes are printed, Then only research and review remain | `node -e 'console.log(require("./.skilled/skills/system-deep-loop/mode-registry.json").modes.map(m=>m.workflowMode).join(" "))'` prints `research review` | Unmet | - |
-| AC-002 | REQ-002 | Given the hub router and root router, When they are searched for the council, Then the tieBreak is research and review and no stage-two key names the council | `rg -n -i 'council' .skilled/skills/system-deep-loop/hub-router.json` prints nothing and `rg -n 'AI_COUNCIL' .skilled/skills/system-deep-loop/ROUTER.md` prints nothing | Unmet | - |
-| AC-003 | REQ-003 | Given the final tree, When the per-hub gate runs with the hub path, Then its subject line names the hub, it counts 2 modes and it passes | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop` prints `INFO: Parent skill: .skilled/skills/system-deep-loop`, `declares 2 modes` and `OK: parent-skill-check` | Unmet | - |
-| AC-010 | REQ-010 | Given the final tree, When the deep command set and its mirrors are listed, Then none exist and the mirror checkers pass | `git ls-files .skilled/commands/deep/ai-council.md` prints nothing, and `validate-command-tree-parity.sh` plus the Codex, Pi and DSH prompt generators with `--check` exit 0 | Unmet | - |
-| AC-018 | REQ-018 | Given the final tree of this child, When the mode packet and its changelog path are listed, Then the packet is gone and the changelog is a real folder with every file | `git ls-files .skilled/skills/system-deep-loop/deep-ai-council` prints nothing, `git ls-files -s .skilled/changelog/system-deep-loop/deep-ai-council \| rg '^120000' \| wc -l` prints 0 and `ls .skilled/changelog/system-deep-loop/deep-ai-council \| wc -l` prints 20 | Unmet | - |
+| AC-001 | REQ-001 | Given the final tree, When the registry modes are printed, Then only research and review remain | `node -e 'console.log(require("./.skilled/skills/system-deep-loop/mode-registry.json").modes.map(m=>m.workflowMode).join(" "))'` prints `research review`. Observed: prints `research review`, exit 0. Evidence at `tasks.md:52` | Met | - |
+| AC-002 | REQ-002 | Given the hub router and root router, When they are searched for the council, Then the tieBreak is research and review and no stage-two key names the council | `rg -n -i 'council' .skilled/skills/system-deep-loop/hub-router.json` prints nothing and `rg -n 'AI_COUNCIL' .skilled/skills/system-deep-loop/ROUTER.md` prints nothing. Observed: command 1 prints nothing, exit 1; command 2 prints nothing, exit 1. Evidence at `tasks.md:53` | Met | - |
+| AC-003 | REQ-003 | Given the final tree, When the per-hub gate runs with the hub path, Then its subject line names the hub, it counts 2 modes and it passes | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop` prints `INFO: Parent skill: .skilled/skills/system-deep-loop`, `declares 2 modes` and `OK: parent-skill-check`. Observed: prints 61 lines ending `OK: parent-skill-check — all hard invariants passed, 0 warnings`, exit 0. Evidence at `tasks.md:76` | Met | - |
+| AC-010 | REQ-010 | Given the final tree, When the deep command set and its mirrors are listed, Then none exist and the mirror checkers pass | `git ls-files .skilled/commands/deep/ai-council.md` prints nothing, and `validate-command-tree-parity.sh` plus the Codex, Pi and DSH prompt generators with `--check` exit 0. Observed: `git ls-files .skilled/commands/deep/ai-council.md` prints nothing. `validate-command-tree-parity.sh` prints `PASS: 256 mirrors across 10 trees are in sync`, and the Codex, Pi and DSH prompt generators with `--check` each print PASS for 45 prompts and exit 0. Evidence at `tasks.md:49` | Met | - |
+| AC-018 | REQ-018 | Given the final tree of this child, When the mode packet and its changelog path are listed, Then the packet is gone and the changelog is a real folder with every file | `git ls-files .skilled/skills/system-deep-loop/deep-ai-council` prints nothing, `git ls-files -s .skilled/changelog/system-deep-loop/deep-ai-council \| rg '^120000' \| wc -l` prints 0 and `ls .skilled/changelog/system-deep-loop/deep-ai-council \| wc -l` prints 20. Observed: command 1 prints nothing, exit 0; command 2 prints `0`, exit 0; command 3 prints `20`, exit 0. Evidence at `tasks.md:58` | Met | - |
 
 ### Status values
 
@@ -80,7 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Implementation has not started, so every criterion is still Unmet.
+Yes. Every criterion is met, with the observed result written in its Verification cell.
 <!-- /ANCHOR:closure -->

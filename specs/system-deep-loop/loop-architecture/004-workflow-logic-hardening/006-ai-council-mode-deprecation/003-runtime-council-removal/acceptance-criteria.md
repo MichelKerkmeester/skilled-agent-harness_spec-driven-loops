@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 006-ai-council-mode-deprecation/003-runtime-council-removal
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -51,10 +51,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-006 | REQ-006 | Given the final tree, When the divergent pivot tests run, Then they pass with the one kept council file | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts` exits 0 | Unmet | - |
-| AC-011 | REQ-011 | Given the final tree, When the packet and council libraries are listed, Then they are gone except the dispatch file the pivot reads | `git ls-files .skilled/skills/system-deep-loop/deep-ai-council` prints nothing and `ls .skilled/skills/system-deep-loop/runtime/lib/council` prints `README.md` and `multi-seat-dispatch.cjs` only | Unmet | - |
-| AC-012 | REQ-012 | Given each removed runtime file, When its caller check runs, Then no live caller remains | The caller checks in tasks T039 to T045 each print nothing | Unmet | - |
-| AC-013 | REQ-013 | Given the final tree, When convergence is asked for the council loop type and the runtime suite runs, Then the type is rejected and the suite passes | `node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder <this folder> --session-id probe --loop-type council` prints an `INPUT_VALIDATION` error starting `loopType must be` that does not name `council`, and `cd .skilled/skills/system-deep-loop/runtime && npm test && npm run typecheck` exits 0 | Unmet | - |
+| AC-006 | REQ-006 | Given the final tree, When the divergent pivot tests run, Then they pass with the one kept council file | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts` exits 0. Observed: prints 5 lines ending `Duration  200ms (transform 61ms, setup 38ms, import 51ms, tests 138ms, environment 0ms)`, exit 0. Evidence at `tasks.md:70` | Met | - |
+| AC-011 | REQ-011 | Given the final tree, When the packet and council libraries are listed, Then they are gone except the dispatch file the pivot reads | `git ls-files .skilled/skills/system-deep-loop/deep-ai-council` prints nothing and `ls .skilled/skills/system-deep-loop/runtime/lib/council` prints `README.md` and `multi-seat-dispatch.cjs` only. Observed: command 1 prints nothing, exit 0; command 2 prints 2 lines ending `README.md`, exit 0. Evidence at `tasks.md:45` | Met | - |
+| AC-012 | REQ-012 | Given each removed runtime file, When its caller check runs, Then no live caller remains | The caller checks in tasks T039 to T045 each print nothing. T042 to T045 each print nothing. T039 and T040 print only allowlisted history fixtures: two retrieval index fixtures and a frozen spec copy. Evidence at `tasks.md:46` | Met | - |
+| AC-013 | REQ-013 | Given the final tree, When convergence is asked for the council loop type and the runtime suite runs, Then the type is rejected and the suite passes | `node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder <this folder> --session-id probe --loop-type council` prints an `INPUT_VALIDATION` error starting `loopType must be` that does not name `council`, and `cd .skilled/skills/system-deep-loop/runtime && npm test && npm run typecheck` exits 0. Observed: the probe prints `INPUT_VALIDATION` with `loopType must be "research", "review", or "context"` and exits 3, and `npm test && npm run typecheck` exits 0 with 172 files and 2904 tests passed. Evidence at `tasks.md:47` | Met | - |
 
 ### Status values
 
@@ -79,7 +79,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Implementation has not started, so every criterion is still Unmet.
+Yes. Every criterion is met, with the observed result written in its Verification cell.
 <!-- /ANCHOR:closure -->

@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 006-ai-council-mode-deprecation/004-advisor-council-removal
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -51,9 +51,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-019 | REQ-019 | Given the council prompt, When stage one replays it, Then no deep-loop mode row is printed | `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "convene an ai council to compare three migration plans" --threshold 0.5 \| rg '"mode": "(ai-council\|research\|review)"' \| wc -l` prints 0 | Unmet | - |
-| AC-014 | REQ-014 | Given the advisor with two deep modes, When its suite, typecheck and drift guard run, Then they pass or match the baseline and any recaptured corpus keeps its thresholds | `cd .skilled/skills/system-skill-advisor/runtime && npm test && npm run typecheck` exits 0 and `npx vitest run tests/routing-registry-drift-guard.vitest.ts` exits 0, with deltas in `goal.md` | Unmet | - |
-| AC-020 | REQ-020 | Given the final tree of this child, When the advisor runtime is searched for the deep council mode, Then no file names it | `rg -l 'deep-ai-council\|/deep:ai-council' .skilled/skills/system-skill-advisor/runtime -g '!**/node_modules/**' -g '!**/changelog/**'` prints nothing | Unmet | - |
+| AC-019 | REQ-019 | Given the council prompt, When stage one replays it, Then no deep-loop mode row is printed | `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "convene an ai council to compare three migration plans" --threshold 0.5 \| rg '"mode": "(ai-council\|research\|review)"' \| wc -l` prints 0. Observed: prints `0`, exit 0. Evidence at `tasks.md:60` | Met | - |
+| AC-014 | REQ-014 | Given the advisor with two deep modes, When its suite, typecheck and drift guard run, Then they pass or match the baseline and any recaptured corpus keeps its thresholds | `cd .skilled/skills/system-skill-advisor/runtime && npm test && npm run typecheck` exits 0 and `npx vitest run tests/routing-registry-drift-guard.vitest.ts` exits 0, with deltas in `goal.md`. Observed: `npm test && npm run typecheck` exits 0 with 178 files and 1708 tests passed, and the drift guard test passes 7 tests when run from the advisor runtime folder. `goal.md` logs the holdout delta. Evidence at `tasks.md:61` | Met | - |
+| AC-020 | REQ-020 | Given the final tree of this child, When the advisor runtime is searched for the deep council mode, Then no file names it | `rg -l 'deep-ai-council\|/deep:ai-council' .skilled/skills/system-skill-advisor/runtime -g '!**/node_modules/**' -g '!**/changelog/**'` prints nothing. Observed: prints nothing, exit 1. Evidence at `tasks.md:48` | Met | - |
 
 ### Status values
 
@@ -78,7 +78,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Implementation has not started, so every criterion is still Unmet.
+Yes. Every criterion is met, with the observed result written in its Verification cell.
 <!-- /ANCHOR:closure -->

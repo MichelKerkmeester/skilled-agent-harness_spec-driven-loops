@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,12 +42,15 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/repo-rules/skill-hub-routing.md",
       ".skilled/skills/system-deep-loop/mode-registry.json",
-      ".skilled/skills/system-deep-loop/leaf-manifest.json",
-      ".skilled/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/system-deep-loop/graph-metadata.json",
       ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/system-deep-loop/leaf-manifest.json",
+      ".skilled/skills/system-deep-loop/changelog/v2.0.0.0.md",
       ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+      ".skilled/agents/ai-council.md",
+      ".skilled/repo-rules/skill-hub-routing.md",
       ".skilled/bin/compiled-route-sync.cjs"
     ],
     "entities": [
@@ -88,21 +91,21 @@
         "source": "derived"
       },
       {
-        "name": "skill-hub-routing.md",
-        "kind": "doc",
-        "path": ".skilled/repo-rules/skill-hub-routing.md",
-        "source": "derived"
-      },
-      {
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".skilled/skills/system-deep-loop/mode-registry.json",
         "source": "derived"
       },
       {
-        "name": "leaf-manifest.json",
+        "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        "path": ".skilled/skills/system-deep-loop/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
         "source": "derived"
       },
       {
@@ -112,9 +115,27 @@
         "source": "derived"
       },
       {
-        "name": "compile-command-contracts.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "v2.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/changelog/v2.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".skilled/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-hub-routing.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/skill-hub-routing.md",
         "source": "derived"
       },
       {
@@ -176,29 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow After",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The hub still registers `ai-council` as a workflow mode, so a council request routes into `system-deep-loop`",
     "created_at": "2026-11-14T20:19:49Z",
-    "last_save_at": "2026-11-14T23:03:58.930Z",
+    "last_save_at": "2026-11-15T00:22:45.204Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d50731bf3ecb701684b4cf652ede46dbd7200ee0812b02a82f068ab2055c0ca2",
+    "source_fingerprint": "sha256:190693fe946df544bd3ec8b3c6cd437db29e5e05cbf28da7b9bcf1239292d112",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "148aa75c5792367a888b9769993248796f3815b986e4de64096292d660880993",
+      "spec.md": "1af52dc22fc8b82f20c31a444736fd83d3a9327fa1102cedf4a2f56b79d92330",
       "plan.md": "ee1a83f9620bdce9990ba03353f354b465a6482985a52c2d363cd1e5243754d0",
-      "tasks.md": "f3007f4d8fadf40106a52d4ac52187ccb4d1718e31dd6a4b8ebf2793d7c617c6",
-      "implementation-summary.md": "6a04d6406cb62fe9c92e310be34a93bfea655a344082c58e3bb2bc8a300fee75"
+      "tasks.md": "e851c4c2995f19fd35569cfb9c033d85c9b05c93f118fd5bbb47f92ee053ddcc",
+      "implementation-summary.md": "eca47b56ece8c4e8771c03388d62470ff41f387b4fea2f6898e3bc63b9432b77"
     },
     "last_active_at": null
   }

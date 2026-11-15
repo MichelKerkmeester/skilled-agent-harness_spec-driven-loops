@@ -40,7 +40,6 @@ tests/
 | File | Responsibility |
 |---|---|
 | `.gitkeep` | Keeps the test root present in source distributions. |
-| `council-graph-value-report.json` | Recorded graph-value report retained from the retired council graph scenarios; no current test reads it. |
 | `executor-audit-cli-branch-receipts.test.ts` | Checks executor audit receipts across the CLI branch dispatch styles. |
 | `executor-audit-receipts.test.ts` | Checks executor provenance and dispatch receipt behavior. |
 | `receipt-crypto.test.ts` | Checks receipt key derivation, signing and verification. |

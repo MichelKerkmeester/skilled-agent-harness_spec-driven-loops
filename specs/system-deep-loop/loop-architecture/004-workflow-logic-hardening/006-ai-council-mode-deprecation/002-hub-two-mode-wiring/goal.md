@@ -55,13 +55,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node -e 'const r=require("./.skilled/skills/system-deep-loop/mode-registry.json");console.log(r.modes.map(m=>m.workflowMode).join(" "), r.extensions["runtime-loop"].runtimeLoopTypes.join(" "))'` prints `research review research review`.
-- [ ] `rg -n -i 'council' .skilled/skills/system-deep-loop/hub-router.json` prints nothing and `rg -n 'AI_COUNCIL' .skilled/skills/system-deep-loop/ROUTER.md` prints nothing.
-- [ ] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop` prints `INFO: Parent skill: .skilled/skills/system-deep-loop`, `declares 2 modes` and `OK: parent-skill-check`.
-- [ ] `git ls-files .skilled/skills/system-deep-loop/deep-ai-council .skilled/commands/deep/ai-council.md` prints nothing.
-- [ ] `ls .skilled/changelog/system-deep-loop/deep-ai-council | wc -l` prints 20 and the path is not a symlink.
-- [ ] `find -L .claude/commands .cursor/commands .opencode/commands .codex/prompts .pi/prompts .dsh/prompts -maxdepth 2 \( -iname '*deep-ai-council*' -o -path '*/deep/ai-council.md' \) | wc -l` prints 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
+- [x] `node -e 'const r=require("./.skilled/skills/system-deep-loop/mode-registry.json");console.log(r.modes.map(m=>m.workflowMode).join(" "), r.extensions["runtime-loop"].runtimeLoopTypes.join(" "))'` prints `research review research review`.
+- [x] `rg -n -i 'council' .skilled/skills/system-deep-loop/hub-router.json` prints nothing and `rg -n 'AI_COUNCIL' .skilled/skills/system-deep-loop/ROUTER.md` prints nothing.
+- [x] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop` prints `INFO: Parent skill: .skilled/skills/system-deep-loop`, `declares 2 modes` and `OK: parent-skill-check`.
+- [x] `git ls-files .skilled/skills/system-deep-loop/deep-ai-council .skilled/commands/deep/ai-council.md` prints nothing.
+- [x] `ls .skilled/changelog/system-deep-loop/deep-ai-council | wc -l` prints 20 and the path is not a symlink.
+- [x] `find -L .claude/commands .cursor/commands .opencode/commands .codex/prompts .pi/prompts .dsh/prompts -maxdepth 2 \( -iname '*deep-ai-council*' -o -path '*/deep/ai-council.md' \) | wc -l` prints 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -79,6 +79,7 @@ and findings belong here.
 |------|-------|----------|
 | Child docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` written on 2026-11-14 when phase 006 was split into five children. Implementation has not started. |
 | T018-T038, T094 hub two-mode wiring | done, committed adbba5a06a | parent-skill-check prints declares 2 modes and OK; check-contract-drift prints OK commands=2; compiled-route-guard all hubs fresh |
+| Commit shape and version | Deviation | Children 002 and 004 share commit adbba5a06a because the pre-commit hub check compares the registry with the advisor mode map. The hub moved to 2.0.0.0 as a breaking release. Three council-only playbook files were deleted by hand. |
 
 ### Deviations and findings
 

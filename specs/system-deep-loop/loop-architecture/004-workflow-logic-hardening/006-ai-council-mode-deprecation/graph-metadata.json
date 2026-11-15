@@ -38,14 +38,14 @@
       "decided"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
       ".skilled/agents/ai-council.md",
       ".claude/agents/ai-council.md",
+      ".skilled/commands/speckit/ai-council.md",
       ".skilled/skills/system-deep-loop/mode-registry.json",
-      ".skilled/commands/deep/ai-council.md",
       "001-standalone-agent-and-council-command/acceptance-criteria.md",
       "002-hub-two-mode-wiring/acceptance-criteria.md",
       "003-runtime-council-removal/acceptance-criteria.md",
@@ -170,17 +170,17 @@
     ],
     "causal_summary": "On 2026-11-14 the operator decided, in these words: \"let's deprecate deep-ai-council completely as a deep mode and instead make it a isolated .agents file maybe with a command workflow and presentation asset for all runtimes\"",
     "created_at": "2026-11-14T11:56:20Z",
-    "last_save_at": "2026-11-14T20:58:02.206Z",
+    "last_save_at": "2026-11-15T00:21:27.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:838e61bb9db1185e024b47473c1af3790af66e0414596fd864e3d2b29a7718bb",
+    "source_fingerprint": "sha256:6c3d36d5e8c74eb3f73184fdac1bd8b2bd7faf09cf83202e6b0c7f6e29d46a29",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "414e907d389494a1002b1236c33072d3233991a7a97feac6587dcbc28c5937a8"
+      "spec.md": "a96d017113a0f6b053f4b2e72fdf50b4ee9ea00328d0f4d6a1d07b2e6e2428c3"
     },
     "last_active_at": null
   }

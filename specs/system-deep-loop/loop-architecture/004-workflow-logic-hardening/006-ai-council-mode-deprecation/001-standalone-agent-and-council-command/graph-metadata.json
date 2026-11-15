@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,13 +49,13 @@
       ".dsh/agents/ai-council.patch.yml",
       ".skilled/agents/orchestrate.md",
       ".skilled/commands/speckit/ai-council.md",
+      ".skilled/commands/speckit/assets/speckit-ai-council.yaml",
+      ".skilled/commands/speckit/assets/speckit-ai-council-presentation.txt",
       ".skilled/skills/system-spec-kit/command-metadata.json",
       ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
       ".skilled/bin/agent-mirror-crosswalk.md",
       ".cursor/agents/ai-council.md",
-      ".devin/agents/ai-council/AGENT.md",
-      "codex/sync-agents.cjs",
-      "pi/sync-agents-pi.cjs"
+      ".devin/agents/ai-council/AGENT.md"
     ],
     "entities": [
       {
@@ -119,6 +119,18 @@
         "source": "derived"
       },
       {
+        "name": "speckit-ai-council.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-ai-council.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-ai-council-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-ai-council-presentation.txt",
+        "source": "derived"
+      },
+      {
         "name": "command-metadata.json",
         "kind": "config",
         "path": ".skilled/skills/system-spec-kit/command-metadata.json",
@@ -140,18 +152,6 @@
         "name": "AGENT.md",
         "kind": "doc",
         "path": ".devin/agents/ai-council/AGENT.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents.cjs",
-        "kind": "file",
-        "path": "codex/sync-agents.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents-pi.cjs",
-        "kind": "file",
-        "path": "pi/sync-agents-pi.cjs",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The `ai-council` agent body points at `deep-ai-council/scripts/persist-artifacts.cjs`, the packet structure references and `runtime/scripts/append-mode-event.cjs`, and it tells the agent to run `node` while its frontmatter says `bash: deny`",
     "created_at": "2026-11-14T20:19:48Z",
-    "last_save_at": "2026-11-14T23:03:58.930Z",
+    "last_save_at": "2026-11-15T00:22:43.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:889b5d45e1bbd5505b897eb692fc79c91ecb9881342b8e46cecbc51fe01491a8",
+    "source_fingerprint": "sha256:595fa4f60ca4aea8fc6a2f7843bac35c09dfc01dde5696c914dd89bfd2a2a7ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a493a577ab008ff654abc60765db549d4cee4dfd9035db7e302f577f57671054",
+      "spec.md": "35e5e3e96163ffd59219c26a5ee8fe7c95b1362ec60d22ec320928bcff47fab7",
       "plan.md": "60884fa1e15e339341ab10737e4bcb2741bf0b1cb9a1c4220e3ae55720adb492",
-      "tasks.md": "56baeca5def0b94f2b22057926dd8ebd5cb2bb6c86f43c6273bef208bc439640",
-      "implementation-summary.md": "aa831da817f0298ee93b89df3cb4279f4c13a86ac07751f125b77d18724542e8"
+      "tasks.md": "3f4dfc6b1134628d35220bf946d3aeab2ca331deacb722041f0a8000b7ddb68b",
+      "implementation-summary.md": "d9cec3bfc6de02ecac89dbfd718e20ee24ac7c65c0e5b57893995ef29a7d912e"
     },
     "last_active_at": null
   }

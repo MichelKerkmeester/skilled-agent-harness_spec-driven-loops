@@ -34,7 +34,7 @@
       "stage"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,10 +42,11 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".github/workflows/routing-registry-drift.yml",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-      ".github/workflows/routing-registry-drift.yml"
+      "runtime/tests/README.md"
     ],
     "entities": [
       {
@@ -85,6 +86,12 @@
         "source": "derived"
       },
       {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
         "name": "aliases.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
@@ -103,9 +110,9 @@
         "source": "derived"
       },
       {
-        "name": "routing-registry-drift.yml",
-        "kind": "config",
-        "path": ".github/workflows/routing-registry-drift.yml",
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/tests/README.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor is stage one of hub routing, and it still maps council words to the `ai-council` mode of `system-deep-loop` through an alias group, explicit lane anchors, a command projection, a tracked `/deep:ai-council` row and the Python router",
     "created_at": "2026-11-14T20:19:51Z",
-    "last_save_at": "2026-11-14T23:03:58.928Z",
+    "last_save_at": "2026-11-15T00:22:48.377Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53d1b679b3e4e0d4a0299862c777dada9c89e99ceca718dd4f8b0f5e4774f614",
+    "source_fingerprint": "sha256:75a12767c15f6578e3c54a2dcebb45b28373fd9f8aeab2dffb8c2d92ba187160",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "67f5d09aa45ceab1d1b9265ee05b99a8a77929f131fdea31a4cb2a5275f957bf",
+      "spec.md": "dce0f566edfde6ab1a424b2e92f2df5e98cde4189406dc331329b73ec02b294c",
       "plan.md": "7712d3590411c89bf5d577936f5e82b356b3643d8562a400a01e3798e9bf39a4",
-      "tasks.md": "52f86f5afff7121055d01a53034a3dcba7da119b6320792e7dd531ce0cf52cd7",
-      "implementation-summary.md": "ce4a8daf28ac070d7aad727ea469ca0bbaf535488715872f89a93f0ac0863a73"
+      "tasks.md": "8ba160e7d04d503cf74a865d959c4e91d39399abaf2745e277e3f3f0ed4bc65f",
+      "implementation-summary.md": "6963bf5f7688b190cd022256c9db738531669deb54be5044679e37248ed3c04f"
     },
     "last_active_at": null
   }

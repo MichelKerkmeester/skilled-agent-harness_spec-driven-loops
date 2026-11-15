@@ -53,7 +53,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This is a top-level packet in the `loop-architecture` sub-track. |
@@ -150,7 +150,7 @@ Per-phase detail lives in each child's `plan.md`. Where a child's own file list 
 | 3 | 003-lifecycle-lock-and-limits/ | Research restart works like review restart, the lock outlives the longest dispatch and is released on every halt, and the duration cap is enforced | Complete |
 | 4 | 004-workflow-single-source-and-drift-guard/ | One workflow file per command serves both modes, dry run works everywhere, the files shrink and a guard test stops the drift from returning | Complete |
 | 5 | 005-command-and-skill-doc-alignment/ | Command docs, skills and references match the code and each other, and a doc guard keeps them that way | Complete |
-| 6 | 006-ai-council-mode-deprecation/ | `ai-council` stops being a deep-loop mode and lives on as a standalone agent in every runtime, so the hub routes two modes | Pending |
+| 6 | 006-ai-council-mode-deprecation/ | `ai-council` stops being a deep-loop mode and lives on as a standalone agent in every runtime, so the hub routes two modes | Complete |
 
 The phases run in this order. Phases 001 to 003 move logic out of the workflow files and into scripts, so each of them edits four workflow files. That cost is accepted, because phase 004 then merges files that are already smaller and already correct. Running phase 004 first would mean merging the defective logic and fixing it afterwards in a file nobody has run yet.
 
@@ -181,7 +181,6 @@ The phases run in this order. Phases 001 to 003 move logic out of the workflow f
 - F22 was noticed during the analysis and never checked. Phase 001 verifies it first.
 - The confirm workflows and the per-executor dispatch branches were not read at step level. Phase 004 may surface further drift when it merges them, and it records what it finds in its own `goal.md`.
 - Authoring the children narrowed seven findings. F03, F04, F06, F09, F14, F18 and F22 each hold in a narrower or wider form than the table above states, and the owning child's `spec.md` gives the corrected statement. Where a child and this table disagree, the child is right.
-- Phase 006 keeps one question open for the operator: whether the standalone council agent also gets a command with one workflow file and one presentation file, and what that command is called. The operator's wording was "maybe". Phase 006 lays out both options and recommends one.
 
 ### Answered by the operator on 2026-11-14
 

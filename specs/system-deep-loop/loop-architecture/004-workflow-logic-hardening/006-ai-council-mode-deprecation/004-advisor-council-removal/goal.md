@@ -55,11 +55,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "convene an ai council to compare three migration plans" --threshold 0.5 | rg '"mode": "(ai-council|research|review)"' | wc -l` prints 0.
-- [ ] `rg -l 'deep-ai-council|/deep:ai-council' .skilled/skills/system-skill-advisor/runtime -g '!**/node_modules/**' -g '!**/changelog/**'` prints nothing.
-- [ ] `cd .skilled/skills/system-skill-advisor/runtime && npm test && npm run typecheck` exits 0.
-- [ ] `cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/routing-registry-drift-guard.vitest.ts` exits 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
+- [x] `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "convene an ai council to compare three migration plans" --threshold 0.5 | rg '"mode": "(ai-council|research|review)"' | wc -l` prints 0.
+- [x] `rg -l 'deep-ai-council|/deep:ai-council' .skilled/skills/system-skill-advisor/runtime -g '!**/node_modules/**' -g '!**/changelog/**'` prints nothing.
+- [x] `cd .skilled/skills/system-skill-advisor/runtime && npm test && npm run typecheck` exits 0.
+- [x] `cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/routing-registry-drift-guard.vitest.ts` exits 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +77,7 @@ and findings belong here.
 |------|-------|----------|
 | Child docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` written on 2026-11-14 when phase 006 was split into five children. Implementation has not started. |
 | T057-T064 advisor council lanes | done, committed adbba5a06a with child... | advisor suite 1707 passed after the census fix; holdout top-1 50/66 -> 49/64, other scorer metrics unchanged |
+| T058 and T059 wording | Deviation | fusion.ts keeps four council lines for the read-only lift, and projection.ts keeps the command-speckit-ai-council row from child 001. No hub council lane or mode projection is left. |
 
 ### Deviations and findings
 
