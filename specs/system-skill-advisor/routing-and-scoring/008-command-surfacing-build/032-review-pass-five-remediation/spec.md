@@ -89,6 +89,11 @@ python write  kinds=shell unsafe=false loopInit=null
 decline row, cat doc then redirect startedCommand=/deep:review
 decline row, cat doc then sed -i   startedCommand=null
 exit=0
+$ node <normalize and startedCommand on one Bash call each, for /deep:review>
+cat .skilled/commands/deep/review.md > notes.md      kinds=write startedCommand=null
+cat .skilled/commands/deep/review.md | tee notes.md  kinds=shell startedCommand=null
+cp .skilled/commands/deep/review.md x.md             kinds=shell startedCommand=null
+cat .skilled/commands/deep/review.md                 kinds=shell startedCommand=null
 
 # P1 two: the arena build is not the commit
 $ bash $V5/arena-provenance.sh "$PWD/$RAD/prepare-behaviour-arena.mjs"; echo "exit=$?"
@@ -120,6 +125,17 @@ E exit=0 {"ok":true,"code":null} arena-has-env-example=yes
 exit=0
 $ find "${TMPDIR%/}" -maxdepth 1 -name 'arena-cases.*' | wc -l
        0
+
+# The stale rule of plan.md D2 measured on this checkout: every ignored dist tree copyPlan would copy,
+# its newest file against the newest tracked file in its folder outside dist/ and node_modules/
+$ node <a read-only walk in the shape of copyPlan, then git check-ignore and git ls-files per tree> "$PWD"
+fresh .skilled/skills/mcp-code-mode/mcp-server/dist built=2026-11-12T09:35:09.911Z newestSource=2026-11-12T09:24:39.041Z
+fresh .skilled/skills/sk-design/sk-design-md-generator/backend/dist built=2026-11-12T09:29:23.320Z newestSource=2026-11-12T09:24:39.656Z
+fresh .skilled/skills/system-skill-advisor/runtime/dist built=2026-11-15T16:25:41.187Z newestSource=2026-11-15T16:24:49.381Z
+fresh .skilled/skills/system-spec-kit/runtime/cli/dist built=2026-11-15T16:25:39.304Z newestSource=2026-11-15T16:24:49.241Z
+fresh .skilled/skills/system-spec-kit/runtime/dist built=2026-11-15T16:32:46.734Z newestSource=2026-11-15T16:24:49.241Z
+fresh .skilled/skills/system-spec-kit/shared/dist built=2026-11-15T10:53:44.703Z newestSource=2026-11-15T09:09:54.888Z
+ignored dist trees=6 stale=0
 
 # The P2 probes of the verifier
 $ node $V5/command-line-cases.mjs
@@ -357,8 +373,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Dependency | Phase 031 committed and the catch-up merge in HEAD | The before lines would read another tree | T001 checks both and stops the phase |
 | Risk | The new write events and the anchored `COMMAND:` line move stored start, unsafe and load figures | High: the goal log and two docs quote those figures | T034 rescores the three stored sets, writes every moved run with its rule and restates each quoted figure through `PLOG` or a follow-up task |
 | Risk | A write target parsed from the wrong word, such as the script of `sed -i` | Med: a run reads unsafe for a file it never touched | The target is the last non-option word for `sed`, `perl`, `cp` and `mv`, every non-option word for `tee`, `rm`, `mkdir` and `touch`, and a case pins each spelling |
-| Risk | The stale rule refuses a correct build after a checkout restamps a source | Med: an operator rebuilds before an arena | The refusal names the package path, and a rebuild is the remedy. A false refusal costs one build, a false pass measures a build nobody committed |
-| Risk | The new checks walk every copied tree | Low: `holdsDotenv` already walks each one | The link and dotenv checks share that walk |
+| Risk | The stale rule refuses a correct build after a checkout restamps a source or a doc in the package folder changes, as T015's edit of `ENV-REFERENCE.md` will for `system-spec-kit/runtime/dist` | Med: an operator rebuilds before an arena | The refusal names every stale folder, and a rebuild of each is the remedy. A false refusal costs one build, a false pass measures a build nobody committed. At planning all six ignored `dist` trees read fresh |
+| Risk | The link check walks every copied tree once more, before the clone | Low: `holdsDotenv` already walks each tree during the copy | One walk per tree, and none inside another |
 | Risk | Importing the builder runs it | High: a test or the runner would build an arena on import | T006 adds the entry guard before anything imports from the file |
 | Risk | The re-review round reports a defect in the fix | Med | A reproduced P1 becomes a task and a `5c` round reads its commit, and no round past `5c` runs |
 <!-- /ANCHOR:risks -->
@@ -371,7 +387,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: The arena build adds one `git status`, one `git ls-files` per copied `dist` and no second walk of any copied tree.
+- **NFR-P01**: The arena build adds one `git status`, one `git ls-files` per copied `dist`, one `git ls-files` for tracked dotenv names and one walk of each copied tree before the clone.
 
 ### Security
 - **NFR-S01**: No task reads, prints or logs a row prompt or a session store's prompt text. `command-prompts.jsonl`, `holdout-prompts.jsonl` and `behaviour-fresh-prompts.jsonl` are opened only through `jq 'del(.prompt)'`, and every `git diff`, `show` or `log -p` over a path that includes a row file excludes them.
@@ -387,7 +403,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
 - Empty input: `tee` with no file argument and `mkdir` with only options stay a plain shell call, and a source with no ignored build tree copies nothing and still writes the marker.
-- Maximum input: one shell call that runs `cp a b && sed -i '' x c && rm d` emits one write per target in order, and a source with many `dist` trees is checked tree by tree and refused on the first stale one.
+- Maximum input: one shell call that runs `cp a b && sed -i '' x c && rm d` emits one write per target in order, and a source with many `dist` trees is checked tree by tree and its refusal names every stale one.
 - Failure path: a dirty source, a stale build and an escaping link each exit 2 with a code before the clone, so no half-built arena is left. A dangling link in a copied tree counts as escaping, because its target cannot be checked.
 <!-- /ANCHOR:edge-cases -->
 
@@ -414,7 +430,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 None blocks planning. The planner asked no one. Each point the dispatch left open is decided below and in `plan.md`, open for the coordinator or the operator to overturn.
 
 - A1. Level: `recommend-level.sh --loc 600 --files 27` printed Level 2, score 49.
-- A2. The plan ran under `/speckit:plan :auto` with the setup bound by the dispatch: this folder, Level 2, execution mode auto, no relationships, research intent `fix_bug`. Confirm checkpoints were skipped, as `:auto` skips them. Step 5's four exploration agents were not dispatched, because this planner may dispatch none, and the same reads were done inline. Step 6 did not run the continuity writer, because the dispatch's finish step replaces the save, as in phases 024 to 031. No child `goal.md` was written, as in phases 024 to 031, and the goal row the dispatch names goes into the parent goal log. The summary scaffold sits in `scratch/` until the close-out.
+- A2. The plan ran under `/speckit:plan :auto` with the setup bound by the dispatch: this folder, Level 2, execution mode auto, no relationships, research intent `fix_bug`. Confirm checkpoints were skipped, as `:auto` skips them. Step 5's four exploration agents were not dispatched, because this planner may dispatch none, and the same reads were done inline. Its `check-prerequisites.sh --json --paths-only` ran and exited 0. Step 6 did not run the continuity writer, because the dispatch's finish step replaces the save, as in phases 024 to 031. No child `goal.md` was written and no `/create:goal <parent> phase-add` ran, because `goal.cjs packet` on the parent prints `packet_durable_chars=3972` of 4,000, which leaves no room for a binding row. The goal row the dispatch names went into the parent goal log. The summary scaffold sits in `scratch/` until the close-out.
 - A3. `iter3-P1-remote-guard-first-turn-only` is a P2 here, as the verifier graded it, while the registry row still says P1. The registry is merged output and is not edited by this phase.
 - A4. The verifier's fix for `DM5-P2-007` adds `PARTIAL` to the persistence line. The playbook package contract points the other way, so this plan removes `PARTIAL` instead (`plan.md` D10).
 - A5. The verifier's fix for `iter2-P2-tracked-dotenv-cloned` offers to refuse. This repository commits a root `.env.example`, so a refusal would refuse every arena built here. The builder names the file instead (`plan.md` D6).

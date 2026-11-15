@@ -82,17 +82,21 @@ A shell call with at least one write target emits one `write` event per target w
 
 **Why.** The unsafe verdict, `loopInit` and the start rule all read `write` events (`firstWritePosition` at `:690`), so the fix belongs where events are made, not in each reader. The writer list is the verifier's, which names the commands a model runs to change a file in place. The word rule keeps the `sed` script and the `perl -e` code out of the targets, because both come before the file.
 
+**Limit kept.** A shell call that becomes write events hides any document read in the same call, which a redirect already does today: `cat <doc> > notes.md` prints `kinds=write startedCommand=null` (spec Measured Behavior). After this change `cat <doc> | tee notes.md` and `cp <doc> x.md` read the same way, and T003 pins that parity. Keeping a read beside the writes would also move every stored redirect run, so it is recorded in D13 rather than folded in.
+
 **Rejected.** Reading a Python, Node or other interpreter write. Its target is only known by running its code, so the `python write` line stays `kinds=shell`, recorded in D13. Treating every unknown shell call as a write, which would mark every `ls` unsafe.
 
 ### Decision D2: the arena refuses a dirty source and a stale build
 
-**Decision.** `main` checks two preconditions on the source before it clones, each with `refuse()` and exit 2, so nothing is written on a refusal:
+**Decision.** `main` checks two preconditions on the source before it clones, in this order, each with `refuse()` and exit 2, so nothing is written on a refusal. The dirty check runs first, because an uncommitted edit also makes its build read stale:
 - `source_dirty`, when `git status --porcelain` in the source prints any line, with the first ten paths in the refusal.
-- `stale_build`, when a copied `dist` tree's newest file is older than the newest tracked file in the folder that holds that `dist`, outside its `dist/` and `node_modules/`. The tracked files come from `git ls-files -z -- <folder>`. The refusal names the folder, the newest source time and the build time.
+- `stale_build`, when a copied `dist` tree's newest file is older than the newest tracked file in the folder that holds that `dist`, outside its `dist/` and `node_modules/`. The tracked files come from `git ls-files -z -- <folder>`. The refusal names every stale folder, each with its newest source time and its build time, so one round of rebuilds clears it.
 
 The marker becomes three kinds of line: the head, `source clean`, and one `built <relPath> <ISO time of its newest file>` line per copied `dist`. Both readers test the marker's existence only (`RAD/run-command-behaviour.mjs:630-631`, `RAD/command-offer.mjs:358`), so the extra lines change no reader.
 
 **Why.** Case B of the verifier's probe has a clean tree and a stale `dist`, so a clean-tree check alone leaves the gap open, and case A has a fresh build of an uncommitted edit, so a freshness check alone leaves it open too. Both are refused before the clone, so a refused build never leaves a half-made arena. The rule reads any tracked file in the package folder, so it also works on the temporary repositories the tests and probes build.
+
+**Measured.** On this checkout at planning all six ignored `dist` trees read fresh by this rule (spec Measured Behavior). Any tracked file in the folder counts, so a doc edit such as T015's in `system-spec-kit/runtime/ENV-REFERENCE.md` makes `system-spec-kit/runtime/dist` read stale until it is rebuilt, which T043 does.
 
 **Rejected.** Reusing `dist-freshness.cjs` from system-spec-kit. It checks registered packages only, needs the spec-kit workspace link to load, and would pass the verifier's case B, whose source is a temporary repository. Rebuilding inside the arena, which the builder header rules out (`:12-16`).
 
@@ -112,7 +116,7 @@ The marker becomes three kinds of line: the head, `source clean`, and one `built
 
 ### Decision D5: a copied link may not leave the source
 
-**Decision.** The walk that `holdsDotenv` does over each copied tree also checks each symlink, and `main` refuses `symlink_escape` with the link's path when its real path is outside the source or cannot be resolved. A link that stays inside the source is copied as a link, as today.
+**Decision.** `main` walks each tree `copyPlan` names once, before the clone, and refuses `symlink_escape` with the link's path when a symlink's real path is outside the source or cannot be resolved. A link that stays inside the source is copied as a link, as today. `holdsDotenv` keeps its own walk during the copy.
 
 **Why.** Dereferencing would copy the outside data into the arena, which is the leak. At planning the build trees hold 110 links, none absolute and none resolving outside, so the refusal does not fire on this repository.
 
@@ -148,7 +152,7 @@ The marker becomes three kinds of line: the head, `source clean`, and one `built
 
 **Decision.** `DM5-P2-007` is fixed by removing `PARTIAL` from `SAD/manual-testing-playbook/manual-testing-playbook.md:84`, `:121` and `:128`, and the feature rule at `:128` becomes `` `SKIP`: no mapped scenario is `FAIL` and at least one is `SKIP`. `` The `loadRate` sentence at `SAD/changelog/v1.1.0.0.md:176` names `command` and `skill` as its numerator and says `otherMode` is counted in the denominator only, and no number in that line changes in lane D. Both gap-09 lines go, `:38` and the parenthetical at `:350`.
 
-**Why.** `validate-playbook-package.cjs` names `PASS`, `FAIL` and `SKIP` as the outcome vocabulary and lists `PARTIAL` as a forbidden verdict (`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:30-31`), and the root template uses the same three (`assets/manual-testing-playbook-template.md:182-183`). Adding `PARTIAL` to the persistence line, as the verifier proposed, would move the root further from its owner. The figures at `:176` are rescored by T034, which restates any that moved.
+**Why.** Three sources agree on `PASS`, `FAIL` and `SKIP` alone: the root's own persistence line at `:30`, the package validator's `REQUIRED_OUTCOME_VOCABULARY` (`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:30`) and the root template (`assets/manual-testing-playbook-template.md:182-183`). The validator's forbidden list at `:31` names `PARTIAL` too, though it checks scenario files only (`:1314`) and also names `READY`, which the root's release rule at `:132` keeps and this phase leaves. Adding `PARTIAL` to the persistence line, as the verifier proposed, would move the root further from its owner. The figures at `:176` are rescored by T034, which restates any that moved.
 
 ### Decision D11: the stored arms are rescored, phase 026's arm is not
 
@@ -168,6 +172,7 @@ The marker becomes three kinds of line: the head, `source clean`, and one `built
 |------|---------------|--------|
 | `R1-P2-002` | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md:184`, `:195` | Rejected by the verifier: the field is documented and the code handles it |
 | Interpreter writes | `RAD/score-command-transcripts.mjs` `normalize` | A Python or Node write's target is only known by running it. The probe's `python write` line stays `kinds=shell` |
+| A document read in the same shell call as a write | `RAD/score-command-transcripts.mjs` `normalize` and `readDocument` (`:979-993`) | A redirect hides it today, and keeping it would move every stored redirect run. D1 keeps parity |
 | Tracked absolute symlinks | four links under `specs/**/scratch`, found with `git ls-files -s` mode `120000` | `git clone` brings them, not `copyPath` |
 | The fixed six-hop resolver path in other sources | `SAD/hooks/claude/directive-lifecycle-boundary.ts:18` and 13 sources under `.skilled/skills/system-spec-kit/runtime/hooks/` (`claude`, `codex`, `cursor`, `devin`) | No finding grades them, every compiled copy resolves, and the spec-kit sources are another skill's |
 | The registry severity of the remote guard | `review/deep-review-findings-registry.json`, `iter3-P1-remote-guard-first-turn-only` | Merged output, graded P2 by the verifier |
