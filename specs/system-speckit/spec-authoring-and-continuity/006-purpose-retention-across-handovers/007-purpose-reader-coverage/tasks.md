@@ -30,7 +30,7 @@ Shell variables, set from the worktree root before the first task:
 - `C=specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage`
 - `P=.skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts`
 - `T=.skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts`
-- `G=specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime`
+- `G=specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime`
 - `D=specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research`
 
 `LIST` stands for the command that lists the live `spec.md` files with no exact `### Purpose` heading: `rg --files-without-match '^\s*###\s+Purpose\s*$' specs -g spec.md -g '!**/z_archive/**' -g '!**/scratch/**' -g '!**/lineages/**'`. The probe reads that list from standard input.

@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement",
+  "description": "The sk-git commit contract is written three times: as prose in `SKILL.md` and `assets/commit-message-template.md`, and as hardcoded regexes in",
+  "keywords": [
+    "sk-git",
+    "commit",
+    "contract",
+    "written",
+    "three",
+    "times",
+    "prose",
+    "skill",
+    "assets",
+    "commit-message-template",
+    "hardcoded",
+    "regexes"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.518Z",
+  "specId": "001",
+  "folderSlug": "template-driven-message-enforcement",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "git-preflight-and-message-gate"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

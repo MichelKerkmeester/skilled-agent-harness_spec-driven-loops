@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-fast-mode/002-cli-pi-worktree-extension-clash",
+  "description": "A cli-pi dispatch started inside a git worktree of this repo exits 1 before it reaches the model: `Failed to load extension",
+  "keywords": [
+    "cli-pi",
+    "dispatch",
+    "started",
+    "inside",
+    "git",
+    "worktree",
+    "repo",
+    "exits",
+    "reaches",
+    "model",
+    "failed",
+    "load",
+    "extension"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.535Z",
+  "specId": "002",
+  "folderSlug": "cli-pi-worktree-extension-clash",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-fast-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

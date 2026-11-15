@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr",
+  "description": "Every prompt in an interactive Pi session prints a line such as `{\"timestamp\":\"…\",\"runtime\":\"pi\",…}` into Pi's input area",
+  "keywords": [
+    "every",
+    "prompt",
+    "interactive",
+    "session",
+    "prints",
+    "line",
+    "timestamp",
+    "runtime",
+    "input",
+    "area"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.537Z",
+  "specId": "002",
+  "folderSlug": "pi-advisor-diagnostic-stderr",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "skill-advisor",
+    "002-pi-advisor-bridge"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

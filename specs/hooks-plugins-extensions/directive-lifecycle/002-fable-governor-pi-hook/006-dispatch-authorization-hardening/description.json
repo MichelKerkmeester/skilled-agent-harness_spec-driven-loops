@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/006-dispatch-authorization-hardening",
+  "description": "The current working tree contains a partial Pi guard: it denies `cli-pi`, stores an input event, strips known advisor/directive markers, and has a",
+  "keywords": [
+    "current",
+    "working",
+    "tree",
+    "contains",
+    "partial",
+    "guard",
+    "denies",
+    "cli-pi",
+    "stores",
+    "input",
+    "event",
+    "strips",
+    "known",
+    "advisor",
+    "directive",
+    "markers"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.127Z",
+  "specId": "006",
+  "folderSlug": "dispatch-authorization-hardening",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "directive-lifecycle",
+    "002-fable-governor-pi-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

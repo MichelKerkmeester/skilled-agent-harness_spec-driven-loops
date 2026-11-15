@@ -1,8 +1,8 @@
 # Purpose sentences for the 21 empty parents
 
-## specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection
+## specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection
 Sentence: Decide from repository evidence which repo rules, if any, a prompt-time hook should carry instead of the Gate 5 load, and design the selectivity that keeps injection off most turns.
-Read: specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/spec.md, specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/001-deep-research/spec.md, specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/002-event-triggered-injection/spec.md, specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/003-shallow-evidence-claims/spec.md
+Read: specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/spec.md, specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/001-deep-research/spec.md, specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/002-event-triggered-injection/spec.md, specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/003-shallow-evidence-claims/spec.md
 
 ## specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack
 Sentence: Move memory search onto local embedders behind one adapter interface, then keep that stack fast, measured and correct, from the backend cascade and default model through its cache, startup and metadata repair.

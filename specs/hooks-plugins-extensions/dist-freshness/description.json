@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/dist-freshness",
+  "description": "Container folder for hooks-plugins-extensions/dist-freshness.",
+  "keywords": [
+    "dist",
+    "freshness"
+  ],
+  "lastUpdated": "2026-11-15T06:36:37.654Z",
+  "specId": "hooks-plugins-extensions/dist-freshness",
+  "folderSlug": "dist-freshness",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

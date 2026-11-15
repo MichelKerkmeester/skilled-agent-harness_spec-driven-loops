@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/008-project-scoped-state",
+  "description": "`doctor:symlink` links `.skilled` whole, so every linked project resolves `.skilled/skills/.state/decision-capture/` to one shared folder",
+  "keywords": [
+    "doctor",
+    "symlink",
+    "links",
+    "skilled",
+    "whole",
+    "every",
+    "linked",
+    "project",
+    "resolves",
+    "skills",
+    "state",
+    "decision-capture",
+    "one",
+    "shared",
+    "folder"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.564Z",
+  "specId": "008",
+  "folderSlug": "project-scoped-state",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

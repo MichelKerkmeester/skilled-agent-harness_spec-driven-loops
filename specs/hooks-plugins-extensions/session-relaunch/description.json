@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/session-relaunch",
+  "description": "Container folder for hooks-plugins-extensions/session-relaunch.",
+  "keywords": [
+    "session",
+    "relaunch"
+  ],
+  "lastUpdated": "2026-11-15T06:21:37.647Z",
+  "specId": "hooks-plugins-extensions/session-relaunch",
+  "folderSlug": "session-relaunch",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

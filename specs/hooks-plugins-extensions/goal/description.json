@@ -1,0 +1,16 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/goal",
+  "description": "Container folder for hooks-plugins-extensions/goal.",
+  "keywords": [
+    "goal"
+  ],
+  "lastUpdated": "2026-11-15T06:36:38.583Z",
+  "specId": "hooks-plugins-extensions/goal",
+  "folderSlug": "goal",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

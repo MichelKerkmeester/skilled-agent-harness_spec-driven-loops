@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes",
+  "description": "The hooks are installed machine-wide through `core.hooksPath`, but they choose their source root from a file inside whatever repository they fire in,",
+  "keywords": [
+    "hooks",
+    "installed",
+    "machine-wide",
+    "core",
+    "hookspath",
+    "choose",
+    "source",
+    "root",
+    "file",
+    "inside",
+    "whatever",
+    "repository",
+    "fire"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.509Z",
+  "specId": "001",
+  "folderSlug": "git-hook-review-fixes",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "git-preflight-and-message-gate",
+    "001-template-driven-message-enforcement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

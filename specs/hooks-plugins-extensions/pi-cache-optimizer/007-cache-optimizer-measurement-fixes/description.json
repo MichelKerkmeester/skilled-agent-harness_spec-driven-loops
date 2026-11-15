@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/007-cache-optimizer-measurement-fixes",
+  "description": "An eight-iteration, three-model research loop found that the cache extension cannot tell a real",
+  "keywords": [
+    "eight-iteration",
+    "three-model",
+    "research",
+    "loop",
+    "found",
+    "cache",
+    "extension",
+    "cannot",
+    "tell",
+    "real"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.336Z",
+  "specId": "007",
+  "folderSlug": "cache-optimizer-measurement-fixes",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-cache-optimizer"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "hooks-plugins-extensions/hook-platform/005-smart-rule-injection",
+  "description": "Decide from repository evidence which repo rules, if any, a prompt-time or event hook should carry instead of the Gate 5 load, and sharpen the rule",
+  "keywords": [
+    "decide",
+    "repository",
+    "evidence",
+    "repo",
+    "rules",
+    "prompt-time",
+    "event",
+    "hook",
+    "carry",
+    "instead",
+    "gate",
+    "load",
+    "sharpen",
+    "rule"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.229Z",
+  "specId": "005",
+  "folderSlug": "smart-rule-injection",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

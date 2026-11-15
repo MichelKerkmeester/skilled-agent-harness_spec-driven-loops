@@ -65,7 +65,7 @@ Every child below the eleven parents now inherits a real purpose instead of a la
 | File | Action | Purpose |
 |------|--------|---------|
 | `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/00{1..8}-*/spec.md` | Modified | Approved purpose sentences in place of the layout sentence |
-| `specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/spec.md` | Modified | Approved sentence, in the purpose and the frontmatter description |
+| `specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/spec.md` | Modified | Approved sentence, in the purpose and the frontmatter description |
 | `specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/spec.md` | Modified | Approved sentence |
 | `specs/sk-design/020-chart-and-diagram-review/spec.md` | Modified | Approved sentence that names the one model |
 | `.skilled/skills/system-spec-kit/feature-catalog/context-preservation/packet-purpose-carry.md` | Created | The catalog entry |

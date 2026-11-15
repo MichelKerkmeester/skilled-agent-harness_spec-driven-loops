@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary",
+  "description": "An operator who types \"record this as a decision\" or \"Record my chat reply as a decision\" gets no skill recommendation",
+  "keywords": [
+    "operator",
+    "types",
+    "record",
+    "decision",
+    "chat",
+    "reply",
+    "gets",
+    "skill",
+    "recommendation"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.568Z",
+  "specId": "010",
+  "folderSlug": "decision-routing-vocabulary",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
