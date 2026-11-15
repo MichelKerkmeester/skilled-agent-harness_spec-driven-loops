@@ -42,7 +42,7 @@ allow-count 26 scripts | the 28 links in the overview minus the two scripts name
 | Ask surface | `ask-surface-stop.cjs` |
 | Injection screen | `classifier-injection-screen-posttooluse.mjs` |
 | Decision capture | `ask-capture-posttooluse.mjs` |
-| Session relaunch | `compact-pointer.mjs`, `context-nudge.mjs`, `stop-arm.mjs`, `subagent-guard.mjs` |
+| In-session handover | `compact-pointer.mjs`, `context-nudge.mjs`, `stop-arm.mjs`, `subagent-guard.mjs` |
 | Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs`, `git-live-follow.sh`, `git-preflight-advisory.mjs`, `git-primary-reconcile.sh`, `git-message-gate.mjs` |
 
 ---

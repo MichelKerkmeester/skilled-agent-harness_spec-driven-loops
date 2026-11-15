@@ -138,74 +138,74 @@ test("loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed
   fs.rmSync(dir, { recursive: true, force: true });
 });
 
-test("session-relaunch is off by default while every other concern stays on", () => {
-  assert.equal(isHookEnabled("session-relaunch", {}), false);
-  assert.equal(isHookEnabled("session-relaunch", {}, {}), false);
+test("in-session-handover is off by default while every other concern stays on", () => {
+  assert.equal(isHookEnabled("in-session-handover", {}), false);
+  assert.equal(isHookEnabled("in-session-handover", {}, {}), false);
   assert.equal(isHookEnabled("skill-advisor", {}), true);
   assert.equal(isHookEnabled("session-cleanup", {}, {}), true);
   // The enable flag of one concern switches on nothing else.
-  assert.equal(isHookEnabled("skill-advisor", { SYSTEM_SESSION_RELAUNCH_ENABLED: "0" }), true);
+  assert.equal(isHookEnabled("skill-advisor", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "0" }), true);
 });
 
-test("Claude Code is the one runtime where session-relaunch is on with no switch set", () => {
+test("Claude Code is the one runtime where in-session-handover is on with no switch set", () => {
   const { hookFlagDecision, DEFAULT_ON_RUNTIMES, RUNTIMES } = require("./hook-flags.cjs");
-  assert.deepEqual(DEFAULT_ON_RUNTIMES["session-relaunch"], ["claude"]);
+  assert.deepEqual(DEFAULT_ON_RUNTIMES["in-session-handover"], ["claude"]);
   assert.deepEqual(
-    hookFlagDecision("session-relaunch", {}, {}, { runtime: "claude" }),
+    hookFlagDecision("in-session-handover", {}, {}, { runtime: "claude" }),
     { enabled: true, key: null, reason: "default" },
   );
   for (const runtime of RUNTIMES.filter((name) => name !== "claude")) {
     assert.deepEqual(
-      hookFlagDecision("session-relaunch", {}, {}, { runtime }),
-      { enabled: false, key: "SYSTEM_SESSION_RELAUNCH_ENABLED", reason: "global" },
+      hookFlagDecision("in-session-handover", {}, {}, { runtime }),
+      { enabled: false, key: "SYSTEM_IN_SESSION_HANDOVER_ENABLED", reason: "global" },
       runtime,
     );
   }
   // A runtime the resolver does not know keeps the global-only answer.
-  assert.equal(isHookEnabled("session-relaunch", {}, {}, { runtime: "cline" }), false);
+  assert.equal(isHookEnabled("in-session-handover", {}, {}, { runtime: "cline" }), false);
   // A set global value decides for Claude too, and a blank one counts as unset.
   assert.deepEqual(
-    hookFlagDecision("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: "0" }, {}, { runtime: "claude" }),
-    { enabled: false, key: "SYSTEM_SESSION_RELAUNCH_ENABLED", reason: "global" },
+    hookFlagDecision("in-session-handover", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "0" }, {}, { runtime: "claude" }),
+    { enabled: false, key: "SYSTEM_IN_SESSION_HANDOVER_ENABLED", reason: "global" },
   );
-  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: " " }, {}, { runtime: "claude" }), true);
-  assert.equal(isHookEnabled("session-relaunch", {}, { SYSTEM_SESSION_RELAUNCH_ENABLED: "off" }, { runtime: "claude" }), false);
+  assert.equal(isHookEnabled("in-session-handover", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: " " }, {}, { runtime: "claude" }), true);
+  assert.equal(isHookEnabled("in-session-handover", {}, { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "off" }, { runtime: "claude" }), false);
   // The Claude switch and every kill switch still answer before the default.
-  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "0" }, {}, { runtime: "claude" }), false);
-  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_DISABLED: "1" }, {}, { runtime: "claude" }), false);
-  assert.equal(isHookEnabled("session-relaunch", { [MASTER_FLAG]: "1" }, {}, { runtime: "claude" }), false);
+  assert.equal(isHookEnabled("in-session-handover", { SYSTEM_IN_SESSION_HANDOVER_CLAUDE_ENABLED: "0" }, {}, { runtime: "claude" }), false);
+  assert.equal(isHookEnabled("in-session-handover", { SYSTEM_IN_SESSION_HANDOVER_DISABLED: "1" }, {}, { runtime: "claude" }), false);
+  assert.equal(isHookEnabled("in-session-handover", { [MASTER_FLAG]: "1" }, {}, { runtime: "claude" }), false);
 });
 
-test("session-relaunch turns on when its enable flag is set in the environment", () => {
+test("in-session-handover turns on when its enable flag is set in the environment", () => {
   for (const v of ["1", "true", " YES ", "on"]) {
-    assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: v }), true, v);
+    assert.equal(isHookEnabled("in-session-handover", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: v }), true, v);
   }
   for (const v of ["0", "", "no", "enabled"]) {
-    assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: v }), false, v);
+    assert.equal(isHookEnabled("in-session-handover", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: v }), false, v);
   }
 });
 
-test("session-relaunch turns on from the config file, and the environment still wins", () => {
-  const cfg = { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" };
-  assert.equal(isHookEnabled("session-relaunch", {}, cfg), true);
-  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: "0" }, cfg), false);
-  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: "" }, cfg), false);
-  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }, {}), true);
+test("in-session-handover turns on from the config file, and the environment still wins", () => {
+  const cfg = { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1" };
+  assert.equal(isHookEnabled("in-session-handover", {}, cfg), true);
+  assert.equal(isHookEnabled("in-session-handover", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "0" }, cfg), false);
+  assert.equal(isHookEnabled("in-session-handover", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "" }, cfg), false);
+  assert.equal(isHookEnabled("in-session-handover", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1" }, {}), true);
 
   // The live path: no env argument reads process.env and the file on disk.
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "hookflags-optin-"));
   const f = path.join(dir, "hook-flags.env");
-  fs.writeFileSync(f, "SYSTEM_SESSION_RELAUNCH_ENABLED=1   # opt in to the relaunch loop\n");
-  const names = [MASTER_FLAG, "MK_HOOKS_DISABLED", "SYSTEM_SESSION_RELAUNCH_DISABLED", "SYSTEM_SESSION_RELAUNCH_ENABLED"];
+  fs.writeFileSync(f, "SYSTEM_IN_SESSION_HANDOVER_ENABLED=1   # opt in to the relaunch loop\n");
+  const names = [MASTER_FLAG, "MK_HOOKS_DISABLED", "SYSTEM_IN_SESSION_HANDOVER_DISABLED", "SYSTEM_IN_SESSION_HANDOVER_ENABLED"];
   const prev = names.map((name) => [name, process.env[name]]);
   const prevCfg = process.env.HOOK_FLAGS_CONFIG;
   try {
     for (const name of names) delete process.env[name];
     process.env.HOOK_FLAGS_CONFIG = f;
     _resetConfigCache();
-    assert.equal(isHookEnabled("session-relaunch"), true);
-    process.env.SYSTEM_SESSION_RELAUNCH_ENABLED = "0";
-    assert.equal(isHookEnabled("session-relaunch"), false);
+    assert.equal(isHookEnabled("in-session-handover"), true);
+    process.env.SYSTEM_IN_SESSION_HANDOVER_ENABLED = "0";
+    assert.equal(isHookEnabled("in-session-handover"), false);
   } finally {
     if (prevCfg === undefined) delete process.env.HOOK_FLAGS_CONFIG; else process.env.HOOK_FLAGS_CONFIG = prevCfg;
     for (const [name, value] of prev) {
@@ -216,27 +216,27 @@ test("session-relaunch turns on from the config file, and the environment still 
   }
 });
 
-test("a kill switch beats the session-relaunch enable flag", () => {
-  const on = { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" };
-  assert.equal(isHookEnabled("session-relaunch", { ...on, SYSTEM_SESSION_RELAUNCH_DISABLED: "1" }), false);
-  assert.equal(isHookEnabled("session-relaunch", { ...on, [MASTER_FLAG]: "1" }), false);
-  assert.equal(isHookEnabled("session-relaunch", { ...on, MK_HOOKS_DISABLED: "1" }), false);
+test("a kill switch beats the in-session-handover enable flag", () => {
+  const on = { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1" };
+  assert.equal(isHookEnabled("in-session-handover", { ...on, SYSTEM_IN_SESSION_HANDOVER_DISABLED: "1" }), false);
+  assert.equal(isHookEnabled("in-session-handover", { ...on, [MASTER_FLAG]: "1" }), false);
+  assert.equal(isHookEnabled("in-session-handover", { ...on, MK_HOOKS_DISABLED: "1" }), false);
   // The kill switch in the file still beats an enable flag in the environment.
-  assert.equal(isHookEnabled("session-relaunch", on, { SYSTEM_SESSION_RELAUNCH_DISABLED: "1" }), false);
+  assert.equal(isHookEnabled("in-session-handover", on, { SYSTEM_IN_SESSION_HANDOVER_DISABLED: "1" }), false);
 });
 
-test("the facades carry the session-relaunch default", async () => {
+test("the facades carry the in-session-handover default", async () => {
   const mjs = await import("./hook-flags.mjs");
-  assert.equal(mjs.isHookEnabled("session-relaunch", {}), false);
-  assert.equal(mjs.isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }), true);
+  assert.equal(mjs.isHookEnabled("in-session-handover", {}), false);
+  assert.equal(mjs.isHookEnabled("in-session-handover", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1" }), true);
   const ts = await import("./hook-flags.ts");
-  assert.equal(ts.isHookEnabled("session-relaunch", {}), false);
-  assert.equal(ts.isHookEnabled("session-relaunch", {}, { SYSTEM_SESSION_RELAUNCH_ENABLED: "on" }), true);
+  assert.equal(ts.isHookEnabled("in-session-handover", {}), false);
+  assert.equal(ts.isHookEnabled("in-session-handover", {}, { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "on" }), true);
 });
 
-test("the node and shell resolvers give the same session-relaunch answers", () => {
+test("the node and shell resolvers give the same in-session-handover answers", () => {
   const { spawnSync } = require("node:child_process");
-  const names = [MASTER_FLAG, "MK_HOOKS_DISABLED", "SYSTEM_SESSION_RELAUNCH_DISABLED", "SYSTEM_SESSION_RELAUNCH_ENABLED", "SYSTEM_SKILL_ADVISOR_DISABLED"];
+  const names = [MASTER_FLAG, "MK_HOOKS_DISABLED", "SYSTEM_IN_SESSION_HANDOVER_DISABLED", "SYSTEM_IN_SESSION_HANDOVER_ENABLED", "SYSTEM_SKILL_ADVISOR_DISABLED"];
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "hook-flags-optin-parity-"));
   try {
     const f = path.join(dir, "hook-flags.env");
@@ -245,18 +245,18 @@ test("the node and shell resolvers give the same session-relaunch answers", () =
       const env = { ...process.env, HOOK_FLAGS_CONFIG: f };
       for (const name of names) delete env[name];
       Object.assign(env, envValues);
-      const node = ["session-relaunch", "skill-advisor"].map((c) => (isHookEnabled(c, envValues, loadConfigFile(f)) ? "on" : "off"));
-      const script = '. "$1"; for c in session-relaunch skill-advisor; do hook_enabled "$c" && echo on || echo off; done';
+      const node = ["in-session-handover", "skill-advisor"].map((c) => (isHookEnabled(c, envValues, loadConfigFile(f)) ? "on" : "off"));
+      const script = '. "$1"; for c in in-session-handover skill-advisor; do hook_enabled "$c" && echo on || echo off; done';
       const shell = spawnSync("bash", ["-c", script, "probe", path.join(__dirname, "hook-flags.sh")], { env, encoding: "utf8" });
       return { node, shell: shell.stdout.trim().split("\n") };
     };
     const cases = [
       ["nothing set", "", {}, ["off", "on"]],
-      ["enabled in the environment", "", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }, ["on", "on"]],
-      ["enabled in the file", "SYSTEM_SESSION_RELAUNCH_ENABLED=yes  # opt in\n", {}, ["on", "on"]],
-      ["environment unsets the file's opt-in", "SYSTEM_SESSION_RELAUNCH_ENABLED=1\n", { SYSTEM_SESSION_RELAUNCH_ENABLED: "" }, ["off", "on"]],
-      ["kill switch beats the opt-in", "SYSTEM_SESSION_RELAUNCH_ENABLED=1\nSYSTEM_SESSION_RELAUNCH_DISABLED=1\n", {}, ["off", "on"]],
-      ["master switch beats the opt-in", "", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", [MASTER_FLAG]: "1" }, ["off", "off"]],
+      ["enabled in the environment", "", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1" }, ["on", "on"]],
+      ["enabled in the file", "SYSTEM_IN_SESSION_HANDOVER_ENABLED=yes  # opt in\n", {}, ["on", "on"]],
+      ["environment unsets the file's opt-in", "SYSTEM_IN_SESSION_HANDOVER_ENABLED=1\n", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "" }, ["off", "on"]],
+      ["kill switch beats the opt-in", "SYSTEM_IN_SESSION_HANDOVER_ENABLED=1\nSYSTEM_IN_SESSION_HANDOVER_DISABLED=1\n", {}, ["off", "on"]],
+      ["master switch beats the opt-in", "", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1", [MASTER_FLAG]: "1" }, ["off", "off"]],
     ];
     for (const [label, fileText, envValues, expected] of cases) {
       const { node, shell } = ask(fileText, envValues);
@@ -535,23 +535,23 @@ test("a per-runtime enable flag answers before the global one in every reader", 
     // that names no runtime, which keeps the global-only answer. A fifth entry, when
     // present, replaces the four runtime names as the caller spells them.
     const rows = [
-      ["global on, claude off", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "0" }, "", "off on on on on"],
-      ["claude on, no global", { SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "1" }, "", "on off off off off"],
-      ["kill switch beats a per-runtime opt-in", { SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "1", SYSTEM_SESSION_RELAUNCH_DISABLED: "1" }, "", "off off off off off"],
-      ["master switch beats a per-runtime opt-in", { SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "1", [MASTER_FLAG]: "1" }, "", "off off off off off"],
-      ["empty per-runtime falls through to the global", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "" }, "", "on on on on on"],
-      ["file per-runtime off beats an environment global on", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }, "SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0\n", "off on on on on"],
+      ["global on, claude off", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1", SYSTEM_IN_SESSION_HANDOVER_CLAUDE_ENABLED: "0" }, "", "off on on on on"],
+      ["claude on, no global", { SYSTEM_IN_SESSION_HANDOVER_CLAUDE_ENABLED: "1" }, "", "on off off off off"],
+      ["kill switch beats a per-runtime opt-in", { SYSTEM_IN_SESSION_HANDOVER_CLAUDE_ENABLED: "1", SYSTEM_IN_SESSION_HANDOVER_DISABLED: "1" }, "", "off off off off off"],
+      ["master switch beats a per-runtime opt-in", { SYSTEM_IN_SESSION_HANDOVER_CLAUDE_ENABLED: "1", [MASTER_FLAG]: "1" }, "", "off off off off off"],
+      ["empty per-runtime falls through to the global", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1", SYSTEM_IN_SESSION_HANDOVER_CLAUDE_ENABLED: "" }, "", "on on on on on"],
+      ["file per-runtime off beats an environment global on", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1" }, "SYSTEM_IN_SESSION_HANDOVER_CLAUDE_ENABLED=0\n", "off on on on on"],
       ["nothing set, so only claude is on", {}, "", "on off off off off"],
-      ["global off turns claude off too", { SYSTEM_SESSION_RELAUNCH_ENABLED: "0" }, "", "off off off off off"],
-      ["global off in the file turns claude off too", {}, "SYSTEM_SESSION_RELAUNCH_ENABLED=0\n", "off off off off off"],
-      ["a blank global counts as unset", { SYSTEM_SESSION_RELAUNCH_ENABLED: " " }, "", "on off off off off"],
-      ["a runtime name with surrounding spaces still finds its switch", { SYSTEM_SESSION_RELAUNCH_PI_ENABLED: "1" }, "", "on on off off off", [" claude ", " pi", "opencode ", "  codex"]],
-      ["the legacy master alias beats every opt-in", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "1", MK_HOOKS_DISABLED: "1" }, "", "off off off off off"],
-      ["the legacy master alias in the file beats an environment opt-in", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }, "MK_HOOKS_DISABLED=1\n", "off off off off off"],
+      ["global off turns claude off too", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "0" }, "", "off off off off off"],
+      ["global off in the file turns claude off too", {}, "SYSTEM_IN_SESSION_HANDOVER_ENABLED=0\n", "off off off off off"],
+      ["a blank global counts as unset", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: " " }, "", "on off off off off"],
+      ["a runtime name with surrounding spaces still finds its switch", { SYSTEM_IN_SESSION_HANDOVER_PI_ENABLED: "1" }, "", "on on off off off", [" claude ", " pi", "opencode ", "  codex"]],
+      ["the legacy master alias beats every opt-in", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1", SYSTEM_IN_SESSION_HANDOVER_CLAUDE_ENABLED: "1", MK_HOOKS_DISABLED: "1" }, "", "off off off off off"],
+      ["the legacy master alias in the file beats an environment opt-in", { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1" }, "MK_HOOKS_DISABLED=1\n", "off off off off off"],
     ];
     const relaunchNames = (env) => {
       for (const name of Object.keys(env)) {
-        if (/^SYSTEM_SESSION_RELAUNCH_/.test(name) || name === MASTER_FLAG || name === "MK_HOOKS_DISABLED") delete env[name];
+        if (/^SYSTEM_IN_SESSION_HANDOVER_/.test(name) || name === MASTER_FLAG || name === "MK_HOOKS_DISABLED") delete env[name];
       }
       return env;
     };
@@ -561,15 +561,15 @@ test("a per-runtime enable flag answers before the global one in every reader", 
       const cfg = loadConfigFile(f);
       for (const [reader, flags] of [["cjs", { isHookEnabled }], ["mjs", mjs], ["ts", ts]]) {
         const got = spelled
-          .map((runtime) => flags.isHookEnabled("session-relaunch", envValues, cfg, { runtime }))
-          .concat(flags.isHookEnabled("session-relaunch", envValues, cfg))
+          .map((runtime) => flags.isHookEnabled("in-session-handover", envValues, cfg, { runtime }))
+          .concat(flags.isHookEnabled("in-session-handover", envValues, cfg))
           .map((on) => (on ? "on" : "off"));
         assert.deepEqual(got, expected, `${label}: hook-flags.${reader}`);
       }
       // A stray per-runtime flag in the caller's shell must not leak into the probe.
       const env = { ...relaunchNames({ ...process.env }), HOOK_FLAGS_CONFIG: f, ...envValues };
       // The names go through as quoted arguments so their spaces reach the reader.
-      const script = '. "$1"; shift; for r in "$@"; do hook_enabled session-relaunch "$r" && echo on || echo off; done';
+      const script = '. "$1"; shift; for r in "$@"; do hook_enabled in-session-handover "$r" && echo on || echo off; done';
       const shellArgs = ["-c", script, "probe", path.join(__dirname, "hook-flags.sh"), ...spelled, ""];
       const shell = spawnSync("bash", shellArgs, { env, encoding: "utf8" });
       assert.deepEqual(shell.stdout.trim().split("\n"), expected, `${label}: hook-flags.sh`);
@@ -584,25 +584,25 @@ test("a per-runtime enable flag answers before the global one in every reader", 
 test("every runtime the relaunch loop accepts has its own enable switch in both readers", () => {
   const { spawnSync } = require("node:child_process");
   const { RUNTIMES, hookFlagDecision } = require("./hook-flags.cjs");
-  const relaunch = require("../session-relaunch/lib/relaunch-core.cjs");
+  const relaunch = require("../in-session-handover/lib/relaunch-core.cjs");
   assert.deepEqual([...RUNTIMES].sort(), [...relaunch.RUNTIMES].sort());
 
   const env = { ...process.env };
   for (const name of Object.keys(env)) {
-    if (/^SYSTEM_SESSION_RELAUNCH_/.test(name) || name === MASTER_FLAG || name === "MK_HOOKS_DISABLED") delete env[name];
+    if (/^SYSTEM_IN_SESSION_HANDOVER_/.test(name) || name === MASTER_FLAG || name === "MK_HOOKS_DISABLED") delete env[name];
   }
-  const script = '. "$1"; hook_enabled session-relaunch "$2" && echo on || echo off';
+  const script = '. "$1"; hook_enabled in-session-handover "$2" && echo on || echo off';
   const shell = (runtime, values) => spawnSync(
     "bash",
     ["-c", script, "probe", path.join(__dirname, "hook-flags.sh"), runtime],
     { env: { ...env, HOOK_FLAGS_CONFIG: path.join(os.tmpdir(), "no-such-hook-flags.env"), ...values }, encoding: "utf8" },
   ).stdout.trim();
   for (const runtime of relaunch.RUNTIMES) {
-    const key = `SYSTEM_SESSION_RELAUNCH_${runtime.toUpperCase()}_ENABLED`;
+    const key = `SYSTEM_IN_SESSION_HANDOVER_${runtime.toUpperCase()}_ENABLED`;
     const on = { [key]: "1" };
-    const off = { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", [key]: "0" };
-    assert.deepEqual(hookFlagDecision("session-relaunch", on, {}, { runtime }), { enabled: true, key, reason: "runtime" }, runtime);
-    assert.deepEqual(hookFlagDecision("session-relaunch", off, {}, { runtime }), { enabled: false, key, reason: "runtime" }, runtime);
+    const off = { SYSTEM_IN_SESSION_HANDOVER_ENABLED: "1", [key]: "0" };
+    assert.deepEqual(hookFlagDecision("in-session-handover", on, {}, { runtime }), { enabled: true, key, reason: "runtime" }, runtime);
+    assert.deepEqual(hookFlagDecision("in-session-handover", off, {}, { runtime }), { enabled: false, key, reason: "runtime" }, runtime);
     assert.equal(shell(runtime, on), "on", `${runtime}: hook-flags.sh`);
     assert.equal(shell(runtime, off), "off", `${runtime}: hook-flags.sh`);
   }

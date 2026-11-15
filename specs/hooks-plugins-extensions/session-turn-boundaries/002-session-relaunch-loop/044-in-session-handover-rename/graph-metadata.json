@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "in-session handover rename",
+      "rename session relaunch",
+      "system in session handover enabled",
+      "in-session-handover hook folder",
+      "in session handover rename plan",
+      "in session handover rename tasks",
+      "in session handover rename acceptance criteria",
+      "in session handover rename implementation summary"
+    ],
+    "key_topics": [
+      "in-session",
+      "handover",
+      "rename",
+      "session",
+      "relaunch",
+      "system",
+      "enabled",
+      "in-session-handover",
+      "hook",
+      "folder",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/plugins/in-session-handover.js",
+      ".pi/extensions/in-session-handover.ts",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      "scratch/harness/live-hop.sh",
+      "scratch/gate.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "in-session-handover.js",
+        "kind": "code",
+        "path": ".opencode/plugins/in-session-handover.js",
+        "source": "derived"
+      },
+      {
+        "name": "in-session-handover.ts",
+        "kind": "code",
+        "path": ".pi/extensions/in-session-handover.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "live-hop.sh",
+        "kind": "script",
+        "path": "scratch/harness/live-hop.sh",
+        "source": "derived"
+      },
+      {
+        "name": "gate.sh",
+        "kind": "script",
+        "path": "scratch/gate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mechanical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator calls the feature an in-session handover, and the README and release notes describe it that way, but every surface a user touches says session relaunch: the hook folder `.skilled/hooks/session-relaunch/`, the switch `SYSTEMSESSIONRELAUNCHENABLED`, the seed `[session-relaunch] claim and continue handoff` and the docs",
+    "created_at": "2026-11-15T07:49:00Z",
+    "last_save_at": "2026-11-15T08:02:24.841Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:13b81ea749ea30291e4b2c572e9313190f0ef45a51f26ad3a3ffd5bdca8f48d2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7019901e377e8f33cbf3029582031704014fa75da333acfc163f8a8a49b2290b",
+      "plan.md": "a004bb912ae6051f94c60d63bd16311a03c660e59e42bc4bcef5cfa2987a6516",
+      "tasks.md": "5d62fe38ce45086366178835cce75573b3df0fa8e629bd32f7767f835c89a483",
+      "implementation-summary.md": "8df20c1b05d68de665d12cbf54d8e49756d94cc4a1c80e38b4b70049f1d18f1b"
+    },
+    "last_active_at": null
+  }
+}

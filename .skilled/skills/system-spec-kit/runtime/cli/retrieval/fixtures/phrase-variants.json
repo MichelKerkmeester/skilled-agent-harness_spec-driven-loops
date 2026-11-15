@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2fb5ff3f69dcd7435898b451458d2bed1e81d91688459e59d5b0336982d5e58d",
+  "manifestHash": "8717482d8434ebf6d30d6ee963d7ba809483042f8067705f2028401a7b3e3968",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20621,6 +20621,10 @@
     "claude hook settings schema normalization": [
       "claude hook settings schema normalization"
     ],
+    "claude in session handover": [
+      "Claude in-session handover",
+      "claude in-session handover"
+    ],
     "claude injection screen": [
       "claude injection screen"
     ],
@@ -20737,10 +20741,6 @@
     ],
     "claude session prime": [
       "claude session prime"
-    ],
-    "claude session relaunch": [
-      "Claude session relaunch",
-      "claude session relaunch"
     ],
     "claude spec gate enforce": [
       "claude spec gate enforce"
@@ -27326,6 +27326,10 @@
     "codex image input": [
       "codex image input"
     ],
+    "codex in session handover": [
+      "Codex in-session handover",
+      "codex in-session handover"
+    ],
     "codex lineage 401": [
       "codex lineage 401"
     ],
@@ -27481,10 +27485,6 @@
     ],
     "codex session lifecycle": [
       "codex session lifecycle"
-    ],
-    "codex session relaunch": [
-      "Codex session relaunch",
-      "codex session relaunch"
     ],
     "codex session resume companion": [
       "Codex session resume companion"
@@ -33358,6 +33358,9 @@
     "cursor hooks json shared configuration": [
       "Cursor hooks.json shared configuration"
     ],
+    "cursor in session handover": [
+      "Cursor in-session handover"
+    ],
     "cursor live follow": [
       "cursor live follow"
     ],
@@ -33480,9 +33483,6 @@
     ],
     "cursor session lifecycle": [
       "cursor session lifecycle"
-    ],
-    "cursor session relaunch": [
-      "Cursor session relaunch"
     ],
     "cursor session resume": [
       "cursor session resume"
@@ -41011,6 +41011,9 @@
     "devin hop waived": [
       "devin hop waived"
     ],
+    "devin in session handover": [
+      "Devin in-session handover"
+    ],
     "devin injection screen": [
       "devin injection screen"
     ],
@@ -41154,9 +41157,6 @@
     ],
     "devin session lifecycle": [
       "devin session lifecycle"
-    ],
-    "devin session relaunch": [
-      "Devin session relaunch"
     ],
     "devin session resume continue": [
       "devin session resume continue"
@@ -60893,8 +60893,53 @@
     "in session handover": [
       "in-session handover"
     ],
+    "in session handover claude": [
+      "in-session-handover-claude"
+    ],
+    "in session handover cli": [
+      "in-session handover cli"
+    ],
+    "in session handover command runtimes": [
+      "in-session-handover-command-runtimes"
+    ],
+    "in session handover core": [
+      "in-session handover core"
+    ],
     "in session handover docs": [
       "in-session handover docs"
+    ],
+    "in session handover fixtures": [
+      "in-session handover fixtures"
+    ],
+    "in session handover hook": [
+      "in-session handover hook"
+    ],
+    "in session handover hook folder": [
+      "in-session-handover hook folder"
+    ],
+    "in session handover loop": [
+      "In-session handover loop"
+    ],
+    "in session handover pi opencode": [
+      "in-session-handover-pi-opencode"
+    ],
+    "in session handover rename": [
+      "in-session handover rename"
+    ],
+    "in session handover rename acceptance criteria": [
+      "in session handover rename acceptance criteria"
+    ],
+    "in session handover rename implementation summary": [
+      "in session handover rename implementation summary"
+    ],
+    "in session handover rename plan": [
+      "in session handover rename plan"
+    ],
+    "in session handover rename tasks": [
+      "in session handover rename tasks"
+    ],
+    "in session handover tests": [
+      "in-session handover tests"
     ],
     "inbound enhances": [
       "inbound enhances"
@@ -77283,6 +77328,10 @@
     "opencode hooks browsability mirror": [
       "opencode hooks browsability mirror"
     ],
+    "opencode in session handover": [
+      "OpenCode in-session handover",
+      "opencode in-session handover"
+    ],
     "opencode injection screen": [
       "opencode injection screen"
     ],
@@ -77579,10 +77628,6 @@
     ],
     "opencode session cleanup": [
       "opencode session cleanup"
-    ],
-    "opencode session relaunch": [
-      "OpenCode session relaunch",
-      "opencode session relaunch"
     ],
     "opencode session sweep": [
       "opencode session sweep"
@@ -85508,6 +85553,10 @@
     "pi hook latency handover": [
       "pi hook latency handover"
     ],
+    "pi in session handover": [
+      "Pi in-session handover",
+      "pi in-session handover"
+    ],
     "pi injection screen": [
       "pi injection screen"
     ],
@@ -85765,10 +85814,6 @@
     ],
     "pi session lifecycle": [
       "pi session lifecycle"
-    ],
-    "pi session relaunch": [
-      "Pi session relaunch",
-      "pi session relaunch"
     ],
     "pi session start context": [
       "pi session start context"
@@ -94941,6 +94986,9 @@
     ],
     "rename rule and test root fixes tasks": [
       "rename rule and test root fixes tasks"
+    ],
+    "rename session relaunch": [
+      "rename session relaunch"
     ],
     "rename spec kit memory mcp namespace": [
       "rename spec kit memory mcp namespace"
@@ -104424,26 +104472,14 @@
     "session relaunch cancel command": [
       "session relaunch cancel command"
     ],
-    "session relaunch claude": [
-      "session-relaunch-claude"
-    ],
-    "session relaunch cli": [
-      "session relaunch cli"
-    ],
     "session relaunch closure checklist": [
       "session relaunch closure checklist"
     ],
     "session relaunch closure plan": [
       "session relaunch closure plan"
     ],
-    "session relaunch command runtimes": [
-      "session-relaunch-command-runtimes"
-    ],
     "session relaunch conformance suite": [
       "session relaunch conformance suite"
-    ],
-    "session relaunch core": [
-      "session relaunch core"
     ],
     "session relaunch default off": [
       "session relaunch default off"
@@ -104457,17 +104493,11 @@
     "session relaunch feature catalog goal ended wrapper notice": [
       "session relaunch feature catalog goal_ended wrapper notice"
     ],
-    "session relaunch fixtures": [
-      "session relaunch fixtures"
-    ],
     "session relaunch goal": [
       "SESSION_RELAUNCH_GOAL"
     ],
     "session relaunch history command": [
       "session relaunch history command"
-    ],
-    "session relaunch hook": [
-      "session relaunch hook"
     ],
     "session relaunch keep command": [
       "session relaunch keep command"
@@ -104485,14 +104515,10 @@
       "session relaunch live round"
     ],
     "session relaunch loop": [
-      "Session relaunch loop",
       "session relaunch loop"
     ],
     "session relaunch opt in": [
       "session relaunch opt in"
-    ],
-    "session relaunch pi opencode": [
-      "session-relaunch-pi-opencode"
     ],
     "session relaunch post fix research": [
       "session relaunch post-fix research"
@@ -104505,9 +104531,6 @@
     ],
     "session relaunch stale re arm fix": [
       "session relaunch stale re-arm fix"
-    ],
-    "session relaunch tests": [
-      "session relaunch tests"
     ],
     "session resume": [
       "session resume"
@@ -118267,8 +118290,8 @@
     "speckit handoff command template": [
       "speckit handoff command template"
     ],
-    "speckit handoff session relaunch": [
-      "/speckit:handoff session relaunch"
+    "speckit handoff in session handover": [
+      "/speckit:handoff in-session handover"
     ],
     "speckit hf model server idle timeout min default": [
       "SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN default"
@@ -122000,6 +122023,9 @@
     ],
     "system hardening tasks": [
       "system hardening tasks"
+    ],
+    "system in session handover enabled": [
+      "system in session handover enabled"
     ],
     "system kind recall exclusion": [
       "system kind recall exclusion"

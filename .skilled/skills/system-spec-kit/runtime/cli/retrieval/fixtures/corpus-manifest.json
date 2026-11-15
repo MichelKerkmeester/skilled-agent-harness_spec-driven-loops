@@ -1,5 +1,5 @@
 {
-  "corpusHash": "01f041d476b7242873fccc2d12ea781deddef15630c3fe56d3f1dcc45e0311d9",
+  "corpusHash": "64ba735f3665b34b8173661830532cd8eabdbd885a11cdcd79ccb153c5e45a71",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27501,
+  "includedPathCount": 27506,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -191,6 +191,14 @@
     ".skilled/hooks/hook-install/claude/README.md",
     ".skilled/hooks/hook-install/cursor/README.md",
     ".skilled/hooks/hook-install/devin/README.md",
+    ".skilled/hooks/in-session-handover/README.md",
+    ".skilled/hooks/in-session-handover/bin/README.md",
+    ".skilled/hooks/in-session-handover/claude/README.md",
+    ".skilled/hooks/in-session-handover/codex/README.md",
+    ".skilled/hooks/in-session-handover/lib/README.md",
+    ".skilled/hooks/in-session-handover/opencode/README.md",
+    ".skilled/hooks/in-session-handover/pi/README.md",
+    ".skilled/hooks/in-session-handover/tests/README.md",
     ".skilled/hooks/injection-contract.md",
     ".skilled/hooks/mcp-route-guard/README.md",
     ".skilled/hooks/mcp-route-guard/claude/README.md",
@@ -239,14 +247,6 @@
     ".skilled/hooks/session-lifecycle/pi/README.md",
     ".skilled/hooks/session-lifecycle/tests/README.md",
     ".skilled/hooks/session-lifecycle/vibe/README.md",
-    ".skilled/hooks/session-relaunch/README.md",
-    ".skilled/hooks/session-relaunch/bin/README.md",
-    ".skilled/hooks/session-relaunch/claude/README.md",
-    ".skilled/hooks/session-relaunch/codex/README.md",
-    ".skilled/hooks/session-relaunch/lib/README.md",
-    ".skilled/hooks/session-relaunch/opencode/README.md",
-    ".skilled/hooks/session-relaunch/pi/README.md",
-    ".skilled/hooks/session-relaunch/tests/README.md",
     ".skilled/hooks/shared/README.md",
     ".skilled/hooks/shared/dsh/README.md",
     ".skilled/hooks/shared/session-readers/README.md",
@@ -1748,10 +1748,10 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/classifier-injection-screen.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/cli-dispatch-audit.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/codex-hooks-watchdog.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/in-session-handover.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/mcp-route-guard.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/opencode-goal.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-cleanup.md",
-    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-code-post-edit-quality.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-git-message-gate.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-git-preflight-advisory.md",
@@ -8869,8 +8869,8 @@
     ".skilled/skills/system-spec-kit/changelog/v2.9.3.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/in-session-handover-loop.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/packet-purpose-carry.md",
-    ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
     ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
     ".skilled/skills/system-spec-kit/feature-catalog/feature-flag-reference/filter-config-contract.md",
@@ -8970,15 +8970,15 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-transcript-sweeps.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/in-session-handover-claude.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/in-session-handover-command-runtimes.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/in-session-handover-pi-opencode.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-claude-compaction.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-pi-compaction.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-relaunch.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-resume.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-save.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/rg-archive-search.md",
@@ -12563,6 +12563,11 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop/plan.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -27533,7 +27538,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2fb5ff3f69dcd7435898b451458d2bed1e81d91688459e59d5b0336982d5e58d",
+  "manifestHash": "8717482d8434ebf6d30d6ee963d7ba809483042f8067705f2028401a7b3e3968",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27780,6 +27785,14 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/in-session-handover/opencode/in-session-handover.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/in-session-handover/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/hooks/mcp-route-guard/opencode/mcp-route-guard.js",
       "reason": "symlink not followed"
     },
@@ -27945,14 +27958,6 @@
     },
     {
       "path": ".skilled/hooks/session-lifecycle/vibe/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/hooks/session-relaunch/opencode/session-relaunch.js",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/session-relaunch/tests/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -31413,6 +31418,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename/scratch",
       "reason": "excluded directory"
     },
     {

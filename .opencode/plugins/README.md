@@ -51,7 +51,7 @@ One plugin is an exception. `sk-git-message-gate.js` has no switch, because the 
 | `opencode-goal.js` | `goal` | `event` (`session.created`/`status`/`idle`/`deleted`, `message.updated`/`message.part.updated`, `permission.asked`/`replied`, `question.asked`/`replied`/`rejected`), `experimental.chat.system.transform`, `tool` (goal tools) | Holds a text goal or binds a session to a packet `goal.md` and injects the objective slice built from it (via `../hooks/goal/lib/goal-slice.cjs`). Largest plugin in this folder. Owns the goal state machine, supervisor, continuation, capabilities and the goal tool surface including `bind`, `resent` and `packet`. |
 | `session-cleanup.js` | `session-cleanup` | `event` (`session.created`/`deleted`), `experimental.chat.system.transform`, `dispose` | Performs bounded session and host cleanup. Startup guards and teardown cleanup. Reaps MCP helper processes via `session-cleanup.sh`. |
 | `session-history-lookup.js` | `session-lifecycle` | `event` (`session.compacted`), `experimental.chat.system.transform` | On `session.compacted`, saves a history locator keyed by the checkout root above the session folder, then pushes the shared `## History Lookup` section into each request's system array while the locator is under 30 minutes old. Fails open: no build, no checkout or a failed save means no section. |
-| `session-relaunch.js` | `session-relaunch` | `event` (`message.updated`/`message.part.updated`/`session.idle`), `experimental.chat.system.transform` | Tracks usage and seed text. Inside `skilled-loop`, while this session has no matching relaunch record, it pushes the active nudge on every request. Outside the loop the nudge asks for a note and `keep` instead of `prepare`, because only the wrapper can relaunch the session. While a matching seed's note is open, it injects the seed on each request, then a claimed reminder once the note is claimed. It arms the record on `session.idle`. The plugin runs the detached killer with `node` because OpenCode hosts plugins on Bun. |
+| `in-session-handover.js` | `in-session-handover` | `event` (`message.updated`/`message.part.updated`/`session.idle`), `experimental.chat.system.transform` | Tracks usage and seed text. Inside `skilled-loop`, while this session has no matching relaunch record, it pushes the active nudge on every request. Outside the loop the nudge asks for a note and `keep` instead of `prepare`, because only the wrapper can relaunch the session. While a matching seed's note is open, it injects the seed on each request, then a claimed reminder once the note is claimed. It arms the record on `session.idle`. The plugin runs the detached killer with `node` because OpenCode hosts plugins on Bun. |
 | `sk-code-post-edit-quality.js` | `post-edit-quality` | `tool.execute.before`, `tool.execute.after`, `experimental.chat.system.transform` | Runs bounded post-edit quality checks. `tool.execute.before` stashes the edited path keyed by callID, because the after hook has no file path. `tool.execute.after` runs the router core. Findings drain on the next transform and are recorded to a workspace log. |
 | `sk-git-message-gate.js` | `git-message-gate` (no kill switch) | `tool.execute.before` for `bash` | Refuses a `git commit` message, `gh pr` description or new branch name that breaks the repository's own sk-git templates by throwing. Allows what the shared gate cannot parse, but refuses when the repository's rules exist and cannot be read. It has no kill switch, because the commit and push rules carry no bypass on any surface. |
 | `sk-git-preflight-advisory.js` | `git-preflight` | `tool.execute.before` for `bash`, `experimental.chat.system.transform` | Advises on Git command scope before execution. Buffers at most 20 advisory events and drains them on the next transform. Never prints. |
@@ -117,7 +117,7 @@ plugins/
 +-- opencode-goal.js
 +-- session-cleanup.js
 +-- session-history-lookup.js
-+-- session-relaunch.js
++-- in-session-handover.js
 +-- sk-code-post-edit-quality.js
 +-- sk-git-message-gate.js
 +-- sk-git-preflight-advisory.js
@@ -165,14 +165,14 @@ plugins/
 
 ## 7. CONFIGURATION
 
-Every plugin except `session-relaunch.js` is enabled by default. Truthy disable values are `1`, `true`, `yes` and `on` (case-insensitive) for the shared resolver. Each plugin that honors a switch checks `isHookEnabled('<concern>')` at entry (some at factory entry, some per-hook) and stops its main work when disabled. Housekeeping can still run, such as the deep-loop guard's stale-state sweep on `session.created`. The one exception named in the overview does not.
+Every plugin except `in-session-handover.js` is enabled by default. Truthy disable values are `1`, `true`, `yes` and `on` (case-insensitive) for the shared resolver. Each plugin that honors a switch checks `isHookEnabled('<concern>')` at entry (some at factory entry, some per-hook) and stops its main work when disabled. Housekeeping can still run, such as the deep-loop guard's stale-state sweep on `session.created`. The one exception named in the overview does not.
 
 | Variable | Effect |
 |---|---|
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables every plugin in this folder that reads `hook-flags.cjs`, along with every other repo hook. It does not reach `sk-git-message-gate.js`. |
 | Per-concern switch | The default name is `SYSTEM_<CONCERN>_DISABLED` (e.g. `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SKILL_ADVISOR_DISABLED`). Six concerns use another canonical name: `OPENCODE_GOAL_DISABLED`, `CLI_DISPATCH_AUDIT_DISABLED`, `MCP_ROUTE_GUARD_DISABLED`, `CODEX_HOOKS_WATCHDOG_DISABLED`, `SK_GIT_PREFLIGHT_DISABLED` and `SK_CODE_POST_EDIT_QUALITY_DISABLED`. |
 | Older aliases | `hook-flags.cjs` still honors older names, e.g. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` and `OPENCODE_GOAL_PLUGIN_DISABLED`. See each plugin's own README. |
-| `SYSTEM_SESSION_RELAUNCH_OPENCODE_ENABLED`, `SYSTEM_SESSION_RELAUNCH_ENABLED` | Turn on `session-relaunch.js`, which ships off. A non-empty OpenCode flag decides for OpenCode (`1` on, `0` off), and the global flag decides otherwise. `SYSTEM_SESSION_RELAUNCH_DISABLED=1` and the master switch still win. Also read from `.skilled/hooks/hook-flags.env`. |
+| `SYSTEM_IN_SESSION_HANDOVER_OPENCODE_ENABLED`, `SYSTEM_IN_SESSION_HANDOVER_ENABLED` | Turn on `in-session-handover.js`, which ships off. A non-empty OpenCode flag decides for OpenCode (`1` on, `0` off), and the global flag decides otherwise. `SYSTEM_IN_SESSION_HANDOVER_DISABLED=1` and the master switch still win. Also read from `.skilled/hooks/hook-flags.env`. |
 
 Optional tuning: `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000, owned by `system-skill-advisor`), `SYSTEM_OPENCODE_TRANSFORM_DEDUP=1` (opt-in transform dedup for the advisor plugin), plus per-plugin cache/budget/timeout envs documented in each plugin's README.
 
@@ -201,7 +201,7 @@ Plugin factories register some subset of:
 - `tool`: tools exposed to the model (e.g. `spec_kit_skill_advisor_status`, the goal tools, the read-only completion-evidence tool).
 - `tool.execute.before`: pre-tool evaluation (spec-gate enforce, dispatch guard, env-secret-guard, git message gate, git-preflight, mcp-route-guard, post-edit-quality path stash, deep-loop guard).
 - `tool.execute.after`: post-tool evaluation (cli-dispatch-audit, post-edit-quality run, injection screen).
-- `experimental.chat.system.transform`: per-turn system-context injection (advisor, spec-gate classify, goal, session-cleanup, session-relaunch nudge and seed, git-preflight drain, post-edit-quality drain, dist-freshness and injection-screen drain).
+- `experimental.chat.system.transform`: per-turn system-context injection (advisor, spec-gate classify, goal, session-cleanup, in-session-handover nudge and seed, git-preflight drain, post-edit-quality drain, dist-freshness and injection-screen drain).
 - `event`: lifecycle and activity handlers (`session.created`/`status`/`idle`/`deleted`/`resumed`/`compacted`/`compact`, `message.updated`/`message.part.updated`, the goal plugin's permission and question events, `server.instance.disposed`/`global.disposed`).
 - `dispose`: teardown when the host unloads the plugin (session-cleanup).
 

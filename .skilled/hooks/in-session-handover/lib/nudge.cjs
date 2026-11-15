@@ -1,0 +1,906 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: In-Session Handover Nudge
+// ───────────────────────────────────────────────────────────────────
+'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const fs = require('node:fs');
+const path = require('node:path');
+const core = require('./relaunch-core.cjs');
+const hookFlags = require('../../shared/hook-flags.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SEED_PREFIX = '[in-session-handover]';
+const SPEC_FOLDER_GUIDANCE = '   spec_folder is a repo-relative '
+  + 'packet path, "none" for Gate 3 D) Skip, or empty if unanswered.';
+// A Goal that each session writes from memory drifts a little on every hop, so the note
+// opens it with a line copied from the packet, which no hop rewrites.
+const GOAL_GUIDANCE = '   When spec_folder names a packet, open ## Goal with one line '
+  + '`Purpose: <sentence>`, where <sentence> is the first sentence of that packet\'s purpose in '
+  + 'its spec.md, copied word for word and cut to 300 characters. Read it under ### Purpose, or '
+  + 'without that heading in the paragraph that opens with Purpose: inside the ## PROBLEM & '
+  + 'PURPOSE, ## PURPOSE or ## ROOT PURPOSE section, or else the opening paragraph of a '
+  + '## PURPOSE or ## ROOT PURPOSE section. The opening paragraph of a ## PROBLEM & PURPOSE '
+  + 'section states the problem, so it is never the purpose. When the text is empty, UNKNOWN, a '
+  + 'template placeholder or a scaffold sentence that begins Keep parent documentation lean or '
+  + 'This phase groups the related child phases below, use the nearest phase parent that has one '
+  + 'and write `Parent purpose (<repo-relative parent folder>): <sentence>`. '
+  + 'When neither exists and the packet holds a goal.md, write `Goal objective: <sentence>` from '
+  + 'its Objective. Leave the line out when there is no such text. Then say what this session '
+  + 'works toward.';
+// Every adapter prints this command, so the model always runs the CLI from the repo root.
+const CLI_COMMAND = 'node .skilled/hooks/in-session-handover/bin/in-session-handover.cjs';
+const CONTINUITY_WRITER_COMMAND = 'node .skilled/skills/system-spec-kit/runtime/cli/'
+  + 'dist/continuity/generate-context.js';
+const NUDGE_STEP = 0.05;
+const LAST_NUDGE_LEVEL = 1;
+// What a session is told when its prepared hand-over was withdrawn by a prompt: the prompt
+// itself carries this and nothing else, because a nudge on the same turn would ask for the
+// hand-over the session was just freed from.
+const WITHDRAWN_NOTICE = '[in-session-handover] The prepared hand-over was withdrawn because'
+  + ' a new prompt arrived before it took effect. Keep working here. The open'
+  + ' note no longer matches the work, and one more context nudge will come once the context'
+  + ' fills further. That nudge is when to update the note and hand over again. Do not run'
+  + ' consume or claim by hand.';
+const DEFAULT_THRESHOLD = 0.8;
+// The wrapper's own ceiling on completed hops, used when no cap is configured.
+const DEFAULT_MAX_HOPS = core.DEFAULT_MAX_HOPS;
+const SESSION_ID_PATTERN = /^[A-Za-z0-9_-]{1,128}$/;
+// Notes named before the full id went into the filename carry this many leading id
+// characters; the reader still accepts them so a note written then keeps its work.
+const LEGACY_SESSION_ID_PREFIX_LENGTH = 8;
+const FINISH_INSTEAD_INSTRUCTION = ' If the remaining work fits in a few more steps, finish it instead'
+  + ' and skip these steps.'
+  + ' Otherwise do these steps now, before any other work,'
+  + ' so a fresh session continues before auto-compaction has to:';
+// Outside the wrapper nothing can relaunch the session, but a note still keeps what the
+// compaction summary loses, so the session writes one, keeps it, and carries on.
+const OUTSIDE_LOOP_INSTRUCTION = ' This session runs outside the skilled-loop wrapper, so it'
+  + ' cannot relaunch; a handoff note keeps the exact decisions auto-compaction would summarize.'
+  + ' If the remaining work fits in a few more steps, finish it instead and skip these steps.'
+  + ' Otherwise do these steps now, before any other work:';
+// A receiver re-runs the note's active command, so it checks every worker the note names
+// first: a live worker already owns that work.
+const WORKER_CHECK_INSTRUCTION = ' Before you run the active command again, run `kill -0 <pid>`'
+  + ' for each worker the note\'s `Running workers:` line names; when a pid is alive, collect'
+  + ' its worker with the collect step from that line instead of starting the same work again,'
+  + ' and do not re-run the active command while a listed worker runs.';
+// A hop ends the runtime that held the schedules and the added directories; a compaction kept
+// both, so only a hop seed rebuilds them.
+const HOP_RESTORE_INSTRUCTION = ' After a hop, recreate each `Scheduled:` entry the note lists,'
+  + ' or tell the operator which to recreate when this runtime has no scheduler, and re-add'
+  + ' each `Added directories:` entry, or ask the operator to (on Claude Code,'
+  + ' `/add-dir <path>`).';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+function shellQuote(value) {
+  const quote = String.fromCharCode(39);
+  const escapedQuote = quote + '"' + quote + '"' + quote;
+  return quote + String(value).replace(/'/g, escapedQuote) + quote;
+}
+
+// A session id or a cwd is copied into the note frontmatter, so every C0 control character
+// and DEL comes out before it is printed: a line break there would add a field the operator
+// never wrote. The stripped value no longer matches the real session or folder, which is
+// why prepare refuses a note built from it.
+function stripControlCharacters(value) {
+  return String(value).replace(/[\u0000-\u001f\u007f]/g, '');
+}
+
+// The printed command is text the model runs, so a value that starts with node passes
+// through only as one invocation of one argument with no shell syntax in it: a
+// single-quoted string without a quote inside, or a run of characters the shell reads as
+// data. Anything else is quoted whole, so it can only ever be the path of the command.
+function commandPrefix(cliPath) {
+  if (typeof cliPath !== 'string' || !cliPath.trim()) return CLI_COMMAND;
+  const nodeInvocation = /^node +(.*)$/s.exec(cliPath);
+  if (nodeInvocation !== null) {
+    const argument = nodeInvocation[1];
+    if (/^'[^']*'$/.test(argument) || /^[A-Za-z0-9_/.@:+-]+$/.test(argument)) return cliPath;
+  }
+  return `node ${shellQuote(cliPath)}`;
+}
+
+/** Build the command that closes a handoff note, shared by seed text and every reminder. */
+function completeCommandFor(notePath, cliPath) {
+  const pathValue = String(notePath ?? '<handoff-path>');
+  return `${commandPrefix(cliPath)} complete ${shellQuote(pathValue)}`;
+}
+
+/** Build the command that claims a handoff note for a session. */
+function claimCommandFor(notePath, sessionId, cliPath) {
+  const pathValue = String(notePath ?? '<handoff-path>');
+  return `${commandPrefix(cliPath)} claim ${shellQuote(pathValue)}`
+    + ` --session ${shellQuote(String(sessionId ?? ''))}`;
+}
+
+// A window override can push the measured ratio far past 1, so the literal percentage
+// reads as a broken hook to the model receiving it; name the overflow instead.
+function contextSentence(ratio) {
+  if (typeof ratio !== 'number' || !Number.isFinite(ratio)) return null;
+  return ratio > 1
+    ? `${SEED_PREFIX} Context is past the configured window (over 100% full).`
+    : `${SEED_PREFIX} Context is about ${Math.round(ratio * 100)}% full.`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Reduce a spec-folder answer to one prepare accepts: empty when unanswered, `none` for a
+ * Gate 3 skip, or a valid packet path. Anything else, including a value that would add
+ * frontmatter lines, is unknown and returns undefined.
+ */
+function normalizeSpecFolder(value) {
+  if (value === '' || value === 'none') return value;
+  return core.validSpecFolder(value) ? value : undefined;
+}
+
+// No host puts a spec folder in its hook payload today, so the payload field stays a
+// seam for one that does, and the session's bound packet comes from SYSTEM_SPEC_FOLDER.
+// An empty variable says nothing about the answer, so it reads as unknown.
+/** Resolve the spec folder a nudge writes into the note, payload first. */
+function specFolderInput({ payload, env = process.env } = {}) {
+  const fromPayload = normalizeSpecFolder(payload?.spec_folder);
+  if (fromPayload !== undefined) return fromPayload;
+  const fromEnvironment = env?.SYSTEM_SPEC_FOLDER;
+  return fromEnvironment ? normalizeSpecFolder(fromEnvironment) : undefined;
+}
+
+/** Build the context handoff instructions for a runtime nudge. */
+function handoffText({
+  notePath,
+  sessionId,
+  specFolder,
+  runtime = 'claude',
+  cliPath,
+  cwd = process.cwd(),
+  loopId = process.env.SKILLED_LOOP_ID || '',
+  createdAt = new Date().toISOString(),
+  ratio,
+} = {}) {
+  const pathValue = String(notePath ?? '<handoff-path>');
+  const sessionValue = stripControlCharacters(sessionId ?? '');
+  const cwdValue = stripControlCharacters(cwd);
+  // An unknown folder prints empty: the guidance line tells the model what may go there,
+  // and a placeholder copied verbatim is a value prepare rejects.
+  const folder = normalizeSpecFolder(specFolder);
+  const specValue = folder ?? '';
+  const command = commandPrefix(cliPath);
+  const context = contextSentence(ratio);
+  const inLoop = Boolean(loopId);
+  let opening = `${SEED_PREFIX} Write a handoff note before auto-compaction.`;
+  if (context !== null) {
+    opening = context + (inLoop ? FINISH_INSTEAD_INSTRUCTION : OUTSIDE_LOOP_INSTRUCTION);
+  }
+  // The sections asked for are the ones validateHandoff enforces, so prepare accepts the note.
+  const sectionList = core.HANDOFF_SECTIONS.map((name) => `## ${name}`).join(', ');
+  const activeGoalInstruction = runtime === 'codex'
+    ? ' For Codex, also include an `Active goal:` line with the goal or packet path; use '
+      + '`Active goal: none` when no goal is active.'
+    : '';
+  // Releasing a held lock lets the re-run command acquire it after the hop.
+  const lines = [
+    opening,
+    `1. Write the handoff note at ${shellQuote(pathValue)} in exactly this shape:`,
+    '   ---',
+    '   status: open',
+    `   session_id: ${sessionValue}`,
+    `   loop_id: ${loopId}`,
+    `   runtime: ${runtime}`,
+    `   cwd: ${cwdValue}`,
+    `   spec_folder: ${specValue}`,
+    `   created_at: ${createdAt}`,
+    '   ---',
+    `   followed by ${sectionList}, each non-empty.`,
+    '   Under ## Remaining work list only the task\'s own unfinished work. '
+      + 'Never list these handoff steps (the note, the continuity save, prepare) '
+      + 'there; this session does them now.',
+    SPEC_FOLDER_GUIDANCE,
+    GOAL_GUIDANCE,
+    '   Under ## In-flight state include an `Active command:` line with the command, mode and '
+      + 'arguments; use `Active command: none` when no command runs.'
+      + activeGoalInstruction,
+    // The receiver re-runs the active command, so the note has to say what that command must
+    // not start again; prepare refuses a note that leaves the question unanswered.
+    '   Also include a `Running workers:` line: each worker as `pid <pid> log <path> collect '
+      + '<step>`, workers separated by ` | `, or `Running workers: none` when none runs. '
+      + 'prepare refuses a note that has no `Running workers:` line.',
+    // A hop ends the runtime that held these, so the receiver must rebuild both from the note.
+    '   Also include a `Scheduled:` line for each cron or wakeup with its schedule and prompt, '
+      + 'or `Scheduled: none`; and an `Added directories:` line for each directory added after '
+      + 'launch, or `Added directories: none`.',
+  ];
+
+  let step = 2;
+  if (folder === undefined || (folder !== '' && folder !== 'none')) {
+    const saveTarget = folder || '<spec-folder>';
+    const saveStep = runtime === 'claude'
+      ? 'run `/speckit:save` first so its continuity is current.'
+      : 'save its continuity first: pipe the save JSON to '
+        + `\`${CONTINUITY_WRITER_COMMAND} --stdin --full-auto ${shellQuote(saveTarget)}\`.`;
+    lines.push(`${step}. When a spec packet is bound to this session, ${saveStep}`);
+    step += 1;
+  }
+  lines.push(
+    `${step}. Stop a running fan-out runner before prepare: when a `
+      + '`fanout-run.cjs` runner still runs, send it `kill -TERM <runner-pid>` and wait until `kill -0 <runner-pid>` '
+      + 'fails, so its lineages end with it. Then, if this command holds a deep-loop lock, '
+      + 'release it with `node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs '
+      + 'release --lock-path <path> --owner-pid <pid> --nonce <nonce>`, using the values the '
+      + 'command captured. The `release --owner-pid` form also requires the captured lock path '
+      + 'and nonce.',
+  );
+  step += 1;
+  const noteArguments = `--handoff ${shellQuote(pathValue)}`
+    + ` --session ${shellQuote(sessionValue)} --runtime ${shellQuote(runtime)}`;
+  if (inLoop) {
+    lines.push(`${step}. Then run: ${command} prepare ${noteArguments}`);
+    lines.push(
+      `${step + 1}. Stop once it exits 0; the loop ends this session and relaunches `
+        + 'with a claim seed.',
+    );
+  } else {
+    lines.push(`${step}. Then run: ${command} keep ${noteArguments}`);
+    lines.push(
+      `${step + 1}. Keep working in this session once it exits 0. After auto-compaction, `
+        + 'claim the note with the command keep prints before you continue.',
+    );
+  }
+  // Without a named way back, a session told to stay after prepare improvises with the
+  // wrapper's own commands.
+  if (inLoop) {
+    lines.push(
+      `If the operator asks this session to stay after prepare, run: ${command} cancel,`
+        + ' then keep working.',
+    );
+  }
+  lines.push(
+    'Exception: skip these steps only when the operator has told this session not to hand off;'
+      + ' then keep working, and auto-compaction stays the fallback.',
+  );
+  return lines.join('\n');
+}
+
+/** Build the claim, resume, and completion instructions for a seed prompt. */
+function seedText({
+  notePath,
+  specFolder,
+  sessionId,
+  cliPath,
+  afterCompaction = false,
+  createdAt,
+} = {}) {
+  const pathValue = String(notePath ?? '<handoff-path>');
+  const claimCommand = claimCommandFor(pathValue, sessionId, cliPath);
+  const completeCommand = completeCommandFor(pathValue, cliPath);
+  const gateWasSkipped = specFolder === 'none';
+  let continueStep = gateWasSkipped ? 4 : 3;
+  let readInstruction = '2. Read the note.' + WORKER_CHECK_INSTRUCTION;
+  if (typeof specFolder === 'string' && specFolder && !gateWasSkipped) {
+    readInstruction = '2. Read the note. When its frontmatter spec_folder is set, run '
+      + `\`/speckit:resume ${specFolder}\`; skip that step when spec_folder is empty.`
+      + WORKER_CHECK_INSTRUCTION;
+  }
+
+  const lines = [
+    afterCompaction
+      ? '[in-session-handover] This session was compacted after it wrote a handoff note, which'
+        + ' keeps the detail the summary dropped. Work it in order:'
+      : '[in-session-handover] This session was opened to continue a handoff note. Work it in order:',
+    `1. Run \`${claimCommand}\`; it prints the note body.`,
+    readInstruction,
+  ];
+  if (gateWasSkipped) {
+    lines.push('3. Gate 3 is already answered Skip for this session, carried from the handoff.');
+  }
+  lines.push(
+    `${continueStep}. If the note has an \`Active goal:\` line other than \`none\`, use `
+      + '`create_goal` to bring that goal back into this session. On a runtime without '
+      + '`create_goal`, tell the operator which goal to set.',
+  );
+  continueStep += 1;
+  if (typeof specFolder === 'string' && specFolder && !gateWasSkipped) {
+    lines.push(
+      `${continueStep}. When ${specFolder}/goal.md exists, read it before Remaining work; `
+        + 'its durable directive binds the session goal.',
+    );
+    continueStep += 1;
+  }
+  lines.push(
+    `${continueStep}. When the note's \`Active command:\` line names a command, run it again `
+      + 'with the same mode and arguments; the command\'s own state detection picks the step. '
+      + 'Skip this when the line says `none`.',
+  );
+  continueStep += 1;
+  // A session that kept working after it wrote the note may have committed some of its
+  // Remaining work since, so it checks git before trusting the list. The note date is the
+  // boundary for that check; without one the step still asks for the history.
+  if (afterCompaction) {
+    const dated = typeof createdAt === 'string' && createdAt.trim() !== '';
+    lines.push(dated
+      ? `${continueStep}. The note was written at ${createdAt}. Run `
+        + `\`git log --since=${shellQuote(createdAt)}\` and \`git status\`, and compare them `
+        + 'with Remaining work before you trust it.'
+      : `${continueStep}. Run \`git log\` and \`git status\`, and compare them with Remaining `
+        + 'work before you trust it; work committed after the note was written is already done.');
+    continueStep += 1;
+  }
+  lines.push(
+    `${continueStep}. Continue the work under "Remaining work". Do not run prepare for this note; `
+      + 'its handoff is already done. If Remaining work names only handoff steps, '
+      + 'treat it as empty.',
+    `${continueStep + 1}. When the remaining work is done, run `
+      + `\`${completeCommand}\` to close the note.`
+      + (afterCompaction ? '' : HOP_RESTORE_INSTRUCTION),
+  );
+  return lines.join('\n');
+}
+
+/**
+ * Build the compaction text for a session whose hand-over was withdrawn. Its open note was
+ * written before the operator carried on, so claiming it would resume work already done.
+ */
+function staleNoteText({ notePath } = {}) {
+  const pathValue = String(notePath ?? '<handoff-path>');
+  return [
+    '[in-session-handover] This session was compacted after its hand-over was withdrawn.',
+    `The handoff note at ${shellQuote(pathValue)} predates the work done since then.`,
+    'Read it for background only and do not claim it.',
+    'Update it at the next context nudge, which is when to hand over again.',
+  ].join(' ');
+}
+
+/** Check whether text starts with the relaunch seed marker. */
+function isSeedPrompt(text) {
+  return typeof text === 'string' && text.startsWith(SEED_PREFIX);
+}
+
+// The wrapper reads the same seed with the core parser, so both sides go through it and a
+// note path that holds the marker text cannot split one way here and another way there.
+/** Read the carried spec folder from a claim seed, or '' when it carries no usable answer. */
+function specFolderFromSeed(prompt) {
+  const parsed = core.parseClaimSeed(prompt);
+  return parsed ? parsed.specFolder : '';
+}
+
+// The runtime receives the seed path raw: its shell already consumed any
+// quoting, so an unescape or trim here would corrupt a path that holds a
+// real backslash or edge whitespace.
+/** Extract the raw handoff note path from a claim seed, or null when malformed. */
+function notePathFromSeed(prompt) {
+  const parsed = core.parseClaimSeed(prompt);
+  return parsed ? parsed.notePath : null;
+}
+
+// A seed whose note path cannot be read would hand the model a claim command with a
+// placeholder it cannot run, so every adapter adds nothing for it instead.
+/** Build the claim instructions for a relaunch seed, or null when it is not a usable seed. */
+function seedInstructions({ prompt, sessionId, cliPath = CLI_COMMAND } = {}) {
+  const notePath = notePathFromSeed(prompt);
+  if (notePath === null) return null;
+  return seedText({
+    notePath,
+    specFolder: specFolderFromSeed(prompt),
+    sessionId,
+    cliPath,
+  });
+}
+
+// Notes live in the repository that holds this concern, so every reader resolves the same root.
+function resolveRepoRoot(env = process.env) {
+  return path.resolve(
+    env.IN_SESSION_HANDOVER_REPO_ROOT || path.resolve(__dirname, '..', '..', '..', '..'),
+  );
+}
+
+/** Return the directory every reader keeps handoff notes in, under a repository root. */
+function handoffDir(repoRoot) {
+  return path.join(
+    repoRoot,
+    '.skilled', 'skills', '.state', 'in-session-handover', 'handoffs',
+  );
+}
+
+// The nudge hands the model a path, so the directory must exist before the model
+// writes there, and private because a note carries the session's working state.
+// A failure here must not cost the nudge itself; the model's write then fails visibly.
+// chmod follows a symlink, so a linked handoffs directory is left alone rather than
+// opening up whatever it points at; the CLI refuses notes under it anyway.
+function ensureHandoffDir(repoRoot) {
+  const directory = handoffDir(repoRoot);
+  try {
+    fs.mkdirSync(directory, { recursive: true, mode: 0o700 });
+    if (fs.lstatSync(directory).isDirectory()) fs.chmodSync(directory, 0o700);
+  } catch {}
+  return directory;
+}
+
+// A second nudge must name the note the session already has open. Handing it a
+// fresh stamped path lets the first note be written and then abandoned as open
+// while the seed claims the second one, so the work the first one describes is lost.
+// The full id keeps concurrent sessions whose ids share a prefix from planning the same note.
+function openNotePathFor({ repoRoot, sessionId }) {
+  if (!validSessionId(sessionId)) return null;
+  const directory = handoffDir(repoRoot);
+  let filenames;
+  try {
+    filenames = fs.readdirSync(directory);
+  } catch {
+    return null;
+  }
+
+  // Note names start with a UTC stamp, so a reverse sort puts the newest note first.
+  const suffix = `-${sessionId}.md`;
+  const legacySuffix = `-${sessionId.slice(0, LEGACY_SESSION_ID_PREFIX_LENGTH)}.md`;
+  for (const filename of filenames.sort().reverse()) {
+    if (!filename.endsWith(suffix) && !filename.endsWith(legacySuffix)) continue;
+    const notePath = path.join(directory, filename);
+    let frontmatter;
+    try {
+      frontmatter = core.parseHandoff(fs.readFileSync(notePath, 'utf8')).frontmatter;
+    } catch {
+      continue;
+    }
+    if (frontmatter.status === 'open' && frontmatter.session_id === sessionId) {
+      return notePath;
+    }
+  }
+  return null;
+}
+
+/** Plan the handoff note path for a nudge under the resolved repo root. */
+function plannedNotePath({
+  // Accepted for callers that pass their session cwd; the root no longer comes from it.
+  cwd,
+  sessionId,
+  env = process.env,
+  now = new Date(),
+} = {}) {
+  const repoRoot = resolveRepoRoot(env);
+  ensureHandoffDir(repoRoot);
+  const openNotePath = openNotePathFor({ repoRoot, sessionId });
+  if (openNotePath !== null) return openNotePath;
+
+  const stamp = now.toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
+  return path.join(
+    handoffDir(repoRoot),
+    `${stamp}-${sessionId}.md`,
+  );
+}
+
+// The wrapper accepts the same switch values it accepts everywhere, and reads them
+// from the same pair: the operator config file under the live environment. Reading
+// the environment alone would bind a saved age limit to the wrapper and never to
+// this check. Unset, empty, negative or non-numeric falls back to the default age,
+// while zero stays meaningful.
+function maxAgeMinutes(env) {
+  const switches = {
+    ...hookFlags.loadConfigFile(hookFlags.configPath()),
+    ...(env ?? {}),
+  };
+  const rawValue = switches.IN_SESSION_HANDOVER_MAX_AGE_MIN;
+  if (rawValue === undefined || rawValue === null || String(rawValue).trim() === '') {
+    return undefined;
+  }
+  const parsed = Number(rawValue);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : undefined;
+}
+
+// One switch value resolved the way the wrapper resolves it: unset, empty, negative
+// or non-numeric falls back, and a hop count has to be a whole number.
+function switchNumber(rawValue, fallback, { integer = false } = {}) {
+  if (rawValue === undefined || rawValue === null || String(rawValue).trim() === '') {
+    return fallback;
+  }
+  const parsed = Number(rawValue);
+  if (!Number.isFinite(parsed) || parsed < 0 || (integer && !Number.isInteger(parsed))) {
+    return fallback;
+  }
+  return parsed;
+}
+
+// The wrapper refuses a hop count that is not a non-negative whole number, and prepare
+// exits on it, so a set value that fails the same check counts as the limit reached rather
+// than asking for a hand-over prepare would decline. Unset or empty still reads as zero.
+function unusableHopCount(rawValue) {
+  if (rawValue === undefined || rawValue === null || String(rawValue).trim() === '') {
+    return false;
+  }
+  const parsed = Number(rawValue);
+  return !Number.isFinite(parsed) || parsed < 0 || !Number.isInteger(parsed);
+}
+
+// A session that has spent every allowed hop cannot relaunch: the wrapper declines the
+// record and the session carries on under auto-compaction. Prompting there would spend a
+// turn on handoff steps whose prepare can only decline, so the adapters ask this first.
+// The hop count is the one the loop exported, and the cap comes from the same
+// config-file-then-environment pair the wrapper reads.
+function hopLimitReached(env = process.env) {
+  if (unusableHopCount(env?.SKILLED_LOOP_HOPS)) return true;
+  const switches = {
+    ...hookFlags.loadConfigFile(hookFlags.configPath()),
+    ...(env ?? {}),
+  };
+  const hops = switchNumber(env?.SKILLED_LOOP_HOPS, 0, { integer: true });
+  const maxHops = switchNumber(
+    switches.IN_SESSION_HANDOVER_MAX_HOPS,
+    DEFAULT_MAX_HOPS,
+    { integer: true },
+  );
+  return hops >= maxHops;
+}
+
+// An armed record only stands for a finished handoff while the wrapper would still
+// accept it: past the age limit it is declined as stale and can never relaunch, so
+// counting it as done leaves a session that still owes its note with no prompt to
+// write one. Freshness stays shouldRelaunch's own verdict so every reader shares one
+// rule; its other declines still name a handoff that was prepared.
+/** Report whether the wrapper, reading the record at `now`, would still find it fresh. */
+function armedRecordStillCurrent(record, env, now = Date.now()) {
+  return core.shouldRelaunch(record, { now, maxAgeMin: maxAgeMinutes(env) }).reason !== 'stale';
+}
+
+// A nudge exists to get the handoff note written and a relaunch prepared. Once this
+// session's record is pending or armed that work is done, so another nudge would spend
+// a fresh turn on instructions the session has already followed.
+/** Report whether this session's relaunch record already has a live handoff. */
+function handoffPending({ sessionId, env = process.env } = {}) {
+  const loopId = env?.SKILLED_LOOP_ID;
+  if (typeof loopId !== 'string' || !loopId.trim()) return false;
+  try {
+    const record = core.readRelaunchFile(loopId, env);
+    // A record that cannot be read, or that the arm paths would not take as this
+    // session's, proves nothing about this session, so the caller keeps nudging.
+    // An armed one counts whether or not its killer still runs, while it is fresh.
+    const { reason } = core.armableRecord(record, { loopId, sessionId, env });
+    if (reason === 'pending') return true;
+    if (reason !== 'killer-gone' && reason !== 'killer-live') return false;
+    return armedRecordStillCurrent(record, env);
+  } catch {
+    return false;
+  }
+}
+
+// A prepared hand-over only goes live once the turn or run ends, and a question dialog holds
+// it open until the operator answers, so a session that asks after prepare sits at its
+// context limit with a record nothing acts on. Every record that can still be armed holds the
+// dialog. A live killer ends the idle session itself, so the dialog is allowed once one owns
+// the loop's lock.
+/**
+ * Name why this session must not open a question dialog now, or return null when it may.
+ *
+ * @param {Object} options - The asking session.
+ * @param {string} options.sessionId - Session that wants to ask.
+ * @param {string} options.runtime - Runtime the record must have been prepared for.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @returns {string|null} The refusal text, naming the note and the cancel command.
+ */
+function questionHoldReason({ sessionId, runtime, env = process.env } = {}) {
+  const loopId = env?.SKILLED_LOOP_ID;
+  if (typeof loopId !== 'string' || !loopId.trim()) return null;
+  let record;
+  try {
+    record = core.readRelaunchFile(loopId, env);
+  } catch {
+    return null;
+  }
+  if (!core.armableRecord(record, { loopId, sessionId, runtime, env }).armable) return null;
+  return [
+    '[in-session-handover] A hand-over is prepared for this session and only goes live when',
+    'this turn ends. A question dialog keeps the turn open, so the hop would never run.',
+    `End this turn now and put the question in the handoff note at ${record.handoff} for`,
+    'the next session, or call the hand-over off first with',
+    `\`node .skilled/hooks/in-session-handover/bin/in-session-handover.cjs cancel --loop-id ${record.loopId}\`.`,
+  ].join(' ');
+}
+
+// After a compaction the session's open note is normally claimed. A note whose hand-over
+// the operator withdrew is the exception: it was written before the work that followed,
+// unless the session has updated it since the withdraw.
+/**
+ * Report whether this session's record was disarmed by a cancel or a prompt over this note
+ * and the note has not been written to since.
+ */
+function handoffWithdrawn({ sessionId, notePath, env = process.env } = {}) {
+  const loopId = env?.SKILLED_LOOP_ID;
+  if (typeof loopId !== 'string' || !loopId.trim()) return false;
+  if (typeof notePath !== 'string' || !notePath) return false;
+  try {
+    const record = core.readRelaunchFile(loopId, env);
+    if (!record || typeof record !== 'object') return false;
+    if (record.loopId !== loopId || record.sessionId !== sessionId) return false;
+    if (record.status !== 'disarmed' || !core.WITHDRAWN_DISARM_REASONS.has(record.disarmReason)) {
+      return false;
+    }
+    if (
+      typeof record.handoff !== 'string'
+      || path.resolve(record.handoff) !== path.resolve(notePath)
+    ) {
+      return false;
+    }
+    // A note that cannot be read or timed counts as stale: the withdraw is all that is known.
+    const disarmedMs = Date.parse(record.disarmedAt);
+    if (Number.isFinite(disarmedMs)) {
+      try {
+        if (fs.statSync(notePath).mtimeMs > disarmedMs) return false;
+      } catch {}
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Only the skilled-loop wrapper can end a session and relaunch it with a claim seed.
+// Outside it, prepare can only print a manual claim command and exit 3, so a nudge
+// there that asked for prepare would turn a working session into one that stops and
+// waits for a hand-off nobody runs. Unset or empty reads as outside, the same test
+// prepare applies.
+/** Report whether this session runs under the skilled-loop wrapper. */
+function insideLoop(env = process.env) {
+  return Boolean(env?.SKILLED_LOOP_ID);
+}
+
+/** Return the env-then-config threshold, accepted when finite in (0, 1]. */
+function relaunchThreshold(config = {}, env = process.env) {
+  const value = env.IN_SESSION_HANDOVER_THRESHOLD
+    ?? config.IN_SESSION_HANDOVER_THRESHOLD;
+  const threshold = Number(value);
+  return Number.isFinite(threshold) && threshold > 0 && threshold <= 1
+    ? threshold
+    : DEFAULT_THRESHOLD;
+}
+
+/** Return the next nudge level using the threshold and one five-point reminder. */
+function nextLevel({ ratio, threshold, state } = {}) {
+  const level = Number.isInteger(state) && state >= 0 ? state : 0;
+  if (level > LAST_NUDGE_LEVEL) return { level, nudge: false };
+
+  const boundary = Number((Number(threshold) + level * NUDGE_STEP).toFixed(6));
+  if (Number(ratio) < boundary) return { level, nudge: false };
+  return { level: level + 1, nudge: true };
+}
+
+/**
+ * Decide whether an adapter should nudge now, in the order every adapter applies:
+ * the threshold, then inside the wrapper a handoff this session already prepared and
+ * the hop cap, or outside it a note this session already has open, then the level.
+ * Outside the wrapper the nudge asks for a note only, and its reason says so.
+ * The state file is read only once the ratio reaches the threshold. A pending re-arm from a
+ * withdrawn hand-over is turned into its floor here, which is the one write this decision
+ * makes; see rearmAfterWithdraw.
+ *
+ * @param {Object} options - Fill ratio and session state.
+ * @param {number} options.ratio - Measured fill ratio.
+ * @param {number} options.threshold - Resolved nudge threshold.
+ * @param {string} options.sessionId - Session the nudge belongs to.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @param {number} [options.level] - Current level; read from the state file when omitted.
+ * @param {boolean} [options.resume=false] - Re-deliver a spent level after a host restart.
+ * @returns {{nudge: boolean, level: number, reason: string}} The decision and its level.
+ */
+function nudgeDecision({
+  ratio,
+  threshold,
+  sessionId,
+  env = process.env,
+  level,
+  resume = false,
+} = {}) {
+  const knownLevel = Number.isInteger(level) && level >= 0 ? level : undefined;
+  const quiet = (reason) => ({ nudge: false, level: knownLevel ?? 0, reason });
+  // A dispatched child inherits its parent's environment but owns no hand-over: a
+  // nudge there asks a worker to save continuity into the parent's packet, which is
+  // exactly the write its brief forbids. The claim path skips children the same way.
+  const { relaunchSessionIsChild } = require('../../goal/lib/goal-core.cjs');
+  if (relaunchSessionIsChild(env)) return quiet('child-session');
+  if (!(Number(ratio) >= Number(threshold))) return quiet('below-threshold');
+  const inLoop = insideLoop(env);
+  if (inLoop && handoffPending({ sessionId, env })) return quiet('handoff-pending');
+  if (inLoop && hopLimitReached(env)) return quiet('hop-limit');
+  // Outside the wrapper no record marks the work as done, so the session's own open
+  // note does: once it is written, a re-nudge would only ask for it again.
+  if (!inLoop && openNotePathFor({ repoRoot: resolveRepoRoot(env), sessionId }) !== null) {
+    return quiet('note-open');
+  }
+
+  const stored = readStateFile(sessionId, env);
+  const current = knownLevel ?? stored.level;
+
+  // A withdrawn or cancelled hand-over grants one more nudge, whatever the level, but only
+  // once the fill has grown a step past where the grant took effect. The first run after the withdraw fixes
+  // that floor and stays quiet, so the nudge never lands on the prompt that withdrew it.
+  const { rearm } = stored;
+  if (rearm !== null) {
+    if (rearm.pending) {
+      persistRearmFloor(sessionId, stored.level, ratio, env);
+      return { nudge: false, level: current, reason: 'rearm-floor' };
+    }
+    if (!(Number(ratio) >= rearm.floor)) {
+      return { nudge: false, level: current, reason: 'rearm-floor' };
+    }
+    // The grant is one nudge whatever the level, so delivering it spends the level.
+    return { nudge: true, level: Math.max(current, LAST_NUDGE_LEVEL + 1), reason: 'rearm' };
+  }
+
+  if (resume && current >= 1) return { nudge: true, level: current, reason: 'resume' };
+  const next = nextLevel({ ratio, threshold, state: current });
+  return next.nudge
+    ? { nudge: true, level: next.level, reason: inLoop ? 'threshold' : 'outside-loop' }
+    : { nudge: false, level: next.level, reason: 'level-spent' };
+}
+
+/** Validate a session id before using it in a command or state-file name. */
+function validSessionId(id) {
+  return typeof id === 'string' && SESSION_ID_PATTERN.test(id);
+}
+
+function stateFilePath(sessionId, env) {
+  if (!validSessionId(sessionId)) return null;
+  return path.join(core.stateDir(env), `nudge-${sessionId}.json`);
+}
+
+// A grant from a withdrawn hand-over is either pending, when the fill it must clear is not
+// yet known, or a floor. Anything else in the field is ignored, so an old level-only file
+// and a damaged field both read as no grant.
+function parseRearm(raw) {
+  if (!raw || typeof raw !== 'object') return null;
+  if (raw.pending === true) return { pending: true };
+  const floor = Number(raw.floor);
+  return raw.floor !== null && Number.isFinite(floor) && floor > 0 ? { floor } : null;
+}
+
+function readStateFile(sessionId, env) {
+  const empty = { level: 0, rearm: null, windowUnknown: false };
+  const filePath = stateFilePath(sessionId, env);
+  if (filePath === null) return empty;
+
+  try {
+    if (core.inspectStateDir(core.stateDir(env)) !== true) return empty;
+    const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const level = Number(parsed?.level);
+    return {
+      level: Number.isInteger(level) && level >= 0 ? level : 0,
+      rearm: parseRearm(parsed?.rearm),
+      windowUnknown: parsed?.windowUnknown === true,
+    };
+  } catch {
+    return empty;
+  }
+}
+
+function persistState(sessionId, level, rearm, env) {
+  const filePath = stateFilePath(sessionId, env);
+  const numericLevel = Number(level);
+  if (
+    filePath === null
+    || !Number.isInteger(numericLevel)
+    || numericLevel < 0
+  ) return false;
+
+  core.ensureStateDir(env);
+  // The mark is set once per session, so a later level write that dropped it would let the
+  // skipped-window log line the mark suppresses appear again on the next tool call.
+  const { windowUnknown } = readStateFile(sessionId, env);
+  const contents = {
+    level: numericLevel,
+    ...(rearm ? { rearm } : {}),
+    ...(windowUnknown ? { windowUnknown: true } : {}),
+  };
+  fs.writeFileSync(filePath, `${JSON.stringify(contents)}\n`, { mode: 0o600 });
+  return true;
+}
+
+// Best effort: a floor that cannot be written leaves the grant pending, and the next run
+// fixes it from its own fill.
+function persistRearmFloor(sessionId, level, ratio, env) {
+  const floor = Number((Number(ratio) + NUDGE_STEP).toFixed(6));
+  try {
+    persistState(sessionId, level, { floor }, env);
+  } catch {}
+}
+
+/** Read the recorded nudge level, treating absent or corrupt state as level zero. */
+function readState(sessionId, env = process.env) {
+  return readStateFile(sessionId, env).level;
+}
+
+/**
+ * Persist the nudge level with private file and directory permissions. Writing the level
+ * alone also drops any withdraw grant, which is how a delivered nudge and a compaction
+ * spend it.
+ */
+function writeState(sessionId, level, env = process.env) {
+  persistState(sessionId, level, null, env);
+}
+
+/** Mark the session's unknown context window once, preserving its current nudge state. */
+function markWindowUnknown(sessionId, env = process.env) {
+  try {
+    const state = readStateFile(sessionId, env);
+    if (state.windowUnknown) return false;
+    const filePath = stateFilePath(sessionId, env);
+    if (filePath === null) return false;
+    core.ensureStateDir(env);
+    const contents = {
+      level: state.level,
+      ...(state.rearm ? { rearm: state.rearm } : {}),
+      windowUnknown: true,
+    };
+    fs.writeFileSync(filePath, `${JSON.stringify(contents)}\n`, { mode: 0o600 });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Record that this session's hand-over was withdrawn or cancelled, so one more nudge may
+ * come after the fill has grown a step. The caller does not know the fill: the grant is
+ * stored pending beside the level, and the next nudge decision turns it into a floor of
+ * its own ratio plus one step without nudging on that run. The grant is held through
+ * runs below the threshold, so a session cancelled early waits that step past the
+ * threshold for its first nudge instead of being nagged the moment it crosses it.
+ *
+ * @param {Object} options - The session to re-arm.
+ * @param {string} options.sessionId - Session whose hand-over was withdrawn.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @returns {boolean} True when a pending re-arm was written; false for an unusable session
+ *   id or a state file that could not be written.
+ */
+function rearmAfterWithdraw({ sessionId, env = process.env } = {}) {
+  try {
+    return persistState(sessionId, readState(sessionId, env), { pending: true }, env);
+  } catch {
+    return false;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+module.exports = {
+  CLI_COMMAND,
+  normalizeSpecFolder,
+  specFolderInput,
+  seedInstructions,
+  nudgeDecision,
+  handoffText,
+  seedText,
+  staleNoteText,
+  WITHDRAWN_NOTICE,
+  commandPrefix,
+  completeCommandFor,
+  claimCommandFor,
+  isSeedPrompt,
+  specFolderFromSeed,
+  notePathFromSeed,
+  resolveRepoRoot,
+  handoffDir,
+  plannedNotePath,
+  openNotePathFor,
+  handoffPending,
+  questionHoldReason,
+  handoffWithdrawn,
+  armedRecordStillCurrent,
+  hopLimitReached,
+  relaunchThreshold,
+  nextLevel,
+  validSessionId,
+  readState,
+  writeState,
+  markWindowUnknown,
+  rearmAfterWithdraw,
+};

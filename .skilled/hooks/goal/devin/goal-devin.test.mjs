@@ -48,8 +48,8 @@ function runHook(input, envOverrides = {}) {
         ...process.env,
         OPENCODE_GOAL_STATE_DIR: stateDir,
         OPENCODE_GOAL_PLUGIN_DISABLED: undefined,
-        SESSION_RELAUNCH_GOAL_PACKET: undefined,
-        SESSION_RELAUNCH_GOAL: undefined,
+        IN_SESSION_HANDOVER_GOAL_PACKET: undefined,
+        IN_SESSION_HANDOVER_GOAL: undefined,
         AI_SESSION_CHILD: undefined,
         ...envOverrides,
       },
@@ -115,7 +115,7 @@ const PACKET = 'specs/t/001-fixture';
 
 test('a receiver with no goal is bound to the hand-over packet on its first turn and injects from goal.md', () => {
   writePacket(PACKET);
-  const { stdout } = runHook(payload({ hook_event_name: 'SessionStart' }), { SESSION_RELAUNCH_GOAL_PACKET: PACKET });
+  const { stdout } = runHook(payload({ hook_event_name: 'SessionStart' }), { IN_SESSION_HANDOVER_GOAL_PACKET: PACKET });
   const response = JSON.parse(stdout);
   assert.deepEqual(Object.keys(response), ['hookSpecificOutput'], 'nothing but the usual injection envelope');
   assert.ok(response.hookSpecificOutput.additionalContext.includes(`objective: Execute ${PACKET}/goal.md.`));
@@ -127,15 +127,15 @@ test('a receiver with no goal is bound to the hand-over packet on its first turn
 
 test('a later turn leaves the bound record as it is and a goal of the session own is never replaced', () => {
   writePacket(PACKET);
-  runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: PACKET });
+  runHook(payload(), { IN_SESSION_HANDOVER_GOAL_PACKET: PACKET });
   const bound = core.showGoal(opts());
-  runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: PACKET });
+  runHook(payload(), { IN_SESSION_HANDOVER_GOAL_PACKET: PACKET });
   const after = core.showGoal(opts());
   assert.equal(after.boundAtMs, bound.boundAtMs);
   assert.equal(after.goalId, bound.goalId);
 
   core.setGoal({ objective: 'The operator own goal' }, opts('own-goal-session'));
-  const brief = JSON.parse(runHook(payload({ session_id: 'own-goal-session' }), { SESSION_RELAUNCH_GOAL_PACKET: PACKET }).stdout)
+  const brief = JSON.parse(runHook(payload({ session_id: 'own-goal-session' }), { IN_SESSION_HANDOVER_GOAL_PACKET: PACKET }).stdout)
     .hookSpecificOutput.additionalContext;
   assert.ok(brief.includes('objective: The operator own goal'));
   assert.equal(core.showGoal(opts('own-goal-session')).packetPath, undefined);
@@ -144,18 +144,18 @@ test('a later turn leaves the bound record as it is and a goal of the session ow
 test('a dispatched child session that inherited the packet binds nothing', () => {
   writePacket(PACKET);
   const input = payload({ hook_event_name: 'SessionStart' });
-  assert.equal(runHook(input, { SESSION_RELAUNCH_GOAL_PACKET: PACKET, AI_SESSION_CHILD: '1' }).stdout, '{}');
+  assert.equal(runHook(input, { IN_SESSION_HANDOVER_GOAL_PACKET: PACKET, AI_SESSION_CHILD: '1' }).stdout, '{}');
   assert.equal(core.showGoal(opts()), null);
   assert.equal(core.showGoal(opts('child-with-fresh-id')), null);
-  assert.equal(runHook(payload({ session_id: 'child-with-fresh-id' }), { SESSION_RELAUNCH_GOAL_PACKET: PACKET, AI_SESSION_CHILD: '1' }).stdout, '{}');
+  assert.equal(runHook(payload({ session_id: 'child-with-fresh-id' }), { IN_SESSION_HANDOVER_GOAL_PACKET: PACKET, AI_SESSION_CHILD: '1' }).stdout, '{}');
   assert.equal(core.showGoal(opts('child-with-fresh-id')), null);
 });
 
 test('the switch, an empty variable and a missing or escaping packet bind nothing', () => {
   writePacket(PACKET);
-  assert.equal(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: PACKET, SESSION_RELAUNCH_GOAL: '0' }).stdout, '{}');
-  assert.equal(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: '' }).stdout, '{}');
-  assert.equal(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: 'specs/t/missing' }).stdout, '{}');
-  assert.equal(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: '../../etc' }).stdout, '{}');
+  assert.equal(runHook(payload(), { IN_SESSION_HANDOVER_GOAL_PACKET: PACKET, IN_SESSION_HANDOVER_GOAL: '0' }).stdout, '{}');
+  assert.equal(runHook(payload(), { IN_SESSION_HANDOVER_GOAL_PACKET: '' }).stdout, '{}');
+  assert.equal(runHook(payload(), { IN_SESSION_HANDOVER_GOAL_PACKET: 'specs/t/missing' }).stdout, '{}');
+  assert.equal(runHook(payload(), { IN_SESSION_HANDOVER_GOAL_PACKET: '../../etc' }).stdout, '{}');
   assert.equal(core.showGoal(opts()), null);
 });

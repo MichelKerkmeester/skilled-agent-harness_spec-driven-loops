@@ -9,7 +9,7 @@
     "allowJs": true
   },
   "include": [
-    ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+    ".skilled/hooks/in-session-handover/pi/in-session-handover.ts",
     ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts",
     ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts",
     ".pi/types/pi-coding-agent.d.ts",

@@ -1,1 +1,1 @@
-../../.skilled/hooks/session-relaunch/codex/stop-arm.mjs
+../../.skilled/hooks/in-session-handover/codex/stop-arm.mjs

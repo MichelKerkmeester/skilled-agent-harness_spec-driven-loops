@@ -94,7 +94,7 @@
     "trigger index",
     "trigger phrase",
     "unindexed spec",
-    "session relaunch",
+    "in-session handover",
     "relaunch nudge",
     "context window the nudge measures against",
     "relaunch my session with the same flags",

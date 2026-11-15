@@ -16,7 +16,7 @@ const { readContinuationEntries, restoreEnv } = require('./helpers/continuation-
 
 const testDir = dirname(__filename);
 const pluginUrl = pathToFileURL(join(testDir, '..', 'opencode-goal.js')).href;
-const relaunchCore = require(join(testDir, '..', '..', '..', '.skilled', 'hooks', 'session-relaunch', 'lib', 'relaunch-core.cjs'));
+const relaunchCore = require(join(testDir, '..', '..', '..', '.skilled', 'hooks', 'in-session-handover', 'lib', 'relaunch-core.cjs'));
 
 async function loadPluginModule() {
   return import(pluginUrl);
@@ -76,8 +76,8 @@ async function withState(fn) {
   const originalRelaunchEnv = Object.fromEntries([
     'SKILLED_LOOP_ID',
     'XDG_RUNTIME_DIR',
-    'SESSION_RELAUNCH_GOAL_PACKET',
-    'SESSION_RELAUNCH_GOAL',
+    'IN_SESSION_HANDOVER_GOAL_PACKET',
+    'IN_SESSION_HANDOVER_GOAL',
     'AI_SESSION_CHILD',
   ].map((name) => [name, process.env[name]]));
 
@@ -203,7 +203,7 @@ test('a pending relaunch record suppresses the goal continuation', async () => w
   });
 
   for (const status of ['pending', 'armed']) {
-    const sessionID = `session-relaunch-${status}`;
+    const sessionID = `in-session-handover-${status}`;
     await helpers.setGoal(sessionID, 'Keep the prepared hop available', {
       stateDir,
       nowMs: 1000,
@@ -233,8 +233,8 @@ test('the hand-over packet variable is deleted after the one bind attempt', asyn
 
   try {
     await writePacketGoal(workspace, packetPath);
-    process.env.SESSION_RELAUNCH_GOAL_PACKET = packetPath;
-    process.env.SESSION_RELAUNCH_GOAL = '1';
+    process.env.IN_SESSION_HANDOVER_GOAL_PACKET = packetPath;
+    process.env.IN_SESSION_HANDOVER_GOAL = '1';
     delete process.env.AI_SESSION_CHILD;
     const plugin = await pluginModule.default.server({ directory: workspace }, {
       stateDir,
@@ -243,7 +243,7 @@ test('the hand-over packet variable is deleted after the one bind attempt', asyn
 
     await plugin.event({ event: nativeSessionEvent('session.created', 'receiver-session') });
 
-    assert.equal(process.env.SESSION_RELAUNCH_GOAL_PACKET, undefined);
+    assert.equal(process.env.IN_SESSION_HANDOVER_GOAL_PACKET, undefined);
     const goal = await helpers.readGoal('receiver-session', { stateDir });
     assert.equal(goal.status, 'active');
     assert.equal(goal.packetPath, packetPath);
@@ -259,8 +259,8 @@ test('a throwing hand-over bind still deletes the packet variable', async () => 
 
   try {
     await writePacketGoal(workspace, packetPath);
-    process.env.SESSION_RELAUNCH_GOAL_PACKET = packetPath;
-    process.env.SESSION_RELAUNCH_GOAL = '1';
+    process.env.IN_SESSION_HANDOVER_GOAL_PACKET = packetPath;
+    process.env.IN_SESSION_HANDOVER_GOAL = '1';
     delete process.env.AI_SESSION_CHILD;
     const plugin = await pluginModule.default.server({ directory: workspace }, {
       stateDir,
@@ -271,7 +271,7 @@ test('a throwing hand-over bind still deletes the packet variable', async () => 
     // bind failure while the plugin source stays out of the test.
     process.env = new Proxy(liveEnv, {
       get(target, property) {
-        if (property === 'SESSION_RELAUNCH_GOAL_PACKET') {
+        if (property === 'IN_SESSION_HANDOVER_GOAL_PACKET') {
           throw new Error('hand-over bind failed');
         }
         return target[property];
@@ -284,7 +284,7 @@ test('a throwing hand-over bind still deletes the packet variable', async () => 
     await rm(workspace, { recursive: true, force: true });
   }
 
-  assert.equal(process.env.SESSION_RELAUNCH_GOAL_PACKET, undefined);
+  assert.equal(process.env.IN_SESSION_HANDOVER_GOAL_PACKET, undefined);
   const entries = await readGoalEventEntries(stateDir);
   assert.ok(entries.some((entry) => entry.type === 'event_error'
     && entry.eventType === 'session.created'));
@@ -297,8 +297,8 @@ test('the plugin record path is the one the relaunch core reads', async () => wi
 
   try {
     await writePacketGoal(workspace, packetPath);
-    process.env.SESSION_RELAUNCH_GOAL_PACKET = packetPath;
-    process.env.SESSION_RELAUNCH_GOAL = '1';
+    process.env.IN_SESSION_HANDOVER_GOAL_PACKET = packetPath;
+    process.env.IN_SESSION_HANDOVER_GOAL = '1';
     // The core resolves its own state directory, so the test points both readers at one.
     process.env.OPENCODE_GOAL_STATE_DIR = stateDir;
     delete process.env.AI_SESSION_CHILD;

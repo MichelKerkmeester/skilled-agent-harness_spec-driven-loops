@@ -54,7 +54,7 @@ const PROCESS_TABLE = [
     rssKb: 5120,
     command: [
       'node --test',
-      '/repo/.skilled/hooks/session-relaunch/tests/hop-history.test.cjs',
+      '/repo/.skilled/hooks/in-session-handover/tests/hop-history.test.cjs',
     ].join(' '),
   }),
   psRow({ pid: 1006, rssKb: 6144, command: 'pi --model test-model' }),

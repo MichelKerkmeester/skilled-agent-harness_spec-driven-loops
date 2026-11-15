@@ -6,8 +6,8 @@
 # Usage:  . "<repo>/.skilled/hooks/shared/hook-flags.sh"; hook_enabled <concern> [runtime] || exit 0
 # ENABLED (return 0) unless master SYSTEM_HOOKS_DISABLED (or legacy MK_HOOKS_DISABLED) or per-concern SYSTEM_<CONCERN>_DISABLED
 # is truthy (1/true/yes/on, case-insensitive). Default-on, dependency-free, except
-# session-relaunch, which also needs SYSTEM_SESSION_RELAUNCH_ENABLED truthy, or, when
-# the caller names its runtime, SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED, which answers
+# in-session-handover, which also needs SYSTEM_IN_SESSION_HANDOVER_ENABLED truthy, or, when
+# the caller names its runtime, SYSTEM_IN_SESSION_HANDOVER_<RUNTIME>_ENABLED, which answers
 # first whenever it holds a value. With both blank, the claude runtime is on, as in
 # DEFAULT_ON_RUNTIMES in hook-flags.cjs.
 # Flags resolve from the live environment first, then an optional operator config
@@ -91,14 +91,14 @@ hook_enabled() {
   # runtime from RUNTIMES in hook-flags.cjs checks its own enable switch first, and
   # an empty one falls through to the global switch.
   case "$1" in
-    session-relaunch)
+    in-session-handover)
       # The runtime name's edges are trimmed, as in hook-flags.cjs.
       __hf_rt=$(printf '%s' "${2:-}" | tr 'A-Z' 'a-z')
       __hf_rt=${__hf_rt#"${__hf_rt%%[![:space:]]*}"}
       __hf_rt=${__hf_rt%"${__hf_rt##*[![:space:]]}"}
       case "$__hf_rt" in
         claude|codex|pi|opencode|cursor|devin|vibe)
-          __hf_rv=$(__hook_flags_resolve "SYSTEM_SESSION_RELAUNCH_$(printf '%s' "$__hf_rt" | tr 'a-z' 'A-Z')_ENABLED")
+          __hf_rv=$(__hook_flags_resolve "SYSTEM_IN_SESSION_HANDOVER_$(printf '%s' "$__hf_rt" | tr 'a-z' 'A-Z')_ENABLED")
           __hf_rv_trim=${__hf_rv#"${__hf_rv%%[![:space:]]*}"}
           if [ -n "$__hf_rv_trim" ]; then
             __hook_flags_truthy "$__hf_rv"
@@ -106,7 +106,7 @@ hook_enabled() {
           fi
           ;;
       esac
-      __hf_gv=$(__hook_flags_resolve SYSTEM_SESSION_RELAUNCH_ENABLED)
+      __hf_gv=$(__hook_flags_resolve SYSTEM_IN_SESSION_HANDOVER_ENABLED)
       __hf_gv_trim=${__hf_gv#"${__hf_gv%%[![:space:]]*}"}
       if [ -n "$__hf_gv_trim" ]; then
         __hook_flags_truthy "$__hf_gv"

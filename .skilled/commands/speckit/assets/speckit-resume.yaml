@@ -84,7 +84,7 @@ session_detection:
       method: "Parse $ARGUMENTS for spec folder path"
       priority: "highest"
     tier_2_handoff_note:
-      method: "Read the notes under .skilled/skills/.state/session-relaunch/handoffs/ whose claimed_by or session_id frontmatter equals the calling session id, newest created_at first, and take the packet in the spec_folder field of the first one"
+      method: "Read the notes under .skilled/skills/.state/in-session-handover/handoffs/ whose claimed_by or session_id frontmatter equals the calling session id, newest created_at first, and take the packet in the spec_folder field of the first one"
       on_other_session: "A note whose claimed_by and session_id both name another session is never read"
       on_none_value: "A spec_folder of none means Gate 3 was skipped. Report that the session has no packet and stop detection"
       on_bad_value: "Skip a note whose spec_folder is empty or names a missing folder, and continue to tier_3_session_ref"

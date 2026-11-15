@@ -46,7 +46,8 @@
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename"
   ],
   "manual": {
     "depends_on": [],
@@ -248,7 +249,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-15T07:23:59.174Z",
+    "last_save_at": "2026-11-15T08:06:09.869Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -256,13 +257,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:82fd3d2d72aa3a651cf335742a3b74c92422356dc8039126237675b01528d0a9",
+    "source_fingerprint": "sha256:6b5d055379af7997f6dd31cafe314a42fcfbcf98d7094b04f7f4198c744311dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8b2f8a149f52b9a2f77bf007e7c9c77bbd279ed8503b47cd1644a5aaa0722999",
+      "spec.md": "bcb126dae0e90abc323e82d504d6ae2447eeaf7b5275c04db333028de68485f6",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop",
-    "last_active_at": "2026-11-15T07:23:59.174Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename",
+    "last_active_at": "2026-11-15T08:02:24.865Z"
   }
 }

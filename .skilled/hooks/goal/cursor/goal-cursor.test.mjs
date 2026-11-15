@@ -52,8 +52,8 @@ function runHook(input, envOverrides = {}) {
         ...process.env,
         OPENCODE_GOAL_STATE_DIR: stateDir,
         OPENCODE_GOAL_PLUGIN_DISABLED: undefined,
-        SESSION_RELAUNCH_GOAL_PACKET: undefined,
-        SESSION_RELAUNCH_GOAL: undefined,
+        IN_SESSION_HANDOVER_GOAL_PACKET: undefined,
+        IN_SESSION_HANDOVER_GOAL: undefined,
         AI_SESSION_CHILD: undefined,
         ...envOverrides,
       },
@@ -274,7 +274,7 @@ function withHandOverWorkspace(run) {
 
 test('a receiver with no goal is bound to the hand-over packet and injects from goal.md', () => {
   withHandOverWorkspace(({ options, payload }) => {
-    const response = JSON.parse(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET }).stdout);
+    const response = JSON.parse(runHook(payload(), { IN_SESSION_HANDOVER_GOAL_PACKET: HAND_OVER_PACKET }).stdout);
     assert.deepEqual(Object.keys(response).sort(), ['agent_message', 'permission']);
     assert.ok(response.agent_message.includes(`objective: Execute ${HAND_OVER_PACKET}/goal.md.`));
     assert.ok(!response.agent_message.includes('SECRET'));
@@ -287,13 +287,13 @@ test('a receiver with no goal is bound to the hand-over packet and injects from 
 test('a goal of the session own, active or already cleared, is never replaced by the hand-over', () => {
   withHandOverWorkspace(({ options, payload }) => {
     core.setGoal({ objective: 'The operator own goal', runtime: 'cursor' }, options('own'));
-    const own = JSON.parse(runHook(payload('own'), { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET }).stdout);
+    const own = JSON.parse(runHook(payload('own'), { IN_SESSION_HANDOVER_GOAL_PACKET: HAND_OVER_PACKET }).stdout);
     assert.ok(own.agent_message.includes('objective: The operator own goal'));
     assert.equal(core.showGoal(options('own')).packetPath, undefined);
 
     core.setGoal({ objective: 'Dropped goal', runtime: 'cursor' }, options('dropped'));
     core.clearGoal(options('dropped'));
-    const dropped = JSON.parse(runHook(payload('dropped'), { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET }).stdout);
+    const dropped = JSON.parse(runHook(payload('dropped'), { IN_SESSION_HANDOVER_GOAL_PACKET: HAND_OVER_PACKET }).stdout);
     assert.deepEqual(dropped, { permission: 'allow' });
     assert.equal(core.showGoal(options('dropped')), null);
   });
@@ -303,7 +303,7 @@ test('a dispatched child session that inherited the packet binds nothing', () =>
   withHandOverWorkspace(({ options, payload }) => {
     const none = { permission: 'allow' };
     for (const sessionId of ['test-session', 'child-with-fresh-id']) {
-      const response = JSON.parse(runHook(payload(sessionId), { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET, AI_SESSION_CHILD: '1' }).stdout);
+      const response = JSON.parse(runHook(payload(sessionId), { IN_SESSION_HANDOVER_GOAL_PACKET: HAND_OVER_PACKET, AI_SESSION_CHILD: '1' }).stdout);
       assert.deepEqual(response, none, sessionId);
       assert.equal(core.showGoal(options(sessionId)), null, sessionId);
     }
@@ -313,10 +313,10 @@ test('a dispatched child session that inherited the packet binds nothing', () =>
 test('the switch, an empty variable and a missing or escaping packet bind nothing', () => {
   withHandOverWorkspace(({ options, payload }) => {
     const none = { permission: 'allow' };
-    assert.deepEqual(JSON.parse(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: HAND_OVER_PACKET, SESSION_RELAUNCH_GOAL: 'off' }).stdout), none);
-    assert.deepEqual(JSON.parse(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: '' }).stdout), none);
-    assert.deepEqual(JSON.parse(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: 'specs/t/missing' }).stdout), none);
-    assert.deepEqual(JSON.parse(runHook(payload(), { SESSION_RELAUNCH_GOAL_PACKET: '../../etc' }).stdout), none);
+    assert.deepEqual(JSON.parse(runHook(payload(), { IN_SESSION_HANDOVER_GOAL_PACKET: HAND_OVER_PACKET, IN_SESSION_HANDOVER_GOAL: 'off' }).stdout), none);
+    assert.deepEqual(JSON.parse(runHook(payload(), { IN_SESSION_HANDOVER_GOAL_PACKET: '' }).stdout), none);
+    assert.deepEqual(JSON.parse(runHook(payload(), { IN_SESSION_HANDOVER_GOAL_PACKET: 'specs/t/missing' }).stdout), none);
+    assert.deepEqual(JSON.parse(runHook(payload(), { IN_SESSION_HANDOVER_GOAL_PACKET: '../../etc' }).stdout), none);
     assert.equal(core.showGoal(options()), null);
   });
 });

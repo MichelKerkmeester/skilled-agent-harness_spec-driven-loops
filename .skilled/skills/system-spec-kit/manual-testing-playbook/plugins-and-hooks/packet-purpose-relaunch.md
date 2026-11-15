@@ -6,7 +6,7 @@ trigger_phrases:
   - "handoff note purpose line"
   - "relaunch note Goal"
 id: plugins-and-hooks-packet-purpose-relaunch
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Packet purpose on relaunch
@@ -48,7 +48,7 @@ This scenario validates:
 1. Run the relaunch contract test:
 
    ```bash
-   node --test .skilled/hooks/session-relaunch/tests/nudge.test.cjs
+   node --test .skilled/hooks/in-session-handover/tests/nudge.test.cjs
    ```
 
    Expected: every test passes with no failed test. The suite checks the purpose line shape and the note contract.
@@ -103,10 +103,10 @@ Capture the test command, its full output and its exit status. For each note, ca
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [packet-purpose-carry.md](../../feature-catalog/context-preservation/packet-purpose-carry.md)
-- Relaunch note helper: `.skilled/hooks/session-relaunch/lib/nudge.cjs`
+- Relaunch note helper: `.skilled/hooks/in-session-handover/lib/nudge.cjs`
 - Handoff command: `.skilled/commands/speckit/handoff.md`
 - Purpose reader: `runtime/lib/spec/packet-purpose.ts`
-- Relaunch contract test: `.skilled/hooks/session-relaunch/tests/nudge.test.cjs`
+- Relaunch contract test: `.skilled/hooks/in-session-handover/tests/nudge.test.cjs`
 
 ---
 

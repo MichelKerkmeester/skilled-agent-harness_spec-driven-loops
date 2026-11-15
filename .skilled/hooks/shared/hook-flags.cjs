@@ -102,12 +102,12 @@ const LEGACY_ALIASES = {
 // names for it. The opt-in resolves like every other flag, environment over file,
 // and the master and kill switches still win over it.
 const DEFAULT_OFF = {
-  "session-relaunch": "SYSTEM_SESSION_RELAUNCH_ENABLED",
+  "in-session-handover": "SYSTEM_IN_SESSION_HANDOVER_ENABLED",
 };
 
 // The CLI runtimes that can carry a default-off concern. An operator may want the
 // relaunch loop on in one runtime and off in another, so each runtime gets its own
-// enable switch, SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED, which answers before
+// enable switch, SYSTEM_IN_SESSION_HANDOVER_<RUNTIME>_ENABLED, which answers before
 // the global one whenever it holds a value. A caller names its runtime explicitly;
 // the resolver never guesses it from the environment.
 const RUNTIMES = Object.freeze(["claude", "codex", "pi", "opencode", "cursor", "devin", "vibe"]);
@@ -118,7 +118,7 @@ const RUNTIMES = Object.freeze(["claude", "codex", "pi", "opencode", "cursor", "
 // finding the switch; the other runtimes still wait for their owner to opt in. A set
 // value, the master switch and the kill switches all answer before this default.
 const DEFAULT_ON_RUNTIMES = Object.freeze({
-  "session-relaunch": Object.freeze(["claude"]),
+  "in-session-handover": Object.freeze(["claude"]),
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -258,7 +258,7 @@ function hookFlagDecision(concern, env, config, options) {
 }
 
 // The per-runtime enable switch for a default-off concern, such as
-// SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED, or null when the concern has no enable
+// SYSTEM_IN_SESSION_HANDOVER_CLAUDE_ENABLED, or null when the concern has no enable
 // switch or the runtime is not one of RUNTIMES.
 function runtimeEnableFlag(concern, runtime) {
   if (!Object.prototype.hasOwnProperty.call(DEFAULT_OFF, concern)) return null;

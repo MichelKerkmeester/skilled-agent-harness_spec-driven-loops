@@ -2290,7 +2290,7 @@
       "command": "/speckit:handoff",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+      "description": "Write the handoff note and prepare the in-session handover loop: the manual trigger on every runtime.",
       "ownedSignals": [
         "/speckit:handoff",
         "hand this off",
@@ -2309,7 +2309,7 @@
           "order": 43,
           "id": "command-speckit-handoff",
           "name": "command-speckit-handoff",
-          "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+          "description": "Write the handoff note and prepare the in-session handover loop: the manual trigger on every runtime.",
           "keywords": [
             "/speckit:handoff",
             "hand this off",
@@ -2334,7 +2334,7 @@
           "inventoryId": "command-speckit-handoff",
           "order": 53,
           "id": "command-speckit-handoff",
-          "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+          "description": "Write the handoff note and prepare the in-session handover loop: the manual trigger on every runtime.",
           "slashMarkers": [
             "/speckit:handoff",
             "speckit:handoff"

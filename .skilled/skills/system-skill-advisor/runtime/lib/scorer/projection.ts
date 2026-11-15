@@ -826,7 +826,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     family: 'system',
     category: 'command',
     name: 'command-speckit-handoff',
-    description: 'Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.',
+    description: 'Write the handoff note and prepare the in-session handover loop: the manual trigger on every runtime.',
     keywords: ['/speckit:handoff', 'hand this off', 'write a handoff note', 'wrap up this session', 'running out of context'],
     domains: ['speckit', 'command'],
     intentSignals: ['/speckit:handoff', 'hand this off', 'write a handoff note', 'wrap up this session', 'running out of context'],

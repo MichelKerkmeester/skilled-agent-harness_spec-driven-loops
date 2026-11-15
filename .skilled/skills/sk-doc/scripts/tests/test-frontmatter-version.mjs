@@ -70,7 +70,7 @@ fs.writeFileSync(RUNTIME_README, '---\ntitle: Runtime lib\ndescription: Runtime 
 const STATE_README = path.join(skillsRoot, '.state', 'fixt-concern', 'README.md');
 fs.mkdirSync(path.dirname(STATE_README), { recursive: true });
 fs.writeFileSync(STATE_README, '---\ntitle: Fixt concern\ndescription: Runtime state README\n---\n# Concern\n');
-const STATE_NOTE = path.join(skillsRoot, '.state', 'session-relaunch', 'handoffs', '20261019T000000Z-abcd1234.md');
+const STATE_NOTE = path.join(skillsRoot, '.state', 'in-session-handover', 'handoffs', '20261019T000000Z-abcd1234.md');
 fs.mkdirSync(path.dirname(STATE_NOTE), { recursive: true });
 fs.writeFileSync(STATE_NOTE, '---\nstatus: done\nsession_id: abcd1234\n---\n## Goal\nRound-trip one note.\n');
 const outBefore = new Map([FIXTURE, RUNTIME_README, STATE_NOTE].map((f) => [f, fs.readFileSync(f, 'utf8')]));

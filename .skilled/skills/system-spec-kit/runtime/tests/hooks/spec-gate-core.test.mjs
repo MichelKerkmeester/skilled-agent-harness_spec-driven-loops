@@ -910,8 +910,8 @@ test('exempt path: runtime state under .skilled/skills/.state, but never its con
   }).decision;
 
   try {
-    assert.equal(decide(join(stateDir, 'session-relaunch', 'handoffs', '20261019T000000Z-abc.md')), 'allow');
-    assert.equal(decide(join(stateDir, 'session-relaunch', 'README.md')), 'deny');
+    assert.equal(decide(join(stateDir, 'in-session-handover', 'handoffs', '20261019T000000Z-abc.md')), 'allow');
+    assert.equal(decide(join(stateDir, 'in-session-handover', 'README.md')), 'deny');
     assert.equal(decide(join(root, 'src', '.state', 'cache.json')), 'deny');
   } finally {
     cleanup(root);
@@ -926,12 +926,12 @@ test('runtime-state exemption holds against lookalike, joined and outside-root p
 
   const cases = [
     ['lookalike delimiter', join(skills, '.stateful', 'note.md'), 'deny'],
-    ['joined escape', `${join(skills, '.state', 'session-relaunch')}/../../sk-doc/SKILL.md`, 'deny'],
+    ['joined escape', `${join(skills, '.state', 'in-session-handover')}/../../sk-doc/SKILL.md`, 'deny'],
     ['relative joined escape', '.skilled/skills/.state/../../../src/login.ts', 'deny'],
     ['state dir itself', join(skills, '.state'), 'deny'],
     ['root-level state README', join(skills, '.state', 'README.md'), 'allow'],
-    ['deeper README is state, not the concern README', join(skills, '.state', 'session-relaunch', 'handoffs', 'README.md'), 'allow'],
-    ['relative handoff note', '.skilled/skills/.state/session-relaunch/handoffs/a.md', 'allow'],
+    ['deeper README is state, not the concern README', join(skills, '.state', 'in-session-handover', 'handoffs', 'README.md'), 'allow'],
+    ['relative handoff note', '.skilled/skills/.state/in-session-handover/handoffs/a.md', 'allow'],
     ['outside root stays exempt', '/completely/outside/.skilled/skills/.state/x/README.md', 'allow'],
   ];
 
