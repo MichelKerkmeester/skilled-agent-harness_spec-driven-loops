@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ef00b2e364c8f43f0627ebe5b6a0ee67b8241bf11fba8984381eaa8a7452a64f",
+  "manifestHash": "145bce76d704aa0db57770fd54ceb5a3dc1bd7e6e7127fafa241b25df9030daa",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1695,6 +1695,9 @@
     ],
     "006 remediation summary": [
       "006 remediation summary"
+    ],
+    "006 remove release size limit operator decisions": [
+      "006-remove-release-size-limit operator decisions"
     ],
     "006 research changelog index": [
       "006-research changelog index"
@@ -4908,6 +4911,9 @@
     "022 transitive re verify": [
       "022 transitive re-verify"
     ],
+    "022 vibe hook playbook and live scenarios operator decisions": [
+      "022-vibe-hook-playbook-and-live-scenarios operator decisions"
+    ],
     "023": [
       "023"
     ],
@@ -7717,6 +7723,9 @@
     ],
     "ac 011 sibling path narrowing": [
       "ac-011 sibling path narrowing"
+    ],
+    "ac 012 superseded rationale": [
+      "ac-012 superseded rationale"
     ],
     "ac closure adr": [
       "ac closure adr"
@@ -22533,6 +22542,9 @@
     "cli external orchestration 2 0 0 0": [
       "cli-external-orchestration 2.0.0.0"
     ],
+    "cli external orchestration 2 1 0 0": [
+      "cli-external-orchestration 2.1.0.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -22670,6 +22682,9 @@
     ],
     "cli external orchestration v2 0 0 0": [
       "cli-external-orchestration v2.0.0.0"
+    ],
+    "cli external orchestration v2 1 0 0": [
+      "cli-external-orchestration v2.1.0.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -23193,6 +23208,9 @@
     "cli mistral vibe": [
       "cli-mistral-vibe"
     ],
+    "cli mistral vibe 1 0 0 0": [
+      "cli-mistral-vibe 1.0.0.0"
+    ],
     "cli mistral vibe creation phase parent spec": [
       "cli mistral vibe creation phase parent spec"
     ],
@@ -23211,17 +23229,29 @@
     "cli mistral vibe research scope": [
       "cli mistral vibe research scope"
     ],
+    "cli mistral vibe router": [
+      "cli-mistral-vibe router"
+    ],
+    "cli mistral vibe routing": [
+      "cli-mistral-vibe routing"
+    ],
     "cli mistral vibe skill packet": [
       "cli mistral vibe skill packet"
     ],
     "cli mistral vibe skill packet goal": [
       "cli mistral vibe skill packet goal"
     ],
+    "cli mistral vibe skill packet implementation summary": [
+      "cli mistral vibe skill packet implementation summary"
+    ],
     "cli mistral vibe skill packet plan": [
       "cli mistral vibe skill packet plan"
     ],
     "cli mistral vibe skill packet tasks": [
       "cli mistral vibe skill packet tasks"
+    ],
+    "cli mistral vibe v1 0 0 0": [
+      "cli-mistral-vibe v1.0.0.0"
     ],
     "cli opencode": [
       "cli opencode"
@@ -30082,6 +30112,9 @@
     "containment ring hierarchy": [
       "containment ring hierarchy"
     ],
+    "containment rows through the append gateway": [
+      "containment rows through the append gateway"
+    ],
     "containment same packet write": [
       "containment same packet write"
     ],
@@ -30111,6 +30144,9 @@
     ],
     "containment violation": [
       "containment_violation"
+    ],
+    "containment violation row gateway": [
+      "containment violation row gateway"
     ],
     "content addressed causal edge plan": [
       "content-addressed causal edge plan"
@@ -36446,6 +36482,9 @@
     "deep loop executor kind acceptance criteria": [
       "deep loop executor kind acceptance criteria"
     ],
+    "deep loop executor kind decision record": [
+      "deep loop executor kind decision record"
+    ],
     "deep loop executor kind goal": [
       "deep loop executor kind goal"
     ],
@@ -39633,6 +39672,9 @@
     ],
     "delegate to pi": [
       "delegate to pi"
+    ],
+    "delegate to vibe": [
+      "delegate to vibe"
     ],
     "delegate to vibe routing": [
       "delegate to vibe routing"
@@ -45310,6 +45352,21 @@
     ],
     "dsh release v4 0 2 0": [
       "dsh release v4.0.2.0"
+    ],
+    "dsh remaining direct writers": [
+      "dsh remaining direct writers"
+    ],
+    "dsh remaining direct writers goal": [
+      "dsh remaining direct writers goal"
+    ],
+    "dsh remaining direct writers implementation summary": [
+      "dsh remaining direct writers implementation summary"
+    ],
+    "dsh remaining direct writers plan": [
+      "dsh remaining direct writers plan"
+    ],
+    "dsh remaining direct writers tasks": [
+      "dsh remaining direct writers tasks"
     ],
     "dsh repo guards plugin": [
       "dsh repo-guards plugin"
@@ -57575,6 +57632,9 @@
     ],
     "guardrail negative controls": [
       "guardrail negative controls"
+    ],
+    "guards and hooks not portable correction": [
+      "guards and hooks not portable correction"
     ],
     "guessed row panel": [
       "guessed row panel"
@@ -72762,6 +72822,9 @@
     "mistral support": [
       "mistral support"
     ],
+    "mistral vibe": [
+      "mistral vibe"
+    ],
     "mistral vibe closeout": [
       "mistral vibe closeout"
     ],
@@ -72777,8 +72840,17 @@
     "mistral vibe deep research tasks": [
       "mistral vibe deep research tasks"
     ],
+    "mistral vibe dispatch mode": [
+      "Mistral Vibe Dispatch Mode"
+    ],
     "mistral vibe integration": [
       "mistral vibe integration"
+    ],
+    "mistral vibe mode": [
+      "mistral vibe mode"
+    ],
+    "mistral vibe mode packet": [
+      "mistral vibe mode packet"
     ],
     "mistral vibe research angles": [
       "mistral vibe research angles"
@@ -82223,6 +82295,9 @@
     "phase 13 system spec kit": [
       "phase 13 system spec kit"
     ],
+    "phase 13 vibe audit fixes": [
+      "phase 13 vibe audit fixes"
+    ],
     "phase 14 align mcp tooling": [
       "phase 14 align mcp tooling"
     ],
@@ -82282,6 +82357,9 @@
     ],
     "phase 14 unused dependency removal": [
       "phase 14 unused dependency removal"
+    ],
+    "phase 14 vibe journal fixture": [
+      "phase 14 vibe journal fixture"
     ],
     "phase 15 advisor lease reclaim flake": [
       "phase 15 advisor lease reclaim flake"
@@ -82346,6 +82424,9 @@
     "phase 15 v4 0 0 13 changelog": [
       "phase 15 v4 0 0 13 changelog"
     ],
+    "phase 15 vibe turn start": [
+      "phase 15 vibe turn start"
+    ],
     "phase 15 wrapper start checksum": [
       "phase 15 wrapper start checksum"
     ],
@@ -82397,6 +82478,9 @@
     "phase 16 tasks": [
       "phase 16 tasks"
     ],
+    "phase 16 vibe turn end guards": [
+      "phase 16 vibe turn end guards"
+    ],
     "phase 17 align sk doc": [
       "phase 17 align sk doc"
     ],
@@ -82442,6 +82526,9 @@
     "phase 17 tasks": [
       "phase 17 tasks"
     ],
+    "phase 17 vibe decision capture": [
+      "phase 17 vibe decision capture"
+    ],
     "phase 18 align sk git": [
       "phase 18 align sk git"
     ],
@@ -82480,6 +82567,9 @@
     ],
     "phase 18 tasks": [
       "phase 18 tasks"
+    ],
+    "phase 18 vibe compaction context": [
+      "phase 18 vibe compaction context"
     ],
     "phase 19 align sk prompt": [
       "phase 19 align sk prompt"
@@ -82528,6 +82618,9 @@
     ],
     "phase 19 template marker upgrade and staleness scope": [
       "phase 19 template marker upgrade and staleness scope"
+    ],
+    "phase 19 vibe relaunch command tier": [
+      "phase 19 vibe relaunch command tier"
     ],
     "phase 2 admission corpus pin": [
       "phase 2 admission corpus pin"
@@ -82799,6 +82892,9 @@
     "phase 20 test speed followups": [
       "phase 20 test speed followups"
     ],
+    "phase 20 vibe dispatch hardening": [
+      "phase 20 vibe dispatch hardening"
+    ],
     "phase 21 align system skill advisor": [
       "phase 21 align system skill advisor"
     ],
@@ -82807,6 +82903,9 @@
     ],
     "phase 21 closure gate": [
       "phase 21 closure gate"
+    ],
+    "phase 21 dsh remaining direct writers": [
+      "phase 21 dsh remaining direct writers"
     ],
     "phase 21 follow up defect fixes": [
       "phase 21 follow up defect fixes"
@@ -82841,6 +82940,9 @@
     "phase 21 test db temp leak": [
       "phase 21 test db temp leak"
     ],
+    "phase 21 vibe hook docs correction": [
+      "phase 21 vibe hook docs correction"
+    ],
     "phase 22 advisor routing and local install": [
       "phase 22 advisor routing and local install"
     ],
@@ -82867,6 +82969,9 @@
     ],
     "phase 22 tasks": [
       "phase 22 tasks"
+    ],
+    "phase 22 vibe hook playbook and live scenarios": [
+      "phase 22 vibe hook playbook and live scenarios"
     ],
     "phase 23 ci sparse big suites": [
       "phase 23 ci sparse big suites"
@@ -113857,6 +113962,9 @@
     "skill advisor tuning": [
       "skill advisor tuning"
     ],
+    "skill advisor vibe hook": [
+      "skill advisor vibe hook"
+    ],
     "skill advisor vitest": [
       "skill advisor vitest"
     ],
@@ -115238,6 +115346,9 @@
     ],
     "skilled loop shell shim": [
       "skilled-loop shell shim"
+    ],
+    "skilled loop vibe": [
+      "skilled-loop vibe"
     ],
     "skilled machine cutover": [
       "skilled machine cutover"
@@ -121794,6 +121905,9 @@
     "system deep loop 1 6 28 0": [
       "system-deep-loop 1.6.28.0"
     ],
+    "system deep loop 1 6 29 0": [
+      "system-deep-loop 1.6.29.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -122004,6 +122118,9 @@
     "system deep loop v1 6 28 0": [
       "system-deep-loop v1.6.28.0"
     ],
+    "system deep loop v1 6 29 0": [
+      "system-deep-loop v1.6.29.0"
+    ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
     ],
@@ -122057,6 +122174,9 @@
     ],
     "system session relaunch enabled": [
       "SYSTEM_SESSION_RELAUNCH_ENABLED"
+    ],
+    "system session relaunch vibe enabled": [
+      "system session relaunch vibe enabled"
     ],
     "system skill advisor": [
       "system skill advisor"
@@ -130112,6 +130232,15 @@
     "verification confidence scoring": [
       "verification confidence scoring"
     ],
+    "verification degraded gateway plan": [
+      "verification degraded gateway plan"
+    ],
+    "verification degraded row lost on refresh": [
+      "verification degraded row lost on refresh"
+    ],
+    "verification degraded row through the append gateway": [
+      "verification_degraded row through the append gateway"
+    ],
     "verification evidence": [
       "verification evidence"
     ],
@@ -130436,8 +130565,59 @@
     "vi usefaketimers envelope latency": [
       "vi.useFakeTimers envelope latency"
     ],
+    "vibe advisor adapter": [
+      "vibe advisor adapter"
+    ],
+    "vibe allowed models": [
+      "vibe allowed_models"
+    ],
+    "vibe ask user question capture": [
+      "vibe ask_user_question capture"
+    ],
+    "vibe audit fixes": [
+      "vibe audit fixes"
+    ],
+    "vibe audit fixes goal": [
+      "vibe audit fixes goal"
+    ],
+    "vibe audit fixes implementation summary": [
+      "vibe audit fixes implementation summary"
+    ],
+    "vibe audit fixes plan": [
+      "vibe audit fixes plan"
+    ],
+    "vibe audit fixes tasks": [
+      "vibe audit fixes tasks"
+    ],
     "vibe authenticated dispatch evidence": [
       "vibe authenticated dispatch evidence"
+    ],
+    "vibe cli": [
+      "vibe cli"
+    ],
+    "vibe cli reference": [
+      "vibe cli reference"
+    ],
+    "vibe compaction context": [
+      "vibe compaction context"
+    ],
+    "vibe compaction context goal": [
+      "vibe compaction context goal"
+    ],
+    "vibe compaction context implementation summary": [
+      "vibe compaction context implementation summary"
+    ],
+    "vibe compaction context plan": [
+      "vibe compaction context plan"
+    ],
+    "vibe compaction context tasks": [
+      "vibe compaction context tasks"
+    ],
+    "vibe completion evidence": [
+      "vibe completion evidence"
+    ],
+    "vibe config discovery": [
+      "vibe config discovery"
     ],
     "vibe context and goal hooks": [
       "vibe context and goal hooks"
@@ -130445,11 +130625,17 @@
     "vibe context and goal hooks goal": [
       "vibe context and goal hooks goal"
     ],
+    "vibe context and goal hooks implementation summary": [
+      "vibe context and goal hooks implementation summary"
+    ],
     "vibe context and goal hooks plan": [
       "vibe context and goal hooks plan"
     ],
     "vibe context and goal hooks tasks": [
       "vibe context and goal hooks tasks"
+    ],
+    "vibe context compacted": [
+      "vibe context_compacted"
     ],
     "vibe contract pin": [
       "vibe contract pin"
@@ -130457,23 +130643,245 @@
     "vibe contract pin goal": [
       "vibe contract pin goal"
     ],
+    "vibe contract pin implementation summary": [
+      "vibe contract pin implementation summary"
+    ],
     "vibe contract pin plan": [
       "vibe contract pin plan"
     ],
     "vibe contract pin tasks": [
       "vibe contract pin tasks"
     ],
+    "vibe conversation scenarios": [
+      "vibe conversation scenarios"
+    ],
+    "vibe decision capture": [
+      "vibe decision capture"
+    ],
+    "vibe decision capture goal": [
+      "vibe decision capture goal"
+    ],
+    "vibe decision capture implementation summary": [
+      "vibe decision capture implementation summary"
+    ],
+    "vibe decision capture plan": [
+      "vibe decision capture plan"
+    ],
+    "vibe decision capture tasks": [
+      "vibe decision capture tasks"
+    ],
+    "vibe deepseek flash alias": [
+      "vibe deepseek-flash alias"
+    ],
+    "vibe dispatch hardening": [
+      "vibe dispatch hardening"
+    ],
+    "vibe dispatch hardening goal": [
+      "vibe dispatch hardening goal"
+    ],
+    "vibe dispatch hardening implementation summary": [
+      "vibe dispatch hardening implementation summary"
+    ],
+    "vibe dispatch hardening plan": [
+      "vibe dispatch hardening plan"
+    ],
+    "vibe dispatch hardening tasks": [
+      "vibe dispatch hardening tasks"
+    ],
     "vibe dispatch preflight": [
       "vibe dispatch preflight"
+    ],
+    "vibe dispatch prompt discipline": [
+      "vibe dispatch prompt discipline"
+    ],
+    "vibe dispatch recognition implementation summary": [
+      "vibe dispatch recognition implementation summary"
+    ],
+    "vibe dist freshness post tool": [
+      "vibe dist freshness post_tool"
+    ],
+    "vibe exit code contract": [
+      "vibe exit code contract"
+    ],
+    "vibe export json fields": [
+      "vibe export.json fields"
+    ],
+    "vibe glm flash alias": [
+      "vibe glm-flash alias"
     ],
     "vibe goal bridge": [
       "vibe goal bridge"
     ],
+    "vibe goal injection": [
+      "vibe goal injection"
+    ],
+    "vibe guard porting": [
+      "vibe guard porting"
+    ],
+    "vibe handover flag and live hop": [
+      "vibe handover flag and live hop"
+    ],
+    "vibe handover flag and live hop implementation summary": [
+      "vibe handover flag and live hop implementation summary"
+    ],
+    "vibe handover flag and live hop plan": [
+      "vibe handover flag and live hop plan"
+    ],
+    "vibe handover flag and live hop tasks": [
+      "vibe handover flag and live hop tasks"
+    ],
+    "vibe history lookup after compaction": [
+      "vibe history lookup after compaction"
+    ],
+    "vibe home isolation": [
+      "vibe home isolation"
+    ],
+    "vibe hook docs correction": [
+      "vibe hook docs correction"
+    ],
+    "vibe hook docs correction goal": [
+      "vibe hook docs correction goal"
+    ],
+    "vibe hook docs correction implementation summary": [
+      "vibe hook docs correction implementation summary"
+    ],
+    "vibe hook docs correction plan": [
+      "vibe hook docs correction plan"
+    ],
+    "vibe hook docs correction tasks": [
+      "vibe hook docs correction tasks"
+    ],
+    "vibe hook io session dir": [
+      "vibe hook-io session dir"
+    ],
+    "vibe hook playbook and live scenarios": [
+      "vibe hook playbook and live scenarios"
+    ],
+    "vibe hook playbook and live scenarios goal": [
+      "vibe hook playbook and live scenarios goal"
+    ],
+    "vibe hook playbook and live scenarios implementation summary": [
+      "vibe hook playbook and live scenarios implementation summary"
+    ],
+    "vibe hook playbook and live scenarios plan": [
+      "vibe hook playbook and live scenarios plan"
+    ],
+    "vibe hook playbook and live scenarios tasks": [
+      "vibe hook playbook and live scenarios tasks"
+    ],
+    "vibe hook playbook coverage": [
+      "vibe hook playbook coverage"
+    ],
+    "vibe hooks": [
+      "vibe hooks"
+    ],
+    "vibe hooks toml": [
+      "vibe hooks.toml"
+    ],
+    "vibe journal fixture and reader": [
+      "vibe journal fixture and reader"
+    ],
+    "vibe journal fixture and reader goal": [
+      "vibe journal fixture and reader goal"
+    ],
+    "vibe journal fixture and reader implementation summary": [
+      "vibe journal fixture and reader implementation summary"
+    ],
+    "vibe journal fixture and reader plan": [
+      "vibe journal fixture and reader plan"
+    ],
+    "vibe journal fixture and reader tasks": [
+      "vibe journal fixture and reader tasks"
+    ],
+    "vibe lineage auto approve posture": [
+      "vibe lineage auto-approve posture"
+    ],
+    "vibe live hop": [
+      "vibe live hop"
+    ],
+    "vibe mistral provider": [
+      "vibe mistral provider"
+    ],
+    "vibe model roster": [
+      "vibe model roster"
+    ],
     "vibe opencode feature parity research": [
       "vibe opencode feature parity research"
     ],
+    "vibe operator answer queue": [
+      "vibe operator answer queue"
+    ],
+    "vibe p": [
+      "vibe -p"
+    ],
+    "vibe packet slice": [
+      "vibe packet slice"
+    ],
+    "vibe parity gaps closeout": [
+      "vibe parity gaps closeout"
+    ],
     "vibe parity with opencode extensions hooks plugins": [
       "vibe parity with opencode extensions hooks plugins"
+    ],
+    "vibe post agent": [
+      "vibe post_agent"
+    ],
+    "vibe post agent ask surface": [
+      "vibe post_agent ask surface"
+    ],
+    "vibe post agent fixture": [
+      "vibe post_agent fixture"
+    ],
+    "vibe pre agent advisor brief": [
+      "vibe pre_agent advisor brief"
+    ],
+    "vibe pre tool hook": [
+      "vibe pre_tool hook"
+    ],
+    "vibe print mode": [
+      "vibe print mode"
+    ],
+    "vibe print mode flags": [
+      "vibe print mode flags"
+    ],
+    "vibe print mode prompt": [
+      "vibe print mode prompt"
+    ],
+    "vibe prompt advisor": [
+      "vibe prompt advisor"
+    ],
+    "vibe prompt framework selection": [
+      "vibe prompt framework selection"
+    ],
+    "vibe prompt quality card": [
+      "vibe prompt quality card"
+    ],
+    "vibe prompt sources": [
+      "vibe prompt sources"
+    ],
+    "vibe provider row": [
+      "vibe provider row"
+    ],
+    "vibe relaunch command tier": [
+      "vibe relaunch command tier"
+    ],
+    "vibe relaunch command tier goal": [
+      "vibe relaunch command tier goal"
+    ],
+    "vibe relaunch command tier implementation summary": [
+      "vibe relaunch command tier implementation summary"
+    ],
+    "vibe relaunch command tier plan": [
+      "vibe relaunch command tier plan"
+    ],
+    "vibe relaunch command tier tasks": [
+      "vibe relaunch command tier tasks"
+    ],
+    "vibe relaunch enable switch": [
+      "vibe relaunch enable switch"
+    ],
+    "vibe render step hard rule": [
+      "vibe render step hard rule"
     ],
     "vibe repo guards": [
       "vibe repo guards"
@@ -130481,11 +130889,17 @@
     "vibe repo guards goal": [
       "vibe repo guards goal"
     ],
+    "vibe repo guards implementation summary": [
+      "vibe repo guards implementation summary"
+    ],
     "vibe repo guards plan": [
       "vibe repo guards plan"
     ],
     "vibe repo guards tasks": [
       "vibe repo guards tasks"
+    ],
+    "vibe runtime folder": [
+      "vibe runtime folder"
     ],
     "vibe runtime folder and mirrors": [
       "vibe runtime folder and mirrors"
@@ -130499,14 +130913,86 @@
     "vibe runtime folder and mirrors tasks": [
       "vibe runtime folder and mirrors tasks"
     ],
+    "vibe runtime folder implementation summary": [
+      "vibe runtime folder implementation summary"
+    ],
+    "vibe session journal reader": [
+      "vibe session journal reader"
+    ],
+    "vibe session lifecycle": [
+      "vibe session lifecycle"
+    ],
+    "vibe session relaunch": [
+      "vibe session relaunch"
+    ],
+    "vibe session start context": [
+      "vibe session start context"
+    ],
+    "vibe session start goal": [
+      "vibe session start goal"
+    ],
     "vibe session start goal slice": [
       "vibe session_start goal slice"
+    ],
+    "vibe session start hook": [
+      "vibe session_start hook"
+    ],
+    "vibe sk code audit findings": [
+      "vibe sk-code audit findings"
+    ],
+    "vibe skill mirror": [
+      "vibe skill mirror"
+    ],
+    "vibe strict hook": [
+      "vibe strict hook"
     ],
     "vibe strict pre tool hooks": [
       "vibe strict pre_tool hooks"
     ],
+    "vibe sweep decisions": [
+      "vibe sweep decisions"
+    ],
     "vibe sync generators": [
       "vibe sync generators"
+    ],
+    "vibe trust gate": [
+      "vibe trust gate"
+    ],
+    "vibe turn end composer": [
+      "vibe turn end composer"
+    ],
+    "vibe turn end guards": [
+      "vibe turn end guards"
+    ],
+    "vibe turn end guards goal": [
+      "vibe turn end guards goal"
+    ],
+    "vibe turn end guards implementation summary": [
+      "vibe turn end guards implementation summary"
+    ],
+    "vibe turn end guards plan": [
+      "vibe turn end guards plan"
+    ],
+    "vibe turn end guards tasks": [
+      "vibe turn end guards tasks"
+    ],
+    "vibe turn start advisor and dist": [
+      "vibe turn start advisor and dist"
+    ],
+    "vibe turn start advisor and dist goal": [
+      "vibe turn start advisor and dist goal"
+    ],
+    "vibe turn start advisor and dist implementation summary": [
+      "vibe turn start advisor and dist implementation summary"
+    ],
+    "vibe turn start advisor and dist plan": [
+      "vibe turn start advisor and dist plan"
+    ],
+    "vibe turn start advisor and dist tasks": [
+      "vibe turn start advisor and dist tasks"
+    ],
+    "vibe turn start composer": [
+      "vibe turn start composer"
     ],
     "viewport emulation": [
       "viewport emulation"

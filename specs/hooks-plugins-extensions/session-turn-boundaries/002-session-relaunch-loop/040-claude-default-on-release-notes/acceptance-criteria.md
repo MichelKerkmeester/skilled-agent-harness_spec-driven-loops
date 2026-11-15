@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/040-claude-default-on-release-notes"
+    packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes"
     last_updated_at: "2026-11-14T19:45:31Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

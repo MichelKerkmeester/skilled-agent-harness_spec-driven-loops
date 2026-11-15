@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe audit fixes",
+      "phase 13 vibe audit fixes",
+      "vibe sk-code audit findings",
+      "vibe hook-io session dir",
+      "vibe audit fixes plan",
+      "vibe audit fixes tasks",
+      "vibe audit fixes goal",
+      "vibe audit fixes implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "audit",
+      "phase",
+      "sk-code",
+      "findings",
+      "hook-io",
+      "session",
+      "dir",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+      ".vibe/plugins/repo-guards/env-secret-guard.mjs",
+      ".vibe/plugins/repo-guards/tests/env-secret-guard.test.mjs",
+      ".vibe/plugins/repo-guards/spec-gate.mjs",
+      ".vibe/plugins/repo-guards/render-home-hooks.cjs",
+      ".vibe/plugins/repo-guards/tests/render-home-hooks.test.mjs",
+      ".vibe/plugins/repo-guards/fixtures/spec-gate/seed-state.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-vibe.test.mjs",
+      ".skilled/hooks/goal/vibe/goal-vibe.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-io.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "env-secret-guard.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/env-secret-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "env-secret-guard.test.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/tests/env-secret-guard.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/spec-gate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "render-home-hooks.cjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/render-home-hooks.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "render-home-hooks.test.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/tests/render-home-hooks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "seed-state.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/fixtures/spec-gate/seed-state.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-vibe.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-vibe.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-vibe.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-vibe.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/vibe/goal-vibe.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every Vibe dispatch runs in a scratch folder, yet `toCoreCall` hands each guard core the checkout root as its working directory (`.vibe/plugins/repo-guards/lib/hook-io.mjs:71-75`)",
+    "created_at": "2026-11-14T20:13:04Z",
+    "last_save_at": "2026-11-14T22:01:08.022Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:36a43c5ac628950401f71ae573182ddfb7089e6b97d10ed2ba4cbf63ec2c224c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3b2fdba978fe375aa7ef744c5c9aabb262426597ac6491b789d5d3f150899a67",
+      "plan.md": "1d9575364679c5df67a745e3ce8956a8cdb6013c2c66971e11beb20fdadfd6ff",
+      "tasks.md": "9689ef9c7ee968d416e0a950b2ae05336dbc1d496b0312327147aa27c4cdd321",
+      "implementation-summary.md": "607e13b1a893507103330a4df8baae76d18a604177fbbbd4c3c0eb612f7f891c"
+    },
+    "last_active_at": null
+  }
+}

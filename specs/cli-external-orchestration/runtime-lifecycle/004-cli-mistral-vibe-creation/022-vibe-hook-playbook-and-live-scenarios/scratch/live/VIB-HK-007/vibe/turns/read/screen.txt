@@ -1,0 +1,51 @@
+
+ ⢠⢢    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⢸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
+ ⠈⠒⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+
+Hello Michel, how can I help you?
+
+
+
+> Read big.txt and tell me in one sentence what it contains.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⚠ [turn-start] Added context for the model: "Advisor: no skill matched. Directives: - Comment hygiene [HARD BLOCK]: NEVER em…"
+
+  I'll read the file and summarize it.
+
+⏵ Ran 1 command, read 1 file, thought                                                                                          
+
+  big.txt is 1,200 lines of filler text — each line reads padding line N for N from 1 to 1,200, with no other content.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>   
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.YfEHr3kctk/vibe                                                                                                       ctx ▍      16.9k/256k
+

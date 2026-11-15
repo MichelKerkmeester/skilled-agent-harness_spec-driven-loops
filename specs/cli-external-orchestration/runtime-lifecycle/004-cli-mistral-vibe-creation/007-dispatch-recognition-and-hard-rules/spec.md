@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -163,9 +163,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does a dispatch show as `vibe` or `vibe-rs` in a process walk? UNKNOWN until phase 004. Recognition matches both meanwhile.
-- Is stdin a prompt source in 3.1.2? UNKNOWN until phase 004. Whether or not it is, an inherited stdin can hang a headless run, so phase 005 is asked to add `stdin-redirect-required`.
-- Does `--prompt-file` alone run print mode, or does it need `-p`? UNKNOWN until phase 004. The answer decides whether `print-mode-only` accepts `vibe --prompt-file` without `-p`.
+- Answered by phase 004: the ancestor walk sees `vibe-rs` and its child `vibe-app-server`, never `vibe`, because the Python launcher execs away. Command-text recognition still matches the `vibe` word a dispatcher types.
+- Answered by phase 004: stdin is a prompt source only behind a bare `-p` (`echo ... | vibe -p` exits 0); a pipe with no `-p` exits 1, "Interactive mode needs a terminal". The stdin check must accept a pipe into a bare `-p` and `-p TEXT </dev/null`.
+- Answered by phase 004: `--prompt-file` alone runs print mode (exit 0, no `-p` needed), so `print-mode-only` accepts `vibe --prompt-file` without `-p`.
 - Does phase 005 rename its roster check to `vibe-closed-roster`, or should the shared `closed-roster` check learn Vibe dispatches? The proposal is the rename, because one check per executor keeps the dsh roster logic untouched.
 - Does vibe 3.1.2 load a `.env` from its working directory? UNKNOWN. The working-directory check refuses the repository root either way, and the answer only changes the rule message.
 <!-- /ANCHOR:questions -->

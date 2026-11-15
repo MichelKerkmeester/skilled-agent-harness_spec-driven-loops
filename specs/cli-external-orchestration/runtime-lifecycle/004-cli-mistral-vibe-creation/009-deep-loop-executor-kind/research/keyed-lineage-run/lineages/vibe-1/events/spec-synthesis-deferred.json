@@ -1,0 +1,1 @@
+{"type":"spec_mutation","event":"spec_synthesis_deferred","reason":"Operator restricted all writes to the detached lineage artifact directory; parent spec writeback and strict post-write validation were intentionally skipped.","generatedFence":"deep-research/spec-findings","timestamp":"2026-11-14T16:44:37.143Z"}

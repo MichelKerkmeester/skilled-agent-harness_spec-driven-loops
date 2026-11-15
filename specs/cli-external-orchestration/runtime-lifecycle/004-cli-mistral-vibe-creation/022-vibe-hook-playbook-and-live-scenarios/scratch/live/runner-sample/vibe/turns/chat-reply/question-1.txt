@@ -1,0 +1,51 @@
+> small, large                                                                                                                                                                                          
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ green                                                                                                                                                                                           │   
+  │ small, large                                                                                                                                                                                    │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  I read your reply as a correction to the separator, so I rewrote line 2 in place rather than appending a third line — the file still has two entries, one per question. If you actually meant to      
+  add a new line, tell me and I'll append instead.                                                                                                                                                      
+                                                                                                                                                                                                        
+  The [decision-capture] notice now reports two unrecorded answers. Still not acting on it; /speckit:save is yours to run.                                                                              
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+> Use your question tool to ask what custom colour I want, with a free-text Other option. Append my answer as one line to answers.txt.                                                                  
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+⏵ Thought                                                                                                                                                                                               
+                                                                                                                                                                                                        
+✓ Answered "What custom colour do you want? Pick one below, or choose Other to type your own." → (Other) teal                                                                                           
+                                                                                                                                                                                                        
+⏵ Ran 1 command, thought                                                                                                                                                                                
+                                                                                                                                                                                                        
+  Appended. answers.txt now reads:                                                                                                                                                                      
+                                                                                                                                                                                                        
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ green                                                                                                                                                                                           │  ▇
+  │ small, large                                                                                                                                                                                    │   
+  │ teal                                                                                                                                                                                            │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  You answered via the free-text Other field rather than picking a preset, and the value you typed was teal — which happens to match one of the presets, so the stored line is identical either way.    
+  I appended it as a new line rather than editing, since this is a third question.                                                                                                                      
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+> Ask me in plain chat whether I want to keep the selected colours. Wait for my answer and append it as one line to answers.txt.                                                                        
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+⏵ Thought                                                                                                                                                                                               
+                                                                                                                                                                                                        
+  Do you want to keep the selected colours — green, small/large, and teal?                                                                                                                              
+                                                                                                                                                                                                        
+  I'll append your answer as a single line to answers.txt once you reply. Nothing is written yet.                                                                                                       
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                                                                                                                                                                       
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.rp1iKM52CA/vibe                                                                                                       ctx ▍      13.4k/256k
+

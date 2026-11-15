@@ -1,0 +1,3 @@
+$ grep -qs 'is a dotenv file' .skilled/skills/.state/env-secret-guard.log && ! grep -rqs 'placeholder-not-a-secret' "$VIBE_HOME/logs/session/unified" && echo guard-logged-and-value-absent
+guard-logged-and-value-absent
+[exit 0]

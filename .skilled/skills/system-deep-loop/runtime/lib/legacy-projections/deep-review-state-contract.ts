@@ -215,6 +215,17 @@ export function createDeepReviewStateProjectionContract(
             : (typeof data.recoveryStrategy === 'string' ? data.recoveryStrategy : ''),
           timestamp: occurredAt,
         };
+      } else if (stem === 'deep_review.terminal_gates_recorded') {
+        row = {
+          type: 'event',
+          event: 'terminal_gates',
+          iteration: typeof scope.iterationId === 'string' ? scope.iterationId : '',
+          run: num(scope.iterationId),
+          stopReason: typeof data.stopReason === 'string' ? data.stopReason : '',
+          failedRequiredGateIds: Array.isArray(data.failedRequiredGateIds) ? data.failedRequiredGateIds : [],
+          gateResults: (Array.isArray(data.gateResults) ? data.gateResults : []) as JsonValue,
+          timestamp: occurredAt,
+        };
       } else if (stem === 'deep_review.pause_recorded') {
         row = {
           type: 'event',

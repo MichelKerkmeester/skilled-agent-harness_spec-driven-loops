@@ -1,0 +1,7 @@
+# Blocks a subagent spawn to a deep-loop agent whose declared mode disagrees with the mode registry, or a repeated loop-like hand-off.
+[[hooks]]
+name = "deep-loop-guard"
+type = "pre_tool"
+strict = true
+match = "agents_spawn"
+command = "node @REPO@/.vibe/plugins/repo-guards/deep-loop-guard.mjs"

@@ -145,6 +145,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 40 | 040-claude-default-on-release-notes/ | Claude Code hands over by default while every other runtime stays off until its switch is set, and the v4.0.2.1 release notes and root README describe every hand-over change | Complete |
 | 41 | 041-cross-runtime-handover-parity/ | A live-hop harness scores Claude Code, Codex, Pi and OpenCode on one task. Fixes let OpenCode 2 hop from its own tool shell, steer Pi's nudge in mid-run, keep Pi's claim instructions when other extensions extend the seed and print the closing step in the `claim` output | Complete |
 | 42 | 042-handover-gap-closure/ | Live probes measure five gaps phase 41 left. Pi and OpenCode refuse a question dialog while a hand-over is pending and tell the model when one is withdrawn, and Codex points a compacted session at its note. OpenCode 2 model carry has no launch route and is recorded | Complete |
+| 43 | 043-vibe-handover-flag-and-live-hop/ | Both flag readers learn the Vibe runtime, so `SYSTEM_SESSION_RELAUNCH_VIBE_ENABLED` decides, and a test keeps their runtime list in step with the relaunch loop's. One Vibe hop runs live through `skilled-loop vibe`, and the handoff command and continuity writer learn Vibe | Complete |
 
 ### Phase Transition Rules
 
@@ -198,6 +199,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 039-hop-dialog-goal-title | 040-claude-default-on-release-notes | Phase 39 is Complete and pushed, because phase 40 rewrites the release notes that describe it | `validate.sh 039-hop-dialog-goal-title --recursive --strict` RESULT: PASSED |
 | 040-claude-default-on-release-notes | 041-cross-runtime-handover-parity | Phase 40 is Complete and pushed, so the live harness measures the shipped defaults | `validate.sh 040-claude-default-on-release-notes --strict` RESULT: PASSED |
 | 041-cross-runtime-handover-parity | 042-handover-gap-closure | Phase 41 is Complete and pushed, so the probes measure the shipped parity fixes | `validate.sh 041-cross-runtime-handover-parity --strict` RESULT: PASSED |
+| 042-handover-gap-closure | 043-vibe-handover-flag-and-live-hop | Phase 42 is Complete and pushed, so the Vibe run starts from the shipped gap fixes | `validate.sh 042-handover-gap-closure --strict` RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

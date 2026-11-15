@@ -1,0 +1,10 @@
+{
+  "session_id": "83423691-aa25-a878-594d-e688f1e788e9",
+  "parent_session_id": null,
+  "start_time": "2026-11-14T21:33:42Z",
+  "end_time": null,
+  "environment": {
+    "working_directory": "/tmp/vibe-fixture-project"
+  },
+  "username": "fixture-user"
+}

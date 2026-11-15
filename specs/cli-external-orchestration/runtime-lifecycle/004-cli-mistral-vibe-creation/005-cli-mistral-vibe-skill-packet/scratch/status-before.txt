@@ -1,0 +1,15 @@
+M  .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs
+M  .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+M  .skilled/skills/cli-external-orchestration/README.md
+M  .skilled/skills/cli-external-orchestration/SKILL.md
+M  .skilled/skills/cli-external-orchestration/cli-deepseek-harness/README.md
+M  .skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md
+M  .skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json
+M  .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md
+M  .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/runtime-folder-and-sync.md
+M  .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+M  .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md
+M  .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md
+M  .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md
+M  .skilled/skills/cli-external-orchestration/feature-catalog/deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md
+M  .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md

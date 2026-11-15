@@ -1,0 +1,3 @@
+$ test -f "$VIBE_HOME/prompts/create-goal.md" && touch "$CONVERSATION_TURN_DIR/prompt-marker" && echo restarted-with-named-prompt
+restarted-with-named-prompt
+[exit 0]

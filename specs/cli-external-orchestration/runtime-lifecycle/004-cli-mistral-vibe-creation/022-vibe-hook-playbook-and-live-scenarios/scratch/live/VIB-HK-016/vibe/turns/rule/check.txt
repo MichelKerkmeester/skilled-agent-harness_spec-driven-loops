@@ -1,0 +1,3 @@
+$ grep -rqs 'review finding reference' "$VIBE_HOME/logs/session/unified" && grep -rqs 'greeting.ts' "$VIBE_HOME/logs/session/unified" && echo rule-named
+rule-named
+[exit 0]

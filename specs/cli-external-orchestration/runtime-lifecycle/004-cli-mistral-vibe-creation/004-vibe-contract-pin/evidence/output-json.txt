@@ -1,0 +1,46 @@
+[
+  {
+    "id": "user-turn-3587031acf669e4188205ed35e910315-1",
+    "sessionId": "4bafe9d5-82b9-03fb-18e4-db8d894bd428",
+    "turnId": "turn-3587031acf669e4188205ed35e910315",
+    "inputEntryId": null,
+    "createdAt": 1794664702382,
+    "updatedAt": 1794664702382,
+    "generationStatus": "completed",
+    "relatedEntryId": null,
+    "type": "message",
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Reply with exactly the word OK and nothing else."
+      }
+    ],
+    "source": "turn_start",
+    "userDisplayContent": null,
+    "outcome": null
+  },
+  {
+    "id": "assistant-3c48a35e-46c1-51e0-8f7f-7fcb07abdffd",
+    "sessionId": "4bafe9d5-82b9-03fb-18e4-db8d894bd428",
+    "turnId": "turn-3587031acf669e4188205ed35e910315",
+    "inputEntryId": "user-turn-3587031acf669e4188205ed35e910315-1",
+    "createdAt": 1794664702929,
+    "updatedAt": 1794664702929,
+    "generationStatus": "completed",
+    "relatedEntryId": null,
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "OK"
+      }
+    ],
+    "source": "harness",
+    "userDisplayContent": null,
+    "outcome": {
+      "type": "committed"
+    }
+  }
+]

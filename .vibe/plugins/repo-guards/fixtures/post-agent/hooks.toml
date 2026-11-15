@@ -1,0 +1,5 @@
+[[hooks]]
+name = "post-agent-capture"
+type = "post_agent"
+match = "main"
+command = "CAPTURE_LOG=@CAPTURE_LOG@ DENY_MODE=@DENY_MODE@ sh @REPO@/.vibe/plugins/repo-guards/fixtures/post-agent/capture-post-agent.sh"

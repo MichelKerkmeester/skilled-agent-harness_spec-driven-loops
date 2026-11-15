@@ -1,0 +1,3 @@
+$ grep -rqs 'Deep Route mode mismatch' "$VIBE_HOME/logs/session/unified" && grep -rqs '"hookName":"deep-loop-guard"' "$VIBE_HOME/logs/session/unified" && echo refused
+refused
+[exit 0]

@@ -279,7 +279,7 @@ The reply-time rule loads are Gate 6 in §2, and the two clauses that bind regar
 
 ## 9. 🤖 AGENT ROUTING
 
-Use the active runtime's own agent directory, `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.pi/agents/`, `.devin/agents/` or `.dsh/agents/`, and stay with it for the workflow phase.
+Use the active runtime's own agent directory, `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.pi/agents/`, `.devin/agents/`, `.dsh/agents/` or `.vibe/agents/`, and stay with it for the workflow phase.
 
 ---
 

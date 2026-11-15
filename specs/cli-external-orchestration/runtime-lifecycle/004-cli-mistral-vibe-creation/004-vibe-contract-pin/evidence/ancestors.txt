@@ -1,0 +1,10 @@
+73654 sh
+73653 zsh
+73477 vibe-app-server
+73476 vibe-rs
+73467 zsh
+60327 claude
+30369 bash
+26621 zsh
+26619 login
+88673 orca-terminal-host

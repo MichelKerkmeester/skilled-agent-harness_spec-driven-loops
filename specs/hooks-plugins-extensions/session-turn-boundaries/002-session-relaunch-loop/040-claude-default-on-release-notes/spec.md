@@ -70,7 +70,7 @@ claude off
 - Moving the `v4.0.2.1` git tag or editing a GitHub release - both are outward-facing and need the operator
 - Any change to hop behavior, the wrapper or the adapters - only the default changes
 - The `.mjs` and `.ts` facades - they re-export the `.cjs` resolver and carry no rule of their own
-- The repository's dotenv template - the operator's rule forbids reading or writing a dotenv file, so its one comment is reported instead
+- The repository's dotenv template - the operator's rule forbids reading or writing a dotenv file, so its one comment is reported instead. The operator later asked for it, and `.env.example` sections 8 and 18 now say the loop ships on for Claude Code only
 - The OpenCode plugin README and architecture notes - they describe OpenCode, which still ships off
 
 ### Files to Change

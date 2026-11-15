@@ -15,7 +15,7 @@ trigger_phrases:
 
 `dispatch/` owns two concerns that fire around composed CLI dispatch commands (`opencode run`, `claude -p`, `codex exec`, `devin -p`, and siblings): a **preflight lint** that evaluates a dispatch skill's declared hard rules (`hard-rules.json` beside its `SKILL.md`) against the command string *before* it spawns, and an **audit trail** that appends one scrubbed JSONL line per completed dispatch. Both cores are dependency-free by design so enforcement survives even when the skill advisor daemon is down.
 
-The `DISPATCH_SHAPES` registry in `lib/dispatch-audit.mjs` is the single source of truth for what counts as a dispatch, shared by both concerns so the before-lint and the after-audit can never disagree about a command's shape. The preflight may deny or advise; the audit never decides, it only records. Every path fails open: a missing `SKILL.md`, malformed sidecar JSON, a throwing check, or an unwritable log resolves to allow/skip, never to a blocked or broken dispatch.
+The `DISPATCH_SHAPES` registry in `lib/dispatch-audit.mjs` is the single source of truth for what counts as a dispatch, shared by both concerns so the before-lint and the after-audit can never disagree about a command's shape. It maps `vibe`, `vibe-rs` and `vibe-acp` to `cli-mistral-vibe`; the session-free forms (`-v`/`--version`, `-h`/`--help`, and the `config`, `mcp` and `help` subcommands) start no run and are excluded. The preflight may deny or advise; the audit never decides, it only records. Every path fails open: a missing `SKILL.md`, malformed sidecar JSON, a throwing check, or an unwritable log resolves to allow/skip, never to a blocked or broken dispatch.
 
 The concern is one runtime-neutral pair of cores plus a thin adapter per runtime. The cores make every decision; each adapter only translates its runtime's event shape into the core's input and delivers the result.
 
@@ -41,7 +41,7 @@ The 41 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`),
 
 | Check id | Satisfied when |
 |---|---|
-| `stdin-redirect-required` | A headless dispatch (`opencode run`, `pi -p`, `claude -p`, `codex exec`, `devin -p`, `cursor-agent -p`) closes or redirects stdin (`</dev/null`, heredoc, herestring, or a pipe feeding the CLI); every dispatch in a chain needs its own, and a redirect inside a quoted prompt does not count |
+| `stdin-redirect-required` | A headless dispatch (`opencode run`, `pi -p`, `claude -p`, `codex exec`, `devin -p`, `cursor-agent -p`, `vibe -p`, `vibe --prompt-file`) closes or redirects stdin (`</dev/null`, heredoc, herestring, or a pipe feeding the CLI); a pipe into a bare `vibe -p` counts as closed stdin; every dispatch in a chain needs its own, and a redirect inside a quoted prompt does not count |
 | `explicit-model-required` | An `opencode run` command passes `-m`/`--model`; every dispatch in a chain needs its own, and a flag inside a quoted prompt does not count |
 | `no-bare-agent-general` | No bare top-level `--agent general` (opencode rejects it at runtime) |
 | `command-flag-for-slash-prompt` | A slash-command-shaped prompt (`/<family>:<name> ...`) is paired with `--command` |
@@ -75,6 +75,11 @@ The 41 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`),
 | `command-v-dsh-required` | A command invoking `dsh` resolves a `dsh` executable on `PATH` |
 | `no-repo-root-dotenv` | A dsh dispatch does not use the repository root as its working directory, including through `cd "$REPO"` |
 | `mcp-opt-in-only` | MCP remains disabled unless the dispatch explicitly passes its dedicated patch |
+| `print-mode-only` | A `vibe` dispatch runs print mode (`vibe -p TEXT`, a pipe into a bare `vibe -p`, or `vibe --prompt-file PATH`); a bare interactive `vibe` and the `vibe-acp` agent are refused |
+| `isolated-vibe-home` | A `vibe` dispatch sets `VIBE_HOME` to a disposable directory outside the checkout and the operator's `~/.vibe`; an unset home, a checkout path, a tilde or `$HOME`/`$PWD`/command-substitution path, and `~/.vibe` are refused |
+| `output-dir-required` | A `vibe` dispatch passes `--output-dir` naming a directory outside the checkout, where `export.json` carries the outcome; a missing flag and a directory inside the checkout are refused |
+| `vibe-closed-roster` | A `vibe` dispatch's `--model` names a roster alias (`deepseek-flash` or `glm-flash`); a missing model, an unexpanded variable and any other alias are refused |
+| `no-repo-root-cwd` | A `vibe` dispatch runs outside the repository root, including through `--workdir`; a run started at the root is refused |
 
 A check returns `true` when the command *satisfies* the rule; `false` means violated. An unknown check id is skipped (the CI validator catches typos, not this hot path), and a throwing check resolves to satisfied so it can never block a dispatch.
 

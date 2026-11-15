@@ -1,0 +1,3 @@
+$ grep -rqs 'is owned by skilled-overlays/files/settings.json' "$VIBE_HOME/logs/session/unified" && grep -rqs '"hookName":"overlay-guard"' "$VIBE_HOME/logs/session/unified" && echo overlay-refused
+overlay-refused
+[exit 0]

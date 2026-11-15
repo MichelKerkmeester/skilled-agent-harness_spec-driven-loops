@@ -1,0 +1,3 @@
+turn	status	attempts	evidence	observed
+read	PASS	1	turns/read	refused
+no-leak	PASS	1	turns/no-leak	guard-logged-and-value-absent

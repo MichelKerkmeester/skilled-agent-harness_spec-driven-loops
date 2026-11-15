@@ -1,0 +1,1 @@
+[{"message":{"content":[{"text":"Reply with exactly the word OK and nothing else.","type":"text"}],"role":"user"},"source":"history","turn_index":0},{"message":{"content":[{"text":"OK","type":"text"}],"role":"assistant"},"source":"history","turn_index":0}]

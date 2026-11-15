@@ -1,0 +1,9 @@
+{
+  "session_id": "vibe-spec-gate-fixture",
+  "cwd": ".",
+  "parent_session_id": null,
+  "hook_event_name": "pre_agent",
+  "agent_name": "default",
+  "turn_id": "turn-1",
+  "prompt": "Create a file notes.txt with a short summary of this repository."
+}

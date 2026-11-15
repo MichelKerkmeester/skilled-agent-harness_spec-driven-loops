@@ -40,8 +40,9 @@ A real file is therefore not automatically authored content — most of them are
 | `.devin/` | agents, skills, hooks | `agents/*/AGENT.md` (11), `skills`, 25 hooks, `repo-rules`, playbook | — | `config.json`, `hooks.v1.json`, `mcp_config.json` |
 | `.pi/` | agents, prompts, skills, extensions | `skills`, 22 extensions plus one shared adapter under `extensions/lib/`, `repo-rules`, playbook | `agents/` (11), `prompts/` (44) | `models.json`, `settings.json`, `mcp.json`, `PLUGINS.md`, `custom-providers.md`, `statusline.sh`, `prompts/goal-pi.md`, `extensions/README.md`, `extensions/lib/README.md`, `pi-blackhole-config.json`, `pi-cache-optimizer-config.json`, `types/`, `npm/`, `git/`, 2 authored extension directories (pi-cache-optimizer, pi-fast-mode-w-subagent-support) |
 | `.dsh/` | Skills, prompt stubs, agent patches and repo-guard plugin for the external DeepSeek Harness target | None | skills, prompts and agents from three DSH generators | `patches/`, `plugins/repo-guards/`, `README.md`, `SYNC.md` |
+| `.vibe/` | Skills, prompt stubs, agent profiles and repo-guard plugin for the external Mistral Vibe target | `skills/` (relative symlinks) | skills, prompts and agents from three Vibe generators | `config.toml`, `hooks.toml`, `plugins/repo-guards/`, `SYNC.md` |
 
-The six repository-opening runtimes author their own `SYNC.md`. Every `hooks/` directory authors its own `README.md`. `.dsh/` is an external run surface, not another directory for opening the repository in. Its `SYNC.md` records the separate contract: run from a scratch working directory outside the checkout, set a disposable `DSH_HOME`, choose `read-only` or `workspace-write` deliberately and treat `--approval-policy never` as approval handling rather than filesystem confinement. The documented scratch-cwd launch path keeps the repository-root `.env` out of dsh's search path. `.claude/settings.local.json` is a per-machine file that git ignores, so it is not part of the map.
+The six repository-opening runtimes author their own `SYNC.md`. Every `hooks/` directory authors its own `README.md`. `.dsh/` is an external run surface, not another directory for opening the repository in. Its `SYNC.md` records the separate contract: run from a scratch working directory outside the checkout, set a disposable `DSH_HOME`, choose `read-only` or `workspace-write` deliberately and treat `--approval-policy never` as approval handling rather than filesystem confinement. The documented scratch-cwd launch path keeps the repository-root `.env` out of dsh's search path. `.vibe/` is the second external run surface, for Mistral Vibe. Its `SYNC.md` records that contract: run from a scratch working directory with a disposable `VIBE_HOME` that trusts the checkout root, and load the hand-authored `hooks.toml` through the copy `plugins/repo-guards/render-home-hooks.cjs` writes into that home. `.claude/settings.local.json` is a per-machine file that git ignores, so it is not part of the map.
 
 ---
 
@@ -74,11 +75,12 @@ Each generator rebuilds its tree and takes `--check` to assert freshness without
 | `sync-agents.cjs`, `sync-prompts.cjs` | `.codex/agents/`, `.codex/prompts/` |
 | `sync-agents-pi.cjs`, `sync-prompts-pi.cjs` | `.pi/agents/`, `.pi/prompts/` |
 | `sync-skills-dsh.cjs`, `sync-prompts-dsh.cjs`, `sync-agents-dsh.cjs` | `.dsh/skills/`, `.dsh/prompts/`, `.dsh/agents/` |
+| `sync-skills-vibe.cjs`, `sync-prompts-vibe.cjs`, `sync-agents-vibe.cjs` | `.vibe/skills/`, `.vibe/prompts/`, `.vibe/agents/` |
 | `generate-command-routers.cjs` | the command router tables |
 
 The counts here and in section 2 drift as surfaces are added. Each generator's `--check` prints the live count, so trust its output over these numbers.
 
-They live under `.skilled/skills/system-spec-kit/runtime/cli/`, in `runtime-mirrors/`, `codex/`, `pi/` and `dsh/`.
+They live under `.skilled/skills/system-spec-kit/runtime/cli/`, in `runtime-mirrors/`, `codex/`, `pi/`, `dsh/` and `vibe/`.
 
 ```bash
 # every generator, freshness only
@@ -105,6 +107,6 @@ node .skilled/bin/check-agent-mirror-sync.cjs
 
 ## 6. RELATED
 
-- Each repository runtime has its own contract: `.claude/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.devin/SYNC.md`, `.opencode/SYNC.md` and `.pi/SYNC.md`. The external DSH run-surface contract is in `.dsh/SYNC.md`.
+- Each repository runtime has its own contract: `.claude/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.devin/SYNC.md`, `.opencode/SYNC.md` and `.pi/SYNC.md`. The external DSH and Vibe run-surface contracts are in `.dsh/SYNC.md` and `.vibe/SYNC.md`.
 - [`AGENTS.md`](../AGENTS.md) — the runtime instruction file
 - [`README.md`](../README.md) — repository overview

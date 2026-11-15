@@ -927,6 +927,18 @@ workflow:
       step_handle_convergence:
         action: "Act on convergence decision"
         if_stop:
+          record_terminal_gates:
+            when: "Run once, immediately before control leaves this if_stop for gate_pre_synthesis: in if_existing_terminal_path, in every divergent pivot branch that has skip_to: gate_pre_synthesis, and in on_error. Never run it when the pivot continues the loop (proceed_to: gate_pre_iteration)."
+            evaluate: |
+              evidence: pass when every active P0/P1 finding has concrete file:line evidence and none relies only on inference (the evidenceDensityGate rule).
+              scope: pass when every active finding's file lies inside the review target.
+              coverage: pass when configured dimensions and required traceability coverage are complete and coverage_age >= 1 (the dimensionCoverageGate rule).
+              Evaluate all three fresh at this stop, even when an earlier blocked stop recorded failures.
+              terminal_gate_results_json = JSON array of exactly three rows {"gateId":"evidence"|"scope"|"coverage","status":"pass"|"fail","reasonCode":"<short code such as all-findings-cited or missing-dimensions>","evidenceDigest":"<64 lowercase hex sha256 of the evidence summary for that gate>"}
+              failed_required_gate_ids = JSON array of the gateIds whose status is fail, in the order evidence, scope, coverage; [] when all pass
+              terminal_stop_reason = "maxIterationsReached" when stopReason is maxIterationsReached, else "converged"
+            append_jsonl: '{"stem":"deep_review.terminal_gates_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"stopReason":"{terminal_stop_reason}","gateResults":{terminal_gate_results_json},"failedRequiredGateIds":{failed_required_gate_ids},"appendPosition":{current_iteration}}}'
+            log: "Terminal gates recorded at stop {terminal_stop_reason}. Failed required gates: {failed_required_gate_ids}"
           branch_on: "convergence_mode == 'divergent' AND reason == 'all_dimensions_clean'"
           if_divergent_eligible:
             eligibility_contract:
@@ -1146,6 +1158,7 @@ workflow:
                     message: "No ranked alternative can be selected because the adapter exposes no ranking score or rank contract."
                     return_to: gate_divergent_pivot_choice
                   on_C:
+                    run_first: record_terminal_gates
                     bookkeeping_log: '{"type":"event","event":"manualStop","mode":"review","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
                     set: { reason: "manualStop" }
                     skip_to: gate_pre_synthesis
@@ -1169,7 +1182,7 @@ workflow:
                     action: "Refresh the packet lock heartbeat immediately after the operator response"
                     command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
                     on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
-                  on_A: { skip_to: gate_pre_synthesis }
+                  on_A: { run_first: record_terminal_gates, skip_to: gate_pre_synthesis }
                   on_B:
                     action: "Read pivot_result.paths.configPath, validate the supplied id against acceptedCandidates, bind the exact candidate and persisted previousFocus/saturatedDirections/frontier, and reject ids outside that frontier or any candidate that authorizes a fix, target expansion, or file mutation."
                     bookkeeping_log: '{"type":"event","event":"pivot_override_accepted","mode":"review","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{operator_selected_candidate},"selectedFrontier":{operator_selected_frontier},"previousFocus":"{operator_previous_focus}","saturatedDirections":{operator_saturated_directions},"reason":"{operator_override_rationale}","agreementReason":"insufficient_endorsement","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
@@ -1180,17 +1193,21 @@ workflow:
                     command: "node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
                     proceed_to: gate_pre_iteration
                   on_C:
+                    run_first: record_terminal_gates
                     bookkeeping_log: '{"type":"event","event":"manualStop","mode":"review","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
                     set: { reason: "manualStop" }
                     skip_to: gate_pre_synthesis
                 if_failed_unrecoverable:
                   condition: "pivot_result.status == 'failed' AND (pivot_result.failedEvent is absent OR pivot_result.failedEvent.recoverableByOverride != true)"
+                  run_first: record_terminal_gates
                   log: "Divergent review pivot {pivot_result.pivotId} failed closed ({pivot_result.failureReason}); proceeding to the existing pre-synthesis gate."
                   skip_to: gate_pre_synthesis
             on_error:
+              run_first: record_terminal_gates
               log: "Divergent review pivot integration error; failing closed to the existing pre-synthesis gate."
               skip_to: gate_pre_synthesis
           if_existing_terminal_path:
+            run_first: record_terminal_gates
             log: "Loop stopping. Reason: {reason}"
             skip_to: gate_pre_synthesis
         if_blocked:
@@ -1439,6 +1456,7 @@ workflow:
               artifactDir,
               preDispatchDirtyPaths,
               stateLogPath: '{state_paths.state_log}',
+              sessionId: '{session_id}',
               iteration: Number('{current_iteration}'),
               label: dispatchId,
             });
@@ -1487,6 +1505,7 @@ workflow:
           dispatchReceipt:
             receiptDir: "{state_paths.packet_dir}/dispatch-receipts"
             dispatchId: "review-i{current_iteration}-g{generation}"
+          sessionId: "{session_id}"
           assert_canonical_type: "iteration"
           assert_delta_file_exists: "{state_paths.delta_pattern}"
           assert_delta_file_has_iteration_record: true
@@ -1772,6 +1791,7 @@ workflow:
           p0_count: "active_p0"
           p1_count: "active_p1"
           p2_count: "active_p2"
+          failed_required_gate_ids: "failed_required_gate_ids"
 
       step_hydrate_summary_metrics:
         action: "Hydrate summary metrics before synthesis"
@@ -1789,6 +1809,7 @@ workflow:
           - p0_count: "Total P0 findings across all iterations (deduped)"
           - p1_count: "Total P1 findings across all iterations (deduped)"
           - p2_count: "Total P2 findings across all iterations (deduped)"
+          - failed_required_gate_ids: "When step_fanout_merge bound it, keep the merged value. Otherwise take failedRequiredGateIds from the last line of {state_paths.state_log} with type === 'event' and event === 'terminal_gates', else []. Read the state log, not the registry: the reducer last ran before the stop wrote that row."
           - dimensions_covered: "List of reviewed dimensions"
           - dimension_coverage: "covered / total"
           - ac_coverage_signal: "For spec-folder targets only: if level is 2+ and acceptance-criteria.md exists and implementation-summary.md is in-progress or later, surface the AC_COVERAGE advisory status; otherwise mark exempt."
@@ -1798,12 +1819,12 @@ workflow:
       # H-1 verdict derivation: parse findings JSONL, map highest severity to verdict
       # - PASS: no P0 or P1 findings (P2-only or clean)
       # - CONDITIONAL: any P1 findings (no P0)
-      # - FAIL: any P0 findings
+      # - FAIL: any P0 finding, or a required quality gate (evidence, scope, coverage) still failing at the terminal stop
       # Final line of iteration-NNN.md MUST be exactly: "Review verdict: PASS" / "Review verdict: CONDITIONAL" / "Review verdict: FAIL"
       step_derive_verdict:
         action: "Derive review verdict from accumulated findings"
         algorithm: |
-          if p0_count > 0:
+          if p0_count > 0 or len(failed_required_gate_ids) > 0:
             verdict = "FAIL"
           elif p1_count > 0:
             verdict = "CONDITIONAL"

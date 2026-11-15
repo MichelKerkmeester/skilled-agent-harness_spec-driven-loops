@@ -1,0 +1,32 @@
+# Compaction fixture config: the repository's provider and model rows, plus one
+# probe row with a small context window so a single read crosses the automatic
+# compaction threshold. allowed_models matches a row's `name`, so the probe row
+# reuses a configured model's name and takes its own alias. No explicit
+# compaction threshold: Vibe raises any value below the window's floor, and the
+# default for this window is the floor.
+allowed_models = ["deepseek-v4-1-flash-1017", "zai-glm-5-3-flash"]
+
+[[providers]]
+name = "mistral"
+api_base = "https://api.mistral.ai/v1"
+api_key_env_var = "MISTRAL_API_KEY"
+backend = "mistral"
+
+[[models]]
+name = "deepseek-v4-1-flash-1017"
+provider = "mistral"
+alias = "deepseek-flash"
+thinking = "max"
+
+[[models]]
+name = "zai-glm-5-3-flash"
+provider = "mistral"
+alias = "glm-flash"
+thinking = "max"
+
+[[models]]
+name = "deepseek-v4-1-flash-1017"
+provider = "mistral"
+alias = "compaction-probe"
+thinking = "max"
+max_context_length = 20000

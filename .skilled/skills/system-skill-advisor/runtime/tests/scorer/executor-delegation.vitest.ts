@@ -143,6 +143,23 @@ describe('executor-delegation resolver (pure detector)', () => {
     expect(decision?.executorSkillId).toBe('cli-deepseek-harness');
   });
 
+  it('routes the vibe alias to cli-mistral-vibe', () => {
+    const decision = resolveExecutorDelegation('delegate to vibe', table);
+    expect(decision).not.toBeNull();
+    expect(decision?.action).toBe('route');
+    expect(decision?.executorSkillId).toBe('cli-mistral-vibe');
+  });
+
+  it('keeps a named cli-opencode executor when the prompt also names a mistral model', () => {
+    const decision = resolveExecutorDelegation(
+      'use cli-opencode with mistral deepseek-v4-1-flash-1017',
+      table,
+    );
+    expect(decision).not.toBeNull();
+    expect(decision?.action).toBe('route');
+    expect(decision?.executorSkillId).toBe('cli-opencode');
+  });
+
   it('routes an orchestrator noun co-occurring with a delegation cue', () => {
     const decision = resolveExecutorDelegation(
       'ask opencode with a small-model executor to sweep the architecture and report what this repo is missing.',
@@ -325,6 +342,24 @@ describe('executor delegation never overrides a workflow-owned route', () => {
     expect(first?.skill).toBe('cli-external-orchestration');
     expect(first?.confidence).toBe(0.95);
     expect(first?.reason).toContain('[delegation: executor-orchestrator:codex]');
+  });
+
+  it('lifts the hub for a vibe delegation and names the resolved executor', () => {
+    const result = scoreAdvisorPrompt('delegate to vibe', options);
+    const [first] = result.recommendations;
+    expect(first?.skill).toBe('cli-external-orchestration');
+    expect(first?.reason).toContain('[delegation: executor-alias:delegate to vibe]');
+  });
+
+  it('keeps the named cli-opencode executor when the prompt also names a mistral model', () => {
+    const result = scoreAdvisorPrompt(
+      'use cli-opencode with mistral deepseek-v4-1-flash-1017',
+      options,
+    );
+    const [first] = result.recommendations;
+    expect(first?.skill).toBe('cli-external-orchestration');
+    expect(first?.reason).toContain('[delegation:');
+    expect(first?.reason).toContain('cli-opencode');
   });
 
   it.each(['delegate the decision to the team', 'hand off to QA'])(

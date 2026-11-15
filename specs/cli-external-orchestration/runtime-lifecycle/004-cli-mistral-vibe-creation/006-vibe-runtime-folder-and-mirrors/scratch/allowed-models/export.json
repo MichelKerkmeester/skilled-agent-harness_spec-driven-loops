@@ -1,0 +1,25 @@
+{
+  "outcome": "usage_error",
+  "stop_reason": null,
+  "error": {
+    "message": "This configuration runs deepseek-flash, so mistral-medium-3.5 cannot be picked for one session",
+    "code": null
+  },
+  "session_id": null,
+  "usage": null,
+  "cost_usd": null,
+  "steps": null,
+  "config": null,
+  "schema_version": 1,
+  "vibe_version": "3.1.2",
+  "journal_dir": null,
+  "started_at": "2026-11-14T14:55:08.174537Z",
+  "ended_at": "2026-11-14T14:55:10.295490Z",
+  "limits": {
+    "max_turns": null,
+    "max_price": null,
+    "max_tokens": null,
+    "time_limit_s": null
+  },
+  "exit_code": 1
+}

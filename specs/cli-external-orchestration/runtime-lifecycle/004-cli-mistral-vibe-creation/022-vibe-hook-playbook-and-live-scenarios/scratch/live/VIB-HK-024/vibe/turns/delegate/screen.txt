@@ -1,0 +1,51 @@
+> Spawn a child from the prompt-improver agent type (config_name prompt-improver) to rewrite this rough request into a dispatch-ready prompt: make the build faster. One attempt only; report the       
+  result.                                                                                                                                                                                               
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+⏵ Called 1 tool, ran 3 commands, thought                                                                                                                                                                
+                                                                                                                                                                                                        
+  Spawn accepted this time — the agent type now exists — but the child failed on its own eligibility gate.                                                                                              
+                                                                                                                                                                                                        
+  Result                                                                                                                                                                                                
+                                                                                                                                                                                                        
+  ┌───────────────────────────────────────────────────────────────────────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ Step                                                                  │ Outcome                                                                                                                 │   
+  ├───────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ agents.spawn (config_name: prompt-improver)                           │ Accepted, {"type":"success"}                                                                                            │   
+  ├───────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Child session                                                         │ Failed immediately: child Session does not retain the requested generation                                              │   
+  ├───────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ agents.list                                                           │ prompt-improver → status: failed, pending_turn: false                                                                   │   
+  ├───────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Retries                                                               │ None, per your one-attempt constraint                                                                                   │   
+  └───────────────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  Root cause                                                                                                                                                                                            
+                                                                                                                                                                                                        
+  The agent definition carries a ## 0.1 MODEL ELIGIBILITY (HARD BLOCK) table, and this session's route is explicitly ineligible:                                                                        
+                                                                                                                                                                                                        
+  ▌ cli-mistral-vibe | DeepSeek V4.1 Flash or GLM Flash through the mistral provider roster | No | Experimental mode: no pair is admitted yet. Print mode is pinned on vibe 3.1.2, the roster is       ▆
+  ▌ closed at deepseek-flash and glm-flash, and neither is Luna, Opus or Fable                                                                                                                          
+                                                                                                                                                                                                        
+  $VIBE_HOME/config.toml confirms the match: allowed_models = ["deepseek-v4-1-flash-1017", "zai-glm-5-3-flash"] on the mistral provider. So the child was spawned onto exactly the pair its own         
+  instructions forbid, and the runtime refused to retain the generation.                                                                                                                                
+                                                                                                                                                                                                        
+  This is a different failure from last turn. Last time the type was missing (subagent_type_not_found); now the type resolves but the model gate blocks it. Retrying on this route will fail            
+  identically — the gate is deterministic, not transient.                                                                                                                                               
+                                                                                                                                                                                                        
+  To get the rewrite                                                                                                                                                                                    
+                                                                                                                                                                                                        
+  The eligible pairs are native Claude Sonnet/Haiku, cli-claude-code Sonnet/Haiku, cli-codex GPT Luna, and cli-pi/cli-opencode on anything except Luna. Running the child from one of those routes      
+  would work.                                                                                                                                                                                           
+                                                                                                                                                                                                        
+  Otherwise I can produce the dispatch-ready prompt for "make the build faster" inline right now — no child, no gate. Say which.                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                        
+                                                                                                                                                                                                        
+    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ › Main conversation
+   Prompt Improver (Prompt Improver) [running] · 11.2k tokens                                                                                                                                           
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CVxvwv35kW/vibe                                                                                                       ctx ▌      23.9k/256k
+

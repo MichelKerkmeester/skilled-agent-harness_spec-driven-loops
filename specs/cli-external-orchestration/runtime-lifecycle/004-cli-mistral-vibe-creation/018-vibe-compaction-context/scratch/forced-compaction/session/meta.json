@@ -1,0 +1,33 @@
+{
+  "session_id": "ae3634fe-1e67-f524-837a-5070e5e4475b",
+  "parent_session_id": null,
+  "start_time": "2026-11-14T22:16:51.362000+00:00",
+  "end_time": "2026-11-14T22:16:55.082000+00:00",
+  "git_commit": null,
+  "git_branch": null,
+  "environment": {
+    "working_directory": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.1S9khfP5DL"
+  },
+  "origin_directory": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.1S9khfP5DL",
+  "username": "michelkerkmeester",
+  "child_sessions": [],
+  "loops": [],
+  "title": null,
+  "title_source": "auto",
+  "bumped_at": "2026-11-14T22:16:51.692338+00:00",
+  "pinned_at": null,
+  "archived_at": null,
+  "unseen_at": "2026-11-14T22:16:55.085490+00:00",
+  "seen_at": null,
+  "experiments": null,
+  "config": {
+    "active_model": "compaction-probe",
+    "model_name": "deepseek-v4-1-flash-1017"
+  },
+  "runtime_path": "direct",
+  "import_provenance": null,
+  "created_worktree": null,
+  "project": null,
+  "artifacts": [],
+  "worktrees": []
+}

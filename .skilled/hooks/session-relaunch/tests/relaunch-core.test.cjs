@@ -1991,7 +1991,7 @@ test('the core owns the handoff sections and the runtime list as frozen exports'
   assert.equal(Object.isFrozen(relaunchCore.HANDOFF_SECTIONS), true);
   assert.deepEqual(
     relaunchCore.RUNTIMES,
-    ['claude', 'pi', 'opencode', 'codex', 'cursor', 'devin'],
+    ['claude', 'pi', 'opencode', 'codex', 'cursor', 'devin', 'vibe'],
   );
   assert.equal(Object.isFrozen(relaunchCore.RUNTIMES), true);
 });

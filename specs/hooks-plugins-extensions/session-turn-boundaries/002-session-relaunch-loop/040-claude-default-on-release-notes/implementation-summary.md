@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes"
-    last_updated_at: "2026-11-14T22:27:32Z"
+    last_updated_at: "2026-11-15T07:18:44Z"
     last_updated_by: "generate-context"
-    recent_action: "Merged and pushed to main, release tag republished at c1dbb1bcc4"
-    next_safe_action: "Continue cross-runtime handover work in phase 041"
+    recent_action: "Recorded five later operator answers from this session in the decision record"
+    next_safe_action: "None: phase 040 is complete"
     packet_purpose: "Purpose: A Claude Code session hands over by default while every other runtime stays off until its switch is set, and the v4.0.2.1 release notes and root README describe every handover change in the existing changelog style."
     blockers: []
     key_files:
@@ -21,14 +21,14 @@ _memory:
       - ".skilled/changelog/skilled/v4.0.2.1.md"
       - "README.md"
     session_dedup:
-      fingerprint: "sha256:f335cefc7acb33dbe9cde8b9ba5b95cefd310419509d7e2ddbfb350e27a88464"
+      fingerprint: "sha256:c3d46eb42c5c93a4ca2cdd47a0a16246869226c8d12ed599148b79250f2c03e7"
       session_id: "scaffold-040-claude-default-on-release-notes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "b726ec67-1d85-4833-b219-c038e184d696"
-      workspace: "/Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity"
-      savedAt: "2026-11-14T22:27:32Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/400-vibe-handover-flag-and-live-hop"
+      savedAt: "2026-11-15T07:18:44Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -123,7 +123,7 @@ The baselines ran first: relaunch and plugin 1,555, resolver 28 and Pi 62. The r
 ## Known Limitations
 
 1. **The release tag and the GitHub release still hold the old text.** Tag `v4.0.2.1` points at an earlier commit and its release body predates this edit. Bringing them in step is outward-facing and waits for the operator.
-2. **The repository's dotenv template keeps one stale comment.** It still says the loop ships off. The operator's rule forbids reading or writing a dotenv file, so it is reported rather than edited.
+2. **The repository's dotenv template kept a stale comment, now fixed.** It said the loop ships off. The operator's rule forbids reading or writing a dotenv file, so it was reported rather than edited, until the operator asked for the fix on 2026-11-15. Sections 8 and 18 of `.env.example` now say the loop ships on for Claude Code and off elsewhere, and that a set global switch decides on every runtime.
 <!-- /ANCHOR:limitations -->
 
 ---

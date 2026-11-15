@@ -1,0 +1,51 @@
+> Use the sk-prompt skill to turn this rough request into a structured prompt for a coding agent: make the build faster.                                                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 2    │ Role                                       │ absent → added           │ Measurement discipline is the whole task; the role sets it                                                       │   
+  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 3    │ Context                                    │ absent → added           │ Repo has no root manifest and no build script; that fact drives step 1                                           │   
+  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 4    │ Constraints and priorities                 │ absent → added           │ Priority order stated: measure, preserve behaviour, minimal diff                                                 │   
+  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 5    │ Steps                                      │ absent → added           │ The task is a process, not a single edit                                                                         │   
+  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 6    │ Output format                              │ absent → added           │ Numbers need a fixed shape to be comparable                                                                      │   
+  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 7    │ Examples                                   │ not needed               │ No format to imitate; examples would add noise                                                                   │   
+  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 8    │ Success criteria                           │ absent → added           │ Reproducible numbers plus passing checks                                                                         │   
+  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 9    │ Assumptions                                │ absent → added           │ "The build" is undefined; surfaced as open item 1                                                                │   
+  ├──────┼────────────────────────────────────────────┼──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 10   │ Wording                                    │ present → kept           │ Plain imperatives, no capitals, reasons given                                                                    │   
+  └──────┴────────────────────────────────────────────┴──────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  CLEAR screen: 44/50 — C 9 (no contradictions; the undefined build is handled by a stop condition), L 9 (measure → profile → change → re-measure → verify, with a branch for "cannot identify"), E     
+  13 (concrete commands and named phases, no filler), A 9 (output format mirrors the steps), R 4 (method transfers to any repo; only the path is a placeholder). All per-dimension floors met.          
+                                                                                                                                                                                                        
+  Open items                                                                                                                                                                                            
+                                                                                                                                                                                                        
+   1. "The build" is undefined in this repo — no root package.json, no build script in any of the three manifests. The prompt makes identifying it step 1 rather than assuming one.                    ▄
+   2. <repo-root> is a placeholder; substitute the actual path before dispatch.                                                                                                                         
+   3. I assumed the target is the local contributor build, not CI. If CI is the real complaint, say so and I will retarget steps 2 and 5.                                                               
+   4. No performance target is set. If you have one ("under 60s"), add it to the success criteria — a number beats "faster".                                                                            
+                                                                                                                                                                                                        
+  Change report                                                                                                                                                                                         
+                                                                                                                                                                                                        
+  • Added — role, repo context, six steps, eight constraints including the comment-hygiene hard block, eight-section output format, five success criteria.                                              
+  • Changed — "make the build faster" became a measured before/after task with a stop condition for an unidentifiable build.                                                                            
+  • Removed — nothing; the source carried no material.                                                                                                                                                  
+  • Skipped — row 7, examples: no format to imitate.                                                                                                                                                    
+  • Quick test: NOT RUN — no target model was dispatched to compare old versus new output.                                                                                                              
+                                                                                                                                                                                                        
+  The prompt is roughly 40 times the source, well past the 3x growth warning. That is inherent: the source was four words, and the growth is the measurement discipline the task needs, not imported    
+  scope.                                                                                                                                                                                                
+
+                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>   
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.7J0vUgGSN5/vibe                                                                                                         ctx ▊      34k/256k
+

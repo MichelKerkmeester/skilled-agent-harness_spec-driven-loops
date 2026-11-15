@@ -33,21 +33,23 @@
       "review-mode-contract"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+      "scratch/baseline.txt",
+      "scratch/after.txt",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
-      ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
       ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
       ".skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md"
     ],
@@ -80,6 +82,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
         "source": "derived"
       },
       {
@@ -116,18 +142,6 @@
         "name": "fanout-merge.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.contract.markdown",
-        "kind": "file",
-        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
         "source": "derived"
       },
       {
@@ -183,23 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`review-mode-contract.yaml:105` sets FAIL when `activeP0 > 0 OR any required quality gate fails`, and the contract's binary quality gates are `evidence`, `scope` and `coverage`",
     "created_at": "2026-11-15T05:36:24Z",
-    "last_save_at": "2026-11-15T05:52:00.815Z",
+    "last_save_at": "2026-11-15T07:16:04.761Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +211,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d38dd3ecd26286af66bbc78dc42c210ab3383e95b102e0b474519d96a209a410",
+    "source_fingerprint": "sha256:76f583046486ea123b866131bba038fad89f3a9d74e5c3649b9dae7f616dcf3e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dffec9a07abac9208b6115d4bb78b4c2dc5895eb3c5265eec5c76a2514cb1037",
+      "spec.md": "2f970578e66c3cf20fb1298a0b52743725ad99c0cc2e3b08b993cf812c198881",
       "plan.md": "558429d5b1f080cd51dd8ee41f751544d21ceb34358bac7e128552c7bc6a9d66",
-      "tasks.md": "c8f274105e80f2fbe2c549580aadb1fb1f71942a73c99d515c71da93c358515c",
-      "implementation-summary.md": "a84854b36c3c56587acc5e16fe396694e1a4fa4b4839d870b6b1fe441b39ea6b"
+      "tasks.md": "87a0f55a1798a93ee9beba9e641a3bc7cf01962095deb737cb9758fa0ed6b458",
+      "implementation-summary.md": "e13939eb43d4fa6a1356586cf55c90a119b0661b75ba8ba585044ddbf03c1ea4"
     },
     "last_active_at": null
   }

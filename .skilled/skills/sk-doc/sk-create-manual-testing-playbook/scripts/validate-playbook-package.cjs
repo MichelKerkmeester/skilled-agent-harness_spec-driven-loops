@@ -36,7 +36,7 @@ const REQUIRED_SECTIONS = [
   /^4\.\s+(?:REFERENCES|SOURCE FILES)$/i,
   /^5\.\s+SOURCE METADATA$/i,
 ];
-const CONVERSATION_RUNTIMES = ['claude-code', 'opencode', 'codex', 'pi', 'devin'];
+const CONVERSATION_RUNTIMES = ['claude-code', 'opencode', 'codex', 'pi', 'devin', 'vibe'];
 const CONVERSATION_ROOT_KEYS = new Set(['runtimes', 'setup', 'env', 'turns', 'trust_hooks']);
 const CONVERSATION_TURN_KEYS = new Set([
   'id', 'send', 'action', 'delay_ms', 'timeout_ms', 'retry', 'questions', 'check',

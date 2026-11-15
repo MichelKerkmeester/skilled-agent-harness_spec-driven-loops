@@ -156,7 +156,19 @@
     "dsh second opinion",
     "dsh review",
     "deepseek harness headless",
-    "opencode go route"
+    "opencode go route",
+    "mistral vibe",
+    "vibe -p",
+    "delegate to vibe",
+    "vibe print mode",
+    "mistral vibe print mode",
+    "vibe one-task run",
+    "vibe export.json",
+    "vibe roster",
+    "vibe headless",
+    "vibe cli",
+    "mistral vibe cli",
+    "vibe second opinion"
   ],
   "derived": {
     "trigger_phrases": [
@@ -241,7 +253,17 @@
       "cli-deepseek-harness router",
       "cli-deepseek-harness routing",
       "dsh headless dispatch",
-      "deepseek harness dispatch"
+      "deepseek harness dispatch",
+      "mistral vibe",
+      "vibe -p",
+      "delegate to vibe",
+      "vibe print mode",
+      "cli-mistral-vibe",
+      "mistral vibe print mode",
+      "vibe one-task run",
+      "vibe export.json",
+      "vibe roster",
+      "vibe headless"
     ],
     "key_topics": [
       "cli",
@@ -304,7 +326,13 @@
       "cli-deepseek-harness",
       "deepseek-harness",
       "dsh-headless",
-      "one-task-headless-dispatch"
+      "one-task-headless-dispatch",
+      "cli-mistral-vibe",
+      "mistral-vibe",
+      "vibe-cli",
+      "vibe-print-mode",
+      "vibe-closed-roster",
+      "one-task-print-dispatch"
     ],
     "intent_signals": [
       "delegate to opencode",
@@ -342,7 +370,12 @@
       "deepseek harness",
       "delegate to dsh",
       "dsh headless dispatch",
-      "deepseek harness dispatch"
+      "deepseek harness dispatch",
+      "mistral vibe",
+      "vibe -p",
+      "delegate to vibe",
+      "vibe print mode",
+      "vibe one-task run"
     ],
     "key_files": [
       ".skilled/skills/cli-external-orchestration/SKILL.md",
@@ -411,7 +444,15 @@
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/assets/prompt-templates.md",
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/assets/prompt-quality-card.md",
-      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.0.0.md"
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.0.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/ROUTER.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/cli-reference.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/runtime-folder-and-sync.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/assets/prompt-quality-card.md"
     ],
     "entities": [
       {
@@ -461,9 +502,15 @@
         "kind": "skill",
         "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
         "source": "derived"
+      },
+      {
+        "name": "cli-mistral-vibe",
+        "kind": "skill",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "cli-external-orchestration is the single public advisor identity for seven CLI dispatch orchestrators, folded into one parent hub. cli-opencode enables external AI runtimes and in-OpenCode operators to invoke opencode run for full plugin, skill, and MCP runtime dispatch, plus parallel detached sessions for ablation, worker farms, and cross-AI handback, defaulting to the direct deepseek provider. cli-claude-code enables external AI assistants to invoke Anthropic's Claude Code CLI for deep reasoning, surgical code editing, structured JSON-schema output, code review, and agent delegation. cli-codex enables OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation through the Codex CLI, and fails closed when codex is absent. cli-cursor enables Cursor CLI (cursor-agent) dispatch for sandboxed coding, Composer-model-specific opinions, and read-only plan/ask exploration; it fails closed when cursor-agent is absent and shares its entire config surface (hooks, MCP, rules) with the Cursor editor, unlike every sibling's tool-private config directory. cli-devin enables Cognition-backed coding, cloud handoff via /handoff, subagent delegation through run_subagent, and MCP host integration through the Devin CLI; it fails closed when devin is absent and authenticates through Devin account OAuth only. cli-pi enables Pi CLI (pi.dev, open-source multi-provider agent) dispatch for headless coding sessions; it fails closed when pi is absent, and several of its behaviors (skill-discovery flattening, prompt-template discovery, model roster) remain documented-but-unconfirmed pending live verification with a working provider. cli-deepseek-harness provides bounded one-task headless dispatch through DSH with model selection owned by the harness and task composition owned by the caller. It matters because it gives all seven dispatch paths one coherent advisor identity while each mode keeps its own dispatch contract, hard rules, and recursion bounds (cli-pi being the one mode a session of its own runtime may dispatch); the executor-delegation scorer sources its executor alias table from this hub's mode-registry.json rather than a top-level family filter, so delegation prompts keep resolving to the correct executor-kind string.",
+    "causal_summary": "cli-external-orchestration is the single public advisor identity for eight CLI dispatch orchestrators, folded into one parent hub. cli-opencode enables external AI runtimes and in-OpenCode operators to invoke opencode run for full plugin, skill, and MCP runtime dispatch, plus parallel detached sessions for ablation, worker farms, and cross-AI handback, defaulting to the direct deepseek provider. cli-claude-code enables external AI assistants to invoke Anthropic's Claude Code CLI for deep reasoning, surgical code editing, structured JSON-schema output, code review, and agent delegation. cli-codex enables OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation through the Codex CLI, and fails closed when codex is absent. cli-cursor enables Cursor CLI (cursor-agent) dispatch for sandboxed coding, Composer-model-specific opinions, and read-only plan/ask exploration; it fails closed when cursor-agent is absent and shares its entire config surface (hooks, MCP, rules) with the Cursor editor, unlike every sibling's tool-private config directory. cli-devin enables Cognition-backed coding, cloud handoff via /handoff, subagent delegation through run_subagent, and MCP host integration through the Devin CLI; it fails closed when devin is absent and authenticates through Devin account OAuth only. cli-pi enables Pi CLI (pi.dev, open-source multi-provider agent) dispatch for headless coding sessions; it fails closed when pi is absent, and several of its behaviors (skill-discovery flattening, prompt-template discovery, model roster) remain documented-but-unconfirmed pending live verification with a working provider. cli-deepseek-harness provides bounded one-task headless dispatch through DSH with model selection owned by the harness and task composition owned by the caller. cli-mistral-vibe provides bounded one-task print-mode dispatch through Mistral Vibe over a closed two-alias DeepSeek and GLM roster, counting a run complete only when export.json records exit code 0 and outcome finished. It matters because it gives all eight dispatch paths one coherent advisor identity while each mode keeps its own dispatch contract, hard rules, and recursion bounds (cli-pi being the one mode a session of its own runtime may dispatch); the executor-delegation scorer sources its executor alias table from this hub's mode-registry.json rather than a top-level family filter, so delegation prompts keep resolving to the correct executor-kind string.",
     "source_docs": [
       "SKILL.md",
       "README.md",
@@ -482,11 +529,13 @@
       "cli-pi/SKILL.md",
       "cli-pi/README.md",
       "cli-deepseek-harness/SKILL.md",
-      "cli-deepseek-harness/README.md"
+      "cli-deepseek-harness/README.md",
+      "cli-mistral-vibe/SKILL.md",
+      "cli-mistral-vibe/ROUTER.md"
     ],
     "created_at": "2026-07-10T12:00:00Z",
     "sanitizer_version": "sanitizeSkillLabel:v2",
-    "last_updated_at": "2026-11-07T00:00:00Z"
+    "last_updated_at": "2026-11-14T00:00:00Z"
   },
   "intent_signals_generated": [
     "opencode cli",
@@ -573,6 +622,18 @@
     "dsh second opinion",
     "dsh review",
     "deepseek harness headless",
-    "opencode go route"
+    "opencode go route",
+    "mistral vibe",
+    "vibe -p",
+    "delegate to vibe",
+    "vibe print mode",
+    "mistral vibe print mode",
+    "vibe one-task run",
+    "vibe export.json",
+    "vibe roster",
+    "vibe headless",
+    "vibe cli",
+    "mistral vibe cli",
+    "vibe second opinion"
   ]
 }

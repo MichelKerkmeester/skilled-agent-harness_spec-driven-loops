@@ -170,6 +170,16 @@ const REDUCER_ROW_FIELDS: Readonly<Record<string, readonly string[]>> = Object.f
   'deep_research.dispatch_receipt_write_failed': Object.freeze([
     'reason', 'phase', 'iteration', 'executor', 'timestamp', 'detail', 'sessionId',
   ]),
+  'deep_research.verification_degraded': Object.freeze([
+    'status', 'confidence', 'threshold', 'language', 'reason', 'detail', 'timestamp', 'sessionId',
+  ]),
+  'deep_research.containment_violation': Object.freeze([
+    'severity', 'timestamp', 'iteration', 'label', 'violations', 'reverted', 'revertedPatchPath',
+    'revertedPatchError', 'dataLossPossible', 'sessionId',
+  ]),
+  'deep_research.containment_contested': Object.freeze([
+    'severity', 'iteration', 'label', 'paths', 'note', 'timestamp', 'sessionId',
+  ]),
 });
 
 // ───────────────────────────────────────────────────────────────────

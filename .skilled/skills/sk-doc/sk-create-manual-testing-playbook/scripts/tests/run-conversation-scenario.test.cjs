@@ -1299,6 +1299,176 @@ function devinScreens() {
   );
 }
 
+/** Vibe's recorded question box, its rendered home and its launch, resume and exit arguments. */
+function vibeScreens() {
+  const adapter = runner.ADAPTERS.vibe;
+  assert.strictEqual(adapter.probed, true, 'Vibe is marked probed by its live sample pass');
+  assert.deepStrictEqual(adapter.exitKeys, [{ text: '/exit' }, { key: 'Enter' }]);
+  assert.strictEqual(adapter.compact, '/compact');
+
+  const project = tempDir('vibe-project');
+  const repoRoot = path.resolve(__dirname, '../../../../../..');
+  const ctx = { project, repoRoot, scriptEnv: {} };
+  const launch = adapter.launch(ctx);
+  assert.strictEqual(launch[0], 'vibe');
+  assert(launch.includes('--output-dir'), 'the run writes its export outside the checkout');
+  assert(launch.includes('--auto-approve'), 'the subject runs without an approval prompt');
+  assert.strictEqual(ctx.scriptEnv.VIBE_HOME, ctx.vibeHome, 'checks can find the journal through VIBE_HOME');
+  assert(fs.existsSync(path.join(ctx.vibeHome, 'config.toml')), 'the repository config is copied');
+  const hooks = fs.readFileSync(path.join(ctx.vibeHome, 'hooks.toml'), 'utf8');
+  assert(!hooks.includes('$(git rev-parse'), 'the rendered hooks carry absolute paths');
+  assert(hooks.includes(repoRoot), 'the rendered hooks point at this checkout');
+  assert(
+    !ctx.vibeHome.startsWith(`${repoRoot}${path.sep}`),
+    'the home sits outside the checkout the subject may not write to',
+  );
+
+  const sessionId = '0f8fad5b-d9cb-469f-a165-70867728950e';
+  fs.mkdirSync(
+    path.join(ctx.vibeHome, 'logs', 'session', 'unified', sessionId, 'journal'),
+    { recursive: true },
+  );
+  assert.deepStrictEqual(adapter.resume(ctx).slice(0, 3), ['vibe', '--resume', sessionId]);
+
+  const single = adapter.parseQuestion(vibeScreen('single'));
+  assert.deepStrictEqual(single, {
+    text: 'What custom colour do you want?',
+    options: ['purple', 'orange'],
+    multi: false,
+    other: true,
+    submitIndex: 2,
+  });
+  const multi = adapter.parseQuestion(vibeScreen('multi'));
+  assert.deepStrictEqual(multi, {
+    text: 'Which sizes do you want?',
+    options: ['small', 'medium', 'large'],
+    multi: true,
+    other: true,
+    submitIndex: 4,
+  });
+  assert.deepStrictEqual(
+    adapter.parseQuestion(vibeScreen('tabs')),
+    {
+      text: 'Which colour do you want?',
+      options: ['red', 'green'],
+      multi: false,
+      other: true,
+      submitIndex: 2,
+    },
+    'the tab row is not the question',
+  );
+  for (const name of ['ready', 'busy']) {
+    assert.strictEqual(adapter.parseQuestion(vibeScreen(name)), null, `${name} is not a question`);
+  }
+
+  const ready = vibeScreen('ready');
+  assert(ready.split('\n').some((line) => adapter.ready.test(line)), 'the input line marks ready');
+  assert(!adapter.busy.test(ready), 'the idle screen is not busy');
+  assert.strictEqual(adapter.busyAnywhere, true, 'the busy line sits above the prompt');
+  assert(
+    adapter.busy.test('⠧ Generating… (0s Esc/Ctrl+C to interrupt)'),
+    'the generating line marks busy',
+  );
+  assert(
+    adapter.busy.test('⠘⠉ User input required… (1s Esc/Ctrl+C to interrupt)'),
+    'the question wait marks busy',
+  );
+
+  assert.deepStrictEqual(
+    adapter.answerKeys(single, { select: ['orange'] }),
+    [{ key: 'Down' }, { key: 'Enter' }],
+  );
+  assert.deepStrictEqual(
+    adapter.answerKeys(single, { other: 'teal' }),
+    [{ key: 'Down' }, { key: 'Down' }, { key: 'Enter' }, { text: 'teal' }, { key: 'Enter' }],
+  );
+  assert.deepStrictEqual(
+    adapter.answerKeys(multi, { select: ['small', 'large'], multi: true }),
+    [
+      { key: 'Space' }, { key: 'Down' }, { key: 'Down' }, { key: 'Space' },
+      { key: 'Down' }, { key: 'Down' }, { key: 'Enter' },
+    ],
+  );
+  assert.deepStrictEqual(
+    adapter.answerKeys(multi, { other: 'anchovies' }),
+    [
+      { key: 'Down' }, { key: 'Down' }, { key: 'Down' }, { key: 'Enter' },
+      { text: 'anchovies' }, { key: 'Enter' }, { key: 'Space' }, { key: 'Down' }, { key: 'Enter' },
+    ],
+    'a multi-select free-text row is toggled on before Submit',
+  );
+}
+
+/**
+ * Build one recorded Vibe screen. The box lines are kept as the pane captured them, because the
+ * parser reads the border and the footer rather than a simplified shape.
+ *
+ * @param {'single'|'multi'|'tabs'|'ready'|'busy'} shape - Screen to build.
+ * @returns {string} Screen text.
+ */
+function vibeScreen(shape) {
+  const box = (lines) => [
+    `┌${'─'.repeat(70)}┐`,
+    ...lines.map((line) => `│ ${line.padEnd(69)}│`),
+    `└${'─'.repeat(70)}┘`,
+  ].join('\n');
+  if (shape === 'single') {
+    return box([
+      'What custom colour do you want?',
+      '',
+      '  1. purple - A cool blend of red and blue.',
+      '  2. orange - A warm, energetic hue.',
+      '  3. Type your answer...',
+      '',
+      '↑↓/jk navigate  Enter select  Esc cancel',
+    ]);
+  }
+  if (shape === 'multi') {
+    return box([
+      'Which sizes do you want?',
+      '',
+      '  1. [ ] small',
+      '  2. [ ] medium',
+      '  3. [ ] large',
+      '  4. [ ] Type your answer...',
+      '',
+      '     Submit →',
+      '',
+      '↑↓/jk navigate  Space/Enter toggle  Esc cancel',
+    ]);
+  }
+  if (shape === 'tabs') {
+    return box([
+      '[Colour]   Size',
+      '',
+      'Which colour do you want?',
+      '',
+      '  1. red',
+      '  2. green',
+      '  3. Type your answer...',
+      '',
+      '←→ questions  ↑↓/jk navigate  Enter select  Esc cancel',
+    ]);
+  }
+  if (shape === 'busy') {
+    return [
+      '⠧ Generating… (0s Esc/Ctrl+C to interrupt)',
+      '────────────────────────────────────────────',
+      '> ',
+    ].join('\n');
+  }
+  return [
+    ' ⢠⢢    ⡔⢄⠔⡄   Mistral Vibe v3.1.2',
+    ' ⢸⢸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free',
+    ' ⠈⠒⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information',
+    '',
+    'Hello Michel, how can I help you?',
+    '',
+    '> ',
+    '────────────────────────────────────────────',
+  ].join('\n');
+}
+
 /** Pi's recorded dialog screens, its pick-list multi-select and its idle and busy lines. */
 function piScreens() {
   const adapter = runner.ADAPTERS.pi;
@@ -1762,6 +1932,7 @@ async function runSuite() {
       ? `adapter screens: PASS (${state.probed} runtimes)`
       : `adapter screens: PASS (${state.probed} runtimes probed, ${state.pending} pending)`),
   );
+  await group('vibe adapter', vibeScreens);
   await group('quota screen', quotaScreen);
   fs.rmSync(ROOT, { recursive: true, force: true });
   process.stdout.write('PASS conversation runner suite\n');

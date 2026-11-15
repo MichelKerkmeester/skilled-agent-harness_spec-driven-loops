@@ -1,0 +1,7 @@
+# Refuses a shell dispatch that breaks the target CLI skill's blocking hard rules.
+[[hooks]]
+name = "dispatch-preflight"
+type = "pre_tool"
+strict = true
+match = "re:bash|process_start"
+command = "node @REPO@/.vibe/plugins/repo-guards/dispatch-preflight.mjs"

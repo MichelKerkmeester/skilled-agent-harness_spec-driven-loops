@@ -574,13 +574,47 @@ ENDMARK`;
   });
 });
 
+// ── Mistral Vibe dispatch recognition ───────────────────────────────────────────────────────
+
+describe('Mistral Vibe dispatch recognition', () => {
+  it('resolves every Vibe dispatch form to cli-mistral-vibe', () => {
+    const commands = [
+      'vibe -p hi </dev/null',
+      'vibe --prompt-file p.md </dev/null',
+      'vibe',
+      'vibe-rs -p hi </dev/null',
+      'vibe-acp',
+      'cd /tmp/x && VIBE_HOME=/tmp/h vibe -p hi </dev/null',
+      'printf hi | vibe -p',
+    ];
+    for (const command of commands) {
+      expect(resolveDispatchPackets(command).map(({ skill }) => skill), command).toEqual(['cli-mistral-vibe']);
+    }
+  });
+
+  it('resolves no packet for the session-free Vibe forms and for prose naming the binary', () => {
+    const commands = [
+      'vibe -v',
+      'vibe --version',
+      'vibe -h',
+      'vibe --help',
+      'vibe config get model',
+      'vibe mcp list',
+      'vibe help',
+      'echo vibe',
+      'grep vibe notes.md',
+    ];
+    for (const command of commands) expect(resolveDispatchPackets(command), command).toEqual([]);
+  });
+});
+
 // ── DISPATCH_SHAPES (single source of truth shared with the lint twin) ─────────────────────────
 
 describe('DISPATCH_SHAPES', () => {
   it('exposes the skill + packetPath pairs the preflight lint twin resolves SKILL.md from', () => {
     expect(DISPATCH_SHAPES.map((shape) => shape.skill)).toEqual([
       'cli-opencode', 'cli-claude-code', 'cli-codex', 'cli-devin', 'cli-cursor', 'cli-pi', 'cli-deepseek-harness',
-      'cli-classifier',
+      'cli-classifier', 'cli-mistral-vibe',
     ]);
     expect(DISPATCH_SHAPES.every((shape) => typeof shape.packetPath === 'string' && shape.test instanceof RegExp)).toBe(true);
     // The Jev transport is a mode of the classifier hub; its row has to name that packet, or

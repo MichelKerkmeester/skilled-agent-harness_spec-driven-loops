@@ -643,6 +643,42 @@ export type DispatchReceiptWriteFailedData = JsonObject & {
   readonly sessionId?: string;
 };
 
+// The post-dispatch validator's row for code that scored below the
+// verification threshold, carried field for field.
+export type VerificationDegradedData = JsonObject & {
+  readonly status: string;
+  readonly confidence: number;
+  readonly threshold: number;
+  readonly language: string;
+  readonly reason: string;
+  readonly detail: string;
+  readonly sessionId?: string;
+};
+
+// The write-containment guard's rows, carried field for field. The iteration
+// and the label are present when the caller named them, and the patch and data
+// loss fields only when the guard wrote or lost something.
+export type ContainmentViolationData = JsonObject & {
+  readonly severity: string;
+  readonly violations: JsonValue;
+  readonly reverted: JsonValue;
+  readonly iteration?: Uint32;
+  readonly label?: string;
+  readonly revertedPatchPath?: string;
+  readonly revertedPatchError?: string;
+  readonly dataLossPossible?: JsonValue;
+  readonly sessionId?: string;
+};
+
+export type ContainmentContestedData = JsonObject & {
+  readonly severity: string;
+  readonly paths: JsonValue;
+  readonly note: string;
+  readonly iteration?: Uint32;
+  readonly label?: string;
+  readonly sessionId?: string;
+};
+
 // ───────────────────────────────────────────────────────────────────
 // 4. EVENT UNION
 // ───────────────────────────────────────────────────────────────────
@@ -703,6 +739,9 @@ export const DeepResearchEventStems = Object.freeze([
   'deep_research.pivot_failed',
   'deep_research.dispatch_failure',
   'deep_research.dispatch_receipt_write_failed',
+  'deep_research.verification_degraded',
+  'deep_research.containment_violation',
+  'deep_research.containment_contested',
 ] as const);
 
 export type DeepResearchEventStem = typeof DeepResearchEventStems[number];
@@ -772,6 +811,9 @@ export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
   'deep_research.pivot_failed': { status: 'reserved', reason: 'No writer appends it to the research state log: the divergent pivot records its lifecycle in its own council state log. A row already in a ledger-backed research state log upcasts to this stem.' },
   'deep_research.dispatch_failure': { status: 'reserved', reason: 'No workflow stages it: the audited executor runner hands the gateway the legacy dispatch_failure row, which the gateway upcasts to this stem. A dispatch step would speak it once it stages the stem itself.' },
   'deep_research.dispatch_receipt_write_failed': { status: 'reserved', reason: 'No workflow stages it: the audited executor runner hands the gateway the legacy dispatch_receipt_write_failed row, which the gateway upcasts to this stem. A dispatch step would speak it once it stages the stem itself.' },
+  'deep_research.verification_degraded': { status: 'reserved', reason: 'No workflow stages it: the post-dispatch validator hands the gateway the legacy verification_degraded row, which the gateway upcasts to this stem. A validate step would speak it once it stages the stem itself.' },
+  'deep_research.containment_violation': { status: 'reserved', reason: 'No workflow stages it: the write-containment guard hands the gateway the legacy containment_violation row, which the gateway upcasts to this stem. A dispatch step would speak it once it stages the stem itself.' },
+  'deep_research.containment_contested': { status: 'reserved', reason: 'No workflow stages it: the write-containment guard hands the gateway the legacy containment_contested row, which the gateway upcasts to this stem. A dispatch step would speak it once it stages the stem itself.' },
 } as const satisfies Readonly<Record<DeepResearchEventStem, DeepResearchStemProducerStatus>>);
 
 export const DeepResearchWireEventTypes = Object.freeze({
@@ -830,6 +872,9 @@ export const DeepResearchWireEventTypes = Object.freeze({
   'deep_research.pivot_failed': 'deep-research.ledger.pivot-failed',
   'deep_research.dispatch_failure': 'deep-research.ledger.dispatch-failure',
   'deep_research.dispatch_receipt_write_failed': 'deep-research.ledger.dispatch-receipt-write-failed',
+  'deep_research.verification_degraded': 'deep-research.ledger.verification-degraded',
+  'deep_research.containment_violation': 'deep-research.ledger.containment-violation',
+  'deep_research.containment_contested': 'deep-research.ledger.containment-contested',
 } as const satisfies Readonly<Record<DeepResearchEventStem, string>>);
 
 export type DeepResearchWireEventType =
@@ -891,6 +936,9 @@ export interface DeepResearchPayloadMap {
   readonly 'deep_research.pivot_failed': PivotLifecycleData;
   readonly 'deep_research.dispatch_failure': DispatchFailureData;
   readonly 'deep_research.dispatch_receipt_write_failed': DispatchReceiptWriteFailedData;
+  readonly 'deep_research.verification_degraded': VerificationDegradedData;
+  readonly 'deep_research.containment_violation': ContainmentViolationData;
+  readonly 'deep_research.containment_contested': ContainmentContestedData;
 }
 
 export interface DeepResearchScopeMap {
@@ -949,6 +997,9 @@ export interface DeepResearchScopeMap {
   readonly 'deep_research.pivot_failed': DeepResearchBaseScope;
   readonly 'deep_research.dispatch_failure': DeepResearchBaseScope;
   readonly 'deep_research.dispatch_receipt_write_failed': DeepResearchBaseScope;
+  readonly 'deep_research.verification_degraded': DeepResearchBaseScope;
+  readonly 'deep_research.containment_violation': DeepResearchBaseScope;
+  readonly 'deep_research.containment_contested': DeepResearchBaseScope;
 }
 
 export interface DeepResearchLedgerPayload<

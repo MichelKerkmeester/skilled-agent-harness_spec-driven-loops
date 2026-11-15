@@ -1,0 +1,3 @@
+$ grep -rqs 'sk-git blocked this commit message' "$VIBE_HOME/logs/session/unified" && grep -rqs '"hookName":"git-message-gate"' "$VIBE_HOME/logs/session/unified" && echo refused
+refused
+[exit 0]
