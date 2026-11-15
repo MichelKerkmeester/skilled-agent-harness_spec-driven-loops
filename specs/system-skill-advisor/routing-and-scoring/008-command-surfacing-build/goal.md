@@ -303,6 +303,8 @@ and findings belong here.
 | Behaviour summary, six runtimes, rescored at 220d3d7344 | Measured | committed scorer over 007 runs-pre, runs-pre-dsh-rerun and runs-post: start before to after claude 4/12 to 4/12, codex 1/12 to 1/12, pi 3/11 to 2/10, devin 1/8 to 3/9, opencode 2/7 to 2/5, dsh 8/12 to 9/12. Unsafe after: devin 1, every other runtime 0, with its reason in the rows for cmd-deep-review-plain-tune-01 and mns-chat-03 |
 | Phase 029 direct-call kill switch | Planned | Level 2 plan at 8a5f3214522: the direct call will decide through hookFlagDecision from hook-flags.cjs in the caller's process, the daemon on its own environment only, and the before matrix prints match=no on 8 of 14 lines |
 | Phase 025 release notes and doc sync | Complete | advisor changelog v1.1.0.0 extended for phases 019 to 028 (168 to 251 lines, 14 tags, 32 items) and six pages corrected (lib, tests and command bridges READMEs, advisor-recommend, command-meaning-matching, doctor-command-routing); fact trace UNTRACED 0, independent verifier PASS after 8 wording fixes |
+| Full advisor suite, idle rerun | Met | at b5805efeccd with no worker running: 185 files, 2121 passed, 6 skipped, 0 failed (029 scratch/before.txt). Floors 24/44, 0/35, 1/44 and eval [160,51,21,5] unchanged |
+| Phase 029 direct-call kill switch | Complete | 0bc486b1637 plus follow-up 01788431d19: the direct call abstains whenever the hooks are off, 14 of 14 matrix lines match, suite 2139 passed 0 failed, review SHIP |
 
 ### Deviations and findings
 

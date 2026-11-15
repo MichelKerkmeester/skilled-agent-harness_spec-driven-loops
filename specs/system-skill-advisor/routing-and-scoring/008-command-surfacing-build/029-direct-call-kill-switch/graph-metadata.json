@@ -17,7 +17,8 @@
       "skill advisor disabled direct call still answers",
       "direct call kill switch plan",
       "direct call kill switch tasks",
-      "direct call kill switch acceptance criteria"
+      "direct call kill switch acceptance criteria",
+      "direct call kill switch implementation summary"
     ],
     "key_topics": [
       "direct",
@@ -34,28 +35,28 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "scratch/repro-after.txt",
-      ".skilled/hooks/hook-flags.env.example",
+      "implementation-summary.md",
       ".skilled/hooks/shared/hook-flags.cjs",
-      "runtime/lib/README.md",
-      "runtime/tests/README.md",
-      ".skilled/commands/doctor/env.md",
-      "scratch/floor-before.txt",
-      "scratch/eval-before.txt",
-      "scratch/before.txt",
-      "scratch/repro-before.txt",
-      "scratch/timing-before.txt",
-      ".skilled/hooks/shared/hook-flags.ts",
-      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/advisor-disabled.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-test-utils.ts",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md",
+      ".skilled/hooks/hook-flags.env.example",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
       ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-      "scratch/floor-after.txt"
+      "scratch/repro-after.txt",
+      "runtime/lib/README.md"
     ],
     "entities": [
       {
@@ -83,15 +84,9 @@
         "source": "derived"
       },
       {
-        "name": "repro-after.txt",
-        "kind": "file",
-        "path": "scratch/repro-after.txt",
-        "source": "derived"
-      },
-      {
-        "name": "hook-flags.env.example",
-        "kind": "file",
-        "path": ".skilled/hooks/hook-flags.env.example",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -101,57 +96,63 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "runtime/lib/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "env.md",
-        "kind": "doc",
-        "path": ".skilled/commands/doctor/env.md",
-        "source": "derived"
-      },
-      {
-        "name": "floor-before.txt",
-        "kind": "file",
-        "path": "scratch/floor-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "eval-before.txt",
-        "kind": "file",
-        "path": "scratch/eval-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "before.txt",
-        "kind": "file",
-        "path": "scratch/before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "repro-before.txt",
-        "kind": "file",
-        "path": "scratch/repro-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "timing-before.txt",
-        "kind": "file",
-        "path": "scratch/timing-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "hook-flags.ts",
+        "name": "advisor-disabled.ts",
         "kind": "code",
-        "path": ".skilled/hooks/shared/hook-flags.ts",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts",
         "source": "derived"
       },
       {
-        "name": "system-skill-advisor-launcher.cjs",
+        "name": "advisor-recommend.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-disabled.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/advisor-disabled.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-stale-daemon-retry.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-test-utils.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-test-utils.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "global-disable-flag.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
         "kind": "file",
-        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
         "source": "derived"
       },
       {
@@ -167,9 +168,15 @@
         "source": "derived"
       },
       {
-        "name": "floor-after.txt",
+        "name": "repro-after.txt",
         "kind": "file",
-        "path": "scratch/floor-after.txt",
+        "path": "scratch/repro-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/lib/README.md",
         "source": "derived"
       },
       {
@@ -195,31 +202,27 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A user who disables the advisor the documented way, with `SYSTEMSKILLADVISORDISABLED=1` in the shell or in `.skilled/hooks/hook-flags.env`, gets no brief from the prompt hooks and still gets `sk-doc → /create:readme (start)` from the Gate 2 direct call that `AGENTS.md` tells every model to run",
     "created_at": "2026-11-15T07:01:23Z",
-    "last_save_at": "2026-11-15T08:56:07.557Z",
+    "last_save_at": "2026-11-15T08:59:05.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62fd27a74a1240eef2fcf5062e631bac00c389fb0a42be5118f6cad178ac23b8",
+    "source_fingerprint": "sha256:ea026bc6bbdc2a4548af408b020e664fb6e42b0f8cc33a4e03d2fb643b6ec97b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a5b6f82caebbbd82409467b7e7f86886d21f8127f3b435bc78715bb7baf9e616",
+      "spec.md": "e0b960c023a3e6020ce291af628569275f7ea1a4cd19ecb13480f129b8d63ff4",
       "plan.md": "e8119d5c508f46f721a351a74300f18b59e5b634c1e85e6e14f98933f7fae57f",
-      "tasks.md": "c0b81531d9ec68d4f73c2aca05a59e98c7aeca87429cb70d08798c33e06c186a"
+      "tasks.md": "23d47325e7f1d47dba1bc3519a55abde6b62b22ec4976768702adeb448a66541",
+      "implementation-summary.md": "805e04756ca9026d6821ff44acd9c75f5f567276fc0d316827b9d1f6a26d68b2"
     },
     "last_active_at": null
   }
