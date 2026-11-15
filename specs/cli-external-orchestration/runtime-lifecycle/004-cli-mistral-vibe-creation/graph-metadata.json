@@ -171,20 +171,20 @@
     ],
     "causal_summary": "The operator subscribed to Mistral, whose plan serves DeepSeek V4.1 Flash 1017 and GLM-5.3-Flash beside Mistral's own models and its Vibe coding agent",
     "created_at": "2026-11-14T12:01:21Z",
-    "last_save_at": "2026-11-15T09:59:29.448Z",
+    "last_save_at": "2026-11-15T10:33:57.259Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:cd78bdad90bb9c908abd20309d3aa162ab9a6f1a57b153a92272ba7d8bc21b9d",
+    "source_fingerprint": "sha256:7d348e2f24a4bc7bfd28e3e13a199d8a5fcfa4bedd1bed81adbebdf3018bd6c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5fa88a0096787ab76e01639d326da7e8745d47521086316a112b7d89b756fbaa",
-      "decision-record.md": "7f55ee4a58e513738bba0d69a3ba169d70e196563853d071f677be1ec8b89d96"
+      "decision-record.md": "d8425c69e4ae33b5d1ee38db151dbd898f831ede62797ef6384adf77cbccb5ed"
     },
-    "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route",
-    "last_active_at": "2026-11-15T09:58:58.925Z"
+    "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios",
+    "last_active_at": "2026-11-15T10:33:57.259Z"
   }
 }

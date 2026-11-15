@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`.vibe/hooks.toml` registers 18 hook entries, and the Vibe playbook's 25 scenarios cover only the goal slice as a live conversation; the spec-gate and hard-rule rows are test-suite runs, and 14 entries are named in no scenario at all (Measured Behavior)",
     "created_at": "2026-11-14T22:25:49Z",
-    "last_save_at": "2026-11-15T10:30:57.639Z",
+    "last_save_at": "2026-11-15T10:33:57.212Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61de675c778e45428d2fafbcec3fdf627a4cf6bab17df9b11ec4adf747ec723c",
+    "source_fingerprint": "sha256:c669fc7c52ac89f30c0428c6b8d9b359be2d816927d957bf4d38f1b80cb857d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a86318ca65aaa6859594e8c2523ae65bc88d39ad58db9fddff8d385cb8bc95b0",
       "plan.md": "a3bf0bbb0ec4a9cba5ff2da6e23a89c49bb592d1159b14bbf0a255e1c21f13ef",
       "tasks.md": "224478b153f97e39f35aee31963e521c61b14b18f0fd22c56f6997c742501299",
-      "decision-record.md": "349a812631cf191013be9e8f355b55e8190e62d2a3b01547825b9518a72d1489",
-      "implementation-summary.md": "f7a4ec213628df27997c73355a15ae89737f800c7870768c81bb591ff56e999d"
+      "decision-record.md": "58fe2a1043de702700c8336e42822a24c480b182a9733b60969fc0e53f22930e",
+      "implementation-summary.md": "be6603a5da62f158888527a187a45f20d15d035f032fa494cc323f7447d0e75b"
     },
     "last_active_at": null
   }
