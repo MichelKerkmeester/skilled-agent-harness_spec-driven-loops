@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3e6d1c4534df2a3a789aa0e76d72248848f1aaf85c5e93206c594e248d269bb8",
+  "corpusHash": "2ca189bde00c7d86bc25c976b0b93239df8ebd195a08a1f2f1a77f7cd53a4c32",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27689,
+  "includedPathCount": 27706,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9569,6 +9569,23 @@
     "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -27721,7 +27738,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "db28da4db65d4ed0ff7f9789d4f065640d0e3aa4578f8d1560b9c576eef9c7a8",
+  "manifestHash": "8034887fac4b6984b77ff580b1ef8bb3b3b54dd1ce454ecbfcb380057fe4a70a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28957,6 +28974,22 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/scratch",
       "reason": "excluded directory"
     },
     {

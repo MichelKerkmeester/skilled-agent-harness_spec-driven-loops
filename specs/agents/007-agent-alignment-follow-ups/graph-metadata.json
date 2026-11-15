@@ -32,7 +32,11 @@
     "agents/007-agent-alignment-follow-ups/026-closeout-run-identity",
     "agents/007-agent-alignment-follow-ups/027-review-traceability-recording",
     "agents/007-agent-alignment-follow-ups/028-review-scope-recording",
-    "agents/007-agent-alignment-follow-ups/029-review-verdict-script"
+    "agents/007-agent-alignment-follow-ups/029-review-verdict-script",
+    "agents/007-agent-alignment-follow-ups/030-review-count-source",
+    "agents/007-agent-alignment-follow-ups/031-search-debt-verdict",
+    "agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration",
+    "agents/007-agent-alignment-follow-ups/033-zero-iteration-report"
   ],
   "manual": {
     "depends_on": [],
@@ -42,7 +46,8 @@
   "derived": {
     "trigger_phrases": [
       "agent alignment follow ups phase parent spec",
-      "agent file review findings"
+      "agent file review findings",
+      "007-agent-alignment-follow-ups operator decisions"
     ],
     "key_topics": [
       "agent",
@@ -55,13 +60,14 @@
       "file",
       "review",
       "findings",
-      "packet",
-      "agents"
+      "007-agent-alignment-follow-ups",
+      "operator"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "decision-record.md",
       "scratch/agent-review/finding-to-phase.tsv",
       "scratch/agent-review/agents-review.out.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -82,6 +88,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -191,22 +203,48 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-15T19:51:31.662Z",
+    "last_save_at": "2026-11-15T20:39:27.104Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:cdc5052a3e9afe19c57e46bdb41e670896a240677e6f77f890b68d20e5656b96",
+    "source_fingerprint": "sha256:1d9ac07ab7365e60428a655a8295540659b944a18ce60410071737dd150e87dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "06aeb2c61c054c9194aff4eb6ce3c8397a7088d6aa26b689e594cd54316bd057"
+      "spec.md": "f0e48021c9a191a56ce49fd85f3a68895a8c970fbaa18b4d11474c9f65757e16",
+      "decision-record.md": "b2665fb0b3ba884786ee87dcd168b2377d59dff278e5676366af693a7742e075"
     },
-    "last_active_child_id": "agents/007-agent-alignment-follow-ups/029-review-verdict-script",
-    "last_active_at": "2026-11-15T19:35:57.991Z"
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/030-review-count-source",
+    "last_active_at": "2026-11-15T20:39:27.104Z"
   }
 }

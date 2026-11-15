@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6819,
-    "ok": 19243,
+    "ok": 19260,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27689,
+  "documentsScanned": 27706,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "db28da4db65d4ed0ff7f9789d4f065640d0e3aa4578f8d1560b9c576eef9c7a8",
+  "manifestHash": "8034887fac4b6984b77ff580b1ef8bb3b3b54dd1ce454ecbfcb380057fe4a70a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44195,
+      "ok": 44216,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -53584,6 +53584,22 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/scratch",
       "reason": "excluded directory"
     },
     {

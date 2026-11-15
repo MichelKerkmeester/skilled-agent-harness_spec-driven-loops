@@ -1874,6 +1874,9 @@ workflow:
           bind_from_output:
             verdict: "verdict"
             has_advisories: "has_advisories"
+            active_p0: "active_p0"
+            active_p1: "active_p1"
+            active_p2: "active_p2"
           on_fail: "Halt with STATUS=FAIL through step_release_lock. The values the merge bound are the authority on a fan-out root, so an unreadable bound value must stop the run rather than let a verdict be guessed."
         if_absent:
           command: |
@@ -1885,10 +1888,16 @@ workflow:
           bind_from_output:
             verdict: "verdict"
             has_advisories: "has_advisories"
+            active_p0: "active_p0"
+            active_p1: "active_p1"
+            active_p2: "active_p2"
           on_fail: "Halt with STATUS=FAIL through step_release_lock. A non-zero exit means the registry or the state log could not be read, so this stop has no verdict yet and none may be assumed."
         outputs:
           - verdict: "PASS | CONDITIONAL | FAIL"
           - has_advisories: "Boolean true when verdict is PASS and any active P2 findings exist"
+          - active_p0: "Active P0 count the verdict used"
+          - active_p1: "Active P1 count the verdict used"
+          - active_p2: "Active P2 count the verdict used"
           - ac_coverage_signal: "exempt | disabled | pass | advisory-shortfall"
         contract: |
           Every iteration-NNN.md must end with exactly: "Review verdict: PASS" (or CONDITIONAL or FAIL).
@@ -1946,12 +1955,9 @@ workflow:
           5. Resolve contradictions:
              - Findings marked contested across iterations → referee pass
              - Determine final severity and status
-          6. Count only 'active' findings for totals
+          6. Count only 'active' findings for totals. These totals are narrative only; the counts the report and the closeout use come from step_derive_verdict.
         outputs:
           - finding_registry: "Deduplicated list of all findings with metadata"
-          - active_p0: "Count of active P0 findings"
-          - active_p1: "Count of active P1 findings"
-          - active_p2: "Count of active P2 findings"
 
       step_adversarial_selfcheck:
         action: "Final adversarial self-check on all P0 and P1 findings"
@@ -1960,7 +1966,7 @@ workflow:
             1. Hunter: Re-verify finding against source code (re-read file:line)
             2. Skeptic: Challenge severity — is this really P0/P1? Could it be P2?
             3. Referee: Final call — confirm, downgrade, or mark false_positive
-          Update finding_registry with adjudicated results.
+          Record each confirm, downgrade or false_positive call for the report; it does not change the counts or the verdict, which step_derive_verdict took from the registry.
 
       step_emit_resource_map:
         skip_when: "config.fanout is present"
@@ -1988,7 +1994,8 @@ workflow:
           1. **Executive Summary**
              - Overall verdict: PASS | CONDITIONAL | FAIL
              - hasAdvisories: true when PASS carries active P2 items
-             - P0/P1/P2 counts (active only)
+             - P0/P1/P2 counts: {active_p0}, {active_p1}, {active_p2}, the counts the verdict used, stated as such
+             - Self-check outcomes: each finding the adversarial self-check confirmed, downgraded or called a false positive, listed apart from the counts
              - Review scope summary
              - Operator review focus: config.reviewFocus verbatim, or omit this line when it is null
 

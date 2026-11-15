@@ -1,0 +1,18 @@
+{
+  "specFolder": "agents/007-agent-alignment-follow-ups/033-zero-iteration-report",
+  "description": "Phase 33: zero-iteration-report",
+  "keywords": [
+    "phase",
+    "zero-iteration-report"
+  ],
+  "lastUpdated": "2026-11-15T20:25:14.049Z",
+  "specId": "033",
+  "folderSlug": "zero-iteration-report",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

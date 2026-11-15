@@ -154,6 +154,10 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 27 | 027-review-traceability-recording/ | Record traceability results in a shape the coverage gate reads | Complete |
 | 28 | 028-review-scope-recording/ | Count line-suffixed and packet-doc findings as in scope | Complete |
 | 29 | 029-review-verdict-script/ | Derive the final review verdict in one script | Complete |
+| 30 | 030-review-count-source/ | One count source for review verdict, report and closeout | Complete |
+| 31 | 031-search-debt-verdict/ | Open search debt makes the final review verdict CONDITIONAL | Pending |
+| 32 | 032-traceability-reserve-iteration/ | Reserve the last review iteration for unfinished core traceability | Pending |
+| 33 | 033-zero-iteration-report/ | A review report for a run that stopped before any iteration | Pending |
 
 ### Phase Transition Rules
 
@@ -194,6 +198,10 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 026-closeout-run-identity | 027-review-traceability-recording | Closeout rows carry the run's ids | The closeout tests read the config's ids |
 | 027-review-traceability-recording | 028-review-scope-recording | Core protocol results reach the coverage gate | A `protocol`-keyed row passes coverage in a test |
 | 028-review-scope-recording | 029-review-verdict-script | In-target findings pass scope | The scope tests pass for suffixed and packet-doc findings |
+| 029-review-verdict-script | 030-review-count-source | One verdict function | The verdict tests pass |
+| 030-review-count-source | 031-search-debt-verdict | Report and closeout use the verdict counts | The closeout count tests pass |
+| 031-search-debt-verdict | 032-traceability-reserve-iteration | Debt gives CONDITIONAL on every verdict path | The verdict, merge and reducer tests pass |
+| 032-traceability-reserve-iteration | 033-zero-iteration-report | The last iteration goes to unfinished core protocols | The stop-path replay test passes |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/031-search-debt-verdict",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/031-search-debt-verdict",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "search debt verdict",
+      "phase 31 search debt verdict",
+      "search debt verdict plan",
+      "search debt verdict tasks",
+      "search debt verdict implementation summary"
+    ],
+    "key_topics": [
+      "search",
+      "debt",
+      "verdict",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "derivereviewverdict",
+      "skilled",
+      "skills",
+      "system-deep-loop"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/review-verdict.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+      ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-verdict.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/review-verdict.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-mode-contract.yaml",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "review-mode-contract-snapshot.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deriveReviewVerdict` in `.skilled/skills/system-deep-loop/runtime/scripts/review-verdict.cjs` takes P0, P1, P2 and failed gates only",
+    "created_at": "2026-11-15T20:25:11Z",
+    "last_save_at": "2026-11-15T20:36:00.373Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7238c8a4918a70bd85be95f2e6a3f9e88230dc979f8e4b846b676f7f345555f2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e4e5755824b135e435c3728fde5de5d05f447e1e74afa784f6559cb57cf577e8",
+      "plan.md": "81d9b33073dfe3ca27ee2aad1c7f4efccfe7fcdc3e6e8c7982133d09998f0354",
+      "tasks.md": "7829d5db772def906342c7512d6920cfb7c178dae53432e1376872d5f4d961cf",
+      "implementation-summary.md": "742177b0f65e1c19e148ee7184e22f254b90e045bb9b8c733762f15489f81d21"
+    },
+    "last_active_at": null
+  }
+}
