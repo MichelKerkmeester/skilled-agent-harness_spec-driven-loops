@@ -1,14 +1,14 @@
 ---
 title: "cli-mistral-vibe: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-mistral-vibe skill."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # cli-mistral-vibe: Manual Testing Playbook
 
 > **EXECUTION POLICY**: Live Vibe scenarios use the real `vibe` binary and never a mock. The CLI adapter stress matrix runs checked-in Vitest cells against shims and fixtures; those cells do not start `vibe` or contact a provider. A scenario that already holds a saved capture cites and records that basis. The only allowed verdicts are `PASS`, `FAIL` and `SKIP`. A `SKIP` names a specific blocker and a re-run condition.
 
-> **RECURSION BOUNDS**: A Vibe dispatch is refused inside a Vibe child and inside a fan-out lineage. The fan-out scenario needs a runtime that carries the `cli-mistral-vibe` executor kind. The executor kind is experimental, and a lineage runs with `--auto-approve` and without confinement; the runner renders the repository's guard hooks into its home.
+> **RECURSION BOUNDS**: A Vibe dispatch is refused inside a Vibe child, by the self-invocation refusal in [SKILL.md](../SKILL.md), which reads `VIBE_SESSION=1`, and inside a fan-out lineage. The fan-out scenario needs a runtime that carries the `cli-mistral-vibe` executor kind. The executor kind is experimental, and a lineage runs with `--auto-approve` and without confinement; the runner renders the repository's guard hooks into its home.
 
 This document is the operator directory and package-level validation contract for the `cli-mistral-vibe` skill. It defines the realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors and links to the thirty-seven operator scenarios and the fourteen adapter stress cells.
 
@@ -65,7 +65,7 @@ This playbook provides thirty-seven operator scenarios across nine category fold
 - The desired user-visible outcome.
 - The source files that justify the contract.
 
-Coverage note: this package covers print-mode invocation, the keyed roster alias, the six hard rules and their sidecar, the spec-gate suite, the three generated mirrors, the goal hook suite and its first-turn injection, the adapter stress cells, and the routing front door and decision. The keyed scenarios cite saved captures from earlier runs; this review did not start `vibe`. The fourteen stress cells are hermetic and need no live provider step.
+Coverage note: this package covers print-mode invocation, the keyed roster alias, the seven hard rules and their sidecar, the spec-gate suite, the three generated mirrors, the goal hook suite and its first-turn injection, the adapter stress cells, and the routing front door and decision. The keyed scenarios cite saved captures from earlier runs; this review did not start `vibe`. The fourteen stress cells are hermetic and need no live provider step.
 
 ---
 
@@ -209,7 +209,7 @@ This category covers one keyed request on a roster alias. The run must exit `0` 
 
 ## 9. HARD RULES (`VIB-HR-001..VIB-HR-002`)
 
-This category covers the six fail-closed rules and the sidecar the preflight reads. One suite exercises every rule through the shared evaluator; one reader checks the sidecar's count, ids and severities.
+This category covers the seven fail-closed rules and the sidecar the preflight reads. One suite exercises every rule through the shared evaluator; one reader checks the sidecar's count, ids and severities.
 
 - `VIB-HR-001`: [Dispatch rule-check suite](hard-rules/dispatch-rule-check-suite.md)
 - `VIB-HR-002`: [Hard-rule sidecar integrity](hard-rules/hard-rule-sidecar-integrity.md)
@@ -318,9 +318,9 @@ The print-mode contract is observed. The recorded first turn finished on `deepse
 
 The keyed lineage also finished on `deepseek-flash` with `exit_code` `0`, `outcome` `finished` and `steps` `50`. A lineage runs with `--auto-approve`, without confinement and without the repository's guard hooks, so its result applies to the lineage route and not to the hard-rule-checked dispatch shape. That run predates the rendered home hooks, so its journal holds no repository hook record. A later keyed scratch-cwd run with the rendered home file loaded the guards and the goal slice, and a child write went through.
 
-The three generated mirrors are in sync at 11 agent profiles, 56 skill links and 45 prompt stubs. The dispatch rule-check suite passes 59 tests, the spec-gate suite passes 3, the goal-hook suite passes 3, and the adapter stress file passes 22 with the live probe skipped. The goal hook is registered once, and the recorded journal carries the packet's slice in a block tagged `vibe.hookContext: true`.
+The three generated mirrors are in sync at 11 agent profiles, 56 skill links and 45 prompt stubs. The dispatch rule-check suite passes 65 tests, the spec-gate suite passes 3, the goal-hook suite passes 3, and the adapter stress file passes 22 with the live probe skipped. The goal hook is registered once, and the recorded journal carries the packet's slice in a block tagged `vibe.hookContext: true`.
 
-The routing front door serves the compiled decision for the `cli-external-orchestration` hub: `delegate to vibe` routes to `cli-mistral-vibe`, the activation manifest and the snapshot share policy hash `8afacc3f...` at generation `5`, and the legacy hub router carries both the mode row and the keyword as the fallback.
+The routing front door serves the compiled decision for the `cli-external-orchestration` hub: `delegate to vibe` routes to `cli-mistral-vibe`, the activation manifest and the snapshot share policy hash `1f77e1ab...` at generation `5`, and the legacy hub router carries both the mode row and the keyword as the fallback.
 
 ---
 
@@ -330,8 +330,8 @@ The `cli-mistral-vibe` packet owns the dispatch contract around the `vibe` binar
 
 | Test Surface | Coverage | Playbook Overlap |
 |---|---|---|
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | The six Vibe hard rules, the documented dispatch line and the enforcement guards | `VIB-HR-001` |
-| `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json` | The six rule ids, messages and severities | `VIB-HR-002` |
+| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | The seven Vibe hard rules, the documented dispatch line and the enforcement guards | `VIB-HR-001` |
+| `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json` | The seven rule ids, messages and severities | `VIB-HR-002` |
 | `.vibe/plugins/repo-guards/tests/spec-gate.test.mjs` | The interactive deny and the two child exemptions | `VIB-GRD-001` |
 | `.skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs` | Generated agent profiles, `--check` drift mode | `VIB-MIR-001` |
 | `.skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs` | Generated skill links, `--check` drift mode | `VIB-MIR-001` |

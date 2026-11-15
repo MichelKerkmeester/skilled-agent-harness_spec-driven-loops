@@ -1563,7 +1563,7 @@ Every other shipped skill is codebase-agnostic:
 | **`mcp-code-mode`** | Multi-tool MCP orchestration. Works for any project |
 | **`system-deep-loop`** | Parent hub for the unified deep-loop skill (research, review and ai-council modes) over nested `runtime/` infrastructure. Works for any topic / target |
 | **`sk-prompt`** | Prompt-engineering framework. Works for any project |
-| **`cli-external-orchestration`** | Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness`. Stack-independent |
+| **`cli-external-orchestration`** | Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe`. Stack-independent |
 | **`cli-classifier`** | Parent hub for typed-judgment transports: routes to `cli-jev` (Pi's classifier first for yes-or-no and choice questions, the `jev` CLI otherwise) for a probability, an option key, a score position or a batch of keyed answers. Stack-independent. Needs the `jev` CLI on PATH (`uv tool install jev-cli`) and a key stored with `jev auth set --provider official`, which also turns on its four measured features |
 | **`mcp-tooling`** | Parent hub for eight MCP tool bridges, each described under [MCP Integration](#mcp-integration). Stack-independent |
 | **`cli-orca`** | Drives the Orca app's worktrees, terminals, browser and automations from a dispatch. Works for any project that runs Orca |
