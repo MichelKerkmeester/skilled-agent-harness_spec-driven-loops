@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs",
+  "description": "Phase 3: sk-doc-changelogs",
+  "keywords": [
+    "phase",
+    "sk-doc-changelogs"
+  ],
+  "lastUpdated": "2026-11-15T06:37:33.055Z",
+  "specId": "003",
+  "folderSlug": "sk-doc-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "007-changelog-voice-rewrite"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

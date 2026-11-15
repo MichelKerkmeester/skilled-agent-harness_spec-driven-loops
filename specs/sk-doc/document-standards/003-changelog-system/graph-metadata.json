@@ -9,7 +9,8 @@
     "sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog",
     "sk-doc/document-standards/003-changelog-system/004-changelog-section-spacing",
     "sk-doc/document-standards/003-changelog-system/005-concise-release-format",
-    "sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit"
+    "sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite"
   ],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "searchable"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -89,18 +90,18 @@
     ],
     "causal_summary": "The changelog template prescribed machine-era tables and stale paths, and its workflow did not enforce the concise narrative style established by v4.0.0.0",
     "created_at": "2026-10-31T13:41:22.552Z",
-    "last_save_at": "2026-11-15T06:26:05.366Z",
+    "last_save_at": "2026-11-15T08:29:07.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a4032ad2124198a96f25ae7674eb65ccb13a010e5400ed357d3f1a9cdb2b374f",
+    "source_fingerprint": "sha256:aaac7e01b1a537358ffae5c8b77e782f9207de3e87164e0541b363eee0e230ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37c15f3f4ebbb9d7677afb2ffd6252e4950bb98c2179a09fdb9da080eb008ac2"
+      "spec.md": "ee20adc62026f46ccd6064b29cf293584ec73c9a12863c7689e524e618b71309"
     },
-    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit",
-    "last_active_at": "2026-11-15T06:26:05.366Z"
+    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite",
+    "last_active_at": "2026-11-15T08:28:10.562Z"
   }
 }
