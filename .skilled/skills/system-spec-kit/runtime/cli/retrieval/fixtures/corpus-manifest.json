@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a355905d0ef9cbf93176ad03bc7ddeb33cde65d3ccbcead324d94fd93866d82b",
+  "corpusHash": "f85405aecede70c50d4c570314b91915cc050f9019dc73c8dca85c382115b923",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27567,
+  "includedPathCount": 27568,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12098,6 +12098,7 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/spec.md",
@@ -27599,7 +27600,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0f1a93554a90d40071ec07944bbf37bd0d0ab837f19ffa125b3dfbdbc294f10b",
+  "manifestHash": "d5fc0f23a53fb8ad4cc48f3e17bcf29a75f31c09a3f8eb56871d2177b8cb5907",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
