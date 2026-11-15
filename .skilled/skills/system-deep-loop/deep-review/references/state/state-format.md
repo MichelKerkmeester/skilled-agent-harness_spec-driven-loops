@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Deep Review State Format
@@ -427,7 +427,7 @@ Embed the packet inside the iteration file for each new P0/P1 finding. The orche
     ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:154",
     ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:292-302"
   ],
-  "counterevidenceSought": "Grepped the module for compound-key upserts, checked migration scripts, and inspected session-isolation.vitest.ts for a collision regression, none found.",
+  "counterevidenceSought": "Grepped the module for compound-key upserts, checked migration scripts, and inspected the composite-key upserts in `runtime/lib/coverage-graph/coverage-graph-db.ts` for a collision regression, none found.",
   "alternativeExplanation": "Could be intentional single-tenant design, but REQ-024 explicitly requires session isolation, so this is rejected.",
   "finalSeverity": "P1",
   "confidence": 0.86,
@@ -483,7 +483,7 @@ Each finding is tracked with a unique identifier enabling deduplication, severit
   "status": "active",
   "dimension": "traceability",
   "title": "Applied target file missing from resource-map inventory",
-  "file": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+  "file": ".skilled/commands/deep/assets/deep-review.yaml",
   "line": 955,
   "firstSeen": 2,
   "lastSeen": 4,

@@ -178,7 +178,7 @@ KNOWN_SUFFIXES = {
 }
 REPOSITORY_ROOT_PREFIXES = (
     ".github/",
-    ".dsh/", ".skilled/", ".opencode/",
+    ".dsh/", ".vibe/", ".skilled/", ".opencode/",
     ".claude/", ".codex/", ".cursor/", ".devin/", ".pi/",
     "specs/",
     "opencode.json",

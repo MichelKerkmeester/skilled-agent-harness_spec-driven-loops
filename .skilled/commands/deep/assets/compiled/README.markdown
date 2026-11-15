@@ -20,11 +20,11 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-`.skilled/commands/deep/assets/compiled/` stores the three flattened command contracts used by deep-command injection tooling.
+`.skilled/commands/deep/assets/compiled/` stores the two flattened command contracts used by deep-command injection tooling.
 
 The generated contracts combine maintained command, workflow, skill, reference and agent sources into grep-checkable executor instructions. Maintained source files remain authoritative.
 
-The compiled inventory is intentionally limited to the three commands registered with the contract compiler and renderer: `deep/ai-council`, `deep/research` and `deep/review`. Each has one matching legacy body in `../legacy/`. No legacy body in that directory lacks a compiled counterpart.
+The compiled inventory is intentionally limited to the two commands registered with the contract compiler and renderer: `deep/research` and `deep/review`. Each has one matching legacy body in `../legacy/`. No legacy body in that directory lacks a compiled counterpart.
 
 ---
 
@@ -32,7 +32,6 @@ The compiled inventory is intentionally limited to the three commands registered
 
 ```text
 compiled/
-+-- deep-ai-council.contract.markdown
 +-- deep-research.contract.markdown
 +-- deep-review.contract.markdown
 +-- manifest.jsonl
@@ -47,7 +46,6 @@ compiled/
 |---|---|
 | `deep-research.contract.markdown` | Generated executor contract for `/deep:research`. |
 | `deep-review.contract.markdown` | Generated executor contract for `/deep:review`. |
-| `deep-ai-council.contract.markdown` | Generated executor contract for `/deep:ai-council`. |
 | `manifest.jsonl` | Append-only render records with command, mode and content digests. |
 
 ---
@@ -63,7 +61,7 @@ Generated contracts record:
 - Setup and execution rules
 - Write boundaries
 - Tool grants
-- Dispatch or council execution requirements
+- Dispatch and execution-mode requirements
 
 The compiler named in generated headers is:
 

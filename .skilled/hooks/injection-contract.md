@@ -15,7 +15,7 @@ version: 1.0.1.0
 
 # Hook & Plugin Injection Contract
 
-Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi and DeepSeek Harness) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
+Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi, DeepSeek Harness and Mistral Vibe) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
 
 **Kill-switches.** Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED` switch plus its canonical `SYSTEM_<CONCERN>_DISABLED` switch, and every concern except session relaunch is default-on. Session relaunch ships on for Claude Code and off for every other runtime: a runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime when it holds a value, `SYSTEM_SESSION_RELAUNCH_ENABLED` decides when it holds one, and with both blank only Claude Code is on. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index). This contract does not duplicate it.
 
@@ -26,6 +26,8 @@ Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCo
 ### Purpose
 
 Answer, for any hook or plugin in this repo: what does it add to the session, on what trigger, and can a human watching the terminal see it without special tooling?
+
+The per-runtime channel lines below cover the first seven runtimes. Mistral Vibe wires the same cores through the `[[hooks]]` entries in `.vibe/hooks.toml`, and [guards-and-hooks.md](../skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md) maps each entry to its Vibe event and to what it adds: a `pre_tool` deny reaches the model as a tool error, and the session-start, `pre_agent` and `post_tool` hooks return `additional_context`, which is model-context-only.
 
 ### Why this exists
 

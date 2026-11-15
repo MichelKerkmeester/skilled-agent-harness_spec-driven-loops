@@ -1,7 +1,7 @@
 ---
 title: "DRV-014 -- Severity classification in JSONL"
 description: "Verify that findingsSummary and findingsNew fields in JSONL include P0/P1/P2 counts for every iteration record."
-version: 1.11.0.15
+version: 1.11.1.0
 ---
 
 # DRV-014 -- Severity classification in JSONL
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review JSONL severity classification for findingsSummary, findingsNew, and convergence severity weights.
 ### Commands
 1. `bash: rg -n 'findingsSummary|findingsNew|Rule 11|severity counts' .skilled/skills/system-deep-loop/deep-review/SKILL.md`
-2. `bash: rg -n 'findingsSummary|findingsNew|severity_weights|p0_override|newFindingsRatio' .skilled/commands/deep/assets/deep-review-auto.yaml`
+2. `bash: rg -n 'findingsSummary|findingsNew|severity_weights|p0_override|newFindingsRatio' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'findingsSummary|findingsNew|P0.*10|P1.*5|P2.*1|severity.*weight' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md`
 ### Expected
 Rule 11 mandates the fields. The YAML dispatch constrains them. The convergence algorithm references severity_weights with P0=10.0, P1=5.0, P2=1.0. The P0 override sets newFindingsRatio >= 0.50.
@@ -72,8 +72,7 @@ Check the on_missing_outputs fallback JSONL template to verify it also includes 
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Rule 11: severity counts mandate, use `ANCHOR:rules` |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Dispatch constraints, severity_weights, and P0 override, inspect `step_dispatch_review_agent`, `severity_weights`, and `on_missing_outputs` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Dispatch constraints, inspect `step_dispatch_review_agent` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Dispatch constraints, severity_weights, and P0 override, inspect `step_dispatch_review_agent`, `severity_weights`, and `on_missing_outputs` |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence signals, use `ANCHOR:convergence` |
 | `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md` | Shared JSONL schema, inspect iteration record fields |
 

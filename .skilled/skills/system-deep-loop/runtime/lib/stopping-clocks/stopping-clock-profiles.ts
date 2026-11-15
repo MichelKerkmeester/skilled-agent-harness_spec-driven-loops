@@ -38,14 +38,12 @@ const DEADLINES_MS: Readonly<Record<StoppingClockMode, number>> = Object.freeze(
   research: 3_600_000,
   review: 2_700_000,
   context: 1_800_000,
-  council: 3_600_000,
 });
 
 const MODES = Object.freeze([
   'research',
   'review',
   'context',
-  'council',
 ] as const);
 
 // ───────────────────────────────────────────────────────────────────

@@ -33,9 +33,7 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   commonjs: [['sk-code', 0.75]],
   context: [['system-spec-kit', 0.65]],
   corpus: [['system-spec-kit', 0.45]],
-  council: [['system-deep-loop', 0.9]],
   dashboard: [['sk-code', 0.35]],
-  deliberation: [['system-deep-loop', 0.8]],
   debug: [['sk-code', 0.25]],
   devtools: [['mcp-tooling', 1]],
   docs: [['sk-doc', 0.8]],
@@ -136,17 +134,14 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'commonjs helper': [['sk-code', 1]],
   'create a prompt': [['sk-prompt', 0.95]],
   'deep research': [['system-deep-loop', 1]],
-  'deep review': [['system-deep-loop', 1]],
-  'deep ai council': [['system-deep-loop', 1.6]],
-  'deep-ai-council': [['system-deep-loop', 1.6]],
+  // A deep review of a branch is a review loop, not git work, so the word
+  // branch must not let the git skill tie the phrase.
+  'deep review': [['system-deep-loop', 1], ['sk-git', -0.5]],
   'deep-research': [['system-deep-loop', 1.3]],
   'deep-review': [['system-deep-loop', 1.3]],
-  'ai council': [['system-deep-loop', 1.4]],
-  'planning council': [['system-deep-loop', 1.2]],
-  'council deliberation': [['system-deep-loop', 1.4]],
-  'persist council artifacts': [['system-deep-loop', 1.2]],
-  'ai-council artifacts': [['system-deep-loop', 1.2]],
-  'multi-ai-council': [['system-deep-loop', 1.2]],
+  // Asking about the council names the council command; the word review in the
+  // same question is the comparison, not a code review request.
+  'ai council': [['command-speckit-ai-council', 1], ['sk-code', -0.6]],
   // Plain wording for a deep run: each phrase asks for the effort a deep loop exists for.
   'find out everything': [['system-deep-loop', 1]],
   'findings stop changing': [['system-deep-loop', 1.2], ['sk-code', -0.6]],

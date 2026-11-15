@@ -1,7 +1,7 @@
 ---
 title: "DR-055 -- Anti-convergence floor"
 description: "Verify that convergence STOP is blocked until the configured minimum iteration floor clears."
-version: 1.14.0.21
+version: 1.14.1.0
 ---
 
 # DR-055 -- Anti-convergence floor
@@ -27,7 +27,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify that convergence STOP is blocked until the configured minimum iteration floor clears.
 - Real user request: Make sure deep-research cannot stop after one shallow pass just because convergence math says STOP.
 - Prompt: `Validate the deep-research minIterations floor and convergenceMode behavior against config, YAML, and tests.`
-- Expected execution process: Inspect the config defaults, the auto YAML read-state and convergence guard steps, then the convergence-floor unit test.
+- Expected execution process: Inspect the config defaults, the workflow read-state and convergence guard steps, then the convergence-floor unit test.
 - Desired user-visible outcome: The user is told that early convergence is blocked until the floor clears, but max-iteration and pause controls still apply.
 - Expected signals: `minIterations` defaults to 3, `convergenceMode` defaults to `default`, early STOP uses `minIterationsNotReached`, and `min_iterations_guard_pass` is emitted when the floor clears.
 - Pass/fail posture: PASS if config, YAML, and tests agree on the floor and fail-open behavior for older configs; FAIL if convergence can stop before the floor without an explicit hard stop.
@@ -46,16 +46,16 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate the deep-research minIterations floor and convergenceMode behavior against config, YAML, and tests.
 ### Commands
 1. `bash: rg -n 'minIterations|convergenceMode|antiConvergence' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json`
-2. `bash: rg -n 'min_iterations|minIterationsNotReached|min_iterations_guard_pass|convergenceMode' .skilled/commands/deep/assets/deep-research-auto.yaml`
+2. `bash: rg -n 'min_iterations|minIterationsNotReached|min_iterations_guard_pass|convergenceMode' .skilled/commands/deep/assets/deep-research.yaml`
 3. `bash: sed -n '1,130p' .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts`
 ### Expected
 `minIterations` defaults to 3, early convergence STOP is overridden until the floor clears, `convergenceMode` is accepted, and older configs without the field keep prior behavior with a warning.
 ### Evidence
-Capture the config default, YAML guard branch, emitted event name, and unit-test expectations.
+Capture the config default, the convergence.cjs floor rule, emitted event name, and unit-test expectations.
 ### Pass/Fail
 PASS if the source files agree on the minimum-iteration floor and event semantics; FAIL if any source allows a convergence STOP before the floor without a hard cap or explicit halt.
 ### Failure Triage
-Privilege the auto YAML for live workflow behavior and the config asset for shipped defaults.
+Privilege the workflow for live workflow behavior and the config asset for shipped defaults.
 
 ---
 
@@ -73,8 +73,8 @@ Privilege the auto YAML for live workflow behavior and the config asset for ship
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Anti-convergence defaults and locked config fields |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Live convergence guard, warning, and event emission path |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts` | Unit coverage for config and YAML guard behavior |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Live convergence guard, warning, and event emission path |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts` | Unit coverage for config and floor behavior |
 
 ---
 

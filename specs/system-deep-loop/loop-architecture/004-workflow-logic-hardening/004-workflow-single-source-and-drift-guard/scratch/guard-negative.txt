@@ -1,0 +1,35 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening/.skilled/skills/system-deep-loop/runtime
+
+ ❯ |parallel| tests/unit/compile-command-contracts.vitest.ts (21 tests | 1 failed) 19ms
+     × finds no per-mode workflow file for research or review 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |parallel| tests/unit/compile-command-contracts.vitest.ts > workflow drift guard > finds no per-mode workflow file for research or review
+AssertionError: a per-mode workflow file is back: /deep:research and /deep:review each run from one file: expected [ 'deep-research-confirm.yaml' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "deep-research-confirm.yaml",
++ ]
+
+ ❯ tests/unit/compile-command-contracts.vitest.ts:259:7
+    257|       perModeWorkflowFiles(GUARD_ASSETS_DIR),
+    258|       'a per-mode workflow file is back: /deep:research and /deep:revi…
+    259|     ).toEqual([]);
+       |       ^
+    260|   });
+    261|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 20 passed (21)
+   Start at  19:52:21
+   Duration  98ms (transform 14ms, setup 15ms, import 7ms, tests 19ms, environment 0ms)
+

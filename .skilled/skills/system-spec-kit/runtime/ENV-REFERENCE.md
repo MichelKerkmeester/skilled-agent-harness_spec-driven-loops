@@ -501,8 +501,14 @@ Mistral Vibe configuration names are listed here without values. The dispatch ru
 | `MISTRAL_VIBE_SESSION_ROOT` |
 | `VIBE_HOME` |
 | `VIBE_SPEC_FOLDER` |
+| `VIBE_SKILLS_SOURCE_DIR` |
+| `VIBE_SKILLS_OUTPUT_DIR` |
+| `VIBE_COMMANDS_SOURCE_DIR` |
+| `VIBE_PROMPTS_OUTPUT_DIR` |
+| `VIBE_AGENTS_SOURCE_DIR` |
+| `VIBE_AGENTS_OUTPUT_DIR` |
 
-`MISTRAL_API_KEY` is the Mistral provider key for Vibe and the `mistral` routes. `MISTRAL_VIBE_SESSION_ROOT` overrides the session root the save-time `sweep-vibe.mjs` reads, which defaults to `~/.vibe/logs/session`; a keyed or isolated run points it at its own `VIBE_HOME` tree so the sweep finds the journal it wrote. `VIBE_HOME` is Vibe's home override; a fan-out lineage sets its own. `VIBE_SPEC_FOLDER` names the packet whose goal slice the session-start hook injects, as a checkout-relative or absolute path; a fan-out lineage receives it as an absolute path.
+`MISTRAL_API_KEY` is the Mistral provider key for Vibe and the `mistral` routes. `MISTRAL_VIBE_SESSION_ROOT` overrides the session root the save-time `sweep-vibe.mjs` reads, which defaults to `~/.vibe/logs/session`; a keyed or isolated run points it at its own `VIBE_HOME` tree so the sweep finds the journal it wrote. `VIBE_HOME` is Vibe's home override; a fan-out lineage sets its own. `VIBE_SPEC_FOLDER` names the packet whose goal slice the session-start hook injects, as a checkout-relative or absolute path; a fan-out lineage receives it as an absolute path. The six `VIBE_*_DIR` names are mirror-sync overrides read by the three generators under `.skilled/skills/system-spec-kit/runtime/cli/vibe/`: each source defaults to its `.skilled/` folder and each output to its `.vibe/` folder, and the generator tests point them at temporary folders.
 
 A Vibe lineage also receives `SPECKIT_DIST_AUTO_REBUILD=0`. Every lineage runs the session-start dist check, and that check's default self-heal compiles into the checkout, so sibling lineages starting together would race one build. With the switch off, the lineage keeps the staleness warning and the parent session keeps the rebuild. The switch never disables the check itself; [the hook kill-switches](#hook-kill-switches) carry its general meaning.
 

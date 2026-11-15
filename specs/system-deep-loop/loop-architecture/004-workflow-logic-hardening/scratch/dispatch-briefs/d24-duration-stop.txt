@@ -1,0 +1,44 @@
+ROLE: You are a workflow-file editor. Make exactly the edit below, nothing else. Do not refactor,
+reformat, reorder or fix anything adjacent. Keep the indentation of the surrounding lines exactly.
+All four files must still parse as YAML afterwards. Do not edit any test.
+
+CONTEXT: every config holds `maxDurationMinutes: 120`, and nothing reads it. Each loop must check
+it at the top of every pass and, when the limit is reached, skip the dispatch and go to synthesis
+with stop reason `maxDurationReached`. The exact text is in the WORKFLOW TEXT CONTRACT above,
+part C10.
+
+ALLOWED WRITE PATHS (only these four files, all in .skilled/commands/deep/assets/):
+- deep-research-auto.yaml
+- deep-research-confirm.yaml
+- deep-review-auto.yaml
+- deep-review-confirm.yaml
+
+EDIT 1 (all four files). In `phase_loop:`, directly after the `step_refresh_lock:` step (after
+its last line, which is its `on_refresh:` line) and before the next step
+(`step_record_artifact_migration:`), add one blank line and then the whole
+`step_check_max_duration:` step of contract C10, so that one blank line separates it from the step
+before it and one blank line from the step after it.
+Fill the three placeholders of C10 per file:
+  deep-research-auto.yaml and deep-research-confirm.yaml:
+    <MODE> = research, <SID> = {config.lineage.sessionId}, <GEN> = {config.lineage.generation}
+  deep-review-auto.yaml and deep-review-confirm.yaml:
+    <MODE> = review, <SID> = {session_id}, <GEN> = {generation}
+Copy every other character of the step exactly, including the `command: |` block.
+
+EDIT 2 (the two research files only). Run
+  rg -n 'excluded_reasons:' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+and print the lines. Change nothing: this only confirms that `maxDurationReached` is already in
+each list. If one list lacks it, print that line and stop without editing it.
+
+VERIFY (run from the repository root and print each output):
+  python3 -c "import sys, yaml; [yaml.safe_load(open(p)) for p in sys.argv[1:]]; print('yaml ok')" .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -c 'maxDurationMinutes' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -n '<MODE>|<SID>|<GEN>' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/workflow-max-duration.vitest.ts tests/unit/lifecycle-taxonomy-yaml-parity.vitest.ts 2>&1 | tail -30)
+  git status --short
+
+EXPECTED: `yaml ok`. The second command prints 2 or more for each file. The third prints nothing.
+Both test files report 0 failed. If a test fails for a workflow-text reason, fix the workflow
+file, never the test.
+
+RETURN: the outputs of the verify commands.

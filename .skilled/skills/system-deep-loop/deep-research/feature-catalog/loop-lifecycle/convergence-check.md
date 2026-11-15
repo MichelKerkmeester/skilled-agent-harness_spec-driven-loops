@@ -7,7 +7,7 @@ trigger_phrases:
   - "legal-stop gates"
   - "blocked-stop handling"
   - "statistical stop vote"
-version: 1.14.0.11
+version: 1.14.1.0
 ---
 
 # Convergence check
@@ -22,9 +22,9 @@ Convergence checking is the control point between one finished iteration and the
 
 ## 2. HOW IT WORKS
 
-The live loop applies convergence in layers. Hard stops for `maxIterations` and all-questions-answered run first. The workflow then evaluates the weighted `shouldContinue()` signals from `convergence.md`, and when those signals or full question coverage nominate STOP, it applies the legal-stop bundle rather than stopping on novelty math alone.
+The live loop applies convergence in layers. Hard stops for `maxIterations` and all-questions-answered run first. convergence.cjs evaluates the weighted `shouldContinue()` signals from `convergence.md`, and when those signals or full question coverage nominate STOP, it applies the legal-stop bundle rather than stopping on novelty math alone.
 
-That legal-stop bundle is workflow-visible, not only prose guidance. The YAML workflows record graph convergence results when available, evaluate the gate bundle, and emit a first-class `blocked_stop` event if the stop is not yet legal. That event carries gate results, blockers, recovery guidance, session identifier, and generation so the reducer and dashboard can show why the loop had to continue.
+That legal-stop bundle is workflow-visible, not only prose guidance. The workflow runs convergence.cjs with `--persist-snapshot` and `--stop-decision`, records the graph convergence result, and persists a first-class `blocked_stop` event when the decision is blocked. That event carries gate results, blockers, recovery guidance, session identifier, and generation so the reducer and dashboard can show why the loop had to continue.
 
 ---
 
@@ -36,8 +36,7 @@ That legal-stop bundle is workflow-visible, not only prose guidance. The YAML wo
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines the hard stops, weighted signals, legal-stop bundle, and stop labels. |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Defines the loop ordering, guard step, and blocked-stop persistence contract. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Runs convergence evaluation, graph convergence calls, and blocked-stop emission in autonomous mode. |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Mirrors the same convergence and blocked-stop flow with confirm-mode approvals. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Runs convergence.cjs for the stop decision and persists `blocked_stop` events. Confirm mode adds approval gates. |
 
 ### Validation And Tests
 

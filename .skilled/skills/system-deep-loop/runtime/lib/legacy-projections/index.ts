@@ -16,9 +16,6 @@ export {
   createDeepResearchProjectionsProjectionContract,
 } from './deep-research-projections-contract.js';
 export {
-  createDeepAiCouncilConfigStateProjectionContract,
-} from './deep-ai-council-config-state-contract.js';
-export {
   createDeepReviewDeltasProjectionContract,
 } from './deep-review-deltas-contract.js';
 export {
@@ -64,11 +61,6 @@ export type {
   CreateDeepResearchProjectionsProjectionContractOptions,
   DeepResearchProjectionsProjectionState,
 } from './deep-research-projections-contract.js';
-export type {
-  CreateDeepAiCouncilConfigStateProjectionContractOptions,
-  CouncilStateProjectionState,
-  CouncilSessionStateProjectionState,
-} from './deep-ai-council-config-state-contract.js';
 export type {
   CreateDeepReviewDeltasProjectionContractOptions,
   DeepReviewDeltasProjectionState,

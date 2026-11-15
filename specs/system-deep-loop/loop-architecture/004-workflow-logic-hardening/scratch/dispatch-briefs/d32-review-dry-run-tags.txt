@@ -1,0 +1,83 @@
+ROLE: You are a YAML editor. Add dry-run keys to steps of ONE file.
+
+CONTEXT: deep-review.yaml serves both execution modes. Dry run must halt it in both modes before
+any dispatch or state write. A step tagged `dry_run_boundary` halts the run. A step that only
+appends an event carries `dry_run_event_policy` instead. Find each step with grep -n and read a
+small window around it.
+
+ALLOWED WRITE PATHS (only this file):
+- .skilled/commands/deep/assets/deep-review.yaml
+
+Do not change, move or delete any existing line except where an edit says "replace".
+
+PART 0. In the top-level `dry_run_control:` block, make two edits.
+  a. Add this line directly after the `optional_fields:` line, at the indentation of `event_name:`:
+    default_halt_event: '{"type":"event","event":"dry_run_halt","mode":"review","boundary":"{dry_run_boundary}","step":"{step_name}","timestamp":"{ISO_8601_NOW}"}'
+  b. Replace the whole `halt_hook_rule:` line with
+  halt_hook_rule: "Before executing any command, dispatch, edit, output, template write, append_to_jsonl, append_jsonl, log_event, mcp_tool, write, or git-index mutation in a step tagged with dry_run_boundary, emit event_policy.default_halt_event with that step's name and boundary to the terminal and halt. This holds in both execution modes."
+
+PART 1. Boundary tags. For each step below, add ONE line directly after the step's first key
+(its `action:` or `description:` line), at that key's indentation. The line is
+`dry_run_boundary: "<label>"` with the label given for the group.
+
+  Label "child-spawn":
+    step_fanout_spawn
+  Label "state-mutation":
+    step_apply_lifecycle_request, step_create_directories, step_migrate_legacy_review_state,
+    step_acquire_lock, step_create_config, step_create_state_log, step_record_restarted_run,
+    step_create_findings_registry, step_create_strategy, step_seed_coverage_graph,
+    step_enrich_strategy_context, step_enrich_strategy_resource_map,
+    step_record_artifact_migration, step_prepare_divergent_pivot,
+    step_post_iteration_claim_adjudication, step_graph_upsert, step_compile_review_report,
+    step_convergence_report, step_update_config_status, step_stage_artifact_dir,
+    step_compose_save_payload, step_generate_context, step_release_lock
+  Label "dispatch":
+    step_dispatch_pivot_seat_001, step_dispatch_pivot_seat_002, step_dispatch_pivot_seat_003,
+    step_dispatch_iteration
+  Label "reducer-refresh":
+    step_reduce_review_state, step_fanout_merge, step_emit_resource_map
+
+  That is 31 steps. `step_release_lock:` also appears as a value (`release_lock: step_release_lock`):
+  tag only the step definition, the line that ends with `step_release_lock:`.
+
+PART 2. Event policies. Add each line at the indentation of the `append_jsonl:` or
+`bookkeeping_log:` line it follows.
+  a. step_validate_convergence_config, under `if_convergence_mode_invalid:`, directly after its
+     `bookkeeping_log:` line:
+          dry_run_event_policy: "Emit the config_warning event as terminal JSONL preview only; do not append it during dry-run."
+  b. step_graph_convergence, directly after its `append_jsonl:` line:
+        dry_run_event_policy: "Run the convergence read, emit the graph_convergence event as terminal JSONL preview only, and do not append it to the state log."
+  c. step_emit_blocked_stop, under `if_blocked:`, directly after its `append_jsonl:` line:
+          dry_run_event_policy: "Emit the blocked_stop event as terminal JSONL preview only; do not append it during dry-run."
+  d. step_normalize_pause_events, under `if_pending_pause_event:`, directly after its
+     `append_jsonl:` line, and again under `if_pending_stuck_recovery:`, directly after its
+     `append_jsonl:` line:
+          dry_run_event_policy: "Emit the pending event as terminal JSONL preview only; do not append it during dry-run."
+
+PART 3. Three more edits.
+  a. step_preflight_contract, under `verify:`, add this item directly after the
+     `required_values_present` item:
+          - dry_run_normalized: "Boolean true or false before workflow loading; absent flag resolves to false."
+  b. step_dispatch_iteration: directly after the `dry_run_boundary: "dispatch"` line you added,
+     add this block at the same indentation:
+        dry_run_preview:
+          before_halt:
+            - "Generate the state summary."
+            - "Render the prompt pack to terminal preview without writing the prompt file."
+            - "Show the selected executor branch and command or native dispatch target that would run."
+     Under `pre_dispatch:` then `render_prompt_pack:`, add this line directly after the
+     `output_path:` line, at its indentation:
+            dry_run_output: "Render in memory and print to terminal preview; do not write output_path."
+  c. step_dispatch_iteration, under `pre_dispatch_audit:`, replace the line
+          skip_when: "config.executor.kind == 'native'"
+     with
+          skip_when: "config.executor.kind == 'native' or dry_run == true"
+
+CHECKS. Run from the repository root and fix the file until all pass:
+  python3 -c "import yaml;yaml.safe_load(open('.skilled/commands/deep/assets/deep-review.yaml'));print('YAML OK')"
+  grep -c 'dry_run_boundary: "' .skilled/commands/deep/assets/deep-review.yaml      must print 31
+  grep -c 'dry_run_event_policy' .skilled/commands/deep/assets/deep-review.yaml     must print 5
+  grep -c 'dry_run_halt_event' .skilled/commands/deep/assets/deep-review.yaml       must print 0
+  git status --short .skilled/commands/deep/assets    must list deep-research.yaml and deep-review.yaml as untracked and no other file
+
+REPORT: every step you could not tag, with the reason, then the output of each check.

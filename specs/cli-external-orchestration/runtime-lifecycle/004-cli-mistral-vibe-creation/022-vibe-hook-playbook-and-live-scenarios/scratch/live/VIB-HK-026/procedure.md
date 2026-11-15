@@ -1,5 +1,7 @@
 # VIB-HK-026 procedure: the manual relaunch hop runs from the operator terminal
 
+Verdict: **OPERATOR-ONLY**. The hop needs a shell command between the two sessions, and the runner's turns can only type, resume or compact inside one session.
+
 The shared conversation runner cannot drive this hop. Run these steps in a terminal in the
 repository root with `MISTRAL_API_KEY` exported and a `vibe` binary on `PATH`.
 

@@ -1,0 +1,103 @@
+##### research: top-level keys
+  action: differ (auto 62b, confirm 72b)
+  confirm_parity: confirm-only (auto 4b, confirm 4251b)
+  dry_run_control: confirm-only (auto 4b, confirm 1229b)
+  error_recovery: differ (auto 512b, confirm 492b)
+  operating_mode: differ (auto 204b, confirm 211b)
+  operating_principles: differ (auto 232b, confirm 268b)
+  purpose: differ (auto 52b, confirm 76b)
+  reference_only_appendix: differ (auto 666b, confirm 357b)
+  rules: differ (auto 493b, confirm 795b)
+  state_paths: differ (auto 1015b, confirm 894b)
+  state_write_protocol: differ (auto 3044b, confirm 3030b)
+  user_inputs: differ (auto 795b, confirm 862b)
+  workflow phases auto: ['step_resolve_artifact_root', 'step_bind_reducer_artifact_arg', 'step_apply_lifecycle_request', 'step_fanout_spawn', 'phase_init', 'phase_loop', 'phase_synthesis', 'phase_save', 'completion']
+  workflow phases confirm: ['step_resolve_artifact_root', 'step_bind_reducer_artifact_arg', 'step_fanout_spawn', 'phase_init', 'phase_loop', 'phase_synthesis', 'phase_save', 'completion']
+##### research: steps (auto 64, confirm 61)
+  AUTO-ONLY step_apply_lifecycle_request [top] 2864b
+  DIFF step_fanout_spawn [top] A1484 C1758: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_preflight_contract [phase_init] A687 C792: verify
+  DIFF step_create_directories [phase_init] A184 C491: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_acquire_lock [phase_init] A2316 C2647: +C:dry_run_boundary, +C:dry_run_halt_event, on_acquire
+  DIFF step_classify_session [phase_init] A2427 C5882: classify, +A:note_deferred_branches, +A:on_restart, on_resume
+  DIFF step_create_config [phase_init] A1273 C1583: +C:dry_run_boundary, +C:dry_run_halt_event, populate
+  DIFF step_create_state_log [phase_init] A2522 C2847: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_record_restarted_run [phase_init] A741 C1060: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_create_strategy [phase_init] A462 C771: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_create_registry [phase_init] A349 C654: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_enrich_strategy_context [phase_init] A266 C576: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_enrich_strategy_resource_map [phase_init] A286 C607: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_detect_spec_present [phase_init] A1033 C1193: +C:dry_run_event_policy
+  DIFF step_preinit_spec_branch [phase_init] A2992 C3242: branches, +C:dry_run_boundary, +C:dry_run_halt_event
+  AUTO-ONLY step_telemetry_heartbeat_started [phase_init] 1883b
+  AUTO-ONLY step_init_complete [phase_init] 133b
+  DIFF step_record_artifact_migration [phase_loop] A375 C688: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_read_state [phase_loop] A4825 C3113: extract
+  AUTO-ONLY step_run_now_check [phase_loop] 2931b
+  DIFF step_check_pause_sentinel [phase_loop] A593 C711: if_exists
+  DIFF step_validate_convergence_config [phase_loop] A1537 C1919: if_convergence_mode_invalid, if_min_iterations_clamped, if_min_iterations_missing
+  DIFF step_graph_convergence [phase_loop] A2165 C2322: +C:dry_run_event_policy
+  DIFF step_emit_min_iterations_guard_pass [phase_loop] A489 C622: if_pass
+  DIFF step_emit_blocked_stop [phase_loop] A1034 C1154: if_blocked
+  DIFF step_handle_convergence [phase_loop] A12467 C19937: +C:if_consecutive_failures, if_continue, if_stop, if_stuck_recovery
+  AUTO-ONLY step_rejected_pattern_cache [phase_loop] 2705b
+  AUTO-ONLY step_ideas_backlog_lifecycle [phase_loop] 1110b
+  DIFF step_dispatch_iteration [phase_loop] A36449 C15147: +C:dry_run_boundary, +C:dry_run_halt_event, +C:dry_run_preview, if_cli_claude_code, +A:if_cli_codex, +A:if_cli_cursor, +A:if_cli_deepseek_harness, +A:if_cli_devin, if_cli_opencode, +A:if_cli_pi, post_dispatch_validate, pre_dispatc
+  AUTO-ONLY step_run_now_restore_check [phase_loop] 2289b
+  DIFF step_reduce_state [phase_loop] A1173 C1109: +C:dry_run_boundary, +C:dry_run_halt_event, failure_modes, outputs
+  DIFF step_graph_upsert [phase_loop] A2955 C3366: +C:dry_run_boundary, +C:dry_run_halt_event
+  AUTO-ONLY step_refresh_lineage_context [phase_loop] 936b
+  AUTO-ONLY step_telemetry_heartbeat_progress [phase_loop] 3011b
+  DIFF step_update_tracking [phase_loop] A193 C101: +A:log
+  DIFF step_fanout_merge [phase_synthesis] A358 C678: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_emit_resource_map [phase_synthesis] A932 C1315: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_compile_research [phase_synthesis] A2087 C2211: +C:dry_run_boundary, +C:dry_run_halt_event, instructions
+  DIFF step_convergence_report [phase_synthesis] A1727 C2150: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_writeback_spec_findings [phase_synthesis] A1908 C2212: +C:dry_run_boundary, +C:dry_run_halt_event, instructions
+  DIFF step_update_config_status [phase_synthesis] A106 C504: +C:dry_run_boundary, +C:dry_run_halt_event
+  AUTO-ONLY step_telemetry_heartbeat_terminal [phase_synthesis] 3299b
+  DIFF step_stage_artifact_dir [phase_synthesis] A1231 C1655: command, +C:dry_run_boundary, +C:dry_run_halt_event, note
+  DIFF step_compose_save_payload [phase_save] A919 C1231: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_generate_context [phase_save] A471 C873: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_release_lock [phase_save] A463 C845: +C:dry_run_boundary, +C:dry_run_halt_event
+  CONFIRM-ONLY gate_preinit_spec_mutation_approval [phase_init] 1582b
+  CONFIRM-ONLY gate_init_approval [phase_init] 1601b
+  CONFIRM-ONLY gate_pre_iteration [phase_loop] 1665b
+  CONFIRM-ONLY gate_post_iteration [phase_loop] 1753b
+  CONFIRM-ONLY gate_pre_synthesis [phase_synthesis] 1282b
+  CONFIRM-ONLY gate_post_synthesis_spec_writeback [phase_synthesis] 1786b
+  CONFIRM-ONLY gate_post_synthesis [phase_synthesis] 1250b
+  identical: 18
+##### review: top-level keys
+  action: differ (auto 60b, confirm 70b)
+  confirm_parity: confirm-only (auto 4b, confirm 2481b)
+  error_recovery: differ (auto 523b, confirm 500b)
+  operating_mode: differ (auto 202b, confirm 209b)
+  operating_principles: differ (auto 282b, confirm 317b)
+  purpose: differ (auto 80b, confirm 79b)
+  rules: differ (auto 629b, confirm 737b)
+  user_inputs: differ (auto 1516b, confirm 1370b)
+  workflow phases auto: ['step_resolve_artifact_root', 'step_bind_reducer_artifact_arg', 'step_apply_lifecycle_request', 'step_fanout_spawn', 'phase_init', 'phase_loop', 'phase_synthesis', 'phase_save', 'completion']
+  workflow phases confirm: ['step_resolve_artifact_root', 'step_bind_reducer_artifact_arg', 'step_fanout_spawn', 'phase_init', 'phase_loop', 'phase_synthesis', 'phase_save', 'completion']
+##### review: steps (auto 61, confirm 63)
+  AUTO-ONLY step_apply_lifecycle_request [top] 2862b
+  DIFF step_preflight_contract [phase_init] A729 C713: verify
+  DIFF step_acquire_lock [phase_init] A2326 C2348: on_acquire
+  DIFF step_classify_session [phase_init] A5728 C8464: +A:lifecycle_routing, +A:note_deferred_branches, +A:on_restart, on_resume
+  DIFF step_scope_discovery [phase_init] A1856 C1372: resolve
+  DIFF step_order_dimensions [phase_init] A916 C693: algorithm
+  DIFF step_create_config [phase_init] A1640 C1643: populate
+  DIFF step_create_state_log [phase_init] A3103 C3106: command
+  AUTO-ONLY step_init_complete [phase_init] 240b
+  DIFF step_record_artifact_migration [phase_loop] A574 C959: +C:dry_run_boundary, +C:dry_run_halt_event
+  DIFF step_handle_convergence [phase_loop] A12857 C20164: +C:if_consecutive_failures, if_continue, if_stop, if_stuck_recovery
+  AUTO-ONLY step_generate_state_summary [phase_loop] 633b
+  DIFF step_dispatch_iteration [phase_loop] A42043 C14260: if_cli_claude_code, +A:if_cli_codex, +A:if_cli_cursor, +A:if_cli_deepseek_harness, +A:if_cli_devin, if_cli_opencode, +A:if_cli_pi
+  DIFF step_update_tracking [phase_loop] A282 C101: +A:log
+  DIFF step_stage_artifact_dir [phase_synthesis] A655 C784: note
+  CONFIRM-ONLY gate_init_approval [phase_init] 1580b
+  CONFIRM-ONLY gate_pre_iteration [phase_loop] 1517b
+  CONFIRM-ONLY gate_post_iteration [phase_loop] 1618b
+  CONFIRM-ONLY gate_pre_synthesis [phase_synthesis] 1450b
+  CONFIRM-ONLY gate_post_synthesis [phase_synthesis] 1461b
+  identical: 46

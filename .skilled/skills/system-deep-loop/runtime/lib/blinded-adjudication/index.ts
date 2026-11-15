@@ -63,9 +63,7 @@ export {
   verifyAdjudicationVerdictReplay,
 } from './replay.js';
 export {
-  adaptCouncilVerdict,
   adaptDeepReviewVerdict,
-  createCouncilAdjudicationRequest,
   createDeepReviewAdjudicationRequest,
 } from './mode-adapters.js';
 export { BlindedAdjudicationService } from './service.js';

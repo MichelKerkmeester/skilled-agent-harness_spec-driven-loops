@@ -7,7 +7,7 @@ trigger_phrases:
   - "final research document"
   - "eliminated alternatives table"
   - "close loop state"
-version: 1.14.0.11
+version: 1.14.1.0
 ---
 
 # Synthesis
@@ -37,8 +37,7 @@ Negative knowledge is part of the live contract here. Synthesis must consolidate
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Defines the synthesis phase steps, required output shape, and terminal event contract. |
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference | Defines the `research/research.md` lifecycle and progressive update rules. |
 | `.skilled/commands/deep/research.md` | Command | Publishes the synth phase as a canonical command output. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Drives the autonomous synthesis phase and config-status update. |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Mirrors the same synthesis phase with confirm-mode review gates. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Drives the synthesis phase and config-status update. Confirm mode adds review gates. |
 
 ### Validation And Tests
 

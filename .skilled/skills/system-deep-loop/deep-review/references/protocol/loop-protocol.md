@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.9.0
+version: 1.11.10.0
 ---
 
 # Deep Review Loop Protocol
@@ -60,8 +60,8 @@ Each agent dispatch gets a fresh context window. State continuity comes from fil
 | Resource | Path | Purpose |
 |----------|------|---------|
 | Review contract | `assets/review-mode-contract.yaml` | Dimensions, verdicts, gates, protocols |
-| Auto workflow | `.skilled/commands/deep/assets/deep-review-auto.yaml` | Unattended review loop |
-| Confirm workflow | `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Step-by-step review with approval gates |
+| Auto workflow | `.skilled/commands/deep/assets/deep-review.yaml` | Unattended review loop |
+| Confirm workflow | `.skilled/commands/deep/assets/deep-review.yaml` | Step-by-step review with approval gates |
 | Agent | `@deep-review` (LEAF) | Single iteration executor, no sub-agents, no WebFetch |
 | Memory save | `generate-context.js` | Context preservation script |
 
@@ -189,7 +189,7 @@ Run `shouldContinue_review()` (see `../deep-research/references/convergence/conv
   - Evidence, scope, and coverage gates pass
 - Otherwise: `CONTINUE`
 
-If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records nine review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate` (see `../convergence/convergence.md` §1 blocked_stop event example for the authoritative shape). The Step 4a claim-adjudication path treats `claimAdjudicationGate` as a hard STOP gate, so the count covers both the convergence decision tree and the adjudication enforcement path. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
+If convergence math or a hard-stop candidate points to STOP, `runtime/scripts/convergence.cjs` runs the review legal-stop decision tree before the loop stops. That decision tree records nine review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate` (see `../convergence/convergence.md` §1 blocked_stop event example for the authoritative shape). The Step 4a claim-adjudication path treats `claimAdjudicationGate` as a hard STOP gate, so the count covers both the convergence decision tree and the adjudication enforcement path. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
 
 - `blockedBy`: array of the failed review gate names
 - `gateResults`: per-gate pass/fail payloads using the review gate names above
@@ -302,7 +302,7 @@ Two containment rules bind every CLI lineage (any `cli-*` executor kind):
   - One exemption still applies to attribution: another run's lineage directory under the same top-level packet is treated as that run's own write surface while its loop lock is live, so two lineages can run in sibling phases of one packet at the same time; a directory with no lock, or a stale one, is still attributed here.
   - The runtime records each finding's diff under the lineage directory at `containment/quarantine/<iteration>[-attempt-<n>]/`, in a `containment-out-of-scope/` subdirectory on the default preserve path and `containment-reverted/` only under restore, where bytes really were rolled back; each pass keeps its own directory so a retry never overwrites an earlier pass's evidence. The pre-dispatch baseline bytes go to `<lineage dir>/containment/baseline/`, so an out-of-scope change stays recoverable either way.
 
-Failure handling is unchanged: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
+Failure handling is unchanged: `schema_mismatch` → conflict event → retry. Three consecutive failures stop the loop with stop reason `error`.
 
 **Agent constraints**:
 - `@deep-review` is LEAF-only: it cannot dispatch sub-agents
@@ -678,7 +678,7 @@ On the next invocation:
 
 ### Confirm Mode Approval Gates
 
-In confirm mode (`deep-review-confirm.yaml`), the workflow adds explicit approval gates instead of relying on the pause sentinel:
+In confirm mode (`deep-review.yaml`), the workflow adds explicit approval gates instead of relying on the pause sentinel:
 
 | Gate Location | Behavior |
 |---------------|----------|
@@ -714,7 +714,7 @@ Every executor path MUST satisfy:
 - JSONL not appended: `jsonl_not_appended`.
 - JSONL missing required fields: `jsonl_missing_fields`.
 - JSONL malformed: `jsonl_parse_error`.
-- 3 consecutive failures: existing `stuck_recovery` event (unchanged).
+- 3 consecutive failed iterations: the loop stops with stop reason `error`.
 
 ### JSONL Audit Field
 
@@ -728,7 +728,7 @@ The executor-agnostic iteration prompt lives at `assets/prompt-pack-iteration.md
 
 - YAML owns state (`deep-review-state.jsonl`, strategy.md, registry, dashboard).
 - `reduce-state.cjs` is the single state writer.
-- Convergence detection, lifecycle events (new/resume/restart), the review dimensions pass, and stuck_recovery stay YAML-driven.
+- Lifecycle events (new/resume/restart) and the review dimensions pass stay workflow-driven. The stop decision comes from `runtime/scripts/convergence.cjs`.
 - The `@deep-review` LEAF agent definition is untouched: it is the native executor, not the only one.
 
 ### Code-Graph Readiness TrustState Surface
@@ -763,8 +763,8 @@ Protocol documents from `deep-research` are cross-referenced, not duplicated:
 
 | Mode | Path |
 |------|------|
-| Auto (unattended) | `.skilled/commands/deep/assets/deep-review-auto.yaml` |
-| Confirm (step-by-step) | `.skilled/commands/deep/assets/deep-review-confirm.yaml` |
+| Auto (unattended) | `.skilled/commands/deep/assets/deep-review.yaml` |
+| Confirm (step-by-step) | `.skilled/commands/deep/assets/deep-review.yaml` |
 
 ### Agent
 

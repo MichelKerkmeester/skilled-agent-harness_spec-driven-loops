@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy",
+  "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "persisted loop state and failure policy",
+      "phase 2 persisted loop state and failure policy",
+      "deep loop stuck counter persistence",
+      "failed iteration convergence exclusion",
+      "persisted loop state and failure policy plan",
+      "persisted loop state and failure policy tasks",
+      "persisted loop state and failure policy acceptance criteria",
+      "persisted loop state and failure policy goal",
+      "persisted loop state and failure policy implementation summary"
+    ],
+    "key_topics": [
+      "persisted",
+      "loop",
+      "state",
+      "failure",
+      "policy",
+      "phase",
+      "deep",
+      "stuck",
+      "counter",
+      "persistence",
+      "failed",
+      "iteration"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts",
+      ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/commands/deep/assets/deep-review-confirm.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts",
+      "runtime/package.json",
+      "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision/implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "loop-counters-derivation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/loop-counters-derivation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-script.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-convergence-floor.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research and deep-review loops keep `stuckcount` only in orchestrator memory, so a resumed run starts with an unbound counter and can stop or continue differently from a run that never paused",
+    "created_at": "2026-11-14T11:33:18Z",
+    "last_save_at": "2026-11-14T15:21:58.808Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b4ac0e3f15d983ab61aa8a2274cbd0000e6ca28597f18ddb444fa995ed2d121c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3a6baf0e9e5c4a9cd7ffcd0057bc995477c12f69092e68cfe89b30d5ae880c15",
+      "plan.md": "01d7ceb36b08db9e3aa6caf96301c2d52c4b4180e33eb194c940a274f3436669",
+      "tasks.md": "53c56b7498e0a852aac2b78a2300227e3dee9e0c343886d9ea635e1084ff9e7f",
+      "implementation-summary.md": "dbcf46f275496668504fd30c66375cfc40bcba8cafe094173a2a1a1b5915df51"
+    },
+    "last_active_at": null
+  }
+}

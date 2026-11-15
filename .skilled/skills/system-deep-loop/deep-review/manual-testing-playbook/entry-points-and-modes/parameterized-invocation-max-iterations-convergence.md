@@ -1,7 +1,7 @@
 ---
 title: "DRV-003 -- Parameterized invocation max-iterations and convergence"
 description: "Verify that --max-iterations (default 7) and --convergence (default 0.10) parameters are documented and flow through to the review config."
-version: 1.11.0.15
+version: 1.11.1.0
 ---
 
 # DRV-003 -- Parameterized invocation max-iterations and convergence
@@ -16,7 +16,7 @@ This scenario validates parameterized invocation for `DRV-003`. The objective is
 
 ### WHY THIS MATTERS
 
-Operators tuning review depth need confidence that parameter defaults are consistent across the docs, command entrypoint, and YAML workflows, and that custom values actually propagate into the config that governs the loop.
+Operators tuning review depth need confidence that parameter defaults are consistent across the docs, command entrypoint, and the workflow, and that custom values actually propagate into the config that governs the loop.
 
 ---
 
@@ -26,10 +26,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that `--max-iterations` (default 7) and `--convergence` (default 0.10) parameters work and are documented consistently.
 - Real user request: I want to run a longer review with 10 iterations and tighter convergence. Show me the defaults and how to override them.
-- Prompt: `Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and YAML workflows.`
-- Expected execution process: Inspect the quick reference parameter table first, then the command entrypoint argument-hint, then both YAML user_inputs sections to verify defaults agree.
+- Prompt: `Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and the workflow.`
+- Expected execution process: Inspect the quick reference parameter table first, then the command entrypoint argument-hint, then the workflow `user_inputs` block to verify defaults agree.
 - Desired user-facing outcome: The user can be told the exact defaults and how to override them, with confidence that the values propagate into the review config.
-- Expected signals: Default values of 7 and 0.10 appear consistently across all sources. The YAML writes these into `deep-review-config.json` during init.
+- Expected signals: Default values of 7 and 0.10 appear consistently across all sources. The workflow writes these into `deep-review-config.json` during init.
 - Pass/fail posture: PASS if all sources agree on defaults and the config init step propagates overrides. FAIL if defaults drift or the override path is broken.
 
 ---
@@ -43,15 +43,15 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and YAML workflows.
+Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and the workflow.
 ### Commands
 1. `bash: rg -n 'max.iterations|convergence.*0\.10|convergence_threshold|maxIterations' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
 2. `bash: rg -n 'max.iterations|convergence|argument-hint' .skilled/commands/deep/review.md`
-3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .skilled/commands/deep/assets/deep-review.yaml`
 ### Expected
-Default values of 7 and 0.10 appear consistently across all sources. The YAML writes these into `deep-review-config.json` during init.
+Default values of 7 and 0.10 appear consistently across all sources. The workflow writes these into `deep-review-config.json` during init.
 ### Evidence
-Capture the parameter table from the quick reference, the argument-hint line, and the YAML user_inputs and config-creation steps.
+Capture the parameter table from the quick reference, the argument-hint line, and the workflow `user_inputs` and config-creation steps.
 ### Pass/Fail
 PASS if all sources agree on defaults and the config init step propagates overrides. FAIL if defaults drift or the override path is broken.
 ### Failure Triage
@@ -73,8 +73,7 @@ Cross-reference the quick reference parameter table with the YAML `step_create_c
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Parameter defaults table, use `ANCHOR:commands` |
 | `.skilled/commands/deep/review.md` | Command argument-hint and setup phase |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Auto workflow user_inputs and config creation, inspect `user_inputs` and `step_create_config` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Confirm workflow user_inputs, inspect `user_inputs` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow `user_inputs` and config creation, inspect `user_inputs` and `step_create_config` |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Skill-level parameter documentation, use `ANCHOR:how-it-works` |
 
 ---

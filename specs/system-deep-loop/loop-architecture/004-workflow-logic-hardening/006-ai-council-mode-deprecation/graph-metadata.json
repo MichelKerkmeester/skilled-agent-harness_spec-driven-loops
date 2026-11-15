@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation",
+  "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
+  "children_ids": [
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/001-standalone-agent-and-council-command",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/002-hub-two-mode-wiring",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/003-runtime-council-removal",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/004-advisor-council-removal",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/005-caller-sweep-and-verification"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ai council mode deprecation",
+      "phase 6 ai council mode deprecation",
+      "retire deep-ai-council mode",
+      "standalone ai-council agent",
+      "ai council mode deprecation goal"
+    ],
+    "key_topics": [
+      "council",
+      "mode",
+      "deprecation",
+      "phase",
+      "retire",
+      "deep-ai-council",
+      "standalone",
+      "ai-council",
+      "agent",
+      "goal",
+      "operator",
+      "decided"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      ".skilled/commands/speckit/ai-council.md",
+      ".skilled/skills/system-deep-loop/mode-registry.json",
+      "001-standalone-agent-and-council-command/acceptance-criteria.md",
+      "002-hub-two-mode-wiring/acceptance-criteria.md",
+      "003-runtime-council-removal/acceptance-criteria.md",
+      "004-advisor-council-removal/acceptance-criteria.md",
+      ".skilled/repo-rules/skill-hub-routing.md",
+      "001-standalone-agent-and-council-command/goal.md",
+      "002-hub-two-mode-wiring/goal.md",
+      "003-runtime-council-removal/goal.md",
+      "004-advisor-council-removal/goal.md",
+      "005-caller-sweep-and-verification/goal.md",
+      "scratch/council-inventory-2026-11-14.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".skilled/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-hub-routing.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/skill-hub-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-inventory-2026-11-14.txt",
+        "kind": "file",
+        "path": "scratch/council-inventory-2026-11-14.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "children",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On 2026-11-14 the operator decided, in these words: \"let's deprecate deep-ai-council completely as a deep mode and instead make it a isolated .agents file maybe with a command workflow and presentation asset for all runtimes\"",
+    "created_at": "2026-11-14T11:56:20Z",
+    "last_save_at": "2026-11-15T00:21:27.779Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:6c3d36d5e8c74eb3f73184fdac1bd8b2bd7faf09cf83202e6b0c7f6e29d46a29",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a96d017113a0f6b053f4b2e72fdf50b4ee9ea00328d0f4d6a1d07b2e6e2428c3"
+    },
+    "last_active_at": null
+  }
+}

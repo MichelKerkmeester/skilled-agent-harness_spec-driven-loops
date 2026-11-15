@@ -31,9 +31,9 @@ const sharedRequire = createRequire(
 );
 const { load: loadYaml } = sharedRequire('js-yaml') as { load: (source: string) => unknown };
 
-const WORKFLOW_FILES = ['deep-review-auto.yaml', 'deep-review-confirm.yaml'] as const;
+const WORKFLOW_FILE = 'deep-review.yaml';
 
-const LONG_TTL_ARG = '--ttl-ms 1800000';
+const LONG_TTL_ARG = '--ttl-ms {lock_ttl_ms}';
 const REFRESH_COMMAND = 'loop-lock.cjs refresh';
 const STALE_OVERRIDE_CLAIM = 'stale-lock override is confirm-only';
 
@@ -72,22 +72,20 @@ function phaseLoopSteps(doc: ReviewWorkflow, file: string): Record<string, Workf
 // ───────────────────────────────────────────────────────────────────
 
 describe('deep-review keeps its packet lock alive across iterations', () => {
-  for (const file of WORKFLOW_FILES) {
-    it(`acquires the packet lock with the long TTL in ${file}`, () => {
-      const { doc } = readWorkflow(file);
-      expect(acquireStep(doc, file).command ?? '').toContain(LONG_TTL_ARG);
-    });
+  it('acquires the packet lock with the long TTL', () => {
+    const { doc } = readWorkflow(WORKFLOW_FILE);
+    expect(acquireStep(doc, WORKFLOW_FILE).command ?? '').toContain(LONG_TTL_ARG);
+  });
 
-    it(`refreshes the packet lock first in every loop pass in ${file}`, () => {
-      const { doc } = readWorkflow(file);
-      const firstEntry = Object.entries(phaseLoopSteps(doc, file))[0];
-      expect(firstEntry?.[0]).toBe('step_refresh_lock');
-      expect(firstEntry?.[1]?.command ?? '').toContain(REFRESH_COMMAND);
-    });
+  it('refreshes the packet lock first in every loop pass', () => {
+    const { doc } = readWorkflow(WORKFLOW_FILE);
+    const firstEntry = Object.entries(phaseLoopSteps(doc, WORKFLOW_FILE))[0];
+    expect(firstEntry?.[0]).toBe('step_refresh_lock');
+    expect(firstEntry?.[1]?.command ?? '').toContain(REFRESH_COMMAND);
+  });
 
-    it(`drops the confirm-only stale-lock claim in ${file}`, () => {
-      const { text } = readWorkflow(file);
-      expect(text).not.toContain(STALE_OVERRIDE_CLAIM);
-    });
-  }
+  it('drops the confirm-only stale-lock claim', () => {
+    const { text } = readWorkflow(WORKFLOW_FILE);
+    expect(text).not.toContain(STALE_OVERRIDE_CLAIM);
+  });
 });

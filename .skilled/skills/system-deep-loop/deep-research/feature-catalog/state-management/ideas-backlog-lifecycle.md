@@ -7,7 +7,7 @@ trigger_phrases:
   - "idea_promoted"
   - "minIdeaObservations"
   - "reducer-promoted ideas"
-version: 1.14.0.13
+version: 1.14.1.0
 ---
 
 # Ideas backlog lifecycle
@@ -37,7 +37,7 @@ Leaf agents may append `idea_observed` rows only when the dispatch explicitly al
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Accumulates observations, emits idempotent promotions, ranks ideas, and suppresses rejected ideas. |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Documents observed, promoted, and rejected lifecycle semantics. |
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | Reference | Defines idea lifecycle event payloads. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Reads idea thresholds and checks promoted or suppressed idea counts before dispatch. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Reads idea thresholds and checks promoted or suppressed idea counts before dispatch. |
 | `.skilled/agents/deep-research.md` | Agent | Allows leaf agents to emit `idea_observed` only under explicit dispatch permission. |
 
 ### Validation And Tests

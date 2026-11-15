@@ -1,0 +1,130 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+
+ROLE: You are a code implementation worker. Make exactly the changes below, nothing else.
+Do not refactor, reformat or fix anything adjacent. Do not commit.
+
+ALLOWED WRITE PATHS (only these two files):
+- .skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts
+- .skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any
+write outside the allowed paths, any package install, any edit to
+.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs or to a YAML file.
+
+CONTEXT: the rule that decides the review gate `graphlessFallbackGate` moved out of the
+workflow YAML text and into `runtime/scripts/convergence.cjs`. An older test still expects
+the rule as prose in the YAML. This task replaces that text check with a test that runs
+the script.
+
+EDIT 1, in convergence-script.vitest.ts. The helper `reviewFixture` inside
+`describe('convergence.cjs stop-decision', ...)` currently starts with:
+
+  function reviewFixture(
+    extraRows: Array<Record<string, unknown>> = [],
+  ): StopDecisionFixture {
+
+Change it to:
+
+  function reviewFixture(
+    extraRows: Array<Record<string, unknown>> = [],
+    registryExtra: Record<string, unknown> = {},
+  ): StopDecisionFixture {
+
+and in the same helper change the registry object from
+
+      {
+        dimensionCoverage: { correctness: true },
+        findingsBySeverity: { P0: 0, P1: 0, P2: 0 },
+        openFindings: [],
+      },
+
+to
+
+      {
+        dimensionCoverage: { correctness: true },
+        findingsBySeverity: { P0: 0, P1: 0, P2: 0 },
+        openFindings: [],
+        ...registryExtra,
+      },
+
+EDIT 2, in convergence-script.vitest.ts. Directly after the test named
+'reads the last claim adjudication event', add this test:
+
+  it('fails the graphless fallback gate when a required bug class has no cited ledger row', () => {
+    const namespace = uniqueNamespace('convergence', 'review');
+    namespaces.push(namespace);
+    expect(seedReviewNode(namespace).exitCode).toBe(0);
+    const fixture = reviewFixture(
+      [
+        {
+          type: 'iteration',
+          iteration: 3,
+          status: 'complete',
+          newFindingsRatio: 0.1,
+          dimensions: ['correctness'],
+          reviewDepthSchemaVersion: 2,
+          searchLedger: [
+            {
+              bugClass: 'injection',
+              searchActions: [{ method: 'direct_read' }],
+              evidenceRefs: ['src/a.ts:1'],
+            },
+            { bugClass: 'xss', searchActions: [{ method: 'direct_read' }], evidenceRefs: [] },
+            {
+              bugClass: 'race',
+              searchActions: [{ method: 'guess' }],
+              evidenceRefs: ['src/b.ts:2'],
+            },
+          ],
+        },
+      ],
+      {
+        searchCoverage: {
+          requiredBugClasses: ['injection', 'xss', 'race'],
+          graphCoverageMode: 'graphless_fallback',
+        },
+      },
+    );
+
+    const result = runScript('convergence', stopDecisionArgs(namespace, fixture));
+    const stopDecision = result.json.stop_decision as {
+      inputs: { review: { fallbackCoveredBugClasses: string[]; graphCoverageMode: string } };
+      gates: { graphlessFallbackGate: { pass: boolean; skipped: boolean } };
+    };
+
+    expect(result.exitCode).toBe(0);
+    expect(stopDecision.inputs.review.graphCoverageMode).toBe('graphless_fallback');
+    expect(stopDecision.inputs.review.fallbackCoveredBugClasses).toEqual(['injection']);
+    expect(stopDecision.gates.graphlessFallbackGate).toEqual({ pass: false, skipped: false });
+  });
+
+EDIT 3, in review-depth-convergence.vitest.ts. Delete exactly these two lines and no other:
+
+      expect(workflow).toContain('at least one `searchLedger` row exists for each entry');
+      expect(workflow).toContain('Fail automatically when graphCoverageMode is `unavailable_blocked`');
+
+IF THE NEW TEST FAILS: do not change convergence.cjs and do not change the assertions.
+Print the full failure output and stop. A failure is a valid result to return.
+
+VERIFY (run from the repository root and print the output):
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/integration/convergence-script.vitest.ts tests/integration/review-depth-convergence.vitest.ts)
+
+RETURN: the command output, and the list of files you changed.

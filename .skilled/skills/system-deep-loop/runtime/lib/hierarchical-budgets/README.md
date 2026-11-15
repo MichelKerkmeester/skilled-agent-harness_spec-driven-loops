@@ -9,7 +9,7 @@ description: "Reserves, settles and replays token, cost, iteration and wall-time
 
 ## 1. OVERVIEW
 
-Runtime primitives for `system-deep-loop` that reserve, settle, release and cancel spend against a closed scope chain from program to mode to lineage to iteration. Every mutation is authorized through the ledger, projected into per-scope balances and replay-verified. A shadow layer compares new decisions against legacy fan-out and council budget guards during migration.
+Runtime primitives for `system-deep-loop` that reserve, settle, release and cancel spend against a closed scope chain from program to mode to lineage to iteration. Every mutation is authorized through the ledger, projected into per-scope balances and replay-verified. A shadow layer compares new decisions against legacy fan-out budget guards during migration.
 
 ---
 

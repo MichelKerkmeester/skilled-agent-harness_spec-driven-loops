@@ -1,7 +1,7 @@
 ---
 title: "DR-019 -- Final synthesis plus memory save and guardrail behavior"
 description: "Verify final synthesis, supported memory save, LEAF-only agent behavior, and the boundary between live and reference-only features."
-version: 1.14.0.16
+version: 1.14.1.0
 ---
 
 # DR-019 -- Final synthesis plus memory save and guardrail behavior
@@ -47,7 +47,7 @@ Validate final synthesis, memory save, LEAF-only runtime behavior, and non-live 
 ### Commands
 1. `bash: rg -n 'generate-context.js|synthesis_complete|research/research.md|memory' .skilled/commands/deep/research.md .skilled/skills/system-deep-loop/deep-research/SKILL.md .skilled/skills/system-deep-loop/deep-research/README.md`
 2. `bash: rg -n 'LEAF-only|Task tool|NEVER create sub-tasks|reference-only|Wave orchestration|Checkpoint Commit|Direct Mode Fallback|Segment Model' .skilled/agents/deep-research.md .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
-3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|wave|segment|direct_mode' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md`
+3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|wave|segment|direct_mode' .skilled/commands/deep/assets/deep-research.yaml .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md`
 ### Expected
 Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the OpenCode runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only.
 ### Evidence
@@ -77,8 +77,7 @@ Privilege the OpenCode runtime agent and skill rules for LEAF-only behavior, and
 | `.skilled/agents/deep-research.md` | Canonical runtime guardrails; inspect `## 0. ILLEGAL NESTING (HARD BLOCK)` and `SPEC FOLDER PERMISSION` |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference-only wave, checkpoint, and direct-mode sections; use `ANCHOR:phase-iteration-loop` and `ANCHOR:wave-orchestration-protocol` |
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference-only segment model and active events; use `ANCHOR:state-log` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Final synthesis/save steps and workflow events |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Final synthesis/save steps and workflow events |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Final synthesis/save steps and workflow events |
 | `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Reference-only notes; use `Reference-Only Notes` under `ANCHOR:state-files` |
 
 ---

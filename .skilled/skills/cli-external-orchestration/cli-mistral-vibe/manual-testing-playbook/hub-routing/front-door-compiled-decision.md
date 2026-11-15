@@ -1,7 +1,7 @@
 ---
 title: "VIB-ROUTE-001 -- Front-door compiled decision"
 description: "This scenario validates that the compiled-routing front door serves the cli-mistral-vibe decision for a Vibe prompt, and that it does so only because the snapshot identity matches the activation manifest."
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # VIB-ROUTE-001 -- Front-door compiled decision
@@ -53,9 +53,9 @@ node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync(".skilled/bi
 ### Recorded Result
 
 - Verdict: `PASS`.
-- Date: 2026-11-14.
-- Observed: the front door exited `0` and printed `{"hubId":"cli-external-orchestration","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-mistral-vibe","packetKind":"workflow","skillId":"cli-external-orchestration","workflowMode":"cli-mistral-vibe"}],"effectivePolicyHash":"8afacc3f19e69c5b1350ec33c110d743cffe0dbccf0d2bd0423e3bf858e0c236","generation":5}`.
-- Observed: `selected={"effectivePolicyHash":"8afacc3f19e69c5b1350ec33c110d743cffe0dbccf0d2bd0423e3bf858e0c236","generation":5}`, the same snapshot identity, and `match=true`.
+- Date: 2026-11-15.
+- Observed: the front door exited `0` and printed `{"hubId":"cli-external-orchestration","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-mistral-vibe","packetKind":"workflow","skillId":"cli-external-orchestration","workflowMode":"cli-mistral-vibe"}],"effectivePolicyHash":"ee55d93ac2047fc2d4d62d4f356470ab6ef1237f102f1dee0b9c4171ca71eea0","generation":5}`.
+- Observed: `selected={"effectivePolicyHash":"ee55d93ac2047fc2d4d62d4f356470ab6ef1237f102f1dee0b9c4171ca71eea0","generation":5}`, the same snapshot identity, and `match=true`.
 - History: an earlier run the same day printed the legacy sentinel, because the activation manifest still selected the policy hash from before the mode's docs changed. Re-pinning both activation manifests and running `compiled-route-sync.cjs` with `--finalize` restored the compiled decision.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

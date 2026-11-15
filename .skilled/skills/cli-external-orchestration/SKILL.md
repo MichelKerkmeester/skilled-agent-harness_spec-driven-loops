@@ -150,9 +150,11 @@ cli-external-orchestration/
   cli-mistral-vibe/
     SKILL.md
     ROUTER.md
+    README.md
     hard-rules.json
     references/
     assets/
+    manual-testing-playbook/
     changelog/
 ```
 

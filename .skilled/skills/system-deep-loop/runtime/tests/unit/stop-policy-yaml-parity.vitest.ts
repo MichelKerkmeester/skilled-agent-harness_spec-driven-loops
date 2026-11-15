@@ -13,10 +13,8 @@ import { resolve } from 'node:path';
 // silently stops early.
 const ASSETS = resolve(__dirname, '..', '..', '..', '..', '..', 'commands', 'deep', 'assets');
 const RUNTIME_LOOP_YAMLS = [
-  'deep-research-auto.yaml',
-  'deep-research-confirm.yaml',
-  'deep-review-auto.yaml',
-  'deep-review-confirm.yaml',
+  'deep-research.yaml',
+  'deep-review.yaml',
 ];
 const STOP_CLAUSE = 'if stop_policy == "max-iterations" AND iteration_count < max_iterations';
 
@@ -71,15 +69,14 @@ describe('stop policy parity across runtime-loop workflows', () => {
   }
 });
 
-// A confirm twin that drops part of the algorithm stops a run earlier than its auto
-// twin would, while the operator believes the two behave alike.
-describe('convergence algorithm parity between auto and confirm', () => {
+// One workflow serves both modes, so its convergence algorithm is the only one
+// either mode can run. An empty algorithm would stop a run at a different point
+// than the loop contract promises.
+describe('convergence algorithm contract', () => {
   for (const mode of ['research', 'review']) {
-    it(`deep-${mode}-confirm.yaml runs the auto convergence algorithm`, () => {
-      const auto = convergenceAlgorithm(readFileSync(resolve(ASSETS, `deep-${mode}-auto.yaml`), 'utf8'));
-      const confirm = convergenceAlgorithm(readFileSync(resolve(ASSETS, `deep-${mode}-confirm.yaml`), 'utf8'));
-      expect(auto.length).toBeGreaterThan(0);
-      expect(confirm).toBe(auto);
+    it(`deep-${mode}.yaml carries the convergence algorithm`, () => {
+      const algorithm = convergenceAlgorithm(readFileSync(resolve(ASSETS, `deep-${mode}.yaml`), 'utf8'));
+      expect(algorithm.length).toBeGreaterThan(0);
     });
   }
 });

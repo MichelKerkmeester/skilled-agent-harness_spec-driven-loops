@@ -1,0 +1,14 @@
+Alignment recheck (T068), 2026-11-15
+Recheck folder: /Users/michelkerkmeester/.local/state/local-skilled-alignment/383-mistral-vibe-runtime/20261115T081518Z
+Command: recheck.cjs --from /Users/michelkerkmeester/.local/state/local-skilled-alignment/383-mistral-vibe-runtime/20261115T063605Z, then run-battery.cjs --rows-from, then recheck.cjs --battery
+Result: STATUS=OPEN recheck: resolved=12 still_open=8 new=0 needs_review=41 (exit 1)
+
+Still open, each triaged out of scope or deferred in scratch/alignment-triage.md:
+- S1-quality-gate and S1-comment-hygiene: the untracked sample-bad.ts fixture (by design) and the pre-existing PEM test block.
+- S1-package-check (two rows): cannot_run, the worktree has no node_modules; the suites ran separately (scratch/final-suites.txt).
+- S5-derived-counts: two counts that predate the base.
+- S6-release-coverage: deferred to the release owner.
+- S13-env-tokens: WIRE_LOG only, fixture-internal. The six VIBE_*_DIR names now resolve.
+- C-2: pre-existing on main.
+Needs review (41): judgment findings the recheck cannot verify by text. Each one is marked in the triage with the file that carries the fix.
+No confirmed in-scope finding is still open.

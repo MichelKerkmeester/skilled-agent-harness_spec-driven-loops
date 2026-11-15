@@ -285,7 +285,13 @@
         "vibe one-task run",
         "vibe export.json",
         "vibe roster",
-        "vibe headless"
+        "vibe headless",
+        "vibe run finished",
+        "delegating to vibe",
+        "dispatch vibe",
+        "vibe_home",
+        "vibe is installed",
+        "glm-flash roster"
       ]
     }
   }

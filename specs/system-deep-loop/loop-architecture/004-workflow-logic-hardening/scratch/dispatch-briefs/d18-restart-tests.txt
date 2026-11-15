@@ -1,0 +1,141 @@
+ROLE: You are a test author. Write one new vitest file that checks the WORKFLOW TEXT CONTRACT
+above, parts C1 to C6. Do not edit any workflow file, any source file or any other test. The
+workflow files do not meet the contract yet, so most of your tests MUST FAIL today. That is the
+expected result. Do not weaken a test to make it pass.
+
+ALLOWED WRITE PATHS (one new file, plus temp folders your tests create and remove):
+- .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts
+- .skilled/skills/system-deep-loop/runtime/tests/.tmp/  (git-ignored, for test temp folders only)
+
+READ FIRST, for conventions:
+- .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts
+  (header comment style, how ASSETS is resolved, how a step block is cut out of the text)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-lock-release.vitest.ts
+  (how a CLI is spawned and how temp folders are removed in afterEach)
+
+RULES FOR THE FILE
+- The workflow files are read as plain text. No YAML parser is installed for these tests.
+- Write these helpers:
+  topLevelStep(text, name): the block that starts at `\n  name:\n` (two spaces) and ends before
+    the next line that matches /\n  [a-z_]+:\n/.
+  phaseStep(text, name): the block that starts at `      name:\n` (six spaces) and ends before the
+    next line that matches /\n      [a-z_0-9]+:\n/.
+  keyBlock(block, key): from the first line whose trimmed text is `key:` (or starts with `key: `)
+    to the last following line that is indented deeper than that line. Returns '' when absent.
+  blockScalar(block, key): for a line `<indent>key: |`, the following deeper-indented lines with
+    the common indentation removed, joined by \n. Returns '' when absent.
+  render(command, values): replaces every `{placeholder}` named in values.
+  afterAcquire(text): text.slice(text.indexOf('      step_acquire_lock:\n')).
+- Commands are run with spawnSync('bash', ['-c', rendered], { encoding: 'utf8' }).
+- Temp folders: mkdtempSync(join(tmpdir(), 'workflow-restart-')) for the archive and binding tests.
+  The gateway test (case 9 below) uses a folder under
+  .skilled/skills/system-deep-loop/runtime/tests/.tmp/ made with mkdtempSync, because the gateway
+  runs inside the repository. Remove every temp folder in afterEach.
+- When a helper returns '' the test must fail with expect(...).not.toBe('') before any command runs.
+- The exact phrases `missing old config`, `corrupt old config` and `archive target exists` must
+  each appear on exactly ONE line of the file, inside the test title named below. Do not repeat
+  them in a comment, a variable or an assertion message.
+- The word `archive_root` must appear in the file (use the `{state_paths.archive_root}` placeholder).
+
+TEST CASES. Use these titles exactly. `FILES` pairs each label with its file. Write the per-file
+cases with a for loop, so each produces one `it(` per file at run time, but ALSO make sure the
+source text holds at least 16 literal `it(` calls: do not fold cases 5 to 9 into loops.
+
+1. `research flags: research.md and the presentation bind lineage_mode`
+   .skilled/commands/deep/research.md contains `--restart` and `--lineage-mode`.
+   .skilled/commands/deep/assets/deep-research-presentation.txt contains `lineage_mode` and
+   `--restart -> lineage_mode = restart`.
+2. For both research files: `research flags: ${label} preflight requires lineage_mode`
+   The `required_values_present:` line inside phaseStep(text, 'step_preflight_contract') contains
+   `lineage_mode`.
+3. For both auto files: `${label} restart order: the archive runs before fan-out, directories and the lock`
+   text.indexOf('\n  step_apply_lifecycle_request:\n') is not -1 and is smaller than
+   text.indexOf('\n  step_fanout_spawn:\n'), which is smaller than
+   text.indexOf('      step_create_directories:\n'), which is smaller than
+   text.indexOf('      step_acquire_lock:\n'). The block holds `skip_when: "lineage_mode != 'restart'"`.
+4. For all four files: `no post-lock move: ${label} restart never moves the packet after the lock`
+   afterAcquire(text) contains neither `mv {state_paths.packet_dir}` nor `mv "{state_paths.packet_dir}"`.
+   For the two confirm files also: keyBlock(phaseStep(text,'step_classify_session'),'on_restart_choice')
+   contains `! -name "$(basename "{state_paths.lock_file}")"` and
+   `mkdir -p "{state_paths.prompt_dir}" "{state_paths.iteration_dir}" "{state_paths.delta_dir}"`
+   and `on_fail: "Halt with STATUS=FAIL through step_release_lock`.
+5. `no post-lock move: the auto archive moves the packet into the archive root`
+   Take blockScalar(topLevelStep(researchAutoText,'step_apply_lifecycle_request'),'command').
+   In a temp folder make packet/ with one file, render {state_paths.packet_dir} -> <tmp>/packet,
+   {state_paths.archive_root} -> <tmp>/archive, {timestamp_slug} -> 'slug-1'. Run it. Expect exit 0,
+   <tmp>/archive/slug-1/<file> exists, <tmp>/packet exists and is empty, and the resolved archive
+   target starts with the resolved archive root.
+6. `no post-lock move: archive target exists stops the auto archive`
+   Same command, but create <tmp>/archive/slug-1 first. Expect a non-zero exit and the packet file
+   still at <tmp>/packet/<file>.
+7. `no post-lock move: the confirm archive keeps the held lock file in place`
+   Take blockScalar(keyBlock(phaseStep(researchConfirmText,'step_classify_session'),'on_restart_choice'),'command').
+   In a temp folder make packet/ with deep-research-config.json, iterations/a.md and
+   .deep-research.lock. Render {state_paths.packet_dir}, {state_paths.archive_root},
+   {timestamp_slug}, {state_paths.lock_file} -> <tmp>/packet/.deep-research.lock,
+   {state_paths.prompt_dir} -> <tmp>/packet/prompts, {state_paths.iteration_dir} ->
+   <tmp>/packet/iterations, {state_paths.delta_dir} -> <tmp>/packet/deltas. Run it. Expect exit 0,
+   the lock file still at its path, the config and iterations/a.md under <tmp>/archive/slug-1/,
+   no config left in packet/, and the three directories present in packet/.
+8. For all four files: `prior lineage binding: ${label} reads the old config before the archive`
+   The restart block (topLevelStep 'step_apply_lifecycle_request' for auto, the on_restart_choice
+   keyBlock for confirm) contains `bind_prior_lineage:` at a position before its archive `command:`
+   key (the first `command: |` line that is NOT inside bind_prior_lineage: compare the index of
+   'bind_prior_lineage:' with the index of 'find "{state_paths.packet_dir}"' for confirm and of
+   'mv "{state_paths.packet_dir}"' for auto). Then run blockScalar(keyBlock(block,'bind_prior_lineage'),'command')
+   rendered with {state_paths.config} -> a temp config. Use a research-shaped config
+   {"lineage":{"sessionId":"sess-old","generation":2}} for the research files and a review-shaped
+   config {"sessionId":"sess-old","generation":2} for the review files. Expect exit 0 and stdout
+   JSON { priorSessionId: 'sess-old', priorGeneration: 2 }.
+9. `restart projection: the gateway records run_restarted after run_initialized`
+   In a folder under tests/.tmp write deep-research-config.json:
+   {"topic":"probe","maxIterations":3,"specFolder":"specs/x","createdAt":"2026-11-14T10:00:00Z","status":"initialized","lineage":{"sessionId":"sess-new","parentSessionId":"sess-old","lineageMode":"restart","generation":3,"continuedFromRun":null}}
+   Run blockScalar(phaseStep(researchAutoText,'step_create_state_log'),'command') rendered with
+   {state_paths.config} -> <dir>/deep-research-config.json and {state_paths.state_log} ->
+   <dir>/deep-research-state.jsonl, with cwd = the repository root. Expect exit 0.
+   Then take the append_jsonl value of phaseStep(researchAutoText,'step_record_restarted_run'):
+   the text between `append_jsonl: '` and the closing `'` at the end of that line. Render
+   {session_id_init} -> sess-new, {parent_session_id_init} -> sess-old, {generation_init} -> 3,
+   {state_paths.archive_root} -> research_archive, {timestamp_slug} -> slug-1,
+   {ISO_8601_NOW} -> 2026-11-14T10:00:01Z. Write it to <dir>/event.json and run
+   node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode research --run-directory <dir> --event-json <dir>/event.json
+   from the repository root. Expect exit 0, stdout JSON with ok true and
+   receipt.event_type 'deep-research.ledger.run-restarted' and receipt.sequence 2, and a line in
+   <dir>/research/deep-research-state.jsonl whose JSON has event 'restarted' and generation 3.
+10. `restart projection: the ledger table marks run_restarted spoken by both research workflows`
+   Import DEEP_RESEARCH_STEM_PRODUCERS from
+   '../../lib/deep-research-ledger-schema/deep-research-ledger-types' (check the real relative path
+   and extension convention in a neighbouring test). The 'deep_research.run_restarted' entry has
+   status 'spoken' and producers equal to
+   ['.skilled/commands/deep/assets/deep-research-auto.yaml', '.skilled/commands/deep/assets/deep-research-confirm.yaml'].
+11. `prior lineage binding: missing old config binds null and generation 0`
+   Run the research auto bind command with {state_paths.config} -> a path that does not exist.
+   Expect exit 0 and { priorSessionId: null, priorGeneration: 0 }.
+12. `prior lineage binding: corrupt old config stops the restart`
+   Same command with a config file that holds `{not json`. Expect a non-zero exit.
+13. For all four files: `${label} config lineage: the restart values reach the config`
+   phaseStep(text,'step_create_config') contains the three lineage_values lines of C5 exactly and
+   the three populate lines of C5 for that loop type. No line of the whole file ends with
+   `lineageMode: "new"` or `generation: 1` (test each line with trimEnd().endsWith).
+   For the two review files also: phaseStep(text,'step_create_findings_registry') contains
+   `"generation":{generation_init},"lineageMode":"{lineage_mode_init}"`.
+14. For both research files: `${label} restarted event: recorded after the run opens`
+   The index of '      step_create_state_log:\n' is smaller than the index of
+   '      step_record_restarted_run:\n', which is not -1 and is smaller than the index of
+   '      step_create_strategy:\n'. The step holds `skip_when: "lineage_mode != 'restart'"`,
+   `deep_research.run_restarted` and `"event":"restarted"`. phaseStep(text,'step_classify_session')
+   does not contain `"event":"restarted"`.
+
+VERIFY (run from the repository root and print the output):
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/workflow-restart-lifecycle.vitest.ts 2>&1 | tail -60)
+  rg -c 'it\(' .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts
+  rg -c 'missing old config|corrupt old config|archive target exists' .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts
+  rg -n 'process.env|F0[0-9]|REQ-|specs/system' .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts
+  (cd .skilled/skills/system-deep-loop/runtime && npm run typecheck 2>&1 | tail -5)
+
+EXPECTED: the test run reports failures for research auto, research confirm, review auto and
+review confirm, and no syntax or import error. The second command prints 16 or more. The third
+prints 3. The fourth prints nothing (the `specs/x` value inside the JSON config is allowed: write it
+so the line does not match `specs/system`). The typecheck exits 0.
+
+RETURN: the outputs of the verify commands and the list of test titles with pass or fail.

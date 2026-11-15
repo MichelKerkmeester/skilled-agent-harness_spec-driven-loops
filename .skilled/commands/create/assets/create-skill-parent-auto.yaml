@@ -259,7 +259,7 @@ quality_standards:
     - one advisorRouting block per mode
     - "advisorRouting fields: routingClass (lexical | alias-fold | metadata | command-bridge), legacyAdvisorId (lexical + alias-fold modes only), advisorDefaultMode (optional, alias-fold default), legacyAliases (lexical + alias-fold only), packetSkillName"
     - "registry keys (mode.packet) match packet folder names; canonical workflow folder == packetSkillName == [hub-prefix]-<mode>, surface folder == packetSkillName == bare noun; grandfathered mismatches recorded via grandfatheredFolderMismatch + packetSkillName"
-    - "runtimeLoopType allowed set when present and non-null: research | review | council | context (or the hub's declared runtime-loop types)"
+    - "runtimeLoopType allowed set when present and non-null: research | review | context (or the hub's declared runtime-loop types)"
   advisor_projection_requirements:
     - "For lexical/alias-fold modes, emit the generated advisor projection from the finalized mode-registry.json into system-skill-advisor's TypeScript and Python projection constants"
     - "Projection emission must include a SHA-256 freshness hash and must not add runtime reads of another skill's mode-registry.json"

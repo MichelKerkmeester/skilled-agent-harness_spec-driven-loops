@@ -1,0 +1,38 @@
+== bytes
+  172747 .skilled/commands/deep/assets/deep-research-auto.yaml
+  157907 .skilled/commands/deep/assets/deep-research-confirm.yaml
+  180254 .skilled/commands/deep/assets/deep-review-auto.yaml
+  165285 .skilled/commands/deep/assets/deep-review-confirm.yaml
+  676193 total
+== research
+differing lines auto vs confirm: 1730
+keyed step names anywhere: auto=75 confirm=76
+step keys inside workflow block: auto=75 confirm=64
+auto-only workflow steps: step_apply_divergent_pivot_result step_apply_lifecycle_request step_ideas_backlog_lifecycle step_init_complete step_refresh_lineage_context step_rejected_pattern_cache step_run_now_check step_run_now_restore_check step_telemetry_heartbeat_progress step_telemetry_heartbeat_started step_telemetry_heartbeat_terminal 
+confirm-only workflow steps: 
+executor branches auto: if_cli_claude_code if_cli_codex if_cli_cursor if_cli_deepseek_harness if_cli_devin if_cli_opencode if_cli_pi if_native 
+executor branches confirm: if_cli_claude_code if_cli_opencode if_native 
+failure branches auto: if_failed 
+failure branches confirm: if_failed_recoverable if_failed_unrecoverable 
+dry_run mentions: auto=0 confirm=79
+--no-resource-map mentions: auto=1 confirm=0
+inline heredocs auto: 18 heredocs, 48247 bytes
+pivot seat block bytes auto: 7902
+dry-run mentions in research.md: 8 presentation: 0
+== review
+differing lines auto vs confirm: 1237
+keyed step names anywhere: auto=72 confirm=73
+step keys inside workflow block: auto=72 confirm=68
+auto-only workflow steps: step_apply_divergent_pivot_result step_apply_lifecycle_request step_generate_state_summary step_init_complete 
+confirm-only workflow steps: 
+executor branches auto: if_cli_claude_code if_cli_codex if_cli_cursor if_cli_deepseek_harness if_cli_devin if_cli_opencode if_cli_pi if_native 
+executor branches confirm: if_cli_claude_code if_cli_opencode if_native 
+failure branches auto: if_failed 
+failure branches confirm: if_failed_recoverable if_failed_unrecoverable 
+dry_run mentions: auto=0 confirm=7
+--no-resource-map mentions: auto=1 confirm=0
+inline heredocs auto: 15 heredocs, 39807 bytes
+pivot seat block bytes auto: 7920
+dry-run mentions in review.md: 0 presentation: 0
+== shared
+workflow step keys shared by research auto and review auto: 56

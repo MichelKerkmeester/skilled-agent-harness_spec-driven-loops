@@ -11,7 +11,6 @@ export const WRITE_SET_GRAPH_SCHEMA_VERSION = 'write-set-conflict-graph/v1' as c
 export const PHASE_013_WORKSTREAMS = [
   '001-deep-research',
   '002-deep-review',
-  '003-deep-ai-council',
 ] as const;
 
 // ───────────────────────────────────────────────────────────────────

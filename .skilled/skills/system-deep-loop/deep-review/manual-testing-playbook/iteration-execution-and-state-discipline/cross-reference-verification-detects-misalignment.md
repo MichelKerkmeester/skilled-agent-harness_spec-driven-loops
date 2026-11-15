@@ -1,7 +1,7 @@
 ---
 title: "DRV-011 -- Cross-reference verification detects misalignment"
 description: "Verify that cross-reference checks (spec_code, checklist_evidence, skill_agent protocols) detect misalignment between documentation and implementation."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-011 -- Cross-reference verification detects misalignment
@@ -45,8 +45,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review traceability cross-reference checks and confirm the configured protocols dispatch correctly.
 ### Commands
-1. `bash: rg -n 'crossReference|cross_reference|spec_code|checklist_evidence|skill_agent|agent_cross_runtime|feature_catalog_code|playbook_capability' .skilled/commands/deep/assets/deep-review-auto.yaml`
-2. `bash: rg -n 'traceability|cross.reference|TRACEABILITY PROTOCOLS' .skilled/commands/deep/assets/deep-review-auto.yaml`
+1. `bash: rg -n 'crossReference|cross_reference|spec_code|checklist_evidence|skill_agent|agent_cross_runtime|feature_catalog_code|playbook_capability' .skilled/commands/deep/assets/deep-review.yaml`
+2. `bash: rg -n 'traceability|cross.reference|TRACEABILITY PROTOCOLS' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'cross.reference|traceability|spec_code|checklist_evidence' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml`
 ### Expected
 The config includes crossReference with core and overlay protocols. The dispatch prompt includes traceability constraints. The quality guards require cross-reference checks before convergence.
@@ -71,7 +71,7 @@ Check the review-mode-contract.yaml for the full cross-reference protocol defini
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Config creation and dispatch, inspect `step_create_config` crossReference block and dispatch traceability constraints |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Config creation and dispatch, inspect `step_create_config` crossReference block and dispatch traceability constraints |
 | `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml` | Cross-reference protocol definitions, inspect `cross_reference_protocols` |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Quality guards, use `ANCHOR:quality-guards` and `ANCHOR:review-dimensions` |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Traceability dimension documentation |

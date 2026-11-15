@@ -1,0 +1,60 @@
+ALLOWED WRITE PATHS (S = .skilled/skills/system-deep-loop):
+- S/deep-research/SKILL.md
+- S/deep-research/README.md
+- every *.md file under S/deep-research/references/
+
+Line numbers below are from an earlier read. Find each line with grep -n on its quoted text.
+
+EDITS IN S/deep-research/SKILL.md
+1. The line "The nine executor kinds are owned by `runtime/lib/deep-loop/executor-config.ts`."
+   becomes a sentence that names `EXECUTOR_KINDS` in that file and states no count (F7).
+2. "max 12 tool calls per iteration" (the LEAF-agent constraint line) and the NEVER rule
+   "**Exceed TCB** -- Target 8-11 tool calls per iteration (max 12)": state no number. Point at
+   `maxToolCallsPerIteration` (F8).
+3. ALWAYS rule "**Treat research/research.md as workflow-owned**" and NEVER rule
+   "**Overwrite prior findings** -- Append to research/research.md, never replace" contradict
+   each other. Keep the ALWAYS rule. Rewrite the NEVER rule so it agrees: the leaf agent writes
+   its findings to its own iteration file and never edits `research/research.md`, which the
+   workflow rebuilds at synthesis. The phrase "never replace" must be gone.
+4. NEVER rule "**Ask the user** -- Autonomous execution; make best-judgment decisions": scope it
+   to the leaf agent and name `:confirm` as the workflow's ask point (F9). The line that follows
+   or holds "Ask the user" must contain the words "leaf agent".
+5. "- **Orchestrator**: @orchestrate dispatches @deep-research as LEAF agent": replace with the
+   command workflow as the only dispatcher (F9). "@orchestrate dispatches" must be gone.
+6. In section 3 (HOW IT WORKS), under the subsection that describes convergence or the loop,
+   add a short paragraph or bullets that state F2, F3 and F5 for research, naming
+   `runtime/scripts/convergence.cjs`, `deep-research/scripts/reduce-state.cjs`,
+   `maxDurationReached` and the confirm-only Retry, Skip or Cancel question. At most 8 lines.
+7. The ESCALATE rule "3+ consecutive timeouts" stays, but if it says the loop continues or
+   pauses in a way that contradicts F3, align it with F3.
+8. "Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`." Check both paths
+   exist under S/deep-research/. Keep a path that exists. Fix one that does not.
+
+EDITS IN S/deep-research/references/
+9. protocol/loop-protocol.md: the text "default: 12" for the tool-call budget becomes a pointer
+   to `maxToolCallsPerIteration` (F8). "default: 12" must be gone from that file.
+10. convergence/convergence.md, section 2: the `stopReason` table must list all eight stop
+    reasons of F2, each with a one-line meaning. `manualStop` is the operator's stop request and
+    `maxDurationReached` is the wall-clock limit of F5.
+11. convergence/convergence.md, section 3, the numbered step that starts "If graphEvents exist":
+    rewrite it so a missing graph decision blocks every non-terminal STOP (F2). The text
+    "If graphEvents exist" must be gone.
+12. Every other file under references/ and S/deep-research/README.md: replace old workflow file
+    names (F1), and correct any sentence that contradicts F2, F3, F4 or F5. Do not rewrite
+    sentences that are still true.
+
+CHECKS (run from the repository root, R = S/deep-research):
+  rg -n 'nine executor kinds|max 12|never replace|@orchestrate dispatches' R/SKILL.md       prints nothing
+  rg -c 'maxToolCallsPerIteration' R/SKILL.md                                               at least 1
+  rg -c 'runtime/scripts/convergence.cjs|maxDurationReached|deep-research/scripts/reduce-state.cjs' R/SKILL.md   at least 3
+  rg -n 'Retry' R/SKILL.md                                                                  a line naming confirm mode
+  rg -n -A1 'Ask the user' R/SKILL.md                                                       names the leaf agent
+  rg -n 'default: 12' R/references/protocol/loop-protocol.md                                prints nothing
+  sed -n '/^## 2\./,/^## 3\./p' R/references/convergence/convergence.md | rg -c 'manualStop|maxDurationReached'   at least 2
+  rg -n 'If graphEvents exist' R/references/convergence/convergence.md                      prints nothing
+  rg -n 'deep[-_]research[-_](auto|confirm)' R/SKILL.md R/README.md R/references            prints nothing
+  node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs --facts | grep -E 'deep-research/(SKILL|README)\.md|deep-research/references/'   prints nothing
+
+REPORT: one line per numbered edit ("done", "no change needed, <why>" or "failed, <reason>"),
+then the output of each check, then every sentence you changed under edit 12 as
+`<file>:<line>: <new sentence>`.

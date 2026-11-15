@@ -7,7 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "parallel lineage execution"
   - "multi-executor research"
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # Fan-out loop dispatch
@@ -44,7 +44,7 @@ behavior breaks or lineage isolation fails.
 
 ## 2. HOW IT WORKS
 
-Fully shipped in both `deep-research-auto.yaml` and `confirm.yaml`. Parity
+Fully shipped in `deep-research.yaml` for both execution modes. Parity
 gate: `if_absent` branch is byte-identical to the original command; `skip_when` guards
 ensure zero behavioral change for single-executor mode. Full vitest suite (197/197) confirms
 no single-executor regression. Command surface: `--executor` (repeatable, with
@@ -63,8 +63,7 @@ The refusal message names the single-executor workflow instead, and never the op
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | `step_resolve_artifact_root` (if_present/if_absent branches), `step_fanout_spawn`, `step_fanout_merge` |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Same steps (confirm variant) |
+| `.skilled/commands/deep/assets/deep-research.yaml` | `step_resolve_artifact_root` (if_present/if_absent branches), `step_fanout_spawn`, `step_fanout_merge` |
 | `.skilled/commands/deep/research.md` | `--executor`/`--executors`/`--concurrency` flag docs, default policy, fan-out examples |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | CLI lineage pool driver called by `step_fanout_spawn_cli` |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Cross-lineage merger called by `step_fanout_merge` |
@@ -82,6 +81,6 @@ The refusal message names the single-executor workflow instead, and never the op
 
 - Group: Loop Lifecycle
 - Catalog source: `feature-catalog/loop-lifecycle/fanout-dispatch.md`
-- Primary source files: `deep-research-auto.yaml`, `research.md`
+- Primary source files: `deep-research.yaml`, `research.md`
 Related references:
 - [resource-map-emission.md](../../feature-catalog/loop-lifecycle/resource-map-emission.md) — Resource Map Emission

@@ -1,0 +1,41 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a documentation worker. Change exactly one line in one file, nothing else.
+Do not reformat or fix anything adjacent, do not change the frontmatter. Do not commit.
+
+ALLOWED WRITE PATH (only this one file):
+- .skilled/skills/system-deep-loop/deep-research/SKILL.md
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any
+write outside the allowed path, any package install.
+
+TASK: line 271 lists stop reasons that the runtime does not use. Replace the line
+- Stop reason (converged, max_iterations, all_questions_answered, stuck_unrecoverable)
+with
+- Stop reason (converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached)
+
+VERIFY (run from the repository root and print the output):
+  grep -n "Stop reason (" .skilled/skills/system-deep-loop/deep-research/SKILL.md
+  git diff --stat -- .skilled/skills/system-deep-loop/deep-research/SKILL.md
+
+EXPECTED: the grep prints one line holding the eight values above. The diff stat shows
+1 insertion and 1 deletion.
+
+RETURN: the two command outputs.

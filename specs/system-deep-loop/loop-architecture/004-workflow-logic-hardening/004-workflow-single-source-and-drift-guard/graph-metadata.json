@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard",
+  "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "workflow single source and drift guard",
+      "phase 4 workflow single source and drift guard",
+      "deep research auto confirm drift",
+      "deep review workflow twin merge",
+      "workflow single source and drift guard plan",
+      "workflow single source and drift guard tasks",
+      "workflow single source and drift guard acceptance criteria",
+      "workflow single source and drift guard goal",
+      "workflow single source and drift guard implementation summary"
+    ],
+    "key_topics": [
+      "workflow",
+      "single",
+      "source",
+      "drift",
+      "guard",
+      "phase",
+      "deep",
+      "research",
+      "auto",
+      "confirm",
+      "review",
+      "twin"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/deep/assets/deep-research.yaml",
+      ".skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs",
+      ".skilled/commands/deep/research.md",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      ".skilled/commands/speckit/assets/speckit-complete.yaml",
+      "scratch/guard-negative.txt",
+      ".skilled/agents/deep-review.md",
+      ".skilled/commands/speckit/README.txt",
+      ".skilled/commands/speckit/assets/speckit-plan.yaml",
+      ".skilled/commands/speckit/plan.md",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/skills/system-deep-loop/command-metadata.json",
+      ".skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "loop-heartbeat.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "guard-negative.txt",
+        "kind": "file",
+        "path": "scratch/guard-negative.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-now-sentinel.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-graph-upsert.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each deep-loop command ships an auto workflow and a confirm workflow that are edited by hand and have drifted",
+    "created_at": "2026-11-14T11:33:21Z",
+    "last_save_at": "2026-11-14T19:10:44.727Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac5b0c42d6b8169ebac60d90e4a0981da2a1a16d6f1508ca5a4cd89b570520e9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7cdca6a0d894de6ebd2bd760be2a704cbab005bd07e5a43612de6639cd96cbbf",
+      "plan.md": "65ecdf474e8ba930098130b0eb5eda922364af446cb1c2c7e4553dca5d15b3cc",
+      "tasks.md": "02e0b8ecf9e1092f0fa76c66171de9516540f06efd7f46c1b0d8b1238a003ee2",
+      "implementation-summary.md": "51679e0871fc95ff6f642963a34eb81b8d3c5850da03d8fe24ef61429d9721af"
+    },
+    "last_active_at": null
+  }
+}

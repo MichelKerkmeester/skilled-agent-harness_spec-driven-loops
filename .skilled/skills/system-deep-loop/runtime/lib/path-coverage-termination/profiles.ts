@@ -106,15 +106,6 @@ export const MODE_COVERAGE_PROFILES: readonly ModeCoverageProfile[] = Object.fre
     region('context-reuse-candidate', ['reuse-candidate'], ['independent-evidence'], 2),
     region('context-dependency', ['dependency'], ['projection-row'], 4),
   ]),
-  profile('council', [
-    { dimensionId: 'agenda-branch', source: 'declared' },
-    { dimensionId: 'independent-evidence-region', source: 'declared' },
-    { dimensionId: 'dissent-region', source: 'declared' },
-  ], [
-    region('council-agenda-branch', ['agenda-branch'], ['ledger-event'], 3),
-    region('council-independent-evidence', ['independent-evidence-region'], ['independent-evidence'], 4),
-    region('council-dissent', ['dissent-region'], ['refutation'], 5),
-  ]),
 ]);
 
 /** Raised when a caller requests or supplies an unregistered denominator contract. */

@@ -722,7 +722,11 @@ export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection
     && /\btrigger[- ]index\b/.test(promptLower) && !/\bdrift\b/.test(promptLower)) {
     return true;
   }
-  if (skillId === 'system-deep-loop' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
+  // Convening a council asks for a deliberation to run, even when the question it will
+  // deliberate uses a read-only verb such as "compare". Only wording that asks for the
+  // council itself lifts the command, so a question about councils stays on the floor.
+  if (skillId === 'command-speckit-ai-council'
+    && /\b(convene (an? )?(ai )?council|ask the council|get a council verdict|run (an? )?ai council)\b/.test(promptLower)) {
     return true;
   }
   // Browser/devtools inspection is a genuine chrome-devtools task even though

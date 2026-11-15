@@ -6,7 +6,7 @@ trigger_phrases:
   - "persisted-wait-crash-resume"
   - "persisted-wait crash resume runtime"
   - "fan-out persisted-wait crash resume"
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # Persisted-wait crash resume
@@ -36,7 +36,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 | File | Layer | Role |
 |---|---|---|
 | `scripts/fanout-run.cjs` | Runtime | persisted-wait crash resume. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Integration | persisted-wait crash resume. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Integration | persisted-wait crash resume. |
 
 ### Validation And Tests
 
@@ -51,6 +51,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 - Group: Fan-out
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `fanout/persisted-wait-crash-resume.md`
-- Primary sources: `scripts/fanout-run.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `tests/unit/fanout-run.vitest.ts`
+- Primary sources: `scripts/fanout-run.cjs`, `.skilled/commands/deep/assets/deep-research.yaml`, `tests/unit/fanout-run.vitest.ts`
 Related references:
 - [fanout](../fanout/) — Fan-out category
