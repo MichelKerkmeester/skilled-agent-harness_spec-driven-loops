@@ -45,8 +45,8 @@
         "accuracy": 0.875
       },
       "delegation": {
-        "correct": 20,
-        "total": 20,
+        "correct": 22,
+        "total": 22,
         "accuracy": 1
       }
     }
