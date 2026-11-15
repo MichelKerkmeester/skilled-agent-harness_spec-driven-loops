@@ -92,7 +92,7 @@ function loadHardBlockers() {
   if (!fs.existsSync(HARD_BLOCKERS)) return rows;
   for (const line of read(HARD_BLOCKERS).split('\n')) {
     const m = line.match(/^\| `([^`]+)` \| ([^|]+) \| ([^|]+) \| (fix|self-reference) \| ([^|]+) \|$/);
-    if (m) rows.set(m[1], { klass: m[4], action: m[5].trim() });
+    if (m) rows.set(m[1], { klass: m[4], action: m[5].trim(), token: m[2].trim().replace(/^`|`$/g, '') });
   }
   return rows;
 }
@@ -107,6 +107,7 @@ function extraLock(file) {
   if (!row) return '';
   if (row.klass === 'self-reference') return `- This file names \`harness-diagram\`, an origin's own name. Keep the word harness-diagram exactly where the original has it.`;
   if (isSpecSemicolonFix(file)) return '- One locked line changes: on the line that starts with > Spec folder:, replace the semicolon between the two folders with the word and. Change nothing else on that line.';
+  if (sanctionedSwap(file)) return `- The voice rules ban the word ${row.token}. Replace every use in prose with a plain noun that names the same thing, such as script or tool.`;
   return '';
 }
 
@@ -404,7 +405,16 @@ function fillRewrite(file, oldText, draft, items) {
   return prompt;
 }
 
-const fillVerify = (oldText, newText) => read(path.join(HERE, 'brief-verify.md'))
+// A planned voice fix swaps a banned word for a plain noun. Without this note the
+// fact check reads the swap as a renamed component and rejects every attempt.
+function sanctionedSwap(file) {
+  const row = BLOCKERS.get(file);
+  if (!row || row.klass !== 'fix' || !/^[a-z-]+$/i.test(row.token || '')) return '';
+  return `Also not a problem: the voice rules ban the word "${row.token}". Replacing it with a plain noun that names the same thing, such as script or tool, is a sanctioned change.`;
+}
+
+const fillVerify = (file, oldText, newText) => read(path.join(HERE, 'brief-verify.md'))
+  .replace('{{SANCTIONED}}', () => sanctionedSwap(file))
   .replace('{{ORIGINAL}}', () => oldText.replace(/\n$/, ''))
   .replace('{{REWRITE}}', () => newText.replace(/\n$/, ''));
 
@@ -470,7 +480,7 @@ async function processFile(file) {
       history.push({ attempt, problem: 'gates', items });
       continue;
     }
-    const v = await dispatchVerify(fillVerify(oldText, text), `${tag}.a${attempt}`);
+    const v = await dispatchVerify(fillVerify(file, oldText, text), `${tag}.a${attempt}`);
     add(tokens.verify, v.usage);
     if (v.limited) throw new LimitHit(`fact checker usage limit on ${file}`);
     const verdict = extractVerdict(v.reply);

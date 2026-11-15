@@ -23,6 +23,7 @@ Report three kinds of problem. Quote the text briefly in each item.
 - changed: a claim whose meaning differs, such as a changed noun, a changed actor, a widened or narrowed scope, two facts merged into one wrong claim, a lost or added word such as still, now, no longer or already, a recommendation turned into a requirement or the reverse, or a reason or condition (because, so, if, when) split into sentences that no longer link it to what it explains or governs.
 
 Not problems: splitting sentences, plainer synonyms that keep the meaning, reordering inside a paragraph or bullet, and a reworded bold lead that keeps its meaning.
+{{SANCTIONED}}
 
 OUTPUT
 Reply with one JSON object and nothing else:

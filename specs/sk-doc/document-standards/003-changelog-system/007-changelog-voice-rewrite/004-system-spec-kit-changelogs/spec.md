@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 4: system-spec-kit-changelogs"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The 167 system-spec-kit changelogs had long sentences, and 374 ran past 22 words. This phase rewrites them with the phase 001 driver, keeping every fact."
 trigger_phrases:
   - "system spec kit changelogs"
   - "phase 4 system spec kit changelogs"
@@ -20,10 +20,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
-| **Branch** | `scaffold/004-system-spec-kit-changelogs` |
+| **Branch** | `worktrees/401-changelog-voice-rewrite` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 12 |
 | **Predecessor** | 003-sk-doc-changelogs |
@@ -56,18 +56,23 @@ This is **Phase 4** of the Rewrite every skill and release changelog to the Huma
 <!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The system-spec-kit changelogs hold long sentences. Across the 165 changelogs this phase queues, 374 sentences run past 22 words and 106 files have at least one. Five files also hold a hard blocker under the voice rules.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+Every changelog on the list reads in short plain sentences with every fact kept.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 <!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ python3 ../scratch/measure-voice.py <the 165 queued files at HEAD>
+files=165 sentences=3910 avg_words=11.9
+sentences_over_15=992 sentences_over_22=374
+files_with_a_sentence_over_22=106 files_with_hvr_hard_blockers=5
 ```
+
+The list holds 167 files. The pilot already rewrote `system-spec-kit/changelog/v2.12.43.0.md` and `v2.8.4.0.md` and committed them in `e673c77ba93`, so the driver queued 165.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -77,19 +82,24 @@ This is **Phase 4** of the Rewrite every skill and release changelog to the Huma
 <!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Rewrite the 165 queued changelogs in `../scratch/lists/004.txt` with `../scratch/rewrite-driver.cjs`.
+- Retry the files the first wave restored with `--retry-failed`.
+- Tell the worker and the fact check about a planned banned-word swap, so the two gates stop contradicting each other.
+- Check the wave with `../scratch/wave-verify.cjs` and measure it with `../scratch/measure-voice.py`.
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- Any file outside `../scratch/lists/004.txt` - the later phases own them.
+- A GitHub release sync - skill changelogs have no published release.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.skilled/skills/system-spec-kit/**/changelog/v*.md` (128 files) | Modify | Rewritten changelogs that passed every gate |
+| `../scratch/rewrite-driver.cjs` | Modify | Passes a sanctioned-swap note to the worker and the fact check for a banned-word fix row |
+| `../scratch/brief-verify.md` | Modify | Gains a `{{SANCTIONED}}` slot under "Not problems" |
+| `../scratch/state.jsonl` | Modify | One record per dispatch with its tokens and verdict |
+| `scratch/evidence.txt` | Create | Measure, wave and wave-verify results |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -103,13 +113,16 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-001 | Each of the 167 files on the list ends with a `pass` or `unchanged` record in `../scratch/state.jsonl`, or is restored to HEAD with its last finding recorded. |
+| REQ-002 | `wave-verify.cjs` reports no problem for a file this phase rewrote, and no missing file. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-003 | `measure-voice.py` on the 165 queued files after the waves prints `sentences_over_22=0` and `files_with_hvr_hard_blockers=0`. |
+| REQ-004 | A file whose `hard-blockers.md` row plans a banned-word fix loses that word, and the fact check accepts the plain-noun swap. |
+| REQ-005 | The run state records tokens for every dispatch, so the phase total can be reported. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -121,8 +134,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 <!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: `measure-voice.py` prints `avg_words` of 10 or less and `sentences_over_22=0` on the 165 queued files.
+- **SC-002**: `wave-verify.cjs` keeps every rewritten file and finds no missing file.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -133,8 +146,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Dependency | Vibe quota for the worker and Codex quota for the fact check | The wave stalls | The driver stops on a usage limit and restores in-flight files. The run then asks the operator and never moves the fact check to another provider |
+| Risk | A split sentence changes a fact | High | The fact check rejects it, and a file that fails three attempts is restored to HEAD |
+| Risk | The sanctioned-swap note lets the fact check pass a real rename | Med | The note names one banned word and only a plain noun for the same thing. It reaches only files whose `hard-blockers.md` row is a `fix` of a word, never a semicolon row |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -148,16 +162,16 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
-- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: Each worker call is capped at 15 minutes. The slowest file, `v0+/v0.2.30.0.md`, took 925 seconds over two attempts.
+- **NFR-P02**: N/A: throughput is set by the two driver slots.
 
 ### Security
-- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: The fact check runs in a read-only sandbox. The worker gets no tools.
+- **NFR-S02**: N/A: no credential or personal data is read.
 
 ### Reliability
-- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
-- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
+- **NFR-R01**: A failed or interrupted run leaves every file either rewritten and gated, or byte-identical to HEAD.
+- **NFR-R02**: `wave-verify.cjs` checks each kept file and each unchanged file against HEAD before the commit.
 
 ---
 
@@ -165,9 +179,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## L2: EDGE CASES
 <!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
-- Empty input: [YOUR_VALUE_HERE: How system handles]
-- Maximum input: [YOUR_VALUE_HERE: Limit and behavior]
-- Failure path: [YOUR_VALUE_HERE: Exit code and message]
+- Empty input: a changelog that already passes both sentence rules is recorded `unchanged` and not dispatched. 37 were.
+- Maximum input: a file already rewritten in the pilot is skipped, so the list's 167 files queue 165.
+- Failure path: a file that fails three attempts is restored to HEAD with its last finding. Two were, and both passed on a later retry.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -178,10 +192,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
-| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
-| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
-| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
+| Scope | 11/25 | 165 changelogs and one prompt change in two scratch files |
+| Risk | 10/25 | A rewrite can change a fact, and the prompt change touches the fact check |
+| Research | 3/20 | Phase 001 settled the method and the cost |
+| **Total** | **24/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
@@ -190,10 +204,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- None. The operator asked on 2026-11-15 for the remaining phases to run without further questions.
 <!-- /ANCHOR:questions -->
 
 ---
-
-
