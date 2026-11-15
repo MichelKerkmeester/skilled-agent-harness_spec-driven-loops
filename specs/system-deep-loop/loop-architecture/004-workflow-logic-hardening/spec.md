@@ -151,6 +151,7 @@ Per-phase detail lives in each child's `plan.md`. Where a child's own file list 
 | 4 | 004-workflow-single-source-and-drift-guard/ | One workflow file per command serves both modes, dry run works everywhere, the files shrink and a guard test stops the drift from returning | Complete |
 | 5 | 005-command-and-skill-doc-alignment/ | Command docs, skills and references match the code and each other, and a doc guard keeps them that way | Complete |
 | 6 | 006-ai-council-mode-deprecation/ | `ai-council` stops being a deep-loop mode and lives on as a standalone agent in every runtime, so the hub routes two modes | Complete |
+| 7 | 007-open-findings-follow-up/ | The six findings phase 006 left open are fixed: two advisor routes, a stale coverage sentence, the cli-opencode skill on OpenCode 2.3.0, a stdin crash in four runtime scripts and a build that left the spec-kit dist stale | Complete |
 
 The phases run in this order. Phases 001 to 003 move logic out of the workflow files and into scripts, so each of them edits four workflow files. That cost is accepted, because phase 004 then merges files that are already smaller and already correct. Running phase 004 first would mean merging the defective logic and fixing it afterwards in a file nobody has run yet.
 
@@ -170,6 +171,7 @@ The phases run in this order. Phases 001 to 003 move logic out of the workflow f
 | 003-lifecycle-lock-and-limits | 004-workflow-single-source-and-drift-guard | Restart, lock and duration behavior is the same in all four workflow files | Every row of `003-lifecycle-lock-and-limits/acceptance-criteria.md` is `Met` |
 | 004-workflow-single-source-and-drift-guard | 005-command-and-skill-doc-alignment | Each command has one workflow file and the workflow drift guard passes | Every row of `004-workflow-single-source-and-drift-guard/acceptance-criteria.md` is `Met` |
 | 005-command-and-skill-doc-alignment | 006-ai-council-mode-deprecation | The research and review docs match the code and the doc drift guard passes, so the council removal edits settled files | Every row of `005-command-and-skill-doc-alignment/acceptance-criteria.md` is `Met` |
+| 006-ai-council-mode-deprecation | 007-open-findings-follow-up | The council lives on as a command and agent, so the advisor has a council command row to rank | `007-open-findings-follow-up/tasks.md` T001 to T013 are `[x]` with evidence |
 <!-- /ANCHOR:phase-map -->
 
 ---

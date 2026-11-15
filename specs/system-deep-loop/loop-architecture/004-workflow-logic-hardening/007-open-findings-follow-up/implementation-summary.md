@@ -1,0 +1,114 @@
+---
+title: "Implementation Summary: Phase 7: open-findings-follow-up"
+description: "All six findings phase 006 left open are fixed: two advisor routes, the coverage sentence, the cli-opencode skill on OpenCode 2.3.0, a stdin crash in four deep-loop scripts and a spec-kit build that left the dist stale."
+trigger_phrases:
+  - "open findings follow up implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up"
+    last_updated_at: "2026-11-15T05:25:51Z"
+    last_updated_by: "claude"
+    recent_action: "Fixed all six open findings and reran the gates"
+    next_safe_action: "Operator decides on push and merge through sk-git"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-007-open-findings-follow-up"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
+# Implementation Summary: Phase 7: open-findings-follow-up
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-open-findings-follow-up |
+| **Completed** | 2026-11-15 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The six findings phase 006 left open are all fixed. A runner can now hand the deep-loop scripts any stdin without a crash, and one top-level spec-kit build leaves a dist the validator accepts.
+
+### Phase 7: open-findings-follow-up
+
+"deep review this branch" now reaches `system-deep-loop` with `/deep:review`, and a question about the AI council reaches `/speckit:ai-council`. Both changes are phrase boosts in the explicit lane, and the corpus numbers did not move. The coverage sentence in the command contract names the three commands it leaves out. The cli-opencode skill states what was checked on OpenCode 2.3.0, including the two subcommands that moved.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.skilled/skills/system-deep-loop/runtime/scripts/{convergence,query,status,upsert}.cjs` | Modified | The TSX child inherits stdin, so the parent never reads it |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/bootstrap-stdin.vitest.ts` | Created | Runs the four scripts with an open stdin and checks `upsert --events -` still reads it |
+| `.skilled/skills/system-spec-kit/package.json` | Modified | `build` runs the runtime prepare and finalize steps around the compile |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/test-dist-freshness.sh` | Modified | Backs up and restores the real freshness records it used to delete |
+| `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modified | The coverage sentence |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/` docs and `changelog/v1.5.11.0.md` | Modified, Created | Verified on 2.3.0, `opencode auth` and `opencode debug agents`, version 1.5.11.0 |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | Modified | Two phrase boosts |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl` | Modified | The two prompts pinned as golden cases |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Each fix started with a reproduction that failed. The stdin test failed 4 of 5 cases with `EAGAIN` on the old bootstrap. A whitespace edit plus the old build left the validator reporting a stale dist. The two golden cases failed with `sk-git` and `sk-code` at #1. After each change the same check passed. The advisor gates, both test suites and the dist checks were then rerun against the phase 006 Final column.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Phrase boosts with a bounded rival penalty, not a lane rule | Both rivals saturate the explicit and lexical lanes, and the lane already uses this pattern for `findings stop changing` and `:review:auto`. Only prompts that contain the phrase move |
+| No Python mirror change | `skill_advisor.py` already ranks both prompts on target |
+| The install pin in `opencode-setup.sh` stays at 2.1.4 | Moving it changes what other people install, so the operator decides |
+| No advisor version bump | Earlier scorer fixes such as `acf206285e` did not bump it |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Advisor golden prompts | PASS, 39 passed, up from 37 |
+| Advisor ratchets: scorer-eval, local-native divergence, holdout-independent | PASS, 22 passed, same as baseline |
+| Advisor drift and parity | PASS, 14 passed, same as baseline |
+| `score-routing-corpus.py` with the drift-gate floors | PASS, accuracy 0.6 (117/195), gate3 f1 0.9843, TT 114 FT 3 FF 1, identical to baseline |
+| Advisor `npm test` and typecheck | PASS, 1710 passed, up from 1708, typecheck exit 0 |
+| Deep-loop runtime `npm test` and typecheck | PASS, 2909 passed, up from 2904, typecheck exit 0 |
+| `test-dist-freshness.sh` | PASS, 4 passed, the freshness record still present afterwards |
+| cli-opencode script tests | PASS, 27 passed across four files |
+| Spec-kit CLI suite | Same as baseline, one failing test, `typo-flags`. Two files timed out on a 10 second hook in the full run under load average 29 and pass 10/10 run alone |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **The install script still pins OpenCode 2.1.4.** The skill is verified on 2.3.0, but `scripts/opencode-setup.sh` installs `@opencode/cli@2.1.4` until an operator changes `V2_PKG`.
+2. **Five gates still fail as they did before phase 006.** They are `corpus-pin`, `hub-vocabulary-source`, `broken-tracked-symlinks`, `command-router-drift` and the one spec-kit CLI test that runs that drift check. Each needs its own packet.
+<!-- /ANCHOR:limitations -->
