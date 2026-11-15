@@ -1,0 +1,81 @@
+verifier-changelog: added lines of .skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md against 8a5f3214522 (working tree), checked against scratch/release-facts.txt (FACTS) and the current code
+OK   intro "stops offering a command where none fits the request": FACTS 020:51 states it; code command-attach.ts:494 (commandOnlyMentioned) and :497-503 (small-edit gate) withhold the command. The note itself reports the residual 8 of 24 decline leak, so it is not hidden
+OK   intro "It adds a measure of which workflow a run opened": FACTS 019:52,56; score-command-transcripts.mjs:857 workflowPath
+OK   bullet "A command the prompt only mentions, refuses or asks about is not offered": FACTS 020:55; command-attach.ts:256, :414-443, :494
+FAIL bullet "A refusal covers the whole list": FACTS 027:62 says "or-list", and code joins only `or` and `, or` (command-attach.ts:375-382 COMMAND_OR_LIST). Probe on the built dist/runtime/lib/command-attach.js: `do not run /speckit:plan, /speckit:complete for this` -> /speckit:complete not withheld (false), `do not run /speckit:plan or /speckit:complete for this` -> withheld (true). Say "an or-list" or "a list joined by or"
+OK   bullet "`no need to run` counts": FACTS 024:59; command-attach.ts:372 decline lead holds `no need to`
+OK   bullet "a question mark ends the sentence before it": FACTS 024:59; command-attach.ts:441 `(?:^|[.!?\n] *)` before the bare ask lead. The antecedent of "it" in a bullet headed by refusals is loose, but not false
+OK   bullet "Every runtime leads with the same head. The head row keeps its command under every request shape": FACTS 021:51,55,63; advisor-recommend.ts:401-404 `index === 0`
+OK   bullet "The summary says which workflow a run opened ... a command document or the owning skill": FACTS 019:56; score-command-transcripts.mjs:857-878
+OK   bullet "A shell read and a prompt mirror each count, and a search does not": FACTS 022:52, 024:59; score-command-transcripts.mjs:643, :543-550, :638-642
+OK   direct call "reads SYSTEM_SKILL_ADVISOR_HOOK_DISABLED or SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": FACTS 028:51,55,284 ("both `_HOOK_DISABLED` names"); advisor-disabled.ts:33-36 lists both names
+OK   direct call "Setting either one to `1` in the caller's own process makes the call abstain": FACTS 028:278 exact-`1`, 028:303-307 abstain envelopes; advisor-disabled.ts:38-40 `env[flag] === '1'`
+OK   direct call "before any daemon starts or the local scorer runs": FACTS 028:55; skill-advisor-cli.ts:1540-1541 returns before invokeToolPayload, and its only caller skill-advisor-cli.ts:1628-1629 does no socket probe or spawn before it
+OK   direct call "The launcher no longer passes those names to a daemon it starts": FACTS 028:55,284; system-skill-advisor-launcher.cjs:131 CHILD_ENV_ALLOWLIST holds neither name, comment at :159
+OK   "A command the prompt only mentions, refuses or asks about is not offered": FACTS 020:55; command-attach.ts:414-443
+OK   "A request that states history and then asks keeps its command": not worded so in FACTS, but covered by FACTS 024:55 ("a person who asked for one keeps it") with 024:59 (a later `run it`); code command-attach.ts:404, :427 and test command-attach-guards.vitest.ts:251 (`I already ran /create:readme ..., run it again`) -> not a mention
+OK   "`why not use` counts as that ask": FACTS 024:59; command-attach.ts:364 `(?<!\bwhy )not`; test command-attach-guards.vitest.ts:245-246
+OK   "a later `run it` binds to the nearest command": FACTS 024:59; command-attach.ts:427 splits the tail at the next command before testing COMMAND_ASKED_BY_PRONOUN
+OK   "`no need to run` and `stop using` count as refusals": FACTS 024:59; command-attach.ts:372-373
+FAIL "A refusal over a list refuses every command in it": FACTS 027:62 limits it to an or-list; code command-attach.ts:375-382 joins only `or` and `, or`; probe above shows a comma-only list is not refused. Say "A refusal over an or-list"
+OK   "That holds for a command written as `the /x command`": FACTS 027:62; command-attach.ts:382 `(?:the )?` and `(?: command)?`
+OK   "A question about a command gets no start offer": FACTS 020:55, 027:58; command-attach.ts:256, :494 return no command at all, which includes no start
+OK   "A question mark ends the sentence before it": FACTS 024:59; command-attach.ts:441
+OK   "A question that opens with `is the` before a command reads as a question": FACTS 027:62; command-attach.ts:398 COMMAND_BARE_ASK_LEAD, :441
+OK   "A small correction inside an existing readme, catalog or playbook keeps the skill and carries no creation command": FACTS 020:55; command-attach.ts:497-503 drops only the command, the skill row is untouched
+OK   "The gate sits on the readme, catalog and playbook commands": FACTS 020:63; command-attach.ts:339 SMALL_EDIT_GATED_COMMANDS
+OK   "A weak doctor cue ... needs a ranker score of 9 ... between the strong-cue bar and the no-cue bar of 10": FACTS 020:55; doctor-helper-handoff.ts:44 (6), :47 (10), :54 (9); fusion.ts:1171. Scope note: when a skill passed on words alone, fusion.ts:1172 still asks 10, so 9 is the bar on the path FACTS describes
+OK   "The head row now keeps its command under every request shape": FACTS 021:55,63; advisor-recommend.ts:401-404
+FAIL "A top-only request no longer drops it": inverted. Commit 47577daa6f5 replaced `!alreadyOffered.has(command) || (topOnly && index === 0)` with `|| index === 0` (advisor-recommend.ts:404), so the top-only request already kept the head's command and the every-row request was the one that dropped it (FACTS 021:55, OpenCode showed `use sk-doc` alone). Say "An every-row request no longer drops it"
+OK   "The brief offers the same command either way": FACTS 021:51,55
+OK   "The OpenCode plugin asks for the top-only route the hooks ask for": FACTS 021:55,64; .opencode/plugins/system-skill-advisor.js:858 `compiledRouteTopOnly: true`
+OK   "Its label comes from the first row that passes": FACTS 021:55; system-skill-advisor.js:615
+OK   "The renderer leads with that row too": FACTS 021:55; system-skill-advisor.js:613 comment
+OK   "The doctor companion line now prints its policy word": FACTS 021:55,63; render.ts:258-266 companionCommandLabel
+OK   "It reads `Also: /doctor:update (ask)`": FACTS 021:55; command-attach.ts:109 policy ask; render.ts:582
+OK   "It is left out when the head or its partner already prints that command": FACTS 021:55; render.ts:565-584
+OK   "The transcript summary sorts each run into one path" and the six names: FACTS 022:52 ("the six path counts"); score-command-transcripts.mjs:857-878. Note: a row with no owner gets a seventh value, `noOwner` (:858), kept outside the owned denominator
+OK   "`command` means it read the command's own document, or the host expanded it first": FACTS 019:56; score-command-transcripts.mjs:862-865
+OK   "`skill` means it loaded the owning skill's `SKILL.md` or `ROUTER.md`": FACTS 019:56; score-command-transcripts.mjs:777 regex `(?:SKILL|ROUTER)\.md$`
+OK   "`otherMode` means it loaded another mode under the same hub": FACTS 022:52; score-command-transcripts.mjs:797-814
+OK   "`asked` means the run offered the command and waited": FACTS 022:52 (on an ask row); score-command-transcripts.mjs:872-875 requires the ask policy
+OK   "`improvised` means it wrote without loading either. `none` means it loaded nothing and wrote nothing": FACTS 019:56; score-command-transcripts.mjs:877
+OK   "`loadRate` counts the runs that loaded a workflow over every owned run": FACTS 019:58, 022:52; score-command-transcripts.mjs:1795-1798
+OK   "`followedRate` adds `asked` to `command` and `skill` over every owned scored run": FACTS 022:52; score-command-transcripts.mjs:1799-1802
+OK   "On the stored final arm the followed rate reads claude 8 of 16 and devin 16 of 16 ... dsh 13 of 15, opencode 14 of 16 and pi 12 of 16": FACTS 022:48, same run (final arm, rescored stored sessions). Still current after the later rescores: 024 scratch/rescore-delta.txt:19-23 and 027 scratch/rescore-delta.txt:30-34 show the same five followedRate values
+OK   "A load is a read tool, a skill tool or a shell read": FACTS 022:52; score-command-transcripts.mjs:733-742, :785-790
+FAIL "The shell readers are `cat`, `sed -n` and `head`": reads as a closed list. FACTS 022:52 says "`cat`, `sed -n`, `head` and the other readers", and code score-command-transcripts.mjs:643 holds nine readers: cat, head, tail, sed, less, more, bat, nl, awk (any `sed` without an in-place flag, :673). Say "The shell readers include `cat`, `sed -n` and `head`"
+OK   "An in-place `sed` is not a read": FACTS 022:52; score-command-transcripts.mjs:672-673
+OK   "A `prompts/<namespace>-<name>.md` mirror counts too": FACTS 022:52; score-command-transcripts.mjs:543-550
+OK   "On Codex, one `exec_command` body counts as one shell step": FACTS 024:59, 024:172; score-command-transcripts.mjs:338-344 joins the `cmd` strings of one body into one command
+OK   "A search is not a load, and neither is a heredoc line": FACTS 024:59; score-command-transcripts.mjs:638-651
+OK   "A write outside the checkout, such as a temp note, no longer sets the boundary for a load": FACTS 022:52; score-command-transcripts.mjs:609-635
+OK   "Nobody tuned the 44 sealed plain rows. ... 1 time in the fixture regime. With the real embedding that count is 4": FACTS 023:55
+OK   "On the tuned rows the same counts are 28 of 45 and 33 of 45": FACTS 023:55
+OK   "The head carries a command on 8 of the 24 sealed decline rows": FACTS 023:55,59
+OK   limits quote "The rates count a workflow opened before the first write, on tuned rows with one run each, so they do not show that the brief makes a model follow a correct workflow more often": the one allowed limits sentence; FACTS 022:125-127, 023:176-178
+OK   "A load is not a followed step": FACTS 022:125
+FAIL "The Codex numbers are thin counts, because no brief reached Codex in either arm": FACTS 024:171 gives thinness from small samples ("A rate over 12 or 16 runs moves a lot on one run", tuned rows, one run each) and lists "no brief reached Codex in either arm" as a separate fact; the "because" adds a cause FACTS does not state. Say "The Codex numbers are thin counts, and no brief reached Codex in either arm"
+FAIL "The runner can score the same fresh rows with the advisor off and on": FACTS 026:55,63,65 give the runner the off and on arms and the fresh set, and give the scorer the scoring and pairing; the runner does not score. Say "The runner can run the same fresh rows ..."
+OK   "It pairs the two arms on each row. A row only one arm scored counts as unpaired": FACTS 026:55; score-command-transcripts.mjs:2012-2020
+FAIL "Its first arm was stopped before any scoring, so it gives no rate yet": FACTS 026:51 says the test was stopped before any scoring, not an arm; FACTS 026:108 shows Claude kept sessions in both arms (off 1 and on 1, 36 each), so "first arm" reads as one of the two arms and is not stated. Say "Its first run was stopped before any scoring, so it gives no rate yet"
+OK   "All 185 files passed. 2121 tests passed, 6 were skipped and none failed": FACTS checks 028 after.txt:26-27, FACTS 026:102 "0 failed". These are the recorded run's numbers; this verifier did not rerun the suite
+OK   "Typed recall reads 24 of 44 and false offers read 0 of 35": FACTS checks 028 floor-after.txt:1-2; FACTS 024:177 names the two floors
+OK   "a command on the partner side no longer counts as an offer": FACTS 024:59, 027:230; score-command-transcripts.mjs:1525-1527, :1888
+OK   "Run logs now keep `offeredAs`": FACTS 027:230,235,237; command-offer.mjs:496, run-command-behaviour.mjs:927
+OK   check 3, no rate-improvement or follows-more-often claim: the only such statement is the allowed limits quote; the followed rates are given without a before value or a direction
+OK   check 4, no spec path, REQ, ADR, AC, task id or phase number: case-sensitive scan of the added lines for `specs/`, `REQ`, `ADR`, `AC-n`, `Tnnn`, `phase`, three-digit ids, `Pnnn`, `Dn`, `CHK` and em dash returned no match (rg exit 1)
+RECHECK OK   changelog:46 "A refusal covers a whole or-list": matches FACTS 027:62 ("or-list") and command-attach.ts:375-382 COMMAND_OR_LIST, which joins only `or` and `, or`; the earlier dist probe (or-list withheld, comma-only list not) agrees
+RECHECK OK   changelog:140 "A refusal over a list joined by `or` refuses every command in it": FACTS 027:62; command-attach.ts:382 and the same probe
+RECHECK OK   changelog:160 "An every-row request no longer drops it": commit 47577daa6f5 removed `(topOnly && index === 0)` in favour of `index === 0`, now advisor-recommend.ts:404, so the every-row request is the shape that used to drop the head's command (FACTS 021:55, OpenCode showed `use sk-doc` alone)
+RECHECK OK   changelog:180 "The shell readers include `cat`, `sed -n` and `head`": FACTS 022:52 ("and the other readers"); score-command-transcripts.mjs:643 holds those three among nine readers, and "include" no longer reads as a closed list
+RECHECK OK   changelog:194 "The Codex numbers are thin counts.": FACTS 024:171 ("The Codex numbers are thin")
+RECHECK OK   changelog:194 "No brief reached Codex in either arm.": FACTS 024:171, stated as its own fact with no causal link
+RECHECK OK   changelog:198 "The runner can run the same fresh rows with the advisor off and on": FACTS 026:55,63 (runner gained `off` and `on` arms and the `fresh` row set)
+RECHECK OK   changelog:198 "Its first run was stopped before any scoring, so it gives no rate yet": FACTS 026:51 (stopped before any scoring), 026:108 (sessions kept under run number 1 in both arms: Claude off 1 and on 1); 026:218 "No scoring ran"
+REOPEN FAIL  changelog:198 "It pairs the two arms on each row": a miss in my first pass, which marked this OK. The pronoun follows "The runner can run ...", so it names the runner, but FACTS 026:55,65 give the pairing to the scorer (score-command-transcripts.mjs:2012-2020 counts gained, lost and unpaired per row). `rg -n "pair|unpaired"` over run-command-behaviour.mjs finds only a comment at :1137 about arm labels, and no pairing logic. Same runner versus scorer mix-up as the runner-can-score claim. Say "The scorer pairs the two arms on each row."
+RECHECK OK   changelog:198 "The runner can run the same fresh rows with the advisor off and on": FACTS 026:55,63 (runner gained `off` and `on` arms and the `fresh` row set)
+RECHECK OK   changelog:198 "The scorer pairs the two arms on each row": FACTS 026:55,65; score-command-transcripts.mjs:2005-2025 pairs the from and to arm per row id. This closes the REOPEN FAIL above
+RECHECK OK   changelog:198 "A row only one arm scored counts as unpaired": FACTS 026:55; score-command-transcripts.mjs:2015-2021 counts a row as unpaired when the two arms ran it a different number of times, which covers a row only one arm ran (0 runs on one side). The code's unpaired count is a superset of this case, so the sentence is true but not exhaustive
+RECHECK OK   changelog:198 "The first run was stopped before any scoring, so it gives no rate yet": FACTS 026:51 (stopped before any scoring), 026:108 (run number 1 in both arms), 026:218 "No scoring ran". The heading at changelog:196 ("A Paired Arm Awaits Its Runs") gives "The first run" its referent
+verifier: PASS

@@ -6,7 +6,7 @@ trigger_phrases:
   - "command row embedding"
   - "vec_cmd table"
   - "command meaning anchor"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Command Meaning Matching
@@ -33,7 +33,7 @@ A command row used to pass only on one of its own phrases or its slash string. A
 
 ### Eligibility
 
-A meaning pass lifts a command past the read-only confidence floor, so `commandMeaningEligible` asks the question that floor asks of a phrase match. A prompt matching `NO_EDIT_REQUEST`, such as "no edits", "do not change", "just show" or "just list", rules out every command on meaning. A read-only explainer prompt admits only a command marked `readOnly`, because running it is the answer. `readOnlyRouteAllowed` reads the same pattern, so the two gates cannot drift apart.
+A meaning pass lifts a command past the read-only confidence floor, so `commandMeaningEligible` asks the question that floor asks of a phrase match. A meaning-passed command row must also clear the uncertainty bar that `requireCommandPhraseAnchor` applies before the brief reports it as passing. A prompt matching `NO_EDIT_REQUEST`, such as "no edits", "do not change", "just show" or "just list", rules out every command on meaning. A read-only explainer prompt admits only a command marked `readOnly`, because running it is the answer. `readOnlyRouteAllowed` reads the same pattern, so the two gates cannot drift apart.
 
 ### Ranking
 

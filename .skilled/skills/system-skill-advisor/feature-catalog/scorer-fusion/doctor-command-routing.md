@@ -7,7 +7,7 @@ trigger_phrases:
   - "runnable doctor command line"
   - "doctor setup hint"
   - "/doctor:setup"
-version: 1.0.13.0
+version: 1.0.14.0
 ---
 
 # Doctor Command Routing
@@ -32,7 +32,7 @@ A doctor bridge passes on its own wording, an explicit-author match on one of it
 
 ### Brief Text
 
-The renderer reads a generated lookup of runnable strings, so a doctor bridge shows as `/doctor:git setup` and never as its raw id. An unmapped doctor id renders nothing. When a doctor bridge is the top pick it is the top line. When a skill is first and a doctor bridge also passes, the brief adds `Also: /doctor:<command> <target>` inside the same token cap. For no-match and outage prompts, the fallback adds one sentence naming `/doctor:setup` when the setup check matches. The check matches set up, set-up or setup wording, install or reinstall wording including installation and installer, configure or configuration wording or `check` followed within three words by environment, env, config, hooks, tools, tooling, toolchain or skilled. The command also checks the advisor. The Claude hook sets the flag, Pi passes it on the deadline fallback and the OpenCode plugin uses its copy of the setup check. The renderer never reads prompt text.
+The renderer reads a generated lookup of runnable strings, so a doctor bridge shows as `/doctor:git setup` and never as its raw id. An unmapped doctor id renders nothing. When a doctor bridge is the top pick it is the top line. When a skill is first and a doctor bridge also passes, the brief adds `Also: /doctor:<command> <target> (<policy>)` inside the same token cap. The policy is run, start or ask, or `parent-named only` in a child session for a command the child must not start on its own, and the line is left out when the head already names that command. For no-match and outage prompts, the fallback adds one sentence naming `/doctor:setup` when the setup check matches. The check matches set up, set-up or setup wording, install or reinstall wording including installation and installer, configure or configuration wording or `check` followed within three words by environment, env, config, hooks, tools, tooling, toolchain or skilled. The command also checks the advisor. The Claude hook sets the flag, Pi passes it on the deadline fallback and the OpenCode plugin uses its copy of the setup check. The renderer never reads prompt text.
 
 ### Reach Probe
 

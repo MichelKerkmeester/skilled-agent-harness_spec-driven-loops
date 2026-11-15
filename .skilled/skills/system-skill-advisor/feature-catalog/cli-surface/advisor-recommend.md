@@ -7,7 +7,7 @@ trigger_phrases:
   - "native recommend"
   - "skill recommendation tool"
   - "compiledRoute enrichment"
-version: 0.9.7.0
+version: 0.9.8.0
 ---
 
 # advisor_recommend Command
@@ -34,9 +34,11 @@ When a recommendation gets a `compiledRoute`, `enrichCompiledRoutes()` also asks
 
 The request option `options.includeCompiledRoute` is an optional boolean that defaults to true. When a caller passes `false` the handler skips `enrichCompiledRoutes()` on both the fresh and the cached return (the two `input.options?.includeCompiledRoute === false` checks in `handlers/advisor-recommend.ts`), so no `compiled-route.cjs` subprocess starts and no recommendation carries `compiledRoute` or `command`. The prompt hooks pass `true` (`hooks/lib/skill-advisor-cli-fallback.ts:238`), because the `command` field is derived from the compiled route. The OpenCode plugin does not pass the option and keeps receiving `compiledRoute`. The option is declared in the zod schema (the `options` of `AdvisorRecommendInputSchema` in `schemas/advisor-tool-schemas.ts`), the tool descriptor (`tools/advisor-recommend.ts:23`) and the CLI manifest (`skill-advisor-cli-manifest.ts:57`).
 
-The request option `options.compiledRouteTopOnly` is an optional boolean that defaults to false. When a caller passes `true`, `enrichCompiledRoutes()` runs the route lookup for the first recommendation only and returns every later one unchanged, so only the top pick can carry `compiledRoute` or `command`. Each lookup is a `compiled-route.cjs` subprocess, so this saves one subprocess for each further eligible hub. The prompt hooks pass `true` with `includeCompiledRoute: true`, because the brief leads with the top pick. The option is declared in the zod schema (the `options` of `AdvisorRecommendInputSchema` in `schemas/advisor-tool-schemas.ts`), the tool descriptor (`tools/advisor-recommend.ts:24`) and the CLI manifest (`skill-advisor-cli-manifest.ts:58`).
+The request option `options.compiledRouteTopOnly` is an optional boolean that defaults to false. When a caller passes `true`, `enrichCompiledRoutes()` runs the route lookup for the first recommendation only and returns every later one unchanged, so only the top pick can carry `compiledRoute`, and the first recommendation gets its `command` under every request shape. Each lookup is a `compiled-route.cjs` subprocess, so this saves one subprocess for each further eligible hub. The prompt hooks pass `true` with `includeCompiledRoute: true`, because the brief leads with the top pick. The option is declared in the zod schema (the `options` of `AdvisorRecommendInputSchema` in `schemas/advisor-tool-schemas.ts`), the tool descriptor (`tools/advisor-recommend.ts:24`) and the CLI manifest (`skill-advisor-cli-manifest.ts:58`).
 
 A hub below the head leaves `command` off when the same command already ranks in the result through its own command row, because `enrichCompiledRoutes()` takes the `command` fields present in the result as the commands already offered. The head keeps its command even then, because every caller renders the head and at most one partner.
+
+`attachCommand()` returns no command when the prompt only mentions, refuses or asks about it, and no command when the prompt rules out a change. It also returns no command when the prompt asks for a correction inside an existing readme, catalog or playbook, because that request is not a call for a creation workflow.
 
 ### Recommendation Contract (`kind`, `command`, `policy`, `ownerSkillId`)
 

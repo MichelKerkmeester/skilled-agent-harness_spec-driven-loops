@@ -129,7 +129,7 @@ lib/
 |---|---|
 | `advisor-runtime-values.ts` | Runtime constants and defaults used by advisor paths. |
 | `affordance-normalizer.ts` | Normalizes prompt affordance signals before scoring. |
-| `command-attach.ts` | `attachCommand()` names the slash command for a hub recommendation whose compiled route picks one `workflowMode`. It reads the `MODE_COMMANDS` table that `derive-command-bridges.cjs` generates from each hub's `mode-registry.json`. A `system-deep-loop` command needs the same command typed in the prompt or a `DEPTH_WORDING` phrase, and a prompt that matches `NO_EDIT_REQUEST` gets no command. The module has no imports. |
+| `command-attach.ts` | `attachCommand()` names the slash command for a hub recommendation whose compiled route picks one `workflowMode`. It reads the `MODE_COMMANDS` table that `derive-command-bridges.cjs` generates from each hub's `mode-registry.json`. A `system-deep-loop` command needs the same command typed in the prompt or a `DEPTH_WORDING` phrase, and a prompt that matches `NO_EDIT_REQUEST` gets no command. `commandOnlyMentioned()` reads how the prompt names a command, and a command the prompt refuses or asks about is not offered unless a later clause asks for it. A correction inside an existing document carries no `/create:readme`, `/create:feature-catalog` or `/create:manual-testing-playbook`. The module has no imports. |
 | `prompt-policy.ts` | Applies prompt-safe routing and rendering policy. |
 | `render.ts` | Renders advisor results into prompt-safe output. |
 | `skill-advisor-brief.ts` | Builds concise advisor recommendation briefs. |
