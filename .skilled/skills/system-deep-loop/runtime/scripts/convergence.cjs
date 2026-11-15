@@ -1894,7 +1894,9 @@ module.exports = {
   parseMinObservationsValue,
   parseSlidingWindowSizeValue,
   readConvergenceModeConfig,
+  readJsonObjectFile,
   readObservationThresholdConfig,
+  readStateLogRows,
   shouldTraceImprovementEffect,
 };
 

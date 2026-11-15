@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4ee946b1b2cdabaef0f979d429c64cff887018f47b53ffc88d19209a35d946cc",
+  "manifestHash": "9d5a8ca927ceb2df78bdb59a6509c53d452f34b038326dc1f43f01542ac9f83e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5072,6 +5072,9 @@
     ],
     "024 launcher lease integration test": [
       "024-launcher-lease-integration-test"
+    ],
+    "024 terminal gates script operator decisions": [
+      "024-terminal-gates-script operator decisions"
     ],
     "025 artifact certificate binding complete": [
       "025 artifact certificate binding complete"

@@ -184,18 +184,18 @@
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-15T17:51:41.045Z",
+    "last_save_at": "2026-11-15T18:14:09.099Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7452df3c9523cec37de7927cd2336eca3916bf3c158d0a9e123a4f05bc3b52b5",
+    "source_fingerprint": "sha256:fe0427cea4cf4fc8cbb5b195c744a0a22b2f745bd65a65e0ab37c5517832e5ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a979c1b2a890ca3412908ba4aaca59a1acf87aac8756a7cf0244034b58c329a0"
+      "spec.md": "d691178f53dccdcb84aa9c0ad71b44e312b5f5a3abdde8c9bea445a65f52e32d"
     },
-    "last_active_child_id": "agents/007-agent-alignment-follow-ups/023-agent-docs-fixes",
-    "last_active_at": "2026-11-15T17:50:58.011Z"
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/024-terminal-gates-script",
+    "last_active_at": "2026-11-15T18:14:00.803Z"
   }
 }

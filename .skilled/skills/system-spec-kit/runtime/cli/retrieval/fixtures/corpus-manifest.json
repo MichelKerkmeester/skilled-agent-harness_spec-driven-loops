@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5a8a602ac5fa608e8a64b001df7b8294db684e45ce13a2b369e5373e6eb82395",
+  "corpusHash": "115fdaf6d8faca5a3e2b0e44276c08674cc38b91c577f7683b9676d280150357",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27599,
+  "includedPathCount": 27600,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9544,6 +9544,7 @@
     "specs/agents/007-agent-alignment-follow-ups/023-agent-docs-fixes/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/023-agent-docs-fixes/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/023-agent-docs-fixes/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/implementation-summary.md",
     "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/spec.md",
@@ -27631,7 +27632,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4ee946b1b2cdabaef0f979d429c64cff887018f47b53ffc88d19209a35d946cc",
+  "manifestHash": "9d5a8ca927ceb2df78bdb59a6509c53d452f34b038326dc1f43f01542ac9f83e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

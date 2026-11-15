@@ -15,6 +15,7 @@
       "phase 24 terminal gates script",
       "terminal gates script plan",
       "terminal gates script tasks",
+      "024-terminal-gates-script operator decisions",
       "terminal gates script implementation summary"
     ],
     "key_topics": [
@@ -24,20 +25,26 @@
       "phase",
       "plan",
       "tasks",
+      "024-terminal-gates-script",
+      "operator",
+      "decisions",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing",
-      "inefficient"
+      "session"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/terminal-gates.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/terminal-gates.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"
     ],
     "entities": [
       {
@@ -59,19 +66,49 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "terminal-gates.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/terminal-gates.cjs",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "terminal-gates.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/terminal-gates.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -101,6 +138,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -113,7 +156,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -125,14 +174,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow At",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -147,62 +190,28 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The session verdict fails when a required gate still fails at the terminal stop, but the gate results come from the loop agent reading a prose rule",
     "created_at": "2026-11-15T17:32:07Z",
-    "last_save_at": "2026-11-15T17:32:09.960Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T18:14:00.774Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d8f5a8697b8e1c86e3da82297d828399c09a166da7f74a4a51de39ea16fa7f8",
+    "source_fingerprint": "sha256:c580c14de5879eb4697605ff9fbf25018dd3b5dc334c0374dbe4135105ea1fee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "45b72a7699e8704c0feb8c032cfffd1d8bfc165b1c6c206d015d61b11a07217d",
-      "plan.md": "deeb3d2eacdd574ae20a71bd82018058d7030f1e9c9f6526deb7cd7f35e0e39a",
-      "tasks.md": "05a75b14a834e819cff975e80544f0949e159f3d86101f2ee37748a30058814c",
-      "implementation-summary.md": "e8c91fcc6ce0141b8dc11a0a98da0428c85902bf1d28bf42afe357ca0c35b2e4"
+      "spec.md": "a9361e99b2661fcbc908fb4b0a25c27ae47de306edd5b634b6eaa6912d9a5319",
+      "plan.md": "c6752ddde420db778823fab6570e66c09d83271d97b46e8f167221ba2dadeb31",
+      "tasks.md": "1c851f5af94c7865e7b8bc9cb8691de22e7991d6c11d40c5926d95fa577adaa4",
+      "decision-record.md": "22fed0ccb8fd51ebda64b514b195b3eab7116f681cb7046c0baa00d93041a212",
+      "implementation-summary.md": "178f92167099bb43cda875841ea9654201af56be489774f484a415c2e7456d6e"
     },
     "last_active_at": null
   }
