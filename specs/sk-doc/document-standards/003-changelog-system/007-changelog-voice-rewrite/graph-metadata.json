@@ -121,18 +121,18 @@
     ],
     "causal_summary": "The changelog standard caps a sentence at 22 words and an entry at 10 words a sentence on average",
     "created_at": "2026-11-15T06:37:25Z",
-    "last_save_at": "2026-11-15T17:31:07.631Z",
+    "last_save_at": "2026-11-15T18:04:01.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:741281336d868e42e85247c7ab33ae08883f5e7fdb572dcfb97fd5c21ca3e458",
+    "source_fingerprint": "sha256:683edc227a1f0bd0e8f6fcae7a4769f1f719873d10a7349edbd472167c97e4fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "abf8ceceac11364e3aed704b4e55d3c210b71d8c159100087b629dcc9c223e6c"
+      "spec.md": "78a360d95b792b5963c29d1b276b2b4c1800e5484572083e40f62525b9a9164c"
     },
-    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs",
-    "last_active_at": "2026-11-15T17:31:07.631Z"
+    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs",
+    "last_active_at": "2026-11-15T18:04:01.261Z"
   }
 }

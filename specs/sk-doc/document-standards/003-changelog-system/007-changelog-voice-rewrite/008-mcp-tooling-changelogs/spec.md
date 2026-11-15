@@ -25,8 +25,8 @@ contextType: "general"
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/401-changelog-voice-rewrite` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 12 |
-| **Predecessor** | 008-mcp-tooling-changelogs |
+| **Phase** | 8 of 12 |
+| **Predecessor** | 007-system-deep-loop-changelogs |
 | **Successor** | 009-system-skill-advisor-changelogs |
 | **Handoff Criteria** | Each of the 171 files is kept with every gate passed, or restored with its last finding recorded |
 <!-- /ANCHOR:metadata -->

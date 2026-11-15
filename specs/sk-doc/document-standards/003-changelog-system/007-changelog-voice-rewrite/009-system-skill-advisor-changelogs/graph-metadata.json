@@ -30,16 +30,17 @@
       "criteria",
       "implementation",
       "summary",
-      "yourvaluehere"
+      "system-skill-advisor"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/evidence.txt"
     ],
     "entities": [
       {
@@ -70,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence.txt",
+        "kind": "file",
+        "path": "scratch/evidence.txt",
         "source": "derived"
       },
       {
@@ -121,7 +128,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,13 +146,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,18 +186,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The system-skill-advisor changelogs hold long sentences",
     "created_at": "2026-11-15T06:37:47Z",
-    "last_save_at": "2026-11-15T06:47:52.843Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T18:04:01.224Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +200,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71423da2e9ceecedf13d44068d8443ef3d7a5c4950fbb2b201bcd8cf44f7672b",
+    "source_fingerprint": "sha256:231b1120d863096df957c7f711756c78a5cb3a4c26cf2cc57a2031e4e56e7472",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5dfc7a00178c3a5990d8fe8a713346cbe7cb647141ccbf2ea7b6953a569bcea1",
-      "plan.md": "069d85e09a694056bc45a1b7c524ff6380639d4b791907b4bb6ac4b883e842c1",
-      "tasks.md": "90cc08197b6827aa21328121c0736b27795414ee32acf796eb567cf010d7b019",
-      "implementation-summary.md": "22d820b74f87703fea1dc283f8eb155c7d79ace253e0af9bfd985dfbee4f1b58"
+      "spec.md": "8db7f27a05bd4251cd3fe30566cb2e27a0bdced7d3b8e23edd681919a3637cb6",
+      "plan.md": "58f93184f50f7692b9ed2663cfdef109af0b473fc1a71dd94a116c2127e37c92",
+      "tasks.md": "c1a245647f7e02a9eeeedf8ef0358510c1ac32241cd94199d37aeb34d5abcef0",
+      "implementation-summary.md": "fcce52a8ab2f82309f3a7626e5482eb9d99fab9466fa846ea8edde742d6b5588"
     },
     "last_active_at": null
   }
