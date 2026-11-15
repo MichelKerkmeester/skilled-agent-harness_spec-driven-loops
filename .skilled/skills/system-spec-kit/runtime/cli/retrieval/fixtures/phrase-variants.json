@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2fb5ff3f69dcd7435898b451458d2bed1e81d91688459e59d5b0336982d5e58d",
+  "manifestHash": "f43e9c8cbb318e428fbeccf83486877dbe9d2ffe2037c3e7984877c15c86c3a5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -52419,6 +52419,21 @@
     "follow up defect fixes tasks": [
       "follow up defect fixes tasks"
     ],
+    "follow up fix sweep": [
+      "follow up fix sweep"
+    ],
+    "follow up fix sweep acceptance criteria": [
+      "follow up fix sweep acceptance criteria"
+    ],
+    "follow up fix sweep implementation summary": [
+      "follow up fix sweep implementation summary"
+    ],
+    "follow up fix sweep plan": [
+      "follow up fix sweep plan"
+    ],
+    "follow up fix sweep tasks": [
+      "follow up fix sweep tasks"
+    ],
     "follow up fixes": [
       "follow up fixes"
     ],
@@ -82307,6 +82322,9 @@
     "phase 16 ended goal mark match": [
       "phase 16 ended goal mark match"
     ],
+    "phase 16 follow up fix sweep": [
+      "phase 16 follow up fix sweep"
+    ],
     "phase 16 handover trigger review": [
       "phase 16 handover trigger review"
     ],
@@ -101016,8 +101034,8 @@
     "runtime agent gateway audit review": [
       "runtime agent gateway audit review"
     ],
-    "runtime agent renamed to deep ai council": [
-      "runtime agent renamed to deep-ai-council"
+    "runtime agent renamed to ai council": [
+      "runtime agent renamed to ai-council"
     ],
     "runtime agnostic lifecycle plan": [
       "runtime-agnostic lifecycle plan"

@@ -1088,12 +1088,6 @@ function reconstructReviewRegistryFromState(stateRecords, label) {
       else resolvedFindings.push(mapped);
     }
   }
-  if (openFindings.length === 0 && resolvedFindings.length === 0) return null;
-  const bySeverity = {
-    P0: openFindings.filter((f) => f.severity === 'P0').length,
-    P1: openFindings.filter((f) => f.severity === 'P1').length,
-    P2: openFindings.filter((f) => f.severity === 'P2').length,
-  };
   // A lineage that stopped before reducing has no registry to stamp, and its
   // terminal-gates row is the only trace that a required gate failed.
   const latestTerminalGates = stateRecords
@@ -1105,6 +1099,12 @@ function reconstructReviewRegistryFromState(stateRecords, label) {
   const terminalGates = latestTerminalGates
     ? { run: latestTerminalGates.run, stopReason: latestTerminalGates.stopReason, failedRequiredGateIds: failedGateIds }
     : null;
+  if (openFindings.length === 0 && resolvedFindings.length === 0 && !terminalGates) return null;
+  const bySeverity = {
+    P0: openFindings.filter((f) => f.severity === 'P0').length,
+    P1: openFindings.filter((f) => f.severity === 'P1').length,
+    P2: openFindings.filter((f) => f.severity === 'P2').length,
+  };
   return {
     openFindings,
     resolvedFindings,

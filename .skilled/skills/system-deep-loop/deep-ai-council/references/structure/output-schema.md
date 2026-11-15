@@ -1,13 +1,13 @@
 ---
 title: "AI Council Output Schema"
-description: "Markdown contract for @deep-ai-council §8 OUTPUT FORMAT and the persist-artifacts.cjs parser."
+description: "Markdown contract for @ai-council §8 OUTPUT FORMAT and the persist-artifacts.cjs parser."
 trigger_phrases:
   - "deep-ai-council output schema"
   - "council output format"
   - "persist-artifacts parser contract"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.7.2.0
+version: 1.7.3.0
 ---
 
 # AI Council Output Schema
@@ -20,11 +20,11 @@ Markdown contract for AI Council report sections and the persistence helper pars
 
 ### Purpose
 
-This document is the single source of truth for the `@deep-ai-council` §8 OUTPUT FORMAT. The agent body uses §8 to tell the planning LEAF what report to return; `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` uses this contract to parse that report and persist packet-local `ai-council/` artifacts.
+This document is the single source of truth for the `@ai-council` §8 OUTPUT FORMAT. The agent body uses §8 to tell the planning LEAF what report to return; `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` uses this contract to parse that report and persist packet-local `ai-council/` artifacts.
 
 ### When to Use
 
-- You are changing the report sections `@deep-ai-council` must return.
+- You are changing the report sections `@ai-council` must return.
 - You are debugging why `persist-artifacts.cjs` rejected a report or wrote placeholders for optional sections.
 
 The report remains markdown, not JSON. The helper accepts normal heading variation, extracts the strict-required sections, and degrades gracefully for optional narrative sections.
@@ -128,7 +128,7 @@ This policy keeps the helper tolerant of older reports while giving stricter cal
 Changes to this schema require lockstep updates in the same commit:
 
 1. Update this `output-schema.md` contract.
-2. Update `@deep-ai-council` agent body §8 in all four runtime mirrors.
+2. Update `@ai-council` agent body §8 in every runtime mirror (`.skilled/bin/agent-mirror-crosswalk.md` lists them).
 3. Update `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`.
 4. Update fixtures and `ai-council-persist-artifacts.vitest.ts` when parser behavior changes.
 5. Run the mirror parity test and helper fixture test.

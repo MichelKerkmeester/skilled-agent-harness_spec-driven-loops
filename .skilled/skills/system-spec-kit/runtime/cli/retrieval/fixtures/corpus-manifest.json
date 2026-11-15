@@ -1,5 +1,5 @@
 {
-  "corpusHash": "01f041d476b7242873fccc2d12ea781deddef15630c3fe56d3f1dcc45e0311d9",
+  "corpusHash": "c3a9bd1a7491e19f8859ea0c2066dec8b1298e68ae69674624c59bb6a4ae96f9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27501,
+  "includedPathCount": 27506,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9626,6 +9626,11 @@
     "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -27533,7 +27538,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2fb5ff3f69dcd7435898b451458d2bed1e81d91688459e59d5b0336982d5e58d",
+  "manifestHash": "f43e9c8cbb318e428fbeccf83486877dbe9d2ffe2037c3e7984877c15c86c3a5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28637,6 +28642,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/scratch",
       "reason": "excluded directory"
     },
     {

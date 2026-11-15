@@ -1,7 +1,7 @@
 ---
 title: "deep-ai-council: Manual Testing Playbook"
 description: "Operator-facing manual validation package for the deep-ai-council skill, runtime routing, council deliberation, artifact persistence, convergence, rollback, scope boundaries, and council graph integration."
-version: 1.7.0.17
+version: 1.7.1.0
 ---
 
 # deep-ai-council: Manual Testing Playbook
@@ -162,9 +162,9 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ## 7. RUNTIME ROUTING AND RENAME (DAC-001..DAC-002)
 
-### DAC-001 | Runtime agent renamed to deep-ai-council
+### DAC-001 | Runtime agent renamed to ai-council
 
-Verify runtime mirrors expose `deep-ai-council` and active mirror paths do not retain `ai-council` as the primary identity.
+Verify runtime mirrors expose `ai-council` as the agent identity and do not retain `multi-ai-council`; the skill keeps the name `deep-ai-council`.
 
 Feature file: [DAC-001](../manual-testing-playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md)
 
@@ -417,7 +417,7 @@ Feature file: [DAC-032](../manual-testing-playbook/council-graph-value-compariso
 
 | Feature ID | Scenario | Feature File | Catalog |
 | --- | --- | --- | --- |
-| DAC-001 | Runtime agent renamed to deep-ai-council | `runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md` | `feature-catalog/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md` |
+| DAC-001 | Runtime agent renamed to ai-council | `runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md` | `feature-catalog/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md` |
 | DAC-002 | Advisor routes council prompts to skill | `runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md` | `feature-catalog/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md` |
 | DAC-003 | Three-seat diverse deliberation | `council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md` | `feature-catalog/council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md` |
 | DAC-004 | Cross-seat critique blocks premature convergence | `council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md` | `feature-catalog/council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md` |

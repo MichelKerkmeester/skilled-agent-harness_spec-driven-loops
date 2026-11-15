@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep",
+  "description": "Phase 16: follow-up-fix-sweep",
+  "keywords": [
+    "phase",
+    "follow-up-fix-sweep"
+  ],
+  "lastUpdated": "2026-11-15T09:15:00.949Z",
+  "specId": "016",
+  "folderSlug": "follow-up-fix-sweep",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "15-11-26_09-44__every-deep-review-stop-path-that-reaches.md",
+    "15-11-26_09-57__fixed-the-two-open-items-after-016-the-council.md",
+    "15-11-26_10-10__fixed-the-two-open-items-after-016-and-the-review.md",
+    "15-11-26_10-14__fixed-the-two-open-items-after-016-plus-both.md"
+  ]
+}

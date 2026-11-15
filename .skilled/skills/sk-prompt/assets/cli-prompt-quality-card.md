@@ -9,7 +9,7 @@ trigger_phrases:
   - "escalate to prompt improver"
 importance_tier: important
 contextType: general
-version: 0.8.8.0
+version: 0.8.9.0
 ---
 
 # CLI Prompt Quality Card
@@ -101,7 +101,7 @@ Expected structured return:
 ```text
 FRAMEWORK: <default skeleton | preset name>
 CLEAR_SCORE: <n>/50 (C:<n> L:<n> E:<n> A:<n> R:<n>)
-TEST: <ran: summary of old vs new on 2-3 inputs | NOT RUN>
+TEST: NOT RUN
 CHANGES: <Added ...; Changed ...; Removed ...; Skipped ...>
 RATIONALE: <short explanation>
 ENHANCED_PROMPT: |

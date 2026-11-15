@@ -1,20 +1,20 @@
 ---
-title: "Runtime agent renamed to deep-ai-council"
-description: "Verify active runtime mirrors use deep-ai-council."
+title: "Runtime agent renamed to ai-council"
+description: "Verify active runtime mirrors use `ai-council`."
 trigger_phrases:
-  - "runtime agent renamed to deep-ai-council"
+  - "runtime agent renamed to ai-council"
   - "deep-ai-council"
   - "rename council agent"
   - "runtime mirror"
   - "dispatch name council"
-version: 1.7.0.9
+version: 1.7.1.0
 ---
 
-# Runtime agent renamed to deep-ai-council
+# Runtime agent renamed to ai-council
 
 ## 1. OVERVIEW
 
-Verify active runtime mirrors use deep-ai-council.
+Verify active runtime mirrors use `ai-council`.
 
 Operators need one current dispatch name across runtimes so council prompts do not split between old and new identities.
 
@@ -24,11 +24,11 @@ Operators use this feature when the real request is: Use the deep AI council to 
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `deep-ai-council`. The playbook scenario `runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-001.
+The shipped surface is anchored by the `ai-council` agent and the `deep-ai-council` skill. The playbook scenario `runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-001.
 
 Current behavior is grounded in `.opencode/agents/ai-council.md`, which the scenario identifies as the OpenCode runtime mirror. Identity note: the agent files are `ai-council.*` (the `@ai-council` identity) because v1.2.0.0 dropped the `deep-` prefix from the agent, while the skill kept the `deep-ai-council` name. The runtime mirrors route council prompts to the `deep-ai-council` skill under the `@ai-council` agent identity. Validation is anchored by `manual-testing-playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md`, covering the manual scenario contract.
 
-The user-visible contract is concrete: Verify active runtime mirrors use deep-ai-council. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
+The user-visible contract is concrete: Verify active runtime mirrors use `ai-council`. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
 ---
 

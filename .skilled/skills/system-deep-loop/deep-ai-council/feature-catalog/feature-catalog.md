@@ -1,7 +1,7 @@
 ---
 title: "deep-ai-council Feature Catalog"
 description: "Canonical capability inventory for the deep-ai-council planning skill: 33 features across 9 categories, each linked to its per-feature file and manual-testing scenario."
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # deep-ai-council Feature Catalog
@@ -36,7 +36,7 @@ Scenario IDs: DAC-001..DAC-002. How council requests reach the skill and how the
 
 | Feature | What it does | File |
 | --- | --- | --- |
-| Runtime agent renamed to deep-ai-council | Runtime agent mirrors use `deep-ai-council` as the primary identity. | [runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md](../feature-catalog/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md) |
+| Runtime agent renamed to ai-council | Runtime agent mirrors use `ai-council` as the primary identity; the skill keeps `deep-ai-council`. | [runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md](../feature-catalog/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md) |
 | Advisor routes council prompts to skill | The skill advisor scorer surfaces `deep-ai-council` for council prompts. | [runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md](../feature-catalog/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md) |
 
 ---

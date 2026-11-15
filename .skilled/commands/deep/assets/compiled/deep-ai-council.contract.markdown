@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md",
-      "sha256": "b2808b914c8f9073155811e0b157a8c19c177e49d3ccc346148bf144fd9f59d4",
+      "sha256": "eaacc7602c87f911dfb12afc00cdf2ec32ef1d39a4af50dbf87f5ee52afb6337",
       "section": "full"
     },
     {
@@ -77,12 +77,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
-      "sha256": "ebeec546215c160d60032502bcf09c0c63d55f6b0eb35d2cb82a1cadb7ebfcf6",
+      "sha256": "980c2b5f4f9a4ae6aa705cc7e227f8b94cb455546b042ea20850262c4e69d8e7",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md",
-      "sha256": "fe64b5bacd1dcbc7f7c1664f03c11647e33e168a0bd697f6d27fd9d93c96d327",
+      "sha256": "3368df01175bd1aecb79a6f922e414c3b3368c1726ce8d0ed2a3ba104a0cac64",
       "section": "full"
     },
     {

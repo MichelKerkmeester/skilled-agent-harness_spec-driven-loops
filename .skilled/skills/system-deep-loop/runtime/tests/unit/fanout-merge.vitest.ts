@@ -623,6 +623,27 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     expect(result.mergedVerdict).toBe('FAIL');
     expect(result.failedRequiredGateIds).toEqual(['evidence']);
   });
+  it('keeps a registry-less lineage whose state log holds only a failed terminal gate', () => {
+    // A lineage that stopped before reducing has no registry file, so its terminal row is
+    // the only trace that a required gate failed; losing it would merge a failed review
+    // to PASS.
+    const stateRecords = [
+      { type: 'event', event: 'terminal_gates', run: 2, stopReason: 'error', failedRequiredGateIds: ['coverage'] },
+    ];
+
+    const rebuilt = reconstructReviewRegistryFromState(stateRecords, 'gated');
+    expect(rebuilt).not.toBeNull();
+    expect(rebuilt).toMatchObject({ terminalGates: { failedRequiredGateIds: ['coverage'] } });
+
+    const merged = mergeReviewRegistries([
+      { label: 'clean', registry: { openFindings: [] }, stateRecords: [] },
+      { label: 'gated', registry: rebuilt, stateRecords },
+    ]);
+    expect(merged.mergedVerdict).toBe('FAIL');
+    expect(merged.failedRequiredGateIds).toEqual(['coverage']);
+
+    expect(reconstructReviewRegistryFromState([], 'empty')).toBeNull();
+  });
 
   it('marks the failing lineage FAIL in the attribution table', () => {
     // The table is read beside the merged verdict, so a lineage whose required gate is

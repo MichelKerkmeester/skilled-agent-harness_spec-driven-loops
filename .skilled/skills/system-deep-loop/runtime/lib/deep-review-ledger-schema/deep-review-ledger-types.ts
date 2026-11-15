@@ -384,7 +384,7 @@ export type BlockedStopRecordedData = JsonObject & {
 };
 
 export type TerminalGatesRecordedData = JsonObject & {
-  readonly stopReason: 'converged' | 'maxIterationsReached';
+  readonly stopReason: 'converged' | 'maxIterationsReached' | 'manualStop' | 'error';
   readonly gateResults: GateResult[];
   readonly failedRequiredGateIds: string[];
   readonly appendPosition: Uint32;

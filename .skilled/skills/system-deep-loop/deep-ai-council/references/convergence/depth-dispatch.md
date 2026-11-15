@@ -9,7 +9,7 @@ trigger_phrases:
   - "ndp compliant council"
 importance_tier: "important"
 contextType: "planning"
-version: 1.7.2.0
+version: 1.7.3.0
 ---
 
 # AI Council Depth Dispatch
@@ -41,7 +41,7 @@ Depth dispatch is not about quality level. Depth 1 can still perform rigorous mu
 ### When to Use
 
 - a prompt includes `Depth: 1`;
-- an orchestrator dispatches `@deep-ai-council`;
+- an orchestrator dispatches `@ai-council`;
 - a council run needs to choose between Task dispatch and inline MCP thinking;
 - recursive counciling risk is present;
 - the runtime cannot safely dispatch diverse seats.
@@ -259,7 +259,7 @@ The council is a planning architecture pattern, not a self-replicating runtime.
 
 ### Rule 1: Never Dispatch Council From Inside Council
 
-Do not invoke `@deep-ai-council` while already inside a council run.
+Do not invoke `@ai-council` while already inside a council run.
 
 If a seat needs critique, run the critique in the current council's deliberation round.
 

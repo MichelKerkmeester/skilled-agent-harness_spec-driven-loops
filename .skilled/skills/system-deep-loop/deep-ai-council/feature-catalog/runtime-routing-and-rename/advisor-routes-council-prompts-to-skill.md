@@ -7,7 +7,7 @@ trigger_phrases:
   - "route council request"
   - "scorer coverage"
   - "skill routing council"
-version: 1.7.0.8
+version: 1.7.1.0
 ---
 
 # Advisor routes council prompts to skill
@@ -55,4 +55,4 @@ The user-visible contract is concrete: Verify scorer coverage for deep-ai-counci
 - Feature file path: `feature-catalog/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md`
 - Playbook scenario: `manual-testing-playbook/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md`
 Related references:
-- [runtime-agent-renamed-to-deep-ai-council.md](../../feature-catalog/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md) — Runtime agent renamed to deep-ai-council
+- [runtime-agent-renamed-to-deep-ai-council.md](../../feature-catalog/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md) — Runtime agent renamed to ai-council

@@ -1,0 +1,9 @@
+SC-002 probe, 2026-11-15, primary checkout at origin/main (holds .claude/agents/prompt-improver.md `model: sonnet`).
+$ claude -p "<probe>" --model claude-opus-5-5 --allowedTools Agent --output-format stream-json --verbose --max-turns 6
+exit=0, 39 stream lines (sc-002.jsonl)
+Parent: claude-opus-5-5 called Agent(subagent_type=prompt-improver) with no model parameter.
+Sub-agent messages (parent_tool_use_id set): message.model = claude-sonnet-5-5
+First line of the returned package: FRAMEWORK: default skeleton (task, context, constraints, output format, success criteria).
+TEST line: TEST: NOT RUN
+Result: PASS. A bare dispatch from an Opus session runs on Sonnet through the fork pin and returns a package, not a refusal.
+Earlier empty runs: `timeout` is not installed on macOS, so the wrapper exited 127 before claude ran.

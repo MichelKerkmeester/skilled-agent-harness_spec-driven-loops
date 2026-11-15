@@ -8,7 +8,7 @@ trigger_phrases:
   - "council report path"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.7.3.0
+version: 1.7.4.0
 ---
 
 # AI Council Folder Layout
@@ -28,9 +28,9 @@ Make every file a completed council run leaves behind traceable to the record it
 - You are starting a council run and need to know what it will write.
 - You are inspecting a completed run and need to find the record for a round, a seat, or a rollback.
 
-**Persistence is mandatory for every council run.** The target packet path is resolved by the agent at §1 Step 0 RESOLVE in `deep-ai-council.md` across all 4 runtime mirrors. When invocation cannot resolve a packet path, the agent HALT-and-ASKs the user for one and does NOT dispatch council seats, so the layout below applies to every completed deliberation.
+**Persistence is mandatory for every council run.** The target packet path is resolved by the agent at §1 Step 0 RESOLVE in `.skilled/agents/ai-council.md`. When invocation cannot resolve a packet path, the agent HALT-and-ASKs the user for one and does NOT dispatch council seats, so the layout below applies to every completed deliberation.
 
-The `ai-council/` folder is the packet-local artifact home for `@deep-ai-council` runs. It mirrors the familiar shape of `research/` and `review/`: configuration, strategy, append-only state, per-round evidence, and a final synthesized report.
+The `ai-council/` folder is the packet-local artifact home for `@ai-council` runs. It mirrors the familiar shape of `research/` and `review/`: configuration, strategy, append-only state, per-round evidence, and a final synthesized report.
 
 ```text
 specs/<track>/<NNN-name>/ai-council/

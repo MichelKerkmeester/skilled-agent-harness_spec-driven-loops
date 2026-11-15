@@ -912,7 +912,7 @@ workflow:
         action: "Act on convergence decision"
         if_stop:
           record_terminal_gates:
-            when: "Run once, immediately before control leaves this if_stop for phase_synthesis: in if_existing_terminal_path, and in the divergent pivot's if_failed and on_error branches. Never run it when the pivot continues the loop."
+            when: "Run once, immediately before control leaves this if_stop for phase_synthesis: in if_existing_terminal_path, and in the divergent pivot's if_failed and on_error branches. Never run it when the pivot continues the loop. The error-recovery rule consecutive_failures also runs it, once, before it enters synthesis."
             evaluate: |
               evidence: pass when every active P0/P1 finding has concrete file:line evidence and none relies only on inference (the evidenceDensityGate rule).
               scope: pass when every active finding's file lies inside the review target.
@@ -920,7 +920,7 @@ workflow:
               Evaluate all three fresh at this stop, even when an earlier blocked stop recorded failures.
               terminal_gate_results_json = JSON array of exactly three rows {"gateId":"evidence"|"scope"|"coverage","status":"pass"|"fail","reasonCode":"<short code such as all-findings-cited or missing-dimensions>","evidenceDigest":"<64 lowercase hex sha256 of the evidence summary for that gate>"}
               failed_required_gate_ids = JSON array of the gateIds whose status is fail, in the order evidence, scope, coverage; [] when all pass
-              terminal_stop_reason = "maxIterationsReached" when stopReason is maxIterationsReached, else "converged"
+              terminal_stop_reason = the run's stopReason when it is maxIterationsReached, manualStop or error, else "converged"
             append_jsonl: '{"stem":"deep_review.terminal_gates_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"stopReason":"{terminal_stop_reason}","gateResults":{terminal_gate_results_json},"failedRequiredGateIds":{failed_required_gate_ids},"appendPosition":{current_iteration}}}'
             log: "Terminal gates recorded at stop {terminal_stop_reason}. Failed required gates: {failed_required_gate_ids}"
           branch_on: "convergence_mode == 'divergent' AND reason == 'all_dimensions_clean'"
@@ -2705,7 +2705,7 @@ workflow:
 error_recovery:
   agent_dispatch_timeout: "Retry once with reduced scope (fewer files per iteration). If second timeout, mark as 'timeout' and continue."
   state_file_missing: "If JSONL missing during loop, reconstruct from iteration files. If strategy missing, create minimal version."
-  consecutive_failures: "After 3 consecutive errors, halt loop and enter synthesis with partial findings."
+  consecutive_failures: "After 3 consecutive errors, halt the loop, set stopReason to error, run record_terminal_gates (step_handle_convergence.if_stop) with terminal_stop_reason error, then enter synthesis with partial findings."
   continuity_save_failure: "Preserve the review packet in review/ as backup. Log warning."
 
 # ─────────────────────────────────────────────────────────────────

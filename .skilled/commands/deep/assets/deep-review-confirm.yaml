@@ -928,7 +928,7 @@ workflow:
         action: "Act on convergence decision"
         if_stop:
           record_terminal_gates:
-            when: "Run once, immediately before control leaves this if_stop for gate_pre_synthesis: in if_existing_terminal_path, in every divergent pivot branch that has skip_to: gate_pre_synthesis, and in on_error. Never run it when the pivot continues the loop (proceed_to: gate_pre_iteration)."
+            when: "Run once, immediately before control leaves this if_stop for gate_pre_synthesis: in if_existing_terminal_path, in every divergent pivot branch that has skip_to: gate_pre_synthesis, and in on_error. Never run it when the pivot continues the loop (proceed_to: gate_pre_iteration). The manual-stop branch (on_C) of gate_pre_iteration and of the post-iteration gate also runs it, once, before gate_pre_synthesis."
             evaluate: |
               evidence: pass when every active P0/P1 finding has concrete file:line evidence and none relies only on inference (the evidenceDensityGate rule).
               scope: pass when every active finding's file lies inside the review target.
@@ -936,7 +936,7 @@ workflow:
               Evaluate all three fresh at this stop, even when an earlier blocked stop recorded failures.
               terminal_gate_results_json = JSON array of exactly three rows {"gateId":"evidence"|"scope"|"coverage","status":"pass"|"fail","reasonCode":"<short code such as all-findings-cited or missing-dimensions>","evidenceDigest":"<64 lowercase hex sha256 of the evidence summary for that gate>"}
               failed_required_gate_ids = JSON array of the gateIds whose status is fail, in the order evidence, scope, coverage; [] when all pass
-              terminal_stop_reason = "maxIterationsReached" when stopReason is maxIterationsReached, else "converged"
+              terminal_stop_reason = the run's stopReason (or reason) when it is maxIterationsReached, manualStop or error, else "converged"
             append_jsonl: '{"stem":"deep_review.terminal_gates_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"stopReason":"{terminal_stop_reason}","gateResults":{terminal_gate_results_json},"failedRequiredGateIds":{failed_required_gate_ids},"appendPosition":{current_iteration}}}'
             log: "Terminal gates recorded at stop {terminal_stop_reason}. Failed required gates: {failed_required_gate_ids}"
           branch_on: "convergence_mode == 'divergent' AND reason == 'all_dimensions_clean'"
@@ -1158,9 +1158,9 @@ workflow:
                     message: "No ranked alternative can be selected because the adapter exposes no ranking score or rank contract."
                     return_to: gate_divergent_pivot_choice
                   on_C:
+                    set: { reason: "manualStop" }
                     run_first: record_terminal_gates
                     bookkeeping_log: '{"type":"event","event":"manualStop","mode":"review","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
-                    set: { reason: "manualStop" }
                     skip_to: gate_pre_synthesis
                 if_failed_recoverable:
                   condition: "pivot_result.failedEvent.recoverableByOverride == true AND pivot_result.agreement.reason == 'insufficient_endorsement'"
@@ -1193,9 +1193,9 @@ workflow:
                     command: "node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
                     proceed_to: gate_pre_iteration
                   on_C:
+                    set: { reason: "manualStop" }
                     run_first: record_terminal_gates
                     bookkeeping_log: '{"type":"event","event":"manualStop","mode":"review","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
-                    set: { reason: "manualStop" }
                     skip_to: gate_pre_synthesis
                 if_failed_unrecoverable:
                   condition: "pivot_result.status == 'failed' AND (pivot_result.failedEvent is absent OR pivot_result.failedEvent.recoverableByOverride != true)"
@@ -1295,7 +1295,7 @@ workflow:
           on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
         on_A: { proceed_to: step_dispatch_iteration }
         on_B: { action: "Update next_dimension to user's choice", proceed_to: step_dispatch_iteration }
-        on_C: { proceed_to: gate_pre_synthesis }
+        on_C: { set: { reason: "manualStop" }, run_first: record_terminal_gates, proceed_to: gate_pre_synthesis }
         on_D: { action: "Cancel workflow", status: "CANCELLED" }
 
       step_dispatch_iteration:
@@ -1701,7 +1701,7 @@ workflow:
           on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
         on_A: { proceed_to: step_generate_dashboard }
         on_B: { action: "Set next_dimension to user's choice in strategy.md", proceed_to: step_generate_dashboard }
-        on_C: { proceed_to: gate_pre_synthesis }
+        on_C: { set: { reason: "manualStop" }, run_first: record_terminal_gates, proceed_to: gate_pre_synthesis }
         on_D: { action: "Cancel workflow", status: "CANCELLED" }
 
       step_generate_dashboard:
