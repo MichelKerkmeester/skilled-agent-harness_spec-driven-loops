@@ -137,9 +137,8 @@ Acceptance criteria: 10 total, 10 Met, none waived ([acceptance-criteria.md](acc
 ## Known Limitations
 
 1. **The gates are still judged by the executing agent.** The workflows state the three gate rules; the schema can refuse a record that contradicts itself but cannot check a judgment.
-2. **The duration stop writes no terminal gate record.** This was already on upstream main. After the 120-minute default, `step_check_max_duration` jumps to `phase_synthesis` without writing the record, so the verdict can PASS while a gate fails. Fixing it needs a decision: add `maxDurationReached` to the record's stop-reason enum, or map it to an existing value.
-3. **Manual stops skip verdict derivation.** This was already on upstream main. Each `on_C` exit jumps to `gate_pre_synthesis`, which skips `step_hydrate_summary_metrics` and `step_derive_verdict`, so the new record is written but never turned into a verdict.
-4. **The fork script misses the orchestrate fork.** `regen-claude-fork.sh` does not reproduce `.claude/agents/orchestrate.md` at HEAD, so a later edit there needs the same hand step.
+2. **The duration stop and manual-stop gaps moved to 017.** Both were already on upstream main; child `017-terminal-record-gaps` closes them with the operator's choices.
+3. **The fork script misses the orchestrate fork.** `regen-claude-fork.sh` does not reproduce `.claude/agents/orchestrate.md` at HEAD, so a later edit there needs the same hand step.
 <!-- /ANCHOR:limitations -->
 
 ---

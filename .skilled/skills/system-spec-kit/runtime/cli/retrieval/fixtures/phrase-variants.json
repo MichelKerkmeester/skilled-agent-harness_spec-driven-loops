@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3f3f242fd66e1614174045d808a82216f073192f3a8e539c61542ec89f70461b",
+  "manifestHash": "e58e43eb7e00b4d1f53a7ce56609e1e62043dc9c1ce923897b0489f5afb6ef3a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -66858,6 +66858,9 @@
     "max secondary clients 64": [
       "max secondary clients 64"
     ],
+    "maxdurationreached terminal gate record": [
+      "maxDurationReached terminal gate record"
+    ],
     "may 18 baseline invalidated": [
       "May 18 baseline invalidated"
     ],
@@ -82105,6 +82108,9 @@
     ],
     "phase 17 tasks": [
       "phase 17 tasks"
+    ],
+    "phase 17 terminal record gaps": [
+      "phase 17 terminal record gaps"
     ],
     "phase 17 vibe decision capture": [
       "phase 17 vibe decision capture"
@@ -124557,6 +124563,21 @@
     ],
     "terminal proof tasks": [
       "terminal proof tasks"
+    ],
+    "terminal record gaps": [
+      "terminal record gaps"
+    ],
+    "terminal record gaps acceptance criteria": [
+      "terminal record gaps acceptance criteria"
+    ],
+    "terminal record gaps implementation summary": [
+      "terminal record gaps implementation summary"
+    ],
+    "terminal record gaps plan": [
+      "terminal record gaps plan"
+    ],
+    "terminal record gaps tasks": [
+      "terminal record gaps tasks"
     ],
     "terminal skin palette": [
       "terminal skin palette"

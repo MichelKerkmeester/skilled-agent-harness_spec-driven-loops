@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4b1b95147d6c8c1b5031f830017a383bdad4c1492f589ad658b6ef4be1f7ee23",
+  "corpusHash": "37bbe20720c3671fd035c92f916b500353d8661a31ce323b44cf2506f6de15c1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27512,
+  "includedPathCount": 27517,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9512,6 +9512,11 @@
     "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -27544,7 +27549,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3f3f242fd66e1614174045d808a82216f073192f3a8e539c61542ec89f70461b",
+  "manifestHash": "e58e43eb7e00b4d1f53a7ce56609e1e62043dc9c1ce923897b0489f5afb6ef3a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28652,6 +28657,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/scratch",
       "reason": "excluded directory"
     },
     {
