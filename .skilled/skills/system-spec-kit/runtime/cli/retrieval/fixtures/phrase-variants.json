@@ -1,5 +1,5 @@
 {
-  "manifestHash": "74672664edce5b8f5dabc8dbda7a8bd766f13bdcbbd2bd5a4b2e5812a71988a3",
+  "manifestHash": "7cb610645f062db4d1ac9ca164f9205a01bbeefda1660612cd135d5ffaab6762",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -40750,6 +40750,9 @@
     "devin session end teardown": [
       "devin session end teardown"
     ],
+    "devin session handover": [
+      "Devin session handover"
+    ],
     "devin session lifecycle": [
       "devin session lifecycle"
     ],
@@ -40851,9 +40854,6 @@
     ],
     "devpass llm gateway route": [
       "devpass llm gateway route"
-    ],
-    "devsession handover": [
-      "Devsession handover"
     ],
     "df idf corpus": [
       "df-idf corpus"
@@ -57375,6 +57375,12 @@
     "handoff note purpose line": [
       "handoff note purpose line"
     ],
+    "handoff recall baseline": [
+      "handoff recall baseline"
+    ],
+    "handoff recall with lookup": [
+      "handoff recall with lookup"
+    ],
     "handoff record command": [
       "handoff record command"
     ],
@@ -59126,6 +59132,9 @@
     "hop recall baseline": [
       "hop recall baseline"
     ],
+    "hop recall baseline conversation": [
+      "hop recall baseline conversation"
+    ],
     "hop recall baseline goal": [
       "hop recall baseline goal"
     ],
@@ -59137,6 +59146,9 @@
     ],
     "hop recall baseline tasks": [
       "hop recall baseline tasks"
+    ],
+    "hop recall conversation": [
+      "hop recall conversation"
     ],
     "hop withdrawn because the transcript was missing": [
       "hop withdrawn because the transcript was missing"

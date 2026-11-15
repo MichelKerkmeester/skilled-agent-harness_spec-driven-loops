@@ -8,7 +8,7 @@ trigger_phrases:
   - "OpenCode session handover"
   - "Codex session handover"
   - "Cursor session handover"
-  - "Devsession handover"
+  - "Devin session handover"
   - "/speckit:handoff session handover"
   - "skilled-loop claude"
   - "skilled-loop pi"
@@ -17,7 +17,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.28.0
+version: 1.0.29.0
 ---
 
 # Session handover loop (skilled-loop)
@@ -164,4 +164,4 @@ Both ways grant the session exactly one more context nudge, whatever level it ha
 Related references:
 - [Claude session handover scenarios](../../manual-testing-playbook/plugins-and-hooks/session-handover-claude.md)
 - [Pi and OpenCode session handover scenarios](../../manual-testing-playbook/plugins-and-hooks/session-handover-pi-opencode.md)
-- [Codex, Cursor and Devsession handover scenarios](../../manual-testing-playbook/plugins-and-hooks/session-handover-command-runtimes.md)
+- [Codex, Cursor and Devin session handover scenarios](../../manual-testing-playbook/plugins-and-hooks/session-handover-command-runtimes.md)

@@ -4,10 +4,10 @@ description: "Automatable and live scenarios for the Codex session-handover adap
 trigger_phrases:
   - "Codex session handover"
   - "Cursor session handover"
-  - "Devsession handover"
+  - "Devin session handover"
   - "session-handover-command-runtimes"
   - "skilled-loop codex"
-version: 1.0.22.0
+version: 1.0.23.0
 id: session-handover-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -48,7 +48,7 @@ This scenario defines four automatable checks and one live check per runtime. Th
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|---|
-| session-handover-command-runtimes | Codex, Cursor and Devsession handover | Run four automatable checks and one live check per runtime. | Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready. | Codex adapter suite -> shared nudge suite -> stub-runtime wrapper suite -> shell shim suite -> live Codex tmux hop -> live Cursor command hop -> live Devin command hop | Automatable commands exit 0. The stub suite records the three relaunch argv forms with valid model values carried and no resume flags. The Codex live run arms the matching record and restart with the claim seed. Cursor and Devin produce a note, a pending record and a printed runtime-specific manual command. | Capture command output and exit codes. For each live run capture the tmux transcript, runtime log entries and handoff status from open through claimed. | PASS when every automated check exits 0 and each live check reaches the claim seed by its runtime's trigger. FAIL when an automated check fails, a runtime is mismatched or a live claim seed is not delivered. | 1. Confirm the adapter path and host smoke command. 2. Check adapter event logs and the matching runtime field in the pending record. 3. Check the killer result, hop limit and runtime-specific seed arguments. 4. On command-only runtimes, confirm prepare printed the manual claim command. |
+| session-handover-command-runtimes | Codex, Cursor and Devin session handover | Run four automatable checks and one live check per runtime. | Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready. | Codex adapter suite -> shared nudge suite -> stub-runtime wrapper suite -> shell shim suite -> live Codex tmux hop -> live Cursor command hop -> live Devin command hop | Automatable commands exit 0. The stub suite records the three relaunch argv forms with valid model values carried and no resume flags. The Codex live run arms the matching record and restart with the claim seed. Cursor and Devin produce a note, a pending record and a printed runtime-specific manual command. | Capture command output and exit codes. For each live run capture the tmux transcript, runtime log entries and handoff status from open through claimed. | PASS when every automated check exits 0 and each live check reaches the claim seed by its runtime's trigger. FAIL when an automated check fails, a runtime is mismatched or a live claim seed is not delivered. | 1. Confirm the adapter path and host smoke command. 2. Check adapter event logs and the matching runtime field in the pending record. 3. Check the killer result, hop limit and runtime-specific seed arguments. 4. On command-only runtimes, confirm prepare printed the manual claim command. |
 
 ### Automatable Checks
 

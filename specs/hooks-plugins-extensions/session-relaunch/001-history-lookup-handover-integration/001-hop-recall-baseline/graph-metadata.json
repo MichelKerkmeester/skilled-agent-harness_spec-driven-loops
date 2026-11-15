@@ -40,6 +40,8 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-baseline-conversation.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
@@ -71,6 +73,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hop-recall-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "hop-recall-baseline-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-baseline-conversation.md",
         "source": "derived"
       },
       {
@@ -174,23 +188,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The handover starts a fresh session near the context limit, so the receiver holds only the four sections of the handoff note",
     "created_at": "2026-11-15T06:24:15Z",
-    "last_save_at": "2026-11-15T07:58:24.438Z",
+    "last_save_at": "2026-11-15T09:27:09.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +202,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:650bd8a15517aa4f3aa6b785251b0768f4813970df6d119fb254c02bbbbca6fc",
+    "source_fingerprint": "sha256:fd5c807a931ea78595750a2b2e7cc18f6ee8b3217a1fe397f6536249c4e6aabd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1eeacd6644097a5f13af00db6620a14bfdabeedbd324b5e6abfb2c5b6e96137",
       "plan.md": "22f31b1e98adf574a493e5e4492fdb457f1276828d1e6cad9a5dc2ef82c372b5",
-      "tasks.md": "3d9cc77ee94f8f6ac0e750ec2a62a1faf28686afbc9694be3f9387dfdc8b35ae",
+      "tasks.md": "439cc02c1bba3d0b1dec703cab4a9b7f156769ef5723776f52c9025226bf6a82",
       "implementation-summary.md": "db792f40fd9917b7f4a742bf489354c718769629090d96c559c1a4019eb60aa2"
     },
     "last_active_at": null

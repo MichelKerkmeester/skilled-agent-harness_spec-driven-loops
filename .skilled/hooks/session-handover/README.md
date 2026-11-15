@@ -379,4 +379,4 @@ session-handover/
 - [System-spec-kit feature entry](../../skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md)
 - [Claude session handover scenarios](../../skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-handover-claude.md)
 - [Pi and OpenCode session handover scenarios](../../skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-handover-pi-opencode.md)
-- [Codex, Cursor and Devsession handover scenarios](../../skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-handover-command-runtimes.md)
+- [Codex, Cursor and Devin session handover scenarios](../../skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-handover-command-runtimes.md)

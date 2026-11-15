@@ -15,9 +15,9 @@ for my $file (@ARGV) {
   $s =~ s/In-Session Handover/Session Handover/g;
   $s =~ s/In-session handover/Session handover/g;
   $s =~ s/In-session-handover/Session-handover/g;
-  $s =~ s/in-session-handover/session-handover/g;
-  $s =~ s/in-session handover/session handover/g;
-  $s =~ s/in session handover/session handover/g;
+  $s =~ s/\bin-session-handover/session-handover/g;
+  $s =~ s/\bin-session handover/session handover/g;
+  $s =~ s/\bin session handover/session handover/g;
   $s =~ s/\b([Aa])n (session[- ]handover|Session[- ]handover|Session Handover)/$1 $2/g;
   $s =~ s/\x{1}KEEP(\d+)\x{1}/$keep[$1]/g;
   next if $s eq $orig;
