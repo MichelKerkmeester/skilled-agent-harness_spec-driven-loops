@@ -1,0 +1,3 @@
+$ test -s reason.txt || { echo no-reason-file; exit 1; }; grep -qi 'mode' reason.txt || { echo reason-lacks-mode; exit 1; }; echo "reason-carried: $(head -c 160 reason.txt)"
+reason-carried: Deep Route mode mismatch -- dispatch targets subagent_type="deep-research" (registry modes="research") but the prompt declares mode="review"
+[exit 0]

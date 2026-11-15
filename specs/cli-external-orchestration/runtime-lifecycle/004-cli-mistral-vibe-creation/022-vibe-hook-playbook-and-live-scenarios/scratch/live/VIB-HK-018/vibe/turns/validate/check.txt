@@ -1,3 +1,4 @@
-$ grep -rqs 'validator-finished' "$VIBE_HOME/logs/session/unified" || { echo 'the validation command never reached the shell, so the dist hook had nothing to judge'; exit 1; }; if grep -rqs 'STALE DIST WARNING' "$VIBE_HOME/logs/session/unified"; then echo warning-recorded; else echo 'no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session'; exit 77; fi
-no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session
-[exit 77]
+$ grep -rqs 'validator-finished' "$VIBE_HOME/logs/session/unified" || { echo 'the validation command never reached the shell'; exit 1; }; for i in $(seq 1 20); do node "$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs" "$VIBE_HOME/logs/session/unified" post-tool-has 'validator-finished' 'STALE DIST WARNING: @utcp/code-mode-mcp' && echo validator-result-warned && exit 0; sleep 1; done; exit 1
+latest matching post_tool_call result carries the second text
+validator-result-warned
+[exit 0]

@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/009-nudge-note-lines",
+  "description": "The nudge tells a session to release a held deep-loop lock before `prepare` and says nothing about the fan-out runner",
+  "keywords": [
+    "nudge",
+    "tells",
+    "session",
+    "release",
+    "held",
+    "deep-loop",
+    "lock",
+    "prepare",
+    "says",
+    "nothing",
+    "about",
+    "fan-out",
+    "runner"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.972Z",
+  "specId": "009",
+  "folderSlug": "nudge-note-lines",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

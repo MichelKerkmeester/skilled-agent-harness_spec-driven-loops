@@ -37,7 +37,7 @@ const REQUIRED_SECTIONS = [
   /^5\.\s+SOURCE METADATA$/i,
 ];
 const CONVERSATION_RUNTIMES = ['claude-code', 'opencode', 'codex', 'pi', 'devin', 'vibe'];
-const CONVERSATION_ROOT_KEYS = new Set(['runtimes', 'setup', 'env', 'turns', 'trust_hooks']);
+const CONVERSATION_ROOT_KEYS = new Set(['runtimes', 'setup', 'launch_setup', 'env', 'turns', 'trust_hooks']);
 const CONVERSATION_TURN_KEYS = new Set([
   'id', 'send', 'action', 'delay_ms', 'timeout_ms', 'retry', 'questions', 'check',
 ]);
@@ -587,13 +587,14 @@ function validateConversationScriptObject(script, source, block) {
     });
   }
 
-  if (hasOwn(script, 'setup')) {
-    if (!Array.isArray(script.setup)) {
-      addConversationFinding(findings, 'setup', 'must be an array of strings', lineForPath);
+  for (const key of ['setup', 'launch_setup']) {
+    if (!hasOwn(script, key)) continue;
+    if (!Array.isArray(script[key])) {
+      addConversationFinding(findings, key, 'must be an array of strings', lineForPath);
     } else {
-      script.setup.forEach((command, index) => {
+      script[key].forEach((command, index) => {
         if (typeof command !== 'string') {
-          addConversationFinding(findings, `setup[${index}]`, 'must be a string', lineForPath);
+          addConversationFinding(findings, `${key}[${index}]`, 'must be a string', lineForPath);
         }
       });
     }

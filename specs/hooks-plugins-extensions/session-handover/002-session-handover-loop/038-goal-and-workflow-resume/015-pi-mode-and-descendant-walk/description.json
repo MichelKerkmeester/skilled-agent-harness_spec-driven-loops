@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk",
+  "description": "A Pi session that switched to Plan or Build mode restarts in the mode its first launch named, because `liveSettings` returns only model",
+  "keywords": [
+    "session",
+    "switched",
+    "plan",
+    "mode",
+    "restarts",
+    "first",
+    "launch",
+    "named",
+    "because",
+    "livesettings",
+    "returns",
+    "only",
+    "model"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.988Z",
+  "specId": "015",
+  "folderSlug": "pi-mode-and-descendant-walk",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

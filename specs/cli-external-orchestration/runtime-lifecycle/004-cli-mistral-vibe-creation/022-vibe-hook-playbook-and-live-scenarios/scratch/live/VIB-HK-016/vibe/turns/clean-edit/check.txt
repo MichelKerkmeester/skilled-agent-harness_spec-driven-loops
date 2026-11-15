@@ -1,0 +1,4 @@
+$ grep -q 'review finding' src/greeting.ts && { echo comment-still-there; exit 1; }; grep -qF '`Hello, ${name}`' src/greeting.ts || { echo no-template-literal; exit 1; }; for i in $(seq 1 20); do node "$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs" "$VIBE_HOME/logs/session/unified" post-tool-lacks 'greeting.ts' '[comment-hygiene]' && echo clean-edit-earned-no-hygiene-finding && exit 0; sleep 1; done; exit 1
+latest matching post_tool_call result does not carry the second text
+clean-edit-earned-no-hygiene-finding
+[exit 0]

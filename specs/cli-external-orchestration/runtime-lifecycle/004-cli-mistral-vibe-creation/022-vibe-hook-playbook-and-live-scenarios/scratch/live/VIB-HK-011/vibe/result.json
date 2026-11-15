@@ -2,12 +2,12 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 1254797431,
-  "socket": "conv-54699-vibe",
-  "session_id": "f7443e06-c96d-44fa-8137-7e845f87c2d4",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.5W9I075Iqb/vibe",
-  "started_at": "2026-11-15T00:10:04.538Z",
-  "finished_at": "2026-11-15T00:11:50.325Z",
+  "seed": 397111905,
+  "socket": "conv-66937-vibe",
+  "session_id": "0d67a5fc-38b7-43c7-92a6-05bed1076836",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.FXlhO318MZ/vibe",
+  "started_at": "2026-11-15T13:07:11.685Z",
+  "finished_at": "2026-11-15T13:09:54.636Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -48,6 +48,15 @@
       "blocker": null,
       "observed": "deny-notice-recorded",
       "evidence": "turns/deny-notice"
+    },
+    {
+      "id": "plain-shell",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "plain-shell-allowed-after-refusal",
+      "evidence": "turns/plain-shell"
     }
   ]
 }

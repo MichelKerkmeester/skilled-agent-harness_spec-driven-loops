@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/383-mistral-vibe-runtime` |
 | **Parent Spec** | ../spec.md |
@@ -123,6 +123,9 @@ claude-code,opencode,codex,pi,devin
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/*.md` | Create | 26 conversation scenarios, `VIB-HK-001` to `VIB-HK-026` |
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md` | Modify | The `hook-scenarios` section and its cross-reference rows |
 | Files a failing scenario or a confirmed alignment finding names | Modify | Only the fix the verdict or the finding requires, each named in `tasks.md` when it is added |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`, `validate-playbook-package.cjs`, their tests and `references/conversation-scenarios.md` | Modify | Amendment of 2026-11-15, after the operator asked for every scenario as a real conversation: a `launch_setup` script key that runs after the runner prepares the launch and before the subject starts, so a scenario can change the Vibe home it needs |
+| `.vibe/plugins/repo-guards/fixtures/journal-check.cjs`, `.vibe/plugins/repo-guards/fixtures/mcp-route-guard/stdio-server.cjs` | Create | Amendment of 2026-11-15: an ordered journal check for the scenario turns, and a native stdio MCP server for the route guard |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` and `tests/check-dist-staleness.test.sh` | Modify | Amendment of 2026-11-15: `--all` honors `SPECKIT_DIST_WORKSPACE_ROOT` as the single-file mode already did, so a scenario judges a stale scratch build instead of the checkout. This changes every caller that sets the variable, including the session-start hook on each runtime |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -169,7 +172,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Dependency | Phases 013 to 021 built | High: a scenario for an unbuilt hook can only fail | Setup records each predecessor's status and stops on any phase not Complete or In Progress with only operator tasks open |
 | Risk | The runner refuses a scratch project inside the repository, and Vibe's repository hooks load only from a trusted checkout or the rendered home | High: the hooks would silently not load | The adapter launches Vibe with a `VIBE_HOME` it renders with `render-home-hooks.cjs` and the repository config copy, and every scenario's first check reads the journal for a hook binding |
 | Risk | An interactive Vibe TUI's ready, busy and question screens are unprobed | Med | The adapter starts unprobed, a live probe of the runner's sample sets its patterns, and the adapter is marked probed only after that pass |
-| Risk | `mcp-route-guard` needs an MCP server configured in the session | Med | The scenario configures a local fixture server in the scratch home; if no server can be configured, the row is OPERATOR-ONLY with the reason |
+| Risk | `mcp-route-guard` needs an MCP server configured in the session | Med | The scenario's `launch_setup` registers the local fixture server in the session's Vibe home |
 | Risk | Keyed runs spend the Mistral plan | Low | One live pass per scenario, and reruns only for a FAIL |
 <!-- /ANCHOR:risks -->
 
@@ -178,8 +181,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- UNVERIFIED: whether the runner's restart action can resume a Vibe session. Phase 019 found Vibe refuses `--model` on `--resume`; the interactive adapter passes no `--model`, so `vibe --resume <id>` should work, but no run has shown it.
-- UNVERIFIED: whether a mirrored prompt in `.vibe/prompts` can be invoked in an interactive session by name. `VIB-HK-025` records how, or records OPERATOR-ONLY with the reason.
+- RESOLVED: the runner's restart action resumes a Vibe session. `VIB-HK-021`, `VIB-HK-022` and `VIB-HK-024` restart and pass live.
+- RESOLVED: a mirrored prompt in `.vibe/prompts` runs by name only through an agent profile whose `system_prompt_id` names it, read when the session starts; Vibe 3.1.2 treats a top-level `system_prompt_id` as an experiment variant and has no command loader. `VIB-HK-025` writes that profile with `launch_setup`, selects it with `default_agent`, and judges the session's system input.
 <!-- /ANCHOR:questions -->
 
 ---

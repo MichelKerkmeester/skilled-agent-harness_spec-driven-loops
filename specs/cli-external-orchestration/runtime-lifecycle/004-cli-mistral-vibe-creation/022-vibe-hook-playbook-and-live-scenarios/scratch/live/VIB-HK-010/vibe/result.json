@@ -2,12 +2,12 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 443782848,
-  "socket": "conv-6979-vibe",
-  "session_id": "98aad6aa-1fe5-4a28-b99c-d919e890ffb4",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.BKJPP5dRor/vibe",
-  "started_at": "2026-11-15T00:06:08.535Z",
-  "finished_at": "2026-11-15T00:09:16.180Z",
+  "seed": 1438016323,
+  "socket": "conv-46711-vibe",
+  "session_id": "bf6aa028-8e83-4517-b153-ff21eefeea1e",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.E8551jisE2/vibe",
+  "started_at": "2026-11-15T13:05:24.320Z",
+  "finished_at": "2026-11-15T13:06:42.284Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -48,6 +48,15 @@
       "blocker": null,
       "observed": "guard-logged-and-value-absent",
       "evidence": "turns/no-leak"
+    },
+    {
+      "id": "plain-read",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "plain-file-read-and-value-still-absent",
+      "evidence": "turns/plain-read"
     }
   ]
 }

@@ -10,10 +10,10 @@ Hello Michel, how can I help you?
 > Tell me in one sentence what this project contains.
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-⏵ Ran 4 commands, thought                                                                                                     
+⏵ Ran 3 commands, thought                                                                                                     
 
-  This project is Skilled — a spec-driven agent harness that gives AI coding agents (Claude Code, Codex, OpenCode, Pi, Devin, Cursor) a persistent memory, an auditable paper trail, and a team of
-  specialized agents/skills, all stored as plain markdown files inside your own repository.
+  The working directory contains no project — just two scratch files (.cleanup-lines-before and .conversation-scratch) created by the conversation runner, so there is no code, README, or specs/
+  packet here to describe.
 
 
 
@@ -47,4 +47,4 @@ Hello Michel, how can I help you?
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.3ElmXI5JBg/vibe                                                                                                       ctx ▍      13.4k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CbB5b8eR0a/vibe                                                                                                       ctx ▎      10.8k/256k

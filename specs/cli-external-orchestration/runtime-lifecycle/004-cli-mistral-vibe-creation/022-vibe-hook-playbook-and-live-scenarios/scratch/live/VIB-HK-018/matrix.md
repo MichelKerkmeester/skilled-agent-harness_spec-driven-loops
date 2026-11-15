@@ -2,4 +2,4 @@
 
 | Runtime | Verdict | Turns passed | First failure | Evidence |
 |---------|---------|--------------|---------------|----------|
-| vibe | SKIP | 0/2 | - | vibe |
+| vibe | PASS | 2/2 | - | vibe |

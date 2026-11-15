@@ -1,2 +1,3 @@
 turn	status	attempts	evidence	observed
 prose-menu	PASS	1	turns/prose-menu	one-ask-surface-retry-naming-ask_user_question
+answer-menu	PASS	1	turns/answer-menu	answered-menu-earned-no-second-retry

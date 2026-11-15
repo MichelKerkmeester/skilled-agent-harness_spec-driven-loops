@@ -1,0 +1,4 @@
+$ for i in $(seq 1 20); do node "$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs" "$VIBE_HOME/logs/session/unified" post-tool-lacks 'scheduled for Friday' 'Jev injection screen' && echo benign-page-earned-no-advisory && exit 0; sleep 1; done; exit 1
+latest matching post_tool_call result does not carry the second text
+benign-page-earned-no-advisory
+[exit 0]

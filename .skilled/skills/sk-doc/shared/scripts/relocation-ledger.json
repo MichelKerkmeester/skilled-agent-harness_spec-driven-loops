@@ -212,6 +212,51 @@
           "to": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration"
         }
       ]
+    },
+    {
+      "applied_at": "2026-11-15T14:19:26.178Z",
+      "base_commit": "fe8bdd46266660b4df811ae6c34d3736ab971dae",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
+          "to": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop"
+        }
+      ]
+    },
+    {
+      "applied_at": "2026-11-15T14:29:19.195Z",
+      "base_commit": "db9c33b1f64e9e3188c71bc0bbb0a187fb3f7f08",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop",
+          "to": "hooks-plugins-extensions/session-handover/002-session-handover-loop"
+        }
+      ]
+    },
+    {
+      "applied_at": "2026-11-15T14:37:06.433Z",
+      "base_commit": "5bb5eef0232fc9310aecf349684a33e058cfa737",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports",
+          "to": "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports"
+        }
+      ]
     }
   ]
 }

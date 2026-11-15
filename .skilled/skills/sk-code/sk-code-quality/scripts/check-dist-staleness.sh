@@ -289,7 +289,11 @@ def main() -> None:
         sys.exit(0)
 
     if sys.argv[1] == "--all":
-        payload, problem = _run_checker(checker, repo_root, ["check-all", "--json"])
+        all_args = ["check-all", "--json"]
+        workspace_root = _workspace_root_override()
+        if workspace_root:
+            all_args.extend(["--workspace-root", workspace_root])
+        payload, problem = _run_checker(checker, repo_root, all_args)
         if payload is None:
             _report_unassessable("all watched packages", problem or "the checker returned no verdict")
             sys.exit(0)

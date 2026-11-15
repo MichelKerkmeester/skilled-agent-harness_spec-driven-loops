@@ -1,2 +1,3 @@
 turn	status	attempts	evidence	observed
-fetch-page	PASS	1	turns/fetch-page	advisory-appended
+fetch-page	PASS	1	turns/fetch-page	advisory-on-the-fetch-result
+benign-page	PASS	1	turns/benign-page	benign-page-earned-no-advisory

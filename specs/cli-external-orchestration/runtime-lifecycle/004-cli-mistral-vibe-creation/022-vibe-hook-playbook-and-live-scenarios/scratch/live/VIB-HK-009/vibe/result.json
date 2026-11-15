@@ -2,12 +2,12 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 365581170,
-  "socket": "conv-30984-vibe",
-  "session_id": "7cade6ab-e8e7-49e9-b35a-e01f1cd45241",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.7DAeDVJogJ/vibe",
-  "started_at": "2026-11-14T23:56:35.598Z",
-  "finished_at": "2026-11-14T23:57:24.482Z",
+  "seed": 1202263224,
+  "socket": "conv-27471-vibe",
+  "session_id": "dd75aff3-422c-4928-ab58-138bbd579b32",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.an5iUXJyLy/vibe",
+  "started_at": "2026-11-15T13:03:51.296Z",
+  "finished_at": "2026-11-15T13:04:53.352Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -48,6 +48,15 @@
       "blocker": null,
       "observed": "no-retry advisory-holds-reread",
       "evidence": "turns/no-retry"
+    },
+    {
+      "id": "second-claim",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "second-claim-accepted lines=2 advisory-rewritten",
+      "evidence": "turns/second-claim"
     }
   ]
 }

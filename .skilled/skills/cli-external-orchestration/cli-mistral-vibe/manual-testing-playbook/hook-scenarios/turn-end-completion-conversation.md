@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-009 -- Turn-end leaves a completion advisory and never blocks"
 description: "This scenario validates that a Vibe turn that ends on a completion claim with no recorded evidence leaves one pending advisory and still ends on a post_agent accept, judged from the session journal and the hook-written file."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-009 -- Turn-end leaves a completion advisory and never blocks
@@ -30,7 +30,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner starts Vibe in a scratch project with the repository hooks rendered into a fresh `VIBE_HOME` and `VIBE_SPEC_FOLDER` naming a packet with no implementation summary. Vibe ends turn 1 on a completion claim and runs the `post_agent` `turn-end` hook.
 - Expected signals: the journal holds a `post_agent` hook run completion with no `post_agent` deny notice, which is how Vibe records an accept, and the pending advisory file under the scratch project holds `claimed done` with the reread reminder.
 - Desired user-visible outcome: the reply names the work as completed, the session returns to the prompt, and the next turn carries the reminder instead of the current turn repeating itself.
-- Pass/fail: PASS when both turn checks pass. FAIL when the hook retried the turn or wrote no advisory.
+- Pass/fail: PASS when all three turn checks pass. FAIL when the hook retried the turn or wrote no advisory.
 
 ---
 
@@ -65,6 +65,20 @@ Operators run the conversation script through the shared runner with the `vibe` 
     {
       "id": "no-retry",
       "check": "grep -qF 'reread the request' .skilled/skills/.state/completion-sentinel/vibe-pending-advisory.txt || { echo advisory-missing-reread; exit 1; }; if grep -rqsF '\"kind\":\"hook_completed\",\"scope\":\"post_agent\"' \"$VIBE_HOME/logs/session/unified\"; then echo retry-recorded; exit 1; fi; echo \"no-retry advisory-holds-reread\""
+    },
+    {
+      "id": "second-claim",
+      "send": "Add a second line to notes.txt, then reply with one short sentence that says the work is completed.",
+      "questions": [
+        {
+          "match": "[Ss]pec folder|[Dd]ocumentation|[Ww]hich",
+          "answer": {
+            "other": "Just add the line to notes.txt."
+          },
+          "optional": true
+        }
+      ],
+      "check": "n=$(wc -l < notes.txt | tr -d ' '); [ \"$n\" -ge 2 ] || { echo notes-has-$n-lines; exit 1; }; grep -qF 'claimed done' .skilled/skills/.state/completion-sentinel/vibe-pending-advisory.txt || { echo no-advisory-after-second-claim; exit 1; }; if grep -rqsF '\"kind\":\"hook_completed\",\"scope\":\"post_agent\"' \"$VIBE_HOME/logs/session/unified\"; then echo post-agent-denied; exit 1; fi; echo \"second-claim-accepted lines=$n advisory-rewritten\""
     }
   ]
 }
@@ -74,7 +88,7 @@ The completion part only runs for an operator-named packet, so the script names 
 
 ### Expected
 
-Turn `claim` leaves the journal with a completed `post_agent` hook run, no `post_agent` deny notice, and the pending advisory file holding `claimed done` plus the reread reminder. Turn `no-retry` finds no deny notice and the advisory still in place.
+Turn `claim` leaves the journal with a completed `post_agent` hook run, no `post_agent` deny notice, and the pending advisory file holding `claimed done` plus the reread reminder. Turn `no-retry` finds no deny notice and the advisory still in place. Turn `second-claim` asks for a second line and a second completion claim: notes.txt holds two lines, the advisory file again holds `claimed done`, and the journal still holds no `post_agent` deny notice, so the guard fires on every claim turn and never blocks one.
 
 ### Evidence
 
@@ -82,8 +96,8 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 
 ### Pass / Fail
 
-- **Pass**: the journal holds the completed `post_agent` run with no deny notice, and one pending advisory file.
-- **Fail**: a `post_agent` deny notice was recorded, or no advisory file was written.
+- **Pass**: the journal holds the completed `post_agent` run with no deny notice, and one pending advisory file, and the second claim turn also ends on an accept with the advisory rewritten.
+- **Fail**: a `post_agent` deny notice was recorded, or no advisory file was written, or the second claim turn was denied or left no advisory.
 
 ### Failure Triage
 

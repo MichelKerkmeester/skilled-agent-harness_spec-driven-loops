@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/021-goal-scan-large-log",
+  "description": "`latestGoalLogEntry` widens the tail from 256 KiB up to `GOALLOGMAXTAILBYTES`, which is 16 MB (`lib/relaunch-core.cjs:61`), and then returns `whole",
+  "keywords": [
+    "latestgoallogentry",
+    "widens",
+    "tail",
+    "kib",
+    "goallogmaxtailbytes",
+    "lib",
+    "relaunch-core",
+    "cjs",
+    "returns",
+    "whole"
+  ],
+  "lastUpdated": "2026-11-15T14:28:41.065Z",
+  "specId": "021",
+  "folderSlug": "goal-scan-large-log",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

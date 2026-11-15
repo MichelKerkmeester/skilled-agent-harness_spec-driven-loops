@@ -1,7 +1,7 @@
 
-  ⡠⣒⠄  ⡠⡀⡠⡀   Mistral Vibe v3.1.2
- ⢸⠸⣀⡔⢉⢑⠇⠨⡠⢇   deepseek-flash[max] · Free
-  ⠉⠒⠣⠤⠵⠭⠭⠯⠇   Type /help for more information
+  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
+  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
 
 Hello Michel, how can I help you?
 
@@ -11,41 +11,41 @@ Hello Michel, how can I help you?
   findings.
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-⏵ Called 4 tools, thought                                                                                                     
+⏵ Thought                                                                                                                     
 
-  The spawn was blocked before it started. A guard parses the message and rejects it:
+  I'll spawn the subagent with that message verbatim. First, let me load the agent tool signatures.
 
-  ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-  │ Deep Route mode mismatch -- dispatch targets subagent_type="deep-research"                                                                                                                       │
-  │ (registry modes="research") but the prompt declares mode="review"                                                                                                                                │
-  └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+⏵ Called 4 tools, thought    
 
-  I tried twice — once as a configured child, once as a generic child — and got the identical rejection both times, so the block is on the message text itself, not on how I spawn. The @deep-research
-  agent only registers mode=research, and the copied prompt declares mode=review. Nothing was created; no agent is running.
+  The spawn was blocked by a validation gate before it started. Let me check the agent registry to give you an accurate picture.
 
-  I can't send that message verbatim. Which adjustment do you want?
+⏵ Ran 12 commands, read 1 file, thought                                                                                         
 
-■ Asking The exact message is rejected by the Deep Route guard. How should I adjust it before spawning?
+  The spawn never started — a pre_tool guard (deep-loop-guard) denied it. I traced the cause rather than guessing:
 
+  • .skilled/skills/system-deep-loop/mode-registry.json registers research → agent deep-research and review → agent deep-review. There is no agent registered for both.
+  • dispatch-guard.cjs:1012 rejects when the prompt's declared mode isn't in the target agent's registered set.
+  • dispatch-guard.cjs:271 reads target_agent=@… out of the prompt text itself, so this fires regardless of which config_name I pass. There is no way to dispatch this exact text.
 
+  The message is internally contradictory: mode=review but target_agent=@deep-research. One token has to change, and the two corrections produce different work.
 
-
-
-
+■ Asking The copied header declares mode=review but targets @deep-research, which the registry only allows for mode=research. Which token should I correct before dispatching?
 
 
-⠘⠁ User input required… (12s Esc/Ctrl+C to interrupt)
+
+ ⢲ User input required… (38s Esc/Ctrl+C to interrupt)
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│ The exact message is rejected by the Deep Route guard. How should I adjust it before spawning?                                                                                                       │
+│ The copied header declares mode=review but targets @deep-research, which the registry only allows for mode=research. Which token should I correct before dispatching?                                │
 │                                                                                                                                                                                                      │
-│   1. mode=review → research - Change only that one token in the header line; everything else stays byte-identical. Keeps Deep Route routing intact.                                                  │
-│   2. Drop the Deep Route line - Remove the first header line entirely and send the rest of the message verbatim, including the Advisor line, directives, and session context.                        │
-│   3. Plain reviewer, no header - Spawn a generic read-only reviewer with the review task and the comment-hygiene directive, without the Deep Route/Advisor preamble.                                 │
+│   1. Target @deep-review - Keep mode=review, change target_agent to @deep-review. Matches the task text ("review the dist-freshness hook") and your note that this came from a review run.           │
+│ Recommended.                                                                                                                                                                                         │
+│   2. Mode to research - Keep target_agent=@deep-research, change mode=research. Runs a research loop instead of a review loop.                                                                       │
+│   3. Don't dispatch - Leave it blocked. I report the mismatch and you fix the source prompt upstream.                                                                                                │
 │   4. Type your answer...                                                                                                                                                                             │
 │                                                                                                                                                                                                      │
-│ The comment-hygiene hard block and the review scope are preserved in all three options.                                                                                                              │
+│ Everything else in the message stays byte-identical.                                                                                                                                                 │
 │                                                                                                                                                                                                      │
 │ ↑↓/jk navigate  Enter select  Esc cancel                                                                                                                                                             │
 └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.5aFO3YIbgS/vibe                                                                                                       ctx ▍      13.6k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.S8LHVG181t/vibe                                                                                                       ctx ▊      31.4k/256k
 

@@ -1,13 +1,13 @@
 {
   "runtime": "vibe",
-  "verdict": "SKIP",
-  "blocker": "no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window",
-  "seed": 1945772878,
-  "socket": "conv-41983-vibe",
-  "session_id": "e009a09e-9b09-4323-b77d-6706b3863414",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.YfEHr3kctk/vibe",
-  "started_at": "2026-11-14T23:49:34.017Z",
-  "finished_at": "2026-11-14T23:50:47.728Z",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 122134329,
+  "socket": "conv-82734-vibe",
+  "session_id": "8541cf80-2836-4cd1-9c5e-7ed5365cf4a6",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.gPfiXA53C4/vibe",
+  "started_at": "2026-11-15T12:09:46.866Z",
+  "finished_at": "2026-11-15T12:11:01.853Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -33,21 +33,30 @@
   "turns": [
     {
       "id": "read",
-      "status": "SKIP",
+      "status": "PASS",
       "attempts": 1,
       "reason": null,
-      "blocker": "no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window",
-      "observed": "no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window",
+      "blocker": null,
+      "observed": "compaction-checkpoint at sequence 54",
       "evidence": "turns/read"
     },
     {
       "id": "reinject-after-tool",
-      "status": "SKIP",
+      "status": "PASS",
       "attempts": 1,
       "reason": null,
-      "blocker": "no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window",
-      "observed": "no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window",
+      "blocker": null,
+      "observed": "reinjection in post_tool_call at sequence 78, after compaction at 54",
       "evidence": "turns/reinject-after-tool"
+    },
+    {
+      "id": "follow-up",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "answer-written-after-compaction",
+      "evidence": "turns/follow-up"
     }
   ]
 }

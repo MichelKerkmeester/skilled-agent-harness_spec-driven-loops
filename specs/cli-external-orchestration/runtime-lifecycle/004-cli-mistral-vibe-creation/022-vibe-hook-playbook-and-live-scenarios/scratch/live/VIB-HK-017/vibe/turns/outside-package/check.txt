@@ -1,0 +1,4 @@
+$ grep -qx done notes.txt || { echo no-notes; exit 1; }; for i in $(seq 1 20); do node "$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs" "$VIBE_HOME/logs/session/unified" post-tool-lacks 'notes.txt' 'STALE DIST WARNING' && echo outside-edit-earned-no-warning && exit 0; sleep 1; done; exit 1
+latest matching post_tool_call result does not carry the second text
+outside-edit-earned-no-warning
+[exit 0]

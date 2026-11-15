@@ -1,13 +1,13 @@
 {
   "runtime": "vibe",
-  "verdict": "FAIL",
-  "blocker": "CHECK_FAILED",
-  "seed": 461877629,
-  "socket": "conv-20048-vibe",
-  "session_id": "3db1133b-4cb2-4e65-950c-33ba12c3e9ec",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ZQzWr9k5OE/vibe",
-  "started_at": "2026-11-15T00:41:17.400Z",
-  "finished_at": "2026-11-15T00:41:52.967Z",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 748101819,
+  "socket": "conv-59786-vibe",
+  "session_id": "3973e5cb-31b9-4dc9-b851-018ffbc775fc",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.8vlrxsVVj7/vibe",
+  "started_at": "2026-11-15T12:38:54.612Z",
+  "finished_at": "2026-11-15T12:39:41.494Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -37,26 +37,17 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "prompt-named",
+      "observed": "mirrored-prompt-is-system-input",
       "evidence": "turns/run-prompt"
     },
     {
-      "id": "new-conversation",
+      "id": "act-on-prompt",
       "status": "PASS",
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "new-conversation",
-      "evidence": "turns/new-conversation"
-    },
-    {
-      "id": "prove-prompt",
-      "status": "FAIL",
-      "attempts": 1,
-      "reason": "CHECK_FAILED",
-      "blocker": null,
-      "observed": "",
-      "evidence": "turns/prove-prompt"
+      "observed": "path-from-mirrored-prompt",
+      "evidence": "turns/act-on-prompt"
     }
   ]
 }
