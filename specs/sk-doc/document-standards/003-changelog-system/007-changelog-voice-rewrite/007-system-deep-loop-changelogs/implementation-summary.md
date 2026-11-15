@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The 158 queued system-deep-loop changelogs now read in short sentences with every fact kept. The phase needed no tool change, and the one restored file passed on one retry."
 trigger_phrases:
   - "system deep loop changelogs implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs"
-    last_updated_at: "2026-11-15T06:37:43Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-15T16:38:33Z"
+    last_updated_by: "generate-context"
+    recent_action: "Rewrote the deep-loop changelogs"
+    next_safe_action: "Run phase 008 with the rewrite driver"
+    packet_purpose: "Purpose: Every changelog on the list reads in short plain sentences with every fact kept."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/scratch/lists/007.txt"
+      - "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/scratch/state.jsonl"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:ac6e0cf079da053d1e99906d2d103e5b11523924d36dbcdf0832c28a5525fcd8"
       session_id: "scaffold-007-system-deep-loop-changelogs"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "079f7de2-cb32-4e35-b608-1c6f6425d281"
+      workspace: "/Users/michelkerkmeester/worktrees/public/401-changelog-voice-rewrite"
+      savedAt: "2026-11-15T16:38:33Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,62 +55,64 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The system-deep-loop changelogs now read in short plain sentences. Across the 158 changelogs this phase queued, the mean sentence fell from 12.7 to 8.5 words. The count of sentences over 22 words fell from 307 to 0, and the 2 files with a hard blocker now have none.
 
 ### Phase 7: system-deep-loop-changelogs
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+You can read the release history of system-deep-loop and its packets without long run-on sentences. Each fact of the original is still there, because a second model checked every kept file against its original.
+
+The phase ran on the driver as phase 006 left it. The worker used the Vibe login key, and a 402 budget error would have stopped the run. Neither a limit nor a budget error came up. No gate or prompt needed a change.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| 142 changelogs under `.skilled/skills/system-deep-loop/` | Modified | Rewritten and kept after every gate passed |
+| `../scratch/state.jsonl` | Modified | One record per dispatch with tokens and verdict |
+| `scratch/evidence.txt` | Created | Measure, wave and wave-verify results |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+The driver ran the list with two slots. It skipped the 2 pilot files and recorded 16 files as already passing. The first wave kept 141 and restored 1. Its record showed a sentence-mean gate failure and ordinary fact-check findings, so one plain retry ran. The retry kept the file on its second attempt. `wave-verify.cjs` then checked every record against HEAD, and `measure-voice.py` measured the result.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Retry the restored file without a tool change | `deep-research/changelog/v1.6.1.0.md` failed the sentence-mean gate once and the fact check twice, on a changed description of `fork`. These are rewrite slips the gates are meant to catch, not tool faults |
+| Retry a failed file, never hand-edit it | Every kept file must come through the gates and the fact check |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Wave 007 | PASS: `pass=141 restored=1 unchanged=16`, driver exit 0 |
+| Wave 007-retry | PASS: `pass=1 restored=0`, driver exit 0 |
+| `wave-verify.cjs` | PASS for this phase: keep 142, 16 unchanged, 0 missing. The 2 problems are the pilot files, which match HEAD |
+| `measure-voice.py`, 158 files | PASS: avg 12.7 to 8.5 words, over 22 from 307 to 0, hard blockers from 2 to 0 |
+| Attempts | 102 kept files passed on the first attempt, 36 on the second and 4 on the third |
+| Tokens | 6,806,345 for the two waves, about 43,100 per queued file |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **`wave-verify.cjs` flags the two pilot files.** Their latest record is the pilot pass, and its saved original predates the pilot, so it is not HEAD. Both files match HEAD.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-
