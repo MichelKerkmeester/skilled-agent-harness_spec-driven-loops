@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # deep-review: Feature Catalog
@@ -147,7 +147,7 @@ Resolves which executor runs each iteration and enforces per-kind flag compatibi
 
 #### How It Works
 
-`parseExecutorConfig` resolves `config.executor.kind` into one of three dispatch branches (`native`, `cli-opencode`, `cli-claude-code`). Unsupported flags throw `ExecutorConfigError` at parse time. All branches share prompt rendering, output validation, and executor audit append.
+`parseExecutorConfig` resolves `config.executor.kind` into its dispatch branch: `native` dispatches the agent, every CLI kind but `cli-mistral-vibe` runs through `dispatch-iteration.cjs`, and `cli-mistral-vibe` runs only as a fan-out lineage. Unsupported flags throw `ExecutorConfigError` at parse time. All branches share prompt rendering, output validation, and executor audit append.
 
 #### Source Files
 

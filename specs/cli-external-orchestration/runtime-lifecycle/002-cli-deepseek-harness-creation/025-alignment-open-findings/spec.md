@@ -26,9 +26,9 @@ contextType: "general"
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/408-alignment-open-findings` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 25 of 25 |
+| **Phase** | 25 of 26 |
 | **Predecessor** | 024-dsh-docs-alignment |
-| **Successor** | None |
+| **Successor** | 026-alignment-remaining-findings |
 | **Handoff Criteria** | Both CI checks pass, the routing gates pass, the contract drift check prints OK and both spec folders validate strict |
 <!-- /ANCHOR:metadata -->
 
