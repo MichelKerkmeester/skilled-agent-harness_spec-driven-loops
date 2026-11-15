@@ -1,0 +1,4 @@
+Grep tool parameters per runtime, read 2026-11-15.
+opencode: pattern, path, include (file glob), literal, caseSensitive, limit. Source: the GrepTool definition inside the installed OpenCode binary (~/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe, strings "opencode.tool.grep").
+claude: pattern, path, glob (file glob), output_mode (content | files_with_matches | count), -i, -n, -A, -B, -C, type, head_limit, multiline. Source: the Claude Code Grep tool schema.
+Common to both: pattern, path. The file filter is `include` in OpenCode and `glob` in Claude Code. Neither shares a case flag, so case is ignored with an inline (?i) in the pattern. Neither takes a negated glob alongside the positive one, so z_archive, scratch and node_modules hits are dropped from the results by path.

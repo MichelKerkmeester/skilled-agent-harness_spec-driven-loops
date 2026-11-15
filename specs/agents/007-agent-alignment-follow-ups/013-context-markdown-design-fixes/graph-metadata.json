@@ -32,15 +32,19 @@
       "agent"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scratch/after.txt",
       ".skilled/agents/context.md",
       ".skilled/agents/markdown.md",
       ".skilled/agents/design.md",
+      ".skilled/agents/code.md",
+      "scratch/grep-params.txt",
+      "scratch/baseline.txt",
       ".claude/agents/context.md",
       "scratch/negative-checks.sh",
       ".skilled/commands/speckit/plan.md",
@@ -49,11 +53,7 @@
       "runtime/cli/retrieval/lib/corpus.mjs",
       ".skilled/agents/agent-registry.json",
       ".skilled/skills/sk-design/mode-registry.json",
-      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs",
-      ".skilled/bin/sync-agent-roster.cjs"
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs"
     ],
     "entities": [
       {
@@ -81,6 +81,12 @@
         "source": "derived"
       },
       {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
         "name": "context.md",
         "kind": "doc",
         "path": ".skilled/agents/context.md",
@@ -96,6 +102,24 @@
         "name": "design.md",
         "kind": "doc",
         "path": ".skilled/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep-params.txt",
+        "kind": "file",
+        "path": "scratch/grep-params.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
@@ -141,30 +165,6 @@
         "source": "derived"
       },
       {
-        "name": "sync-agents-pi.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents-dsh.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agent-roster.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/sync-agent-roster.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A read-only review of the eleven agent files found eleven problems in these three agents, and at `c1dbb1bcc4` ten reproduce in full and one in part",
     "created_at": "2026-11-14T20:19:23Z",
-    "last_save_at": "2026-11-14T20:48:17.797Z",
+    "last_save_at": "2026-11-15T00:18:08.366Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bfbb67637a6a3b05d17a2480c28907ea3bebf4ae78a579bb6605e17a40a92bac",
+    "source_fingerprint": "sha256:c1239a51f26b3f99423bdd1e3dae2fae7195f4de403e247e0f181c43773c4345",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "002ff6057e59969829b3150103d07a57dfcd1a4d8ef7699c2486edc89e03f0b8",
+      "spec.md": "cc7fd44e78701919b5db6c4cd8f8bf35dc604974c8471f406612dfad1eb6e817",
       "plan.md": "add8232aeadcc7edf520c0ed975c5c9a05c23878b9abe9003e5782fb7cafe193",
-      "tasks.md": "e44a26ba3a35daf19df972f643a3ec4c41692614c118a6644d2609248895505e",
-      "implementation-summary.md": "e564c7d33b737e574f65371c0fb4528eec74c54932805030f8c793386bcf07a0"
+      "tasks.md": "cd11591d91eee1ee2054e90f29b69d9ebff0e8c851c0bc3d5d541b4acba0a5fb",
+      "implementation-summary.md": "795560e65cfaa35352c2bab92f7858f0ca9157580a5c1855e7e5e2afad7bc627"
     },
     "last_active_at": null
   }

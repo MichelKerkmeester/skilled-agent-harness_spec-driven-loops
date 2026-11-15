@@ -1,0 +1,70 @@
+$ git rev-parse --short HEAD
+9802994021
+exit=0
+$ bash specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/scratch/negative-checks.sh
+REQ-001 context: 0 0 0 0 0
+REQ-002 design: 0 0 0 0 0
+REQ-004 context: 0 0 0 0 0
+REQ-005 context: 0 0 0 0 0
+REQ-006 context: 0 0 0 0 0
+REQ-008 markdown: 0 0 0 0 0
+REQ-009 markdown: 0 0 0 0 0
+REQ-010 markdown: 0 0 0 0 0
+exit=0
+$ rg -c 'trigger_phrases' .skilled/agents/context.md
+1
+exit=0
+$ rg -c -- '-> (CHART|DIAGRAM)' .skilled/agents/design.md
+2
+exit=0
+$ rg -c '^### Step 2c' .skilled/agents/design.md
+1
+exit=0
+$ rg -c 'check-corpus\.cjs|check-diagram-corpus\.cjs' .skilled/agents/design.md
+2
+exit=0
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs | tail -1
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+$ wc -l .skilled/agents/context.md .skilled/agents/markdown.md .skilled/agents/design.md
+     410 .skilled/agents/context.md
+     294 .skilled/agents/markdown.md
+     267 .skilled/agents/design.md
+     971 total
+exit=0
+$ rg -c '^### Nested Dispatch Status' .skilled/agents/context.md
+1
+exit=0
+$ rg -c '^## [0-9]+\. ' .skilled/agents/context.md
+12
+exit=0
+$ sed -n '/^### Setup BINDING Emission/,/^---/p' .skilled/agents/markdown.md | rg -c '^BINDING: '
+5
+exit=0
+$ rg -c 'LOAD TEMPLATE.*BINDING: template=' .skilled/agents/markdown.md
+1
+exit=0
+$ rg -c 'extract_structure\.py' .skilled/agents/markdown.md
+3
+exit=0
+$ sed -n '/^### Invocation and Scope Gate/,/^### Canonical/p' .skilled/agents/markdown.md | rg -c '^- ./create:'
+exit=1
+$ sed -n '/^## 5\./,/^## 6\./p' .skilled/agents/markdown.md | rg -c '^\| ./create:'
+13
+exit=0
+$ rg -n 'report the conflict' .skilled/agents/design.md
+96:Both sides state this boundary in their own words. If the dispatch prompt appears to contradict it, follow the prompt and report the conflict, except where the prompt would break a Section 6 NEVER rule: those hold whatever the prompt says.
+160:If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+exit=0
+$ rg -c 'quality-gate\.cjs --files' .skilled/agents/design.md
+1
+exit=0
+$ rg -c 'names no file' .skilled/agents/design.md
+1
+exit=0
+$ rg -c 'includes Nested Dispatch Status section' .skilled/agents/orchestrate.md
+1
+exit=0
