@@ -147,7 +147,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 20 | 020-agent-docs-alignment-research/ | Run five deep-research iterations on whether the READMEs and docs across the repo describe the current agents correctly | Complete |
 | 21 | 021-vibe-budget-default/ | Make a Mistral Vibe lineage bill the Vibe budget by default, count a budget refusal as a quota stop, and update the Mistral docs | Complete |
 | 22 | 022-agent-source-and-drift-checks/ | Make the roster check and playbook sandboxes able to fail, and settle the deep-research search grant and the markdown mode | Complete |
-| 23 | 023-agent-docs-fixes/ | [Phase 23 scope] | Pending |
+| 23 | 023-agent-docs-fixes/ | Fix every phase 20 doc finding that phase 22 left | Complete |
 | 24 | 024-terminal-gates-script/ | [Phase 24 scope] | Pending |
 | 25 | 025-stop-path-live-proof/ | [Phase 25 scope] | Pending |
 
@@ -184,7 +184,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 020-agent-docs-alignment-research | 021-vibe-budget-default | Run findings V1 and V2 are recorded with evidence | `research/research.md` §7 lists V1 and V2 as merge-verified |
 | 021-vibe-budget-default | 022-agent-source-and-drift-checks | Mistral lineages bill the Vibe budget | Runtime suite 3,024 passed |
 | 022-agent-source-and-drift-checks | 023-agent-docs-fixes | Every agent tree is checked and the two agent decisions are carried | Roster check prints eight OK rows |
-| 023-agent-docs-fixes | 024-terminal-gates-script | [Criteria TBD] | [Verification TBD] |
+| 023-agent-docs-fixes | 024-terminal-gates-script | Every phase 20 doc finding is closed | The implementation summary lists each outcome |
 | 024-terminal-gates-script | 025-stop-path-live-proof | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 

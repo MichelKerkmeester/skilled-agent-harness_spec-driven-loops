@@ -1,18 +1,20 @@
 {
+  "level": "1",
   "specFolder": "agents/007-agent-alignment-follow-ups/023-agent-docs-fixes",
   "description": "Phase 23: agent-docs-fixes",
   "keywords": [
     "phase",
     "agent-docs-fixes"
   ],
-  "lastUpdated": "2026-11-15T17:32:07.037Z",
+  "lastUpdated": "2026-11-15T17:50:57.995Z",
   "specId": "023",
   "folderSlug": "agent-docs-fixes",
   "parentChain": [
     "agents",
     "007-agent-alignment-follow-ups"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_18-50__phase-23-fixed-every-phase-20-doc-finding-that.md"
+  ]
 }

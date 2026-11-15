@@ -37,7 +37,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "15a4be3c165a5c8464d958e4b61f7932914d5d799b454a06da5997f3bb9f490a",
+      "sha256": "aba0b3eb4d1cbcb5b55e0896c99c3bae1817b84d3905a43feab5c48eb755c963",
       "section": "full"
     },
     {

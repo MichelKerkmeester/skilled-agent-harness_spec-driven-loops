@@ -12,7 +12,7 @@ Note: `Task` is allowed for the command executor that manages the loop. The `@de
 
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
-Runtime path resolution: OpenCode/Copilot runtime uses `.opencode/agents/*.md`; Claude runtime uses `.claude/agents/*.md`.
+Runtime path resolution: OpenCode runtime uses `.opencode/agents/*.md`, a link to the `.skilled/agents/*.md` source; Claude runtime uses `.claude/agents/*.md`. The other agent trees are listed in `.skilled/bin/agent-mirror-crosswalk.md`.
 
 Operator contract precedence for this skill surface (highest first): command entrypoint syntax in `.skilled/commands/deep/research.md`; convergence math in `references/convergence/convergence.md` and the deep-research YAML workflow; runtime agent inventories from the checked-in runtime directories above.
 

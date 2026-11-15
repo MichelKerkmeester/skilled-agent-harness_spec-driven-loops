@@ -34,9 +34,9 @@ The folder follows the `.dsh/` split: hand-authored files, three generated trees
 
 ### Agents
 
-One `.toml` per `.skilled/agents/*.md`, `README.md` excepted, named by the source stem. The render keeps `description` from the frontmatter and `instructions` from the markdown body, and adds `agent_type = "subagent"` when the source declares `mode: subagent`, because Vibe refuses to spawn a profile without it. Every other frontmatter key is dropped, so the body is the only place a rule survives.
+One `.toml` per `.skilled/agents/*.md`, `README.txt` excepted, named by the source stem. The render keeps `description` from the frontmatter and `instructions` from the markdown body, and adds `agent_type = "subagent"` when the source declares `mode: subagent`, because Vibe refuses to spawn a profile without it. Every other frontmatter key is dropped, so the body is the only place a rule survives.
 
-| Profile | `mode` (dropped) | Other dropped keys |
+| Profile | `mode` | Other dropped keys |
 |---|---|---|
 | `ai-council.toml` | subagent | `name`, `temperature`, `permission` |
 | `code.toml` | subagent | `name`, `temperature`, `permission` |
@@ -45,12 +45,12 @@ One `.toml` per `.skilled/agents/*.md`, `README.md` excepted, named by the sourc
 | `deep-research.toml` | subagent | `name`, `temperature`, `permission` |
 | `deep-review.toml` | subagent | `name`, `temperature`, `permission` |
 | `design.toml` | subagent | `name`, `temperature`, `permission` |
-| `markdown.toml` | all | `name`, `temperature`, `permission` |
+| `markdown.toml` | subagent | `name`, `temperature`, `permission` |
 | `orchestrate.toml` | primary | `name`, `temperature`, `permission` |
 | `prompt-improver.toml` | subagent | `name`, `temperature`, `permission` |
 | `review.toml` | subagent | `name`, `temperature`, `permission` |
 
-A generated profile therefore carries no tool restriction and no primary/subagent distinction: the OpenCode `permission` map and the `mode` value do not travel into Vibe. Vibe reserves the agent stem `main` for its built-in agent, so the generator refuses a source named `main.md`.
+A generated profile therefore carries no tool restriction, because the OpenCode `permission` map does not travel into Vibe. The `mode` value travels only as `agent_type = "subagent"` on the ten subagent profiles; `orchestrate.toml` carries none. Vibe reserves the agent stem `main` for its built-in agent, so the generator refuses a source named `main.md`.
 
 ### Skills
 

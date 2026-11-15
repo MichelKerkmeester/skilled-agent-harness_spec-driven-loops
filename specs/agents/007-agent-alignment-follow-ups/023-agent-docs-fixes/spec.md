@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 23: agent-docs-fixes"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Phase 20 found 21 places where a README or reference describes the agents wrongly: runtime lists that omit the .dsh and .vibe trees, wrong counts in the sync docs, missing status values, wrong tool lists and stale citations. This phase fixes each one, or records why it needs no fix."
 trigger_phrases:
   - "agent docs fixes"
   - "phase 23 agent docs fixes"
@@ -14,21 +14,18 @@ contextType: "general"
 ---
 
 <!-- ANCHOR:metadata -->
-## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
-
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P2 |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
-| **Branch** | `scaffold/023-agent-docs-fixes` |
+| **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 23 of 25 |
 | **Predecessor** | 022-agent-source-and-drift-checks |
 | **Successor** | 024-terminal-gates-script |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Every phase 20 doc finding not closed in phase 22 is fixed or recorded with its reason, and `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -36,35 +33,42 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 23** of the Agent alignment follow-ups specification.
+This is **Phase 23** of the agent alignment follow-ups. It fixes the doc findings of phase 20 that phase 22 left: A1 to A4, A6, B1 to B4, D1 to D4 and E3 to E5.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Docs and one code comment that describe the agents. No agent behavior changes.
 
 **Dependencies**:
-- [To be defined during planning]
+- Phase 22, which changed two agent sources the docs now describe
 
 **Deliverables**:
-- [To be defined during planning]
+- Each finding fixed, or recorded in the implementation summary with its reason
 <!-- /ANCHOR:phase-context -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The root README, the crosswalk, `CROSS-CLI.md`, the agents README and both deep-loop skills name six or fewer agent trees, while eight ship the agents. `.vibe/SYNC.md` names a `README.md` that does not exist and says no role travels into Vibe. The deep-review skill drops the `thought` status, a tool table misclassifies three agents, and three playbook citations point at lines that moved or at a file that does not exist.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+A reader who opens any of these docs learns where the agents live, how they sync and what they do, as the files show today.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ git show HEAD:.skilled/bin/agent-mirror-crosswalk.md | grep -n "^Six runtime trees"
+16:Six runtime trees ship the same eleven agents: `.skilled/agents/`, `.claude/agents/`,
+$ git show HEAD:.vibe/SYNC.md | grep -o "`README.md` excepted"
+`README.md` excepted
+$ ls .skilled/agents/README*
+.skilled/agents/README.txt
+$ git show HEAD:.skilled/skills/system-deep-loop/deep-review/SKILL.md | grep -n "stuck | insight"
+264:`complete | timeout | error | stuck | insight`
+$ grep -n "insight | thought" .skilled/agents/deep-review.md | head -1
+236:- Allowed `status`: `complete | timeout | error | stuck | insight | thought`.
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -72,74 +76,74 @@ This is **Phase 23** of the Agent alignment follow-ups specification.
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Bring every runtime list and count to the eight trees, naming which are generated, which is the fork and which are links.
+- Correct `.vibe/SYNC.md`, the deep-review status enum, the deep-research tool line and the Claude tools table.
+- Fix three playbook citations and two doctor docs that still describe the old roster check.
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- Agent behavior - phase 22 owned the two agent changes.
+- Changelogs and archived packets - they record history.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.skilled/bin/agent-mirror-crosswalk.md` | Modify | Eight trees in every table |
+| `README.md`, `.skilled/CROSS-CLI.md`, `.skilled/agents/README.txt` | Modify | Runtime lists |
+| Both deep-loop `SKILL.md` files | Modify | Path resolution lines |
+| `.skilled/bin/check-agent-mirror-sync.cjs` | Modify | Header comment only |
+| `.vibe/SYNC.md` | Modify | README name and role mapping |
+| deep-review `SKILL.md`, `loop-state-and-gates.md`, deep-research `README.md`, `claude-tools.md` | Modify | Status enum, tool line, agent classes |
+| Three playbook pages, the doctor scripts README, `doctor-runtime-mirrors.yaml` | Modify | Citations and roster wording |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+| REQ-001 | No in-scope doc names fewer than the eight agent trees where it lists them. | `rg -n -i 'six runtime|Copilot runtime|five runtime surfaces'` over the in-scope files prints nothing |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+| REQ-002 | The status enum, tool line, agent classes and citations match the agent files. | Each cited line resolves to the rule it names, and both deep-review enums list `thought` |
 <!-- /ANCHOR:requirements -->
 
 ---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: Every phase 20 doc finding is fixed or recorded with its reason.
+- **SC-002**: `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` for every folder.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Dependency | Phase 22's agent changes | Low | Phase 22 is committed before these docs |
+| Risk | Line citations move again on the next agent edit | Low | The citations are refreshed here from the current file; the playbook check-in rule owns later drift |
 <!-- /ANCHOR:risks -->
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
 
 ---
