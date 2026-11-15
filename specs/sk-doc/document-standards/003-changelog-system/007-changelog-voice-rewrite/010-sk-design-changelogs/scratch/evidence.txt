@@ -1,0 +1,36 @@
+## list
+lists/010.txt lines: 71
+## measure before (HEAD text of the 70 queued files)
+files=70 sentences=1340 avg_words=13.0
+sentences_over_15=426 sentences_over_22=161
+files_with_a_sentence_over_22=58 files_with_hvr_hard_blockers=3
+## measure after
+files=70 sentences=2064 avg_words=8.6
+sentences_over_15=82 sentences_over_22=0
+files_with_a_sentence_over_22=0 files_with_hvr_hard_blockers=1
+## wave 010 driver
+2026-11-15T18:30:31.415Z finished pass=63 restored=1 unchanged=6
+driver exit=0
+## wave 010 restored file
+.skilled/skills/sk-design/sk-design-chart/changelog/v0.3.0.0.md
+## wave 010-retry driver
+2026-11-15T18:34:14.131Z finished pass=1 restored=0 unchanged=0
+driver exit=0
+## wave-verify
+{"listed":71,"keep":64,"restored":6,"missing":0,"problems":1}
+PROBLEM .skilled/skills/sk-design/changelog/v2.0.1.0.md: the saved original is not the file at HEAD
+## pilot file against HEAD
+git diff --quiet exit=0
+## changed notes in worktree
+64
+## self-reference file .skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.10.0.md
+harness-diagram uses at HEAD: 2 now: 2
+hvr_scan now:  x1 first@26 hard word-blocker harness  hard blockers: 1 
+## tokens
+waves 010 and 010-retry worker plus verifier input and output: 3167670
+## first-wave findings of the restored file
+fact check changed (correct it): Original: “`progress-single` sits on `ordered` … but its fill was fixed and did not move.” Rewrite: “`progress-single` sits on ` || fact check changed (correct it): “That is because a rule the tooling does not check is a wish. This release wrote eight rules before it enforced them.” The rewri || fact check changed (correct it): The original links writing eight rules before enforcing them to why the corpus check grew. The rewrite states that timing separa
+## wave 010 start line (wave-010.log:1)
+2026-11-15T18:05:10.479Z wave=010 listed=71 queued=70 refused=0 slots=2
+## self-reference exception
+| `.skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.10.0.md` | `harness` | 26 | self-reference | `harness-diagram` is the origin's own name, also in t

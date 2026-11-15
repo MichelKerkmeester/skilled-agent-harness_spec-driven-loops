@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs"
-    last_updated_at: "2026-11-15T06:37:54Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_at: "2026-11-15T18:50:00Z"
+    last_updated_by: "claude"
+    recent_action: "Marked every criterion Met with cited evidence"
+    next_safe_action: "Commit phase 010, then start phase 011"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-010-sk-design-changelogs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,9 +37,9 @@ _memory:
 ## 1. METADATA
 <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
+**Packet:** 007-changelog-voice-rewrite/010-sk-design-changelogs
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-11-15
 <!-- /ANCHOR:metadata -->
 
@@ -53,7 +53,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the 71 files on the list, When the waves finish, Then each file is kept with every gate passed, recorded unchanged, or done in the pilot | `scratch/evidence.txt:20` shows 64 kept, 6 unchanged and 0 missing. The pilot's 1 file matches HEAD at `scratch/evidence.txt:23` | Met | - |
+| AC-002 | REQ-002 | Given the finished waves, When `wave-verify.cjs` runs, Then it reports no problem for a file this phase rewrote | `scratch/evidence.txt:20` lists 1 problem, and `scratch/evidence.txt:21` shows it is the pilot file whose saved original predates the pilot | Met | - |
+| AC-003 | REQ-003 | Given the 70 queued files, When `measure-voice.py` runs after the waves, Then it prints 0 sentences over 22 words, and no file holds a hard blocker except the recorded self-reference | `scratch/evidence.txt:9` prints 0 over 22, against 161 at `scratch/evidence.txt:5`. `scratch/evidence.txt:10` prints 1 hard-blocker file. `scratch/evidence.txt:26` to `scratch/evidence.txt:28` show it is `sk-design-diagram/changelog/v1.2.10.0.md`, with `harness-diagram` used twice at HEAD and twice now. `scratch/evidence.txt:36` shows the self-reference exception for that file | Met | - |
+| AC-004 | REQ-004 | Given the file the first wave restored, When the retry wave runs, Then its result is recorded | `scratch/evidence.txt:15` names the file, and `scratch/evidence.txt:17` shows it kept | Met | - |
+| AC-005 | REQ-005 | Given the run state, When the phase tokens are summed, Then the total is reported | `scratch/evidence.txt:30` shows 3,167,670 tokens | Met | - |
 
 ### Status values
 
@@ -79,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Yes. Every criterion is met with observed evidence.
 <!-- /ANCHOR:closure -->

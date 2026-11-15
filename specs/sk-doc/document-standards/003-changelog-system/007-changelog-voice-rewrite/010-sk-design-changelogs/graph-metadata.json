@@ -28,18 +28,19 @@
       "criteria",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing"
+      "sk-design",
+      "hold",
+      "long"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/evidence.txt"
     ],
     "entities": [
       {
@@ -70,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence.txt",
+        "kind": "file",
+        "path": "scratch/evidence.txt",
         "source": "derived"
       },
       {
@@ -121,7 +128,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,13 +146,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,18 +186,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The sk-design changelogs hold long sentences",
     "created_at": "2026-11-15T06:37:51Z",
-    "last_save_at": "2026-11-15T06:48:00.043Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T18:40:56.707Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +200,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d2f11df3e2727751e1601e70bfeb759917f3cf5f5a6fab1b9d80498ccdabd74",
+    "source_fingerprint": "sha256:927442129b1663ab9ca879d6e4dbe7f118144e3e4420c82ae03063f5c8e45082",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "96496feb0319cb788bbc1b5c0ab7c62189a48949a371ed0ad313ff57ea57c9a9",
-      "plan.md": "0abc32aaa97a99ad1a80db2749b49a3e6d23db3be3f3fa1f58565463d57e6930",
-      "tasks.md": "27d42ab722d90c36086a645a6d8ebf34d8a75388a132c99d6641b6ac985f9002",
-      "implementation-summary.md": "1eea80d7c153f828e5ce1fb2e88c84b8fa29d9f3ae39c420812646b2c706191e"
+      "spec.md": "88dfdc915cb5db5d905b7f80d3942ef1c0a11aa85f69d2dd2827e7a048b7c8ef",
+      "plan.md": "ec77fb8ef26516fc8f98857e2592a89468da57667bd9378efa3c12e515e7d3cf",
+      "tasks.md": "182ad89df3e570bcf22376e76fa3473da7d42b88810801144a1bcd3a5e41bcce",
+      "implementation-summary.md": "b51737fbcc49710cb97c46afd1bfe019ccf9b3c9544766161fa8f3947156da05"
     },
     "last_active_at": null
   }
