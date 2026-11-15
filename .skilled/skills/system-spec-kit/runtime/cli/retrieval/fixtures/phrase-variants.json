@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9d5a8ca927ceb2df78bdb59a6509c53d452f34b038326dc1f43f01542ac9f83e",
+  "manifestHash": "161ed9ce25c3261fc6bfe2b8126824b83dd483e29778034d238e95131d5538b6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -119913,6 +119913,9 @@
     ],
     "stop path live proof plan": [
       "stop path live proof plan"
+    ],
+    "stop path live proof review report": [
+      "stop path live proof review report"
     ],
     "stop path live proof tasks": [
       "stop path live proof tasks"

@@ -184,18 +184,18 @@
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-15T18:14:09.099Z",
+    "last_save_at": "2026-11-15T18:28:35.653Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:fe0427cea4cf4fc8cbb5b195c744a0a22b2f745bd65a65e0ab37c5517832e5ed",
+    "source_fingerprint": "sha256:22b707c037bc231f382aebd74a21be047d6cb80720537a1f83e1ac44407f0497",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d691178f53dccdcb84aa9c0ad71b44e312b5f5a3abdde8c9bea445a65f52e32d"
+      "spec.md": "1d1052033e660008c6436ff383dc4844918cc3718e187febefb3bf44996290df"
     },
-    "last_active_child_id": "agents/007-agent-alignment-follow-ups/024-terminal-gates-script",
-    "last_active_at": "2026-11-15T18:14:00.803Z"
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/025-stop-path-live-proof",
+    "last_active_at": "2026-11-15T18:28:35.653Z"
   }
 }

@@ -1,24 +1,35 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Each review stop reason now reaches the recorded gates and the verdict in a test that runs the real scripts, and one live run hit its time limit and recorded a FAIL from the coverage gate."
 trigger_phrases:
   - "stop path live proof implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/025-stop-path-live-proof"
-    last_updated_at: "2026-11-15T17:32:08Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "agents/007-agent-alignment-follow-ups/025-stop-path-live-proof"
+    last_updated_at: "2026-11-15T18:28:35Z"
+    last_updated_by: "generate-context"
+    recent_action: "Built and verified the phase"
+    next_safe_action: "Record the manual stop walkthrough for the operator"
+    packet_purpose: "Purpose: Each stop reason is shown to reach the recorded gates and the verdict, by a test that runs the real scripts and by one live run."
     blockers: []
-    key_files: []
+    key_files:
+      - "review/review-report.md"
+      - "review/deep-review-state.jsonl"
+      - "review/deep-review-config.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:3ae44cdb773053455adcec9478d817131ad874a7fa0d324e4db9e8486366d128"
       session_id: "scaffold-025-stop-path-live-proof"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "a84f4eed-26f9-49ac-91eb-e2375c207e96"
+      workspace: "/Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups"
+      savedAt: "2026-11-15T18:28:35Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +43,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,62 +55,69 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A review that stops on an error, its time limit or a manual stop now has a test that runs the real scripts from the stop decision to the dashboard verdict. One live review run also hit its time limit and recorded the stop, the gates and a FAIL verdict through the real workflow.
 
 ### Phase 25: stop-path-live-proof
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`review-stop-path-replay.vitest.ts` builds a scratch review packet and appends every row through the ledger gateway, so each row is one the gateway accepts. Three tests cover three stops. Three error iterations make `convergence.cjs --stop-decision` return `STOP` with reason `error`. `terminal-gates.cjs` then computes the gates, and the gateway records them. The reducer prints `Provisional Verdict: FAIL` and names the failed gates. A duration stop carries `maxDurationReached` onto the recorded row with the same FAIL. A manual stop whose gates all pass keeps the verdict off FAIL. The packet records a finding outside the reviewed scope, so the FAIL can come only from the recorded gate rows, not from a severity count.
+
+The live run was a `/deep-review:auto` on this folder, run by DeepSeek through Pi with `maxDurationMinutes` set to 1. It stopped before its first iteration and wrote a `terminal_gates` row with `stopReason: maxDurationReached` and `failedRequiredGateIds: [coverage]`. It then wrote a `synthesis_complete` row with verdict FAIL, and the report says the FAIL comes from the coverage gate and not from a finding.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts` | Created | Three stop-path cases through the real scripts |
+| `review/**` | Created | The live run's config, ledgers, state log, dashboard and report |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+DeepSeek V4.1 Flash at `--thinking max` through cli-pi wrote the test in one dispatch, and the conductor read it. Breaking one assertion (`'error'` to `'maxDurationReached'`) made one case fail, and restoring it passed again. The first run hit exit 3 because `convergence.cjs` refuses a state log outside the repository. The scratch packet now sits under the suite's gitignored `tests/.tmp/` and is removed after each case.
+
+The live run went through `pi -p` with the same model, and it touched no production file. The conductor checked its state log, its dashboard and its report against REQ-002, and searched the `review/` files for the Mistral sign-in key and for key-shaped strings. Neither search found anything.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Append every replay row through the gateway | The gateway rebuilds the state log from its ledger, so a row only the test writes is dropped at the next projection |
+| Compare the dashboard line with the gate script's own failed ids | With three error iterations the coverage gate fails beside scope, so a hardcoded set would test the fixture, not the chain |
+| Keep the one-minute live run as the proof, without a longer rerun | REQ-002 asks for the stop, the gate row and the verdict, and the run recorded all three; a run with real iterations proves the code review itself, which is not this phase's question |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `review-stop-path-replay.vitest.ts` | PASS: 3 of 3; one broken assertion fails 1 of 3 |
+| Runtime suite | PASS: 179 files, 3,038 passed, 9 skipped (baseline 178 files, 3,035 passed; the +3 are the new file) |
+| `npm run typecheck` | PASS: exit 0 |
+| Live run state log | PASS: `terminal_gates` row with `stopReason: maxDurationReached`, `failedRequiredGateIds: [coverage]`; `synthesis_complete` with verdict FAIL |
+| Live run dashboard and report | PASS: `Provisional Verdict: FAIL`, `Failed required gates at stop: coverage`; report verdict FAIL |
+| Key search over `review/` and the new test | PASS: 0 hits |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The live run reviewed nothing.** The one-minute limit expired before the first iteration, so the run's FAIL rests on zero covered dimensions and the report says nothing about the five scripts it names. It proves the stop path, not the code.
+2. **The duration stop has no ledger stem.** The workflow prints the `maxDurationReached` stop row instead of appending it, so the reason survives only on the `terminal_gates` row.
+3. **`synthesis_complete` carries the wrong run id.** `synthesis-closeout.cjs:294` takes `scopeRunId` from the state log's folder name, so a root packet's row records `runId` and `sessionId` as `review`, as this run's state log shows.
+4. **The manual stop is proved only by the replay.** A live manual stop needs an operator at `:confirm` and stays an operator walkthrough.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

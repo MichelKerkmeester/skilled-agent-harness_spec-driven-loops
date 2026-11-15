@@ -27,17 +27,18 @@
       "tasks",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing"
+      "phases",
+      "every",
+      "terminal"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts"
     ],
     "entities": [
       {
@@ -65,13 +66,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "review-stop-path-replay.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -101,6 +102,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -113,7 +120,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern End",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -125,14 +138,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Stop",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -155,7 +162,13 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -167,28 +180,16 @@
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Phases 15 to 17 made every terminal stop record its gates and fail the verdict on a failed gate, but each step was tested alone",
     "created_at": "2026-11-15T17:32:08Z",
-    "last_save_at": "2026-11-15T17:32:10.173Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T18:28:35.632Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -196,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa33f261f7461fae982d86c2295a40c3f5b3938237572032cf91b736f24130cf",
+    "source_fingerprint": "sha256:28549175e042c7d6281ff021a860f97e98e17b17a182403172e392ec4165fba2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "65f78cc1607f3be7988a6e687937d727e5af93b7a434b5093abd4ffca9127467",
-      "plan.md": "56fb0c5e89586d0ec6fc85f37c929b5b0e4729c86de7dafd22f2aeb2b71bbf24",
-      "tasks.md": "58f5955f2f2d5060525646489d2e3dd9dcf48eea618a4278573d55bb8470a011",
-      "implementation-summary.md": "8907b8e9b3128857fec3151838d2e23d1b6ef0da12ff4cea9dcf998152080e92"
+      "spec.md": "32242b20b561bae7458245fedd6e600e75d335062c7ec79a20af28fd47125bd4",
+      "plan.md": "e6299a5efc77aa259f45129dd1beaa055bc36a8faf8529b23e67ff5431e2faf0",
+      "tasks.md": "a2930e064a6b1a524cb3f62bbca2cb9b2cc69d7cd589cfad1c388aba231bcd9f",
+      "implementation-summary.md": "eca5d811e6bdfb1be64196f7495f996765894656f5d596409726e447b35de43a"
     },
     "last_active_at": null
   }

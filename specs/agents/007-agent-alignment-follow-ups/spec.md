@@ -149,7 +149,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 22 | 022-agent-source-and-drift-checks/ | Make the roster check and playbook sandboxes able to fail, and settle the deep-research search grant and the markdown mode | Complete |
 | 23 | 023-agent-docs-fixes/ | Fix every phase 20 doc finding that phase 22 left | Complete |
 | 24 | 024-terminal-gates-script/ | Compute the deep-review terminal gates with a script and record its result | Complete |
-| 25 | 025-stop-path-live-proof/ | [Phase 25 scope] | Pending |
+| 25 | 025-stop-path-live-proof/ | Prove each review stop reason reaches the recorded gates and the verdict | Complete |
 
 ### Phase Transition Rules
 

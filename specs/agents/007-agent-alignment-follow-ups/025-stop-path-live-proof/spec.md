@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 25: stop-path-live-proof"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The deep-review stop paths for three errors, the time limit and a manual stop were traced by reading, never run end to end, so nothing shows a stop actually reaches the terminal gate record and the verdict. This phase replays each path through the real scripts and runs one live review that hits its time limit."
 trigger_phrases:
   - "stop path live proof"
   - "phase 25 stop path live proof"
@@ -14,21 +14,18 @@ contextType: "general"
 ---
 
 <!-- ANCHOR:metadata -->
-## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
-
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P2 |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
-| **Branch** | `scaffold/025-stop-path-live-proof` |
+| **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 25 of 25 |
 | **Predecessor** | 024-terminal-gates-script |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | The replay test passes for the error, duration and manual stop reasons, the live run's outcome is recorded with its evidence, and `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -36,35 +33,37 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 25** of the Agent alignment follow-ups specification.
+This is **Phase 25** of the agent alignment follow-ups. It closes gap 2 from the earlier analysis: the stop paths were traced, never run.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: One new integration test and one live review run whose artifacts live in this folder's `review/`. No production change.
 
 **Dependencies**:
-- [To be defined during planning]
+- Phase 24's terminal-gates script, which the replay and the live run both use
 
 **Deliverables**:
-- [To be defined during planning]
+- `tests/integration/review-stop-path-replay.vitest.ts`
+- A live run record with its state log and verdict
 <!-- /ANCHOR:phase-context -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Phases 15 to 17 made every terminal stop record its gates and fail the verdict on a failed gate, but each step was tested alone. No test runs a stop through the gate record, the append gateway and the reducer's verdict, and no live run has shown the loop agent following the jumps.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+Each stop reason is shown to reach the recorded gates and the verdict, by a test that runs the real scripts and by one live run.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ git ls-files .skilled/skills/system-deep-loop/runtime/tests/integration | grep -c stop-path
+0
+$ git grep -l terminal_gates_recorded -- .skilled/skills/system-deep-loop/runtime/tests/integration | wc -l
+0
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -72,74 +71,68 @@ This is **Phase 25** of the Agent alignment follow-ups specification.
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Add an integration test that replays the error, duration and manual stop through the stop decision, the terminal gates script, the append gateway and the reducer.
+- Run one live `/deep-review :auto` on DeepSeek V4.1 Flash through Pi with `maxDurationMinutes` set to 1 after init, and record what it wrote.
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- A live manual stop - it needs an operator to pick C at a `:confirm` gate, so it stays an operator walkthrough.
+- Changing the stop paths - this phase only proves them.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/review-stop-path-replay.vitest.ts` | Create | Replay test |
+| `review/**` in this folder | Create | The live run's artifacts |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+| REQ-001 | A stop with failed gates reaches a FAIL verdict through the real scripts, for each stop reason. | The replay test passes and fails when an assertion is broken |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+| REQ-002 | A live run that hits its time limit records the stop, the gates and the verdict. | Its state log holds `maxDurationReached` and a `terminal_gates` row, and its report states the verdict |
 <!-- /ANCHOR:requirements -->
 
 ---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: The runtime suite fails nothing that passed at baseline, plus the new test.
+- **SC-002**: `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` for every folder.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Dependency | The append gateway's run-directory authority | Medium | The test copies the setup existing gateway tests use |
+| Risk | The live run proves one runtime and one model only | Medium | Recorded as a limit; the replay test covers the scripts for every runtime |
 <!-- /ANCHOR:risks -->
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- None. The approach is the earlier analysis's gap 2 proposal.
 <!-- /ANCHOR:questions -->
 
 ---

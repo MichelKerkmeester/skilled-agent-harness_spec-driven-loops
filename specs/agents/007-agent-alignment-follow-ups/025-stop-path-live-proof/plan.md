@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 25: stop-path-live-proof"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Replay each review stop path through the real scripts in one integration test, then run one live review on DeepSeek through Pi with a one-minute time limit and record what it wrote."
 trigger_phrases:
   - "stop path live proof plan"
 importance_tier: "normal"
@@ -15,35 +15,33 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | Vitest integration test; one live workflow run |
+| **Framework** | The `/deep:review` workflow and the deep-loop runtime scripts |
+| **Storage** | Temp run directories; this folder's `review/` for the live run |
+| **Testing** | Vitest in `.skilled/skills/system-deep-loop/runtime` |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The test drives `convergence.cjs --stop-decision`, `terminal-gates.cjs`, `append-mode-event.cjs` and `reduce-state.cjs` as child processes. The live run lets a real agent follow the YAML from init to synthesis.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Phase 24 committed
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
+- [ ] The replay test passes and the suite matches the baseline plus it
+- [ ] The live run's outcome is recorded with evidence
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -51,17 +49,16 @@ contextType: "general"
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+End-to-end replay through existing scripts.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **The replay test**: one case per stop reason.
+- **The live run**: one review on one small file.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+Stop decision, then the gates script, then the typed record through the gateway into the state log, then the reducer's dashboard verdict.
 <!-- /ANCHOR:architecture -->
 
 
@@ -69,36 +66,32 @@ contextType: "general"
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`.
 <!-- /ANCHOR:phases -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
-N/A — record any testing beyond the verification tasks in `tasks.md` here.
+The replay test plus a deliberate broken assertion to show it can fail. The live run is read from its own state log and report.
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
-N/A — record dependencies beyond the components named in the architecture here.
+Pi with the `llmgateway/deepseek-v4.1-flash-1017` route for the live run. No new package.
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-N/A — record rollback steps beyond reverting the scoped change here.
+Revert the phase commit; the live run's `review/` folder goes with it.
 <!-- /ANCHOR:rollback -->
 
 ---

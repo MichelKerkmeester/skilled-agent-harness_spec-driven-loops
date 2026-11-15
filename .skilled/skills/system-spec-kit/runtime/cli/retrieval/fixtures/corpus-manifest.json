@@ -1,5 +1,5 @@
 {
-  "corpusHash": "115fdaf6d8faca5a3e2b0e44276c08674cc38b91c577f7683b9676d280150357",
+  "corpusHash": "32be9156fdf37c663caac6a4b4b266700b18bfee84779afce406eb1618be0c0e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27600,
+  "includedPathCount": 27603,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9551,6 +9551,9 @@
     "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/implementation-summary.md",
     "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/deep-review-dashboard.md",
+    "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/deep-review-strategy.md",
+    "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/review-report.md",
     "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
@@ -27632,7 +27635,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9d5a8ca927ceb2df78bdb59a6509c53d452f34b038326dc1f43f01542ac9f83e",
+  "manifestHash": "161ed9ce25c3261fc6bfe2b8126824b83dd483e29778034d238e95131d5538b6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
