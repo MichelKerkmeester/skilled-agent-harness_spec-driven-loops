@@ -54,7 +54,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T010 Rerun VIB-HK-004 to 008 live with the pin (`scratchpad/run-batch.sh`). Verify: each `scratch/live/VIB-HK-00N/vibe/result.json` under 022 reads `"verdict": "PASS"` with a `vibe_model`.
+- [x] T010 Rerun VIB-HK-004 to 008 live with the pin, then VIB-HK-003 to 007 again on the merged code (`scratchpad/run-batch.sh`). Verify: each `scratch/live/VIB-HK-00N/vibe/result.json` under 022 reads `"verdict": "PASS"` with a `vibe_model`.
 - [x] T011 Update the verdict table, 022's summary and the parent row from the reruns. Verify: `rg -c 'before the automatic tier' ../022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md` prints 0.
 - [x] T012 Record a disposition for every review finding (`implementation-summary.md`). Verify: each finding id in `../review/review-report.md` section 3 appears in the disposition table.
 - [ ] T013 Recursive strict validation of the parent. Verify: `validate.sh ../ --recursive --strict` prints `RESULT: PASSED`.

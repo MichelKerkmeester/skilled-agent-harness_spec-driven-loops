@@ -1,3 +1,3 @@
 $ sid=$(ls "$VIBE_HOME/logs/session/unified" | head -1); h=$(printf '%s' "$sid" | shasum -a 256 | cut -c1-16); f="$TMPDIR/speckit-advisor/vibe-turn-start/$h.head"; test -s "$f" || { echo no-head-receipt; exit 1; }; stat -f %m "$f" > "$CONVERSATION_RUN_DIR/receipt-turn1.txt"; grep -rohF '"kind":"hook_run_completed","scope":"pre_agent"' "$VIBE_HOME/logs/session/unified" | wc -l | tr -d ' ' > "$CONVERSATION_RUN_DIR/pre-agent-runs-turn1.txt"; grep -rqsF 'Added context for the model: \"Advisor:' "$VIBE_HOME/logs/session/unified" || { echo context-does-not-lead-with-advisor; exit 1; }; echo "brief-delivered receipt=$(cat "$CONVERSATION_RUN_DIR/receipt-turn1.txt")"
-brief-delivered receipt=1794759217
+brief-delivered receipt=1794771662
 [exit 0]

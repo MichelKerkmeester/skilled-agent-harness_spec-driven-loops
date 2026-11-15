@@ -103,7 +103,7 @@ function sizePath(stateDir, sessionId) {
 // A compaction folded into a later snapshot generation is read again under that
 // generation's sequence, which is above the watermark, so the ids already
 // consumed are kept beside it. The list keeps the newest 64 ids so the state
-// file stays far below MAX_STATE_BYTES; a session would need more than 64
+// file stays within MAX_STATE_BYTES; a session would need more than 64
 // compactions before an evicted id could be read again, and the snapshot only
 // replays the compactions its own generation holds.
 const MAX_SEEN_COMPACTIONS = 64;

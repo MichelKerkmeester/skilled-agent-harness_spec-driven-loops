@@ -7,7 +7,7 @@ trigger_phrases:
   - "vibe print mode"
   - "delegate to vibe"
   - "cli-mistral-vibe"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Mistral Vibe Dispatch Mode (vibe)
@@ -36,7 +36,7 @@ The shared dispatch inspector classifies a `vibe` print run as `direct cli-mistr
 
 ### Hooks And Guards
 
-The rendered home carries the repository guard bundle and three composition points. `spec-gate-classify` (the prompt classifier) and `turn-start` (the completion advisory, the compaction re-injection, the advisor brief, the save nudge and the hand-over context) run on `pre_agent`; `turn-end` runs on `post_agent` and composes the completion advisory, the ask-surface reprompt and the hand-over arm; the strict guards run on `pre_tool`; the non-strict post-edit quality, dist-freshness, injection-screen, compaction-context and decision-capture checks run on `post_tool`, and the compaction binding also carries the hand-over nudge; and `session-start` and `session-end` carry the context injection and cleanup. The per-plugin seam, its event and the run that proved it are in `references/guards-and-hooks.md` section 4.
+The rendered home carries the repository guard bundle and three composition points. `spec-gate-classify` (the prompt classifier) and `turn-start` (an early hand-over withdraw, then the completion advisory, the compaction re-injection, the advisor brief, the save nudge and the hand-over context) run on `pre_agent`; `turn-end` runs on `post_agent` and composes the completion advisory, the ask-surface reprompt and the hand-over arm; the strict guards run on `pre_tool`; the non-strict post-edit quality, dist-freshness, injection-screen, compaction-context and decision-capture checks run on `post_tool`, and the compaction binding also carries the hand-over nudge; and `session-start` and `session-end` carry the context injection and cleanup. The per-plugin seam, its event and the run that proved it are in `references/guards-and-hooks.md` section 4.
 
 ### What Stays Unconfirmed
 
