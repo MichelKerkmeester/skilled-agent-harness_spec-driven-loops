@@ -8,16 +8,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit"
-    last_updated_at: "2026-11-14T21:57:51Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Removed the release-note file-total ceiling"
-    next_safe_action: "None, packet complete"
+    last_updated_at: "2026-11-15T06:26:05Z"
+    last_updated_by: "generate-context"
+    recent_action: "Fixed scenario CHG-015 and removed the H4 item and glance ceilings"
+    next_safe_action: "Verify the release tag after the next notes edit"
+    packet_purpose: "Purpose: A release note runs as long as its release needs, while the H4 item, glance bullet and sentence gates stay."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py"
+      - ".skilled/skills/sk-doc/scripts/tests/test_check_changelog_shape.py"
+      - ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
+      - ".skilled/changelog/skilled/v4.0.2.1.md"
+      - ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/check-expanded-shape.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:dfef4db4ae54e87e7479e02cf07dbc34826f15de4b5973aa5d26cc5bb105f6e1"
       session_id: "309bc6f7-fcbc-4b75-830c-186ea0a707b1"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "309bc6f7-fcbc-4b75-830c-186ea0a707b1"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-15T06:26:05Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []
