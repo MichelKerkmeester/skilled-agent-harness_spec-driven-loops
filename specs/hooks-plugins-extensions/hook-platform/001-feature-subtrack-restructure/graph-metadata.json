@@ -42,10 +42,13 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/hooks-plugins-extensions/graph-metadata.json",
+      "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/feature-overview.md",
+      "scratch/move-map/map.txt",
       "specs/hooks-plugins-extensions/description.json",
       ".skilled/skills/sk-doc/shared/scripts/relocation-ledger.json",
-      "scratch/move-map/map.txt"
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      "specs/hooks-plugins-extensions/graph-metadata.json"
     ],
     "entities": [
       {
@@ -85,9 +88,15 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": "specs/hooks-plugins-extensions/graph-metadata.json",
+        "name": "feature-overview.md",
+        "kind": "doc",
+        "path": "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/feature-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "map.txt",
+        "kind": "file",
+        "path": "scratch/move-map/map.txt",
         "source": "derived"
       },
       {
@@ -103,9 +112,21 @@
         "source": "derived"
       },
       {
-        "name": "map.txt",
-        "kind": "file",
-        "path": "scratch/move-map/map.txt",
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/hooks-plugins-extensions/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The track files its packets under broad sub-tracks named after a bundle of work (`goal-and-directive-hooks`, `hook-injection-pipeline`, `pi-extensions`, `repo-commit-gates`, `session-turn-boundaries`), not after the feature a reader is looking for",
     "created_at": "2026-11-15T06:21:47Z",
-    "last_save_at": "2026-11-15T07:05:51.910Z",
+    "last_save_at": "2026-11-15T07:33:52.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25db4dd8ec9ea6347541e006807825a3e8e456bda329c4716fc40e0cff59f276",
+    "source_fingerprint": "sha256:6022e7bcbc8bf764d36eb672823b1c112d79e8e24dc762b7554f22a2baa20c0a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "02cc2930519e76b67fa17e805a322884ebf4d2ad792536ad785c2922711222a1",
       "plan.md": "a34d4adb2ce337f1c1cee6dde582ef5868ea1f429065c30c76ec9f72dfa2a1cc",
-      "tasks.md": "63918c0b5287afbe14f9a10f6893803a12463fa0943701be5e6e5ce5d5dc5c38",
-      "implementation-summary.md": "50abda70b4879c3f1173ad6ba59fb595bd90ecdc65f319c8c9c822760d276ff3"
+      "tasks.md": "eca166b3c417aa12a5cb6f710c62e7f0e7d3a089f53283f51dfca370e5ba83ce",
+      "implementation-summary.md": "d7b4eead336ed9051994339d00126acc8f0c37addc253db7c9365b12428e6742"
     },
     "last_active_at": null
   }

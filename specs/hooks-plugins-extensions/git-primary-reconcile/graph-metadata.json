@@ -3,7 +3,10 @@
   "packet_id": "hooks-plugins-extensions/git-primary-reconcile",
   "spec_folder": "hooks-plugins-extensions/git-primary-reconcile",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [],
+  "children_ids": [
+    "hooks-plugins-extensions/git-primary-reconcile/001-hook-gate-hardening",
+    "hooks-plugins-extensions/git-primary-reconcile/002-rebase-abort-head-preservation"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

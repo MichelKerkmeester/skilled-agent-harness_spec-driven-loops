@@ -3,7 +3,10 @@
   "packet_id": "hooks-plugins-extensions/dist-freshness",
   "spec_folder": "hooks-plugins-extensions/dist-freshness",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [],
+  "children_ids": [
+    "hooks-plugins-extensions/dist-freshness/001-dist-staleness-rebuild-on-drift",
+    "hooks-plugins-extensions/dist-freshness/002-dist-guard-skip-unprovisioned"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

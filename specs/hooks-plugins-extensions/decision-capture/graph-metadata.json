@@ -3,7 +3,9 @@
   "packet_id": "hooks-plugins-extensions/decision-capture",
   "spec_folder": "hooks-plugins-extensions/decision-capture",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [],
+  "children_ids": [
+    "hooks-plugins-extensions/decision-capture/001-decision-capture"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

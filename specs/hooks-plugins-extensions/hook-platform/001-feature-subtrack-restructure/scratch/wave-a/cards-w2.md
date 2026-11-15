@@ -17,7 +17,7 @@
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/directive-lifecycle/003-retire-governor-and-proof-directives | Feature Specification: Retire the Governor and Proof-Over-Appearance Directives
   - MENTIONS | CHILD | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup | Feature Specification: Headless Fallback Status and Dedup
   - MENTIONS | CHILD | specs/system-skill-advisor/runtime-lifecycle/004-defect-and-hardening-fixes/003-fix-remaining-advisor-defects | Feature Specification: Restore the pi advisor dedup return, renew the drifted advisor battery and close the stale documentation surfaces
-  - MENTIONS | CHILD | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief | Feature Specification: restore the pi skill advisor brief: probe either root name for the warm-CLI assets and key the directive dedup receipt on the full contribution
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/001-restore-pi-advisor-brief | Feature Specification: restore the pi skill advisor brief: probe either root name for the warm-CLI assets and key the directive dedup receipt on the full contribution
   - 13 more MENTIONS omitted
 - Evidence: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121 (`decideDirectiveLifecycleDelivery`); .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts:7 (`DIRECTIVE_SEPARATOR = '\nDirectives:'`); .skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:36 (`advanceDirectiveLifecycleBoundary(state, input?.session_id)`)
 - Unsure: The hub folder holds only relative symlinks, so the cited line numbers are in the canonical skill sources, not in files under .skilled/hooks/directive-lifecycle/. I did not open `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts` or the Pi `prompt-advisor.ts` the README names, so the durable-store internals and Pi's embedded dedup are the README's account.
@@ -58,8 +58,8 @@
 - Mirrors: .opencode/plugins/system-dist-freshness-guard.js (the `opencode/` subfolder is a browsability-only symlink back to it); none in .pi/extensions
 - Kill switch: SYSTEM_DIST_FRESHNESS_DISABLED (.skilled/hooks/hook-flags.env.example:32)
 - Packets:
-  - OWNS | TOP-LEVEL | specs/sk-code/verification-guards/002-dist-staleness-rebuild-on-drift | Spec: Dist Staleness Rebuild-on-Drift
-  - OWNS | TOP-LEVEL | specs/sk-code/verification-guards/003-dist-guard-skip-unprovisioned | Spec: Dist Guard Skip Unprovisioned Packages
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/dist-freshness/001-dist-staleness-rebuild-on-drift | Spec: Dist Staleness Rebuild-on-Drift
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/dist-freshness/002-dist-guard-skip-unprovisioned | Spec: Dist Guard Skip Unprovisioned Packages
   - OWNS | CHILD | specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/016-validate-sh-dist-freshness-and-repo-remediation | Feature Specification: validate.sh Dist Freshness + Repo-Wide Remediation
   - OWNS | CHILD | specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/016-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement | Feature Specification: Dist Freshness Enforcement
   - MENTIONS | TOP-LEVEL | specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record | Feature Specification: Record the advisor runtime dist build so a fresh build writes its own freshness attestation
@@ -100,9 +100,9 @@
 - Mirrors: none
 - Kill switch: SYSTEM_GIT_COMMIT_HOOKS_DISABLED (.skilled/hooks/hook-flags.env.example:34), read through `hook_enabled git-commit-hooks`
 - Packets:
-  - MENTIONS | CHILD | specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes | Feature Specification: Phase 1: git-hook-review-fixes
-  - MENTIONS | CHILD | specs/sk-git/commit-standards/004-template-driven-message-enforcement/002-git-hook-review-residuals | Feature Specification: Phase 2: git-hook-review-residuals
-  - MENTIONS | CHILD | specs/sk-git/commit-standards/004-template-driven-message-enforcement/003-hook-docs-and-standards-alignment | Feature Specification: Phase 3: hook-docs-and-standards-alignment
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes | Feature Specification: Phase 1: git-hook-review-fixes
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/002-git-hook-review-residuals | Feature Specification: Phase 2: git-hook-review-residuals
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/003-hook-docs-and-standards-alignment | Feature Specification: Phase 3: hook-docs-and-standards-alignment
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes | Feature Specification: Phase 42: hooks-and-plugins-held-fixes
   - MENTIONS | CHILD | specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/007-follow-up-fixes/003-codex-mirror-gate | Feature Specification: Phase 3: codex-mirror-gate
   - MENTIONS | CHILD | specs/sk-code/quality-and-review-modes/004-portable-code-modes/002-quality-hygiene-policy | Feature Specification: Phase 2: quality-hygiene-policy

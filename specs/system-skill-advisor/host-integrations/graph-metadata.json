@@ -5,7 +5,6 @@
   "parent_id": "system-skill-advisor",
   "children_ids": [
     "system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door",
-    "system-skill-advisor/host-integrations/002-pi-advisor-bridge",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement"
   ],
   "manual": {

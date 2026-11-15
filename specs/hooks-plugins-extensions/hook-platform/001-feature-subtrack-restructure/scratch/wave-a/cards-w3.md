@@ -9,7 +9,7 @@
   - OWNS | CHILD | specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/025-git-hooks-reinstall-and-guard | Feature Specification: Git Hooks Reinstall and Presence Guard
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
 - Evidence: .skilled/bin/check-git-hooks.sh:33 (`[ "${SPECKIT_GIT_HOOKS_GUARD:-on}" = "off" ] && exit 0`), .skilled/bin/check-git-hooks.sh:120 (`INVALID+=("$name (mismatched)")` — the four-state symlink classification), .skilled/bin/check-git-hooks.sh:149-152 (self-heal runs only when `git-dir` equals `git-common-dir`, i.e. the main checkout)
-- Unsure: The feature-name search matched only the dsh parity table; the owning packet was found by searching `check-git-hooks` (the script name) instead, and `specs/sk-git/live-sync-and-publishing/001-live-sync-harden-default-on` also modifies the script without using the concern name. The warning text and the README name `.opencode/scripts/install-git-hooks.sh` while the self-heal resolves `$SOURCE_ROOT/scripts/install-git-hooks.sh`; both files exist in this checkout, so which one ships is not settled by reading.
+- Unsure: The feature-name search matched only the dsh parity table; the owning packet was found by searching `check-git-hooks` (the script name) instead, and `specs/hooks-plugins-extensions/git-live-follow/001-live-sync-harden-default-on` also modifies the script without using the concern name. The warning text and the README name `.opencode/scripts/install-git-hooks.sh` while the self-heal resolves `$SOURCE_ROOT/scripts/install-git-hooks.sh`; both files exist in this checkout, so which one ships is not settled by reading.
 
 ---
 
@@ -21,10 +21,10 @@
 - Mirrors: none same-named — launched by .opencode/plugins/session-cleanup.js and by .pi/extensions/session-start-advisories.ts; `.dsh/plugins/repo-guards/adapters/` has no link for it, DSH runs it from its session-start advisories
 - Kill switch: SYSTEM_LIVE_FOLLOW_DISABLED (master SYSTEM_LIVE_SYNC_DISABLED disables the whole loop; SYSTEM_HOOKS_DISABLED above both)
 - Packets:
-  - OWNS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/001-live-sync-harden-default-on | Feature Specification: live-sync hardening and default-on for the always-current live branch
-  - OWNS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/003-live-follow-disjoint-ff | Feature Specification: Live-Sync Disjoint Fast-Forward
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/git-live-follow/001-live-sync-harden-default-on | Feature Specification: live-sync hardening and default-on for the always-current live branch
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/git-live-follow/002-live-follow-disjoint-ff | Feature Specification: Live-Sync Disjoint Fast-Forward
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene | Feature Specification: Phase 4: Live-Follow Log Hygiene
-  - MENTIONS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/004-rebase-abort-head-preservation | Feature Specification: Rebase-Abort HEAD Preservation
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/git-primary-reconcile/002-rebase-abort-head-preservation | Feature Specification: Rebase-Abort HEAD Preservation
   - MENTIONS | TOP-LEVEL | specs/cli-classifier/003-cli-jev-workflow-integration/055-alignment-and-hook-parity | Feature Specification: Phase 55: alignment-and-hook-parity
   - MENTIONS | TOP-LEVEL | specs/system-speckit/runtime-and-release/001-system-speckit-v4/014-daemon-and-test-harness-hardening | Feature Specification: Daemon Lifecycle and Test-Harness Hardening
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping | Feature Specification: Phase 2: Orphan Daemon Reaping
@@ -47,9 +47,9 @@
 - Mirrors: none same-named — launched by .opencode/plugins/session-cleanup.js and by .pi/extensions/session-start-advisories.ts; `.dsh/plugins/repo-guards/adapters/` has no link for it, DSH runs it from its session-start advisories
 - Kill switch: SYSTEM_PRIMARY_RECONCILE_DISABLED (master SYSTEM_LIVE_SYNC_DISABLED disables the whole loop; SYSTEM_HOOKS_DISABLED above both)
 - Packets:
-  - OWNS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/002-hook-gate-hardening | Feature Specification: git hook gate hardening
-  - OWNS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/003-live-follow-disjoint-ff | Feature Specification: Live-Sync Disjoint Fast-Forward
-  - OWNS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/004-rebase-abort-head-preservation | Feature Specification: Rebase-Abort HEAD Preservation
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/git-primary-reconcile/001-hook-gate-hardening | Feature Specification: git hook gate hardening
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/git-live-follow/002-live-follow-disjoint-ff | Feature Specification: Live-Sync Disjoint Fast-Forward
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/git-primary-reconcile/002-rebase-abort-head-preservation | Feature Specification: Rebase-Abort HEAD Preservation
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/git-hooks/003-prepush-naming-gate-residue | Feature Specification: Remove the deleted pre-push naming gate's residue
   - MENTIONS | TOP-LEVEL | specs/cli-classifier/003-cli-jev-workflow-integration/055-alignment-and-hook-parity | Feature Specification: Phase 55: alignment-and-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
@@ -83,8 +83,8 @@
 - Mirrors: .opencode/plugins/sk-git-preflight-advisory.js, .opencode/plugins/sk-git-message-gate.js, .pi/extensions/git-preflight-advisory.ts, .pi/extensions/git-message-gate.ts (one-line re-exports), .dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs, .dsh/plugins/repo-guards/adapters/git-message-gate.mjs
 - Kill switch: SK_GIT_PREFLIGHT_DISABLED for the advisory (plus `SKGIT_ADVISORY=0` and `SKGIT_ADVISORY_SKIP`); none found for the message gate
 - Packets:
-  - OWNS | TOP-LEVEL | specs/sk-git/commit-standards/004-template-driven-message-enforcement | Feature Specification: Template-driven, repo-agnostic enforcement of commit messages and PR descriptions
-  - OWNS | TOP-LEVEL | specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps | Feature Specification: Teach the git preflight advisory that environment assignments between cd and git keep the cd
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement | Feature Specification: Template-driven, repo-agnostic enforcement of commit messages and PR descriptions
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/git-preflight-and-message-gate/002-advisory-cd-prefix-env-steps | Feature Specification: Teach the git preflight advisory that environment assignments between cd and git keep the cd
   - MENTIONS | TOP-LEVEL | specs/cli-classifier/003-cli-jev-workflow-integration/040-hard-rules-sidecar | Feature Specification: Phase 40: hard-rules-sidecar
   - MENTIONS | CHILD | specs/sk-git/commit-standards/005-git-setup-customization/005-setup-check-hardening | Feature Specification: Phase 5: setup-check-hardening
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree

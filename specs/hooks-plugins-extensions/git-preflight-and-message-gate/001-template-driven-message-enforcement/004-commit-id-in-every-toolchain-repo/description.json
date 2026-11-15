@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo",
+  "description": "The stamper minted ids only through the allocator in the repository's own toolchain",
+  "keywords": [
+    "stamper",
+    "minted",
+    "ids",
+    "only",
+    "allocator",
+    "repository",
+    "own",
+    "toolchain"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.516Z",
+  "specId": "004",
+  "folderSlug": "commit-id-in-every-toolchain-repo",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "git-preflight-and-message-gate",
+    "001-template-driven-message-enforcement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

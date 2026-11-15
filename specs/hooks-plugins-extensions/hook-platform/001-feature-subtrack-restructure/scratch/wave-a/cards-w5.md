@@ -43,7 +43,7 @@
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal | Feature Specification: Phase 5: hook-fallback-failure-signal
   - MENTIONS | CHILD | specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/005-worktree-per-session-automation | Feature Specification: Worktree-per-AI-session automation
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes | Feature Specification: Phase 42: hooks-and-plugins-held-fixes
-  - MENTIONS | TOP-LEVEL | specs/sk-git/live-sync-and-publishing/001-live-sync-harden-default-on | Feature Specification: live-sync hardening and default-on for the always-current live branch
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/git-live-follow/001-live-sync-harden-default-on | Feature Specification: live-sync hardening and default-on for the always-current live branch
   - 10 more MENTIONS omitted
 - Evidence: .skilled/scripts/session-cleanup.sh:8 (the script kills only processes it can prove are descendants of an explicit session PID and re-proves ancestry immediately before each kill, with no PPID fallback), .skilled/scripts/session-cleanup.sh:122 (the kill-time re-proof walks the live ppid chain because the `pgrep` walk is only a snapshot), .opencode/plugins/session-cleanup.js:342 (the plugin acts only on `session.created` to run the startup guards)
 - Unsure: The OpenCode plugin's `dispose` runs the teardown with no session PID, so its kill path is a no-op by design; that is what the README states and I did not run the script to observe it. The orphan sweeper the no-session-PID fallback delegates to, `.skilled/scripts/orphan-mcp-sweeper.sh`, is outside this folder and I only saw it named, not read.
@@ -109,10 +109,10 @@
 - Mirrors: .opencode/plugins/system-skill-advisor.js, .pi/extensions/prompt-advisor.ts
 - Kill switch: SYSTEM_SKILL_ADVISOR_DISABLED
 - Packets:
-  - OWNS | TOP-LEVEL | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge | Feature Specification: Pi advisor bridge: brief restore and stderr diagnostic
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge | Feature Specification: Pi advisor bridge: brief restore and stderr diagnostic
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/skill-advisor/001-pi-input-hook-latency | Feature Specification: PI input-hook latency (drop the synchronous spawn chain)
-  - OWNS | CHILD | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief | Feature Specification: restore the pi skill advisor brief: probe either root name for the warm-CLI assets and key the directive dedup receipt on the full contribution
-  - OWNS | CHILD | specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr | Feature Specification: Pi advisor diagnostic on stderr
+  - OWNS | CHILD | specs/hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/001-restore-pi-advisor-brief | Feature Specification: restore the pi skill advisor brief: probe either root name for the warm-CLI assets and key the directive dedup receipt on the full contribution
+  - OWNS | CHILD | specs/hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr | Feature Specification: Pi advisor diagnostic on stderr
   - OWNS | CHILD | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics | Feature Specification: Hook Deadline and Diagnostics
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/002-hook-docs-relocation | Feature Specification: Hook Reference Docs Relocation
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index

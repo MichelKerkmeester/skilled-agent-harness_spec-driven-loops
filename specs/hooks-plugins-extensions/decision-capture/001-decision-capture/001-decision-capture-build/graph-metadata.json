@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build",
+  "spec_folder": "hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build",
+  "parent_id": "hooks-plugins-extensions/decision-capture/001-decision-capture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "operator decision capture",
+      "automatic decision record",
+      "capture AskUserQuestion answers",
+      "decision capture plan",
+      "decision capture tasks",
+      "operator decision capture tests",
+      "decision capture acceptance criteria",
+      "operator decision verification",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "operator",
+      "decision",
+      "capture",
+      "automatic",
+      "record",
+      "askuserquestion",
+      "answers",
+      "plan",
+      "tasks",
+      "tests",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "runtime/api/index.ts",
+      ".claude/settings.json",
+      "dist/hooks/claude/session-stop.js",
+      ".claude/hooks/README.md",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      ".skilled/skills/.state/decision-capture/README.md",
+      ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs",
+      "api/index.ts",
+      ".skilled/hooks/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "runtime/api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.js",
+        "kind": "code",
+        "path": "dist/hooks/claude/session-stop.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".claude/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ask-capture-posttooluse.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Operator",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Capture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Operator answers to AI questions are not captured in a consistent decision record",
+    "created_at": "2026-11-01T07:16:09Z",
+    "last_save_at": "2026-11-15T07:18:26.019Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:83e9bb96bea030d45dab2d5de4b3b9fe1479cfec589d2e785edf3af7b6cd7f46",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "05b48351ad009aaef17999ecc74a19a764756f7270165820b08ee3c904569b52",
+      "plan.md": "bcf3f61e857db4641329092715737942e8063de02c67745e4c29f6d62cd69c10",
+      "tasks.md": "30f8437d4ed437d18c9b3efda50f8742d09f51829e2a989e38d3a831abdaad3c",
+      "decision-record.md": "d2f29e504dcfda54250d8680621c75bf058dc1cfdfdaa91ecb5f7f5caf9403ab",
+      "implementation-summary.md": "266198dd786613ab96b7790880877539030e45a4e21ffe341d86ecc45df71542"
+    },
+    "last_active_at": null
+  }
+}

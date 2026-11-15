@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "b25e733ba7875ca8615bce03c394a1c8a2278695e2bbb4dafdca875e7d15a0c7",
+  "manifestHash": "ef00b2e364c8f43f0627ebe5b6a0ee67b8241bf11fba8984381eaa8a7452a64f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -35079,6 +35079,78 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research_archive/2026-11-02-pre-gaps/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research_archive/2026-11-03-gap-closure-research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research_archive/2026-11-03-gap-closure-research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/risk-register.md",
@@ -35308,6 +35380,120 @@
       "path": "specs/hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/review/prompts/iteration-2.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -38154,120 +38340,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/research.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/deep-review-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-4.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-5.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/review/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/review/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/review/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/review/prompts/iteration-1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/review/prompts/iteration-2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/review/prompts/iteration-3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -51638,78 +51710,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research_archive/2026-11-02-pre-gaps/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research_archive/2026-11-03-gap-closure-research/fanout-attribution.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research_archive/2026-11-03-gap-closure-research/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/review/fanout-attribution.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/review/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/research.md",
       "reason": "no opening frontmatter delimiter"
@@ -55242,6 +55242,62 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/002-table-row-matching/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/003-codex-and-pi-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/004-opencode-devin-live-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/005-chat-question-detection/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/006-live-conversation-test/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/007-gap-closure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/008-project-scoped-state/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/009-chat-answer-evidence/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/research_archive/2026-11-03-gap-closure-research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/decision-capture/z_archive",
       "reason": "excluded directory"
     },
@@ -55363,6 +55419,30 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/git-live-follow/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/002-git-hook-review-residuals/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/002-advisory-cd-prefix-env-steps/scratch",
       "reason": "excluded directory"
     },
     {
@@ -55651,6 +55731,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/pi-fast-mode/002-cli-pi-worktree-extension-clash/scratch",
       "reason": "excluded directory"
     },
     {
@@ -56303,6 +56387,14 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/001-restore-pi-advisor-brief/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr/scratch",
       "reason": "excluded directory"
     },
     {
@@ -59030,26 +59122,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/002-git-hook-review-residuals/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/sk-git/commit-standards/005-git-setup-customization/001-deep-research/research/lineages",
       "reason": "excluded directory"
     },
@@ -59135,10 +59207,6 @@
     },
     {
       "path": "specs/sk-git/commit-standards/006-standards-template-round-trip/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps/scratch",
       "reason": "excluded directory"
     },
     {
@@ -59822,10 +59890,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/system-deep-loop/runtime-concurrency/002-writer-lock-stale-reclaim-race/scratch",
       "reason": "excluded directory"
     },
@@ -59927,14 +59991,6 @@
     },
     {
       "path": "specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/012-deep-research-glm-5-3/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/host-integrations/002-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr/scratch",
       "reason": "excluded directory"
     },
     {
@@ -63751,62 +63807,6 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/review/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/001-decision-capture-build/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/002-table-row-matching/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/003-codex-and-pi-capture/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/004-opencode-devin-live-capture/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/005-chat-question-detection/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/007-gap-closure/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/008-project-scoped-state/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/009-chat-answer-evidence/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/010-decision-routing-vocabulary/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research_archive/2026-11-03-gap-closure-research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/review/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/scratch",
       "reason": "excluded directory"
     },
     {

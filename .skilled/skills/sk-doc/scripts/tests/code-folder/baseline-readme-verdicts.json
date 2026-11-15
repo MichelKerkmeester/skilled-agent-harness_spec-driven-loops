@@ -10664,7 +10664,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration/review/README.md",
+      "file": "specs/hooks-plugins-extensions/pi-cache-optimizer/008-compat-opt-in-and-image-declaration/review/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -12302,7 +12302,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/attempts/README.md",
+      "file": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/attempts/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,

@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/git-primary-reconcile/002-rebase-abort-head-preservation",
+  "description": "The live-sync reconcilers publish a session's commits onto the shared live branch",
+  "keywords": [
+    "live-sync",
+    "reconcilers",
+    "publish",
+    "session",
+    "commits",
+    "onto",
+    "shared",
+    "live",
+    "branch"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.532Z",
+  "specId": "002",
+  "folderSlug": "rebase-abort-head-preservation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "git-primary-reconcile"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

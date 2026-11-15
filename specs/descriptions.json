@@ -20764,7 +20764,7 @@
       "lastUpdated": "2026-11-13T10:04:47.207Z"
     },
     {
-      "specFolder": "sk-code/verification-guards/002-dist-staleness-rebuild-on-drift",
+      "specFolder": "hooks-plugins-extensions/dist-freshness/001-dist-staleness-rebuild-on-drift",
       "description": "Make the dist-staleness guard self-heal a stale checked-out build at session start instead of only printing a warning that persists across sessions.",
       "keywords": [
         "dist-staleness",
@@ -20785,7 +20785,7 @@
       "lastUpdated": "2026-11-13T10:04:47.211Z"
     },
     {
-      "specFolder": "sk-code/verification-guards/003-dist-guard-skip-unprovisioned",
+      "specFolder": "hooks-plugins-extensions/dist-freshness/002-dist-guard-skip-unprovisioned",
       "description": "Teach the dist-staleness checker to report a package as unprovisioned (skip) instead of stale when it is not buildable in this checkout, so bare",
       "keywords": [
         "teach",
@@ -41980,7 +41980,7 @@
       "lastUpdated": "2026-11-13T10:04:54.148Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/004-template-driven-message-enforcement",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement",
       "description": "The sk-git commit contract is written three times: as prose in `SKILL.md` and `assets/commit-message-template.md`, and as hardcoded regexes in",
       "keywords": [
         "sk-git",
@@ -41999,7 +41999,7 @@
       "lastUpdated": "2026-11-13T10:04:54.170Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/001-git-hook-review-fixes",
       "description": "The hooks are installed machine-wide through `core.hooksPath`, but they choose their source root from a file inside whatever repository they fire in,",
       "keywords": [
         "hooks",
@@ -42019,7 +42019,7 @@
       "lastUpdated": "2026-11-13T10:04:54.159Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/004-template-driven-message-enforcement/002-git-hook-review-residuals",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/002-git-hook-review-residuals",
       "description": "The legacy pre-commit treats a crashed comment checker as a pass",
       "keywords": [
         "legacy",
@@ -42033,7 +42033,7 @@
       "lastUpdated": "2026-11-13T10:04:54.161Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/004-template-driven-message-enforcement/003-hook-docs-and-standards-alignment",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/003-hook-docs-and-standards-alignment",
       "description": "The hook changes in phases 1 and 2 left their docs behind",
       "keywords": [
         "hook",
@@ -42046,7 +42046,7 @@
       "lastUpdated": "2026-11-13T10:04:54.162Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/004-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo",
       "description": "The stamper minted ids only through the allocator in the repository's own toolchain",
       "keywords": [
         "stamper",
@@ -42295,7 +42295,7 @@
       "lastUpdated": "2026-11-13T10:04:54.272Z"
     },
     {
-      "specFolder": "sk-git/commit-standards/007-advisory-cd-prefix-env-steps",
+      "specFolder": "hooks-plugins-extensions/git-preflight-and-message-gate/002-advisory-cd-prefix-env-steps",
       "description": "The preflight advisory resolves the directory a git command runs in, so a command typed against a worktree is judged by that worktree's state",
       "keywords": [
         "preflight",
@@ -42331,7 +42331,7 @@
       "lastUpdated": "2026-11-13T18:46:10.001Z"
     },
     {
-      "specFolder": "sk-git/live-sync-and-publishing/001-live-sync-harden-default-on",
+      "specFolder": "hooks-plugins-extensions/git-live-follow/001-live-sync-harden-default-on",
       "description": "The continuous-integration model built by `007-continuous-integration-workflow` publishes every launch-wrapper session commit to a shared live branch",
       "keywords": [
         "continuous-integration",
@@ -42349,7 +42349,7 @@
       "lastUpdated": "2026-11-13T10:04:54.279Z"
     },
     {
-      "specFolder": "sk-git/live-sync-and-publishing/002-hook-gate-hardening",
+      "specFolder": "hooks-plugins-extensions/git-primary-reconcile/001-hook-gate-hardening",
       "description": "Work Item 1 addressed silent live-sync gate failures: the publisher discarded `git push` stderr, misreported policy rejections as races, and lacked a",
       "keywords": [
         "work",
@@ -42373,7 +42373,7 @@
       "lastUpdated": "2026-11-13T10:04:54.281Z"
     },
     {
-      "specFolder": "sk-git/live-sync-and-publishing/003-live-follow-disjoint-ff",
+      "specFolder": "hooks-plugins-extensions/git-live-follow/002-live-follow-disjoint-ff",
       "description": "Relax the primary-checkout reconcile and follower so a behind-only checkout fast-forwards through git's own --ff-only even while carrying unrelated",
       "keywords": [
         "relax",
@@ -42394,7 +42394,7 @@
       "lastUpdated": "2026-11-13T10:04:54.283Z"
     },
     {
-      "specFolder": "sk-git/live-sync-and-publishing/004-rebase-abort-head-preservation",
+      "specFolder": "hooks-plugins-extensions/git-primary-reconcile/002-rebase-abort-head-preservation",
       "description": "The live-sync reconcilers publish a session's commits onto the shared live branch",
       "keywords": [
         "live-sync",
@@ -50511,7 +50511,7 @@
       "lastUpdated": "2026-11-13T10:04:56.372Z"
     },
     {
-      "specFolder": "system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash",
+      "specFolder": "hooks-plugins-extensions/pi-fast-mode/002-cli-pi-worktree-extension-clash",
       "description": "A cli-pi dispatch started inside a git worktree of this repo exits 1 before it reaches the model: `Failed to load extension",
       "keywords": [
         "cli-pi",
@@ -59904,7 +59904,7 @@
       "lastUpdated": "2026-11-13T10:05:01.282Z"
     },
     {
-      "specFolder": "system-skill-advisor/host-integrations/002-pi-advisor-bridge",
+      "specFolder": "hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge",
       "description": "The Pi prompt hook failed to deliver skill suggestions because it could not find the advisor CLI assets and its dedup receipt ignored recommendation",
       "keywords": [
         "prompt",
@@ -59926,7 +59926,7 @@
       "lastUpdated": "2026-11-13T10:05:01.285Z"
     },
     {
-      "specFolder": "system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief",
+      "specFolder": "hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/001-restore-pi-advisor-brief",
       "description": "Since the source-root migration, the pi prompt-advisor hook fails on every prompt in ~2 ms without contacting anything: its warm-CLI fallback probe",
       "keywords": [
         "since",
@@ -59947,7 +59947,7 @@
       "lastUpdated": "2026-11-13T10:05:01.284Z"
     },
     {
-      "specFolder": "system-skill-advisor/host-integrations/002-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr",
+      "specFolder": "hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/002-pi-advisor-diagnostic-stderr",
       "description": "Every prompt in an interactive Pi session prints a line such as `{\"timestamp\":\"…\",\"runtime\":\"pi\",…}` into Pi's input area",
       "keywords": [
         "every",
@@ -86263,7 +86263,7 @@
       "lastUpdated": "2026-11-13T10:05:29.347Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture",
       "description": "The artifact this series changes is the automatic operator decision capture pipeline: the capture core and runtime adapters under",
       "keywords": [
         "artifact",
@@ -86281,7 +86281,7 @@
       "lastUpdated": "2026-11-13T10:05:30.572Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/001-decision-capture-build",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build",
       "description": "Operator answers to AI questions are not captured in a consistent decision record",
       "keywords": [
         "operator",
@@ -86295,7 +86295,7 @@
       "lastUpdated": "2026-11-13T10:05:29.613Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/002-table-row-matching",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/002-table-row-matching",
       "description": "The writer reuses an id only through a `source:` HTML comment under an appendix heading or through an unkeyed appendix item with the same question and",
       "keywords": [
         "writer",
@@ -86314,7 +86314,7 @@
       "lastUpdated": "2026-11-13T10:05:29.655Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/003-codex-and-pi-capture",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/003-codex-and-pi-capture",
       "description": "An operator who answers a question in Codex or Pi gets no decision entry at save time, because 001 left both runtimes `UNKNOWN` and disabled",
       "keywords": [
         "operator",
@@ -86335,7 +86335,7 @@
       "lastUpdated": "2026-11-13T10:05:29.659Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/004-opencode-devin-live-capture",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/004-opencode-devin-live-capture",
       "description": "An operator who answers a question in OpenCode or Devin has that answer queued only when a later save runs `bin/sweep-opencode.mjs` or",
       "keywords": [
         "operator",
@@ -86356,7 +86356,7 @@
       "lastUpdated": "2026-11-13T10:05:29.666Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/005-chat-question-detection",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/005-chat-question-detection",
       "description": "`chatCandidate` in `sweep-transcript.mjs` reads only the last paragraph of an assistant message and returns null unless that paragraph contains `?`",
       "keywords": [
         "chatcandidate",
@@ -86376,7 +86376,7 @@
       "lastUpdated": "2026-11-13T10:05:29.672Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/006-live-conversation-test",
       "description": "The three decision-capture playbook scenarios feed a redacted fixture payload to the hook",
       "keywords": [
         "three",
@@ -86392,7 +86392,7 @@
       "lastUpdated": "2026-11-13T10:05:30.389Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/007-gap-closure",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/007-gap-closure",
       "description": "The Codex and Pi sweeps exit 0 with no output when a named transcript cannot be read, so a save cannot tell a failed read from an empty one",
       "keywords": [
         "codex",
@@ -86412,7 +86412,7 @@
       "lastUpdated": "2026-11-13T10:05:30.395Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/008-project-scoped-state",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/008-project-scoped-state",
       "description": "`doctor:symlink` links `.skilled` whole, so every linked project resolves `.skilled/skills/.state/decision-capture/` to one shared folder",
       "keywords": [
         "doctor",
@@ -86434,7 +86434,7 @@
       "lastUpdated": "2026-11-13T10:05:30.407Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/009-chat-answer-evidence",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/009-chat-answer-evidence",
       "description": "The detector turns every asking paragraph into a candidate against the next typed prompt",
       "keywords": [
         "detector",
@@ -86451,7 +86451,7 @@
       "lastUpdated": "2026-11-13T10:05:30.418Z"
     },
     {
-      "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/010-decision-routing-vocabulary",
+      "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary",
       "description": "An operator who types \"record this as a decision\" or \"Record my chat reply as a decision\" gets no skill recommendation",
       "keywords": [
         "operator",

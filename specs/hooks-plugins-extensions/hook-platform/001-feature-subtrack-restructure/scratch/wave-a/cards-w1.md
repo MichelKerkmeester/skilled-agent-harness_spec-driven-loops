@@ -92,17 +92,17 @@
 - Mirrors: .opencode/plugins/decision-capture.js; .pi/extensions/decision-capture.ts
 - Kill switch: SYSTEM_DECISION_CAPTURE_DISABLED
 - Packets:
-  - OWNS | TOP-LEVEL | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture | Decision capture series
-  - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/001-decision-capture-build | Automatic operator decision capture
-  - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/002-table-row-matching | Phase 2: table-row-matching
-  - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/003-codex-and-pi-capture | Phase 3: codex-and-pi-capture
-  - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/004-opencode-devin-live-capture | Phase 4: opencode-devin-live-capture
-  - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/005-chat-question-detection | Phase 5: chat-question-detection
-  - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test | Phase 6: live-conversation-test
-  - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/007-gap-closure | Phase 7: gap-closure
-  - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/008-project-scoped-state | Phase 8: project-scoped-state
-  - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/009-chat-answer-evidence | Phase 9: chat-answer-evidence
-  - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/010-decision-routing-vocabulary | Phase 10: decision-routing-vocabulary
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/decision-capture/001-decision-capture | Decision capture series
+  - OWNS | CHILD | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build | Automatic operator decision capture
+  - OWNS | CHILD | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/002-table-row-matching | Phase 2: table-row-matching
+  - OWNS | CHILD | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/003-codex-and-pi-capture | Phase 3: codex-and-pi-capture
+  - OWNS | CHILD | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/004-opencode-devin-live-capture | Phase 4: opencode-devin-live-capture
+  - OWNS | CHILD | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/005-chat-question-detection | Phase 5: chat-question-detection
+  - OWNS | CHILD | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/006-live-conversation-test | Phase 6: live-conversation-test
+  - OWNS | CHILD | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/007-gap-closure | Phase 7: gap-closure
+  - OWNS | CHILD | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/008-project-scoped-state | Phase 8: project-scoped-state
+  - OWNS | CHILD | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/009-chat-answer-evidence | Phase 9: chat-answer-evidence
+  - OWNS | CHILD | specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary | Phase 10: decision-routing-vocabulary
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement | Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
 - Evidence: .skilled/hooks/decision-capture/lib/capture-core.mjs:4, .skilled/hooks/decision-capture/lib/capture-core.mjs:7, .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs:5, .skilled/hooks/decision-capture/bin/README.md:17
 - Unsure: The feature folder has no top-level README.md; the Purpose comes from the lib, claude and bin READMEs and the code headers. Ten more MENTIONS are omitted (22 packets match; 11 OWNS and 11 MENTIONS). .skilled/hooks/README.md:239 records that there is no opencode/ mirror in this tree.

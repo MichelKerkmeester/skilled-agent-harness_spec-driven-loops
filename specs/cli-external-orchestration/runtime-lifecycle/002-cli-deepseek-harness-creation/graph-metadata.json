@@ -224,7 +224,7 @@
     ],
     "causal_summary": "DeepSeek Harness is installed on this machine (`dsh` 0.2.2-rc.1) but the repository cannot dispatch to it",
     "created_at": "2026-11-05T21:56:17Z",
-    "last_save_at": "2026-11-15T05:29:11.797Z",
+    "last_save_at": "2026-11-15T07:18:58.909Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -232,11 +232,11 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:f878c28cfedab5805717dc3386a56b73d3184174745094d6aab91b8029977e5f",
+    "source_fingerprint": "sha256:9a26f8caca99cc4da5a657d5c52a7b76e3150ba0693859f1ea8cef61c4d759ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "39b5dae5a3e31efbe28edc393af2f15b0a27c058bbc6ce4d863980c00e7fb0de",
-      "handover.md": "691c795bd3a08eedbd6f97c3faf9350b33a5239d8b85afd29432b53937b8dabc"
+      "handover.md": "cf9542ee10e916b8b5f22303b44a70240e38295cba97ba1d3f5f5f8793457753"
     },
     "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening",
     "last_active_at": "2026-11-15T05:21:53.844Z"
