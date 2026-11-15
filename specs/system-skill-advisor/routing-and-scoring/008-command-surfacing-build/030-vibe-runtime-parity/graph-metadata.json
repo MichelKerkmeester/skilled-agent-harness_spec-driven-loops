@@ -18,7 +18,8 @@
       "vibe command document pointer",
       "vibe runtime parity plan",
       "vibe runtime parity tasks",
-      "vibe runtime parity acceptance criteria"
+      "vibe runtime parity acceptance criteria",
+      "vibe runtime parity implementation summary"
     ],
     "key_topics": [
       "vibe",
@@ -35,28 +36,28 @@
       "command"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "scratch/repro-after.txt",
-      "scratch/handback.md",
-      ".vibe/prompts/doctor-setup.md",
-      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+      "implementation-summary.md",
       ".vibe/hooks.toml",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts",
+      ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs",
       ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
       ".skilled/commands/doctor/_routes.yaml",
-      "scratch/floor-before.txt",
-      "scratch/eval-before.txt",
-      "scratch/before.txt",
-      "scratch/repro-before.txt",
-      ".skilled/hooks/shared/session-readers/vibe.mjs",
-      ".skilled/commands/doctor/runtime-mirrors.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs",
-      ".vibe/SYNC.md",
-      ".vibe/plugins/README.md"
+      ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs",
+      ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
+      ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md"
     ],
     "entities": [
       {
@@ -84,33 +85,51 @@
         "source": "derived"
       },
       {
-        "name": "repro-after.txt",
-        "kind": "file",
-        "path": "scratch/repro-after.txt",
-        "source": "derived"
-      },
-      {
-        "name": "handback.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "scratch/handback.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-setup.md",
-        "kind": "doc",
-        "path": ".vibe/prompts/doctor-setup.md",
-        "source": "derived"
-      },
-      {
-        "name": "turn-start.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "hooks.toml",
         "kind": "file",
         "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-command-behaviour.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-behaviour-guards.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-wiring-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-wiring-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs",
         "source": "derived"
       },
       {
@@ -126,57 +145,39 @@
         "source": "derived"
       },
       {
-        "name": "floor-before.txt",
+        "name": "doctor-runtime-mirrors-contract.test.cjs",
         "kind": "file",
-        "path": "scratch/floor-before.txt",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs",
         "source": "derived"
       },
       {
-        "name": "eval-before.txt",
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "claude-user-prompt-submit-hook.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.mjs",
         "kind": "file",
-        "path": "scratch/eval-before.txt",
+        "path": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
         "source": "derived"
       },
       {
-        "name": "before.txt",
-        "kind": "file",
-        "path": "scratch/before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "repro-before.txt",
-        "kind": "file",
-        "path": "scratch/repro-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "vibe.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/shared/session-readers/vibe.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "runtime-mirrors.md",
-        "kind": "doc",
-        "path": ".skilled/commands/doctor/runtime-mirrors.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts-vibe.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "SYNC.md",
-        "kind": "doc",
-        "path": ".vibe/SYNC.md",
+        "name": "vibe-prompt-advisor.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".vibe/plugins/README.md",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
         "source": "derived"
       },
       {
@@ -206,21 +207,23 @@
     ],
     "causal_summary": "A Vibe user already gets the advisor brief, but the measures and checks this packet built read Vibe as if it were not there",
     "created_at": "2026-11-15T10:20:11Z",
-    "last_save_at": "2026-11-15T12:26:22.092Z",
+    "last_save_at": "2026-11-15T12:29:35.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c5683238ed6861aa5e3e8d66027886e49aedb8e20317be036b175999f4dbe8a0",
+    "source_fingerprint": "sha256:a3e1e49c790d69c9a67d87c7a91fa8ae1a1c66d455b5d82fb4f948893c42dd61",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c01ded47db4bb6a361d965085410d4e218e67e19dd2e5a3ae961f0ef6995e0c7",
+      "spec.md": "460404aa8a2f729a029cacc86f20be8bf695f2fb2d708229e8adf21ae21cafb0",
       "plan.md": "d8b666f0c8b3b4625929a4bc4002b4233a8f5f09a827afc2e5e4a1cf242a9d4a",
-      "tasks.md": "1872fc656c0302e02c3cf3f9b0ba24301fd98ccb9d0038fcdd4ecd205a7824d2"
+      "tasks.md": "2a9a0444d77a16ec71846e8c2a99094d37d12863307b8a2fd3730d30c74876d2",
+      "implementation-summary.md": "d934ce8a3f32d644e5bf545621c252b782d452e319045b4d903bbd7b7e71e131"
     },
     "last_active_at": null
   }

@@ -114,8 +114,8 @@ Worker lanes. Lane S owns `SC` and `SCT` and runs T003. Lane R owns `RB` and `RB
 - [x] T015 [C] Rerun the gap matrix (`$SP/repro-after.txt`). After T014, on the `dist` T013 built. Run `REPRO > $SP/repro-after.txt`, then `LEFT`. Verify: `rg -c '"scored":1,"unscoredRuns":\[\]' $SP/repro-after.txt` prints 1, `rg -c 'runtime vibe is not measured:' $SP/repro-after.txt` prints 1, `rg -c 'unknown runtime' $SP/repro-after.txt` prints nothing, `rg -c '"vibe:ok"' $SP/repro-after.txt` prints 1, `rg -c 'workflow-lines=9 route-lines=3' $SP/repro-after.txt` prints 1, `rg -c 'Command documents \(read in full before taking one\)' $SP/repro-after.txt` prints 3, `diff <(rg '^G6' $SP/repro-before.txt | sed -E 's/Advisor: [a-z]+;/Advisor: X;/') <(rg '^G6' $SP/repro-after.txt | rg -v 'Command documents' | sed -E 's/Advisor: [a-z]+;/Advisor: X;/')` prints nothing, which leaves the freshness word free, the four `G11` lines print `["Claude Code"]`, `["pi"]`, `["dsh"]` and `["vibe"]`, and `LEFT` prints 0. Evidence: repro-after.txt: G1 scored 1 unscoredRuns [], G2 not measured line and no unknown runtime, G3 vibe:ok, G5 workflow-lines=9 route-lines=3, 3 Command documents lines, G6 heads otherwise equal (diff exit 0), G11 Claude Code, pi, dsh, vibe, LEFT 0 by find
 - [x] T016 [C] Check the boundaries (`$SP/boundaries.txt`). After T015. Write each command below with its output or exit code into `boundaries.txt`. Verify: `G diff --quiet BASE -- AGENTS.md` exits 0. `G diff --quiet BASE -- specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation .vibe .skilled/hooks` exits 0, which covers `.vibe/SYNC.md`, `.vibe/plugins/README.md`, `.skilled/hooks/README.md`, `.skilled/hooks/goal/vibe/README.md` and the shared session readers. `test "$(G rev-parse BASE:$RAD/command-prompts.jsonl)" = "$(G hash-object $RAD/command-prompts.jsonl)"` and the same for `$RAD/holdout-prompts.jsonl` and `$RAD/behaviour-fresh-prompts.jsonl` exit 0. `G diff --quiet BASE -- $RAD/command-routing-baseline.json $RAD/scorer-eval-baseline.json $ADV/scripts/command-bridges/command-bridges.generated.json` exits 0. `G diff --stat BASE -- '*package.json' '*package-lock.json'` prints nothing. `G diff BASE -U0 -- $SC $SCT $RB $RBT $HW $HWT $RMC $UPS $UPT $VPA $VPT | rg -e '^\+\s*(//|#|\*|/\*)' | rg -c -e 'specs/|[0-9]{3}-[a-z]|\b(T|P|Q|A)[0-9]{3}\b|\bD[0-9]\b|\b(REQ|AC|CHK|ADR|SC|NFR)-[0-9]+|\bphase [0-9]+'` prints nothing. `G diff BASE -U0 -- $RAR $DSR $HD $RMY | rg '^\+' | rg -c '\x{2014}'` prints nothing. `G status --porcelain --untracked-files=all -- .skilled .opencode .vibe AGENTS.md` names only `FILES`. `LEFT` prints 0. Evidence: AGENTS.md, packet 004, .vibe and .skilled/hooks unchanged from BASE, the three row files byte-equal, baselines and bridge JSON unchanged, no package diff, no id in 58 added comment lines or the 25 VPT comment lines, no em dash, status names only the sixteen FILES, LEFT 0 and /tmp/sa 0 after the probe was fixed to stop its scoped daemon (scratch/boundaries.txt, Correction section)
 - [x] T017 [C] Commit the fix (`FILES` and this phase folder). After T016. Stage by path with `G add -- FILES $PH`, never with `-a` or a folder above `$PH`, and commit with a conventional message and a second `-m` prose body. The parent `spec.md`, `../decision-record.md` and `../goal.md` are not part of this commit. Record the short hash as `FIX`. When the commit hook times out on a git call, rerun the commit with `SPECKIT_GIT_TIMEOUT=180` set in front. Verify: `G status --porcelain -- FILES $PH` prints nothing, `G log -1 --format=%h` prints `FIX` and `G show --stat --format= FIX` lists only paths in `FILES` or under `$PH`. Evidence: FIX 6c026746381, 27 files: the sixteen FILES plus this phase folder, staged by path, FILES and the phase clean after
-- [x] T018 [C] Review the fix diff (`$SP/review/brief.txt`, `$SP/review/report.txt`). After T017. Write `brief.txt` naming the diff `G diff BASE FIX -- FILES`, the REQ tables and the Mechanism per Path table of `spec.md` and decisions D1 to D8 of `plan.md`, and asking whether a Vibe run's every recorded tool call reaches `normalize` in session order, whether any non-Vibe score can change, whether the wiring check can pass a Vibe file whose prompt hook does not run or fail one whose hook does, whether the mirror rows hold the n/a rule, whether the document line can name a wrong or missing path or break the head receipt, whether the label change reaches any reader, whether the proof can pass with no brief, whether an added comment names an id, and whether the three documents state the shipped behaviour. One Opus reviewer reads it read-only and writes `report.txt` with a verdict line and each item at P0, P1 or P2. Reproduce each P0 and P1 by running its cited input. A reproduced one becomes a new task with the next free id in the lane that owns the file, test first and checked by an Opus verifier, then a new fix commit whose diff the reviewer reads again. A P1 that does not reproduce is recorded with the command that showed it, and each P2 is recorded on this line with its fix or its reason. Verify: `report.txt` exists and holds a verdict line, and every P0 and P1 it names is named by a task line or recorded here as not reproduced. Evidence: verdict: SHIP, 0 P0, 0 P1, five P2 (scratch/review/report.txt). P2-1 header handling fixed by T020, its parse-error and duplicate-key false passes stay a limit of the line reader D4 chose and are named in DSR by T023. P2-2 fixed by T021. P2-3 not fixed: no render path puts a directive block without an Advisor head first and no directive holds a command token, so the case is unreachable. P2-4 fixed by T022. P2-5 fixed by T023. The mixed observation label vocabulary has no non-test reader and is recorded only
-- [ ] T019 [C] Write the results and close the phase (`$PH/implementation-summary.md`, `scratch/handback.md`, the parent goal log through `PLOG` only). After T018. Copy `$SP/implementation-summary.scaffold.md` to `$PH/implementation-summary.md` and fill it: `BASE`, `FIX` and any later fix commit, the sixteen files, the matrix lines before and after, the floors, the suite counts, the review verdict, the known limits of D2 and D4 and every `[B]` task. Recheck each file and line `scratch/handback.md` cites with `rg -n` and correct a line number main moved. Mark each row of `acceptance-criteria.md` with the evidence observed, set the status in `spec.md` and the phase 30 row of `../spec.md` to `Complete`, write `PLOG "Phase 030 vibe runtime parity | Complete | <FIX>: Vibe is scored, named not measured, checked by the doctor and briefed with command documents, observations carry their runtime"`, then run `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder $PH --apply`. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $PH --strict` prints `RESULT: PASSED`, and `rg -c "\| Unmet \|" $PH/acceptance-criteria.md` prints nothing.
+- [x] T018 [C] Review the fix diff (`$SP/review/brief.txt`, `$SP/review/report.txt`). After T017. Write `brief.txt` naming the diff `G diff BASE FIX -- FILES`, the REQ tables and the Mechanism per Path table of `spec.md` and decisions D1 to D8 of `plan.md`, and asking whether a Vibe run's every recorded tool call reaches `normalize` in session order, whether any non-Vibe score can change, whether the wiring check can pass a Vibe file whose prompt hook does not run or fail one whose hook does, whether the mirror rows hold the n/a rule, whether the document line can name a wrong or missing path or break the head receipt, whether the label change reaches any reader, whether the proof can pass with no brief, whether an added comment names an id, and whether the three documents state the shipped behaviour. One Opus reviewer reads it read-only and writes `report.txt` with a verdict line and each item at P0, P1 or P2. Reproduce each P0 and P1 by running its cited input. A reproduced one becomes a new task with the next free id in the lane that owns the file, test first and checked by an Opus verifier, then a new fix commit whose diff the reviewer reads again. A P1 that does not reproduce is recorded with the command that showed it, and each P2 is recorded on this line with its fix or its reason. Verify: `report.txt` exists and holds a verdict line, and every P0 and P1 it names is named by a task line or recorded here as not reproduced. Evidence: verdict: SHIP, 0 P0, 0 P1, five P2 (scratch/review/report.txt). P2-1 header handling fixed by T020, its parse-error and duplicate-key false passes stay a limit of the line reader D4 chose and are named in DSR by T023. P2-2 fixed by T021. P2-3 not fixed: no render path puts a directive block without an Advisor head first and no directive holds a command token, so the case is unreachable. P2-4 fixed by T022. P2-5 fixed by T023. The mixed observation label vocabulary has no non-test reader and is recorded only. The follow-up review of 0c4de1808e7 read follow-up verdict SHIP with two new P2: a line that starts with [ inside a multi-line value now ends a block early and reads hook-missing, which fails closed and no committed hooks file has, and the DSR limit sentence leaves out two false passes (a reused block name and a command line inside another key's triple-quoted string). Both are recorded as known limits, not fixed
+- [x] T019 [C] Write the results and close the phase (`$PH/implementation-summary.md`, `scratch/handback.md`, the parent goal log through `PLOG` only). After T018. Copy `$SP/implementation-summary.scaffold.md` to `$PH/implementation-summary.md` and fill it: `BASE`, `FIX` and any later fix commit, the sixteen files, the matrix lines before and after, the floors, the suite counts, the review verdict, the known limits of D2 and D4 and every `[B]` task. Recheck each file and line `scratch/handback.md` cites with `rg -n` and correct a line number main moved. Mark each row of `acceptance-criteria.md` with the evidence observed, set the status in `spec.md` and the phase 30 row of `../spec.md` to `Complete`, write `PLOG "Phase 030 vibe runtime parity | Complete | <FIX>: Vibe is scored, named not measured, checked by the doctor and briefed with command documents, observations carry their runtime"`, then run `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder $PH --apply`. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $PH --strict` prints `RESULT: PASSED`, and `rg -c "\| Unmet \|" $PH/acceptance-criteria.md` prints nothing. Evidence: implementation-summary.md written, 13 of 13 criteria Met, spec.md and the parent phase 30 row Complete, handback citations rechecked and holding, goal row logged, repair-derived inspected 1 repaired 1 for the phase and the parent, validate --strict RESULT: PASSED with 0 errors and 0 warnings, parent recursive 31 PASSED
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -124,10 +124,10 @@ Worker lanes. Lane S owns `SC` and `SCT` and runs T003. Lane R owns `RB` and `RB
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] `scratch/repro-after.txt` shows every gap line changed as SC-001 states
-- [ ] `scratch/review/report.txt` holds a verdict with no open P0 or P1
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] `scratch/repro-after.txt` shows every gap line changed as SC-001 states
+- [x] `scratch/review/report.txt` holds a verdict with no open P0 or P1
 <!-- /ANCHOR:completion -->
 
 ---
@@ -168,9 +168,9 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## Pre-Implementation
 <!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
 
-- [ ] CHK-001 [P0] Phase 029 reads `Complete`, the merge `e58d450985c` is an ancestor of HEAD and `FILES` are clean in `git status` (T001).
-- [ ] CHK-002 [P0] The floors, the eval line, the suite lines and the mirror checks are recorded before the first edit (T001).
-- [ ] CHK-003 [P1] `$SP/repro-before.txt` matches the Measured Behavior block and no probe folder is left behind (T002).
+- [x] CHK-001 [P0] Phase 029 reads `Complete`, the merge `e58d450985c` is an ancestor of HEAD and `FILES` are clean in `git status` (T001).
+- [x] CHK-002 [P0] The floors, the eval line, the suite lines and the mirror checks are recorded before the first edit (T001).
+- [x] CHK-003 [P1] `$SP/repro-before.txt` matches the Measured Behavior block and no probe folder is left behind (T002).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -179,10 +179,10 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## Code Quality
 <!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
 
-- [ ] CHK-010 [P0] `BUILD` and `TC` exit 0 (T013).
-- [ ] CHK-011 [P0] The Vibe table holds only the four recorded names, `SC` names no process or skill tool, and the shared session readers show no diff (T003, T016).
-- [ ] CHK-012 [P1] No added comment names a spec path or an id, and no added doc line holds an em dash (T016).
-- [ ] CHK-013 [P1] The Vibe table, `vibeRecords`, the Vibe branch of `scoreRun`, the `NOT_MEASURED` row, the TOML reader, the label expression and `withCommandDocuments` each carry one reason comment.
+- [x] CHK-010 [P0] `BUILD` and `TC` exit 0 (T013).
+- [x] CHK-011 [P0] The Vibe table holds only the four recorded names, `SC` names no process or skill tool, and the shared session readers show no diff (T003, T016).
+- [x] CHK-012 [P1] No added comment names a spec path or an id, and no added doc line holds an em dash (T016).
+- [x] CHK-013 [P1] The Vibe table, `vibeRecords`, the Vibe branch of `scoreRun`, the `NOT_MEASURED` row, the TOML reader, the label expression and `withCommandDocuments` each carry one reason comment.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -191,11 +191,11 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] `VALL` reports 0 failed, `DT` and `VT` report `fail 0`, and `MIRRORS`, `VMIR`, `DRV` and `RV` exit 0 (T013).
-- [ ] CHK-021 [P0] The floor and eval after files equal their before files (T014).
-- [ ] CHK-022 [P0] T003, T004, T005, T006, T007 and T009 each recorded a failing first run for the reason their lines name, with the summary line in the worker's report.
-- [ ] CHK-023 [P0] The proof cases of `VPT` pass with the real advisor in an isolated scope and fail on an empty head (T008, T009).
-- [ ] CHK-024 [P1] The matrix shows every gap line changed and every non-document head line unchanged (T015).
+- [x] CHK-020 [P0] `VALL` reports 0 failed, `DT` and `VT` report `fail 0`, and `MIRRORS`, `VMIR`, `DRV` and `RV` exit 0 (T013).
+- [x] CHK-021 [P0] The floor and eval after files equal their before files (T014).
+- [x] CHK-022 [P0] T003, T004, T005, T006, T007 and T009 each recorded a failing first run for the reason their lines name, with the summary line in the worker's report.
+- [x] CHK-023 [P0] The proof cases of `VPT` pass with the real advisor in an isolated scope and fail on an empty head (T008, T009).
+- [x] CHK-024 [P1] The matrix shows every gap line changed and every non-document head line unchanged (T015).
 <!-- /ANCHOR:testing -->
 
 ---
@@ -204,13 +204,13 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## FIX ADDENDUM: FIX COMPLETENESS
 <!-- FILL: Write this section when the packet fixes a reported finding. Delete it otherwise. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
 
-- [ ] CHK-FIX-001 [P0] Finding class: the scorer, runner, wiring and mirror gaps are `cross-consumer`, one runtime that each owner must list. The document line is `instance-only`, a Vibe-only delivery gap. The label is `cross-consumer`, one handler shared by six runtimes.
-- [ ] CHK-FIX-002 [P0] Same-class producers: `rg -n "TOOL_TABLES|NOT_MEASURED|RUNTIMES = \[|'Claude Code'" $RAD $DS $SAD/hooks --glob '!**/dist/**'` is read at close, and each table names Vibe or says why not.
-- [ ] CHK-FIX-003 [P0] Consumers: `rg -n "normalize\(|loadSession\(|vibeRecords|withCommandDocuments|buildAdvisorPart|observeEmittedAdvisorPolicy" .skilled --glob '!**/dist/**' --glob '!**/node_modules/**'` is read at close, and every caller still receives what it reads (T013).
-- [ ] CHK-FIX-004 [P0] Adversarial table tests: a non-tool effect, an unknown Vibe tool and a checkpoint entry (`SCT`), a `post_agent` entry, a commented command and a name-only mention (`HWT`), a score fragment, a missing document, a repeated command and a root with no `.skilled` (`VPT`) each hold a row.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count: the twelve planning lines of the matrix, the four tool kinds of `SCT`, the five Vibe cases of `HWT`, the three Vibe rows of `RMC`, the five head forms of `VPT` and the five labels of `UPT`.
-- [ ] CHK-FIX-006 [P1] Hostile global state: `VPT` deletes `AI_SESSION_CHILD` and runs in an isolated scope with its own receipt folder, and the label cases clear the sink before each row.
-- [ ] CHK-FIX-007 [P1] Evidence names `BASE`, `FIX` and the files each number came from (T019).
+- [x] CHK-FIX-001 [P0] Finding class: the scorer, runner, wiring and mirror gaps are `cross-consumer`, one runtime that each owner must list. The document line is `instance-only`, a Vibe-only delivery gap. The label is `cross-consumer`, one handler shared by six runtimes.
+- [x] CHK-FIX-002 [P0] Same-class producers: `rg -n "TOOL_TABLES|NOT_MEASURED|RUNTIMES = \[|'Claude Code'" $RAD $DS $SAD/hooks --glob '!**/dist/**'` is read at close, and each table names Vibe or says why not.
+- [x] CHK-FIX-003 [P0] Consumers: `rg -n "normalize\(|loadSession\(|vibeRecords|withCommandDocuments|buildAdvisorPart|observeEmittedAdvisorPolicy" .skilled --glob '!**/dist/**' --glob '!**/node_modules/**'` is read at close, and every caller still receives what it reads (T013).
+- [x] CHK-FIX-004 [P0] Adversarial table tests: a non-tool effect, an unknown Vibe tool and a checkpoint entry (`SCT`), a `post_agent` entry, a commented command and a name-only mention (`HWT`), a score fragment, a missing document, a repeated command and a root with no `.skilled` (`VPT`) each hold a row.
+- [x] CHK-FIX-005 [P1] Matrix axes and row count: the twelve planning lines of the matrix, the four tool kinds of `SCT`, the five Vibe cases of `HWT`, the three Vibe rows of `RMC`, the five head forms of `VPT` and the five labels of `UPT`.
+- [x] CHK-FIX-006 [P1] Hostile global state: `VPT` deletes `AI_SESSION_CHILD` and runs in an isolated scope with its own receipt folder, and the label cases clear the sink before each row.
+- [x] CHK-FIX-007 [P1] Evidence names `BASE`, `FIX` and the files each number came from (T019).
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -219,9 +219,9 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## Security
 <!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] `scripts/rotate-logs.sh` reads no credential. WEAK: Security is fine. -->
 
-- [ ] CHK-030 [P0] `rg -l -F '"prompt"' $SP --glob '!planning/**'` prints nothing, and no task read a row file except through `jq 'del(.prompt)'`.
-- [ ] CHK-031 [P0] No test, probe or matrix printed the text of a Vibe journal message or a session store prompt.
-- [ ] CHK-032 [P1] No task wrote under `/private/tmp` beyond the `/tmp/sa-*` scopes `TU` creates and removes, the `/tmp/sa-*` count after each run equals the count before it (T008, T013), and every probe folder under `$TMPDIR` was removed (`LEFT` prints 0 at T002, T015 and T016).
+- [x] CHK-030 [P0] `rg -l -F '"prompt"' $SP --glob '!planning/**'` prints nothing, and no task read a row file except through `jq 'del(.prompt)'`.
+- [x] CHK-031 [P0] No test, probe or matrix printed the text of a Vibe journal message or a session store prompt.
+- [x] CHK-032 [P1] No task wrote under `/private/tmp` beyond the `/tmp/sa-*` scopes `TU` creates and removes, the `/tmp/sa-*` count after each run equals the count before it (T008, T013), and every probe folder under `$TMPDIR` was removed (`LEFT` prints 0 at T002, T015 and T016).
 <!-- /ANCHOR:security -->
 
 ---
@@ -230,8 +230,8 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## Documentation
 <!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
 
-- [ ] CHK-040 [P1] `RAR`, `DSR` and `HD` carry the sentences T010 to T012 name, and the lines `plan.md` lists as handed back still read as they did.
-- [ ] CHK-041 [P1] `implementation-summary.md` and `scratch/repro-after.txt` quote the same matrix lines, and `scratch/handback.md` cites lines that still hold (T019).
+- [x] CHK-040 [P1] `RAR`, `DSR` and `HD` carry the sentences T010 to T012 name, and the lines `plan.md` lists as handed back still read as they did.
+- [x] CHK-041 [P1] `implementation-summary.md` and `scratch/repro-after.txt` quote the same matrix lines, and `scratch/handback.md` cites lines that still hold (T019).
 <!-- /ANCHOR:docs -->
 
 ---
@@ -240,8 +240,8 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## File Organization
 <!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
-- [ ] CHK-050 [P1] Every before, after and review file lives under `scratch/`, and the planning probes stay in `scratch/planning/`.
-- [ ] CHK-051 [P1] The fix commit lists only `FILES` and this phase folder (T017).
+- [x] CHK-050 [P1] Every before, after and review file lives under `scratch/`, and the planning probes stay in `scratch/planning/`.
+- [x] CHK-051 [P1] The fix commit lists only `FILES` and this phase folder (T017).
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -252,11 +252,11 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 14 | 0/14 |
-| P1 Items | 12 | 0/12 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 12 | 12/12 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: Pending
+**Verification Date**: 2026-11-15
 <!-- /ANCHOR:summary -->
 
 ---

@@ -310,6 +310,8 @@ and findings belong here.
 | Branch on origin/main, correction | Partly met | the row above is wrong to say 0 behind: f582d21924f merges main as of e263e5481e7, but other sessions pushed 16 more commits to origin/main (now 544a4092244) while the merge ran, including the session relaunch to in-session handover rename; a catch-up merge is needed before the pull request |
 | Catch-up merge | Done | e58d450985c merges main 544a4092244; main moved 11 more commits by other sessions since, so one final catch-up runs before handoff. Operator asked 2026-11-15 to make all chat automation work on Mistral Vibe and chose a new 008 phase, 030-vibe-runtime-parity |
 | Phase 030 vibe runtime parity | Planned | Level 2 plan: Vibe gets a scorer tool table read from its journal entries, a not-measured runner reason, a doctor wiring row and three mirror rows, a command-document line in its brief, its own observation label and a real-brief proof test, 19 tasks in five lanes, floors at main's merge 24/44, 0/35, 2/44, eval [160,49,21,5], G7 G8 G9 G10 G12 handed back |
+| Phase 030 probe cleanup | Fixed | LEFT used an ls glob that zsh aborts on no match, so T002 printed 0 with 8 probe folders left. Folders removed, probe removes its scope until it stays gone, LEFT now uses find |
+| Phase 030 vibe runtime parity | Complete | 6c026746381 and follow-up 0c4de1808e7: Vibe is scored, named not measured, checked by the doctor and briefed with command documents, observations carry their runtime. Review SHIP, 0 P0 and 0 P1, floors cmp equal, suite 2157 passed 0 failed |
 
 ### Deviations and findings
 

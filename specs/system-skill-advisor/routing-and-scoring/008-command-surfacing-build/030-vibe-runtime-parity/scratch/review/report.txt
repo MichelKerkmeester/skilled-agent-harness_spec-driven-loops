@@ -56,3 +56,52 @@ Q8 (comment hygiene): Clean. 83 added comment lines across the thirteen code and
 Q9 (three documents): Mostly exact. RAD/README.md:135 names the four recorded Vibe tool names and the second read, but see P2-4 about the `--locator` mode. RAD/README.md:137 says Cursor and Vibe exit 2 as not measured. That holds for `--print-argv` (runner exit 2, stderr `runtime vibe is not measured:`) and for `--runtime` (runArm resolves the runtime first, run-command-behaviour.mjs:1383-1385 and :1104-1111). DS/README.markdown:112 states the line-by-line `.vibe/hooks.toml` reading and the Pi, DSH and OpenCode limit exactly, but :235 overclaims (P2-5). skill-advisor-hook.md:95 states the document line exactly, with one omission: the line names only commands whose document exists.
 
 Checks run: VPT 10/10 passed. SCT, RBT and UPT together 272 passed, 0 failed. HWT and RMC 49 pass, 0 fail. WIRE exit 0 with five ok lines, RV exit 0, DRV exit 0. Not run: the full suite, any build, VT, MIRRORS, VMIR, floors and eval, all outside this brief.
+
+FOLLOW-UP 0c4de1808e7
+
+follow-up verdict: SHIP
+
+Scope: git -c core.fsmonitor=false diff 6c026746381 0c4de1808e7 over hook-wiring-check.cjs, hook-wiring-check.test.cjs, vibe-prompt-advisor.vitest.ts, RAD/README.md and DS/README.markdown (5 files under .skilled, 53 insertions, 7 deletions). HEAD read 0c4de1808e7. No P0 and no P1 found. Two P2 findings follow.
+
+Each fix checked:
+- P2-1 header handling (hook-wiring-check.cjs:238-246): does what it says. A trimmed line starting with `[` is a header, its `#` comment and all whitespace are dropped, `[[hooks]]` opens a block and any other header sets current to null. The commented next header, the spaced header and the foreign table now read right, and a `[hooks.extra]` sub-table no longer lends its `command` to the block above it.
+- P2-2 TMPDIR (vibe-prompt-advisor.vitest.ts:76 and :98): does what it says. The child env sets TMPDIR to `<scope>/tmp`, beforeAll creates that folder, and cleanupSkillAdvisorScope removes it with rootDir. Node honours it: `TMPDIR=<dir> node -e 'console.log(require("os").tmpdir())'` printed `<dir>`. metrics.ts:185 computes its root from tmpdir() at module load in the child, so the durable records now resolve inside the scope. The real diagnostics file read 214 lines with mtime 1794745373 and the outcomes file 205 lines with mtime 1794745271, both before and after the VPT run. The real vibe-turn-start receipt folder held 64 files and /tmp/sa-* 0 after.
+- P2-4 (RAD/README.md:135): the sentence now opens `Under --summary, a Vibe run is read a second time`, which matches scoreRun and leaves the `--locator` mode undescribed rather than misdescribed.
+- P2-5 (DS/README.markdown:235): the exit rule now says an unparseable `.vibe/hooks.toml` can still read `ok vibe`, and a trailing comment or a single-quoted string reads `hook-missing`. Both are true (probes 09, 10, n6, 02, 03 below). Residual in FP2-2.
+- P2-3: left as unreachable, as stated. No change to prompt-advisor.mjs in this diff.
+
+TOML probes, old reader (6c026746381) vs new reader (0c4de1808e7), with python3.11 tomllib as ground truth (valid or INVALID, and whether the turn-start pre_agent hook survives Vibe's first-name-wins rule):
+  01 baseline                      valid, runs     old ok            new ok            same
+  02 literal_string                valid, runs     old hook-missing  new hook-missing  same (false fail, named in DS README:235)
+  03 trailing_comment_value        valid, runs     old hook-missing  new hook-missing  same (false fail, named)
+  04 next_header_comment           valid, runs     old hook-missing  new ok            CHANGED, fixed
+  05 spaced_header                 valid, runs     old hook-missing  new ok            CHANGED, fixed
+  06 inline_array                  valid, runs     old hook-missing  new hook-missing  same (false fail)
+  07 quoted_keys                   valid, runs     old hook-missing  new hook-missing  same (false fail)
+  08 multiline_basic               valid, runs     old hook-missing  new hook-missing  same (false fail)
+  09 broken_other_line             INVALID         old ok            new ok            same (false pass, named)
+  10 duplicate_key                 INVALID         old ok            new ok            same (false pass, named)
+  11 foreign_table_after           valid, no run   old ok            new hook-missing  CHANGED, fixed
+  12 inside_multiline_string       valid, no run   old ok            new ok            same (false pass, not named)
+  13 duplicate_name_first_wins     valid, no run   old ok            new ok            same (false pass, not named)
+  New shapes aimed at the new rule:
+  n1 quoted_header [["hooks"]]     valid, runs     old hook-missing  new hook-missing  same (false fail)
+  n2 bracket_line_in_string        valid, runs     old ok            new hook-missing  CHANGED, new false fail (FP2-1)
+  n3 subtable_then_command         valid, no run   old ok            new hook-missing  CHANGED, fixed
+  n4 header_comment_with_hash      valid, runs     old hook-missing  new ok            CHANGED, fixed
+  n5 bracket_array_line            valid, runs     old ok            new hook-missing  CHANGED, new false fail (FP2-1)
+  n6 split_brackets [ [hooks] ]    INVALID         old hook-missing  new ok            CHANGED, new false pass inside the named parse-error limit
+  n7 the committed .vibe/hooks.toml valid, runs    old ok            new ok            same
+Net: five shapes fixed (04, 05, 11, n3, n4). Two valid shapes moved from right to wrong (n2, n5), and one invalid shape (n6) moved into the already named parse-error false pass.
+
+FP2-1 .skilled/commands/doctor/scripts/hook-wiring-check.cjs:238-246
+  The new header rule reads any continuation line of a multi-line value that starts with `[` as a header and closes the block. So a `command` key after that value is lost.
+  Failure scenario: a turn-start block with `description = """` then `[note] composes the brief` then `"""` above its `command` line (n2), or `extra = [` then `  [1, 2],` then `]` above its `command` (n5). tomllib accepts both and keeps the pre_agent turn-start hook. The old reader printed `ok vibe` and the new one prints `hook-missing vibe .vibe/hooks.toml`, exit 1.
+  Why P2: Vibe's HookConfig models no string or array field that would hold such a value, and an rg over every committed hooks.toml under .vibe for `= [`, `"""` and `'''` returns 0 files. The committed file still reads `ok vibe`. The direction is a false DEGRADED, never a false pass.
+
+FP2-2 .skilled/commands/doctor/scripts/README.markdown:235
+  The new limit sentence names the parse-failure false pass and two false-fail shapes. It does not name the two valid-TOML false passes that remain: a second block reusing an earlier block's `name`, which Vibe drops while the reader counts it (13), and a `command = "<turn-start>"` line inside another key's `"""` string (12). Both still print `ok vibe` with no turn-start hook running. The coordinator's note calls the kept limit "parse-error and duplicate-key", and a duplicate key is a parse error, but a duplicate name is not. Naming the duplicate-name case would make the sentence complete for the realistic shapes.
+
+Comment hygiene: every added line of the five files scanned for specs/, phase numbers, T0xx, D1-D9, REQ-, ADR-, CHK-, G<n>, F<nnn>, Q<nnn> and P<n>: 0 matches, rg exit 1. The new code comment ("A header ends the block before it, so a commented header or another table never lends its keys to a hooks block") states the behaviour exactly.
+
+Follow-up checks run: hook-wiring-check.test.cjs and doctor-runtime-mirrors-contract.test.cjs under node --test: tests 52, pass 52, fail 0 (49 before, plus the three new header cases). VPT: 10 passed, 0 failed. `node hook-wiring-check.cjs --root .` printed `ok claude`, `ok codex`, `ok cursor`, `ok devin`, `ok vibe`, exit 0. The probe folders were deleted after the run.
