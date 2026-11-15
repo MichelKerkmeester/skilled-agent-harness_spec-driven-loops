@@ -5,7 +5,7 @@
 - Executor for every lineage: `cli-opencode` with `opencode-go/deepseek-v4.1-flash` at reasoning effort max, convergence threshold 0.10.
 - Verification: an Opus 5.5 verifier graded every round-one finding read-only (`review/verify-5/report.md`, probes in `review/verify-5/probes/`). One Opus reviewer then read each fix commit (`032-review-pass-five-remediation/scratch/review/report.txt`, `report-2.txt` and `report-3.txt`). The coordinator adjudicated round 5b (`032-review-pass-five-remediation/scratch/review-rounds.txt`).
 - Paths: a bare `scratch/` path in this report is under `032-review-pass-five-remediation/scratch/` in the packet.
-- Commits: BASE `2a1a42263cc`. FIX `d0f605b42f8` (tasks T003 to T033). Second fix `02261e94254` (T044 to T052, after the first Opus read). Third fix `d21dbc1cafe` (T050e, after the second Opus read).
+- Commits: BASE `2a1a42263cc`. FIX `d0f605b42f8` (tasks T003 to T033). Second fix `02261e94254` (T044 to T052, after the first Opus read). Third fix `d21dbc1cafe` (T050e, after the second Opus read). Fourth fix `0173020dfc2` (T053, after the close-out arena build hit a git `ENOBUFS`). The fourth fix was checked by its task verifier and the gates, not by an Opus read or a lineage round.
 
 ---
 
@@ -121,7 +121,7 @@ Round 5b, adjudicated in `scratch/review-rounds.txt`: 0 P0 and 0 P1, so nothing 
 
 ## 5. Verification after the last fix
 
-At `d21dbc1cafe`, from `scratch/after.txt`: the advisor suite reads 2312 passed and 6 skipped with 0 failed (2157 before the phase), the transcript scorer tests 330, the behaviour guards 51, the doctor tests 1237 of 1237 and the Vibe tests 84 of 84. The floors equal their before lines (`scratch/floor-after.txt`): typed recall 24 of 44, false offers 0 of 35 and plain holdout 2 of 44, and the scorer eval reads `[160,49,21,5]`. The playbook package reads `scenarios=53 violations=0`, and the link check reads 0 broken. The stored arms moved on two before-arm runs only, both through the write reader, and did not move again after the fix reads (`scratch/rescore-delta.txt`).
+At `0173020dfc2`, from `scratch/after.txt`: the advisor suite reads 2313 passed and 6 skipped with 0 failed (2157 before the phase), the transcript scorer tests 330, the behaviour guards 52, the doctor tests 1237 of 1237 and the Vibe tests 84 of 84. The floors equal their before lines (`scratch/floor-after.txt`): typed recall 24 of 44, false offers 0 of 35 and plain holdout 2 of 44, and the scorer eval reads `[160,49,21,5]`. The playbook package reads `scenarios=53 violations=0`, and the link check reads 0 broken. The stored arms moved on two before-arm runs only, both through the write reader, and did not move again after the fix reads (`scratch/rescore-delta.txt`). The arena builds from the committed tree at `0173020dfc2` with `"ok":true`.
 
 ---
 

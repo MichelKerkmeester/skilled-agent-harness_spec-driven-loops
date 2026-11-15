@@ -135,7 +135,7 @@ After the lanes, the coordinator rescored the stored arms, ran every gate, the p
 3. **The stale rule is wider than a compiler's inputs.** A committed doc in a reached folder marks the build stale. A rebuild clears it.
 4. **Sixteen round 5b P2 stay open.** Four name files outside the fix paths, three are scorer edges already in D13 and nine are doc wording or minor edges, each with a reason in `scratch/review-rounds.txt`.
 5. **Interpreter writes are not read.** A Python or Node write's target is only known by running it (plan D13).
-6. **Build an arena a moment after a commit, not in the same breath.** One build run straight after a commit failed `clone_failed` on the new commit, a race with the commit hook's background work. The rerun passed.
+6. **One arena build failed right after a commit.** A build run in the same command as a commit printed `clone_failed` on the new commit, and the rerun passed. A race with work the commit hook starts in the background is suspected, not confirmed. The builder fails closed, so a bad arena cannot run.
 <!-- /ANCHOR:limitations -->
 
 ---
