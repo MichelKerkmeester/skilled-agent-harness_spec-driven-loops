@@ -640,6 +640,9 @@ test('dsh hard rules refuse the retired Mistral route', () => {
   const rules = readHardRules(DSH).filter((r) => r.check !== 'command-v-dsh-required');
   const mistral = DSH_FULL_DISPATCH.replace('route-llmgateway-deepseek', 'route-mistral-deepseek');
   assert.notDeepEqual(evaluate(mistral, rules), []);
+  // Two roster routes in one dispatch are still refused: a dispatch names exactly one route.
+  const twoRoutes = DSH_FULL_DISPATCH.replace(' --json -', ' --patch ../patches/route-opencode-go-deepseek.patch.yml --json -');
+  assert.notDeepEqual(evaluate(twoRoutes, rules), []);
 });
 
 test('dsh hard rules accept a complete isolated, pipe-fed dispatch', () => {
