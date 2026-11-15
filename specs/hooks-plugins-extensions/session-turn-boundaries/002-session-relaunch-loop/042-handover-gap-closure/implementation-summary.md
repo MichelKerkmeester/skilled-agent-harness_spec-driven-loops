@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure"
-    last_updated_at: "2026-11-15T05:56:06Z"
+    last_updated_at: "2026-11-15T06:11:29Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed three handover gaps and measured all five live on four runtimes"
-    next_safe_action: "Commit worktree 392 and ask the operator before merge and push"
+    recent_action: "Merged origin main into worktree 392 and reran the full gate green"
+    next_safe_action: "Run the push of worktree 392 to origin main"
     packet_purpose: "Purpose: Pi and OpenCode refuse a question dialog while a hand-over is pending and tell the model when one is withdrawn, Codex points a compacted session at its note, and every gap that cannot be fixed is recorded with the run that shows it."
     blockers: []
     key_files:
@@ -21,14 +21,14 @@ _memory:
       - ".skilled/hooks/session-relaunch/codex/compact-pointer.mjs"
       - "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure/scratch/harness/probe.sh"
     session_dedup:
-      fingerprint: "sha256:825e1cfa377dfb79e722627e561958bfc48ad25bab99a03691d03fe8eee09760"
+      fingerprint: "sha256:cf13fe412411e737dc7d567fad9dc27f50a7da69488575148b15a2fb72384b8c"
       session_id: "scaffold-042-handover-gap-closure"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "b726ec67-1d85-4833-b219-c038e184d696"
       workspace: "/Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity"
-      savedAt: "2026-11-15T05:56:06Z"
+      savedAt: "2026-11-15T06:11:29Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

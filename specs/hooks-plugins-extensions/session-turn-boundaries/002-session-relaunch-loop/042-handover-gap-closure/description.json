@@ -6,7 +6,7 @@
     "phase",
     "handover-gap-closure"
   ],
-  "lastUpdated": "2026-11-15T05:56:06.837Z",
+  "lastUpdated": "2026-11-15T06:11:29.871Z",
   "specId": "042",
   "folderSlug": "handover-gap-closure",
   "parentChain": [
@@ -14,8 +14,9 @@
     "session-turn-boundaries",
     "002-session-relaunch-loop"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "15-11-26_06-56__measured-five-handover-gaps-live-on-pi-opencode.md"
+    "15-11-26_06-56__measured-five-handover-gaps-live-on-pi-opencode.md",
+    "15-11-26_07-11__merge-and-push-phase-042.md"
   ]
 }

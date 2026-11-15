@@ -36,6 +36,7 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | Worktree 392 with the phase 041 parity fixes was merged into main and pushed, which is the base this phase builds on. | Not stated. | None | spec.md metadata predecessor, parent phase map row 41 |
 | Q002 | Start this phase at once: measure each of the five open gaps live first, then fix only what the runs show. | Not stated. | None | REQ-004, tasks.md T002 to T005, spec.md scope |
+| Q003 | Merge origin main into the phase 042 branch, regenerate the trigger index, rerun the gate and push to origin main. | Not stated. | None | implementation-summary.md, tasks.md T012 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -82,6 +83,26 @@ Next phase now
 Answer:
 ```text
 Next phase now
+```
+
+### Q003
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01PSZc6HBebAPMLDRjbHjJUy:0 -->
+
+Question:
+```text
+Phase 042 (handover gap closure) is committed in worktree 392 as two commits on top of the phase 041 merge. Tests pass (1,564 relaunch and plugin, 67 Pi, 200 goal, 29 flag), strict validation passes 43 of 43, and the drift guards pass. origin/main has moved ahead, so a merge will need the usual trigger-index regeneration. What should happen to it?
+```
+
+Options:
+```text
+Merge and push (Recommended)
+Merge locally only
+Hold
+```
+
+Answer:
+```text
+Merge and push (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Phase 041 brought all four runtimes to a completed hop and left five gaps that no live run had exercised",
     "created_at": "2026-11-15T05:18:57Z",
-    "last_save_at": "2026-11-15T05:56:06.837Z",
+    "last_save_at": "2026-11-15T06:11:29.871Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fa8575de22c2bac4744649b1d2c9b1fed4a014c6f33f0017cb7d19f1c76b46b",
+    "source_fingerprint": "sha256:a33debd53f946a6610479f26a18b3ffd15ae8f83962743a656b187baf675bdf6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "73a75819b93025a3c9c0c81110b97a15617aaf19ea49a53834f1539f2a485ac8",
       "plan.md": "91e809c279ba820a244df67af053092644462e2e401e6b35a4c5f77d639503ec",
       "tasks.md": "32c423eda3900874919cacf92e6be47e29f02d0160887dd3abe0ff3f7617eb0a",
-      "decision-record.md": "96387fa6127ed36768290aa3622a4809550f806a325cf03714d419718a40b175",
-      "implementation-summary.md": "723f11ad6eafa033ce1639ac1ceaee136d7dbabac1db625185c320600a3f6a83"
+      "decision-record.md": "30e17239a7cc71837f7f269e3684e676a31a4f4e9cd2bff35ee9be68087ae9f4",
+      "implementation-summary.md": "bb229e8cc28ee0d9c08559587c1084b7a0f3b9c1c379be5fd1d2b4251aedd4f4"
     },
     "last_active_at": null
   }
