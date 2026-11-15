@@ -90,6 +90,7 @@ Each fix started with a reproduction that failed. The stdin test failed 4 of 5 c
 | Main's `:confirm` unsupported-executor guard is not ported | The single workflow file runs every executor kind in both modes through the script, so the guard would refuse kinds that work |
 | Main's stdin fix in the runtime scripts gives way to this branch's | Both fixed the same eager read. This branch lets the child inherit stdin, which also covers `upsert`, and the stdin test checks all four |
 | The root README's council text moves from Deep Loop to Spec Kit | The operator noted the README still listed the council under Deep Loop. The sub-section now sits in the Spec Kit section and the agent entry in the agent orchestration group |
+| A second merge brings in main's Mistral Vibe runtime | Main moved while the gates ran. The Vibe mirrors are resynced without the retired council prompt and skill link, main's Vibe fan-out refusal stays inline in both workflows, and the delegation bucket and its test pins move from 20 to 22 for the two Vibe cases main added |
 <!-- /ANCHOR:decisions -->
 
 ---
