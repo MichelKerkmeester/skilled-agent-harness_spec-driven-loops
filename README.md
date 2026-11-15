@@ -551,6 +551,14 @@ The command runs the compiled helper, so run `npm run build` in `.skilled/skills
 
 &nbsp;
 
+#### Multi AI Council
+
+Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/speckit:ai-council` binds the spec folder and dispatches it. The council is a standalone agent, not a Deep Loop mode.
+
+Different AI seats reason from different angles, then critique each other. They converge on a recommendation with the evidence behind it. The council plans only, so it never touches your implementation files. The plan and its reasoning persist as `ai-council/**` files in the packet.
+
+&nbsp;
+
 ## 7. 🔄 DEEP LOOP
 
 The Deep Loop system runs autonomous, iterative agent workflows.
@@ -652,14 +660,6 @@ It knows when it is done: it stops once findings stabilize, not after a fixed nu
 Audits your code in passes and never edits it. `/deep:review` runs `@deep-review`.
 
 Every issue is ranked P0/P1/P2 across correctness, security, traceability and maintainability, so you fix what matters first. Each critical finding is re-challenged before it sticks, which cuts false alarms. An open P0 forces another pass, and the audit must clear its quality checks before it can stop. The result is a `review-report.md` that ends in a PASS, CONDITIONAL or FAIL verdict.
-
-&nbsp;
-
-#### Multi AI Council
-
-Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/speckit:ai-council` binds the spec folder and dispatches it.
-
-Different AI seats reason from different angles, then critique each other. They converge on a recommendation with the evidence behind it. The council plans only, so it never touches your implementation files. The plan and its reasoning persist as `ai-council/**` files in the packet.
 
 For details, see the [Deep Loop Runtime README](.skilled/skills/system-deep-loop/runtime/README.md), or the [system-deep-loop README](.skilled/skills/system-deep-loop/README.md), which documents each mode.
 
@@ -1000,13 +1000,13 @@ Picks the best `sk-prompt` framework, applies DEPTH at the right energy and vali
 
 Decides values and behavior through the visual references in `sk-code-frontend`. It measures an existing surface into a Style Reference through `sk-design-md-generator`. It authors charts and diagrams through `sk-design-chart` and `sk-design-diagram`.
 
+**AI Council** - several AI strategies, one vetted plan
+
+Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and native for multi-round deliberation. Planning-only. `/speckit:ai-council` dispatches it. See [Spec Kit](#6--spec-kit).
+
 &nbsp;
 
 #### DEEP LOOP
-
-**AI Council** - several AI strategies, one vetted plan
-
-Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and native for multi-round deliberation. Planning-only. See [Deep Loop](#7--deep-loop).
 
 **Deep Research** - one research iteration at a time, state on disk
 
