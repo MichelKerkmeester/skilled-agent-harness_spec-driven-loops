@@ -960,7 +960,7 @@ Orca work routes here, not to the mcp-tooling hub, which names `cli-orca` as the
 
 ## 10. 🤖 AGENT LIBRARY
 
-11 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code, Codex, Cursor, Devin and Pi (`.<runtime>/agents/`). OpenCode reads `.opencode/agents/`, which links to the same `.skilled/agents/` source.
+11 custom specialist agents. Defined in `.skilled/agents/` (source of truth). The Codex, Pi, DSH and Mistral Vibe copies are generated from it, Claude Code keeps a hand-carried fork in `.claude/agents/`, and Cursor and Devin link to that fork. OpenCode reads `.opencode/agents/`, which links to the same `.skilled/agents/` source.
 
 &nbsp;
 
@@ -1014,7 +1014,7 @@ Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and na
 
 Executes a single LEAF pass. The `/deep:research` command owns the loop. See [Deep Loop](#7--deep-loop).
 
-**Deep Review** - audits one review pass, read-only on code
+**Deep Review** - audits one review pass and changes no code
 
 Produces `file:line` findings. The `/deep:review` command owns the loop. See [Deep Loop](#7--deep-loop).
 

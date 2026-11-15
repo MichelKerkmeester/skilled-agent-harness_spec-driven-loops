@@ -23,7 +23,7 @@ Run 2026-11-15 12:48 to 12:54 UTC in the 383 worktree, `vibe 3.1.2`, `deepseek-f
 - **The switch is required.** Since session handover became default-on for Claude Code only, a Vibe hop needs `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1` in the operator's shell before `skilled-loop vibe` starts. Without it, `prepare` refuses.
 - **The printed claim command dropped the sender's launch flags.** Fixed afterwards: `skilled-loop` now replays the extra launch flags in the manual command too, so `--trust` carries over.
   Original finding: It printed `skilled-loop vibe "<seed>"` without `--trust`. Run as printed in an untrusted checkout, the receiver would ignore `.vibe/config.toml` and `.vibe/hooks.toml`, which means Vibe's default model (off the roster) and no hooks. This hop added `--trust` by hand. In `skilled-loop`, `build_manual_command_template` replays extra arguments only in hop mode.
-- **No turn-start claim part is needed.** The receiver claimed from the seed alone, which confirms phase 019's decision 1. Decision 2, the `VIBE_SPEC_FOLDER` export, was not exercised, because no packet was bound.
+- **No turn-start claim part is needed.** The receiver claimed from the seed alone, which confirms phase 019's decision 1. Decision 2, the `VIBE_SPEC_FOLDER` export, was not exercised, because no packet was bound. A later hop with a bound packet exercised it and found that `prepare` recorded no packet for a Vibe sender. That is fixed, and the hop then carried the goal to the receiver (phase 019 T015, `019-vibe-relaunch-command-tier/scratch/bound-packet-hop/`).
 
 ## Closing the refused attempt
 

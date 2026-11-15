@@ -11,6 +11,7 @@ permission:
   grep: allow
   glob: allow
   webfetch: allow
+  websearch: allow
   chrome_devtools: deny
   browser: deny
   task: deny

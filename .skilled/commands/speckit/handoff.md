@@ -138,7 +138,8 @@ Frontmatter is flat `key: value` lines only: no nesting, no lists.
 Leave it out of the note, because a value you write is replaced or removed.
 `prepare` and `keep` also own the optional `goal_ended` field, which they write when a Claude goal was met, failed or cleared and remove any value you write by hand.
 `SESSION_HANDOVER_GOAL=0` turns both fields off, `goal_packet` and `goal_ended` alike.
-On Cursor, Devin and Vibe the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal.
+On Cursor and Devin, a receiver started from the manual command that `prepare` prints does not get the goal.
+On Vibe, `prepare` records the packet the session's goal came from, `VIBE_SPEC_FOLDER` first and then a claimed note's packet, and the receiver's session-start hook renders that goal.
 Every section must be non-empty.
 Goal states what the work is for.
 When `spec_folder` names a packet, open Goal with the packet's purpose line, `Purpose: <sentence>`, where `<sentence>` is the first sentence of that packet's purpose in its `spec.md`, copied word for word and cut to 300 characters.

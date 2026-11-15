@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6820,
-    "ok": 19134,
+    "missing-frontmatter": 6821,
+    "ok": 19155,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27581,
+  "documentsScanned": 27603,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f776456f067d706d8b8c5c4bed2eef7b590e5f9beea56bb61c52d4ca896ad22b",
+  "manifestHash": "161ed9ce25c3261fc6bfe2b8126824b83dd483e29778034d238e95131d5538b6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44060,
+      "ok": 44084,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -34621,6 +34621,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research/ai-council/ai-council-strategy.md",
       "reason": "no opening frontmatter delimiter"
@@ -53558,6 +53564,22 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/021-vibe-budget-default/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/023-agent-docs-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/scratch",
       "reason": "excluded directory"
     },
     {

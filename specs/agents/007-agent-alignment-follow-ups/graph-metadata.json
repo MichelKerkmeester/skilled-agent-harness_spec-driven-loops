@@ -24,7 +24,11 @@
     "agents/007-agent-alignment-follow-ups/018-research-duration-check",
     "agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check",
     "agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research",
-    "agents/007-agent-alignment-follow-ups/021-vibe-budget-default"
+    "agents/007-agent-alignment-follow-ups/021-vibe-budget-default",
+    "agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks",
+    "agents/007-agent-alignment-follow-ups/023-agent-docs-fixes",
+    "agents/007-agent-alignment-follow-ups/024-terminal-gates-script",
+    "agents/007-agent-alignment-follow-ups/025-stop-path-live-proof"
   ],
   "manual": {
     "depends_on": [],
@@ -51,7 +55,7 @@
       "agents"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "scratch/agent-review/finding-to-phase.tsv",
@@ -180,18 +184,18 @@
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-15T16:21:01.537Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T18:28:35.653Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:bc31161bd3f6c34b4b13cd974773c0cc99d7065f32957e2b92b6482e3450dc62",
+    "source_fingerprint": "sha256:22b707c037bc231f382aebd74a21be047d6cb80720537a1f83e1ac44407f0497",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "953a232b2a1694d30ee76581b33f0d0363aa1663fdb6a4727d3126c64ae581c1"
+      "spec.md": "1d1052033e660008c6436ff383dc4844918cc3718e187febefb3bf44996290df"
     },
-    "last_active_child_id": "agents/007-agent-alignment-follow-ups/021-vibe-budget-default",
-    "last_active_at": "2026-11-15T16:20:20.266Z"
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/025-stop-path-live-proof",
+    "last_active_at": "2026-11-15T18:28:35.653Z"
   }
 }

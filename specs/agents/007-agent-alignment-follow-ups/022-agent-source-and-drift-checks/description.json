@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks",
+  "description": "Phase 22: agent-source-and-drift-checks",
+  "keywords": [
+    "phase",
+    "agent-source-and-drift-checks"
+  ],
+  "lastUpdated": "2026-11-15T17:44:29.706Z",
+  "specId": "022",
+  "folderSlug": "agent-source-and-drift-checks",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_18-44__phase-22-built-the-roster-check-reads-the-source.md"
+  ]
+}

@@ -146,6 +146,10 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 19 | 019-vibe-agent-sync-check/ | Regenerate the two stale Vibe agent profiles and add the three Vibe drift checks to CI | Complete |
 | 20 | 020-agent-docs-alignment-research/ | Run five deep-research iterations on whether the READMEs and docs across the repo describe the current agents correctly | Complete |
 | 21 | 021-vibe-budget-default/ | Make a Mistral Vibe lineage bill the Vibe budget by default, count a budget refusal as a quota stop, and update the Mistral docs | Complete |
+| 22 | 022-agent-source-and-drift-checks/ | Make the roster check and playbook sandboxes able to fail, and settle the deep-research search grant and the markdown mode | Complete |
+| 23 | 023-agent-docs-fixes/ | Fix every phase 20 doc finding that phase 22 left | Complete |
+| 24 | 024-terminal-gates-script/ | Compute the deep-review terminal gates with a script and record its result | Complete |
+| 25 | 025-stop-path-live-proof/ | Prove each review stop reason reaches the recorded gates and the verdict | Complete |
 
 ### Phase Transition Rules
 
@@ -178,6 +182,10 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 018-research-duration-check | 019-vibe-agent-sync-check | The research duration check runs on every pass | `workflow-max-duration.vitest.ts` passes |
 | 019-vibe-agent-sync-check | 020-agent-docs-alignment-research | The Vibe mirrors match their sources and CI checks them | `sync-agents-vibe.cjs --check` exits 0 |
 | 020-agent-docs-alignment-research | 021-vibe-budget-default | Run findings V1 and V2 are recorded with evidence | `research/research.md` §7 lists V1 and V2 as merge-verified |
+| 021-vibe-budget-default | 022-agent-source-and-drift-checks | Mistral lineages bill the Vibe budget | Runtime suite 3,024 passed |
+| 022-agent-source-and-drift-checks | 023-agent-docs-fixes | Every agent tree is checked and the two agent decisions are carried | Roster check prints eight OK rows |
+| 023-agent-docs-fixes | 024-terminal-gates-script | Every phase 20 doc finding is closed | The implementation summary lists each outcome |
+| 024-terminal-gates-script | 025-stop-path-live-proof | The terminal gates are computed from state | `terminal-gates.vitest.ts` passes and the workflow runs the script |
 <!-- /ANCHOR:phase-map -->
 
 ---

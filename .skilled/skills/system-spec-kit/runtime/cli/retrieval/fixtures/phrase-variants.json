@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f776456f067d706d8b8c5c4bed2eef7b590e5f9beea56bb61c52d4ca896ad22b",
+  "manifestHash": "161ed9ce25c3261fc6bfe2b8126824b83dd483e29778034d238e95131d5538b6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4667,6 +4667,9 @@
     "021 stress test wiring": [
       "021 stress test wiring"
     ],
+    "021 vibe budget default operator decisions": [
+      "021-vibe-budget-default operator decisions"
+    ],
     "022": [
       "022"
     ],
@@ -4856,6 +4859,9 @@
     ],
     "022 014 tasks": [
       "022/014 tasks"
+    ],
+    "022 agent source and drift checks operator decisions": [
+      "022-agent-source-and-drift-checks operator decisions"
     ],
     "022 arc closure": [
       "022 arc closure"
@@ -5066,6 +5072,9 @@
     ],
     "024 launcher lease integration test": [
       "024-launcher-lease-integration-test"
+    ],
+    "024 terminal gates script operator decisions": [
+      "024-terminal-gates-script operator decisions"
     ],
     "025 artifact certificate binding complete": [
       "025 artifact certificate binding complete"
@@ -10151,6 +10160,18 @@
     "agent docs alignment research tasks": [
       "agent docs alignment research tasks"
     ],
+    "agent docs fixes": [
+      "agent docs fixes"
+    ],
+    "agent docs fixes implementation summary": [
+      "agent docs fixes implementation summary"
+    ],
+    "agent docs fixes plan": [
+      "agent docs fixes plan"
+    ],
+    "agent docs fixes tasks": [
+      "agent docs fixes tasks"
+    ],
     "agent emphasis register": [
       "agent emphasis register"
     ],
@@ -10589,6 +10610,18 @@
     ],
     "agent safe output flag": [
       "agent-safe output flag"
+    ],
+    "agent source and drift checks": [
+      "agent source and drift checks"
+    ],
+    "agent source and drift checks implementation summary": [
+      "agent source and drift checks implementation summary"
+    ],
+    "agent source and drift checks plan": [
+      "agent source and drift checks plan"
+    ],
+    "agent source and drift checks tasks": [
+      "agent source and drift checks tasks"
     ],
     "agent spec authoring contract": [
       "agent spec authoring contract"
@@ -82688,6 +82721,9 @@
     "phase 22 advisor routing and local install": [
       "phase 22 advisor routing and local install"
     ],
+    "phase 22 agent source and drift checks": [
+      "phase 22 agent source and drift checks"
+    ],
     "phase 22 align system spec kit": [
       "phase 22 align system spec kit"
     ],
@@ -82717,6 +82753,9 @@
     ],
     "phase 22 vibe hook playbook and live scenarios": [
       "phase 22 vibe hook playbook and live scenarios"
+    ],
+    "phase 23 agent docs fixes": [
+      "phase 23 agent docs fixes"
     ],
     "phase 23 ci sparse big suites": [
       "phase 23 ci sparse big suites"
@@ -82757,6 +82796,9 @@
     "phase 24 tasks": [
       "phase 24 tasks"
     ],
+    "phase 24 terminal gates script": [
+      "phase 24 terminal gates script"
+    ],
     "phase 24 typed command ambiguity": [
       "phase 24 typed command ambiguity"
     ],
@@ -82774,6 +82816,9 @@
     ],
     "phase 25 goal binding record and launcher": [
       "phase 25 goal binding record and launcher"
+    ],
+    "phase 25 stop path live proof": [
+      "phase 25 stop path live proof"
     ],
     "phase 26 alignment findings fixes": [
       "phase 26 alignment findings fixes"
@@ -119860,6 +119905,21 @@
     "stop park notices tasks": [
       "stop park notices tasks"
     ],
+    "stop path live proof": [
+      "stop path live proof"
+    ],
+    "stop path live proof implementation summary": [
+      "stop path live proof implementation summary"
+    ],
+    "stop path live proof plan": [
+      "stop path live proof plan"
+    ],
+    "stop path live proof review report": [
+      "stop path live proof review report"
+    ],
+    "stop path live proof tasks": [
+      "stop path live proof tasks"
+    ],
     "stop policy event name": [
       "stop policy event name"
     ],
@@ -124731,6 +124791,18 @@
     ],
     "terminal external binary segment": [
       "terminal external-binary segment"
+    ],
+    "terminal gates script": [
+      "terminal gates script"
+    ],
+    "terminal gates script implementation summary": [
+      "terminal gates script implementation summary"
+    ],
+    "terminal gates script plan": [
+      "terminal gates script plan"
+    ],
+    "terminal gates script tasks": [
+      "terminal gates script tasks"
     ],
     "terminal proof decisions": [
       "terminal proof decisions"

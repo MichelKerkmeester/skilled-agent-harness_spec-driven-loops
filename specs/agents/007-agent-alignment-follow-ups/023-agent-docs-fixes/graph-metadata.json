@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/023-agent-docs-fixes",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/023-agent-docs-fixes",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent docs fixes",
+      "phase 23 agent docs fixes",
+      "agent docs fixes plan",
+      "agent docs fixes tasks",
+      "agent docs fixes implementation summary"
+    ],
+    "key_topics": [
+      "agent",
+      "docs",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "root",
+      "readme",
+      "crosswalk",
+      "cross-cli",
+      "agents"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/agents/README.txt",
+      ".vibe/SYNC.md",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".skilled/CROSS-CLI.md",
+      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      ".skilled/bin/check-agent-mirror-sync.cjs",
+      ".skilled/commands/doctor/scripts/README.markdown",
+      ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".vibe/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/README.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-mirrors.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Text",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow None",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root README, the crosswalk, `CROSS-CLI.md`, the agents README and both deep-loop skills name six or fewer agent trees, while eight ship the agents",
+    "created_at": "2026-11-15T17:32:06Z",
+    "last_save_at": "2026-11-15T17:50:57.995Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:85e39686c90aaf9d0c4c2f52a5e431eb58eed333998d35a2f99b2037f8cc474d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "047a3690620d5c482d18f118b31814cad659677ed1b3796116276c46ac45f87c",
+      "plan.md": "da4720ee61b8e51ffaee8c3f32ad04afedba899e5f09e52fc3f6b4269d70482d",
+      "tasks.md": "1fa2485fd24b1e74369ac551567b2829a1d8238e1e8a8df9a75e80c44375f067",
+      "implementation-summary.md": "32ed23fd2a2d460326b3cc91b27e890351d6f1b11de555eb493cb3f72a0374e6"
+    },
+    "last_active_at": null
+  }
+}

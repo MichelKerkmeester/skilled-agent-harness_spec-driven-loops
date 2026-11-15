@@ -14,13 +14,13 @@ The preflight turn's check records two facts: `no-relaunch-cli-in-project`, and 
 
 Run these in a terminal at the repository root, with `MISTRAL_API_KEY` exported and a `vibe` binary on `PATH`.
 
-1. Turn session handover on for Vibe, and keep the session-start self-heal from rebuilding builds mid-test: `export SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1 SPECKIT_DIST_AUTO_REBUILD=0`. Without the first switch, `prepare` refuses, because handover is default-on for Claude Code only.
+1. Turn session handover on for Vibe, and keep the session-start self-heal from rebuilding builds mid-test: `export SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1 SPECKIT_DIST_AUTO_REBUILD=0`. Without the first switch, `prepare` refuses, because handover is default-on for Claude Code only. For the goal check, also export `VIBE_SPEC_FOLDER` naming a packet that holds a `goal.md`. In a shell that an agent session started, clear its `SKILLED_LOOP_*` variables first, or `prepare` reads the other runtime's loop.
 2. Start the loop: `bash .skilled/bin/skilled-loop vibe --trust`. The `--trust` flag lets an untrusted checkout load its own `.vibe/config.toml` and `.vibe/hooks.toml`.
 3. Ask the session to hand itself over. Vibe has no command loader, so say it in words: `Read .skilled/commands/speckit/handoff.md and follow it now for this Vibe session.`
-4. Approve its shell calls as they come. The session writes the note, runs `prepare --runtime vibe` and prints `STATUS=OK RESULT=manual` with one `skilled-loop vibe "<seed>"` claim command. Copy that command.
-5. Exit the session with `/exit`. The wrapper exits too and prints no claim line, because a manual result leaves no pending record.
-6. Run the copied claim command with `--trust` added after `vibe`. The printed command leaves out the sender's launch flags, and without `--trust` the receiver ignores the checkout's Vibe config.
-7. In the fresh session, confirm that the receiver claims the note from the seed, reads its Goal and Remaining work sections, and continues the work.
+4. Approve its shell calls as they come. The session writes the note and runs `prepare --runtime vibe`, which prints `STATUS=OK`. Under `skilled-loop` the result reads `RESULT=prepared`, because the automatic tier can arm the record; a hand-typed handoff still ends on the claim command. With a packet bound, the note gains `goal_packet`.
+5. Exit the session with `/exit`. The wrapper prints one `skilled-loop vibe "<seed>" '--trust'` claim command. Copy it.
+6. For the goal check, `unset VIBE_SPEC_FOLDER SESSION_HANDOVER_GOAL_PACKET`, so only the claimed note can supply the packet. Run the copied claim command as printed. It keeps the sender's launch flags, so `--trust` carries over.
+7. In the fresh session, confirm that the receiver claims the note from the seed, reads its Goal and Remaining work sections, and continues the work. With a packet bound, its first input carries the packet's goal slice as hook context: search the session's journal under the Vibe home for `# Goal:`.
 8. Run `node .skilled/hooks/session-handover/bin/session-handover.cjs history` and confirm a `claimed` line whose runtime column is `vibe`.
 9. Record the prepare line, the exit, the claim command, the claim output and the history line beside this file as `hop-record.md`.
 
