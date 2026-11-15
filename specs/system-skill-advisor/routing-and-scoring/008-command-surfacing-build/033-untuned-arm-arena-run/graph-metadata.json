@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The behaviour summary over the tuned 007 rows prints a before and an after start rate on six runtimes, but those rows were tuned while the advisor was built, so they cannot show that the brief helps on prompts nobody saw",
     "created_at": "2026-11-15T23:21:04Z",
-    "last_save_at": "2026-11-15T23:26:06.118Z",
+    "last_save_at": "2026-11-15T23:29:21.711Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1b82ebc7c03606faee637fbfcab2fde8c6a2187f71bea325f74f024d9a15b9b",
+    "source_fingerprint": "sha256:34035c72a767410469b336060feca9cbc73e845cf9f2a27442c82bf2b4be015a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "30eeda9120e55973ac261f4363161c9974c783ba56a13c8033ec4d995fb33b19",
       "plan.md": "2a08b66c40eee38fa07397fb389a4a58badf0680d14d6fa195127b1bdc3b3a50",
-      "tasks.md": "b6e6d3ef078bf7481e00408c19bcf6552fad9ce7ea3141aeadc131e8f8131a74",
+      "tasks.md": "f858f796dd4a924113ee001a0cb60fa960a27cdceff4d299273f79f968c16367",
       "implementation-summary.md": "bfa43dd872205b8c933faa69ee7a3954cc9321ca0ef0dd597e5466be91c0314b"
     },
     "last_active_at": null
