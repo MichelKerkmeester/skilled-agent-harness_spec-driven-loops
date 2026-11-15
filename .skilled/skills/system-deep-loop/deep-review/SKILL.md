@@ -181,8 +181,8 @@ An unconverted out-of-scale severity reaches the cross-lineage merge unranked, w
 
 | Verdict | Condition |
 |---------|-----------|
-| **PASS** | No P0/P1 findings, P2 findings recorded as advisories (`hasAdvisories: true`) |
-| **CONDITIONAL** | P1 findings present, remediation plan included in report |
+| **PASS** | No P0/P1 findings and no open search debt, P2 findings recorded as advisories (`hasAdvisories: true`) |
+| **CONDITIONAL** | P1 findings present, or open search debt remains, with remediation plan included in report |
 | **FAIL** | Any P0 finding confirmed after adversarial self-check, or a required quality gate (evidence, scope, coverage) still failing at the terminal stop |
 
 ### Acceptance-Coverage Signal

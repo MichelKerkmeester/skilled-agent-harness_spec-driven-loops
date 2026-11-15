@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a29a1f89871f3fbd162b0dbf5908775b0f29a3a5ddd23568003cc00ab421d116",
+  "corpusHash": "112bbe98d59443ded73bad8fd4268eccc6bd80387f5001f32aa253ae430583e0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27725,
+  "includedPathCount": 27748,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7904,6 +7904,7 @@
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md",
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md",
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md",
     ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md",
     ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md",
     ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
@@ -9569,6 +9570,24 @@
     "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/decision-record.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -12157,6 +12176,10 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/fanout-attribution.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-dashboard.md",
@@ -27757,7 +27780,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4e1da3dea78b10932d955d08e8e65c69f41b1f43ba51aaefeddc7716df9c27b6",
+  "manifestHash": "10270cc00e7c44f0da4c365f0d886e08a05f8ea1b093d9c5ab1f8b8238476fc3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28993,6 +29016,22 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/scratch",
       "reason": "excluded directory"
     },
     {
@@ -31525,6 +31564,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/scratch",
       "reason": "excluded directory"
     },
     {

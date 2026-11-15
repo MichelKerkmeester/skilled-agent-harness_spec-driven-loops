@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6845,
-    "ok": 19253,
+    "missing-frontmatter": 6846,
+    "ok": 19275,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27725,
+  "documentsScanned": 27748,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4e1da3dea78b10932d955d08e8e65c69f41b1f43ba51aaefeddc7716df9c27b6",
+  "manifestHash": "10270cc00e7c44f0da4c365f0d886e08a05f8ea1b093d9c5ab1f8b8238476fc3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44212,
+      "ok": 44241,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -31774,6 +31774,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-deep-loop/deep-review/scripts/tests/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -53743,6 +53749,22 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/agents/007-agent-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
@@ -56272,6 +56294,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/scratch",
       "reason": "excluded directory"
     },
     {

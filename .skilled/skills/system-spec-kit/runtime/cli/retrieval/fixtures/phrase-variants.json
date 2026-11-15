@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4e1da3dea78b10932d955d08e8e65c69f41b1f43ba51aaefeddc7716df9c27b6",
+  "manifestHash": "10270cc00e7c44f0da4c365f0d886e08a05f8ea1b093d9c5ab1f8b8238476fc3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1803,6 +1803,9 @@
     ],
     "006 test cycle speed operator decisions": [
       "006-test-cycle-speed operator decisions"
+    ],
+    "007 agent alignment follow ups operator decisions": [
+      "007-agent-alignment-follow-ups operator decisions"
     ],
     "007 agents implementation summary": [
       "007-agents implementation summary"
@@ -6649,6 +6652,9 @@
     ],
     "031 findings fixes": [
       "031 findings fixes"
+    ],
+    "031 search debt verdict operator decisions": [
+      "031-search-debt-verdict operator decisions"
     ],
     "032 035 deferred items": [
       "032 035 deferred items"
@@ -12062,6 +12068,9 @@
     ],
     "api call trace": [
       "api call trace"
+    ],
+    "api keys in transcripts": [
+      "api keys in transcripts"
     ],
     "api ready prompt structure": [
       "api-ready prompt structure"
@@ -58748,6 +58757,18 @@
     "history rewrite tasks": [
       "history rewrite tasks"
     ],
+    "history secret redaction": [
+      "history secret redaction"
+    ],
+    "history secret redaction implementation summary": [
+      "history secret redaction implementation summary"
+    ],
+    "history secret redaction plan": [
+      "history secret redaction plan"
+    ],
+    "history secret redaction tasks": [
+      "history secret redaction tasks"
+    ],
     "history test database env": [
       "history test database env"
     ],
@@ -81776,6 +81797,9 @@
     "phase 10 goal ending carry": [
       "phase 10 goal ending carry"
     ],
+    "phase 10 history secret redaction": [
+      "phase 10 history secret redaction"
+    ],
     "phase 10 hub registration and routing": [
       "phase 10 hub registration and routing"
     ],
@@ -83171,6 +83195,9 @@
     "phase 30 opencode2 killer target": [
       "phase 30 opencode2 killer target"
     ],
+    "phase 30 review count source": [
+      "phase 30 review count source"
+    ],
     "phase 31 epic review fixes": [
       "phase 31 epic review fixes"
     ],
@@ -83179,6 +83206,9 @@
     ],
     "phase 31 relaunch model and effort": [
       "phase 31 relaunch model and effort"
+    ],
+    "phase 31 search debt verdict": [
+      "phase 31 search debt verdict"
     ],
     "phase 32 epic follow up review": [
       "phase 32 epic follow up review"
@@ -83189,11 +83219,17 @@
     "phase 32 plugin tests ci and stale bundles": [
       "phase 32 plugin tests ci and stale bundles"
     ],
+    "phase 32 traceability reserve iteration": [
+      "phase 32 traceability reserve iteration"
+    ],
     "phase 33 battery mcp prompt commands": [
       "phase 33 battery mcp prompt commands"
     ],
     "phase 33 follow up review fixes": [
       "phase 33 follow up review fixes"
+    ],
+    "phase 33 zero iteration report": [
+      "phase 33 zero iteration report"
     ],
     "phase 35 v2 bridge plugin effects": [
       "phase 35 v2 bridge plugin effects"
@@ -92107,6 +92143,9 @@
     "red then green vitest": [
       "red then green vitest"
     ],
+    "redact secrets from history lookup": [
+      "redact secrets from history lookup"
+    ],
     "reddit audit plan": [
       "reddit audit plan"
     ],
@@ -98358,6 +98397,18 @@
     "review core reference": [
       "review-core reference"
     ],
+    "review count source": [
+      "review count source"
+    ],
+    "review count source implementation summary": [
+      "review count source implementation summary"
+    ],
+    "review count source plan": [
+      "review count source plan"
+    ],
+    "review count source tasks": [
+      "review count source tasks"
+    ],
     "review coverage ledger": [
       "review coverage ledger"
     ],
@@ -103349,6 +103400,18 @@
     ],
     "search command runs the ripgrep wrapper": [
       "search command runs the ripgrep wrapper"
+    ],
+    "search debt verdict": [
+      "search debt verdict"
+    ],
+    "search debt verdict implementation summary": [
+      "search debt verdict implementation summary"
+    ],
+    "search debt verdict plan": [
+      "search debt verdict plan"
+    ],
+    "search debt verdict tasks": [
+      "search debt verdict tasks"
     ],
     "search decision envelope": [
       "search decision envelope"
@@ -126445,6 +126508,18 @@
     "traceability precedence fixed": [
       "traceability precedence fixed"
     ],
+    "traceability reserve iteration": [
+      "traceability reserve iteration"
+    ],
+    "traceability reserve iteration implementation summary": [
+      "traceability reserve iteration implementation summary"
+    ],
+    "traceability reserve iteration plan": [
+      "traceability reserve iteration plan"
+    ],
+    "traceability reserve iteration tasks": [
+      "traceability reserve iteration tasks"
+    ],
     "traceabilitychecks": [
       "traceabilityChecks"
     ],
@@ -133535,6 +133610,18 @@
     ],
     "zero hit fallback criteria": [
       "zero hit fallback criteria"
+    ],
+    "zero iteration report": [
+      "zero iteration report"
+    ],
+    "zero iteration report implementation summary": [
+      "zero iteration report implementation summary"
+    ],
+    "zero iteration report plan": [
+      "zero iteration report plan"
+    ],
+    "zero iteration report tasks": [
+      "zero iteration report tasks"
     ],
     "zero javascript diff report": [
       "zero javascript diff report",

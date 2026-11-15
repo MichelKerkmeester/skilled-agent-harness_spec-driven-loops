@@ -379,6 +379,40 @@ describe('review stop path', () => {
     expect(recorded[0]).toMatchObject({ stopReason: 'maxDurationReached' });
   }, 240_000);
 
+  it('names the core protocol the stop still owes as a stop input', () => {
+    const run = createReviewRun();
+    appendRow(run, runOpenRow(run), 'run-open');
+    appendRow(run, iterationRow(run, 1, 'complete'), 'iteration-1');
+
+    // The recorded results leave one core protocol partial, so the stop has to
+    // name it for the last iteration to steer to before the cap is reached.
+    const config = JSON.parse(readFileSync(run.configPath, 'utf8')) as Record<string, unknown>;
+    config.crossReference = { core: ['spec_code', 'checklist_evidence'] };
+    writeFileSync(run.configPath, JSON.stringify(config), 'utf8');
+    const registry = JSON.parse(readFileSync(run.registryPath, 'utf8')) as Record<string, unknown>;
+    registry.traceability = {
+      results: [
+        { protocolId: 'spec_code', status: 'partial' },
+        { protocolId: 'checklist_evidence', status: 'pass' },
+      ],
+    };
+    writeFileSync(run.registryPath, JSON.stringify(registry), 'utf8');
+
+    const namespace = uniqueNamespace('convergence', 'review');
+    const decision = runScript('convergence', [
+      ...namespaceArgs(namespace),
+      '--stop-decision',
+      '--config-path', run.configPath,
+      '--state-log', run.stateLogPath,
+      '--registry-path', run.registryPath,
+    ]);
+    expect(decision.exitCode, decision.stderr).toBe(0);
+    const stopDecision = decision.json.stop_decision as {
+      inputs: { review: { unfinishedCoreProtocols: string[] } };
+    };
+    expect(stopDecision.inputs.review.unfinishedCoreProtocols).toEqual(['spec_code']);
+  }, 240_000);
+
   it('keeps the verdict off FAIL for a manual stop whose gates all pass', () => {
     const run = createReviewRun();
     appendRow(run, runOpenRow(run), 'run-open');

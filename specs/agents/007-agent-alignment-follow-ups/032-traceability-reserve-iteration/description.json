@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration",
+  "description": "Phase 32: traceability-reserve-iteration",
+  "keywords": [
+    "phase",
+    "traceability-reserve-iteration"
+  ],
+  "lastUpdated": "2026-11-15T21:03:55.992Z",
+  "specId": "032",
+  "folderSlug": "traceability-reserve-iteration",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_22-03__phase-032-built-unfinished-core-traceability.md"
+  ]
+}

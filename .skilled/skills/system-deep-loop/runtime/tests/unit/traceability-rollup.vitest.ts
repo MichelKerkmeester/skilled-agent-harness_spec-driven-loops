@@ -218,14 +218,24 @@ describe('buildTraceabilityRollup', () => {
     expect(rollup.summary).toMatchObject({ pass: 1, executed: 1, gatingFailures: 0 });
   });
 
-  it('takes the latest result when a later pass re-runs the protocol', () => {
+  it('takes the latest result when a later pass reruns the protocol with evidence', () => {
+    const rollup = buildTraceabilityRollup([
+      { traceabilityChecks: { spec_code: 'partial' } },
+      { traceabilityChecks: { spec_code: { status: 'pass', evidenceRefs: ['spec.md:12'] } } },
+    ]);
+
+    expect(rollup.results[0]).toMatchObject({ protocolId: 'spec_code', status: 'pass' });
+    expect(rollup.summary).toMatchObject({ partial: 0, pass: 1, gatingFailures: 0 });
+  });
+
+  it('keeps a partial verdict when the later pass records no evidence for it', () => {
     const rollup = buildTraceabilityRollup([
       { traceabilityChecks: { spec_code: 'partial' } },
       { traceabilityChecks: { spec_code: 'pass' } },
     ]);
 
-    expect(rollup.results[0]).toMatchObject({ protocolId: 'spec_code', status: 'pass' });
-    expect(rollup.summary).toMatchObject({ partial: 0, pass: 1, gatingFailures: 0 });
+    expect(rollup.results[0]).toMatchObject({ protocolId: 'spec_code', status: 'partial' });
+    expect(rollup.summary).toMatchObject({ partial: 1, pass: 0, gatingFailures: 1 });
   });
 
   it('defaults a missing gate class to the contract class so a hard protocol still gates', () => {

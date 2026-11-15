@@ -17,6 +17,7 @@ function createCloseoutFixture(
   mode: LoopMode,
   stateRecords: Record<string, unknown>[],
   registry: Record<string, unknown>,
+  activeCounts: { p0: number; p1: number; p2: number } = { p0: 0, p1: 2, p2: 0 },
 ): { artifactDir: string; eventDir: string; result: ReturnType<typeof spawnSync> } {
   const artifactDir = join(root, 'artifacts');
   const eventDir = join(root, 'events');
@@ -35,9 +36,9 @@ function createCloseoutFixture(
   const modeArgs = mode === 'research'
     ? ['--answered-count', '0', '--total-questions', '0']
     : [
-        '--active-p0', '0',
-        '--active-p1', '2',
-        '--active-p2', '0',
+        '--active-p0', String(activeCounts.p0),
+        '--active-p1', String(activeCounts.p1),
+        '--active-p2', String(activeCounts.p2),
         '--dimension-coverage', '1',
         '--verdict', 'CONDITIONAL',
         '--release-readiness-state', 'ready',
@@ -123,8 +124,8 @@ describe('synthesis-closeout latest iteration records', () => {
       };
       const fixture = createCloseoutFixture(root, 'review', [stale, latest, nextIteration], {
         openFindings: [
-          { findingId: 'R1-P1-NEW', title: 'Corrected finding', severity: 'P1' },
-          { findingId: 'R2-P1-NEW', title: 'Next iteration finding', severity: 'P1' },
+          { findingId: 'R1-P1-NEW', title: 'Corrected finding', severity: 'P1', status: 'active' },
+          { findingId: 'R2-P1-NEW', title: 'Next iteration finding', severity: 'P1', status: 'active' },
         ],
         resolvedFindings: [],
         repeatedFindings: [],
@@ -165,15 +166,15 @@ describe('synthesis-closeout latest iteration records', () => {
         },
       ], {
         openFindings: [
-          { findingId: findingA.id, title: findingA.title },
-          { findingId: findingB.id, title: findingB.title },
+          { findingId: findingA.id, title: findingA.title, severity: 'P2', status: 'active' },
+          { findingId: findingB.id, title: findingB.title, severity: 'P2', status: 'active' },
         ],
         resolvedFindings: [],
         repeatedFindings: [
           { findingId: findingA.id, title: findingA.title },
           { findingId: findingB.id, title: findingB.title },
         ],
-      });
+      }, { p0: 0, p1: 0, p2: 2 });
 
       expect(fixture.result.status, `${fixture.result.stdout}\n${fixture.result.stderr}`).toBe(0);
       const event = readSynthesisEvent(fixture.eventDir);
@@ -186,7 +187,7 @@ describe('synthesis-closeout latest iteration records', () => {
   it('detects a registry that collapses distinct findings with the same title', () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'synthesis-closeout-review-collapsed-'));
     try {
-      const registryFinding = { findingId: 'R1-P1-001', title: 'Same title' };
+      const registryFinding = { findingId: 'R1-P1-001', title: 'Same title', severity: 'P1', status: 'active' };
       const fixture = createCloseoutFixture(root, 'review', [
         {
           type: 'iteration',
@@ -201,7 +202,7 @@ describe('synthesis-closeout latest iteration records', () => {
         openFindings: [registryFinding],
         resolvedFindings: [],
         repeatedFindings: [registryFinding],
-      });
+      }, { p0: 0, p1: 1, p2: 0 });
 
       expect(fixture.result.status, `${fixture.result.stdout}\n${fixture.result.stderr}`).toBe(0);
       const event = readSynthesisEvent(fixture.eventDir);
