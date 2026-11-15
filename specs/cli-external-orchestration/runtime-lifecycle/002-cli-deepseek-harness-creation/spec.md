@@ -148,6 +148,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 20 | 020-dsh-direct-writer-gateway/ | Route the dispatch failure row, the receipt write failure row and the post-dispatch executor audit through the append gateway, so a ledger-backed state log keeps them after a refresh. It also stops the CLI entrypoints reading an unused stdin and makes every deep loop save write continuity | Complete |
 | 21 | 021-dsh-remaining-direct-writers/ | Route the `verification_degraded` row and both write-containment rows through the append gateway, so a ledger-backed state log keeps them after a refresh. It also lets the executor check read the opening row and rewords the research prompt pack's executor sentence | Complete |
 | 22 | 022-dsh-verify-iteration-executor/ | Make `verify-iteration.cjs`, the post-dispatch gate the review and research workflows run, fail a non-native iteration that names no executor with `executor_missing`. Native runs, unconfigured runs and fan-out lineages stay unchecked | Complete |
+| 23 | 023-dsh-lineage-executor-check/ | Check a fan-out lineage against the `invocation-metadata.json` the fan-out runner writes, so a CLI lineage fails with `executor_missing` when that file is missing or names another executor. It also lets `validateIterationOutputs` take the `iteration_start` row on a log with no ledger | Complete |
 
 ### Phase Transition Rules
 
@@ -181,6 +182,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 019-dsh-single-executor-hardening | 020-dsh-direct-writer-gateway | Phase 019 is committed, because phase 020 reuses its gateway helpers and its search texts match 019's text | `git show HEAD:.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts \| rg -c 'function ledgerModeFor'` prints 1 |
 | 020-dsh-direct-writer-gateway | 021-dsh-remaining-direct-writers | Phase 020 is committed, because phase 021 reuses its `appendFailureRow` | `git show HEAD:.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts \| rg -c 'function appendFailureRow'` prints 1 |
 | 021-dsh-remaining-direct-writers | 022-dsh-verify-iteration-executor | Phase 021 is in the base, because phase 022 checks the executor on the `iteration_start` row phases 019 to 021 write | `rg -c "parsed.type === .iteration_start." .skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts` prints 1 |
+| 022-dsh-verify-iteration-executor | 023-dsh-lineage-executor-check | Phase 022 is in the base, because phase 023 replaces the lineage exemption in the check it added | `rg -c "function checkExecutorProvenance" .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` prints 1 |
 <!-- /ANCHOR:phase-map -->
 
 ---

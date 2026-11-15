@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e477472a8d4ca41451622fb14dc897c0e9e48f26dbf8db324543ade04d4b0543",
+  "manifestHash": "29b88c52476584eb39d604fcc2d777e490f85bf2c2218cba29ba7a9ceb3f8f92",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -44737,6 +44737,21 @@
     "dsh lineage command": [
       "dsh lineage command"
     ],
+    "dsh lineage executor check": [
+      "dsh lineage executor check"
+    ],
+    "dsh lineage executor check goal": [
+      "dsh lineage executor check goal"
+    ],
+    "dsh lineage executor check implementation summary": [
+      "dsh lineage executor check implementation summary"
+    ],
+    "dsh lineage executor check plan": [
+      "dsh lineage executor check plan"
+    ],
+    "dsh lineage executor check tasks": [
+      "dsh lineage executor check tasks"
+    ],
     "dsh lineage leaf": [
       "dsh lineage leaf"
     ],
@@ -49328,6 +49343,12 @@
     ],
     "fan out fixed rate overrun accounting": [
       "fan-out fixed-rate overrun accounting"
+    ],
+    "fan out lineage executor check": [
+      "fan-out lineage executor check"
+    ],
+    "fan out lineage executor missing": [
+      "fan-out lineage executor_missing"
     ],
     "fan out lineage pwd": [
       "fan-out lineage pwd"
@@ -61508,6 +61529,9 @@
     "invert resolver registry": [
       "invert resolver registry"
     ],
+    "invocation metadata executor gate": [
+      "invocation metadata executor gate"
+    ],
     "invocation pattern column": [
       "invocation pattern column"
     ],
@@ -64718,6 +64742,12 @@
     ],
     "lineage executor schema": [
       "lineage executor schema"
+    ],
+    "lineage invocation metadata executor check": [
+      "lineage invocation metadata executor check"
+    ],
+    "lineage invocation metadata plan": [
+      "lineage invocation metadata plan"
     ],
     "lineage iteration count": [
       "lineage iteration count"
@@ -82519,6 +82549,9 @@
     ],
     "phase 23 deep review remediation": [
       "phase 23 deep review remediation"
+    ],
+    "phase 23 dsh lineage executor check": [
+      "phase 23 dsh lineage executor check"
     ],
     "phase 23 epic review doc fixes": [
       "phase 23 epic review doc fixes"
@@ -121401,6 +121434,9 @@
     "system deep loop 2 0 1 0": [
       "system-deep-loop 2.0.1.0"
     ],
+    "system deep loop 2 0 2 0": [
+      "system-deep-loop 2.0.2.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -121619,6 +121655,9 @@
     ],
     "system deep loop v2 0 1 0": [
       "system-deep-loop v2.0.1.0"
+    ],
+    "system deep loop v2 0 2 0": [
+      "system-deep-loop v2.0.2.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"

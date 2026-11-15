@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c13a6ec2bd2caa1fb4de3fb584575dcd470225ea488092ccc1738c7ab93d1cd7",
+  "corpusHash": "dd797917fccd64ff959886102db6080202ad7d3862bf0fbd742193a6eb608116",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27501,
+  "includedPathCount": 27507,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7605,6 +7605,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.9.0.md",
     ".skilled/skills/system-deep-loop/changelog/v2.0.0.0.md",
     ".skilled/skills/system-deep-loop/changelog/v2.0.1.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.0.2.0.md",
     ".skilled/skills/system-deep-loop/deep-research/README.md",
     ".skilled/skills/system-deep-loop/deep-research/ROUTER.md",
     ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
@@ -10686,6 +10687,11 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/022-dsh-verify-iteration-executor/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/022-dsh-verify-iteration-executor/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/022-dsh-verify-iteration-executor/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -27533,7 +27539,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e477472a8d4ca41451622fb14dc897c0e9e48f26dbf8db324543ade04d4b0543",
+  "manifestHash": "29b88c52476584eb39d604fcc2d777e490f85bf2c2218cba29ba7a9ceb3f8f92",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29973,6 +29979,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/022-dsh-verify-iteration-executor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/scratch",
       "reason": "excluded directory"
     },
     {

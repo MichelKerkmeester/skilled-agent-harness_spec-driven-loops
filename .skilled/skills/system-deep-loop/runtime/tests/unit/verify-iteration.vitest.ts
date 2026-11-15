@@ -831,14 +831,44 @@ describe('verify-iteration executor provenance', () => {
     expect(verify('review', reviewRun('no-config', null, [reviewRecord(1)]), 1).ok).toBe(true);
   });
 
-  it('exempts a fan-out lineage, which runs its iterations inline with no executor row', () => {
-    expect(verify('review', reviewRun('review', nonNative, [reviewRecord(1)]), 1).reason).toBe('executor_missing');
-    expect(verify('review', reviewRun('review/lineages/luna', nonNative, [reviewRecord(1)]), 1).ok).toBe(true);
+  // A fan-out lineage runs its iterations inline with no executor row, so the gate
+  // reads the invocation metadata the fan-out runner writes before it spawns one.
+  function writeInvocationMetadata(dir: string, effectiveConfig: Record<string, unknown> | null) {
+    fs.writeFileSync(path.join(dir, 'invocation-metadata.json'), `${JSON.stringify({ effectiveConfig, invocationFingerprint: 'inv:test' })}\n`);
+  }
+
+  it('passes a fan-out lineage whose invocation metadata names the configured executor', () => {
+    const underLineages = reviewRun('review/lineages/luna', nonNative, [reviewRecord(1)]);
     const overridden = reviewRun('elsewhere', { ...nonNative, fanout_lineage_artifact_dir: 'specs/x/review/lineages/luna' }, [reviewRecord(1)]);
-    expect(verify('review', overridden, 1).ok).toBe(true);
     const flagged = reviewRun('flagged', nonNative, [reviewRecord(1)]);
-    expect(verify('review', flagged, 1).reason).toBe('executor_missing');
     process.env.SPECKIT_FANOUT_LINEAGE_ID = 'luna';
-    expect(verify('review', flagged, 1).ok).toBe(true);
+    for (const dir of [underLineages, overridden, flagged]) {
+      expect(verify('review', dir, 1).reason).toBe('executor_missing');
+      writeInvocationMetadata(dir, { kind: executor.kind, model: executor.model });
+      expect(verify('review', dir, 1).ok).toBe(true);
+    }
+  });
+
+  it('fails a fan-out lineage whose invocation metadata is missing or names no matching executor', () => {
+    const dir = reviewRun('review/lineages/luna', nonNative, [reviewRecord(1)]);
+    const missing = verify('review', dir, 1);
+    expect(missing.reason).toBe('executor_missing');
+    expect(missing.detail).toContain('invocation-metadata.json');
+    writeInvocationMetadata(dir, null);
+    expect(verify('review', dir, 1).reason).toBe('executor_missing');
+    writeInvocationMetadata(dir, { model: executor.model });
+    expect(verify('review', dir, 1).reason).toBe('executor_missing');
+    fs.writeFileSync(path.join(dir, 'invocation-metadata.json'), '{not json\n');
+    expect(verify('review', dir, 1).reason).toBe('executor_missing');
+    writeInvocationMetadata(dir, { kind: 'cli-codex' });
+    const other = verify('review', dir, 1);
+    expect(other.reason).toBe('executor_missing');
+    expect(other.detail).toContain("names 'cli-codex'");
+  });
+
+  it('leaves a native lineage and a lineage with no executor block unchecked', () => {
+    expect(verify('review', reviewRun('review/lineages/cli', nonNative, [reviewRecord(1)]), 1).reason).toBe('executor_missing');
+    expect(verify('review', reviewRun('review/lineages/native', { executor: { kind: 'native' } }, [reviewRecord(1)]), 1).ok).toBe(true);
+    expect(verify('review', reviewRun('review/lineages/no-block', { mode: 'review' }, [reviewRecord(1)]), 1).ok).toBe(true);
   });
 });
