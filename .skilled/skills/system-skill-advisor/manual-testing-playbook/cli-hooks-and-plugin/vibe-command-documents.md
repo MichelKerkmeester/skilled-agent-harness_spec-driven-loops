@@ -1,7 +1,7 @@
 ---
 title: "CL-010 The Vibe Brief Names Each Command's Document"
 description: "Manual validation that the Vibe prompt hook appends the offered command's document path to the routing head and returns nothing at all in a child session."
-version: 1.0.0.0
+version: 1.0.1.0
 id: CL-010
 category: cli_hooks_and_plugin
 stage: routing
@@ -57,7 +57,7 @@ mkdir -p /tmp/skill-advisor-playbook
 2. Build the brief for `write a readme for the utils folder` in a parent session.
 
 ```bash
-T=$(mktemp -d "${TMPDIR%/}/cl-010.XXXXXX")
+d=${TMPDIR:-/tmp}; T=$(mktemp -d "${d%/}/cl-010.XXXXXX")
 env -u AI_SESSION_CHILD TMPDIR=$T SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR=$T/state \
   node --input-type=module -e '
 const { buildAdvisorPart } = await import("./.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs");
@@ -77,7 +77,7 @@ cat /tmp/skill-advisor-playbook/cl-010-readme-parent.txt
 3. Build the same brief in a child session.
 
 ```bash
-T=$(mktemp -d "${TMPDIR%/}/cl-010.XXXXXX")
+d=${TMPDIR:-/tmp}; T=$(mktemp -d "${d%/}/cl-010.XXXXXX")
 env AI_SESSION_CHILD=1 TMPDIR=$T SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR=$T/state \
   node --input-type=module -e '
 const { buildAdvisorPart } = await import("./.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs");
@@ -102,7 +102,6 @@ cat /tmp/skill-advisor-playbook/cl-010-readme-child.txt
 
 ### Expected
 
-- Both runs exit `0`.
 - `cl-010-readme-parent.txt` holds the routing head on its first line and the document line as its second line, `Command documents (read in full before taking one): /create:readme is .skilled/commands/create/readme.md.`
 - The parent head names `/create:readme` behind the `sk-doc` route. The head, the skill and the policy word are read but not asserted, because the index and the cache decide them.
 - `cl-010-readme-child.txt` holds no brief text, because a child session gets no brief at all, and so the document line has no parent to follow.

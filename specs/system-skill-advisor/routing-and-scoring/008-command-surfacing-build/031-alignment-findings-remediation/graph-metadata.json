@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The branch ships the Vibe runtime rows, but the command-reference validator rejects the `.vibe/agents/` row this branch added and no CI job checks a Vibe mirror, so a Vibe drift can merge with every check green",
     "created_at": "2026-11-15T14:27:31Z",
-    "last_save_at": "2026-11-15T15:51:05.281Z",
+    "last_save_at": "2026-11-15T16:08:55.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:b3a2caac2badd8446160885dd7a0285bfe85d1cd1cc9b97c3f89fa9a969cc6da",
+    "source_fingerprint": "sha256:4702d2eeadad88822c0314176f322f9d1c2b794657a4c6a2cd1a7cf76ce1ffad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8b8e3587f7d4751253d9e378b60d723385c2fa3992c3bebf5a59403ed45ec0ca",
-      "plan.md": "b9bd8e3ac384d928b29048e0f3372a4a0eec8212c84900be74ada01afaa165bd",
-      "tasks.md": "f7da64bfb7603d32ce08d3f82d3171aa3d8fee2a2bd63b14fe1dfea7a81838e6"
+      "spec.md": "6d796a4adc094598e8401c0b15a7fd284ddefe19671ed2022831fc00d6832a6a",
+      "plan.md": "b27c4fb4d4f9a3a8d8c562cfa05d7a0e1f2ec1b4f05c30009a72cf9eb39c03f5",
+      "tasks.md": "bbf4b72d6325bd99d0132e7f38c95610f7ba737733ff5bc48f1839ecfdbd92e9"
     },
     "last_active_at": null
   }

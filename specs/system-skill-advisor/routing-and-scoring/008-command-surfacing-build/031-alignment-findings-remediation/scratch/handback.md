@@ -60,7 +60,7 @@ This phase builds the in-scope P0 and P1 findings of the alignment run at `~/.lo
 
 ### Packet 004 and the alignment command
 
-- **`.vibe/SYNC.md:115`**. It says no CI job names a Vibe generator, which T004 makes false. The operator keeps the Vibe gaps with packet 004 (`specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/`).
+- **`.vibe/SYNC.md:115`**. It says no CI job names a Vibe generator, which this phase's CI change made false: both workflows now run all three Vibe generators. The operator keeps the Vibe gaps with packet 004 (`specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/`).
 - **The S11 row of the alignment surface map** (part of X-01). `.skilled/commands/assets/local-skilled-alignment/surface-map.yaml:316-350` names only `sync-runtime-mirrors.cjs` and the Codex and Pi checks, so an S11 pass says nothing about Vibe. The folder is a link into the main checkout's private command, and the change is three check rows and two globs. Owner: the operator's `/local-skilled-alignment` command.
 
 ## Pre-existing P0 rows, recorded here and cleared by a merge

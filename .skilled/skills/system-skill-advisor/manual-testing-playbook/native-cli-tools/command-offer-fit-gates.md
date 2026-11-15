@@ -1,7 +1,7 @@
 ---
 title: "NC-012 A Command the Prompt Does Not Ask For Is Not Offered"
-description: "Manual validation that advisor_recommend withholds a hub's slash command when the prompt refuses it, asks about it, rules out a change or asks for a small correction, and still names a typed command's own row with its policy."
-version: 1.0.0.0
+description: "Manual validation that advisor_recommend withholds a hub's slash command when the prompt refuses it, asks about it, rules out a change or asks for a small correction, and still names a command row's own command with its policy."
+version: 1.0.1.0
 id: NC-012
 category: native_cli_tools
 stage: routing
@@ -9,7 +9,7 @@ stage: routing
 
 # NC-012 A Command the Prompt Does Not Ask For Is Not Offered
 
-Prompt: Manual validation that advisor_recommend withholds a hub's slash command when the prompt refuses it, asks about it, rules out a change or asks for a small correction, and still names a typed command's own row with its policy.
+Prompt: Manual validation that advisor_recommend withholds a hub's slash command when the prompt refuses it, asks about it, rules out a change or asks for a small correction, and still names a command row's own command with its policy.
 
 ---
 
@@ -34,8 +34,8 @@ This scenario checks those gates with five real prompts and adds one prompt whos
 - Prompt: `Run advisor_recommend on six prompts and check which recommendations carry a command and its policy word.`
 - Expected execution process: Run the six commands below from the repository root and read the fields named under Expected.
 - Expected signals: no command on the refusal, the question, the no-edit request and the typo fix, `/create:readme` with `start` on the plain request, and `/doctor:git setup` with `run` on the git prompt's command row.
-- Desired user-visible outcome: The reader is offered a workflow only when they asked for it, and a typed command names the policy that says whether it runs or asks.
-- Pass/fail: PASS if all six results match the expected signals. FAIL if any withheld command appears, the plain request loses its command, or the git command row carries a different command or policy.
+- Desired user-visible outcome: The reader is offered a workflow only when they asked for it, and a command row names the policy that says whether it runs or asks.
+- Pass/fail: PASS if all six results match the expected signals. FAIL if any withheld command appears, a readme prompt loses its single route to `sk-create-readme`, the plain request loses its command, or the git command row carries a different command or policy.
 
 ---
 
@@ -60,7 +60,7 @@ This scenario checks those gates with five real prompts and adds one prompt whos
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| NC-012 | Command the prompt does not ask for is not offered | Confirm the refusal, question, no-edit and small-edit gates withhold a hub command while a plain request still carries its command | `Run advisor_recommend on six prompts and check which recommendations carry a command and its policy word.` | Commands 1 to 8 above | No command on the refusal, the question, the no-edit request and the typo fix. `/create:readme` with `start` on the plain request. `/doctor:git setup` with `run` on the git command row | The six JSON files plus the terminal transcript | PASS if all six results match. FAIL otherwise | See Failure Triage |
+| NC-012 | Command the prompt does not ask for is not offered | Confirm the refusal, question, no-edit and small-edit gates withhold a hub command while a plain request still carries its command | `Run advisor_recommend on six prompts and check which recommendations carry a command and its policy word.` | Commands 1 to 8 above | No command on the refusal, the question, the no-edit request and the typo fix. `/create:readme` with `start` on the plain request. `/doctor:git setup` with `run` on the git command row. A single route to `sk-create-readme` on the five readme prompts | The six JSON files plus the terminal transcript | PASS if all six results match. FAIL otherwise | See Failure Triage |
 
 ### Expected
 

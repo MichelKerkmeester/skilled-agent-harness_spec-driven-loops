@@ -1,7 +1,7 @@
 ---
 title: "CL-009 The Brief's Command Policy Word in a Parent and a Child Session"
 description: "Manual validation that the Claude prompt hook keeps a command's policy word in a parent session and replaces it with the parent-named-only marker in a dispatched child session, for a head command and for a companion command."
-version: 1.0.0.0
+version: 1.0.1.0
 id: CL-009
 category: cli_hooks_and_plugin
 stage: routing
@@ -55,7 +55,7 @@ mkdir -p /tmp/skill-advisor-playbook
 2. Run `Check my git hooks setup` in a parent session.
 
 ```bash
-T=$(mktemp -d "${TMPDIR%/}/cl-009.XXXXXX")
+d=${TMPDIR:-/tmp}; T=$(mktemp -d "${d%/}/cl-009.XXXXXX")
 printf '%s' '{"prompt":"Check my git hooks setup","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit","session_id":"cl-009-git-parent"}' \
   | env AI_SESSION_CHILD=0 TMPDIR=$T SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR=$T/state \
       node .skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js \
@@ -69,7 +69,7 @@ cat /tmp/skill-advisor-playbook/cl-009-git-parent.txt
 3. Run the same prompt in a child session.
 
 ```bash
-T=$(mktemp -d "${TMPDIR%/}/cl-009.XXXXXX")
+d=${TMPDIR:-/tmp}; T=$(mktemp -d "${d%/}/cl-009.XXXXXX")
 printf '%s' '{"prompt":"Check my git hooks setup","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit","session_id":"cl-009-git-child"}' \
   | env AI_SESSION_CHILD=1 TMPDIR=$T SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR=$T/state \
       node .skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js \
@@ -83,7 +83,7 @@ cat /tmp/skill-advisor-playbook/cl-009-git-child.txt
 4. Run `update skilled to the latest version` in a parent session.
 
 ```bash
-T=$(mktemp -d "${TMPDIR%/}/cl-009.XXXXXX")
+d=${TMPDIR:-/tmp}; T=$(mktemp -d "${d%/}/cl-009.XXXXXX")
 printf '%s' '{"prompt":"update skilled to the latest version","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit","session_id":"cl-009-update-parent"}' \
   | env AI_SESSION_CHILD=0 TMPDIR=$T SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR=$T/state \
       node .skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js \
@@ -97,7 +97,7 @@ cat /tmp/skill-advisor-playbook/cl-009-update-parent.txt
 5. Run the same prompt in a child session.
 
 ```bash
-T=$(mktemp -d "${TMPDIR%/}/cl-009.XXXXXX")
+d=${TMPDIR:-/tmp}; T=$(mktemp -d "${d%/}/cl-009.XXXXXX")
 printf '%s' '{"prompt":"update skilled to the latest version","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit","session_id":"cl-009-update-child"}' \
   | env AI_SESSION_CHILD=1 TMPDIR=$T SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR=$T/state \
       node .skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js \
@@ -111,7 +111,7 @@ cat /tmp/skill-advisor-playbook/cl-009-update-child.txt
 6. Run `spec search is broken even for indexed terms` in a parent session.
 
 ```bash
-T=$(mktemp -d "${TMPDIR%/}/cl-009.XXXXXX")
+d=${TMPDIR:-/tmp}; T=$(mktemp -d "${d%/}/cl-009.XXXXXX")
 printf '%s' '{"prompt":"spec search is broken even for indexed terms","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit","session_id":"cl-009-speckit-parent"}' \
   | env AI_SESSION_CHILD=0 TMPDIR=$T SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR=$T/state \
       node .skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js \
@@ -125,7 +125,7 @@ cat /tmp/skill-advisor-playbook/cl-009-speckit-parent.txt
 7. Run the same prompt in a child session.
 
 ```bash
-T=$(mktemp -d "${TMPDIR%/}/cl-009.XXXXXX")
+d=${TMPDIR:-/tmp}; T=$(mktemp -d "${d%/}/cl-009.XXXXXX")
 printf '%s' '{"prompt":"spec search is broken even for indexed terms","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit","session_id":"cl-009-speckit-child"}' \
   | env AI_SESSION_CHILD=1 TMPDIR=$T SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR=$T/state \
       node .skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js \
@@ -144,11 +144,10 @@ cat /tmp/skill-advisor-playbook/cl-009-speckit-child.txt
 
 ### Expected
 
-- Every run exits `0` and prints one JSON envelope with `hookSpecificOutput.additionalContext`.
 - `Check my git hooks setup` prints `Also: /doctor:git setup (run)` in the parent session and in the child session, because a read-only `run` command stays runnable in a child.
 - `update skilled to the latest version` prints `system-skilled-doctor → /doctor:update (ask)` in the parent session and `system-skilled-doctor → /doctor:update (parent-named only)` in the child session.
 - `spec search is broken even for indexed terms` prints `Also: /doctor:speckit (run)` in the parent session and `Also: /doctor:speckit (parent-named only)` in the child session.
-- The head skill, the command, its owner and the rest of the line are read but not asserted. Scores, confidences and the freshness word move with the index and the cache.
+- Scores, confidences and the freshness word are read but not asserted, because they move with the index and the cache.
 
 ### Evidence
 
