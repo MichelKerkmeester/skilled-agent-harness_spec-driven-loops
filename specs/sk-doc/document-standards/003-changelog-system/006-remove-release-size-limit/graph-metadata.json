@@ -45,7 +45,8 @@
       ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
       ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
       ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
-      ".skilled/skills/sk-doc/SKILL.md"
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/check-expanded-shape.md"
     ],
     "entities": [
       {
@@ -121,6 +122,12 @@
         "source": "derived"
       },
       {
+        "name": "check-expanded-shape.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/check-expanded-shape.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`checkchangelogshape.py` fails an expanded release note that runs past 280 lines below its frontmatter",
     "created_at": "2026-11-14T21:40:01Z",
-    "last_save_at": "2026-11-15T05:54:47.820Z",
+    "last_save_at": "2026-11-15T06:20:37.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2015925712848db736d77ec5f5d951e05d0081f9e6b9dee209ee0027d444f95c",
+    "source_fingerprint": "sha256:dc606ec8530d623e8d070554eb90b18c8189f5a3612f497b9d2709c9ce7e72b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b79df65a056ff01ce328959999d2aa8653e51e90674c6727c55a90d7cadc611c",
       "plan.md": "4b070a4baaca48221c6b8b593c6ed1291864cd93731c98451856e2ddb0c3ea5b",
-      "tasks.md": "877233b43833b564bfb20f6b93cc5ebb538f5fa7f10ff0716fba54fefee26fe2",
+      "tasks.md": "13301c3ec7a1ceba30a2a31d98e80986649de349e670ca6ff789db68726a10a3",
       "implementation-summary.md": "f1b83d22a932aded53bf514be5cfa278c42fd6754de2b94d7f34ed18b1b8f3ae"
     },
     "last_active_at": null
