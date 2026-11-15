@@ -1,7 +1,7 @@
 ---
 title: "243 -- Setup, Native Module Health, and MCP Installation"
 description: "This scenario validates setup and native module health for `243`. It focuses on confirming prerequisite checks, native-module diagnostics, and marker recording."
-version: 1.6.2.0
+version: 1.6.3.0
 id: tooling-and-scripts-setup-native-module-health-and-mcp-installation
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -52,7 +52,7 @@ Command 1: `SPECIFY_FEATURE=<track>/<packet> bash .skilled/skills/system-spec-ki
 
 ```text
 exit=0
-Run on 2026-11-15 with SPECIFY_FEATURE=agents/007-agent-alignment-follow-ups: one JSON validation record per folder (the parent and each child), each "passed":true
+With SPECIFY_FEATURE naming a phase parent: one JSON validation record per folder (the parent and each child), each "passed":true
 ```
 
 Without `SPECIFY_FEATURE` the script reads the packet from the branch name and exits 1 with "Not on a feature branch" on any worktree or release branch.

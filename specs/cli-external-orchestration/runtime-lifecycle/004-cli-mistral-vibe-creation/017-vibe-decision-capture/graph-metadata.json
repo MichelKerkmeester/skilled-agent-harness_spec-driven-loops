@@ -35,7 +35,7 @@
       "skilled"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -180,12 +180,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,12 +196,18 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.skilled/hooks/decision-capture/` has adapters for Claude, Devin, DSH and Pi but none for Vibe, so an answer the operator gives through Vibe's `askuserquestion` tool (`vibe/core/tools/builtins/askuserquestion.py`) is lost to `/speckit:save`",
     "created_at": "2026-11-14T20:13:09Z",
-    "last_save_at": "2026-11-14T22:28:54.297Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T13:28:58.374Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa8ef62b87932f6d5c1ebaccb71df7c1c3982613bbb75ba12d608f4135994212",
+    "source_fingerprint": "sha256:21259adc38130a2bbcd9263800f0247ba1178cd359815c2746372b574cd13ac5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ec5cc4e0d501fa417380f9bc37f662b234b9721e1268550e94171f7762b84263",
+      "spec.md": "b71b1d787461143cbd60919a93b58472f44ee3f683d899d515c0a53028717d3b",
       "plan.md": "8077cf1870c1072951a6fe082595b0aed94e603818b3034dde60ffeaf5be8965",
-      "tasks.md": "683762bf7eed9e13d8f218a8c0b44ced0f359c0bfd2c77d08f356122e9b2c063",
-      "implementation-summary.md": "61bfa2508955db053f5e3fa0861a261a30982f551b3a079565c6ee0f66b15ad9"
+      "tasks.md": "968fd72b97423b725b02c5ead408d433df990167cff31bb05ce206123fcc200a",
+      "implementation-summary.md": "df98980747b9b200976525905a768f2bca7b41ca4687452be67f08c5b9e8e335"
     },
     "last_active_at": null
   }

@@ -8,12 +8,11 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios"
-    last_updated_at: "2026-11-14T22:40:00Z"
+    last_updated_at: "2026-11-15T14:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Authored the phase spec, plan, tasks and goal"
-    next_safe_action: "Wait for phases 017 and 021, then run T001"
-    blockers:
-      - "Phases 017 and 021 must finish before the inventory reads the final hooks.toml and guards-and-hooks.md"
+    recent_action: "Ran every Vibe hook scenario live as a multi-turn conversation; 26 PASS"
+    next_safe_action: "None: all four completion criteria are met"
+    blockers: []
     key_files:
       - ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs"
       - ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md"
@@ -22,11 +21,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "mistral-support-2026-11-14"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Can the runner's restart action resume an interactive Vibe session with vibe --resume?"
-      - "Can a mirrored .vibe/prompts prompt be invoked by name in an interactive session?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Can the runner's restart action resume an interactive Vibe session with vibe --resume? Yes: VIB-HK-021, VIB-HK-022 and VIB-HK-024 restart and pass live."
+      - "Can a mirrored .vibe/prompts prompt be invoked by name in an interactive session? Only through an agent profile whose system_prompt_id names it; VIB-HK-025 passes that way."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Phase 22: vibe-hook-playbook-and-live-scenarios
@@ -82,6 +81,11 @@ and findings belong here.
 | Spec, plan, tasks and goal | Done | `validate.sh <this folder> --strict --quiet` printed `RESULT: PASSED` |
 | Inventory gap at authoring | Measured | 18 hook entries; 17 have no conversation scenario, 14 are named in no scenario at all (spec.md Measured Behavior) |
 | Alignment pass, triage, fixes, recheck and suites | Done | 58 findings triaged (51 fixed, 6 out of scope, 1 deferred); recheck still_open=8, none in scope; probes pass=10; 15 suites exit 0 |
+| Live verdicts | Done | `scratch/verdicts.md`: 26 rows, 26 PASS, no FAIL and no OPERATOR-ONLY row; 25 from runner rows, VIB-HK-026 from a hop run by hand |
+| Multi-turn conversions | Done | Every runner scenario sends two or more user messages; the last ten each passed 3/3 on 2026-11-15 |
+| Criterion 1 | Met at `af1a00789b8` | `scenarios=51 violations=0`. The merge of origin/main as `2d4fb4d0f92` brought VIB-HK-027, the automatic handover tier, from separate work, so the merged tree prints `scenarios=52 violations=0`; this phase owns 26 scenarios and does not run VIB-HK-027 |
+| Criteria 2 to 4 | Met | 26 `VIB-HK` rows with no FAIL; recheck lists no in-scope finding still open; runner suite 27 PASS, 0 FAIL |
+| Review fixes, 2026-11-15 | Done except one rerun | A fresh review found one P1, the manual claim command dropping launch flags, now fixed. Its P2 items were applied as T097 to T103. The live rerun of five hardened scenarios (T104) is blocked: Mistral answered `402 API budget exhausted` |
 
 ### Deviations and findings
 
@@ -90,7 +94,7 @@ and findings belong here.
 | Runner has no Vibe adapter | `CONVERSATION_RUNTIMES` lists five runtimes and not Vibe, so this phase adds the adapter before any scenario can run |
 | Phase 021 T008 | 021's playbook task now hands the per-hook scenarios to this phase |
 
-Open question: can the runner's restart action resume an interactive Vibe session? Phase 019 found Vibe refuses `--model` on `--resume`; the interactive adapter passes no `--model`, so T008's probe decides.
+Answered: the runner's restart action resumes an interactive Vibe session. VIB-HK-021, VIB-HK-022 and VIB-HK-024 restart and pass live.
 
-Open question: can a mirrored `.vibe/prompts` prompt be invoked by name in an interactive session? `VIB-HK-025` decides, or records OPERATOR-ONLY with the reason.
+Answered: a mirrored `.vibe/prompts` prompt runs by name only through an agent profile whose `system_prompt_id` names it, because Vibe 3.1.2 treats a top-level `system_prompt_id` as an experiment variant. VIB-HK-025 writes that profile with `launch_setup` and passes.
 <!-- /ANCHOR:log -->

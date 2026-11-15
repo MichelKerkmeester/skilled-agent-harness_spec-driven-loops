@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/034-default-off-opt-in",
+  "description": "`isHookEnabled` in `.skilled/hooks/shared/hook-flags.cjs` returns true unless the master switch or one of the concern's kill switches resolves truthy",
+  "keywords": [
+    "ishookenabled",
+    "skilled",
+    "hooks",
+    "shared",
+    "hook-flags",
+    "cjs",
+    "returns",
+    "true",
+    "unless",
+    "master",
+    "switch",
+    "one",
+    "concern",
+    "kill",
+    "switches",
+    "resolves",
+    "truthy"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.929Z",
+  "specId": "034",
+  "folderSlug": "default-off-opt-in",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

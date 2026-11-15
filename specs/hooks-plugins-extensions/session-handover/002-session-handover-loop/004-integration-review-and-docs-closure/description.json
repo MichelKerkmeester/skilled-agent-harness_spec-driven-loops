@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/004-integration-review-and-docs-closure",
+  "description": "Phases 001 to 003 each reviewed their own lane outputs, but no single pass covers the union of files the packet changed",
+  "keywords": [
+    "phases",
+    "reviewed",
+    "own",
+    "lane",
+    "outputs",
+    "single",
+    "pass",
+    "covers",
+    "union",
+    "files",
+    "packet",
+    "changed"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.873Z",
+  "specId": "004",
+  "folderSlug": "integration-review-and-docs-closure",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "18-10-26_12-55__closed-phase-004-from-the-final-state-final-gate.md",
+    "18-10-26_14-24__deep-review-of-the-session-relaunch-loop-on-cli.md"
+  ]
+}

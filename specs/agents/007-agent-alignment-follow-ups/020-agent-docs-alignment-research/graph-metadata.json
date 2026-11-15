@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent docs alignment research",
+      "phase 20 agent docs alignment research",
+      "agent readme drift research",
+      "agent docs alignment research plan",
+      "agent docs alignment research tasks",
+      "agent docs alignment research implementation summary"
+    ],
+    "key_topics": [
+      "agent",
+      "docs",
+      "alignment",
+      "research",
+      "phase",
+      "readme",
+      "drift",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "eleven"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/findings-registry.json",
+      ".skilled/agents/README.txt",
+      ".vibe/SYNC.md",
+      ".skilled/CROSS-CLI.md",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".claude/README.md",
+      ".dsh/README.md",
+      ".opencode/agents/deep-research.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/providers-and-models.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".vibe/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".claude/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The eleven agents in `.skilled/agents/` and their copies in nine runtime folders changed across phases 1 to 19",
+    "created_at": "2026-11-15T14:23:32Z",
+    "last_save_at": "2026-11-15T15:10:00.131Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:7f8b0156c0ab9e138a37ad93e78f93e3f8c57ad3d054e537b74100977448f25d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5377482b5edb9716bc4283e0abc04cc2b2d45044ae2a858054b6504106f03a74",
+      "plan.md": "7a5cd0fb88550966cfb7c41d27f4b50f0904e199b4d211e8f7acf6f0d5432c75",
+      "tasks.md": "bbb1b6d34f1b1374b711799a43e31829ee555ef8483063db4397db605e1f44f5",
+      "implementation-summary.md": "42e0fe388ee7256abe10c8cb41241ab0a2d935f50fa5cc34e38678a64c63a06a",
+      "research/research.md": "e78586a2db4f27865501485accb650ffc5d7fbf99fe29c5ceb35b37b9f032523"
+    },
+    "last_active_at": null
+  }
+}

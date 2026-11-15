@@ -1,7 +1,7 @@
 ---
 title: "cli-mistral-vibe: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-mistral-vibe skill."
-version: 1.0.4.0
+version: 1.0.6.0
 ---
 
 # cli-mistral-vibe: Manual Testing Playbook
@@ -10,7 +10,7 @@ version: 1.0.4.0
 
 > **RECURSION BOUNDS**: A Vibe dispatch is refused inside a Vibe child, by the self-invocation refusal in [SKILL.md](../SKILL.md), which reads `VIBE_SESSION=1`, and inside a fan-out lineage. The fan-out scenario needs a runtime that carries the `cli-mistral-vibe` executor kind. The executor kind is experimental, and a lineage runs with `--auto-approve` and without confinement; the runner renders the repository's guard hooks into its home.
 
-This document is the operator directory and package-level validation contract for the `cli-mistral-vibe` skill. It defines the realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors and links to the thirty-seven operator scenarios and the fourteen adapter stress cells.
+This document is the operator directory and package-level validation contract for the `cli-mistral-vibe` skill. It defines the realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors and links to the thirty-eight operator scenarios and the fourteen adapter stress cells.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL` or `SKIP`
@@ -41,7 +41,7 @@ Canonical package artifacts:
 
 ### Purpose
 
-This playbook provides thirty-seven operator scenarios across nine category folders, plus fourteen adapter stress cells, validating the `cli-mistral-vibe` skill surface. Each scenario keeps its category identifier and links to one dedicated file with the complete execution contract.
+This playbook provides thirty-eight operator scenarios across nine category folders, plus fourteen adapter stress cells, validating the `cli-mistral-vibe` skill surface. Each scenario keeps its category identifier and links to one dedicated file with the complete execution contract.
 
 ### When to Use
 
@@ -114,7 +114,7 @@ Coverage note: this package covers print-mode invocation, the keyed roster alias
 ### Inputs Required
 
 1. `manual-testing-playbook.md`
-2. All thirty-seven linked operator scenario files under the nine category folders
+2. All thirty-eight linked operator scenario files under the nine category folders
 3. The fourteen linked stress files under `stress/`
 4. Real command transcripts or cited captured evidence for every executable scenario
 5. The scenario coverage map in section 19
@@ -149,7 +149,7 @@ A release passes only when:
 1. No scenario has an unresolved `FAIL`.
 2. The print-mode scenario `VIB-CLI-001`, the keyed alias scenario `VIB-MOD-001`, the hard-rule suite `VIB-HR-001` and the spec-gate suite `VIB-GRD-001` have evidence.
 3. The mirror suite `VIB-MIR-001`, the goal suite `VIB-GOAL-001`, the adapter stress file `VIB-FAN-001` and both routing scenarios `VIB-ROUTE-001` and `VIB-ROUTE-002` pass on the current tree.
-4. All thirty-seven operator IDs and all fourteen stress IDs map to exactly one scenario file.
+4. All thirty-eight operator IDs and all fourteen stress IDs map to exactly one scenario file.
 5. The root document and every scenario file pass the required document checks.
 
 ### Root-vs-Scenario Rule
@@ -179,7 +179,7 @@ This section records safe execution waves for the manual-testing package. It doe
 - Wave 1, static suites: `VIB-HR-001`, `VIB-HR-002`, `VIB-GRD-001`, `VIB-MIR-001`, `VIB-GOAL-001`, `VIB-FAN-001`.
 - Wave 2, cite-only keyed evidence: `VIB-CLI-001`, `VIB-MOD-001`, `VIB-GOAL-002`.
 - Wave 3, routing: `VIB-ROUTE-001`, `VIB-ROUTE-002`.
-- Wave 4, live hook conversations: `VIB-HK-001` to `VIB-HK-026`, one runner process at a time, because the runner's repository snapshot treats a sibling run's evidence write as a repository change.
+- Wave 4, live hook conversations: `VIB-HK-001` to `VIB-HK-027`, one runner process at a time, because the runner's repository snapshot treats a sibling run's evidence write as a repository change.
 
 ### What Belongs In Scenario Files
 
@@ -258,36 +258,37 @@ This category covers the routing front door and the decision behind it. The fron
 
 ---
 
-## 15. HOOK AND PLUGIN UTILIZATION (`VIB-HK-001..VIB-HK-026`)
+## 15. HOOK AND PLUGIN UTILIZATION (`VIB-HK-001..VIB-HK-027`)
 
 This category covers every Vibe hook, hook part, generated mirror and the hooks renderer through scripted conversations played by the shared conversation runner's `vibe` adapter. Each turn's check reads a journal record or a file the hook wrote, never the reply text alone, because a Vibe deny leaves the session at exit 0.
 
-- `VIB-HK-001`: [Spec gate classify opens the gate for an unbound write request](hook-scenarios/spec-gate-classify-conversation.md)
-- `VIB-HK-002`: [Strict spec gate refuses the first write while the gate is open](hook-scenarios/spec-gate-deny-conversation.md)
-- `VIB-HK-003`: [Turn-start advisor adds the skill advisor brief once](hook-scenarios/turn-start-advisor-conversation.md)
-- `VIB-HK-004`: [Turn-start delivers the turn-end completion advisory once](hook-scenarios/turn-start-completion-advisory-conversation.md)
-- `VIB-HK-005`: [Turn start raises the save nudge for a captured answer](hook-scenarios/turn-start-save-nudge-conversation.md)
-- `VIB-HK-006`: [Turn start re-injects the goal slice after a compaction](hook-scenarios/turn-start-compaction-reinjection-conversation.md)
-- `VIB-HK-007`: [A mid-turn compaction re-injects at the next tool call](hook-scenarios/compaction-post-tool-conversation.md)
-- `VIB-HK-008`: [Turn end sends a prose option menu back once](hook-scenarios/turn-end-ask-surface-conversation.md)
-- `VIB-HK-009`: [Turn-end leaves a completion advisory and never blocks](hook-scenarios/turn-end-completion-conversation.md)
-- `VIB-HK-010`: [Env secret guard refuses a dotenv read](hook-scenarios/env-secret-guard-conversation.md)
-- `VIB-HK-011`: [Dispatch preflight refuses a dispatch that breaks a hard rule](hook-scenarios/dispatch-preflight-conversation.md)
-- `VIB-HK-012`: [Overlay guard refuses a write an overlay owns](hook-scenarios/overlay-guard-conversation.md)
-- `VIB-HK-013`: [MCP route guard refuses a native call with a Code Mode manual](hook-scenarios/mcp-route-guard-conversation.md)
-- `VIB-HK-014`: [Git message gate refuses a bad commit message](hook-scenarios/git-message-gate-conversation.md)
-- `VIB-HK-015`: [Deep-loop guard refuses a dispatch whose mode disagrees with the registry](hook-scenarios/deep-loop-guard-conversation.md)
-- `VIB-HK-016`: [Post-edit quality returns a comment-hygiene finding in the tool result](hook-scenarios/post-edit-quality-conversation.md)
-- `VIB-HK-017`: [Dist freshness warns when an edit leaves a watched package's build behind](hook-scenarios/dist-freshness-edit-conversation.md)
-- `VIB-HK-018`: [Dist freshness warns when a spec validation command trusts a stale build](hook-scenarios/dist-freshness-shell-conversation.md)
-- `VIB-HK-019`: [Injection screen appends its advisory to a fetched page that reads as instructions](hook-scenarios/classifier-injection-screen-conversation.md)
-- `VIB-HK-020`: [An answered question becomes one decision record](hook-scenarios/decision-capture-ask-conversation.md)
-- `VIB-HK-021`: [Session cleanup writes its log line when the session closes](hook-scenarios/session-cleanup-end-conversation.md)
-- `VIB-HK-022`: [Rendered home hooks bind every repository hook](hook-scenarios/render-home-hooks-conversation.md)
-- `VIB-HK-023`: [A request that needs a repository skill loads it from the .vibe/skills mirror](hook-scenarios/skills-mirror-conversation.md)
-- `VIB-HK-024`: [A request that needs a repository agent spawns it from the .vibe/agents mirror](hook-scenarios/agents-mirror-conversation.md)
-- `VIB-HK-025`: [A mirrored prompt from .vibe/prompts runs by name](hook-scenarios/prompts-mirror-conversation.md)
-- `VIB-HK-026`: [The manual relaunch tier hands off and a fresh session claims it](hook-scenarios/relaunch-manual-tier-conversation.md)
+- `VIB-HK-001`: [Spec gate classify opens the gate for an unbound write request](hook-scenarios/spec-gate-classify.md)
+- `VIB-HK-002`: [Strict spec gate refuses the first write while the gate is open](hook-scenarios/spec-gate-deny.md)
+- `VIB-HK-003`: [Turn-start advisor adds the skill advisor brief once](hook-scenarios/turn-start-advisor.md)
+- `VIB-HK-004`: [Turn-start delivers the turn-end completion advisory once](hook-scenarios/turn-start-completion-advisory.md)
+- `VIB-HK-005`: [Turn start raises the save nudge for a captured answer](hook-scenarios/turn-start-save-nudge.md)
+- `VIB-HK-006`: [Turn start re-injects the goal slice after a compaction](hook-scenarios/turn-start-compaction-reinjection.md)
+- `VIB-HK-007`: [A mid-turn compaction re-injects at the next tool call](hook-scenarios/compaction-post-tool.md)
+- `VIB-HK-008`: [Turn end sends a prose option menu back once](hook-scenarios/turn-end-ask-surface.md)
+- `VIB-HK-009`: [Turn-end leaves a completion advisory and never blocks](hook-scenarios/turn-end-completion.md)
+- `VIB-HK-010`: [Env secret guard refuses a dotenv read](hook-scenarios/env-secret-guard.md)
+- `VIB-HK-011`: [Dispatch preflight refuses a dispatch that breaks a hard rule](hook-scenarios/dispatch-preflight.md)
+- `VIB-HK-012`: [Overlay guard refuses a write an overlay owns](hook-scenarios/overlay-guard.md)
+- `VIB-HK-013`: [MCP route guard refuses a native call with a Code Mode manual](hook-scenarios/mcp-route-guard.md)
+- `VIB-HK-014`: [Git message gate refuses a bad commit message](hook-scenarios/git-message-gate.md)
+- `VIB-HK-015`: [Deep-loop guard refuses a dispatch whose mode disagrees with the registry](hook-scenarios/deep-loop-guard.md)
+- `VIB-HK-016`: [Post-edit quality returns a comment-hygiene finding in the tool result](hook-scenarios/post-edit-quality.md)
+- `VIB-HK-017`: [Dist freshness warns when an edit leaves a watched package's build behind](hook-scenarios/dist-freshness-edit.md)
+- `VIB-HK-018`: [Dist freshness warns when a spec validation command trusts a stale build](hook-scenarios/dist-freshness-shell.md)
+- `VIB-HK-019`: [Injection screen appends its advisory to a fetched page that reads as instructions](hook-scenarios/classifier-injection-screen.md)
+- `VIB-HK-020`: [An answered question becomes one decision record](hook-scenarios/decision-capture-ask.md)
+- `VIB-HK-021`: [Session cleanup writes its log line when the session closes](hook-scenarios/session-cleanup-end.md)
+- `VIB-HK-022`: [Rendered home hooks bind every repository hook](hook-scenarios/render-home-hooks.md)
+- `VIB-HK-023`: [A request that needs a repository skill loads it from the .vibe/skills mirror](hook-scenarios/skills-mirror.md)
+- `VIB-HK-024`: [A request that needs a repository agent spawns it from the .vibe/agents mirror](hook-scenarios/agents-mirror.md)
+- `VIB-HK-025`: [A mirrored prompt from .vibe/prompts runs by name](hook-scenarios/prompts-mirror.md)
+- `VIB-HK-026`: [The manual relaunch tier hands off and a fresh session claims it](hook-scenarios/relaunch-manual-tier.md)
+- `VIB-HK-027`: [The automatic relaunch tier nudges, ends and relaunches a Vibe session](hook-scenarios/relaunch-automatic-tier.md)
 
 ---
 
@@ -342,7 +343,7 @@ The `cli-mistral-vibe` packet owns the dispatch contract around the `vibe` binar
 | `.skilled/bin/compiled-route.cjs` and `.skilled/bin/lib/compiled-routing/` | The front door, the serving gate and the compiled decision | `VIB-ROUTE-001`, `VIB-ROUTE-002` |
 | `.skilled/skills/cli-external-orchestration/hub-router.json` and `mode-registry.json` | The legacy mode row, the keyword class and the mode registration | `VIB-ROUTE-002` |
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md` | Dispatch shape, hard rules and success criteria | All scenarios |
-| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` | The `vibe` conversation adapter: launch, resume, compact, exit and the question box | `VIB-HK-001` to `VIB-HK-026` |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` | The `vibe` conversation adapter: launch, resume, compact, exit and the question box | `VIB-HK-001` to `VIB-HK-027` |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-vibe.test.mjs` | Generated agent profiles, including the subagent type Vibe needs to spawn one | `VIB-HK-024` |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | Five-section scenario contract, verdicts, index bijection | This root playbook |
 
@@ -393,32 +394,33 @@ The catalog entry for this mode lives under the `cli-external-orchestration` fea
 
 ### HOOK AND PLUGIN UTILIZATION
 
-- VIB-HK-001: [Spec gate classify opens the gate for an unbound write request](hook-scenarios/spec-gate-classify-conversation.md)
-- VIB-HK-002: [Strict spec gate refuses the first write while the gate is open](hook-scenarios/spec-gate-deny-conversation.md)
-- VIB-HK-003: [Turn-start advisor adds the skill advisor brief once](hook-scenarios/turn-start-advisor-conversation.md)
-- VIB-HK-004: [Turn-start delivers the turn-end completion advisory once](hook-scenarios/turn-start-completion-advisory-conversation.md)
-- VIB-HK-005: [Turn start raises the save nudge for a captured answer](hook-scenarios/turn-start-save-nudge-conversation.md)
-- VIB-HK-006: [Turn start re-injects the goal slice after a compaction](hook-scenarios/turn-start-compaction-reinjection-conversation.md)
-- VIB-HK-007: [A mid-turn compaction re-injects at the next tool call](hook-scenarios/compaction-post-tool-conversation.md)
-- VIB-HK-008: [Turn end sends a prose option menu back once](hook-scenarios/turn-end-ask-surface-conversation.md)
-- VIB-HK-009: [Turn-end leaves a completion advisory and never blocks](hook-scenarios/turn-end-completion-conversation.md)
-- VIB-HK-010: [Env secret guard refuses a dotenv read](hook-scenarios/env-secret-guard-conversation.md)
-- VIB-HK-011: [Dispatch preflight refuses a dispatch that breaks a hard rule](hook-scenarios/dispatch-preflight-conversation.md)
-- VIB-HK-012: [Overlay guard refuses a write an overlay owns](hook-scenarios/overlay-guard-conversation.md)
-- VIB-HK-013: [MCP route guard refuses a native call with a Code Mode manual](hook-scenarios/mcp-route-guard-conversation.md)
-- VIB-HK-014: [Git message gate refuses a bad commit message](hook-scenarios/git-message-gate-conversation.md)
-- VIB-HK-015: [Deep-loop guard refuses a dispatch whose mode disagrees with the registry](hook-scenarios/deep-loop-guard-conversation.md)
-- VIB-HK-016: [Post-edit quality returns a comment-hygiene finding in the tool result](hook-scenarios/post-edit-quality-conversation.md)
-- VIB-HK-017: [Dist freshness warns when an edit leaves a watched package's build behind](hook-scenarios/dist-freshness-edit-conversation.md)
-- VIB-HK-018: [Dist freshness warns when a spec validation command trusts a stale build](hook-scenarios/dist-freshness-shell-conversation.md)
-- VIB-HK-019: [Injection screen appends its advisory to a fetched page that reads as instructions](hook-scenarios/classifier-injection-screen-conversation.md)
-- VIB-HK-020: [An answered question becomes one decision record](hook-scenarios/decision-capture-ask-conversation.md)
-- VIB-HK-021: [Session cleanup writes its log line when the session closes](hook-scenarios/session-cleanup-end-conversation.md)
-- VIB-HK-022: [Rendered home hooks bind every repository hook](hook-scenarios/render-home-hooks-conversation.md)
-- VIB-HK-023: [A request that needs a repository skill loads it from the .vibe/skills mirror](hook-scenarios/skills-mirror-conversation.md)
-- VIB-HK-024: [A request that needs a repository agent spawns it from the .vibe/agents mirror](hook-scenarios/agents-mirror-conversation.md)
-- VIB-HK-025: [A mirrored prompt from .vibe/prompts runs by name](hook-scenarios/prompts-mirror-conversation.md)
-- VIB-HK-026: [The manual relaunch tier hands off and a fresh session claims it](hook-scenarios/relaunch-manual-tier-conversation.md)
+- VIB-HK-001: [Spec gate classify opens the gate for an unbound write request](hook-scenarios/spec-gate-classify.md)
+- VIB-HK-002: [Strict spec gate refuses the first write while the gate is open](hook-scenarios/spec-gate-deny.md)
+- VIB-HK-003: [Turn-start advisor adds the skill advisor brief once](hook-scenarios/turn-start-advisor.md)
+- VIB-HK-004: [Turn-start delivers the turn-end completion advisory once](hook-scenarios/turn-start-completion-advisory.md)
+- VIB-HK-005: [Turn start raises the save nudge for a captured answer](hook-scenarios/turn-start-save-nudge.md)
+- VIB-HK-006: [Turn start re-injects the goal slice after a compaction](hook-scenarios/turn-start-compaction-reinjection.md)
+- VIB-HK-007: [A mid-turn compaction re-injects at the next tool call](hook-scenarios/compaction-post-tool.md)
+- VIB-HK-008: [Turn end sends a prose option menu back once](hook-scenarios/turn-end-ask-surface.md)
+- VIB-HK-009: [Turn-end leaves a completion advisory and never blocks](hook-scenarios/turn-end-completion.md)
+- VIB-HK-010: [Env secret guard refuses a dotenv read](hook-scenarios/env-secret-guard.md)
+- VIB-HK-011: [Dispatch preflight refuses a dispatch that breaks a hard rule](hook-scenarios/dispatch-preflight.md)
+- VIB-HK-012: [Overlay guard refuses a write an overlay owns](hook-scenarios/overlay-guard.md)
+- VIB-HK-013: [MCP route guard refuses a native call with a Code Mode manual](hook-scenarios/mcp-route-guard.md)
+- VIB-HK-014: [Git message gate refuses a bad commit message](hook-scenarios/git-message-gate.md)
+- VIB-HK-015: [Deep-loop guard refuses a dispatch whose mode disagrees with the registry](hook-scenarios/deep-loop-guard.md)
+- VIB-HK-016: [Post-edit quality returns a comment-hygiene finding in the tool result](hook-scenarios/post-edit-quality.md)
+- VIB-HK-017: [Dist freshness warns when an edit leaves a watched package's build behind](hook-scenarios/dist-freshness-edit.md)
+- VIB-HK-018: [Dist freshness warns when a spec validation command trusts a stale build](hook-scenarios/dist-freshness-shell.md)
+- VIB-HK-019: [Injection screen appends its advisory to a fetched page that reads as instructions](hook-scenarios/classifier-injection-screen.md)
+- VIB-HK-020: [An answered question becomes one decision record](hook-scenarios/decision-capture-ask.md)
+- VIB-HK-021: [Session cleanup writes its log line when the session closes](hook-scenarios/session-cleanup-end.md)
+- VIB-HK-022: [Rendered home hooks bind every repository hook](hook-scenarios/render-home-hooks.md)
+- VIB-HK-023: [A request that needs a repository skill loads it from the .vibe/skills mirror](hook-scenarios/skills-mirror.md)
+- VIB-HK-024: [A request that needs a repository agent spawns it from the .vibe/agents mirror](hook-scenarios/agents-mirror.md)
+- VIB-HK-025: [A mirrored prompt from .vibe/prompts runs by name](hook-scenarios/prompts-mirror.md)
+- VIB-HK-026: [The manual relaunch tier hands off and a fresh session claims it](hook-scenarios/relaunch-manual-tier.md)
+- VIB-HK-027: [The automatic relaunch tier nudges, ends and relaunches a Vibe session](hook-scenarios/relaunch-automatic-tier.md)
 
 ### CLI ADAPTER STRESS MATRIX
 

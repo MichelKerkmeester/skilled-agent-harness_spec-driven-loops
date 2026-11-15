@@ -41,6 +41,7 @@ _memory:
 | Q005 | Push the .vibe/plugins/README.md plugin map to main right away. | Not stated. | None | Commit 544fb7345ec, pushed to main |
 | Q006 | Push the Vibe branch to origin/main as a fast-forward. Main moved before the push, so the pushed tip e263e5481e7 adds one more merge of main's own commits and a regenerated trigger index. | The branch was five commits ahead as a fast-forward with every gate green. | None | origin/main e263e5481e7 |
 | Q007 | Push the dsh Mistral route retirement to origin/main, confirming that the answer 'why use dsh, use vibe cli' meant retiring the route. | The operator confirmed the reading the question stated, so the retirement shipped as 9e5d600ab4f. | None | origin/main 9e5d600ab4f, 003 T011 |
+| Q008 | Apply all four code fixes: launch flags in the manual claim command, the Vibe goal fallback to the claimed packet, an opt-in --remove-home for the runner, and Vibe in the re-pin folders and the runtime-mirrors doctor. | Each was confirmed against the code before the question was asked. | None | T097, T098, T099, 019 T011 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -186,6 +187,27 @@ Don't push yet
 Answer:
 ```text
 Push it now (Recommended)
+```
+
+### Q008
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_01KhHKzXT1KYXJkBb58h2RMs:0 -->
+
+Question:
+```text
+Which code fixes from the Fable review should I apply? I've checked each one against the code. (F1, P1) A manual claim command printed after `skilled-loop vibe --trust` drops `--trust` and any other extra launch flags: `skilled-loop` replays them only in hop mode, at lines 807 and 820. (F5) The Vibe goal hook reads only VIBE_SPEC_FOLDER, but the wrapper exports SESSION_HANDOVER_GOAL_PACKET, so a claimed note's packet never reaches the receiver. A fallback plus one test would close 019's last blocked task. (F2) The runner leaves every Vibe home behind; add an opt-in --remove-home. (F11) overlay-engine's DEFAULT_RUNTIME_FOLDERS lacks .vibe, and /doctor:runtime-mirrors has no Vibe checks.
+```
+
+Options:
+```text
+F1 claim-command flags
+F5 goal packet fallback
+F2 runner --remove-home
+F11 overlay + doctor Vibe
+```
+
+Answer:
+```text
+F1 claim-command flags, F5 goal packet fallback, F2 runner --remove-home, F11 overlay + doctor Vibe
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

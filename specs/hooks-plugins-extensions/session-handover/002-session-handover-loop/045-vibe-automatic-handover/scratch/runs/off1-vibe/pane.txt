@@ -1,0 +1,50 @@
+> Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat
+  the code word ORCHID-17966. Start by reading the README. Gate 3: D) Skip, no spec folder.
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Result
+
+  The three facts, read from .skilled/hooks/session-handover/README.md:
+
+  • Line count: 382 (wc -l agrees with the reader's total_lines)
+  • First heading: # Session Handover, at line 9 — the file opens with YAML frontmatter, so the heading is not line 1
+  • Code word: ORCHID-17966
+
+
+  The handoff did not happen
+
+  I could not carry this through a context handoff, so I finished it here. The Vibe arm of the concern is switched off in this session:
+
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐  ▄
+  │ SYSTEM_SESSION_HANDOVER_ENABLED=1                                                                                                                                                               │
+  │ SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=0                                                                                                                                                          │
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  The per-runtime flag wins over the global one. I attempted the prepare step and it refused before it ever read a note:
+
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ $ node .skilled/hooks/session-handover/bin/session-handover.cjs prepare \                                                                                                                       │
+  │     --handoff .../handoffs/probe.md --session probe-session --runtime vibe                                                                                                                      │
+  │ [session-handover] session handover is off for vibe by SYSTEM_SESSION_HANDOVER_VIBE_ENABLED; set it to 1 to turn it on for vibe                                                                 │
+  │ EXIT:2                                                                                                                                                                                          │
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  The automatic route is closed by the same flag: .skilled/hooks/session-handover/vibe/handover-parts.mjs:68 gates on isHookEnabled('session-handover', env, config, { runtime: 'vibe' }), which
+  resolves that variable to disabled. So no nudge fires and no record arms.
+
+  I wrote no handoff note. prepare checks the switch before it validates the note, so a note would have been an orphan nothing could claim — the history already lists one unclaimed note from an
+  earlier run. The probe path was never created, and git status shows only the packet's pre-existing changes.
+
+
+  Your call
+
+  Set SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1 in .skilled/hooks/hook-flags.env or the environment if you want the Vibe arm live. Note that SESSION_HANDOVER_MAX_HOPS=1 with SKILLED_LOOP_HOPS=0 leaves
+  exactly one hop available, so a single handoff is all this loop is configured for.
+
+
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+~/worktrees/public/406-vibe-automatic-handover                                                                                                                                     ctx █▏     49.7k/256k

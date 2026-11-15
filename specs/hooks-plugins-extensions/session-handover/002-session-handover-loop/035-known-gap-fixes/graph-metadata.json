@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/035-known-gap-fixes",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/035-known-gap-fixes",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "known gap fixes",
+      "session relaunch known gaps",
+      "per-runtime session relaunch switch",
+      "SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED",
+      "known gap fixes plan",
+      "per-runtime switch plan",
+      "known gap fixes tasks",
+      "known gap fixes acceptance criteria",
+      "known gap fixes goal",
+      "known gap fixes implementation summary"
+    ],
+    "key_topics": [
+      "known",
+      "gap",
+      "session",
+      "relaunch",
+      "gaps",
+      "per-runtime",
+      "switch",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "cli/validation/continuity-freshness.ts",
+      ".skilled/hooks/shared/hook-flags.cjs",
+      ".skilled/hooks/shared/hook-flags.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/validation/continuity-freshness.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/validator-git-fsmonitor.vitest.ts",
+      "scratch/final-gate-clean.txt",
+      "scratch/final-gate-claude0.txt",
+      "scratch/final-tree-hostile.txt",
+      "scratch/final-green-clean.txt",
+      "scratch/final-green-claude0.txt",
+      "scratch/final-gate-claude0-node.txt",
+      "scratch/final-green-hostile.txt",
+      "scratch/tsc-hookflags.txt",
+      "scratch/amend-doc-validate.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.ts",
+        "kind": "code",
+        "path": "cli/validation/continuity-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validator-git-fsmonitor.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/validator-git-fsmonitor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "final-gate-clean.txt",
+        "kind": "file",
+        "path": "scratch/final-gate-clean.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-gate-claude0.txt",
+        "kind": "file",
+        "path": "scratch/final-gate-claude0.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-tree-hostile.txt",
+        "kind": "file",
+        "path": "scratch/final-tree-hostile.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-green-clean.txt",
+        "kind": "file",
+        "path": "scratch/final-green-clean.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-green-claude0.txt",
+        "kind": "file",
+        "path": "scratch/final-green-claude0.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-gate-claude0-node.txt",
+        "kind": "file",
+        "path": "scratch/final-gate-claude0-node.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-green-hostile.txt",
+        "kind": "file",
+        "path": "scratch/final-green-hostile.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tsc-hookflags.txt",
+        "kind": "file",
+        "path": "scratch/tsc-hookflags.txt",
+        "source": "derived"
+      },
+      {
+        "name": "amend-doc-validate.txt",
+        "kind": "file",
+        "path": "scratch/amend-doc-validate.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Eight",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Eight gaps remain after phase 34",
+    "created_at": "2026-10-25T19:05:02Z",
+    "last_save_at": "2026-11-15T14:28:42.275Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c35cb00ed5049572963da3556c0f59b7834c0846b9f2b63b928f002017cb9847",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "69a24ccccdacd7b012c0f1e4646db21d522e540c1c6ebbbf14652a178bbeee70",
+      "plan.md": "51927febb06176d3b3818393c19b02f2bd2e300a0e3f6b4f629290d472f510e2",
+      "tasks.md": "290399cd9abcba43f6686e7ffb449a5c6b413fc654e4a64163a838e256cc84bd",
+      "implementation-summary.md": "dd11ec4dd43febac540d5b9b1e2540a7e85867df37651cff332f90fc1ae7e469"
+    },
+    "last_active_at": null
+  }
+}

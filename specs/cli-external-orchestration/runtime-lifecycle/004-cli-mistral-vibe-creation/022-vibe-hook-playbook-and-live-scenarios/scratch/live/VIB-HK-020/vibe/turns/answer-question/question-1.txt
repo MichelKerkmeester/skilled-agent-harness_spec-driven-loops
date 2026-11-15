@@ -1,7 +1,7 @@
 
- ⢠⢢    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⢸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
- ⠈⠒⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
+  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
 
 Hello Michel, how can I help you?
 
@@ -12,7 +12,7 @@ Hello Michel, how can I help you?
 
 ⏵ Thought                                                                                                                     
 
-■ Asking For the upload retry policy, how many retries should a failed upload get?
+□ Asking For the upload retry policy, how many retries should a failed upload get?
 
 
 
@@ -35,17 +35,17 @@ Hello Michel, how can I help you?
 
 
 
- ⠙ User input required… (1s Esc/Ctrl+C to interrupt)
+ ⠸ User input required… (1s Esc/Ctrl+C to interrupt)
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │ For the upload retry policy, how many retries should a failed upload get?                                                                                                                            │
 │                                                                                                                                                                                                      │
-│   1. Three retries - 4 total attempts (1 initial + 3 retries)                                                                                                                                        │
-│   2. Five retries - 6 total attempts (1 initial + 5 retries)                                                                                                                                         │
+│   1. Three retries - Four total attempts including the initial one                                                                                                                                   │
+│   2. Five retries - Six total attempts including the initial one                                                                                                                                     │
 │   3. Type your answer...                                                                                                                                                                             │
 │                                                                                                                                                                                                      │
-│ Nothing written yet — I'll wait for your answer before touching the policy.                                                                                                                          │
+│ Nothing written yet — waiting on your answer before touching the retry policy.                                                                                                                       │
 │                                                                                                                                                                                                      │
 │ ↑↓/jk navigate  Enter select  Esc cancel                                                                                                                                                             │
 └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.1yd2cqhjwW/vibe                                                                                                         ctx ▎      10k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.6E8m0gDBRu/vibe                                                                                                         ctx ▎      10k/256k
 

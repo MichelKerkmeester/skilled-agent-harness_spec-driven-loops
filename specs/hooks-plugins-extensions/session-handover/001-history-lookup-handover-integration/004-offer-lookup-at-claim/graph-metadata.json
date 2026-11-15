@@ -194,7 +194,7 @@
     ],
     "causal_summary": "A session that claims a handoff receives the note's four sections, the complete command and the goal packet, and nothing else (`session-handover.cjs:706-720`)",
     "created_at": "2026-11-15T06:24:23Z",
-    "last_save_at": "2026-11-15T11:24:12.671Z",
+    "last_save_at": "2026-11-15T14:30:50.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e11b3f621950fe01770e28a4bd173e3fd02d7d8449c8fd9a771b6a56c7ebc576",
+    "source_fingerprint": "sha256:44139c25426d881d5942f067f1f5c41a974c186a15ff68934c585313432ebeba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6cd4f212442a8cf37ee43e8cd068ed3a52be11357a4f2183cfcdcc605ccc554a",
+      "spec.md": "ae714133271c6a78b56ef8d75a70684eea3fe82419e7e84ba8a0b5cdcdb8e79c",
       "plan.md": "1e5924d62792d3d5a9af46695323db0b5179b66d54493e858a7475d09a3bea9d",
-      "tasks.md": "752bea9e94423de043a1a192ab1b6fc55bbd0859f5dee08061f93ab4d0cb7fbd",
+      "tasks.md": "fce47e0cc05338196caa5e0ef170ee6f2e22a199d6cd175e3639338796e9a7d0",
       "implementation-summary.md": "bbbbcb8220b42b912700105bd880ac3fd524c6bd9092c5d1effbfbbbdff27ddc"
     },
     "last_active_at": null

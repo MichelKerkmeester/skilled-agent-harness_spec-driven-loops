@@ -43,7 +43,6 @@ const {
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const TSX_LOADER = require.resolve('tsx');
 const DEFAULT_REPORTED_NOVELTY_THRESHOLD = 0.05;
 const DEFAULT_GRAPH_NOVELTY_FLOOR = 0.05;
 const DEFAULT_MIN_OBSERVATIONS = 2;
@@ -126,7 +125,8 @@ const CONVERGENCE_PROFILE_SCHEMA = Object.freeze({
 if (require.main === module && process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   const child = spawnSync(
     process.execPath,
-    ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)],
+    // Resolved here, not at load, so a caller that only imports the helpers needs no tsx.
+    ['--import', require.resolve('tsx'), __filename, ...process.argv.slice(2)],
     {
       cwd: process.cwd(),
       env: require('./runtime-bootstrap.cjs').tsxChildEnv({ DEEP_LOOP_TSX_LOADED: '1' }),

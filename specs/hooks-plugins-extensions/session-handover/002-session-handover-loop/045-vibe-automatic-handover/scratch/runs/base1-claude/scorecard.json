@@ -1,0 +1,34 @@
+{
+  "runtime": "claude",
+  "label": "base1",
+  "trustDialogs": 0,
+  "steps": {
+    "notePrepared": true,
+    "signalled": true,
+    "relaunched": true,
+    "noteClosed": true,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "noteStatus": "done",
+  "carry": {
+    "model": "changed:claude-sonnet-5-5",
+    "effort": "kept",
+    "name": "kept",
+    "provider": "not-set"
+  },
+  "seconds": {
+    "startToPrepare": 17.5,
+    "prepareToSignal": 6.2,
+    "signalToRelaunch": 1.2,
+    "startToClosed": 35.1
+  },
+  "problems": [],
+  "firstLaunch": "claude --model sonnet --effort medium --name hoptest-base1-claude Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat the code word ORCHID-17912. Start by reading the README. Gate 3: D) Skip, no spec folder.",
+  "relaunchArgs": "claude --model claude-sonnet-5-5 --effort medium --permission-mode auto [session-handover] claim and continue handoff /Users/michelkerkmeester/worktrees/public/406-vibe-automatic-handover/.skilled/skills/.state/session-handover/handoffs/20261115T114141Z-39d39dd9-941b-4868-8f51-694b89559a82.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session) --name hoptest-base1-claude (2)",
+  "score": "5/5"
+}

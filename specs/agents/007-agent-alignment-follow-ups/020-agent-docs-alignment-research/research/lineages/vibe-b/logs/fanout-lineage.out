@@ -1,0 +1,15 @@
+## Lineage vibe-b complete
+
+**Two iterations, 13 findings, all five key questions answered.**
+
+The dominant defect is enumeration drift: every doc list of runtime agent trees is short by two. `.dsh/agents/` and `.vibe/agents/` each ship all eleven agents, but `.skilled/bin/agent-mirror-crosswalk.md:16` says "six runtime trees", `README.md:963` names five mirrors, `.skilled/CROSS-CLI.md:57` enumerates two upstreams, and `.skilled/agents/README.txt:8` names one sibling. `AGENTS.md:282` is the only doc that lists all eight.
+
+The sharpest single finding is a self-contradiction inside `.vibe/SYNC.md`: line 37 says `mode: subagent` becomes `agent_type = "subagent"`, line 39 labels `mode` "(dropped)", and line 53 says the `mode` value "does not travel into Vibe" — while nine generated `.vibe/agents/*.toml` files carry `agent_type`.
+
+Also found: the crosswalk's "ten agents declare `mode: subagent`" is nine; the deep-review skill doc's status enum omits `thought`; `README.md:1017` calls Deep Review read-only while its permission map grants write, edit and bash; and the roster checker omits `.dsh` and `.vibe` from its surfaces, which is why the enumerations could drift unnoticed.
+
+**Verification**: 2 iteration records in the projection, both gateway receipts exit 0, deltas carry 8 and 5 finding rows, every finding has a `[SOURCE: ...]` marker, terminal synthesis record carries `stopReason: maxIterationsReached`, config `status: complete`.
+
+**One scope conflict, recorded in `research.md` §17**: the workflow's `step_emit_resource_map` with `config.fanout` present writes `resource-map.md` into the root packet's `research/` directory, outside this lineage's write surface. I ran it once, removed the out-of-scope artifact, and did not re-run it — resource-map emission belongs to the parent's `step_fanout_merge`.
+
+FANOUT_LINEAGE_COMPLETE:vibe-b

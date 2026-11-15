@@ -1,0 +1,51 @@
+> Run the spec validator over specs/demo/001-greeting and tell me what it reports: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/demo/001-greeting --strict; echo             
+  validator-finished                                                                                                                                                                                    
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  Warning                                                                                                                                                                                               
+                                                                                                                                                                                                        
+  GRAPH_METADATA_PRESENT — reported as "Graph metadata checked" (the ! marker, no detail line).                                                                                                         
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+  What it means                                                                                                                                                                                         
+                                                                                                                                                                                                        
+  The packet is a bare spec.md with no frontmatter and no anchors, sitting in a folder the validator infers as Level 1. Three of the five errors trace back to that one root cause: no frontmatter →    
+  no trigger phrases, no declared level, no template stamp. The other two are simply absent scaffolding (plan.md, tasks.md).                                                                            
+                                                                                                                                                                                                        
+  Everything else passed — placeholder fill, frontmatter memory block, spec-doc sufficiency, folder naming, wikilinks, and the comment-hygiene marker check.                                            
+                                                                                                                                                                                                        
+  One caveat on the invocation: the trailing ; echo validator-finished means the shell's exit code came from echo, not the validator, so the returncode: 0 above is not the validator's status. If      
+  you want the real exit code for scripting, drop the echo or capture $? before it.                                                                                                                     
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+> Now list the files in specs/demo/001-greeting with ls and tell me what is there.                                                                                                                     ▅
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+⏵ Ran 1 command, read 1 file, thought                                                                                                                                                                   
+                                                                                                                                                                                                        
+  The folder holds exactly one file:                                                                                                                                                                    
+                                                                                                                                                                                                        
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ specs/demo/001-greeting/                                                                                                                                                                        │   
+  │ └── spec.md    57 bytes                                                                                                                                                                         │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  No subdirectories, no hidden files. spec.md is three lines:                                                                                                                                           
+                                                                                                                                                                                                        
+  ┌─ markdown ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ # Demo packet                                                                                                                                                                                   │   
+  │                                                                                                                                                                                                 │   
+  │ A one-file packet the validator can read.                                                                                                                                                       │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  That confirms the validator's report: this is a deliberately minimal fixture. There is no frontmatter block (hence the GREP_CONVENTION and LEVEL_MATCH errors), no anchors (hence ANCHORS_VALID),     
+  no template source header, and neither plan.md nor tasks.md exists. The file's own description — "a one-file packet the validator can read" — suggests the missing pieces are intentional, so the     
+  --strict failures are the expected output for this fixture rather than a broken packet.                                                                                                               
+
+                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                                                  
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/tmp/vib-hk-018/vibe                                                                                                                                                       ctx ▎      12.5k/256k
+

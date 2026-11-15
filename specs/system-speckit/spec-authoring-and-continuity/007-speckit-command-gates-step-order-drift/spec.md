@@ -253,6 +253,7 @@ Operator decisions:
 - Preflight and postflight scoring is removed (finding B8). The operator asked which choice gives the better result. Removal does: nothing reads the scores, so the result of a run is the same, and each run loses two steps and two checkpoints.
 - The closing step that only offers a second save is removed from plan, implement and complete (finding S14).
 - The asset names `save-presentation.txt` and `search-presentation.txt` stay. Finding A6 closes as intentional.
+- Phases 9 to 11 were added after phase 8 closed, so on 2026-11-15 the operator chose to fix each child's Phase row to count 11, point phase 8's successor at phase 9 and phase 10's at phase 11, and record the fix here rather than in a new phase.
 
 Defaults taken without a question, each recorded in its phase:
 - CRITICAL and HIGH analysis findings block a run (phase 2).

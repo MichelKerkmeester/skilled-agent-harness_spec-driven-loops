@@ -1051,9 +1051,9 @@ Autonomous continuation is default-off and gated by caps, a cooldown and a kill-
 
 #### Session Handover
 
-Session handover ships on for Claude Code and off for every other runtime. A project that installs Skilled and runs Claude Code gets it without setting anything. Codex, Pi, OpenCode, Cursor and Devin stay as they were until you turn it on for them.
+Session handover ships on for Claude Code and off for every other runtime. A project that installs Skilled and runs Claude Code gets it without setting anything. Codex, Pi, OpenCode, Mistral Vibe, Cursor and Devin stay as they were until you turn it on for them.
 
-A session that reaches 80% of its context window writes a handoff note, saves its spec packet if one is bound and ends. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note and carries on. Claude Code, Codex, Pi and OpenCode hand over on their own, while Cursor and Devin hand over only when you run `/speckit:handoff`. The note's Goal opens with the packet's purpose line, copied from its `spec.md`, so the purpose survives every hop.
+A session that reaches 80% of its context window writes a handoff note, saves its spec packet if one is bound and ends. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note and carries on. Claude Code, Codex, Pi, OpenCode and Mistral Vibe hand over on their own, while Cursor and Devin hand over only when you run `/speckit:handoff`. The note's Goal opens with the packet's purpose line, copied from its `spec.md`, so the purpose survives every hop.
 
 A Claude Code session started without the wrapper cannot restart itself. At 80% it writes the same note, keeps it with `session-handover.cjs keep` and works on. After the next auto-compaction the session is pointed back at the note, so the detail a summary drops is still on disk.
 
@@ -1228,7 +1228,7 @@ Updates packet continuity and supporting generated context artifacts via `genera
 
 Writes the handoff note and prepares the relaunch record. Under the wrapper the runtime then restarts in the same terminal and the new session claims the note. Outside the wrapper it prints the command that continues the work in a new session. Its Goal section opens with the packet's purpose, copied word for word.
 
-It is the only trigger on Cursor and Devin. Claude Code, Codex, Pi and OpenCode reach the same steps on their own near the context limit. It refuses while session handover is off, see [Session Handover](#session-handover).
+It is the only trigger on Cursor and Devin. Claude Code, Codex, Pi, OpenCode and Mistral Vibe reach the same steps on their own near the context limit. It refuses while session handover is off, see [Session Handover](#session-handover).
 
 **`/speckit:search`**
 

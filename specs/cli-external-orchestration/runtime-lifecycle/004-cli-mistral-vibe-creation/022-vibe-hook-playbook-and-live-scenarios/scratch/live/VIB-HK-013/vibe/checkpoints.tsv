@@ -1,0 +1,4 @@
+turn	status	attempts	evidence	observed
+mcp	PASS	1	turns/mcp	mcp-route-refused
+deny-notice	PASS	1	turns/deny-notice	deny-notice-and-no-server-call
+follow-up	PASS	1	turns/follow-up	notes-written-without-mcp

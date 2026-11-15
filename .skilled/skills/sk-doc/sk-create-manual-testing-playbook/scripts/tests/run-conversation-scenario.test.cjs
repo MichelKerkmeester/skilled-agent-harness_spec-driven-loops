@@ -568,6 +568,130 @@ function fakeSubjectRun() {
 }
 
 /**
+ * Launch setup runs once, after the adapter prepares its launch and before the subject starts, with
+ * the script environment. A restart resumes the subject without running it again.
+ */
+function launchSetupRunsOnce() {
+  const dir = tempDir('launch-setup');
+  const repo = makeRepo('launch-setup-repo');
+  const scratch = path.join(dir, 'scratch');
+  const out = path.join(dir, 'out');
+  const scenario = writeScenario(dir, 'launch-setup.md', {
+    runtimes: ['claude-code'],
+    env: { LAUNCH_MARK: 'marked' },
+    launch_setup: [
+      'test ! -e session.log',
+      'echo "$LAUNCH_MARK $CONVERSATION_RUNTIME" >> launch-ran',
+    ],
+    turns: [
+      {
+        id: 'first',
+        send: 'hello',
+        delay_ms: 0,
+        timeout_ms: 20000,
+        check: 'test -s session.log',
+      },
+      {
+        id: 'restart',
+        action: 'restart',
+        delay_ms: 0,
+        timeout_ms: 40000,
+        check: 'test $(wc -l < session.log) -ge 2 && test $(wc -l < launch-ran) -eq 1',
+      },
+    ],
+  });
+  const run = runCli([
+    '--scenario', scenario,
+    '--runtime', 'fake',
+    '--scratch', scratch,
+    '--out', out,
+    '--repo-root', repo,
+  ]);
+  assert.strictEqual(run.code, 0, `run should pass: ${run.stdout}\n${run.stderr}`);
+  assert.strictEqual(readResult(out, 'fake').verdict, 'PASS');
+  assert.strictEqual(
+    fs.readFileSync(path.join(scratch, 'fake', 'launch-ran'), 'utf8'),
+    'marked fake\n',
+    'launch setup sees the script environment and runs once',
+  );
+  assert.match(
+    fs.readFileSync(path.join(out, 'fake', 'launch-setup.log'), 'utf8'),
+    /\[exit 0\]/,
+    'the launch setup output is kept as evidence',
+  );
+}
+
+/** The home removal clears a tree whose folder and file Vibe left read-only. */
+function removeHomeClearsReadOnlyTree() {
+  const home = path.join(tempDir('remove-home'), 'vibe-home-x');
+  const plugin = path.join(home, 'plugins', 'bundled');
+  fs.mkdirSync(plugin, { recursive: true });
+  fs.writeFileSync(path.join(plugin, 'hook.py'), 'pass\n');
+  fs.chmodSync(path.join(plugin, 'hook.py'), 0o444);
+  fs.chmodSync(plugin, 0o555);
+  assert.strictEqual(runner.removeVibeHome(home), true, 'the read-only tree is removed');
+  assert.strictEqual(fs.existsSync(home), false);
+  assert.strictEqual(runner.removeVibeHome(''), false, 'no home means nothing to remove');
+}
+
+/** --remove-home is accepted, and a runtime without a Vibe home records none. */
+function removeHomeFlagAccepted() {
+  const dir = tempDir('remove-home-flag');
+  const repo = makeRepo('remove-home-flag-repo');
+  const scenario = writeScenario(dir, 'remove-home.md', {
+    runtimes: ['claude-code'],
+    turns: [{ id: 'first', send: 'hello', delay_ms: 0, timeout_ms: 20000, check: 'test -s session.log' }],
+  });
+  const out = path.join(dir, 'out');
+  const run = runCli([
+    '--scenario', scenario,
+    '--runtime', 'fake',
+    '--scratch', path.join(dir, 'scratch'),
+    '--out', out,
+    '--repo-root', repo,
+    '--remove-home',
+  ]);
+  assert.strictEqual(run.code, 0, `run should pass: ${run.stdout}\n${run.stderr}`);
+  const result = readResult(out, 'fake');
+  assert.strictEqual(result.vibe_home, null);
+  assert.strictEqual(result.vibe_home_removed, false);
+}
+
+/** A failing launch setup blocks the run before the subject starts. */
+function launchSetupFailureBlocks() {
+  const dir = tempDir('launch-setup-fail');
+  const repo = makeRepo('launch-setup-fail-repo');
+  const scratch = path.join(dir, 'scratch');
+  const out = path.join(dir, 'out');
+  const scenario = writeScenario(dir, 'launch-setup-fail.md', {
+    runtimes: ['claude-code'],
+    launch_setup: ['exit 3'],
+    turns: [{ id: 'unused', send: 'hello', delay_ms: 0, check: 'true' }],
+  });
+  const run = runCli([
+    '--scenario', scenario,
+    '--runtime', 'fake',
+    '--scratch', scratch,
+    '--out', out,
+    '--repo-root', repo,
+  ]);
+  assert.notStrictEqual(run.code, 0, 'a failed launch setup fails the run');
+  const result = readResult(out, 'fake');
+  assert.strictEqual(result.verdict, 'FAIL');
+  assert.strictEqual(result.blocker, 'LAUNCH_SETUP_FAILED: exit 3: exit 3');
+  assert.strictEqual(
+    fs.existsSync(path.join(scratch, 'fake', 'session.log')),
+    false,
+    'the subject never started',
+  );
+  assert.match(
+    fs.readFileSync(path.join(out, 'fake', 'checkpoints.tsv'), 'utf8'),
+    /NOT_RUN/,
+    'the turn is recorded as not run',
+  );
+}
+
+/**
  * A check runs after the turn's own evidence is written, so it can read the raw pane slice and the
  * full plain-text scrollback from its evidence folder.
  */
@@ -1903,12 +2027,16 @@ async function runSuite() {
       : 'PASS sandbox policy'
   ));
   await group('empty repository snapshot', emptyRepoSnapshot);
+  await group('remove home clears a read-only tree', removeHomeClearsReadOnlyTree);
   await group(hasTmux ? 'refusals' : 'refusals (no tmux needed)', refusals);
   await group('setup exit 77 skips runtime', setupExit77SkipsRuntime);
   await group('multi-runtime guards before side effects', multiRuntimeGuardsBeforeSideEffects);
   await group('setup SIGINT cleans up', setupSigintCleansUp);
   if (hasTmux) {
     await group('fake subject conversation', fakeSubjectRun);
+    await group('launch setup runs once', launchSetupRunsOnce);
+    await group('launch setup failure blocks', launchSetupFailureBlocks);
+    await group('remove-home flag accepted', removeHomeFlagAccepted);
     await group('check reads turn evidence', checkReadsTurnEvidence);
     await group('literal text sends', literalTextSends);
     await group('startup screen waits for redraw', startupScreenWaitsForRedraw);

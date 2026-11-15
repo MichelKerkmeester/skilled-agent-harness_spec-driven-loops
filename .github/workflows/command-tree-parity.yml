@@ -116,7 +116,7 @@ jobs:
           echo "Command trees are byte-identical."
 
   dsh-mirror:
-    # The DSH and Vibe runtimes read generated skill, agent and prompt copies. Their source and
+    # The DSH runtime reads generated skill, agent and prompt copies. Its source and
     # output paths are filtered above so changes to either side run these checks.
     name: DSH skill, agent and prompt mirrors match their sources
     if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
@@ -142,13 +142,43 @@ jobs:
         run: |
           set -euo pipefail
           npm --prefix .opencode/skills/system-spec-kit ci
-          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
       - name: Compare the DSH mirrors with their sources
         run: |
           set -euo pipefail
           node .opencode/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check
           node .opencode/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check
           node .opencode/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check
+
+  vibe-mirror:
+    # The Mistral Vibe runtime reads generated agent profiles, skill links and prompt stubs.
+    # Its source and output paths are filtered above, so a change to either side runs these checks.
+    name: Vibe skill, agent and prompt mirrors match their sources
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # No suite in this job reads loop state, so the checkout skips the research, review,
+      # scratch and archive folders under specs/: about two thirds of the tracked files.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/specs/**/research/
+            !/specs/**/review/
+            !/specs/**/scratch/
+            !/specs/**/z_archive/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      # The agent sync reads the frontmatter parser from the shared package's build,
+      # which only exists once the package is compiled.
+      - name: Install the spec-kit workspace and build its shared package
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
       - name: Compare the Vibe mirrors with their sources
         run: |
           set -euo pipefail

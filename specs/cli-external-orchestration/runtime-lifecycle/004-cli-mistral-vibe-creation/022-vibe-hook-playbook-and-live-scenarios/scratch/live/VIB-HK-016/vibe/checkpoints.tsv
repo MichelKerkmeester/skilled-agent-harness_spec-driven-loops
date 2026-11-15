@@ -1,3 +1,4 @@
 turn	status	attempts	evidence	observed
 edit	PASS	1	turns/edit	finding-returned
 rule	PASS	1	turns/rule	rule-named
+clean-edit	PASS	1	turns/clean-edit	clean-edit-earned-no-hygiene-finding

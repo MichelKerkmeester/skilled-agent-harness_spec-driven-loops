@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # runtime/: Feature Catalog
@@ -690,7 +690,7 @@ See [`fanout/fanout-salvage.md`](../feature-catalog/fanout/fanout-salvage.md) fo
 #### Description
 
 Cross-lineage merge: research (dedup by `findingId` + cross-model attribution) or review
-(strongest-restriction: any active P0 → merged FAIL). Writes consolidated registry and
+(strongest-restriction: any active P0 or failed required gate → merged FAIL). Writes consolidated registry and
 `fanout-attribution.md`.
 
 #### Source Files

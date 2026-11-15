@@ -1,19 +1,19 @@
 ---
-title: "Compaction History Lookup"
+title: "Handoff History Lookup"
 description: "Manual scenario validating the bounded history lookup a handoff claim prints, its locator gates and its read-only CLI redemption."
 trigger_phrases:
-  - "compaction history lookup"
+  - "claimed note history lookup"
   - "history lookup at handoff claim"
   - "opaque history handle"
   - "history lookup CLI"
   - "locator freshness"
-version: 2.0.0.0
+version: 2.0.1.0
 id: plugins-and-hooks-compaction-history-lookup
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
 ---
 
-# Compaction History Lookup
+# Handoff History Lookup
 
 ---
 
@@ -63,7 +63,7 @@ This scenario validates:
    (cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/history-lookup-cli.vitest.ts tests/history-locator.vitest.ts)
    ```
 
-   Expected: both Node suites and both Vitest files pass with no failed test. `session-handover-cli.test.cjs` proves the section arrives after the note body and before the complete command, stays inside 600 characters, mints the sender's locator again at claim time and is withheld when the sender log is gone or the note names another runtime. `history-lookup-entry.test.cjs` proves the printed entry refuses when the compiled core is missing. `history-lookup-cli.vitest.ts` proves the refusal codes, the exit status and the 30-minute TTL, and `history-locator.vitest.ts` proves the locator schema, the Claude and Codex locator contract and the section budget.
+   Expected: both Node suites and both Vitest files pass with no failed test. `session-handover-cli.test.cjs` proves the section arrives after the note body and before the complete command, stays inside 600 characters, mints the sender's locator at claim time, prints a command that answers with the sender's turns and is withheld when the sender log is gone, the note names another runtime, the note comes from another checkout or the transcript ran in one. `history-lookup-entry.test.cjs` proves the printed entry refuses with `core_unavailable` when the compiled core is missing. `history-lookup-cli.vitest.ts` proves the refusal codes, the exit status and the 30-minute TTL, and `history-locator.vitest.ts` proves the locator schema, the Claude and Codex locator contract and the section budget.
 
 2. Confirm the lookup core is built, because the claim withholds the section when it cannot run:
 

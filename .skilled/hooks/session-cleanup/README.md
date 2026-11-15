@@ -76,7 +76,8 @@ session-cleanup/
 +-- codex/    session-cleanup.sh (symlink)
 +-- cursor/   session-cleanup.sh (symlink)
 +-- devin/    session-cleanup.sh (symlink)
-`-- opencode/ session-cleanup.js (browsability symlink -> .opencode/plugins/session-cleanup.js)
++-- opencode/ session-cleanup.js (browsability symlink -> .opencode/plugins/session-cleanup.js)
+`-- vibe/     session-cleanup.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 ```
 
 ---

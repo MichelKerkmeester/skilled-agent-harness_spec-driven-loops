@@ -1,2 +1,4 @@
 turn	status	attempts	evidence	observed
 write	PASS	1	turns/write	spec-gate-denied
+answer-skip	PASS	1	turns/answer-skip	gate-closed-by-skip-answer
+retry-write	PASS	1	turns/retry-write	write-allowed-after-skip

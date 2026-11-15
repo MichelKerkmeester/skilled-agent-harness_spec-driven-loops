@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation",
+  "description": "Phase 7: review-remediation",
+  "keywords": [
+    "phase",
+    "review-remediation"
+  ],
+  "lastUpdated": "2026-11-15T15:09:27.909Z",
+  "specId": "007",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "15-11-26_15-38__fixed-all-twelve-p2-deep-review-findings-claim.md",
+    "15-11-26_15-50__phase-007-landed-on-main-twelve-review-fixes.md",
+    "15-11-26_16-09__recorded-the-operator-s-choice-to-rebuild-the.md"
+  ]
+}

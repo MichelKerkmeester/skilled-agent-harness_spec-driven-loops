@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/001-model-effort-atomic-replay",
+  "description": "The wrapper takes the live model at `.skilled/bin/skilled-loop:789-800` and the live effort separately at `:814-823`",
+  "keywords": [
+    "wrapper",
+    "takes",
+    "live",
+    "model",
+    "skilled",
+    "bin",
+    "skilled-loop",
+    "effort",
+    "separately"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.914Z",
+  "specId": "001",
+  "folderSlug": "model-effort-atomic-replay",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "033-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

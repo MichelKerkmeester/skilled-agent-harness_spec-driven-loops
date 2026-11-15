@@ -1,13 +1,13 @@
 ---
 title: "Fan-out cross-lineage merge"
-description: "Cross-lineage merge: research (dedup by findingId + cross-model attribution) or review (strongest-restriction: any active P0 → merged FAIL). Writes consolidated registry and fanout-attribution.md."
+description: "Cross-lineage merge: research (dedup by findingId + cross-model attribution) or review (strongest-restriction: any active P0 or failed required gate → merged FAIL). Writes consolidated registry and fanout-attribution.md."
 trigger_phrases:
   - "fan-out cross-lineage merge"
   - "fanout-merge.cjs"
   - "merge fanout lineages"
   - "strongest-restriction review merge"
   - "cross-model finding attribution"
-version: 1.4.0.3
+version: 1.4.1.0
 ---
 
 # Fan-out cross-lineage merge
@@ -36,8 +36,8 @@ the merge never calls the title-aware match or bucketer, so the off path is byte
 
 **Review merge (strongest-restriction)**: iterates active findings across all lineages,
 escalates to highest severity for duplicate `findingId` using `SEVERITY_RANK` (P0=3 > P1=2
-> P2=1), counts active P0/P1/P2, derives `mergedVerdict` (FAIL if `activeP0 > 0`,
-CONDITIONAL if `activeP1 > 0`, PASS otherwise). Non-active findings (resolved,
+> P2=1), counts active P0/P1/P2, derives `mergedVerdict` (FAIL if `activeP0 > 0` or any lineage still has a failed
+required gate in `failedRequiredGateIds`, CONDITIONAL if `activeP1 > 0`, PASS otherwise). Non-active findings (resolved,
 `resolved_false_positive`) are excluded from counts.
 
 Both modes write `{artifact_dir}/fanout-attribution.md`: a per-lineage Markdown table with
@@ -47,7 +47,7 @@ label, kind, model, iterations, convergence score, salvaged event count, and ver
 
 The merge step is what makes fan-out useful — without it, N lineages produce N separate
 reports with no cross-lineage synthesis. The strongest-restriction policy ensures a P0
-finding in ANY lineage surfaces to the final review verdict.
+finding, or a required gate still failing, in ANY lineage surfaces to the final review verdict.
 
 ---
 

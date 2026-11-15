@@ -6,7 +6,7 @@ trigger_phrases:
   - "resume purpose row"
   - "parent purpose row"
 id: plugins-and-hooks-packet-purpose-resume
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Packet purpose on resume
@@ -111,6 +111,8 @@ Capture the exact command, the full brief and the exit status for each of the th
 - Purpose reader: `runtime/lib/spec/packet-purpose.ts`
 - Resume workflow: `.skilled/commands/speckit/assets/speckit-resume.yaml`
 - Workflow contract test: `runtime/cli/tests/test-phase-command-workflows.js`
+
+Provenance: .skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts
 
 ---
 

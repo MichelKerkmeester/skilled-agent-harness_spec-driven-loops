@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title",
+  "description": "The plugin puts every sub-agent session in a skip set and returns before reading any later event for it (`.opencode/plugins/session-relaunch.js:335`",
+  "keywords": [
+    "plugin",
+    "puts",
+    "every",
+    "sub-agent",
+    "session",
+    "skip",
+    "set",
+    "returns",
+    "reading",
+    "later",
+    "event",
+    "opencode",
+    "plugins",
+    "session-relaunch"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.983Z",
+  "specId": "013",
+  "folderSlug": "opencode-child-and-title",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -115,6 +115,12 @@
       "declaredBy": "sk-doc",
       "wonBy": "system-spec-kit",
       "reason": "Authoring an operator validation playbook is sk-doc's; validating a spec folder is system-spec-kit's. The winner declares no matching phrase and wins by 0.004 on its 'operator decision' signal and 'validation' topic, so the bare phrase reads as either, like 'release readiness'."
+    },
+    {
+      "phrase": "mode packet",
+      "declaredBy": "sk-doc",
+      "wonBy": "system-spec-kit",
+      "reason": "A parent hub's mode packet is sk-doc's to author; system-spec-kit owns spec packets. sk-doc declares the phrase exactly and loses by 0.002 to the winner's 'packet' vocabulary, the same shape as 'operator validation'. Not resolvable by vocabulary; belongs to the lexical-lane work."
     }
   ]
 }

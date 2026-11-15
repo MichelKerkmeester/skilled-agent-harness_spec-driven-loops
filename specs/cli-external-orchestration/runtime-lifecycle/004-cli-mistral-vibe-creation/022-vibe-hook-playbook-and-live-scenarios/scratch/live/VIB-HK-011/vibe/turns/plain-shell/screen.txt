@@ -1,0 +1,51 @@
+> Run a quick headless Vibe smoke test: its own VIBE_HOME, an output dir under /tmp, stdin closed, and the model alias gpt-5. I want to know whether that alias still resolves here.                    
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+  No — gpt-5 does not resolve here. It never reaches model resolution: the dispatch gate refuses it before launch.                                                                                      
+                                                                                                                                                                                                        
+  What I ran (vibe 3.1.2, ~/.local/bin/vibe):                                                                                                                                                           
+                                                                                                                                                                                                        
+  ┌─────────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ Item                        │ Value                                                                                                                                                             │   
+  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ VIBE_HOME                   │ /tmp/vibe-smoke-Vu8ZAX/.vibe-home (fresh, repo config.toml copied, hooks rendered)                                                                                │   
+  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Output dir                  │ /tmp/vibe-smoke-Vu8ZAX/out — empty, no export.json written                                                                                                        │   
+  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ stdin                       │ </dev/null                                                                                                                                                        │   
+  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ --model gpt-5               │ Blocked by vibe-closed-roster                                                                                                                                     │   
+  └─────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  Evidence the alias is dead:                                                                                                                                                                           
+                                                                                                                                                                                                        
+  • The roster is closed to deepseek-flash and glm-flash; allowed_models in the repo config lists only deepseek-v4-1-flash-1017 and zai-glm-5-3-flash.                                                  
+  • No gpt-5 string exists anywhere in the installed 3.1.2 package. The built-in catalog ships one row: mistral-vibe-cli-latest → mistral-medium-3.5.                                                   
+  • A live control run resolved exactly six aliases: deepseek-flash, glm-flash, mistral-medium-3.5, voxtral-realtime, voxtral-tts, zai-glm-5-3-flash. No gpt-5.                                         
+                                                                                                                                                                                                       ▃
+  Control run (same shape, --model deepseek-flash): exit_code: 0, outcome: finished, output SMOKE_OK, 8.5k tokens, $0.00. So the harness, home, and output dir are all sound — the alias is the only    
+  variable.                                                                                                                                                                                             
+                                                                                                                                                                                                        
+  Had the gate not intercepted it, Vibe would have exited 1 with Error: Unknown model: gpt-5. Available: deepseek-flash, glm-flash, mistral-medium-3.5 and outcome: usage_error.                        
+                                                                                                                                                                                                        
+  Two notes: VIBE_SESSION=1 is set, so this is a self-invocation — the skill's critical rule prohibits it, though the harness only enforces the roster, --output-dir, and rendered-hooks rules. And     
+  the advisor's cli-external-orchestration isn't in this session's skill list; I read it from .skilled/skills/ on disk. Artifacts are left under /tmp/vibe-smoke-Vu8ZAX if you want to inspect them.    
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+> Skip the smoke test. Instead run printf ok > ok.txt in the shell here.                                                                                                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+⏵ Ran 1 command, thought                                                                                                                                                                                
+                                                                                                                                                                                                        
+  Done. ok.txt written in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.FXlhO318MZ/vibe — 2 bytes, contents ok, no trailing newline (as printf gives).                                   
+                                                                                                                                                                                                        
+  One note: the advisor pointed at sk-code, but it isn't in this session's available skills, so I didn't load it. For a single printf redirect that wouldn't have changed anything.                     
+
+                                                   
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                                        
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.FXlhO318MZ/vibe                                                                                                       ctx █▌     62.9k/256k
+

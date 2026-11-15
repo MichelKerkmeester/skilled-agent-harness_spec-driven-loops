@@ -65,6 +65,8 @@ export type HistoryLookupRefusalCode =
   | 'session_ambiguous'
   | 'store_unreadable'
   | 'operation_invalid'
+  // Printed only by the handover entry script, when this compiled core cannot load.
+  | 'core_unavailable'
   | 'unknown_history_anchor'
   | 'unknown_history_id'
   | 'unknown_history_part'
@@ -286,7 +288,13 @@ function sessionFolder(locator: HistoryLocator): string {
 }
 
 function storeRootFor(locator: HistoryLocator, environment: HistoryLookupCliEnvironment): string | null {
-  if (locator.runtime === 'claude') return join(environment.home, '.claude', 'projects');
+  // Claude Code moves its whole store under CLAUDE_CONFIG_DIR when that is set,
+  // and the handover mint finds the transcript there, so the lookup reads the
+  // same root or a minted handle could never be redeemed.
+  if (locator.runtime === 'claude') {
+    const configDirectory = environment.env.CLAUDE_CONFIG_DIR?.trim();
+    return join(configDirectory || join(environment.home, '.claude'), 'projects');
+  }
   if (locator.runtime === 'codex') return join(environment.codexHome, 'sessions');
   // Vibe keeps one folder per session under its home, so the store root is the
   // parent the exact session id names a child of.

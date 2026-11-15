@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi mode and descendant walk",
+      "phase 15 pi mode and descendant walk",
+      "pi mode and descendant walk plan",
+      "pi mode and descendant walk tasks",
+      "pi mode and descendant walk acceptance criteria",
+      "pi mode and descendant walk goal",
+      "descendant walk decline",
+      "pi mode and descendant walk decisions",
+      "pi mode and descendant walk implementation summary"
+    ],
+    "key_topics": [
+      "mode",
+      "descendant",
+      "walk",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "decline",
+      "decisions",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/confirm-pi-mode.txt",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      ".pi/types/pi-coding-agent.d.ts",
+      "scratch/red-A.txt",
+      "scratch/green-A.txt",
+      "scratch/red-B.txt",
+      "scratch/green-B.txt",
+      "scratch/red-C.txt",
+      "scratch/green-C.txt",
+      "scratch/red-D.txt",
+      "scratch/green-D.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "confirm-pi-mode.txt",
+        "kind": "file",
+        "path": "scratch/confirm-pi-mode.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-coding-agent.d.ts",
+        "kind": "code",
+        "path": ".pi/types/pi-coding-agent.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "red-A.txt",
+        "kind": "file",
+        "path": "scratch/red-A.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-A.txt",
+        "kind": "file",
+        "path": "scratch/green-A.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-B.txt",
+        "kind": "file",
+        "path": "scratch/red-B.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-B.txt",
+        "kind": "file",
+        "path": "scratch/green-B.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-C.txt",
+        "kind": "file",
+        "path": "scratch/red-C.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-C.txt",
+        "kind": "file",
+        "path": "scratch/green-C.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-D.txt",
+        "kind": "file",
+        "path": "scratch/red-D.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-D.txt",
+        "kind": "file",
+        "path": "scratch/green-D.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Pi session that switched to Plan or Build mode restarts in the mode its first launch named, because `liveSettings` returns only model, provider and effort (`.skilled/hooks/session-relaunch/pi/session-relaunch.ts:419`) and the arm keeps only those three keys (`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1011`)",
+    "created_at": "2026-11-13T08:49:37Z",
+    "last_save_at": "2026-11-15T14:28:42.664Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:301547b6d00910e5018856706f5cbfb948c21f3a723ed10bc57e2fd530b8722a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "03e36168821306c69e8572a9cfb3caffc4b661427f39cca1af9fc7bc1f269334",
+      "plan.md": "bc9bf6f2f3227cb0af72b8d11fa6f8b856012de693e57bf8dac4036ba047ae21",
+      "tasks.md": "feeaf232104e4bf9d89654b81111f0efecd3551c9951a79a5e1d089f62868a07",
+      "decision-record.md": "0dff1603268405f41957efb7939301801525e6c287a01cd70dc5e73ab98a57a2",
+      "implementation-summary.md": "d84f54cb7b6dfa98387c1345626bb3ed5b9cdf70f41a237c9dba67b9d0b4dc50"
+    },
+    "last_active_at": null
+  }
+}

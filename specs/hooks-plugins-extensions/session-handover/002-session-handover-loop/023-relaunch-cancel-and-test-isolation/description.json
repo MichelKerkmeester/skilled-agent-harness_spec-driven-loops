@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/023-relaunch-cancel-and-test-isolation",
+  "description": "Run from inside a looped session, the relaunch suite inherits the wrapper's `SKILLEDLOOP` variables and 13 of 682 tests fail",
+  "keywords": [
+    "run",
+    "inside",
+    "looped",
+    "session",
+    "relaunch",
+    "suite",
+    "inherits",
+    "wrapper",
+    "skilledloop",
+    "variables",
+    "tests",
+    "fail"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.901Z",
+  "specId": "023",
+  "folderSlug": "relaunch-cancel-and-test-isolation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-10-26_17-22__shared-one-hand-over-withdraw-across-claude-codex.md"
+  ]
+}

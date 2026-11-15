@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/003-generated-title-carry",
+  "description": "A Claude hop carried only a launch `--name` or a `/rename` title, which Claude logs as a `custom-title` entry",
+  "keywords": [
+    "claude",
+    "hop",
+    "carried",
+    "only",
+    "launch",
+    "name",
+    "rename",
+    "title",
+    "logs",
+    "custom-title",
+    "entry"
+  ],
+  "lastUpdated": "2026-11-15T14:28:41.018Z",
+  "specId": "003",
+  "folderSlug": "generated-title-carry",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

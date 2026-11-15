@@ -1,3 +1,3 @@
-$ mkdir -p "$VIBE_HOME/prompts" && cp "$CONVERSATION_REPO_ROOT"/.vibe/prompts/create-goal.md "$VIBE_HOME/prompts/" && { printf 'system_prompt_id = "create-goal"\n'; cat "$VIBE_HOME/config.toml"; } > "$VIBE_HOME/config.toml.new" && mv "$VIBE_HOME/config.toml.new" "$VIBE_HOME/config.toml" && echo prompt-named
-prompt-named
+$ for i in $(seq 1 20); do grep -rhoE '"core_system_instructions":"[^"]{0,250}' "$VIBE_HOME/logs/session/unified" | grep -q 'Mistral Vibe prompt: /create-goal' && echo mirrored-prompt-is-system-input && exit 0; sleep 1; done; echo 'the system input is not the mirrored prompt'; exit 1
+mirrored-prompt-is-system-input
 [exit 0]

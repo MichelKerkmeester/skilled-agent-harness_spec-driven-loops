@@ -46,7 +46,6 @@
       ".claude/agents/context.md",
       ".skilled/commands/deep/research.md",
       ".claude/agents/review.md",
-      ".skilled/commands/deep/assets/deep-research-auto.yaml",
       ".skilled/skills/sk-code/sk-code-review/SKILL.md",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js"
     ],
@@ -109,12 +108,6 @@
         "name": "review.md",
         "kind": "doc",
         "path": ".claude/agents/review.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Implement and complete configure a blocking `@review` gate with a `CODE-REVIEW` marker and a severity verdict, but the marker appears only in `agentavailability` and no workflow step dispatches the agent",
     "created_at": "2026-11-14T11:33:21Z",
-    "last_save_at": "2026-11-14T14:18:08.340Z",
+    "last_save_at": "2026-11-15T16:19:15.512Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb8239b1e06e9399865ab237d0f73a79def13f8d89619a9834624e5f8d514772",
+    "source_fingerprint": "sha256:cf0ad0179e3c9d4f4bada18bc2cf47bbe78c529defb3839a86a25ae95295a4c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "77a4371e6b4fe4652a9b626d8d4c5754a07fab5a20c13c1ac86f9bafeb27ce12",
+      "spec.md": "8f12f448faabaaf9f26a9bb04f29a723111f0d2a235159a7a52013f83adeb4d6",
       "plan.md": "69e7c76697c8ccbde60d67ffa1eecb1ab28529fc0e9aa5e07741cd00c786455d",
       "tasks.md": "84ac84d2bf8a62ba1d61e91d9ce69bfcd1de0d8ce17e7f4c0e981fafbb2c39b3",
       "implementation-summary.md": "9f4f2f594607c3f2010bdbc80c04f03720bed55bae9192b1ffe5ccfd57504023"

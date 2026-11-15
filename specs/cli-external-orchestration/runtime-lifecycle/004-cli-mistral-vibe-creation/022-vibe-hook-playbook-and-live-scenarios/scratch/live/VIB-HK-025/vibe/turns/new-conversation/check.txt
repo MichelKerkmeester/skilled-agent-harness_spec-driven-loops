@@ -1,3 +1,0 @@
-$ touch "$CONVERSATION_TURN_DIR/new-marker" && echo new-conversation
-new-conversation
-[exit 0]

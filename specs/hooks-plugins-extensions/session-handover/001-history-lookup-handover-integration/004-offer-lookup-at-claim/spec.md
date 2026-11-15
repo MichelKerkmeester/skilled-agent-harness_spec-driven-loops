@@ -27,7 +27,7 @@ contextType: "general"
 | **Phase** | 4 of 6 |
 | **Predecessor** | 003-mint-locator-at-prepare |
 | **Successor** | 005-deprecate-compaction-offer |
-| **Handoff Criteria** | A claim prints a `## History Lookup` section whose command names the sender session, the locator it redeems was minted at claim time, and a claim that finds no stored locator still exits 0 with the note body. |
+| **Handoff Criteria** | A claim prints a `## History Lookup` section whose command names the sender session, the locator it redeems was minted at claim time, and a claim whose sender left no session log still exits 0 with the note body. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -138,7 +138,7 @@ The `claim` function prints the note body at line 706, the complete command at l
 
 - **SC-001**: A claim of a note whose `session_id` is `S` prints a `## History Lookup` section whose command carries `--session 'S'` and `--handle 'hl1_...'`, after the note body.
 - **SC-002**: A locator minted three hours before the claim still redeems, because the claim rewrote `mintedAt` to the claim time.
-- **SC-003**: A claim that finds no stored locator exits 0 and prints the note body with no section.
+- **SC-003**: A claim whose sender left no session log exits 0 and prints the note body with no section.
 - **SC-004**: The receiver step appears once in `handoff.md` section 5 and names the lookup command the claim prints.
 <!-- /ANCHOR:success-criteria -->
 

@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/028-goal-rebind-live-proof-and-docs",
+  "description": "The goal-persistence work is only proven where a unit test can reach",
+  "keywords": [
+    "goal-persistence",
+    "work",
+    "only",
+    "proven",
+    "unit",
+    "test",
+    "reach"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.908Z",
+  "specId": "028",
+  "folderSlug": "goal-rebind-live-proof-and-docs",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

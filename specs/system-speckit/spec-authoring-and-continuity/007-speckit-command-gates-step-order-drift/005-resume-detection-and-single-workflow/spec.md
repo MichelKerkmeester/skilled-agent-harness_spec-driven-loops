@@ -25,7 +25,7 @@ contextType: "general"
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 8 |
+| **Phase** | 5 of 11 |
 | **Predecessor** | 004-code-review-and-dispatch-policy |
 | **Successor** | 006-save-search-handoff-contracts |
 | **Handoff Criteria** | `assets/speckit-resume.yaml` is the only resume workflow file, every finding this phase owns in the parent Findings Ledger is closed, and `acceptance-criteria.md` has no `Unmet` row |

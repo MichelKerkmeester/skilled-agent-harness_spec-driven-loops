@@ -1,3 +1,4 @@
-$ grep -rqs 'Jev injection screen' "$VIBE_HOME/logs/session/unified" && grep -rqs 'classifier-injection-screen' "$VIBE_HOME/logs/session/unified" && echo advisory-appended
-advisory-appended
+$ grep -rqs 'classifier-injection-screen' "$VIBE_HOME/logs/session/unified" && for i in $(seq 1 20); do node "$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs" "$VIBE_HOME/logs/session/unified" post-tool-has 'ignore your previous instructions' 'Jev injection screen' && echo advisory-on-the-fetch-result && exit 0; sleep 1; done; exit 1
+latest matching post_tool_call result carries the second text
+advisory-on-the-fetch-result
 [exit 0]

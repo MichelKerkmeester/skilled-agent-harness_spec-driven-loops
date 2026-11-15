@@ -2,12 +2,12 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 10445014,
-  "socket": "conv-44919-vibe",
-  "session_id": "cdac9f6c-137b-4ece-8968-69d5b5818212",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.7J0vUgGSN5/vibe",
-  "started_at": "2026-11-15T00:31:31.448Z",
-  "finished_at": "2026-11-15T00:32:18.075Z",
+  "seed": 222696374,
+  "socket": "conv-96028-vibe",
+  "session_id": "952ca621-1465-45af-a4ef-f1740aa0ed31",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.tQVPx0MZ1Q/vibe",
+  "started_at": "2026-11-15T13:21:18.093Z",
+  "finished_at": "2026-11-15T13:22:41.527Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -48,6 +48,15 @@
       "blocker": null,
       "observed": "skill-loaded-from-mirror",
       "evidence": "turns/load-skill"
+    },
+    {
+      "id": "carry-prompt",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "prompt-carried lines=46",
+      "evidence": "turns/carry-prompt"
     }
   ]
 }

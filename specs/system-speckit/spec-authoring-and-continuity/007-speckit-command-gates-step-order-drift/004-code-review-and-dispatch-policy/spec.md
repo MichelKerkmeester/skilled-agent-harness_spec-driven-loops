@@ -25,7 +25,7 @@ contextType: "general"
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 8 |
+| **Phase** | 4 of 11 |
 | **Predecessor** | 003-execution-mode-and-autopilot-contract |
 | **Successor** | 005-resume-detection-and-single-workflow |
 | **Handoff Criteria** | Every row in this phase's `acceptance-criteria.md` is `Met`, ledger findings D1 to D7 are closed, `test-phase-command-workflows.js` prints `failed=0` and `validate.sh --strict` prints `RESULT: PASSED` for this folder |

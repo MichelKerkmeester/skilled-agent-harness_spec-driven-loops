@@ -1,0 +1,23 @@
+The opus-medium lineage is finished: two review passes, the run report and the closing records are all in the lineage directory. **Verdict: PASS with 7 minor (P2) findings**, no blockers (P0) and no must-fix issues (P1). I did not re-run any tests, because this lineage was not allowed to run repository tooling.
+
+**Pass 1 (correctness and security, code commits):**
+- **OM-001:** the claim-time lookup only works for Claude Code and Codex senders (`relaunch-core.cjs:910-915`). But commit 8cd3fa79da9 removed the compaction-time offer on Pi, Devin, DSH, Vibe and OpenCode too, so senders on those five runtimes now get no lookup at all. Phase 005's `plan.md:123` says the claim tests cover OpenCode, which is false. I first rated this P1. In pass 2 I lowered it to P2: the feature catalog, the playbook and the changelog all state the two-runtime limit and mark the change as breaking, so the remaining problem is the phase 005 wording and the parent spec, which never says the feature is limited to two runtimes.
+- **OM-002:** when a note is claimed, the code creates and saves the sender's history locator before checking that the receiver is in the same checkout (`relaunch-core.cjs:983-988`). A note from another checkout still rewrites that sender's saved state, even though no lookup section is printed.
+- **OM-003:** the claim always creates a fresh locator, so the one `prepare` saves is never read on that path. That also makes 004's SC-003 false: a claim with no saved locator still prints the section.
+- **OM-004:** 004 `tasks.md` T005/T006 are ticked done for a re-stamp helper and test that were never built.
+
+**Pass 2 (traceability and maintainability, docs and the sub-track move):**
+- **OM-005:** the catalog entry and playbook page are still titled and triggered as "Compaction history lookup", although the lookup is no longer offered after a compaction.
+- **OM-006:** the parent `spec.md:55` still names `scaffold/001-history-lookup-handover-integration` as its parent packet. The move commit 70c47ad5e00 did not update it.
+- **OM-007:** the phase 006 summary contradicts itself. It says "3 of 3 counted runs", "six counted runs per side" and "two runs not counted" because the note leaked the detail. The run records show only one run leaked; the other six split into four correct and two missing. The changelog's "three of three" holds only for the runs after the reader fix.
+
+**Clean or ruled out:** the new lookup entry script, the old-and-new command pattern, the Claude transcript-reader fix, the Vibe removal and the new compaction-adapter test, which checks that Pi, Devin and DSH print no lookup section.
+
+**Run notes:**
+- My first terminal-gates record was refused because the gate results lacked fields; I added `status`, `reasonCode` and `evidenceDigest` and it was accepted.
+- The closing record carries `stopReason: maxIterationsReached`.
+- Every write stayed inside the lineage directory.
+
+The full findings and fix ideas are in `review-report.md` in the lineage directory. Nothing needs you until the fan-out merge combines this lineage with fable-medium.
+
+FANOUT_LINEAGE_COMPLETE:opus-medium
