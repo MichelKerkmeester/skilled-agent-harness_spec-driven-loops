@@ -901,7 +901,7 @@ workflow:
           - last_focus: "Extract focus/dimension from latest iteration record, else 'none yet'"
           - ratio_prev: "Extract newFindingsRatio from second-latest iteration record, else 'N/A'"
           - ratio_latest: "Extract newFindingsRatio from latest iteration record, else 'N/A'"
-          - next_dimension: "Next uncovered dimension from dimension_queue in strategy.md"
+          - next_dimension: "When max_iterations >= 2, current_iteration == max_iterations and unfinished_core_protocols is non-empty, 'traceability': the last iteration under the cap finishes those core protocols. Otherwise the next uncovered dimension from dimension_queue in strategy.md."
           - dimensions_covered: "List of dimensions already reviewed"
           - dimensions_remaining: "List of dimensions not yet reviewed"
           - dimension_coverage: "covered / total dimensions"
@@ -909,6 +909,7 @@ workflow:
           - p0_count: "findingsBySeverity.P0 from {state_paths.findings_registry}, the reducer's deduplicated count of open findings, else 0"
           - p1_count: "findingsBySeverity.P1 from {state_paths.findings_registry}, else 0"
           - p2_count: "findingsBySeverity.P2 from {state_paths.findings_registry}, else 0"
+          - unfinished_core_protocols: "registry.traceability.unfinishedCoreProtocols from {state_paths.findings_registry} as a JSON array, else []"
           - resource_map_present: "Extract boolean from deep-review-config.json, default false"
           - resource_map_prompt_line: "If resource_map_present is true, return 'Resource Map Coverage: cross-check target_files from {spec_folder}/applied/T-*.md against {spec_folder}/resource-map.md and classify only missed coverage as gaps.' Else return 'Resource Map Coverage: resource-map.md not present; skipping coverage gate.'"
           - session_id: "Extract sessionId from deep-review-config.json"
@@ -926,6 +927,7 @@ workflow:
           - pivot_lineage: "Summarize registry.divergence.completed and registry.divergence.overrides with pivot ids, source iterations, and selected review direction; else 'none yet'"
           - saturated_directions: "List registry.divergence.saturatedDirections; else 'none yet'"
           - review_focus_block: "When deep-review-config.json reviewFocus is a non-empty string, return 'Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): <reviewFocus>'. Else return an empty string."
+          - unfinished_core_protocols_block: "Under the same condition as next_dimension's traceability case, return 'This is the last iteration under the cap. Finish these core traceability protocols: <ids, comma-separated>. Record one traceabilityChecks.results[] entry for each. A result raised from partial to pass needs a file:line reference in evidenceRefs, or it stays partial.' Else return an empty string."
 
       step_check_max_duration:
         action: "Stop the loop when the run has used its wall-clock budget, and still synthesize"
@@ -1059,7 +1061,7 @@ workflow:
             graphless_fallback_missing_json = the I.requiredBugClasses entries that are not in I.fallbackCoveredBugClasses
             graphless_fallback_unavailability_reason = the explicit reason when I.graphCoverageMode == "unavailable_blocked", else empty string
             graph_blocker_detail_json = graph_blockers_json
-            recovery_strategy = one line naming the next review action for the gates in stop_decision.blockedBy. When claimAdjudicationGate is listed: "Reviewer must add typed claim-adjudication packets (claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, downgradeTrigger) for every active P0/P1 finding before STOP is allowed." When stop_decision.reasonDetail == "graphStopBlocked": "Resolve review coverage-graph blockers before stopping." When candidateCoverageGate and graphlessFallbackGate both fail, combine their guidance.
+            recovery_strategy = one line naming the next review action for the gates in stop_decision.blockedBy. When claimAdjudicationGate is listed: "Reviewer must add typed claim-adjudication packets (claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, downgradeTrigger) for every active P0/P1 finding before STOP is allowed." When stop_decision.reasonDetail == "graphStopBlocked": "Resolve review coverage-graph blockers before stopping." When candidateCoverageGate and graphlessFallbackGate both fail, combine their guidance. When I.unfinishedCoreProtocols is non-empty, name them and say the last iteration under the cap is reserved for them, each needing file:line evidence.
           If stop_decision is missing from the step_graph_convergence output, do not decide by hand: halt and report the script output.
         outputs:
           - decision: "STOP | BLOCKED | STUCK_RECOVERY | CONTINUE"
@@ -1464,6 +1466,7 @@ workflow:
               pivot_lineage: "{pivot_lineage}"
               saturated_directions: "{saturated_directions}"
               review_focus_block: "{review_focus_block}"
+              unfinished_core_protocols_block: "{unfinished_core_protocols_block}"
               state_paths_config: "{state_paths.config}"
               state_paths_state_log: "{state_paths.state_log}"
               state_paths_findings_registry: "{state_paths.findings_registry}"

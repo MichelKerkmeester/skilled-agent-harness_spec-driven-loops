@@ -15,6 +15,7 @@ const { resolveArtifactRoot } = require('../../runtime/lib/deep-loop/artifact-ro
 const { filterCompletionBearingRecords } = require('../../shared/progress/progress-record.cjs');
 const { latestIterationRecords } = require('../lib/deep-loop/iteration-findings.cjs');
 const { deriveReviewVerdict, openSearchDebtCount } = require('./review-verdict.cjs');
+const { reviewUnfinishedCoreProtocols } = require('./convergence.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -1441,6 +1442,11 @@ const TRACEABILITY_PROTOCOL_GATE_CLASSES = {
 // was not exercised in that pass, not that an earlier verdict was reversed.
 const TRACEABILITY_UNDECIDED_STATUSES = new Set(['pending', 'deferred', 'skipped']);
 
+// A pass that lifts a partial verdict has to name the code the claim now
+// resolves against, so the reference is read as file and line rather than as
+// any string the reviewer attached to the result.
+const TRACEABILITY_FILE_LINE_REFERENCE = /[^\s:]+:\d+/u;
+
 /**
  * Parse a recorded protocol status into one of the known words.
  *
@@ -1530,6 +1536,27 @@ function normalizeTraceabilityChecks(traceabilityChecks) {
 }
 
 /**
+ * Whether a result carries an evidence reference that names a file and line.
+ *
+ * A `partial` verdict records a claim that did not resolve, so a later `pass`
+ * only supersedes it when it points at where the claim now resolves. The
+ * reference is read from the result's evidence fields, which a record may hold
+ * as one string or as a list.
+ *
+ * @param {*} result - Normalized protocol result.
+ * @returns {boolean} True when an evidence field holds a file:line reference.
+ */
+function hasTraceabilityFileLineReference(result) {
+  for (const field of [result?.evidenceRefs, result?.evidence]) {
+    const values = Array.isArray(field) ? field : [field];
+    for (const value of values) {
+      if (typeof value === 'string' && TRACEABILITY_FILE_LINE_REFERENCE.test(value)) return true;
+    }
+  }
+  return false;
+}
+
+/**
  * Aggregate the latest result for each traceability protocol into the registry.
  * Iterations may report only the protocols exercised in that pass.
  */
@@ -1542,6 +1569,12 @@ function buildTraceabilityRollup(iterationRecords) {
       // one as undecided must not erase the result an earlier pass reached.
       if (previous && TRACEABILITY_UNDECIDED_STATUSES.has(result.status)
         && !TRACEABILITY_UNDECIDED_STATUSES.has(previous.status)) {
+        continue;
+      }
+      // A partial verdict is not reversed by a later pass that only asserts
+      // the protocol passes; it takes the evidence the earlier pass lacked.
+      if (previous && previous.status === 'partial' && result.status === 'pass'
+        && !hasTraceabilityFileLineReference(result)) {
         continue;
       }
       latestByProtocol.set(result.protocolId, result);
@@ -1880,6 +1913,7 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
   const terminalGates = buildTerminalGates(iterationRecords);
   const searchLedgerState = buildSearchLedgerState(iterationRecords);
   const traceability = buildTraceabilityRollup(iterationRecords);
+  traceability.unfinishedCoreProtocols = reviewUnfinishedCoreProtocols(config, { traceability });
   const divergence = buildPivotState(eventRecords);
   const fieldWarnings = validateReviewRecordFields(iterationRecords);
   const status = deriveDashboardStatus(config, iterationRecords, terminalStop);

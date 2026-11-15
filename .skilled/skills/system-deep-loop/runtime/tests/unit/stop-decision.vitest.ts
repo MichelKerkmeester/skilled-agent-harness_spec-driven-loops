@@ -42,6 +42,7 @@ interface ReviewFacts {
   missingDimensions: string[];
   coverageAge: number;
   traceabilityCovered: boolean;
+  unfinishedCoreProtocols: string[];
   activeP0: number;
   activeP1: number;
   evidenceBackedP0P1: number;
@@ -142,6 +143,7 @@ const {
   evaluateResearchQualityGuards,
   evaluateReviewLegalStopGates,
   mapReviewThresholds,
+  reviewUnfinishedCoreProtocols,
 } = requireCjs('../../scripts/convergence.cjs') as {
   buildStopDecision: (input: StopDecisionInput) => StopDecision;
   combineGraphDecision: (
@@ -168,6 +170,10 @@ const {
     rollingAverageCutoff: number;
     noProgressCutoff: number;
   };
+  reviewUnfinishedCoreProtocols: (
+    config: { crossReference?: { core?: unknown[] } },
+    registry: { traceability?: { results?: unknown[] } },
+  ) => string[];
 };
 
 type InputOverrides = Partial<Omit<StopDecisionInput, 'config' | 'research' | 'review'>> & {
@@ -188,6 +194,7 @@ const reviewBase = (): ReviewFacts => ({
   missingDimensions: [],
   coverageAge: 1,
   traceabilityCovered: true,
+  unfinishedCoreProtocols: [],
   activeP0: 0,
   activeP1: 0,
   evidenceBackedP0P1: 0,
@@ -935,6 +942,35 @@ describe('inputs', () => {
     expect(JSON.stringify(buildStopDecision(input))).toBe(
       JSON.stringify(buildStopDecision(input)),
     );
+  });
+});
+
+describe('reviewUnfinishedCoreProtocols', () => {
+  const coreConfig = { crossReference: { core: ['spec_code', 'checklist_evidence'] } };
+
+  it('names the core protocols a partial result and a missing one leave open', () => {
+    const unfinished = reviewUnfinishedCoreProtocols(coreConfig, {
+      traceability: { results: [{ protocolId: 'spec_code', status: 'PARTIAL' }] },
+    });
+
+    expect(unfinished).toEqual(['spec_code', 'checklist_evidence']);
+  });
+
+  it('leaves a core protocol finished by pass or fail out of the list', () => {
+    const unfinished = reviewUnfinishedCoreProtocols(coreConfig, {
+      traceability: {
+        results: [
+          { protocolId: 'spec_code', status: 'pass' },
+          { protocolId: 'checklist_evidence', status: 'fail' },
+        ],
+      },
+    });
+
+    expect(unfinished).toEqual([]);
+  });
+
+  it('lists nothing when the config names no core protocols', () => {
+    expect(reviewUnfinishedCoreProtocols({}, { traceability: { results: [] } })).toEqual([]);
   });
 });
 

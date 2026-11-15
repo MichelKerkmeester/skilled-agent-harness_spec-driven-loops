@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 33: zero-iteration-report"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "A deep review that stops before any iteration runs, for example on its wall-clock budget, still gets a full report that asks for `/speckit:plan` and a remediation workstream, although nothing was examined. This phase adds a zero-iteration branch to the report step so the report says the review did not run and names a rerun as the next step."
 trigger_phrases:
   - "zero iteration report"
   - "phase 33 zero iteration report"
@@ -14,21 +14,18 @@ contextType: "general"
 ---
 
 <!-- ANCHOR:metadata -->
-## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
-
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
+| **Priority** | P2 |
 | **Status** | Draft |
 | **Created** | 2026-11-15 |
-| **Branch** | `scaffold/033-zero-iteration-report` |
+| **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 33 of 33 |
 | **Predecessor** | 032-traceability-reserve-iteration |
-| **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Successor** | None. Last phase of the Fable 5.2 fixes |
+| **Handoff Criteria** | The report step has a zero-iteration branch, the contract notes it, a playbook scenario covers it, and `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -36,35 +33,41 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 33** of the Fable 5.2 follow-ups: one count source for review verdict, report and closeout; search debt into the verdict; reserve the last iteration for unfinished traceability; a zero-iteration review report specification.
+This is **Phase 33** of the agent alignment follow-ups. It builds one fix from the Fable 5.2 report on the four known limits.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: `deep-review.yaml` report step, a note in `review-mode-contract.yaml`, one new manual testing playbook scenario and its index entry, and the recompiled contract. Phase 25's recorded report stays as written.
 
 **Dependencies**:
-- [To be defined during planning]
+- Phase 25's live run, which produced the report this phase corrects for future runs
 
 **Deliverables**:
-- [To be defined during planning]
+- A zero-iteration branch in the report step
+- A contract note
+- Playbook scenario DRV-069
 <!-- /ANCHOR:phase-context -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+`step_compile_review_report` (.skilled/commands/deep/assets/deep-review.yaml) has one shape for every stop. Phase 25's live review stopped on `maxDurationReached` with 0 of 3 iterations dispatched; its report (`specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/review-report.md`) gives FAIL from the coverage gate, correctly, but then asks for `/speckit:plan` and a remediation workstream.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+Make a review that never ran say so, keep its verdict as the script derived it, and point the reader at a rerun instead of a plan.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ sed -n 17,19p specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/review-report.md
+- **Active findings:** P0 = 0, P1 = 0, P2 = 0
+- **Stop reason:** `maxDurationReached` at 1 elapsed minute against a 1 minute budget
+- **Iterations dispatched:** 0 of 3
+$ sed -n 28p specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/review-report.md
+**`/speckit:plan` is required.** The verdict is FAIL and a required quality gate is unresolved, so the next step is a remediation plan ...
+# a run that examined nothing asks for a remediation plan; the report step has no branch for zero iterations
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -72,74 +75,72 @@ This is **Phase 33** of the Fable 5.2 follow-ups: one count source for review ve
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- In `step_compile_review_report` (.skilled/commands/deep/assets/deep-review.yaml), when the state log (lineage logs on a fan-out root) holds no line with `type` `iteration`, the report opens with 'Review did not run', states the stop reason and 0 iterations dispatched, keeps the verdict from `step_derive_verdict`, says the counts mean not examined, sets the Planning Packet's `triggered` to false with `reviewDidNotRun: true` and empty workstreams, and names `/deep:review` with a budget or cap that allows one pass as the next step
+- A comment above the verdicts in `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml` notes that a zero-iteration FAIL comes from the coverage gate and routes to a rerun
+- New scenario `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md` (DRV-069) and its entry in `manual-testing-playbook.md`
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- Changing the verdict of a zero-iteration run; the script keeps FAIL from the failed coverage gate
+- Rewriting phase 25's recorded report
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Modify | Zero-iteration branch in the report step |
+| `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml` | Modify | Comment on the zero-iteration verdict |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md` | Create | Scenario DRV-069 |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md` | Modify | Index entry |
+| `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` | Modify | Recompiled |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+| REQ-001 | A review with zero iterations reports that it did not run. | The report step names the zero-iteration condition, keeps the derived verdict, sets `triggered` false with `reviewDidNotRun: true`, and names a `/deep:review` rerun; the contract recompiles with drift and parity passing |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+| REQ-002 | The behaviour is documented for manual testing. | Scenario DRV-069 exists with the playbook's sections and is linked from the index; the documentation drift check passes |
 <!-- /ANCHOR:requirements -->
 
 ---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: The runtime suite fails nothing that passed at baseline, plus the new tests.
+- **SC-002**: `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` for every folder.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Risk | An agent drops the verdict for a run that did not run | Low | The branch keeps the verdict from `step_derive_verdict` and says so |
+| Dependency | Contract parity tests | Low | Run them |
 <!-- /ANCHOR:risks -->
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
 
 ---

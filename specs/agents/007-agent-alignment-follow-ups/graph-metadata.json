@@ -231,20 +231,20 @@
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-15T20:53:06.207Z",
+    "last_save_at": "2026-11-15T21:03:57.550Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a87f89512c5315bea163858f314c00ccc4532f851bf32e9156ce4635f1296c5e",
+    "source_fingerprint": "sha256:b939dcd91e28077367fbecb4772bb37bba2ea5c94558493c5a547453ef7ae00a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b18e1cdc8526f78cb11e008ae522823788c322f2e5532bcdef807f966b8cce2f",
+      "spec.md": "18501a2c31df09a41c00815d38362e29bab28e080f7e477af87b906b4303fc71",
       "decision-record.md": "b2665fb0b3ba884786ee87dcd168b2377d59dff278e5676366af693a7742e075"
     },
-    "last_active_child_id": "agents/007-agent-alignment-follow-ups/031-search-debt-verdict",
-    "last_active_at": "2026-11-15T20:53:04.283Z"
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration",
+    "last_active_at": "2026-11-15T21:03:56.007Z"
   }
 }

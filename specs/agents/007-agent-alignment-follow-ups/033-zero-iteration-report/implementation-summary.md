@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/033-zero-iteration-report"
+    packet_pointer: "agents/007-agent-alignment-follow-ups/033-zero-iteration-report"
     last_updated_at: "2026-11-15T20:25:14Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

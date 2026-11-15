@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6819,
+    "missing-frontmatter": 6820,
     "ok": 19261,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27707,
+  "documentsScanned": 27708,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "509bcd0ae08b5286ebd46fbe493dd95db19e5b318845b4b0fe33689b2ab3777a",
+  "manifestHash": "f1e568e2a5fb100d5464b6c57819b61e7baec2309402f693264de5ac162cdd9c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31769,6 +31769,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
