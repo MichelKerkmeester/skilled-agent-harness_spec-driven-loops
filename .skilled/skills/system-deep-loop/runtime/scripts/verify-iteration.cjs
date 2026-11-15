@@ -26,7 +26,8 @@
 //
 // When the run's config names a non-native executor, the iteration must also say
 // which executor ran it, on its own record or on its iteration_start row, so a run
-// whose executor audit never landed cannot pass as a verified iteration.
+// whose executor audit never landed cannot pass as a verified iteration. A fan-out
+// lineage says it through the invocation metadata the fan-out runner writes.
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -81,6 +82,8 @@ const CONFIG_BY_LOOP = {
   review: 'deep-review-config.json',
   research: 'deep-research-config.json',
 };
+
+const INVOCATION_METADATA = 'invocation-metadata.json';
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -367,8 +370,8 @@ function configuredExecutorKind(loopType, artifactDir) {
 
 // A fan-out lineage runs its iterations inline in the lineage process, which treats
 // the per-iteration dispatch steps, the pre-dispatch executor audit among them, as
-// already satisfied. No executor row is written there, and the runner records the
-// lineage's executor in its own invocation metadata, so the check stands down.
+// already satisfied. No executor row is written there, so a lineage is checked
+// against the runner's invocation metadata instead of the state log.
 function isFanoutLineage(artifactDir, config) {
   if (isNonEmptyString(process.env.SPECKIT_FANOUT_LINEAGE_ID)) return true;
   if (config && (isNonEmptyString(config.fanout_lineage_artifact_dir)
@@ -383,15 +386,35 @@ function namesExecutor(record) {
   return Boolean(record) && typeof record.executor === 'object' && record.executor !== null && !Array.isArray(record.executor);
 }
 
+// The fan-out runner writes this file into the lineage directory before every spawn
+// of the lineage, and its effectiveConfig.kind is the executor it launched. Null
+// when the file is absent, unreadable or names no kind.
+function lineageInvocationKind(artifactDir) {
+  try {
+    const metadata = JSON.parse(fs.readFileSync(path.join(artifactDir, INVOCATION_METADATA), 'utf8'));
+    const kind = metadata && metadata.effectiveConfig ? metadata.effectiveConfig.kind : null;
+    return isNonEmptyString(kind) ? kind : null;
+  } catch (_) {
+    return null;
+  }
+}
+
 // The pre-dispatch audit records a non-native executor before the leaf runs. On a
 // ledger-backed log it goes on the iteration's opening iteration_start row, since the
 // ledger cannot carry an edit to a row it already holds. With no ledger it is merged
 // onto an existing row for the iteration or written as a new iteration_start row.
-// Either row satisfies the check, as does the iteration record itself.
+// Either row satisfies the check, as does the iteration record itself. A fan-out
+// lineage has no such row, so its invocation metadata must name the configured kind.
 function checkExecutorProvenance(loopType, artifactDir, stateRecords, iterationRecord, iteration) {
   const { kind, config } = configuredExecutorKind(loopType, artifactDir);
   if (!kind || kind === 'native') return null;
-  if (isFanoutLineage(artifactDir, config)) return null;
+  if (isFanoutLineage(artifactDir, config)) {
+    const launched = lineageInvocationKind(artifactDir);
+    if (launched === kind) return null;
+    return launched
+      ? `lineage iteration ${iteration} ran under executor kind '${kind}' but ${INVOCATION_METADATA} names '${launched}'`
+      : `lineage iteration ${iteration} ran under executor kind '${kind}' but ${INVOCATION_METADATA} in ${artifactDir} is missing or names no executor`;
+  }
   if (namesExecutor(iterationRecord)) return null;
   const opened = (stateRecords || []).some((r) => r
     && (r.type === 'iteration_start' || r.type === 'iteration')
