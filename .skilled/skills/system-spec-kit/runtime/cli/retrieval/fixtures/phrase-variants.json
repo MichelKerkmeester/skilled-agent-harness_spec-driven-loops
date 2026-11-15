@@ -1,5 +1,5 @@
 {
-  "manifestHash": "acc7c18a5865bc98f97d6ac949404011563b1d5f86e2fc7bba2055b567969db8",
+  "manifestHash": "d5403f74320cc98b7d5df14614a1402fa0846620826b69c5bad2a104532ebd82",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -36716,6 +36716,9 @@
     "deep loop save full auto": [
       "deep loop save full-auto"
     ],
+    "deep loop save full auto docs": [
+      "deep loop save full-auto docs"
+    ],
     "deep loop scenario contract": [
       "deep-loop scenario contract"
     ],
@@ -44620,6 +44623,18 @@
     "dsh dispatchenv allowlist": [
       "dsh dispatchEnv allowlist"
     ],
+    "dsh docs alignment": [
+      "dsh docs alignment"
+    ],
+    "dsh docs alignment implementation summary": [
+      "dsh docs alignment implementation summary"
+    ],
+    "dsh docs alignment plan": [
+      "dsh docs alignment plan"
+    ],
+    "dsh docs alignment tasks": [
+      "dsh docs alignment tasks"
+    ],
     "dsh dump config evidence": [
       "dsh dump-config evidence"
     ],
@@ -48058,6 +48073,9 @@
     ],
     "executor matrix audit tasks": [
       "executor matrix audit tasks"
+    ],
+    "executor missing failure mode docs": [
+      "executor_missing failure mode docs"
     ],
     "executor override approach": [
       "executor override approach"
@@ -82591,6 +82609,9 @@
     ],
     "phase 23 relaunch cancel and test isolation": [
       "phase 23 relaunch cancel and test isolation"
+    ],
+    "phase 24 dsh docs alignment": [
+      "phase 24 dsh docs alignment"
     ],
     "phase 24 goal rebind claude codex hermes probes": [
       "phase 24 goal rebind claude codex hermes probes"
