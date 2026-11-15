@@ -237,7 +237,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-15T22:58:35.102Z",
+    "last_save_at": "2026-11-15T23:04:35.878Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -245,13 +245,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:213be57ee2db3203d09e9afa4e08231574c84df497cc9a7c2a52e594bdca2a87",
+    "source_fingerprint": "sha256:070ca74335cd3efe0b4da4d5120a2d67f3bc5117ef86d8bad51eb375fb907363",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c709d77ea0ffafc53d0584fd9c964dab32562f22256c093389ed1b94ec42e2dc",
-      "decision-record.md": "d39b65bc2af0eaff2a67337ea3c4b8dd2cb98e3c9695cc2f9e4863153b53f73a"
+      "decision-record.md": "24b0499462a108efec1a034417bab479620a54c915e1d1c4bcad4c8c637e80c0"
     },
-    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm",
-    "last_active_at": "2026-11-15T06:00:13.664Z"
+    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation",
+    "last_active_at": "2026-11-15T23:03:32.816Z"
   }
 }

@@ -8,22 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation"
-    last_updated_at: "2026-11-15T23:30:00Z"
-    last_updated_by: "coordinator"
-    recent_action: "Closed the phase: three Opus reads, round 5b with 0 P0 and 0 P1, pass-five synthesis written"
-    next_safe_action: "None in this phase"
+    last_updated_at: "2026-11-15T23:03:32Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed phase 032: pass five at 0 P0 and 0 P1, arena builds from commit"
+    next_safe_action: "Run the origin/main catch-up merge, then the arena behaviour arms"
+    packet_purpose: "Purpose: Both P1 findings read differently on their own probes after the fix, every confirmed P2 is fixed or recorded with its reason, the stored arms are rescored with each moved figure restated, and the routing floors stay byte-equal."
     blockers: []
     key_files:
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation/implementation-summary.md"
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-report.md"
       - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
       - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs"
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs"
-      - "scratch/rescore-delta.txt"
-      - "scratch/review-rounds.txt"
-      - "../review/review-report.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:7d3cc323602e0a3a49dfe39e43a6241ad541b1f43468d5a9bf9d424badb69ed5"
       session_id: "77af2d6d-58e8-4180-b6da-697f12833f71"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "77af2d6d-58e8-4180-b6da-697f12833f71"
+      workspace: "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research"
+      savedAt: "2026-11-15T23:03:32Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

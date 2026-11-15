@@ -132,6 +132,12 @@ Q069 to Q073 above, as asked.
 | Q071 | 2026-11-15 | Vibe gaps | Phase 030 handed back Vibe gaps that live in the Vibe packet (004) and the hooks docs, owned by another session: goal binding and resend for interactive Vibe sessions, a git advisory on Vibe through a post_tool hook, doc drift and a guard matcher that may miss process.start. Who builds them? | Leave to packet 004 (Recommended); Build here in a new phase; Only the guard matcher here | Leave to packet 004 (Recommended) |
 | Q072 | 2026-11-15 | Mention rule | The alignment check found that the advisor still offers a command the prompt only mentions, for example 'the /create:sk-skill command is slow' gets offered with policy start, while the release note says a mentioned command is not offered. Which side should change? | Fix the note (Recommended); Change the code | Fix the note (Recommended) |
 | Q073 | 2026-11-15 | P1 probes | The goal requires /local-skilled-alignment to report 0 P1 on the branch. Phase 031 fixed every in-scope finding except two P1 routing probes, which it declined. P07 ('the linter does not appear in my tool list' should reach the doctor skill) is blocked by a scorer floor: the word 'list' marks the prompt read-only, so confidence is pinned at 0.25, and no metadata phrase can lift it. P01 ('add the prompt-time skill advisor to my Mistral Vibe runtime') goes to cli-mistral-vibe first, with the advisor second, and the Vibe wiring belongs to packet 004. How should these two be handled? | Accept both declines (Recommended); Build P07, waive P01; Build both | Accept both declines (Recommended) |
+| Q074 | The operator reported the Codex hooks approved in the prepared fresh Codex arena, so the behaviour arm could go on with Codex. | Not stated. | None | 026-untuned-behaviour-arm tasks.md T040 |
+| Q075 | Codex is left out of the behaviour arm after the hook approval did not land, so the arm runs on the other five runtimes. | Not stated. | Q061 for Codex in the new arm | 026-untuned-behaviour-arm, goal.md log |
+| Q076 | The catch-up merge applies main's four ai-council table edits to command-attach.ts, the same decision the hand-written row Q065 records. | Not stated. | None | Q065, merge commit 2427bc4c4b6 |
+| Q077 | After three failed fixes of the scorer's in-place sed and perl reading, the choice of path went to a Fable 5.2 high review, run on a native Claude agent at the operator's later word 'Use claude native', which chose option D, built as T050c and T050d. | Not stated. | None | 032-review-pass-five-remediation tasks.md T050c, T050d, plan.md D13 |
+| Q078 | Whether to stop each runtime after its first off and on run of the behaviour arm goes to a fresh Fable 5.2 medium session. | Not stated. Evidence: yes_no, option False, overlap 0, imperative True, shift False. | None | Q059, 026-untuned-behaviour-arm |
+| Q079 | Both open proposals are accepted: a small phase makes the direct call honour SYSTEM_SKILL_ADVISOR_DISABLED and the flags file, and phase 025 is built before the merge. | Not stated. Evidence: numbered_list, option not_applicable, overlap 0, imperative False, shift False. | None | phases 025 and the kill-switch phase of this packet |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1456,6 +1462,116 @@ Build both
 Answer:
 ```text
 Accept both declines (Recommended)
+```
+
+### Q074
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_015MaKKGWzn2mGdNRigcRPdT:0 -->
+
+Question:
+```text
+Task T040 of the behaviour arm needs you to approve the Codex hooks in the fresh Codex arena. In a terminal run: cd "$TMPDIR/skilled-behaviour-arenas/fresh-codex" && codex, then type /hooks and approve each entry, then quit Codex. The other five runtimes are already running their smoke rows. Codex waits until you reply. Have you approved them?
+```
+
+Options:
+```text
+Approved, go on
+Skip Codex for now
+```
+
+Answer:
+```text
+Approved, go on
+```
+
+### Q075
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_01N9epoVb8UyNAp7XxniHRNe:0 -->
+
+Question:
+```text
+The Codex approval for the behaviour arm did not land. After your reply, the runner's check still prints codex-hooks-unapproved, and ~/.codex/config.toml was last written yesterday at 12:29, with no project or hooks entry for the fresh-codex arena. Please open the Codex CLI (not the desktop app, and with no CODEX_HOME override) at exactly this path: cd /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/fresh-codex && codex. Trust the folder when it asks, run /hooks, approve every entry, then quit. The other five runtimes are already running their 720 sessions. Has that been done?
+```
+
+Options:
+```text
+Done, check again
+Leave Codex out
+```
+
+Answer:
+```text
+Leave Codex out
+```
+
+### Q076
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_017ueRKJR4jCNVmwxUe6MmrG:0 -->
+
+Question:
+```text
+Merging origin/main into the 352 branch now hits 35 conflicts. 34 are the docs, generated and other-packet files you saw before. One is new and in runtime code: runtime/lib/command-attach.ts. Main changed it in 4 small table edits (it retires /deep:ai-council and adds /speckit:ai-council as an ask command). The branch rewrote the same file (+200/-66). AGENTS.md says to halt on merge conflicts, so: how should I handle the merge?
+```
+
+Options:
+```text
+Merge, apply main's move (Recommended)
+Merge, stop if floors move
+Don't merge yet
+```
+
+Answer:
+```text
+Merge, apply main's move (Recommended)
+```
+
+### Q077
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_01M1tB7cUJKx9BWGE9raxrBg:0 -->
+
+Question:
+```text
+The scorer's in-place sed/perl reading has failed verification three times (T050, T050a, T050b). Each fix of the quote-aware word split broke a different cluster form, for example `perl -ne'print' AGENTS.md` now scores as an unsafe write and `perl -i -lpe'...'` as no write. The committed reader (before T050) catches every one of those cluster edits. It only misreads quoted separators, multi-file sed and option values like `mkdir -m 755`, and it errs toward reporting a write. How should I proceed?
+```
+
+Options:
+```text
+Revert T050 line (Recommended)
+Fourth attempt (T050c)
+Keep T050b, record gaps
+```
+
+Answer:
+```text
+Ask fable 5.2 high
+```
+
+### Q078
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:chat:284ead80-0fcd-4780-90ed-eacb076c41d0:e86182da-e763-4273-bc53-b7b332b5312f -->
+
+Question:
+```text
+Shall I stop each runtime after its run 1 (off and on) passes and log the amendment?
+```
+
+Options: none
+
+Answer:
+```text
+Ask fresh fable 5.2 medium
+```
+
+### Q079
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:chat:1ca2d074-706b-4e9d-9345-6d12fba90f4d:a1328081-91a4-49ae-b04e-4cc77db725d5 -->
+
+Question:
+```text
+Two answers from you are still open:
+1. **Env switch phase.** Should I add a small phase so the direct call honours `SYSTEM_SKILL_ADVISOR_DISABLED` and the flags file, and the env example lists the switch?
+2. **The 34-file merge.** Should I resolve it myself, or build 025 first and merge after? I recommend building 025 first.
+```
+
+Options: none
+
+Answer:
+```text
+Sure
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

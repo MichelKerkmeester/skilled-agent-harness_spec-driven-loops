@@ -208,8 +208,8 @@
     ],
     "causal_summary": "The workflow measure misses every write a model makes with an in-place shell edit, so a run that edits a file with `sed -i` or `tee` reads as safe and as a non-start, and the goal log cannot explain `unsafe` row by row",
     "created_at": "2026-11-15T17:40:45Z",
-    "last_save_at": "2026-11-15T23:01:32.871Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T23:03:32.761Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -218,13 +218,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e1003bcbefde99a386bf7aca452cc73d51d4e780810914cb7c0e5f0dc8ffd7f",
+    "source_fingerprint": "sha256:0764166637e29cea06db1c45643aeb37acd2a98af1040433e07fdb142fc6f8ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "78270c9a4b8ab1f3a5454d55404eda0d9525757b461c4937764611956f8ce0b0",
       "plan.md": "2d388bbb2a628d337cfb37a6f8c5aed3754059fb642d700ddf43e085f10beff1",
       "tasks.md": "242f076dc46acd439c64940f2db67e012c91153d2a1806fa123bb66929ae9616",
-      "implementation-summary.md": "ec7d6e48c64bc5066bf3037ab88c61c2a171b54927396dedcb22a3daf6e0747f"
+      "implementation-summary.md": "8b20c208e1cbe96fb3d74169760f1b9beb0ee4bec63c8aece602515ea789aa76"
     },
     "last_active_at": null
   }
