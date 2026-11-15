@@ -22,7 +22,7 @@ Current state:
 - Every complete reply is serialized and measured against one 16,384-byte cap before it is returned.
 - A failed operation throws a typed error, and the adapter maps it to its own fail-open path.
 - `cli.ts` is the only runnable redemption path. It reads one persisted locator, re-derives the handle and prints one bounded reply.
-- `lookup-offer.ts` owns the model-visible `## History Lookup` section and its 600-character budget, and the session handover prints it only after the locator write persisted. `prepare` stores a locator for the sending session with provenance source `handover`, and `claim` mints a fresh one and prints the section after the note body. `placeLookup` keys each locator by the checkout root above the session folder, where the printed command runs, and keeps that folder as `sessionDirectory` when the session started below the root. A folder whose nearest root cannot run the CLI gets no locator and no section.
+- `lookup-offer.ts` owns the model-visible `## History Lookup` section and its 600-character budget, and the session handover prints it only after the locator write persisted. `claim` mints a locator for the sending session with provenance source `handover` and prints the section after the note body. It mints only when the transcript records a folder in the receiver's checkout. `placeLookup` keys each locator by the checkout root above the session folder, where the printed command runs, and keeps that folder as `sessionDirectory` when the session started below the root. A folder whose nearest root cannot run the CLI gets no locator and no section.
 - A shell call that runs the CLI counts as paging, like a dedicated pager tool, so a model's own lookups never come back in its next lookup.
 - `locator-digest.ts` owns the `hl1_` handle and the locator write the session handover shares.
 
@@ -151,6 +151,7 @@ The argument contract:
 | `session_ambiguous` | More than one store record claims that exact id |
 | `store_unreadable` | The runtime store is missing or unreadable |
 | `operation_invalid` | The operation arguments are not valid JSON, or not the accepted object or array shape |
+| `core_unavailable` | The handover entry script could not load this compiled core, so the runtime needs a build |
 | `unknown_history_anchor` | The browse anchor names no public reference |
 | `unknown_history_id` | The history id names no public item |
 | `unknown_history_part` | The part pointer names no public part |

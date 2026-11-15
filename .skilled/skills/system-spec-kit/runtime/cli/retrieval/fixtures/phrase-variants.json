@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8189ec02151f159a72d30baa1dc3622e54cafd72f4d24112d6582623581dadd3",
+  "manifestHash": "cdc2cece0cf3bf1e253d62ae7fbe3e6860c12d051b1a0490485f30c2fdf90b97",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10133,6 +10133,18 @@
     "agent dispatch table": [
       "agent dispatch table"
     ],
+    "agent docs alignment research": [
+      "agent docs alignment research"
+    ],
+    "agent docs alignment research implementation summary": [
+      "agent docs alignment research implementation summary"
+    ],
+    "agent docs alignment research plan": [
+      "agent docs alignment research plan"
+    ],
+    "agent docs alignment research tasks": [
+      "agent docs alignment research tasks"
+    ],
     "agent emphasis register": [
       "agent emphasis register"
     ],
@@ -10542,6 +10554,9 @@
     "agent readme conformance": [
       "agent readme conformance"
     ],
+    "agent readme drift research": [
+      "agent readme drift research"
+    ],
     "agent registry and generated rosters": [
       "agent registry and generated rosters"
     ],
@@ -10796,6 +10811,9 @@
     ],
     "agents md manifest acceptance criteria": [
       "agents md manifest acceptance criteria"
+    ],
+    "agents md manifest history body hash": [
+      "agents-md manifest history body hash"
     ],
     "agents md manifest implementation summary": [
       "agents md manifest implementation summary"
@@ -11532,6 +11550,18 @@
     ],
     "alignment registry sealing tasks": [
       "alignment registry sealing tasks"
+    ],
+    "alignment remaining findings": [
+      "alignment remaining findings"
+    ],
+    "alignment remaining findings implementation summary": [
+      "alignment remaining findings implementation summary"
+    ],
+    "alignment remaining findings plan": [
+      "alignment remaining findings plan"
+    ],
+    "alignment remaining findings tasks": [
+      "alignment remaining findings tasks"
     ],
     "alignment remediation": [
       "alignment remediation"
@@ -19625,6 +19655,18 @@
     "ci red check repairs tasks": [
       "ci red check repairs tasks"
     ],
+    "ci red checks after council retirement": [
+      "ci red checks after council retirement"
+    ],
+    "ci red checks after council retirement implementation summary": [
+      "ci red checks after council retirement implementation summary"
+    ],
+    "ci red checks after council retirement plan": [
+      "ci red checks after council retirement plan"
+    ],
+    "ci red checks after council retirement tasks": [
+      "ci red checks after council retirement tasks"
+    ],
     "ci regression gate comparison rule sets": [
       "ci regression gate comparison rule sets"
     ],
@@ -20141,6 +20183,9 @@
     "claim line not built": [
       "claim line not built"
     ],
+    "claim lookup transcript cwd check": [
+      "claim lookup transcript cwd check"
+    ],
     "claim relationship event tasks": [
       "claim relationship event tasks"
     ],
@@ -20161,6 +20206,9 @@
     ],
     "claimadjudicationgate": [
       "claimAdjudicationGate"
+    ],
+    "claimed note history lookup": [
+      "claimed note history lookup"
     ],
     "clarification markers per pass": [
       "clarification markers per pass"
@@ -28649,9 +28697,6 @@
     "compaction fixtures canary": [
       "compaction fixtures canary"
     ],
-    "compaction history lookup": [
-      "compaction history lookup"
-    ],
     "compaction packet purpose": [
       "compaction packet purpose"
     ],
@@ -33305,6 +33350,9 @@
     "cursor task dispatch guard": [
       "cursor task dispatch guard"
     ],
+    "cursor task guard test deep review": [
+      "cursor task guard test deep-review"
+    ],
     "cursor trust gate mode plan fanout": [
       "cursor trust gate mode plan fanout"
     ],
@@ -36409,6 +36457,9 @@
     ],
     "deep loop policy core": [
       "deep loop policy core"
+    ],
+    "deep loop presentation mistral vibe executor": [
+      "deep loop presentation mistral vibe executor"
     ],
     "deep loop promotion integrity": [
       "deep loop promotion integrity"
@@ -58576,6 +58627,9 @@
     ],
     "history lookup handover integration": [
       "history lookup handover integration"
+    ],
+    "history lookup review fixes": [
+      "history lookup review fixes"
     ],
     "history rewrite": [
       "history rewrite"
@@ -82250,6 +82304,9 @@
     "phase 19 template marker upgrade and staleness scope": [
       "phase 19 template marker upgrade and staleness scope"
     ],
+    "phase 19 vibe agent sync check": [
+      "phase 19 vibe agent sync check"
+    ],
     "phase 19 vibe relaunch command tier": [
       "phase 19 vibe relaunch command tier"
     ],
@@ -82481,6 +82538,9 @@
     "phase 2 worktree relocation restore": [
       "phase 2 worktree relocation restore"
     ],
+    "phase 20 agent docs alignment research": [
+      "phase 20 agent docs alignment research"
+    ],
     "phase 20 align system deep loop": [
       "phase 20 align system deep loop"
     ],
@@ -82673,6 +82733,9 @@
     "phase 26 alignment findings fixes": [
       "phase 26 alignment findings fixes"
     ],
+    "phase 26 alignment remaining findings": [
+      "phase 26 alignment remaining findings"
+    ],
     "phase 26 ci and test runners": [
       "phase 26 ci and test runners"
     ],
@@ -82681,6 +82744,9 @@
     ],
     "phase 27 alignment preexisting gaps": [
       "phase 27 alignment preexisting gaps"
+    ],
+    "phase 27 ci red checks": [
+      "phase 27 ci red checks"
     ],
     "phase 27 goal rebind claude and codex": [
       "phase 27 goal rebind claude and codex"
@@ -100007,6 +100073,9 @@
     ],
     "routing corpus baseline recapture": [
       "routing corpus baseline recapture"
+    ],
+    "routing corpus pin recapture": [
+      "routing corpus pin recapture"
     ],
     "routing corpus proof commands": [
       "routing corpus proof commands"
@@ -130157,6 +130226,18 @@
     "vibe advisor adapter": [
       "vibe advisor adapter"
     ],
+    "vibe agent sync check": [
+      "vibe agent sync check"
+    ],
+    "vibe agent sync check implementation summary": [
+      "vibe agent sync check implementation summary"
+    ],
+    "vibe agent sync check plan": [
+      "vibe agent sync check plan"
+    ],
+    "vibe agent sync check tasks": [
+      "vibe agent sync check tasks"
+    ],
     "vibe allowed models": [
       "vibe allowed_models"
     ],
@@ -130411,6 +130492,9 @@
     ],
     "vibe live hop": [
       "vibe live hop"
+    ],
+    "vibe mirror ci check": [
+      "vibe mirror ci check"
     ],
     "vibe mistral provider": [
       "vibe mistral provider"

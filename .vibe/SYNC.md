@@ -112,4 +112,4 @@ node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs --che
 node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs --check
 ```
 
-Nothing runs these checks automatically yet: no pre-commit hook and no CI job names a Vibe generator. Run them by hand after any source change in section 4, and treat a non-zero exit as a tree that no longer matches its source.
+CI runs the three checks in the `vibe-mirror` job of `.github/workflows/command-tree-parity.yml`, on a pull request or push that touches `.vibe/`, an agent, a command or a `SKILL.md`. No pre-commit hook runs them. Regenerate after any source change in section 4, and treat a non-zero exit as a tree that no longer matches its source.

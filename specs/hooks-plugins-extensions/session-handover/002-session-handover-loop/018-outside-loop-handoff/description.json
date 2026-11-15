@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/018-outside-loop-handoff",
+  "description": "On 2026-10-20 two Claude sessions on the figjam packet wrote handoff notes that never went anywhere, because they started before the shell shim and so",
+  "keywords": [
+    "two",
+    "claude",
+    "sessions",
+    "figjam",
+    "packet",
+    "wrote",
+    "handoff",
+    "notes",
+    "never",
+    "went",
+    "anywhere",
+    "because",
+    "started",
+    "shell",
+    "shim"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.895Z",
+  "specId": "018",
+  "folderSlug": "outside-loop-handoff",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

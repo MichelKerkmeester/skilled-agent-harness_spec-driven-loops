@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes",
+  "description": "The 2026-11-14 whole-epic review left four document findings",
+  "keywords": [
+    "whole-epic",
+    "review",
+    "left",
+    "four",
+    "document",
+    "findings"
+  ],
+  "lastUpdated": "2026-11-15T14:28:41.071Z",
+  "specId": "023",
+  "folderSlug": "epic-review-doc-fixes",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/004-wrapper-change-notice",
+  "description": "A running `skilled-loop` wrapper keeps the code it read when it started, so a change to `.skilled/bin/skilled-loop` reaches no hop of a loop that is",
+  "keywords": [
+    "running",
+    "skilled-loop",
+    "wrapper",
+    "keeps",
+    "code",
+    "read",
+    "started",
+    "change",
+    "skilled",
+    "bin",
+    "reaches",
+    "hop",
+    "loop"
+  ],
+  "lastUpdated": "2026-11-15T14:28:41.021Z",
+  "specId": "004",
+  "folderSlug": "wrapper-change-notice",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/033-research-remediation/008-claim-error-per-state",
+  "description": "`claimHandoff` refuses any non-open note with one message, `cannot claim handoff with status ${status || 'missing'}`",
+  "keywords": [
+    "claimhandoff",
+    "refuses",
+    "non-open",
+    "note",
+    "one",
+    "message",
+    "cannot",
+    "claim",
+    "handoff",
+    "status",
+    "missing"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.924Z",
+  "specId": "008",
+  "folderSlug": "claim-error-per-state",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "033-research-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

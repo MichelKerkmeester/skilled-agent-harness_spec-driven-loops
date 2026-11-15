@@ -1,16 +1,16 @@
 ---
-title: "Compaction history lookup"
+title: "Handoff history lookup"
 description: "Offers one bounded, read-only history lookup when a handoff note is claimed, so the receiving session can read the sending session's earlier turns."
 trigger_phrases:
-  - "compaction history lookup"
+  - "claimed note history lookup"
   - "history lookup at handoff claim"
   - "opaque history handle"
   - "history lookup CLI"
   - "handoff history lookup"
-version: 2.0.0.0
+version: 2.0.1.0
 ---
 
-# Compaction history lookup
+# Handoff history lookup
 
 This catalog entry maps the bounded history lookup to its implementation files, validation tests and operator reference.
 
@@ -18,11 +18,11 @@ This catalog entry maps the bounded history lookup to its implementation files, 
 
 The history lookup lets a model search, browse and load earlier turns of a session. Every operation is read-only and every reply is capped.
 
-The lookup is offered when a handoff note is claimed. Inside the loop, `prepare` stores a locator for the sending session with provenance source `handover`, and `claim` mints a fresh locator for that sender and prints one small `## History Lookup` section after the note body. The section names the handle and one runnable command, then the sentence "Use it for a detail this note does not spell out, before you guess."
+The lookup is offered when a handoff note is claimed. Inside the loop, `claim` mints a locator for the sending session with provenance source `handover` and prints one small `## History Lookup` section after the note body. The section names the handle and one runnable command, then the sentence "Use it for a detail this note does not spell out, before you guess."
 
 A compaction no longer offers the lookup on any runtime. The Claude, Pi, DSH, Devin and Vibe compaction hooks mint no locator and print no lookup section, and the OpenCode plugin that did is gone. Compaction summaries and the `/speckit:resume` pointer are unchanged.
 
-The offer is conditional in both directions. Only a Claude Code or Codex sender gets a locator, and the section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout or when the runtime is not built. The claim then prints what it printed before. Before the claim-time offer, no receiver in six measured Claude Code hops attempted a lookup.
+The offer is conditional in both directions. Only a Claude Code or Codex sender gets a locator, and the section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the runtime is not built. The claim then prints what it printed before. Before the claim-time offer, no receiver in six measured Claude Code hops attempted a lookup.
 
 ---
 
@@ -30,9 +30,9 @@ The offer is conditional in both directions. Only a Claude Code or Codex sender 
 
 ### Locator Mint
 
-Inside the loop, `prepare` mints a locator for the session that wrote the note and stores it with provenance source `handover`. `claim` mints a fresh locator for that same sending session, because the lookup CLI refuses a locator older than 30 minutes and a note can be claimed hours after it was prepared. The locator records the runtime, the exact session id, the workspace, the runtime's locator type, a digest handle and a mint time.
+Inside the loop, `claim` mints a locator for the session that wrote the note and stores it with provenance source `handover`. It mints at claim rather than at `prepare`, because the lookup CLI refuses a locator older than 30 minutes and a note can be claimed hours after it was prepared. The claim first checks that the note's folder and the receiver share a checkout, then that the transcript's own recorded folder sits in that checkout, so a note that names another project's session gets no locator. The locator records the runtime, the exact session id, the workspace, the runtime's locator type, a digest handle and a mint time.
 
-Only Claude Code and Codex have a locator contract. Claude's transcript comes from the session log the runtime keeps and Codex's from its rollout file, so a sender on another runtime has no transcript to read and gets no locator. The workspace is the checkout root above the session folder, found by `placeLookup` as the nearest folder with a `.git` entry. The locator is keyed by that root, so a session started in a subfolder still redeems, and the reader proves the session against the folder it ran in.
+Only Claude Code and Codex have a locator contract. Claude's transcript comes from the session log the runtime keeps, under `CLAUDE_CONFIG_DIR` when that is set, and Codex's from its rollout file, so a sender on another runtime has no transcript to read and gets no locator. The workspace is the checkout root above the session folder, found by `placeLookup` as the nearest folder with a `.git` entry. The locator is keyed by that root, so a session started in a subfolder still redeems, and the reader proves the session against the folder it ran in.
 
 The handle is a digest, never a store path. A locator that contains no path cannot leak one and cannot be authored by a model.
 
@@ -42,13 +42,13 @@ The section is capped at 600 characters. It holds one ready `browse` command tha
 
 The printed command is `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. The session handover concern owns that entry, and the TypeScript source and build stay in `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/`.
 
-The section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout or when the runtime is not built. The claim then prints what it printed before.
+The section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the runtime is not built. The claim then prints what it printed before.
 
 ### Command Redemption
 
 The printed entry resolves the compiled core beside the checkout and hands it the operation. The CLI re-reads the stored locator, repeats the handle, session, runtime and workspace gates, resolves the exact store through the shared session reader, recomputes the handle the same way the mint did and answers one operation through `createHistoryLookup`. Every step is read-only.
 
-A locator is fresh for 30 minutes from the claim. A refusal prints one `{ok:false, code}` JSON line and exits 2, and a success prints one capped reply and exits 0.
+A locator is fresh for 30 minutes from the claim, and a claimed note cannot be claimed again, so a receiver looks up what it needs within that window. A refusal prints one `{ok:false, code}` JSON line and exits 2, and a success prints one capped reply and exits 0.
 
 ### Search Matching
 
@@ -70,17 +70,17 @@ A missing, malformed, stale, foreign or unsupported locator produces no reply an
 | `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/cli.ts` | CLI | Redeems the printed command, repeats every locator gate and writes one reply or one `{ok:false, code}` refusal. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/locator-digest.ts` | Shared | The one `hl1_` handle digest, the locator constants and the persisted-state writer. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts` | Shared | The offer section, the checkout-root gate and `placeLookup`, which keys a locator by the checkout root above the session folder. |
-| `.skilled/hooks/session-handover/bin/session-handover.cjs` | Handover CLI | The in-loop `prepare` stores the sender's locator and `claim` prints the lookup section after the note body. |
+| `.skilled/hooks/session-handover/bin/session-handover.cjs` | Handover CLI | The in-loop `claim` mints the sender's locator and prints the lookup section after the note body. |
 | `.skilled/hooks/session-handover/lib/relaunch-core.cjs` | Handover core | `mintHandoverLocator` builds and persists the sender's locator, and `handoverLookupSection` builds the section or returns nothing. |
-| `.skilled/hooks/session-handover/bin/history-lookup.mjs` | Printed entry | Resolves the compiled core beside the checkout and turns an import failure into the CLI refusal shape. |
+| `.skilled/hooks/session-handover/bin/history-lookup.mjs` | Printed entry | Resolves the compiled core beside the checkout. A core that cannot load prints `core_unavailable` in the CLI refusal shape. |
 | `.skilled/hooks/shared/session-readers/` | Reader package | One read-only reader per runtime plus the readiness table the CLI gates on. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` | Node test | The claim offer: the section after the note body, the 600-character budget, the fresh mint and the withheld cases. |
-| `.skilled/hooks/session-handover/tests/history-lookup-entry.test.cjs` | Node test | The printed entry: its refusal when the compiled core is missing and its reply when both files exist. |
+| `.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` | Node test | The claim offer: the section after the note body, the 600-character budget, the fresh mint, a redeemed command and the withheld cases. |
+| `.skilled/hooks/session-handover/tests/history-lookup-entry.test.cjs` | Node test | The printed entry: its `core_unavailable` refusal when the compiled core is missing and its reply when both files exist. |
 | `.skilled/skills/system-spec-kit/runtime/tests/history-lookup-cli.vitest.ts` | Vitest | Refusal envelope, exit codes, the 30-minute TTL, the workspace and session gates and the unsupported-runtime gate. |
 | `.skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts` | Vitest | Locator schema, the Claude and Codex locator contract, placement, persistence and the section budget. |
 | `.skilled/skills/system-spec-kit/runtime/tests/history-byte-bound.vitest.ts` | Vitest | The 16,384-byte reply cap and the deferral of oversized items. |
@@ -103,4 +103,4 @@ A missing, malformed, stale, foreign or unsupported locator produces no reply an
 Related references:
 - [Session recovery via /speckit:resume](../retrieval/session-recovery-spec-kit-resume.md) - the packet-first ladder that remains the primary recovery path.
 - [Session handover loop](session-handover-loop.md) - the handoff whose claim now carries the offer.
-- [Compaction history lookup scenarios](../../manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md) - the operator checks for a prepared handoff, a claim, the printed command and the refusals.
+- [Handoff history lookup scenarios](../../manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md) - the operator checks for a prepared handoff, a claim, the printed command and the refusals.

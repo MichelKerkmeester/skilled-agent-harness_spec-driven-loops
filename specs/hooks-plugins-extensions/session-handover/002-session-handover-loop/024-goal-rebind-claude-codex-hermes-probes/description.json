@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/024-goal-rebind-claude-codex-hermes-probes",
+  "description": "After a hand-over the new session has a new session id, and each runtime keeps its goal under the id of the session that set it, so the new session",
+  "keywords": [
+    "hand-over",
+    "new",
+    "session",
+    "runtime",
+    "keeps",
+    "goal",
+    "set"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.903Z",
+  "specId": "024",
+  "folderSlug": "goal-rebind-claude-codex-hermes-probes",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

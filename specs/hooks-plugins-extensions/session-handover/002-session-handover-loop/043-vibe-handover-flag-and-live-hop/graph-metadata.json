@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/043-vibe-handover-flag-and-live-hop",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/043-vibe-handover-flag-and-live-hop",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe handover flag and live hop",
+      "vibe relaunch enable switch",
+      "system session relaunch vibe enabled",
+      "vibe live hop",
+      "vibe handover flag and live hop plan",
+      "vibe handover flag and live hop tasks",
+      "vibe handover flag and live hop implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "handover",
+      "flag",
+      "live",
+      "hop",
+      "relaunch",
+      "enable",
+      "switch",
+      "system",
+      "session",
+      "enabled",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/shared/hook-flags.cjs",
+      ".skilled/hooks/shared/hook-flags.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/hooks/hook-flags.env.example",
+      "tests/README.md",
+      "scratch/harness/probe.sh",
+      ".skilled/hooks/vitest.config.ts",
+      ".skilled/hooks/shared/hook-flags.sh",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/commands/doctor/assets/doctor-env.yaml",
+      ".skilled/commands/speckit/save.md",
+      ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
+      "runtime/cli/tests/generate-context-help.vitest.ts",
+      "runtime/cli/tests/save-continuity-write.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe.sh",
+        "kind": "script",
+        "path": "scratch/harness/probe.sh",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.sh",
+        "kind": "script",
+        "path": ".skilled/hooks/shared/hook-flags.sh",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-env.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-save-context-tail.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context-help.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/generate-context-help.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save-continuity-write.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/save-continuity-write.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The relaunch loop accepts `--runtime vibe`, but `hook-flags.cjs` and `hook-flags.sh` list only six runtimes, so a Vibe caller gets the global-only answer and `SYSTEMSESSIONRELAUNCHVIBEENABLED=1` is ignored without a word",
+    "created_at": "2026-11-15T06:50:04Z",
+    "last_save_at": "2026-11-15T14:28:43.130Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a39148be96fb8bee2c01e6d3c64d635d06b014002f8ea150c31dd3c550a9ab20",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ba16a50649a6e2b32703fe012a7d8983d3311a49720fc1c7a9d0eed183b5e107",
+      "plan.md": "259a7e0f0e3a50963e14c8cbeaf0dd46d5679445bf683e1a0f2acb4f07213882",
+      "tasks.md": "093dc5700b2372860ae1c7348157f66e02587346e71f9d61be84fa7c34426b3d",
+      "implementation-summary.md": "c70901f3a6428c14e771b669af6b016643514f206f76a739165b7f1c2d11040b"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.3.0
+version: 1.14.4.0
 ---
 
 # deep-research: Feature Catalog
@@ -99,7 +99,7 @@ Preserves the finished packet through the supported continuity save boundary.
 
 #### How It Works
 
-The save phase calls `generate-context.js` with the spec folder payload and treats that script as the live continuity boundary. Manual authoring under `memory/` is explicitly disallowed, and the workflow expects the save step to refresh the support artifact after synthesis completes.
+The save phase calls `generate-context.js` with a JSON payload, the spec folder and `--full-auto`, and treats that command as the live continuity boundary. Manual authoring under `memory/` is explicitly disallowed, and the workflow expects the save step to refresh the support artifact after synthesis completes.
 
 #### Source Files
 

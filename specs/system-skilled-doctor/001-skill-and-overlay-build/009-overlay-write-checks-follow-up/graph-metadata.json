@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Phase 8 shipped the opt-in write checks",
     "created_at": "2026-11-11T21:21:40Z",
-    "last_save_at": "2026-11-12T20:29:02.316Z",
+    "last_save_at": "2026-11-15T14:37:06.348Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a0117f997abee49f484772ecd64b4b0ebd05d839ec8811a1aab8d6246206be4",
+    "source_fingerprint": "sha256:48417bda84476163f2c0243f2068908172a51ea0251317b40325df6b28f9705a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bca75899c9119fcc6a6ca0c1e3f022879a44a4e715a3ea8dfdbea88a3345783f",

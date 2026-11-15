@@ -7,7 +7,7 @@ trigger_phrases:
   - "interrupted session reconstruction"
   - "resume workflow"
   - "session continuity recovery"
-version: 2.0.5.0
+version: 2.0.6.0
 ---
 
 # Session recovery via /speckit:resume
@@ -30,7 +30,7 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 
 There is no session inference, no semantic paraphrase and no candidate ranking behind the ladder. When the ladder produces nothing, the command asks rather than guessing. `references/retrieval/retrieval-conventions.md` §1 records that boundary as a deliberate loss.
 
-One store-backed path sits outside the ladder. When a handoff note is claimed, the claim may add one bounded `## History Lookup` section with a read-only lookup command for the sending session's earlier turns. It never feeds the ladder, and its locator is fresh for 30 minutes from the claim. A compaction no longer offers it. [Compaction history lookup](../context-preservation/compaction-history-lookup.md) owns that contract.
+One store-backed path sits outside the ladder. When a handoff note is claimed, the claim may add one bounded `## History Lookup` section with a read-only lookup command for the sending session's earlier turns. It never feeds the ladder, and its locator is fresh for 30 minutes from the claim. A compaction no longer offers it. [Handoff history lookup](../context-preservation/compaction-history-lookup.md) owns that contract.
 
 ### Resume Modes
 
@@ -89,4 +89,4 @@ Both modes run one workflow, `speckit-resume.yaml`, and detect the packet in the
 - Feature file path: `retrieval/session-recovery-spec-kit-resume.md`
 
 Related references:
-- [Compaction history lookup](../context-preservation/compaction-history-lookup.md) - the optional store-backed lookup a claim may offer for the sending session's earlier turns.
+- [Handoff history lookup](../context-preservation/compaction-history-lookup.md) - the optional store-backed lookup a claim may offer for the sending session's earlier turns.

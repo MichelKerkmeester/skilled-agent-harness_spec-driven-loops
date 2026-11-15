@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin",
+  "description": "The shared conformance case `an arm leaves the record pending when no process below the loop is found` checks its result with `assertStillPending`",
+  "keywords": [
+    "shared",
+    "conformance",
+    "case",
+    "arm",
+    "leaves",
+    "record",
+    "pending",
+    "process",
+    "loop",
+    "found",
+    "checks",
+    "result",
+    "assertstillpending"
+  ],
+  "lastUpdated": "2026-11-15T14:28:41.045Z",
+  "specId": "013",
+  "folderSlug": "conformance-stamp-pin",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

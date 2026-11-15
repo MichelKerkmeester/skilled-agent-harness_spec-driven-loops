@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/006-skilled-loop-command",
+  "description": "The wrapper prints `skilled-loop <runtime>` as the manual claim command, and so does `relaunch-core.cjs`",
+  "keywords": [
+    "wrapper",
+    "prints",
+    "skilled-loop",
+    "runtime",
+    "manual",
+    "claim",
+    "command",
+    "relaunch-core",
+    "cjs"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.963Z",
+  "specId": "006",
+  "folderSlug": "skilled-loop-command",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "13-11-26_04-55__closed-the-phase-with-observed-evidence.md",
+    "13-11-26_04-56__closed-the-phase-with-observed-evidence.md"
+  ]
+}

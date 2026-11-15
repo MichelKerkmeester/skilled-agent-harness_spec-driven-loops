@@ -151,6 +151,8 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 23 | 023-dsh-lineage-executor-check/ | Check a fan-out lineage against the `invocation-metadata.json` the fan-out runner writes, so a CLI lineage fails with `executor_missing` when that file is missing or names another executor. It also lets `validateIterationOutputs` take the `iteration_start` row on a log with no ledger | Complete |
 | 24 | 024-dsh-docs-alignment/ | Bring the v4.0.2.1 release notes, the root and spec-kit READMEs and the deep-loop protocol and skill docs in line with the executor row, the failure rows, the full-auto loop save and the `executor_missing` gate phases 019 to 023 shipped. Doc edits only | Complete |
 | 25 | 025-alignment-open-findings/ | Fix the findings the alignment run left open: two red CI checks, the deep-review FAIL rule for a failed required gate, Mistral Vibe in the handover docs, a release coverage miss and two advisor routing misses. Docs, intent signals and one allowlist entry | Complete |
+| 26 | 026-alignment-remaining-findings/ | Close the alignment findings phase 025 left: recapture the routing corpus pin the AI Council retirement made stale, and fix the executor-selection, save and presentation docs, the benchmark packet labels and the Claude session id entry. Docs, one baseline capture and two regenerated contracts | Complete |
+| 27 | 027-ci-red-checks-after-council-retirement/ | Fix the two CI workflows left red on main: a Cursor Task guard test still dispatching the retired council agent, and a shipped AGENTS.md history body two rename sweeps rewrote. One test line and one regenerated manifest line | Complete |
 
 ### Phase Transition Rules
 
@@ -187,6 +189,8 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 022-dsh-verify-iteration-executor | 023-dsh-lineage-executor-check | Phase 022 is in the base, because phase 023 replaces the lineage exemption in the check it added | `rg -c "function checkExecutorProvenance" .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` prints 1 |
 | 023-dsh-lineage-executor-check | 024-dsh-docs-alignment | Phase 023 is in the base, because phase 024 documents the lineage check it added | `rg -c "const INVOCATION_METADATA" .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` prints 1 |
 | 024-dsh-docs-alignment | 025-alignment-open-findings | Phase 024 is in the base, because phase 025 edits the release notes and README lines it wrote | `rg -c "Each Pass Keeps Its Executor" .skilled/changelog/skilled/v4.0.2.1.md` prints 1 |
+| 025-alignment-open-findings | 026-alignment-remaining-findings | Phase 025 is in the base, because phase 026 records the probe trials 025 started | `rg -c "names no executor" .skilled/skills/system-deep-loop/graph-metadata.json` prints 1 |
+| 026-alignment-remaining-findings | 027-ci-red-checks-after-council-retirement | Phase 026 is pushed, because phase 027 fixes the two workflows that stayed red on its head | `git merge-base --is-ancestor d67182e887b HEAD` exits 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---

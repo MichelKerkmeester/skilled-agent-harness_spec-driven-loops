@@ -96,7 +96,7 @@ Two DeepSeek V4.1 Flash workers corrected the docs on disjoint file lists, and a
 
 | Check | Result |
 |---|---|
-| Hop-recall harness, lookup arm, after the reader fix | 3 of 3 counted runs: `lookup_attempted=1`, `answer=correct`. Before: 0 of 6 attempted, 0 correct |
+| Hop-recall harness, lookup arm, after the claim offer | 7 runs, 6 counted, all 6 with `lookup_attempted=1`. Before the reader fix 1 of 3 answered `correct` and 2 `missing`. After it 3 of 3 answered `correct`. `lookup-after-r1` was not counted because its note held the code. Before the claim offer: 0 of 6 attempted, 0 correct |
 | `npx vitest run` (whole runtime suite) | Exit 0 |
 | `node --test .skilled/hooks/shared/tests/session-readers/*.test.mjs` | 102 tests, 102 pass, 0 fail |
 | `validate-playbook-package.cjs --package system-spec-kit` | `PASS`, 124 scenarios, 0 violations |
@@ -108,7 +108,7 @@ Two DeepSeek V4.1 Flash workers corrected the docs on disjoint file lists, and a
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The measurement is small.** Six counted runs per side on one runtime, one model and one kind of detail. It shows the direction, not a rate.
+1. **The measurement is small.** Six counted runs per side on one runtime, one model and one kind of detail. On the after side only the last three ran with the fixed reader. It shows the direction, not a rate.
 2. **Codex senders are covered by unit tests only.** No live Codex hop was run.
 3. **A sender can still copy the detail into the note.** Two runs were not counted for that reason, which is a fine outcome for the receiver but hides the lookup from the measurement.
 <!-- /ANCHOR:limitations -->

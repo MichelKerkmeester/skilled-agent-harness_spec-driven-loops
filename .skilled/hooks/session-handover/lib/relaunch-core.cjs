@@ -918,6 +918,18 @@ function mintHandoverLocator({ runtime, sessionId, cwd = process.cwd(), now } = 
     if (transcriptPath === null) return null;
     const placement = offer.placeLookup(cwd);
     if (placement === null) return null;
+    // The transcript is found by session id across every project, so a note could name
+    // another project's session. The folder the transcript itself records must sit in the
+    // same checkout as the folder the note names.
+    const recordedFolder = transcriptWorkingFolder(transcriptPath);
+    if (recordedFolder === null) return null;
+    const recordedPlacement = offer.placeLookup(recordedFolder);
+    if (
+      recordedPlacement === null
+      || !sameCheckout(recordedPlacement.workspace, placement.workspace)
+    ) {
+      return null;
+    }
 
     const mintedAt = toIsoTimestamp(now);
     const identity = { runtime, sessionId, ...placement, locatorKind };
@@ -954,12 +966,49 @@ function sameCheckout(left, right) {
   }
 }
 
+// A Claude log records the folder on its turns within the first few kilobytes, and a Codex
+// rollout opens with a session_meta line of about 20 KB that carries it, so this bound reads
+// well past both without reading a whole log.
+const TRANSCRIPT_HEAD_BYTES = 256 * 1024;
+
+// The folder a transcript says its session ran in: the first Claude turn's `cwd`, or the
+// Codex `session_meta` payload's. Null when no complete line within the bound records one.
+function transcriptWorkingFolder(transcriptPath) {
+  const descriptor = fs.openSync(transcriptPath, 'r');
+  let text;
+  let truncated;
+  try {
+    const buffer = Buffer.alloc(TRANSCRIPT_HEAD_BYTES);
+    const byteCount = fs.readSync(descriptor, buffer, 0, buffer.length, 0);
+    text = buffer.subarray(0, byteCount).toString('utf8');
+    truncated = byteCount === buffer.length;
+  } finally {
+    fs.closeSync(descriptor);
+  }
+  const lines = text.split('\n');
+  // A full buffer may end inside a line, which is never parsed.
+  if (truncated) lines.pop();
+  for (const line of lines) {
+    let entry;
+    try {
+      entry = JSON.parse(line);
+    } catch {
+      continue;
+    }
+    if (nonEmptyString(entry?.cwd)) return entry.cwd;
+    if (entry?.type === 'session_meta' && nonEmptyString(entry.payload?.cwd)) {
+      return entry.payload.cwd;
+    }
+  }
+  return null;
+}
+
 /**
  * Build the history lookup section a claim prints for the session that wrote the note.
  *
- * The locator is minted again at claim time rather than reused from prepare, because the
- * lookup CLI refuses a locator older than half an hour: a fresh mint is what lets a note
- * claimed hours after it was prepared still redeem. The printed command moves to the
+ * The locator is minted at claim time, because the lookup CLI refuses a locator older than
+ * half an hour: a fresh mint is what lets a note claimed hours after it was prepared still
+ * redeem. The printed command moves to the
  * locator's workspace, so the section is withheld unless that workspace is the receiver's
  * own checkout, which is the only place the command can run.
  *
@@ -981,13 +1030,20 @@ function handoverLookupSection({ frontmatter, cwd = process.cwd(), now } = {}) {
     ) {
       return null;
     }
-    const locator = mintHandoverLocator({ runtime, sessionId, cwd: noteCwd, now });
-    if (locator === null) return null;
+    // The mint writes the sender's hook state, so the checkouts are compared before it runs
+    // and a note from another checkout leaves that state untouched.
     const offer = loadLookupOffer();
-    const placement = offer.placeLookup(cwd);
-    if (placement === null || !sameCheckout(placement.workspace, locator.workspace)) {
+    const receiverPlacement = offer.placeLookup(cwd);
+    const senderPlacement = offer.placeLookup(noteCwd);
+    if (
+      receiverPlacement === null
+      || senderPlacement === null
+      || !sameCheckout(receiverPlacement.workspace, senderPlacement.workspace)
+    ) {
       return null;
     }
+    const locator = mintHandoverLocator({ runtime, sessionId, cwd: noteCwd, now });
+    if (locator === null) return null;
     return offer.buildHistoryLookupSection(locator, true);
   } catch {
     return null;

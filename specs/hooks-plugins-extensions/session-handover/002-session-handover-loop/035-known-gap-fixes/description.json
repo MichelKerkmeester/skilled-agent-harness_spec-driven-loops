@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/035-known-gap-fixes",
+  "description": "Eight gaps remain after phase 34",
+  "keywords": [
+    "eight",
+    "gaps",
+    "remain",
+    "phase"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.931Z",
+  "specId": "035",
+  "folderSlug": "known-gap-fixes",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

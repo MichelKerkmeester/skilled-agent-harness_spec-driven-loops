@@ -16,7 +16,7 @@
   - OWNS | CHILD | specs/hooks-plugins-extensions/goal/003-goal-isolation/002-session-scoped-core | Implementation Phase: Session-Scoped Goal Core
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification | Feature Specification: Goal unification
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/004-goal-core-packet-backed | Feature Specification: Goal core packet-backed
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume | Feature Specification: Goals and running workflows survive a session hop on every runtime
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume | Feature Specification: Goals and running workflows survive a session hop on every runtime
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon | Feature Specification: Nested Goal Addon
   - 702 more hits omitted
 - Evidence: .skilled/hooks/goal/lib/goal-core.cjs:510 (`renderGoalBrief` returns '' unless the record is `active`, and re-reads the bound packet's `goal.md` instead of a stored copy), .skilled/hooks/goal/lib/goal-core.cjs:1127 (`bindGoal` resolves the packet inside the workspace and raises `PACKET_GOAL_NOT_FOUND` when there is no `goal.md`), .skilled/hooks/goal/bin/goal.cjs:6 ("The manage command for runtimes with no plugin tool surface ... It never writes goal state directly")
@@ -80,7 +80,7 @@
   - OWNS | CHILD | specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks | Feature Specification: Phase 8: overlay-first-write-checks
   - OWNS | CHILD | specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up | Feature Specification: Phase 9: overlay-write-checks-follow-up
   - MENTIONS | TOP-LEVEL | specs/system-skilled-doctor/001-skill-and-overlay-build | Feature Specification: Build system-skilled-doctor and the doctor overlay command
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
 - Evidence: .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:108 (`evaluateWrite` allows at once when the tree carries no overlay setting or folder, and otherwise denies only on an engine refusal), .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:80 (`guardOne` spawns `<engine> --guard <path> --root <treeRoot>` with a timeout), .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:61 (`couldHaveOverlays` is the two file-existence checks behind the no-manifest fast exit)
 - Unsure: The OWNS classification for `004-guard-hook` rests on its problem statement (Barter's private guard hooks with a hard-coded `barter-overlays` folder); I did not read that packet's tasks to confirm it shipped this exact `lib/overlay-guard.cjs`. The README also says the guard's registrations come from `hook-registry.json`, which I did not open.

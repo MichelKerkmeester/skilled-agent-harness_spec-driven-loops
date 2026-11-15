@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check",
+  "description": "Phase 19: vibe-agent-sync-check",
+  "keywords": [
+    "phase",
+    "vibe-agent-sync-check"
+  ],
+  "lastUpdated": "2026-11-15T14:27:43.040Z",
+  "specId": "019",
+  "folderSlug": "vibe-agent-sync-check",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_15-27__regenerated-the-two-stale-vibe-agent-profiles-and.md"
+  ]
+}

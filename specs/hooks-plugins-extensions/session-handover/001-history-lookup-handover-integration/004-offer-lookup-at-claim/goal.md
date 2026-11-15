@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] A claim of a note whose `session_id` is `S` prints a `## History Lookup` section whose command carries `--session 'S'`, after the note body.
 - [ ] A locator stored with `mintedAt` three hours before the claim still redeems, because the claim rewrote it to the claim time.
-- [ ] A claim that finds no stored locator exits 0, prints the note body and prints no `## History Lookup` heading.
+- [ ] A claim whose sender left no session log exits 0, prints the note body and prints no `## History Lookup` heading.
 - [ ] `rg -c '^[0-9]+\. ' .skilled/commands/speckit/handoff.md` prints 9.
 - [ ] `node --test .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` prints `ℹ fail 0`.
 <!-- /ANCHOR:completion -->
