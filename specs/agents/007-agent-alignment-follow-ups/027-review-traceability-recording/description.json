@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/027-review-traceability-recording",
+  "description": "Phase 27: review-traceability-recording",
+  "keywords": [
+    "phase",
+    "review-traceability-recording"
+  ],
+  "lastUpdated": "2026-11-15T19:35:50.072Z",
+  "specId": "027",
+  "folderSlug": "review-traceability-recording",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_20-35__the-reducer-reads-every-recorded-traceability.md"
+  ]
+}
