@@ -45,7 +45,7 @@
       "agents"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "scratch/agent-review/finding-to-phase.tsv",
@@ -142,12 +142,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -170,22 +164,28 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-15T05:52:46.290Z",
+    "last_save_at": "2026-11-15T07:16:41.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:965094fbdc186f86a97da20e01b8df8c9f3bf4eba220c53ec7fdd451cc873e38",
+    "source_fingerprint": "sha256:01e88176280caa5fa4baa17450308510457b5fb72a9f09655ae0743333fc8cd2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0bba95e51f627c7ce61c0643d773e354058ee1a0bee9fcc6003be0c78e4180d2"
+      "spec.md": "77d714cd99f05d963177dedaf3a76a67cc10208c151ff4652d8bf67c1a7c0bad"
     },
     "last_active_child_id": "agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule",
-    "last_active_at": "2026-11-15T05:52:00.845Z"
+    "last_active_at": "2026-11-15T07:16:04.794Z"
   }
 }

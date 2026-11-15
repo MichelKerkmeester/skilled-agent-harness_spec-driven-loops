@@ -631,7 +631,7 @@ A loop can spread its iterations across several AI models at once, then merge wh
 
 You can run the same review or research across native agents and CLI bridges in parallel: Codex, Claude Code, OpenCode, Cursor, Devin, Pi and DeepSeek Harness. Each lineage runs on its own state, and a pool caps how many run at once.
 
-For a review, the merge follows the strongest restriction. Any lineage that reports an active P0 pulls the merged verdict to FAIL, so the safest reading wins rather than the average one.
+For a review, the merge follows the strongest restriction. Any lineage that reports an active P0, or a required quality gate still failing at its stop, pulls the merged verdict to FAIL, so the safest reading wins rather than the average one.
 
 Fan-out is supervised, not unattended. A stall watchdog aborts a lineage that stops emitting progress, and a per-lineage cost cap bounds spend. A dead or rate-limited lineage is tolerated without failing the whole run.
 
@@ -651,7 +651,7 @@ It knows when it is done: it stops once findings stabilize, not after a fixed nu
 
 Audits your code in passes and never edits it. `/deep:review` runs `@deep-review`.
 
-Every issue is ranked P0/P1/P2 across correctness, security, traceability and maintainability, so you fix what matters first. Each critical finding is re-challenged before it sticks, which cuts false alarms. An open P0 forces another pass, and the audit must clear its quality checks before it can stop. The result is a `review-report.md` that ends in a PASS, CONDITIONAL or FAIL verdict.
+Every issue is ranked P0/P1/P2 across correctness, security, traceability and maintainability, so you fix what matters first. Each critical finding is re-challenged before it sticks, which cuts false alarms. An open P0 forces another pass, and the audit must clear its quality checks before it can stop. The result is a `review-report.md` that ends in a PASS, CONDITIONAL or FAIL verdict. It is FAIL when a P0 is open or a required quality gate (evidence, scope or coverage) still fails at the stop.
 
 &nbsp;
 

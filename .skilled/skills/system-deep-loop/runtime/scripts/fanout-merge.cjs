@@ -931,9 +931,11 @@ function mergeReviewRegistries(lineageData, options = {}) {
   const activeP1 = mergedFindings.filter((f) => f.severity === 'P1' && (f.disposition ?? f.status) === 'active').length;
   const activeP2 = mergedFindings.filter((f) => f.severity === 'P2' && (f.disposition ?? f.status) === 'active').length;
 
+  const failedRequiredGateIds = [...new Set(lineageData.flatMap((lineage) => lineageFailedRequiredGateIds(lineage)))].sort();
+
   // Strongest-restriction verdict
   let mergedVerdict;
-  if (activeP0 > 0) {
+  if (activeP0 > 0 || failedRequiredGateIds.length > 0) {
     mergedVerdict = 'FAIL';
   } else if (activeP1 > 0) {
     mergedVerdict = 'CONDITIONAL';
@@ -960,6 +962,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
     mergedFrom: lineageData.map(({ label }) => label).sort(),
     lineageExecutors: buildLineageExecutors(lineageData),
     mergedVerdict,
+    failedRequiredGateIds,
     openFindings: mergedFindings,
     resolvedFindings: mergedResolvedFindings,
     findingsBySeverity: { P0: activeP0, P1: activeP1, P2: activeP2 },
@@ -989,6 +992,17 @@ function activeReviewSeverityCounts(registry) {
   };
 }
 
+// The state log is the first source: the reducer can run before the terminal-gates
+// row is written, so a registry can predate it. A required gate the lineage still
+// failed is a stop the merged verdict must not read as a pass.
+function lineageFailedRequiredGateIds({ registry, stateRecords }) {
+  const latest = (Array.isArray(stateRecords) ? stateRecords : [])
+    .filter((record) => record?.type === 'event' && record?.event === 'terminal_gates')
+    .at(-1);
+  const ids = latest ? latest.failedRequiredGateIds : registry?.terminalGates?.failedRequiredGateIds;
+  return Array.isArray(ids) ? ids.map((id) => String(id)).filter(Boolean) : [];
+}
+
 /**
  * Build fanout-attribution.md summarizing per-lineage convergence, iters, salvage, model.
  *
@@ -1014,7 +1028,7 @@ function buildAttributionMd(lineageData, loopType, options = {}) {
     const severityCounts = loopType === 'review' ? activeReviewSeverityCounts(registry) : null;
     const verdict =
       loopType === 'review'
-        ? severityCounts.P0 > 0
+        ? severityCounts.P0 > 0 || lineageFailedRequiredGateIds({ registry, stateRecords }).length > 0
           ? 'FAIL'
           : severityCounts.P1 > 0
           ? 'CONDITIONAL'
@@ -1080,7 +1094,24 @@ function reconstructReviewRegistryFromState(stateRecords, label) {
     P1: openFindings.filter((f) => f.severity === 'P1').length,
     P2: openFindings.filter((f) => f.severity === 'P2').length,
   };
-  return { openFindings, resolvedFindings, findingsBySeverity: bySeverity, _reconstructed: true };
+  // A lineage that stopped before reducing has no registry to stamp, and its
+  // terminal-gates row is the only trace that a required gate failed.
+  const latestTerminalGates = stateRecords
+    .filter((record) => record?.type === 'event' && record?.event === 'terminal_gates')
+    .at(-1);
+  const failedGateIds = Array.isArray(latestTerminalGates?.failedRequiredGateIds)
+    ? latestTerminalGates.failedRequiredGateIds.map((id) => String(id))
+    : [];
+  const terminalGates = latestTerminalGates
+    ? { run: latestTerminalGates.run, stopReason: latestTerminalGates.stopReason, failedRequiredGateIds: failedGateIds }
+    : null;
+  return {
+    openFindings,
+    resolvedFindings,
+    findingsBySeverity: bySeverity,
+    ...(terminalGates ? { terminalGates } : {}),
+    _reconstructed: true,
+  };
 }
 
 function firstNonEmptyString(values) {
@@ -1539,7 +1570,7 @@ async function main() {
     attribution_path: attributionPath,
     ...(reconstructionWarnings.length > 0 ? { reconstruction_warnings: reconstructionWarnings } : {}),
     ...(loopType === 'review'
-      ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1 }
+      ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1, failed_required_gate_ids: mergedRegistry.failedRequiredGateIds }
       : { key_findings: mergedRegistry.keyFindings?.length ?? 0 }),
   });
 }

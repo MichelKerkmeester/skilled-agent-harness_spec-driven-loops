@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | None, this is the packet root |
@@ -139,7 +139,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 12 | 012-review-agent-gates/ | Give the review agent's fast path, low-confidence case and final-line checker an exit the agent can take | Complete |
 | 13 | 013-context-markdown-design-fixes/ | Fix the context, markdown and design agents' instructions their granted tools cannot carry out | Complete |
 | 14 | 014-prompt-improver-model-eligibility/ | Settle the prompt-improver's model deny rows, its TEST field and its caller names | Complete |
-| 15 | 015-review-verdict-gate-rule/ | Make the deep-review verdict follow the contract: a required quality gate still failing at the stop forces FAIL, read from one typed terminal-gates record | Planned |
+| 15 | 015-review-verdict-gate-rule/ | Make the deep-review verdict follow the contract: a required quality gate still failing at the stop forces FAIL, read from one typed terminal-gates record | Complete |
 
 ### Phase Transition Rules
 

@@ -1,0 +1,50 @@
+commit: fde1024036a + working tree (final)
+$ (cd R && npm test)
+exit=1
+ Test Files  1 failed | 175 passed (176)
+      Tests  1 failed | 2936 passed | 8 skipped (2945)
+ FAIL  |serial| tests/stress/cli-adapter/cli-opencode.vitest.ts > cli-opencode adapter contracts > times out and terminates the captured cli-opencode process
+---
+$ (cd R && npm run typecheck)
+exit=0
+0
+---
+$ node R/scripts/check-ledger-stem-producers.cjs
+exit=0
+registered 89 spoken 24 reserved 65 violations []
+---
+$ parity suites
+      Tests  19 passed (19)
+---
+$ node R/scripts/check-contract-drift.cjs --command deep/review
+[CONTRACT DRIFT] OK commands=1
+---
+$ consumer inventory
+.skilled/commands/deep/assets/deep-review-auto.yaml
+.skilled/commands/deep/assets/deep-review-confirm.yaml
+.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts
+.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs
+.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs
+.skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-contract.vitest.ts
+.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts
+
+$ npx vitest run tests/stress/cli-adapter/cli-opencode.vitest.ts (alone, twice)
+      Tests  18 passed | 1 skipped (19)
+      Tests  18 passed | 1 skipped (19)
+The full-suite failure is a timing-sensitive stress test in a file this change does not touch; it passes in isolation.
+
+$ npx vitest run --reporter=verbose (state-contract, fanout-merge, ledger-schema) | grep terminal|gate
+ ✓ |parallel| tests/unit/deep-review-state-contract.vitest.ts > terminal gate verdict > projects a terminal gate record into a terminal_gates row and the registry 4ms
+ ✓ |parallel| tests/unit/deep-review-state-contract.vitest.ts > terminal gate verdict > fails a max-iterations stop whose coverage gate still fails with no P0 3ms
+ ✓ |parallel| tests/unit/deep-review-state-contract.vitest.ts > terminal gate verdict > passes a run whose earlier blocked stop later converged with every gate passing 3ms
+ ✓ |parallel| tests/unit/deep-review-state-contract.vitest.ts > terminal gate verdict > keeps the P0-only verdict when the log has no terminal gate row 5ms
+ ✓ |parallel| tests/unit/fanout-merge.vitest.ts > mergeReviewRegistries — strongest-restriction > merges FAIL when one lineage's terminal record names a failed required gate 0ms
+ ✓ |parallel| tests/unit/fanout-merge.vitest.ts > mergeReviewRegistries — strongest-restriction > reads a lineage's failed gates from its registry when its state log has no terminal row 0ms
+ ✓ |parallel| tests/unit/deep-review-ledger-schema.vitest.ts > deep-review typed ledger schema > accepts a terminal gate record and refuses one whose failed ids disagree with its gate results 2ms
+      Tests  91 passed (91)
