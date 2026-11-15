@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure",
+  "parent_id": "hooks-plugins-extensions/hook-platform",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature subtrack restructure",
+      "give every hook plugin and extension feature",
+      "feature subtrack restructure plan",
+      "feature subtrack restructure tasks",
+      "feature subtrack restructure acceptance criteria",
+      "feature subtrack restructure goal",
+      "feature subtrack restructure implementation summary"
+    ],
+    "key_topics": [
+      "feature",
+      "subtrack",
+      "restructure",
+      "give",
+      "every",
+      "hook",
+      "plugin",
+      "extension",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/hooks-plugins-extensions/graph-metadata.json",
+      "specs/hooks-plugins-extensions/description.json",
+      ".skilled/skills/sk-doc/shared/scripts/relocation-ledger.json",
+      "scratch/move-map/map.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/hooks-plugins-extensions/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/hooks-plugins-extensions/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "relocation-ledger.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/scripts/relocation-ledger.json",
+        "source": "derived"
+      },
+      {
+        "name": "map.txt",
+        "kind": "file",
+        "path": "scratch/move-map/map.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Held Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Declarative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The track files its packets under broad sub-tracks named after a bundle of work (`goal-and-directive-hooks`, `hook-injection-pipeline`, `pi-extensions`, `repo-commit-gates`, `session-turn-boundaries`), not after the feature a reader is looking for",
+    "created_at": "2026-11-15T06:21:47Z",
+    "last_save_at": "2026-11-15T07:05:51.910Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:25db4dd8ec9ea6347541e006807825a3e8e456bda329c4716fc40e0cff59f276",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "02cc2930519e76b67fa17e805a322884ebf4d2ad792536ad785c2922711222a1",
+      "plan.md": "a34d4adb2ce337f1c1cee6dde582ef5868ea1f429065c30c76ec9f72dfa2a1cc",
+      "tasks.md": "63918c0b5287afbe14f9a10f6893803a12463fa0943701be5e6e5ce5d5dc5c38",
+      "implementation-summary.md": "50abda70b4879c3f1173ad6ba59fb595bd90ecdc65f319c8c9c822760d276ff3"
+    },
+    "last_active_at": null
+  }
+}

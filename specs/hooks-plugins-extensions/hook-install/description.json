@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/hook-install",
+  "description": "Container folder for hooks-plugins-extensions/hook-install.",
+  "keywords": [
+    "hook",
+    "install"
+  ],
+  "lastUpdated": "2026-11-15T06:36:38.701Z",
+  "specId": "hooks-plugins-extensions/hook-install",
+  "folderSlug": "hook-install",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

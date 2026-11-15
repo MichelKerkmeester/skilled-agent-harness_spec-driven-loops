@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/task-dispatch",
+  "description": "Container folder for hooks-plugins-extensions/task-dispatch.",
+  "keywords": [
+    "task",
+    "dispatch"
+  ],
+  "lastUpdated": "2026-11-15T06:36:40.073Z",
+  "specId": "hooks-plugins-extensions/task-dispatch",
+  "folderSlug": "task-dispatch",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/pi-fast-mode",
+  "description": "Container folder for hooks-plugins-extensions/pi-fast-mode.",
+  "keywords": [
+    "pi",
+    "fast",
+    "mode"
+  ],
+  "lastUpdated": "2026-11-15T06:36:40.382Z",
+  "specId": "hooks-plugins-extensions/pi-fast-mode",
+  "folderSlug": "pi-fast-mode",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
