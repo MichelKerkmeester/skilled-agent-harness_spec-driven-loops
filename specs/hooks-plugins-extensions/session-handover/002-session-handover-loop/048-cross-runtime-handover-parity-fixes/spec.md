@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/420-cross-runtime-handover-parity-fixes` |
 | **Parent Spec** | `../spec.md` |
@@ -98,10 +98,10 @@ Every looped runtime hands over with the same safety and recall that phase 047 g
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-pi-opencode-history-lookup/ | Mint a History Lookup locator for Pi and OpenCode senders | Pending |
-| 2 | 002-failed-arm-deferred-mark/ | Defer a record no turn end could arm on Codex, Pi and OpenCode | Pending |
-| 3 | 003-nudge-parity-and-hop-scoring/ | One shared nudge claim and side-word scoring | Pending |
-| 4 | 004-history-preview-readability/ | [Phase 4 scope] | Pending |
+| 1 | 001-pi-opencode-history-lookup/ | Mint a History Lookup locator for Pi and OpenCode senders | Complete |
+| 2 | 002-failed-arm-deferred-mark/ | Defer a record no turn end could arm on Codex, Pi and OpenCode | Complete |
+| 3 | 003-nudge-parity-and-hop-scoring/ | One shared nudge claim and side-word scoring | Complete |
+| 4 | 004-history-preview-readability/ | Readable model-turn previews and search excerpts, and a live Pi recall run | Complete |
 
 ### Phase Transition Rules
 
@@ -116,7 +116,7 @@ Every looped runtime hands over with the same safety and recall that phase 047 g
 |------|-----|----------|--------------|
 | 001 | 002 | Pi and OpenCode claims print a lookup that redeems | The new CLI tests pass |
 | 002 | 003 | Each failed arm leaves a deferred record that a prompt withdraws | The new adapter tests pass |
-| 003-nudge-parity-and-hop-scoring | 004-history-preview-readability | [Criteria TBD] | [Verification TBD] |
+| 003 | 004 | The live Pi receiver gave up on JSON previews | `live2-pi` scorecard and the receiver session |
 <!-- /ANCHOR:phase-map -->
 
 ---

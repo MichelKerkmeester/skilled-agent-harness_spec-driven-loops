@@ -8,13 +8,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring"
-    last_updated_at: "2026-11-15T20:40:42Z"
+    last_updated_at: "2026-11-15T21:21:18Z"
     last_updated_by: "generate-context"
-    recent_action: "Built and verified all three phases; OpenCode recall met, Pi recall through the lookup not met"
-    next_safe_action: "Commit worktree 420 and ask operator about AC-005"
+    recent_action: "AC-005 met: live1-opencode and live3-pi recovered the side word through History Lookup"
+    next_safe_action: "Commit worktree 420 and merge it to main"
     packet_purpose: "Purpose: Every runtime delivers each nudge once, and a live hop scores recall as well as the hop."
-    blockers:
-      - "AC-005 Pi recall unmet"
+    blockers: []
     key_files:
       - ".skilled/hooks/session-handover/lib/nudge.cjs"
       - ".skilled/hooks/session-handover/lib/relaunch-core.cjs"
@@ -22,17 +21,17 @@ _memory:
       - ".skilled/hooks/session-handover/pi/session-handover.ts"
       - ".opencode/plugins/session-handover.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d030c6881b56e4e1655cd9a9ac2acd9a3c844b39adb7558c21fc5a5276eeea77"
       session_id: "scaffold-003-nudge-parity-and-hop-scoring"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "b726ec67-1d85-4833-b219-c038e184d696"
       workspace: "/Users/michelkerkmeester/worktrees/public/420-cross-runtime-handover-parity-fixes"
-      savedAt: "2026-11-15T20:40:42Z"
+      savedAt: "2026-11-15T21:21:18Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

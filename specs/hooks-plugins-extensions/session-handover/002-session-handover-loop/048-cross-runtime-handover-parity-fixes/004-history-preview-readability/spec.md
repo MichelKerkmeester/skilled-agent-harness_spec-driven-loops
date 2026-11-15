@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/420-cross-runtime-handover-parity-fixes` |
 | **Parent Spec** | ../spec.md |

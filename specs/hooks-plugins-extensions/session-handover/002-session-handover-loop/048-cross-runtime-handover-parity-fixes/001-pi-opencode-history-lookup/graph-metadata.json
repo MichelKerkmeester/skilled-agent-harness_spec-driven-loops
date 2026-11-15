@@ -3,6 +3,7 @@
   "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup",
   "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup",
   "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,7 +35,7 @@
       "finds"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -196,8 +197,8 @@
     ],
     "causal_summary": "`mintHandoverLocator` finds a transcript path only for Claude, Codex and Vibe and returns null for every other runtime, so a claim of a Pi or OpenCode note prints no History Lookup",
     "created_at": "2026-11-15T19:49:18Z",
-    "last_save_at": "2026-11-15T21:18:31.161Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T21:25:51.104Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -206,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8eff3db6772c1ef4187c54612af5341644613bc6aded1bec98345ee3162b73a1",
+    "source_fingerprint": "sha256:c0ede4a490d46195f30c444a4f487f9d766e09a54cecb17e9683a93d33d7d582",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "25471a23f1da2a0da02f0a09014592739a62035ac19bcfd374c65b0e8c109a23",
+      "spec.md": "88dcd5e529e1ccb847b705d9b5e58e16ca49654f6db42a66e0865cda8a2cf2ef",
       "plan.md": "a47f360919485dae3405f94bc27fc967dc32b75c5b12090d3212e129c94ce21d",
       "tasks.md": "f6442a69f4399c7261b77e2ded40a94a40b9b30157633cc7811ba6e3ec7ac18d",
-      "implementation-summary.md": "34a3c7fc720e747396e080ffc2cdd0ad7d7d1ddf93d83de4302b9d2ba4f0e936"
+      "implementation-summary.md": "84c4e459a97611d39443eef214719ea033e033c88c8c2388696fd5dae27c9cb2"
     },
     "last_active_at": null
   }

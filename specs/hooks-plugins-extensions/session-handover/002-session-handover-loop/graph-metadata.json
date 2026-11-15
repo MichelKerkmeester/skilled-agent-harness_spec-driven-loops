@@ -254,7 +254,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-15T20:40:42.553Z",
+    "last_save_at": "2026-11-15T21:25:54.143Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -262,13 +262,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2edea108bffb41550de2e34a671a0476dc129a90f037ba6f43425c54ea809063",
+    "source_fingerprint": "sha256:3cfbb3aeabded66ba9f70a819ea657f9ecec7e17f22fe3ae6ecc82ffa32ab8a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4778923e05b3e99e9c8e7751f6a9e0712de56d1bea17459125ae6e748d2f34a2",
+      "spec.md": "bcf278e6775ae9bcbff892afbf2665d2eb283fcf5a92c3b014b946d4bcd9b38c",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
     "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
-    "last_active_at": "2026-11-15T20:40:42.553Z"
+    "last_active_at": "2026-11-15T21:25:54.143Z"
   }
 }

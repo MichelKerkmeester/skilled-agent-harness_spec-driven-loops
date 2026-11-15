@@ -8,17 +8,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup"
-    last_updated_at: "2026-11-15T19:49:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-15T21:25:51Z"
+    last_updated_by: "generate-context"
+    recent_action: "Built and verified the Pi and OpenCode locator mint"
+    next_safe_action: "Commit worktree 420 and merge it to main"
+    packet_purpose: "Purpose: A Pi or OpenCode receiver can look up the sender's earlier turns, as a Claude Code, Codex or Vibe receiver can."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/hooks/session-handover/lib/relaunch-core.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:0598709fab01a434ad687ff64a632ae341aea4f09e8eb7376f36ce349921da50"
       session_id: "scaffold-001-pi-opencode-history-lookup"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "b726ec67-1d85-4833-b219-c038e184d696"
+      workspace: "/Users/michelkerkmeester/worktrees/public/420-cross-runtime-handover-parity-fixes"
+      savedAt: "2026-11-15T21:25:51Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

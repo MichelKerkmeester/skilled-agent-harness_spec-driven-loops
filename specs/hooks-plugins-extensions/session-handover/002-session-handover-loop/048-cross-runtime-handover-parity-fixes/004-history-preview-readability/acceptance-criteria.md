@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-history-preview-readability"
+    packet_pointer: "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability"
     last_updated_at: "2026-11-15T21:10:56Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -53,7 +53,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the browse fixtures, When `browse` returns `history-turn-1` and `history-turn-mixed`, Then each preview is its text plus `read_file` and its arguments, with no block object or call id | `history-search-browse.vitest.ts` preview test; it fails with the old `previewFor`. Observed: the preview test passes, and with the old `previewFor` restored it fails (`1 failed | 140 passed`) | Met | - |
+| AC-001 | REQ-001 | Given the browse fixtures, When `browse` returns `history-turn-1` and `history-turn-mixed`, Then each preview is its text plus `read_file` and its arguments, with no block object or call id | `history-search-browse.vitest.ts` preview test; it fails with the old `previewFor`. Observed: the preview test passes, and with the old `previewFor` restored it fails (`1 failed, 140 passed`) | Met | - |
 | AC-002 | REQ-002 | Given the baseline of 140, When `npm test` runs in the history engine, Then every test passes and no existing expectation was edited | Suite summary line. Observed: `Tests  142 passed (142)` against a baseline of 140, with no existing test edited | Met | - |
 | AC-003 | REQ-003 | Given the rebuilt engine, When a live Pi hop runs on DeepSeek Flash at max thinking with a side word, Then it relaunches and the receiver reports the side word through History Lookup with the word absent from the note | `../scratch/runs/live3-pi` with `score.cjs` output. Observed: `live3-pi` scored 5/5 with `sideWordStated: true` and `sideWordInNote: false`, and the receiver's `load` result held the side word | Met | - |
 

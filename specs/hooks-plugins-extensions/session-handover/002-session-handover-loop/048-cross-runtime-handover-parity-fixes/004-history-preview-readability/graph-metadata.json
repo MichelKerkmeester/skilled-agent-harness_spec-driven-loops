@@ -16,6 +16,7 @@
       "history preview readability plan",
       "history preview readability tasks",
       "history preview readability acceptance criteria",
+      "004-history-preview-readability operator decisions",
       "history preview readability implementation summary"
     ],
     "key_topics": [
@@ -29,16 +30,17 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary"
+      "004-history-preview-readability",
+      "operator"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/session-handover/history/lib/navigator.ts",
       ".skilled/hooks/session-handover/history/tests/history-search-browse.vitest.ts"
@@ -66,6 +68,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -181,33 +189,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`previewFor` takes the first 160 characters of a model turn's blocks, and `contentText` serializes every non-text block whole",
     "created_at": "2026-11-15T21:10:53Z",
-    "last_save_at": "2026-11-15T21:18:31.180Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T21:26:19.229Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4988589bd640dfebbdbcb635ac7cb97735524b361f15ba21a449aa1ddfd0eb3",
+    "source_fingerprint": "sha256:f73c97f9ddc52ed4611ed11744e25c1cebdc9a1aa71ef7b5ffba7b0e316f39c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3e9544c8fdde85347bafcf86811c4d811c4eeae5251933a87e1336de31d0f14b",
+      "spec.md": "ff17bf607a04afee278c98a4de859773b678c0d332041a1eb350fae6943a2f02",
       "plan.md": "d72ff9a19076f9b78f1f819283f6843c93b54337859c5e3e5c374ac9764cfe95",
-      "tasks.md": "46c53d86e97e67e9c492cf2ea97cab1a4534d066b041e37e817659cfa36d5b61",
-      "implementation-summary.md": "ada963db8a886f78d7594fae3894aca127eaa94a21d21ff4316fc4c5ffbd4508"
+      "tasks.md": "33961a653c791311169e583d0be00b48d147d062705958ff26ca6bfcd7bc67c8",
+      "decision-record.md": "b615917e5ec4f24af6eb8fff9f6fc8e6b6cfb37ed89b77a0583a6b273beb6488",
+      "implementation-summary.md": "c5f3638f3b9b6c75fabcf4a14d02754a50f1411dee0b053bd48a48b6ec2ab7ff"
     },
     "last_active_at": null
   }

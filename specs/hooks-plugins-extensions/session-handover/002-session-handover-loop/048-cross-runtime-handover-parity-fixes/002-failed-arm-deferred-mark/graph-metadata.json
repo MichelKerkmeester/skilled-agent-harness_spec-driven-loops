@@ -3,6 +3,7 @@
   "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark",
   "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark",
   "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -33,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -194,8 +195,8 @@
     ],
     "causal_summary": "Codex `stop-arm.mjs` returns with the record still pending when the payload has no transcript path, when no session process is found below the loop and when `arm` throws",
     "created_at": "2026-11-15T19:49:22Z",
-    "last_save_at": "2026-11-15T21:18:31.162Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T21:25:54.116Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -204,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c517efe71f96dd7a26d685d32d73014f782b68335b6abb5e6b3e555b0fcc08a",
+    "source_fingerprint": "sha256:5cbd32630c6bdd4a840bf98297b903e79fc90403373d4e2be86b4f378acbba6e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e51241295598b6dae143b084b5c41b9c67342ca4943237cd66b31d21c8ea1bc",
+      "spec.md": "9608fdf9c50a561b3d9efc1c32080da50ff6d56f2f6e68028ab293f5afcc39a7",
       "plan.md": "c0632105806c480165da5483e38212ccd885f7261ab438ad2bd1fb1dd829ab83",
       "tasks.md": "828bb6b90de532330f27e177fdc4873fda7bef62f7588f63f04f3a8e767df4e4",
-      "implementation-summary.md": "fea72b15bf1555ca78c95f316f92b2417f1f92df1d0c8fd1f20c6feeadd37ff8"
+      "implementation-summary.md": "451338245387a37873ac4b419eef14d4a6db62301f8e384160bdb57555f60b2e"
     },
     "last_active_at": null
   }

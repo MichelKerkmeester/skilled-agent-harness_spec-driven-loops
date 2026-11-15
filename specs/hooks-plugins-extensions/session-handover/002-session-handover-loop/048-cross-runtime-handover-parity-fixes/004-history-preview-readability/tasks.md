@@ -42,7 +42,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T003 Readable `previewFor` and its test (`HX/lib/navigator.ts`, `HX/tests/history-search-browse.vitest.ts`). Verify: the new test passes and fails with the old function restored. Evidence: `previewFor` builds from text blocks and each tool call's name and arguments. The new browse test passes, and with the old function restored it fails: `1 failed | 140 passed`. After review, `itemText` uses the same rendering, and a search test fails on the old `itemText` (`1 failed | 141 passed`).
+- [x] T003 Readable `previewFor` and its test (`HX/lib/navigator.ts`, `HX/tests/history-search-browse.vitest.ts`). Verify: the new test passes and fails with the old function restored. Evidence: `previewFor` builds from text blocks and each tool call's name and arguments. The new browse test passes, and with the old function restored it fails: `1 failed, 140 passed`. After review, `itemText` uses the same rendering, and a search test fails on the old `itemText` (`1 failed, 141 passed`).
 - [x] T004 Rebuild the engine (`HX/dist/`). Verify: `npm run build` exits 0. Evidence: `npm run build` exits 0, and `dist/navigator.js` carries the new `previewFor`.
 <!-- /ANCHOR:phase-2 -->
 
@@ -51,7 +51,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T005 Run the history engine and handover suites from the final state. Verify: both print zero failures. Evidence: history engine `Tests  142 passed (142)`; the handover suite result is recorded after the merge with main.
+- [x] T005 Run the history engine and handover suites from the final state. Verify: both print zero failures. Evidence: history engine `Tests  142 passed (142)`; after merging main, history `Tests  146 passed (146)` and handover `tests 1040`, `fail 0`.
 - [x] T006 Live Pi hop on DeepSeek Flash at max thinking (`PI_ROUTE=deepseek ../scratch/harness/live-hop.sh pi`). Verify: `score.cjs` prints `5/5`, the side word is reported and absent from the note. Evidence: `../scratch/runs/live3-pi` on `--provider llmgateway --model deepseek-v4.1-flash-1017 --thinking max` scored 5/5 with `sideWordStated: true` and `sideWordInNote: false`. The receiver browsed with count 10 and loaded the sender's first turn, whose result held the side word.
 - [x] T007 Review of the change. Verify: no P0 or P1 left open. Evidence: no P0. One P1, search excerpts still serialized whole tool-call blocks, fixed in `itemText` through a shared `turnText` with a search test that fails on the old code. One P2, a split surrogate at the 160-character cut, fixed. The order note was a description fix.
 <!-- /ANCHOR:phase-3 -->
@@ -105,7 +105,7 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Drift guards pass Evidence: recorded after the merge with main.
+- [x] CHK-010 [P0] Drift guards pass Evidence: after merging main, `run-all-drift-guards.sh` prints `all 4 guards PASSED`.
 - [x] CHK-011 [P0] No test prints an error Evidence: the history engine prints `Tests  141 passed (141)`.
 - [x] CHK-012 [P1] A null block slot is skipped Evidence: a null slot returns no part, as the `block === null` branch shows.
 - [x] CHK-013 [P1] Code follows the file's existing style Evidence: the change keeps the file's helper `serialized` and the existing whitespace and 160-character bound.

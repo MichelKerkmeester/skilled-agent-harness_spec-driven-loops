@@ -8,17 +8,28 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark"
-    last_updated_at: "2026-11-15T19:49:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-15T21:25:54Z"
+    last_updated_by: "generate-context"
+    recent_action: "Built and verified the deferred mark on Codex, Pi and OpenCode"
+    next_safe_action: "Commit worktree 420 and merge it to main"
+    packet_purpose: "Purpose: On every looped runtime, a hop that could not arm is called off by the operator's next prompt."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/hooks/session-handover/codex/stop-arm.mjs"
+      - ".skilled/hooks/session-handover/pi/session-handover.ts"
+      - ".opencode/plugins/session-handover.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:22b0fe35dd338c84c267be9afb7952458c69cc73b7bbd4e00cea804d2b2a7cee"
       session_id: "scaffold-002-failed-arm-deferred-mark"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "b726ec67-1d85-4833-b219-c038e184d696"
+      workspace: "/Users/michelkerkmeester/worktrees/public/420-cross-runtime-handover-parity-fixes"
+      savedAt: "2026-11-15T21:25:54Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

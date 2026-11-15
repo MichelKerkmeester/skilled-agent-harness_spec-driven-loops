@@ -37,6 +37,8 @@ _memory:
 | Q001 | Vibe CLI on deepseek-flash builds the 048 changes from one-change briefs, and a fresh Opus medium agent reviews them. | Not stated. | None | T002 in each phase, implementation-summary.md how-delivered |
 | Q002 | The Pi and OpenCode locator work is built in 048, and the session that owns history lookup is told what changes. | Not stated. | None | 001-pi-opencode-history-lookup, the playbook lines in compaction-history-lookup.md |
 | Q003 | Phase 048 fixes every finding from the cross-runtime scan and adds History Lookup for Pi and OpenCode senders. | Not stated. Evidence: yes_no, option true, overlap 1, imperative false, shift false. | The proposal that the History Lookup gap stays with the other session | spec.md scope of the 048 parent, phases 001 to 003 |
+| Q004 | The feature-catalog merge conflict takes main's date and bumps the version once more, to 2.1.41.0. | Not stated. | None | feature-catalog.md frontmatter |
+| Q005 | Once the gates pass on the merged tree, 420 merges to main, origin/main is pushed and worktree 420 is removed. | Not stated. | None | the 048 closeout |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -99,6 +101,46 @@ Options: none
 Answer:
 ```text
 Yes fix all opencode and pi need history too and other findings fixed
+```
+
+### Q004
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01W7R1fqKzZyK1hZChf92i1V:0 -->
+
+Question:
+```text
+Merging origin/main into worktree 420 conflicts in one place: the feature-catalog.md frontmatter, where 420 set version 2.1.39.0 and main set 2.1.40.0 (dated 2026-11-15). The body merged cleanly. How should I resolve it?
+```
+
+Options:
+```text
+Take main, bump once (Recommended)
+Take main's lines as is
+Abort the merge
+```
+
+Answer:
+```text
+Take main, bump once (Recommended)
+```
+
+### Q005
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01W7R1fqKzZyK1hZChf92i1V:2 -->
+
+Question:
+```text
+After the conflict is resolved and the gates rerun green on the merged tree, how should 420 land?
+```
+
+Options:
+```text
+Merge to main and push (Recommended)
+Merge to main, don't push
+Keep in worktree
+```
+
+Answer:
+```text
+Merge to main and push (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

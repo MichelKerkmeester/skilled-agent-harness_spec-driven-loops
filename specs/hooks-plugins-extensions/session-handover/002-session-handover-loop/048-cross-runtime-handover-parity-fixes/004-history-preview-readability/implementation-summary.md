@@ -7,18 +7,28 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-history-preview-readability"
-    last_updated_at: "2026-11-15T19:49:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability"
+    last_updated_at: "2026-11-15T21:21:07Z"
+    last_updated_by: "generate-context"
+    recent_action: "Built readable previews, live3-pi 5/5, merged origin/main, all gates green"
+    next_safe_action: "Commit worktree 420 and merge it to main"
+    packet_purpose: "Purpose: A preview tells a receiver what each turn did, so it can pick the turn to load."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/hooks/session-handover/history/lib/navigator.ts"
+      - ".skilled/hooks/session-handover/history/tests/history-search-browse.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:418daa70be34f454b622a7ef38fb03f847af0efc92b2705796fb9d42899cae81"
       session_id: "scaffold-004-history-preview-readability"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "b726ec67-1d85-4833-b219-c038e184d696"
+      workspace: "/Users/michelkerkmeester/worktrees/public/420-cross-runtime-handover-parity-fixes"
+      savedAt: "2026-11-15T21:21:07Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -87,10 +97,10 @@ The operator chose to fix the previews in this packet and rerun Pi on DeepSeek F
 | Check | Result |
 |-------|--------|
 | History engine suite | PASS: `Tests  142 passed (142)`, against a baseline of 140 |
-| Mutation: old `previewFor` restored | `1 failed | 140 passed` |
+| Mutation: old `previewFor` restored | `1 failed, 140 passed` |
 | Build | `npm run build` exit 0 |
 | Live hop `../scratch/runs/live3-pi` | PASS 5/5 on DeepSeek Flash at max thinking. Side word absent from the note, recovered through `browse` and `load` |
-| Mutation: old `itemText` restored | `1 failed | 141 passed` |
+| Mutation: old `itemText` restored | `1 failed, 141 passed` |
 | Opus medium review | no P0. The P1 (search excerpts still serialized tool-call blocks) and a P2 (a split surrogate at the cut) were fixed, and the search test was added |
 <!-- /ANCHOR:verification -->
 

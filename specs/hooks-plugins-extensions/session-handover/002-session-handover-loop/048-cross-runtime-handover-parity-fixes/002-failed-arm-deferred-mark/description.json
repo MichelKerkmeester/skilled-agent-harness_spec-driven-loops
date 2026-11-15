@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark",
   "description": "Phase 2: failed-arm-deferred-mark",
   "keywords": [
     "phase",
     "failed-arm-deferred-mark"
   ],
-  "lastUpdated": "2026-11-15T19:49:25.812Z",
+  "lastUpdated": "2026-11-15T21:25:54.116Z",
   "specId": "002",
   "folderSlug": "failed-arm-deferred-mark",
   "parentChain": [
@@ -14,7 +15,8 @@
     "002-session-handover-loop",
     "048-cross-runtime-handover-parity-fixes"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_22-25__phase-002-marks-a-failed-arm-deferred-on-codex-pi.md"
+  ]
 }

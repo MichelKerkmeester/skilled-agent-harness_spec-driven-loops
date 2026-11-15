@@ -159,20 +159,20 @@
     ],
     "causal_summary": "Only Claude Code, Codex and Vibe senders mint a History Lookup at claim, so a Pi or OpenCode receiver cannot recover a detail the note left out",
     "created_at": "2026-11-15T19:49:03Z",
-    "last_save_at": "2026-11-15T21:10:57.540Z",
+    "last_save_at": "2026-11-15T21:25:54.143Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a57c6aed2000ed7e271fe66b96c4c06591fae4efce9a8f3a62c3fd9b368806e9",
+    "source_fingerprint": "sha256:ecac61c4882e39c4e5824b0a31a71959077f4ccf010b6600f58d0886e0d5ff95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fff791d089ce4ba38f6e0e2f352085c3d7d0487cdb3037517729618c1ab817d1",
-      "decision-record.md": "9f7fa83b79d7fbfcd1bf517dfbf3df97bff9d72b81b17adaaff4803b4535e4c7"
+      "spec.md": "9fa80d8db15881d43213b7be8f8b5165fc3cd0fb4065f31ce87c9cb9a75baff0",
+      "decision-record.md": "10b8bf22509701f139ca8169e97afe4d4e037d1fd559d517744b0bf04d99e2cb"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring",
-    "last_active_at": "2026-11-15T20:40:42.553Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark",
+    "last_active_at": "2026-11-15T21:25:54.143Z"
   }
 }
