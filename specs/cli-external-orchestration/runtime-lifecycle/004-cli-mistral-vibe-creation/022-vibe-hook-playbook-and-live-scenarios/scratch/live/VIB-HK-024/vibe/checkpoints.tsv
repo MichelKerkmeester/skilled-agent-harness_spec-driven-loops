@@ -1,0 +1,4 @@
+turn	status	attempts	evidence	observed
+delegate-before-mirror	PASS	1	turns/delegate-before-mirror	agent-mirrored
+restart	PASS	1	turns/restart	restart-with-agent-mirror
+delegate	PASS	1	turns/delegate	agent-spawned-from-mirror

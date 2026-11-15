@@ -1,0 +1,3 @@
+$ grep -rqs 'STALE DIST WARNING: @spec-kit/shared' "$VIBE_HOME/logs/session/unified" && grep -rqs 'npm run build' "$VIBE_HOME/logs/session/unified" && echo package-named
+package-named
+[exit 0]

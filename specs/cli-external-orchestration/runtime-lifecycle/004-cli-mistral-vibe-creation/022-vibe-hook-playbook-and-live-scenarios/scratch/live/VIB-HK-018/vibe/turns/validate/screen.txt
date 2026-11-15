@@ -1,0 +1,51 @@
+> Run the spec validator over specs/demo/001-greeting and tell me what it reports: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/demo/001-greeting --strict; echo             
+  validator-finished                                                                                                                                                                                    
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+  Validator ran and reported FAILED — 5 errors, 1 warning. Note the shell returncode was 0 only because echo validator-finished was the last command; the validator itself failed.                      
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+  Errors                                                                                                                                                                                                
+                                                                                                                                                                                                        
+  ┌─────────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ Check                       │ Finding                                                                                                                                                           │   
+  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ FILE_EXISTS                 │ Missing 2 required files for Level 1: plan.md, tasks.md                                                                                                           │   
+  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ TEMPLATE_SOURCE             │ spec.md has no template source header                                                                                                                             │   
+  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ ANCHORS_VALID               │ spec.md: no anchors found                                                                                                                                         │   
+  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ GREP_CONVENTION             │ spec.md line 0: no frontmatter block, so no retrievable trigger phrases                                                                                           │   
+  ├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ LEVEL_MATCH                 │ Missing plan.md and tasks.md for Level 1; spec.md does not declare a level (expected Level 1)                                                                     │   
+  └─────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+  Warning                                                                                                                                                                                               
+                                                                                                                                                                                                        
+  GRAPH_METADATA_PRESENT — graph metadata checked (informational, not a failure).                                                                                                                       
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+  What passed                                                                                                                                                                                           
+                                                                                                                                                                                                        
+  Placeholder fill, frontmatter continuity basics, memory blocks, spec-doc sufficiency, comment hygiene, TOC policy, folder naming, frontmatter values, wikilinks, and all                              
+  canonical-save/graph-metadata checks (mostly "not applicable" for this folder).                                                                                                                       
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+  Reading of it                                                                                                                                                                                         
+                                                                                                                                                                                                        
+  The packet is a stub: spec.md exists but has no frontmatter block and no anchors, and the Level 1 companions plan.md and tasks.md were never created. The LEVEL_MATCH and FILE_EXISTS errors are      
+  the same root cause counted twice, and GREP_CONVENTION plus TEMPLATE_SOURCE both trace back to the missing frontmatter. Fixing spec.md's frontmatter and adding the two companion files should        
+  clear all five.                                                                                                                                                                                       
+                                                                                                                                                                                                        
+  Want me to scaffold plan.md and tasks.md and add the frontmatter to spec.md?                                                                                                                          
+
+                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>   
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.vIu69q6bpJ/vibe                                                                                                       ctx ▎      11.5k/256k
+

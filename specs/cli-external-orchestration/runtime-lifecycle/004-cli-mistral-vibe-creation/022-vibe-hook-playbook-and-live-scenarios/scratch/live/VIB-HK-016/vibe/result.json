@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 69368204,
+  "socket": "conv-32937-vibe",
+  "session_id": "85371e3f-d82d-4f73-9a40-3d36f54f298a",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ILuwSN3Efu/vibe",
+  "started_at": "2026-11-15T00:30:02.001Z",
+  "finished_at": "2026-11-15T00:30:41.048Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "edit",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "finding-returned",
+      "evidence": "turns/edit"
+    },
+    {
+      "id": "rule",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rule-named",
+      "evidence": "turns/rule"
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe hook docs correction",
+      "phase 21 vibe hook docs correction",
+      "guards and hooks not portable correction",
+      "vibe parity gaps closeout",
+      "vibe hook docs correction plan",
+      "vibe hook docs correction tasks",
+      "vibe hook docs correction goal",
+      "vibe hook docs correction implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "hook",
+      "docs",
+      "correction",
+      "phase",
+      "guards",
+      "hooks",
+      "portable",
+      "parity",
+      "gaps",
+      "closeout",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+      ".vibe/plugins/repo-guards/spec-gate-classify.mjs",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/README.md",
+      ".skilled/commands/speckit/save.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+      ".skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md",
+      ".skilled/hooks/README.md",
+      ".skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "scratch/targets.md",
+      "scratch/citation-map.md",
+      "scratch/after.txt",
+      "scratch/parent-validate.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "guards-and-hooks.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/spec-gate-classify.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "operator-decision-capture.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        "source": "derived"
+      },
+      {
+        "name": "mistral-vibe-dispatch-mode.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-refusal.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "targets.md",
+        "kind": "doc",
+        "path": "scratch/targets.md",
+        "source": "derived"
+      },
+      {
+        "name": "citation-map.md",
+        "kind": "doc",
+        "path": "scratch/citation-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "parent-validate.txt",
+        "kind": "file",
+        "path": "scratch/parent-validate.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`references/guards-and-hooks.md` marks five OpenCode plugins `not portable` (Measured Behavior): ask-surface-guard, completion-sentinel, session-relaunch, session-history-lookup and decision-capture, on the grounds that `postagent` cannot hold a turn and Vibe has no question tool",
+    "created_at": "2026-11-14T20:13:13Z",
+    "last_save_at": "2026-11-14T22:50:33.416Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:77235022caecacf26450f759694b34334fddacc2c21f3012bd4ef7bc2e18e40e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4698b619ede3de3e08face1f492902aa3e346a9f2ef6021fe307b468097af640",
+      "plan.md": "9e1bf3f3e15a508769f0877287cc96b718bf85499aa75a2f53e3f7fa31d0b037",
+      "tasks.md": "ad7351cad61515e81246317c837593515cd7a3404c3a9a5e56c6bdecf858e0bb",
+      "implementation-summary.md": "0d5b1806c8e234b7fe6e0af8630479a9ae8f4899d9258e37eaa284d4cd95a092"
+    },
+    "last_active_at": null
+  }
+}

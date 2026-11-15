@@ -1,0 +1,301 @@
+{
+  "sessionId": "fanout-oc-1-1794674533742-754r50",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-does-the-deep-loop-executor-kind-cli-mistral-vibe-add",
+      "inboxId": null,
+      "text": "What does the deep-loop executor kind cli-mistral-vibe add?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-runtime-surfaces-change-when-the-kind-is-added-executor-config-audit-allow",
+      "inboxId": null,
+      "text": "Which runtime surfaces change when the kind is added (executor config, audit allowlist, fan-out adapter, workflow branches)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-what-isolation-and-scoring-guarantees-does-a-vibe-lineage-get-that-no-existing-e",
+      "inboxId": null,
+      "text": "What isolation and scoring guarantees does a Vibe lineage get that no existing executor kind provides?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-2-which-runtime-surfaces-change-when-the-kind-is-added-executor-config-audit-allow",
+      "inboxId": null,
+      "text": "Which runtime surfaces change when the kind is added (executor config, audit allowlist, fan-out adapter, workflow branches)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-what-isolation-and-scoring-guarantees-does-a-vibe-lineage-get-that-no-existing-e",
+      "inboxId": null,
+      "text": "What isolation and scoring guarantees does a Vibe lineage get that no existing executor kind provides?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-does-the-deep-loop-executor-kind-cli-mistral-vibe-add",
+      "inboxId": null,
+      "text": "What does the deep-loop executor kind cli-mistral-vibe add?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What isolation and scoring guarantees does a Vibe lineage get that no existing executor kind",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which runtime surfaces change when the kind is added — answered in substance by findings 1-8,",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Which runtime surfaces change when the kind is added (executor config, audit allowlist, fan-out adapter, workflow branches)?",
+    "What isolation and scoring guarantees does a Vibe lineage get that no existing executor kind provides?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-its-capability-surface-is-deliberately-narrow-the-kind-accepts-only-model-timeou",
+      "text": "Its capability surface is deliberately narrow: the kind accepts only `model`, `timeoutSeconds`",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/spec.md",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/oc-1/steer.md (absent; no lead ruling to apply)"
+      ]
+    },
+    {
+      "id": "finding-1-3-model-selection-is-closed-by-an-enforced-two-alias-allowlist-vibe-supported-mode",
+      "text": "Model selection is closed by an enforced two-alias allowlist, `VIBE_SUPPORTED_MODELS =",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/spec.md",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/oc-1/steer.md (absent; no lead ruling to apply)"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-adapter-buildvibelineagecommand-gives-each-lineage-its-own-runtime-state-it-",
+      "text": "The adapter `buildVibeLineageCommand` gives each lineage its own runtime state: it preflights",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/spec.md",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/oc-1/steer.md (absent; no lead ruling to apply)"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-audit-layer-admits-vibe-without-leaking-operator-state-vibe-prefixed-variabl",
+      "text": "The audit layer admits Vibe without leaking operator state: `VIBE_`-prefixed variables and",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/spec.md",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/oc-1/steer.md (absent; no lead ruling to apply)"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-kind-is-wired-into-the-loop-surface-not-just-the-runtime-buildvibelineagecom",
+      "text": "The kind is wired into the loop surface, not just the runtime: `buildVibeLineageCommand` is",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/spec.md",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/oc-1/steer.md (absent; no lead ruling to apply)"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-kind-makes-mistral-vibe-a-first-class-deep-loop-executor-cli-mistral-vibe-is",
+      "text": "The kind makes Mistral Vibe a first-class deep-loop executor: `cli-mistral-vibe` is a member",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/spec.md",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/oc-1/steer.md (absent; no lead ruling to apply)"
+      ]
+    },
+    {
+      "id": "finding-1-8-the-kind-ships-with-its-own-conformance-coverage-a-stress-fixture-asserts-the-sh",
+      "text": "The kind ships with its own conformance coverage: a stress fixture asserts the shipped argv",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/spec.md",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/oc-1/steer.md (absent; no lead ruling to apply)"
+      ]
+    },
+    {
+      "id": "finding-1-6-vibe-lineages-are-scored-from-the-run-s-own-export-record-rather-than-from-stdou",
+      "text": "Vibe lineages are scored from the run's own export record rather than from stdout or exit",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/spec.md",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts",
+        "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/oc-1/steer.md (absent; no lead ruling to apply)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-e3323e123761",
+      "text": "Evaluating model quality of `deepseek-flash` / `glm-flash`: out of scope for a question about",
+      "contentHash": "e3323e123761",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-144321137cb3",
+      "text": "None. Every targeted surface existed and answered the question.",
+      "contentHash": "144321137cb3",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-bdc3e5944ad6",
+      "text": "Reading the phase plan (`plan.md`) as the answer source: it states intended design, and the",
+      "contentHash": "bdc3e5944ad6",
+      "addedAtIteration": 1
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 1,
+    "openQuestions": 2,
+    "resolvedQuestions": 1,
+    "carriedForwardOpenQuestions": 2,
+    "keyFindings": 8,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.9,
+    "coverageBySources": {
+      "other": 9
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/oc-1/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

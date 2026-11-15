@@ -15,7 +15,17 @@
     "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind",
     "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/010-hub-registration-and-routing",
     "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks",
-    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout"
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios"
   ],
   "manual": {
     "depends_on": [],
@@ -161,20 +171,20 @@
     ],
     "causal_summary": "The operator subscribed to Mistral, whose plan serves DeepSeek V4.1 Flash 1017 and GLM-5.3-Flash beside Mistral's own models and its Vibe coding agent",
     "created_at": "2026-11-14T12:01:21Z",
-    "last_save_at": "2026-11-14T13:36:26.901Z",
+    "last_save_at": "2026-11-14T22:47:43.259Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e57ad55105fd6da0116ae7ef4f8618c76519e1bf65581fd0768ec969c9cf010d",
+    "source_fingerprint": "sha256:8fe3674ea1dad203936244c4af4be190002b7a1b1d93bfc4d2893a83177181d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7a0551be1674d0088e14991c94c84dc8e45f972514238b9cc44a21a0f191f67f",
-      "decision-record.md": "747024f01ea3ca7da1155b6eec8394459a29e4a6b7eb96ec407ce7a52187bd5b"
+      "spec.md": "ee7137e27e533c87cf57fa73a256a25130bcbb756308d9214ea957b7a5a40e1e",
+      "decision-record.md": "bc226ed884f7a69a70931f415cb83b3cd1d40d1b41784c494ee85a410083f784"
     },
-    "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin",
-    "last_active_at": "2026-11-14T13:35:59.441Z"
+    "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios",
+    "last_active_at": "2026-11-14T22:33:40.948Z"
   }
 }

@@ -1,0 +1,44 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1185715240,
+  "socket": "conv-37656-vibe",
+  "session_id": "ebac5b46-b0b3-496d-b184-2206a39c0558",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.iZZy9ZWd9y/vibe",
+  "started_at": "2026-11-15T00:30:50.541Z",
+  "finished_at": "2026-11-15T00:31:14.958Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "fetch-page",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "advisory-appended",
+      "evidence": "turns/fetch-page"
+    }
+  ]
+}

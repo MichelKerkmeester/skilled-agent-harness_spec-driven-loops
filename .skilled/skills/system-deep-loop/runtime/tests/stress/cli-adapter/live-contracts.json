@@ -45,5 +45,13 @@
   "deepseekHarness": {
     "value": "cli-deepseek-harness",
     "contract": "LLM Gateway deepseek-v4.1-flash-1017 is verified on dsh 0.2.2-rc.3 and is the default route. OpenCode Go deepseek-v4.1-flash is configured, not verified, and stays out of defaults. Workspace-write blocks file writes under $HOME but allows OS temp paths."
+  },
+  "mistralVibe": {
+    "value": "cli-mistral-vibe",
+    "binary": "vibe",
+    "version": "3.1.2",
+    "models": ["deepseek-flash", "glm-flash"],
+    "credentialEnv": "MISTRAL_API_KEY",
+    "contract": "Vibe 3.1.2 is enforced before dispatch and the model must be one of the deepseek-flash or glm-flash aliases. Each lineage gets its own VIBE_HOME, and the run's export.json decides the verdict: exit 0 with a finished record is success, exit 3 with a record is partial, and a missing or non-zero record is failure."
   }
 }

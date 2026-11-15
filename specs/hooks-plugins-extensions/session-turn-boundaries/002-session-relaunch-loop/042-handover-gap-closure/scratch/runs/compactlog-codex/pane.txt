@@ -1,0 +1,50 @@
+
+  >_ OpenAI Codex (v0.169.0)
+     ~/worktrees/public/392-cross-runtime-handover-parity
+  permissions: YOLO mode
+
+
+› Reply with the single word OK and nothing else. Do not run any tool.
+
+
+⚠ Heads up, you have less than 25% of your weekly limit left. Run /status for a breakdown.
+
+• OK
+
+  Worked for 3s • 06:35
+
+• Context compacted · 1s
+
+  Worked for 1s • 06:35
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                         ⚠ weekly limit: 17% left · resets at 12:34 on 16 Nov · /status
+
+› Ask Codex to do anything
+
+  GPT-6-Luna low Fast · Context 8% used · 5h 99% left · weekly 17% left
+  ← for agents · ? for shortcuts                                                                                                                                              ⚠ 3 warnings · f2 to view

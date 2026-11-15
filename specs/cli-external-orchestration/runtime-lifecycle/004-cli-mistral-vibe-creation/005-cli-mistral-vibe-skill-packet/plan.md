@@ -58,7 +58,7 @@ Sibling mode packet.
 - **References and prompt card**: the flag, provider, runtime folder and hook facts a dispatch needs, kept out of `SKILL.md` so it stays short.
 
 ### Data Flow
-A dispatcher loads `SKILL.md`, follows `ROUTER.md` to the reference it needs, and builds a `vibe -p` command that `hard-rules.json` permits. Facts still pending phase 004 are the `--output json` and `streaming` payload shapes, stdin as a prompt source, the ancestor process name and the catalog listing, all UNKNOWN today.
+A dispatcher loads `SKILL.md`, follows `ROUTER.md` to the reference it needs, and builds a `vibe -p` command that `hard-rules.json` permits. Phase 004 settled the payload shapes, stdin, the ancestor process name and the catalog listing; its `evidence/` is the source the references cite.
 <!-- /ANCHOR:architecture -->
 
 ---

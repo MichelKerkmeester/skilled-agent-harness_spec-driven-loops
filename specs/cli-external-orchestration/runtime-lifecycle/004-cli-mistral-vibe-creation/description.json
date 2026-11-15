@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
   "description": "Mistral as a provider across the CLI runtimes and Mistral Vibe as a cli-external-orchestration runtime mode",
   "keywords": [
@@ -12,14 +13,15 @@
     "runtime",
     "mode"
   ],
-  "lastUpdated": "2026-11-14T12:01:21.537Z",
+  "lastUpdated": "2026-11-14T22:33:40.821Z",
   "specId": "004",
   "folderSlug": "cli-mistral-vibe-creation",
   "parentChain": [
     "cli-external-orchestration",
     "runtime-lifecycle"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_23-33__planned-reviewed-and-built-children-013-020-of.md"
+  ]
 }

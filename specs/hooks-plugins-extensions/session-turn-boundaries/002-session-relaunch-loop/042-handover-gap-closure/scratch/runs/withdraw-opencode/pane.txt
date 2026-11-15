@@ -1,0 +1,50 @@
+ • Session re • Session re   Session re • session-re • Session re • Session re • Session re • session-re • Session re • Session re • Session re   README lin   session-re • Session relaunch handoff  +
+                                                                                                                                                           █
+  ┃                                                                                                                                                        █    Session relaunch handoff
+  ┃  [session-relaunch] claim and continue handoff /Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity/.skilled/skills/.state/     █    continuation
+  ┃  session-relaunch/handoffs/20261115T052903Z-ses_e2251dd0dffesTrc0QhqMPNCdT.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session)    █
+  ┃                                                                                                                                                        █    Context
+                                                                                                                                                           █    27,537 tokens
+     + 1 thought                                                                                                                                           █    3% used
+                                                                                                                                                           █    $0.01 spent
+     I'll start by running the Gate 1 trigger index lookup and claiming the handoff note.                                                                  █
+                                                                                                                                                           █    MCP
+     + 5 commands, 5 thoughts, 2 reads                                                                                                                     █    • code_mode                     Error
+                                                                                                                                                           █
+     Both facts survived the handoff and are now delivered. The README is 377 lines, and the code word is ORCHID-9603.                                     █
+                                                                                                                                                           █
+     The handoff note carried them verbatim. I claimed the note in this session, read both values from its "Done" section and reported them without re-    █
+     measuring, which is what makes this a valid parity check rather than a fresh measurement. I then closed the note, and session-relaunch.cjs history -  █
+     -last 3 (exit 0) shows the full chain for 20261115T052903Z-ses_e2251dd0dffesTrc0QhqMPNCdT.md: handed-over, claimed by ses_e225, then done. On the     █
+     Claude side of the hop the same facts arrived, so the handover preserved the payload on both runtimes.                                                █
+                                                                                                                                                           █
+     What is inferred rather than observed: that the sending runtime rendered the same two values. I saw only this side's copy of the note, so the parity  █
+     claim rests on the note being the shared carrier.                                                                                                     █
+                                                                                                                                                           █
+     State of the work: no repository files changed, nothing committed or pushed, working tree untouched apart from the gitignored relaunch state.         █
+     Residual risk: none known.                                                                                                                            █
+                                                                                                                                                           █
+     Nothing is blocked on you.                                                                                                                            █
+                                                                                                                                                           █
+     Build · DeepSeek V4.1 Flash 1017 · 27.8s · 680.8 tok/s · 2.2s ttft                                                                                    █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  ~/worktrees/public/392-cross-runtime-handover-parity:worktrees/392-cross-runtime-handover-parity                       27.5K (3%) · $0.01  ctrl+p commands    …/3…/392-cross-runtime-handover-parity
+

@@ -232,12 +232,13 @@ export const HISTORY_LOCATOR_KINDS = {
   devin: 'transcript_file',
   dsh: 'session_log',
   opencode: 'session-store',
+  vibe: 'transcript_path',
 } as const;
 
 export type HistoryLocatorRuntime = keyof typeof HISTORY_LOCATOR_KINDS;
 export type HistoryLocatorKind = (typeof HISTORY_LOCATOR_KINDS)[HistoryLocatorRuntime];
 
-const HISTORY_LOCATOR_RUNTIMES = ['claude', 'codex', 'pi', 'devin', 'dsh', 'opencode'] as const;
+const HISTORY_LOCATOR_RUNTIMES = ['claude', 'codex', 'pi', 'devin', 'dsh', 'opencode', 'vibe'] as const;
 const HISTORY_LOCATOR_KIND_VALUES = [
   'transcript_path',
   'live_branch_or_session_log',

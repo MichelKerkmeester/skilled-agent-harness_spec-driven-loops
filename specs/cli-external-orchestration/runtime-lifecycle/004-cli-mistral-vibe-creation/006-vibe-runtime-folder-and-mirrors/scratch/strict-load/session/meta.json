@@ -1,0 +1,33 @@
+{
+  "session_id": "8a8d3887-dacf-f5a4-5dff-4cd8efd983be",
+  "parent_session_id": null,
+  "start_time": "2026-11-14T14:55:06.692000+00:00",
+  "end_time": "2026-11-14T14:55:07.849000+00:00",
+  "git_commit": null,
+  "git_branch": null,
+  "environment": {
+    "working_directory": "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/006-vibe-runtime-folder-and-mirrors/scratch"
+  },
+  "origin_directory": "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime/specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/006-vibe-runtime-folder-and-mirrors/scratch",
+  "username": "michelkerkmeester",
+  "child_sessions": [],
+  "loops": [],
+  "title": null,
+  "title_source": "auto",
+  "bumped_at": "2026-11-14T14:55:07.203984+00:00",
+  "pinned_at": null,
+  "archived_at": null,
+  "unseen_at": "2026-11-14T14:55:07.852555+00:00",
+  "seen_at": null,
+  "experiments": null,
+  "config": {
+    "active_model": "deepseek-flash",
+    "model_name": "deepseek-v4-1-flash-1017"
+  },
+  "runtime_path": "direct",
+  "import_provenance": null,
+  "created_worktree": null,
+  "project": null,
+  "artifacts": [],
+  "worktrees": []
+}

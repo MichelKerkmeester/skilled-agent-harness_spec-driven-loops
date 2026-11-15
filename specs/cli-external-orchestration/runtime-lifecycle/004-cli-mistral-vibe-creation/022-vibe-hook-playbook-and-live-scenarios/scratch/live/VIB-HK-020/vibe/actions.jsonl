@@ -1,0 +1,2 @@
+{"runtime":"vibe","time":"2026-11-15T00:37:18.728Z","turn":"answer-question","kind":"send","steps":[{"text":"I'm wiring the upload retry policy. Before you write anything, ask me one thing: should a failed upload retry three times or five?"},{"key":"Enter"}]}
+{"runtime":"vibe","time":"2026-11-15T00:37:21.818Z","turn":"answer-question","kind":"question","steps":[{"key":"Down"},{"key":"Down"},{"key":"Enter"},{"text":"Three attempts is enough."},{"key":"Enter"}]}

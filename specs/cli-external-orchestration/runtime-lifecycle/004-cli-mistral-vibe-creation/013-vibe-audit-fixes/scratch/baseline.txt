@@ -1,0 +1,28 @@
+Phase 13 baseline — recorded 2026-11-14 before any edit.
+
+T001 — hook and dispatch suites
+Command (exactly as tasks.md states):
+  node --test .skilled/hooks/dispatch/lib/*.test.mjs .vibe/plugins/repo-guards/tests/*.test.mjs
+Result: tests 65, pass 64, fail 1.
+The single failure is the file-level entry for
+.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs, which is a vitest suite
+(imports describe/it/expect from 'vitest'), so `node --test` cannot run it.
+That is a pre-existing shape of the tree, not a phase-13 regression: the file
+was already a vitest suite at HEAD. Its own runner passes:
+  .skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+  Test Files 1 passed (1); Tests 130 passed (130)
+
+T001 — node:test subset actually under test (dispatch-rule-checks plus the guard tests)
+Command:
+  node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs .vibe/plugins/repo-guards/tests/*.test.mjs
+Result: tests 64, pass 64, fail 0.
+
+Environment note: this shell exports MK_SPEC_GATE_ENFORCE=0 and
+SYSTEM_SPEC_GATE_ENFORCE=0. Both suites are run with those unset, because the
+spec-gate hook tests assert the interactive deny path and the inherited value
+silences it. Baseline and final runs use the same clean environment.
+
+T002 — fan-out unit suite
+Command (from .skilled/skills/system-deep-loop/runtime):
+  npx vitest run tests/unit/fanout-run.vitest.ts
+Result: Test Files 1 passed (1); Tests 193 passed (193); Duration 198.79s.

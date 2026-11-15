@@ -75,11 +75,12 @@ and findings belong here.
 |------|-------|----------|
 | Offline composition | Done | Draft patch exit 0, empty stderr |
 | API field check | Done | `reasoning_effort` 200, `thinking` 422 |
-| Keyed dsh run | Pending | Blocked by the dispatch guard until the roster is amended |
+| Keyed dsh run | Pending | The key is exported (2026-11-14). The merge from main brought `7af100c6673`, which re-pins dsh to `0.2.2-rc.3`, the installed version, so the version drift is gone. No keyed run is recorded yet |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Keyed run attempt | The cli-deepseek-harness PreToolUse hook refused the off-roster patch, as designed |
+| Version drift | Resolved by the `0.2.2-rc.3` re-pin merged from main. T008 and T009 are open again and wait only on a keyed run |
 <!-- /ANCHOR:log -->

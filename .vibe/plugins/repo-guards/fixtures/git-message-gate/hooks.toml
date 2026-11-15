@@ -1,0 +1,7 @@
+# Refuses a commit message, PR description or branch name that breaks the sk-git templates.
+[[hooks]]
+name = "git-message-gate"
+type = "pre_tool"
+strict = true
+match = "re:bash|process_start"
+command = "node @REPO@/.vibe/plugins/repo-guards/git-message-gate.mjs"

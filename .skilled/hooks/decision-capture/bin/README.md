@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `hooks/decision-capture/bin/` holds the save-time sweeps for the decision capture concern. A live adapter sees a question only while its hook is registered. Each sweep replays a runtime's own session record and appends the answered questions the hook missed. Deduplication lives in the queue core, so a key an earlier producer wrote is skipped and a sweep can run on every save.
 
-Each sweep is also a module. The live adapters import the Devin, DSH and Pi record mappers, so the live path and the swept path write the same key.
+Each sweep is also a module. The live adapters import the Devin, DSH, Pi and Vibe record mappers, so the live path and the swept path write the same key.
 
 ---
 
@@ -36,6 +36,8 @@ Each sweep is also a module. The live adapters import the Devin, DSH and Pi reco
 | `sweep-pi.test.mjs` | `node --test` suite | Covers the Pi sweep and its record mapping. | Not applicable. |
 | `sweep-transcript.mjs` | Claude sweep, CLI | Replays a Claude transcript, appends answered calls and lists plain-chat question and answer candidates. | Prints a JSON error object and exits 1 on a read or path failure. |
 | `sweep-transcript.test.mjs` | `node --test` suite | Covers transcript replay, chat candidates and deduplication. | Not applicable. |
+| `sweep-vibe.mjs` | Vibe sweep, CLI and module | Exports `isQuestionTool` and `vibeAnswerRecords` for the live adapter and `sweepVibeSession` for the save path. Reads a Vibe session journal and appends the answered question calls it records. | Prints a JSON error object and exits 1 when the journal cannot be read. |
+| `sweep-vibe.test.mjs` | `node --test` suite | Covers the answer mapping, a cancelled question and a sweep whose answer the hook already queued. | Not applicable. |
 | `runtime-refusal.test.mjs` | `node --test` suite | Checks that the concern README carries a coverage row for all seven runtimes and that every cell has a known state with a non-empty reason. | Not applicable. |
 
 The `fixtures/` folder holds the recorded runtime payloads these suites replay.

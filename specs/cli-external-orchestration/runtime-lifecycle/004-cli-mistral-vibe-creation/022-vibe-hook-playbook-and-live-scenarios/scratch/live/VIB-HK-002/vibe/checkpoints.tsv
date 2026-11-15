@@ -1,0 +1,2 @@
+turn	status	attempts	evidence	observed
+write	PASS	1	turns/write	spec-gate-denied

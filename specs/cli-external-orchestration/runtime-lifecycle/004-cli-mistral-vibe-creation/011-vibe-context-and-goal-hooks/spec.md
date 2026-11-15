@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -94,6 +94,7 @@ chat_slice=
 - Register the session-start adapter as one `session_start` entry in `.vibe/hooks.toml`.
 - Add a fixture test for the slice, the no-packet case and fail-open behavior on malformed input.
 - Add the Vibe row to the goal and session-lifecycle READMEs and name the hook in `.vibe/SYNC.md`.
+- Amendment (operator approval 2026-11-14): carry the hooks to a scratch-cwd dispatch and a fan-out lineage by rendering `.vibe/hooks.toml` into the run's disposable `VIBE_HOME` with absolute paths. This touches the lineage adapter in the deep-loop runtime, a phase 009 surface, to render the home file and pass `VIBE_SPEC_FOLDER`, and the cli-mistral-vibe dispatch shape, which gains the render step and `AI_SESSION_CHILD=1`.
 
 ### Out of Scope
 - A goal object, `/goal` command or goal tool for Vibe - the research goal bridge row maps to `session_start` `additional_context` only.
@@ -116,6 +117,9 @@ chat_slice=
 | `.vibe/hooks.toml` | Modify | One `session_start` entry |
 | `.vibe/SYNC.md` | Modify | Names the hook |
 | `.skilled/hooks/goal/README.md`, `.skilled/hooks/session-lifecycle/README.md` | Modify | Vibe rows in the runtime matrices |
+| `.vibe/plugins/repo-guards/render-home-hooks.cjs`, `tests/render-home-hooks.test.mjs` | Create (amendment) | Renders the hooks file into a disposable home; refuses the operator's `~/.vibe` and a leftover shell substitution |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` and its unit and stress tests | Modify (amendment) | The lineage adapter renders the home hooks, refuses a checkout without `hooks.toml`, and passes `VIBE_SPEC_FOLDER` |
+| cli-mistral-vibe `SKILL.md`, `README.md`, `references/`, playbook, changelog, feature-catalog entry, `.vibe/SYNC.md`, `.vibe/hooks.toml` header | Modify (amendment) | The dispatch shape gains the render step and `AI_SESSION_CHILD=1`; the hook-scope statements describe the home copy |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -166,8 +170,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does a Vibe hook process inherit the dispatch environment, so a `VIBE_SPEC_FOLDER` variable can name the packet? UNKNOWN until phase 008's wire format.
-- Should the hook inject when `goal.cjs packet` prints `packet_budget=unknown`, as it does for `003-dsh-mistral-route` today?
+- Answered: a Vibe hook process inherits the dispatch environment. The keyed first-turn run read `VIBE_SPEC_FOLDER`.
+- Answered: the hook injects at `packet_budget=unknown` too, because the slice length is the packet's own concern.
 <!-- /ANCHOR:questions -->
 
 ---

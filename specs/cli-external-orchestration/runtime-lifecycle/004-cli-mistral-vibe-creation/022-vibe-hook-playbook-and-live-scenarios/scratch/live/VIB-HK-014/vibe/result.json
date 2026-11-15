@@ -1,0 +1,53 @@
+{
+  "runtime": "vibe",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1607180886,
+  "socket": "conv-42561-vibe",
+  "session_id": "3e4258f4-6112-4844-8885-a4d908150931",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.UIDOobbIPX/vibe",
+  "started_at": "2026-11-14T23:17:06.313Z",
+  "finished_at": "2026-11-14T23:17:56.282Z",
+  "adapter": {
+    "bin": "vibe",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "commit",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "refused",
+      "evidence": "turns/commit"
+    },
+    {
+      "id": "no-commit",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "no-stuff-commit",
+      "evidence": "turns/no-commit"
+    }
+  ]
+}

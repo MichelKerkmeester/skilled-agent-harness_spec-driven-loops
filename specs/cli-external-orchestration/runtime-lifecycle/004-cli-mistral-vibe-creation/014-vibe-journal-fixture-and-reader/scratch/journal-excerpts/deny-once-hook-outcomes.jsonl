@@ -1,0 +1,2 @@
+{"hook":"post_agent_turn","output":{"feedback":[{"_meta":null,"annotations":null,"text":"post-agent fixture: revise the reply","type":"text"}],"type":"retry"}}
+{"hook":"post_agent_turn","output":{"acceptance":{"type":"candidate"},"type":"accept"}}

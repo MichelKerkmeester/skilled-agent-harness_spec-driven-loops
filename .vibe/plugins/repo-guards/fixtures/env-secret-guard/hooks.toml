@@ -1,0 +1,7 @@
+# Refuses a tool call that would read or write a dotenv file.
+[[hooks]]
+name = "env-secret-guard"
+type = "pre_tool"
+strict = true
+match = "re:bash|process_start|read_file|write_file|edit"
+command = "node @REPO@/.vibe/plugins/repo-guards/env-secret-guard.mjs"

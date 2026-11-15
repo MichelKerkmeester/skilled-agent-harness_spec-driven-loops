@@ -29,6 +29,7 @@ Public repo (source of truth)
      specs -> ../specs           Link to the top-level specs folder
   .claude/ .codex/ .cursor/      Runtime folders: links into .skilled/
   .devin/ .dsh/ .opencode/ .pi/  plus each runtime's own config
+  .vibe/                         Mistral Vibe run surface: config, hooks, mirrors
   .github/                       Workflows and Dependabot config
   specs/                         Spec packets, one folder per track
   AGENTS.md                      Instructions every runtime loads
@@ -87,7 +88,7 @@ A framework change in the public repository reaches a linked project on the next
 | Hooks | `.skilled/hooks/` |
 | Rule files | `.skilled/repo-rules/` |
 | Scripts and launchers | `.skilled/scripts/`, `.skilled/bin/` |
-| Runtime folders | `.claude/`, `.codex/`, `.cursor/`, `.devin/`, `.dsh/`, `.opencode/`, `.pi/` |
+| Runtime folders | `.claude/`, `.codex/`, `.cursor/`, `.devin/`, `.dsh/`, `.opencode/`, `.pi/`, `.vibe/` |
 
 `/doctor:symlink link` always links `.skilled` and links the runtime folders you pick. `.github`, `.utcp_config.json`, `.env` and the `repo-rules` folder are linked only on request with `--include`.
 

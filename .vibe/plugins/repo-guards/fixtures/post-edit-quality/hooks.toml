@@ -1,0 +1,7 @@
+# Appends post-edit quality findings to the tool result after a write or edit.
+[[hooks]]
+name = "post-edit-quality"
+type = "post_tool"
+strict = true
+match = "re:write_file|edit"
+command = "node @REPO@/.vibe/plugins/repo-guards/post-edit-quality.mjs"

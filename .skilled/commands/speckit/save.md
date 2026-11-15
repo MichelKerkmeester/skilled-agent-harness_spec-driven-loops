@@ -68,6 +68,7 @@ Procedure:
    It copies any AskUserQuestion answer the hook missed into the local queue, then prints `pending` and `chat_candidates`.
    On OpenCode run `node .skilled/hooks/decision-capture/bin/sweep-opencode.mjs` instead, and on Devin `node .skilled/hooks/decision-capture/bin/sweep-devin.mjs`. Each reads the runtime's stored session and prints the same `pending` list and `chat_candidates`.
    On Codex run `node .skilled/hooks/decision-capture/bin/sweep-codex.mjs`, on Pi `node .skilled/hooks/decision-capture/bin/sweep-pi.mjs` and on DSH `node .skilled/hooks/decision-capture/bin/sweep-dsh.mjs`. They print the same two lists, print nothing at all when both are empty, and print an `error` and exit 1 when the session file cannot be read.
+   On Vibe run `node .skilled/hooks/decision-capture/bin/sweep-vibe.mjs`. It replays the session journal and appends any answer the live `post_tool` adapter missed, under the same key, so the save still captures it when the hook does not fire.
    When the target packet already has a `decision-record.md`, run `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --session <id> --record <path>` next, before writing any entry, whether or not you have seen a hand-written table in it.
    The dry run lists each pending answer that already sits as a row in a hand-written decision table, and in a full-auto save a second run with `--apply` records that row's id as consumed, so the answer needs no entry.
    On every save, whether or not the packet has a record, run `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --scan-orphans`. It prints one `<count> <session-id>` line per session whose answers are still pending.
@@ -114,6 +115,7 @@ Tool map:
 | Operator answers waiting for a decision record, on Claude | `node .skilled/hooks/decision-capture/bin/sweep-transcript.mjs` |
 | Operator answers waiting for a decision record, on OpenCode or Devin | `node .skilled/hooks/decision-capture/bin/sweep-opencode.mjs` or `sweep-devin.mjs` |
 | Operator answers waiting for a decision record, on Codex, Pi or DSH | `node .skilled/hooks/decision-capture/bin/sweep-codex.mjs`, `sweep-pi.mjs` or `sweep-dsh.mjs` |
+| Operator answers waiting for a decision record, on Vibe | `node .skilled/hooks/decision-capture/bin/sweep-vibe.mjs` |
 | Answers already holding a row in a hand-written decision table | `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --session <id> --record <path>` |
 | Trigger-index regeneration, only when `trigger_phrases` changed | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` |
 | Trigger phrase correction | Edit the packet document's `trigger_phrases` frontmatter, then rerun the writer |

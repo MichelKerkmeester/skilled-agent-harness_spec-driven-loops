@@ -2010,18 +2010,61 @@ test('a new user message that withdraws an arm lists the note as withdrawn in th
 test('a withdrawn arm drops the held nudge and grants one more a step above the fill', async (t) => {
   const sessionID = 'ses_3d8f0b5c2e4aKQrJWCjyWiOfRb';
   const { hooks } = await withdrawnByUserMessage(t, sessionID);
+  // The withdrawal notice rides this turn too; only the nudges are checked here.
+  const nudges = async () => (await transform(hooks, sessionID))
+    .filter((text) => text !== nudge.WITHDRAWN_NOTICE);
 
   // The nudge that asked for the hand-over is spent with it, so it is not shown again.
-  assert.deepEqual(await transform(hooks, sessionID), []);
+  assert.deepEqual(await nudges(), []);
   // The first fill after the withdraw fixes the floor and stays quiet.
   await hooks.event(assistantEvent(sessionID, 'assistant-after-withdraw', 90));
-  assert.deepEqual(await transform(hooks, sessionID), []);
+  assert.deepEqual(await nudges(), []);
   await hooks.event(assistantEvent(sessionID, 'assistant-below-floor', 94));
-  assert.deepEqual(await transform(hooks, sessionID), []);
+  assert.deepEqual(await nudges(), []);
   await hooks.event(assistantEvent(sessionID, 'assistant-at-floor', 95));
-  const granted = await transform(hooks, sessionID);
+  const granted = await nudges();
   assert.equal(granted.length, 1);
   assert.match(granted[0], /prepare --handoff/);
+});
+
+test('a withdrawn arm tells the session through the system prompt until its next prompt', async (t) => {
+  const sessionID = 'ses_5a1b2c3d4e5fKQrJWCjyWiOfRd';
+  const { hooks } = await withdrawnByUserMessage(t, sessionID);
+
+  // Every request of the turn that withdrew it carries the notice, because an auxiliary
+  // request can take the first system prompt.
+  assert.ok((await transform(hooks, sessionID)).includes(nudge.WITHDRAWN_NOTICE));
+  assert.ok((await transform(hooks, sessionID)).includes(nudge.WITHDRAWN_NOTICE));
+
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-next-turn', role: 'user' } },
+  } });
+
+  assert.ok(!(await transform(hooks, sessionID)).includes(nudge.WITHDRAWN_NOTICE));
+});
+
+test('tool.execute.before refuses the question tool while this session holds a pending hand-over', async (t) => {
+  setupEnv(t);
+  stubSpawn(t);
+  const loopId = 'opencode-loop-question-guard-0001';
+  const sessionID = 'ses_6b2c3d4e5f6aKQrJWCjyWiOfRe';
+  process.env.SKILLED_LOOP_ID = loopId;
+  core.preparePending({
+    loopId,
+    handoffPath: '/workspace/opencode/handoff.md',
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: '/workspace/opencode',
+    env: process.env,
+  });
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const before = (tool, id) => hooks['tool.execute.before']({ tool, sessionID: id }, { args: {} });
+
+  // A throw is how both OpenCode hosts refuse a tool call.
+  await assert.rejects(before('question', sessionID), /\/workspace\/opencode\/handoff\.md/);
+  await before('bash', sessionID);
+  await before('question', 'ses_7c3d4e5f6a7bKQrJWCjyWiOfRf');
 });
 
 test('a compaction after a withdrawn arm tells the session not to claim the stale note', async (t) => {

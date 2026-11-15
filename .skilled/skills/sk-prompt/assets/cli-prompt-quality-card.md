@@ -9,7 +9,7 @@ trigger_phrases:
   - "escalate to prompt improver"
 importance_tier: important
 contextType: general
-version: 0.8.7.0
+version: 0.8.8.0
 ---
 
 # CLI Prompt Quality Card
@@ -143,6 +143,7 @@ Attach the resolved persona via the mode's native surface where the CLI loads it
 | `cli-codex` | INLINE (mandatory): `.codex/agents/*.toml` is TUI-only; `codex exec` / `-p` load config, not a persona. |
 | `cli-pi` | INLINE (mandatory): core Pi has no persona surface on `pi -p`. |
 | `cli-deepseek-harness` | INLINE (mandatory): dsh has no agent-file loader. Generated `.dsh/agents/<name>.patch.yml` persona patches exist, but a hand-composed dispatch still inlines the resolved persona. The fan-out builder passes the patch when `agentPersona` is set. |
+| `cli-mistral-vibe` | INLINE (mandatory): a `vibe -p` dispatch composes `{child preamble + resolved agent persona + task prompt}` and inlines the persona block. Generated `.vibe/agents/<name>.toml` profiles exist, but the dispatch shape names no agent. |
 | `cli-jev` (a mode of the `cli-classifier` hub) | NONE (transport): the mode answers one typed judgment and runs nothing, so it takes no persona and no task is dispatched to it. |
 | fanout runtime | INLINE into the composed prompt string (`fanout-run.cjs` has no persona slot). |
 
@@ -191,7 +192,7 @@ Silence is never an exception.
 
 ## 8. MIRROR SYNC
 
-All seven cli-* cards (`cli-claude-code`, `cli-codex`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness`, each under `cli-external-orchestration/`) are THIN DELEGATING mirrors: they link to this card as the authoritative source and do not copy the framework table or CLEAR scoring table. Each card contains a short header, a link here, and any model-specific addenda — nothing more.
+All eight cli-* cards (`cli-claude-code`, `cli-codex`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe`, each under `cli-external-orchestration/`) are THIN DELEGATING mirrors: they link to this card as the authoritative source and do not copy the framework table or CLEAR scoring table. Each card contains a short header, a link here, and any model-specific addenda — nothing more.
 
 A duplication guard enforces this contract:
 

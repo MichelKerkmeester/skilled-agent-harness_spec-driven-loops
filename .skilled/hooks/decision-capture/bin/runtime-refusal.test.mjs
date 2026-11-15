@@ -7,7 +7,7 @@ import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-const RUNTIMES = ['Claude', 'Codex', 'Cursor', 'Devin', 'OpenCode', 'Pi', 'DSH'];
+const RUNTIMES = ['Claude', 'Codex', 'Cursor', 'Devin', 'OpenCode', 'Pi', 'DSH', 'Vibe'];
 const EXPECTED_NO_SURFACE = [];
 const README_PATH = process.env.DECISION_CAPTURE_README_PATH
   ?? fileURLToPath(new URL('../../README.md', import.meta.url));
@@ -43,9 +43,8 @@ function makeRow(runtimeCells) {
 test('the README decision-capture row follows the runtime-cell convention', () => {
   const readme = readFileSync(README_PATH, 'utf8');
   const lines = readme.split(/\r?\n/);
-  const headerIndex = lines.findIndex((line) => (
-    line.trim() === '| Concern | Claude | Codex | Cursor | Devin | OpenCode | Pi | DSH |'
-  ));
+  const header = `| Concern | ${RUNTIMES.join(' | ')} |`;
+  const headerIndex = lines.findIndex((line) => line.trim() === header);
   const row = lines.slice(headerIndex + 2).find((line) => line.startsWith('| `decision-capture` |'));
 
   assert.notEqual(headerIndex, -1, 'README must contain the runtime coverage table');
@@ -53,13 +52,13 @@ test('the README decision-capture row follows the runtime-cell convention', () =
 
   const result = checkRuntimeRow(row);
   assert.deepEqual(result.violations, []);
-  assert.equal(result.runtimeCells.length, 7);
+  assert.equal(result.runtimeCells.length, RUNTIMES.length);
   assert.deepEqual(result.noSurfaceRuntimes, EXPECTED_NO_SURFACE);
 });
 
 test('a bare n/a state is rejected', () => {
   const result = checkRuntimeRow(makeRow([
-    '✓ covered', 'n/a', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered',
+    '✓ covered', 'n/a', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered',
   ]));
 
   assert.equal(result.violations.length, 1);
@@ -67,7 +66,7 @@ test('a bare n/a state is rejected', () => {
 
 test('n/a with an empty reason is rejected', () => {
   const result = checkRuntimeRow(makeRow([
-    '✓ covered', 'n/a: ', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered',
+    '✓ covered', 'n/a: ', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered',
   ]));
 
   assert.equal(result.violations.length, 1);
@@ -75,7 +74,7 @@ test('n/a with an empty reason is rejected', () => {
 
 test('an unknown state is rejected', () => {
   const result = checkRuntimeRow(makeRow([
-    '✓ covered', 'unsupported: no question tool', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered',
+    '✓ covered', 'unsupported: no question tool', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered',
   ]));
 
   assert.equal(result.violations.length, 1);
@@ -86,12 +85,12 @@ test('a row with six runtime cells is rejected', () => {
     '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered',
   ]));
 
-  assert.deepEqual(result.violations, ['expected 7 runtime cells, found 6']);
+  assert.deepEqual(result.violations, [`expected ${RUNTIMES.length} runtime cells, found 6`]);
 });
 
 test('a valid n/a cell passes and is reported as no-surface', () => {
   const result = checkRuntimeRow(makeRow([
-    '✓ covered', 'n/a: no question tool', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered',
+    '✓ covered', 'n/a: no question tool', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered', '✓ covered',
   ]));
 
   assert.deepEqual(result.violations, []);

@@ -19,6 +19,7 @@ Current state:
 
 - `adapter-shim-core.cjs` holds the shared behavior. The five thin shims are one call each into `runAdapterShim(kind)`.
 - `dsh-shim.cjs` has its own runner because dsh needs JSON events and a separate process exit status.
+- `vibe-shim.cjs` has its own runner because Vibe reads its prompt from a file, writes an `export.json` verdict, and is version-probed before dispatch.
 - `codex-shim.cjs` does not use the core. It keeps its own mode switch, writes its last message to the `-o` output path, and doubles as a `pkill` stand-in.
 - The mode resolves from `~/.cli-adapter-control.json`, then `CLI_ADAPTER_SHIM_MODE`, then `success`.
 - Capture and pid targets resolve from the control file, then `CLI_ADAPTER_SHIM_CAPTURE` and `CLI_ADAPTER_SHIM_PID_FILE`.
@@ -36,6 +37,7 @@ Current state:
 | `devin-shim.cjs` | Calls `runAdapterShim('cli-devin')`. |
 | `cursor-shim.cjs` | Calls `runAdapterShim('cli-cursor')`. |
 | `dsh-shim.cjs` | Stand-in for `cli-deepseek-harness`. Emits DSH JSON events and controls the process exit status independently. |
+| `vibe-shim.cjs` | Stand-in for `cli-mistral-vibe`. Reports the pinned version, writes the lineage artifacts and the `export.json` verdict, and switches on the shared stress modes. |
 | `codex-shim.cjs` | Self-contained codex stand-in with its own mode switch, last-message output path and `pkill` forwarding. |
 
 ---
@@ -72,6 +74,18 @@ DSH modes use newline-delimited JSON. The shim never invokes the installed dsh b
 | `stdin-wait` | Reports the closed stdin length in `status`, emits a completed `final` event and writes the lineage artifacts. |
 | `timeout`, `signal-exit`, `orphan-tree` | Exercise the scheduler's timeout, signal and process-tree cleanup cases. |
 
+Vibe modes keep the core names where the contract matches, but a failing run reports through the export record rather than a JSON event stream. `VIBE_SHIM_EXIT` overrides the status of any terminating mode, and `VIBE_SHIM_NO_EXPORT=1` suppresses the record so the "clean exit, no record" path stays reachable.
+
+| Mode | Behavior |
+|---|---|
+| `success` | Writes `research.md`, `review-report.md` and an `export.json` with `exit_code: 0`, prints `shim-success`, exit 0. |
+| `auth-denial` | Prints `cli-mistral-vibe OAuth authentication unavailable`, writes an export record and exits 3. |
+| `model-not-found` | Prints `cli-mistral-vibe model not found or insufficient balance`, writes an export record and exits 3. |
+| `rate-limit` | Prints `cli-mistral-vibe 429 rate limit: throttled`, writes an export record and exits 3. |
+| `stdin-wait` | Writes the artifacts and export record, then prints `stdin-closed:<stdin length>`. |
+| `timeout`, `signal-exit`, `orphan-tree` | Exercise the scheduler's timeout, signal and process-tree cleanup cases. |
+| unknown mode | Prints `unknown shim mode: <mode>`, exit 64. |
+
 ---
 
 ## 4. CONFIGURATION
@@ -81,7 +95,7 @@ DSH modes use newline-delimited JSON. The shim never invokes the installed dsh b
 | Shim mode | `mode` in `~/.cli-adapter-control.json`, then `CLI_ADAPTER_SHIM_MODE`, then `success`. |
 | Capture path | `capturePath` in the control file, then `CLI_ADAPTER_SHIM_CAPTURE`. The core appends one JSON record per run with kind, pid, cwd, args, stdin and selected environment values. Codex writes a single record instead. |
 | Pid path | `pidPath` in the control file, then `CLI_ADAPTER_SHIM_PID_FILE`. Holds the root pid, plus child and grandchild pids for `orphan-tree`. |
-| Artifact location | The parent of the state directory named by the per-kind variable (`SPECKIT_OPENCODE_STATE_DIR`, `SPECKIT_PI_STATE_DIR`, `SPECKIT_CLAUDE_CODE_STATE_DIR`, `SPECKIT_DEVIN_STATE_DIR`, `SPECKIT_CURSOR_STATE_DIR`, `SPECKIT_DEEPSEEK_HARNESS_STATE_DIR`), otherwise the current working directory. |
+| Artifact location | The parent of the state directory named by the per-kind variable (`SPECKIT_OPENCODE_STATE_DIR`, `SPECKIT_PI_STATE_DIR`, `SPECKIT_CLAUDE_CODE_STATE_DIR`, `SPECKIT_DEVIN_STATE_DIR`, `SPECKIT_CURSOR_STATE_DIR`, `SPECKIT_DEEPSEEK_HARNESS_STATE_DIR`, `SPECKIT_MISTRAL_VIBE_STATE_DIR`), otherwise the current working directory. |
 | Reap capture | `CLI_ADAPTER_REAP_CAPTURE`, codex only. Records the arguments when codex is invoked as `pkill`, then forwards to `/usr/bin/pkill` or `/bin/pkill`. |
 
 ---

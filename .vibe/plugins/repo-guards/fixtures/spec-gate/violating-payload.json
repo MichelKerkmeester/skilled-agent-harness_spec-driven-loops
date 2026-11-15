@@ -1,0 +1,13 @@
+{
+  "session_id": "vibe-spec-gate-fixture",
+  "transcript_path": "<transcript_path>",
+  "cwd": ".",
+  "parent_session_id": null,
+  "hook_event_name": "pre_tool",
+  "tool_name": "file_system.write_file",
+  "tool_call_id": "<tool_call_id>",
+  "tool_input": {
+    "file_path": "notes.txt",
+    "content": "hello\n"
+  }
+}

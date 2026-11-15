@@ -24,6 +24,7 @@ import {
   type HookState,
 } from '../hooks/claude/hook-state.js';
 import { runHistoryLookupCli } from '../hooks/lib/history/cli.js';
+import { historyHandle } from '../hooks/lib/history/locator-digest.js';
 import { mintHistoryLocator as mintDshLocator } from '../hooks/dsh/session-compact-context.mjs';
 import { mintHistoryLocator as mintPiLocator } from '../hooks/pi/session-compact-context.js';
 import { checkoutRoot } from './_support/history-fixtures.js';
@@ -332,6 +333,65 @@ function createDshFixture(label: string, sessionFolder = process.cwd()): Locator
   return { home, locator };
 }
 
+// Vibe keeps one folder per session under its home; the folder is the
+// `transcript_path` a hook receives and the reader parses its journal.
+function createVibeFixture(label: string): LocatorFixture {
+  const sessionId = sessionIdFor(label);
+  const home = tempHome();
+  const workspace = process.cwd();
+  const sessionRoot = join(home, 'logs', 'session', 'unified', sessionId);
+  writeJson(join(sessionRoot, 'meta.json'), { session_id: sessionId });
+  writeJsonl(join(sessionRoot, 'journal', '0000000000000001.jsonl'), [
+    {
+      sequence: 1,
+      type: 'projection_delta',
+      payload: {
+        delta: [{
+          op: 'append_entry',
+          entry: {
+            id: 'vibe-u1',
+            type: 'message',
+            role: 'user',
+            turnId: 'turn-vibe-1',
+            content: [{ type: 'text', text: 'Find the authenticate handler in src/auth.ts.' }],
+          },
+        }],
+      },
+    },
+    {
+      sequence: 2,
+      type: 'projection_delta',
+      payload: {
+        delta: [{
+          op: 'append_entry',
+          entry: {
+            id: 'vibe-a1',
+            type: 'message',
+            role: 'assistant',
+            turnId: 'turn-vibe-1',
+            content: [{ type: 'text', text: 'The authenticate handler is in src/auth.ts.' }],
+          },
+        }],
+      },
+    },
+  ]);
+
+  const identity = {
+    runtime: 'vibe',
+    sessionId,
+    workspace,
+    locatorKind: 'transcript_path',
+  };
+  const locator: HistoryLocator = {
+    version: 1,
+    ...identity,
+    handle: historyHandle(identity, sessionRoot),
+    mintedAt: new Date(NOW_MS).toISOString(),
+    provenance: { source: 'post_compaction', capturedAt: new Date(NOW_MS).toISOString() },
+  };
+  return { home, locator };
+}
+
 // The caller still holds the handle; only the state file is replaced, so this
 // exercises the digest recomputation rather than the cheap local comparison.
 function writeRawLocator(sessionId: string, locator: unknown): void {
@@ -595,6 +655,20 @@ describe('history lookup CLI on a Devin store', () => {
     saveLocator(fixture.locator.sessionId, fixture.locator);
 
     const payload = payloadFrom(await invoke(fixture, 'search', { query: 'authenticate' }, { runtime: 'devin' }));
+    expect((payload.references as unknown[]).length).toBeGreaterThan(0);
+  });
+});
+
+describe('history lookup CLI on a Vibe journal', () => {
+  it('prints the search reply for the exact adapter-minted Vibe locator', async () => {
+    const fixture = createVibeFixture('vibe-ready');
+    saveLocator(fixture.locator.sessionId, fixture.locator);
+
+    const payload = payloadFrom(await invoke(fixture, 'search', { query: 'authenticate' }, {
+      runtime: 'vibe',
+      env: { HOME: fixture.home, VIBE_HOME: fixture.home },
+    }));
+
     expect((payload.references as unknown[]).length).toBeGreaterThan(0);
   });
 });

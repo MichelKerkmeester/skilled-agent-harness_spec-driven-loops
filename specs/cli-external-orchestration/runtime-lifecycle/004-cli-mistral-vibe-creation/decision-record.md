@@ -36,6 +36,9 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | Build the DeepSeek Harness Mistral route now and prove it once MISTRAL_API_KEY is exported. | Not stated. | None | 003-dsh-mistral-route T004-T010 |
 | Q002 | A direct-dispatch-only Pi row needs the roster alone; a fan-out model also needs PI_SUPPORTED_MODELS. | Not stated. | None | cli-pi/SKILL.md, cli-pi/references/providers-and-models.md |
+| Q003 | Review phases 013 to 021 with a fresh Opus 5.5 at medium effort, as a native subagent. | Opus 5.2 does not exist on the Claude CLI (`unrecognized_model`). | None | Review of 013-021 planning docs |
+| Q004 | Vibe lineages keep `--auto-approve`; the compensating guards are recorded instead of tightening approval. Approved by the operator 2026-11-14. | Not stated. | None | 020-vibe-dispatch-hardening T005, T009, T020 |
+| Q005 | Vibe lineages keep both `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_DISABLED=1`. Approved by the operator 2026-11-14. | Not stated. | None | 020-vibe-dispatch-hardening T005 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---

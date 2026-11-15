@@ -1,0 +1,6 @@
+# Routing baseline, 2026-11-14, before phase 010 edits
+modes: 7
+compiled-route-status: {"hubId":"cli-external-orchestration","servingAuthority":"legacy","shadowOnly":false,"selectedPolicy":{"generation":5},"effectivePolicyHash":"97888715b2a4e581a063a0cc3d5197cfb13dc414dba521923d48443ca1215220","fenceEpoch":2,"manifestFingerprint":"6d25a0c0dfc868deadd827f5d4f2b5e711306e2c3a8fac4c4aa94f8de0d6db67","causeCode":"stale-manifest","manifestFreshness":{"manifestValid":true,"fresh":false,"ca
+stage-two 'delegate to vibe': {"servingAuthority":"legacy","hubId":"cli-external-orchestration"} 
+executor-delegation vitest:  Tests 38 passed (38)
+scorer vitest: ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯  Test Files 1 failed | 38 passed (39)  Tests 1 failed | 362 passed | 2 skipped (365) 

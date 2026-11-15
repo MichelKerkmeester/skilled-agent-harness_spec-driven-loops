@@ -46,6 +46,10 @@ const DSH_VARIABLE_HEADLESS_SHAPE = /(?:^|[\s;&|(])\$\{?[A-Za-z_]\w*\}?(?=[^\n;&
 const DSH_HEADLESS_SHAPE = new RegExp(
   `(?:${DSH_BINARY_HEADLESS_SHAPE.source}|${DSH_NPX_HEADLESS_SHAPE.source}|${DSH_VARIABLE_HEADLESS_SHAPE.source})`,
 );
+// Vibe's launcher and its two binaries are one dispatch surface. The session-free forms --
+// version and help output, and the `config`, `mcp` and `help` subcommands -- print and exit,
+// so they start no run and are not dispatches.
+const VIBE_DISPATCH_SHAPE = /\bvibe(?:-rs|-acp)?\b(?!\s+(?:-v|--version|-h|--help|config|mcp|help)\b)/;
 
 // Dispatch-shape registry (kept for adapter compatibility)
 export const DISPATCH_SHAPES = [
@@ -74,6 +78,14 @@ export const DISPATCH_SHAPES = [
   // codex. `jev-mcp` is a stdio server rather than a judgment, and it is matched here so the
   // packet's host-only rule can refuse a shell start instead of leaving it unclassified.
   { test: /\bjev\s+(?:noul|choice|score|run)\b|\bjev-mcp\b/, skill: 'cli-classifier', packetPath: 'cli-classifier/cli-jev' },
+  // A bare `vibe` is the interactive client and `vibe-acp` a stdio agent, neither a print run.
+  // Both are classified so the packet's print-mode rule can refuse them; only the
+  // session-free forms are excluded.
+  {
+    test: VIBE_DISPATCH_SHAPE,
+    skill: 'cli-mistral-vibe',
+    packetPath: 'cli-external-orchestration/cli-mistral-vibe',
+  },
 ];
 
 const MAX_INSPECTED_COMMAND_CHARS = 32_768;
@@ -87,6 +99,9 @@ const EXECUTOR_BASENAMES = new Set([
   'dsh',
   'jev',
   'jev-mcp',
+  'vibe',
+  'vibe-rs',
+  'vibe-acp',
 ]);
 const OPENCODE_EXECUTOR_RE = /^opencode\d*$/;
 // One binary-basename-to-skill table, shared by `directExecutor`'s classification and the
@@ -105,6 +120,9 @@ const EXECUTOR_SKILLS = new Map([
   ['dsh', 'cli-deepseek-harness'],
   ['jev', 'cli-classifier'],
   ['jev-mcp', 'cli-classifier'],
+  ['vibe', 'cli-mistral-vibe'],
+  ['vibe-rs', 'cli-mistral-vibe'],
+  ['vibe-acp', 'cli-mistral-vibe'],
 ]);
 // OpenCode's basenames vary by major version (`opencode`, `opencode2`), so a pattern rather
 // than a map key owns its skill name.
@@ -331,6 +349,18 @@ function isVariableDshProfile(tokens, index) {
     && rest.some((token) => token.value === 'headless' || token.value === '--profile=headless');
 }
 
+// Only the forms Vibe prints and exits on. A prefix match would let an invented
+// `--conf` hide a run, and the subcommands are matched as whole words for the same reason.
+// Exported because the hard-rule engine reads the same session-free forms; one
+// definition keeps the audit trail and the preflight from disagreeing.
+export const VIBE_SESSION_FREE_SUBCOMMANDS = new Set(['config', 'mcp', 'help']);
+export const VIBE_SESSION_FREE_FLAGS = new Set(['-v', '--version', '-h', '--help']);
+
+function isVibeSessionFree(tokens) {
+  return VIBE_SESSION_FREE_SUBCOMMANDS.has(tokens[0]?.value)
+    || tokens.some((token) => !token.quoted && VIBE_SESSION_FREE_FLAGS.has(token.value));
+}
+
 function directExecutor(tokens) {
   if (tokens.length === 0) return null;
   const startTokens = dshHomeAssignmentTokens(tokens);
@@ -394,6 +424,12 @@ function directExecutor(tokens) {
       ? EXECUTOR_SKILLS.get(binary)
       : null;
   }
+  // Every Vibe form that starts a session is classified, print mode or not, so the packet's
+  // print-mode rule can refuse the interactive client and `vibe-acp`; only the session-free
+  // forms start no run.
+  if (binary === 'vibe' || binary === 'vibe-rs' || binary === 'vibe-acp') {
+    return isVibeSessionFree(tokens.slice(start.index + 1)) ? null : EXECUTOR_SKILLS.get(binary);
+  }
   return null;
 }
 
@@ -408,6 +444,7 @@ function hasDispatchText(value) {
     || /\bcodex\s+exec\b/.test(value)
     || DSH_HEADLESS_SHAPE.test(value)
     || /\bjev\s+(?:noul|choice|score|run)\b/.test(value)
+    || VIBE_DISPATCH_SHAPE.test(value)
   );
 }
 

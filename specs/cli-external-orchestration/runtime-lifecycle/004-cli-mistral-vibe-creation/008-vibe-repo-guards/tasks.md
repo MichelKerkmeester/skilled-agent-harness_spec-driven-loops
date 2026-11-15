@@ -33,9 +33,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Count the OpenCode plugins (`.opencode/plugins/`). Verify: `ls .opencode/plugins/*.js | wc -l` prints 21.
-- [ ] T002 Confirm phase 006's config loads (`.vibe/config.toml`). Verify: `vibe config schema` under `--trust` exits 0, the phase 006 handoff check.
-- [ ] T003 Write the classification table, one row per plugin with verdict and Vibe event (`V/references/guards-and-hooks.md`). Verify: the table's plugin rows number 21, and `rg -c 'not portable' V/references/guards-and-hooks.md` counts at least the two turn-stopping guards and `session-relaunch.js`.
+- [x] T001 Count the OpenCode plugins (`.opencode/plugins/`). Verify: `ls .opencode/plugins/*.js | wc -l` prints 21.
+- [x] T002 Confirm phase 006's config loads (`.vibe/config.toml`). Verify: `vibe config schema` under `--trust` exits 0, the phase 006 handoff check.
+- [x] T003 Write the classification table, one row per plugin with verdict and Vibe event (`V/references/guards-and-hooks.md`). Verify: the table's plugin rows number 21, and `rg -c 'not portable' V/references/guards-and-hooks.md` counts at least the two turn-stopping guards and `session-relaunch.js`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,17 +43,17 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Add a fixture `pre_tool` hook that writes its input to a file and denies one tool (`G/fixtures/wire-format`). Verify: one fixture run leaves the input file non-empty, and the run's output folder shows where and how the deny is recorded.
-- [ ] T005 Record the wire format and where a deny is visible, from the T004 run (`V/references/guards-and-hooks.md`). Verify: the wire-format section quotes the recorded input, the deny reply and the file that shows the deny, and no longer says UNKNOWN.
-- [ ] T006 Port the spec gate as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "pre_tool"` and `strict = true`, and its script exists under `G/`.
-- [ ] T007 Port the dispatch preflight as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `strict = true` and its script calls `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`.
-- [ ] T008 Port the env-secret guard as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "pre_tool"` and `strict = true`.
-- [ ] T009 Port the overlay guard as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "pre_tool"` and `strict = true`.
-- [ ] T010 Port the MCP-route guard as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "pre_tool"` and `strict = true`.
-- [ ] T011 Port the git-message gate as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "pre_tool"` and `strict = true`.
-- [ ] T012 Port post-edit quality as a strict `post_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "post_tool"` and `strict = true`.
-- [ ] T013 Port each further plugin the T003 table marks `hook`, apart from the phase 011 bridges (`.vibe/hooks.toml`). Verify: every `hook` row in the table names a `.vibe/hooks.toml` entry or phase 011.
-- [ ] T014 List the guard bundle as hand-authored (`.vibe/SYNC.md`). Verify: `rg -n 'repo-guards' .vibe/SYNC.md` prints a line that says hand-authored.
+- [x] T004 Add a fixture `pre_tool` hook that writes its input to a file and denies one tool (`G/fixtures/wire-format`). Verify: one fixture run leaves the input file non-empty, and the run's output folder shows where and how the deny is recorded.
+- [x] T005 Record the wire format and where a deny is visible, from the T004 run (`V/references/guards-and-hooks.md`). Verify: the wire-format section quotes the recorded input, the deny reply and the file that shows the deny, and no longer says UNKNOWN.
+- [x] T006 Port the spec gate as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "pre_tool"` and `strict = true`, and its script exists under `G/`.
+- [x] T007 Port the dispatch preflight as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `strict = true` and its script calls `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`.
+- [x] T008 Port the env-secret guard as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "pre_tool"` and `strict = true`.
+- [x] T009 Port the overlay guard as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "pre_tool"` and `strict = true`.
+- [x] T010 Port the MCP-route guard as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "pre_tool"` and `strict = true`.
+- [x] T011 Port the git-message gate as a strict `pre_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "pre_tool"` and `strict = true`.
+- [x] T012 Port post-edit quality as a strict `post_tool` hook (`.vibe/hooks.toml`). Verify: the entry has `type = "post_tool"` and `strict = true`.
+- [x] T013 Port each further plugin the T003 table marks `hook`, apart from the phase 011 bridges (`.vibe/hooks.toml`). Verify: every `hook` row in the table names a `.vibe/hooks.toml` entry or phase 011.
+- [x] T014 List the guard bundle as hand-authored (`.vibe/SYNC.md`). Verify: `rg -n 'repo-guards' .vibe/SYNC.md` prints a line that says hand-authored.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -61,10 +61,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T015 Run each guard's violating fixture (`G/fixtures/`). Verify: each run shows the crafted call denied, in the place T005 recorded.
-- [ ] T016 Run each guard's clean fixture (`G/fixtures/`). Verify: each run shows the clean call completing, in the same place.
-- [ ] T017 Check that only strict-capable types carry `strict` (`.vibe/hooks.toml`). Verify: `python3 -c "import tomllib; ..."` over the file prints 0 strict entries outside `pre_tool`, `post_tool` and `pre_agent`, and a fixture run shows no `strict is only valid` error.
-- [ ] T018 Confirm no OpenCode plugin changed (`.opencode/plugins/`). Verify: `git diff --stat -- .opencode/plugins` prints nothing.
+- [x] T015 Run each guard's violating fixture (`G/fixtures/`). Verify: each run shows the crafted call denied, in the place T005 recorded.
+- [x] T016 Run each guard's clean fixture (`G/fixtures/`). Verify: each run shows the clean call completing, in the same place.
+- [x] T017 Check that only strict-capable types carry `strict` (`.vibe/hooks.toml`). Verify: `python3 -c "import tomllib; ..."` over the file prints 0 strict entries outside `pre_tool`, `post_tool` and `pre_agent`, and a fixture run shows no `strict is only valid` error.
+- [x] T018 Confirm no OpenCode plugin changed (`.opencode/plugins/`). Verify: `git diff --stat -- .opencode/plugins` prints nothing.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -72,9 +72,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: the classification covers 21 of 21 and every ported guard has a blocked and an allowed fixture run
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed: the classification covers 21 of 21 and every ported guard has a blocked and an allowed fixture run
 <!-- /ANCHOR:completion -->
 
 ---

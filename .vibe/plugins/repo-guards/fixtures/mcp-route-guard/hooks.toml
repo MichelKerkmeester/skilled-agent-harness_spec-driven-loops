@@ -1,0 +1,6 @@
+# Refuses a native external MCP call whose family has a Code Mode manual registered.
+[[hooks]]
+name = "mcp-route-guard"
+type = "pre_tool"
+strict = true
+command = "node @REPO@/.vibe/plugins/repo-guards/mcp-route-guard.mjs"

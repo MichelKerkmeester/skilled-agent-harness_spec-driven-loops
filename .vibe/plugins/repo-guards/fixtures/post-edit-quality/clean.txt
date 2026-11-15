@@ -1,0 +1,1 @@
+Use your file write tool to create sample-clean.ts in the current folder with exactly this content: export const sample = 1;

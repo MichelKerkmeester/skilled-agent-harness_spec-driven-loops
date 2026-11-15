@@ -1,0 +1,13 @@
+# Classifies the operator prompt so the gate is open before the first mutation.
+[[hooks]]
+name = "spec-gate-classify"
+type = "pre_agent"
+command = "node @REPO@/.vibe/plugins/repo-guards/spec-gate-classify.mjs"
+
+# Refuses a write or edit while the session's spec-folder gate is open and unanswered.
+[[hooks]]
+name = "spec-gate"
+type = "pre_tool"
+strict = true
+match = "re:bash|process_start|write_file|edit"
+command = "node @REPO@/.vibe/plugins/repo-guards/spec-gate.mjs"

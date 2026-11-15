@@ -1,0 +1,13 @@
+{
+  "session_id": "<session_id>",
+  "transcript_path": "<transcript_path>",
+  "cwd": "<cwd>",
+  "parent_session_id": null,
+  "hook_event_name": "pre_tool",
+  "tool_name": "file_system.bash",
+  "tool_call_id": "<tool_call_id>",
+  "tool_input": {
+    "timeout": 120,
+    "command": "vibe -p hi"
+  }
+}

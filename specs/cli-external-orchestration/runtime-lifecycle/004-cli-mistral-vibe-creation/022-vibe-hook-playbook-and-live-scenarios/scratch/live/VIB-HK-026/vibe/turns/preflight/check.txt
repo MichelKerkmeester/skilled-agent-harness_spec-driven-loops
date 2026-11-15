@@ -1,0 +1,5 @@
+$ echo 'the manual relaunch tier needs skilled-loop vibe and a claim seed carrying this run absolute note path; the runner cannot run the wrapper, cannot type a per-run path, and starts its subject in a scratch project with no relaunch CLI'; if [ -d .skilled/hooks/session-relaunch ]; then echo relaunch-cli-in-project; else echo no-relaunch-cli-in-project; fi; if grep -rqs 'claim and continue handoff' "$CONVERSATION_REPO_ROOT/.skilled/hooks/session-lifecycle/vibe"; then echo claim-seed-part-present; else echo no-vibe-claim-seed-part; fi; exit 77
+the manual relaunch tier needs skilled-loop vibe and a claim seed carrying this run absolute note path; the runner cannot run the wrapper, cannot type a per-run path, and starts its subject in a scratch project with no relaunch CLI
+no-relaunch-cli-in-project
+no-vibe-claim-seed-part
+[exit 77]

@@ -1,0 +1,3 @@
+$ grep -rqs '"name":"skill"' "$VIBE_HOME/logs/session/unified" && grep -rqs 'skill_content' "$VIBE_HOME/logs/session/unified" && grep -rqs 'skills/sk-prompt' "$VIBE_HOME/logs/session/unified" && echo skill-loaded-from-mirror
+skill-loaded-from-mirror
+[exit 0]
