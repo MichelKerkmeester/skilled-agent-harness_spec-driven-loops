@@ -6,10 +6,11 @@
 
 // The verdict a review stops on is a function of the state it stopped in, never of
 // the wording a report chose: a remaining P0, or any required quality gate that
-// failed at the terminal stop, is a FAIL; a remaining P1 is a CONDITIONAL; and
-// anything else is a PASS that still records whether P2 advisories remain. The
-// merged verdict and the per-lineage attribution verdict both read the rule from
-// here, so one stop cannot be a failure in one table and a pass in another.
+// failed at the terminal stop, is a FAIL; a remaining P1, or a search-debt
+// obligation the run never covered, is a CONDITIONAL; and anything else is a PASS
+// that still records whether P2 advisories remain. The merged verdict and the
+// per-lineage attribution verdict both read the rule from here, so one stop cannot
+// be a failure in one table and a pass in another.
 
 'use strict';
 
@@ -32,11 +33,11 @@ const {
 
 // Every key this entrypoint reads from the parsed arguments. A flag missing here
 // is treated as an unknown option, so this list is the accepted set.
-const REVIEW_VERDICT_FLAGS = ['registryPath', 'stateLog', 'activeP0', 'activeP1', 'activeP2', 'failedGateIds'];
+const REVIEW_VERDICT_FLAGS = ['registryPath', 'stateLog', 'activeP0', 'activeP1', 'activeP2', 'searchDebt', 'failedGateIds'];
 // Any one of these flags means the caller already bound the counts in a merge, and
 // the bound values are then the authority: re-reading the files could bind a state
 // the merge never decided on.
-const BOUND_VALUE_FLAGS = ['activeP0', 'activeP1', 'activeP2', 'failedGateIds'];
+const BOUND_VALUE_FLAGS = ['activeP0', 'activeP1', 'activeP2', 'searchDebt', 'failedGateIds'];
 // A verdict is a report, not a mutation, so a FAIL is still a successful run and an
 // unreadable input is the only condition that stops the script.
 const EXIT_ERROR = 2;
@@ -77,6 +78,13 @@ function activeReviewSeverityCounts(registry) {
   };
 }
 
+// Open search debt is one obligation per bug class the search path still owes. A
+// registry written before the ledger existed carries no array, which owes nothing
+// rather than an unknown amount.
+function openSearchDebtCount(registry) {
+  return Array.isArray(registry?.searchDebt) ? registry.searchDebt.length : 0;
+}
+
 // One shape for the ids a report prints, whatever order and however many times a
 // caller bound them.
 function normalizeGateIds(ids) {
@@ -99,12 +107,13 @@ function deriveReviewVerdict({
   activeP0 = 0,
   activeP1 = 0,
   activeP2 = 0,
+  openSearchDebt = 0,
   failedRequiredGateIds = [],
 } = {}) {
   const failedGateIds = Array.isArray(failedRequiredGateIds) ? failedRequiredGateIds : [];
   let verdict = 'PASS';
   if (activeP0 > 0 || failedGateIds.length > 0) verdict = 'FAIL';
-  else if (activeP1 > 0) verdict = 'CONDITIONAL';
+  else if (activeP1 > 0 || openSearchDebt > 0) verdict = 'CONDITIONAL';
   // Advisories mark a pass that carried suggestions; they never lift the verdict
   // above PASS and never change one.
   return { verdict, hasAdvisories: verdict === 'PASS' && activeP2 > 0 };
@@ -167,6 +176,7 @@ function boundVerdictInputs(args) {
     activeP0: countArg(args, 'activeP0', 'active-p0'),
     activeP1: countArg(args, 'activeP1', 'active-p1'),
     activeP2: countArg(args, 'activeP2', 'active-p2'),
+    openSearchDebt: countArg(args, 'searchDebt', 'search-debt'),
     failedRequiredGateIds: gateIdsArg(args),
   };
 }
@@ -180,6 +190,7 @@ function registryVerdictInputs(args) {
     activeP0: counts.P0,
     activeP1: counts.P1,
     activeP2: counts.P2,
+    openSearchDebt: openSearchDebtCount(registry),
     failedRequiredGateIds: lineageFailedRequiredGateIds({
       registry,
       stateRecords: readStateLogRows(stateLogPath),
@@ -205,6 +216,7 @@ function main(argv = process.argv.slice(2)) {
       active_p0: inputs.activeP0,
       active_p1: inputs.activeP1,
       active_p2: inputs.activeP2,
+      search_debt: inputs.openSearchDebt,
       failed_required_gate_ids: normalizeGateIds(inputs.failedRequiredGateIds),
     });
     return 0;
@@ -227,4 +239,5 @@ module.exports = {
   deriveReviewVerdict,
   lineageFailedRequiredGateIds,
   main,
+  openSearchDebtCount,
 };

@@ -4,10 +4,10 @@
 //
 // Proves the review verdict is one rule asked in one place: a remaining P0, or a
 // required quality gate that failed at the terminal stop, is a FAIL even when no
-// finding was recorded; a remaining P1 is a CONDITIONAL; and a PASS records
-// whether P2 advisories remain. The merged verdict and the per-lineage
-// attribution verdict both read it here, so neither can call a stop a failure
-// the other calls a pass.
+// finding was recorded; a remaining P1, or an open search-debt obligation, is a
+// CONDITIONAL; and a PASS records whether P2 advisories remain. The merged
+// verdict and the per-lineage attribution verdict both read it here, so neither
+// can call a stop a failure the other calls a pass.
 
 import { spawnSync } from 'node:child_process';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
@@ -23,6 +23,7 @@ type VerdictCounts = {
   activeP0: number;
   activeP1: number;
   activeP2: number;
+  openSearchDebt: number;
   failedRequiredGateIds: string[];
 };
 
@@ -35,6 +36,7 @@ type VerdictPayload = {
   active_p0: number;
   active_p1: number;
   active_p2: number;
+  search_debt: number;
   failed_required_gate_ids: string[];
 };
 
@@ -61,6 +63,7 @@ function counts(overrides: Partial<VerdictCounts> = {}): VerdictCounts {
     activeP0: 0,
     activeP1: 0,
     activeP2: 0,
+    openSearchDebt: 0,
     failedRequiredGateIds: [],
     ...overrides,
   };
@@ -122,6 +125,33 @@ describe('deriveReviewVerdict', () => {
     });
   });
 
+  it('is conditional while search debt remains open', () => {
+    expect(deriveReviewVerdict(counts({ openSearchDebt: 2 }))).toEqual({
+      verdict: 'CONDITIONAL',
+      hasAdvisories: false,
+    });
+  });
+
+  it('fails on an active P0 even while search debt remains open', () => {
+    expect(deriveReviewVerdict(counts({ activeP0: 1, openSearchDebt: 2 }))).toEqual({
+      verdict: 'FAIL',
+      hasAdvisories: false,
+    });
+  });
+
+  it('fails on a required gate that failed even while search debt remains open', () => {
+    expect(deriveReviewVerdict(counts({ openSearchDebt: 1, failedRequiredGateIds: ['coverage'] }))).toEqual({
+      verdict: 'FAIL',
+      hasAdvisories: false,
+    });
+  });
+
+  it('keeps every verdict when no search debt remains', () => {
+    expect(deriveReviewVerdict(counts({ openSearchDebt: 0 })).verdict).toBe('PASS');
+    expect(deriveReviewVerdict(counts({ openSearchDebt: 0, activeP1: 1 })).verdict).toBe('CONDITIONAL');
+    expect(deriveReviewVerdict(counts({ openSearchDebt: 0, activeP0: 1 })).verdict).toBe('FAIL');
+  });
+
   it('passes with nothing active and no failed gate', () => {
     expect(deriveReviewVerdict(counts())).toEqual({
       verdict: 'PASS',
@@ -179,7 +209,31 @@ describe('review-verdict CLI', () => {
       active_p0: 0,
       active_p1: 1,
       active_p2: 1,
+      search_debt: 0,
       failed_required_gate_ids: [],
+    });
+  });
+
+  it('counts the search debt the registry still owes', () => {
+    const run = runRegistryVerdict(
+      {
+        openFindings: [],
+        searchDebt: [
+          { bugClass: 'unguarded-input', disposition: 'deferred' },
+          { bugClass: 'incomplete-guard', disposition: 'blocked' },
+        ],
+        terminalGates: { failedRequiredGateIds: [] },
+      },
+      [{ type: 'event', event: 'terminal_gates', failedRequiredGateIds: [] }],
+    );
+    const payload = JSON.parse(run.stdout) as VerdictPayload;
+
+    expect(run.status).toBe(0);
+    expect(payload).toMatchObject({
+      status: 'ok',
+      verdict: 'CONDITIONAL',
+      has_advisories: false,
+      search_debt: 2,
     });
   });
 
@@ -188,6 +242,7 @@ describe('review-verdict CLI', () => {
       '--active-p0', '0',
       '--active-p1', '0',
       '--active-p2', '2',
+      '--search-debt', '0',
       '--failed-gate-ids', '[]',
     ]);
     const payload = JSON.parse(run.stdout) as VerdictPayload;
@@ -200,8 +255,23 @@ describe('review-verdict CLI', () => {
       active_p0: 0,
       active_p1: 0,
       active_p2: 2,
+      search_debt: 0,
       failed_required_gate_ids: [],
     });
+  });
+
+  it('refuses a bound verdict that omits the search debt', () => {
+    const run = spawnScript([
+      '--active-p0', '0',
+      '--active-p1', '0',
+      '--active-p2', '0',
+      '--failed-gate-ids', '[]',
+    ]);
+    const payload = JSON.parse(run.stdout) as { status: string; error: string };
+
+    expect(run.status).toBe(2);
+    expect(payload.status).toBe('error');
+    expect(payload.error).toContain('--search-debt');
   });
 
   it('reports an unknown flag as an error and exits 2', () => {

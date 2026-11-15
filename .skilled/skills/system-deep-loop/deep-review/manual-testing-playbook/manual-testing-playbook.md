@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 55 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (39 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 56 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (40 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -549,7 +549,7 @@ Expected signals: Iteration files contain metadata matching JSONL fields, recons
 
 ## 12. SYNTHESIS, SAVE, AND GUARDRAILS
 
-This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-025 | Review report synthesis has all 9 sections
 
@@ -602,6 +602,19 @@ Expected signals: Findings are compared across iterations by location and descri
 
 #### Test Execution
 > **Feature File:** [DRV-028](../manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md)
+
+### DRV-069 | Zero-iteration review report
+
+#### Description
+Verify a review that stops before its first iteration reports that it did not run, keeps the derived FAIL verdict, sets triggered false and reviewDidNotRun true, and names a /deep:review rerun.
+
+#### Scenario Contract
+Prompt: `Validate the deep-review report for a run that stopped before its first iteration.`
+
+Expected signals: The report opens with "Review did not run", states the stop reason and 0 iterations dispatched, keeps the FAIL verdict the verdict script printed, says the counts mean not examined, sets `triggered: false` and `reviewDidNotRun: true` with empty workstreams, and names `/deep:review` with a larger duration budget or iteration cap as the next step.
+
+#### Test Execution
+> **Feature File:** [DRV-069](../manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md)
 
 ---
 
@@ -688,6 +701,7 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-027: [Final synthesis memory save and guardrail behavior](../manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md)
 - DRV-028: [Finding deduplication and registry](../manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md)
 - DRV-029: [Resource map emission](../manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md)
+- DRV-069: [Zero-iteration review report](../manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md)
 
 ### INTRA-ROUTING RECALL
 

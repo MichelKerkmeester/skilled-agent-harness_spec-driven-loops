@@ -28,6 +28,7 @@ const {
   sep,
 } = require('node:path');
 const { latestIterationRecords, findingKeys } = require('../lib/deep-loop/iteration-findings.cjs');
+const { activeReviewSeverityCounts } = require('./review-verdict.cjs');
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -241,6 +242,24 @@ function registryEvidence(mode, registry) {
   };
 }
 
+// A single-executor review reads one registry, so the counts it reports and the
+// counts the registry holds come from the same findings. A flag that disagrees
+// would publish a verdict the open findings never supported.
+function assertActiveSeverityCounts(registry, boundCounts) {
+  const registryCounts = activeReviewSeverityCounts(registry);
+  const bound = [
+    ['--active-p0', 'P0', boundCounts.P0],
+    ['--active-p1', 'P1', boundCounts.P1],
+    ['--active-p2', 'P2', boundCounts.P2],
+  ];
+  for (const [flag, severity, given] of bound) {
+    const expected = registryCounts[severity];
+    if (given !== expected) {
+      throw new Error(`${flag} ${given} does not match the registry's ${expected} active ${severity} findings`);
+    }
+  }
+}
+
 // Count-only rows carry a findingsCount and no structured list. Research
 // reconstruction also treats a review-shaped list as structured so those rows
 // are not asked to be rebuilt from the count.
@@ -426,6 +445,11 @@ function closeOut(args) {
   const activeP0 = Number(args.activeP0);
   const activeP1 = Number(args.activeP1);
   const activeP2 = Number(args.activeP2);
+  // A fan-out root stages the merged lineage verdict, and no single registry
+  // holds its totals, so only a single-executor run can be cross-checked here.
+  if (lineageLogs.length === 0) {
+    assertActiveSeverityCounts(registry, { P0: activeP0, P1: activeP1, P2: activeP2 });
+  }
   const dimensionCoverage = Number(args.dimensionCoverage);
   if (invariantFailures.length > 0) {
     stage(args.eventDir, scope, mode, {

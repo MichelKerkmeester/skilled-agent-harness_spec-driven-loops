@@ -30,6 +30,7 @@ const {
   activeReviewSeverityCounts,
   deriveReviewVerdict,
   lineageFailedRequiredGateIds,
+  openSearchDebtCount,
 } = require('./review-verdict.cjs');
 
 const SEVERITY_RANK = { P0: 3, P1: 2, P2: 1 };
@@ -938,11 +939,27 @@ function mergeReviewRegistries(lineageData, options = {}) {
 
   const failedRequiredGateIds = [...new Set(lineageData.flatMap((lineage) => lineageFailedRequiredGateIds(lineage)))].sort();
 
+  // Search debt is one obligation per bug class the search path still owes, so a class
+  // two lineages both owe is one debt rather than two; the first lineage's record of it
+  // is kept and the union is ordered by that key so arrival order cannot move it.
+  const searchDebtByKey = new Map();
+  for (const { registry } of lineageData) {
+    if (!registry || !Array.isArray(registry.searchDebt)) continue;
+    for (const obligation of registry.searchDebt) {
+      if (!obligation || typeof obligation !== 'object') continue;
+      const key = obligation.bugClass || obligation.id;
+      if (!key) continue;
+      if (!searchDebtByKey.has(key)) searchDebtByKey.set(key, obligation);
+    }
+  }
+  const mergedSearchDebt = [...searchDebtByKey.keys()].sort().map((key) => searchDebtByKey.get(key));
+
   // Strongest-restriction verdict
   const { verdict: mergedVerdict } = deriveReviewVerdict({
     activeP0,
     activeP1,
     activeP2,
+    openSearchDebt: mergedSearchDebt.length,
     failedRequiredGateIds,
   });
 
@@ -974,6 +991,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
     activeP0,
     activeP1,
     activeP2,
+    searchDebt: mergedSearchDebt,
     ...(schemaWarnings.length > 0 ? { schema_mismatch: schemaWarnings } : {}),
   };
 }
@@ -1011,6 +1029,7 @@ function buildAttributionMd(lineageData, loopType, options = {}) {
           activeP0: severityCounts.P0,
           activeP1: severityCounts.P1,
           activeP2: severityCounts.P2,
+          openSearchDebt: openSearchDebtCount(registry),
           failedRequiredGateIds: lineageFailedRequiredGateIds({ registry, stateRecords }),
         }).verdict
         : 'n/a';
@@ -1550,7 +1569,7 @@ async function main() {
     attribution_path: attributionPath,
     ...(reconstructionWarnings.length > 0 ? { reconstruction_warnings: reconstructionWarnings } : {}),
     ...(loopType === 'review'
-      ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1, failed_required_gate_ids: mergedRegistry.failedRequiredGateIds }
+      ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1, active_p2: mergedRegistry.activeP2, search_debt: mergedRegistry.searchDebt.length, failed_required_gate_ids: mergedRegistry.failedRequiredGateIds }
       : { key_findings: mergedRegistry.keyFindings?.length ?? 0 }),
   });
 }

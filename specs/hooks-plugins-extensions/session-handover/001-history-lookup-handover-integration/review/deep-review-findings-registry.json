@@ -1,31 +1,18 @@
 {
-  "mergedFrom": [
-    "fable-medium",
-    "opus-medium"
-  ],
-  "lineageExecutors": {
-    "fable-medium": {
-      "kind": "cli-claude-code",
-      "model": "claude-fable-5-2",
-      "reasoningEffort": "medium"
-    },
-    "opus-medium": {
-      "kind": "cli-claude-code",
-      "model": "claude-opus-5-5",
-      "reasoningEffort": "medium"
-    }
-  },
-  "mergedVerdict": "FAIL",
-  "failedRequiredGateIds": [
-    "coverage"
-  ],
+  "sessionId": "2026-11-15T17:33:23.837Z",
+  "parentSessionId": "1794748073879-re9m5r",
+  "generation": 1,
+  "lineageMode": "restart",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
   "openFindings": [
     {
-      "findingId": "OM-004",
-      "severity": "P2",
-      "title": "004 tasks T005/T006 checked done for a re-stamp helper and test never built",
-      "file": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim/tasks.md",
-      "line": 47,
+      "findingId": "I1-P1-001",
+      "severity": "P1",
+      "title": "The history-engine CI step cannot resolve tsc on a clean runner",
+      "file": ".skilled/hooks/session-handover/history/package.json",
+      "line": 6,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -36,138 +23,6 @@
       "dimension": "correctness",
       "firstSeen": 1,
       "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "opus-medium"
-      ]
-    },
-    {
-      "findingId": "R1-P2-002",
-      "severity": "P2",
-      "title": "A claim mints a locator for whatever session id the note names, without proving that session ran in the note folder",
-      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
-      "line": 984,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "fable-medium"
-      ]
-    },
-    {
-      "findingId": "OM-005",
-      "severity": "P2",
-      "title": "Catalog entry and playbook page still named and triggered as a compaction feature",
-      "file": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
-      "line": 2,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "opus-medium"
-      ]
-    },
-    {
-      "findingId": "OM-002",
-      "severity": "P2",
-      "title": "Claim mints and persists a locator before checking the receiver can use it",
-      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
-      "line": 983,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "opus-medium"
-      ]
-    },
-    {
-      "findingId": "OM-001",
-      "severity": "P2",
-      "title": "Five-runtime loss disclosed in user docs; phase 005 mitigation and parent spec scope still wrong (downgraded from P1)",
-      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
-      "line": 910,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 2,
       "status": "active",
       "transitions": [
         {
@@ -175,28 +30,111 @@
           "from": null,
           "to": "P1",
           "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R10-P1-001",
+      "severity": "P1",
+      "title": "The history-engine CI step cannot resolve `tsc` on a clean runner",
+      "file": ".skilled/hooks/session-handover/history/package.json",
+      "line": 11,
+      "description": "The `build` script hardcodes `../../../skills/system-spec-kit/node_modules/.bin/tsc`, which resolves to `.skilled/skills/system-spec-kit/node_modules/.bin/tsc`. The workflow's engine step (`spec-kit-check.yml:301`) runs `npm --prefix .skilled/hooks/session-handover/history run build`, but the workflow installs only `.opencode/skills/system-spec-kit` (`:227`) and `.skilled` (`:230`). `.skilled/package.json` declares no `workspaces` field, so `npm ci` at `.skilled` provisions `.skilled/node_modules` only and never creates the `.skilled/skills/system-spec-kit/node_modules` tree the build script names. The registry anchor (`line: 6`) points at the `engines` field; the proving anchor is `:11`.",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "I1-P2-002",
+      "severity": "P2",
+      "title": "Engine-only changes never run the engine vitest suites",
+      "file": ".github/workflows/spec-kit-check.yml",
+      "line": 6,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "I1-P2-003",
+      "severity": "P2",
+      "title": "The projection schema test degrades to a skip when the schema file is missing",
+      "file": ".skilled/hooks/shared/tests/session-readers/project.test.mjs",
+      "line": 141,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
         },
         {
-          "iteration": 2,
-          "from": "P1",
+          "iteration": 10,
+          "from": null,
           "to": "P2",
-          "reason": "Refinement of an earlier finding"
+          "reason": "Initial discovery"
         }
       ],
       "dimensions": [
         "correctness"
       ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "opus-medium"
+      "mergedFindingIds": [
+        "R10-P2-002"
       ]
     },
     {
-      "findingId": "OM-007",
+      "findingId": "I1-P2-004",
       "severity": "P2",
-      "title": "Hop-proof counts disagree inside the phase 006 summary",
-      "file": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/implementation-summary.md",
-      "line": 99,
+      "title": "The pinned 66-character bound is only behaviourally pinned in one direction",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+      "line": 276,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -204,7 +142,37 @@
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "traceability",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "I2-P2-001",
+      "severity": "P2",
+      "title": "The lookup offer interpolates the runtime label into a model-pasted shell command unquoted",
+      "file": ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+      "line": 70,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
       "firstSeen": 2,
       "lastSeen": 2,
       "status": "active",
@@ -217,221 +185,2112 @@
         }
       ],
       "dimensions": [
-        "traceability"
+        "security"
       ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "opus-medium"
-      ]
+      "mergedFindingIds": []
     },
     {
-      "findingId": "OM-006",
+      "findingId": "I3-P2-001",
       "severity": "P2",
-      "title": "Parent spec names a scaffold placeholder as parent packet after the sub-track move",
-      "file": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/spec.md",
-      "line": 55,
+      "title": "The handoff-lookup playbook still points at the retired runtime test paths",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+      "line": 185,
       "description": "",
-      "findingClass": null,
+      "findingClass": "instance-only",
       "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
+      "scopeProof": "Both listed paths fail an existence check; both moved counterparts exist. The same table's other nine anchors resolve, so the drift is confined to the two rows at lines 185-186.",
+      "affectedSurfaceHints": [
+        "manual-testing-playbook handoff lookup",
+        "history test anchors",
+        "playbook Source Files table"
+      ],
       "contentHash": null,
       "refines": null,
       "dimension": "traceability",
-      "firstSeen": 2,
-      "lastSeen": 2,
+      "firstSeen": 3,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 2,
+          "iteration": 3,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
         }
       ],
       "dimensions": [
-        "traceability"
+        "traceability",
+        "correctness"
       ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "opus-medium"
+      "mergedFindingIds": [
+        "R10-P2-005"
       ]
     },
     {
-      "findingId": "OM-003",
+      "findingId": "I3-P2-002",
       "severity": "P2",
-      "title": "Prepare-time mint has no consumer on the claim path and 004 SC-003 is false",
-      "file": ".skilled/hooks/session-handover/bin/session-handover.cjs",
-      "line": 603,
+      "title": "Two capability lines in the handoff-lookup playbook drop Vibe",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+      "line": 147,
       "description": "",
-      "findingClass": null,
+      "findingClass": "instance-only",
       "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
+      "scopeProof": "Every runtime list in the file was enumerated: lines 26, 30 and 93 include Vibe, while lines 147 and 166 omit it. No other target file repeats the omission.",
+      "affectedSurfaceHints": [
+        "manual-testing-playbook handoff lookup",
+        "capability statement",
+        "failure triage"
+      ],
       "contentHash": null,
       "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 1,
+          "iteration": 3,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability",
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "R10-P2-006"
+      ]
+    },
+    {
+      "findingId": "I3-P2-003",
+      "severity": "P2",
+      "title": "The hop-recall pair still describes a hop that prints no lookup offer",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md",
+      "line": 18,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Both page overviews and expected paragraphs were read; the offer withholds only when a gate fails (lookup-offer.ts:137-143) and the claim-offer rows at hop-recall-conversation.md:112 were measured with the section printed.",
+      "affectedSurfaceHints": [
+        "hop-recall scenario pair",
+        "lookup arm objective",
+        "observed-line interpretation"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability",
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "R10-P2-007"
+      ]
+    },
+    {
+      "findingId": "R10-P2-001",
+      "severity": "P2",
+      "title": "Engine-only changes never run the engine vitest suites",
+      "file": ".github/workflows/spec-kit-check.yml",
+      "line": 7,
+      "description": "Both trigger filters (`push` `:6-44`, `pull_request` `:47-85`) list `.skilled/skills/system-spec-kit/**` but not `.skilled/hooks/**`, so a change confined to `.skilled/hooks/session-handover/history/**` does not trigger the workflow whose `runtime-vitest` job runs the engine build and suite (`:296-302`).",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
         }
       ],
       "dimensions": [
         "correctness"
       ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "opus-medium"
-      ]
+      "mergedFindingIds": []
     },
     {
-      "findingId": "R1-P2-005",
+      "findingId": "R10-P2-003",
       "severity": "P2",
-      "title": "The entry reports a broken build as a bad operation",
-      "file": ".skilled/hooks/session-handover/bin/history-lookup.mjs",
-      "line": 32,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
+      "title": "The pinned 66-character bound is only behaviourally pinned in one direction",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+      "line": 278,
+      "description": "The hook-state copy (`:278,281-284`) and the engine copy (`lookup-offer.ts:33,52-58`) remain equal at 66 with the same quote transform, so the residual is the pinning asymmetry: the engine tests hold the copies equal behaviourally, not by comparing the constants, so a hook-state-side edit can drift without an engine-side failure.",
       "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
+      "firstSeen": 10,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 1,
+          "iteration": 10,
           "from": null,
           "to": "P2",
-          "reason": "Initial discovery (delta)"
+          "reason": "Initial discovery"
         }
       ],
       "dimensions": [
         "correctness"
       ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "fable-medium"
-      ]
+      "mergedFindingIds": []
     },
     {
-      "findingId": "R1-P2-003",
+      "findingId": "R10-P2-004",
       "severity": "P2",
-      "title": "The locator prepare stores has no reader",
-      "file": ".skilled/hooks/session-handover/bin/session-handover.cjs",
-      "line": 606,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
+      "title": "The lookup offer interpolates the runtime label into a model-pasted shell command",
+      "file": ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+      "line": 69,
+      "description": "`SPECKIT_RUNTIME=${locator.runtime} ` is inserted raw into the command text at `:70`; the schema enum is the only guard, and this module does not re-validate. No in-tree producer passes an unsafe label, so impact stays P2.",
       "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
+      "firstSeen": 10,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 1,
+          "iteration": 10,
           "from": null,
           "to": "P2",
-          "reason": "Initial discovery (delta)"
+          "reason": "Initial discovery"
         }
       ],
       "dimensions": [
         "correctness"
       ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "fable-medium"
-      ]
-    },
-    {
-      "findingId": "R1-P2-004",
-      "severity": "P2",
-      "title": "The lookup stops working 30 minutes after the claim with no way to renew it, and the changelog and the receiver step do not say so",
-      "file": ".skilled/changelog/skilled/v4.0.2.1.md",
-      "line": 165,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "fable-medium"
-      ]
-    },
-    {
-      "findingId": "R1-P2-001",
-      "severity": "P2",
-      "title": "The mint and the lookup command look for a Claude transcript in different places when CLAUDE_CONFIG_DIR is set",
-      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
-      "line": 687,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "fable-medium"
-      ]
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 11,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": []
+  },
+  "persistentSameSeverity": [
+    {
+      "findingId": "I1-P2-003",
+      "severity": "P2",
+      "title": "The projection schema test degrades to a skip when the schema file is missing",
+      "file": ".skilled/hooks/shared/tests/session-readers/project.test.mjs",
+      "line": 141,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "R10-P2-002"
+      ]
+    },
+    {
+      "findingId": "I3-P2-001",
+      "severity": "P2",
+      "title": "The handoff-lookup playbook still points at the retired runtime test paths",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+      "line": 185,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Both listed paths fail an existence check; both moved counterparts exist. The same table's other nine anchors resolve, so the drift is confined to the two rows at lines 185-186.",
+      "affectedSurfaceHints": [
+        "manual-testing-playbook handoff lookup",
+        "history test anchors",
+        "playbook Source Files table"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability",
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "R10-P2-005"
+      ]
+    },
+    {
+      "findingId": "I3-P2-002",
+      "severity": "P2",
+      "title": "Two capability lines in the handoff-lookup playbook drop Vibe",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+      "line": 147,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Every runtime list in the file was enumerated: lines 26, 30 and 93 include Vibe, while lines 147 and 166 omit it. No other target file repeats the omission.",
+      "affectedSurfaceHints": [
+        "manual-testing-playbook handoff lookup",
+        "capability statement",
+        "failure triage"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability",
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "R10-P2-006"
+      ]
+    },
+    {
+      "findingId": "I3-P2-003",
+      "severity": "P2",
+      "title": "The hop-recall pair still describes a hop that prints no lookup offer",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md",
+      "line": 18,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Both page overviews and expected paragraphs were read; the offer withholds only when a gate fails (lookup-offer.ts:137-143) and the claim-offer rows at hop-recall-conversation.md:112 were measured with the section printed.",
+      "affectedSurfaceHints": [
+        "hop-recall scenario pair",
+        "lookup arm objective",
+        "observed-line interpretation"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability",
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "R10-P2-007"
+      ]
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "I1-P2-003",
+      "severity": "P2",
+      "title": "The projection schema test degrades to a skip when the schema file is missing",
+      "file": ".skilled/hooks/shared/tests/session-readers/project.test.mjs",
+      "line": 141,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "R10-P2-002"
+      ]
+    },
+    {
+      "findingId": "I3-P2-001",
+      "severity": "P2",
+      "title": "The handoff-lookup playbook still points at the retired runtime test paths",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+      "line": 185,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Both listed paths fail an existence check; both moved counterparts exist. The same table's other nine anchors resolve, so the drift is confined to the two rows at lines 185-186.",
+      "affectedSurfaceHints": [
+        "manual-testing-playbook handoff lookup",
+        "history test anchors",
+        "playbook Source Files table"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability",
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "R10-P2-005"
+      ]
+    },
+    {
+      "findingId": "I3-P2-002",
+      "severity": "P2",
+      "title": "Two capability lines in the handoff-lookup playbook drop Vibe",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+      "line": 147,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Every runtime list in the file was enumerated: lines 26, 30 and 93 include Vibe, while lines 147 and 166 omit it. No other target file repeats the omission.",
+      "affectedSurfaceHints": [
+        "manual-testing-playbook handoff lookup",
+        "capability statement",
+        "failure triage"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability",
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "R10-P2-006"
+      ]
+    },
+    {
+      "findingId": "I3-P2-003",
+      "severity": "P2",
+      "title": "The hop-recall pair still describes a hop that prints no lookup offer",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md",
+      "line": 18,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Both page overviews and expected paragraphs were read; the offer withholds only when a gate fails (lookup-offer.ts:137-143) and the claim-offer rows at hop-recall-conversation.md:112 were measured with the section printed.",
+      "affectedSurfaceHints": [
+        "hop-recall scenario pair",
+        "lookup arm objective",
+        "observed-line interpretation"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability",
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "R10-P2-007"
+      ]
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 0,
-    "P2": 12
+    "P1": 2,
+    "P2": 10
   },
   "openFindingsCount": 12,
   "resolvedFindingsCount": 0,
-  "activeP0": 0,
-  "activeP1": 0,
-  "activeP2": 12
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.78,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 13,
+      "description": "Dimension coverage (40%) is below threshold (80%). 13 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.4,
+    "evidenceDensity": 0.5333333333333333,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.78
+  },
+  "candidateCoverage": {
+    "covered": [
+      "ci_gate_coverage",
+      "ci_trigger_coverage",
+      "command_interpolation",
+      "constant_drift",
+      "cursor_arithmetic",
+      "dependency_path_resolution",
+      "doc_anchor_drift",
+      "doc_capability_omission",
+      "doc_code_drift",
+      "doc_internal_contradiction",
+      "duplicate_constant_drift",
+      "injection_exposure",
+      "package_build_wiring",
+      "silent_test_skip",
+      "spec_mismatch",
+      "stale_path_reference"
+    ],
+    "ruledOut": [
+      "authz_gap",
+      "broken_command",
+      "ci_trigger_coverage",
+      "command_interpolation",
+      "constant_drift",
+      "cursor_arithmetic",
+      "dependency_path_resolution",
+      "doc_anchor_drift",
+      "doc_capability_omission",
+      "doc_code_drift",
+      "doc_internal_contradiction",
+      "duplicate_constant_drift",
+      "false_completion_claim",
+      "missing_reference",
+      "path_traversal",
+      "secret_exposure",
+      "severity_miscalibration",
+      "silent_test_skip",
+      "spec_mismatch",
+      "stale_path_reference",
+      "trust_boundary_spoof"
+    ],
+    "deferred": [
+      "unbounded_resource"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "ci_gate_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          7
+        ]
+      },
+      "package_build_wiring": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "silent_test_skip": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10
+        ]
+      },
+      "constant_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          4,
+          6,
+          7,
+          8
+        ]
+      },
+      "stale_path_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "injection_exposure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "trust_boundary_spoof": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "authz_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unbounded_resource": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "spec_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "false_completion_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "missing_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "broken_command": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cursor_arithmetic": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dependency_path_resolution": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "ci_trigger_coverage": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "duplicate_constant_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "command_interpolation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "doc_anchor_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "doc_capability_omission": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "doc_internal_contradiction": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "severity_miscalibration": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 5,
+      "id": "SL-510",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/navigator.ts"
+      ],
+      "bugClass": "unbounded_resource",
+      "disposition": "deferred",
+      "rationale": "A read-only pass cannot measure peak memory, so no performance finding is raised",
+      "evidenceRefs": [
+        "navigator.ts:490-503"
+      ],
+      "reason": "measurement requires executing the engine against a synthetic store"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled",
+        ".github",
+        ".opencode",
+        "specs"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "every live import resolves to the moved engine or the runtime dist; the remainder is historical prose and one known owned harness line",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/README.md:25",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:41"
+      ],
+      "reason": "exact search over live surfaces returned no hits"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/cli.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "hook-state.ts:484-487",
+        "cli.ts:187-190"
+      ],
+      "reason": "the id is hashed into the filename, so no separator or parent segment survives"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/cli.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts"
+      ],
+      "bugClass": "trust_boundary_spoof",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "cli.ts:385-390",
+        "cli.ts:570",
+        "hook-state.ts:325-331"
+      ],
+      "reason": "every gate is checked before a store is read and ambiguity refuses rather than ranks"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/projection.ts",
+        ".skilled/hooks/session-handover/history/lib/cli.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "projection.ts:39-49",
+        "cli.ts:526-529"
+      ],
+      "reason": "the public projection drops private blocks and every refusal prints only {ok:false,code}"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/locator-digest.ts",
+        ".skilled/hooks/session-handover/history/lib/cli.ts"
+      ],
+      "bugClass": "authz_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "locator-digest.ts:33-35",
+        "cli.ts:214-219"
+      ],
+      "reason": "the handle is not a privilege boundary and the actor able to rewrite state already reads the store directly"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/spec.md"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Reclassified spec_code from partial to pass on the table label.",
+      "evidenceRefs": [
+        "spec.md:97-102"
+      ],
+      "reason": "The table is a historical action list, not a live contract; the shipped path matches the phase outcome."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/tasks.md"
+      ],
+      "bugClass": "false_completion_claim",
+      "disposition": "ruled_out",
+      "rationale": "Checklist evidence is consistent with a not-started phase.",
+      "evidenceRefs": [
+        "008/tasks.md:36-61",
+        "008/spec.md:24"
+      ],
+      "reason": "Status is Draft and no task or acceptance box is checked; there is no completion claim to falsify."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-306",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md"
+      ],
+      "bugClass": "missing_reference",
+      "disposition": "ruled_out",
+      "rationale": "No catalog drift found.",
+      "evidenceRefs": [
+        "compaction-history-lookup.md:69-76,82-93"
+      ],
+      "reason": "Every spot-checked catalog anchor resolves to the moved engine or an existing reader test."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-307",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md"
+      ],
+      "bugClass": "broken_command",
+      "disposition": "ruled_out",
+      "rationale": "The documented command works.",
+      "evidenceRefs": [
+        "compaction-history-lookup.md:63",
+        "history/package.json:13"
+      ],
+      "reason": "The relative binary path resolves and equals the package test script."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/pages.ts"
+      ],
+      "bugClass": "cursor_arithmetic",
+      "disposition": "ruled_out",
+      "rationale": "All page bounds are validated before slicing and each cursor advances to the next unread unit.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/pages.ts:351-361",
+        ".skilled/hooks/session-handover/history/lib/pages.ts:396-422",
+        ".skilled/hooks/session-handover/history/lib/pages.ts:441-469"
+      ],
+      "reason": "direct read of the paging path found no off-by-one or split-surrogate case"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts"
+      ],
+      "bugClass": "constant_drift",
+      "disposition": "ruled_out",
+      "rationale": "The numeric copies match and the boundary is pinned by the locator suite.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:33",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278",
+        ".skilled/hooks/session-handover/history/tests/history-locator.vitest.ts:164-172"
+      ],
+      "reason": "equality holds today with identical arithmetic"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled",
+        ".github",
+        ".opencode"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "The hits keep backward-compatibility and workspace-gate coverage; the known harness line is in specs/ and owned by phase 008 T002.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/tests/history-projection.vitest.ts:228-232",
+        ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:3596-3603"
+      ],
+      "reason": "no live import or runnable entry resolves to the retired tree"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/plan.md",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/description.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/graph-metadata.json"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Every cross-reference resolves and the source hashes match the current docs",
+      "evidenceRefs": [
+        "plan.md:3,12,37-38,76,92",
+        "description.json:2,9,11-18",
+        "graph-metadata.json:35,40",
+        "graph-metadata.json:177-179"
+      ],
+      "reason": "plan, description and graph metadata agree with spec/tasks and are fresh"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
+        ".skilled/hooks/session-handover/history/README.md",
+        ".skilled/hooks/session-handover/history/lib/cli.ts"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "Catalog, README and CLI agree on success exit 0 and refusal exit 2",
+      "evidenceRefs": [
+        "compaction-history-lookup.md:51",
+        "README.md:144",
+        "cli.ts:577-580",
+        "cli.ts:592-593"
+      ],
+      "reason": "the previously untraced success exit is now traced end to end"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-601",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/history.ts",
+        ".skilled/hooks/session-handover/history/tests/history-entry-contract.vitest.ts"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "The type-level guards and the contract suite agree; no drift found",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/history.ts:70-105",
+        ".skilled/hooks/session-handover/history/tests/history-entry-contract.vitest.ts:34-73"
+      ],
+      "reason": "direct read of both the derivation and its assertions found no mismatch"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-604",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts"
+      ],
+      "bugClass": "constant_drift",
+      "disposition": "ruled_out",
+      "rationale": "Both copies are 66 and compute the quoted form identically; equality holds today",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278-284",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:33-58"
+      ],
+      "reason": "direct read of both copies found identical arithmetic"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-605",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled",
+        ".github",
+        ".opencode"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "No live old-path reference; the engine's legacy matcher is documented compatibility for older transcripts",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/history.ts:330-335",
+        ".skilled/hooks/session-handover/history/lib/history.ts:330-335"
+      ],
+      "reason": "repo-wide exact search returned no live hit"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-704",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/tests/history-projection.vitest.ts",
+        ".skilled/hooks/session-handover/history/lib/history.ts"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "Documented backward compatibility, consistent with the engine's own legacy matcher",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/tests/history-projection.vitest.ts:228-232"
+      ],
+      "reason": "the fixture states older transcripts still hold the earlier path and asserts both paths"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-803",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts"
+      ],
+      "bugClass": "constant_drift",
+      "disposition": "ruled_out",
+      "rationale": "Equality holds; the numeric value remains unpinned, which is the active carried I1-P2-004.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:33",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:52-58",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278-284",
+        ".skilled/hooks/session-handover/history/tests/history-locator.vitest.ts:164-172"
+      ],
+      "reason": "Both copies are 66 with identical quoted-length arithmetic, so the drift hypothesis is ruled out."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-804",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled",
+        ".github",
+        ".opencode",
+        "specs"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "The retired tree no longer exists and no live code, test, CI or provisioning path loads it; the known harness line is owned by phase 008 T002.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh:18",
+        ".skilled/hooks/session-handover/history/tests/history-projection.vitest.ts:230",
+        ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:3598"
+      ],
+      "reason": "No live old-path reference outside the owned harness line and documented compatibility fixtures."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/package.json:11",
+        ".github/workflows/spec-kit-check.yml:301"
+      ],
+      "bugClass": "dependency_path_resolution",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted at HEAD; P1 stands with corrected anchor package.json:11",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/package.json:11",
+        ".github/workflows/spec-kit-check.yml:227",
+        ".github/workflows/spec-kit-check.yml:230",
+        ".skilled/package.json:1-25"
+      ],
+      "reason": "hypothesis refuted at HEAD; P1 stands with corrected anchor package.json:11"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/workflows/spec-kit-check.yml:7-8",
+        ".github/workflows/spec-kit-check.yml:48-49"
+      ],
+      "bugClass": "ci_trigger_coverage",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; I1-P2-002 stands",
+      "evidenceRefs": [
+        ".github/workflows/spec-kit-check.yml:7-8",
+        ".github/workflows/spec-kit-check.yml:48-49",
+        ".github/workflows/spec-kit-check.yml:296-302"
+      ],
+      "reason": "hypothesis refuted; I1-P2-002 stands"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/tests/session-readers/project.test.mjs:141"
+      ],
+      "bugClass": "silent_test_skip",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; skip is latent because the schema exists",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/tests/session-readers/project.test.mjs:141-142"
+      ],
+      "reason": "hypothesis refuted; skip is latent because the schema exists"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:33"
+      ],
+      "bugClass": "duplicate_constant_drift",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; copies agree, pinning asymmetry remains P2",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:281-284",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:33",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:52-58"
+      ],
+      "reason": "hypothesis refuted; copies agree, pinning asymmetry remains P2"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:69"
+      ],
+      "bugClass": "command_interpolation",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; I2-P2-001 stands",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:68-75"
+      ],
+      "reason": "hypothesis refuted; I2-P2-001 stands"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:185"
+      ],
+      "bugClass": "doc_anchor_drift",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; I3-P2-001 stands",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:185-186"
+      ],
+      "reason": "hypothesis refuted; I3-P2-001 stands"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:147"
+      ],
+      "bugClass": "doc_capability_omission",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; I3-P2-002 stands",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:147",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:166"
+      ],
+      "reason": "hypothesis refuted; I3-P2-002 stands"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md:18"
+      ],
+      "bugClass": "doc_internal_contradiction",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; I3-P2-003 stands",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md:18",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md:22"
+      ],
+      "reason": "hypothesis refuted; I3-P2-003 stands"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/package.json",
+        ".github/workflows/spec-kit-check.yml",
+        ".skilled/hooks/shared/tests/session-readers/project.test.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md"
+      ],
+      "bugClass": "severity_miscalibration",
+      "disposition": "ruled_out",
+      "rationale": "all seven P2 stay P2; no upgrade",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/package.json:11",
+        ".github/workflows/spec-kit-check.yml:301",
+        ".skilled/hooks/shared/tests/session-readers/project.test.mjs:141",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:69",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:185",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md:18"
+      ],
+      "reason": "all seven P2 stay P2; no upgrade"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled",
+        ".github",
+        ".opencode",
+        "specs"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "every live import resolves to the moved engine or the runtime dist; the remainder is historical prose and one known owned harness line",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/README.md:25",
+        ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt:41"
+      ],
+      "proof": "exact search over live surfaces returned no hits"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/cli.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "hook-state.ts:484-487",
+        "cli.ts:187-190"
+      ],
+      "proof": "the id is hashed into the filename, so no separator or parent segment survives"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/cli.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts"
+      ],
+      "bugClass": "trust_boundary_spoof",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "cli.ts:385-390",
+        "cli.ts:570",
+        "hook-state.ts:325-331"
+      ],
+      "proof": "every gate is checked before a store is read and ambiguity refuses rather than ranks"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/projection.ts",
+        ".skilled/hooks/session-handover/history/lib/cli.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "projection.ts:39-49",
+        "cli.ts:526-529"
+      ],
+      "proof": "the public projection drops private blocks and every refusal prints only {ok:false,code}"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/locator-digest.ts",
+        ".skilled/hooks/session-handover/history/lib/cli.ts"
+      ],
+      "bugClass": "authz_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "locator-digest.ts:33-35",
+        "cli.ts:214-219"
+      ],
+      "proof": "the handle is not a privilege boundary and the actor able to rewrite state already reads the store directly"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/spec.md"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Reclassified spec_code from partial to pass on the table label.",
+      "evidenceRefs": [
+        "spec.md:97-102"
+      ],
+      "proof": "The table is a historical action list, not a live contract; the shipped path matches the phase outcome."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/tasks.md"
+      ],
+      "bugClass": "false_completion_claim",
+      "disposition": "ruled_out",
+      "rationale": "Checklist evidence is consistent with a not-started phase.",
+      "evidenceRefs": [
+        "008/tasks.md:36-61",
+        "008/spec.md:24"
+      ],
+      "proof": "Status is Draft and no task or acceptance box is checked; there is no completion claim to falsify."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-306",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md"
+      ],
+      "bugClass": "missing_reference",
+      "disposition": "ruled_out",
+      "rationale": "No catalog drift found.",
+      "evidenceRefs": [
+        "compaction-history-lookup.md:69-76,82-93"
+      ],
+      "proof": "Every spot-checked catalog anchor resolves to the moved engine or an existing reader test."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-307",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md"
+      ],
+      "bugClass": "broken_command",
+      "disposition": "ruled_out",
+      "rationale": "The documented command works.",
+      "evidenceRefs": [
+        "compaction-history-lookup.md:63",
+        "history/package.json:13"
+      ],
+      "proof": "The relative binary path resolves and equals the package test script."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/pages.ts"
+      ],
+      "bugClass": "cursor_arithmetic",
+      "disposition": "ruled_out",
+      "rationale": "All page bounds are validated before slicing and each cursor advances to the next unread unit.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/pages.ts:351-361",
+        ".skilled/hooks/session-handover/history/lib/pages.ts:396-422",
+        ".skilled/hooks/session-handover/history/lib/pages.ts:441-469"
+      ],
+      "proof": "direct read of the paging path found no off-by-one or split-surrogate case"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts"
+      ],
+      "bugClass": "constant_drift",
+      "disposition": "ruled_out",
+      "rationale": "The numeric copies match and the boundary is pinned by the locator suite.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:33",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278",
+        ".skilled/hooks/session-handover/history/tests/history-locator.vitest.ts:164-172"
+      ],
+      "proof": "equality holds today with identical arithmetic"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled",
+        ".github",
+        ".opencode"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "The hits keep backward-compatibility and workspace-gate coverage; the known harness line is in specs/ and owned by phase 008 T002.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/tests/history-projection.vitest.ts:228-232",
+        ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:3596-3603"
+      ],
+      "proof": "no live import or runnable entry resolves to the retired tree"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/plan.md",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/description.json",
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/graph-metadata.json"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Every cross-reference resolves and the source hashes match the current docs",
+      "evidenceRefs": [
+        "plan.md:3,12,37-38,76,92",
+        "description.json:2,9,11-18",
+        "graph-metadata.json:35,40",
+        "graph-metadata.json:177-179"
+      ],
+      "proof": "plan, description and graph metadata agree with spec/tasks and are fresh"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
+        ".skilled/hooks/session-handover/history/README.md",
+        ".skilled/hooks/session-handover/history/lib/cli.ts"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "Catalog, README and CLI agree on success exit 0 and refusal exit 2",
+      "evidenceRefs": [
+        "compaction-history-lookup.md:51",
+        "README.md:144",
+        "cli.ts:577-580",
+        "cli.ts:592-593"
+      ],
+      "proof": "the previously untraced success exit is now traced end to end"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-508",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts"
+      ],
+      "bugClass": "constant_drift",
+      "disposition": "not_applicable",
+      "rationale": "Exhausted direction; the target tree is unchanged, so the prior equality proof still holds",
+      "evidenceRefs": [
+        "lookup-offer.ts:33,58",
+        "hook-state.ts:278,283"
+      ],
+      "proof": "direction recorded BLOCKED and not re-entered"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-509",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled",
+        ".github",
+        ".opencode"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "not_applicable",
+      "rationale": "Exhausted direction; git status over the target paths is clean",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/tests/history-projection.vitest.ts:230",
+        ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:3598"
+      ],
+      "proof": "direction recorded BLOCKED and not re-entered"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-601",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/history.ts",
+        ".skilled/hooks/session-handover/history/tests/history-entry-contract.vitest.ts"
+      ],
+      "bugClass": "spec_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "The type-level guards and the contract suite agree; no drift found",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/history.ts:70-105",
+        ".skilled/hooks/session-handover/history/tests/history-entry-contract.vitest.ts:34-73"
+      ],
+      "proof": "direct read of both the derivation and its assertions found no mismatch"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-604",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts"
+      ],
+      "bugClass": "constant_drift",
+      "disposition": "ruled_out",
+      "rationale": "Both copies are 66 and compute the quoted form identically; equality holds today",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278-284",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:33-58"
+      ],
+      "proof": "direct read of both copies found identical arithmetic"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-605",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled",
+        ".github",
+        ".opencode"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "No live old-path reference; the engine's legacy matcher is documented compatibility for older transcripts",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/history.ts:330-335",
+        ".skilled/hooks/session-handover/history/lib/history.ts:330-335"
+      ],
+      "proof": "repo-wide exact search returned no live hit"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-704",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/tests/history-projection.vitest.ts",
+        ".skilled/hooks/session-handover/history/lib/history.ts"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "Documented backward compatibility, consistent with the engine's own legacy matcher",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/tests/history-projection.vitest.ts:228-232"
+      ],
+      "proof": "the fixture states older transcripts still hold the earlier path and asserts both paths"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-706",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts"
+      ],
+      "bugClass": "constant_drift",
+      "disposition": "not_applicable",
+      "rationale": "The direction is BLOCKED and was not re-entered; the zero-drift check carries the prior proof",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278-284",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:33-58"
+      ],
+      "proof": "constant-drift direction recorded BLOCKED in iteration 6"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-801",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/package.json",
+        ".github/workflows/spec-kit-check.yml",
+        ".skilled/package.json"
+      ],
+      "bugClass": "package_build_wiring",
+      "disposition": "not_applicable",
+      "rationale": "The gap reproduces and is owned by active carried I1-P1-001; this pass adds no new finding.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/package.json:6",
+        ".github/workflows/spec-kit-check.yml:276-286",
+        ".github/workflows/spec-kit-check.yml:296-302",
+        ".skilled/package.json:1-25"
+      ],
+      "proof": "Re-confirmation of active carried I1-P1-001"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-802",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/tests/session-readers/project.test.mjs"
+      ],
+      "bugClass": "silent_test_skip",
+      "disposition": "not_applicable",
+      "rationale": "The latent skip still reproduces at the same branch and is owned by active carried I1-P2-003.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/tests/session-readers/project.test.mjs:141-142",
+        ".skilled/hooks/shared/tests/session-readers/project.test.mjs:26-34"
+      ],
+      "proof": "Re-confirmation of active carried I1-P2-003"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-803",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts"
+      ],
+      "bugClass": "constant_drift",
+      "disposition": "ruled_out",
+      "rationale": "Equality holds; the numeric value remains unpinned, which is the active carried I1-P2-004.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:33",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:52-58",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278-284",
+        ".skilled/hooks/session-handover/history/tests/history-locator.vitest.ts:164-172"
+      ],
+      "proof": "Both copies are 66 with identical quoted-length arithmetic, so the drift hypothesis is ruled out."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-804",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled",
+        ".github",
+        ".opencode",
+        "specs"
+      ],
+      "bugClass": "stale_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "The retired tree no longer exists and no live code, test, CI or provisioning path loads it; the known harness line is owned by phase 008 T002.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh:18",
+        ".skilled/hooks/session-handover/history/tests/history-projection.vitest.ts:230",
+        ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs:3598"
+      ],
+      "proof": "No live old-path reference outside the owned harness line and documented compatibility fixtures."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-805",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".github/workflows/spec-kit-check.yml"
+      ],
+      "bugClass": "ci_gate_coverage",
+      "disposition": "not_applicable",
+      "rationale": "The missing trigger still reproduces and is owned by active carried I1-P2-002.",
+      "evidenceRefs": [
+        ".github/workflows/spec-kit-check.yml:3-85"
+      ],
+      "proof": "Re-confirmation of active carried I1-P2-002"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-806",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "not_applicable",
+      "rationale": "The three playbook findings remain active with no fix in the target; this pass re-confirms but does not restate them.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:147",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:185-186",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md:18"
+      ],
+      "proof": "Re-confirmation of active carried I3-P2-001, I3-P2-002 and I3-P2-003"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/package.json:11",
+        ".github/workflows/spec-kit-check.yml:301"
+      ],
+      "bugClass": "dependency_path_resolution",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted at HEAD; P1 stands with corrected anchor package.json:11",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/package.json:11",
+        ".github/workflows/spec-kit-check.yml:227",
+        ".github/workflows/spec-kit-check.yml:230",
+        ".skilled/package.json:1-25"
+      ],
+      "proof": "hypothesis refuted at HEAD; P1 stands with corrected anchor package.json:11"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".github/workflows/spec-kit-check.yml:7-8",
+        ".github/workflows/spec-kit-check.yml:48-49"
+      ],
+      "bugClass": "ci_trigger_coverage",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; I1-P2-002 stands",
+      "evidenceRefs": [
+        ".github/workflows/spec-kit-check.yml:7-8",
+        ".github/workflows/spec-kit-check.yml:48-49",
+        ".github/workflows/spec-kit-check.yml:296-302"
+      ],
+      "proof": "hypothesis refuted; I1-P2-002 stands"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/tests/session-readers/project.test.mjs:141"
+      ],
+      "bugClass": "silent_test_skip",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; skip is latent because the schema exists",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/tests/session-readers/project.test.mjs:141-142"
+      ],
+      "proof": "hypothesis refuted; skip is latent because the schema exists"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:33"
+      ],
+      "bugClass": "duplicate_constant_drift",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; copies agree, pinning asymmetry remains P2",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:281-284",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:33",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:52-58"
+      ],
+      "proof": "hypothesis refuted; copies agree, pinning asymmetry remains P2"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:69"
+      ],
+      "bugClass": "command_interpolation",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; I2-P2-001 stands",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:68-75"
+      ],
+      "proof": "hypothesis refuted; I2-P2-001 stands"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:185"
+      ],
+      "bugClass": "doc_anchor_drift",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; I3-P2-001 stands",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:185-186"
+      ],
+      "proof": "hypothesis refuted; I3-P2-001 stands"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:147"
+      ],
+      "bugClass": "doc_capability_omission",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; I3-P2-002 stands",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:147",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:166"
+      ],
+      "proof": "hypothesis refuted; I3-P2-002 stands"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md:18"
+      ],
+      "bugClass": "doc_internal_contradiction",
+      "disposition": "ruled_out",
+      "rationale": "hypothesis refuted; I3-P2-003 stands",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md:18",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md:22"
+      ],
+      "proof": "hypothesis refuted; I3-P2-003 stands"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-handover/history/package.json",
+        ".github/workflows/spec-kit-check.yml",
+        ".skilled/hooks/shared/tests/session-readers/project.test.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md"
+      ],
+      "bugClass": "severity_miscalibration",
+      "disposition": "ruled_out",
+      "rationale": "all seven P2 stay P2; no upgrade",
+      "evidenceRefs": [
+        ".skilled/hooks/session-handover/history/package.json:11",
+        ".github/workflows/spec-kit-check.yml:301",
+        ".skilled/hooks/shared/tests/session-readers/project.test.mjs:141",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:278",
+        ".skilled/hooks/session-handover/history/lib/lookup-offer.ts:69",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md:185",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md:18"
+      ],
+      "proof": "all seven P2 stay P2; no upgrade"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "dependency_path_resolution",
+      "ci_trigger_coverage",
+      "silent_test_skip",
+      "duplicate_constant_drift",
+      "command_interpolation",
+      "doc_anchor_drift",
+      "doc_capability_omission",
+      "doc_internal_contradiction",
+      "severity_miscalibration"
+    ],
+    "covered": [
+      "dependency_path_resolution",
+      "ci_trigger_coverage",
+      "silent_test_skip",
+      "duplicate_constant_drift",
+      "command_interpolation",
+      "doc_anchor_drift",
+      "doc_capability_omission",
+      "doc_internal_contradiction"
+    ],
+    "ruledOut": [
+      "severity_miscalibration"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
 }

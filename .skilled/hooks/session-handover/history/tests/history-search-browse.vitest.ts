@@ -49,6 +49,14 @@ describe('search', () => {
     expect(references[0]?.preview.toLowerCase()).toContain('contract');
   });
 
+  it('quotes a matched tool call by its name and arguments, and never matches a call id', () => {
+    const references = navigator().search({ query: 'answer.md' });
+    expect(ids(references)).toEqual(['history-turn-mixed']);
+    expect(references[0]?.preview).toContain('read_file {"path":"docs/answer.md"}');
+    expect(references[0]?.preview).not.toContain('"type":"toolCall"');
+    expect(navigator().search({ query: 'call-read-2' })).toEqual([]);
+  });
+
   it('matches files, tools and failed filters', () => {
     const byFile = navigator().search({ query: 'the', files: ['docs/design.md'] });
     expect(ids(byFile)).toContain('history-turn-1');
@@ -98,6 +106,22 @@ describe('browse', () => {
     expect(ids(around)).toEqual(['history-turn-1', 'history-user-2', 'history-turn-mixed']);
     expect(around[1]?.previousHistoryId).toBe('history-turn-1');
     expect(around[1]?.nextHistoryId).toBe('history-turn-mixed');
+  });
+
+  it('previews a tool call by its name and arguments, not the block object', () => {
+    const references = navigator().browse({ direction: 'forward', count: 5 });
+    const preview = (historyId: string) =>
+      references.find((reference) => reference.historyId === historyId)?.preview;
+    expect(preview('history-turn-1')).toBe(
+      'The lookup contract lives in docs/design.md. read_file {"path":"docs/design.md"}',
+    );
+    expect(preview('history-turn-mixed')).toBe(
+      'Public answer after paging. read_file {"path":"docs/answer.md"}',
+    );
+    for (const reference of references) {
+      expect(reference.preview).not.toContain('"type":"toolCall"');
+      expect(reference.preview).not.toContain('call-read');
+    }
   });
 
   it('honours stride and returns nothing for an empty corpus without an anchor', () => {

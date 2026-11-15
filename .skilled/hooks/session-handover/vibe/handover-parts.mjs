@@ -25,11 +25,9 @@ import {
   appendLog,
   arm,
   armableRecord,
-  ensureStateDir,
   findLoopChildPid,
   markDeferred,
   readRelaunchFile,
-  stateDir,
   recordVibeSessionId,
 } from '../lib/relaunch-core.cjs';
 import nudge from '../lib/nudge.cjs';
@@ -226,45 +224,6 @@ function withdrawBeforeTurnStart(payload, dependencies = {}) {
   return withdrawn;
 }
 
-// Vibe runs tool calls side by side, so two post_tool hooks can decide on the same nudge at
-// once. Only the hook that creates the claim file delivers. A claim older than this was left
-// by a hook that died, and is taken over.
-// Two hooks that both find the same stale claim can, rarely, both end up holding one; the
-// cost is one repeated nudge, which is what this claim exists to prevent in the common case.
-const NUDGE_CLAIM_STALE_MS = 10000;
-
-function claimNudge(sessionId, env) {
-  let claimPath;
-  try {
-    ensureStateDir(env);
-    claimPath = path.join(stateDir(env), `nudge-${sessionId}.claim`);
-  } catch {
-    // Without a state directory there is no stored level to race on either.
-    return { release() {} };
-  }
-  for (let attempt = 0; attempt < 2; attempt += 1) {
-    try {
-      fs.closeSync(fs.openSync(claimPath, 'wx', 0o600));
-      return {
-        release() {
-          try {
-            fs.rmSync(claimPath, { force: true });
-          } catch {}
-        },
-      };
-    } catch (error) {
-      if (error.code !== 'EEXIST') return { release() {} };
-      try {
-        if (Date.now() - fs.statSync(claimPath).mtimeMs <= NUDGE_CLAIM_STALE_MS) return null;
-        fs.rmSync(claimPath, { force: true });
-      } catch {
-        return null;
-      }
-    }
-  }
-  return null;
-}
-
 /**
  * Build the turn-start context a Vibe session receives at a prompt or after a tool call.
  *
@@ -339,22 +298,18 @@ async function buildHandoverContextPart(payload, dependencies = {}) {
     return '';
   }
 
-  const claim = claimNudge(sessionId, env);
-  if (claim === null) return '';
+  // Vibe runs tool calls side by side, so only the hook that holds the session's nudge claim
+  // delivers the nudge, after deciding again under that claim.
   try {
-    // Decide again under the claim: a hook that delivered first has already written its level.
-    const confirmed = nudge.nudgeDecision({
+    const committed = nudge.commitNudge({
       ratio,
       threshold: nudge.relaunchThreshold(config, env),
       sessionId,
       env,
     });
-    if (!confirmed.nudge) return '';
-    nudge.writeState(sessionId, confirmed.level, env);
+    if (committed === null) return '';
   } catch (error) {
     logEvent('context-nudge-error', { stage: 'state', message: error.message }, env);
-  } finally {
-    claim.release();
   }
 
   try {

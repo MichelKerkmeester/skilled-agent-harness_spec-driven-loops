@@ -89,6 +89,7 @@ Every file in `lib/`:
 - One query token needs all of its parts, and separate query tokens are alternatives. An exact mention of the whole identifier ranks above a turn that holds only its parts.
 - A Han word is matched by its adjacent character pairs, so `検索` does not match a turn that holds only `検`.
 - The preview centers on the matched identifier, so a fragment match shows what it matched.
+- A model turn is indexed and previewed as its blocks in order: text as written, and each tool call as its name and arguments, such as `read_file {"path":"docs/design.md"}`. A tool call's id is not searchable.
 - A query with no terms returns nothing unless it carries a `files`, `tools` or `failed` filter, which then lists the matching turns.
 
 ---
@@ -97,6 +98,7 @@ Every file in `lib/`:
 
 The core projects every entry before a caller can see it:
 
+- Secret-shaped values are redacted first, in text, thinking and tool-call arguments. Vendor keys, tokens, JWTs, bearer values, private keys and `key=value` credentials go through the spec-kit shared secret scrubber. The core adds a URL password, a non-bearer `Authorization` value and an argument stored under a credential name such as `password`. Each becomes a typed marker such as `[REDACTED:github-token]`. Search cannot match a secret, and every bound and page offset is measured on the redacted text. The stored transcript is never changed.
 - Assistant thinking, provider signatures and redacted payloads become `null`.
 - Paging tool calls (`search_history`, `browse_history`, `load_history`, `read_context_output`) and their results are removed.
 - A paging-only turn disappears entirely. A mixed turn keeps its ordinary text and tool work.

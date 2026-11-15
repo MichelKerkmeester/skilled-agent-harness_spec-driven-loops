@@ -9,7 +9,7 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # Deep Review State Log Records
@@ -304,8 +304,8 @@ Raw `paused` and `stuck_recovery` labels are not legal persisted event names in 
 | Verdict | Condition | Next Command |
 |---------|-----------|--------------|
 | FAIL | `activeP0 > 0` OR quality gate failure | `/speckit:plan` |
-| CONDITIONAL | `activeP0 == 0` AND `activeP1 > 0` | `/speckit:plan` |
-| PASS | `activeP0 == 0` AND `activeP1 == 0` | `/create:changelog` |
+| CONDITIONAL | `activeP0 == 0` AND (`activeP1 > 0` OR open search debt) | `/speckit:plan` |
+| PASS | `activeP0 == 0` AND `activeP1 == 0` AND no open search debt | `/create:changelog` |
 
 When `activeP2 > 0` on PASS, set `hasAdvisories: true`.
 

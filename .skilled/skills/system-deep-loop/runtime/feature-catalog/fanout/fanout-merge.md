@@ -7,7 +7,7 @@ trigger_phrases:
   - "merge fanout lineages"
   - "strongest-restriction review merge"
   - "cross-model finding attribution"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Fan-out cross-lineage merge
@@ -37,7 +37,9 @@ the merge never calls the title-aware match or bucketer, so the off path is byte
 **Review merge (strongest-restriction)**: iterates active findings across all lineages,
 escalates to highest severity for duplicate `findingId` using `SEVERITY_RANK` (P0=3 > P1=2
 > P2=1), counts active P0/P1/P2, derives `mergedVerdict` (FAIL if `activeP0 > 0` or any lineage still has a failed
-required gate in `failedRequiredGateIds`, CONDITIONAL if `activeP1 > 0`, PASS otherwise). Non-active findings (resolved,
+required gate in `failedRequiredGateIds`, CONDITIONAL if `activeP1 > 0` or open search debt remains,
+PASS otherwise). The merge also unions `searchDebt` across lineages, one entry per bug class. Non-active
+findings (resolved,
 `resolved_false_positive`) are excluded from counts.
 
 Both modes write `{artifact_dir}/fanout-attribution.md`: a per-lineage Markdown table with

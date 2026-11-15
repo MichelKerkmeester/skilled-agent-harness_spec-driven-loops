@@ -175,6 +175,37 @@ test('context-nudge fires at threshold once and again at threshold plus 0.05', a
   assert.match(nextOutput.hookSpecificOutput.additionalContext, /prepare --handoff.*--runtime 'codex'/);
 });
 
+test('context-nudge stays quiet while another hook holds the session nudge claim', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'codex-nudge-loop-0001';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  const payload = {
+    ...USER_PROMPT_SUBMIT,
+    hook_event_name: 'PostToolUse',
+    prompt: undefined,
+    session_id: SESSION_ID,
+    transcript_path: writeRollout(sandbox, 800),
+    cwd: sandbox.repoRoot,
+  };
+  const stateDir = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
+  fs.mkdirSync(stateDir, { recursive: true, mode: 0o700 });
+  const claimPath = path.join(stateDir, `nudge-${SESSION_ID}.claim`);
+  fs.writeFileSync(claimPath, '');
+
+  const held = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(held.code, 0, held.stderr);
+  assert.equal(held.stdout, '');
+
+  fs.rmSync(claimPath);
+  const delivered = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(delivered.code, 0, delivered.stderr);
+  assert.match(
+    JSON.parse(delivered.stdout.trim()).hookSpecificOutput.additionalContext,
+    /prepare --handoff/,
+  );
+});
+
 test('context-nudge carries the payload spec_folder into the note frontmatter', async (t) => {
   const sandbox = createSandbox(t);
   sandbox.env.SKILLED_LOOP_ID = 'codex-nudge-loop-0001';
@@ -402,6 +433,36 @@ test('UserPromptSubmit withdraws an armed handoff when the operator sends a prom
   assert.match(context, /prepared hand-over was withdrawn/);
 });
 
+test('UserPromptSubmit withdraws a pending handoff a failed Stop deferred, and leaves a fresh one', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = 'codex-loop-deferred-prompt-0001';
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  const payload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    prompt: 'Continue the current task',
+    transcript_path: writeRollout(sandbox, 500),
+    cwd: sandbox.repoRoot,
+  };
+
+  const fresh = createPendingRecord(sandbox, loopId, SESSION_ID);
+  const keptResult = await runAdapter(sandbox, PROMPT_SEED_PATH, payload);
+  assert.equal(keptResult.code, 0, keptResult.stderr);
+  assert.equal(JSON.parse(fs.readFileSync(fresh.recordPath, 'utf8')).status, 'pending');
+
+  const deferred = createPendingRecord(sandbox, loopId, SESSION_ID);
+  deferred.record.deferredAt = new Date().toISOString();
+  fs.writeFileSync(deferred.recordPath, JSON.stringify(deferred.record));
+  const result = await runAdapter(sandbox, PROMPT_SEED_PATH, payload);
+
+  assert.equal(result.code, 0, result.stderr);
+  const stored = JSON.parse(fs.readFileSync(deferred.recordPath, 'utf8'));
+  assert.equal(stored.status, 'disarmed');
+  assert.equal(stored.disarmReason, 'user-message');
+});
+
 test('UserPromptSubmit keeps an armed handoff for a relaunch seed prompt', async (t) => {
   const { sandbox, recordPath, record, payload } = armedPromptCase(t, SEED_PROMPT);
 
@@ -618,8 +679,10 @@ test('Stop leaves the record pending when no ancestor matches the loop', async (
   });
 
   assert.equal(result.code, 0, result.stderr);
-  assert.equal(result.stdout, '');
-  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+  assert.match(JSON.parse(result.stdout.trim()).systemMessage, /no session process below the loop/);
+  const { deferredAt, ...stored } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(typeof deferredAt, 'string');
+  assert.deepEqual(stored, record);
   assert.equal(fs.existsSync(spawnPath), false);
   const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
   assert.match(fs.readFileSync(logPath, 'utf8'), /stop-arm-error stage=target-pid/);
@@ -654,15 +717,77 @@ test('Stop signals the loop child it finds above a transient shell, and arms not
   assert.equal(spawns[0].args[spawns[0].args.indexOf('--target-pid') + 1], '60');
 
   const { record } = createPendingRecord(sandbox, loopId, SESSION_ID);
+  const notices = [];
   const unmatched = await armPendingRecord(payload, {
     env: sandbox.env,
     pid: 41,
     processTable: '41 50\n50 1\n',
     spawn: spawnKiller,
+    write: (line) => notices.push(line),
   });
   assert.equal(unmatched, null);
-  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+  const { deferredAt, ...stored } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(typeof deferredAt, 'string');
+  assert.deepEqual(stored, record);
+  assert.equal(notices.length, 1);
   assert.equal(spawns.length, 1);
+});
+
+test('Stop marks the record deferred and says why when the payload has no transcript path', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = '100';
+  const { recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID);
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const { armPendingRecord } = await import(pathToFileURL(STOP_ARM_PATH).href);
+  const notices = [];
+
+  const armed = await armPendingRecord({
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: undefined,
+  }, {
+    env: sandbox.env,
+    pid: 41,
+    processTable: '41 60\n60 100\n100 1\n',
+    spawn: () => assert.fail('no killer may start'),
+    write: (line) => notices.push(line),
+  });
+
+  assert.equal(armed, null);
+  const { deferredAt, ...stored } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(typeof deferredAt, 'string');
+  assert.deepEqual(stored, record);
+  assert.equal(notices.length, 1);
+  assert.match(JSON.parse(notices[0]).systemMessage, /carried no transcript path/);
+});
+
+test('Stop marks the record deferred and says why when arming throws', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = '100';
+  const { recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID);
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const { armPendingRecord } = await import(pathToFileURL(STOP_ARM_PATH).href);
+  const notices = [];
+
+  // A cwd that cannot be written as JSON makes the arm throw after the target resolved.
+  const armed = await armPendingRecord({
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeRollout(sandbox, 10),
+    cwd: 1n,
+  }, {
+    env: sandbox.env,
+    pid: 41,
+    processTable: '41 60\n60 100\n100 1\n',
+    spawn: () => assert.fail('no killer may start'),
+    write: (line) => notices.push(line),
+  });
+
+  assert.equal(armed, null);
+  const { deferredAt, ...stored } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(typeof deferredAt, 'string');
+  assert.deepEqual(stored, record);
+  assert.match(JSON.parse(notices[0]).systemMessage, /arming the record failed/);
 });
 
 test('Stop arms only a payload that names the Stop event', async (t) => {

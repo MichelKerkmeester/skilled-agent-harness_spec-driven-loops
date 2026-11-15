@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4337e1e5e7748cb171f2991140c9d4c1b772e8e2f2f0dd4a6c2a789fe0699d75",
+  "corpusHash": "78129cd76d213c38f8e6da130847daae9cc5470e420000c9ed6cf3375a05be09",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27697,
+  "includedPathCount": 27773,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7905,6 +7905,7 @@
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md",
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md",
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md",
+    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md",
     ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md",
     ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md",
     ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
@@ -9570,6 +9571,24 @@
     "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/decision-record.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -12153,7 +12172,40 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/tasks.md",
-    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/fanout-attribution.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/fanout-attribution.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/review-report.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-dashboard.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-strategy.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-001.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-002.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-003.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-004.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-005.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-006.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-007.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-008.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-009.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-010.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-1.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-10.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-2.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-3.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-4.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-5.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-6.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-7.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-8.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-9.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/resource-map.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/001-claude-relaunch-loop/acceptance-criteria.md",
@@ -12787,6 +12839,30 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/timeline.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -27729,7 +27805,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1c91e93ae11dfc9fc4d289d34983d4c777f15eda80d4c5b183427a3ba7276b13",
+  "manifestHash": "dc116b8e331f28e893b9c7399fab3624965270cff4b6ace8a5f421be4d013e8c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28965,6 +29041,22 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/032-traceability-reserve-iteration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/scratch",
       "reason": "excluded directory"
     },
     {
@@ -31496,7 +31588,15 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/lineages",
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/lineages",
       "reason": "excluded directory"
     },
     {
@@ -31973,6 +32073,26 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/scratch",
       "reason": "excluded directory"
     },
     {

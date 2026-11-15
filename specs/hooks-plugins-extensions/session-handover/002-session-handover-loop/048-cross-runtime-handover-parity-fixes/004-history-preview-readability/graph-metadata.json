@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "history preview readability",
+      "tool call preview json",
+      "history preview readability plan",
+      "history preview readability tasks",
+      "history preview readability acceptance criteria",
+      "004-history-preview-readability operator decisions",
+      "history preview readability implementation summary"
+    ],
+    "key_topics": [
+      "history",
+      "preview",
+      "readability",
+      "tool",
+      "call",
+      "json",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "004-history-preview-readability",
+      "operator"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-handover/history/lib/navigator.ts",
+      ".skilled/hooks/session-handover/history/tests/history-search-browse.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "navigator.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-handover/history/lib/navigator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "history-search-browse.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/session-handover/history/tests/history-search-browse.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "History Lookup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`previewFor` takes the first 160 characters of a model turn's blocks, and `contentText` serializes every non-text block whole",
+    "created_at": "2026-11-15T21:10:53Z",
+    "last_save_at": "2026-11-15T21:26:19.229Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f73c97f9ddc52ed4611ed11744e25c1cebdc9a1aa71ef7b5ffba7b0e316f39c2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ff17bf607a04afee278c98a4de859773b678c0d332041a1eb350fae6943a2f02",
+      "plan.md": "d72ff9a19076f9b78f1f819283f6843c93b54337859c5e3e5c374ac9764cfe95",
+      "tasks.md": "33961a653c791311169e583d0be00b48d147d062705958ff26ca6bfcd7bc67c8",
+      "decision-record.md": "b615917e5ec4f24af6eb8fff9f6fc8e6b6cfb37ed89b77a0583a6b273beb6488",
+      "implementation-summary.md": "c5f3638f3b9b6c75fabcf4a14d02754a50f1411dee0b053bd48a48b6ec2ab7ff"
+    },
+    "last_active_at": null
+  }
+}

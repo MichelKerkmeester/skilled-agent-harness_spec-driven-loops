@@ -99,6 +99,7 @@ contract:
       requiresFileLineEvidence: true
 
   # Verdicts collapse PASS WITH NOTES into PASS + hasAdvisories metadata.
+  # A run that stops before any iteration fails coverage and so ends FAIL; its report routes to another /deep:review, not /speckit:plan.
   verdicts:
     - id: FAIL
       label: Fail
@@ -106,11 +107,11 @@ contract:
       nextCommand: /speckit:plan
     - id: CONDITIONAL
       label: Conditional
-      condition: "activeP0 == 0 AND activeP1 > 0"
+      condition: "activeP0 == 0 AND no required quality gate fails AND (activeP1 > 0 OR open search debt > 0)"
       nextCommand: /speckit:plan
     - id: PASS
       label: Pass
-      condition: "activeP0 == 0 AND activeP1 == 0"
+      condition: "activeP0 == 0 AND activeP1 == 0 AND no open search debt"
       hasAdvisoriesMetadata: "Set hasAdvisories=true when activeP2 > 0."
       nextCommand: /create:changelog
 

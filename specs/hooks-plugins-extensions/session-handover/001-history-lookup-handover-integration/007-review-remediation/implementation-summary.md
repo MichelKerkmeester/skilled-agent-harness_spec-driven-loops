@@ -8,20 +8,18 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation"
-    last_updated_at: "2026-11-15T15:09:27Z"
+    last_updated_at: "2026-11-15T18:13:47Z"
     last_updated_by: "generate-context"
-    recent_action: "Merged phase 007 to main at a03f07436cf after suites passed post-merge"
-    next_safe_action: "Await peer confirmation before pushing main to origin"
+    recent_action: "Deep review done: CONDITIONAL, 0 P1, 7 P2 after 10 iterations"
+    next_safe_action: "Plan the seven P2 advisories in review/review-report.md"
     packet_purpose: "Purpose: A claimed note prints a lookup command only when that command can answer from the sender's own transcript in the receiver's checkout, and every doc the review named matches the code."
     blockers: []
     key_files:
-      - ".skilled/hooks/session-handover/lib/relaunch-core.cjs"
-      - ".skilled/hooks/session-handover/bin/session-handover.cjs"
-      - ".skilled/hooks/session-handover/bin/history-lookup.mjs"
-      - ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/cli.ts"
-      - ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs"
+      - "review/review-report.md"
+      - "review/deep-review-findings-registry.json"
+      - "review/resource-map.md"
     session_dedup:
-      fingerprint: "sha256:d1eaa09ffe6f695a0e66b0ae1fda34c4699db1dcd447ed66b7e407de3ef2ae18"
+      fingerprint: "sha256:c8856119a3247b81c9ef3269d1a64f5bc6d955b818f7c0244f58fe8fdb43fa59"
       session_id: "scaffold-007-review-remediation"
       parent_session_id: null
     session_ref:

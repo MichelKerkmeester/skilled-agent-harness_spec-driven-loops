@@ -8,6 +8,7 @@ import { join } from 'node:path';
 import { afterAll, afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import {
+  HISTORY_LOCATOR_KINDS,
   HISTORY_LOCATOR_VERSION,
   HistoryLocatorSchema,
   clearCompactPrime,
@@ -20,8 +21,10 @@ import {
 } from '../../../../skills/system-spec-kit/runtime/hooks/claude/hook-state.js';
 import {
   HISTORY_LOOKUP_MAX_QUOTED_SESSION_ID,
+  buildHistoryLookupSection,
   fitRecoverySections,
   fitsHistoryLookupOffer,
+  isHistoryLookupRuntime,
   placeLookup,
 } from '../lib/lookup-offer.js';
 import { persistHistoryLocator } from '../lib/locator-digest.js';
@@ -174,6 +177,20 @@ describe('history locator session id shape', () => {
   it('accepts the prefixed UUID shape that DSH issues', () => {
     const dshId = 'session-41989989-4ae8-42c5-9e7b-1ac1cd04587b';
     expect(HistoryLocatorSchema.safeParse(validLocator({ sessionId: dshId })).success).toBe(true);
+  });
+});
+
+describe('history lookup offer runtime label', () => {
+  // The label is printed unquoted, so the offer checks its shape. Every runtime the schema
+  // names must pass that check, or its senders would silently lose the offer.
+  it('offers every schema runtime and withholds a label that would be shell syntax', () => {
+    const target = { sessionId: 's1', handle: `hl1_${'0'.repeat(32)}`, locatorKind: 'transcript_path', workspace: WORKSPACE };
+    for (const runtime of Object.keys(HISTORY_LOCATOR_KINDS)) {
+      expect(isHistoryLookupRuntime(runtime), runtime).toBe(true);
+      expect(buildHistoryLookupSection({ ...target, runtime }, true), runtime).not.toBeNull();
+    }
+    expect(buildHistoryLookupSection({ ...target, runtime: 'codex;touch /tmp/x' }, true)).toBeNull();
+    expect(buildHistoryLookupSection({ ...target, runtime: '$(id)' }, true)).toBeNull();
   });
 });
 

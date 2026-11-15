@@ -1967,6 +1967,61 @@ test('a user message before the arm does not disarm', async (t) => {
   assert.equal(core.readRelaunchFile(loopId, process.env).status, 'pending');
 });
 
+test('session.idle marks the pending record deferred when arming throws', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const loopId = 'opencode-arm-throws-0001';
+  const sessionID = 'ses-arm-throws-0001';
+  process.env.SKILLED_LOOP_ID = loopId;
+  core.preparePending({
+    loopId,
+    handoffPath: '/workspace/opencode/handoff.md',
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: '/workspace/opencode',
+    env: process.env,
+  });
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  t.mock.method(core, 'arm', () => {
+    throw new Error('arm failed on purpose');
+  });
+
+  await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+
+  const record = core.readRelaunchFile(loopId, process.env);
+  assert.equal(record.status, 'pending');
+  assert.equal(typeof record.deferredAt, 'string');
+  const log = fs.readFileSync(path.join(root, 'skilled-relaunch', 'relaunch.log'), 'utf8');
+  assert.match(log, /session-idle-arm-error stage=arm/);
+});
+
+test('a new user message withdraws a pending record a failed arm deferred', async (t) => {
+  setupEnv(t);
+  stubSpawn(t);
+  const loopId = 'opencode-loop-deferred-0001';
+  const sessionID = 'ses-deferred-0001';
+  process.env.SKILLED_LOOP_ID = loopId;
+  core.preparePending({
+    loopId,
+    handoffPath: '/workspace/opencode/handoff.md',
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: '/workspace/opencode',
+    env: process.env,
+  });
+  core.markDeferred({ loopId, env: process.env });
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-after-failed-arm', role: 'user' } },
+  } });
+
+  const record = core.readRelaunchFile(loopId, process.env);
+  assert.equal(record.status, 'disarmed');
+  assert.equal(record.disarmReason, 'user-message');
+});
+
 // The hand-over a new turn calls off is the same withdrawal Claude and the cancel command
 // make, so its follow-ups must match theirs: a history line, a grant of one more nudge, and
 // a held nudge that does not come back on the very next turn.

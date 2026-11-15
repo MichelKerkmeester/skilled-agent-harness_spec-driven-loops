@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1c91e93ae11dfc9fc4d289d34983d4c777f15eda80d4c5b183427a3ba7276b13",
+  "manifestHash": "dc116b8e331f28e893b9c7399fab3624965270cff4b6ace8a5f421be4d013e8c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1114,6 +1114,9 @@
     "004 graphify task list": [
       "004-graphify task list"
     ],
+    "004 history preview readability operator decisions": [
+      "004-history-preview-readability operator decisions"
+    ],
     "004 implementation summary": [
       "004 implementation summary"
     ],
@@ -1804,6 +1807,9 @@
     "006 test cycle speed operator decisions": [
       "006-test-cycle-speed operator decisions"
     ],
+    "007 agent alignment follow ups operator decisions": [
+      "007-agent-alignment-follow-ups operator decisions"
+    ],
     "007 agents implementation summary": [
       "007-agents implementation summary"
     ],
@@ -2317,6 +2323,9 @@
     ],
     "009 deep review audit": [
       "009 deep review audit"
+    ],
+    "009 deep review p2 remediation operator decisions": [
+      "009-deep-review-p2-remediation operator decisions"
     ],
     "009 deep review remediation": [
       "009 deep-review remediation"
@@ -6647,6 +6656,9 @@
     "031 findings fixes": [
       "031 findings fixes"
     ],
+    "031 search debt verdict operator decisions": [
+      "031-search-debt-verdict operator decisions"
+    ],
     "032 035 deferred items": [
       "032 035 deferred items"
     ],
@@ -7102,6 +7114,9 @@
     ],
     "047 v8 dominates relaxation": [
       "047 V8 dominates relaxation"
+    ],
+    "048 cross runtime handover parity fixes operator decisions": [
+      "048-cross-runtime-handover-parity-fixes operator decisions"
     ],
     "048 remaining p1 p2 remediation": [
       "048 remaining P1 P2 remediation"
@@ -12059,6 +12074,9 @@
     ],
     "api call trace": [
       "api call trace"
+    ],
+    "api keys in transcripts": [
+      "api keys in transcripts"
     ],
     "api ready prompt structure": [
       "api-ready prompt structure"
@@ -27531,6 +27549,9 @@
     "codex persona tool mapping tasks": [
       "codex persona tool mapping tasks"
     ],
+    "codex pi opencode deferred record": [
+      "codex pi opencode deferred record"
+    ],
     "codex pi sync agents": [
       "codex pi sync agents"
     ],
@@ -32767,6 +32788,9 @@
     ],
     "cross runtime handover parity acceptance criteria": [
       "cross runtime handover parity acceptance criteria"
+    ],
+    "cross runtime handover parity fixes": [
+      "cross runtime handover parity fixes"
     ],
     "cross runtime handover parity implementation summary": [
       "cross runtime handover parity implementation summary"
@@ -38469,6 +38493,18 @@
     ],
     "deep review p2 plan check build summary": [
       "deep review p2 plan check build summary"
+    ],
+    "deep review p2 remediation": [
+      "deep review p2 remediation"
+    ],
+    "deep review p2 remediation implementation summary": [
+      "deep review p2 remediation implementation summary"
+    ],
+    "deep review p2 remediation plan": [
+      "deep review p2 remediation plan"
+    ],
+    "deep review p2 remediation tasks": [
+      "deep review p2 remediation tasks"
     ],
     "deep review packet 013": [
       "deep-review packet 013"
@@ -45461,6 +45497,9 @@
     "duplicate hash collapse": [
       "duplicate hash collapse"
     ],
+    "duplicate nudge race": [
+      "duplicate nudge race"
+    ],
     "duplicate packet number 001": [
       "duplicate packet number 001"
     ],
@@ -49325,6 +49364,21 @@
     ],
     "fail restore vs sentinel": [
       "fail restore vs sentinel"
+    ],
+    "failed arm deferred mark": [
+      "failed arm deferred mark"
+    ],
+    "failed arm deferred mark acceptance criteria": [
+      "failed arm deferred mark acceptance criteria"
+    ],
+    "failed arm deferred mark implementation summary": [
+      "failed arm deferred mark implementation summary"
+    ],
+    "failed arm deferred mark plan": [
+      "failed arm deferred mark plan"
+    ],
+    "failed arm deferred mark tasks": [
+      "failed arm deferred mark tasks"
     ],
     "failed embedding cleanup": [
       "failed embedding cleanup"
@@ -58709,8 +58763,26 @@
     "history lookup handover integration": [
       "history lookup handover integration"
     ],
+    "history lookup p2 fixes": [
+      "history lookup p2 fixes"
+    ],
     "history lookup review fixes": [
       "history lookup review fixes"
+    ],
+    "history preview readability": [
+      "history preview readability"
+    ],
+    "history preview readability acceptance criteria": [
+      "history preview readability acceptance criteria"
+    ],
+    "history preview readability implementation summary": [
+      "history preview readability implementation summary"
+    ],
+    "history preview readability plan": [
+      "history preview readability plan"
+    ],
+    "history preview readability tasks": [
+      "history preview readability tasks"
     ],
     "history rewrite": [
       "history rewrite"
@@ -58729,6 +58801,18 @@
     ],
     "history rewrite tasks": [
       "history rewrite tasks"
+    ],
+    "history secret redaction": [
+      "history secret redaction"
+    ],
+    "history secret redaction implementation summary": [
+      "history secret redaction implementation summary"
+    ],
+    "history secret redaction plan": [
+      "history secret redaction plan"
+    ],
+    "history secret redaction tasks": [
+      "history secret redaction tasks"
     ],
     "history test database env": [
       "history test database env"
@@ -59371,6 +59455,9 @@
     ],
     "hop recall on codex and vibe": [
       "hop recall on codex and vibe"
+    ],
+    "hop scorecard side word": [
+      "hop scorecard side word"
     ],
     "hop withdrawn because the transcript was missing": [
       "hop withdrawn because the transcript was missing"
@@ -75606,6 +75693,21 @@
     "nudge note lines tasks": [
       "nudge note lines tasks"
     ],
+    "nudge parity and hop scoring acceptance criteria": [
+      "nudge parity and hop scoring acceptance criteria"
+    ],
+    "nudge parity and hop scoring plan": [
+      "nudge parity and hop scoring plan"
+    ],
+    "nudge parity and hop scoring tasks": [
+      "nudge parity and hop scoring tasks"
+    ],
+    "nudge parity decision record": [
+      "nudge parity decision record"
+    ],
+    "nudge parity implementation summary": [
+      "nudge parity implementation summary"
+    ],
     "numbered all caps sections": [
       "numbered all caps sections"
     ],
@@ -77201,6 +77303,9 @@
     ],
     "opencode goal wall clock cap": [
       "opencode goal wall clock cap"
+    ],
+    "opencode history locator": [
+      "opencode history locator"
     ],
     "opencode hook adapter": [
       "opencode hook adapter"
@@ -81758,6 +81863,9 @@
     "phase 10 goal ending carry": [
       "phase 10 goal ending carry"
     ],
+    "phase 10 history secret redaction": [
+      "phase 10 history secret redaction"
+    ],
     "phase 10 hub registration and routing": [
       "phase 10 hub registration and routing"
     ],
@@ -83153,6 +83261,9 @@
     "phase 30 opencode2 killer target": [
       "phase 30 opencode2 killer target"
     ],
+    "phase 30 review count source": [
+      "phase 30 review count source"
+    ],
     "phase 31 epic review fixes": [
       "phase 31 epic review fixes"
     ],
@@ -83161,6 +83272,9 @@
     ],
     "phase 31 relaunch model and effort": [
       "phase 31 relaunch model and effort"
+    ],
+    "phase 31 search debt verdict": [
+      "phase 31 search debt verdict"
     ],
     "phase 32 epic follow up review": [
       "phase 32 epic follow up review"
@@ -83171,11 +83285,17 @@
     "phase 32 plugin tests ci and stale bundles": [
       "phase 32 plugin tests ci and stale bundles"
     ],
+    "phase 32 traceability reserve iteration": [
+      "phase 32 traceability reserve iteration"
+    ],
     "phase 33 battery mcp prompt commands": [
       "phase 33 battery mcp prompt commands"
     ],
     "phase 33 follow up review fixes": [
       "phase 33 follow up review fixes"
+    ],
+    "phase 33 zero iteration report": [
+      "phase 33 zero iteration report"
     ],
     "phase 35 v2 bridge plugin effects": [
       "phase 35 v2 bridge plugin effects"
@@ -83443,6 +83563,9 @@
     ],
     "phase 47 vibe handover hardening": [
       "phase 47 vibe handover hardening"
+    ],
+    "phase 48 cross runtime handover parity fixes": [
+      "phase 48 cross runtime handover parity fixes"
     ],
     "phase 48 skilled loop shared nudge formatter": [
       "phase 48 skilled loop shared nudge formatter"
@@ -84253,6 +84376,9 @@
     ],
     "phase 9 deep loop executor kind": [
       "phase 9 deep loop executor kind"
+    ],
+    "phase 9 deep review p2 remediation": [
+      "phase 9 deep review p2 remediation"
     ],
     "phase 9 doctor ci review wiring": [
       "phase 9 doctor ci review wiring"
@@ -85565,6 +85691,9 @@
     "pi help": [
       "pi help"
     ],
+    "pi history locator": [
+      "pi history locator"
+    ],
     "pi hook adapter blocking": [
       "pi hook adapter blocking"
     ],
@@ -85717,6 +85846,21 @@
     ],
     "pi opencode gate pg tasks": [
       "Pi OpenCode Gate PG tasks"
+    ],
+    "pi opencode history lookup": [
+      "pi opencode history lookup"
+    ],
+    "pi opencode history lookup acceptance criteria": [
+      "pi opencode history lookup acceptance criteria"
+    ],
+    "pi opencode history lookup implementation summary": [
+      "pi opencode history lookup implementation summary"
+    ],
+    "pi opencode history lookup plan": [
+      "pi opencode history lookup plan"
+    ],
+    "pi opencode history lookup tasks": [
+      "pi opencode history lookup tasks"
     ],
     "pi openrouter roster": [
       "pi openrouter roster"
@@ -92086,6 +92230,9 @@
     "red then green vitest": [
       "red then green vitest"
     ],
+    "redact secrets from history lookup": [
+      "redact secrets from history lookup"
+    ],
     "reddit audit plan": [
       "reddit audit plan"
     ],
@@ -94755,6 +94902,9 @@
     ],
     "remove obsidian plugin support": [
       "remove obsidian plugin support"
+    ],
+    "remove predecessor hard block": [
+      "remove predecessor hard block"
     ],
     "remove process derived root source": [
       "remove process-derived root source"
@@ -98333,6 +98483,18 @@
     ],
     "review core reference": [
       "review-core reference"
+    ],
+    "review count source": [
+      "review count source"
+    ],
+    "review count source implementation summary": [
+      "review count source implementation summary"
+    ],
+    "review count source plan": [
+      "review count source plan"
+    ],
+    "review count source tasks": [
+      "review count source tasks"
     ],
     "review coverage ledger": [
       "review coverage ledger"
@@ -103326,6 +103488,18 @@
     "search command runs the ripgrep wrapper": [
       "search command runs the ripgrep wrapper"
     ],
+    "search debt verdict": [
+      "search debt verdict"
+    ],
+    "search debt verdict implementation summary": [
+      "search debt verdict implementation summary"
+    ],
+    "search debt verdict plan": [
+      "search debt verdict plan"
+    ],
+    "search debt verdict tasks": [
+      "search debt verdict tasks"
+    ],
     "search decision envelope": [
       "search decision envelope"
     ],
@@ -103382,6 +103556,9 @@
     ],
     "search index integrity sweep changelog": [
       "search-index-integrity-sweep changelog"
+    ],
+    "search index memory measurement": [
+      "search index memory measurement"
     ],
     "search intelligence findings behind 017": [
       "search intelligence findings behind 017"
@@ -105480,6 +105657,9 @@
     ],
     "shared neutrality": [
       "shared neutrality"
+    ],
+    "shared nudge claim": [
+      "shared nudge claim"
     ],
     "shared opt in helper migration": [
       "shared opt-in helper migration"
@@ -126151,6 +126331,9 @@
     "tool call integration matrix": [
       "tool_call integration matrix"
     ],
+    "tool call preview json": [
+      "tool call preview json"
+    ],
     "tool count 37": [
       "tool count 37"
     ],
@@ -126417,6 +126600,18 @@
     ],
     "traceability precedence fixed": [
       "traceability precedence fixed"
+    ],
+    "traceability reserve iteration": [
+      "traceability reserve iteration"
+    ],
+    "traceability reserve iteration implementation summary": [
+      "traceability reserve iteration implementation summary"
+    ],
+    "traceability reserve iteration plan": [
+      "traceability reserve iteration plan"
+    ],
+    "traceability reserve iteration tasks": [
+      "traceability reserve iteration tasks"
     ],
     "traceabilitychecks": [
       "traceabilityChecks"
@@ -133508,6 +133703,18 @@
     ],
     "zero hit fallback criteria": [
       "zero hit fallback criteria"
+    ],
+    "zero iteration report": [
+      "zero iteration report"
+    ],
+    "zero iteration report implementation summary": [
+      "zero iteration report implementation summary"
+    ],
+    "zero iteration report plan": [
+      "zero iteration report plan"
+    ],
+    "zero iteration report tasks": [
+      "zero iteration report tasks"
     ],
     "zero javascript diff report": [
       "zero javascript diff report",
