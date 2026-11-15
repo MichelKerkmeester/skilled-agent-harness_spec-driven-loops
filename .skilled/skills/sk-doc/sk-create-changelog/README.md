@@ -4,7 +4,7 @@ description: "Writes a correctly versioned, correctly placed changelog entry fro
 trigger_phrases:
   - "create changelog"
   - "release notes"
-version: 1.3.9.0
+version: 1.3.10.0
 ---
 
 # create-changelog
@@ -68,7 +68,7 @@ The four version segments answer different questions. `major` means breaking, a 
 
 ### Key Concept: Packet-Local Changelogs Are Deprecated
 
-Spec folders no longer get changelogs. A spec folder source, a phase child included, resolves to the global component its changed paths touch. `--nested` is refused. Existing files under `specs/**/changelog/` stay and still validate, and the spec-kit nested generator only renders them.
+Spec folders no longer get changelogs. A spec folder source, a phase child included, resolves to the global component its changed paths touch. `--nested` is refused. Existing files under `specs/**/changelog/` stay as history and still validate. The spec-kit nested generator that rendered them is removed.
 
 ---
 
@@ -84,7 +84,6 @@ Reach for create-changelog when a shipped change needs a global release entry, a
 |---|---|
 | `sk-git` | Owns branch, commit and PR work. create-changelog writes the entry and, with `--release`, the tag and GitHub release. |
 | `create-readme` | Owns README prose. A changelog records what changed, a README explains how to use the result. |
-| `system-spec-kit` | Owns the deprecated nested changelog generator, which only renders existing packet-local files. |
 
 ---
 

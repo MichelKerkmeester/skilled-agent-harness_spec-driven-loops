@@ -1,7 +1,7 @@
 ---
 title: "create-changelog: Manual Testing Playbook"
 description: "Operator playbook for the create-changelog workflow across global component entries, the deprecated packet-local route, version bumps, format selection and release-note preparation."
-version: 1.3.5.0
+version: 1.3.6.0
 ---
 
 # create-changelog: Manual Testing Playbook
@@ -64,7 +64,7 @@ The package is releasable when all mapped scenarios pass, no packet-local change
 
 ## 6. ORCHESTRATION AND WAVE PLANNING
 
-Run source and topology scenarios first. Run version and format scenarios after the output mode is known. Run the release boundary and release-line scenarios after those, and the search-metadata scenarios last. The nested render check covers existing files only, and they never used global four-part versioning. Record the source, output mode, target path and evidence for each wave.
+Run source and topology scenarios first. Run version and format scenarios after the output mode is known. Run the release boundary and release-line scenarios after those, and the search-metadata scenarios last. Record the source, output mode, target path and evidence for each wave.
 
 ---
 
@@ -162,19 +162,13 @@ Verify that when the latest `skilled` entry has no release tag on origin, the ru
 
 ---
 
-## 11. SEARCH METADATA (`CHG-011..CHG-012`)
+## 11. SEARCH METADATA (`CHG-011`)
 
 ### CHG-011 | Write search metadata into a global entry
 
 Verify that a global entry opens with the five-key frontmatter block, both identity phrases for its path and a topic phrase from its own words.
 
 > **Scenario:** [CHG-011](search-metadata/write-global-entry-metadata.md)
-
-### CHG-012 | Render the identity phrase into a nested entry
-
-Verify that the deprecated nested generator still names an existing packet-local entry by the phrase it derives from the output path and renders no phrase that every packet shares.
-
-> **Scenario:** [CHG-012](search-metadata/render-nested-identity-phrase.md)
 
 ---
 
@@ -185,10 +179,8 @@ Verify that the deprecated nested generator still names an existing packet-local
 | `validate_document.py` | Changelog structure and required prose sections | Direct on CHG-005 |
 | `check_changelog_shape.py` | Expanded entry ceilings, glance order, the spec line, the How It Was Checked section and sentence length | Direct on CHG-015 |
 | `check_authored_name_kebab.py` | Component and phase slug shape | Direct on CHG-001 and CHG-002 |
-| `nested-changelog.js` | Deprecated generator that renders existing packet-local files | Direct on CHG-012 |
 | Existing global changelog folders | Version sequencing and collision review | Direct on CHG-001, CHG-004 and CHG-008 |
 | `git ls-remote --exit-code --tags origin` | Release tag check for the open release | Direct on CHG-013 |
 | `validate_document.py` entry frontmatter check | Entry block, canonical keys, trigger phrases and the version phrase | Direct on CHG-011 |
-| `nested-changelog.vitest.ts` | Identity phrase for phase and root renders, and the trim rule | Direct on CHG-012 |
 
 This playbook records changelog authoring behavior and the release step's gates. Branch, commit and pull request work stays with `sk-git`.

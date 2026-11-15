@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/006-remove-nested-changelog",
+  "spec_folder": "system-speckit/spec-folder-tooling/006-remove-nested-changelog",
+  "parent_id": "system-speckit/spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remove nested changelog",
+      "remove the unused nested spec changelog generator templates",
+      "remove nested changelog plan",
+      "remove nested changelog tasks",
+      "remove nested changelog acceptance criteria",
+      "remove nested changelog implementation summary"
+    ],
+    "key_topics": [
+      "remove",
+      "nested",
+      "changelog",
+      "unused",
+      "spec",
+      "generator",
+      "templates",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/cli/spec-folder/index.ts",
+      "runtime/cli/core/spec-root-registry.ts",
+      "retrieval/fixtures/residue-allowlist.json",
+      "runtime/data/trigger-index.json",
+      "scratch/baseline.txt",
+      "scratch/after.txt",
+      ".skilled/changelog/skilled/v3+/v3.2.1.0.md",
+      "runtime/cli/observability/smart-router-measurement-results.jsonl",
+      "spec-folder/index.ts",
+      "core/spec-root-registry.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/index.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/spec-root-registry.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/README.md",
+      ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "runtime/cli/spec-folder/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-registry.ts",
+        "kind": "code",
+        "path": "runtime/cli/core/spec-root-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "residue-allowlist.json",
+        "kind": "config",
+        "path": "retrieval/fixtures/residue-allowlist.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v3.2.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v3+/v3.2.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart-router-measurement-results.jsonl",
+        "kind": "file",
+        "path": "runtime/cli/observability/smart-router-measurement-results.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An earlier packet stopped spec folders from getting changelogs",
+    "created_at": "2026-11-15T08:51:59Z",
+    "last_save_at": "2026-11-15T10:06:01.414Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4b0da1b57f13d043f955db248884b7ca7eafc2ffd63366cf129424304b94c654",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "22f6e7273234fdc8dd40646e5d0168770fa10482c7abea400dd0e9dc0b7f087f",
+      "plan.md": "7e1c3c1e7488e8755f70f27a5dd8f8e10c25ec8f9b45a649449cdfbf6c50d8a4",
+      "tasks.md": "ae799c69a42bfeade083bf9c08f92a6a0cd059387e8effc04885e98898df945d",
+      "implementation-summary.md": "1d0ad372412e44ae51625ea5d4c46f97241f6669de3deb386e0fe4846d7767ab"
+    },
+    "last_active_at": null
+  }
+}

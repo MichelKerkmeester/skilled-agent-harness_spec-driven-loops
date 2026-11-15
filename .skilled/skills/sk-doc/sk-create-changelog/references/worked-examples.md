@@ -9,7 +9,7 @@ trigger_phrases:
   - "annotated changelog sample"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Changelog Worked Examples
@@ -119,7 +119,7 @@ The spec, plan and task templates consolidated into one shared core with level-g
 
 Packet-local changelogs are deprecated, so there is no new entry to model here. Record a spec folder's work in a global entry for the component it touched, shaped like section 2 or section 3.
 
-Existing files such as `changelog-<packet>-root.md` stay and still validate. The spec-kit nested generator remains only to render them.
+Existing files such as `changelog-<packet>-root.md` stay as history and still validate. The spec-kit nested generator that rendered them is removed.
 
 ---
 

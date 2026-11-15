@@ -1,5 +1,5 @@
 {
-  "manifestHash": "146a22b265ca732d2417d0a81b8e2ad2d151fed74b1858c55b9db524cac43060",
+  "manifestHash": "a96008b4a22fa135315d62ac6028916491e3f9c21c2093d6547bc3971273d592",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17576,9 +17576,6 @@
     "changelog entry frontmatter check": [
       "changelog entry frontmatter check"
     ],
-    "changelog evidence stack": [
-      "changelog evidence stack"
-    ],
     "changelog findability": [
       "changelog findability",
       "changelog-findability"
@@ -17625,14 +17622,8 @@
     "changelog gap 026": [
       "changelog gap 026"
     ],
-    "changelog generator modes": [
-      "changelog generator modes"
-    ],
     "changelog hub component resolution": [
       "changelog hub component resolution"
-    ],
-    "changelog identity phrase": [
-      "{{CHANGELOG_IDENTITY_PHRASE}}"
     ],
     "changelog identity phrase decision": [
       "changelog identity phrase decision"
@@ -17897,6 +17888,9 @@
     ],
     "changelog version keys tasks": [
       "changelog version keys tasks"
+    ],
+    "changelog voice rewrite phase parent spec": [
+      "changelog voice rewrite phase parent spec"
     ],
     "changelog word budgets": [
       "changelog word budgets"
@@ -19164,6 +19158,9 @@
     ],
     "cherry pick commit id remint": [
       "cherry-pick commit-id remint"
+    ],
+    "chg 012 removed": [
+      "chg-012 removed"
     ],
     "child changelog creation": [
       "child changelog creation"
@@ -22562,6 +22559,21 @@
     ],
     "cli external orchestration changelog rewrite tasks": [
       "cli-external-orchestration changelog rewrite tasks"
+    ],
+    "cli external orchestration changelogs": [
+      "cli external orchestration changelogs"
+    ],
+    "cli external orchestration changelogs acceptance criteria": [
+      "cli external orchestration changelogs acceptance criteria"
+    ],
+    "cli external orchestration changelogs implementation summary": [
+      "cli external orchestration changelogs implementation summary"
+    ],
+    "cli external orchestration changelogs plan": [
+      "cli external orchestration changelogs plan"
+    ],
+    "cli external orchestration changelogs tasks": [
+      "cli external orchestration changelogs tasks"
     ],
     "cli external orchestration compiled routing": [
       "cli-external-orchestration compiled routing"
@@ -69177,6 +69189,21 @@
     "mcp tooling changelog rewrite tasks": [
       "mcp-tooling changelog rewrite tasks"
     ],
+    "mcp tooling changelogs": [
+      "mcp tooling changelogs"
+    ],
+    "mcp tooling changelogs acceptance criteria": [
+      "mcp tooling changelogs acceptance criteria"
+    ],
+    "mcp tooling changelogs implementation summary": [
+      "mcp tooling changelogs implementation summary"
+    ],
+    "mcp tooling changelogs plan": [
+      "mcp tooling changelogs plan"
+    ],
+    "mcp tooling changelogs tasks": [
+      "mcp tooling changelogs tasks"
+    ],
     "mcp tooling compiled routing": [
       "mcp-tooling compiled routing"
     ],
@@ -74592,8 +74619,8 @@
     "nested changelog generate description adopters": [
       "nested-changelog generate-description adopters"
     ],
-    "nested changelog generator": [
-      "nested changelog generator"
+    "nested changelog generator removed": [
+      "nested changelog generator removed"
     ],
     "nested changelog helper replace": [
       "nested-changelog helper replace"
@@ -74601,20 +74628,11 @@
     "nested changelog identity phrase": [
       "nested changelog identity phrase"
     ],
-    "nested changelog js": [
-      "nested-changelog.js"
-    ],
     "nested changelog output override": [
       "nested-changelog output override"
     ],
-    "nested changelog templates": [
-      "nested changelog templates"
-    ],
     "nested changelog title escaping": [
       "nested changelog title escaping"
-    ],
-    "nested changelog workflow": [
-      "nested changelog workflow"
     ],
     "nested child goal": [
       "nested child goal"
@@ -79699,14 +79717,8 @@
     "packet changelog frontmatter": [
       "packet changelog frontmatter"
     ],
-    "packet changelog identity phrase": [
-      "packet changelog identity phrase"
-    ],
     "packet changelog request routing": [
       "packet changelog request routing"
-    ],
-    "packet changelog templates": [
-      "packet changelog templates"
     ],
     "packet closeout edits": [
       "packet closeout edits"
@@ -79803,9 +79815,6 @@
     ],
     "packet local artifact layout": [
       "packet-local artifact layout"
-    ],
-    "packet local changelog": [
-      "packet-local changelog"
     ],
     "packet local changelog placement": [
       "packet local changelog placement"
@@ -81782,6 +81791,9 @@
     "phase 1 unknowns and baseline": [
       "phase 1 unknowns and baseline"
     ],
+    "phase 1 voice rule tooling and pilot": [
+      "phase 1 voice rule tooling and pilot"
+    ],
     "phase 1 workflow reentry seed": [
       "phase 1 workflow reentry seed"
     ],
@@ -81865,6 +81877,9 @@
     ],
     "phase 10 sk create manual testing playbook": [
       "phase 10 sk create manual testing playbook"
+    ],
+    "phase 10 sk design changelogs": [
+      "phase 10 sk design changelogs"
     ],
     "phase 10 sk doc tests path filter": [
       "phase 10 sk doc tests path filter"
@@ -81952,6 +81967,9 @@
     ],
     "phase 11 sk create repo rule": [
       "phase 11 sk create repo rule"
+    ],
+    "phase 11 sk git changelogs": [
+      "phase 11 sk git changelogs"
     ],
     "phase 11 sparse checkout rollout": [
       "phase 11 sparse checkout rollout"
@@ -82045,6 +82063,9 @@
     ],
     "phase 12 sk vision v2 prompt hook": [
       "phase 12 sk vision v2 prompt hook"
+    ],
+    "phase 12 small skill changelogs": [
+      "phase 12 small skill changelogs"
     ],
     "phase 12 system skill advisor": [
       "phase 12 system skill advisor"
@@ -82649,6 +82670,9 @@
     "phase 2 skill and routing rename": [
       "phase 2 skill and routing rename"
     ],
+    "phase 2 skilled release line": [
+      "phase 2 skilled release line"
+    ],
     "phase 2 state dir read check": [
       "phase 2 state dir read check"
     ],
@@ -83066,6 +83090,9 @@
     "phase 3 sk design diagram": [
       "phase 3 sk design diagram"
     ],
+    "phase 3 sk doc changelogs": [
+      "phase 3 sk doc changelogs"
+    ],
     "phase 3 sk git playbook changelog": [
       "phase 3 sk git playbook changelog"
     ],
@@ -83345,6 +83372,9 @@
     "phase 4 symlink relink after unlink": [
       "phase 4 symlink relink after unlink"
     ],
+    "phase 4 system spec kit changelogs": [
+      "phase 4 system spec kit changelogs"
+    ],
     "phase 4 template section fill guidance": [
       "phase 4 template section fill guidance"
     ],
@@ -83546,6 +83576,9 @@
     "phase 5 silent input sweep": [
       "phase 5 silent input sweep"
     ],
+    "phase 5 sk code changelogs": [
+      "phase 5 sk code changelogs"
+    ],
     "phase 5 sk code review": [
       "phase 5 sk code review"
     ],
@@ -83635,6 +83668,9 @@
     ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
+    ],
+    "phase 6 cli external orchestration changelogs": [
+      "phase 6 cli external orchestration changelogs"
     ],
     "phase 6 cli hermes": [
       "phase 6 cli hermes"
@@ -83987,6 +84023,9 @@
     "phase 7 spec kit hook deadlines": [
       "phase 7 spec kit hook deadlines"
     ],
+    "phase 7 system deep loop changelogs": [
+      "phase 7 system deep loop changelogs"
+    ],
     "phase 7 test and ci bloat research": [
       "phase 7 test and ci bloat research"
     ],
@@ -84073,6 +84112,9 @@
     ],
     "phase 8 mcp obsidian": [
       "phase 8 mcp obsidian"
+    ],
+    "phase 8 mcp tooling changelogs": [
+      "phase 8 mcp tooling changelogs"
     ],
     "phase 8 orchestrate routing and retry": [
       "phase 8 orchestrate routing and retry"
@@ -84265,6 +84307,9 @@
     ],
     "phase 9 sk git": [
       "phase 9 sk git"
+    ],
+    "phase 9 system skill advisor changelogs": [
+      "phase 9 system skill advisor changelogs"
     ],
     "phase a readme authoring": [
       "Phase A readme authoring"
@@ -94207,6 +94252,12 @@
     "release writing defaults tasks": [
       "release writing defaults tasks"
     ],
+    "released changelog retrofit": [
+      "released changelog retrofit"
+    ],
+    "released changelog voice carve out": [
+      "released changelog voice carve-out"
+    ],
     "relevance aware detector redesign": [
       "relevance-aware detector redesign"
     ],
@@ -94702,6 +94753,21 @@
     "remove model benchmark mode": [
       "remove model-benchmark mode"
     ],
+    "remove nested changelog": [
+      "remove nested changelog"
+    ],
+    "remove nested changelog acceptance criteria": [
+      "remove nested changelog acceptance criteria"
+    ],
+    "remove nested changelog implementation summary": [
+      "remove nested changelog implementation summary"
+    ],
+    "remove nested changelog plan": [
+      "remove nested changelog plan"
+    ],
+    "remove nested changelog tasks": [
+      "remove nested changelog tasks"
+    ],
     "remove obsidian plugin support": [
       "remove obsidian plugin support"
     ],
@@ -94785,6 +94851,9 @@
     ],
     "remove the operator s personal account name": [
       "remove the operator s personal account name"
+    ],
+    "remove the unused nested spec changelog generator templates": [
+      "remove the unused nested spec changelog generator templates"
     ],
     "remove track narrowing scorer": [
       "remove track narrowing scorer"
@@ -97929,6 +97998,9 @@
     "retrofit relocation plan": [
       "retrofit relocation plan"
     ],
+    "retrofit rewords released changelog": [
+      "retrofit rewords released changelog"
+    ],
     "retry manager drain": [
       "retry manager drain"
     ],
@@ -99085,6 +99157,9 @@
     "rewrite batch verification": [
       "rewrite batch verification"
     ],
+    "rewrite changelogs to human voice": [
+      "rewrite changelogs to human voice"
+    ],
     "rewrite main skilled v4 0 0 0": [
       "rewrite main skilled v4 0 0 0"
     ],
@@ -99460,9 +99535,6 @@
     ],
     "root name hardcode plan": [
       "root name hardcode plan"
-    ],
-    "root phase changelog": [
-      "root phase changelog"
     ],
     "root playbook backtick check": [
       "root playbook backtick check"
@@ -105776,6 +105848,9 @@
     "shorten the wait after a push": [
       "shorten the wait after a push"
     ],
+    "shorter changelog sentences": [
+      "shorter changelog sentences"
+    ],
     "shorter repo rules": [
       "shorter repo rules"
     ],
@@ -106799,6 +106874,21 @@
     ],
     "sk code changelog rewrite tasks": [
       "sk-code changelog rewrite tasks"
+    ],
+    "sk code changelogs": [
+      "sk code changelogs"
+    ],
+    "sk code changelogs acceptance criteria": [
+      "sk code changelogs acceptance criteria"
+    ],
+    "sk code changelogs implementation summary": [
+      "sk code changelogs implementation summary"
+    ],
+    "sk code changelogs plan": [
+      "sk code changelogs plan"
+    ],
+    "sk code changelogs tasks": [
+      "sk code changelogs tasks"
     ],
     "sk code ci": [
       "sk code ci"
@@ -109170,6 +109260,9 @@
     "sk create changelog 1 5 2 0": [
       "sk-create-changelog 1.5.2.0"
     ],
+    "sk create changelog 1 5 3 0": [
+      "sk-create-changelog 1.5.3.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -109283,6 +109376,9 @@
     ],
     "sk create changelog v1 5 2 0": [
       "sk-create-changelog v1.5.2.0"
+    ],
+    "sk create changelog v1 5 3 0": [
+      "sk-create-changelog v1.5.3.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -110624,6 +110720,9 @@
     "sk create with human voice 1 2 6 0": [
       "sk-create-with-human-voice 1.2.6.0"
     ],
+    "sk create with human voice 1 2 7 0": [
+      "sk-create-with-human-voice 1.2.7.0"
+    ],
     "sk create with human voice implementation summary": [
       "sk create with human voice implementation summary"
     ],
@@ -110662,6 +110761,9 @@
     ],
     "sk create with human voice v1 2 6 0": [
       "sk-create-with-human-voice v1.2.6.0"
+    ],
+    "sk create with human voice v1 2 7 0": [
+      "sk-create-with-human-voice v1.2.7.0"
     ],
     "sk deep research cli codex dispatch": [
       "sk-deep-research cli-codex dispatch"
@@ -110770,6 +110872,21 @@
     ],
     "sk design changelog symlinks": [
       "sk-design changelog symlinks"
+    ],
+    "sk design changelogs": [
+      "sk design changelogs"
+    ],
+    "sk design changelogs acceptance criteria": [
+      "sk design changelogs acceptance criteria"
+    ],
+    "sk design changelogs implementation summary": [
+      "sk design changelogs implementation summary"
+    ],
+    "sk design changelogs plan": [
+      "sk design changelogs plan"
+    ],
+    "sk design changelogs tasks": [
+      "sk design changelogs tasks"
     ],
     "sk design chart": [
       "sk design chart"
@@ -111597,6 +111714,9 @@
     "sk doc 2 9 15 0": [
       "sk-doc 2.9.15.0"
     ],
+    "sk doc 2 9 16 0": [
+      "sk-doc 2.9.16.0"
+    ],
     "sk doc 2 9 2 0": [
       "sk-doc 2.9.2.0"
     ],
@@ -111674,6 +111794,21 @@
     ],
     "sk doc changelog rewrite tasks": [
       "sk-doc changelog rewrite tasks"
+    ],
+    "sk doc changelogs": [
+      "sk doc changelogs"
+    ],
+    "sk doc changelogs acceptance criteria": [
+      "sk doc changelogs acceptance criteria"
+    ],
+    "sk doc changelogs implementation summary": [
+      "sk doc changelogs implementation summary"
+    ],
+    "sk doc changelogs plan": [
+      "sk doc changelogs plan"
+    ],
+    "sk doc changelogs tasks": [
+      "sk doc changelogs tasks"
     ],
     "sk doc ci outside failures": [
       "sk doc ci outside failures"
@@ -112110,6 +112245,9 @@
     "sk doc v2 9 15 0": [
       "sk-doc v2.9.15.0"
     ],
+    "sk doc v2 9 16 0": [
+      "sk-doc v2.9.16.0"
+    ],
     "sk doc v2 9 2 0": [
       "sk-doc v2.9.2.0"
     ],
@@ -112359,6 +112497,21 @@
     ],
     "sk git changelog rewrite tasks": [
       "sk-git changelog rewrite tasks"
+    ],
+    "sk git changelogs": [
+      "sk git changelogs"
+    ],
+    "sk git changelogs acceptance criteria": [
+      "sk git changelogs acceptance criteria"
+    ],
+    "sk git changelogs implementation summary": [
+      "sk git changelogs implementation summary"
+    ],
+    "sk git changelogs plan": [
+      "sk git changelogs plan"
+    ],
+    "sk git changelogs tasks": [
+      "sk git changelogs tasks"
     ],
     "sk git commit contract update": [
       "sk-git commit contract update"
@@ -115278,14 +115431,23 @@
     "skilled release line": [
       "skilled release line"
     ],
+    "skilled release line acceptance criteria": [
+      "skilled release line acceptance criteria"
+    ],
     "skilled release line changelog": [
       "skilled release line changelog"
+    ],
+    "skilled release line implementation summary": [
+      "skilled release line implementation summary"
     ],
     "skilled release line plan": [
       "skilled release line plan"
     ],
     "skilled release line shipped": [
       "skilled release line shipped"
+    ],
+    "skilled release line tasks": [
+      "skilled release line tasks"
     ],
     "skilled release notes": [
       "skilled release notes"
@@ -115742,6 +115904,21 @@
     ],
     "small model prompt craft profiles retired": [
       "small-model prompt-craft profiles retired"
+    ],
+    "small skill changelogs": [
+      "small skill changelogs"
+    ],
+    "small skill changelogs acceptance criteria": [
+      "small skill changelogs acceptance criteria"
+    ],
+    "small skill changelogs implementation summary": [
+      "small skill changelogs implementation summary"
+    ],
+    "small skill changelogs plan": [
+      "small skill changelogs plan"
+    ],
+    "small skill changelogs tasks": [
+      "small skill changelogs tasks"
     ],
     "smart embedder precedence chain": [
       "smart embedder precedence chain"
@@ -121776,6 +121953,21 @@
     "system deep loop changelog rewrite tasks": [
       "system-deep-loop changelog rewrite tasks"
     ],
+    "system deep loop changelogs": [
+      "system deep loop changelogs"
+    ],
+    "system deep loop changelogs acceptance criteria": [
+      "system deep loop changelogs acceptance criteria"
+    ],
+    "system deep loop changelogs implementation summary": [
+      "system deep loop changelogs implementation summary"
+    ],
+    "system deep loop changelogs plan": [
+      "system deep loop changelogs plan"
+    ],
+    "system deep loop changelogs tasks": [
+      "system deep loop changelogs tasks"
+    ],
     "system deep loop compiled routing": [
       "system-deep-loop compiled routing"
     ],
@@ -122228,6 +122420,21 @@
     ],
     "system skill advisor changelog rewrite tasks": [
       "system-skill-advisor changelog rewrite tasks"
+    ],
+    "system skill advisor changelogs": [
+      "system skill advisor changelogs"
+    ],
+    "system skill advisor changelogs acceptance criteria": [
+      "system skill advisor changelogs acceptance criteria"
+    ],
+    "system skill advisor changelogs implementation summary": [
+      "system skill advisor changelogs implementation summary"
+    ],
+    "system skill advisor changelogs plan": [
+      "system skill advisor changelogs plan"
+    ],
+    "system skill advisor changelogs tasks": [
+      "system skill advisor changelogs tasks"
     ],
     "system skill advisor cli trusted": [
       "SYSTEM_SKILL_ADVISOR_CLI_TRUSTED"
@@ -123018,6 +123225,9 @@
     "system spec kit 2 13 2 0": [
       "system-spec-kit 2.13.2.0"
     ],
+    "system spec kit 2 13 3 0": [
+      "system-spec-kit 2.13.3.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -123146,6 +123356,21 @@
     ],
     "system spec kit changelog rewrite tasks": [
       "system-spec-kit changelog rewrite tasks"
+    ],
+    "system spec kit changelogs": [
+      "system spec kit changelogs"
+    ],
+    "system spec kit changelogs acceptance criteria": [
+      "system spec kit changelogs acceptance criteria"
+    ],
+    "system spec kit changelogs implementation summary": [
+      "system spec kit changelogs implementation summary"
+    ],
+    "system spec kit changelogs plan": [
+      "system spec kit changelogs plan"
+    ],
+    "system spec kit changelogs tasks": [
+      "system spec kit changelogs tasks"
     ],
     "system spec kit cli matrix corpus": [
       "system-spec-kit cli matrix corpus"
@@ -123653,6 +123878,9 @@
     ],
     "system spec kit v2 13 2 0": [
       "system-spec-kit v2.13.2.0"
+    ],
+    "system spec kit v2 13 3 0": [
+      "system-spec-kit v2.13.3.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -131026,6 +131254,21 @@
     ],
     "voice routing section moved": [
       "voice routing section moved"
+    ],
+    "voice rule tooling and pilot": [
+      "voice rule tooling and pilot"
+    ],
+    "voice rule tooling and pilot acceptance criteria": [
+      "voice rule tooling and pilot acceptance criteria"
+    ],
+    "voice rule tooling and pilot implementation summary": [
+      "voice rule tooling and pilot implementation summary"
+    ],
+    "voice rule tooling and pilot plan": [
+      "voice rule tooling and pilot plan"
+    ],
+    "voice rule tooling and pilot tasks": [
+      "voice rule tooling and pilot tasks"
     ],
     "voice scanner": [
       "voice scanner"

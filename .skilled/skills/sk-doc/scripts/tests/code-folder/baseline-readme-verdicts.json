@@ -1,5 +1,5 @@
 {
-  "count": 1144,
+  "count": 1143,
   "mode": "readme",
   "results": [
     {
@@ -10375,16 +10375,6 @@
       "blocking_errors": [],
       "document_type": "unknown",
       "file": ".skilled/skills/system-spec-kit/templates/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "unknown",
-      "file": ".skilled/skills/system-spec-kit/templates/changelog/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

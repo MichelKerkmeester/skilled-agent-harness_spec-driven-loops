@@ -9,7 +9,7 @@ trigger_phrases:
   - "github release changelog option"
 importance_tier: normal
 contextType: implementation
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # create-changelog References. Overflow Map
@@ -46,9 +46,6 @@ Open a reference here when the workflow is clear but you need a filled-in exampl
 - `.skilled/commands/create/assets/create-changelog-auto.yaml` - autonomous workflow source
 - `.skilled/commands/create/assets/create-changelog-confirm.yaml` - checkpointed workflow source
 - `.skilled/commands/create/assets/create-changelog-presentation.txt` - setup fields, release prompt and result display
-
-### Packet-local (nested) output, deprecated
-- `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` - the deprecated generator, which only renders existing packet-local files. No workflow writes a new one
 
 ### Real entries to model
 - `.skilled/changelog/skilled/v4.0.1.0.md` - the model for length, selection and a release with many changes
