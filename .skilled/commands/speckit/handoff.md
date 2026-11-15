@@ -32,7 +32,7 @@ Both `prepare` and `claim` require `--session <id>`.
 Only Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`.
 On Claude, `CLAUDE_PID` supplies the runtime process id for the shell-child check and the killer's target, both only while it descends from the loop.
 Other runtimes must pass the session id.
-If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` once and reuse that id for the session.
+If a runtime has no session-id variable, such as Devin, Cursor or Vibe, run `uuidgen` once and reuse that id for the session.
 `spec_folder` records the Gate 3 answer: the repo-relative packet path, `none` after D) Skip or empty when Gate 3 was never answered.
 
 **Outputs:**
@@ -78,7 +78,7 @@ If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` 
 
 ### Step 1: Resolve Inputs
 
-- Session id: both commands require `--session <id>`. Claude Code can omit the flag because the CLI reads `$CLAUDE_CODE_SESSION_ID`. Other runtimes pass the id directly. If a runtime exposes no session-id variable, such as Devin or Cursor, run `uuidgen` once and reuse that value for the rest of the session. The id fills the note's `session_id`, the filename suffix and `--session`.
+- Session id: both commands require `--session <id>`. Claude Code can omit the flag because the CLI reads `$CLAUDE_CODE_SESSION_ID`. Other runtimes pass the id directly. If a runtime exposes no session-id variable, such as Devin, Cursor or Vibe, run `uuidgen` once and reuse that value for the rest of the session. Never search the disk or a runtime's log folder for an id. The id fills the note's `session_id`, the filename suffix and `--session`.
 - cwd: the absolute working directory.
 - Spec binding: use the repo-relative packet path when one is bound. Use `none` when Gate 3 was answered D) Skip. Leave the field empty when Gate 3 was never answered.
 
@@ -89,7 +89,7 @@ The automatic nudge asks for the note first and the save second.
 Both orders meet that need.
 Claude runs `/speckit:save` in its explicit full-auto mode, because the default response is a save plan that writes nothing.
 Continue only when the result reports the writer ran.
-Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto --session-id <id> --runtime <slug> <spec-folder>`, where `<id>` is the Step 1 session id and `<slug>` is one of the writer's own runtime values: claude, codex, opencode, pi, devin, dsh or cursor.
+Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto --session-id <id> --runtime <slug> <spec-folder>`, where `<id>` is the Step 1 session id and `<slug>` is one of the writer's own runtime values: claude, codex, opencode, pi, devin, dsh, cursor or vibe.
 Record the repo-relative packet path in `spec_folder`.
 When Gate 3 was answered D) Skip, set `spec_folder` to `none` and skip the save.
 When Gate 3 was never answered, leave `spec_folder` empty.
@@ -138,7 +138,7 @@ Frontmatter is flat `key: value` lines only: no nesting, no lists.
 Leave it out of the note, because a value you write is replaced or removed.
 `prepare` and `keep` also own the optional `goal_ended` field, which they write when a Claude goal was met, failed or cleared and remove any value you write by hand.
 `SESSION_RELAUNCH_GOAL=0` turns both fields off, `goal_packet` and `goal_ended` alike.
-On Cursor and Devin the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal.
+On Cursor, Devin and Vibe the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal.
 Every section must be non-empty.
 Goal states what the work is for.
 When `spec_folder` names a packet, open Goal with the packet's purpose line, `Purpose: <sentence>`, where `<sentence>` is the first sentence of that packet's purpose in its `spec.md`, copied word for word and cut to 300 characters.
@@ -175,7 +175,7 @@ Skip this command when no deep-loop lock is held.
 node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff <path> --session <session id> --runtime <runtime>
 ```
 
-Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE_CODE_SESSION_ID`. The `session-relaunch.cjs --runtime` value must be one of `claude`, `pi`, `opencode`, `codex`, `cursor` or `devin`, the `RUNTIMES` list in `relaunch-core.cjs`. A DSH session saves through the continuity writer, which takes `dsh` as a runtime value, but `prepare` refuses `--runtime dsh`, so a DSH session gets no relaunch record. Outside the loop, it overrides the environment or Claude default. Inside the loop, it must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. The handoff nudge passes the session id and runtime.
+Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE_CODE_SESSION_ID`. The `session-relaunch.cjs --runtime` value must be one of `claude`, `pi`, `opencode`, `codex`, `cursor`, `devin` or `vibe`, the `RUNTIMES` list in `relaunch-core.cjs`. A DSH session saves through the continuity writer, which takes `dsh` as a runtime value, but `prepare` refuses `--runtime dsh`, so a DSH session gets no relaunch record. Outside the loop, it overrides the environment or Claude default. Inside the loop, it must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. The handoff nudge passes the session id and runtime.
 
 ### Step 5: Report By Exit Code
 
@@ -191,7 +191,7 @@ Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE
   Either the session is not running under `skilled-loop`, or the loop has reached its hop limit, in which case the CLI first prints `hop limit reached; continue in this session` and auto-compaction stays the fallback.
   Both cases print the claim command for the selected runtime.
   Show it verbatim and report the `manual` row.
-  For automatic hops in later sessions, start the runtime through `skilled-loop`, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain `claude`, `pi`, `opencode`, `codex`, `devin` or `cursor-agent` launch starts under it.
+  For automatic hops in later sessions, start the runtime through `skilled-loop`, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent` or `vibe` launch starts under it.
 
 | Runtime | Printed command |
 |---|---|
@@ -201,6 +201,7 @@ Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE
 | Codex | `skilled-loop codex "[session-relaunch] claim and continue handoff <path>"` |
 | Cursor | `skilled-loop cursor "[session-relaunch] claim and continue handoff <path>"` |
 | Devin | `skilled-loop devin -- "[session-relaunch] claim and continue handoff <path>"` |
+| Vibe | `skilled-loop vibe "[session-relaunch] claim and continue handoff <path>"` |
 
 The CLI and wrapper place each path `!` in single quotes outside the seed's double quotes. For example, they print `skilled-loop claude "[session-relaunch] claim and continue handoff /tmp/han"'!'"doff.md"`. Interactive Bash keeps that path intact when history expansion is on.
 

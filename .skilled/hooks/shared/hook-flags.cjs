@@ -110,7 +110,7 @@ const DEFAULT_OFF = {
 // enable switch, SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED, which answers before
 // the global one whenever it holds a value. A caller names its runtime explicitly;
 // the resolver never guesses it from the environment.
-const RUNTIMES = Object.freeze(["claude", "codex", "pi", "opencode", "cursor", "devin"]);
+const RUNTIMES = Object.freeze(["claude", "codex", "pi", "opencode", "cursor", "devin", "vibe"]);
 
 // concern -> the runtimes where a default-off concern is on when neither its runtime
 // switch nor its global switch holds a value. Claude Code's hand-over needs no extra
