@@ -124,7 +124,7 @@
     ],
     "causal_summary": "A model can search and load its own earlier turns through the history lookup, but the lookup is offered only after a compaction",
     "created_at": "2026-11-15T06:24:14Z",
-    "last_save_at": "2026-11-15T14:50:39.589Z",
+    "last_save_at": "2026-11-15T15:09:28.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -136,6 +136,6 @@
       "spec.md": "cd17cb229d3a3da6e4c9ead775f91fa4dd279e2292e654cbc9a746fbe31a867c"
     },
     "last_active_child_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation",
-    "last_active_at": "2026-11-15T14:50:39.589Z"
+    "last_active_at": "2026-11-15T15:09:28.005Z"
   }
 }
