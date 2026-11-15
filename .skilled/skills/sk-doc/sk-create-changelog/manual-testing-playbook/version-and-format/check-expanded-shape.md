@@ -1,7 +1,7 @@
 ---
 title: "CHG-015 -- Check the expanded entry shape"
-description: "This scenario validates the changelog shape check for CHG-015. An expanded entry fails when it runs past a ceiling, lists its glance bullets out of section order or labels its spec line with a level."
-version: 1.0.1.0
+description: "This scenario validates the changelog shape check for CHG-015. An expanded entry fails when a sentence runs past its ceiling, it lists its glance bullets out of section order or labels its spec line with a level."
+version: 1.0.2.0
 ---
 
 # CHG-015 -- Check the expanded entry shape
@@ -14,7 +14,7 @@ This scenario validates the shape check for `CHG-015`. It focuses on the ceiling
 
 ### Why This Matters
 
-A release with many changes is the one most likely to grow past what a reader will finish. The shape check stops a draft that does, before it becomes release notes. It also confirms the glance bullets name their sections in the order the body uses.
+A release with many changes is the one most likely to read badly. The shape check stops a draft with long sentences, before it becomes release notes. It also confirms the glance bullets name their sections in the order the body uses.
 
 ---
 
