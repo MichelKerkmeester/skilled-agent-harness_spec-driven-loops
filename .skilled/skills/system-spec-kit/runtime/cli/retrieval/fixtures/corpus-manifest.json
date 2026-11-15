@@ -1,5 +1,5 @@
 {
-  "corpusHash": "716da0c07f3fcd533bf073ccc4732af57e7ec204e68f969e4e76b50b5d825c5d",
+  "corpusHash": "2fd9f5a102349dbb7754c57cd1508acd49334bc8802400454c02d905e179f277",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27532,
+  "includedPathCount": 27536,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11741,6 +11741,10 @@
     "specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/tasks.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/implementation-summary.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/plan.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/research/research.md",
@@ -27564,7 +27568,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4a0c7f70e1a5a46003b064c280f332dcb69d579715e056f3bcf86fdb45497e05",
+  "manifestHash": "6211335183eacafa57942729b1679553ce40697fdf08171ec2b0b2dc350c1447",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30867,6 +30871,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/hook-platform/z_archive",
       "reason": "excluded directory"
     },
@@ -30996,6 +31004,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/pi-cache-optimizer/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/pi-extensions/z_archive",
       "reason": "excluded directory"
     },
     {

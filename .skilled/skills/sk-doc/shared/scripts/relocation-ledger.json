@@ -242,6 +242,21 @@
           "to": "hooks-plugins-extensions/session-handover/002-session-handover-loop"
         }
       ]
+    },
+    {
+      "applied_at": "2026-11-15T14:37:06.433Z",
+      "base_commit": "5bb5eef0232fc9310aecf349684a33e058cfa737",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports",
+          "to": "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports"
+        }
+      ]
     }
   ]
 }

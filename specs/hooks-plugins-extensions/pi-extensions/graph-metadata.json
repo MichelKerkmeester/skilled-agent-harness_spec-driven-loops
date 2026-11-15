@@ -3,9 +3,7 @@
   "packet_id": "hooks-plugins-extensions/pi-extensions",
   "spec_folder": "hooks-plugins-extensions/pi-extensions",
   "parent_id": "hooks-plugins-extensions",
-  "children_ids": [
-    "hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports"
-  ],
+  "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],

@@ -26,6 +26,7 @@
     "hooks-plugins-extensions/overlay-guard",
     "hooks-plugins-extensions/permission-policy",
     "hooks-plugins-extensions/pi-cache-optimizer",
+    "hooks-plugins-extensions/pi-extensions",
     "hooks-plugins-extensions/pi-fast-mode",
     "hooks-plugins-extensions/post-edit-quality",
     "hooks-plugins-extensions/retrieval-integrations",

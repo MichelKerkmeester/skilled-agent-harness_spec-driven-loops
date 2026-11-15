@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4a0c7f70e1a5a46003b064c280f332dcb69d579715e056f3bcf86fdb45497e05",
+  "manifestHash": "6211335183eacafa57942729b1679553ce40697fdf08171ec2b0b2dc350c1447",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -50697,6 +50697,18 @@
     "file protection map": [
       "file-protection map"
     ],
+    "file relative adapter imports": [
+      "file relative adapter imports"
+    ],
+    "file relative adapter imports implementation summary": [
+      "file relative adapter imports implementation summary"
+    ],
+    "file relative adapter imports plan": [
+      "file relative adapter imports plan"
+    ],
+    "file relative adapter imports tasks": [
+      "file relative adapter imports tasks"
+    ],
     "file structure principles": [
       "file structure principles"
     ],
@@ -84670,6 +84682,9 @@
     "pi 017 allowlist scenario": [
       "pi-017 allowlist scenario"
     ],
+    "pi adapters import relative to their own folder": [
+      "pi adapters import relative to their own folder"
+    ],
     "pi advisor bridge timeline": [
       "pi advisor bridge timeline"
     ],
@@ -85444,6 +85459,9 @@
     ],
     "pi nudge steer turn end": [
       "pi nudge steer turn end"
+    ],
+    "pi one line entry files": [
+      "pi one-line entry files"
     ],
     "pi only hook": [
       "pi-only hook"

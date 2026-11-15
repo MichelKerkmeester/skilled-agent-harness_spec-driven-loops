@@ -85,7 +85,7 @@
 - Kill switch: SYSTEM_ENV_SECRET_GUARD_DISABLED (.skilled/hooks/hook-flags.env.example:33, which notes it is environment-only and not read from that file)
 - Packets:
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard | Feature Specification: env secret guard for every runtime
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - MENTIONS | TOP-LEVEL | specs/system-speckit/repo-operations/005-main-ci-red-checks | Feature Specification: Repair the five checks that fail on main
 - Evidence: .skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:770 (`evaluateToolCall`); .skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:998 (`fingerprint`, keyed by `ENV_SECRET_GUARD_PEPPER` at line 25); .skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs:277 (`reviewToolResult`)
 - Unsure: The runtime registration files the README names (`.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json`, `.devin/hooks.v1.json`) were not opened, so the per-runtime deny shapes are the README's account. I also did not open `.skilled/hooks/env-secret-guard/dsh/env-secret-guard.mjs` or the Pi `env-secret-guard.ts` adapter.

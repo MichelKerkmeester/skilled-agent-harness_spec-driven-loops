@@ -1,8 +1,8 @@
 {
   "source": {
     "command": "git log -M --diff-filter=R --name-status --format= HEAD",
-    "commit": "db9c33b1f64e9e3188c71bc0bbb0a187fb3f7f08",
-    "renameRecords": 587257,
+    "commit": "5bb5eef0232fc9310aecf349684a33e058cfa737",
+    "renameRecords": 590745,
     "minRecords": 50,
     "minAgreement": 0.95,
     "derivedBy": "deriveRedirects in cite-drift-scan.mjs"
@@ -4171,6 +4171,12 @@
       "to": "specs/hooks-plugins-extensions/pi-cache-optimizer/008-compat-opt-in-and-image-declaration/",
       "records": 100,
       "agreement": 0.99
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/",
+      "to": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/",
+      "records": 3488,
+      "agreement": 1
     },
     {
       "from": "specs/hooks-plugins-extensions/session-relaunch/",

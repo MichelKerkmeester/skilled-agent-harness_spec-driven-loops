@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports"
+    packet_pointer: "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports"
     last_updated_at: "2026-11-12T09:07:41Z"
     last_updated_by: "template-author"
     recent_action: "Recorded the entry-file design"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 012-file-relative-adapter-imports |
+| **Spec Folder** | 006-file-relative-adapter-imports |
 | **Completed** | 2026-11-12 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

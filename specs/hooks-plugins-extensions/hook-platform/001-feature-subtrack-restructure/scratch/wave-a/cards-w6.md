@@ -136,7 +136,7 @@
 - Packets:
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage | Feature Specification: Phase 28: plugin-kill-switch-coverage
   - MENTIONS | TOP-LEVEL | specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches | Feature Specification: Doc validation off switches
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/034-default-off-opt-in | Feature Specification: Session relaunch hooks off by default, opt in with SYSTEM_SESSION_RELAUNCH_ENABLED

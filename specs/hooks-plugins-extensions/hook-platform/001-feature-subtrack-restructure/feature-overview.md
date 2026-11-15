@@ -218,7 +218,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Kill switch: SYSTEM_ENV_SECRET_GUARD_DISABLED (.skilled/hooks/hook-flags.env.example:33, which notes it is environment-only and not read from that file)
 - Packets:
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard | Feature Specification: env secret guard for every runtime
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - MENTIONS | TOP-LEVEL | specs/system-speckit/repo-operations/005-main-ci-red-checks | Feature Specification: Repair the five checks that fail on main
 - Evidence: .skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:770 (`evaluateToolCall`); .skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs:998 (`fingerprint`, keyed by `ENV_SECRET_GUARD_PEPPER` at line 25); .skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs:277 (`reviewToolResult`)
 - Unsure: The runtime registration files the README names (`.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json`, `.devin/hooks.v1.json`) were not opened, so the per-runtime deny shapes are the README's account. I also did not open `.skilled/hooks/env-secret-guard/dsh/env-secret-guard.mjs` or the Pi `env-secret-guard.ts` adapter.
@@ -436,7 +436,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - OWNS | CHILD | specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks | Feature Specification: Phase 8: overlay-first-write-checks
   - OWNS | CHILD | specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up | Feature Specification: Phase 9: overlay-write-checks-follow-up
   - MENTIONS | TOP-LEVEL | specs/system-skilled-doctor/001-skill-and-overlay-build | Feature Specification: Build system-skilled-doctor and the doctor overlay command
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
 - Evidence: .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:108 (`evaluateWrite` allows at once when the tree carries no overlay setting or folder, and otherwise denies only on an engine refusal), .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:80 (`guardOne` spawns `<engine> --guard <path> --root <treeRoot>` with a timeout), .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:61 (`couldHaveOverlays` is the two file-existence checks behind the no-manifest fast exit)
 - Unsure: The OWNS classification for `004-guard-hook` rests on its problem statement (Barter's private guard hooks with a hard-coded `barter-overlays` folder); I did not read that packet's tasks to confirm it shipped this exact `lib/overlay-guard.cjs`. The README also says the guard's registrations come from `hook-registry.json`, which I did not open.
@@ -549,7 +549,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity | Feature Specification: Phase 45: relaunch-takeover-lock-identity
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter | Feature Specification: Phase 48: skilled-loop-shared-nudge-formatter
   - OWNS | CHILD | specs/system-speckit/repo-operations/002-ci-workflow-efficiency/013-killer-test-spawn-race | Feature Specification: Phase 13: killer-test-spawn-race
-  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
+  - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement | Feature Specification: Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
   - MENTIONS | CHILD | specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity | Feature Specification: Phase 8: hop-purpose-rule-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards | Feature Specification: Phase 8: vibe-repo-guards
@@ -725,7 +725,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Packets:
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index | Feature Specification: Hook Feature Flags + Full Hub Index
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage | Feature Specification: Phase 28: plugin-kill-switch-coverage
   - MENTIONS | TOP-LEVEL | specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches | Feature Specification: Doc validation off switches
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/034-default-off-opt-in | Feature Specification: Session relaunch hooks off by default, opt in with SYSTEM_SESSION_RELAUNCH_ENABLED

@@ -11950,7 +11950,7 @@
       "lastUpdated": "2026-11-13T10:04:41.349Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports",
+      "specFolder": "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports",
       "description": "Pi found this repository's hook adapters through 22 relative symlinks in `.pi/extensions/`",
       "keywords": [
         "found",

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6817,
-    "ok": 19088,
+    "ok": 19092,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27532,
+  "documentsScanned": 27536,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4a0c7f70e1a5a46003b064c280f332dcb69d579715e056f3bcf86fdb45497e05",
+  "manifestHash": "6211335183eacafa57942729b1679553ce40697fdf08171ec2b0b2dc350c1447",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43993,
+      "ok": 43999,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -55639,6 +55639,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/hook-platform/z_archive",
       "reason": "excluded directory"
     },
@@ -55768,6 +55772,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/pi-cache-optimizer/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/pi-extensions/z_archive",
       "reason": "excluded directory"
     },
     {

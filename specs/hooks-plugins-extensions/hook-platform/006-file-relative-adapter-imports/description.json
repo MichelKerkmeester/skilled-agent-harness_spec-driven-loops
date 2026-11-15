@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports",
+  "specFolder": "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports",
   "description": "Pi found this repository's hook adapters through 22 relative symlinks in `.pi/extensions/`",
   "keywords": [
     "found",
@@ -11,12 +11,12 @@
     "symlinks",
     "extensions"
   ],
-  "lastUpdated": "2026-11-13T10:04:41.352Z",
-  "specId": "012",
+  "lastUpdated": "2026-11-15T14:37:01.579Z",
+  "specId": "006",
   "folderSlug": "file-relative-adapter-imports",
   "parentChain": [
     "hooks-plugins-extensions",
-    "pi-extensions"
+    "hook-platform"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []
