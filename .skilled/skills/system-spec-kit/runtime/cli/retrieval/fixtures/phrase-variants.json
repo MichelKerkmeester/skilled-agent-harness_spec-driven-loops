@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4e1da3dea78b10932d955d08e8e65c69f41b1f43ba51aaefeddc7716df9c27b6",
+  "manifestHash": "707663b227a1f3c08353e50c66b6ae36728d4e725f0c669a07eff65e683a3a0d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12062,6 +12062,9 @@
     ],
     "api call trace": [
       "api call trace"
+    ],
+    "api keys in transcripts": [
+      "api keys in transcripts"
     ],
     "api ready prompt structure": [
       "api-ready prompt structure"
@@ -58748,6 +58751,18 @@
     "history rewrite tasks": [
       "history rewrite tasks"
     ],
+    "history secret redaction": [
+      "history secret redaction"
+    ],
+    "history secret redaction implementation summary": [
+      "history secret redaction implementation summary"
+    ],
+    "history secret redaction plan": [
+      "history secret redaction plan"
+    ],
+    "history secret redaction tasks": [
+      "history secret redaction tasks"
+    ],
     "history test database env": [
       "history test database env"
     ],
@@ -81776,6 +81791,9 @@
     "phase 10 goal ending carry": [
       "phase 10 goal ending carry"
     ],
+    "phase 10 history secret redaction": [
+      "phase 10 history secret redaction"
+    ],
     "phase 10 hub registration and routing": [
       "phase 10 hub registration and routing"
     ],
@@ -92106,6 +92124,9 @@
     ],
     "red then green vitest": [
       "red then green vitest"
+    ],
+    "redact secrets from history lookup": [
+      "redact secrets from history lookup"
     ],
     "reddit audit plan": [
       "reddit audit plan"
