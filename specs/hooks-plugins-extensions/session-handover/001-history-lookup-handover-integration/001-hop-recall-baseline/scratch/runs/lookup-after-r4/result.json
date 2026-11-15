@@ -1,0 +1,19 @@
+{
+  "arm": "lookup",
+  "label": "after-r4",
+  "runtime": "claude-code",
+  "asked": 1,
+  "trustDialogs": 0,
+  "cliReappeared": 0,
+  "sender": "c60b3b96-c901-4930-a264-387ca9c70d37",
+  "receiver": "74c4fb75-3920-42c3-856a-64c1c32c3235",
+  "note": "20261115T102919Z-c60b3b96-c901-4930-a264-387ca9c70d37.md",
+  "note_status": "done",
+  "note_leaked": 0,
+  "sender_saw_code": 1,
+  "answer": "missing",
+  "lookup_attempted": 1,
+  "native_recall": 0,
+  "transcript_read": 0,
+  "reply": "UNKNOWN\n\nThe handoff note didn't repeat the codes. I tried the sender's history lookup (search and browse) to recover K073. Both calls failed with `store_unreadable`. Re-running `show-codes.sh` wouldn"
+}

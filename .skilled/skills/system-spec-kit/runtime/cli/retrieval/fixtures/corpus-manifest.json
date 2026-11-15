@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a53fb57afef5634adc7c546516c102d63a19e6bee3de96b9e022269f9116c79b",
+  "corpusHash": "cb5110a2c5a4e16118f629022e565785d7ddb718e9092f28a0e4e8ce921e6541",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27602,
+  "includedPathCount": 27631,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -93,7 +93,6 @@
     ".skilled/changelog/skilled/v4.0.1.0.md",
     ".skilled/changelog/skilled/v4.0.2.0.md",
     ".skilled/changelog/skilled/v4.0.2.1.md",
-    ".skilled/changelog/skilled/v4.0.2.2.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/classifier-injection-screen/claude/README.md",
@@ -1098,6 +1097,7 @@
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/assets/prompt-templates.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.1.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/cli-invocation/keyless-boot-per-route.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/cli-invocation/repo-root-dispatch-refusal.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/fanout/deep-research-lineage.md",
@@ -7606,6 +7606,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.9.0.md",
     ".skilled/skills/system-deep-loop/changelog/v2.0.0.0.md",
     ".skilled/skills/system-deep-loop/changelog/v2.0.1.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.0.2.0.md",
     ".skilled/skills/system-deep-loop/deep-research/README.md",
     ".skilled/skills/system-deep-loop/deep-research/ROUTER.md",
     ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
@@ -8842,8 +8843,6 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/ask-surface-guard-live-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/ask-surface-guard-no-false-positive-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-baseline-conversation.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
@@ -9510,6 +9509,20 @@
     "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -10690,6 +10703,15 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/022-dsh-verify-iteration-executor/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/022-dsh-verify-iteration-executor/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/022-dsh-verify-iteration-executor/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/024-dsh-docs-alignment/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/024-dsh-docs-alignment/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/024-dsh-docs-alignment/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/024-dsh-docs-alignment/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -10723,6 +10745,7 @@
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/decision-record.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/implementation-summary.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/plan.md",
@@ -12018,37 +12041,37 @@
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/decision-record.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/goal.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/spec.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline/goal.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline/implementation-summary.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline/plan.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline/spec.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline/tasks.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/002-history-core-relocation/goal.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/002-history-core-relocation/implementation-summary.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/002-history-core-relocation/plan.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/002-history-core-relocation/spec.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/002-history-core-relocation/tasks.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/003-mint-locator-at-prepare/goal.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/003-mint-locator-at-prepare/implementation-summary.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/003-mint-locator-at-prepare/plan.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/003-mint-locator-at-prepare/spec.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/003-mint-locator-at-prepare/tasks.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/004-offer-lookup-at-claim/goal.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/004-offer-lookup-at-claim/implementation-summary.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/004-offer-lookup-at-claim/plan.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/004-offer-lookup-at-claim/spec.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/004-offer-lookup-at-claim/tasks.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/005-deprecate-compaction-offer/goal.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/005-deprecate-compaction-offer/implementation-summary.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/005-deprecate-compaction-offer/plan.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/005-deprecate-compaction-offer/spec.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/005-deprecate-compaction-offer/tasks.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/goal.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/implementation-summary.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/plan.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/spec.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/tasks.md",
-    "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/003-mint-locator-at-prepare/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/003-mint-locator-at-prepare/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/003-mint-locator-at-prepare/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/003-mint-locator-at-prepare/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/003-mint-locator-at-prepare/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/001-claude-relaunch-loop/acceptance-criteria.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/001-claude-relaunch-loop/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/001-claude-relaunch-loop/implementation-summary.md",
@@ -18111,6 +18134,7 @@
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/005-caller-sweep-and-verification/tasks.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/goal.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/spec.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/decision-record.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/goal.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/plan.md",
@@ -18885,6 +18909,11 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/029-direct-call-kill-switch/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/029-direct-call-kill-switch/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/029-direct-call-kill-switch/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/fanout-attribution-pass-1.md",
@@ -27634,7 +27663,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "28f9616023e70a65423f380e58ab69ad2c2fecb8b806728f4f9c6b4b671b9c69",
+  "manifestHash": "97d01b1685caa48a7cc9855cc81f6168e1b5c3de3ba512a82aa2c85881ed8f4d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28738,6 +28767,18 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/scratch",
       "reason": "excluded directory"
     },
     {
@@ -30077,6 +30118,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/024-dsh-docs-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/001-runtime-code-and-tests/scratch",
       "reason": "excluded directory"
     },
@@ -31249,39 +31298,39 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/003-mint-locator-at-prepare/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-lifecycle/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/002-history-core-relocation/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/003-mint-locator-at-prepare/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/004-offer-lookup-at-claim/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/005-deprecate-compaction-offer/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/006-docs-and-live-hop-proof/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/session-relaunch/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -35714,6 +35763,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/029-direct-call-kill-switch/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity/scratch",
       "reason": "excluded directory"
     },
     {

@@ -40,6 +40,7 @@ _memory:
 | Q004 | Lanes A and C, which timed out on the opencode-go preset, rerun on the codex preset, and D4 records the amendment. | Both lanes timed out at 1800 s on DeepSeek V4.1 Flash max while still reading files, and an earlier run had the same timeout recovered on Codex. | None | goal.md D4, scratch/alignment-run.txt, T065 |
 | Q005 | Fix the four failed Vibe routing probes in this phase by adding compound phrases to both routing stages and reminting the compiled routes. | Not stated. | None | T083, hub graph-metadata.json, hub-router.json, hub ROUTER.md |
 | Q006 | The self-invocation guard for cli-mistral-vibe is the SKILL.md section that names the refusal, as in the sibling packets. | Not stated. | None | T086, cli-mistral-vibe/SKILL.md |
+| Q007 | Push the aligned Vibe plugins README to origin/main. | Not stated. | None | origin/main 1ce8ff5b78d, T088 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -164,6 +165,25 @@ Build the guard now
 Answer:
 ```text
 The doc in the skill naming it, is the guard
+```
+
+### Q007
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_014BTdMXEa5YVS2xZvadF34r:0 -->
+
+Question:
+```text
+The Vibe plugins README now follows the sk-create-readme code-folder shape. The reference checker passes 103 of 103. Push it now?
+```
+
+Options:
+```text
+Push it now (Recommended)
+Don't push yet
+```
+
+Answer:
+```text
+Push it now (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

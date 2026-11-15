@@ -17,6 +17,7 @@
       "dsh mistral route plan",
       "dsh mistral route tasks",
       "dsh mistral route goal",
+      "003-dsh-mistral-route operator decisions",
       "dsh mistral route implementation summary"
     ],
     "key_topics": [
@@ -29,28 +30,28 @@
       "plan",
       "tasks",
       "goal",
-      "implementation",
-      "summary",
-      "model"
+      "003-dsh-mistral-route",
+      "operator",
+      "decisions"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
-      ".dsh/patches/route-mistral-deepseek.patch.yml",
       ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
       ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json",
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md",
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
       ".skilled/skills/cli-external-orchestration/SKILL.md",
-      ".skilled/agents/prompt-improver.md",
       ".skilled/skills/sk-prompt/SKILL.md",
-      "scratch/draft-route-mistral-deepseek.patch.yml"
+      "scratch/draft-route-mistral-deepseek.patch.yml",
+      "scratch/keyed-runs/raw-stream-reasoning-high.txt"
     ],
     "entities": [
       {
@@ -78,15 +79,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "route-mistral-deepseek.patch.yml",
-        "kind": "config",
-        "path": ".dsh/patches/route-mistral-deepseek.patch.yml",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -120,25 +121,19 @@
         "source": "derived"
       },
       {
-        "name": "prompt-improver.md",
-        "kind": "doc",
-        "path": ".skilled/agents/prompt-improver.md",
-        "source": "derived"
-      },
-      {
         "name": "draft-route-mistral-deepseek.patch.yml",
         "kind": "config",
         "path": "scratch/draft-route-mistral-deepseek.patch.yml",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "raw-stream-reasoning-high.txt",
+        "kind": "file",
+        "path": "scratch/keyed-runs/raw-stream-reasoning-high.txt",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -163,6 +158,12 @@
       },
       {
         "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,23 +201,25 @@
     ],
     "causal_summary": "dsh has no model option, so its route patch is the model choice, and the `closed-roster` rule allows only the LLM Gateway and OpenCode Go patches",
     "created_at": "2026-11-14T12:01:23Z",
-    "last_save_at": "2026-11-15T06:19:00.178Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T09:58:58.885Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e07c977ea1bc492054139f637da3f6b39b718adfc69949fa52a75343c8462d15",
+    "source_fingerprint": "sha256:691ed30749a45436710e04c05c07492f05c6956d5db7a4ffc73b56fb1e331510",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "62667c2fefa56bbfe618478dd8ef1b80528273795e8111a9e807cd958dcbfcf5",
+      "spec.md": "eec2190f1ee6aba0ca9669c1ec2bd27f22efbb35e61cfc63fdbc5a404f234ff5",
       "plan.md": "8919e826cc33f22a3f325493ecb6be5f1c98f9975a97f166b97a27c7d0d0b2f7",
-      "tasks.md": "3226bc865c0fb998aaf396ee68cf218a8606d742aa515a2c2a320a3264b2cbb5",
-      "implementation-summary.md": "c8cf546b23fdf7b4afa101d865693db2e8e05167c122e6e7eeab7b7e4a7356f9"
+      "tasks.md": "1437368208e2e33d9f87b0145ee78b9ca9cde1ceeaa063961cdcdf9483405554",
+      "decision-record.md": "581acfee63c62c2cf8833d9becc98bb3091ac27e8ae32d0fef8704a3bd577776",
+      "implementation-summary.md": "b755504428f15b0a160288b59cfe195a77dfed0036fd6abd406c7c28d3b0d1e1"
     },
     "last_active_at": null
   }

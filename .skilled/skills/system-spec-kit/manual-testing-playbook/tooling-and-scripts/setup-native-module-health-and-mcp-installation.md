@@ -1,7 +1,7 @@
 ---
 title: "243 -- Setup, Native Module Health, and MCP Installation"
 description: "This scenario validates setup and native module health for `243`. It focuses on confirming prerequisite checks, native-module diagnostics, and marker recording."
-version: 1.6.1.0
+version: 1.6.2.0
 id: tooling-and-scripts-setup-native-module-health-and-mcp-installation
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -19,8 +19,8 @@ This scenario validates setup and native module health for `243`. It focuses on 
 
 
 - Objective: Confirm prerequisite validation, native-module diagnostics, and marker recording.
-- Real user request: `` Please validate Setup and Native Module Health against bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate and tell me whether the expected signals are present: prerequisite JSON emitted; native-module probe prints PASS/FAIL lines; record-node-version writes `.node-version-marker`. ``
-- Prompt: `Validate Setup and Native Module Health against bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate and report cited pass/fail evidence.`
+- Real user request: `` Please validate Setup and Native Module Health against SPECIFY_FEATURE=<track>/<packet> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate and tell me whether the expected signals are present: prerequisite JSON emitted; native-module probe prints PASS/FAIL lines; record-node-version writes `.node-version-marker`. ``
+- Prompt: `Validate Setup and Native Module Health against SPECIFY_FEATURE=<track>/<packet> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: prerequisite JSON emitted; native-module probe prints PASS/FAIL lines; record-node-version writes `.node-version-marker`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -33,12 +33,12 @@ This scenario validates setup and native module health for `243`. It focuses on 
 ### Prompt
 
 ```
-Validate Setup and Native Module Health against bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate and report cited pass/fail evidence.
+Validate Setup and Native Module Health against SPECIFY_FEATURE=<track>/<packet> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. `bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate`
+1. `SPECIFY_FEATURE=<track>/<packet> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate`
 2. `cd .skilled/skills/system-spec-kit && bash runtime/cli/setup/check-native-modules.sh`
 3. `cd .skilled/skills/system-spec-kit && node runtime/cli/setup/record-node-version.js`
 
@@ -48,12 +48,14 @@ Prerequisite JSON is emitted; native probe prints diagnostic lines and a recover
 
 ### Evidence
 
-Command 1: `bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate`
+Command 1: `SPECIFY_FEATURE=<track>/<packet> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate`
 
 ```text
-ERROR: Not on a feature branch. Current: system-speckit/memory-search-and-knowledge/003-memory-search-intelligence
-Feature branches should be: 001-feature-name (or main/master/trunk for trunk-based operators)
+exit=0
+Run on 2026-11-15 with SPECIFY_FEATURE=agents/007-agent-alignment-follow-ups: one JSON validation record per folder (the parent and each child), each "passed":true
 ```
+
+Without `SPECIFY_FEATURE` the script reads the packet from the branch name and exits 1 with "Not on a feature branch" on any worktree or release branch.
 
 Command 2: `cd .skilled/skills/system-spec-kit && bash runtime/cli/setup/check-native-modules.sh`
 
@@ -95,7 +97,7 @@ Inspect `runtime/cli/setup/check-prerequisites.sh`, `check-native-modules.sh`, `
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/setup-native-module-health-and-mcp-installation.md](../../feature-catalog/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md)
 
-Provenance: manual only - bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate
+Provenance: manual only - SPECIFY_FEATURE=<track>/<packet> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate
 
 ---
 

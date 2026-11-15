@@ -41,6 +41,9 @@ _memory:
 | Q005 | Support both handover names: routing words, the shorter session-handover name, a second switch spelling and a retitled parent goal. | Not stated. | None | REQ-005, REQ-006, REQ-007 |
 | Q006 | Make session-handover the main name and accept the in-session spelling for the on and off switches. | Not stated. | the in-session-handover main name chosen in the first rename pass | REQ-005, T012, hook-flags.cjs |
 | Q007 | When a main switch and its in-session spelling both hold values, the main switch decides. | A setting under the name the docs use should never be overruled by the other one. | None | REQ-005, AC-005, hook-flags.test.cjs |
+| Q008 | Fold this session's handover work into the v4.0.2.1 release notes instead of a separate v4.0.2.2 entry. | Not stated. | the separate unreleased v4.0.2.2 entry | REQ-004, AC-004, .skilled/changelog/skilled/v4.0.2.1.md |
+| Q009 | Fold phases 041, 042, 043 and 044 into v4.0.2.1 and delete v4.0.2.2. | Not stated. | None | REQ-004, .skilled/changelog/skilled/v4.0.2.1.md |
+| Q010 | Move tag v4.0.2.1 to the commit with the new entry and update the GitHub release body. | Not stated. | None | REQ-004, implementation-summary.md limitations |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -184,6 +187,64 @@ Off wins
 Answer:
 ```text
 Main name wins (Recommended)
+```
+
+### Q008
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01YaJFabTZAJiHnTcgyCa5Pp:1 -->
+
+Question:
+```text
+The v4.0.2.2 release note is on main but has no tag or GitHub release. Publish it now?
+```
+
+Options:
+```text
+Not yet (Recommended)
+Tag and publish now
+```
+
+Answer:
+```text
+make our work part of hangelog 4021
+```
+
+### Q009
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01ChXAJ52sKkvA9AmyuSCUyx:0 -->
+
+Question:
+```text
+"Our work" in v4.0.2.1: which phases go in? The entry already covers handover phases 036 to 040. This session also shipped 041 (cross-runtime parity), 042 (gap closure), 043 (Vibe switch and live hop) and 044 (the rename).
+```
+
+Options:
+```text
+041 to 044 (Recommended)
+044 only
+```
+
+Answer:
+```text
+041 to 044 (Recommended)
+```
+
+### Q010
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01ChXAJ52sKkvA9AmyuSCUyx:1 -->
+
+Question:
+```text
+v4.0.2.1 is tagged and published on GitHub. After the entry changes, what happens to the release?
+```
+
+Options:
+```text
+Republish tag and body (Recommended)
+Body only
+File only
+```
+
+Answer:
+```text
+Republish tag and body (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

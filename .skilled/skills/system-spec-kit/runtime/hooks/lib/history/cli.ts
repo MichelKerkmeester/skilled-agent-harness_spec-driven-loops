@@ -411,7 +411,7 @@ async function locateTranscript(
   if (result.source.runtime !== locator.runtime || result.source.sessionId !== locator.sessionId) {
     return { ok: false, code: 'session_mismatch' };
   }
-  // Same digest mintHistoryLocator produces; the path never leaves this call.
+  // Same digest the handover mint produces; the path never leaves this call.
   if (historyHandle(locator, transcriptPath) !== locator.handle) {
     return { ok: false, code: 'handle_mismatch' };
   }

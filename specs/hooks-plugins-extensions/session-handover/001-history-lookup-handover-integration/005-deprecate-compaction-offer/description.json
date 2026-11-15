@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer",
+  "description": "The in-session handover starts a fresh session near the context limit, so compaction rarely happens",
+  "keywords": [
+    "in-session",
+    "handover",
+    "starts",
+    "fresh",
+    "session",
+    "near",
+    "context",
+    "limit",
+    "compaction",
+    "rarely",
+    "happens"
+  ],
+  "lastUpdated": "2026-11-15T11:24:12.399Z",
+  "specId": "005",
+  "folderSlug": "deprecate-compaction-offer",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

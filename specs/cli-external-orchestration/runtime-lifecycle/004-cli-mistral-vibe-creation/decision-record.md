@@ -40,6 +40,7 @@ _memory:
 | Q004 | Push the .vibe roster doc edits to main right away instead of holding them for one final push. | Not stated. | None | Commit e122448415c, pushed to main |
 | Q005 | Push the .vibe/plugins/README.md plugin map to main right away. | Not stated. | None | Commit 544fb7345ec, pushed to main |
 | Q006 | Push the Vibe branch to origin/main as a fast-forward. Main moved before the push, so the pushed tip e263e5481e7 adds one more merge of main's own commits and a regenerated trigger index. | The branch was five commits ahead as a fast-forward with every gate green. | None | origin/main e263e5481e7 |
+| Q007 | Push the dsh Mistral route retirement to origin/main, confirming that the answer 'why use dsh, use vibe cli' meant retiring the route. | The operator confirmed the reading the question stated, so the retirement shipped as 9e5d600ab4f. | None | origin/main 9e5d600ab4f, 003 T011 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -159,6 +160,26 @@ Branch worktrees/383-mistral-vibe-runtime is ready to push. It is 5 commits ahea
 Options:
 ```text
 Push it now (Recommended)
+Don't push yet
+```
+
+Answer:
+```text
+Push it now (Recommended)
+```
+
+### Q007
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_01L2qhyd8msoTF9VeN5puyxW:0 -->
+
+Question:
+```text
+This push REMOVES the dsh Mistral route from main. I read your answer "why use dsh, use vibe cli" as "retire the route, Mistral work goes through Vibe". Push to origin/main now?
+```
+
+Options:
+```text
+Push it now (Recommended)
+Keep the route instead
 Don't push yet
 ```
 

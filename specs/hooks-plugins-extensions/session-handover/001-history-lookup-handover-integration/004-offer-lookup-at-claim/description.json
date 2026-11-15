@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim",
+  "description": "A session that claims a handoff receives the note's four sections, the complete command and the goal packet",
+  "keywords": [
+    "session",
+    "claims",
+    "handoff",
+    "receives",
+    "note",
+    "four",
+    "sections",
+    "complete",
+    "command",
+    "goal",
+    "packet"
+  ],
+  "lastUpdated": "2026-11-15T11:24:12.395Z",
+  "specId": "004",
+  "folderSlug": "offer-lookup-at-claim",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

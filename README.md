@@ -533,11 +533,13 @@ Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, a
 
 When the index has no scored candidate, Gate 1 also scores declared trigger phrases in unindexed spec docs in a git work tree and reports the scan in the answer's `staleFallback` field.
 
-**History after compaction**
+**History across a handover**
 
-After a compaction on Claude, Codex, Pi, Devin, DSH or OpenCode, the returned context can carry a `## History Lookup` section with one read-only command. The command searches, browses, loads and pages the session's own earlier turns, at most 16 KiB per reply. It returns only what the conversation showed.
+When a session claims a handoff note, the claim can carry a `## History Lookup` section after the note body. It holds one read-only command that searches, browses, loads and pages the sender's earlier turns, at most 16 KiB per reply. It returns only what the conversation showed, and it ends with `Use it for a detail this note does not spell out, before you guess.`
 
-Search finds a turn from part of what the model remembers. `MARKER` or `dv-2b7e` finds the turn that said `LIVE-MARKER-dv-2b7e`, and the preview shows the match. The handle works for 30 minutes and only for the session and checkout that minted it, including a session started in a subfolder. Cursor is not offered yet.
+`prepare` stores a locator for the sending session, and `claim` mints a fresh one for it. Only Claude Code and Codex senders get one. The section is left out when the sender has no transcript, when the note names another runtime, when the sender ran in another checkout, or when the runtime is not built, and the claim then prints what it printed before.
+
+The printed command is `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. The locator works for 30 minutes from the claim and only for the session and checkout that minted it. Search matches whole identifier parts, split on `-`, `.`, `/`, `:` and `_` and on case changes. A query matches whole word parts, so 'live' does not match 'delivery'.
 
 The command runs the compiled helper, so run `npm run build` in `.skilled/skills/system-spec-kit/runtime` first.
 
@@ -623,7 +625,7 @@ The runtime is self-contained and MCP-free. It declares its own dependency manif
 
 Every loop keeps its progress in files, not in the chat, and those files are the single source of truth. A typed, append-only event ledger records each iteration. The `deep-*-state.jsonl` you read is a projection the runtime rebuilds from that ledger.
 
-There is one way in. A leaf records its iteration through the append gateway. The gateway authorizes the write, fences it behind the ledger, returns a receipt, then refreshes the state projection. Nothing writes the state file directly, so the log never drifts from the ledger.
+There is one way in. A leaf records its iteration through the append gateway. The gateway authorizes the write, fences it behind the ledger, returns a receipt, then refreshes the state projection. On a ledger-backed log every row the loop writes goes through the append gateway, so the log never drifts from the ledger. A log with no ledger keeps direct writes. A failure row the gateway refuses is written directly, and stderr warns that the next refresh drops it.
 
 A record is durable or refused, never half-written. The gateway either commits the record and hands back a receipt, or refuses it and names the failed check so the leaf halts. There is no partial append and no silent fallback to a direct write.
 
@@ -1100,12 +1102,12 @@ In linked projects, each project keeps its answers in its own folder under `.ski
 
 #### OpenCode Plugins
 
-Twenty-one JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
+Twenty JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
 
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
 - **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit, a screen for instructions hidden in fetched web pages, a dotenv guard that refuses reading or writing `.env` files, undoes a dotenv write a shell call made anyway, reports a dotenv value in its output and offers three value-free inspection tools instead, an overlay guard that refuses a write to a file an overlay owns in a vendored tree, and a guard that sends a turn ending in a typed option menu back to ask through the question tool
-- **Sessions:** the goal plugin, session cleanup, the session handover relaunch and the history lookup offer after a compaction
+- **Sessions:** the goal plugin, session cleanup, the session handover relaunch and the history lookup at a claimed handoff note
 
 Every plugin except the git message gate has an off switch, listed in the [hooks README](.skilled/hooks/README.md). `SYSTEM_HOOKS_DISABLED=1` turns them all off at once.
 

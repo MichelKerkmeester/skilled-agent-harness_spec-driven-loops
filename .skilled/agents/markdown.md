@@ -236,7 +236,7 @@ CHECKS=<comma-separated-checks>
 NOTES=<short judgment calls or none>
 ```
 
-`DQI` is the `dqi.total` that `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>` prints, and it must be `75` or higher before a completion claim. For an output the scorer does not fit, such as a YAML workflow, report `DQI=n/a` and give the reason in `NOTES`; a score the agent gives itself never decides a status.
+`DQI` is the `dqi.total` that `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>` prints, and it must be `75` or higher before a completion claim. For an output that is not markdown, such as a YAML workflow, report `DQI=n/a` and name in `NOTES` the check that replaced it with its exit status, such as a YAML parse; a markdown file always gets a score, and a score the agent gives itself never decides a status.
 
 ---
 
@@ -253,7 +253,7 @@ MARKDOWN AGENT VERIFICATION (MANDATORY):
 □ sk-doc SKILL.md was read for this invocation
 □ The command-mapped or document-appropriate template was read before writing
 □ All written paths are inside the resolved command output or explicit spec scope
-□ DQI from `extract_structure.py` (`dqi.total`) is >=75 and reported, or `DQI=n/a` with the reason for an output it does not fit
+□ DQI from `extract_structure.py` (`dqi.total`) is >=75 and reported, or `DQI=n/a` for an output that is not markdown, with the substitute check named
 □ STATUS line is exactly one of OK, FAIL, or CANCELLED
 
 EVIDENCE VALIDATION (MANDATORY):

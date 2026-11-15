@@ -1,0 +1,14 @@
+dsh: warning: 1 entry did not activate
+llm-pi-ai (@deepseek-ai/dsh-llm-pi-ai): ValidationError: invalid config:
+  - $.providers.mistral.api expected "openai-completions" | "openai-responses" | "anthropic-messages" | "google-generative-ai" but got "mistral-conversations" (at providers.mistral.api)
+    at resolveConfig (file:///Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai/cordis/lib/index.js:248:27)
+    at file:///Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai/cordis/lib/index.js:826:27
+    at Object.apply (file:///Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai/cordis/lib/index.js:1508:20)
+    at dispatch (file:///Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai/cordis/lib/index.js:915:19)
+    at Proxy.waterfall (file:///Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai/cordis/lib/index.js:917:10)
+    at Fiber.resolveConfig (file:///Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai/cordis/lib/index.js:666:24)
+    at Fiber.execute (file:///Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai/cordis/lib/index.js:359:26)
+    at file:///Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai/cordis/lib/index.js:436:34
+    at file:///private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/425e79e1-c5de-4edb-b8bb-77ee620d2538/scratchpad/dsh-mistral-run3/.dsh-home/profiles/headless/#llm-pi-ai
+    at file:///private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/425e79e1-c5de-4edb-b8bb-77ee620d2538/scratchpad/dsh-mistral-run3/.dsh-home/profiles/headless/#include
+dsh: NO_ADAPTER: no adapter registered for provider "mistral"

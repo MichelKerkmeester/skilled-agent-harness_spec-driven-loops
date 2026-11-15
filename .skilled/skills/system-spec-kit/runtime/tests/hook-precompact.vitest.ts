@@ -11,7 +11,6 @@ import {
   buildMergedCompactResult,
   detectSpecFolder,
   isSubagentPayload,
-  mintHistoryLocator,
   persistCompactResult,
   tailFile,
   type CompactResult,
@@ -71,7 +70,7 @@ describe('precompact hook', () => {
     });
   });
 
-  describe('history locator persistence', () => {
+  describe('compact result persistence', () => {
     function compactResult(text: string): CompactResult {
       const now = new Date().toISOString();
       return {
@@ -94,40 +93,15 @@ describe('precompact hook', () => {
       };
     }
 
-    it('persists the locator beside the compact cache in the same state write', () => {
-      const root = mkdtempSync(join(tmpdir(), 'precompact-locator-'));
-      const transcriptPath = join(root, `${testSessionId}.jsonl`);
-      try {
-        writeFileSync(transcriptPath, `${JSON.stringify({ type: 'user', message: { content: 'hello' } })}\n`);
-        const timestamp = new Date().toISOString();
-        const locator = mintHistoryLocator({
-          sessionId: testSessionId,
-          transcriptPath,
-          workspace: process.cwd(),
-          runtime: 'claude',
-          mintedAt: timestamp,
-        });
-
-        expect(locator).not.toBeNull();
-        expect(persistCompactResult(testSessionId, compactResult('## Active Files\n- /test.ts'), timestamp, locator)).toBe(true);
-
-        const state = loadPersistedState(testSessionId);
-        expect(state).not.toBeNull();
-        expect(state!.pendingCompactPrime?.cachedAt).toBe(timestamp);
-        expect(state!.historyLocator?.handle).toBe(locator!.handle);
-      } finally {
-        rmSync(root, { recursive: true, force: true });
-      }
-    });
-
-    it('writes no locator when the payload has no transcript path', () => {
+    it('persists the compact cache in one state write', () => {
       const timestamp = new Date().toISOString();
-      expect(persistCompactResult(testSessionId, compactResult('summary only'), timestamp, null)).toBe(true);
+      expect(persistCompactResult(testSessionId, compactResult('summary only'), timestamp)).toBe(true);
 
       const state = loadPersistedState(testSessionId);
       expect(state).not.toBeNull();
       expect(state!.pendingCompactPrime).not.toBeNull();
-      expect(state!.historyLocator).toBeNull();
+      expect(state!.pendingCompactPrime!.payload).toBe('summary only');
+      expect(state!.pendingCompactPrime!.cachedAt).toBe(timestamp);
     });
   });
 

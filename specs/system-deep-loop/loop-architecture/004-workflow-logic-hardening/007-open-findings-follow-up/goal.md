@@ -90,6 +90,8 @@ and findings belong here.
 | Verification done: advisor 1710, runtime 2909, freshness 4/4, spec-kit CLI only typo-flags (two load timeouts pass alone); all six findings fixed | Done |  |
 | Operator approved the 2.3.0 install pin: V2_PKG is @opencode/cli@2.3.0, the docs name 2.3.0 as expected, cli-opencode 1.5.12.0; setup tests 27 pass, check mode shows 2.3.0 at the same link | Done |  |
 | Second merge with main (Mistral Vibe) committed 192ad1f30c8; README council moved to Spec Kit; advisor suite 1714 green; pushing to main | Done |  |
+| Saved continuity and recorded four operator decisions (Q-rows) | Done | decision-record.md created by the full-auto writer |
+| Closed packet 004: parent rolled up to complete, seven answers recorded | Done | validate --recursive --strict |
 
 ### Deviations and findings
 

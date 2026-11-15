@@ -1,5 +1,5 @@
 {
-  "manifestHash": "28f9616023e70a65423f380e58ab69ad2c2fecb8b806728f4f9c6b4b671b9c69",
+  "manifestHash": "97d01b1685caa48a7cc9855cc81f6168e1b5c3de3ba512a82aa2c85881ed8f4d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -729,6 +729,9 @@
     ],
     "003 documentation truth validation resource map": [
       "003-documentation-truth-validation resource map"
+    ],
+    "003 dsh mistral route operator decisions": [
+      "003-dsh-mistral-route operator decisions"
     ],
     "003 embedder testing and architecture changelog index": [
       "003-embedder-testing-and-architecture changelog index"
@@ -1899,6 +1902,9 @@
     ],
     "007 ollama and bge promotion rollup": [
       "007-ollama-and-bge-promotion rollup"
+    ],
+    "007 open findings follow up operator decisions": [
+      "007-open-findings-follow-up operator decisions"
     ],
     "007 phase 002 changelog": [
       "007 phase 002 changelog"
@@ -22103,6 +22109,9 @@
     "cli deepseek harness 1 0 1 0": [
       "cli-deepseek-harness 1.0.1.0"
     ],
+    "cli deepseek harness 1 0 2 0": [
+      "cli-deepseek-harness 1.0.2.0"
+    ],
     "cli deepseek harness commit follow up": [
       "cli-deepseek-harness commit follow-up"
     ],
@@ -22147,6 +22156,9 @@
     ],
     "cli deepseek harness v1 0 1 0": [
       "cli-deepseek-harness v1.0.1.0"
+    ],
+    "cli deepseek harness v1 0 2 0": [
+      "cli-deepseek-harness v1.0.2.0"
     ],
     "cli deepseek research scope": [
       "cli-deepseek research scope"
@@ -28699,12 +28711,6 @@
     ],
     "compaction history lookup": [
       "compaction history lookup"
-    ],
-    "compaction history recall baseline conversation": [
-      "compaction history recall baseline conversation"
-    ],
-    "compaction history recall conversation": [
-      "compaction history recall conversation"
     ],
     "compaction packet purpose": [
       "compaction packet purpose"
@@ -36791,6 +36797,9 @@
     "deep loop save full auto": [
       "deep loop save full-auto"
     ],
+    "deep loop save full auto docs": [
+      "deep loop save full-auto docs"
+    ],
     "deep loop scenario contract": [
       "deep-loop scenario contract"
     ],
@@ -44728,6 +44737,18 @@
     "dsh dispatchenv allowlist": [
       "dsh dispatchEnv allowlist"
     ],
+    "dsh docs alignment": [
+      "dsh docs alignment"
+    ],
+    "dsh docs alignment implementation summary": [
+      "dsh docs alignment implementation summary"
+    ],
+    "dsh docs alignment plan": [
+      "dsh docs alignment plan"
+    ],
+    "dsh docs alignment tasks": [
+      "dsh docs alignment tasks"
+    ],
     "dsh dump config evidence": [
       "dsh dump-config evidence"
     ],
@@ -44848,6 +44869,21 @@
     "dsh lineage command": [
       "dsh lineage command"
     ],
+    "dsh lineage executor check": [
+      "dsh lineage executor check"
+    ],
+    "dsh lineage executor check goal": [
+      "dsh lineage executor check goal"
+    ],
+    "dsh lineage executor check implementation summary": [
+      "dsh lineage executor check implementation summary"
+    ],
+    "dsh lineage executor check plan": [
+      "dsh lineage executor check plan"
+    ],
+    "dsh lineage executor check tasks": [
+      "dsh lineage executor check tasks"
+    ],
     "dsh lineage leaf": [
       "dsh lineage leaf"
     ],
@@ -44950,6 +44986,9 @@
     ],
     "dsh mistral route plan": [
       "dsh mistral route plan"
+    ],
+    "dsh mistral route retired": [
+      "dsh mistral route retired"
     ],
     "dsh mistral route tasks": [
       "dsh mistral route tasks"
@@ -48152,6 +48191,9 @@
     "executor matrix audit tasks": [
       "executor matrix audit tasks"
     ],
+    "executor missing failure mode docs": [
+      "executor_missing failure mode docs"
+    ],
     "executor override approach": [
       "executor override approach"
     ],
@@ -49460,6 +49502,12 @@
     ],
     "fan out fixed rate overrun accounting": [
       "fan-out fixed-rate overrun accounting"
+    ],
+    "fan out lineage executor check": [
+      "fan-out lineage executor check"
+    ],
+    "fan out lineage executor missing": [
+      "fan-out lineage executor_missing"
     ],
     "fan out lineage pwd": [
       "fan-out lineage pwd"
@@ -52166,6 +52214,21 @@
     ],
     "follow up defect fixes tasks": [
       "follow up defect fixes tasks"
+    ],
+    "follow up fix sweep": [
+      "follow up fix sweep"
+    ],
+    "follow up fix sweep acceptance criteria": [
+      "follow up fix sweep acceptance criteria"
+    ],
+    "follow up fix sweep implementation summary": [
+      "follow up fix sweep implementation summary"
+    ],
+    "follow up fix sweep plan": [
+      "follow up fix sweep plan"
+    ],
+    "follow up fix sweep tasks": [
+      "follow up fix sweep tasks"
     ],
     "follow up fixes": [
       "follow up fixes"
@@ -57522,6 +57585,9 @@
     "handoff gate exemptions tasks": [
       "handoff gate exemptions tasks"
     ],
+    "handoff history lookup": [
+      "handoff history lookup"
+    ],
     "handoff note purpose line": [
       "handoff note purpose line"
     ],
@@ -58642,6 +58708,9 @@
     "history lookup at claim docs": [
       "history lookup at claim docs"
     ],
+    "history lookup at handoff claim": [
+      "history lookup at handoff claim"
+    ],
     "history lookup cli": [
       "history lookup CLI",
       "history lookup cli"
@@ -58654,12 +58723,6 @@
     ],
     "history lookup handover integration": [
       "history lookup handover integration"
-    ],
-    "history lookup recall baseline": [
-      "history lookup recall baseline"
-    ],
-    "history lookup recall with lookup": [
-      "history lookup recall with lookup"
     ],
     "history rewrite": [
       "history rewrite"
@@ -60746,9 +60809,6 @@
     "in session handover rename acceptance criteria": [
       "in session handover rename acceptance criteria"
     ],
-    "in session handover spelling": [
-      "in-session handover spelling"
-    ],
     "inbound enhances": [
       "inbound enhances"
     ],
@@ -61693,6 +61753,9 @@
     ],
     "invert resolver registry": [
       "invert resolver registry"
+    ],
+    "invocation metadata executor gate": [
+      "invocation metadata executor gate"
     ],
     "invocation pattern column": [
       "invocation pattern column"
@@ -64905,6 +64968,12 @@
     "lineage executor schema": [
       "lineage executor schema"
     ],
+    "lineage invocation metadata executor check": [
+      "lineage invocation metadata executor check"
+    ],
+    "lineage invocation metadata plan": [
+      "lineage invocation metadata plan"
+    ],
     "lineage iteration count": [
       "lineage iteration count"
     ],
@@ -66998,6 +67067,9 @@
     ],
     "max secondary clients 64": [
       "max secondary clients 64"
+    ],
+    "maxdurationreached terminal gate record": [
+      "maxDurationReached terminal gate record"
     ],
     "may 18 baseline invalidated": [
       "May 18 baseline invalidated"
@@ -72563,6 +72635,9 @@
     ],
     "mistral vibe": [
       "mistral vibe"
+    ],
+    "mistral vibe chat automation": [
+      "mistral vibe chat automation"
     ],
     "mistral vibe closeout": [
       "mistral vibe closeout"
@@ -82190,6 +82265,9 @@
     "phase 16 ended goal mark match": [
       "phase 16 ended goal mark match"
     ],
+    "phase 16 follow up fix sweep": [
+      "phase 16 follow up fix sweep"
+    ],
     "phase 16 handover trigger review": [
       "phase 16 handover trigger review"
     ],
@@ -82271,6 +82349,9 @@
     "phase 17 tasks": [
       "phase 17 tasks"
     ],
+    "phase 17 terminal record gaps": [
+      "phase 17 terminal record gaps"
+    ],
     "phase 17 vibe decision capture": [
       "phase 17 vibe decision capture"
     ],
@@ -82303,6 +82384,9 @@
     ],
     "phase 18 plan": [
       "phase 18 plan"
+    ],
+    "phase 18 research duration check": [
+      "phase 18 research duration check"
     ],
     "phase 18 results": [
       "phase 18 results"
@@ -82748,6 +82832,9 @@
     "phase 23 deep review remediation": [
       "phase 23 deep review remediation"
     ],
+    "phase 23 dsh lineage executor check": [
+      "phase 23 dsh lineage executor check"
+    ],
     "phase 23 epic review doc fixes": [
       "phase 23 epic review doc fixes"
     ],
@@ -82759,6 +82846,9 @@
     ],
     "phase 23 untuned outcome evidence": [
       "phase 23 untuned outcome evidence"
+    ],
+    "phase 24 dsh docs alignment": [
+      "phase 24 dsh docs alignment"
     ],
     "phase 24 fable review remediation": [
       "phase 24 fable review remediation"
@@ -83080,6 +83170,9 @@
     ],
     "phase 30 opencode2 killer target": [
       "phase 30 opencode2 killer target"
+    ],
+    "phase 30 vibe runtime parity": [
+      "phase 30 vibe runtime parity"
     ],
     "phase 31 epic review fixes": [
       "phase 31 epic review fixes"
@@ -87306,9 +87399,6 @@
     ],
     "post compaction recovery snapshot": [
       "post-compaction recovery snapshot"
-    ],
-    "post compaction transcript lookup": [
-      "post-compaction transcript lookup"
     ],
     "post consolidation hardening train": [
       "post-consolidation hardening train"
@@ -96199,6 +96289,18 @@
     ],
     "research driven remediation": [
       "research driven remediation"
+    ],
+    "research duration check": [
+      "research duration check"
+    ],
+    "research duration check implementation summary": [
+      "research duration check implementation summary"
+    ],
+    "research duration check plan": [
+      "research duration check plan"
+    ],
+    "research duration check tasks": [
+      "research duration check tasks"
     ],
     "research escalation conditions": [
       "research escalation conditions"
@@ -115518,9 +115620,6 @@
     "skilled v4 0 2 1": [
       "skilled v4.0.2.1"
     ],
-    "skilled v4 0 2 2": [
-      "skilled v4.0.2.2"
-    ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
     ],
@@ -121740,6 +121839,9 @@
     "system deep loop 2 0 1 0": [
       "system-deep-loop 2.0.1.0"
     ],
+    "system deep loop 2 0 2 0": [
+      "system-deep-loop 2.0.2.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -121958,6 +122060,9 @@
     ],
     "system deep loop v2 0 1 0": [
       "system-deep-loop v2.0.1.0"
+    ],
+    "system deep loop v2 0 2 0": [
+      "system-deep-loop v2.0.2.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"
@@ -124857,6 +124962,21 @@
     ],
     "terminal proof tasks": [
       "terminal proof tasks"
+    ],
+    "terminal record gaps": [
+      "terminal record gaps"
+    ],
+    "terminal record gaps acceptance criteria": [
+      "terminal record gaps acceptance criteria"
+    ],
+    "terminal record gaps implementation summary": [
+      "terminal record gaps implementation summary"
+    ],
+    "terminal record gaps plan": [
+      "terminal record gaps plan"
+    ],
+    "terminal record gaps tasks": [
+      "terminal record gaps tasks"
     ],
     "terminal skin palette": [
       "terminal skin palette"
@@ -129001,9 +129121,6 @@
     "v4 0 2 1 release notes": [
       "v4.0.2.1 release notes"
     ],
-    "v4 0 2 2 release notes": [
-      "v4.0.2.2 release notes"
-    ],
     "v4 changelog": [
       "v4 changelog"
     ],
@@ -130442,6 +130559,9 @@
     "vibe cli reference": [
       "vibe cli reference"
     ],
+    "vibe command document pointer": [
+      "vibe command document pointer"
+    ],
     "vibe compaction context": [
       "vibe compaction context"
     ],
@@ -130760,6 +130880,21 @@
     "vibe runtime folder implementation summary": [
       "vibe runtime folder implementation summary"
     ],
+    "vibe runtime parity": [
+      "vibe runtime parity"
+    ],
+    "vibe runtime parity acceptance criteria": [
+      "vibe runtime parity acceptance criteria"
+    ],
+    "vibe runtime parity implementation summary": [
+      "vibe runtime parity implementation summary"
+    ],
+    "vibe runtime parity plan": [
+      "vibe runtime parity plan"
+    ],
+    "vibe runtime parity tasks": [
+      "vibe runtime parity tasks"
+    ],
     "vibe session journal reader": [
       "vibe session journal reader"
     ],
@@ -130798,6 +130933,9 @@
     ],
     "vibe sync generators": [
       "vibe sync generators"
+    ],
+    "vibe transcript scorer tool table": [
+      "vibe transcript scorer tool table"
     ],
     "vibe trust gate": [
       "vibe trust gate"

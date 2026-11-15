@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Built the pre_agent turn-start composer with the advisor brief as its first part, the non-strict post_tool dist-freshness hook, the vibe runtime label and both registrations. Both keyed runs recorded. One follow-up (F001) is blocked: the advisor's runtime-list parity and legacy observability tests pin the label tuple outside this phase's write authority."
+description: "Built the pre_agent turn-start composer with the advisor brief as its first part, the non-strict post_tool dist-freshness hook, the vibe runtime label and both registrations. Both keyed runs recorded. Follow-up F001, the advisor runtime-list tuple, is resolved."
 trigger_phrases:
   - "vibe turn start advisor and dist implementation summary"
 importance_tier: "normal"
@@ -8,12 +8,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist"
-    last_updated_at: "2026-11-14T22:50:00Z"
-    last_updated_by: "code-worker"
-    recent_action: "Built the turn-start composer, the advisor part and the dist hook; ran both keyed runs"
-    next_safe_action: "Repair F001: add the vibe index dir and adapter row, then update the legacy tuple test"
-    blockers:
-      - "F001: the advisor runtime-list parity and legacy observability tests pin the label tuple, and their files are outside this phase's write authority"
+    last_updated_at: "2026-11-15T10:35:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Confirmed F001 resolved: both advisor tuple test files pass 14 of 14"
+    next_safe_action: "None: the phase is closed"
+    blockers: []
     key_files:
       - ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs"
       - ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
@@ -23,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "mistral-support-2026-11-14"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Does the shared handler emit the routing head every turn? It reduces to the head once the directive block is proven delivered, so the advisor part keeps a per-session head receipt for the head itself. T018 proved both reductions."
@@ -42,7 +41,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 015-vibe-turn-start-advisor-and-dist |
-| **Completed** | 2026-11-14 (code complete; F001 blocked) |
+| **Completed** | 2026-11-14, F001 resolved 2026-11-15 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -141,7 +140,7 @@ The two hooks were proven three ways: unit tests for the decisions, a keyed main
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **F001 is blocked.** Adding `vibe` to `ADVISOR_RUNTIME_VALUES` breaks the advisor's own cross-file invariant. `A/runtime/tests/hooks/advisor-runtime-list-parity.vitest.ts` needs a `vibe` directory under `.skilled/hooks/skill-advisor/` and a `| **Vibe** |` row in `A/hooks/skill-advisor-hook.md`; `A/runtime/tests/legacy/advisor-observability.vitest.ts:69` pins the exact tuple and needs `'vibe'` appended. `npx vitest run` on those two files fails 3 cases. Neither file is in this phase's Files to Change, so the repair needs write authority this worker did not have. No CI workflow runs those two files today.
+1. **F001 is resolved.** The fix landed with the Vibe mode commit, and on 2026-11-15 `npx vitest run` on both test files printed 14 of 14 passing. The original problem: adding `vibe` to `ADVISOR_RUNTIME_VALUES` breaks the advisor's own cross-file invariant. `A/runtime/tests/hooks/advisor-runtime-list-parity.vitest.ts` needs a `vibe` directory under `.skilled/hooks/skill-advisor/` and a `| **Vibe** |` row in `A/hooks/skill-advisor-hook.md`; `A/runtime/tests/legacy/advisor-observability.vitest.ts:69` pins the exact tuple and needs `'vibe'` appended. `npx vitest run` on those two files fails 3 cases. Neither file is in this phase's Files to Change, so the repair needs write authority this worker did not have. No CI workflow runs those two files today.
 2. **The T004 verify path in `tasks.md` is wrong.** The compiled file is `A/runtime/dist/runtime/lib/advisor-runtime-values.js`, not `A/runtime/dist/lib/advisor-runtime-values.js`. The check was run against the real path and printed `1`.
 3. **`--add-dir` loads that directory's `.vibe/hooks.toml`.** The first child-dispatch attempt passed `--add-dir <checkout root>` so the edit could reach a watched source. That made the checkout a project root, so the unrendered project hooks file won over the rendered home copy and every `$(git rev-parse --show-toplevel)` command failed from the scratch cwd. The recorded run passes `--add-dir <watched package>/lib` instead, which has no `.vibe/` folder. A production dispatch that needs checkout-wide file access hits the same wall.
 4. **The head receipt is not reset by compaction.** Vibe exposes no compaction event, so a compacted-away head is not re-sent; the shared handler's directive store still re-sends the block when the transcript shrinks.

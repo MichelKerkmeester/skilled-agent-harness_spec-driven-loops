@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check",
+  "description": "Phase 23: dsh-lineage-executor-check",
+  "keywords": [
+    "phase",
+    "dsh-lineage-executor-check"
+  ],
+  "lastUpdated": "2026-11-15T09:17:31.816Z",
+  "specId": "023",
+  "folderSlug": "dsh-lineage-executor-check",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "002-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

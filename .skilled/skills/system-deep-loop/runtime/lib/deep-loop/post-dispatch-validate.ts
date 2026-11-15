@@ -10,7 +10,7 @@ import { existsSync, readFileSync, renameSync, rmSync, statSync, truncateSync, w
 import { join, resolve } from 'node:path';
 
 import { validateEvidenceContract } from './evidence-contract.js';
-import { appendFailureRow, deriveReceiptKeyForDispatch, ledgerModeFor } from './executor-audit.js';
+import { appendFailureRow, deriveReceiptKeyForDispatch } from './executor-audit.js';
 import { canonicalReceiptJson, verifyReceipt } from './receipt-crypto.js';
 import type { ExecutorKind } from './executor-config.js';
 
@@ -1001,9 +1001,10 @@ function warningsFromV2Failures(failures: V2ValidationFailure[]): PostDispatchAd
   }));
 }
 
-// On a ledger-backed state log the executor audit records the executor on the
-// iteration's opening iteration_start row, because the ledger cannot carry an
-// edit to the iteration record it already holds.
+// The pre-dispatch executor audit records the executor on the iteration's opening
+// iteration_start row. On a ledger-backed state log that row is the only place,
+// because the ledger cannot carry an edit to the iteration record it already holds.
+// With no ledger the audit may write the same row, so it counts on either log.
 function openingRowNamesExecutor(content: Buffer, iteration: unknown): boolean {
   return content.toString('utf8').split(/\r?\n/).some((line) => {
     if (!line.trim()) return false;
@@ -1703,7 +1704,7 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
       input.executorKind
       && input.executorKind !== 'native'
       && !isObjectRecord(parsedRecord.executor)
-      && !(ledgerModeFor(input.stateLogPath) !== null && openingRowNamesExecutor(stateLogContent, parsedRecord.iteration))
+      && !openingRowNamesExecutor(stateLogContent, parsedRecord.iteration)
     ) {
       return {
         ok: false,
