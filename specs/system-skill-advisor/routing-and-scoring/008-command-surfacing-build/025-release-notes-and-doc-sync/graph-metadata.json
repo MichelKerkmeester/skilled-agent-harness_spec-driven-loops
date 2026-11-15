@@ -194,7 +194,7 @@
     ],
     "causal_summary": "A reader of the advisor's release notes learns nothing about the offer guards, the head parity, the workflow measure or the Codex fix, because the open entry covers phases 014 to 018 only",
     "created_at": "2026-11-14T10:51:51Z",
-    "last_save_at": "2026-11-14T11:18:46.697Z",
+    "last_save_at": "2026-11-15T06:35:51.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:ef838df9cb8e4ee8c4e531691d34264954926ba7087a4afec2d31d265d16c0ef",
+    "source_fingerprint": "sha256:1d31707de908aad9c9db82e46d1524c4fdc4c1f6b484201a5c70d502d8043ee7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ee530c4021913f57850b839250fbd675678b4da93e4eee4dcca194e3508bf1e",
+      "spec.md": "ae674ad0ae98039d6d610dbf576a20af163dab9a74f5039926d5e6ed4741baf3",
       "plan.md": "85d704f92c023377385670f912671316be7f7591a8b92600f193c6b278cc5765",
-      "tasks.md": "2f81f7c6050ef0dd320d76ebb262e4eead97c51c500e817933f7cc540a2b01fe"
+      "tasks.md": "4b123fda5bd0840cc2f35cc42e55061fd8974e6d945330cd4e7edef113eedf80"
     },
     "last_active_at": null
   }

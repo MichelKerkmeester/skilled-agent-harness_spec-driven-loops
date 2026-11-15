@@ -114,7 +114,8 @@ The count of 28 is lines that open a case, and an `it.each` line opens more than
 <!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- Extend the open changelog entry `v1.1.0.0.md` with phases 019 to 024, through the `sk-doc` changelog mode and inside its shape ceilings.
+- Extend the open changelog entry `v1.1.0.0.md` with phases 019 to 024 and 026 to 028, through the `sk-doc` changelog mode and inside its shape ceilings.
+- Amended 2026-11-15, before any build task ran: phases 026, 027 and 028 closed after this plan was written, so their facts join `FACTS`. Phase 027's refusal and question fixes join `Command Fit`, phase 028's off switch on the direct call becomes one item under `Hook Health`, and phase 026 reads as a harness built and not scored. The case count `FM` quoted already reads 28, so that half of T012 checks the count instead of replacing it.
 - Correct the `command-attach.ts` row, the two case counts, the top-only sentence, the meaning-pass bar and the two companion lines.
 - Collect the facts once in `scratch/release-facts.txt`, so no doc task reads a number from memory or from this plan.
 - Check every added number and claim against the closed phases and the code.
