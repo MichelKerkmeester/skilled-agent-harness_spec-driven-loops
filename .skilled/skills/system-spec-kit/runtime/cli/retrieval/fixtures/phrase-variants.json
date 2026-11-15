@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ab1134433f688fa0e71b4ada9700a340b08f09b72d8fd767b9816c521ad1b589",
+  "manifestHash": "3f3f242fd66e1614174045d808a82216f073192f3a8e539c61542ec89f70461b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1899,6 +1899,9 @@
     ],
     "007 ollama and bge promotion rollup": [
       "007-ollama-and-bge-promotion rollup"
+    ],
+    "007 open findings follow up operator decisions": [
+      "007-open-findings-follow-up operator decisions"
     ],
     "007 phase 002 changelog": [
       "007 phase 002 changelog"
