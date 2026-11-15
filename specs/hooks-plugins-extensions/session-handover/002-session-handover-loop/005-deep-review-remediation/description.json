@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/005-deep-review-remediation",
+  "description": "The deep review passed the loop but left twelve advisories",
+  "keywords": [
+    "deep",
+    "review",
+    "passed",
+    "loop",
+    "left",
+    "twelve",
+    "advisories"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.875Z",
+  "specId": "005",
+  "folderSlug": "deep-review-remediation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "18-10-26_17-03__fixed-the-twelve-deep-review-advisories-and-every.md",
+    "18-10-26_19-14__extended-phase-005-with-the-final-review-wave.md"
+  ]
+}

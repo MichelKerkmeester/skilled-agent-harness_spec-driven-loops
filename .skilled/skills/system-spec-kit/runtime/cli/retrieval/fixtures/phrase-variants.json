@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9d5c5a21162db9fc6191ea2fa09a4eb3a334d56ba3872015a7252239bdd72baa",
+  "manifestHash": "1a09988ee9eb508d2853d183659d9ae38886cb4e0443b583a785fac3e5520683",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10812,6 +10812,9 @@
     "agents md manifest acceptance criteria": [
       "agents md manifest acceptance criteria"
     ],
+    "agents md manifest history body hash": [
+      "agents-md manifest history body hash"
+    ],
     "agents md manifest implementation summary": [
       "agents md manifest implementation summary"
     ],
@@ -19652,6 +19655,18 @@
     "ci red check repairs tasks": [
       "ci red check repairs tasks"
     ],
+    "ci red checks after council retirement": [
+      "ci red checks after council retirement"
+    ],
+    "ci red checks after council retirement implementation summary": [
+      "ci red checks after council retirement implementation summary"
+    ],
+    "ci red checks after council retirement plan": [
+      "ci red checks after council retirement plan"
+    ],
+    "ci red checks after council retirement tasks": [
+      "ci red checks after council retirement tasks"
+    ],
     "ci regression gate comparison rule sets": [
       "ci regression gate comparison rule sets"
     ],
@@ -20168,6 +20183,9 @@
     "claim line not built": [
       "claim line not built"
     ],
+    "claim lookup transcript cwd check": [
+      "claim lookup transcript cwd check"
+    ],
     "claim relationship event tasks": [
       "claim relationship event tasks"
     ],
@@ -20188,6 +20206,9 @@
     ],
     "claimadjudicationgate": [
       "claimAdjudicationGate"
+    ],
+    "claimed note history lookup": [
+      "claimed note history lookup"
     ],
     "clarification markers per pass": [
       "clarification markers per pass"
@@ -28676,9 +28697,6 @@
     "compaction fixtures canary": [
       "compaction fixtures canary"
     ],
-    "compaction history lookup": [
-      "compaction history lookup"
-    ],
     "compaction packet purpose": [
       "compaction packet purpose"
     ],
@@ -30966,6 +30984,9 @@
     ],
     "conversation scenario runner": [
       "conversation scenario runner"
+    ],
+    "conversation scenario suffix rename": [
+      "conversation scenario suffix rename"
     ],
     "conversation scenario validator rules": [
       "conversation scenario validator rules"
@@ -33331,6 +33352,9 @@
     ],
     "cursor task dispatch guard": [
       "cursor task dispatch guard"
+    ],
+    "cursor task guard test deep review": [
+      "cursor task guard test deep-review"
     ],
     "cursor trust gate mode plan fanout": [
       "cursor trust gate mode plan fanout"
@@ -58607,6 +58631,9 @@
     "history lookup handover integration": [
       "history lookup handover integration"
     ],
+    "history lookup review fixes": [
+      "history lookup review fixes"
+    ],
     "history rewrite": [
       "history rewrite"
     ],
@@ -58888,6 +58915,9 @@
     ],
     "hook helper skipped fail open": [
       "hook helper skipped fail_open"
+    ],
+    "hook hub index gap links and conversation scenario": [
+      "hook hub index gap links and conversation scenario"
     ],
     "hook injection contract": [
       "hook injection contract"
@@ -59527,6 +59557,18 @@
     ],
     "hub gate transient failure": [
       "hub gate transient failure"
+    ],
+    "hub index gap links": [
+      "hub index gap links"
+    ],
+    "hub index gap links implementation summary": [
+      "hub index gap links implementation summary"
+    ],
+    "hub index gap links plan": [
+      "hub index gap links plan"
+    ],
+    "hub index gap links tasks": [
+      "hub index gap links tasks"
     ],
     "hub intent vocabulary": [
       "hub intent vocabulary"
@@ -82720,6 +82762,9 @@
     ],
     "phase 27 alignment preexisting gaps": [
       "phase 27 alignment preexisting gaps"
+    ],
+    "phase 27 ci red checks": [
+      "phase 27 ci red checks"
     ],
     "phase 27 goal rebind claude and codex": [
       "phase 27 goal rebind claude and codex"
@@ -130378,6 +130423,9 @@
     ],
     "vibe goal injection": [
       "vibe goal injection"
+    ],
+    "vibe guard browsability symlink": [
+      "vibe guard browsability symlink"
     ],
     "vibe guard porting": [
       "vibe guard porting"

@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/017-handover-docs-and-harness",
+  "description": "Phases 009 to 016 change what a hand-over note asks for, what a hop carries and when a hop is refused or deferred",
+  "keywords": [
+    "phases",
+    "change",
+    "hand-over",
+    "note",
+    "asks",
+    "hop",
+    "carries",
+    "refused",
+    "deferred"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.996Z",
+  "specId": "017",
+  "folderSlug": "handover-docs-and-harness",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

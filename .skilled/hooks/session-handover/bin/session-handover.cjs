@@ -600,11 +600,6 @@ function prepare(args) {
     goalSwitch: core.goalSwitchOn(resolvedSwitches()),
     env: process.env,
   });
-  // A locator is a convenience for the next session, so a mint that fails or finds nothing
-  // leaves the prepared hand-over exactly as it was.
-  try {
-    core.mintHandoverLocator({ runtime, sessionId, cwd: process.cwd() });
-  } catch {}
   supersedeClaimedNotes(handoffPath, { loopId, sessionId });
   // The pending record is the prepare result; its log is best-effort.
   try {

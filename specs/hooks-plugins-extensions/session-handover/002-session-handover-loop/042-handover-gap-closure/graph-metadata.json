@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/042-handover-gap-closure",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/042-handover-gap-closure",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "handover gap closure",
+      "question guard pi opencode",
+      "withdrawn notice pi opencode",
+      "codex compaction pointer",
+      "opencode model carry",
+      "handover gap closure plan",
+      "handover gap closure tasks",
+      "handover gap closure acceptance criteria",
+      "042-handover-gap-closure operator decisions",
+      "handover gap closure implementation summary"
+    ],
+    "key_topics": [
+      "handover",
+      "gap",
+      "closure",
+      "question",
+      "guard",
+      "opencode",
+      "withdrawn",
+      "notice",
+      "codex",
+      "compaction",
+      "pointer",
+      "model"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/harness/probe.sh",
+      ".codex/hooks/compact-pointer.mjs",
+      ".codex/hooks.json",
+      "codex/README.md",
+      "pi/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe.sh",
+        "kind": "script",
+        "path": "scratch/harness/probe.sh",
+        "source": "derived"
+      },
+      {
+        "name": "compact-pointer.mjs",
+        "kind": "file",
+        "path": ".codex/hooks/compact-pointer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "codex/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refuse Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Question",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 041 brought all four runtimes to a completed hop and left five gaps that no live run had exercised",
+    "created_at": "2026-11-15T05:18:57Z",
+    "last_save_at": "2026-11-15T14:28:43.114Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4c7a4678cfc07aa370a963f461a54f264b489eb84d9c2e7ed8e9599db5be91b6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "73a75819b93025a3c9c0c81110b97a15617aaf19ea49a53834f1539f2a485ac8",
+      "plan.md": "91e809c279ba820a244df67af053092644462e2e401e6b35a4c5f77d639503ec",
+      "tasks.md": "32c423eda3900874919cacf92e6be47e29f02d0160887dd3abe0ff3f7617eb0a",
+      "decision-record.md": "4fa9c0148739d18caf082f1160292a0fed16ea9832d4114a02dd19bd4c6ccd3f",
+      "implementation-summary.md": "6b28772ea7f75b5c610777a6a3faefc9897274704219294bb59ae077fa9b4dff"
+    },
+    "last_active_at": null
+  }
+}

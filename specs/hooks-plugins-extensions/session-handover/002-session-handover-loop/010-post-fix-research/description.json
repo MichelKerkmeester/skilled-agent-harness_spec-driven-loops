@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/010-post-fix-research",
+  "description": "Phase 009 moved shared decisions into the core and changed every adapter",
+  "keywords": [
+    "phase",
+    "moved",
+    "shared",
+    "decisions",
+    "core",
+    "changed",
+    "every",
+    "adapter"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.884Z",
+  "specId": "010",
+  "folderSlug": "post-fix-research",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

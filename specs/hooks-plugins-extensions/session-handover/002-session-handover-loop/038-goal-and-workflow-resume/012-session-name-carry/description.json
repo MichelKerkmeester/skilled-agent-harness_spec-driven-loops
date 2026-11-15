@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/012-session-name-carry",
+  "description": "A Claude session renamed with `/rename` loses that name on a hop",
+  "keywords": [
+    "claude",
+    "session",
+    "renamed",
+    "rename",
+    "loses",
+    "name",
+    "hop"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.981Z",
+  "specId": "012",
+  "folderSlug": "session-name-carry",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

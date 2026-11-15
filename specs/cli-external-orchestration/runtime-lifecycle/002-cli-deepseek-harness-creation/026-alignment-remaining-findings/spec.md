@@ -26,9 +26,9 @@ contextType: "general"
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/409-alignment-remaining` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 26 of 26 |
+| **Phase** | 26 of 27 |
 | **Predecessor** | 025-alignment-open-findings |
-| **Successor** | None |
+| **Successor** | 027-ci-red-checks-after-council-retirement |
 | **Handoff Criteria** | The corpus pin check passes, the contract drift check prints OK and both spec folders validate strict |
 <!-- /ANCHOR:metadata -->
 

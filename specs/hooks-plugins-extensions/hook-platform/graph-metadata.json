@@ -8,7 +8,9 @@
     "hooks-plugins-extensions/hook-platform/002-hook-docs-relocation",
     "hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename",
     "hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index",
-    "hooks-plugins-extensions/hook-platform/005-smart-rule-injection"
+    "hooks-plugins-extensions/hook-platform/005-smart-rule-injection",
+    "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports",
+    "hooks-plugins-extensions/hook-platform/007-hub-index-gap-links"
   ],
   "manual": {
     "depends_on": [],

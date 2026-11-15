@@ -120,7 +120,7 @@ Deleted suites and what replaces their proof:
 
 - `history-lookup-adapters-e2e.vitest.ts`, `history-lookup-after-session-start.vitest.ts` and `history-lookup-devin-prompt-offer.vitest.ts` prove the offer each producer printed. The offer is gone, so the proof is gone with it.
 - `history-locator-adapters.vitest.ts` proves the four producers share one digest. `history-lookup-cli.vitest.ts` already redeems a real locator through the CLI for Claude, Devin, Pi and DSH, and a wrong digest fails there with `handle_mismatch`.
-- The OpenCode CLI path keeps no suite of its own once the plugin test is deleted. Phase 004's claim tests own the offer that reaches it; this gap is stated in `spec.md` section 6.
+- The OpenCode CLI path keeps no suite of its own once the plugin test is deleted. Phase 004's claim tests do not reach it either, because only Claude Code and Codex senders get the claim-time section. This gap is stated in `spec.md` section 6.
 <!-- /ANCHOR:testing -->
 
 ---

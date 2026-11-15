@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "receiver claim under goal",
+      "phase 16 receiver claim under goal",
+      "receiver claim under goal plan",
+      "receiver claim under goal tasks",
+      "receiver claim under goal acceptance criteria",
+      "receiver claim under goal goal",
+      "receiver claim under goal decisions",
+      "claim line not built",
+      "receiver claim under goal implementation summary"
+    ],
+    "key_topics": [
+      "receiver",
+      "claim",
+      "goal",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decisions",
+      "line",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Claude receiver whose hop carries a goal starts on `/goal <slice>`, and its claim instructions arrive only as `SessionStart` start context (`.skilled/bin/skilled-loop:1213-1220`, `.skilled/hooks/session-relaunch/claude/compact-pointer.mjs:136-158`)",
+    "created_at": "2026-11-13T08:49:38Z",
+    "last_save_at": "2026-11-15T14:28:42.683Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f5184954c069764ea5e8eb54e3b0691852cf81595c89b05363907ef0bbcabad1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eed7220127519dd62631de352d10a2476a1cd7a66ade94748506dae13d882c28",
+      "plan.md": "1d11d2273e8bcfe4c038f63bd91fd3e3a616c9f1478bdf8165aa65ee1171128d",
+      "tasks.md": "e70a3821f37c00f9f1104492a9e13609e6fc1e35d24f8258a803fe32633563c2",
+      "decision-record.md": "77c3578957a072ea88bb85638d68d121d641e81791316ef419d329a68debf969",
+      "implementation-summary.md": "fc07cbd108d6e550c2b8e315ce881e67dc24931318e333b443737d9cbf1465f7"
+    },
+    "last_active_at": null
+  }
+}

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The in-session handover starts a fresh session near the context limit, so compaction rarely happens",
     "created_at": "2026-11-15T06:24:26Z",
-    "last_save_at": "2026-11-15T11:24:12.683Z",
+    "last_save_at": "2026-11-15T14:30:53.268Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,11 +214,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3c75c401114a7b60229ef2d6ed08f9eea3bdef7549d1fade6d69cbfb269eaf0",
+    "source_fingerprint": "sha256:f57ad1f013561da5f802a26f1e583e338cb6f6723993cc4215bd44c8cd13e549",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "626ff89668e4605a44372307d584e7c9e364c859d85852fa13d2e1ccf6448a9c",
-      "plan.md": "3d9e9f86f10eeda1043f4aab0c6c3b4e9d0ace205ae309c058bba1880d4c7b32",
+      "spec.md": "eeb2b001ba0339d51b8532f57430510f1e7ab39f72f15d816e4f9be430d46d6c",
+      "plan.md": "30e0e0c8358d81124299b9a4d6a2eae62f52010e13e944ce0466a510423e2986",
       "tasks.md": "36d2172e74bfdac6b8a0e29f3a7e26b640647508cc2b820d7929462b551c3f17",
       "implementation-summary.md": "ce49cec45666a753db281dbdd4d86bbcd5e6fdfc3d987e141b8d15f6d1346f71"
     },

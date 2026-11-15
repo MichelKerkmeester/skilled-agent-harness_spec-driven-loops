@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The track files its packets under broad sub-tracks named after a bundle of work (`goal-and-directive-hooks`, `hook-injection-pipeline`, `pi-extensions`, `repo-commit-gates`, `session-turn-boundaries`), not after the feature a reader is looking for",
     "created_at": "2026-11-15T06:21:47Z",
-    "last_save_at": "2026-11-15T11:28:18.750Z",
+    "last_save_at": "2026-11-15T14:37:05.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0412048a0b07943f4dff556b4cbe8d759e13d2059a27c940c4a9e2b333fca9cf",
+    "source_fingerprint": "sha256:813067b613048da092dc00099b1d113a956675a373dcc3979c92d8b146d7cab2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "40016d5c803f2cb62336e4eb99d5c90e2ce4c7468c782d2d3de54f125f168847",
+      "spec.md": "2a7b4e4cd0d42117c6777d31757a98ab3aab7a712ec8c42dd98c64389cfa2aca",
       "plan.md": "a34d4adb2ce337f1c1cee6dde582ef5868ea1f429065c30c76ec9f72dfa2a1cc",
-      "tasks.md": "eca166b3c417aa12a5cb6f710c62e7f0e7d3a089f53283f51dfca370e5ba83ce",
+      "tasks.md": "e3027dd9a54a45d67f1edb678373afe78af02bd23809e69424d77205d62a2d86",
       "implementation-summary.md": "792741567f1eb719ea1dfcd5f5f2f6a3462193a862073e8064e7b13d42df9c8b"
     },
     "last_active_at": null

@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/007-hub-index-gap-links",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/007-hub-index-gap-links",
+  "parent_id": "hooks-plugins-extensions/hook-platform",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub index gap links",
+      "hook hub index gap links and conversation scenario",
+      "vibe guard browsability symlink",
+      "conversation scenario suffix rename",
+      "hub index gap links plan",
+      "hub index gap links tasks",
+      "hub index gap links implementation summary"
+    ],
+    "key_topics": [
+      "hub",
+      "index",
+      "gap",
+      "links",
+      "hook",
+      "conversation",
+      "scenario",
+      "vibe",
+      "guard",
+      "browsability",
+      "symlink",
+      "suffix"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/ask-surface-guard/opencode/ask-surface-guard.js",
+      ".skilled/hooks/decision-capture/opencode/decision-capture.js",
+      ".skilled/hooks/README.md",
+      ".vibe/hooks.toml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-guard.js",
+        "kind": "code",
+        "path": ".skilled/hooks/ask-surface-guard/opencode/ask-surface-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "decision-capture.js",
+        "kind": "code",
+        "path": ".skilled/hooks/decision-capture/opencode/decision-capture.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Twelve Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every Skilled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fourteen",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Browsability",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Nothing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.skilled/hooks` is the index of every runtime hook, plugin and extension, but twelve Vibe guard scripts in `.vibe/plugins/repo-guards/` and the OpenCode `ask-surface-guard.js` and `decision-capture.js` plugins had no link from it",
+    "created_at": "2026-11-15T14:52:32Z",
+    "last_save_at": "2026-11-15T15:02:39.068Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:53a0d853a72f1bd10a13d4ae61a2a0f41f3aff0e7b6c74f9e86354ebb4b14074",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "513fe1add859763b1d568408c23a9338cd604bd185e9ea3b8bae7ef35175b169",
+      "plan.md": "482b30e8dd6aabdf3c96c1a3f02171f16424d7547fabccab330a891934f52616",
+      "tasks.md": "c427978b328a0d7e1f12a008ad35356d60542367e25527c9284c58663186c221",
+      "implementation-summary.md": "5d908f32dcfdcadefacc85a2e7ec2e38d2943c2b75c902c3607580ac641e19a1"
+    },
+    "last_active_at": null
+  }
+}

@@ -145,6 +145,7 @@ and findings belong here.
 | 024 doc alignment | done | release notes, READMEs, loop protocols and deep-research SKILL.md match the executor and save changes; 024 and parent strict PASSED; contract drift OK |
 | 025 alignment open findings | done | link and playbook CI checks green, deep-review FAIL gate rule, Mistral Vibe handover docs, coverage OK, two advisor probes route, routing suites green; 025 and parent strict PASSED |
 | 026 alignment remaining findings | done | corpus pin recaptured (holdout 49/64), executor-selection, save and presentation docs fixed, Claude session id documented; routing suites green; 026 and parent strict PASSED |
+| 027 CI red checks | done | Cursor Task guard case on deep-review, v4.0.0.14 history body restored; hooks 1837/0, plugins 591/0, doctor 7/0 suites; 027 and parent strict PASSED |
 
 ### Deviations and findings
 

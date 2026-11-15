@@ -29,7 +29,8 @@
     "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check",
     "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/024-dsh-docs-alignment",
     "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/025-alignment-open-findings",
-    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings"
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings",
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement"
   ],
   "manual": {
     "depends_on": [],
@@ -204,13 +205,13 @@
         "source": "derived"
       },
       {
-        "name": "exit",
-        "kind": "key_phrase",
+        "name": "Cursor Task",
+        "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "exit",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -230,7 +231,7 @@
     ],
     "causal_summary": "DeepSeek Harness is installed on this machine (`dsh` 0.2.2-rc.1) but the repository cannot dispatch to it",
     "created_at": "2026-11-05T21:56:17Z",
-    "last_save_at": "2026-11-15T14:23:34.361Z",
+    "last_save_at": "2026-11-15T14:55:53.968Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -238,10 +239,10 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:788aaca8af140af87ad8abb9f3b96a44072191f74a05c83eba98ef3016d55175",
+    "source_fingerprint": "sha256:e32ab977d217e473030d2a848be1554eaa371c6249151e058b89f76e8d76949b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c697de92c1fbc9711eccf99d45ab643dab97ecf6d8a5a63f2687198c4f73ea85",
+      "spec.md": "81808e7a4d6eb450dc73bf10f6785748f02452e455f3c7c35cf68392d91f2453",
       "handover.md": "cf9542ee10e916b8b5f22303b44a70240e38295cba97ba1d3f5f5f8793457753"
     },
     "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening",

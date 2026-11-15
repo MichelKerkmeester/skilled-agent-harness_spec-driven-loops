@@ -74,7 +74,8 @@ mcp-route-guard/
 +-- devin/    mcp-route-guard.cjs  # Devin hook adapter
 +-- cursor/   mcp-route-guard.mjs  # beforeMCPExecution adapter (recombines + spawnSync)
 +-- pi/       mcp-route-guard.ts   # Pi tool_call extension (re-exported from .pi/extensions/)
-`-- opencode/ mcp-route-guard.js   # browsability symlink -> .opencode/plugins/mcp-route-guard.js
++-- opencode/ mcp-route-guard.js   # browsability symlink -> .opencode/plugins/mcp-route-guard.js
+`-- vibe/     mcp-route-guard.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 ```
 
 ---

@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/036-review-remediation/006-append-lock-stale-reclaim",
+  "description": "`withAppendLock` at `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1397` reclaims a stale append lock by reading its age and then calling",
+  "keywords": [
+    "withappendlock",
+    "skilled",
+    "hooks",
+    "session-relaunch",
+    "lib",
+    "relaunch-core",
+    "cjs",
+    "reclaims",
+    "stale",
+    "append",
+    "lock",
+    "reading",
+    "age",
+    "calling"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.942Z",
+  "specId": "006",
+  "folderSlug": "append-lock-stale-reclaim",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "036-review-remediation"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "12-11-26_15-17__closed-phase-006-a-stale-append-lock-is-reclaimed.md",
+    "12-11-26_16-11__the-stale-append-lock-is-reclaimed-through-a.md"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/037-relaunch-test-speed",
+  "description": "The relaunch suite took 130 seconds because `skilled-loop.test.cjs` alone ran for about 123 seconds and `node --test` waits for its slowest file",
+  "keywords": [
+    "relaunch",
+    "suite",
+    "took",
+    "seconds",
+    "because",
+    "skilled-loop",
+    "test",
+    "cjs",
+    "alone",
+    "ran",
+    "about",
+    "node",
+    "waits",
+    "slowest",
+    "file"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.950Z",
+  "specId": "037",
+  "folderSlug": "relaunch-test-speed",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "12-11-26_22-13__split-the-slow-relaunch-wrapper-test-file-into.md",
+    "12-11-26_22-13__split-the-slow-relaunch-wrapper-test-file-into.md"
+  ]
+}

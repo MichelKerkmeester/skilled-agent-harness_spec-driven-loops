@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/006-deep-review-2-remediation",
+  "description": "The round-2 deep review passed the session relaunch loop with twelve confirmed P2 advisories and no P0 or P1",
+  "keywords": [
+    "round-2",
+    "deep",
+    "review",
+    "passed",
+    "session",
+    "relaunch",
+    "loop",
+    "twelve",
+    "confirmed",
+    "advisories"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.877Z",
+  "specId": "006",
+  "folderSlug": "deep-review-2-remediation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-10-26_11-05__phase-006-closed-twelve-round-2-review-findings.md"
+  ]
+}

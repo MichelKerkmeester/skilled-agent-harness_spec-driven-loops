@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/017-missing-transcript-notice",
+  "description": "When a Claude Stop payload carries no `transcriptpath`, `stop-arm.mjs` logs `missing-transcript-path` (`claude/stop-arm.mjs:137`)",
+  "keywords": [
+    "claude",
+    "stop",
+    "payload",
+    "carries",
+    "transcriptpath",
+    "stop-arm",
+    "mjs",
+    "logs",
+    "missing-transcript-path"
+  ],
+  "lastUpdated": "2026-11-15T14:28:41.054Z",
+  "specId": "017",
+  "folderSlug": "missing-transcript-notice",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

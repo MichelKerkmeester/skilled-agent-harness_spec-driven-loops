@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/009-research-fixes-and-core-consolidation",
+  "description": "The research found real defects past phase 008",
+  "keywords": [
+    "research",
+    "found",
+    "real",
+    "defects",
+    "past",
+    "phase"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.883Z",
+  "specId": "009",
+  "folderSlug": "research-fixes-and-core-consolidation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
