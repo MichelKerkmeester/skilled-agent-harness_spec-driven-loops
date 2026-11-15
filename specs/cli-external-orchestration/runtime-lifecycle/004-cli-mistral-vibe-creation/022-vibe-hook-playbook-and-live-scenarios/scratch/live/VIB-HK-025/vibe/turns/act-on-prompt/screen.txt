@@ -1,0 +1,51 @@
+
+  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
+  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+
+Hello Michel, how can I help you?
+
+
+
+> In one sentence, tell me which instructions you are following right now.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⏵ Loaded 1 skill, ran 1 command, thought                                                                                      
+
+  I'm following the Vibe CLI system prompt plus this turn's /create-goal wrapper, the advisor's comment-hygiene hard block (no ADR-/REQ-/CHK-/task-ids or spec paths in code comments), and the
+  session-context/session-cleanup notices — and I loaded the vibe:vibe skill because this is a meta question about my own behavior.
+
+  One note: the /create-goal prompt tells me to read .skilled/commands/create/goal.md, but that file doesn't exist in this workspace, so there are no goal-authoring instructions actually in effect.
+
+
+> Write the path of the command file your instructions point to into a new file named path.txt, and nothing else.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⏵ Ran 3 commands, wrote 1 file, thought                                                               
+
+  Created path.txt in the working directory containing only:
+
+  ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.8vlrxsVVj7/vibe/.skilled/commands/create/goal.md                                                                                    │
+  └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  Two notes: I wrote the resolved absolute path (the instructions give it relative as .skilled/commands/create/goal.md), and that file still does not exist on disk. Also, the advisor mentioned a
+  skill named sk-doc — it isn't in my available skills list, so I couldn't load it.
+
+
+
+
+
+
+
+
+
+
+                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · mirrored goal · auto-approve ─
+>                                                                          
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.8vlrxsVVj7/vibe                                                                                                       ctx ▊      34.4k/256k
+

@@ -1,0 +1,3 @@
+$ for i in $(seq 1 20); do grep -rqsF 'scenario-readme-line' "$VIBE_HOME/logs/session/unified" && break; sleep 1; done; grep -rqsF 'scenario-readme-line' "$VIBE_HOME/logs/session/unified" || { echo readme-not-read; exit 1; }; if grep -rqs 'placeholder-not-a-secret' "$VIBE_HOME/logs/session/unified"; then echo value-leaked; exit 1; fi; echo plain-file-read-and-value-still-absent
+plain-file-read-and-value-still-absent
+[exit 0]

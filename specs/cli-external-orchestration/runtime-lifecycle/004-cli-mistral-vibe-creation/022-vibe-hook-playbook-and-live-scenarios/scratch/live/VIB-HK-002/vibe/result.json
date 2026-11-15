@@ -2,12 +2,12 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 406621013,
-  "socket": "conv-49031-vibe",
-  "session_id": "7d52a66c-1aae-4542-a658-da6fe196b378",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.y76mxxICBL/vibe",
-  "started_at": "2026-11-15T00:01:46.660Z",
-  "finished_at": "2026-11-15T00:03:24.129Z",
+  "seed": 688753096,
+  "socket": "conv-88010-vibe",
+  "session_id": "0ea42a05-f7f6-4c58-a503-4c928b229f50",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.SPqgNPtDrp/vibe",
+  "started_at": "2026-11-15T12:32:34.395Z",
+  "finished_at": "2026-11-15T12:34:46.097Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -39,6 +39,24 @@
       "blocker": null,
       "observed": "spec-gate-denied",
       "evidence": "turns/write"
+    },
+    {
+      "id": "answer-skip",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "gate-closed-by-skip-answer",
+      "evidence": "turns/answer-skip"
+    },
+    {
+      "id": "retry-write",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "write-allowed-after-skip",
+      "evidence": "turns/retry-write"
     }
   ]
 }

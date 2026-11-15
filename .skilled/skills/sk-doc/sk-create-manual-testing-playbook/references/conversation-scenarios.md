@@ -9,7 +9,7 @@ trigger_phrases:
   - "conversation script schema"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Manual Testing Playbook Conversation Scenarios
@@ -43,8 +43,9 @@ The validator accepts only the keys in this table. Any other key is an error, so
 
 | Key | Type | Required | Meaning |
 |-----|------|----------|---------|
-| `runtimes` | array of strings | Yes | The runtimes this script is written for, from `claude-code`, `opencode`, `codex`, `pi` and `devin` |
+| `runtimes` | array of strings | Yes | The runtimes this script is written for, from `claude-code`, `opencode`, `codex`, `pi`, `devin` and `vibe` |
 | `setup` | array of strings | No | Runs before the subject starts. Exit 77 skips the runtime with the first non-empty output line as the blocker. Other nonzero exits refuse the run as `SETUP_FAILED` |
+| `launch_setup` | array of strings | No | Runs once per runtime after the runner prepares the launch and before the subject starts, so it can change what the runner prepared, such as the private Vibe home named by `$VIBE_HOME`. A restart resumes the subject without running it again. A nonzero exit fails the runtime as `LAUNCH_SETUP_FAILED` and every turn is recorded as `NOT_RUN` |
 | `env` | object of strings | No | Variables added to the subject's environment, such as a kill switch |
 | `trust_hooks` | boolean | No | When true, the runner trusts the project's hooks on a runtime that asks, which is Codex today, so they fire during the run. The runner records each trust entry for the run's scratch project that the subject adds to or changes in the operator's Codex config, removes or restores it after the run, and writes the result to `hook-trust.json`. Entries for other folders, which another Codex session may be writing, are listed under `outside_project` and left alone. Codex's review screen also lists the user's own changed global hooks, so the runner picks "Trust all" only when the screen's count of new or changed hooks is no larger than the handlers in the project's `.codex/hooks.json`; otherwise it continues without trusting and fails the run with `HOOK_TRUST_OUTSIDE_PROJECT`. Defaults to false, which leaves hooks untrusted |
 | `turns` | array of turn objects | Yes | The conversation, in order. The first turn holding `send` or `action` must be a `send` |
@@ -65,13 +66,14 @@ The validator accepts only the keys in this table. Any other key is an error, so
 | `turns[].questions[].optional` | boolean | No | When true, the turn still passes if the subject never asks. Defaults to false |
 | `turns[].check` | string | Yes | A shell command run in the scratch project after the turn settles |
 
-The validator parses the block but never runs `setup` or `check` commands.
+The validator parses the block but never runs `setup`, `launch_setup` or `check` commands.
 
 ---
 
 ## 4. TURN OUTCOMES
 
 - A setup command that exits 77 skips the runtime and records its first non-empty output line as the blocker. The subject is not launched. Other nonzero exits refuse the run as `SETUP_FAILED`.
+- A launch setup command that exits nonzero fails the runtime as `LAUNCH_SETUP_FAILED: exit N: <command>`, and one that overruns fails it as `LAUNCH_SETUP_TIMEOUT: <command>`. The subject is not started and every turn is recorded as `NOT_RUN`.
 - A question that matches no entry fails the turn. A required question entry that the subject never asks also fails the turn. An entry with `optional: true` does not fail the turn when the subject never asks.
 - A check that exits 0 passes the turn. Exit 77 skips that turn, records `SKIP` and uses the first non-empty output line as its blocker. Any other exit fails the turn.
 - The last non-empty output line from the check is the observed value.
@@ -127,7 +129,7 @@ The raw pane slice and `history.txt` exist when the check runs, so a check can r
 - A second scratch project or a different `env` is a separate scenario file and runner invocation.
 - Compaction followed by a send is two turns: one turn with `action: compact` and its check, then a turn with the send.
 - A turn with neither `send` nor `action` is check-only. The first turn holding one of those fields must be a `send`.
-- The validator checks the block but never runs `setup` or `check` commands.
+- The validator checks the block but never runs `setup`, `launch_setup` or `check` commands.
 - Checks must only read state. Nothing may write under `$CONVERSATION_REPO_ROOT`.
 - Never match a model reply with `grep -x` or `grep -Fx` on `screen.txt`. Runtime prefixes prevent an exact line match: Claude replies start with `⏺ `, Codex with `• `, Pi with ` ● `, Devin with a leading space and OpenCode with five spaces. Use `grep -F` with a distinctive marker.
 - `screen.txt` shows a visible 50-row pane that retains earlier turns and the current turn's echoed send. Inspect only text after that turn's echoed send by using the `awk` pattern in [the session resume example](../../../../skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id-conversation.md), or check a marker the model can learn only by reading a file. Never put the expected marker in a `send`.
@@ -148,15 +150,16 @@ Run the script from the repository root:
 node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario <file.md> --runtime <id[,id...]> --scratch <scratch-dir> --out <evidence-dir> [--seed N] [--overwrite] [--no-sandbox]
 ```
 
-The runtime list accepts `claude-code`, `opencode`, `codex`, `pi` and `devin`. The scratch directory must be outside the repository. The evidence directory gets one subfolder per requested runtime.
+The runtime list accepts `claude-code`, `opencode`, `codex`, `pi`, `devin` and `vibe`. The scratch directory must be outside the repository. The evidence directory gets one subfolder per requested runtime.
 
 Exit status `0` means every runtime passed or skipped. Exit status `1` means at least one runtime failed. Exit status `2` means a usage error or a refused run.
 
-Each runtime folder contains `result.json`, `actions.jsonl`, `raw-pane.log`, `setup.log`, `repo-before.txt`, `repo-after.txt` and `checkpoints.tsv`. Each turn folder contains `screen.txt`, `history.txt`, its `raw-pane.log` slice, one `question-N.txt` file per detected question and `check.txt`. The evidence root contains `matrix.md`, with one verdict and evidence path per requested runtime.
+Each runtime folder contains `result.json`, `actions.jsonl`, `raw-pane.log`, `setup.log`, `launch-setup.log` when the script has `launch_setup`, `repo-before.txt`, `repo-after.txt` and `checkpoints.tsv`. Each turn folder contains `screen.txt`, `history.txt`, its `raw-pane.log` slice, one `question-N.txt` file per detected question and `check.txt`. The evidence root contains `matrix.md`, with one verdict and evidence path per requested runtime.
 
 - The runner sets `CONVERSATION_RUNTIME`, `CONVERSATION_REPO_ROOT`, `CONVERSATION_RUN_DIR` (the runtime's evidence folder) and `CONVERSATION_TURN_DIR` (the turn's evidence folder) for each `check` command.
 - A check defaults to 60 seconds. Set `CONVERSATION_CHECK_TIMEOUT_MS` to override that bound. An overrun fails as `CHECK_TIMEOUT`.
 - Each `setup` command has 120 seconds. An overrun refuses the run as `SETUP_TIMEOUT`.
+- Each `launch_setup` command has the same 120 seconds and runs in the scratch project with the script's `env`, `CONVERSATION_REPO_ROOT`, `CONVERSATION_RUN_DIR` and `CONVERSATION_RUNTIME`, plus `VIBE_HOME` on Vibe.
 - Exit 77 skips the runtime with its first non-empty output line as the blocker.
 - The runner sets `CONVERSATION_REPO_ROOT` and `CONVERSATION_RUNTIME` for every `setup` command too, so setup can copy project files from the repository without any variable set by hand.
 - `CONVERSATION_REPO_ROOT` is the repository the run snapshots, which `--repo-root` can point at a worktree.
@@ -178,6 +181,7 @@ On macOS the runner starts Claude Code, OpenCode, Pi and Devin through `/usr/bin
 | Codex | probed | Version 0.164.0. Start-up can show a folder-trust screen, an update offer (always skipped) and a hook review. Hooks stay untrusted unless the script sets `trust_hooks`; then the runner picks "Trust all and continue" and undoes those trust entries after the run. `request_user_input` offers one choice per question, so several choices or an Other answer are typed as a note on its `None of the above` row. Restart uses `codex resume --last` in the scratch folder. Enter must wait 500 ms after typed text, or it lands inside the paste. |
 | Pi | probed | Version 1.4.0. Two question tools: `question` draws a pick list ending in `Done (...)`, and `ask_user_question` draws a dialog with Space to toggle and a Submit row. The run quits with `/quit`, because `/exit` is sent to the model. `/compact` refuses a session that is still small. |
 | Devin | probed | Version 3000.11.234. A folder-trust screen opens the first run. The dialog toggles a multi-select row with Space and confirms with Enter; the Other row takes typed text directly. Restart uses `devin --continue` in the scratch folder. Enter must wait 500 ms after typed text. |
+| Vibe | probed | Version 3.1.2. Each runtime run gets a private home beside the scratch project, named by `VIBE_HOME`, holding a copy of `.vibe/config.toml` and the hooks rendered from `.vibe/hooks.toml`. A scenario that needs a different model row, an MCP server or a prompt changes that home with `launch_setup`, because the home does not exist yet when `setup` runs. Restart resumes the newest session in the home's journal. The question tool draws a bordered box. |
 
 Each live MTP-007 run must record the model used by every runtime beside `matrix.md`. If a runtime does not expose its model, record `UNKNOWN` and note what you checked.
 

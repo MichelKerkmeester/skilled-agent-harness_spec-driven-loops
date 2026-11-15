@@ -41,6 +41,7 @@ _memory:
 | Q005 | Fix the four failed Vibe routing probes in this phase by adding compound phrases to both routing stages and reminting the compiled routes. | Not stated. | None | T083, hub graph-metadata.json, hub-router.json, hub ROUTER.md |
 | Q006 | The self-invocation guard for cli-mistral-vibe is the SKILL.md section that names the refusal, as in the sibling packets. | Not stated. | None | T086, cli-mistral-vibe/SKILL.md |
 | Q007 | Push the aligned Vibe plugins README to origin/main. | Not stated. | None | origin/main 1ce8ff5b78d, T088 |
+| Q008 | Unblock the five operator-only Vibe scenarios and give every one-turn scenario a second sent turn, so each hook is tested as a real conversation. | The operator ruled out single-prompt playbook checks; the choice was read as covering every one-send scenario, not only the five the question counted, so the remaining ten were converted too. | None | T089 to T095, scratch/verdicts.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -184,6 +185,25 @@ Don't push yet
 Answer:
 ```text
 Push it now (Recommended)
+```
+
+### Q008
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_013gj2Ysiu1VPUXDyk373hqA:0 -->
+
+Question:
+```text
+Besides the 5 blocked Vibe scenarios (007, 013, 018, 025, 026), five that already passed live have only ONE turn: 001 spec-gate-classify, 002 spec-gate deny, 008 turn-end option menu, 019 injection screen, 020 decision capture. They ran as real terminal sessions, but a one-turn conversation is close to the single-prompt test you ruled out. Should I also give those five a second turn and rerun them? My rough estimate is 3 to 5 hours for the blocked five, which includes the runner change. Extending the one-turn five adds about 1 to 2 hours of live runs. The earlier batch of 26 took about 7 hours.
+```
+
+Options:
+```text
+All ten (Recommended)
+Only the blocked five
+```
+
+Answer:
+```text
+All ten (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

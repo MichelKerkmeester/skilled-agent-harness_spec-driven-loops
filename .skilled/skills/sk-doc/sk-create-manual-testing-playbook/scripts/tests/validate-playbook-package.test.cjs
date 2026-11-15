@@ -561,6 +561,8 @@ function runConversationRegressions() {
     ['empty turns', mutateConversationScript((script) => { script.turns = []; }), 'turns'],
     ['unknown root key', mutateConversationScript((script) => { script.extra = true; }), 'extra'],
     ['non-boolean trust_hooks', mutateConversationScript((script) => { script.trust_hooks = 'yes'; }), 'trust_hooks'],
+    ['non-array launch_setup', mutateConversationScript((script) => { script.launch_setup = 'echo x'; }), 'launch_setup'],
+    ['non-string launch_setup command', mutateConversationScript((script) => { script.launch_setup = [1]; }), 'launch_setup[0]'],
     ['unknown turn key', mutateConversationScript((script) => { script.turns[0].extra = true; }), 'turns[0].extra'],
     ['unknown question key', mutateConversationScript((script) => {
       script.turns[0].questions = [{ match: 'continue', answer: { reply: 'Continue.' }, extra: true }];
@@ -656,6 +658,12 @@ function runConversationRegressions() {
   }));
   assertStatus(trustHooksTrue, 0, 'boolean trust_hooks');
   assertLacksCode(trustHooksTrue, 'CONVERSATION_SCRIPT_INVALID', 'boolean trust_hooks');
+
+  const launchSetupList = conversationOutcome('conversation-launch-setup-list', mutateConversationScript((script) => {
+    script.launch_setup = ['echo ready'];
+  }));
+  assertStatus(launchSetupList, 0, 'launch_setup list');
+  assertLacksCode(launchSetupList, 'CONVERSATION_SCRIPT_INVALID', 'launch_setup list');
 
   const validEdges = [
     ['check-only first turn followed by send', mutateConversationScript((script) => {

@@ -1,0 +1,3 @@
+$ grep -qx compaction-proof-ok answer.txt && echo answer-written-after-compaction
+answer-written-after-compaction
+[exit 0]

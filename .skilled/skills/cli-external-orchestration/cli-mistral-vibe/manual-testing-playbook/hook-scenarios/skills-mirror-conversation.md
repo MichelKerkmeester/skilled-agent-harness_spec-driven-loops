@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-023 -- A request that needs a repository skill loads it from the .vibe/skills mirror"
 description: "This scenario validates that a Vibe session loads a repository skill from the .vibe/skills mirror installed in the disposable home's skills directory, judged from the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-023 -- A request that needs a repository skill loads it from the .vibe/skills mirror
@@ -30,7 +30,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner renders the repository hooks into a fresh `VIBE_HOME`, starts Vibe in a scratch project, then runs the baseline turn's check. That check builds the whole `.vibe/skills` mirror under `$VIBE_HOME/skills` in one rename, which Vibe's skill watch sees and re-derives. The first send then types the skill request, and Vibe calls the `skill` tool with `name = "sk-prompt"`.
 - Expected signals: a journal tool call whose `name` is `skill`, the rendered `skill_content` block naming `sk-prompt`, and the mirrored `skills/sk-prompt` path in the tool result.
 - Desired user-visible outcome: the session returns a structured prompt built with the skill's checklist.
-- Pass/fail: PASS when both turn checks pass. FAIL when the mirror is missing, the skill stays unavailable, or the model never calls the skill tool.
+- Pass/fail: PASS when all three turn checks pass. FAIL when the mirror is missing, the skill stays unavailable, or the model never calls the skill tool.
 
 ---
 
@@ -73,6 +73,20 @@ Operators run the conversation script through the shared runner with the `vibe` 
         }
       ],
       "check": "grep -rqs '\"name\":\"skill\"' \"$VIBE_HOME/logs/session/unified\" && grep -rqs 'skill_content' \"$VIBE_HOME/logs/session/unified\" && grep -rqs 'skills/sk-prompt' \"$VIBE_HOME/logs/session/unified\" && echo skill-loaded-from-mirror"
+    },
+    {
+      "id": "carry-prompt",
+      "send": "Write the structured prompt you just produced into prompt.md in this folder.",
+      "questions": [
+        {
+          "match": "[Ss]pec folder|[Dd]ocumentation",
+          "answer": {
+            "reply": "D"
+          },
+          "optional": true
+        }
+      ],
+      "check": "test -s prompt.md || { echo no-prompt-file; exit 1; }; grep -qi 'build' prompt.md || { echo prompt-lacks-request; exit 1; }; echo \"prompt-carried lines=$(wc -l < prompt.md | tr -d ' ')\""
     }
   ]
 }
@@ -82,7 +96,7 @@ The runner's home is created at launch with only `config.toml` and the rendered 
 
 ### Expected
 
-Turn `mirror-ready` installs the mirror. Turn `load-skill` finds the skill tool call, the rendered body and the mirrored path in the journal.
+Turn `mirror-ready` installs the mirror. Turn `load-skill` finds the skill tool call, the rendered body and the mirrored path in the journal. Turn `carry-prompt` asks for the structured prompt to be written into `prompt.md`: the file exists and names the build request, so the skill's output carried into the next turn.
 
 ### Evidence
 
@@ -90,8 +104,8 @@ Capture matrix.md, checkpoints.tsv, each turn's screen.txt and check.txt, plus s
 
 ### Pass / Fail
 
-- **Pass**: the journal holds a `skill` tool call for `sk-prompt` with its rendered body and mirrored path.
-- **Fail**: the mirror is missing, or no skill tool call names `sk-prompt`.
+- **Pass**: the journal holds a `skill` tool call for `sk-prompt` with its rendered body and mirrored path, and the next turn writes the structured prompt into `prompt.md`.
+- **Fail**: the mirror is missing, or no skill tool call names `sk-prompt`, or `prompt.md` is missing or lacks the build request.
 
 ### Failure Triage
 

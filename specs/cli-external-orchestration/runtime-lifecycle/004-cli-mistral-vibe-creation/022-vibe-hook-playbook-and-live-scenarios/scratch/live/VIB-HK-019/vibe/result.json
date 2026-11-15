@@ -2,12 +2,12 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 1185715240,
-  "socket": "conv-37656-vibe",
-  "session_id": "ebac5b46-b0b3-496d-b184-2206a39c0558",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.iZZy9ZWd9y/vibe",
-  "started_at": "2026-11-15T00:30:50.541Z",
-  "finished_at": "2026-11-15T00:31:14.958Z",
+  "seed": 222582563,
+  "socket": "conv-24647-vibe",
+  "session_id": "2063dafc-86ec-4052-8290-30269951f24d",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.RyqCkEb5yS/vibe",
+  "started_at": "2026-11-15T12:46:09.305Z",
+  "finished_at": "2026-11-15T12:47:10.631Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -37,8 +37,17 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "advisory-appended",
+      "observed": "advisory-on-the-fetch-result",
       "evidence": "turns/fetch-page"
+    },
+    {
+      "id": "benign-page",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "benign-page-earned-no-advisory",
+      "evidence": "turns/benign-page"
     }
   ]
 }

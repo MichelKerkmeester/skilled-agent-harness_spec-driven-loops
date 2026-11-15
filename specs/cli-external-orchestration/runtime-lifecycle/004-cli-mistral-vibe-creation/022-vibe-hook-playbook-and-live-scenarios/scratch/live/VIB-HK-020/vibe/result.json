@@ -2,12 +2,12 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 1514987576,
-  "socket": "conv-99879-vibe",
-  "session_id": "1e27c5de-b7ae-4d09-96a6-c6014bbe350b",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.1yd2cqhjwW/vibe",
-  "started_at": "2026-11-15T00:37:06.513Z",
-  "finished_at": "2026-11-15T00:37:48.456Z",
+  "seed": 2108143496,
+  "socket": "conv-40396-vibe",
+  "session_id": "1ec4dcd1-2b6f-4187-94e3-93f702638832",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.6E8m0gDBRu/vibe",
+  "started_at": "2026-11-15T12:22:34.324Z",
+  "finished_at": "2026-11-15T12:23:38.711Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -37,8 +37,17 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "one-record keyed on chatcmpl-tool-81bd82572ead9305",
+      "observed": "one-record keyed on chatcmpl-tool-b3b7bb68bb136021",
       "evidence": "turns/answer-question"
+    },
+    {
+      "id": "second-question",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "two-records-one-per-answer",
+      "evidence": "turns/second-question"
     }
   ]
 }

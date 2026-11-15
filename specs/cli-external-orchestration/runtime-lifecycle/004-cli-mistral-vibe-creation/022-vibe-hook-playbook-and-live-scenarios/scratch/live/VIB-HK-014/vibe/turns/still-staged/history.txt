@@ -1,0 +1,50 @@
+> Please commit a.txt for me with the commit message stuff, using git commit -m.                                                                                                                        
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+  Hooks are machine-wide via core.hooksPath; this temp repo is untrusted so pre-commit skips its toolchain, but commit-msg validates regardless. Committing with a conforming message.                  
+                                                                                                                                                                                                        
+⏵ Ran 2 commands, thought                                                                                                                                                                               
+                                                                                                                                                                                                        
+  Committed as 3e42325 on main (root commit, a.txt only).                                                                                                                                               
+                                                                                                                                                                                                        
+  I could not use the literal message stuff. The machine-wide commit-msg hook (sk-git, via core.hooksPath) rejected it with subject.format, and its rulebook also blocklists stuff under                
+  vagueSummaries, requires a scope, requires a prose body, and forbids Co-Authored-By. The hook states there is no bypass, so I wrote the closest conforming message:                                   
+                                                                                                                                                                                                        
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ chore(repo): add a.txt                                                                                                                                                                          │   
+  │                                                                                                                                                                                                 │   
+  │ Context: The repository had no tracked files, so this commit establishes its                                                                                                                    │   
+  │ first tracked file.                                                                                                                                                                             │  ▂
+  │                                                                                                                                                                                                 │   
+  │ Changes:                                                                                                                                                                                        │   
+  │ - Add a.txt containing a single greeting line.                                                                                                                                                  │   
+  │                                                                                                                                                                                                 │   
+  │ Verification:                                                                                                                                                                                   │   
+  │ - `cat a.txt` -> prints `hello`                                                                                                                                                                 │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  Two things worth knowing:                                                                                                                                                                             
+                                                                                                                                                                                                        
+  • I dropped the usual Co-Authored-By: Mistral Vibe trailer because this repo's contract treats it as a violation (attribution.forbidden). The repo rule wins over my default.                         
+  • .conversation-scratch and .skilled/ are untracked and were left alone. If you want either committed, say which and I'll add it.                                                                     
+                                                                                                                                                                                                        
+  If you'd rather have a different subject line, tell me the wording and I'll amend.                                                                                                                    
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+> Run git status and tell me whether a.txt is committed or still staged.                                                                                                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+                                                                                                                                                                                                        
+⏵ Ran 1 command, thought                                                                                                                                                                                
+                                                                                                                                                                                                        
+  a.txt is committed, not staged.                                                                                                                                                                       
+                                                                                                                                                                                                        
+  git status shows no staged or modified entries — only two untracked paths (.conversation-scratch, .skilled/). git ls-tree HEAD confirms a.txt is in the commit tree, so it's tracked and clean in     
+  commit 3e42325.                                                                                                                                                                                       
+
+                                                 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>                                                                                
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ztRD8fUAvk/vibe                                                                                                       ctx ▌      21.3k/256k

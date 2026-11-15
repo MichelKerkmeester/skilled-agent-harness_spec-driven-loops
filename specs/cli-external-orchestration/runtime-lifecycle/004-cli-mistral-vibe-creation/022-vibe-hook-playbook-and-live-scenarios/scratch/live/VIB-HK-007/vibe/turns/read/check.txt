@@ -1,3 +1,4 @@
-$ for i in $(seq 1 30); do if grep -rqs '"kind":"compaction"' "$VIBE_HOME/logs/session/unified"; then echo compaction-checkpoint-recorded; exit 0; fi; sleep 1; done; echo 'no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window'; exit 77
-no automatic compaction: the runner installs the repository model config, so the subject keeps its full context window
-[exit 77]
+$ node "$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs" "$VIBE_HOME/logs/session/unified" model compaction-probe && for i in $(seq 1 30); do node "$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs" "$VIBE_HOME/logs/session/unified" compaction && exit 0; sleep 1; done; exit 1
+active-model compaction-probe
+compaction-checkpoint at sequence 54
+[exit 0]

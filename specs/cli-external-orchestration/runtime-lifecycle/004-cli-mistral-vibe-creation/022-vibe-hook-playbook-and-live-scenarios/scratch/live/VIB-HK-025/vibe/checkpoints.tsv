@@ -1,4 +1,3 @@
 turn	status	attempts	evidence	observed
-run-prompt	PASS	1	turns/run-prompt	prompt-named
-new-conversation	PASS	1	turns/new-conversation	new-conversation
-prove-prompt	FAIL	1	turns/prove-prompt	CHECK_FAILED
+run-prompt	PASS	1	turns/run-prompt	mirrored-prompt-is-system-input
+act-on-prompt	PASS	1	turns/act-on-prompt	path-from-mirrored-prompt

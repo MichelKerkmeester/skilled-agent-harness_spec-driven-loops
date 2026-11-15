@@ -1,0 +1,3 @@
+$ test -s prev.txt || { echo no-prev-file; exit 1; }; grep -qi 'project' prev.txt || { echo resumed-session-lost-history; exit 1; }; echo "resumed-with-history: $(head -c 160 prev.txt)"
+resumed-with-history: Tell me in one sentence what this project contains.
+[exit 0]

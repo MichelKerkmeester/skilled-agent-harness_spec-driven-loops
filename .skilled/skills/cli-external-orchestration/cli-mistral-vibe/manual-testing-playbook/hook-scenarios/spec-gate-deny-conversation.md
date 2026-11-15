@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-002 -- Strict spec gate refuses the first write while the gate is open"
 description: "This scenario validates that the Vibe spec-gate strict pre_tool hook refuses the first write of a session whose gate was opened by the classify pass, judged from a pre_tool_call skip in the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-002 -- Strict spec gate refuses the first write while the gate is open
@@ -30,7 +30,8 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner renders the repository hooks into a fresh `VIBE_HOME`, starts Vibe in the scratch project and types the prompt. The classify pass opens the gate, the subject calls `write_file`, and `spec-gate` reads the open state and refuses the call.
 - Expected signals: a journal `pre_tool_call` record with output type `skip` whose reason carries `DENIED: this Write/Edit needs a bound spec folder first` and the `SPEC FOLDER QUESTION` text, plus the hook notice naming `spec-gate`.
 - Desired user-visible outcome: the session reports that the write needs a spec folder and does not claim the file was created.
-- Pass/fail: PASS when the journal holds the `pre_tool_call` skip with the spec-folder reason. FAIL when the write is allowed or the reason does not name the question.
+- Follow-up: the operator answers `D`, then asks for the same write again, which must now go through.
+- Pass/fail: PASS when all three turn checks pass. FAIL when the first write is allowed, the reason does not name the question, the `D` answer leaves the gate open, or the retried write is still refused.
 
 ---
 
@@ -39,6 +40,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 ### Prompt
 
 - Prompt: `Create notes.txt in this project with the line hello from the playbook. Use the file-writing tool rather than a shell command. Do not ask me any questions; just make the write.`
+- Follow-up: `D, then: Now create notes.txt with the line hello from the playbook, using the file-writing tool as before.`
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -52,7 +54,9 @@ Operators run the conversation script through the shared runner with the `vibe` 
     "vibe"
   ],
   "setup": [],
-  "env": {},
+  "env": {
+    "SYSTEM_SPEC_GATE_ENFORCE": "1"
+  },
   "turns": [
     {
       "id": "write",
@@ -74,6 +78,25 @@ Operators run the conversation script through the shared runner with the `vibe` 
         }
       ],
       "check": "grep -rqsF '\"hookName\":\"spec-gate\"' \"$VIBE_HOME/logs/session/unified\" && grep -rqsF '\"hook\":\"pre_tool_call\"' \"$VIBE_HOME/logs/session/unified\" && grep -rqsF '\"type\":\"skip\"' \"$VIBE_HOME/logs/session/unified\" && grep -rqsF 'DENIED: this Write/Edit needs a bound spec folder first' \"$VIBE_HOME/logs/session/unified\" && grep -rqsF 'SPEC FOLDER QUESTION' \"$VIBE_HOME/logs/session/unified\" && echo spec-gate-denied"
+    },
+    {
+      "id": "answer-skip",
+      "send": "D",
+      "check": "s=$(ls .skilled/skills/.state/spec-gate/*.json 2>/dev/null | head -1); [ -n \"$s\" ] && grep -qsF '\"status\": \"skipped\"' \"$s\" && echo gate-closed-by-skip-answer"
+    },
+    {
+      "id": "retry-write",
+      "send": "Now create notes.txt with the line hello from the playbook, using the file-writing tool as before.",
+      "questions": [
+        {
+          "match": "[Ss]pec[- ]folder|SPEC FOLDER|[Dd]ocumentation|[Pp]acket",
+          "answer": {
+            "reply": "D"
+          },
+          "optional": true
+        }
+      ],
+      "check": "for i in $(seq 1 20); do grep -qx 'hello from the playbook' notes.txt 2>/dev/null && echo write-allowed-after-skip && exit 0; sleep 1; done; echo 'notes.txt was not written after the skip answer'; exit 1"
     }
   ]
 }
@@ -83,7 +106,7 @@ The spec gate stays enabled, because the deny is the behavior under test. The pr
 
 ### Expected
 
-Turn `write` finds the `pre_tool_call` skip whose reason carries the `DENIED: this Write/Edit needs a bound spec folder first` sentence and the `SPEC FOLDER QUESTION` text, with a hook notice naming `spec-gate`.
+Turn `write` finds the `pre_tool_call` skip whose reason carries the `DENIED: this Write/Edit needs a bound spec folder first` sentence and the `SPEC FOLDER QUESTION` text, with a hook notice naming `spec-gate`. Turn `answer-skip` sends `D` and finds the gate state reading `skipped`. Turn `retry-write` finds `notes.txt` holding the line.
 
 ### Evidence
 
@@ -91,8 +114,8 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 
 ### Pass / Fail
 
-- **Pass**: the journal holds the `pre_tool_call` skip with the spec-folder reason, and the hook notice names `spec-gate`.
-- **Fail**: no skip record, a skip that names no spec-folder question, or a write that completed.
+- **Pass**: the journal holds the `pre_tool_call` skip with the spec-folder reason, the hook notice names `spec-gate`, the `D` answer closes the gate, and the retried write lands.
+- **Fail**: no skip record, a skip that names no spec-folder question, a first write that completed, or a retried write that is still refused.
 
 ### Failure Triage
 

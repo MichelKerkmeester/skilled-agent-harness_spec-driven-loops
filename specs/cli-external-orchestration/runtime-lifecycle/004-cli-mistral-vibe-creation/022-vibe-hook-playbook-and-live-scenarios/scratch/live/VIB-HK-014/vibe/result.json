@@ -2,12 +2,12 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 1607180886,
-  "socket": "conv-42561-vibe",
-  "session_id": "3e4258f4-6112-4844-8885-a4d908150931",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.UIDOobbIPX/vibe",
-  "started_at": "2026-11-14T23:17:06.313Z",
-  "finished_at": "2026-11-14T23:17:56.282Z",
+  "seed": 1939023697,
+  "socket": "conv-5317-vibe",
+  "session_id": "6d8ba2e8-956d-4c31-9b18-f0f528d42b9a",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ztRD8fUAvk/vibe",
+  "started_at": "2026-11-15T13:23:56.015Z",
+  "finished_at": "2026-11-15T13:25:03.463Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -48,6 +48,15 @@
       "blocker": null,
       "observed": "no-stuff-commit",
       "evidence": "turns/no-commit"
+    },
+    {
+      "id": "still-staged",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "compliant-commit-only: chore(repo): add a.txt",
+      "evidence": "turns/still-staged"
     }
   ]
 }

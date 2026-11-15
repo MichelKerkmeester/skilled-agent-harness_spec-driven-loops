@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-011 -- Dispatch preflight refuses a dispatch that breaks a hard rule"
 description: "This scenario validates that the Vibe dispatch-preflight pre_tool hook refuses a shell dispatch whose command text breaks a cli-mistral-vibe hard rule, judged from the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-011 -- Dispatch preflight refuses a dispatch that breaks a hard rule
@@ -30,7 +30,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner renders the repository hooks into a fresh `VIBE_HOME`, starts Vibe and types the prompt. Vibe composes a `bash` call holding the nested dispatch, and the hook returns `skip` with the `vibe-closed-roster` rule.
 - Expected signals: a journal `hook_completed` record for `pre_tool_call` whose output is `skip` naming `vibe-closed-roster` under `[cli-mistral-vibe]`, and the deny notice Vibe records for the refused tool call. The gpt-5 dispatch never starts; a subject that then runs an approved dispatch instead leaves a second, permitted run beside the refusal.
 - Desired user-visible outcome: the session reports the refusal, names the roster rule and offers the two approved aliases.
-- Pass/fail: PASS when both turn checks pass. FAIL when the journal holds no refusal from this hook or no deny notice.
+- Pass/fail: PASS when all three turn checks pass. FAIL when the journal holds no refusal from this hook or no deny notice.
 
 ---
 
@@ -73,6 +73,20 @@ Operators run the conversation script through the shared runner with the `vibe` 
     {
       "id": "deny-notice",
       "check": "grep -rqs '\"content\":\"Denied tool' \"$VIBE_HOME/logs/session/unified\" && echo deny-notice-recorded"
+    },
+    {
+      "id": "plain-shell",
+      "send": "Skip the smoke test. Instead run printf ok > ok.txt in the shell here.",
+      "questions": [
+        {
+          "match": "[Ss]pec folder|[Dd]ocumentation|[Ww]hich|[Ss]hould I|[Cc]onfirm",
+          "answer": {
+            "other": "Yes, just run printf ok > ok.txt."
+          },
+          "optional": true
+        }
+      ],
+      "check": "grep -qx ok ok.txt 2>/dev/null || [ \"$(cat ok.txt 2>/dev/null)\" = ok ] || { echo no-ok-file; exit 1; }; echo plain-shell-allowed-after-refusal"
     }
   ]
 }
@@ -82,7 +96,7 @@ The requested alias is deliberately outside the roster, and the prompt pins it, 
 
 ### Expected
 
-Turn `dispatch` finds the rule refusal in the journal. Turn `deny-notice` finds the notice Vibe records for the refused tool call, which is the record a reply cannot fabricate.
+Turn `dispatch` finds the rule refusal in the journal. Turn `deny-notice` finds the notice Vibe records for the refused tool call, which is the record a reply cannot fabricate. Turn `plain-shell` drops the smoke test and asks for `printf ok > ok.txt`: the file holds `ok`, so after a refusal the hook still lets an ordinary shell call through.
 
 ### Evidence
 
@@ -90,8 +104,8 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 
 ### Pass / Fail
 
-- **Pass**: the journal holds the `pre_tool_call` `skip` naming `vibe-closed-roster` and the deny notice for the refused tool call.
-- **Fail**: no refusal record from `dispatch-preflight`, or no deny notice.
+- **Pass**: the journal holds the `pre_tool_call` `skip` naming `vibe-closed-roster` and the deny notice for the refused tool call, and the later ordinary shell call writes `ok.txt`.
+- **Fail**: no refusal record from `dispatch-preflight`, or no deny notice, or the later ordinary shell call was refused.
 
 ### Failure Triage
 

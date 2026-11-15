@@ -1,0 +1,51 @@
+> Use the sk-prompt skill to turn this rough request into a structured prompt for a coding agent: make the build faster.                                                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  │ 6 Output format                      │ present               │ Seven ordered sections, tables named                                                                                             │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 7 Examples                           │ not needed            │ No format ambiguity to demonstrate                                                                                               │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 8 Success criteria                   │ present               │ Same-method delta, clean-cache parity, checks still pass                                                                         │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 9 Assumptions                        │ present               │ Moved to open items, not embedded in the prompt                                                                                  │   
+  ├──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ 10 Wording                           │ present               │ Reasons given instead of capitals; no CRITICAL/MUST                                                                              │   
+  └──────────────────────────────────────┴───────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  CLEAR: 44/50 (C:9 L:9 E:13 A:9 R:4) — passes 40 and every per-dimension floor. Correctness and logic hold because the measure-profile-remeasure loop closes and the cold/warm and install-dominated   
+  cases are handled. Expression loses points for length; reusability loses one because the build target is described rather than parameterized.                                                         
+                                                                                                                                                                                                        
+  Change report                                                                                                                                                                                         
+                                                                                                                                                                                                        
+  • Added — task outcome, read-first context, five-step process, seven constraints with a stated priority order, seven-section output contract, success criteria, three edge cases.                     
+  • Changed — "make the build faster" became a measured, evidence-gated loop rather than an open-ended optimization request.                                                                            
+  • Removed — nothing; the original carried no content to remove.                                                                                                                                       
+  • Skipped — examples (row 7), since no output format needed demonstrating.                                                                                                                            
+  • Quick test: NOT RUN — no target model available to run representative inputs old versus new.                                                                                                        
+                                                                                                                                                                                                        
+  The prompt is roughly 40x the original four words. That growth is inherent: the original carried no task detail, so every component had to be supplied rather than expanded.                          
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+> Write the structured prompt you just produced into prompt.md in this folder.                                                                                                                          
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────▃
+                                                                                                                                                                                                        
+⏵ Ran 2 commands, wrote 1 file, thought                                                                                                                                                                 
+                                                                                                                                                                                                        
+  Written to prompt.md in the session folder:                                                                                                                                                           
+                                                                                                                                                                                                        
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.tQVPx0MZ1Q/vibe/prompt.md                                                                                                          │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  46 lines, 3520 bytes, seven sections (Task, Context, Process, Constraints, Output, Success criteria, Edge cases). It holds the prompt body only — no fence, no commentary — so it can be handed to    
+  a coding agent as-is.                                                                                                                                                                                 
+                                                                                                                                                                                                        
+  One thing to check: that folder is this session's temp directory, not your project. If you meant prompt.md in the repo you're working in, give me the path and I'll move it there.                    
+
+                                                
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>   
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.tQVPx0MZ1Q/vibe                                                                                                       ctx ▉      36.1k/256k
+

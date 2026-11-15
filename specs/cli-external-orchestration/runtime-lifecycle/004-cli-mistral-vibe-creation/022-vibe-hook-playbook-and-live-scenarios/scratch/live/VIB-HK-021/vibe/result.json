@@ -2,12 +2,12 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 181015609,
-  "socket": "conv-38322-vibe",
-  "session_id": "1c9ad49c-9e75-4136-adf5-7647263771d6",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.3ElmXI5JBg/vibe",
-  "started_at": "2026-11-15T00:04:41.319Z",
-  "finished_at": "2026-11-15T00:06:05.002Z",
+  "seed": 1048675515,
+  "socket": "conv-85019-vibe",
+  "session_id": "34983ff4-a97d-4d00-8da1-8e3ca6e0f3c1",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CbB5b8eR0a/vibe",
+  "started_at": "2026-11-15T13:17:46.935Z",
+  "finished_at": "2026-11-15T13:18:49.893Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -46,8 +46,17 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "2026-11-15T01:05:29+0100 action=skip reason=no-session-pid",
+      "observed": "2026-11-15T14:18:21+0100 action=skip reason=no-session-pid",
       "evidence": "turns/close"
+    },
+    {
+      "id": "resumed",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "resumed-with-history: Tell me in one sentence what this project contains.",
+      "evidence": "turns/resumed"
     }
   ]
 }

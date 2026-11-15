@@ -35,7 +35,7 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -174,12 +174,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,12 +196,18 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.vibe/hooks.toml` registers no `postagent` hook and `ask-surface-core.cjs` has no Vibe row, so a Vibe turn that ends with a prose option menu or an unproven \"done\" claim reaches the operator unchecked",
     "created_at": "2026-11-14T20:13:09Z",
-    "last_save_at": "2026-11-14T22:01:13.101Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T13:28:55.494Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d60a65cf26e69a92b99ac0dd1045177c3d6c09c9555d474754f4ebf794a68973",
+    "source_fingerprint": "sha256:5eb3427ddf5394aea245b03a3019c2da05b9286856c831a21355f834fb50be7a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ab3df7ff19178ae9dff532c09496321d3fcb2084388a2f7d33518e2b97ca69a5",
+      "spec.md": "ed966b5863a2c986a71be94bd3a9a0faa36549547c6ea1906f36bfeec3eb0981",
       "plan.md": "476b51b6dee635500e0fb285a066d0b0d4e7b15410cb7f053420f57c6e49cb0b",
-      "tasks.md": "8ed36f6056bc57693ec90f4d226b5903cdee61de020129ae207bf1b82bb7c047",
-      "implementation-summary.md": "9d757b0a0a73224e413aee0368a74aaa586b80303b94e9d96baf8190cef79b18"
+      "tasks.md": "915e23c5bb6bfbc69866424d4838e9faff4cd0070d3744ce088dd25758dcb109",
+      "implementation-summary.md": "4c92a56684a8a706f73390c89591ec5fe2e0e05f05fa23a8d27c3d90707b3e78"
     },
     "last_active_at": null
   }

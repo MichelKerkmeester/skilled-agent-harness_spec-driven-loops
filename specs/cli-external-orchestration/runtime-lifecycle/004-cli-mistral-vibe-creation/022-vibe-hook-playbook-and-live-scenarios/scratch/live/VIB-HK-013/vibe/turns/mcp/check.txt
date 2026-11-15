@@ -1,0 +1,3 @@
+$ grep -qx tools/list "$VIBE_HOME/mcp-fixture.log" || { echo 'the fixture server never listed its tools'; exit 1; }; for i in $(seq 1 30); do grep -rqs 'Code Mode can route this family via the .\{0,2\}github.\{0,2\} manual' "$VIBE_HOME/logs/session/unified" && echo mcp-route-refused && exit 0; sleep 1; done; echo 'no routing advisory in the journal'; exit 1
+mcp-route-refused
+[exit 0]

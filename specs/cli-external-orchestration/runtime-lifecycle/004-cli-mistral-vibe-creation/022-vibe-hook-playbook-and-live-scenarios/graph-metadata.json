@@ -36,7 +36,7 @@
       "022-vibe-hook-playbook-and-live-scenarios"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,19 +45,19 @@
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
-      ".vibe/hooks.toml",
       ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+      ".vibe/plugins/repo-guards/fixtures/journal-check.cjs",
+      ".vibe/plugins/repo-guards/fixtures/mcp-route-guard/stdio-server.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+      "scratch/verdicts.md",
+      ".vibe/hooks.toml",
       ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs",
       ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md",
       "scratch/inventory.md",
-      "scratch/verdicts.md",
       "scratch/alignment-triage.md",
       "scratch/predecessors.md",
-      "scratch/baseline-validator.txt",
-      "scratch/baseline-runner.txt",
-      ".vibe/config.toml",
-      "scratch/live/VIB-HK-001/matrix.md",
-      "scratch/live/VIB-HK-002/matrix.md"
+      "scratch/baseline-validator.txt"
     ],
     "entities": [
       {
@@ -103,15 +103,45 @@
         "source": "derived"
       },
       {
-        "name": "hooks.toml",
-        "kind": "file",
-        "path": ".vibe/hooks.toml",
-        "source": "derived"
-      },
-      {
         "name": "validate-playbook-package.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "conversation-scenarios.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        "source": "derived"
+      },
+      {
+        "name": "journal-check.cjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/fixtures/journal-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "stdio-server.cjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/fixtures/mcp-route-guard/stdio-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-dist-staleness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "verdicts.md",
+        "kind": "doc",
+        "path": "scratch/verdicts.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
         "source": "derived"
       },
       {
@@ -133,12 +163,6 @@
         "source": "derived"
       },
       {
-        "name": "verdicts.md",
-        "kind": "doc",
-        "path": "scratch/verdicts.md",
-        "source": "derived"
-      },
-      {
         "name": "alignment-triage.md",
         "kind": "doc",
         "path": "scratch/alignment-triage.md",
@@ -157,31 +181,7 @@
         "source": "derived"
       },
       {
-        "name": "baseline-runner.txt",
-        "kind": "file",
-        "path": "scratch/baseline-runner.txt",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".vibe/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "matrix.md",
-        "kind": "doc",
-        "path": "scratch/live/VIB-HK-001/matrix.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`.vibe/hooks.toml` registers 18 hook entries, and the Vibe playbook's 25 scenarios cover only the goal slice as a live conversation; the spec-gate and hard-rule rows are test-suite runs, and 14 entries are named in no scenario at all (Measured Behavior)",
     "created_at": "2026-11-14T22:25:49Z",
-    "last_save_at": "2026-11-15T10:33:57.212Z",
+    "last_save_at": "2026-11-15T13:28:41.618Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c669fc7c52ac89f30c0428c6b8d9b359be2d816927d957bf4d38f1b80cb857d7",
+    "source_fingerprint": "sha256:63d35b158b4ec0fe8f52e3a889593a3cfeffcd605601b458c7514873bb77c38f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a86318ca65aaa6859594e8c2523ae65bc88d39ad58db9fddff8d385cb8bc95b0",
+      "spec.md": "b31b841eb4459c2672fa3b2f5d775fd906000f7bc30a447a44d6d0b385e03a9a",
       "plan.md": "a3bf0bbb0ec4a9cba5ff2da6e23a89c49bb592d1159b14bbf0a255e1c21f13ef",
-      "tasks.md": "224478b153f97e39f35aee31963e521c61b14b18f0fd22c56f6997c742501299",
-      "decision-record.md": "58fe2a1043de702700c8336e42822a24c480b182a9733b60969fc0e53f22930e",
-      "implementation-summary.md": "be6603a5da62f158888527a187a45f20d15d035f032fa494cc323f7447d0e75b"
+      "tasks.md": "5900af70e5383eab38155bb83b9782ab6edaa0201c9fe39098f9f70d359285c9",
+      "decision-record.md": "67f0e4a3dbaae6a3d2824f94103ede6c1f9a6031b079a6baff396b3cc6f0e937",
+      "implementation-summary.md": "0a5880303669ecf75c66eaec9aecf9c83b673b29901f63a58cb67b5344888d84"
     },
     "last_active_at": null
   }

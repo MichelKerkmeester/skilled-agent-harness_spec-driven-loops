@@ -1,0 +1,3 @@
+$ grep -rqs 'Denied tool' "$VIBE_HOME/logs/session/unified" || { echo 'no deny notice'; exit 1; }; if grep -qx tools/call "$VIBE_HOME/mcp-fixture.log"; then echo 'the refused call reached the server'; exit 1; fi; echo deny-notice-and-no-server-call
+deny-notice-and-no-server-call
+[exit 0]
