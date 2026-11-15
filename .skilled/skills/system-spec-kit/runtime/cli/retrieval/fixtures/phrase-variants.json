@@ -1,5 +1,5 @@
 {
-  "manifestHash": "18e500db994b5c89955723f96c6ac73f094132479ff973929f417892bde5ce1a",
+  "manifestHash": "24495e125be37ab80342c768c8506d1da53b731f4c9b3331c4d92bc72a43ba95",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15005,6 +15005,9 @@
     ],
     "bind single entry executors to single path tasks": [
       "bind single entry executors to single path tasks"
+    ],
+    "binding after config read": [
+      "binding after config read"
     ],
     "binding block check": [
       "binding block check"
@@ -108711,6 +108714,9 @@
     "sk create agent 1 0 1 2": [
       "sk-create-agent 1.0.1.2"
     ],
+    "sk create agent 1 0 10 0": [
+      "sk-create-agent 1.0.10.0"
+    ],
     "sk create agent 1 0 2 0": [
       "sk-create-agent 1.0.2.0"
     ],
@@ -108764,6 +108770,9 @@
     ],
     "sk create agent v1 0 1 2": [
       "sk-create-agent v1.0.1.2"
+    ],
+    "sk create agent v1 0 10 0": [
+      "sk-create-agent v1.0.10.0"
     ],
     "sk create agent v1 0 2 0": [
       "sk-create-agent v1.0.2.0"

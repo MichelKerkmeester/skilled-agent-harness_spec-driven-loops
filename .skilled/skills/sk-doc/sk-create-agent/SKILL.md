@@ -2,7 +2,7 @@
 name: sk-create-agent
 description: Scaffold OpenCode agents with runtime placement, permission frontmatter, authority boundaries, workflow sections, and validation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # Create Agent - Runtime Persona Authoring

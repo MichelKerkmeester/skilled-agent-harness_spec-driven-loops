@@ -8,22 +8,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status"
-    last_updated_at: "2026-11-14T23:57:16Z"
+    last_updated_at: "2026-11-15T05:24:49Z"
     last_updated_by: "generate-context"
     recent_action: "Built and verified the phase"
-    next_safe_action: "Start phase 011 debug-agent-revert-and-handoff"
+    next_safe_action: "Plan and build child 015 review-verdict-gate-rule"
     packet_purpose: "Purpose: Each owned finding ends as an agent edit or a recorded no-fix decision, and a leaf that follows the agent text produces the status, record and verdict that the gateway, the reducer and the workflow accept."
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:c9b332777fe2cc236a301c89591db5d701abc030833c37fdefcc1a3e6855212e"
+      fingerprint: "sha256:a9dd379c9fb1f5c91eeac8797b8186850a24c94822bfe453fe20a61f854b9b13"
       session_id: "scaffold-010-deep-loop-leaf-state-and-status"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "a84f4eed-26f9-49ac-91eb-e2375c207e96"
       workspace: "/Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups"
-      savedAt: "2026-11-14T23:57:16Z"
+      savedAt: "2026-11-15T05:24:49Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -94,7 +94,10 @@ DeepSeek V4.1 Flash at `--thinking max` through cli-pi made ten single-task edit
 
 | Decision | Why |
 |----------|-----|
-| The `runId`, `sessionId` and `lineageId` fields were not added to the research record | Open question 1 plans them only after the operator says yes, and no answer was given |
+| The `runId`, `sessionId` and `lineageId` fields were added to the Step 8 record, all set to the config's `lineage.sessionId` | The operator answered yes on 2026-11-15. The form copies the prompt pack, so the gateway no longer refuses a record built from the example |
+| `agent-template.md` lets a binding read from a config or template follow that read; sk-create-agent is 1.0.10.0 | The operator answered yes on 2026-11-15. The template was phase 006's file; it changed on that direct answer, and `markdown.md` and the deep agents already fit the amended rule |
+| The verdict rule moves to child 015 | The operator chose the contract: a failed required quality gate also forces FAIL. That changes four verdict computations and needs tests, outside 010's frozen file list |
+| The two answer edits were made by the conductor | Each was one line copied from an existing source, so a DeepSeek dispatch added nothing |
 | The `.claude` forks were regenerated from the canonical body | The regeneration reproduced both HEAD forks byte for byte before the edit, so it carries the same change without hand edits |
 | `durationMs` dropped although the research workflow writes it | T004 found only writers and examples, no reader, so the record field had no consumer |
 <!-- /ANCHOR:decisions -->
@@ -117,8 +120,7 @@ DeepSeek V4.1 Flash at `--thinking max` through cli-pi made ten single-task edit
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The research record still lacks session identity fields.** The prompt pack requires `runId`, `sessionId` and `lineageId`, and the agent example omits them. Adding them waits on the operator's answer to open question 1.
-2. **Two verdict rules remain.** `review-mode-contract.yaml` and the review workflow disagree on whether a failed gate forces FAIL. The agent now defers to whichever the session verdict uses, and the choice stays with the operator.
+1. **Two verdict rules remain until child 015 ships.** The operator chose the contract rule on 2026-11-15. The workflow, the reducer and the fan-out merge still count P0 only. The agent defers to the session verdict, which stays correct after 015.
 <!-- /ANCHOR:limitations -->
 
 ---
