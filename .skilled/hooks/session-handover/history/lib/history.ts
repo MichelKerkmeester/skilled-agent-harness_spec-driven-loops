@@ -328,11 +328,11 @@ export function projectHistoryEntries(
 // ───────────────────────────────────────────────────────────────────
 
 // The lookup run by node, as a printed offer writes it: the entry the handover
-// concern owns, or the compiled core that earlier offers named and that older
-// transcripts still hold. A shell call that runs either is the model paging its
-// own history, the same as a dedicated pager tool. A call that only names the
-// file, such as reading its source, is not.
-const LOOKUP_CLI_RUN = /\bnode\b[^\n]*(?:hooks\/lib\/history\/cli\.js|session-handover\/bin\/history-lookup\.mjs)/;
+// concern owns, the compiled core beside it, or the core's earlier home inside
+// the spec-kit runtime that older transcripts still hold. A shell call that runs
+// any of them is the model paging its own history, the same as a dedicated pager
+// tool. A call that only names the file, such as reading its source, is not.
+const LOOKUP_CLI_RUN = /\bnode\b[^\n]*(?:hooks\/lib\/history\/cli\.js|session-handover\/(?:bin\/history-lookup\.mjs|history\/dist\/cli\.js))/;
 
 function invokesLookupCli(value: unknown, depth = 0): boolean {
   if (typeof value === 'string') return LOOKUP_CLI_RUN.test(value);

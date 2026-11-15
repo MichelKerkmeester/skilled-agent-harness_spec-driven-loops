@@ -17,13 +17,14 @@ import {
   loadState,
   updateState,
   type HistoryLocator,
-} from '../hooks/claude/hook-state.js';
+} from '../../../../skills/system-spec-kit/runtime/hooks/claude/hook-state.js';
 import {
   HISTORY_LOOKUP_MAX_QUOTED_SESSION_ID,
   fitRecoverySections,
+  fitsHistoryLookupOffer,
   placeLookup,
-} from '../hooks/lib/history/lookup-offer.js';
-import { persistHistoryLocator } from '../hooks/lib/history/locator-digest.js';
+} from '../lib/lookup-offer.js';
+import { persistHistoryLocator } from '../lib/locator-digest.js';
 import { buildLocator, checkoutRoot } from './_support/history-fixtures.js';
 
 const WORKSPACE = checkoutRoot();
@@ -156,6 +157,18 @@ describe('history locator session id shape', () => {
     expect(HistoryLocatorSchema.safeParse(validLocator({ sessionId: plainAtBound })).success).toBe(true);
     expect(HistoryLocatorSchema.safeParse(validLocator({ sessionId: plainAtBound + 'a' })).success).toBe(false);
     expect(HistoryLocatorSchema.safeParse(validLocator({ sessionId: quoteDenseAbove })).success).toBe(false);
+  });
+
+  // The schema keeps its own copy of the offer's bound, because the runtime builds before this
+  // engine and cannot import it. This sweep fails as soon as the two copies disagree.
+  it('admits exactly the session ids the lookup offer can print', () => {
+    for (let quotes = 0; quotes <= 4; quotes += 1) {
+      for (let plain = 50; plain <= 70; plain += 1) {
+        const sessionId = `${"'".repeat(quotes)}${'a'.repeat(plain)}`;
+        expect(HistoryLocatorSchema.safeParse(validLocator({ sessionId })).success, sessionId)
+          .toBe(fitsHistoryLookupOffer(sessionId));
+      }
+    }
   });
 
   it('accepts the prefixed UUID shape that DSH issues', () => {

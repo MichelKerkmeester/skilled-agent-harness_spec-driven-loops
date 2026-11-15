@@ -84,4 +84,4 @@ The matrix suite covers each runtime by store state, and the schema check valida
 ## 5. RELATED
 
 - [`../README.md`](../README.md): the shared hook helpers this package sits beside.
-- [`../../../skills/system-spec-kit/runtime/hooks/lib/history/README.md`](../../../skills/system-spec-kit/runtime/hooks/lib/history/README.md): the lookup core and CLI that consume these readers.
+- [`../../session-handover/history/README.md`](../../session-handover/history/README.md): the lookup core and CLI that consume these readers.

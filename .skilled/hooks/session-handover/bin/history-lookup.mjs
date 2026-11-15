@@ -18,7 +18,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const CORE_PATH = join(
   dirname(fileURLToPath(import.meta.url)),
-  '../../../skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js',
+  '../history/dist/cli.js',
 );
 
 // ─────────────────────────────────────────────────────────────────────────────

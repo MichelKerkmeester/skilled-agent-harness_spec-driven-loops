@@ -12,16 +12,16 @@ import { DatabaseSync } from 'node:sqlite';
 
 import { afterAll, afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { dshProjectKey } from '../../../../hooks/shared/session-readers/dsh.mjs';
-import { piProjectDirectory } from '../../../../hooks/shared/session-readers/pi.mjs';
+import { dshProjectKey } from '../../../shared/session-readers/dsh.mjs';
+import { piProjectDirectory } from '../../../shared/session-readers/pi.mjs';
 import {
   ensureStateDir,
   getStatePath,
   saveState,
   type HistoryLocator,
   type HookState,
-} from '../hooks/claude/hook-state.js';
-import { runHistoryLookupCli } from '../hooks/lib/history/cli.js';
+} from '../../../../skills/system-spec-kit/runtime/hooks/claude/hook-state.js';
+import { runHistoryLookupCli } from '../lib/cli.js';
 import { buildLocator, checkoutRoot } from './_support/history-fixtures.js';
 
 const NOW_MS = Date.parse('2026-11-07T12:00:00.000Z');

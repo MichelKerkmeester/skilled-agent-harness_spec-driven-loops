@@ -4,23 +4,23 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { createHistoryLookup } from '../hooks/lib/history/core.js';
+import { createHistoryLookup } from '../lib/core.js';
 import {
   HistoryProjectionError,
   hasPagingToolCall,
   isPagingToolCall,
   projectHistoryEntries,
   type HistoryEntry,
-} from '../hooks/lib/history/history.js';
-import { HistoryNavigatorError } from '../hooks/lib/history/navigator.js';
-import { HistoryPageError, type HistoryPageInput } from '../hooks/lib/history/pages.js';
+} from '../lib/history.js';
+import { HistoryNavigatorError } from '../lib/navigator.js';
+import { HistoryPageError, type HistoryPageInput } from '../lib/pages.js';
 import {
   isRecoverableHistoryItem,
   publicAssistantBlock,
   recoveryHistoryItem,
   type RecoveryModelTurnHistoryItem,
-} from '../hooks/lib/history/projection.js';
-import { HistoryResponseError } from '../hooks/lib/history/response.js';
+} from '../lib/projection.js';
+import { HistoryResponseError } from '../lib/response.js';
 import { buildHistoryEntries, ONE_PIXEL_PNG } from './_support/history-fixtures.js';
 
 const TIMESTAMP = '2026-11-07T12:00:00.000Z';
@@ -225,8 +225,12 @@ describe('public projection', () => {
     expect(projected.metadata.tools).toEqual(['read_file']);
   });
 
-  it('treats a shell call that runs the lookup CLI as paging', () => {
-    const lookup = '(cd "$(git rev-parse --show-toplevel)" && node .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js --session s --handle h browse)';
+  // The earlier core path stays because older transcripts still hold it.
+  it.each([
+    '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js',
+    '.skilled/hooks/session-handover/history/dist/cli.js',
+  ])('treats a shell call that runs the lookup CLI at %s as paging', (corePath) => {
+    const lookup = `(cd "$(git rev-parse --show-toplevel)" && node ${corePath} --session s --handle h browse)`;
     const [item] = projectHistoryEntries([
       entry({
         id: 'shell-paging-turn',

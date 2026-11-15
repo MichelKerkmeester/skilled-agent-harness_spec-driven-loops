@@ -1,0 +1,15 @@
+{
+  "name": "@spec-kit/session-handover-history",
+  "private": true,
+  "description": "History lookup engine: reads an earlier session's turns back for the session handover hook",
+  "type": "module",
+  "engines": {
+    "node": "^22.23.4 || ^24.22.1 || >=26.12.1"
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "build": "../../../skills/system-spec-kit/node_modules/.bin/tsc --build",
+    "typecheck": "../../../skills/system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json",
+    "test": "../../../node_modules/.bin/vitest run"
+  }
+}

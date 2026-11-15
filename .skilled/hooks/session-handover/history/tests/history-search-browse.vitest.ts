@@ -4,14 +4,14 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { createHistoryLookup } from '../hooks/lib/history/core.js';
-import { projectHistoryEntries, type HistoryEntry } from '../hooks/lib/history/history.js';
+import { createHistoryLookup } from '../lib/core.js';
+import { projectHistoryEntries, type HistoryEntry } from '../lib/history.js';
 import {
   HistoryNavigator,
   HistoryNavigatorError,
   type HistoryReference,
-} from '../hooks/lib/history/navigator.js';
-import { HistoryPageError } from '../hooks/lib/history/pages.js';
+} from '../lib/navigator.js';
+import { HistoryPageError } from '../lib/pages.js';
 import { buildHistoryEntries } from './_support/history-fixtures.js';
 
 function navigator(): HistoryNavigator {

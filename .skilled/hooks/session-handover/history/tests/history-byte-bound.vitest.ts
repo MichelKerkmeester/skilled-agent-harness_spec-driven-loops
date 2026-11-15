@@ -12,11 +12,11 @@ import {
   recoveryResponse,
   recoveryTextReply,
   type HistoryTextReply,
-} from '../hooks/lib/history/response.js';
-import { projectHistoryEntries, type HistoryEntry } from '../hooks/lib/history/history.js';
-import { recoveryHistoryItem, type RecoveryHistoryItem } from '../hooks/lib/history/projection.js';
-import { boundedHistoryReply } from '../hooks/lib/history/loads.js';
-import { createHistoryLookup, type HistoryLookup } from '../hooks/lib/history/core.js';
+} from '../lib/response.js';
+import { projectHistoryEntries, type HistoryEntry } from '../lib/history.js';
+import { recoveryHistoryItem, type RecoveryHistoryItem } from '../lib/projection.js';
+import { boundedHistoryReply } from '../lib/loads.js';
+import { createHistoryLookup, type HistoryLookup } from '../lib/core.js';
 
 function replyBytes(reply: HistoryTextReply): number {
   return Buffer.byteLength(JSON.stringify(reply), 'utf8');

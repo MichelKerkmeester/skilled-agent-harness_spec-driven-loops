@@ -10,13 +10,13 @@ import {
   HISTORY_LOCATOR_KINDS,
   HISTORY_LOCATOR_VERSION,
   type HistoryLocator,
-} from '../../hooks/claude/hook-state.js';
-import type { HistoryContentBlock, HistoryEntry } from '../../hooks/lib/history/history.js';
-import { historyHandle } from '../../hooks/lib/history/locator-digest.js';
-import { placeLookup } from '../../hooks/lib/history/lookup-offer.js';
+} from '../../../../../skills/system-spec-kit/runtime/hooks/claude/hook-state.js';
+import type { HistoryContentBlock, HistoryEntry } from '../../lib/history.js';
+import { historyHandle } from '../../lib/locator-digest.js';
+import { placeLookup } from '../../lib/lookup-offer.js';
 
 const ENTRY_PATH = '.skilled/hooks/session-handover/bin/history-lookup.mjs';
-const CORE_PATH = '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js';
+const CORE_PATH = '.skilled/hooks/session-handover/history/dist/cli.js';
 
 /**
  * A temporary folder that looks like a checkout root. The lookup offer is

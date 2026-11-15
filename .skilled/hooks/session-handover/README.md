@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-The `session-handover/` folder holds the shared handoff logic, one adapter per automatic runtime, the CLI and the tests for the session handover loop. It also holds `bin/history-lookup.mjs`, the runnable entry for the printed history lookup command. Each adapter asks for a handoff near its context threshold. The sender prepares a note and the adapter arms a matching record. After the runtime exits, `skilled-loop` relaunches it with a claim seed when the record is armed, fresh and below the hop cap. If a record is still pending at exit, the wrapper prints a manual claim command for the selected runtime and consumes the record. `SKILLED_LOOP_MANUAL_TEMPLATE` builds that command from the first launch's name and Pi extension flags, and from the model, provider and effort the record carries when it has them, so after a hop that switched model the printed command names the model the session was last using. The killer uses the same template in its timeout notification.
+The `session-handover/` folder holds the shared handoff logic, one adapter per automatic runtime, the CLI and the tests for the session handover loop. It also holds the history lookup: `bin/history-lookup.mjs`, the runnable entry for the printed lookup command, and `history/`, the engine that reads the sender's earlier turns back. Section 3 explains how the lookup works end to end. Each adapter asks for a handoff near its context threshold. The sender prepares a note and the adapter arms a matching record. After the runtime exits, `skilled-loop` relaunches it with a claim seed when the record is armed, fresh and below the hop cap. If a record is still pending at exit, the wrapper prints a manual claim command for the selected runtime and consumes the record. `SKILLED_LOOP_MANUAL_TEMPLATE` builds that command from the first launch's name and Pi extension flags, and from the model, provider and effort the record carries when it has them, so after a hop that switched model the printed command names the model the session was last using. The killer uses the same template in its timeout notification.
 
 Claude Code uses `PreToolUse` for Bash, `PostToolUse`, `UserPromptSubmit`, `Stop` and `SessionStart`, both after a compaction and at startup for the claim of a hop whose start prompt is the goal command. Pi, OpenCode, Codex and Vibe use their host events or a plugin. Cursor and Devin ship on the command trigger only. Start every runtime through `skilled-loop` for the loop, by hand or through the shell shim in section 2. Inside the loop the nudge asks for a hop. Outside it, the nudge asks only for a note the session keeps through auto-compaction, as section 3 describes under Outside The Loop.
 
@@ -192,9 +192,41 @@ A written value is checked the way `spec_folder` is: a repo-relative packet path
 
 ### History Lookup After A Claim
 
-`claim` mints a history locator for the sending session with provenance source `handover` and prints a `## History Lookup` section after the note body, then the sentence `Use it for a detail this note does not spell out, before you guess.` The section names one read-only command, `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`, which searches, browses, loads and pages the sender's earlier turns. Replies are capped and read-only.
+A handoff note holds what the sender chose to write down. The history lookup gives the receiver a way to read the sender's own earlier turns for a detail the note left out, such as an exact code, a path or a figure, instead of guessing it.
 
-Only Claude Code, Codex and Vibe senders get a locator. The section is withheld when the sender has no transcript, when the note names another runtime, when the sender ran in another checkout, or when the runtime is not built, and the claim then prints what it printed before. A locator is fresh for 30 minutes from the claim. Search matches whole identifier parts, split on `-`, `.`, `/`, `:` and `_` and on case changes. A query matches whole word parts, so 'live' does not match 'delivery'.
+**What the claim prints.** `claim` mints a history locator for the sending session with provenance source `handover` and prints a `## History Lookup` section after the note body, then the sentence `Use it for a detail this note does not spell out, before you guess.` The section names one read-only command, `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`, which searches, browses, loads and pages the sender's earlier turns. The command runs in a subshell that first moves to the checkout root, so it works from any subfolder. A Codex or Vibe locator adds `SPECKIT_RUNTIME=codex` or `SPECKIT_RUNTIME=vibe` in front of it.
+
+**When the section is printed.** The claim mints a locator and prints the section only when all of these hold:
+
+1. The sender ran Claude Code, Codex or Vibe. The other runtimes have no handover locator.
+2. The sender's transcript exists in the runtime's own store. The claim finds it by session id and never takes a path from the note.
+3. The note's folder sits in the receiver's checkout, and so does the first folder the transcript records. This stops a note from pointing the lookup at another project's session.
+4. That checkout root holds the runnable entry and the engine's build. Without them the printed command could not run.
+5. The locator write persisted. A locator the state schema refuses, for example a session id too long to print, prints nothing.
+
+When any condition fails, the claim prints exactly what it printed before the lookup existed. A failed mint never fails the claim.
+
+**How the locator is proven.** The locator is saved in the sender's hook state, keyed by the checkout root. Its handle, `hl1_` plus 32 hex characters, is a digest of the locator's fields and the transcript's path, so a model cannot write a handle that works. On every call the engine re-reads the saved locator and checks the session, the handle, the runtime and the working folder against it. It then finds the transcript and re-derives the digest from it before it answers.
+
+**The 30-minute window.** A locator is fresh for 30 minutes from the claim. A note may be claimed hours after it was prepared, so the claim mints a fresh locator every time rather than reusing an old one. A timestamp in the future counts as clock skew and is stale.
+
+**When the command refuses.** Every refusal prints one `{"ok":false,"code":"<code>"}` line and exits 2. The codes a receiver is most likely to meet:
+
+- `locator_stale`: more than 30 minutes passed since the claim.
+- `workspace_mismatch`: the command ran outside the checkout that minted the locator.
+- `store_unreadable`: the runtime's transcript store is missing or could not be read.
+- `core_unavailable`: the entry could not load the engine's build, so the engine needs a build, as section 7 shows.
+
+The history engine's README lists all 22 codes.
+
+**Why the claim is the only place that offers it.** The lookup used to be offered after a compaction, and the locator used to be minted at `prepare`. Both are gone:
+
+- Receivers never ran the lookup when only a compaction offered it: 0 of 6 counted runs tried it, and none recovered the detail. With the section printed at the claim, 6 of 6 ran it.
+- A locator minted at `prepare` is often stale by the time the note is claimed, and the claim mints a fresh one anyway. The operator chose to drop the `prepare` mint for that reason.
+
+**What the measurement shows, and its limits.** In a hop-recall harness the sender saw a code the note did not hold, and the receiver was asked for it. Before the change, 0 of 6 receivers recovered it. After the claim offer, and after a fix to the shared Claude transcript reader, 3 of 3 answered correctly. That is six counted runs per side, on one runtime, one model and one kind of detail. A wider measurement on Claude Code, Codex and Vibe is planned, not yet run.
+
+**Where the engine lives.** The engine is the [`history/`](history/README.md) package in this folder: TypeScript source in `history/lib/`, its build in `history/dist/` and its suites in `history/tests/`. It reads the hook state that the spec-kit runtime compiles, so the runtime builds first. Its README covers the four operations, the reply budgets, the search rules and every refusal code. Search matches whole identifier parts, split on `-`, `.`, `/`, `:` and `_` and on case changes. A query matches whole word parts, so 'live' does not match 'delivery'.
 
 ### Goal In A Claude Receiver
 
@@ -340,13 +372,29 @@ Run every session-handover Node test file from the repository root. The glob pic
 node --test .skilled/hooks/session-handover/tests/*.test.cjs
 ~~~
 
+The history engine builds and tests on its own. Build the spec-kit runtime first, because the engine reads the hook state the runtime compiles. The handover suite's claim tests import the engine's build, so build it before running them too:
+
+~~~bash
+npm --prefix .skilled/skills/system-spec-kit/runtime run build
+npm --prefix .skilled/hooks/session-handover/history run build
+npm --prefix .skilled/hooks/session-handover/history test
+~~~
+
+A provisioned worktree builds the engine for you, and the dist-freshness check reports it when its build is missing or older than its source.
+
 ---
 
 ## 8. DIRECTORY TREE
 
 ```text
 session-handover/
-+-- bin/session-handover.cjs
++-- bin/
+|   +-- session-handover.cjs
+|   `-- history-lookup.mjs   (the entry the printed lookup command runs)
++-- history/                 (the history lookup engine, see history/README.md)
+|   +-- lib/                 (TypeScript source)
+|   +-- dist/                (its build, gitignored)
+|   `-- tests/               (vitest suites)
 +-- claude/
 |   +-- compact-pointer.mjs  (SessionStart: after a compaction, and the claim of a goal-command receiver)
 |   +-- context-nudge.mjs
@@ -380,6 +428,7 @@ session-handover/
 
 - [Hooks index](../README.md)
 - [Injection contract](../injection-contract.md)
+- [History lookup engine](history/README.md)
 - [skilled-loop entrypoint](../../bin/README.md)
 - [/speckit:handoff](../../commands/speckit/handoff.md)
 - [System-spec-kit feature entry](../../skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md)

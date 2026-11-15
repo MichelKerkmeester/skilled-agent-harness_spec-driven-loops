@@ -4,10 +4,10 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { createHistoryLookup } from '../hooks/lib/history/core.js';
-import { projectHistoryEntries, type HistoryEntry } from '../hooks/lib/history/history.js';
-import { HistoryNavigatorError } from '../hooks/lib/history/navigator.js';
-import { recoveryHistoryItem } from '../hooks/lib/history/projection.js';
+import { createHistoryLookup } from '../lib/core.js';
+import { projectHistoryEntries, type HistoryEntry } from '../lib/history.js';
+import { HistoryNavigatorError } from '../lib/navigator.js';
+import { recoveryHistoryItem } from '../lib/projection.js';
 import {
   HistoryPageError,
   historyPageTexts,
@@ -18,7 +18,7 @@ import {
   recoveryPartText,
   selectHistoryPart,
   type HistoryPage,
-} from '../hooks/lib/history/pages.js';
+} from '../lib/pages.js';
 import { buildHistoryEntries } from './_support/history-fixtures.js';
 
 const TIMESTAMP = '2026-11-07T12:00:00.000Z';

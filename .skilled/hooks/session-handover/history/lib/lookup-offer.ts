@@ -82,7 +82,7 @@ export function buildHistoryLookupBody(locator: HistoryLookupTarget): string {
 /** The runnable entry the printed command runs, relative to the checkout root. */
 const HISTORY_LOOKUP_ENTRY_PATH = HISTORY_LOOKUP_COMMAND.slice('node '.length);
 /** The compiled core the entry imports, relative to the checkout root. */
-const HISTORY_LOOKUP_CORE_PATH = '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js';
+const HISTORY_LOOKUP_CORE_PATH = '.skilled/hooks/session-handover/history/dist/cli.js';
 
 /**
  * Whether the printed command can redeem a locator minted in this workspace.

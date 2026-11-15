@@ -869,9 +869,10 @@ function safeDirectory(directory) {
   }
 }
 
-// The history helpers are compiled into the spec-kit runtime's build output, which a checkout
-// may not have built yet. Requiring them inside the mint keeps this core loadable without that
-// build: a missing build is one more reason to skip the locator, never to fail the hand-over.
+// The hook state is compiled into the spec-kit runtime's build output and the history helpers
+// into this folder's history build, and a checkout may not have built either yet. Requiring them
+// inside the mint keeps this core loadable without those builds: a missing build is one more
+// reason to skip the locator, never to fail the hand-over.
 const HISTORY_RUNTIME_DIST = path.resolve(
   __dirname,
   '..',
@@ -882,29 +883,18 @@ const HISTORY_RUNTIME_DIST = path.resolve(
   'runtime',
   'dist',
 );
+const HISTORY_ENGINE_DIST = path.resolve(__dirname, '..', 'history', 'dist');
 
 function loadHistoryRuntime() {
   return {
     hookState: require(path.join(HISTORY_RUNTIME_DIST, 'hooks', 'claude', 'hook-state.js')),
-    digest: require(path.join(
-      HISTORY_RUNTIME_DIST,
-      'hooks',
-      'lib',
-      'history',
-      'locator-digest.js',
-    )),
+    digest: require(path.join(HISTORY_ENGINE_DIST, 'locator-digest.js')),
     offer: loadLookupOffer(),
   };
 }
 
 function loadLookupOffer() {
-  return require(path.join(
-    HISTORY_RUNTIME_DIST,
-    'hooks',
-    'lib',
-    'history',
-    'lookup-offer.js',
-  ));
+  return require(path.join(HISTORY_ENGINE_DIST, 'lookup-offer.js'));
 }
 
 /**

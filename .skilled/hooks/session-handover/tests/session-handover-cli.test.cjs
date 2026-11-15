@@ -207,7 +207,7 @@ function markCheckoutRoot(sandbox) {
   fs.mkdirSync(path.join(sandbox.repoRoot, '.git'), { recursive: true });
   for (const relativePath of [
     '.skilled/hooks/session-handover/bin/history-lookup.mjs',
-    '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js',
+    '.skilled/hooks/session-handover/history/dist/cli.js',
   ]) {
     const filePath = path.join(sandbox.repoRoot, relativePath);
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -3444,10 +3444,7 @@ test('claim replaces a stale stored locator with a fresh one that recomputes to 
   const rewritten = JSON.parse(fs.readFileSync(statePath, 'utf8')).historyLocator;
   const ageMs = Date.parse(rewritten.mintedAt) - claimedAt;
   assert.ok(Math.abs(ageMs) < 60 * 1000, `${rewritten.mintedAt} at ${claimedAt}`);
-  const digest = await import(pathToFileURL(path.join(
-    __dirname, '..', '..', '..', 'skills', 'system-spec-kit', 'runtime', 'dist',
-    'hooks', 'lib', 'history', 'locator-digest.js',
-  )).href);
+  const digest = await import(pathToFileURL(path.join(__dirname, '..', 'history', 'dist', 'locator-digest.js')).href);
   assert.equal(digest.historyHandle(rewritten, transcriptPath), rewritten.handle);
   assert.equal(rewritten.workspace, workspace);
   assert.equal(rewritten.sessionDirectory, undefined);
@@ -3486,7 +3483,7 @@ test('a claim from another checkout writes no locator for the sender', (t) => {
   fs.mkdirSync(path.join(otherCheckout, '.git'), { recursive: true });
   for (const relativePath of [
     '.skilled/hooks/session-handover/bin/history-lookup.mjs',
-    '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js',
+    '.skilled/hooks/session-handover/history/dist/cli.js',
   ]) {
     fs.mkdirSync(path.dirname(path.join(otherCheckout, relativePath)), { recursive: true });
     fs.writeFileSync(path.join(otherCheckout, relativePath), '');
@@ -3707,7 +3704,7 @@ test('claim prints no history lookup section when the session log ran in another
   fs.mkdirSync(path.join(otherCheckout, '.git'), { recursive: true });
   for (const relativePath of [
     '.skilled/hooks/session-handover/bin/history-lookup.mjs',
-    '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js',
+    '.skilled/hooks/session-handover/history/dist/cli.js',
   ]) {
     fs.mkdirSync(path.dirname(path.join(otherCheckout, relativePath)), { recursive: true });
     fs.writeFileSync(path.join(otherCheckout, relativePath), '');

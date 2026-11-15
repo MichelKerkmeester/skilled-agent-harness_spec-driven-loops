@@ -22,8 +22,8 @@ import {
   getStatePath,
   type HistoryLocator,
   type HistoryLocatorRuntime,
-} from '../../claude/hook-state.js';
-import { isMainModule } from '../../../lib/esm-entry.js';
+} from '../../../../skills/system-spec-kit/runtime/dist/hooks/claude/hook-state.js';
+import { isMainModule } from '../../../../skills/system-spec-kit/runtime/dist/lib/esm-entry.js';
 import { createHistoryLookup, type HistoryLookup } from './core.js';
 import type { HistoryEntry } from './history.js';
 import { historyHandle } from './locator-digest.js';
@@ -322,19 +322,14 @@ function candidatesFor(locator: HistoryLocator, root: string): string[] {
   return codexTranscriptCandidates(root, locator);
 }
 
+// The source folder and the build folder sit at the same depth, so one relative URL reaches the
+// shared readers from either.
 async function loadReaderModule(): Promise<SessionReaderModule | null> {
-  const candidates = [
-    new URL('../../../../../../hooks/shared/session-readers/index.mjs', import.meta.url),
-    new URL('../../../../../../../hooks/shared/session-readers/index.mjs', import.meta.url),
-  ];
-  for (const candidate of candidates) {
-    try {
-      return await import(candidate.href) as SessionReaderModule;
-    } catch {
-      continue;
-    }
+  try {
+    return await import(new URL('../../../shared/session-readers/index.mjs', import.meta.url).href) as SessionReaderModule;
+  } catch {
+    return null;
   }
-  return null;
 }
 
 function normalizeReaderCode(code: string | undefined): HistoryLookupRefusalCode {

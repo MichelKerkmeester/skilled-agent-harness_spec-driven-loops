@@ -1,6 +1,6 @@
 ---
-title: "Lib: History Lookup Core"
-description: "The runtime-neutral read-only lookup core, its shared locator and offer helpers and the redemption CLI the session handover prints."
+title: "History Lookup Engine"
+description: "The read-only engine behind the session handover's History Lookup section: the lookup core, the locator and offer helpers and the redemption CLI, with its own build and tests."
 trigger_phrases:
   - "history lookup core"
   - "bounded history retrieval"
@@ -9,13 +9,13 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Lib: History Lookup Core
+# History Lookup Engine
 
 ---
 
 ## 1. OVERVIEW
 
-This folder is the runtime-neutral core behind bounded session-history lookup. An adapter reads its own store, projects a `HistoryEntry[]` and calls `createHistoryLookup(entries)`. The core answers `search`, `browse`, `load` and `page` without exposing the raw transcript, and it never writes.
+This package is the engine behind the session handover's History Lookup section. It lives in the hook folder that prints the section, and the [handover README](../README.md) explains when the claim prints it and why. The engine itself is runtime-neutral. An adapter reads its own store, projects a `HistoryEntry[]` and calls `createHistoryLookup(entries)`. The core answers `search`, `browse`, `load` and `page` without exposing the raw transcript, and it never writes.
 
 Current state:
 
@@ -40,7 +40,17 @@ The core is read-only. It performs no file, database or network write. It reads 
 
 ## 3. FILES
 
-The folder is flat, so every direct file is listed here.
+The source sits in `lib/`, and the build writes `dist/` beside it at the same depth. That is deliberate: the CLI imports the spec-kit runtime's compiled hook state and the shared session readers by relative path, and the same path then resolves from the source under vitest and from the build at run time.
+
+| File | Responsibility |
+|---|---|
+| `package.json` | The package's build, typecheck and test scripts. It has no dependencies of its own. |
+| `tsconfig.json` | A composite project rooted at `lib/`. It references the spec-kit runtime, which builds first. |
+| `vitest.config.ts` | Collects `tests/**/*.vitest.ts` inside this package. |
+| `tests/` | The nine vitest suites and their shared fixtures in `tests/_support/`. |
+| `README.md` | This orientation page. |
+
+Every file in `lib/`:
 
 | File | Responsibility |
 |---|---|
@@ -56,7 +66,6 @@ The folder is flat, so every direct file is listed here.
 | `pages.ts` | `page`, including text pages, part lists and native image attachments under the reply budget. |
 | `projection.ts` | The public projection that removes thinking, signatures, paging tool calls and image bytes. |
 | `response.ts` | The 16,384-byte reply serializer and the error types it throws. |
-| `README.md` | This orientation page. |
 
 ---
 
@@ -103,7 +112,7 @@ No route can reach the raw entry list after `createHistoryLookup` returns.
 - 16,384 bytes cap one complete serialized reply.
 - 4,096 bytes cap one inline part description.
 - 128 characters cap a history id, and 512 characters cap a part pointer.
-- 66 characters cap a locator session id after shell quoting, so the full lookup command fits the 600-character offer section. A plain id may run to 64 characters, which covers the 44-character ids DSH issues.
+- 66 characters cap a locator session id after shell quoting, so the full lookup command fits the 600-character offer section. A plain id may run to 64 characters, which covers the 44-character ids DSH issues. The runtime's locator schema keeps its own copy of this bound, because the runtime builds before this package and cannot import it. `history-locator.vitest.ts` fails if the two copies disagree.
 - References and continuation handles are reserved before content spends the same budget.
 - A reference lists at most 6 tools and 12 files, and counts the rest in `omittedTools` and `omittedFiles`. `load` returns the full lists.
 - Oversized reference metadata collapses to `{ historyId, detailsDeferred: true }`.
@@ -123,7 +132,7 @@ node .skilled/hooks/session-handover/bin/history-lookup.mjs \
   '<json-arguments>'
 ```
 
-The session handover concern owns this entry, while the source and the build stay in this runtime.
+The entry lives in the handover's `bin/` folder and imports this package's `dist/cli.js`.
 
 The argument contract:
 
@@ -151,7 +160,7 @@ The argument contract:
 | `session_ambiguous` | More than one store record claims that exact id |
 | `store_unreadable` | The runtime store is missing or unreadable |
 | `operation_invalid` | The operation arguments are not valid JSON, or not the accepted object or array shape |
-| `core_unavailable` | The handover entry script could not load this compiled core, so the runtime needs a build |
+| `core_unavailable` | The handover entry script could not load this package's build, so it needs a build |
 | `unknown_history_anchor` | The browse anchor names no public reference |
 | `unknown_history_id` | The history id names no public item |
 | `unknown_history_part` | The part pointer names no public part |
@@ -192,20 +201,22 @@ const page = lookup.page({ historyId: 'history-12', part: '/assistantMessage/con
 
 ## 10. VALIDATION
 
-Run from `.skilled/skills/system-spec-kit/runtime`:
+Build the spec-kit runtime first, because the CLI reads the hook state it compiles. Then build and test this package. Run from the repository root:
 
 ```bash
-npx vitest run tests/history-*.vitest.ts
-npx tsc --noEmit -p tsconfig.json
+npm --prefix .skilled/skills/system-spec-kit/runtime run build
+npm --prefix .skilled/hooks/session-handover/history run build
+npm --prefix .skilled/hooks/session-handover/history test
+npm --prefix .skilled/hooks/session-handover/history run typecheck
 ```
 
-Expected result: every history suite passes and `tsc` exits 0.
+Expected result: the build and the typecheck exit 0 and every history suite passes. The suites import the source in `lib/`, but the CLI suite also loads the runtime's built hook state, so a stale runtime build shows up here.
 
 ---
 
 ## 11. RELATED
 
-- [`../README.md`](../README.md): the hook helpers and adapters that call this core.
-- [`../spec-gate/README.md`](../spec-gate/README.md): the sibling Gate-3 policy core.
-- [`../workspace/README.md`](../workspace/README.md): repository-root resolution.
-- [`../../../../../../hooks/session-lifecycle/README.md`](../../../../../../hooks/session-lifecycle/README.md): the locator offer and reader capability matrix.
+- [`../README.md`](../README.md): the session handover, which mints the locator and prints the section at a claim.
+- [`../bin/README.md`](../bin/README.md): the runnable entry the printed command names.
+- [`../../shared/session-readers/README.md`](../../shared/session-readers/README.md): the per-runtime transcript readers the CLI loads.
+- [`../../session-lifecycle/README.md`](../../session-lifecycle/README.md): the reader capability matrix.

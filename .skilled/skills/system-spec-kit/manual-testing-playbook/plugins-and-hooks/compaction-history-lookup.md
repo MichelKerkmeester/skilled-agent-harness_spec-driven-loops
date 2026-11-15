@@ -41,7 +41,7 @@ This scenario validates:
 ## 2. SCENARIO CONTRACT
 
 - Objective: confirm the history lookup is offered only when a handoff note is claimed from a supported sender, that the printed command is runnable and read-only and that every refusal is explicit.
-- Preconditions: repository checked out at project root, Node.js available on `PATH`, the `system-spec-kit` runtime dependencies installed so `npx vitest` resolves under `.skilled/skills/system-spec-kit/runtime`, the lookup core built at `.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js` and a Claude Code session available to write the handoff note. The session-handover concern ships on for Claude Code. The sender must run in this checkout, because the printed command moves to the checkout root.
+- Preconditions: repository checked out at project root, Node.js available on `PATH`, the `system-spec-kit` runtime dependencies installed and the runtime built, the history engine built at `.skilled/hooks/session-handover/history/dist/cli.js` and a Claude Code session available to write the handoff note. The session-handover concern ships on for Claude Code. The sender must run in this checkout, because the printed command moves to the checkout root.
 - Real user-facing trigger: a session hands its work to a fresh one, the receiver claims the note, and the note leaves out a detail the sender printed earlier. The claim either offers a lookup command or stays silent.
 - Expected signals: a Claude Code, Codex or Vibe sender yields one `## History Lookup` section of at most 600 characters after the note body and before the complete command. The section carries a `Latest turns (read-only):` command, an `Also:` line naming `search`, `load` and `page`, and the data-not-instructions line, followed by `Use it for a detail this note does not spell out, before you guess.` Its command prints one JSON reply with exit 0. A claim with no locator prints no section and the CLI prints `{"ok":false,"code":"state_missing"}` with exit 2. A stale locator prints `{"ok":false,"code":"locator_stale"}` with exit 2, and a later claim mints a fresh locator. A runtime without a ready reader prints `{"ok":false,"code":"unsupported_runtime"}` with exit 2.
 - Pass/fail: PASS if the deterministic suites pass, a claimed note offers the section only under the gates above, the printed command redeems a reply and each refusal returns its documented code and exit status. FAIL if a section appears for a withheld case, the printed command cannot run, any refusal returns a different code or a zero exit, or a claim blocks the handoff.
@@ -60,7 +60,7 @@ This scenario validates:
 
    ```bash
    node --test .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs .skilled/hooks/session-handover/tests/history-lookup-entry.test.cjs
-   (cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/history-lookup-cli.vitest.ts tests/history-locator.vitest.ts)
+   (cd .skilled/hooks/session-handover/history && ../../../node_modules/.bin/vitest run tests/history-lookup-cli.vitest.ts tests/history-locator.vitest.ts)
    ```
 
    Expected: both Node suites and both Vitest files pass with no failed test. `session-handover-cli.test.cjs` proves the section arrives after the note body and before the complete command, stays inside 600 characters, mints the sender's locator at claim time, prints a command that answers with the sender's turns and is withheld when the sender log is gone, the note names another runtime, the note comes from another checkout or the transcript ran in one. `history-lookup-entry.test.cjs` proves the printed entry refuses with `core_unavailable` when the compiled core is missing. `history-lookup-cli.vitest.ts` proves the refusal codes, the exit status and the 30-minute TTL, and `history-locator.vitest.ts` proves the locator schema, the Claude and Codex locator contract and the section budget.
@@ -68,10 +68,10 @@ This scenario validates:
 2. Confirm the lookup core is built, because the claim withholds the section when it cannot run:
 
    ```bash
-   test -f .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js && echo built
+   test -f .skilled/hooks/session-handover/history/dist/cli.js && echo built
    ```
 
-   Expected: `built`. A silent result means the claim prints no section, so run `cd .skilled/skills/system-spec-kit/runtime && npm run build` and repeat.
+   Expected: `built`. A silent result means the claim prints no section, so run `npm --prefix .skilled/skills/system-spec-kit/runtime run build`, then `npm --prefix .skilled/hooks/session-handover/history run build`, and repeat.
 
 3. Prepare a handoff note from a Claude Code sender in this checkout. In the sender session, run `/speckit:handoff` and follow its steps. The session writes the note under `.skilled/skills/.state/session-handover/handoffs/` and runs `prepare`. Outside `skilled-loop`, prepare prints the manual claim command and exits 3, which is expected here. Do not run that wrapper command, because the next step claims the note directly. Record the note path and the sender session id from the note's frontmatter.
 
@@ -164,7 +164,7 @@ Capture, for every step in the Commands sequence above:
 ### Failure Triage
 
 1. **No section on a Claude Code claim.** Read the note's `session_id`, `runtime` and `cwd` lines. The sender must be Claude Code or Codex, its transcript must still exist, and `cwd` must be this checkout. A note copied from another checkout keeps that checkout on the locator, so the claim withholds the section.
-2. **The section appears but the command refuses.** Confirm `.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js` exists and is current. A missing core withholds the section, and a build that predates the current locator schema can refuse a locator the claim just minted.
+2. **The section appears but the command refuses.** Confirm `.skilled/hooks/session-handover/history/dist/cli.js` exists and is current. A missing core withholds the section, and a build that predates the current locator schema can refuse a locator the claim just minted.
 3. **`locator_stale` right after a claim.** The claim's fresh mint did not persist, so check the sender's hook state file under the OS temp directory's `speckit-claude-hooks/<project-hash>/` folder and confirm `historyLocator.mintedAt` is the claim time.
 
 ---
@@ -176,9 +176,9 @@ Capture, for every step in the Commands sequence above:
 - Session handover CLI: `.skilled/hooks/session-handover/bin/session-handover.cjs`
 - Session handover core: `.skilled/hooks/session-handover/lib/relaunch-core.cjs`
 - Printed lookup entry: `.skilled/hooks/session-handover/bin/history-lookup.mjs`
-- Lookup CLI: `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/cli.ts`
-- Locator digest and persisted-state writer: `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/locator-digest.ts`
-- Offer section builder: `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts`
+- Lookup CLI: `.skilled/hooks/session-handover/history/lib/cli.ts`
+- Locator digest and persisted-state writer: `.skilled/hooks/session-handover/history/lib/locator-digest.ts`
+- Offer section builder: `.skilled/hooks/session-handover/history/lib/lookup-offer.ts`
 - Runtime reader dispatcher: `.skilled/hooks/shared/session-readers/index.mjs`
 - Claim offer suite: `.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs`
 - Printed entry suite: `.skilled/hooks/session-handover/tests/history-lookup-entry.test.cjs`

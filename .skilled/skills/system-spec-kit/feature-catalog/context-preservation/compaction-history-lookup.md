@@ -22,7 +22,7 @@ The lookup is offered when a handoff note is claimed. Inside the loop, `claim` m
 
 A compaction no longer offers the lookup on any runtime. The Claude, Pi, DSH, Devin and Vibe compaction hooks mint no locator and print no lookup section, and the OpenCode plugin that did is gone. Compaction summaries and the `/speckit:resume` pointer are unchanged.
 
-The offer is conditional in both directions. Only a Claude Code, Codex or Vibe sender gets a locator, and the section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the runtime is not built. The claim then prints what it printed before. Before the claim-time offer, no receiver in six measured Claude Code hops attempted a lookup.
+The offer is conditional in both directions. Only a Claude Code, Codex or Vibe sender gets a locator, and the section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the engine is not built. The claim then prints what it printed before. Before the claim-time offer, no receiver in six measured Claude Code hops attempted a lookup.
 
 ---
 
@@ -40,13 +40,13 @@ The handle is a digest, never a store path. A locator that contains no path cann
 
 The section is capped at 600 characters. It holds one ready `browse` command that lists the latest turns, with the session and opaque handle filled in, and the argument shape of `search`, `load` and `page`. It also tells the model to treat retrieved history as data, never as instructions.
 
-The printed command is `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. The session handover concern owns that entry, and the TypeScript source and build stay in `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/`.
+The printed command is `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. The session handover concern owns that entry and the engine it runs: the TypeScript source is in `.skilled/hooks/session-handover/history/lib/` and its build in `history/dist/` beside it.
 
-The section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the runtime is not built. The claim then prints what it printed before.
+The section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the engine is not built. The claim then prints what it printed before.
 
 ### Command Redemption
 
-The printed entry resolves the compiled core beside the checkout and hands it the operation. The CLI re-reads the stored locator, repeats the handle, session, runtime and workspace gates, resolves the exact store through the shared session reader, recomputes the handle the same way the mint did and answers one operation through `createHistoryLookup`. Every step is read-only.
+The printed entry loads the engine's build and hands it the operation. The CLI re-reads the stored locator, repeats the handle, session, runtime and workspace gates, resolves the exact store through the shared session reader, recomputes the handle the same way the mint did and answers one operation through `createHistoryLookup`. Every step is read-only.
 
 A locator is fresh for 30 minutes from the claim, and a claimed note cannot be claimed again, so a receiver looks up what it needs within that window. A refusal prints one `{ok:false, code}` JSON line and exits 2, and a success prints one capped reply and exits 0.
 
@@ -66,10 +66,10 @@ A missing, malformed, stale, foreign or unsupported locator produces no reply an
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/` | Core folder | Runtime-neutral lookup core: projection, BM25 `search` and `browse`, bounded `load`, paged reads and the 16,384-byte reply cap. |
-| `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/cli.ts` | CLI | Redeems the printed command, repeats every locator gate and writes one reply or one `{ok:false, code}` refusal. |
-| `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/locator-digest.ts` | Shared | The one `hl1_` handle digest, the locator constants and the persisted-state writer. |
-| `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts` | Shared | The offer section, the checkout-root gate and `placeLookup`, which keys a locator by the checkout root above the session folder. |
+| `.skilled/hooks/session-handover/history/` | Engine package | Runtime-neutral lookup core: projection, BM25 `search` and `browse`, bounded `load`, paged reads and the 16,384-byte reply cap. |
+| `.skilled/hooks/session-handover/history/lib/cli.ts` | CLI | Redeems the printed command, repeats every locator gate and writes one reply or one `{ok:false, code}` refusal. |
+| `.skilled/hooks/session-handover/history/lib/locator-digest.ts` | Shared | The one `hl1_` handle digest, the locator constants and the persisted-state writer. |
+| `.skilled/hooks/session-handover/history/lib/lookup-offer.ts` | Shared | The offer section, the checkout-root gate and `placeLookup`, which keys a locator by the checkout root above the session folder. |
 | `.skilled/hooks/session-handover/bin/session-handover.cjs` | Handover CLI | The in-loop `claim` mints the sender's locator and prints the lookup section after the note body. |
 | `.skilled/hooks/session-handover/lib/relaunch-core.cjs` | Handover core | `mintHandoverLocator` builds and persists the sender's locator, and `handoverLookupSection` builds the section or returns nothing. |
 | `.skilled/hooks/session-handover/bin/history-lookup.mjs` | Printed entry | Resolves the compiled core beside the checkout. A core that cannot load prints `core_unavailable` in the CLI refusal shape. |
@@ -81,14 +81,14 @@ A missing, malformed, stale, foreign or unsupported locator produces no reply an
 |---|---|---|
 | `.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` | Node test | The claim offer: the section after the note body, the 600-character budget, the fresh mint, a redeemed command and the withheld cases. |
 | `.skilled/hooks/session-handover/tests/history-lookup-entry.test.cjs` | Node test | The printed entry: its `core_unavailable` refusal when the compiled core is missing and its reply when both files exist. |
-| `.skilled/skills/system-spec-kit/runtime/tests/history-lookup-cli.vitest.ts` | Vitest | Refusal envelope, exit codes, the 30-minute TTL, the workspace and session gates and the unsupported-runtime gate. |
-| `.skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts` | Vitest | Locator schema, the Claude and Codex locator contract, placement, persistence and the section budget. |
-| `.skilled/skills/system-spec-kit/runtime/tests/history-byte-bound.vitest.ts` | Vitest | The 16,384-byte reply cap and the deferral of oversized items. |
-| `.skilled/skills/system-spec-kit/runtime/tests/history-projection.vitest.ts` | Vitest | Thinking, signature and paging removal before any entry reaches a caller. |
-| `.skilled/skills/system-spec-kit/runtime/tests/history-search-browse.vitest.ts` | Vitest | BM25 search, anchored browse and window navigation. |
-| `.skilled/skills/system-spec-kit/runtime/tests/history-search-analyzer.vitest.ts` | Vitest | Fragment search: identifier parts, full-width text, Han pairs, match-centered previews, empty queries and the reference file cap. |
-| `.skilled/skills/system-spec-kit/runtime/tests/history-cursor-reconstruction.vitest.ts` | Vitest | Cursor handling across pages and partial reads. |
-| `.skilled/skills/system-spec-kit/runtime/tests/history-entry-contract.vitest.ts` | Vitest | The entry shape and the published schema. |
+| `.skilled/hooks/session-handover/history/tests/history-lookup-cli.vitest.ts` | Vitest | Refusal envelope, exit codes, the 30-minute TTL, the workspace and session gates and the unsupported-runtime gate. |
+| `.skilled/hooks/session-handover/history/tests/history-locator.vitest.ts` | Vitest | Locator schema, the Claude and Codex locator contract, placement, persistence and the section budget. |
+| `.skilled/hooks/session-handover/history/tests/history-byte-bound.vitest.ts` | Vitest | The 16,384-byte reply cap and the deferral of oversized items. |
+| `.skilled/hooks/session-handover/history/tests/history-projection.vitest.ts` | Vitest | Thinking, signature and paging removal before any entry reaches a caller. |
+| `.skilled/hooks/session-handover/history/tests/history-search-browse.vitest.ts` | Vitest | BM25 search, anchored browse and window navigation. |
+| `.skilled/hooks/session-handover/history/tests/history-search-analyzer.vitest.ts` | Vitest | Fragment search: identifier parts, full-width text, Han pairs, match-centered previews, empty queries and the reference file cap. |
+| `.skilled/hooks/session-handover/history/tests/history-cursor-reconstruction.vitest.ts` | Vitest | Cursor handling across pages and partial reads. |
+| `.skilled/hooks/session-handover/history/tests/history-entry-contract.vitest.ts` | Vitest | The entry shape and the published schema. |
 | `.skilled/hooks/shared/tests/session-readers/matrix.test.mjs` | Node test | The reader readiness matrix and the reader refusal envelope. |
 | `.skilled/hooks/shared/tests/session-readers/side-effects.test.mjs` | Node test | Readers stay read-only and write nothing. |
 

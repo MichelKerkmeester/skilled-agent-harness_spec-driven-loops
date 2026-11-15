@@ -8,12 +8,12 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { capabilities } from '../../../../hooks/shared/session-readers/index.mjs';
+import { capabilities } from '../../../shared/session-readers/index.mjs';
 import {
   HISTORY_LOCATOR_KINDS,
   type HistoryLocatorRuntime,
-} from '../hooks/claude/hook-state.js';
-import { SESSION_REF_RUNTIME_LOCATOR_KINDS } from '../lib/continuity/thin-continuity-record.js';
+} from '../../../../skills/system-spec-kit/runtime/hooks/claude/hook-state.js';
+import { SESSION_REF_RUNTIME_LOCATOR_KINDS } from '../../../../skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.js';
 
 const HOOK_RUNTIMES = Object.keys(HISTORY_LOCATOR_KINDS) as HistoryLocatorRuntime[];
 

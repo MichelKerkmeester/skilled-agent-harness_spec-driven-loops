@@ -5,14 +5,14 @@
 import Ajv2020 from 'ajv/dist/2020.js';
 import { describe, expect, it } from 'vitest';
 
-import schema from '../hooks/lib/history/history-entry.schema.json';
+import schema from '../lib/history-entry.schema.json';
 import {
   HISTORY_ENTRY_KEYS,
   HISTORY_ENTRY_KEYS_COMPLETE,
   HISTORY_ENTRY_REQUIRED_KEYS,
   HISTORY_ENTRY_REQUIRED_KEYS_COMPLETE,
   type HistoryEntry,
-} from '../hooks/lib/history/history.js';
+} from '../lib/history.js';
 import { buildRoleFixtures } from './_support/history-fixtures.js';
 
 const validate = new Ajv2020({ allErrors: true, strict: false }).compile(schema);

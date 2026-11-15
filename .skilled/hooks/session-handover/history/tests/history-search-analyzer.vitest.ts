@@ -8,9 +8,9 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { projectHistoryEntries, type HistoryEntry } from '../hooks/lib/history/history.js';
-import { boundedHistoryReply } from '../hooks/lib/history/loads.js';
-import { HistoryNavigator, type HistoryReference } from '../hooks/lib/history/navigator.js';
+import { projectHistoryEntries, type HistoryEntry } from '../lib/history.js';
+import { boundedHistoryReply } from '../lib/loads.js';
+import { HistoryNavigator, type HistoryReference } from '../lib/navigator.js';
 
 const TIMESTAMP = '2026-11-08T00:00:00.000Z';
 

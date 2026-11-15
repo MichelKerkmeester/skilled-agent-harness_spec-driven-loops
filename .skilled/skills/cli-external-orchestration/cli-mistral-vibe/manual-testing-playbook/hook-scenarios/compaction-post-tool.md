@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-007 -- A mid-turn compaction re-injects at the next tool call"
 description: "This scenario validates that the Vibe compaction-post-tool binding re-injects the compaction context at the tool call that follows an automatic compaction inside one turn, judged from the session journal."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # VIB-HK-007 -- A mid-turn compaction re-injects at the next tool call
@@ -54,8 +54,8 @@ Operators run the conversation script through the shared runner with the `vibe` 
   ],
   "setup": [
     "git init -q",
-    "mkdir -p .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history",
-    "printf '// the printed lookup command\\n' > .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js",
+    "mkdir -p .skilled/hooks/session-handover/history/dist",
+    "printf '// the printed lookup command\\n' > .skilled/hooks/session-handover/history/dist/cli.js",
     "seq 1 2000 | sed 's/^/padding line /' > big.txt",
     "printf 'compaction-proof-ok\\n' > small.txt"
   ],
