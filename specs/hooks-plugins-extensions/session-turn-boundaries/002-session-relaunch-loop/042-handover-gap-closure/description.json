@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure",
+  "description": "Phase 42: handover-gap-closure",
+  "keywords": [
+    "phase",
+    "handover-gap-closure"
+  ],
+  "lastUpdated": "2026-11-15T05:56:06.837Z",
+  "specId": "042",
+  "folderSlug": "handover-gap-closure",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_06-56__measured-five-handover-gaps-live-on-pi-opencode.md"
+  ]
+}
