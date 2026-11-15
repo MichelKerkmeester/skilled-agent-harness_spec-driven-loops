@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9520012f9465563f296ab8fdbb813b51cad79b93d848e30fe1bfc3fe91de4372",
+  "manifestHash": "61fda407407ffb25d6f8a80a7ce1cc7eb5f1578b4ecb467468c313ff8c5d61f5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14781,6 +14781,9 @@
     ],
     "behavioral negative control verification": [
       "behavioral negative control verification"
+    ],
+    "behaviour arm live run five runtimes": [
+      "behaviour arm live run five runtimes"
     ],
     "behaviour proof waivers": [
       "behaviour proof waivers"
@@ -83582,6 +83585,9 @@
     "phase 33 follow up review fixes": [
       "phase 33 follow up review fixes"
     ],
+    "phase 33 untuned arm arena run": [
+      "phase 33 untuned arm arena run"
+    ],
     "phase 33 zero iteration report": [
       "phase 33 zero iteration report"
     ],
@@ -128928,6 +128934,24 @@
     ],
     "untrusted repo hook source root": [
       "untrusted repo hook source root"
+    ],
+    "untuned arm arena run": [
+      "untuned arm arena run"
+    ],
+    "untuned arm arena run acceptance criteria": [
+      "untuned arm arena run acceptance criteria"
+    ],
+    "untuned arm arena run implementation summary": [
+      "untuned arm arena run implementation summary"
+    ],
+    "untuned arm arena run plan": [
+      "untuned arm arena run plan"
+    ],
+    "untuned arm arena run tasks": [
+      "untuned arm arena run tasks"
+    ],
+    "untuned arm verdict": [
+      "untuned arm verdict"
     ],
     "untuned behaviour arm": [
       "untuned behaviour arm"

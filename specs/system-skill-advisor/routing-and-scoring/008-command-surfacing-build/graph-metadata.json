@@ -35,7 +35,8 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/029-direct-call-kill-switch",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/031-alignment-findings-remediation",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run"
   ],
   "manual": {
     "depends_on": [],
@@ -237,7 +238,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-15T23:18:21.571Z",
+    "last_save_at": "2026-11-15T23:24:39.333Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -245,13 +246,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:80af208f99ed90a6dd773165a1dbc684d1ea0599556328e8b6339cae729224f8",
+    "source_fingerprint": "sha256:6a811cb04bd57e3bab1345af643ea07a95e0bd3d37bd9418fb257028953b1803",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c709d77ea0ffafc53d0584fd9c964dab32562f22256c093389ed1b94ec42e2dc",
+      "spec.md": "669e4fbb9a8f46ae781b4313669059cd158937ee022f169acf04c7ab7f67665d",
       "decision-record.md": "24b0499462a108efec1a034417bab479620a54c915e1d1c4bcad4c8c637e80c0"
     },
-    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation",
-    "last_active_at": "2026-11-15T23:03:32.816Z"
+    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run",
+    "last_active_at": "2026-11-15T23:24:39.333Z"
   }
 }
