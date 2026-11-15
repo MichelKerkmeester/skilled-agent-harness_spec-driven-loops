@@ -1,5 +1,5 @@
 {
-  "manifestHash": "161ed9ce25c3261fc6bfe2b8126824b83dd483e29778034d238e95131d5538b6",
+  "manifestHash": "7dcc5b75b273130eb29bf637525dbb58cdb2cd5a49f5df70380354eb8e3b1bce",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -83384,6 +83384,9 @@
     "phase 47 diagram corpus ci": [
       "phase 47 diagram corpus ci"
     ],
+    "phase 47 vibe handover hardening": [
+      "phase 47 vibe handover hardening"
+    ],
     "phase 48 skilled loop shared nudge formatter": [
       "phase 48 skilled loop shared nudge formatter"
     ],
@@ -130559,6 +130562,27 @@
     "vibe handover flag and live hop tasks": [
       "vibe handover flag and live hop tasks"
     ],
+    "vibe handover hardening": [
+      "vibe handover hardening"
+    ],
+    "vibe handover hardening acceptance criteria": [
+      "vibe handover hardening acceptance criteria"
+    ],
+    "vibe handover hardening decision record": [
+      "vibe handover hardening decision record"
+    ],
+    "vibe handover hardening implementation summary": [
+      "vibe handover hardening implementation summary"
+    ],
+    "vibe handover hardening plan": [
+      "vibe handover hardening plan"
+    ],
+    "vibe handover hardening tasks": [
+      "vibe handover hardening tasks"
+    ],
+    "vibe handover hardening timeline": [
+      "vibe handover hardening timeline"
+    ],
     "vibe handover locator": [
       "vibe handover locator"
     ],
@@ -130646,6 +130670,9 @@
     "vibe journal fixture and reader tasks": [
       "vibe journal fixture and reader tasks"
     ],
+    "vibe killer journal folder watch": [
+      "vibe killer journal folder watch"
+    ],
     "vibe lineage auto approve posture": [
       "vibe lineage auto-approve posture"
     ],
@@ -130696,6 +130723,9 @@
     ],
     "vibe pre tool hook": [
       "vibe pre_tool hook"
+    ],
+    "vibe prepare nothing ends this session": [
+      "vibe prepare nothing ends this session"
     ],
     "vibe print mode": [
       "vibe print mode"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "32be9156fdf37c663caac6a4b4b266700b18bfee84779afce406eb1618be0c0e",
+  "corpusHash": "b2983ac775a4137ea04d85e76e05d6673259283328447c848b85733972925c5b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27603,
+  "includedPathCount": 27610,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12759,6 +12759,13 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/046-vibe-history-locator/plan.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/046-vibe-history-locator/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/046-vibe-history-locator/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/timeline.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -27635,7 +27642,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "161ed9ce25c3261fc6bfe2b8126824b83dd483e29778034d238e95131d5538b6",
+  "manifestHash": "7dcc5b75b273130eb29bf637525dbb58cdb2cd5a49f5df70380354eb8e3b1bce",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31851,6 +31858,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/046-vibe-history-locator/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/scratch",
       "reason": "excluded directory"
     },
     {
