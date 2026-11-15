@@ -2,7 +2,7 @@
 name: sk-create-with-human-voice
 description: Apply the Human Voice Rules to prose, or score prose against them, with a scope gate first and a re-scan after the rewrite.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.6.0
+version: 1.2.7.0
 ---
 
 # create-with-human-voice
@@ -106,7 +106,7 @@ is what changes, never the checks.
 ### ⛔ NEVER
 
 1. Change what a sentence claims to satisfy a word ban. Accuracy outranks the standard, and the exception gets recorded instead.
-2. Edit a quotation, an error string, a command, a generated file, a released changelog entry or a byte-pinned fixture.
+2. Edit a quotation, an error string, a command, a generated file, a released changelog entry or a byte-pinned fixture. A released changelog entry is open only to an operator-approved retrofit recorded in a spec packet, and that retrofit keeps every fact.
 3. Score a document that is about the standard, including the standard itself, without saying that is what it is.
 4. Copy any part of `references/hvr-rules.md` into another file, whether a sibling packet, a command asset or a repo rule. Reference the path.
 5. Report a clean scan the scanner refused to produce. Exit 2 is a failure, not a pass.

@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 924,
+  "derived_count": 923,
   "directories": [
     ".",
     ".claude",
@@ -923,7 +923,6 @@
     ".skilled/skills/system-spec-kit/shared/utils",
     ".skilled/skills/system-spec-kit/shared/workspace",
     ".skilled/skills/system-spec-kit/templates",
-    ".skilled/skills/system-spec-kit/templates/changelog",
     ".skilled/skills/system-spec-kit/templates/examples",
     ".skilled/skills/system-spec-kit/templates/scratch"
   ],

@@ -76,13 +76,6 @@ export const SPEC_ROOT_RESOLVERS = [
     precedence: 'membership-only',
   },
   {
-    file: 'runtime/cli/spec-folder/nested-changelog.ts:601',
-    symbol: 'ensureApprovedSpecFolder',
-    consumerOrEffect:
-      'Changelog write-boundary validation accepts either approved root without selecting a target.',
-    precedence: 'membership-only',
-  },
-  {
     file: 'runtime/handlers/spec-doc-discovery.ts:203-223,308-382',
     symbol: 'findSpecDocuments / findGraphMetadataFiles',
     consumerOrEffect: 'Spec-document and graph-metadata discovery use legacy only when canonical is absent.',

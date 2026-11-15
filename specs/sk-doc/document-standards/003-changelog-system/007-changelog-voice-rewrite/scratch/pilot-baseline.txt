@@ -1,0 +1,3 @@
+files=20 sentences=802 avg_words=14.7
+sentences_over_15=327 sentences_over_22=171
+files_with_a_sentence_over_22=18 files_with_hvr_hard_blockers=0

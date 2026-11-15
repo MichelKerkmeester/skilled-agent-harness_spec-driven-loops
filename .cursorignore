@@ -1,3 +1,0 @@
-# Cursor hides .env* from the agent by default. That default also hides the
-# committed template, so this gives the template back and nothing else.
-!.env.example

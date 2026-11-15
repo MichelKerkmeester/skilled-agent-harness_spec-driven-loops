@@ -1,4 +1,4 @@
 $ node "$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs" "$VIBE_HOME/logs/session/unified" model compaction-probe && for i in $(seq 1 30); do node "$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs" "$VIBE_HOME/logs/session/unified" compaction && exit 0; sleep 1; done; exit 1
 active-model compaction-probe
-compaction-checkpoint at sequence 54
+compaction-checkpoint at sequence 50
 [exit 0]

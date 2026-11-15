@@ -3,8 +3,8 @@
 // ───────────────────────────────────────────────────────────────────
 // The projection owns the entry-list contract: one stable id per entry, a
 // zero-based sequence, an ISO timestamp, role-discriminated blocks and paired
-// tool results. When the shared schema is published, the same suite validates
-// every projected item against it instead of a hand-maintained fixture.
+// tool results. The same suite validates every projected item against the
+// published shared schema instead of a hand-maintained fixture.
 
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
@@ -138,19 +138,21 @@ test('an out-of-range numeric timestamp falls back instead of failing the read',
 // 2. PUBLISHED SCHEMA
 // ─────────────────────────────────────────────────────────────────────────────
 
-if (!existsSync(SCHEMA_PATH)) {
-  test('schema: not published', { skip: 'history-entry.schema.json has not been published yet' }, () => {});
-} else {
+// The schema is published, so a missing file means it moved or was deleted.
+// That fails here rather than skipping, or the suite would stay green while
+// nothing checked the projection against the shared contract.
+test('schema: published', () => {
+  assert.equal(existsSync(SCHEMA_PATH), true, `history-entry.schema.json is missing at ${SCHEMA_PATH}`);
+});
+
+test('schema: valid', () => {
   const schema = JSON.parse(readFileSync(SCHEMA_PATH, 'utf8'));
   const validateItem = new Ajv2020({ allErrors: true, strict: false }).compile(schema);
-
-  test('schema: valid', () => {
-    const result = projectEntries(pairedEntries());
-    assert.equal(result.ok, true);
-    for (const item of result.items) {
-      const valid = validateItem(item);
-      assert.equal(valid, true, `item ${item.id} does not conform: ${JSON.stringify(validateItem.errors)}`);
-    }
-    console.log('schema: valid');
-  });
-}
+  const result = projectEntries(pairedEntries());
+  assert.equal(result.ok, true);
+  for (const item of result.items) {
+    const valid = validateItem(item);
+    assert.equal(valid, true, `item ${item.id} does not conform: ${JSON.stringify(validateItem.errors)}`);
+  }
+  console.log('schema: valid');
+});

@@ -1,0 +1,30 @@
+## list
+lists/008.txt lines: 171
+## measure before (HEAD text of the 169 queued files)
+files=169 sentences=2702 avg_words=12.0
+sentences_over_15=710 sentences_over_22=282
+files_with_a_sentence_over_22=120 files_with_hvr_hard_blockers=8
+## measure after
+files=169 sentences=4040 avg_words=8.3
+sentences_over_15=113 sentences_over_22=0
+files_with_a_sentence_over_22=0 files_with_hvr_hard_blockers=0
+## wave 008 driver
+2026-11-15T17:23:07.490Z finished pass=134 restored=1 unchanged=34
+driver exit=0
+## wave 008 restored file
+.skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.24.0.0.md
+## wave 008-retry driver
+2026-11-15T17:27:30.246Z finished pass=1 restored=0 unchanged=0
+driver exit=0
+## wave-verify
+{"listed":171,"keep":135,"restored":34,"missing":0,"problems":2}
+PROBLEM .skilled/skills/mcp-tooling/changelog/v1.9.4.0.md: the saved original is not the file at HEAD
+PROBLEM .skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.3.0.md: the saved original is not the file at HEAD
+## pilot files against HEAD
+git diff --quiet exit=0
+## changed notes in worktree
+135
+## tokens
+waves 008 and 008-retry worker plus verifier input and output: 5784736
+## first-wave findings of the restored file
+fact check changed (correct it): The rewrite changes “files written by the twelve removed plugins” and “any other file a plugin writes” to “files from twelve rem || fact check changed (correct it): The rewrite says “The mode cannot operate on files written by the twelve removed plugins,” which states an absolute inability. T || fact check changed (correct it): “files from the twelve removed plugins” and “any other plugin file” changes the original claim about files “written by” plugins 

@@ -59,13 +59,28 @@ export function fitsHistoryLookupOffer(sessionId: string): boolean {
 }
 
 /**
- * The offer lines, without the markdown heading a section adds.
+ * Whether a runtime label can be written into the command as it is.
+ *
+ * The label is printed unquoted after `SPECKIT_RUNTIME=`, so it must be one
+ * plain lowercase word, which a shell reads only as literal text. Every
+ * runtime the locator schema names has that shape. The check is on the shape
+ * rather than on the schema's runtime list because the compaction hooks load
+ * this module without the runtime build that holds that list.
+ */
+export function isHistoryLookupRuntime(runtime: string): boolean {
+  return /^[a-z]+$/.test(runtime);
+}
+
+/**
+ * The offer lines, without the markdown heading a section adds, or null when
+ * the runtime label is not a plain lowercase word.
  *
  * The command runs in a subshell that first moves to the checkout root, so a
  * model whose shell has moved into a subfolder still reaches the CLI and passes
  * its workspace check, and the model's own shell is left where it was.
  */
-export function buildHistoryLookupBody(locator: HistoryLookupTarget): string {
+export function buildHistoryLookupBody(locator: HistoryLookupTarget): string | null {
+  if (!isHistoryLookupRuntime(locator.runtime)) return null;
   const runtimePrefix = locator.runtime === 'claude' ? '' : `SPECKIT_RUNTIME=${locator.runtime} `;
   const command = `(cd "$(git rev-parse --show-toplevel)" && ${runtimePrefix}${HISTORY_LOOKUP_COMMAND} --session ${shellQuote(locator.sessionId)} --handle ${shellQuote(locator.handle)} browse '{"direction":"backward"}')`;
   return [
@@ -139,7 +154,8 @@ export function buildHistoryLookupSection(
   historyCapability: boolean,
 ): string | null {
   if (!historyCapability || !lookupRunsFrom(locator.workspace)) return null;
-  return `## ${HISTORY_LOOKUP_TITLE}\n${buildHistoryLookupBody(locator)}`;
+  const body = buildHistoryLookupBody(locator);
+  return body === null ? null : `## ${HISTORY_LOOKUP_TITLE}\n${body}`;
 }
 
 // ───────────────────────────────────────────────────────────────────

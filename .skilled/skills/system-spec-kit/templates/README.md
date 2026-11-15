@@ -6,7 +6,7 @@ trigger_phrases:
   - "template system"
   - "spec kit templates"
   - "template manifest"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Templates
@@ -68,7 +68,6 @@ templates/
 ├── spec-kit-docs.json     │ The level contract
 ├── CONTRACT.md            │ Maintainer guide for the contract
 ├── examples/              │ Pre-rendered reference packets
-├── changelog/             │ Deprecated packet changelog templates
 └── scratch/               │ Local debug space, gitignored
 ```
 
@@ -123,7 +122,6 @@ templates/
 │   ├── level-2/
 │   ├── level-3/
 │   └── level-3+/
-├── changelog/                  # Deprecated packet changelog templates, kept to render existing files and outside the manifest
 └── scratch/
 ```
 

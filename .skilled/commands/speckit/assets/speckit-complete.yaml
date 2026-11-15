@@ -147,7 +147,7 @@ field_handling:
   defaults: { spec_folder_empty: "Auto-create specs/{NNN} from highest +001", context_empty: "Infer from [REQUEST], [STAGING LINK], and codebase exploration", issues_empty: "Investigate and discover during workflow", environment_empty: "Skip browser testing steps", scope_empty: "Use scope_policy.default" }
   spec_folder_skip: "Q1 option D, Skip documentation: the run stops before step 1 and writes nothing. This command exists to write a packet, so it has no work without one."
   phase_folder_awareness:
-    note: "[SPEC_FOLDER] may be a phase child path (e.g., specs/003-name/001-phase/). When Option C targets a phase child or --phase-folder is provided, spec_id derives from the parent folder NNN, not the child NNN. When Option C adds a phase to a parent that has a goal.md, give it a child goal and binding row with /create:goal <parent> phase-add. Predecessor validation required for non-first phases."
+    note: "[SPEC_FOLDER] may be a phase child path (e.g., specs/003-name/001-phase/). When Option C targets a phase child or --phase-folder is provided, spec_id derives from the parent folder NNN, not the child NNN. When Option C adds a phase to a parent that has a goal.md, give it a child goal and binding row with /create:goal <parent> phase-add."
     path_pattern: "specs/{NNN-parent}/{NNN-phase}/"
   scope_policy: { default: "specs/**", rule: "Limit file operations to scope when provided" }
   intake_contract:
@@ -455,7 +455,7 @@ workflow:
 
   step_0.5_intake_branch:
     purpose: Detect non-healthy target folders before Step 1 so `/complete` can inline absorb the shared intake contract (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §5) without a visible chained handoff
-    action: "Run folder-state discovery using ls plus canonical file checks on the target spec path after any phase-predecessor validation"
+    action: "Run folder-state discovery using ls plus canonical file checks on the target spec path"
     with_phases_rule: "Under :with-phases, skip the Emit phase of the intake contract. P3 of phase_decomposition creates the parent and child folders after Step 1, so intake binds its fields and writes no folder."
     inspect:
       command: "ls -la {spec_folder} 2>/dev/null || true"
@@ -528,12 +528,6 @@ workflow:
     - Check for existing artifacts
     - Establish development scope
     outputs: [development_scope, estimated_loc, estimated_files]
-    phase_predecessor_validation:
-      trigger: "If [SPEC_FOLDER] path matches specs/{NNN-parent}/{NNN-phase}/ (phase child)"
-      skip_if: "First phase (001-*) — no predecessor to check"
-      check: "Find previous numbered phase folder (e.g., for 002-*, check 001-*). Predecessor is complete if: implementation-summary.md exists OR all tasks marked [x] in tasks.md"
-      on_fail: "HARD BLOCK — predecessor phase not complete. Report status and halt."
-      on_pass: "Continue with step_1 activities"
     confidence_checkpoint:
       evaluate_at: "After analyzing all inputs"
       scoring_factors: ["Requirements clarity (0.40)", "Scope definition (0.30)", "Context availability (0.30)"]

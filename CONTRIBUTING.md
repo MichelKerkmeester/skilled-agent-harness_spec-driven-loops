@@ -24,7 +24,7 @@ Thank you for wanting to contribute to Skilled. This guide covers the setup, the
 |-------------|---------|
 | **Node.js** | 24.x for a full install. Code Mode's MCP server needs `>=24.22.1 <25.0.0`, and every other package needs 22.23.4, 24.22.1, 26.12.1 or a newer release on one of those lines, so Node 24 is the one line every part accepts |
 | **npm, Git and a POSIX shell** | Latest |
-| **Runtime** | One of the six runtimes Skilled supports: OpenCode, Claude Code, Codex, Cursor, Devin or Pi |
+| **Runtime** | One of the eight runtimes Skilled supports: OpenCode, Claude Code, Codex, Cursor, Devin, Pi, DeepSeek Harness (DSH) or Mistral Vibe |
 
 ### Installation
 

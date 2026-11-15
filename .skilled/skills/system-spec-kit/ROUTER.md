@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-spec-kit routing"
 importance_tier: normal
 contextType: general
-version: 1.0.9.0
+version: 1.0.10.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -39,7 +39,7 @@ A request that matches no intent returns `UNKNOWN_FALLBACK` and its checklist ra
 - **IMPLEMENT** — "implement", "build", "execute" and "workflow" requests, and the `/speckit:implement` boost, load `references/validation/validation-rules.md`, `references/validation/template-compliance-contract.md`, `references/workflows/spec-authoring-card.md`, `assets/template-mapping.md`, `references/workflows/execution-methods.md` and `references/validation/path-scoped-rules.md`.
 - **WRITE** — "add", "change", "edit", "fix", "update" and "write" requests load `references/workflows/spec-authoring-card.md`. The weight is 1, so a plain write request loads the card and any stronger intent still wins.
 - **DEBUG** — "stuck", "error", "not working", "failed" and "debug" requests load `references/debugging/troubleshooting.md` and `references/debugging/universal-debugging-methodology.md`.
-- **COMPLETE** — "done", "complete", "finish", "verify" and "checklist" requests, and the `/speckit:complete` boost, load `references/validation/validation-rules.md`, `references/workflows/nested-changelog.md`, `references/workflows/intake-contract.md`, `references/workflows/spec-folder-write-recipe.md`, `references/workflows/spec-folder-authoring-checklist.md`, `references/validation/decision-format.md` and `references/validation/five-checks.md`.
+- **COMPLETE** — "done", "complete", "finish", "verify" and "checklist" requests, and the `/speckit:complete` boost, load `references/validation/validation-rules.md`, `references/workflows/intake-contract.md`, `references/workflows/spec-folder-write-recipe.md`, `references/workflows/spec-folder-authoring-checklist.md`, `references/validation/decision-format.md` and `references/validation/five-checks.md`.
 - **MEMORY** — "memory", "save context", "resume", "checkpoint", "context", "history lookup", "session history" and "earlier turns" requests, and the `/speckit:search`, `/speckit:save` and `/speckit:resume` boosts, load `references/memory/memory-system.md`, `references/memory/save-workflow.md`, `references/memory/trigger-config.md` and `references/structure/folder-routing.md`.
 - **HANDOVER** — "handover", "continue later", "next session" and "pause" requests load `references/workflows/quick-reference.md` and nothing else, so the session-end handoff never pulls a packet template.
 - **PHASE** — "phase", "decompose", "split", "workstream", "multi-phase", "phased approach", "phased" and "multi-session" requests, and the `/speckit:plan :with-phases` boost, load `references/structure/phase-definitions.md`, `references/structure/sub-folder-versioning.md`, `references/validation/phase-checklists.md` and `references/structure/phase-system.md`.
@@ -104,10 +104,8 @@ Keep this section focused on domains rather than static file inventories.
 - Level definitions and template size guidance: level specifications reference
 - Template usage and composition rules: [template-guide.md](./references/templates/template-guide.md)
 - Use the Level contract for operational templates; `create.sh` and the Level contract resolver share the same template index.
-- Use `templates/changelog/` for packet-local nested changelog generation at completion time.
 - Script architecture, build outputs, and runtime entrypoints: [runtime/cli/README.md](./runtime/cli/README.md)
 - Memory save JSON schema and workflow contracts: [save-workflow.md](./references/memory/save-workflow.md)
-- Nested packet changelog workflow: [nested-changelog.md](./references/workflows/nested-changelog.md)
 
 Primary operational scripts:
 - `spec/validate.sh`
@@ -220,7 +218,6 @@ RESOURCE_MAP = {
     ],
     "COMPLETE": [
         "references/validation/validation-rules.md",
-        "references/workflows/nested-changelog.md",
         "references/workflows/intake-contract.md",
         "references/workflows/spec-folder-write-recipe.md",
         "references/workflows/spec-folder-authoring-checklist.md",

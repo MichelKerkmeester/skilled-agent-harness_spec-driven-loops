@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs",
+  "description": "Phase 7: system-deep-loop-changelogs",
+  "keywords": [
+    "phase",
+    "system-deep-loop-changelogs"
+  ],
+  "lastUpdated": "2026-11-15T16:38:33.488Z",
+  "specId": "007",
+  "folderSlug": "system-deep-loop-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "007-changelog-voice-rewrite"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_17-38__phase-007-rewrote-142-system-deep-loop-changelogs.md"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs",
+  "description": "Phase 8: mcp-tooling-changelogs",
+  "keywords": [
+    "phase",
+    "mcp-tooling-changelogs"
+  ],
+  "lastUpdated": "2026-11-15T17:31:07.613Z",
+  "specId": "008",
+  "folderSlug": "mcp-tooling-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "007-changelog-voice-rewrite"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_18-31__phase-008-rewrote-135-mcp-tooling-changelogs-34.md"
+  ]
+}

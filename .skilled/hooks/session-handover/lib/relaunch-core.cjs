@@ -744,8 +744,9 @@ function claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env
   }
   // A session that never had a goal set leaves the receiver waiting for the operator to type
   // one. The packet the note names already states what the work is for, so the nearest
-  // unfinished goal the receiver can be started on is carried instead. A log read only in part cannot rule out a goal that
-  // ended earlier, and a finished goal.md would only make the receiver prove it again.
+  // unfinished goal the receiver can be started on is carried instead. A log read only in
+  // part cannot rule out a goal that ended earlier, and a finished goal.md would only make
+  // the receiver prove it again.
   if (latest === null) {
     // A goal the sender before this one ended stays ended. This session set none of its
     // own, so its log is silent and the note it claimed is what still says so.

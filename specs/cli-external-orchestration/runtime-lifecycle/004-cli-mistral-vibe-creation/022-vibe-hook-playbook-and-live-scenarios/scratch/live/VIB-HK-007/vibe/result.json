@@ -2,12 +2,15 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 122134329,
-  "socket": "conv-82734-vibe",
-  "session_id": "8541cf80-2836-4cd1-9c5e-7ed5365cf4a6",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.gPfiXA53C4/vibe",
-  "started_at": "2026-11-15T12:09:46.866Z",
-  "finished_at": "2026-11-15T12:11:01.853Z",
+  "seed": 833802328,
+  "socket": "conv-14018-vibe",
+  "session_id": "f4bff603-82c4-4dc2-98d1-31463ebb1e18",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.vTcqOJ030n/vibe",
+  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.vTcqOJ030n/vibe-home-GHgPLe",
+  "vibe_model": "compaction-probe",
+  "vibe_home_removed": false,
+  "started_at": "2026-11-15T19:52:36.307Z",
+  "finished_at": "2026-11-15T19:53:44.166Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -37,7 +40,7 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "compaction-checkpoint at sequence 54",
+      "observed": "compaction-checkpoint at sequence 50",
       "evidence": "turns/read"
     },
     {
@@ -46,17 +49,17 @@
       "attempts": 1,
       "reason": null,
       "blocker": null,
-      "observed": "reinjection in post_tool_call at sequence 78, after compaction at 54",
+      "observed": "reinjection in post_tool_call at sequence 74, after compaction at 50",
       "evidence": "turns/reinject-after-tool"
     },
     {
-      "id": "follow-up",
+      "id": "answer-written",
       "status": "PASS",
       "attempts": 1,
       "reason": null,
       "blocker": null,
       "observed": "answer-written-after-compaction",
-      "evidence": "turns/follow-up"
+      "evidence": "turns/answer-written"
     }
   ]
 }

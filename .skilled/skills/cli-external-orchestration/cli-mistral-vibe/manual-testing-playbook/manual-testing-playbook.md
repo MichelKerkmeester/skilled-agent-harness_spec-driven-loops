@@ -1,7 +1,7 @@
 ---
 title: "cli-mistral-vibe: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-mistral-vibe skill."
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # cli-mistral-vibe: Manual Testing Playbook
@@ -261,6 +261,8 @@ This category covers the routing front door and the decision behind it. The fron
 ## 15. HOOK AND PLUGIN UTILIZATION (`VIB-HK-001..VIB-HK-027`)
 
 This category covers every Vibe hook, hook part, generated mirror and the hooks renderer through scripted conversations played by the shared conversation runner's `vibe` adapter. Each turn's check reads a journal record or a file the hook wrote, never the reply text alone, because a Vibe deny leaves the session at exit 0.
+
+The live verdict for each scenario, with the date, commit and model of the run, is kept in the verdict table at `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch/verdicts.md`. Each run's `result.json` records the model as `vibe_model`, read from the session's own metadata. A verdict holds only for the code it ran on, so rerun a scenario after any change to the hook it judges.
 
 - `VIB-HK-001`: [Spec gate classify opens the gate for an unbound write request](hook-scenarios/spec-gate-classify.md)
 - `VIB-HK-002`: [Strict spec gate refuses the first write while the gate is open](hook-scenarios/spec-gate-deny.md)

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b83605e762e94af7cbcfbf7846fc0563dcac549309e235d9a40244cea59e7882",
+  "corpusHash": "a29a1f89871f3fbd162b0dbf5908775b0f29a3a5ddd23568003cc00ab421d116",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27626,
+  "includedPathCount": 27725,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6609,6 +6609,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.13.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.14.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.15.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.16.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
@@ -6845,6 +6846,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -6853,7 +6855,6 @@
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/never-infer-release-line.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/route-skilled-release-entry.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/skip-release-for-component.md",
-    ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/search-metadata/render-nested-identity-phrase.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/search-metadata/write-global-entry-metadata.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/topology/route-global-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/topology/route-phase-child-nested.md",
@@ -7277,6 +7278,7 @@
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.4.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.5.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.6.0.md",
+    ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.7.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/scope-gate/accuracy-outranks-the-standard.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/scope-gate/code-and-quotations-untouched.md",
@@ -8715,6 +8717,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.13.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.2.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.13.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -8787,7 +8790,6 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/markdown-link-integrity-guard.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/measured-behavior-block.md",
-    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/nested-changelog-generator.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md",
@@ -8899,7 +8901,6 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/main-agent-review-and-verdict-handoff.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/nested-changelog-generator.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/no-symlinks-in-lib-tree.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-sweep-stop-hook-activation.md",
@@ -8985,7 +8986,6 @@
     ".skilled/skills/system-spec-kit/references/workflows/execution-methods.md",
     ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
     ".skilled/skills/system-spec-kit/references/workflows/intake-contract.md",
-    ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
     ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
     ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
     ".skilled/skills/system-spec-kit/references/workflows/rename-pattern.md",
@@ -9093,9 +9093,6 @@
     ".skilled/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
     ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
     ".skilled/skills/system-spec-kit/templates/README.md",
-    ".skilled/skills/system-spec-kit/templates/changelog/README.md",
-    ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
-    ".skilled/skills/system-spec-kit/templates/changelog/root.md",
     ".skilled/skills/system-spec-kit/templates/examples/README.md",
     ".skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md",
     ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
@@ -10916,7 +10913,14 @@
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/acceptance-criteria.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/decision-record.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/fanout-attribution.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/review-report.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
@@ -12148,7 +12152,36 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/tasks.md",
-    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/fanout-attribution.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/fanout-attribution.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/review-report.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-dashboard.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-strategy.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-001.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-002.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-003.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-004.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-005.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-006.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-007.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-008.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-009.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-010.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-1.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-10.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-2.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-3.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-4.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-5.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-6.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-7.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-8.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-9.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/resource-map.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/001-claude-relaunch-loop/acceptance-criteria.md",
@@ -16006,6 +16039,67 @@
     "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/timeline.md",
     "specs/sk-doc/document-standards/004-security-policy-alignment/goal.md",
@@ -27655,10 +27749,15 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/fable-plan-verification.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/fanout-attribution.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/review-report.md",
-    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md",
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/acceptance-criteria.md",
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/plan.md",
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/spec.md",
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b240a4ab8978f362c0090f9936c9ed0161a5e82a83b2dbbd25588745d19c2e4e",
+  "manifestHash": "4e1da3dea78b10932d955d08e8e65c69f41b1f43ba51aaefeddc7716df9c27b6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30381,6 +30480,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/scratch",
       "reason": "excluded directory"
     },
@@ -31417,7 +31524,11 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/lineages",
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/lineages",
       "reason": "excluded directory"
     },
     {
@@ -34306,6 +34417,58 @@
     },
     {
       "path": "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/scratch",
       "reason": "excluded directory"
     },
     {
@@ -40018,6 +40181,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/scratch",
       "reason": "excluded directory"
     },
     {

@@ -192,6 +192,12 @@ function rememberSessionId(sessionId, env) {
   }
 }
 
+// Only a turn the operator typed withdraws an armed hand-over; a turn start
+// that carries no prompt is not the operator taking the session back.
+function operatorTyped(payload) {
+  return typeof payload.prompt === 'string' && payload.prompt.trim() !== '';
+}
+
 // Sessions whose armed hand-over the early withdraw step already cancelled this turn, so the
 // context part still answers with the withdrawn notice once the record is disarmed.
 const earlyWithdrawn = new Set();
@@ -212,6 +218,7 @@ function withdrawBeforeTurnStart(payload, dependencies = {}) {
   if (!nudge.validSessionId(sessionId)) return false;
   rememberSessionId(sessionId, env);
   if (nudge.isSeedPrompt(payload.prompt)) return false;
+  if (!operatorTyped(payload)) return false;
   const withdrawn = withdrawOnOperatorPrompt(sessionId, env);
   if (withdrawn) earlyWithdrawn.add(sessionId);
   return withdrawn;
@@ -248,7 +255,7 @@ async function buildHandoverContextPart(payload, dependencies = {}) {
     }
   }
 
-  const withdrawn = eventName === 'pre_agent'
+  const withdrawn = eventName === 'pre_agent' && operatorTyped(payload)
     && (earlyWithdrawn.delete(sessionId) || withdrawOnOperatorPrompt(sessionId, env));
   // Every quiet exit below still tells the session its hand-over was withdrawn.
   const quiet = () => (withdrawn ? nudge.WITHDRAWN_NOTICE : '');

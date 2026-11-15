@@ -1,0 +1,7 @@
+Lineage `vibe-2` is complete: 5 iterations, 18 open findings (0 P0, 4 P1, 14 P2), verdict CONDITIONAL, `stopReason: maxIterationsReached`.
+
+**The open lead is answered.** `compaction-context.mjs:231` writes the watermark before the sections are built at `:241-250` and before the empty return at `:252`. The first seam to run marks the compaction handled even when it has nothing to inject, and the filter at `:223` then drops that compaction by id forever. A fresh state dir has no watermark, so the filter passes and the text is built — which is exactly the control the operator ran. A second P1 records that the `post_tool` size gate watches only `journal/*.jsonl`, so a snapshot-only compaction never reaches the detector at all.
+
+Two notes on the closeout: the reducer collapsed the iteration-5 refinement into `R1-P1-001` (correct — the registry is canonical), which left the state log with 19 distinct ids against the registry's 18. `synthesis-closeout.cjs` staged `synthesis_incomplete` for that count mismatch with `missingStructuredFindingCount: 0`; both events are in the ledger, `synthesis_complete` last, and the mismatch is recorded in the report's Deferred Items rather than papered over.
+
+FANOUT_LINEAGE_COMPLETE:vibe-2

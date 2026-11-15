@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot",
+  "description": "Phase 1: voice-rule-tooling-and-pilot",
+  "keywords": [
+    "phase",
+    "voice-rule-tooling-and-pilot"
+  ],
+  "lastUpdated": "2026-11-15T08:28:10.537Z",
+  "specId": "001",
+  "folderSlug": "voice-rule-tooling-and-pilot",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "007-changelog-voice-rewrite"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "15-11-26_07-49__scope-rule-and-release-decisions.md",
+    "15-11-26_09-04__child-001-built-voice-rule-carve-out-sk-create.md",
+    "15-11-26_09-28__child-001-complete-rule-carve-out-structure.md"
+  ]
+}

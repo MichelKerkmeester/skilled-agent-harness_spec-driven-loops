@@ -9,7 +9,7 @@ trigger_phrases:
   - "generated file voice edit"
 importance_tier: important
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Voice Scope: What HVR Governs And What It Never Touches
@@ -78,7 +78,7 @@ reason. It cannot see a quotation in running prose, so you have to.
 |---|---|
 | A generated file | The generator overwrites your edit on the next run |
 | A shipped spec document | Its bytes are the record of what was decided |
-| A released changelog entry | It describes a release that already happened |
+| A released changelog entry | It describes a release that already happened. The one exception is an operator-approved retrofit recorded in a spec packet, which may reword it while keeping every fact |
 | A required heading, template placeholder or frontmatter key | A validator asserts the literal string |
 | A file under a byte-drift check | The check fails on the next run and blames whoever is there |
 

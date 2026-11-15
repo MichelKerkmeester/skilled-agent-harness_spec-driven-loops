@@ -70,7 +70,7 @@ Eleven specialized agents own focused roles. Eight CLI bridges let a runtime dis
 
 A review can fan out across several models at once, with the safest verdict winning. The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns.
 
-The six bridges for repository-opening runtimes refuse self-dispatch except `cli-pi`. The experimental dsh and Vibe targets are separate run surfaces: dsh for a headless dispatch or an interactive session such as `dsh web`, Vibe for a pinned print-mode run that reads its config from `.vibe/`. Fan-out lineages and dispatch stacks are bounded, so delegation never loops.
+Six bridges refuse to dispatch the runtime they run in. `cli-pi` and `cli-deepseek-harness` do not. The experimental dsh and Vibe bridges also run outside the checkout: dsh for a headless dispatch or an interactive session such as `dsh web`, Vibe for a pinned print-mode run that reads its config from `.vibe/`. Fan-out lineages and dispatch stacks are bounded, so delegation never loops.
 
 &nbsp;
 
@@ -181,7 +181,7 @@ node .skilled/bin/skill-advisor.cjs list-tools --format json
 
 ### Check The Setup
 
-Open the repository in any of the six runtimes: OpenCode, Claude Code, Codex, Cursor, Devin or Pi. Then run:
+Open the repository in any of the eight runtimes: OpenCode, Claude Code, Codex, Cursor, Devin, Pi, DeepSeek Harness (DSH) or Mistral Vibe. Then run:
 
 ```
 /doctor:setup

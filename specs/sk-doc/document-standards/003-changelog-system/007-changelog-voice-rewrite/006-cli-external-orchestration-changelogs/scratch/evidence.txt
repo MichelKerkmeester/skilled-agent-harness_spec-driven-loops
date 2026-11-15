@@ -1,0 +1,34 @@
+## list
+lists/006.txt lines: 212
+## measure before (HEAD text of the 210 queued files, splitter that ends a sentence inside closing quotes)
+files=210 sentences=2876 avg_words=12.2
+sentences_over_15=841 sentences_over_22=296
+files_with_a_sentence_over_22=147 files_with_hvr_hard_blockers=13
+## measure after
+files=210 sentences=4366 avg_words=8.3
+sentences_over_15=138 sentences_over_22=0
+files_with_a_sentence_over_22=0 files_with_hvr_hard_blockers=0
+## wave 006 driver (Mistral API budget ran out at 14:20)
+2026-11-15T14:34:41.612Z finished pass=4 restored=180 unchanged=26
+driver exit=0
+## wave 006 worker attempts recorded as infrastructure_failure in state.jsonl
+543
+## worker error text, reproduced by an isolated test call on the env key
+Error: API error occurred: Status 402. Body: {"message":"API budget exhausted.","type":"billing_api_budget_exhausted"}
+## wave 006-retry driver (worker on the Vibe login key from the Keychain)
+2026-11-15T15:45:13.910Z finished pass=180 restored=0 unchanged=0
+driver exit=0
+## wave-verify
+{"listed":212,"keep":184,"restored":26,"missing":0,"problems":2}
+PROBLEM .skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.9.0.md: the saved original is not the file at HEAD
+PROBLEM .skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.6.0.md: the saved original is not the file at HEAD
+## pilot files against HEAD
+git diff --quiet exit=0
+## changed notes in worktree
+184
+## tokens
+waves 006 and 006-retry worker plus verifier input and output: 7953730
+## keychain test call (MISTRAL_API_KEY unset)
+{ exit: 0, outcome: 'finished', cost: 0 } stderr: Reading API keys from the macOS Keychain
+## measure-voice splitter fix, after counts for phases 002 to 005 under it
+002 0, 003 0, 004 0, 005 0 sentences over 22 words

@@ -4,7 +4,7 @@ description: "This scenario measures whether a session that claims a handoff not
 trigger_phrases:
   - "hop recall conversation"
   - "handoff recall with lookup"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # hop-recall-conversation -- Hop recall conversation
@@ -15,7 +15,7 @@ This document captures the hop-recall scenario contract, the operator procedure,
 
 ## 1. OVERVIEW
 
-A sender session under `skilled-loop` prints 120 one-time codes, then works on an unrelated small task. A low relaunch threshold forces a hop to a fresh session. Once the receiver claims the handoff note, the operator asks it for the code printed for `K073`. The lookup CLI is on disk, but the hop prints no lookup offer, so this arm records whether the receiver finds and runs the CLI on its own.
+A sender session under `skilled-loop` prints 120 one-time codes, then works on an unrelated small task. A low relaunch threshold forces a hop to a fresh session. Once the receiver claims the handoff note, the operator asks it for the code printed for `K073`. The lookup CLI is on disk and the claim prints a `## History Lookup` section that names it, so this arm records whether the receiver runs that command for the code without the operator telling it to.
 
 ### Why This Matters
 

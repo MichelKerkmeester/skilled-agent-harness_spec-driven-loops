@@ -105,7 +105,7 @@ Each scenario ran live against Vibe 3.1.2 on `deepseek-flash`, one at a time, an
 
 | Check | Result |
 |-------|--------|
-| Live verdicts | 26 PASS, 0 FAIL, 0 OPERATOR-ONLY (`scratch/verdicts.md`); the five checks hardened after the review passed a live rerun |
+| Live verdicts | 26 PASS (`scratch/verdicts.md`); the five checks hardened after the review passed a live rerun. VIB-HK-005, 006 and 007 failed when first rerun after the automatic hand-over tier changed their hooks; phase 023 fixed the scenarios and reran VIB-HK-004 to 008 live on `deepseek-flash`, all PASS |
 | Playbook validator on the Vibe package | `scenarios=51 violations=0` at `af1a00789b8`; `scenarios=52 violations=0` after the merge brought VIB-HK-027 |
 | Runner suite | 27 pass, 0 fail at `af1a00789b8`; 29 pass, 0 fail after the review fixes |
 | Dist checker suite | 9 pass, 0 fail |

@@ -1,6 +1,6 @@
 
-⢔⡢⡀    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⠸⣀⡔⢉⠱⣃⡐⣔⡣   deepseek-flash[max] · Free
+  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Pro
   ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
 
 Hello Michel, how can I help you?
@@ -13,23 +13,24 @@ Hello Michel, how can I help you?
 
 ⏵ Thought                                                                                                                     
 
-  A) Small LRU inside the reader. The cache sits on the same object that owns the file handle and the parse state, so it can invalidate on the things that actually change — a reopen, a truncation, a
-  seek past the cached window. The trade-off is coupling: eviction policy becomes the reader's problem, and each reader instance carries its own copy, so two readers over the same journal duplicate
-  memory and never share a hit.
+  A) A small LRU inside the reader keeps the cache on the same side of the boundary as the read logic, so it can key on the reader's real granularity (page, offset, record) and invalidate itself
+  when a write goes through the same object — callers see nothing new. The trade-off is that it makes the reader stateful and instance-bound: the cache dies with the reader, can't be shared across
+  readers, and every test that constructs a reader now has to reason about warm state.
 
-  B) Memoized wrapper around the reader. The reader stays a plain, testable read path, and you can enable, disable, or resize caching per call site without touching it. The trade-off is blindness:
-  the wrapper only sees the public interface, so it can only key on arguments and has no way to notice that the underlying journal changed underneath it — you inherit a staleness bug the moment
-  anything writes.
+  B) A memoized wrapper keeps the reader pure and stateless, which makes it trivially composable, easy to disable in tests, and swappable for a different policy later. The trade-off is that the
+  wrapper only sees the public call signature, so it caches at whatever granularity callers happen to use — coarser keys, more misses — and invalidation has to be plumbed in from outside, since the
+  wrapper has no idea when the journal actually changed.
 
   Which one do you want?
 
 ⏵ Thought                           
 
-  A) A small LRU inside the reader keeps the cache adjacent to the access pattern that benefits from it, so hit-rate tuning and invalidation live in one place. The trade-off is that the reader now
-  owns state and lifetime, which makes it harder to test in isolation and easy to serve stale entries to callers who expect a fresh read.
+  A) Small LRU inside the reader. The cache sits where the read semantics live, so it can key on what actually determines a hit — offset, range, journal version — and evict with real knowledge of
+  what a miss costs. The trade-off: each reader instance carries its own cache, so two readers over the same journal duplicate the work, and invalidation has to be threaded through the reader
+  itself.
 
-  B) A memoized wrapper keeps the reader pure and moves caching policy to the call site, so you can swap it out or drop it per consumer. The trade-off is that every caller has to opt in and agree on
-  the key, so invalidation becomes a coordination problem spread across call sites instead of a single place.
+  B) Memoized wrapper around it. The reader stays a plain function and a single cache can be shared across every call site, which is usually where the duplicate reads actually originate. The
+  trade-off: the wrapper only sees arguments, so it can't do range-aware hits or notice the journal changed underneath it — stale entries become a correctness problem rather than a performance one.
 
   Which one do you want?
 
@@ -40,11 +41,10 @@ Hello Michel, how can I help you?
 
 
 
-
-                                           
+                                            
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
 >                                                                                                                                                                                                    
                                                                 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.wibQWPjCs1/vibe                                                                                                       ctx ▎      10.8k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.aIxEiVRjmj/vibe                                                                                     usage ▍      6% · ctx ▎      10.7k/256k

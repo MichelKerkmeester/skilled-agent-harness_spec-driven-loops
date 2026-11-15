@@ -286,6 +286,29 @@ test('the early withdraw step disarms first and the context part still answers w
   assert.equal(text, nudge.WITHDRAWN_NOTICE);
 });
 
+test('a pre_agent with no prompt leaves an armed hand-over armed', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = 'vibe-withdraw-noprompt-0001';
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = String(WINDOW_TOKENS);
+  const { recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID, 'armed');
+  record.armedAt = new Date().toISOString();
+  record.armId = 'arm-noprompt';
+  fs.writeFileSync(recordPath, JSON.stringify(record));
+
+  const sessionRoot = createVibeSession(t, sandbox);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(950)]);
+  const { buildHandoverContextPart, withdrawBeforeTurnStart } = await loadParts();
+  const payload = payloadFor(sandbox, sessionRoot, 'pre_agent', { prompt: '  ' });
+
+  assert.equal(withdrawBeforeTurnStart(payload, { env: sandbox.env }), false);
+  const text = await buildHandoverContextPart(payload, { env: sandbox.env });
+
+  assert.ok(!text.includes(nudge.WITHDRAWN_NOTICE), text);
+  assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'armed');
+});
+
 test('the withdraw prompt still records the re-arm floor', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = 'vibe-withdraw-floor-loop-0001';

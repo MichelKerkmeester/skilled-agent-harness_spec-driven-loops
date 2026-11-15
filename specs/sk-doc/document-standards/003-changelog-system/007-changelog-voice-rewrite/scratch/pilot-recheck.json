@@ -1,0 +1,234 @@
+[
+ {
+  "file": ".skilled/changelog/skilled/v4.0.0.12.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 18950,
+   "cached": 15872,
+   "output": 622,
+   "reasoning": 600
+  }
+ },
+ {
+  "file": ".skilled/skills/sk-doc/changelog/v2.3.20.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 21534,
+   "cached": 19328,
+   "output": 283,
+   "reasoning": 261
+  }
+ },
+ {
+  "file": ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.6.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 18178,
+   "cached": 15872,
+   "output": 949,
+   "reasoning": 927
+  }
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/changelog/v2.8.4.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 18434,
+   "cached": 15872,
+   "output": 879,
+   "reasoning": 857
+  }
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/changelog/v2.12.43.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 18061,
+   "cached": 15872,
+   "output": 236,
+   "reasoning": 214
+  }
+ },
+ {
+  "file": ".skilled/changelog/skilled/v4.0.0.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 45998,
+   "cached": 13696,
+   "output": 5552,
+   "reasoning": 5530
+  }
+ },
+ {
+  "file": ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.1.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 17938,
+   "cached": 0,
+   "output": 143,
+   "reasoning": 121
+  }
+ },
+ {
+  "file": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.6.0.md",
+  "verdict": "FAIL",
+  "items": [
+   "changed (correct it): “copied word for word” appears to apply only to the import and command-file findings in REWRITE; ORIGINAL applies it to both those findings and the `devin skills list` and `devin rules list` output."
+  ],
+  "usage": {
+   "input": 18025,
+   "cached": 15872,
+   "output": 775,
+   "reasoning": 706
+  }
+ },
+ {
+  "file": ".skilled/skills/sk-code/changelog/v2.1.0.0.md",
+  "verdict": "FAIL",
+  "items": [
+   "changed (correct it): “The routing contract has no breaking change. Lane C's projection ignores unknown keys.” drops the original causal link: the contract has no breaking change because the projection ignores unknown keys.",
+   "changed (correct it): “It reports 0 orphan aliases, 0 collisions and 0 ownership drift” attributes the counts to a report by the sync tool; the original states the counts alongside the clean pass."
+  ],
+  "usage": {
+   "input": 18968,
+   "cached": 0,
+   "output": 1868,
+   "reasoning": 1771
+  }
+ },
+ {
+  "file": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.9.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 21445,
+   "cached": 13696,
+   "output": 246,
+   "reasoning": 224
+  }
+ },
+ {
+  "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.5.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 17786,
+   "cached": 15872,
+   "output": 242,
+   "reasoning": 220
+  }
+ },
+ {
+  "file": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.6.3.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 18354,
+   "cached": 15872,
+   "output": 237,
+   "reasoning": 215
+  }
+ },
+ {
+  "file": ".skilled/skills/mcp-tooling/changelog/v1.9.4.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 18386,
+   "cached": 0,
+   "output": 667,
+   "reasoning": 645
+  }
+ },
+ {
+  "file": ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.3.0.md",
+  "verdict": "FAIL",
+  "items": [
+   "changed (correct it): The causal link in “with no sign that you supply it, so a reader could mistake” is weakened when rewritten as separate sentences.",
+   "changed (correct it): The link in “the name in the command is now `./<evidence-dir>`, so nothing suggests” is weakened when rewritten as separate sentences.",
+   "changed (correct it): The link in “the command now reads `./<fixtures-dir>`, so the two examples agree” is weakened when rewritten as separate sentences.",
+   "changed (correct it): The link in “This is a documentation change, so the scripts behave exactly as they did” is weakened when rewritten as separate sentences."
+  ],
+  "usage": {
+   "input": 21489,
+   "cached": 19328,
+   "output": 1560,
+   "reasoning": 1423
+  }
+ },
+ {
+  "file": ".skilled/skills/sk-design/changelog/v2.0.1.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 18055,
+   "cached": 13696,
+   "output": 218,
+   "reasoning": 196
+  }
+ },
+ {
+  "file": ".skilled/skills/system-skill-advisor/changelog/v0.17.17.0.md",
+  "verdict": "FAIL",
+  "items": [
+   "changed (correct it): The rewrite splits “The owner lease is now written in one step, so the loser reads…” into separate sentences. It no longer explicitly links the one-step write as the reason the loser reads the winner’s complete lease and steps aside."
+  ],
+  "usage": {
+   "input": 18564,
+   "cached": 13696,
+   "output": 1841,
+   "reasoning": 1771
+  }
+ },
+ {
+  "file": ".skilled/skills/sk-git/changelog/v1.3.2.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 22383,
+   "cached": 19328,
+   "output": 454,
+   "reasoning": 432
+  }
+ },
+ {
+  "file": ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.1.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 21648,
+   "cached": 0,
+   "output": 418,
+   "reasoning": 396
+  }
+ },
+ {
+  "file": ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.4.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 17968,
+   "cached": 15872,
+   "output": 150,
+   "reasoning": 128
+  }
+ },
+ {
+  "file": ".skilled/skills/sk-prompt/changelog/v1.4.0.0.md",
+  "verdict": "PASS",
+  "items": [],
+  "usage": {
+   "input": 21633,
+   "cached": 19328,
+   "output": 339,
+   "reasoning": 317
+  }
+ }
+]
