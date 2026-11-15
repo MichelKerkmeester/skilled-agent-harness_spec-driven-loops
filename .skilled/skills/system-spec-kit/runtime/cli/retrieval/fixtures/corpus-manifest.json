@@ -1,5 +1,5 @@
 {
-  "corpusHash": "32be9156fdf37c663caac6a4b4b266700b18bfee84779afce406eb1618be0c0e",
+  "corpusHash": "d386179c28d9ef7cc6fa17c2b25a9aba94d87bd32a4241504fd79938813a0651",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27603,
+  "includedPathCount": 27619,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9556,6 +9556,22 @@
     "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/review-report.md",
     "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/026-closeout-run-identity/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/026-closeout-run-identity/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/026-closeout-run-identity/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/026-closeout-run-identity/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/027-review-traceability-recording/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/027-review-traceability-recording/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/027-review-traceability-recording/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/027-review-traceability-recording/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/028-review-scope-recording/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/028-review-scope-recording/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/028-review-scope-recording/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/028-review-scope-recording/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -27635,7 +27651,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "161ed9ce25c3261fc6bfe2b8126824b83dd483e29778034d238e95131d5538b6",
+  "manifestHash": "fb110d21ebbfdf38a563f323b47291d676494f6a053801d6bd6fdb1bd7b8b744",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28855,6 +28871,22 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/026-closeout-run-identity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/027-review-traceability-recording/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/028-review-scope-recording/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/029-review-verdict-script/scratch",
       "reason": "excluded directory"
     },
     {

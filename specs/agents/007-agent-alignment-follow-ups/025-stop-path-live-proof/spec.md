@@ -24,7 +24,7 @@ contextType: "general"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 25 of 25 |
 | **Predecessor** | 024-terminal-gates-script |
-| **Successor** | None |
+| **Successor** | 026-closeout-run-identity |
 | **Handoff Criteria** | The replay test passes for the error, duration and manual stop reasons, the live run's outcome is recorded with its evidence, and `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
