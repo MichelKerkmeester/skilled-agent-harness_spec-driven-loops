@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/session-handover",
+  "description": "Container folder for hooks-plugins-extensions/session-handover.",
+  "keywords": [
+    "session",
+    "handover"
+  ],
+  "lastUpdated": "2026-11-15T11:23:55.551Z",
+  "specId": "hooks-plugins-extensions/session-handover",
+  "folderSlug": "session-handover",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

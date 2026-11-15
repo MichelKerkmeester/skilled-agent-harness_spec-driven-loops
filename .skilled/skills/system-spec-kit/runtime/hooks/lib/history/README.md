@@ -1,6 +1,6 @@
 ---
 title: "Lib: History Lookup Core"
-description: "The runtime-neutral read-only lookup core, its shared locator and offer helpers and the redemption CLI every session-history adapter calls."
+description: "The runtime-neutral read-only lookup core, its shared locator and offer helpers and the redemption CLI the session handover prints."
 trigger_phrases:
   - "history lookup core"
   - "bounded history retrieval"
@@ -22,9 +22,9 @@ Current state:
 - Every complete reply is serialized and measured against one 16,384-byte cap before it is returned.
 - A failed operation throws a typed error, and the adapter maps it to its own fail-open path.
 - `cli.ts` is the only runnable redemption path. It reads one persisted locator, re-derives the handle and prints one bounded reply.
-- `lookup-offer.ts` owns the model-visible `## History Lookup` section and its 600-character budget, and every producer prints it only after the locator write persisted. `placeLookup` keys each locator by the checkout root above the session folder, where the printed command runs, and keeps that folder as `sessionDirectory` when the session started below the root. A folder whose nearest root cannot run the CLI gets no locator and no section.
+- `lookup-offer.ts` owns the model-visible `## History Lookup` section and its 600-character budget, and the session handover prints it only after the locator write persisted. `prepare` stores a locator for the sending session with provenance source `handover`, and `claim` mints a fresh one and prints the section after the note body. `placeLookup` keys each locator by the checkout root above the session folder, where the printed command runs, and keeps that folder as `sessionDirectory` when the session started below the root. A folder whose nearest root cannot run the CLI gets no locator and no section.
 - A shell call that runs the CLI counts as paging, like a dedicated pager tool, so a model's own lookups never come back in its next lookup.
-- `locator-digest.ts` owns the `hl1_` handle and the locator write every compaction adapter shares.
+- `locator-digest.ts` owns the `hl1_` handle and the locator write the session handover shares.
 
 ---
 
@@ -50,7 +50,7 @@ The folder is flat, so every direct file is listed here.
 | `history.ts` | The `HistoryEntry` and content-block types, the published key lists, `projectHistoryEntries` and the paging-tool predicates. |
 | `index.ts` | The barrel that re-exports history, projection, response, pages, loads, navigator and core. |
 | `loads.ts` | Bounded loading of one to three entries, including smallest-first selection, deferred handles and `BoundedHistoryReply`. |
-| `locator-digest.ts` | `historyHandle()` and `persistHistoryLocator()`, shared by every compaction producer and the CLI. |
+| `locator-digest.ts` | `historyHandle()` and `persistHistoryLocator()`, shared by the session handover and the CLI. |
 | `lookup-offer.ts` | The shared `## History Lookup` body and section, the shell quoting and the 600-character bound. |
 | `navigator.ts` | `search` and `browse`, including BM25 ranking, anchors and window navigation. |
 | `pages.ts` | `page`, including text pages, part lists and native image attachments under the reply budget. |
@@ -73,10 +73,10 @@ The folder is flat, so every direct file is listed here.
 
 `search`, `browse` and `load` return a `BoundedHistoryReply`, whose `content` array holds the serialized text. `page` returns a `HistoryPageReply`, whose `content` may also hold one native image attachment.
 
-`search` matches fragments of identifiers, not only whole terms:
+`search` matches fragments of identifiers, not only whole terms. A query matches whole word parts, so 'live' does not match 'delivery'.
 
 - Text is NFKC-normalized first, so full-width `ＬＩＶＥ` matches `LIVE`.
-- A term that splits on `-`, `.`, `/`, `:`, `_` or a case change is indexed whole and by its parts of two or more characters. `LIVE-MARKER-dv-2b7e` is found by `LIVE-MARKER`, `MARKER` or `dv-2b7e`, `bm25Score` by `score`, and a path by any folder or file name in it. A plain word gets no parts, so `live` does not match `delivery`.
+- A term that splits on `-`, `.`, `/`, `:`, `_` or a case change is indexed whole and by its parts of two or more characters. `LIVE-MARKER-dv-2b7e` is found by `LIVE-MARKER`, `MARKER` or `dv-2b7e`, `bm25Score` by `score`, and a path by any folder or file name in it. A plain word gets no parts, so it matches only as a whole word.
 - One query token needs all of its parts, and separate query tokens are alternatives. An exact mention of the whole identifier ranks above a turn that holds only its parts.
 - A Han word is matched by its adjacent character pairs, so `検索` does not match a turn that holds only `検`.
 - The preview centers on the matched identifier, so a fragment match shows what it matched.
@@ -116,18 +116,20 @@ A deferred item carries `id`, `kind`, `deferred: true`, a bounded `parts` list, 
 ## 7. CLI
 
 ```bash
-node .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js \
+node .skilled/hooks/session-handover/bin/history-lookup.mjs \
   --session <session-id> \
   --handle <hl1_handle> \
   <search|browse|load|page> \
   '<json-arguments>'
 ```
 
+The session handover concern owns this entry, while the source and the build stay in this runtime.
+
 The argument contract:
 
 - `--session` and `--handle` are required, and the operation is the first positional argument.
 - `search`, `browse` and `page` take one JSON object. `load` takes a JSON array or `{"historyIds":["..."]}`.
-- Claude runs the command as printed. Codex, Pi, Devin, DSH and OpenCode prefix it with `SPECKIT_RUNTIME=<runtime>`.
+- Claude runs the command as printed. Codex prefixes it with `SPECKIT_RUNTIME=codex`.
 - The locator must be less than 30 minutes old. A future timestamp counts as clock skew and is treated as stale.
 - The CLI checks the stored state, the handle, the session id, the runtime and `process.cwd()` against the locator workspace. It then checks the reader capability, resolves the exact session and re-derives the digest.
 - Success writes one JSON line and exits 0. Every refusal writes one `{"ok":false,"code":"<code>"}` line and exits 2.

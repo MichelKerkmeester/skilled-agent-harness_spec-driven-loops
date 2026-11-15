@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof",
+  "description": "Seventeen Markdown files outside `specs/` mention the lookup, and the ones that describe where it is offered all place it after a compaction",
+  "keywords": [
+    "seventeen",
+    "markdown",
+    "files",
+    "outside",
+    "specs",
+    "mention",
+    "lookup",
+    "ones",
+    "describe",
+    "offered",
+    "place",
+    "compaction"
+  ],
+  "lastUpdated": "2026-11-15T11:24:12.402Z",
+  "specId": "006",
+  "folderSlug": "docs-and-live-hop-proof",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

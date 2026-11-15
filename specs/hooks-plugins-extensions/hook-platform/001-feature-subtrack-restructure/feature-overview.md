@@ -535,16 +535,16 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 
 ---
 
-## session-relaunch
+## session-handover
 - Purpose: Hands unfinished work to a fresh session in the same terminal when a runtime nears its context limit: each adapter asks for a handoff near its threshold, the sender prepares a note and the adapter arms a matching record, and `skilled-loop` relaunches the runtime with a claim seed when the record is armed, fresh and below the hop cap. A record still pending at exit makes the wrapper print a manual claim command for the selected runtime and consume the record.
 - Kind: mix: shared core library + per-runtime adapters + OpenCode plugin + Pi extension + CLI + shell wrapper
-- Code: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs, .skilled/hooks/session-relaunch/lib/nudge.cjs, .skilled/hooks/session-relaunch/lib/killer.cjs, .skilled/hooks/session-relaunch/bin/session-relaunch.cjs, .skilled/hooks/session-relaunch/claude/context-nudge.mjs, .skilled/hooks/session-relaunch/claude/stop-arm.mjs, .skilled/hooks/session-relaunch/codex/context-nudge.mjs, .skilled/hooks/session-relaunch/codex/stop-arm.mjs, .skilled/hooks/session-relaunch/opencode/session-relaunch.js, .skilled/hooks/session-relaunch/pi/session-relaunch.ts, .skilled/bin/skilled-loop
+- Code: .skilled/hooks/session-handover/lib/relaunch-core.cjs, .skilled/hooks/session-handover/lib/nudge.cjs, .skilled/hooks/session-handover/lib/killer.cjs, .skilled/hooks/session-handover/bin/session-handover.cjs, .skilled/hooks/session-handover/claude/context-nudge.mjs, .skilled/hooks/session-handover/claude/stop-arm.mjs, .skilled/hooks/session-handover/codex/context-nudge.mjs, .skilled/hooks/session-handover/codex/stop-arm.mjs, .skilled/hooks/session-handover/opencode/session-handover.js, .skilled/hooks/session-handover/pi/session-handover.ts, .skilled/bin/skilled-loop
 - Runtimes: claude, codex, opencode, pi (adapter folders); cursor and devin are command-only with no adapter folder
-- Mirrors: .opencode/plugins/session-relaunch.js, .pi/extensions/session-relaunch.ts
-- Kill switch: SYSTEM_SESSION_RELAUNCH_DISABLED
+- Mirrors: .opencode/plugins/session-handover.js, .pi/extensions/session-handover.ts
+- Kill switch: SYSTEM_SESSION_HANDOVER_ENABLED=0
 - Packets:
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop | Feature Specification: Session relaunch loop
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration | Feature Specification: Move the session history lookup out of the compaction path and into the in-session handover, so a receiving session can look up the sender's earlier turns.
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration | Feature Specification: Move the session history lookup out of the compaction path and into the in-session handover, so a receiving session can look up the sender's earlier turns.
   - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote | Feature Specification: Phase 3: relaunch-goal-quote
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity | Feature Specification: Phase 45: relaunch-takeover-lock-identity
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter | Feature Specification: Phase 48: skilled-loop-shared-nudge-formatter
@@ -556,7 +556,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/019-plugins-compat-docs | Feature Specification: Phase 19: plugins-compat-docs
   - MENTIONS | CHILD | specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/009-findings-summary-integrity | Feature Specification: Phase 9: findings-summary-integrity
   - 140 more MENTIONS omitted
-- Evidence: .skilled/hooks/session-relaunch/lib/nudge.cjs:132 (the nudge text reports the context fill as `[session-relaunch] Context is about N% full.`), .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:50 (the claim seed the wrapper relaunches with is `[session-relaunch] claim and continue handoff `), .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:29 (`prepare` validates the note, writes the pending record the runtime arms, and prints the claim command outside a loop or at the hop limit)
+- Evidence: .skilled/hooks/session-handover/lib/nudge.cjs:132 (the nudge text reports the context fill as `[session-handover] Context is about N% full.`), .skilled/hooks/session-handover/lib/relaunch-core.cjs:50 (the claim seed the wrapper relaunches with is `[session-handover] claim and continue handoff `), .skilled/hooks/session-handover/bin/session-handover.cjs:29 (`prepare` validates the note, writes the pending record the runtime arms, and prints the claim command outside a loop or at the hop limit)
 - Unsure: 95 of the 152 `spec.md` hits are children of `002-session-relaunch-loop`; the brief asked for that packet once, so its children are inside the omitted count rather than listed. `skilled-loop` and `skilled-loop-shell.sh` sit in `.skilled/bin/`, outside the feature folder: I confirmed both exist but read the wrapper only through the README, not its body. Cursor and Devin have no adapter folder, so their hop runs only after `/speckit:handoff`.
 
 ---
@@ -647,13 +647,13 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Mirrors: .opencode/plugins/session-history-lookup.js; .pi/extensions/session-compact-context.ts (one-line re-export of the Pi compaction adapter that builds the offer)
 - Kill switch: SYSTEM_SESSION_LIFECYCLE_DISABLED (the OpenCode plugin keys on the `session-lifecycle` concern)
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration | Feature Specification: Move the session history lookup out of the compaction path and into the in-session handover, so a receiving session can look up the sender's earlier turns.
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline | Feature Specification: Phase 1: hop-recall-baseline
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/002-history-core-relocation | Feature Specification: Phase 2: history-core-relocation
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/003-mint-locator-at-prepare | Feature Specification: Phase 3: mint-locator-at-prepare
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/004-offer-lookup-at-claim | Feature Specification: Phase 4: offer-lookup-at-claim
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/005-deprecate-compaction-offer | Feature Specification: Phase 5: deprecate-compaction-offer
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/006-docs-and-live-hop-proof | Feature Specification: Phase 6: docs-and-live-hop-proof
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration | Feature Specification: Move the session history lookup out of the compaction path and into the in-session handover, so a receiving session can look up the sender's earlier turns.
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline | Feature Specification: Phase 1: hop-recall-baseline
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation | Feature Specification: Phase 2: history-core-relocation
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/003-mint-locator-at-prepare | Feature Specification: Phase 3: mint-locator-at-prepare
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim | Feature Specification: Phase 4: offer-lookup-at-claim
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer | Feature Specification: Phase 5: deprecate-compaction-offer
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof | Feature Specification: Phase 6: docs-and-live-hop-proof
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title | Feature Specification: A Claude Code hop refuses a question dialog after prepare, starts the receiver on the packet goal and keeps the generated session title
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env | Feature Specification: Phase 8: history-test-database-env
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes | Feature Specification: Claude Code session handover on by default and v4.0.2.1 release notes

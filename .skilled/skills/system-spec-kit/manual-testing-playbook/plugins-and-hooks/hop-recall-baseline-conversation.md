@@ -4,7 +4,7 @@ description: "This scenario records whether a session that claims a handoff note
 trigger_phrases:
   - "hop recall baseline conversation"
   - "handoff recall baseline"
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # hop-recall-baseline-conversation -- Hop recall baseline conversation
@@ -19,7 +19,7 @@ The same conversation as the lookup arm, in a checkout where the built history C
 
 ### Why This Matters
 
-The handover starts a fresh session near the context limit, so the receiver holds only the four sections of the handoff note. The history lookup that could recover a missing detail is offered only after a compaction, which the hop is designed to prevent. Nobody has measured whether a receiver recovers such a detail on its own, so the phases that would build an offer rest on an assumption. This pair answers that: the two scenarios differ only in whether the lookup CLI exists in the checkout, so the lookup is reachable in one and hidden in the other.
+The handover starts a fresh session near the context limit, so the receiver holds only the four sections of the handoff note. The claim prints a `## History Lookup` section for the sender's session, so the receiver can look up a detail the note left out. This pair measures whether it does: the two scenarios differ only in whether the compiled lookup core exists in the checkout, so the section is printed in one and withheld in the other.
 
 The conversation runner cannot drive a hop. Its only turn actions are `restart` and `compact` (`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md` §3), and `restart` resumes the same session, so it cannot start the fresh session a hop requires. This page is therefore an operator procedure built on the harness script, not a `json conversation` block.
 
@@ -135,7 +135,6 @@ Pi, OpenCode and Codex are optional follow-ups after Claude Code. They need `SYS
 |---|---|
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | Root playbook and scenario index |
 | [hop-recall-conversation](hop-recall-conversation.md) | The same hop with the lookup CLI on disk |
-| [compaction-history-recall-baseline-conversation](compaction-history-recall-baseline-conversation.md) | The compaction baseline this pair adapts to a hop |
 | [session-handover-loop](../../feature-catalog/context-preservation/session-handover-loop.md) | Feature contract for the handover and the wrapper |
 | [session-handover-claude](session-handover-claude.md) | The live hop procedure and its recorded results |
 
@@ -146,7 +145,7 @@ Pi, OpenCode and Codex are optional follow-ups after Claude Code. They need `SYS
 | `specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh` | Runs one arm: hides the CLI, generates the codes, starts the sender, waits for the claim, asks the question, prints the observed line |
 | `specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/analyze.py` | Scores one run from the Claude transcripts and the handoff note |
 | `.skilled/hooks/session-handover/README.md` | The handoff protocol, the claim seed and the four note sections |
-| `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md` | The lookup CLI, its locator and the `locator_missing` refusal |
+| `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md` | The lookup CLI, its locator and its refusal codes |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md` | The runner's turn actions, which exclude a hop |
 
 Provenance: manual only - a live hop in tmux, driven by the harness script, with the observed line written by hand into the table

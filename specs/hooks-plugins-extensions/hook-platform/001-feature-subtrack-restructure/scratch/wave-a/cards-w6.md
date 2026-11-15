@@ -58,13 +58,13 @@
 - Mirrors: .opencode/plugins/session-history-lookup.js; .pi/extensions/session-compact-context.ts (one-line re-export of the Pi compaction adapter that builds the offer)
 - Kill switch: SYSTEM_SESSION_LIFECYCLE_DISABLED (the OpenCode plugin keys on the `session-lifecycle` concern)
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration | Feature Specification: Move the session history lookup out of the compaction path and into the in-session handover, so a receiving session can look up the sender's earlier turns.
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline | Feature Specification: Phase 1: hop-recall-baseline
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/002-history-core-relocation | Feature Specification: Phase 2: history-core-relocation
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/003-mint-locator-at-prepare | Feature Specification: Phase 3: mint-locator-at-prepare
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/004-offer-lookup-at-claim | Feature Specification: Phase 4: offer-lookup-at-claim
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/005-deprecate-compaction-offer | Feature Specification: Phase 5: deprecate-compaction-offer
-  - OWNS | CHILD | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/006-docs-and-live-hop-proof | Feature Specification: Phase 6: docs-and-live-hop-proof
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration | Feature Specification: Move the session history lookup out of the compaction path and into the in-session handover, so a receiving session can look up the sender's earlier turns.
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline | Feature Specification: Phase 1: hop-recall-baseline
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation | Feature Specification: Phase 2: history-core-relocation
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/003-mint-locator-at-prepare | Feature Specification: Phase 3: mint-locator-at-prepare
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim | Feature Specification: Phase 4: offer-lookup-at-claim
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer | Feature Specification: Phase 5: deprecate-compaction-offer
+  - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof | Feature Specification: Phase 6: docs-and-live-hop-proof
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title | Feature Specification: A Claude Code hop refuses a question dialog after prepare, starts the receiver on the packet goal and keeps the generated session title
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env | Feature Specification: Phase 8: history-test-database-env
   - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes | Feature Specification: Claude Code session handover on by default and v4.0.2.1 release notes

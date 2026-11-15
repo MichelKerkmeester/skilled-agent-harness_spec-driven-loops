@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration",
+  "description": "A model can search and load its own earlier turns through the history lookup, but the lookup is offered only after a compaction",
+  "keywords": [
+    "model",
+    "search",
+    "load",
+    "own",
+    "earlier",
+    "turns",
+    "history",
+    "lookup",
+    "offered",
+    "only",
+    "compaction"
+  ],
+  "lastUpdated": "2026-11-15T11:24:12.409Z",
+  "specId": "001",
+  "folderSlug": "history-lookup-handover-integration",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline",
+  "description": "The handover starts a fresh session near the context limit, so the receiver holds only the four sections of the handoff note",
+  "keywords": [
+    "handover",
+    "starts",
+    "fresh",
+    "session",
+    "near",
+    "context",
+    "limit",
+    "receiver",
+    "holds",
+    "only",
+    "four",
+    "sections",
+    "handoff",
+    "note"
+  ],
+  "lastUpdated": "2026-11-15T11:24:12.388Z",
+  "specId": "001",
+  "folderSlug": "hop-recall-baseline",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

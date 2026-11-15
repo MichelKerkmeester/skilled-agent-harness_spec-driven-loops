@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-006 -- Turn start re-injects the goal slice after a compaction"
-description: "This scenario validates that the Vibe turn-start compaction part re-injects the bound packet's goal slice and the history lookup offer at the first turn start after a manual compaction, judged from the session journal."
-version: 1.0.0.0
+description: "This scenario validates that the Vibe turn-start compaction part re-injects the bound packet's goal slice at the first turn start after a manual compaction, judged from the session journal."
+version: 1.0.1.0
 ---
 
 # VIB-HK-006 -- Turn start re-injects the goal slice after a compaction
@@ -12,7 +12,7 @@ This document captures the operator contract for `VIB-HK-006`.
 
 ## 1. OVERVIEW
 
-This scenario starts a live Vibe session that is bound to a spec packet, lets it answer one message, compacts the conversation with `/compact`, and then types one more message. The compaction part of the `turn-start` composer must find the new compaction in the session journal and add the packet's goal slice and the history lookup offer to that turn's start context.
+This scenario starts a live Vibe session that is bound to a spec packet, lets it answer one message, compacts the conversation with `/compact`, and then types one more message. The compaction part of the `turn-start` composer must find the new compaction in the session journal and add the packet's goal slice to that turn's start context.
 
 ### Why This Matters
 
@@ -24,13 +24,13 @@ Vibe raises no compaction event and never runs `session_start` again, so the goa
 
 Operators run the conversation script through the shared runner with the `vibe` runtime, then read the turn checks and the journal evidence.
 
-- Objective: verify that `turn-start` re-injects the bound packet's goal slice and the `History Lookup` offer at the first turn start after `/compact`.
+- Objective: verify that `turn-start` re-injects the bound packet's goal slice at the first turn start after `/compact`.
 - Real user request: `Read notes.txt and tell me in one sentence what it says.`
 - Prompt: `Read notes.txt and tell me in one sentence what it says.`
-- Expected execution process: the runner creates a scratch project that is a Git root holding the printed lookup command's file, renders the repository hooks into a fresh `VIBE_HOME`, binds the packet through `VIBE_SPEC_FOLDER` and starts Vibe. The subject reads the file, the runner sends `/compact` through the adapter's `compact` action, and the next message starts a new turn.
-- Expected signals: a `compaction` checkpoint in the session journal, then a `pre_agent_turn` hook result whose injected text carries `Context restored after a compaction.`, the slice's `# Goal:` heading and a `## History Lookup` section.
+- Expected execution process: the runner creates a scratch project that is a Git root, renders the repository hooks into a fresh `VIBE_HOME`, binds the packet through `VIBE_SPEC_FOLDER` and starts Vibe. The subject reads the file, the runner sends `/compact` through the adapter's `compact` action, and the next message starts a new turn.
+- Expected signals: a `compaction` checkpoint in the session journal, then a `pre_agent_turn` hook result whose injected text carries `Context restored after a compaction.` and the slice's `# Goal:` heading.
 - Desired user-visible outcome: the session answers both messages, the compaction reports that context was compacted, and no error appears.
-- Pass/fail: PASS when all four turn checks pass. FAIL when the journal holds no compaction checkpoint, or no re-injection after one.
+- Pass/fail: PASS when all three turn checks pass. FAIL when the journal holds no compaction checkpoint, or no re-injection after one.
 
 ---
 
@@ -42,7 +42,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VIB-HK-006 | Turn-start compaction re-injection | Re-inject the goal slice and the history offer at the first turn start after `/compact` | `Read notes.txt and tell me in one sentence what it says.` | `CONVERSATION_REPO_ROOT="$(git rev-parse --show-toplevel)" node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection-conversation.md --runtime vibe --scratch "$(mktemp -d)" --out /tmp/vib-hk-006` | A `kind` `compaction` checkpoint, then a `pre_agent_turn` context holding `Context restored after a compaction.`, the packet's `# Goal:` slice and `## History Lookup` | matrix.md, checkpoints.tsv, each turn's screen.txt and check.txt | PASS when all four checks pass. FAIL when the journal holds no compaction checkpoint or no re-injection after it. | 1. Read the compact turn's check.txt and screen.txt. 2. Confirm `$VIBE_HOME/hooks.toml` lists `turn-start`. 3. Pipe a `pre_agent` payload with this session's `transcript_path` into `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs` and read its output. |
+| VIB-HK-006 | Turn-start compaction re-injection | Re-inject the goal slice at the first turn start after `/compact` | `Read notes.txt and tell me in one sentence what it says.` | `CONVERSATION_REPO_ROOT="$(git rev-parse --show-toplevel)" node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection-conversation.md --runtime vibe --scratch "$(mktemp -d)" --out /tmp/vib-hk-006` | A `kind` `compaction` checkpoint, then a `pre_agent_turn` context holding `Context restored after a compaction.` and the packet's `# Goal:` slice | matrix.md, checkpoints.tsv, each turn's screen.txt and check.txt | PASS when all three checks pass. FAIL when the journal holds no compaction checkpoint or no re-injection after it. | 1. Read the compact turn's check.txt and screen.txt. 2. Confirm `$VIBE_HOME/hooks.toml` lists `turn-start`. 3. Pipe a `pre_agent` payload with this session's `transcript_path` into `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs` and read its output. |
 
 ### Conversation Script
 
@@ -53,8 +53,6 @@ Operators run the conversation script through the shared runner with the `vibe` 
   ],
   "setup": [
     "git init -q",
-    "mkdir -p .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history",
-    "printf '// the printed lookup command\\n' > .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js",
     "printf 'alpha\\n' > notes.txt"
   ],
   "env": {
@@ -94,20 +92,16 @@ Operators run the conversation script through the shared runner with the `vibe` 
         }
       ],
       "check": "for i in $(seq 1 40); do if grep -rqsF 'Context restored after a compaction.\\n\\n# Goal' \"$VIBE_HOME/logs/session/unified\"; then echo reinjection-with-goal-slice; exit 0; fi; sleep 1; done; echo no-reinjection-with-goal-slice; exit 1"
-    },
-    {
-      "id": "history-offer",
-      "check": "if grep -rqsF '## History Lookup' \"$VIBE_HOME/logs/session/unified\"; then echo history-lookup-offer-injected; else echo no-history-lookup-offer; exit 1; fi"
     }
   ]
 }
 ```
 
-The compaction part reads the packet from `VIBE_SPEC_FOLDER`, which every Vibe hook resolves against the checkout, so setup points it at this phase's folder rather than copying a goal document. The history offer is printed only for a session whose workspace is a checkout root that holds the lookup command's file, so setup makes the scratch project such a root; without that layout the hook withholds the offer and delivers only the goal slice. The spec gate is switched off for this run, because the scenario judges the compaction part and a refused write would derail the conversation instead.
+The compaction part reads the packet from `VIBE_SPEC_FOLDER`, which every Vibe hook resolves against the checkout, so setup points it at this phase's folder rather than copying a goal document. The spec gate is switched off for this run, because the scenario judges the compaction part and a refused write would derail the conversation instead.
 
 ### Expected
 
-Turn `first-turn` finds the first turn's start record and no compaction context. Turn `compact` finds the manual compaction's checkpoint in the journal. Turn `reinject` finds one record carrying the compaction heading and the packet's goal slice. Turn `history-offer` finds the `History Lookup` section the same re-injection added.
+Turn `first-turn` finds the first turn's start record and no compaction context. Turn `compact` finds the manual compaction's checkpoint in the journal. Turn `reinject` finds one record carrying the compaction heading and the packet's goal slice.
 
 ### Evidence
 
@@ -115,7 +109,7 @@ Capture matrix.md, checkpoints.tsv, each turn's screen.txt and check.txt, plus s
 
 ### Pass / Fail
 
-- **Pass**: the journal holds a compaction checkpoint, then one record carrying `Context restored after a compaction.` with the packet's goal slice and the `History Lookup` offer.
+- **Pass**: the journal holds a compaction checkpoint, then one record carrying `Context restored after a compaction.` with the packet's goal slice.
 - **Fail**: no compaction checkpoint, or no re-injection carrying the goal slice after one.
 
 ### Failure Triage

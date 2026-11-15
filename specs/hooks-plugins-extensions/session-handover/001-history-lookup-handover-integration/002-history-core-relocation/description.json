@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation",
+  "description": "The lookup core is TypeScript compiled into `.skilled/skills/system-spec-kit/runtime/dist/`, and the command a model runs names that compiled file",
+  "keywords": [
+    "lookup",
+    "core",
+    "typescript",
+    "compiled",
+    "skilled",
+    "skills",
+    "system-spec-kit",
+    "runtime",
+    "dist",
+    "command",
+    "model",
+    "runs",
+    "names",
+    "file"
+  ],
+  "lastUpdated": "2026-11-15T11:24:12.390Z",
+  "specId": "002",
+  "folderSlug": "history-core-relocation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

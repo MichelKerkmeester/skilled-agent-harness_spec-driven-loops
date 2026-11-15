@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-13"
-version: 2.1.35.0
+version: 2.1.36.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -1105,11 +1105,11 @@ See [context-preservation/session-handover-loop.md](context-preservation/session
 
 #### Description
 
-Offers one bounded, read-only history lookup after a compaction when the runtime hook minted a fresh locator and the session reader is ready.
+Offers one bounded, read-only history lookup when a handoff note is claimed, so the receiving session can read the sending session's earlier turns.
 
 #### Current Reality
 
-The compaction hooks mint an opaque locator for the exact session and may inject a `## History Lookup` section that names the handle plus one runnable, read-only command. A missing, malformed, stale, foreign or unsupported locator leaves the recovery ladder unchanged, and the locator expires after 30 minutes.
+Inside the loop, `prepare` stores a locator for the sending session and `claim` mints a fresh one, then prints a `## History Lookup` section after the note body that names the handle plus one runnable, read-only command. Only a Claude Code or Codex sender gets one, and the section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout or when the runtime is not built. The locator is fresh for 30 minutes from the claim. A compaction no longer offers the lookup on any runtime, and compaction summaries and the `/speckit:resume` pointer are unchanged.
 
 #### Source Files
 

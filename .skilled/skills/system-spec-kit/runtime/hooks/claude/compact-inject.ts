@@ -9,23 +9,15 @@
 
 import { spawnSync } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
-import { closeSync, fstatSync, openSync, readSync, statSync } from 'node:fs';
+import { closeSync, fstatSync, openSync, readSync } from 'node:fs';
 import { createRequire } from 'node:module';
-import { basename, isAbsolute, relative, sep } from 'node:path';
+import { isAbsolute, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   parseHookStdin, hookLog,
   withTimeout, HOOK_TIMEOUT_MS, COMPACTION_TOKEN_BUDGET, getRequiredSessionId,
 } from './shared.js';
-import {
-  HISTORY_LOCATOR_KINDS,
-  HISTORY_LOCATOR_VERSION,
-  detectHistoryRuntime,
-  ensureStateDir,
-  updateState,
-  type HistoryLocator,
-  type HistoryLocatorRuntime,
-} from './hook-state.js';
+import { ensureStateDir, updateState } from './hook-state.js';
 import { mergeCompactBrief, type MergeInput } from '@spec-kit/shared/compact-merger';
 import {
   createSharedPayloadEnvelope,
@@ -38,8 +30,6 @@ import {
   getUnicodeRuntimeFingerprint,
 } from '@spec-kit/shared/unicode-normalization';
 import { refreshAuthoredContinuitySnapshot } from '../../lib/continuity/authored-continuity-snapshot.js';
-import { historyHandle, persistHistoryLocator } from '../lib/history/locator-digest.js';
-import { placeLookup } from '../lib/history/lookup-offer.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
 import { isMainModule } from '../../lib/esm-entry.js';
 import { readHookStdin, SHORT_HOST_STDIN_TIMEOUT_MS } from '../shared-stdin.js';
@@ -74,84 +64,6 @@ const MAX_TAIL_READ_BYTES = 1024 * 1024;
 const PERSISTENCE_MARGIN_MS = 150;
 const MIN_OPTIONAL_BUDGET_MS = 50;
 const SNAPSHOT_STDIO_BYTES = 64 * 1024;
-
-// ───────────────────────────────────────────────────────────────────
-// HISTORY LOCATOR
-// ───────────────────────────────────────────────────────────────────
-
-function transcriptBelongsToSession(
-  runtime: HistoryLocatorRuntime,
-  transcriptPath: string,
-  sessionId: string,
-): boolean {
-  const fileName = basename(transcriptPath);
-  if (!fileName.endsWith('.jsonl')) return false;
-  if (fileName === `${sessionId}.jsonl`) return true;
-  // A Codex rollout names its session as the trailing path segment.
-  return runtime === 'codex' && fileName.endsWith(`-${sessionId}.jsonl`);
-}
-
-/**
- * Mint the opaque locator for the transcript this hook was handed.
- *
- * Only the basename shape (does it name this session?) and the file's existence
- * are checked here; the path is not tested against the runtime's session store.
- * The full path is then discarded: only a digest survives, so recovery never
- * trusts a model-authored path. Store containment belongs to the read-only
- * lookup that redeems the locator: it resolves the transcript under the runtime
- * store and recomputes the handle from that path, so this mint costs no second
- * transcript read.
- */
-export function mintHistoryLocator(input: {
-  sessionId: string;
-  transcriptPath: unknown;
-  workspace: string;
-  runtime: HistoryLocatorRuntime;
-  mintedAt?: string;
-}): HistoryLocator | null {
-  const sessionId = input.sessionId.trim();
-  if (!sessionId || /[/\\\0]/.test(sessionId)) return null;
-  if (typeof input.transcriptPath !== 'string' || input.transcriptPath.trim().length === 0) return null;
-  const transcriptPath = input.transcriptPath.trim();
-  const sessionFolder = input.workspace.trim();
-  if (!sessionFolder) return null;
-  // Keyed by the checkout root above the session folder, where the printed
-  // command runs; a folder no root can serve gets no locator.
-  const placement = placeLookup(sessionFolder);
-  if (!placement) return null;
-  if (!transcriptBelongsToSession(input.runtime, transcriptPath, sessionId)) return null;
-  try {
-    if (!statSync(transcriptPath).isFile()) return null;
-  } catch {
-    return null;
-  }
-
-  const locatorKind = HISTORY_LOCATOR_KINDS[input.runtime];
-  const mintedAt = input.mintedAt ?? new Date().toISOString();
-  const identity = { runtime: input.runtime, sessionId, ...placement, locatorKind };
-  return {
-    version: HISTORY_LOCATOR_VERSION,
-    ...identity,
-    handle: historyHandle(identity, transcriptPath),
-    mintedAt,
-    provenance: {
-      source: 'precompact',
-      capturedAt: mintedAt,
-    },
-  };
-}
-
-function stampHistoryLocator(
-  historyLocator: HistoryLocator | null,
-  timestamp: string,
-): HistoryLocator | null {
-  if (!historyLocator) return null;
-  return {
-    ...historyLocator,
-    mintedAt: timestamp,
-    provenance: { ...historyLocator.provenance, capturedAt: timestamp },
-  };
-}
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TRANSCRIPT EXTRACTION HELPERS
@@ -561,9 +473,8 @@ export function persistCompactResult(
   sessionId: string,
   result: CompactResult,
   timestamp: string,
-  historyLocator: HistoryLocator | null,
 ): boolean {
-  const persisted = updateState(sessionId, {
+  return updateState(sessionId, {
     pendingCompactPrime: {
       payload: result.text,
       cachedAt: timestamp,
@@ -579,27 +490,7 @@ export function persistCompactResult(
         },
       },
     },
-    historyLocator,
   }).persisted;
-  if (persisted) mirrorToCheckoutRoot(sessionId, historyLocator);
-  return persisted;
-}
-
-/**
- * The session-start hook reads the locator from the session folder's state,
- * while the printed command runs the CLI from the checkout root, which reads
- * the root's state. A session started below the root needs both copies; a
- * session at the root already has its one copy.
- */
-function mirrorToCheckoutRoot(sessionId: string, historyLocator: HistoryLocator | null): void {
-  if (!historyLocator?.sessionDirectory) return;
-  const mirrored = persistHistoryLocator(historyLocator, () => {
-    ensureStateDir();
-    return updateState(sessionId, { historyLocator });
-  });
-  if (!mirrored) {
-    hookLog('warn', 'compact-inject', `History locator was not mirrored to the checkout root for session ${sessionId}`);
-  }
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -699,28 +590,14 @@ async function main(): Promise<void> {
   hookLog('info', 'compact-inject', `PreCompact triggered for session ${sessionId} (trigger: ${input.trigger ?? 'unknown'})`);
 
   let transcriptLines: string[] = [];
-  let historyLocator: HistoryLocator | null = null;
   if (input.transcript_path) {
-    const historyRuntime = detectHistoryRuntime();
     transcriptLines = tailFile(input.transcript_path, 50);
-    if (historyRuntime) {
-      historyLocator = mintHistoryLocator({
-        sessionId,
-        transcriptPath: input.transcript_path,
-        workspace: process.cwd(),
-        runtime: historyRuntime,
-      });
-    }
-    hookLog(
-      'info',
-      'compact-inject',
-      `Read ${transcriptLines.length} transcript lines; history locator ${historyLocator ? 'minted' : 'not minted'} for ${historyRuntime ?? 'unsupported runtime'}`,
-    );
+    hookLog('info', 'compact-inject', `Read ${transcriptLines.length} transcript lines`);
   }
 
   const baselineTimestamp = new Date().toISOString();
   const baseline = buildLegacyCompactResult(transcriptLines, baselineTimestamp);
-  if (!persistCompactResult(sessionId, baseline, baselineTimestamp, stampHistoryLocator(historyLocator, baselineTimestamp))) {
+  if (!persistCompactResult(sessionId, baseline, baselineTimestamp)) {
     hookLog('warn', 'compact-inject', `Legacy compact context cache was not persisted for session ${sessionId}`);
     return;
   }
@@ -740,7 +617,6 @@ async function main(): Promise<void> {
           sessionId,
           enriched,
           enrichedTimestamp,
-          stampHistoryLocator(historyLocator, enrichedTimestamp),
         )) {
           hookLog('info', 'compact-inject', `Cached enriched compact context (${enriched.text.length} chars) for session ${sessionId}`);
         } else {

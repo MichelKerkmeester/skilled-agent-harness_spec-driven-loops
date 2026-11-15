@@ -44,8 +44,8 @@ Frozen choices. Changing one is an amendment.
 | D1 | One sub-track per feature, named after the feature's folder under `.skilled/hooks/`. Every sub-track carries its own `z_archive/`, including a feature that has no packet yet. |
 | D2 | `hook-platform/` holds cross-cutting packets, and `retrieval-integrations/` stays as it is. |
 | D3 | A whole top-level packet in another track whose main subject is a hook feature moves in. A child phase inside another track's phase parent does not move; the overview points to it. |
-| D4 | Two packets are held until their worktrees merge: `session-turn-boundaries/002-session-relaunch-loop` to `session-relaunch/`, and `pi-extensions/012-file-relative-adapter-imports` to `hook-platform/`. |
-| D5 | The session history lookup gets no sub-track of its own. Its packet lives in `session-relaunch/` because the lookup is being folded into the handover. |
+| D4 | Two packets are held until their worktrees merge: `session-turn-boundaries/002-session-relaunch-loop` to `session-handover/`, and `pi-extensions/012-file-relative-adapter-imports` to `hook-platform/`. |
+| D5 | The session history lookup gets no sub-track of its own. Its packet lives in `session-handover/` because the lookup is being folded into the handover. |
 | D6 | Moves run only through `relocate.mjs`, in the worktree, after a local commit. Nothing is pushed. |
 | D7 | `feature-overview.md` is the single card-per-feature inventory: one card per feature, including a feature with no packet, and each card names its owning and mentioning packets. |
 | D8 | The source sub-tracks that empty out are retired; the two that keep a held packet are reported instead. |
