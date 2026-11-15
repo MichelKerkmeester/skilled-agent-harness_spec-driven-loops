@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/dist-freshness/001-dist-staleness-rebuild-on-drift",
+  "spec_folder": "hooks-plugins-extensions/dist-freshness/001-dist-staleness-rebuild-on-drift",
+  "parent_id": "hooks-plugins-extensions/dist-freshness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dist staleness rebuild on drift",
+      "check-dist-staleness auto rebuild",
+      "stale dist self heal",
+      "advisor dist drift hook error",
+      "dist staleness rebuild plan",
+      "check-dist-staleness auto rebuild plan",
+      "dist staleness rebuild tasks",
+      "check-dist-staleness tasks",
+      "dist staleness rebuild implementation",
+      "check-dist-staleness self heal summary"
+    ],
+    "key_topics": [
+      "dist",
+      "staleness",
+      "rebuild",
+      "drift",
+      "check-dist-staleness",
+      "auto",
+      "stale",
+      "self",
+      "heal",
+      "advisor",
+      "hook",
+      "error"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-dist-staleness.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Dist Staleness Rebuild",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Detect",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Two",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Root",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make the dist-staleness guard self-heal a stale checked-out build at session start instead of only printing a warning that persists across sessions.",
+    "created_at": "2026-08-09T05:30:35.439Z",
+    "last_save_at": "2026-11-15T07:18:31.523Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0cdd56e7b82be8ddd04353125bf311d2ee649da624ddf5ad14c65aeac3461d8e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ee7479b2340c3ee9a40d2198418a8469558fec85e8cfbbb96c9e3451f36cefe3",
+      "plan.md": "6d4c2ec2856493da71a61fb3f36d146d5d8617a637aa94915532f20a22fea295",
+      "tasks.md": "3621bd325fc73c657355cb4f91ee263694195177b83913a8e25e73b55e11b94f",
+      "implementation-summary.md": "95a5cb38581e84183bad4dc8f131ceb7aa59602cffaf0f304a876f238010b213"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

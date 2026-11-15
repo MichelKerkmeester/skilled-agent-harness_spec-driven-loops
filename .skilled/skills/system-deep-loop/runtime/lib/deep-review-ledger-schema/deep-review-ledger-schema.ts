@@ -349,6 +349,12 @@ const DATA_FIELD_RULES = Object.freeze({
     graphBlockerDetail: optionalFieldRule('json'),
     recoveryHint: optionalFieldRule('prose'),
   },
+  'deep_review.terminal_gates_recorded': {
+    stopReason: enumRule('converged', 'maxIterationsReached'),
+    gateResults: 'gate-results',
+    failedRequiredGateIds: 'identifier-array',
+    appendPosition: 'uint32',
+  },
   'deep_review.pause_recorded': {
     normalizedStopReason: 'code',
     sentinelCause: 'code',
@@ -551,6 +557,9 @@ const SCOPE_FIELDS = Object.freeze({
     'runId', 'sessionId', 'generation', 'iterationId',
   ],
   'deep_review.blocked_stop_recorded': [
+    'runId', 'sessionId', 'generation', 'iterationId',
+  ],
+  'deep_review.terminal_gates_recorded': [
     'runId', 'sessionId', 'generation', 'iterationId',
   ],
   'deep_review.pause_recorded': [
@@ -943,6 +952,22 @@ function isData(stem: DeepReviewEventStem, value: unknown): boolean {
         (result) => result.status === 'fail',
       )
       && value.appendPosition !== 0;
+  }
+  if (stem === 'deep_review.terminal_gates_recorded') {
+    const requiredGateIds = ['evidence', 'scope', 'coverage'];
+    const results = value.gateResults as Array<Record<string, unknown>>;
+    const failedGateIds = value.failedRequiredGateIds as string[];
+    const reportedGateIds = new Set(results.map((result) => String(result.gateId)));
+    const failedGateIdsSeen = new Set(failedGateIds);
+    const failedGateIdsExpected = new Set(results
+      .filter((result) => result.status === 'fail')
+      .map((result) => String(result.gateId)));
+    return reportedGateIds.size === results.length
+      && results.length === requiredGateIds.length
+      && requiredGateIds.every((gateId) => reportedGateIds.has(gateId))
+      && failedGateIdsSeen.size === failedGateIds.length
+      && failedGateIdsSeen.size === failedGateIdsExpected.size
+      && [...failedGateIdsSeen].every((gateId) => failedGateIdsExpected.has(gateId));
   }
   if (stem === 'deep_review.convergence_evaluated') {
     return value.decision !== 'blocked'

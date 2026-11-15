@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration",
+  "spec_folder": "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration",
+  "parent_id": "hooks-plugins-extensions/session-relaunch",
+  "children_ids": [
+    "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline",
+    "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/002-history-core-relocation",
+    "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/003-mint-locator-at-prepare",
+    "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/004-offer-lookup-at-claim",
+    "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/005-deprecate-compaction-offer",
+    "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/006-docs-and-live-hop-proof"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "history lookup handover integration",
+      "look up the sender session after a hop",
+      "history lookup at claim",
+      "deprecate compaction history offer"
+    ],
+    "key_topics": [
+      "history",
+      "lookup",
+      "handover",
+      "integration",
+      "look",
+      "sender",
+      "session",
+      "hop",
+      "claim",
+      "deprecate",
+      "compaction",
+      "offer"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      "runtime/hooks/claude/hook-state.ts",
+      ".skilled/commands/speckit/handoff.md",
+      "runtime/hooks/claude/compact-inject.ts",
+      ".opencode/plugins/session-history-lookup.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-state.ts",
+        "kind": "code",
+        "path": "runtime/hooks/claude/hook-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": "runtime/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-history-lookup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-history-lookup.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A model can search and load its own earlier turns through the history lookup, but the lookup is offered only after a compaction",
+    "created_at": "2026-11-15T06:24:14Z",
+    "last_save_at": "2026-11-15T07:58:20.948Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:6dffc8a32fc59f188d63d7fcc7e73cff579bb88cb8dbe97014e2cc1b79926f7f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ed6a2c3f2d283292ad4f92116301c57f4f2cf98e77b4d769f119c95dd00188b2"
+    },
+    "last_active_at": null
+  }
+}

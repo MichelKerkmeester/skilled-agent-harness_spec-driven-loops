@@ -1,0 +1,46 @@
+[
+ {
+  "from": "system-speckit/spec-authoring-and-continuity/004-decision-capture",
+  "to": "hooks-plugins-extensions/decision-capture/001-decision-capture"
+ },
+ {
+  "from": "system-skill-advisor/host-integrations/002-pi-advisor-bridge",
+  "to": "hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge"
+ },
+ {
+  "from": "system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash",
+  "to": "hooks-plugins-extensions/pi-fast-mode/002-cli-pi-worktree-extension-clash"
+ },
+ {
+  "from": "sk-code/verification-guards/002-dist-staleness-rebuild-on-drift",
+  "to": "hooks-plugins-extensions/dist-freshness/001-dist-staleness-rebuild-on-drift"
+ },
+ {
+  "from": "sk-code/verification-guards/003-dist-guard-skip-unprovisioned",
+  "to": "hooks-plugins-extensions/dist-freshness/002-dist-guard-skip-unprovisioned"
+ },
+ {
+  "from": "sk-git/commit-standards/004-template-driven-message-enforcement",
+  "to": "hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement"
+ },
+ {
+  "from": "sk-git/commit-standards/007-advisory-cd-prefix-env-steps",
+  "to": "hooks-plugins-extensions/git-preflight-and-message-gate/002-advisory-cd-prefix-env-steps"
+ },
+ {
+  "from": "sk-git/live-sync-and-publishing/001-live-sync-harden-default-on",
+  "to": "hooks-plugins-extensions/git-live-follow/001-live-sync-harden-default-on"
+ },
+ {
+  "from": "sk-git/live-sync-and-publishing/003-live-follow-disjoint-ff",
+  "to": "hooks-plugins-extensions/git-live-follow/002-live-follow-disjoint-ff"
+ },
+ {
+  "from": "sk-git/live-sync-and-publishing/002-hook-gate-hardening",
+  "to": "hooks-plugins-extensions/git-primary-reconcile/001-hook-gate-hardening"
+ },
+ {
+  "from": "sk-git/live-sync-and-publishing/004-rebase-abort-head-preservation",
+  "to": "hooks-plugins-extensions/git-primary-reconcile/002-rebase-abort-head-preservation"
+ }
+]

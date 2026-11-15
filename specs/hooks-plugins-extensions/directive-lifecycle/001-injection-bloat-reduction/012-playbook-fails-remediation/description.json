@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/012-playbook-fails-remediation",
+  "description": "The 011 wrapper run produced 30 manual-testing-playbook FAIL records across Codex, OpenCode, Pi, Cursor, and Devin",
+  "keywords": [
+    "wrapper",
+    "run",
+    "produced",
+    "manual-testing-playbook",
+    "fail",
+    "records",
+    "across",
+    "codex",
+    "opencode",
+    "cursor",
+    "devin"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.197Z",
+  "specId": "012",
+  "folderSlug": "playbook-fails-remediation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "directive-lifecycle",
+    "001-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

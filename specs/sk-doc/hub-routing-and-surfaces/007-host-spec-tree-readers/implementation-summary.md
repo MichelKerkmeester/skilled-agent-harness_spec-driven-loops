@@ -65,9 +65,9 @@ The evidence module that the advisor test and the activation matrix test share m
 | `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs` | Modified | One host route-gold case |
 | `.skilled/bin/tests/compiled-route-sync-host.test.cjs` | Created | Two tests for the host skip and the own-checkout failure |
 | `.skilled/skills/system-skill-advisor/runtime/tests/helpers/activation-matrix-evidence.mjs` | Created | The evidence module, moved from the old spec folder |
-| `specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix-evidence.mjs` | Deleted | Moved out by `mv` |
+| `specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix-evidence.mjs` | Deleted | Moved out by `mv` |
 | `.skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts` | Modified | Imports the moved module |
-| `specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs` | Modified | Imports the moved module |
+| `specs/hooks-plugins-extensions/directive-lifecycle/001-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs` | Modified | Imports the moved module |
 | `.skilled/skills/system-skill-advisor/runtime/tests/helpers/README.md`, `.skilled/skills/system-skill-advisor/runtime/tests/README.md` | Modified | Name the moved module |
 <!-- /ANCHOR:what-built -->
 

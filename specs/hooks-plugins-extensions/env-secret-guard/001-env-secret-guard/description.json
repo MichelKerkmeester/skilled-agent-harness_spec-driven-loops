@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/env-secret-guard/001-env-secret-guard",
+  "description": "An agent in a Skilled checkout can read, edit or patch a `.env` file on every runtime this repository supports",
+  "keywords": [
+    "agent",
+    "skilled",
+    "checkout",
+    "read",
+    "edit",
+    "patch",
+    "env",
+    "file",
+    "every",
+    "runtime",
+    "repository",
+    "supports"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.238Z",
+  "specId": "001",
+  "folderSlug": "env-secret-guard",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "env-secret-guard"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

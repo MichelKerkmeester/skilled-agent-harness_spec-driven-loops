@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/goal/002-goal-hook-playbooks-and-validation",
+  "description": "Packet `003-goal-hooks-cross-runtime` shipped the runtime-neutral session-goal hook for Devin, Cursor, and Pi (plus the OpenCode plugin symlink",
+  "keywords": [
+    "packet",
+    "003-goal-hooks-cross-runtime",
+    "shipped",
+    "runtime-neutral",
+    "session-goal",
+    "hook",
+    "devin",
+    "cursor",
+    "plus",
+    "opencode",
+    "plugin",
+    "symlink"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.111Z",
+  "specId": "002",
+  "folderSlug": "goal-hook-playbooks-and-validation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "goal"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

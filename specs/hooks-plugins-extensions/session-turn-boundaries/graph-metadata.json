@@ -4,9 +4,7 @@
   "spec_folder": "hooks-plugins-extensions/session-turn-boundaries",
   "parent_id": "hooks-plugins-extensions",
   "children_ids": [
-    "hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
-    "hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop"
   ],
   "manual": {
     "depends_on": [],

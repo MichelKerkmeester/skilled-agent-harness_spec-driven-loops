@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook",
+  "description": "The fable governor per-turn hook re-states a compact disposition capsule every turn, but AGENTS.md now embeds richer governor and",
+  "keywords": [
+    "fable",
+    "governor",
+    "per-turn",
+    "hook",
+    "re-states",
+    "compact",
+    "disposition",
+    "capsule",
+    "every",
+    "turn",
+    "agents",
+    "now",
+    "embeds",
+    "richer"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.140Z",
+  "specId": "002",
+  "folderSlug": "fable-governor-pi-hook",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "directive-lifecycle"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

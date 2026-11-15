@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/012-implement-non-deepseek-fixes",
+  "description": "011's research produced 15 findings (K1-K15) about `pi-cache-optimizer`'s non-DeepSeek code path",
+  "keywords": [
+    "research",
+    "produced",
+    "findings",
+    "k1-k15",
+    "about",
+    "pi-cache-optimizer",
+    "non-deepseek",
+    "code",
+    "path"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.288Z",
+  "specId": "012",
+  "folderSlug": "implement-non-deepseek-fixes",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-cache-optimizer",
+    "001-pi-caching-like-reasonix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

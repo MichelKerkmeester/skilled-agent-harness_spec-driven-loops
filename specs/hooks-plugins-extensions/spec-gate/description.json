@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/spec-gate",
+  "description": "Container folder for hooks-plugins-extensions/spec-gate.",
+  "keywords": [
+    "spec",
+    "gate"
+  ],
+  "lastUpdated": "2026-11-15T06:36:39.905Z",
+  "specId": "hooks-plugins-extensions/spec-gate",
+  "folderSlug": "spec-gate",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/003-pi-cache-affinity-compat",
+  "description": "The `pi-cache-optimizer` extension flags every OpenRouter `openai-completions` model whose merged compat lacks `sendSessionAffinityHeaders`",
+  "keywords": [
+    "pi-cache-optimizer",
+    "extension",
+    "flags",
+    "every",
+    "openrouter",
+    "openai-completions",
+    "model",
+    "whose",
+    "merged",
+    "compat",
+    "lacks",
+    "sendsessionaffinityheaders"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.323Z",
+  "specId": "003",
+  "folderSlug": "pi-cache-affinity-compat",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-cache-optimizer"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

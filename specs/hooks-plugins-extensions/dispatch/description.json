@@ -1,0 +1,16 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/dispatch",
+  "description": "Container folder for hooks-plugins-extensions/dispatch.",
+  "keywords": [
+    "dispatch"
+  ],
+  "lastUpdated": "2026-11-15T06:36:37.531Z",
+  "specId": "hooks-plugins-extensions/dispatch",
+  "folderSlug": "dispatch",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

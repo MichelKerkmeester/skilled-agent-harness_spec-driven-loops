@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/012-implement-non-deepseek-fixes",
+  "spec_folder": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/012-implement-non-deepseek-fixes",
+  "parent_id": "hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "implement non-deepseek fixes",
+      "prompt cache key self-heal implementation",
+      "adapter fallback fix",
+      "anthropic ttl repair extension",
+      "non-deepseek fixes plan",
+      "prompt cache key fix plan",
+      "non-deepseek fixes tasks",
+      "non-deepseek implementation summary",
+      "pi-cache-optimizer fixes complete",
+      "prompt cache key self-heal summary"
+    ],
+    "key_topics": [
+      "implement",
+      "non-deepseek",
+      "prompt",
+      "cache",
+      "key",
+      "self-heal",
+      "implementation",
+      "adapter",
+      "fallback",
+      "anthropic",
+      "ttl",
+      "repair"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+      ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
+      ".pi/extensions/pi-cache-optimizer/tests/README.md",
+      ".pi/settings.json",
+      "tests/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-findings.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "CHANGES-FROM-UPSTREAM.md",
+        "kind": "doc",
+        "path": ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Non",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "High Priority",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Medium Priority",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Low Priority",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Hardening",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "011's research produced 15 findings (K1-K15) about `pi-cache-optimizer`'s non-DeepSeek code path",
+    "created_at": "2026-08-09T08:37:22.485Z",
+    "last_save_at": "2026-11-15T07:08:33.115Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:05c7019a40b3612652caa57dc6aca8a9281b142c7ad72083deebd74869ef019c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0b0b77f070c677bbe117f10fc3ca9f2137f2ee5b2563aa5c9bba8f0b067e5f7b",
+      "plan.md": "b70d329c30360f3d3ffdceaed48be55ccc6c33a37bdac90f41feef54d9756be2",
+      "tasks.md": "fa7009a7409971bf0733b48b3fb44b9cf2db8c4f4efc3b46aa24ed38e8fadc78",
+      "implementation-summary.md": "16a6c36bd6897dc2e3bc992b870a01a74af865df4841f456f07475765667fb2f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

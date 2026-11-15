@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/007-dispatch-validation-evidence",
+  "spec_folder": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook/007-dispatch-validation-evidence",
+  "parent_id": "hooks-plugins-extensions/directive-lifecycle/002-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dispatch validation evidence",
+      "Pi tool_call coverage",
+      "full corpus Vitest baseline",
+      "test evidence reconciliation",
+      "dispatch evidence plan",
+      "Pi factory test plan",
+      "Vitest corpus baseline plan",
+      "dispatch evidence tasks",
+      "Pi factory evidence",
+      "Vitest baseline tasks",
+      "dispatch evidence summary",
+      "Pi tool_call evidence status"
+    ],
+    "key_topics": [
+      "dispatch",
+      "validation",
+      "evidence",
+      "coverage",
+      "full",
+      "corpus",
+      "vitest",
+      "baseline",
+      "test",
+      "reconciliation",
+      "plan",
+      "factory"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      "evidence/full-corpus-baseline.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "full-corpus-baseline.md",
+        "kind": "doc",
+        "path": "evidence/full-corpus-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Baseline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Capture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet currently mixes pure predicate assertions, shared matcher tests, registered Pi behavior, and live startup into one evidence story",
+    "created_at": "2026-08-04T17:57:54Z",
+    "last_save_at": "2026-11-15T07:08:32.592Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:45e6ab3e5563b844c98893787e1329a3c27aa6b346150c15ec05caebe5a14e11",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bf84f96479749303694414789bd1b1cd9806a9e8f8a9f2d641c3ebe03b86c34b",
+      "plan.md": "12e8748200e4d9394527ed0d09e696b6f1f52b5e42640626609d59a06f14cad5",
+      "tasks.md": "5d059b2dd375e776a3edb6581ea1d34fb85f156cb0c32f0f3f927c92d2e0e364",
+      "implementation-summary.md": "0d60ab5404d800cfdefca9a2e17f072c4cc69616ecc0fc478af9dbe9427665d8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

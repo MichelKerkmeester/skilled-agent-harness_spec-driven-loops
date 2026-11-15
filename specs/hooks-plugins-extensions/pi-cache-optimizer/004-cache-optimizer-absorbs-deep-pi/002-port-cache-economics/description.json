@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/pi-cache-optimizer/004-cache-optimizer-absorbs-deep-pi/002-port-cache-economics",
+  "description": "`CacheStats` (`index.ts:265`) holds `day`, `totalRequests`, `hitRequests`, `cachedInputTokens`,",
+  "keywords": [
+    "cachestats",
+    "index",
+    "holds",
+    "day",
+    "totalrequests",
+    "hitrequests",
+    "cachedinputtokens"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.326Z",
+  "specId": "002",
+  "folderSlug": "port-cache-economics",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-cache-optimizer",
+    "004-cache-optimizer-absorbs-deep-pi"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

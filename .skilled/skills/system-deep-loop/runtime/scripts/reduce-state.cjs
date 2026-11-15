@@ -1491,6 +1491,19 @@ function formatBlockedByList(blockedBy) {
     .join(', ') || 'unknown gates';
 }
 
+function buildTerminalGates(records) {
+  const latest = records
+    .filter((record) => record?.type === 'event' && record?.event === 'terminal_gates')
+    .at(-1);
+  if (!latest) return null;
+  const failed = getNestedField(latest, 'failedRequiredGateIds');
+  return {
+    run: isFiniteNumber(getNestedField(latest, 'run')) ? getNestedField(latest, 'run') : 0,
+    stopReason: typeof getNestedField(latest, 'stopReason') === 'string' ? getNestedField(latest, 'stopReason') : '',
+    failedRequiredGateIds: Array.isArray(failed) ? failed.map((id) => String(id)).filter(Boolean) : [],
+  };
+}
+
 function buildBlockedStopHistory(records) {
   return records
     .filter((record) => record?.type === 'event' && record?.event === 'blocked_stop')
@@ -1742,6 +1755,7 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
   const convergenceScore = computeConvergenceScore(iterationRecords);
   const graphConvergence = buildGraphConvergenceRollup(iterationRecords);
   const blockedStopHistory = buildBlockedStopHistory(iterationRecords);
+  const terminalGates = buildTerminalGates(iterationRecords);
   const searchLedgerState = buildSearchLedgerState(iterationRecords);
   const traceability = buildTraceabilityRollup(iterationRecords);
   const divergence = buildPivotState(eventRecords);
@@ -1780,6 +1794,7 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
     openFindings,
     resolvedFindings,
     blockedStopHistory,
+    terminalGates,
     persistentSameSeverity,
     severityChanged,
     repeatedFindings,
@@ -2075,7 +2090,8 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
 
   const severity = registry.findingsBySeverity;
   const hasSearchDebt = Array.isArray(registry.searchDebt) && registry.searchDebt.length > 0;
-  const verdict = severity.P0 > 0
+  const failedRequiredGateIds = registry.terminalGates?.failedRequiredGateIds ?? [];
+  const verdict = severity.P0 > 0 || failedRequiredGateIds.length > 0
     ? 'FAIL'
     : severity.P1 > 0 || hasSearchDebt
       ? 'CONDITIONAL'
@@ -2125,6 +2141,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     `- Status: ${registry.status || String(config.status || 'initialized').toUpperCase()}`,
     `- Iteration: ${dashboardIterationRecords.filter((record) => record.type === 'iteration').length} of ${config.maxIterations || 0}`,
     `- Provisional Verdict: ${verdict}`,
+    ...(failedRequiredGateIds.length > 0 ? [`- Failed required gates at stop: ${failedRequiredGateIds.join(', ')}`] : []),
     `- hasSearchDebt: ${hasSearchDebt}`,
     `- hasAdvisories: ${hasAdvisories}`,
     `- Session ID: ${registry.sessionId || '[Unknown session]'}`,

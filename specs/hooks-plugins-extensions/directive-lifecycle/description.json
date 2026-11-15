@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/directive-lifecycle",
+  "description": "Container folder for hooks-plugins-extensions/directive-lifecycle.",
+  "keywords": [
+    "directive",
+    "lifecycle"
+  ],
+  "lastUpdated": "2026-11-15T06:36:37.413Z",
+  "specId": "hooks-plugins-extensions/directive-lifecycle",
+  "folderSlug": "directive-lifecycle",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

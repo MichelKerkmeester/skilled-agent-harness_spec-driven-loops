@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/goal/003-goal-isolation/004-legacy-cutover-and-docs",
+  "description": "The legacy singleton may contain a real objective but has no trustworthy owner",
+  "keywords": [
+    "legacy",
+    "singleton",
+    "contain",
+    "real",
+    "objective",
+    "trustworthy",
+    "owner"
+  ],
+  "lastUpdated": "2026-11-15T07:08:31.150Z",
+  "specId": "004",
+  "folderSlug": "legacy-cutover-and-docs",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "goal",
+    "003-goal-isolation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

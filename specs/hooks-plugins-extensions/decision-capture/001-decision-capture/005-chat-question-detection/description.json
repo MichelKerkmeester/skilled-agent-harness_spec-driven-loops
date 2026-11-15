@@ -1,0 +1,36 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/005-chat-question-detection",
+  "description": "`chatCandidate` in `sweep-transcript.mjs` reads only the last paragraph of an assistant message and returns null unless that paragraph contains `?`",
+  "keywords": [
+    "chatcandidate",
+    "sweep-transcript",
+    "mjs",
+    "reads",
+    "only",
+    "last",
+    "paragraph",
+    "assistant",
+    "message",
+    "returns",
+    "null",
+    "unless",
+    "contains"
+  ],
+  "lastUpdated": "2026-11-15T07:18:25.553Z",
+  "specId": "005",
+  "folderSlug": "chat-question-detection",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "02-11-26_10-24__built-paragraph-wide-chat-question-detection-with.md",
+    "02-11-26_13-19__extended-chat-question-detection-to-the-opencode.md",
+    "02-11-26_15-05__closed-the-chat-question-detection-phase-after.md",
+    "02-11-26_15-14__refreshed-generated-metadata-after-the-decision.md",
+    "02-11-26_21-58__deep-review-of-the-series-luna-five-iterations.md"
+  ]
+}
