@@ -16,7 +16,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { writeFirstRecordExecutor } from '../../lib/deep-loop/executor-audit.js';
+import {
+  appendExecutorAuditToLastRecord,
+  emitDispatchFailure,
+  runAuditedExecutorCommand,
+  writeFirstRecordExecutor,
+} from '../../lib/deep-loop/executor-audit.js';
 import type { ExecutorConfig } from '../../lib/deep-loop/executor-config.js';
 
 type Mode = 'review' | 'research';
@@ -138,6 +143,96 @@ describe('writeFirstRecordExecutor on a ledger-backed state log', () => {
       expect(readFileSync(stateLogPath, 'utf8')).toBe(before);
     } finally {
       rmSync(root, { recursive: true, force: true });
+    }
+  });
+});
+
+describe('the failure rows and the post-dispatch audit on a ledger-backed state log', () => {
+  function openRun(mode: Mode): { root: string; runDirectory: string; stateLogPath: string; sessionId: string } {
+    const root = mkdtempSync(join(tmpdir(), 'executor-audit-ledger-'));
+    const runDirectory = join(root, mode);
+    mkdirSync(runDirectory);
+    const sessionId = `session-writers-${mode}`;
+    appendThroughGateway(mode, runDirectory, runOpenEvent(mode, sessionId));
+    return { root, runDirectory, stateLogPath: join(runDirectory, `deep-${mode}-state.jsonl`), sessionId };
+  }
+
+  it.each(['review', 'research'] as const)('keeps one %s dispatch_failure row through a projection refresh', (mode) => {
+    const run = openRun(mode);
+    try {
+      emitDispatchFailure(run.stateLogPath, EXECUTOR, 'crash', 1, 'executor exited with status 3', 'rate limit', run.sessionId);
+      // The same failure again matches the row the projection wrote back, so it adds nothing.
+      emitDispatchFailure(run.stateLogPath, EXECUTOR, 'crash', 1, 'executor exited with status 3', 'rate limit', run.sessionId);
+      appendThroughGateway(mode, run.runDirectory, leafIterationRecord(mode, run.sessionId));
+
+      const failures = stateRows(run.stateLogPath).filter((row) => row.event === 'dispatch_failure');
+      expect(failures).toHaveLength(1);
+      expect(failures[0]).toMatchObject({
+        type: 'event',
+        reason: 'crash',
+        iteration: 1,
+        executorUnavailable: true,
+        matchedMarker: 'rate limit',
+        executor: { kind: 'cli-claude-code', model: 'claude-opus-4-6' },
+      });
+    } finally {
+      rmSync(run.root, { recursive: true, force: true });
+    }
+  });
+
+  it.each(['review', 'research'] as const)('keeps the %s receipt write failure rows through a projection refresh', (mode) => {
+    const run = openRun(mode);
+    try {
+      const notADirectory = join(run.root, 'not-a-directory');
+      writeFileSync(notADirectory, 'x', 'utf8');
+      runAuditedExecutorCommand({
+        command: process.execPath,
+        args: ['-e', 'process.exit(0)'],
+        cwd: run.root,
+        timeoutSeconds: 10,
+        stateLogPath: run.stateLogPath,
+        executor: EXECUTOR,
+        iteration: 1,
+        guardContext: { env: { PATH: process.env.PATH, HOME: process.env.HOME }, ancestryCmdlines: [], statePaths: [] },
+        receiptDir: join(notADirectory, 'receipts'),
+        dispatchId: `${mode}-i1-g1`,
+        sessionId: run.sessionId,
+      });
+      appendThroughGateway(mode, run.runDirectory, leafIterationRecord(mode, run.sessionId));
+
+      const failures = stateRows(run.stateLogPath).filter((row) => row.event === 'dispatch_receipt_write_failed');
+      expect(failures.map((row) => row.phase)).toEqual(['intent', 'completion']);
+    } finally {
+      rmSync(run.root, { recursive: true, force: true });
+    }
+  });
+
+  it.each(['review', 'research'] as const)('keeps the %s post-dispatch executor audit through a projection refresh', (mode) => {
+    const run = openRun(mode);
+    try {
+      appendThroughGateway(mode, run.runDirectory, leafIterationRecord(mode, run.sessionId));
+      appendExecutorAuditToLastRecord(run.stateLogPath, EXECUTOR, run.sessionId);
+      // A second audit finds the opening row and appends nothing.
+      const afterAudit = readFileSync(run.stateLogPath, 'utf8');
+      appendExecutorAuditToLastRecord(run.stateLogPath, EXECUTOR, run.sessionId);
+      expect(readFileSync(run.stateLogPath, 'utf8')).toBe(afterAudit);
+      appendThroughGateway(mode, run.runDirectory, { ...leafIterationRecord(mode, run.sessionId), iteration: 2, run: 2 });
+
+      const opening = stateRows(run.stateLogPath).filter((row) => row.type === 'iteration_start' && row.iteration === 1);
+      expect(opening).toHaveLength(1);
+      expect(opening[0].executor).toMatchObject({ kind: 'cli-claude-code', model: 'claude-opus-4-6' });
+    } finally {
+      rmSync(run.root, { recursive: true, force: true });
+    }
+  });
+
+  it('writes a failure row straight into a ledger-backed log when the run names no session id', () => {
+    const run = openRun('review');
+    try {
+      emitDispatchFailure(run.stateLogPath, EXECUTOR, 'timeout', 1, 'deadline exceeded');
+      expect(stateRows(run.stateLogPath).filter((row) => row.event === 'dispatch_failure')).toHaveLength(1);
+    } finally {
+      rmSync(run.root, { recursive: true, force: true });
     }
   });
 });

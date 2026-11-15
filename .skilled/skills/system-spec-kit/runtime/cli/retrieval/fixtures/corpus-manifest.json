@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a9316e3771531248dcd76d6a17ce0e6bcdf5999bc1c1f966a941d930da2e2fe7",
+  "corpusHash": "a9867bcf36ab436decd2312e9380babb3ab9dbe0fbbe3642b7f4e57dcd6bdd96",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27347,
+  "includedPathCount": 27356,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6536,6 +6536,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.12.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.13.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.14.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.15.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
@@ -6689,6 +6690,7 @@
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.1.1.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.1.2.md",
+    ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.10.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.2.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.4.0.md",
@@ -6770,6 +6772,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -7519,6 +7522,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.25.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.26.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.27.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.28.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.5.0.md",
@@ -9549,6 +9553,11 @@
     "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -27379,7 +27388,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "169b350b74231e2f5b7b0f77494ae922481161a88969c17868b8eda7081f44b3",
+  "manifestHash": "f14d4a9022ec2b18bcd87bf845c34be883684b23f6057a1e79d99a878e4756c5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28463,6 +28472,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/scratch",
       "reason": "excluded directory"
     },
     {

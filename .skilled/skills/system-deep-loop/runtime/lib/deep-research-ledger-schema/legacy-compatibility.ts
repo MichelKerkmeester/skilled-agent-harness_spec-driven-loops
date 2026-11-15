@@ -63,6 +63,8 @@ const LEGACY_EVENT_STEMS = Object.freeze({
   pivot_selected: 'deep_research.pivot_selected',
   pivot_completed: 'deep_research.pivot_completed',
   pivot_failed: 'deep_research.pivot_failed',
+  dispatch_failure: 'deep_research.dispatch_failure',
+  dispatch_receipt_write_failed: 'deep_research.dispatch_receipt_write_failed',
 } as const satisfies Readonly<Record<string, DeepResearchEventStem>>);
 
 const PINNED_LEGACY_EVENTS = new Set([
@@ -225,6 +227,20 @@ const REDUCER_READ_ROW_SHAPES: Readonly<
   'deep_research.pivot_selected': pivotLifecycleShape('pivot_selected'),
   'deep_research.pivot_completed': pivotLifecycleShape('pivot_completed'),
   'deep_research.pivot_failed': pivotLifecycleShape('pivot_failed'),
+  // The audited runner's failure rows. The step that halts on an unavailable
+  // executor reads the marker, and the runner's dedup reads the rest.
+  'deep_research.dispatch_failure': Object.freeze({
+    event: 'dispatch_failure',
+    required: ['reason', 'iteration'],
+    anyOf: [],
+    optional: ['executor', 'detail', 'executorUnavailable', 'matchedMarker', 'sessionId'],
+  }),
+  'deep_research.dispatch_receipt_write_failed': Object.freeze({
+    event: 'dispatch_receipt_write_failed',
+    required: ['reason', 'phase', 'iteration'],
+    anyOf: [],
+    optional: ['executor', 'detail', 'sessionId'],
+  }),
 });
 
 // The row's envelope bookkeeping: the record and event names select the stem,
@@ -764,7 +780,9 @@ export function upcastLegacyDeepResearchRecord(
     case 'deep_research.pivot_started':
     case 'deep_research.pivot_selected':
     case 'deep_research.pivot_completed':
-    case 'deep_research.pivot_failed': {
+    case 'deep_research.pivot_failed':
+    case 'deep_research.dispatch_failure':
+    case 'deep_research.dispatch_receipt_write_failed': {
       const targetStem = compatibility.targetStem;
       const shape = REDUCER_READ_ROW_SHAPES[targetStem] as ReducerReadRowShape;
       const fields = Object.keys(input).filter((field) => !LEGACY_ROW_ENVELOPE_FIELDS.has(field));

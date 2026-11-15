@@ -245,6 +245,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - The research record example in Step 8 has no `runId`, `sessionId` or `lineageId`, and `grep -c` counts 0 of them in the file. The prompt pack says a record without them is refused with `stable-identity-missing`, and `legacy-compatibility.ts` refuses it. Fold the three fields into the REQ-003 edit of that same line? Recommended: yes. It is planned only after the operator says yes, because no owned finding names it.
 - Which rule is the review session verdict: `review-mode-contract.yaml:105`, which fails on a quality gate, or `deep-review-auto.yaml:2403-2408`, which counts P0 only? Both files are outside this phase. REQ-007 makes the agent defer to the session verdict without choosing between them.
 - deep-review-2: the binding order comes from `agent-template.md:281`, and `markdown.md:118` copies it. Should the template say "after the config read" for agents whose bindings live in config? That file is outside this phase.
+- **Operator answers, 2026-11-15.** Question 1: yes. The three fields are in the Step 8 record. Question 2: the contract rule, so a failed required quality gate also forces FAIL. That is built in child `015-review-verdict-gate-rule`. Question 3: yes. `agent-template.md` now lets a binding read from a config or template follow that read.
 <!-- /ANCHOR:questions -->
 
 ---

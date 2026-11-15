@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6810,
-    "ok": 18907,
+    "ok": 18916,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27347,
+  "documentsScanned": 27356,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "169b350b74231e2f5b7b0f77494ae922481161a88969c17868b8eda7081f44b3",
+  "manifestHash": "f14d4a9022ec2b18bcd87bf845c34be883684b23f6057a1e79d99a878e4756c5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43873,
+      "ok": 43891,
       "prose-sentence": 20,
       "single-token": 156,
       "stop-word-only": 1,
@@ -53399,6 +53399,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/scratch",
       "reason": "excluded directory"
     },
     {

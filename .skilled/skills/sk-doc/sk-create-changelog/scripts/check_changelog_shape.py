@@ -7,10 +7,8 @@
 The template in ../assets/changelog-template.md sets the ceilings. This script
 holds the same numbers, so a change to one is a change to both.
 
-Seven rules, each an error:
+Five rules, each an error:
 
-  h4-items      an expanded entry carries at most 32 H4 items
-  glance-bullets  What's New at a Glance holds at most 14 bullets
   glance-order  tagged glance bullets follow the order of the sections they name
   spec-line     the spec-folder line carries paths only, never a "(Level N)" label
   checked-section  an expanded entry carries a "How It Was Checked" section
@@ -38,8 +36,6 @@ from pathlib import Path
 # 1. CEILINGS
 # ---------------------------------------------------------------------------
 
-EXPANDED_MAX_H4_ITEMS = 32
-GLANCE_MAX_BULLETS = 14
 SENTENCE_MAX_WORDS = 22
 SENTENCE_MEAN_WORDS = 10
 # The section that holds the before-and-after evidence and the test results.
@@ -199,13 +195,6 @@ def check_entry(text):
     shape = read_shape(lines, offset)
     expanded = is_expanded(shape)
     violations, notes = [], []
-
-    if expanded and shape["h4"] > EXPANDED_MAX_H4_ITEMS:
-        violations.append(("h4-items", f"{shape['h4']} H4 items, ceiling {EXPANDED_MAX_H4_ITEMS}"))
-    if len(shape["glance"]) > GLANCE_MAX_BULLETS:
-        violations.append(
-            ("glance-bullets", f"{len(shape['glance'])} glance bullets, ceiling {GLANCE_MAX_BULLETS}")
-        )
 
     if expanded:
         order, skipped = check_glance_order(shape)

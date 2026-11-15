@@ -1,5 +1,5 @@
 {
-  "manifestHash": "169b350b74231e2f5b7b0f77494ae922481161a88969c17868b8eda7081f44b3",
+  "manifestHash": "f14d4a9022ec2b18bcd87bf845c34be883684b23f6057a1e79d99a878e4756c5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15014,6 +15014,9 @@
     ],
     "bind single entry executors to single path tasks": [
       "bind single entry executors to single path tasks"
+    ],
+    "binding after config read": [
+      "binding after config read"
     ],
     "binding block check": [
       "binding block check"
@@ -37115,6 +37118,9 @@
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
     ],
+    "deep loop save full auto": [
+      "deep loop save full-auto"
+    ],
     "deep loop scenario contract": [
       "deep-loop scenario contract"
     ],
@@ -41778,6 +41784,9 @@
     ],
     "dispatch failure row lost on refresh": [
       "dispatch failure row lost on refresh"
+    ],
+    "dispatch failure row through the append gateway": [
+      "dispatch failure row through the append gateway"
     ],
     "dispatch guard": [
       "dispatch guard"
@@ -82175,6 +82184,9 @@
     "phase 15 results": [
       "phase 15 results"
     ],
+    "phase 15 review verdict gate rule": [
+      "phase 15 review verdict gate rule"
+    ],
     "phase 15 routing data alignment": [
       "phase 15 routing data alignment"
     ],
@@ -93951,6 +93963,9 @@
     "release line split tasks": [
       "release-line-split tasks"
     ],
+    "release note item ceilings removed": [
+      "release note item ceilings removed"
+    ],
     "release note line ceiling removed": [
       "release note line ceiling removed"
     ],
@@ -98835,6 +98850,21 @@
     ],
     "review verdict conditional six findings": [
       "review verdict conditional six findings"
+    ],
+    "review verdict gate rule": [
+      "review verdict gate rule"
+    ],
+    "review verdict gate rule acceptance criteria": [
+      "review verdict gate rule acceptance criteria"
+    ],
+    "review verdict gate rule implementation summary": [
+      "review verdict gate rule implementation summary"
+    ],
+    "review verdict gate rule plan": [
+      "review verdict gate rule plan"
+    ],
+    "review verdict gate rule tasks": [
+      "review verdict gate rule tasks"
     ],
     "review wording fixes": [
       "review wording fixes"
@@ -108771,6 +108801,9 @@
     "sk create agent 1 0 1 2": [
       "sk-create-agent 1.0.1.2"
     ],
+    "sk create agent 1 0 10 0": [
+      "sk-create-agent 1.0.10.0"
+    ],
     "sk create agent 1 0 2 0": [
       "sk-create-agent 1.0.2.0"
     ],
@@ -108824,6 +108857,9 @@
     ],
     "sk create agent v1 0 1 2": [
       "sk-create-agent v1.0.1.2"
+    ],
+    "sk create agent v1 0 10 0": [
+      "sk-create-agent v1.0.10.0"
     ],
     "sk create agent v1 0 2 0": [
       "sk-create-agent v1.0.2.0"
@@ -109035,6 +109071,9 @@
     "sk create changelog 1 5 1 0": [
       "sk-create-changelog 1.5.1.0"
     ],
+    "sk create changelog 1 5 2 0": [
+      "sk-create-changelog 1.5.2.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -109145,6 +109184,9 @@
     ],
     "sk create changelog v1 5 1 0": [
       "sk-create-changelog v1.5.1.0"
+    ],
+    "sk create changelog v1 5 2 0": [
+      "sk-create-changelog v1.5.2.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -111456,6 +111498,9 @@
     "sk doc 2 9 14 0": [
       "sk-doc 2.9.14.0"
     ],
+    "sk doc 2 9 15 0": [
+      "sk-doc 2.9.15.0"
+    ],
     "sk doc 2 9 2 0": [
       "sk-doc 2.9.2.0"
     ],
@@ -111965,6 +112010,9 @@
     ],
     "sk doc v2 9 14 0": [
       "sk-doc v2.9.14.0"
+    ],
+    "sk doc v2 9 15 0": [
+      "sk-doc v2.9.15.0"
     ],
     "sk doc v2 9 2 0": [
       "sk-doc v2.9.2.0"
@@ -121569,6 +121617,9 @@
     "system deep loop 1 6 27 0": [
       "system-deep-loop 1.6.27.0"
     ],
+    "system deep loop 1 6 28 0": [
+      "system-deep-loop 1.6.28.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -121775,6 +121826,9 @@
     ],
     "system deep loop v1 6 27 0": [
       "system-deep-loop v1.6.27.0"
+    ],
+    "system deep loop v1 6 28 0": [
+      "system-deep-loop v1.6.28.0"
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"

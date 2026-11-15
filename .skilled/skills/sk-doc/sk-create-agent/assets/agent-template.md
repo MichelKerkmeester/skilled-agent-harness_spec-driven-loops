@@ -8,7 +8,7 @@ trigger_phrases:
   - "specialist agent structure"
 importance_tier: normal
 contextType: general
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Agent Template - Specialist Agent Structure
@@ -280,7 +280,7 @@ Place this under Section 0b:
 ```markdown
 ### Setup BINDING Emission (mandatory grep-checkable contract)
 
-Immediately after validating dispatch inputs, BEFORE any state read or workflow step, this agent MUST emit one canonical BINDING line per resolved setup value to stdout. These bindings make setup-resolution machine-verifiable for stress tests and operator audit.
+Immediately after validating dispatch inputs, BEFORE any state read or workflow step, this agent MUST emit one canonical BINDING line per resolved setup value to stdout. A binding whose value comes from a read, such as a config file or a template, is emitted right after that read and before any other step. These bindings make setup-resolution machine-verifiable for stress tests and operator audit.
 
 Required bindings (adapt names to the command contract, keep the format):
 
@@ -590,7 +590,7 @@ Before reading targets, running searches, or writing artifacts, validate the dis
 
 ### Setup BINDING Emission (mandatory when command-driven)
 
-Immediately after validating dispatch inputs, BEFORE any state read or workflow step, emit one canonical BINDING line per resolved setup value:
+Immediately after validating dispatch inputs, BEFORE any state read or workflow step, emit one canonical BINDING line per resolved setup value. A binding whose value comes from a config or template read is emitted right after that read, before any other step:
 
 \`\`\`text
 BINDING: target=<resolved-target-path-or-spec>
