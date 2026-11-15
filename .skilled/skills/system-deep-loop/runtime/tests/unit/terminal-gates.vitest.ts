@@ -98,6 +98,18 @@ function passingFiles(overrides: TerminalGateFiles = {}): TerminalGateFiles {
   };
 }
 
+// A review of a spec folder names the folder as its target and may record only
+// the implementation files it read, so the packet reaches the scope gate
+// through the target rather than through the file list.
+function specFolderFiles(targetType: string, target: string, file: string): TerminalGateFiles {
+  return passingFiles({
+    config: passingConfig({ reviewTargetType: targetType, reviewTarget: target }),
+    registry: passingRegistry({
+      openFindings: [{ severity: 'P1', file, line: 4 }],
+    }),
+  });
+}
+
 function gateRow(report: TerminalGateReport, gateId: string): GateRow {
   const row = report.gateResults.find((candidate) => candidate.gateId === gateId);
   if (row === undefined) throw new Error(`terminal gate row not reported: ${gateId}`);
@@ -185,6 +197,96 @@ describe('computeTerminalGates', () => {
       gateId: 'scope',
       status: 'pass',
       reasonCode: 'all-findings-in-scope',
+    });
+  });
+
+  it('compares a finding by its file when the finding records a location suffix', () => {
+    const report = computeTerminalGates(passingFiles({
+      registry: passingRegistry({
+        openFindings: [
+          { severity: 'P1', file: 'src/app.ts:12', line: 12 },
+          { severity: 'P1', file: 'src/app.ts:12-18', line: 12 },
+          { severity: 'P1', file: 'src/app.ts:12:4', line: 12 },
+        ],
+      }),
+    }));
+
+    expect(gateRow(report, 'scope')).toEqual({
+      gateId: 'scope',
+      status: 'pass',
+      reasonCode: 'all-findings-in-scope',
+    });
+  });
+
+  it('leaves a finding file that records no location suffix as it is written', () => {
+    const report = computeTerminalGates(passingFiles({
+      registry: passingRegistry({
+        openFindings: [{ severity: 'P1', file: 'src/app.ts', line: 12 }],
+      }),
+    }));
+
+    expect(gateRow(report, 'scope')).toEqual({
+      gateId: 'scope',
+      status: 'pass',
+      reasonCode: 'all-findings-in-scope',
+    });
+  });
+
+  it('never strips a location suffix from a scope entry', () => {
+    const report = computeTerminalGates(passingFiles({
+      config: passingConfig({ reviewScopeFiles: ['src/app.ts:12'] }),
+      registry: passingRegistry({
+        openFindings: [{ severity: 'P1', file: 'src/app.ts', line: 12 }],
+      }),
+    }));
+
+    expect(gateRow(report, 'scope')).toEqual({
+      gateId: 'scope',
+      status: 'fail',
+      reasonCode: 'findings-out-of-scope',
+    });
+  });
+
+  it('takes the reviewed spec folder into the scope for either target spelling', () => {
+    for (const target of ['specs/alpha/scope-target', 'alpha/scope-target']) {
+      const report = computeTerminalGates(
+        specFolderFiles('spec-folder', target, 'specs/alpha/scope-target/spec.md'),
+      );
+
+      expect(gateRow(report, 'scope')).toEqual({
+        gateId: 'scope',
+        status: 'pass',
+        reasonCode: 'all-findings-in-scope',
+      });
+    }
+  });
+
+  it('keeps a finding in a sibling packet outside the reviewed scope', () => {
+    const report = computeTerminalGates(specFolderFiles(
+      'spec-folder',
+      'specs/alpha/scope-target',
+      'specs/alpha/scope-sibling/spec.md',
+    ));
+
+    expect(gateRow(report, 'scope')).toEqual({
+      gateId: 'scope',
+      status: 'fail',
+      reasonCode: 'findings-out-of-scope',
+    });
+    expect(report.failedRequiredGateIds).toEqual(['scope']);
+  });
+
+  it('adds no folder entry when the review target is a file list', () => {
+    const report = computeTerminalGates(specFolderFiles(
+      'files',
+      'specs/alpha/scope-target',
+      'specs/alpha/scope-target/spec.md',
+    ));
+
+    expect(gateRow(report, 'scope')).toEqual({
+      gateId: 'scope',
+      status: 'fail',
+      reasonCode: 'findings-out-of-scope',
     });
   });
 

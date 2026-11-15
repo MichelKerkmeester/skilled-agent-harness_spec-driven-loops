@@ -92,12 +92,33 @@ function scopeEntries(reviewScopeFiles) {
   return entries;
 }
 
+// A review whose target is a spec folder names that folder rather than every
+// file the review read, so the folder itself is part of the reviewed scope and
+// a finding inside it is inside the scope. The config may name the folder with
+// or without the checkout's specs prefix while the finding arrives with one,
+// so both spellings enter the scope.
+function reviewTargetScopeEntries(config) {
+  if (config.reviewTargetType !== 'spec-folder') return [];
+  if (typeof config.reviewTarget !== 'string') return [];
+  const entry = normalizePath(config.reviewTarget).replace(/\/+$/u, '');
+  if (entry === '') return [];
+  if (entry.startsWith('specs/')) return [entry];
+  return [entry, `specs/${entry}`];
+}
+
+// A finding records where it was written as a suffix of its file: a line, a
+// line range, or a line and a column. Scope entries name files and never
+// positions, so the position is dropped before the finding meets the scope.
+function stripFindingLocation(file) {
+  return file.replace(/:\d+(?:-\d+|:\d+)?$/u, '');
+}
+
 function findingFilePaths(registry) {
   const openFindings = Array.isArray(registry.openFindings) ? registry.openFindings : [];
   const paths = [];
   for (const finding of openFindings) {
     if (!isPlainObject(finding) || typeof finding.file !== 'string' || finding.file === '') continue;
-    paths.push(normalizePath(finding.file));
+    paths.push(stripFindingLocation(normalizePath(finding.file)));
   }
   return paths;
 }
@@ -145,7 +166,7 @@ function evidenceGateRow(facts, gates) {
 }
 
 function scopeGateRow(config, registry) {
-  const entries = scopeEntries(config.reviewScopeFiles);
+  const entries = [...scopeEntries(config.reviewScopeFiles), ...reviewTargetScopeEntries(config)];
   const files = findingFilePaths(registry);
   const outOfScopeFiles = [...new Set(
     files.filter((file) => !entries.some((entry) => isInScope(file, entry))),

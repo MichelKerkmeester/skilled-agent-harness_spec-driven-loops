@@ -1,5 +1,5 @@
 {
-  "manifestHash": "35162a65a83f33268fff2d855554baf57ef7ac9b835fcc15aa7848e41cb20533",
+  "manifestHash": "d0a0c297f6df682fa2e71416f51b5708056e57c66916dfa6609bd70509610562",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -25045,6 +25045,18 @@
     ],
     "closeout plan": [
       "closeout plan"
+    ],
+    "closeout run identity": [
+      "closeout run identity"
+    ],
+    "closeout run identity implementation summary": [
+      "closeout run identity implementation summary"
+    ],
+    "closeout run identity plan": [
+      "closeout run identity plan"
+    ],
+    "closeout run identity tasks": [
+      "closeout run identity tasks"
     ],
     "closeout tasks": [
       "closeout tasks"
@@ -82853,6 +82865,9 @@
     "phase 26 ci and test runners": [
       "phase 26 ci and test runners"
     ],
+    "phase 26 closeout run identity": [
+      "phase 26 closeout run identity"
+    ],
     "phase 26 goal rebind shared core and opencode": [
       "phase 26 goal rebind shared core and opencode"
     ],
@@ -82868,6 +82883,9 @@
     "phase 27 opencode2 models provider check": [
       "phase 27 opencode2 models provider check"
     ],
+    "phase 27 review traceability recording": [
+      "phase 27 review traceability recording"
+    ],
     "phase 28 changelog release extension": [
       "phase 28 changelog release extension"
     ],
@@ -82880,11 +82898,17 @@
     "phase 28 plugin kill switch coverage": [
       "phase 28 plugin kill switch coverage"
     ],
+    "phase 28 review scope recording": [
+      "phase 28 review scope recording"
+    ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
     ],
     "phase 29 relaunch evidence gaps and playbook drift": [
       "phase 29 relaunch evidence gaps and playbook drift"
+    ],
+    "phase 29 review verdict script": [
+      "phase 29 review verdict script"
     ],
     "phase 29 unrun tests ci coverage": [
       "phase 29 unrun tests ci coverage"
@@ -98893,6 +98917,18 @@
     "review scope coverage report": [
       "review scope coverage report"
     ],
+    "review scope recording": [
+      "review scope recording"
+    ],
+    "review scope recording implementation summary": [
+      "review scope recording implementation summary"
+    ],
+    "review scope recording plan": [
+      "review scope recording plan"
+    ],
+    "review scope recording tasks": [
+      "review scope recording tasks"
+    ],
     "review script entrypoints": [
       "review script entrypoints"
     ],
@@ -98980,6 +99016,18 @@
     "review traceability checks": [
       "review traceability checks"
     ],
+    "review traceability recording": [
+      "review traceability recording"
+    ],
+    "review traceability recording implementation summary": [
+      "review traceability recording implementation summary"
+    ],
+    "review traceability recording plan": [
+      "review traceability recording plan"
+    ],
+    "review traceability recording tasks": [
+      "review traceability recording tasks"
+    ],
     "review trigger split": [
       "review trigger split"
     ],
@@ -99003,6 +99051,18 @@
     ],
     "review verdict gate rule tasks": [
       "review verdict gate rule tasks"
+    ],
+    "review verdict script": [
+      "review verdict script"
+    ],
+    "review verdict script implementation summary": [
+      "review verdict script implementation summary"
+    ],
+    "review verdict script plan": [
+      "review verdict script plan"
+    ],
+    "review verdict script tasks": [
+      "review verdict script tasks"
     ],
     "review wording fixes": [
       "review wording fixes"

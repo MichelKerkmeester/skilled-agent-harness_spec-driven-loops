@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/028-review-scope-recording",
+  "description": "Phase 28: review-scope-recording",
+  "keywords": [
+    "phase",
+    "review-scope-recording"
+  ],
+  "lastUpdated": "2026-11-15T19:35:54.044Z",
+  "specId": "028",
+  "folderSlug": "review-scope-recording",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_20-35__the-scope-gate-strips-line-suffixes-and-counts.md"
+  ]
+}
