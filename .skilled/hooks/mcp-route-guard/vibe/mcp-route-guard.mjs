@@ -1,0 +1,1 @@
+../../../../.vibe/plugins/repo-guards/mcp-route-guard.mjs

@@ -6,7 +6,7 @@ trigger_phrases:
   - "handoff note purpose line"
   - "relaunch note Goal"
 id: plugins-and-hooks-packet-purpose-relaunch
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Packet purpose on relaunch
@@ -107,6 +107,8 @@ Capture the test command, its full output and its exit status. For each note, ca
 - Handoff command: `.skilled/commands/speckit/handoff.md`
 - Purpose reader: `runtime/lib/spec/packet-purpose.ts`
 - Relaunch contract test: `.skilled/hooks/session-handover/tests/nudge.test.cjs`
+
+Provenance: .skilled/hooks/session-handover/tests/nudge.test.cjs
 
 ---
 

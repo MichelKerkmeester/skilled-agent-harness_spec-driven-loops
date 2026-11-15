@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7a9227009aee8615657cb6fc1d6fcb7e8b7a3eb0e3643a77e4a71bbb522ef76e",
+  "manifestHash": "0f1a93554a90d40071ec07944bbf37bd0d0ab837f19ffa125b3dfbdbc294f10b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -19667,6 +19667,18 @@
     "ci red checks after council retirement tasks": [
       "ci red checks after council retirement tasks"
     ],
+    "ci red checks after vibe and loop counters": [
+      "ci red checks after vibe and loop counters"
+    ],
+    "ci red checks after vibe and loop counters implementation summary": [
+      "ci red checks after vibe and loop counters implementation summary"
+    ],
+    "ci red checks after vibe and loop counters plan": [
+      "ci red checks after vibe and loop counters plan"
+    ],
+    "ci red checks after vibe and loop counters tasks": [
+      "ci red checks after vibe and loop counters tasks"
+    ],
     "ci regression gate comparison rule sets": [
       "ci regression gate comparison rule sets"
     ],
@@ -30919,6 +30931,9 @@
     "convergence trajectory": [
       "convergence trajectory"
     ],
+    "convergence tsx lazy resolve": [
+      "convergence tsx lazy resolve"
+    ],
     "convergencemode off": [
       "convergenceMode off"
     ],
@@ -30984,6 +30999,9 @@
     ],
     "conversation scenario runner": [
       "conversation scenario runner"
+    ],
+    "conversation scenario suffix rename": [
+      "conversation scenario suffix rename"
     ],
     "conversation scenario validator rules": [
       "conversation scenario validator rules"
@@ -58913,6 +58931,9 @@
     "hook helper skipped fail open": [
       "hook helper skipped fail_open"
     ],
+    "hook hub index gap links and conversation scenario": [
+      "hook hub index gap links and conversation scenario"
+    ],
     "hook injection contract": [
       "hook injection contract"
     ],
@@ -59551,6 +59572,18 @@
     ],
     "hub gate transient failure": [
       "hub gate transient failure"
+    ],
+    "hub index gap links": [
+      "hub index gap links"
+    ],
+    "hub index gap links implementation summary": [
+      "hub index gap links implementation summary"
+    ],
+    "hub index gap links plan": [
+      "hub index gap links plan"
+    ],
+    "hub index gap links tasks": [
+      "hub index gap links tasks"
     ],
     "hub intent vocabulary": [
       "hub intent vocabulary"
@@ -82756,6 +82789,9 @@
     ],
     "phase 28 changelog release extension": [
       "phase 28 changelog release extension"
+    ],
+    "phase 28 ci red checks": [
+      "phase 28 ci red checks"
     ],
     "phase 28 goal rebind live proof and docs": [
       "phase 28 goal rebind live proof and docs"
@@ -130406,6 +130442,9 @@
     "vibe goal injection": [
       "vibe goal injection"
     ],
+    "vibe guard browsability symlink": [
+      "vibe guard browsability symlink"
+    ],
     "vibe guard porting": [
       "vibe guard porting"
     ],
@@ -130492,6 +130531,9 @@
     ],
     "vibe live hop": [
       "vibe live hop"
+    ],
+    "vibe local prompt stub gitignore": [
+      "vibe local prompt stub gitignore"
     ],
     "vibe mirror ci check": [
       "vibe mirror ci check"

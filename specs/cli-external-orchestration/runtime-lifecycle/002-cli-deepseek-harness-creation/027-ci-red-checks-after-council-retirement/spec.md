@@ -26,9 +26,9 @@ contextType: "general"
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/410-ci-red-fixes` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 27 of 27 |
+| **Phase** | 27 of 28 |
 | **Predecessor** | 026-alignment-remaining-findings |
-| **Successor** | None |
+| **Successor** | 028-ci-red-checks-after-vibe-and-loop-counters |
 | **Handoff Criteria** | The hook, plugin, installer and doctor suites pass locally and both spec folders validate strict |
 <!-- /ANCHOR:metadata -->
 

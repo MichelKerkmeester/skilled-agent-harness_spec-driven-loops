@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
@@ -134,6 +134,15 @@ and is the canonical source the .codex and .pi trees are generated from.
 ## 7. OPEN QUESTIONS
 
 - None. The operator chose the executor, model and run shape on 2026-11-15.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Abridged from `research/research.md`, which stays the source of truth. Five iterations across two lineages produced 21 doc findings and 2 run findings:
+- Runtime lists in `README.md:963`, the mirror crosswalk, `CROSS-CLI.md:57`, `.skilled/agents/README.txt`, the doctor roster check and both deep-loop skills omit the `.dsh` and `.vibe` agent trees.
+- The crosswalk counts ten subagents where there are nine. `.vibe/SYNC.md` names a missing `README.md` and denies the `agent_type` its generator writes.
+- The deep-review skill drops the `thought` status. `claude-tools.md:247` misclassifies three agents.
+- Both deep-loop playbook sandboxes diff `.opencode/agents/` files they never create, so those checks cannot fail.
+- Run findings: Mistral bills a separate Vibe pool that only a keychain sign-in reaches, and the runner reads Mistral's budget refusal as a crash instead of a quota stop.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

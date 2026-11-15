@@ -6,7 +6,7 @@ trigger_phrases:
   - "packet_purpose continuity field"
   - "save purpose field"
 id: plugins-and-hooks-packet-purpose-save
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Packet purpose on save
@@ -115,6 +115,8 @@ Capture each save command, its full output and its exit status. Quote the `packe
 - Purpose reader: `runtime/lib/spec/packet-purpose.ts`
 - Continuity save workflow: `runtime/cli/core/workflow.ts`
 - Workflow contract test: `runtime/cli/tests/test-phase-command-workflows.js`
+
+Provenance: .skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts
 
 ---
 

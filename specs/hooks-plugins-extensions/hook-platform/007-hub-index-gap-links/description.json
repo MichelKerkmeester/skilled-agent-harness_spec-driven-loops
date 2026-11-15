@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/hook-platform/007-hub-index-gap-links",
+  "description": "Hook hub index gap links and conversation scenario renames",
+  "keywords": [
+    "hook",
+    "hub",
+    "index",
+    "gap",
+    "links",
+    "conversation",
+    "scenario",
+    "renames"
+  ],
+  "lastUpdated": "2026-11-15T15:00:06.550Z",
+  "specId": "007",
+  "folderSlug": "hub-index-gap-links",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_16-00__audited-every-runtime-hook-plugin-and-extension.md"
+  ]
+}

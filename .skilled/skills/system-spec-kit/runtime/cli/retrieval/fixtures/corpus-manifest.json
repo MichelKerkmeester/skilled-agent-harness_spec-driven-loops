@@ -1,5 +1,5 @@
 {
-  "corpusHash": "dfbd4b898056644eee63f781618b5f955a6ae2f11a5179034750b021b33256f3",
+  "corpusHash": "a355905d0ef9cbf93176ad03bc7ddeb33cde65d3ccbcead324d94fd93866d82b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27558,
+  "includedPathCount": 27567,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1362,33 +1362,33 @@
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/guards/spec-gate-suite.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hard-rules/dispatch-rule-check-suite.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hard-rules/hard-rule-sidecar-integrity.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/agents-mirror-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/classifier-injection-screen-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/compaction-post-tool-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/decision-capture-ask-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/deep-loop-guard-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dispatch-preflight-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dist-freshness-edit-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dist-freshness-shell-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/env-secret-guard-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/git-message-gate-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/mcp-route-guard-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/overlay-guard-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/post-edit-quality-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/prompts-mirror-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-automatic-tier-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-manual-tier-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/render-home-hooks-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/session-cleanup-end-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/skills-mirror-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-classify-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-deny-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-ask-surface-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-completion-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-completion-advisory-conversation.md",
-    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-save-nudge-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/agents-mirror.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/classifier-injection-screen.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/compaction-post-tool.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/decision-capture-ask.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/deep-loop-guard.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dispatch-preflight.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dist-freshness-edit.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dist-freshness-shell.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/env-secret-guard.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/git-message-gate.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/mcp-route-guard.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/overlay-guard.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/post-edit-quality.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/prompts-mirror.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-automatic-tier.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-manual-tier.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/render-home-hooks.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/session-cleanup-end.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/skills-mirror.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-classify.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-deny.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-ask-surface.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-completion.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-completion-advisory.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-save-nudge.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hub-routing/compiled-decision-and-router-row.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hub-routing/front-door-compiled-decision.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md",
@@ -2057,8 +2057,8 @@
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization-conversation.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
-    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/env-secret-guard-inspect-without-values-conversation.md",
-    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/env-secret-guard-protect-from-edit-conversation.md",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/env-secret-guard-inspect-without-values.md",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/env-secret-guard-protect-from-edit.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md",
     ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md",
     ".skilled/skills/cli-orca/README.md",
@@ -9527,6 +9527,7 @@
     "specs/agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/implementation-summary.md",
     "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/research.md",
     "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
@@ -10730,6 +10731,10 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -11761,6 +11766,10 @@
     "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/tasks.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/implementation-summary.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/plan.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/research/research.md",
@@ -27590,7 +27599,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7a9227009aee8615657cb6fc1d6fcb7e8b7a3eb0e3643a77e4a71bbb522ef76e",
+  "manifestHash": "0f1a93554a90d40071ec07944bbf37bd0d0ab837f19ffa125b3dfbdbc294f10b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27605,7 +27614,15 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/hooks/ask-surface-guard/opencode/ask-surface-guard.js",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/classifier-injection-screen/opencode/classifier-injection-screen.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/classifier-injection-screen/vibe/classifier-injection-screen.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -27661,6 +27678,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/hooks/decision-capture/opencode/decision-capture.js",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/directive-lifecycle/claude/directive-lifecycle-boundary.ts",
       "reason": "symlink not followed"
     },
@@ -27674,6 +27695,10 @@
     },
     {
       "path": ".skilled/hooks/dispatch/opencode/cli-dispatch-audit.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/dispatch/vibe/dispatch-preflight.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -27697,7 +27722,15 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/dist-freshness/vibe/dist-freshness.mjs",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/env-secret-guard/opencode/env-secret-guard.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/env-secret-guard/vibe/env-secret-guard.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -27758,6 +27791,10 @@
     },
     {
       "path": ".skilled/hooks/git-message-gate/shared/git-message-gate.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-message-gate/vibe/git-message-gate.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -27841,7 +27878,15 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/mcp-route-guard/vibe/mcp-route-guard.mjs",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/overlay-guard/opencode/overlay-guard.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/overlay-guard/vibe/overlay-guard.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -27854,6 +27899,10 @@
     },
     {
       "path": ".skilled/hooks/post-edit-quality/opencode/sk-code-post-edit-quality.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/post-edit-quality/vibe/post-edit-quality.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -27874,6 +27923,10 @@
     },
     {
       "path": ".skilled/hooks/session-cleanup/opencode/session-cleanup.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-cleanup/vibe/session-cleanup.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -28133,7 +28186,19 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/spec-gate/vibe/spec-gate-classify.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/vibe/spec-gate.mjs",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/task-dispatch/opencode/system-deep-loop-guard.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/task-dispatch/vibe/deep-loop-guard.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -28710,6 +28775,26 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research_archive/20261115T145700Z-api-budget-402/lineages",
       "reason": "excluded directory"
     },
     {
@@ -30073,6 +30158,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/001-runtime-code-and-tests/scratch",
       "reason": "excluded directory"
     },
@@ -30886,6 +30975,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/scratch",
       "reason": "excluded directory"
     },
     {
