@@ -123,7 +123,7 @@ The baselines ran first: relaunch and plugin 1,555, resolver 28 and Pi 62. The r
 ## Known Limitations
 
 1. **The release tag and the GitHub release still hold the old text.** Tag `v4.0.2.1` points at an earlier commit and its release body predates this edit. Bringing them in step is outward-facing and waits for the operator.
-2. **The repository's dotenv template keeps one stale comment.** It still says the loop ships off. The operator's rule forbids reading or writing a dotenv file, so it is reported rather than edited.
+2. **The repository's dotenv template kept a stale comment, now fixed.** It said the loop ships off. The operator's rule forbids reading or writing a dotenv file, so it was reported rather than edited, until the operator asked for the fix on 2026-11-15. Sections 8 and 18 of `.env.example` now say the loop ships on for Claude Code and off elsewhere, and that a set global switch decides on every runtime.
 <!-- /ANCHOR:limitations -->
 
 ---
