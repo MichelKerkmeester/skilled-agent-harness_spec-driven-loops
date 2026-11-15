@@ -326,6 +326,7 @@ and findings belong here.
 | Phase 032 review pass five remediation | Complete | d0f605b42f8, 02261e94254, d21dbc1cafe: scorer sees in-place shell edits, arena refuses dirty, stale and outside-link builds, live turns cannot push, docs match code; review 0 P0 and 0 P1 |
 | Arena build on the committed tree | ok | 0173020dfc2: ok true, 22 copied trees, trackedDotenv names the two tracked .env.example files. Needed the system-spec-kit runtime rebuild (stale_build) and T053 (git ENOBUFS), and one clone run straight after a commit raced the hook's repack and passed on rerun |
 | Session save after phase 032 | Saved | 6 operator answers written as Q074 to Q079, 10 matched to existing rows Q059 to Q073, no orphan sessions |
+| catch-up merge of origin/main 695f4191d36 | done | c88dabe8292: 13 conflicts resolved, own spec-kit changelog renumbered to v2.13.4.0 (main published v2.13.3.0), suite 2313/0, doctor 1239/0, Vibe 91/0, floors 24/44 0/35 2/44 and eval [160,49,21,5] cmp-equal, links 0 broken, every hub manifest fresh. Waiting on operator: the v4.0.2.1 root release note range now names main's v2.13.3.0 |
 
 ### Deviations and findings
 
