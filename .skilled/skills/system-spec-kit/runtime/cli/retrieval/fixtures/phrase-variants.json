@@ -1,5 +1,5 @@
 {
-  "manifestHash": "30d194195834295a5e04be62843c3539f4a4b67e5f19354c1a5fc53787e7ba95",
+  "manifestHash": "31ce1488b8691503b285bcb1a70cf1977573a589f96cf661a3274bd5ce0ffdd1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20141,6 +20141,9 @@
     "claim line not built": [
       "claim line not built"
     ],
+    "claim lookup transcript cwd check": [
+      "claim lookup transcript cwd check"
+    ],
     "claim relationship event tasks": [
       "claim relationship event tasks"
     ],
@@ -20161,6 +20164,9 @@
     ],
     "claimadjudicationgate": [
       "claimAdjudicationGate"
+    ],
+    "claimed note history lookup": [
+      "claimed note history lookup"
     ],
     "clarification markers per pass": [
       "clarification markers per pass"
@@ -28648,9 +28654,6 @@
     ],
     "compaction fixtures canary": [
       "compaction fixtures canary"
-    ],
-    "compaction history lookup": [
-      "compaction history lookup"
     ],
     "compaction packet purpose": [
       "compaction packet purpose"
@@ -58576,6 +58579,9 @@
     ],
     "history lookup handover integration": [
       "history lookup handover integration"
+    ],
+    "history lookup review fixes": [
+      "history lookup review fixes"
     ],
     "history rewrite": [
       "history rewrite"

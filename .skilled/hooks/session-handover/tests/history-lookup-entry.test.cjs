@@ -46,6 +46,20 @@ test('the entry refuses an empty invocation with the CLI refusal code', () => {
   assert.equal(result.status, 2);
 });
 
+test('the entry names a core that cannot load apart from bad arguments', (t) => {
+  const root = checkout(t, { withCore: false });
+  const entryCopy = path.join(root, ENTRY_RELATIVE_PATH);
+  fs.copyFileSync(ENTRY_PATH, entryCopy);
+
+  const result = spawnSync(process.execPath, [
+    entryCopy, '--session', 'session-entry-00000001', '--handle', `hl1_${'0'.repeat(32)}`,
+    'browse', '{}',
+  ], { cwd: root, encoding: 'utf8' });
+
+  assert.equal(result.stdout, '{"ok":false,"code":"core_unavailable"}\n');
+  assert.equal(result.status, 2);
+});
+
 test('withholds the offer when the compiled core is missing', async (t) => {
   const root = checkout(t, { withCore: false });
   const lookupRunsFrom = await loadLookupRunsFrom();

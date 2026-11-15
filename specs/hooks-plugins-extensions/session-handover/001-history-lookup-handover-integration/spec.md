@@ -48,14 +48,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/399-hook-feature-subtracks` |
 | **Parent Spec** | None |
-| **Parent Packet** | scaffold/001-history-lookup-handover-integration |
+| **Parent Packet** | hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | All six children are Complete, recursive strict validation reports RESULT: PASSED, and a live Claude Code hop shows the receiver running the lookup against the sender session. |
+| **Handoff Criteria** | All seven children are Complete, recursive strict validation reports RESULT: PASSED, and a live Claude Code hop shows the receiver running the lookup against the sender session. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -80,10 +80,11 @@ A session that claims a handoff can look up the sending session's earlier turns 
 ### In Scope
 - Measure whether a receiving session recovers a detail the handoff note left out, before anything is built.
 - Give the handover concern ownership of the history lookup core, with behaviour unchanged.
-- Mint a history locator for the sending session when a handoff is prepared.
+- Mint a history locator for the sending session when a handoff is claimed. A Claude Code or Codex sender gets one. Phase 3 minted it at `prepare`, and phase 7 dropped that mint on 2026-11-15 at the operator's choice, because the claim overwrote it before anything printed it.
 - Offer the lookup in the claim output and add one receiver step to the handoff command.
 - Remove the compaction-time mint and offer on every runtime that has one.
 - Update the docs, the catalog and the playbooks, and prove the result on a live hop.
+- Fix the twelve P2 advisories the deep review left.
 
 ### Out of Scope
 - Lookups across runtimes. A receiver reads a sender on the same runtime only.
@@ -120,6 +121,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 4 | 004-offer-lookup-at-claim/ | `claim` re-mints and prints the lookup section, and the receiver steps gain one line. | Complete |
 | 5 | 005-deprecate-compaction-offer/ | No runtime mints or offers the lookup after a compaction. | Complete |
 | 6 | 006-docs-and-live-hop-proof/ | Docs, catalog and playbooks updated, one live hop recorded, the phase 1 measurement rerun. | Complete |
+| 7 | 007-review-remediation/ | The claim mints only for a transcript in the receiver's checkout, the command reads `CLAUDE_CONFIG_DIR`, `prepare` mints nothing, and the docs match the code. | In Progress |
 
 ### Phase Transition Rules
 
@@ -134,9 +136,10 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 |------|-----|----------|--------------|
 | 001-hop-recall-baseline | 002-history-core-relocation | The measurement is recorded and the operator has answered go. | The phase 1 result table and the recorded decision. |
 | 002-history-core-relocation | 003-mint-locator-at-prepare | Every importer resolves and the history suites pass with the same test count as before. | `npx vitest run tests/history-*.vitest.ts` from the runtime folder. |
-| 003-mint-locator-at-prepare | 004-offer-lookup-at-claim | A prepared handoff leaves a locator whose handle the lookup CLI re-derives. | The phase 3 test that redeems a locator minted at `prepare`. |
+| 003-mint-locator-at-prepare | 004-offer-lookup-at-claim | A prepared handoff leaves a locator whose handle the lookup CLI re-derives. | The phase 3 test that redeems a locator minted at `prepare`. Phase 7 removed that mint and moved the check onto the claim-written locator. |
 | 004-offer-lookup-at-claim | 005-deprecate-compaction-offer | A claim prints a lookup command that returns the sender's turns, including after the 30-minute window. | The phase 4 tests and one manual claim. |
 | 005-deprecate-compaction-offer | 006-docs-and-live-hop-proof | No compaction path prints the lookup section and the remaining suites pass. | `rg` for the section title in the compaction hooks returns nothing, plus the hook suites. |
+| 006-docs-and-live-hop-proof | 007-review-remediation | The deep review reports no P0 or P1 and lists every P2 it found. | `review/review-report.md` section 3. |
 <!-- /ANCHOR:phase-map -->
 
 ---

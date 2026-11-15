@@ -192,7 +192,7 @@ A written value is checked the way `spec_folder` is: a repo-relative packet path
 
 ### History Lookup After A Claim
 
-`prepare` stores a history locator for the sending session with provenance source `handover`. `claim` mints a fresh locator for the sender and prints a `## History Lookup` section after the note body, then the sentence `Use it for a detail this note does not spell out, before you guess.` The section names one read-only command, `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`, which searches, browses, loads and pages the sender's earlier turns. Replies are capped and read-only.
+`claim` mints a history locator for the sending session with provenance source `handover` and prints a `## History Lookup` section after the note body, then the sentence `Use it for a detail this note does not spell out, before you guess.` The section names one read-only command, `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`, which searches, browses, loads and pages the sender's earlier turns. Replies are capped and read-only.
 
 Only Claude Code and Codex senders get a locator. The section is withheld when the sender has no transcript, when the note names another runtime, when the sender ran in another checkout, or when the runtime is not built, and the claim then prints what it printed before. A locator is fresh for 30 minutes from the claim. Search matches whole identifier parts, split on `-`, `.`, `/`, `:` and `_` and on case changes. A query matches whole word parts, so 'live' does not match 'delivery'.
 

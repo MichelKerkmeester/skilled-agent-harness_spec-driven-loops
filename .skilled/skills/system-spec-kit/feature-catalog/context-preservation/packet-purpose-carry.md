@@ -6,7 +6,7 @@ trigger_phrases:
   - "packet purpose across handovers"
   - "compaction packet purpose"
   - "purpose line on resume"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Packet purpose carry
@@ -77,7 +77,7 @@ Each save stores the sentence as `packet_purpose` in the continuity block. Devin
 
 Related references:
 - [Session handover loop](session-handover-loop.md) - the handoff note that opens with the purpose line.
-- [Compaction history lookup](compaction-history-lookup.md) - the lookup a claimed handoff offers for the sender's earlier turns.
+- [Handoff history lookup](compaction-history-lookup.md) - the lookup a claimed handoff offers for the sender's earlier turns.
 - [Packet purpose on resume](../../manual-testing-playbook/plugins-and-hooks/packet-purpose-resume.md) - the operator scenario for the resume brief.
 - [Packet purpose on relaunch](../../manual-testing-playbook/plugins-and-hooks/packet-purpose-relaunch.md) - the operator scenario for the relaunch note.
 - [Packet purpose after a Claude compaction](../../manual-testing-playbook/plugins-and-hooks/packet-purpose-claude-compaction.md) - the operator scenario for the Claude recovery.

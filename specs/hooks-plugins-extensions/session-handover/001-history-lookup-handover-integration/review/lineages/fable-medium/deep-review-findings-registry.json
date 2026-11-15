@@ -1,0 +1,430 @@
+{
+  "sessionId": "fanout-fable-medium-1794748073879-re9m5r",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 1,
+    "timestamp": "2026-11-15T13:17:11.037Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The mint and the lookup command look for a Claude transcript in different places when CLAUDE_CONFIG_DIR is set",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 687,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "A claim mints a locator for whatever session id the note names, without proving that session ran in the note folder",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 984,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "The locator prepare stores has no reader",
+      "file": ".skilled/hooks/session-handover/bin/session-handover.cjs",
+      "line": 606,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "The lookup stops working 30 minutes after the claim with no way to renew it, and the changelog and the receiver step do not say so",
+      "file": ".skilled/changelog/skilled/v4.0.2.1.md",
+      "line": 165,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-005",
+      "severity": "P2",
+      "title": "The entry reports a broken build as a bad operation",
+      "file": ".skilled/hooks/session-handover/bin/history-lookup.mjs",
+      "line": 32,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 1,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 5
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "dead_code",
+      "error_reporting",
+      "producer_verifier_drift",
+      "spec_doc_drift",
+      "trust_boundary"
+    ],
+    "ruledOut": [
+      "dead_code",
+      "injection",
+      "state_transition"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "producer_verifier_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "trust_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "dead_code": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "spec_doc_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "error_reporting": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/claude.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "every ordering traced reads as answered turns",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/claude.mjs:146",
+        ".skilled/hooks/shared/session-readers/claude.mjs:158",
+        ".skilled/hooks/shared/session-readers/claude.mjs:170"
+      ],
+      "reason": "verified by direct read of recordsFromEntries and its new test"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "three independent guards",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts:53",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:291",
+        ".skilled/hooks/session-handover/lib/relaunch-core.cjs:686"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "search and diff agree",
+      "evidenceRefs": [
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:22",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:211"
+      ],
+      "reason": "verified by exact search and the commit diff"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/claude.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "every ordering traced reads as answered turns",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/claude.mjs:146",
+        ".skilled/hooks/shared/session-readers/claude.mjs:158",
+        ".skilled/hooks/shared/session-readers/claude.mjs:170"
+      ],
+      "proof": "verified by direct read of recordsFromEntries and its new test"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "three independent guards",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts:53",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:291",
+        ".skilled/hooks/session-handover/lib/relaunch-core.cjs:686"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs"
+      ],
+      "bugClass": "dead_code",
+      "disposition": "ruled_out",
+      "rationale": "search and diff agree",
+      "evidenceRefs": [
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:22",
+        ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs:211"
+      ],
+      "proof": "verified by exact search and the commit diff"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "producer_verifier_drift",
+      "trust_boundary",
+      "dead_code",
+      "spec_doc_drift",
+      "error_reporting",
+      "state_transition",
+      "injection"
+    ],
+    "covered": [
+      "producer_verifier_drift",
+      "trust_boundary",
+      "dead_code",
+      "spec_doc_drift",
+      "error_reporting"
+    ],
+    "ruledOut": [
+      "state_transition",
+      "injection"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

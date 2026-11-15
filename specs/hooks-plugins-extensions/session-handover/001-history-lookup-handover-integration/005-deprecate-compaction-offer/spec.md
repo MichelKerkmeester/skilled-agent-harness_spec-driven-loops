@@ -164,7 +164,7 @@ Seven files name the compaction mint or the offer, in 22 places. The section 3 f
 | Dependency | Phase 004's claim offer is proven. | A session would be left with no offer at all. | T001 gates the phase: it must print a lookup line from the claim path before any producer is touched. |
 | Risk | The handover imports a producer's mint. | Deleting that export breaks the claim offer. | T002 checks the handover for the name; if it imports one, keep that export and delete only its call site. |
 | Risk | The OpenCode purpose line planned at `specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md:188` rides the plugin this phase deletes. | The purpose line loses its carrier. | Recorded here and in `goal.md`; the operator decides, and phase 006 owns the docs that would name a new carrier. |
-| Risk | Deleting the adapter suites removes the only OpenCode CLI redemption proof. | An OpenCode claim could regress unnoticed. | Phase 004's claim tests own the offer that reaches OpenCode; `plan.md` section 5 states the gap. |
+| Risk | Deleting the adapter suites removes the only OpenCode CLI redemption proof. | An OpenCode claim could regress unnoticed. | None here. The claim-time section reaches only Claude Code and Codex senders, so an OpenCode sender gets no lookup at all. `plan.md` section 5 states the gap. |
 <!-- /ANCHOR:risks -->
 
 ---

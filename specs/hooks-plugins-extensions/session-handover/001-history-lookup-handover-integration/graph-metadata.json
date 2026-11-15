@@ -9,7 +9,8 @@
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/003-mint-locator-at-prepare",
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim",
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer",
-    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof"
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof",
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +45,8 @@
       ".skilled/hooks/session-handover/bin/session-handover.cjs",
       "runtime/hooks/claude/hook-state.ts",
       ".skilled/commands/speckit/handoff.md",
-      "runtime/hooks/claude/compact-inject.ts"
+      "runtime/hooks/claude/compact-inject.ts",
+      "review/review-report.md"
     ],
     "entities": [
       {
@@ -78,7 +80,19 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -106,27 +120,22 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A model can search and load its own earlier turns through the history lookup, but the lookup is offered only after a compaction",
     "created_at": "2026-11-15T06:24:14Z",
-    "last_save_at": "2026-11-15T11:24:12.624Z",
+    "last_save_at": "2026-11-15T14:38:46.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7028692e08e35b0ecf71aa78a507ad544894d1380a1027b7cad0fed264e2d415",
+    "source_fingerprint": "sha256:142694377cc5ca612d1cdb0bfe2318f430049f84a2f340f928553b992ca3943a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b6e65c2f3d7cdfd732ac9474016f500f7dbf67ac125330bdbe44627ee7643e70"
+      "spec.md": "0b655bc4f296710e07267516727e8cf15f4647e716b2c9e6ee5a699b5c8ae4c6"
     },
-    "last_active_at": null
+    "last_active_at": "2026-11-15T14:38:46.432Z",
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation"
   }
 }

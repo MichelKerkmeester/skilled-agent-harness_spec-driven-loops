@@ -1,0 +1,30 @@
+The lineage is complete: one iteration recorded through the gateway, reduced, and synthesized with stop reason `maxIterationsReached`.
+
+**Verdict: FAIL, on the coverage gate alone.** That gate needs one stabilizing pass after all four dimensions are covered, which a one-iteration cap cannot give. The findings by themselves are PASS with advisories: P0 = 0, P1 = 0, P2 = 5. Nothing in the target was executed; every finding rests on reading the code.
+
+The five P2 findings:
+
+1. **Store mismatch under `CLAUDE_CONFIG_DIR`** (`relaunch-core.cjs:687`): the handover mint reads the transcript from `$CLAUDE_CONFIG_DIR/projects`, while the lookup command and the reader use `~/.claude/projects`. A claim then prints a command that answers `session_not_found`. This becomes P1 if `CLAUDE_CONFIG_DIR` is a supported setup for the lookup.
+2. **No proof the session belongs to the note's folder** (`relaunch-core.cjs:984`): a claim mints a locator for whatever session id the note's frontmatter names. A note naming another project's session would let the command read that transcript. The reach needs a note writer who knows a random session UUID.
+3. **The locator `prepare` stores has no reader** (`session-handover.cjs:606`): `claim` always mints again and never falls back to it.
+4. **The 30-minute window is undocumented where the receiver reads it** (`v4.0.2.1.md:165`): the lookup refuses a locator older than 30 minutes and a claimed note cannot be claimed again. The changelog section and receiver step 3 in `handoff.md` do not say so; the README does.
+5. **A broken build reads as a bad operation** (`history-lookup.mjs:32`): the entry prints `operation_invalid` for any import failure.
+
+The Claude reader fix, the shell quoting of the printed command, the Vibe detector cleanup and the twelve restored adapter cases all read clean.
+
+Coverage limits:
+- The catalog, playbook and README changes in f320d9d9bcd got a stat-level read only.
+- The Claude, Pi, DSH and Devin compaction hunks in 8cd3fa79da9 were read as a stat plus a leftover search.
+- Test counts in the phase summaries were not rerun.
+
+Workflow steps I did not run, because each writes outside the lineage directory or is a git write:
+- `convergence.cjs` — I applied its first rule, the iteration cap, by hand.
+- The coverage graph upserts.
+- The continuity save.
+- Staging the artifact directory.
+
+These are recorded in the iteration file and the report. Gateway record files sit under `prompts/` inside the lineage rather than the system temp folder, except the run-open record, which used a temp file as the workflow writes it. `git status` shows only the untracked `review/` folder.
+
+Everything is in `specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/lineages/fable-medium`; open `review-report.md` first.
+
+FANOUT_LINEAGE_COMPLETE:fable-medium
