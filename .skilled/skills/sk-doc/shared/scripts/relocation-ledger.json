@@ -197,6 +197,21 @@
           "to": "hooks-plugins-extensions/git-primary-reconcile/002-rebase-abort-head-preservation"
         }
       ]
+    },
+    {
+      "applied_at": "2026-11-15T11:24:15.900Z",
+      "base_commit": "cede6d301ab6904e18a4a4da8509122cb79372bb",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration",
+          "to": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration"
+        }
+      ]
     }
   ]
 }

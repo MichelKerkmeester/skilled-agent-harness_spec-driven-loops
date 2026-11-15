@@ -4,7 +4,7 @@ description: "This scenario measures whether a session that claims a handoff not
 trigger_phrases:
   - "hop recall conversation"
   - "handoff recall with lookup"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # hop-recall-conversation -- Hop recall conversation
@@ -63,11 +63,11 @@ The conversation runner cannot drive a hop: its only turn actions are `restart` 
 
 1. Lookup arm:
    ```bash
-   bash specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh lookup <label>
+   bash specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh lookup <label>
    ```
 2. Baseline arm, for the paired run:
    ```bash
-   bash specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh baseline <label>
+   bash specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh baseline <label>
    ```
 3. Optional timeout: add a third argument in seconds; the default is 540.
 4. The harness leaves its run under `scratch/runs/<arm>-<label>/`. It starts the sender with `--model sonnet --effort medium` and the tmux session name `hoprecall-<arm>-<label>`.
@@ -146,8 +146,8 @@ Pi, OpenCode and Codex are optional follow-ups after Claude Code. They need `SYS
 
 | File | Role |
 |---|---|
-| `specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh` | Runs one arm: generates the codes, starts the sender, waits for the claim, asks the question, prints the observed line |
-| `specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/analyze.py` | Scores one run from the Claude transcripts and the handoff note |
+| `specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh` | Runs one arm: generates the codes, starts the sender, waits for the claim, asks the question, prints the observed line |
+| `specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/analyze.py` | Scores one run from the Claude transcripts and the handoff note |
 | `.skilled/hooks/session-handover/README.md` | The handoff protocol, the claim seed and the four note sections |
 | `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md` | The lookup CLI, its locator and its refusal codes |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md` | The runner's turn actions, which exclude a hop |

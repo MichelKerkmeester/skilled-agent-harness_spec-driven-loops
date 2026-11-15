@@ -33,7 +33,6 @@
     "hooks-plugins-extensions/session-cleanup",
     "hooks-plugins-extensions/session-handover",
     "hooks-plugins-extensions/session-lifecycle",
-    "hooks-plugins-extensions/session-relaunch",
     "hooks-plugins-extensions/session-turn-boundaries",
     "hooks-plugins-extensions/skill-advisor",
     "hooks-plugins-extensions/spec-gate",
