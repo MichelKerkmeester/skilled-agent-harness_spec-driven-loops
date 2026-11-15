@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6816,
-    "ok": 19042,
+    "ok": 19048,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27485,
+  "documentsScanned": 27491,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e408f07abca4db4a83cdeeec8360c942896ae33139628ed9e594ce5d0684ff42",
+  "manifestHash": "287124dcf6e25bc391227c414e34b5f9784e849daddd9f10402f41cedcb8a00d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43912,
+      "ok": 43924,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -54766,6 +54766,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/021-dsh-remaining-direct-writers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/022-dsh-verify-iteration-executor/scratch",
       "reason": "excluded directory"
     },
     {
