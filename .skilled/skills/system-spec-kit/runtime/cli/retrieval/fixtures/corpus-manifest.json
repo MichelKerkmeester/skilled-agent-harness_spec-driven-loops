@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f36755986a5b737d52c469aac5505449a47ab03c430fd1313931de19be48d34c",
+  "corpusHash": "dfbd4b898056644eee63f781618b5f955a6ae2f11a5179034750b021b33256f3",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27542,
+  "includedPathCount": 27558,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9521,6 +9521,14 @@
     "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -10714,6 +10722,14 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/025-alignment-open-findings/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/025-alignment-open-findings/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/025-alignment-open-findings/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -27574,7 +27590,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ae9b586cd1a22a5c42494d8db472709fd012440004c085048f4a5e212ca7a14d",
+  "manifestHash": "7a9227009aee8615657cb6fc1d6fcb7e8b7a3eb0e3643a77e4a71bbb522ef76e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28690,6 +28706,14 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/scratch",
       "reason": "excluded directory"
     },
     {
@@ -30038,6 +30062,14 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/025-alignment-open-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/scratch",
       "reason": "excluded directory"
     },
     {

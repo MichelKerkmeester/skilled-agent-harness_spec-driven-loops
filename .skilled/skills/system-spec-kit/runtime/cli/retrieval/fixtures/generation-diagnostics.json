@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6819,
-    "ok": 19096,
+    "ok": 19112,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27542,
+  "documentsScanned": 27558,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ae9b586cd1a22a5c42494d8db472709fd012440004c085048f4a5e212ca7a14d",
+  "manifestHash": "7a9227009aee8615657cb6fc1d6fcb7e8b7a3eb0e3643a77e4a71bbb522ef76e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44001,
+      "ok": 44027,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -53467,6 +53467,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/agents/007-agent-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
@@ -54812,6 +54820,14 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/025-alignment-open-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/026-alignment-remaining-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/027-ci-red-checks-after-council-retirement/scratch",
       "reason": "excluded directory"
     },
     {
