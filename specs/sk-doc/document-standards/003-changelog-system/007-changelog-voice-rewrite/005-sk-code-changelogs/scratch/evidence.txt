@@ -1,0 +1,31 @@
+## list
+lists/005.txt lines: 204
+## measure before (HEAD text of the 202 queued files)
+files=202 sentences=3275 avg_words=13.5
+sentences_over_15=1149 sentences_over_22=559
+files_with_a_sentence_over_22=160 files_with_hvr_hard_blockers=4
+## measure after
+files=202 sentences=5243 avg_words=8.7
+sentences_over_15=200 sentences_over_22=0
+files_with_a_sentence_over_22=0 files_with_hvr_hard_blockers=0
+## wave 005 driver
+2026-11-15T14:12:49.042Z finished pass=172 restored=2 unchanged=28
+driver exit=0
+## wave 005 restored files
+.skilled/skills/sk-code/changelog/v3.4.0.0.md .skilled/skills/sk-code/changelog/v3.9.13.0.md 
+## wave 005-retry driver
+2026-11-15T14:13:26.312Z finished pass=2 restored=0 unchanged=0
+driver exit=0
+## wave-verify
+{"listed":204,"keep":174,"restored":28,"missing":0,"problems":2}
+PROBLEM .skilled/skills/sk-code/changelog/v2.1.0.0.md: the saved original is not the file at HEAD
+PROBLEM .skilled/skills/sk-code/sk-code-review/changelog/v1.9.1.0.md: the saved original is not the file at HEAD
+## pilot files against HEAD
+git diff --quiet exit=0
+## changed notes in worktree
+174
+## tokens
+waves 005 and 005-retry worker plus verifier input and output: 7793615
+## first-wave findings of the two restored files
+v3.4.0.0.md: fact check changed (correct it): “A repository that wants more than the floor declares a surface. It can also commit `.sk-code/quality.json`.” changes the original alterna || fact check changed (correct it): The original links the required gate and barred standards as the reason the repository could not finish (“could never finish ... because”) || gates [sentence-mean] 10.1 words a sentence on average, ceiling 10. Use more, shorter sentences
+v3.9.13.0.md: fact check dropped (restore it): The rewrite no longer says that a reworded hygiene template is reported with its file and line; that detail is attached only to the invali || gates [sentence-mean] 10.2 words a sentence on average, ceiling 10. Use more, shorter sentences || fact check changed (correct it): “It also fails when an override row names an id the registry does not know” broadens the failure condition beyond the original’s “any over

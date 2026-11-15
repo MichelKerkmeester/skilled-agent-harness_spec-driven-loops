@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs",
   "description": "Phase 5: sk-code-changelogs",
   "keywords": [
     "phase",
     "sk-code-changelogs"
   ],
-  "lastUpdated": "2026-11-15T06:37:38.210Z",
+  "lastUpdated": "2026-11-15T14:17:37.256Z",
   "specId": "005",
   "folderSlug": "sk-code-changelogs",
   "parentChain": [
@@ -14,7 +15,8 @@
     "003-changelog-system",
     "007-changelog-voice-rewrite"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_15-17__phase-005-rewrote-174-sk-code-changelogs-28.md"
+  ]
 }

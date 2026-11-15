@@ -24,6 +24,8 @@ contextType: "general"
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
 
+`S` is `specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/scratch`. `P` is this phase folder, `specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs`.
+
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 <!-- /ANCHOR:notation -->
 
@@ -31,34 +33,30 @@ contextType: "general"
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [ ] T001 Create project structure (`<folder>`). Verify: `ls <folder>` lists it.
-- [ ] T002 Install dependencies (`<manifest>`). Verify: `<install command>` exits 0.
-- [ ] T003 [P] Configure development tools (`<config>`). Verify: `<tool> --version` exits 0.
+- [x] T001 Confirm the list (`$S/lists/005.txt`). Verify: `wc -l < $S/lists/005.txt` prints 204. Evidence: 204 lines (`$P/scratch/evidence.txt:2`).
+- [x] T002 Dry-run the driver on the list (`$S/rewrite-driver.cjs`). Verify: `--dry-run --slots 2` prints `queued=202`. Evidence: `listed=204 queued=202 refused=0`. The 2 pilot files, committed in `e673c77ba93`, were skipped.
+- [x] T003 [P] Measure the 202 queued files at HEAD (`$S/measure-voice.py`). Verify: it prints the baseline. Evidence: avg 13.5 words, 559 sentences over 22, 4 files with a hard blocker (`$P/scratch/evidence.txt:4`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-<!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
 
-- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
-- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
-- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
-- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
+- [x] T004 Run the wave (`$S/wave-005.log`). Verify: `node $S/rewrite-driver.cjs --slots 2 $S/lists/005.txt` exits 0. Evidence: `pass=172 restored=2 unchanged=28`, driver exit 0 (`$P/scratch/evidence.txt:12`).
+- [x] T005 Read why the 2 restored files failed (`$S/state.jsonl`). Verify: each record lists its findings. Evidence: `v3.4.0.0.md` failed on a changed alternative and a lost link. `v3.9.13.0.md` failed on a dropped detail and the sentence-mean gate (`$P/scratch/evidence.txt:30`, `$P/scratch/evidence.txt:31`). Neither points to a tool fault.
+- [x] T006 Retry the 2 restored files (`$S/wave-005-retry.log`). Verify: `--retry-failed --wave 005-retry` exits 0. Evidence: `pass=2 restored=0`, driver exit 0 (`$P/scratch/evidence.txt:17`). Both passed on their first attempt.
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
-- [ ] T008 Test happy path manually (`<file>`). Verify: `<command>` prints <expected output>.
-- [ ] T009 Test edge cases (`<test>`). Verify: `<test command>` exits 0.
-- [ ] T010 Update documentation (`<doc>`). Verify: `rg -n '<term>' <doc>` prints one line.
+- [x] T007 Check the wave against HEAD (`$S/wave-verify.cjs`). Verify: no problem for a file this phase rewrote and no missing file. Evidence: `{"listed":204,"keep":174,"restored":28,"missing":0,"problems":2}`. The 2 problems are the pilot files, whose saved original predates the pilot. Both match HEAD, `git diff --quiet` exit 0 (`$P/scratch/evidence.txt:20`, `$P/scratch/evidence.txt:24`).
+- [x] T008 Measure the 202 files after the waves (`$S/measure-voice.py`). Verify: `sentences_over_22=0` and `files_with_hvr_hard_blockers=0`. Evidence: avg 8.7 words, 0 over 22, 0 hard blockers (`$P/scratch/evidence.txt:8`).
+- [x] T009 Sum the phase tokens (`$S/state.jsonl`). Verify: the summary names the total. Evidence: 7,793,615 tokens for the two waves (`$P/scratch/evidence.txt:28`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,9 +65,9 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -102,100 +100,83 @@ contextType: "general"
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-<!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md Evidence: spec.md REQ-001 to REQ-005.
+- [x] CHK-002 [P0] Technical approach defined in plan.md Evidence: plan.md.
+- [x] CHK-003 [P1] Vibe and Codex quota is available Evidence: both waves ran with no usage limit.
 <!-- /ANCHOR:pre-impl -->
 
 ---
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-<!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] The driver is the one phase 004 committed Evidence: no driver or brief file changed in this phase.
+- [x] CHK-011 [P0] Every driver run exits 0 Evidence: `driver exit=0` twice (`$P/scratch/evidence.txt:13`, `$P/scratch/evidence.txt:18`).
+- [x] CHK-012 [P1] A file that fails three attempts is restored to HEAD Evidence: both first-wave failures were restored, and `wave-verify.cjs` found no drift.
+- [x] CHK-013 [P1] N/A: no code comment was added in this phase.
 <!-- /ANCHOR:code-quality -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
-<!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met Evidence: every row in acceptance-criteria.md is Met.
+- [x] CHK-021 [P0] Every kept file passed the fact check Evidence: each pass record carries a `gpt-6-luna` verifier at `xhigh` with a read-only sandbox.
+- [x] CHK-022 [P1] Files already passing were left unchanged Evidence: 28 recorded `unchanged`, each with no diff against HEAD.
+- [x] CHK-023 [P1] A restored file was retried Evidence: the one retry wave kept both files.
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
-<!-- FILL: Write this section when the packet fixes a reported finding. Delete it otherwise. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+N/A: this phase fixes no reported finding and changes no tool.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
 
 <!-- ANCHOR:security -->
 ## Security
-<!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] `scripts/rotate-logs.sh` reads no credential. WEAK: Security is fine. -->
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] CHK-030 [P0] No brief or state row holds a credential Evidence: the state holds tokens and verdicts only.
+- [x] CHK-031 [P0] The fact-check executor runs with no write access Evidence: each verifier record shows `sandbox` `read-only`.
+- [x] CHK-032 [P1] N/A: no auth surface.
 <!-- /ANCHOR:security -->
 
 ---
 
 <!-- ANCHOR:docs -->
 ## Documentation
-<!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-041 [P1] The retry outcome is recorded where a later phase will read it Evidence: implementation-summary.md Key Decisions.
+- [x] CHK-042 [P2] N/A: no README changes
 <!-- /ANCHOR:docs -->
 
 ---
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-<!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Run state and logs live in the parent's `scratch/`, and phase evidence in this phase's `scratch/` Evidence: `$S/state.jsonl`, `$S/wave-005*.log`, `$P/scratch/evidence.txt`.
+- [x] CHK-051 [P1] No parked rewrite is left in a changelog Evidence: `$S/failed/` holds the last rejected drafts of `sk-code/changelog/v3.4.0.0.md` and `v3.9.13.0.md` from the restored attempts, beside drafts from earlier phases. None was applied. The worktree files are the kept 005-retry rewrites, which `wave-verify.cjs` checked against HEAD.
 <!-- /ANCHOR:file-org -->
 
 ---
 
 <!-- ANCHOR:summary -->
 ## Verification Summary
-<!-- FILL: Count the boxes by priority and write the three totals. GOOD: P0 12, P1 13, P2 1. WEAK: Most items done. -->
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 10 | 10/10 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-15
 <!-- /ANCHOR:summary -->
 
 ---
-
-
-
