@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`relocate.mjs` finds an old id with the pattern below, which matches a multi-segment id or a root packet after `specs/`",
     "created_at": "2026-11-14T06:11:00Z",
-    "last_save_at": "2026-11-14T09:23:37.133Z",
+    "last_save_at": "2026-11-14T14:14:25.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1fa7a1ff0072dcf11661f4da2b31bfd0052afd95f46338364512e432e20a3fdd",
+    "source_fingerprint": "sha256:f96dba5866d155c1db00e6cb2dc8409dbcefd070af433d0874faded595e8baa3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a7463c8fac87987e99400a17a540e4136f0a95338a50c6166641b2c93fb24681",
       "plan.md": "f2ec79263bfc5c0037cbd9e6135c064e582df91eed7b51589287631daa8a07d3",
-      "tasks.md": "96b24927ec08413ebac941935d157a9406ab2edafe33843833c94672e656be29",
+      "tasks.md": "d4e72ff5aaf81def4454b6da5366369cc4b2f615484222544d06967762ca126a",
       "implementation-summary.md": "248d0c6aa74ec2a66451ac15448e171ea2e0ba4f40d9c28c2c97a549171566a9"
     },
     "last_active_at": null

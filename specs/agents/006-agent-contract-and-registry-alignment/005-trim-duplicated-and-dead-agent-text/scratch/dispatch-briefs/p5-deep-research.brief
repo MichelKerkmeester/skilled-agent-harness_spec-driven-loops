@@ -1,0 +1,111 @@
+Remove text from one agent file that repeats rules the same file already states elsewhere, and
+bring its advisor block to the shared wording where the changes below say so. Every change is a
+deletion, a section renumbering that follows a deletion, or a re-wrap of the advisor block. No
+rule is reworded.
+
+The two files are the canonical file and its twin. Each has its own list of changes below,
+because the twin's text can differ in path strings. Apply each list to its own file.
+
+Files:
+1. .skilled/agents/deep-research.md
+2. .claude/agents/deep-research.md
+
+Do not touch the frontmatter. A commit hook raises the `version` field.
+Each change below gives the exact text to find (OLD) and the exact text that replaces it (NEW).
+The first and last lines of OLD and NEW are unchanged context lines, shown so the place is unambiguous.
+Blank lines inside OLD and NEW are part of the text. Apply every change, top to bottom.
+
+######## FILE: .skilled/agents/deep-research.md ########
+
+Change 1, at about line 601 (OLD runs to the end of the file). Removes 32 line(s), adds 0.
+<<<<<<< OLD
+- `.skilled/skills/system-spec-kit/SKILL.md` — the packet-scope discipline behind the local-owner research packet rule.
+
+---
+
+## 11. SUMMARY
+
+```text
+┌─────────────────────────────────────────────────────────────────────────┐
+│          THE DEEP RESEARCHER: AUTONOMOUS ITERATION AGENT                │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Execute ONE focused research iteration                             │
+│  ├─► Read externalized state, verify packet scope, write findings        │
+│  ├─► Append exactly one iteration record for convergence detection      │
+│  └─► Verify outputs before reporting completion                         │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. Read state (config + JSONL + strategy.md)                        │
+│  ├─► 2. Verify packet-local write boundary                              │
+│  ├─► 3. Determine focus and classify edge cases                         │
+│  ├─► 4. Execute 3-5 research actions (WebFetch, Grep, Read)             │
+│  ├─► 5. Write iteration-NNN.md with cited findings                       │
+│  ├─► 6. Append exactly one JSONL iteration record                       │
+│  ├─► 7. Progressively update research/research.md when enabled          │
+│  └─► 8. Verify files, citations, append count, and packet scope          │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► LEAF-only: no sub-agent dispatch                                   │
+│  ├─► Scope lock: writes stay inside the resolved research packet        │
+│  ├─► Autonomous: never ask the user                                     │
+│  └─► Externalize everything: write to files, not context                 │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.skilled/skills/system-spec-kit/SKILL.md` — the packet-scope discipline behind the local-owner research packet rule.
+
+>>>>>>> END
+
+######## FILE: .claude/agents/deep-research.md ########
+
+Change 1, at about line 586 (OLD runs to the end of the file). Removes 32 line(s), adds 0.
+<<<<<<< OLD
+- `.skilled/skills/system-spec-kit/SKILL.md` — the packet-scope discipline behind the local-owner research packet rule.
+
+---
+
+## 11. SUMMARY
+
+```text
+┌─────────────────────────────────────────────────────────────────────────┐
+│          THE DEEP RESEARCHER: AUTONOMOUS ITERATION AGENT                │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Execute ONE focused research iteration                             │
+│  ├─► Read externalized state, verify packet scope, write findings        │
+│  ├─► Append exactly one iteration record for convergence detection      │
+│  └─► Verify outputs before reporting completion                         │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. Read state (config + JSONL + strategy.md)                        │
+│  ├─► 2. Verify packet-local write boundary                              │
+│  ├─► 3. Determine focus and classify edge cases                         │
+│  ├─► 4. Execute 3-5 research actions (WebFetch, Grep, Read)             │
+│  ├─► 5. Write iteration-NNN.md with cited findings                       │
+│  ├─► 6. Append exactly one JSONL iteration record                       │
+│  ├─► 7. Progressively update research/research.md when enabled          │
+│  └─► 8. Verify files, citations, append count, and packet scope          │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► LEAF-only: no sub-agent dispatch                                   │
+│  ├─► Scope lock: writes stay inside the resolved research packet        │
+│  ├─► Autonomous: never ask the user                                     │
+│  └─► Externalize everything: write to files, not context                 │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.skilled/skills/system-spec-kit/SKILL.md` — the packet-scope discipline behind the local-owner research packet rule.
+
+>>>>>>> END
+
+The markers `<<<<<<< OLD`, `======= NEW` and `>>>>>>> END` are not part of any file. Never write them.
+
+Verification (run all, paste the output in the handback):
+  wc -l < .skilled/agents/deep-research.md      # expect: 599
+  wc -w < .skilled/agents/deep-research.md      # expect: 4923
+  wc -l < .claude/agents/deep-research.md      # expect: 584
+  wc -w < .claude/agents/deep-research.md      # expect: 4901
+  rg -c '^│' .skilled/agents/deep-research.md .claude/agents/deep-research.md      # expect: no output

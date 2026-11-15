@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.1.0.md (read lines 13 to 17 only)
+
+EDIT. On line 15, replace the literal text
+no longer carries, and the scripts README named
+with the literal text
+no longer carries. The scripts README named
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.1.0.md | tail -2
+Expected output: a line that starts with `PASS`, then `SUMMARY files=1 pass=1 fail=0`

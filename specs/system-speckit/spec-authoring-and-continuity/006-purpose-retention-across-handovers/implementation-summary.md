@@ -17,7 +17,7 @@ _memory:
       - "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/research.md"
       - "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md"
     session_dedup:
-      fingerprint: "sha256:87ee5f1a62a2d0268f234cec7d1b800e2d18541ede7944655aea930ccee49fb1"
+      fingerprint: "sha256:2eedb7b26b9a627c87f9227d4be94b1da68f641c452e0649820323387c1cbd7e"
       session_id: "scaffold-006-purpose-retention-across-handovers"
       parent_session_id: null
     session_ref:

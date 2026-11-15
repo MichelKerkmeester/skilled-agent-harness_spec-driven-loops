@@ -54,6 +54,29 @@ function stubFailsOnce(file: string, pass: string): void {
   );
 }
 
+// The real migration writer records a renumbered packet's bare number and slug
+// in its description. This fixture writer does the same, so a finished map has
+// no stale identity left for a rerun to report.
+function stubMigrateIdentity(): void {
+  stub(
+    path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'graph', 'migrate-generated-json.ts'),
+    [
+      "import fs from 'node:fs';",
+      'for (let index = 0; index < process.argv.length; index += 1) {',
+      "  if (process.argv[index] !== '--only') continue;",
+      '  const folder = process.argv[index + 1];',
+      '  const file = `${folder}/description.json`;',
+      "  const desc = JSON.parse(fs.readFileSync(file, 'utf8'));",
+      "  const name = folder.split('/').pop();",
+      '  desc.specId = name.slice(0, 3);',
+      '  desc.folderSlug = name.slice(4);',
+      "  fs.writeFileSync(file, JSON.stringify(desc, null, 2) + '\\n');",
+      '}',
+      '',
+    ].join('\n'),
+  );
+}
+
 // The script resolves its helpers from the repository it runs in, so every
 // path it spawns must exist below the temporary root.
 function installTools(): void {
@@ -351,6 +374,27 @@ describe('relocate phase renumber names', () => {
     expect((summary.match(/scaffold-003-gamma/g) ?? []).length).toBe(1);
   });
 
+  it('leaves a bare phase name that follows another folder name', () => {
+    track('omega', [], ['omega/core']);
+    declaredSubtrack('omega/core');
+    phaseParent('omega/core/005-p', ['001-alpha', '003-gamma']);
+    const parentSpecFile = path.join(specs, 'omega/core/005-p/spec.md');
+    fs.appendFileSync(
+      parentSpecFile,
+      '\nSee other-track/003-gamma, 005-p/003-gamma, ./003-gamma/ and ../003-gamma/spec.md.\n',
+    );
+    commitFixture();
+
+    const result = relocate(['--renumber', 'omega/core/005-p', '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    const parentSpec = fs.readFileSync(parentSpecFile, 'utf8');
+    expect(parentSpec).toContain('other-track/003-gamma');
+    expect(parentSpec).toContain('005-p/002-gamma');
+    expect(parentSpec).toContain('./002-gamma/');
+    expect(parentSpec).toContain('../002-gamma/spec.md');
+  });
+
   it('leaves a second phase parent that holds the same child name untouched', () => {
     track('omega', [], ['omega/core']);
     declaredSubtrack('omega/core');
@@ -449,6 +493,85 @@ describe('relocate re-parent', () => {
     expect(result.stdout).toMatch(/no map row added/);
     expect(result.stdout).toMatch(/add binding row 002-gamma/);
     expect(result.stdout).toMatch(/no handoff row added/);
+  });
+
+  // A tracked move with no row rewritten is the state a run leaves when it
+  // stops after its move step. The rerun learns the move from git, so it must
+  // still finish the rows in both parents.
+  it('finishes the phase rows after a tracked move stopped before the rewrite', () => {
+    track('omega', [], ['omega/core']);
+    declaredSubtrack('omega/core');
+    phaseParent('omega/core/003-phased-thing', ['001-alpha', '003-gamma', '005-delta']);
+    phaseParent('omega/core/004-other', ['001-delta']);
+    commitFixture();
+    stubMigrateIdentity();
+    execFileSync(
+      'git',
+      ['mv', 'specs/omega/core/003-phased-thing/003-gamma', 'specs/omega/core/004-other/002-gamma'],
+      { cwd: repo },
+    );
+    const args = [
+      '--from', 'omega/core/003-phased-thing/003-gamma',
+      '--to', 'omega/core/004-other/002-gamma',
+      '--apply',
+    ];
+
+    const result = relocate(args);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    const oldParent = path.join(specs, 'omega/core/003-phased-thing');
+    expect(fs.readFileSync(path.join(oldParent, 'spec.md'), 'utf8')).not.toContain('003-gamma');
+    expect(fs.readFileSync(path.join(oldParent, 'goal.md'), 'utf8')).not.toContain('003-gamma');
+    const newParent = path.join(specs, 'omega/core/004-other');
+    const newSpec = fs.readFileSync(path.join(newParent, 'spec.md'), 'utf8');
+    expect(newSpec.split('\n').some((line) => /^\|\s*2\s*\|\s*002-gamma\/\s*\|/.test(line))).toBe(true);
+    const newGoal = fs.readFileSync(path.join(newParent, 'goal.md'), 'utf8');
+    expect(newGoal.split('\n').some((line) => /^\|\s*002-gamma\s*\|/.test(line))).toBe(true);
+    const moved = fs.readFileSync(path.join(newParent, '002-gamma', 'spec.md'), 'utf8');
+    expect(moved).toMatch(/\|\s*\*\*Predecessor\*\*\s*\|\s*001-delta\s*\|/);
+    expect(moved).toMatch(/\|\s*\*\*Successor\*\*\s*\|\s*None\s*\|/);
+
+    const second = relocate(args);
+    expect(second.status, second.stdout + second.stderr).toBe(0);
+    expect(second.stdout).toContain('relocate: nothing to do');
+  });
+
+  // A rewrite stopped between the two parents can leave the old parent's rows
+  // already gone. The new parent's missing row is then the only stale signal,
+  // and a rerun still has to write it.
+  it('finishes the new parent rows when the old parent no longer has them', () => {
+    track('omega', [], ['omega/core']);
+    declaredSubtrack('omega/core');
+    phaseParent('omega/core/003-phased-thing', ['001-alpha', '003-gamma', '005-delta']);
+    phaseParent('omega/core/004-other', ['001-delta']);
+    commitFixture();
+    stubMigrateIdentity();
+    execFileSync(
+      'git',
+      ['mv', 'specs/omega/core/003-phased-thing/003-gamma', 'specs/omega/core/004-other/002-gamma'],
+      { cwd: repo },
+    );
+    const oldParent = path.join(specs, 'omega/core/003-phased-thing');
+    for (const document of ['spec.md', 'goal.md']) {
+      const file = path.join(oldParent, document);
+      const kept = fs.readFileSync(file, 'utf8').split('\n').filter((line) => !line.includes('003-gamma'));
+      fs.writeFileSync(file, kept.join('\n'));
+    }
+    const args = [
+      '--from', 'omega/core/003-phased-thing/003-gamma',
+      '--to', 'omega/core/004-other/002-gamma',
+      '--apply',
+    ];
+
+    const result = relocate(args);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    const newSpec = fs.readFileSync(path.join(specs, 'omega/core/004-other', 'spec.md'), 'utf8');
+    expect(newSpec.split('\n').some((line) => /^\|\s*2\s*\|\s*002-gamma\/\s*\|/.test(line))).toBe(true);
+
+    const second = relocate(args);
+    expect(second.status, second.stdout + second.stderr).toBe(0);
+    expect(second.stdout).toContain('relocate: nothing to do');
   });
 });
 
@@ -785,6 +908,126 @@ describe('relocate resume', () => {
     const second = relocate(['--map', map, '--apply']);
     expect(second.status, second.stdout + second.stderr).toBe(0);
     expect(second.stdout).toContain('relocate: nothing to do');
+  });
+
+  // The packet verdict is the last word only when the validator actually
+  // printed it; the move itself landed, so the close stays closed.
+  it('keeps the map closed when the moved packet validation prints RESULT: FAILED', () => {
+    track('alpha', ['alpha/001-a'], ['alpha/sub']);
+    declaredSubtrack('alpha/sub');
+    commitFixture();
+    stub(
+      path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'validate.sh'),
+      '#!/usr/bin/env bash\nprintf "RESULT: FAILED\\n"\nexit 1\n',
+      0o755,
+    );
+    const args = ['--from', 'alpha/001-a', '--to', 'alpha/sub/001-a'];
+
+    const first = relocate([...args, '--apply']);
+    expect(first.status, first.stdout + first.stderr).toBe(3);
+    expect(first.stdout).toContain('close validate specs/alpha/sub/001-a: RESULT: FAILED');
+
+    const second = relocate([...args, '--apply']);
+    expect(second.status, second.stdout + second.stderr).toBe(0);
+    expect(second.stdout).toContain('relocate: nothing to do');
+  });
+
+  // A validator that stopped before printing its verdict never reported on the
+  // packet, so the close stays open and the rerun must ask it again.
+  it('reruns the validate step after a validator printed no RESULT line once', () => {
+    track('alpha', ['alpha/001-a'], ['alpha/sub']);
+    declaredSubtrack('alpha/sub');
+    commitFixture();
+    const calls = path.join(repo, 'validate-calls');
+    stub(
+      path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'validate.sh'),
+      [
+        '#!/usr/bin/env bash',
+        `calls=${JSON.stringify(calls)}`,
+        'count=0',
+        '[[ -f "$calls" ]] && count="$(cat "$calls")"',
+        'count=$((count + 1))',
+        'printf "%s" "$count" > "$calls"',
+        '[[ "$count" -eq 1 ]] && exit 1',
+        'printf "RESULT: PASSED\\n"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      0o755,
+    );
+    const args = ['--from', 'alpha/001-a', '--to', 'alpha/sub/001-a'];
+
+    const first = relocate([...args, '--apply']);
+    expect(first.status, first.stdout + first.stderr).toBe(2);
+    expect(first.stdout).toContain('close validate specs/alpha/sub/001-a: no RESULT line (exit 1)');
+
+    const second = relocate([...args, '--apply']);
+    expect(second.status, second.stdout + second.stderr).toBe(0);
+    expect(second.stdout).toContain('close validate specs/alpha/sub/001-a: RESULT: PASSED');
+    expect(fs.readFileSync(calls, 'utf8')).toBe('2');
+  });
+
+  // A validator that exits 0 without printing a verdict line has still finished
+  // its check, so the close is complete and the rerun must find nothing to do.
+  it('keeps the map closed when a validator exits 0 without a RESULT line', () => {
+    track('alpha', ['alpha/001-a'], ['alpha/sub']);
+    declaredSubtrack('alpha/sub');
+    commitFixture();
+    const calls = path.join(repo, 'validate-calls');
+    stub(
+      path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'validate.sh'),
+      [
+        '#!/usr/bin/env bash',
+        `calls=${JSON.stringify(calls)}`,
+        'count=0',
+        '[[ -f "$calls" ]] && count="$(cat "$calls")"',
+        'count=$((count + 1))',
+        'printf "%s" "$count" > "$calls"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      0o755,
+    );
+    const args = ['--from', 'alpha/001-a', '--to', 'alpha/sub/001-a'];
+
+    const first = relocate([...args, '--apply']);
+    expect(first.status, first.stdout + first.stderr).toBe(0);
+    expect(first.stdout).toContain('close validate specs/alpha/sub/001-a: no RESULT line (exit 0)');
+
+    const second = relocate([...args, '--apply']);
+    expect(second.status, second.stdout + second.stderr).toBe(0);
+    expect(second.stdout).toContain('relocate: nothing to do');
+    expect(fs.readFileSync(calls, 'utf8')).toBe('1');
+  });
+
+  // A packet verdict and a validator that never reported are different
+  // outcomes; the unfinished one outranks the packet-only status.
+  it('returns 2 when one moved packet fails its validation and another validator never reports', () => {
+    track('alpha', ['alpha/001-a', 'alpha/002-b'], ['alpha/sub']);
+    declaredSubtrack('alpha/sub');
+    const map = writeMap([
+      { from: 'alpha/001-a', to: 'alpha/sub/001-a' },
+      { from: 'alpha/002-b', to: 'alpha/sub/002-b' },
+    ]);
+    commitFixture();
+    stub(
+      path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'validate.sh'),
+      [
+        '#!/usr/bin/env bash',
+        'case "$1" in',
+        '  specs/alpha/sub/001-a) printf "RESULT: FAILED\\n"; exit 1 ;;',
+        '  *) exit 1 ;;',
+        'esac',
+        '',
+      ].join('\n'),
+      0o755,
+    );
+
+    const result = relocate(['--map', map, '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(2);
+    expect(result.stdout).toContain('close validate specs/alpha/sub/001-a: RESULT: FAILED');
+    expect(result.stdout).toContain('close validate specs/alpha/sub/002-b: no RESULT line (exit 1)');
   });
 
   // A failed step is an unfinished run even when a moved packet's own

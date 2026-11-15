@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Three archive paths end in a state the operator decisions forbid",
     "created_at": "2026-11-14T06:11:00Z",
-    "last_save_at": "2026-11-14T09:23:38.487Z",
+    "last_save_at": "2026-11-14T14:14:25.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c54c3bcc302fdf0736eb90acfe732dffa7edbceb1181e4d824c5434c22c895d",
+    "source_fingerprint": "sha256:7f25b34d53cdfe62aa771329d809dea633abd3092f3a9f4eeb2393b370ba08f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4778f5cbf262ff208ca8d01948d1bf6276a34918df71d39ba190f6379ef3e55d",
       "plan.md": "39b52d19ebd0e3c721c9a41ea617c5ec403bc61f5483ba5feb3c0f8f9bc6e6d7",
-      "tasks.md": "a86b139c544350d5f23ddf7f3effbd3f36544e8bd186722adad834f6316bfbb6",
+      "tasks.md": "0288170d68bb22abc79298c2c7464293b8bf3c567114a9c100bb8205495c651b",
       "implementation-summary.md": "cf82b33be90eea4360b9b901a816bb9fae47ddbf159a19f5998b4b7b95b32e33"
     },
     "last_active_at": null

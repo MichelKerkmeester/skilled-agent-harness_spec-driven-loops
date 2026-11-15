@@ -71,7 +71,7 @@ The 41 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`),
 | `lineage-patch-required` | A dsh dispatch passes `.dsh/patches/lineage.patch.yml` |
 | `guards-patch-required` | Every dsh dispatch passes `.dsh/patches/guards.patch.yml` before app flags |
 | `json-final-and-exit-required` | A dsh caller requires `--json`, exit 0 and a final event with `reason.kind` `completed` |
-| `pinned-version-required` | An explicit `npx @deepseek-ai/dsh@<version>` names `0.2.2-rc.1`; command text cannot read an installed binary's version |
+| `pinned-version-required` | An explicit `npx @deepseek-ai/dsh@<version>` names `0.2.2-rc.3`; command text cannot read an installed binary's version |
 | `command-v-dsh-required` | A command invoking `dsh` resolves a `dsh` executable on `PATH` |
 | `no-repo-root-dotenv` | A dsh dispatch does not use the repository root as its working directory, including through `cd "$REPO"` |
 | `mcp-opt-in-only` | MCP remains disabled unless the dispatch explicitly passes its dedicated patch |

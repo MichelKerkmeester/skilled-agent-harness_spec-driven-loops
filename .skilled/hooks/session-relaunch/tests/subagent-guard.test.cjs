@@ -310,11 +310,35 @@ test('subagent-guard lets a question dialog through over another session\'s pend
   assertSilent(result);
 });
 
-test('subagent-guard lets a question dialog through once the record is armed', async (t) => {
+test('subagent-guard denies a question dialog over an armed record whose killer is gone', async (t) => {
   const sandbox = createSandbox(t);
   preparePendingRecord(sandbox);
   const armed = core.arm({ loopId: LOOP_ID, cwd: sandbox.root, env: sandbox.env });
   assert.equal(armed?.status, 'armed');
+  const result = await runGuard(sandbox, JSON.stringify(questionPayload(sandbox)));
+  assertQuestionDenied(result);
+});
+
+test('subagent-guard lets a question dialog through over an armed record with a live killer', async (t) => {
+  const sandbox = createSandbox(t);
+  preparePendingRecord(sandbox);
+  const armed = core.arm({ loopId: LOOP_ID, cwd: sandbox.root, env: sandbox.env });
+  assert.equal(armed?.status, 'armed');
+  const lockPath = path.join(core.stateDir(sandbox.env), `killer-${LOOP_ID}.lock`);
+  fs.mkdirSync(path.dirname(lockPath), { recursive: true });
+  fs.writeFileSync(lockPath, `${process.pid} ${new Date().toISOString()}\n`);
+  const result = await runGuard(sandbox, JSON.stringify(questionPayload(sandbox)));
+  assertSilent(result);
+});
+
+test('subagent-guard lets a question dialog through when the record read throws', async (t) => {
+  const sandbox = createSandbox(t);
+  preparePendingRecord(sandbox);
+  const recordPath = core.relaunchFilePath(LOOP_ID, sandbox.env);
+  t.after(() => {
+    if (fs.existsSync(recordPath)) fs.chmodSync(recordPath, 0o600);
+  });
+  fs.chmodSync(recordPath, 0o000);
   const result = await runGuard(sandbox, JSON.stringify(questionPayload(sandbox)));
   assertSilent(result);
 });

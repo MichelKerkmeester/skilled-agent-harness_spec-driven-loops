@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters",
+  "spec_folder": "agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters",
+  "parent_id": "agents/006-agent-contract-and-registry-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent registry and generated rosters",
+      "phase 2 agent registry and generated rosters",
+      "agent registry and generated rosters plan",
+      "agent registry and generated rosters tasks",
+      "agent registry and generated rosters acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "agent registry and generated rosters implementation summary"
+    ],
+    "key_topics": [
+      "agent",
+      "registry",
+      "rosters",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/bin/sync-agent-roster.cjs",
+      ".skilled/bin/sync-agent-roster.vitest.ts",
+      ".skilled/agents/orchestrate.md",
+      ".skilled/agents/README.txt",
+      ".github/workflows/agent-mirror-sync.yml",
+      ".skilled/bin/README.md",
+      ".claude/agents/orchestrate.md",
+      "scratch/row-parity.md",
+      ".skilled/bin/check-agent-mirror-sync.cjs",
+      "scratch/baseline.txt",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      "scratch/tier-parity.md",
+      "scratch/after.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/sync-agent-roster.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/agent-mirror-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "row-parity.md",
+        "kind": "doc",
+        "path": "scratch/row-parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "tier-parity.md",
+        "kind": "doc",
+        "path": "scratch/tier-parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The list of agents is written by hand in `.skilled/agents/README.txt` and three times in `orchestrate.md`: the routing table, the leaf list and the agent files table",
+    "created_at": "2026-11-14T11:36:21Z",
+    "last_save_at": "2026-11-14T12:39:16.752Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9200df37bbde8689570e753bb4f21bad08673ad5054597438c20815be779db8d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "da3b72fa033e074d5fac354f74e85915fcd068e763924cbe7b5f32a65781f6ae",
+      "plan.md": "a546f588520c96f7ff7474777f50234b443bd8ac3ab87a8f24c253c0321afbb8",
+      "tasks.md": "ed48d6f1268042c26982742df3b8f8ee60fa74ed3c2fa528e5a08a5c49ce41c1",
+      "implementation-summary.md": "02d662810026dfca3c2929d19397ab5b79513f1381898a69fc67388eb308b1c1"
+    },
+    "last_active_at": null
+  }
+}

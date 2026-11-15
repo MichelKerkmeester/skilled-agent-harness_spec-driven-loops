@@ -75,8 +75,8 @@ Do not add a packet-local wrapper, spawn path or command builder. Direct `openco
 
 ### Prerequisites
 
-**Verified versions.** This skill was verified against OpenCode 2.1.4 and OpenCode 1.19.4 on 2026-10-24.
-Flag and provider observations naming 2.0.32 or 1.19.3 were read on those releases, not re-read on 2.1.4 or 1.19.4.
+**Verified versions.** This skill was verified against OpenCode 2.3.0 and OpenCode 1.19.4 on 2026-11-14.
+Flag and provider observations naming 2.0.32 or 1.19.3 were read on those releases, not re-read on 2.3.0 or 1.19.4.
 OpenCode 2 is expected and recommended; OpenCode 1 remains supported for now as a fallback for users who have not updated.
 The skill loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified.
 The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
@@ -88,7 +88,7 @@ This skill's OpenCode 1 command lines name `opencode`, which is right on a v1-on
 ```bash
 # Binary pick and version check: references/install-and-versions.md §4-5.
 OC=${OPENCODE_BIN:-}; if [ -z "$OC" ]; then OC=$(command -v opencode2 2>/dev/null); [ -z "$OC" ] && OC=$(command -v opencode 2>/dev/null); fi
-"$OC" --version   # `opencode v2.1.4` = OpenCode 2 (expected), `1.19.4` = OpenCode 1 (fallback); either major passes
+"$OC" --version   # `opencode v2.3.0` = OpenCode 2 (expected), `1.19.4` = OpenCode 1 (fallback); either major passes
 
 # Self-invocation guard. OPENCODE_API_KEY is a provider key an operator exports, not a session marker.
 env | grep -v '^OPENCODE_API_KEY=' | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
@@ -128,7 +128,8 @@ Honor explicit user model, port, and handback phrasing verbatim. Otherwise use t
 
 Core flags on OpenCode 2:
 - Effort goes in `-m provider/model#<level>`; `--dir` becomes a start-in-directory `cd`.
-- `run` adds `--standalone` and `--server`. Log flags are global.
+- `--standalone`, `--server` and the log flags are global, and `run` accepts them on its command line.
+- `run` also takes `--worktree` and `--archived`, neither of which this skill passes.
 - `--share`, `--port` and `--pure` are absent on `run`.
 
 OpenCode 1 fallback supports:
@@ -193,7 +194,7 @@ On OpenCode 1 (fallback), `--port <N>` serves explicit detached sessions and `--
 
 ### ✅ ALWAYS
 
-1. Verify OpenCode CLI is installed before first invocation. Confirm the version baseline for OpenCode 2 (2.1.4, the expected version) or OpenCode 1 (1.19.4, supported for now as a fallback), with drift handling per `references/cli-reference.md` §9.
+1. Verify OpenCode CLI is installed before first invocation. Confirm the version baseline for OpenCode 2 (2.3.0, the expected version) or OpenCode 1 (1.19.4, supported for now as a fallback), with drift handling per `references/cli-reference.md` §9.
 2. **Run the self-invocation guard before dispatch** (ADR-001): Layer 1 env-var lookup for any `OPENCODE_*` other than `OPENCODE_API_KEY`, Layer 2 process-ancestry probe for `opencode` parent, Layer 3 `~/.opencode/state/<id>/lock` probe. Trip on ANY positive. Refuse unless the prompt has explicit parallel-session keywords.
 3. Pin model, variant, format and dir explicitly.
    - OpenCode 2 default: `-m llmgateway/deepseek-v4.1-flash-1017#max --format json` with a start-in-directory `cd`.
@@ -277,7 +278,7 @@ On OpenCode 1 (fallback), `--port <N>` serves explicit detached sessions and `--
 
 1. OpenCode CLI is not installed and user has not acknowledged (provide `brew install opencode` or `curl -fsSL https://opencode.ai/install | bash`).
 2. Operator asks for a share URL. OpenCode 2 `run` has no share flag, and OpenCode 1.19.3 discontinued session sharing, so say there is no URL to publish.
-3. Binary version differs from the OpenCode 2 (2.1.4, expected) or OpenCode 1 (1.19.4, fallback) baseline. Run `opencode --version` (`opencode1 --version` for the side-by-side OpenCode 1) and `run --help`, then surface drift and fall back or require approval.
+3. Binary version differs from the OpenCode 2 (2.3.0, expected) or OpenCode 1 (1.19.4, fallback) baseline. Run `opencode --version` (`opencode1 --version` for the side-by-side OpenCode 1) and `run --help`, then surface drift and fall back or require approval.
 4. Smart router cannot map the prompt to one of the three use cases. Surface the disambiguation checklist from UNKNOWN_FALLBACK.
 5. Self-invocation guard trips AND the prompt is ambiguous. Surface the refusal with three remediation options (sibling cli-* / fresh shell / parallel-session keywords).
 

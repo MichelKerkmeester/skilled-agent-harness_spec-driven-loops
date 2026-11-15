@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers",
+  "description": "Phase 3: skill-binding-through-routers",
+  "keywords": [
+    "phase",
+    "skill-binding-through-routers"
+  ],
+  "lastUpdated": "2026-11-14T13:05:00.799Z",
+  "specId": "003",
+  "folderSlug": "skill-binding-through-routers",
+  "parentChain": [
+    "agents",
+    "006-agent-contract-and-registry-alignment"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_14-05__closed-phase-003-six-agent-files-design-markdown.md"
+  ]
+}

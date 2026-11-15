@@ -108,7 +108,11 @@
     "renumber a spec packet",
     "validate the archived spec packets",
     "packets under z_archive",
-    "quote a phrase in archived spec packets"
+    "quote a phrase in archived spec packets",
+    "autopilot mode",
+    "autopilot execution mode",
+    "spec folders for the phrase",
+    "which spec packets mention"
   ],
   "derived": {
     "trigger_phrases": [

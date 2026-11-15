@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title"
-    last_updated_at: "2026-11-14T07:29:41Z"
+    last_updated_at: "2026-11-14T19:30:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Passed the six completion criteria and logged the commits of children 012 to 014"
-    next_safe_action: "Operator decides merge and push of branch worktrees/373-relaunch-gap-fixes"
+    recent_action: "All twenty-three children are built and the six completion criteria pass"
+    next_safe_action: "The operator decides the merge and push"
     blockers: []
     key_files: []
     session_dedup:
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** A Claude Code session that hands over cannot park its hop behind a question dialog, starts its receiver on the unfinished goal of its packet when it set no goal itself and keeps its generated title in the next session. The research gaps the operator chose to close are closed: a changed wrapper says so before a hop, a hand-over Stop cannot arm stops blocking questions, a goal the operator ended stays ended and the documents say what the code does.
+**Objective:** A Claude Code hop cannot park behind a question dialog, starts the receiver on its packet's unfinished goal when the sender set none and keeps the generated title. The review findings are closed.
 
 ### Decisions
 
@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | One child per code fix. Each code change lands with a test that failed first. The five document fixes share one child |
-| D2 | Children 001 to 003 change Claude Code only. Children from 004 may also change the shared wrapper, the shared relaunch core, tests and documents. No child edits a Pi, OpenCode, Codex, Cursor or Devin adapter |
+| D2 | Children 001 to 003 change Claude Code only. Children from 004 may also change the shared wrapper, relaunch core, tests and documents. No child edits a Pi, OpenCode, Codex, Cursor or Devin adapter |
 | D3 | No child adds a module or a relaunch record key |
 | D4 | Nothing is merged or pushed without the operator |
 
@@ -56,31 +56,37 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-**Read the child goal before working a phase.** Each is authoritative for its
-phase and binds as if written here.
+**Read the child goal before working its phase.** It binds as if written here.
 
 | Phase | Goal document |
 |-------|---------------|
-| 001-sender-dialog-after-prepare | `001-sender-dialog-after-prepare/goal.md` |
-| 002-packet-goal-fallback | `002-packet-goal-fallback/goal.md` |
-| 003-generated-title-carry | `003-generated-title-carry/goal.md` |
-| 004-wrapper-change-notice | `004-wrapper-change-notice/goal.md` |
-| 005-parked-record-escape | `005-parked-record-escape/goal.md` |
-| 006-record-without-handoff | `006-record-without-handoff/goal.md` |
-| 007-killer-test-margin | `007-killer-test-margin/goal.md` |
-| 008-history-test-database-env | `008-history-test-database-env/goal.md` |
-| 009-document-corrections | `009-document-corrections/goal.md` |
-| 010-goal-ending-carry | `010-goal-ending-carry/goal.md` |
-| 011-goal-fallback-bound | `011-goal-fallback-bound/goal.md` |
+| 001 | `001-sender-dialog-after-prepare/goal.md` |
+| 002 | `002-packet-goal-fallback/goal.md` |
+| 003 | `003-generated-title-carry/goal.md` |
+| 004 | `004-wrapper-change-notice/goal.md` |
+| 005 | `005-parked-record-escape/goal.md` |
+| 006 | `006-record-without-handoff/goal.md` |
+| 007 | `007-killer-test-margin/goal.md` |
+| 008 | `008-history-test-database-env/goal.md` |
+| 009 | `009-document-corrections/goal.md` |
+| 010 | `010-goal-ending-carry/goal.md` |
+| 011 | `011-goal-fallback-bound/goal.md` |
 | 012 | `012-wrapper-notice-log/goal.md` |
 | 013 | `013-conformance-stamp-pin/goal.md` |
 | 014 | `014-review-wording-fixes/goal.md` |
+| 015 | `015-wrapper-start-checksum/goal.md` |
+| 016 | `016-ended-goal-mark-match/goal.md` |
+| 017 | `017-missing-transcript-notice/goal.md` |
+| 018 | `018-sk-git-rebase-sentence/goal.md` |
+| 019 | `019-relaunch-doc-coverage/goal.md` |
+| 020 | `020-question-guard-killer-gone/goal.md` |
+| 021 | `021-goal-scan-large-log/goal.md` |
+| 022 | `022-stop-park-notices/goal.md` |
+| 023 | `023-epic-review-doc-fixes/goal.md` |
 
-**Precedence.** Decisions above outrank child detail. Child detail outranks any
-summary of it. Name a conflict rather than resolving it silently.
+**Precedence.** Decisions outrank child detail. Child detail outranks summaries. Name a conflict rather than settling it.
 
-**Stop.** Only the criteria below decide done. An evaluator sees the objective
-string, not these files.
+**Stop.** Only the criteria below decide done.
 <!-- /ANCHOR:binding -->
 
 ---
@@ -88,7 +94,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title --recursive --strict` prints `RESULT: PASSED` fifteen times and never `RESULT: FAILED`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title --recursive --strict` prints `RESULT: PASSED` twenty-four times and never `RESULT: FAILED`
 - [x] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/*/acceptance-criteria.md` prints no line
 - [x] `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
 - [x] `env -u AI_SESSION_CHILD node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
@@ -129,6 +135,19 @@ and findings belong here.
 | Operator instruction | Done | 2026-11-14: the operator instructed that the orchestrator checks each built child itself. The orchestrator runs each child's commit check against the landed commit |
 | Completion criteria, children 001 to 014 | Done | 2026-11-14 at `45459c0c71` in worktree 373, run one after another with nothing else running. Criterion 1: `RESULT: PASSED` fifteen times, no `FAILED`, exit 0. Criterion 2: the `rg -c` command printed no line, exit 1. Criterion 3: tests 1550, pass 1550, fail 0, exit 0, from 1536 when children 001 to 003 closed. Criterion 4: tests 200, pass 200, fail 0, exit 0, unchanged. Criterion 5: `Tests  62 passed (62)`, exit 0, unchanged. Criterion 6: `PASS: 4 registration files match the 35-hook registry; 22 Pi extensions resolve.` and `PASS: 256 mirrors across 10 trees are in sync.`, both exit 0 |
 | Commits, children 012 to 014 | Done | 2026-11-14 on branch `worktrees/373-relaunch-gap-fixes`: `94e83013fa` for child 012, `c69f278cfc` for 013, `d5c5bc84d3` for the documents of children 004 to 013, and `3be5a9835d` and `45459c0c71` for 014. The orchestrator checked each child itself before its commit, on the operator's instruction. The rebuilt trigger index is committed on its own at the end, as this repository does |
+| Third review round planned | Done | 2026-11-14: four sources reviewed the merge of this packet to main, range `bd79708c2f..59e95420f3`: the ten-iteration deep review `review/review-report.md`, the alignment run `20261114T085100Z` and two independent reviews (`fable-synth-reply.txt` and `fable-high-reply.txt` in the orchestrator's scratchpad). The orchestrator merged them in `fix-ledger.md`, and the planner checked every finding a... |
+| Third review round, operator answers | Done | Continues the row above, checked against the code at `99d197475d`. Word for word, 2026-11-14: "039 children 015+ (Recommended)", "Keep, add a notice (Recommended)", "Separate packets (Recommended)", ":auto (Recommended)". Fixing every P0, P1 and P2 supersedes the Later packet entry "a change to what the ended-goal mark matches on" in the row Review remediation planned |
+| Third review round, new children | Done | 015 takes ledger item 2. 016 takes items 3 and 4. 017 takes item 12 and prints its line at the Stop, since the prompt cannot know the cause without a record key, which D3 forbids. 018 takes items 1 and 7 with no hook test, since the hook does not change. 019 takes items 5, 6, 8, 9, 10 and 11 and answers 11 with no trigger phrase |
+| Third review round, other findings | Done | Item 13, the `run-lanes.cjs` findings parser, goes to local-skilled-alignment and item 14, the deep-review reducer, to system-deep-loop. The test count in `.skilled/hooks/README.md` predates this packet. None dropped, every finding held. Child 013 holds ten moved citations in six files and child 004 holds two, twelve in all, and all twelve were true at the commit that wrote them |
+| Third review round, goal budget | Done | Five binding rows and the criterion count took the slice from 3,994 to 4,229. Cuts in section 3 order: the objective stops restating child goals (step 4, 218 characters), "chose to close" became "chose" (step 4), D2 drops a repeated "the shared" (step 5). Now 3,991 at packet_budget=ok, D1 to D4 keep their meaning. Criteria unticked, completion_pct 74, slice resent |
+| Plan verifier and D1 readings | Done | 2026-11-14: a Fable 5.2 high verifier read the plan: 015, 017, 018 READY, 016 and 019 FIX-FIRST. Fixed: 016 T008 count, 019 citations now ten in 013 and two in 004. Operator: "Accept both (Recommended)" for 016 holding two code fixes and 018, 019 as extra document children |
+| Completion criteria, all nineteen children | Done | 2026-11-14, one after another from the final state. Criterion 1: RESULT: PASSED twenty times, no FAILED, exit 0. Criterion 2: no line, exit 1. Criterion 3: tests 1553, pass 1553, fail 0, exit 0, from 1550. Criterion 4: tests 200, pass 200, fail 0, exit 0. Criterion 5: Tests 62 passed (62), exit 0. Criterion 6: both checks PASS, exit 0 |
+| Commits, children 015 to 019 | Done | 2026-11-14 on branch worktrees/380-relaunch-review-fixes: plan 2830ac92bc (0014021), 015 f99d3c442d (0014025), 016 c37531f72b (0014029), 017 78f9d39501 (0014033), 018 21ceaa9772 (0014041), records 7759159a3f (0014050), 019 72bc2bf988 (0014057) |
+| Epic review round | Done | 2026-11-14: a fresh whole-epic review read all nineteen children and returned CONDITIONAL with seven P2 findings (reply `fable-epic-reply.txt` in the orchestrator's scratchpad). The orchestrator checked each against the machine. Operator choice: fix all seven as new children from 020, one child per code fix with a test that fails first, and the document fixes in one shared child. New children: `020-question-guard-killer-gone`, `021-goal-scan-large-log`, `022-stop-park-notices` and `023-epic-review-doc-fixes` |
+| Commits, children 020 to 023 | Done | 2026-11-14 on branch worktrees/385-epic-review-fixes: plan 4fe6d63152, 020 1640b29745, 021 8415fb23ef, 022 2638731a9d, 023 a5fdd860b4. The orchestrator confirmed each code child's test fails on the old file and passes on the new one |
+| Completion criteria, all twenty-three children | Done | 2026-11-14, one after another from the final state. Criterion 1: RESULT: PASSED twenty-four times, no FAILED, exit 0. Criterion 2: no line, exit 1. Criterion 3: tests 1555, pass 1555, fail 0, exit 0, from 1553. Criterion 4: tests 200, pass 200, fail 0, exit 0. Criterion 5: Tests 62 passed (62), exit 0. Criterion 6: both checks PASS, exit 0 |
+| Operator decisions saved | Done | 2026-11-14: /speckit:save --full-auto wrote 26 operator answers of this session to decision-record.md and continuity to child 023 |
+| HS-9 live hop | Done | 2026-11-14: PASS on Claude Code 2.1.325. Guard denied AskUserQuestion after prepare, receiver started on /goal with the packet slice, --name carried as (2), note handed-over, claimed and done. Evidence 023-epic-review-doc-fixes/scratch/hs9-live-run.md |
 
 ### Deviations and findings
 

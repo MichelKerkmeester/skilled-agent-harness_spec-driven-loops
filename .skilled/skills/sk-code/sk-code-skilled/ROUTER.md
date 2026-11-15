@@ -1,12 +1,12 @@
 ---
 title: "Skilled Surface — System-Code Evidence Router"
-description: "Sibling router for sk-code-skilled: the intent signals, the resource map and the no-match checklist a reader parses first."
+description: "Sibling router for sk-code-skilled: the intent signals and the resource map a reader parses first."
 trigger_phrases:
   - "sk-code-skilled router"
   - "sk-code-skilled routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -22,15 +22,15 @@ link that points here; this file holds the declaration a reader parses to decide
 
 The hub bundles this surface when a request touches `.skilled/` system code, such as a skill, agent, command, plugin, MCP server, descriptor or config. A language or authoring signal then selects the leaf, and the first leaves loaded are the shared tier under `references/shared/`. From there the router selects among four families: language references, shared patterns, the authoring and quality checklists under `assets/checklists/`, and the verifier assets under `assets/scripts/`.
 
-The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
-loads before an intent selects it.
+The router answers one question: given a request, which skill-local resources load and in what order.
+Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
+loads before an intent selects it. When no intent matches, the hub's `../ROUTER.md` section 6 owns the unknown fallback.
 
 ---
 
 ## 2. INTENT MODEL
 
-- **IMPLEMENTATION** — "implement / build / create / feature / component / module / authoring" requests load the five `references/shared/` pattern and organization docs, then `assets/checklists/agent-authoring.md`, `assets/checklists/command-authoring.md`, `assets/checklists/skill-authoring.md` and `assets/checklists/mcp-server-authoring.md`.
+- **IMPLEMENTATION** — "implement / build / create / feature / component / module / authoring" requests load the five `references/shared/` pattern and organization docs, then `assets/checklists/agent-authoring.md`, `assets/checklists/command-authoring.md`, `assets/checklists/skill-authoring.md` and `assets/checklists/mcp-server-authoring.md`. Each checklist opens only when the target matches its selector, which the hub's `../ROUTER.md` section 4 states.
 - **CODE_QUALITY** — "lint / format / quality gate / naming / standards / code smell" requests load `assets/checklists/universal-checklist.md`, the three `assets/checklists/js-css-style/` parts and the per-language checklists for JavaScript, TypeScript, Python, shell and the four `assets/checklists/rust-checklist/` parts.
 - **VERIFICATION** — "verify / passing / type-check / alignment drift / completion claim" requests load `references/shared/alignment-verification-automation.md` and `assets/scripts/README.md`.
 - **HOOKS** — "session-prime / user-prompt-submit / pre-tool-use / post-tool-use" requests load `references/shared/hooks.md` and nothing else, so hook wiring stays in one file.
@@ -57,7 +57,7 @@ This block is the deterministic projection of sk-code-skilled's own reference/as
 # parent-owned universal/shared tier. The router-sync guard
 # (assets/scripts/verify-router-sync.cjs, leg 2) checks that equality.
 # verify_alignment_drift.py --check-router checks dead routes only, so it is not
-# the equality authority. Leg 1b of the same guard fails on any reference or asset doc that
+# the equality authority. The orphan-doc leg of the same guard fails on any reference or asset doc that
 # no router names, so a new doc under references/ or assets/ needs a RESOURCE_MAP entry here.
 DEFAULT_RESOURCE = [
     "references/shared/universal-patterns/naming-and-commenting.md",

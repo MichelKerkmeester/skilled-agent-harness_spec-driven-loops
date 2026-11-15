@@ -1,0 +1,3 @@
+# Advisor suite
+
+Not run. Routing was not changed by this phase: the phase 009 routing review returned ACCEPT (scratch/routing-review.md), and no routing file, signal or scorer baseline was edited. `git diff --stat` on this branch shows no change under `.skilled/skills/system-skill-advisor/` and no change to `.skilled/skills/system-spec-kit/graph-metadata.json`.

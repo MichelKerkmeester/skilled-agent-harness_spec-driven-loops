@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility",
+  "description": "Phase 14: prompt-improver-model-eligibility",
+  "keywords": [
+    "phase",
+    "prompt-improver-model-eligibility"
+  ],
+  "lastUpdated": "2026-11-15T00:26:27.906Z",
+  "specId": "014",
+  "folderSlug": "prompt-improver-model-eligibility",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "14-11-26_21-48__phase-014-findings-reproduced-before-planning.md",
+    "14-11-26_21-49__phase-014-findings-reproduced-before-planning.md",
+    "15-11-26_01-26__phase-014-built-prompt-improver-model-choice.md"
+  ]
+}

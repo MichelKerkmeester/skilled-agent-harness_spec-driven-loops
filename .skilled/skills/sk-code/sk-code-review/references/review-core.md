@@ -10,7 +10,7 @@ trigger_phrases:
   - "baseline check families"
 importance_tier: important
 contextType: implementation
-version: 1.5.9.0
+version: 1.5.10.0
 ---
 
 # Review Core Doctrine
@@ -254,7 +254,7 @@ Every full review states the rules it applied in one `Rule sources:` line in its
 Rule sources: <checklist file>, <checklist file>. Overrides: <rule id> <none|replace> from <checklist file>. Refused: <checklist file>. Ignored: <rule id> from <checklist file>. Conflicts: <rule id> <checklist file> <checklist file>
 ```
 
-- List each checklist by its `file` value in the resolver's output, in the order the files first reach it, and separate entries within one group with `; `.
+- List each checklist by its `file` value in the resolver's output, in the order the files first reach it. Separate the checklist files in the `Rule sources:` group with `, `, and separate the entries within each of the other four groups with `; `.
 - Write `none` for an empty group, and `Rule sources: none` when no file was resolved.
 - A path segment that starts with `local-` prints as `<LABEL>`, the label its private surface declares, or `<PRIVATE>`, the redaction the quality envelope applies, because a report may be pasted into a tracked file.
 - The line is plain text and never starts with `Review status:`, `Not checked:` or `Overall assessment`, so the two report checkers read the rest of the report as before. When the line is present, `scripts/check-review-final-line.js` fails a second `Rule sources:` line, a missing or reordered group and an entry whose shape does not match the format above. A report without the line still passes. The M-1 and M-2 skip outputs carry no `Rule sources:` line.

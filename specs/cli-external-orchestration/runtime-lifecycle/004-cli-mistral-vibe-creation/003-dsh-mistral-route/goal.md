@@ -75,12 +75,12 @@ and findings belong here.
 |------|-------|----------|
 | Offline composition | Done | Draft patch exit 0, empty stderr |
 | API field check | Done | `reasoning_effort` 200, `thinking` 422 |
-| Keyed dsh run | Blocked | The key is exported now (2026-11-14), but the installed `dsh --version` prints `0.2.2-rc.3` and the pin is `0.2.2-rc.1` (`hard-rules.json` `pinned-version-required`, `dispatch-rule-checks.mjs` `DSH_PINNED_VERSION`). rc.1 is not in the npx cache, so running it means a fetch, which waits for the operator |
+| Keyed dsh run | Pending | The key is exported (2026-11-14). The merge from main brought `7af100c6673`, which re-pins dsh to `0.2.2-rc.3`, the installed version, so the version drift is gone. No keyed run is recorded yet |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Keyed run attempt | The cli-deepseek-harness PreToolUse hook refused the off-roster patch, as designed |
-| Version drift | T008 and T009 are `[B]`. Operator choice: fetch rc.1 through `npx -y @deepseek-ai/dsh@0.2.2-rc.1` (undo: `rm -rf` its `~/.npm/_npx/<hash>` folder), or re-pin to rc.3 as its own offline contract-pin packet |
+| Version drift | Resolved by the `0.2.2-rc.3` re-pin merged from main. T008 and T009 are open again and wait only on a keyed run |
 <!-- /ANCHOR:log -->

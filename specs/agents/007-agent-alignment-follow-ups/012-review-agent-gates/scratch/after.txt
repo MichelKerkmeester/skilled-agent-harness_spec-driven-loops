@@ -1,0 +1,49 @@
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs | tail -1
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+$ wc -l .skilled/agents/review.md
+     453 .skilled/agents/review.md
+exit=0
+$ rg -c 'or is this a Fast Path review' .skilled/agents/review.md .claude/agents/review.md
+.claude/agents/review.md:1
+.skilled/agents/review.md:1
+exit=0
+$ rg -c 'DO NOT send until fixed' .skilled/agents/review.md
+exit=1
+$ rg -c 'cannot be closed' .skilled/agents/review.md
+4
+exit=0
+$ rg -c 'check-review-final-line.js' .skilled/agents/review.md
+2
+exit=0
+$ bash /tmp/claude-501/t7-pr-shape-valid.sh 2>/dev/null | tail -1  # agent step-7 line verbatim, report = pr-shape-valid.md
+final-line=0 findings=0
+exit=0
+$ bash /tmp/claude-501/t7-status-commented-open-p1.sh 2>/dev/null | tail -1  # agent step-7 line verbatim, report = status-commented-open-p1.md
+final-line=0 findings=1
+exit=0
+$ bash /tmp/claude-501/t7-overall-contradicts-status.sh 2>/dev/null | tail -1  # agent step-7 line verbatim, report = overall-contradicts-status.md
+final-line=1 findings=1
+exit=0
+$ rg -c 'pre_execution|mid_execution|pre/mid' .skilled/agents/review.md
+exit=1
+$ rg -c 'post_execution' .skilled/agents/review.md
+2
+exit=0
+$ rg -c 'invoked by orchestrator for review gate' .skilled/agents/review.md
+exit=1
+$ sed -n '/^### Advisory Score/,/^## 7\./p' .skilled/agents/review.md | wc -l
+      15
+exit=0
+$ rg -c 'Never let the score decide' .skilled/agents/review.md
+exit=1
+$ rg -n 'never decides a status' .skilled/agents/review.md | cut -c1-90
+176:The score is advisory: a score the review gives itself never decides a status, and a g
+exit=0
+$ rg -n 'self-assigned score|A score an agent gives itself never decides a status' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md | cut -c1-120
+472:A checklist in an agent file ships unticked. A verification line in a returned report names its command and exit cod
+807:- [ ] Checklists ship unticked, returned verification lines name a command and an exit code, and no self-assigned sc
+exit=0

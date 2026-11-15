@@ -1,0 +1,1181 @@
+{
+  "sessionId": "2026-11-14T11:01:50.956Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Relaunch purpose rule is narrower than the shared hop rule",
+      "file": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      "line": 27,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Relaunch purpose rule is narrower than the shared hop rule",
+      "file": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      "line": 24,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Pi compaction skips the nearest-spec.md walk-up the Claude compaction uses",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+      "line": 80,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The 300-character purpose cut can split a surrogate pair",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
+      "line": 113,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The purpose line bypasses the recovered-context sanitizer and control-character stripping on the Claude compaction path",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "packet-purpose.ts is new (185 added lines) and session-prime.ts:228-250,417-421 is new in the range diff; shared-provenance.ts is read-only cross-reference evidence.",
+      "affectedSurfaceHints": [
+        "Claude SessionStart compact",
+        "Pi session_compact",
+        "shared purpose reader",
+        "resume and relaunch instruction surfaces"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The purpose line bypasses the recovered-context sanitizer and control-character stripping on the Claude compaction path",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+      "line": 228,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The operator-facing hop scenarios and root README do not name the new purpose line",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "The operator focus names the manual-testing playbook, feature catalog, README and root README; these surfaces are outside the 34-file code target and are assessed only under that focus.",
+      "affectedSurfaceHints": [
+        "system-spec-kit manual-testing-playbook hop scenarios",
+        "root README continuity and resume sections",
+        "context-preservation feature-catalog entries"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The Pi compaction adapter duplicates the purpose interface and reaches past the runtime API for the problem formatter",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+      "line": 72,
+      "description": "The public runtime API is not the contract the two compaction adapters compile against.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Every cited file is in the 34-file target: api/index.ts, session-prime.ts, session-compact-context.ts and packet-purpose.ts.",
+      "affectedSurfaceHints": [
+        "Pi session_compact",
+        "Claude SessionStart compact",
+        "runtime API consumers",
+        "continuity writer"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The library index still scopes packet-purpose.ts to the compaction hop",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/README.md",
+      "line": 118,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Pi compaction skips the nearest-spec.md walk-up the Claude compaction uses",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+      "line": 80,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The 300-character purpose cut can split a surrogate pair",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
+      "line": 113,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The operator-facing hop scenarios and root README do not name the new purpose line",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "The operator focus names the manual-testing playbook, feature catalog, README and root README; these surfaces are outside the 34-file code target and are assessed only under that focus.",
+      "affectedSurfaceHints": [
+        "system-spec-kit manual-testing-playbook hop scenarios",
+        "root README continuity and resume sections",
+        "context-preservation feature-catalog entries"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The Pi compaction adapter duplicates the purpose interface and reaches past the runtime API for the problem formatter",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+      "line": 72,
+      "description": "The public runtime API is not the contract the two compaction adapters compile against.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Every cited file is in the 34-file target: api/index.ts, session-prime.ts, session-compact-context.ts and packet-purpose.ts.",
+      "affectedSurfaceHints": [
+        "Pi session_compact",
+        "Claude SessionStart compact",
+        "runtime API consumers",
+        "continuity writer"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The library index still scopes packet-purpose.ts to the compaction hop",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/README.md",
+      "line": 118,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Pi compaction skips the nearest-spec.md walk-up the Claude compaction uses",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+      "line": 80,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The 300-character purpose cut can split a surrogate pair",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
+      "line": 113,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The operator-facing hop scenarios and root README do not name the new purpose line",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "The operator focus names the manual-testing playbook, feature catalog, README and root README; these surfaces are outside the 34-file code target and are assessed only under that focus.",
+      "affectedSurfaceHints": [
+        "system-spec-kit manual-testing-playbook hop scenarios",
+        "root README continuity and resume sections",
+        "context-preservation feature-catalog entries"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The Pi compaction adapter duplicates the purpose interface and reaches past the runtime API for the problem formatter",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+      "line": 72,
+      "description": "The public runtime API is not the contract the two compaction adapters compile against.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Every cited file is in the 34-file target: api/index.ts, session-prime.ts, session-compact-context.ts and packet-purpose.ts.",
+      "affectedSurfaceHints": [
+        "Pi session_compact",
+        "Claude SessionStart compact",
+        "runtime API consumers",
+        "continuity writer"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The library index still scopes packet-purpose.ts to the compaction hop",
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/README.md",
+      "line": 118,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 6
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.725,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 18,
+      "description": "Dimension coverage (50%) is below threshold (80%). 18 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.5,
+    "evidenceDensity": 0,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.725
+  },
+  "candidateCoverage": {
+    "covered": [
+      "boundary_handling",
+      "control_character_injection",
+      "cross_runtime_parity",
+      "documentation_coverage",
+      "documentation_drift",
+      "prompt_injection",
+      "spec_mismatch"
+    ],
+    "ruledOut": [
+      "api_boundary",
+      "comment_hygiene",
+      "duplication",
+      "path_traversal",
+      "sanitizer_bypass",
+      "secret_exposure",
+      "shell_injection",
+      "state_transition",
+      "test_structure"
+    ],
+    "deferred": [
+      "deferred_runtime_compaction"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "spec_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "cross_runtime_parity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "boundary_handling": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "deferred_runtime_compaction": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "prompt_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "control_character_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "documentation_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "sanitizer_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "shell_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "documentation_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "duplication": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "api_boundary": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_structure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/opencode"
+      ],
+      "bugClass": "deferred_runtime_compaction",
+      "disposition": "deferred",
+      "rationale": "Deferred by the controlling decision, not reviewed here.",
+      "evidenceRefs": [],
+      "reason": "D6 defers a purpose after compaction on Devin and OpenCode to a later phase and out of this goal."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "No traversal path from the state or transcript value was found in reach.",
+      "evidenceRefs": [
+        "session-prime.ts:236-238",
+        "session-compact-context.ts:80-83"
+      ],
+      "reason": "Containment checks run before any spec.md read in both hooks; the remaining symlink case has no named reach and is recorded as a hardening note."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "No stale or crashing continuity path was found.",
+      "evidenceRefs": [
+        "workflow.ts:614-615",
+        "thin-continuity-record.ts:759-767",
+        "save-continuity-write.vitest.ts:323-334"
+      ],
+      "reason": "The purpose is writer-owned and refreshed on every save; the payload value is ignored and the save test covers the copy and stale-value removal."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        "session-prime.ts",
+        "shared-provenance.ts"
+      ],
+      "bugClass": "sanitizer_bypass",
+      "disposition": "ruled_out",
+      "rationale": "No bypass reaches the injected output.",
+      "evidenceRefs": [
+        "shared-provenance.ts:88",
+        "shared-provenance.ts:109"
+      ],
+      "reason": "The wrapper sanitizes internally; the local variable only feeds the sanitized-length log line."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        "nudge.cjs",
+        "nudge.test.cjs",
+        "create.sh"
+      ],
+      "bugClass": "shell_injection",
+      "disposition": "ruled_out",
+      "rationale": "No reachable injection path found.",
+      "evidenceRefs": [
+        "nudge.cjs:330",
+        "nudge.test.cjs:620"
+      ],
+      "reason": "Shell quoting is present and the hostile-input test covers it; no new sink in the changed lines."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        "thin-continuity-record.ts",
+        "workflow.ts",
+        "authored-continuity-snapshot.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "No exposure path found in the reviewed code.",
+      "evidenceRefs": [
+        "thin-continuity-record.ts:763",
+        "workflow.ts:466"
+      ],
+      "reason": "The value originates in repo-authored spec text and carries no secret-bearing path."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/deep-review-config.json"
+      ],
+      "bugClass": "duplication",
+      "disposition": "ruled_out",
+      "rationale": "The duplication is the frozen per-hop prompt contract, not accidental shared logic.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts:172-180"
+      ],
+      "reason": "D1 requires each independently loaded hop surface to state the line; the reader itself is one module."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "No artifact label appears in the changed code comments.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts:1-185"
+      ],
+      "reason": "The grep hits are unrelated test fixture paths, not comments in the review target."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/api/index.ts"
+      ],
+      "bugClass": "api_boundary",
+      "disposition": "ruled_out",
+      "rationale": "Already recorded as active R3-P2-001 in iteration 3; no new instance.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/api/index.ts:126"
+      ],
+      "reason": "Duplicate of the active R3-P2-001 API-surface finding."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+        ".skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts"
+      ],
+      "bugClass": "test_structure",
+      "disposition": "ruled_out",
+      "rationale": "No actionable test-structure finding survives the evidence available in a read-only pass.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts:47"
+      ],
+      "reason": "Changed assertions inspected; no new instance, and execution is out of bounds."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "No traversal path from the state or transcript value was found in reach.",
+      "evidenceRefs": [
+        "session-prime.ts:236-238",
+        "session-compact-context.ts:80-83"
+      ],
+      "proof": "Containment checks run before any spec.md read in both hooks; the remaining symlink case has no named reach and is recorded as a hardening note."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "No stale or crashing continuity path was found.",
+      "evidenceRefs": [
+        "workflow.ts:614-615",
+        "thin-continuity-record.ts:759-767",
+        "save-continuity-write.vitest.ts:323-334"
+      ],
+      "proof": "The purpose is writer-owned and refreshed on every save; the payload value is ignored and the save test covers the copy and stale-value removal."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        "session-prime.ts",
+        "shared-provenance.ts"
+      ],
+      "bugClass": "sanitizer_bypass",
+      "disposition": "ruled_out",
+      "rationale": "No bypass reaches the injected output.",
+      "evidenceRefs": [
+        "shared-provenance.ts:88",
+        "shared-provenance.ts:109"
+      ],
+      "proof": "The wrapper sanitizes internally; the local variable only feeds the sanitized-length log line."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        "nudge.cjs",
+        "nudge.test.cjs",
+        "create.sh"
+      ],
+      "bugClass": "shell_injection",
+      "disposition": "ruled_out",
+      "rationale": "No reachable injection path found.",
+      "evidenceRefs": [
+        "nudge.cjs:330",
+        "nudge.test.cjs:620"
+      ],
+      "proof": "Shell quoting is present and the hostile-input test covers it; no new sink in the changed lines."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        "thin-continuity-record.ts",
+        "workflow.ts",
+        "authored-continuity-snapshot.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "No exposure path found in the reviewed code.",
+      "evidenceRefs": [
+        "thin-continuity-record.ts:763",
+        "workflow.ts:466"
+      ],
+      "proof": "The value originates in repo-authored spec text and carries no secret-bearing path."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/deep-review-config.json"
+      ],
+      "bugClass": "duplication",
+      "disposition": "ruled_out",
+      "rationale": "The duplication is the frozen per-hop prompt contract, not accidental shared logic.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts:172-180"
+      ],
+      "proof": "D1 requires each independently loaded hop surface to state the line; the reader itself is one module."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "No artifact label appears in the changed code comments.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts:1-185"
+      ],
+      "proof": "The grep hits are unrelated test fixture paths, not comments in the review target."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/api/index.ts"
+      ],
+      "bugClass": "api_boundary",
+      "disposition": "ruled_out",
+      "rationale": "Already recorded as active R3-P2-001 in iteration 3; no new instance.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/api/index.ts:126"
+      ],
+      "proof": "Duplicate of the active R3-P2-001 API-surface finding."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+        ".skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts"
+      ],
+      "bugClass": "test_structure",
+      "disposition": "ruled_out",
+      "rationale": "No actionable test-structure finding survives the evidence available in a read-only pass.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts:47"
+      ],
+      "proof": "Changed assertions inspected; no new instance, and execution is out of bounds."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "documentation_drift",
+      "duplication",
+      "comment_hygiene",
+      "api_boundary",
+      "test_structure"
+    ],
+    "covered": [
+      "documentation_drift"
+    ],
+    "ruledOut": [
+      "duplication",
+      "comment_hygiene",
+      "api_boundary",
+      "test_structure"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

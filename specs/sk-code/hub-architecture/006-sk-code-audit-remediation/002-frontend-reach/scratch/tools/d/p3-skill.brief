@@ -1,0 +1,29 @@
+TASK: four literal line edits in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-frontend/SKILL.md (read lines 1 to 60 only)
+
+EDIT 1, line 5. Replace:
+version: 1.1.0.0
+with:
+version: 1.2.0.0
+
+EDIT 2, line 11. Replace:
+<!-- Keywords: frontend surface, web markup css, figma to code -->
+with:
+<!-- Keywords: frontend surface, web markup css, visual values, motion and interaction, figma to code -->
+
+EDIT 3, line 47. Replace this sentence:
+The core loads by default, followed by the matching web or Figma-to-code reference.
+with:
+The core loads by default, followed by the web layer for a web intent or the mapped files for a visual, motion or Figma intent.
+
+EDIT 4, line 55. Replace:
+- Read the shared principles and the web layer before applying a topic reference.
+with:
+- Read the shared principles first. Web intents add the web layer, and visual, motion and Figma intents add the files [`ROUTER.md`](./ROUTER.md) maps for them without it.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'visual, motion and Figma intents' .skilled/skills/sk-code/sk-code-frontend/SKILL.md; rg -c 'web layer before applying a topic reference' .skilled/skills/sk-code/sk-code-frontend/SKILL.md; echo "exit $?"
+Expected output: `1` then `exit 1`

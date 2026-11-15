@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix alignment report findings for speckit command surfaces",
+      "phase 10 fix alignment report findings for speckit",
+      "fix alignment report findings for speckit command surfaces plan",
+      "fix alignment report findings for speckit command surfaces tasks",
+      "fix alignment report findings for speckit command surfaces acceptance criteria",
+      "009-fix-alignment-report-findings-for-speckit-command-surfaces operator decisions",
+      "fix alignment report findings for speckit command surfaces implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "report",
+      "findings",
+      "speckit",
+      "command",
+      "surfaces",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "009-fix-alignment-report-findings-for-speckit-command-surfaces"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/commands/speckit/assets/speckit-complete.yaml",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/skills/system-spec-kit/command-metadata.json",
+      ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/lifecycle/speckit-autopilot-lifecycle.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-literal-naming-ai-derived-slugs.md",
+      ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
+      ".skilled/skills/system-spec-kit/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-recovery-spec-kit-resume.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-autopilot-lifecycle.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/lifecycle/speckit-autopilot-lifecycle.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-literal-naming-ai-derived-slugs.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-literal-naming-ai-derived-slugs.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-command-workflows.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-autopilot-contract.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 1 to 8 changed the speckit workflows and their routers, and several surfaces further out still state the old facts",
+    "created_at": "2026-11-14T19:44:23Z",
+    "last_save_at": "2026-11-14T21:41:42.693Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8e7ff68204a59c65e47bb8f7fd5e7106649850dd27ddd5b316f6d910ddf587ca",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "763453e2666e192005b15b33e4495b4468a4b1b78c6a86a1697be1998eadae94",
+      "plan.md": "88c9a97418b2bf9d07699bcde050cba83bf5efee16d85e5eb181d8614c6fcc80",
+      "tasks.md": "6fc1f25d8c0c49224730b728be19b925da4e8b517f30f18a05f7c1baa687f777",
+      "decision-record.md": "9acdb66f1f2dc95eb0cc30bdcfa365e88fa8b4e42d96ce3928843c59be3932db",
+      "implementation-summary.md": "7b5800db4de33412ccbcfdee48f34c357d0ee07b8800ca9b51007c44c68603f7"
+    },
+    "last_active_at": null
+  }
+}

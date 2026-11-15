@@ -1,7 +1,7 @@
 ---
 title: "DAC-017 -- OUT_OF_SCOPE_WRITE rejection"
 description: "This scenario validates out-of-scope write rejection for `DAC-017`. It focuses on path guards and agent-body scoped-write rules."
-version: 1.7.0.8
+version: 1.7.1.0
 ---
 
 # DAC-017 -- OUT_OF_SCOPE_WRITE rejection
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `DAC-017` and confirm th
 - Objective: Verify writes outside `ai-council/**` are rejected with `OUT_OF_SCOPE_WRITE` before filesystem touch.
 - Real user request: Confirm council writes cannot escape the ai-council folder.
 - Prompt: `As a scoped-write boundary validator, attempt to write outside ai-council/**. Verify the write is rejected with OUT_OF_SCOPE_WRITE before filesystem touch. Return rejection evidence.`
-- Expected execution process: Inspect the agent body §16 rule and `lib/persist-artifacts.cjs` path guards, then grep for `OUT_OF_SCOPE_WRITE` and `ai-council`.
+- Expected execution process: Inspect the Scoped-Write Rules in `references/patterns/command-wiring.md` and `lib/persist-artifacts.cjs` path guards, then grep for `OUT_OF_SCOPE_WRITE` and `ai-council`.
 - Expected signals: Path guard present in library and agent body declares the rule.
 - Desired user-visible outcome: The user sees rejection evidence for out-of-scope write attempts.
 - Pass/fail: PASS if path guard is present in the library and agent body declares the rule; FAIL if either source is missing.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `DAC-017` and confirm th
 
 ### Recommended Orchestration Process
 
-1. Read `.skilled/agents/ai-council.md` §16.
+1. Read the Scoped-Write Rules in `.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md`.
 2. Inspect `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` path guard logic.
 3. Run the grep commands and record evidence.
 

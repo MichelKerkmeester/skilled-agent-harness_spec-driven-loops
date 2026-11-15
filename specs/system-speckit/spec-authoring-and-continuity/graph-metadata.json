@@ -9,7 +9,8 @@
     "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring",
     "system-speckit/spec-authoring-and-continuity/004-decision-capture",
     "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review",
-    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers"
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+    "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift"
   ],
   "manual": {
     "depends_on": [],

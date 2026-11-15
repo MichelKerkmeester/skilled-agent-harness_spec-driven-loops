@@ -102,7 +102,7 @@ function writeStubBinary(binDir: string, name: string): string {
   const script = name === 'opencode'
     ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 1.19.3; exit 0; fi\nexit 0\n'
     : name === 'dsh'
-      ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 0.2.2-rc.1; exit 0; fi\nexit 0\n'
+      ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 0.2.2-rc.3; exit 0; fi\nexit 0\n'
       : name === 'vibe'
         ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 3.1.2; exit 0; fi\nexit 0\n'
         : '#!/bin/sh\nexit 0\n';

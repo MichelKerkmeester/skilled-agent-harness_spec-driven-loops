@@ -56,7 +56,7 @@
   {
     "id": "pinned-version-required",
     "check": "pinned-version-required",
-    "message": "Run `command -v dsh` and `dsh --version </dev/null` before every dispatch, and refuse anything but the pinned 0.2.2-rc.1. The npm dist-tags moved during research, so a tag is never a pin. A new release is re-pinned offline first.",
+    "message": "Run `command -v dsh` and `dsh --version </dev/null` before every dispatch, and refuse anything but the pinned 0.2.2-rc.3. The npm dist-tags moved during research, so a tag is never a pin. A new release is re-pinned offline first.",
     "severity": "error"
   },
   {

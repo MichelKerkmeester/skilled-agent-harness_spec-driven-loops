@@ -1,0 +1,170 @@
+{
+ "date": "2026-11-14",
+ "title": "Phase 8: quality-packet-fixes",
+ "hook": "Every `QL` row of the audit is closed: eleven are fixed in the quality packet's documents, one was fixed in phase 005 and two carry a recorded reason for no change. The README and `SKILL.md` now gate a change the same way, and the manual testing playbook is linked from both.",
+ "recent": "Fixed eleven QL rows in the quality packet and recorded no change for two",
+ "next": "Check the five completion criteria of the parent goal",
+ "what": "You can read the README and `SKILL.md` and get one answer on unchecked generated drift and missing checklist evidence: UNVERIFIED. The rule-id table lists `syntax.json` once, with both of its confidences. `SKILL.md` states the blocking rule as P0, exact and on a changed line, as the runner contract does. The four config-trust rules live in the config reference, and the runner contract links to them. `SKILL.md` and the README link the manual testing playbook and name its validator. `SKILL.md` lists the language table and the config template, and the config reference describes the template's values as shipped. The router overview names the paths that sit one level up. The README says which file holds the packet version. Three lines read `SKILLED authoring`, and the style guide no longer carries a legacy checklist id. The packet is at version 1.13.20.0.",
+ "files": [
+  [
+   "`sk-code-quality/SKILL.md`",
+   "Modified",
+   "Rows QL-06, QL-10, QL-11 and QL-14, and version 1.13.20.0"
+  ],
+  [
+   "`sk-code-quality/README.md`",
+   "Modified",
+   "Rows QL-01, QL-05, QL-06 and QL-10"
+  ],
+  [
+   "`sk-code-quality/ROUTER.md`",
+   "Modified",
+   "Row QL-04"
+  ],
+  [
+   "`references/runner-contract.md`",
+   "Modified",
+   "Rows QL-02 and QL-07"
+  ],
+  [
+   "`references/quality-config.md`",
+   "Modified",
+   "Row QL-12"
+  ],
+  [
+   "`references/code-style-guide.md`",
+   "Modified",
+   "Row QL-03"
+  ],
+  [
+   "`changelog/v1.13.20.0.md`",
+   "Created",
+   "The packet release note"
+  ]
+ ],
+ "how": "Each cited line was read and each edit was designed as literal text. Fifteen briefs went to DeepSeek V4.1 Flash at max thinking through cli-pi, in three chains of one file each and four single-file dispatches, and every diff was read. The orchestrating session ran each task's verify command, the packet tests, the drift guards, the copy canary, the playbook validator, the document validator on the changed files, the README reference check and the setup battery. The commit gate asked for a version raise on five changed documents, which `frontmatter-version.mjs bump` applied. The code landed as `3c7926322b`.",
+ "decisions": [
+  [
+   "One commit for the phase, not one for each row",
+   "The operator's commit policy for this packet is one code commit for each phase. The edge case in `spec.md` assumed one commit for each task"
+  ],
+  [
+   "QL-02 keeps one id with two confidences",
+   "The gate emits `syntax.json` for both cases and sets the confidence from the file's content. A second id would not match the gate source"
+  ],
+  [
+   "QL-03 keeps the `P1` label and drops only the id",
+   "The rule itself is sound and has no `<class>.<name>` id in the shared standards. Two files in `sk-code-skilled` still cite the old id, which is outside this phase's scope"
+  ],
+  [
+   "QL-08 is left unchanged",
+   "Its verdict is `Judgment`, and decision D1 fixes only `Confirmed` and `Changed` rows"
+  ],
+  [
+   "QL-10 changes the three lines the row names",
+   "Four other lines in the packet say `OpenCode` in other phrases. No ledger row names them, so they are logged for the operator"
+  ],
+  [
+   "QL-13 keeps all six files",
+   "Decision D2 forbids splitting a script here, and the playbook index is the package's one index"
+  ],
+  [
+   "The version rose to 1.13.20.0, a patch step",
+   "The phase changes wording and adds links. No check, gate value or exit code changed"
+  ]
+ ],
+ "verify": [
+  [
+   "`grep -c '^| QL-.*| - |$'` on the findings ledger",
+   "`0`"
+  ],
+  [
+   "`node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests`",
+   "154 pass, 0 fail, the same counts as the baseline"
+  ],
+  [
+   "The verify command of tasks T003 to T017",
+   "Each printed what its task states, except T005 and T010"
+  ],
+  [
+   "T005 as written",
+   "It prints the hit in `changelog/v1.4.0.0.md`, because the glob `!changelog/**` does not match from the repository root. With `!**/changelog/**` it prints nothing and exits 1"
+  ],
+  [
+   "T010",
+   "Not run as a fix: row QL-08 is `Judgment`, so the sentence stays"
+  ],
+  [
+   "`run-all-drift-guards.sh`",
+   "`all 4 guards PASSED`, exit 0"
+  ],
+  [
+   "`run-all-drift-guards.sh` with one dead path added to `SKILL.md`",
+   "`FAIL: doc-claims`, exit 1, then exit 0 after the restore, saved in `scratch/failure-path.txt`"
+  ],
+  [
+   "`validate-playbook-package.cjs --package` on the packet playbook",
+   "`PASS`, 23 scenarios, 0 violations, 0 warnings"
+  ],
+  [
+   "`validate_document.py` on the README and the three references",
+   "Zero issues on each"
+  ],
+  [
+   "`check_readme_references.py` on the packet `README.md`",
+   "`PASS`, 75 references, 0 unresolved"
+  ],
+  [
+   "`check_changelog_shape.py` on `changelog/v1.13.20.0.md`",
+   "`PASS`"
+  ],
+  [
+   "`sk-code-setup-check.cjs`",
+   "`STATUS=OK legs=9`, exit 0"
+  ],
+  [
+   "`git show --stat 3c7926322b`",
+   "Seven files, all under `sk-code-quality/`"
+  ]
+ ],
+ "limits": "1. **Two files outside the packet still cite `CHK-CMT-07`.** `sk-code-skilled/assets/checklists/js-css-style/verification-quick-reference-and-related.md` line 87 and `overview-header-and-comments.md` line 42 name an id the style guide no longer carries. This phase may edit `sk-code-quality/` only.\n2. **Four lines still say `OpenCode`.** `README.md` lines 26, 47 and 48 and the `OpenCode JavaScript` row of the load table in `SKILL.md` use the old name in other phrases. Row QL-10 names `OpenCode authoring` only.\n3. **QL-08 has one reader's verdict.** Phase 001 marked it `Judgment` and no second reader checked that call.\n4. **The claim that the template holds every key was not re-derived.** The sentence in `quality-config.md` kept that part as it stood, and `SKILL.md` now repeats it.",
+ "open": [],
+ "chk": {
+  "T005": "as written the command prints the hit in `changelog/v1.4.0.0.md`, because the glob does not match from the repository root. With `--glob '!**/changelog/**'` it prints nothing and exits 1",
+  "T011": "nothing printed, exit 1, as phase 005 left it",
+  "T020": "`git show --stat 3c7926322b` lists seven files, all under `sk-code-quality/`",
+  "CHK-001": "spec.md section 4 rows REQ-001 to REQ-006 each name a command and its expected output",
+  "CHK-002": "plan.md section 3 and the Affected Surfaces table name the packet's entry documents and references",
+  "CHK-003": "phase 007 closed in `2b1ec74910`, and no `RV` row has a dash as its fix evidence",
+  "CHK-010": "N/A: no JSON file changed in this phase. The hook re-minted both manifests with no diff",
+  "CHK-011": "all four guards PASS, with the same 21 warnings as the baseline",
+  "CHK-012": "`git show --stat 3c7926322b` lists seven files, all under `sk-code-quality/`",
+  "CHK-013": "the changed documents keep their frontmatter and section order, and `validate_document.py` reports zero issues on the four it was run on",
+  "CHK-020": "AC-001 to AC-006 are Met",
+  "CHK-021": "the count is 0",
+  "CHK-022": "no row was `Refuted`, so the empty case did not arise. Thirteen rows were `Confirmed` or `Changed`: eleven were fixed here in one commit, not one commit each, QL-09 was fixed in phase 005 and QL-13 is a recorded decision. Both logged in goal.md",
+  "CHK-023": "a dead path added to `SKILL.md` made the runner print `FAIL: doc-claims` and exit 1. The file was restored and the runner exited 0, saved in `scratch/failure-path.txt`",
+  "CHK-FIX-001": "all 14 rows had a verdict from phase 001: ten `Confirmed`, three `Changed` and QL-08 `Judgment`",
+  "CHK-FIX-002": "`rg` found `OpenCode authoring` on three lines, all fixed, the legacy id on two lines outside the packet, listed, and the four trust rules in two references, now in one",
+  "CHK-FIX-003": "the task verify commands, the packet tests, the drift guards and the playbook validator all ran",
+  "CHK-FIX-004": "each `QL` row names its proving command or its reason for no change",
+  "CHK-FIX-005": "each row fixed here names `3c7926322b`, and QL-09 names `19214454c5`",
+  "CHK-030": "the diff holds prose, table rows, one release note and version strings",
+  "CHK-031": "N/A as the line states",
+  "CHK-040": "the three documents name the same files and the same validate.sh command",
+  "CHK-041": "no code comment was added in this phase",
+  "CHK-042": "`sk-code-quality/changelog/v1.13.20.0.md` names rows QL-01 to QL-07, QL-09 to QL-12 and QL-14",
+  "CHK-050": "`scratch/failure-path.txt` is the only working file",
+  "CHK-051": "the parent goal replay reads `scratch/failure-path.txt` as the failure-path evidence",
+  "T010": "not applied: row QL-08 is `Judgment`, so the sentence stays and the command prints 1"
+ },
+ "ac": {
+  "AC-001": "`0` on 2026-11-14 at `3c7926322b`.",
+  "AC-002": "154 pass, 0 fail.",
+  "AC-003": "`2`.",
+  "AC-004": "nothing printed, exit 1.",
+  "AC-005": "`git show --stat 3c7926322b` lists seven files, all under `sk-code-quality/`. The docs commit holds the ledger and this packet's own documents.",
+  "AC-006": "`v1.13.20.0.md` is the newest file and `SKILL.md` holds `version: 1.13.20.0`."
+ },
+ "closure": "Six criteria are met with the outputs observed on 2026-11-14 at commit `3c7926322b`."
+}

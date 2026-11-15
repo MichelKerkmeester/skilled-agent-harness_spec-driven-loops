@@ -164,6 +164,12 @@ const REDUCER_ROW_FIELDS: Readonly<Record<string, readonly string[]>> = Object.f
     'previousFocus', 'currentFocus', 'agreement', 'artifactRefs',
   ]),
   'deep_research.pivot_failed': pivotRowFields(['reason', 'quorum', 'agreement', 'recoverableByOverride']),
+  'deep_research.dispatch_failure': Object.freeze([
+    'executor', 'reason', 'iteration', 'detail', 'executorUnavailable', 'matchedMarker', 'timestamp', 'sessionId',
+  ]),
+  'deep_research.dispatch_receipt_write_failed': Object.freeze([
+    'reason', 'phase', 'iteration', 'executor', 'timestamp', 'detail', 'sessionId',
+  ]),
 });
 
 // ───────────────────────────────────────────────────────────────────
@@ -288,6 +294,9 @@ export function createDeepResearchProjectionContract(
           iteration: iter,
           run: iter,
           focus: typeof data.focusRef === 'string' ? data.focusRef : '',
+          ...(data.executor && typeof data.executor === 'object' && !Array.isArray(data.executor)
+            ? { executor: data.executor as JsonObject }
+            : {}),
           timestamp: occurredAt,
         };
       } else if (stem === 'deep_research.iteration_completed') {

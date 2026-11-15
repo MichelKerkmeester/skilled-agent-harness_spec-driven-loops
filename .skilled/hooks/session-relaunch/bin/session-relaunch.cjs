@@ -704,6 +704,13 @@ function claim(args) {
   const claimed = core.claimHandoff(handoffPath, { sessionId });
   hopHistory.recordHop('claimed', handoffPath, { session: sessionId });
   printHandoffBody(handoffPath);
+  // The claim instructions reach some runtimes once, with the seed, and a model that answers
+  // straight from the note body can drop their last step. This output is the text it reads
+  // right before it answers, so the closing step is repeated here.
+  process.stdout.write(
+    `\nWhen the remaining work is done, run \`${nudge.completeCommandFor(handoffPath, nudge.CLI_COMMAND)}\``
+      + ' to close this note.\n',
+  );
   const goalPacket = noteGoalPacket(claimed.frontmatter);
   if (goalPacket !== '') {
     process.stdout.write(

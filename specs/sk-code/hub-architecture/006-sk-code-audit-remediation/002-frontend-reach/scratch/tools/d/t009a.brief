@@ -1,0 +1,14 @@
+TASK: append entries to one JSON array.
+
+FILE: .skilled/skills/sk-code/mode-registry.json (read lines 140 to 146 only; line 142 is a long single-line array)
+
+EDIT, line 142, the "aliases" array of the "sk-code-frontend" entry. It ends with:
+"figma frame check", "implement a figma design"],
+Append these 42 entries after "implement a figma design", inside the same array, on the same line, in this order:
+"focus ring accessibility", "focus outline removed", "screen reader support", "aria label missing", "alt text missing", "wcag audit", "responsive layout", "responsive grid", "css grid", "flexbox layout", "sticky header", "sticky navbar", "navbar sticky", "with css", "the stylesheet", "css file", "focus trap", "modal dialog", "improve lcp", "lcp regression", "core web vitals", "cumulative layout shift", "interaction to next paint", "lazy load images", "optimize images", "image optimization", "rtl languages", "rtl layout", "rtl support", "i18n support", "center a div", "vertically center", "center vertically", "scroll horizontally", "horizontal scroll", "mobile viewport", "media query", "form inputs", "form styling", "style the form", "figma file", "from figma"
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+node -e "const a=require('./.skilled/skills/sk-code/mode-registry.json').modes.find(x=>x.workflowMode==='sk-code-frontend').aliases;const k=require('./.skilled/skills/sk-code/hub-router.json').vocabularyClasses['code-frontend-aliases'].keywords;console.log(a.length, JSON.stringify([...a].sort())===JSON.stringify([...k].sort()))"
+Expected output: 66 true

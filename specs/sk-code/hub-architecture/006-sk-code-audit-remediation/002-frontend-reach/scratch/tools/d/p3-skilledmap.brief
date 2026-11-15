@@ -1,0 +1,23 @@
+TASK: add one table row and one sentence to one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md (read lines 169 to 204 only)
+
+WHY: this table renders every surface's checklist declaration, and the frontend surface now declares one.
+
+EDIT 1, line 178. Replace:
+A `sk-code-ci` row applies by path alone because that surface declares no detection block.
+with:
+A `sk-code-ci` row applies by path alone because that surface declares no detection block.
+A FRONTEND row applies only to a file that resolves to FRONTEND.
+
+EDIT 2, line 203, the last row of the table. Replace:
+| sk-code-ci | `.github/workflows/**` | `../sk-code-ci/references/ci-workflow-standards.md` |
+with:
+| sk-code-ci | `.github/workflows/**` | `../sk-code-ci/references/ci-workflow-standards.md` |
+| FRONTEND | `.css`, `.scss`, `.html`, `.tsx`, `.jsx`, `.vue`, `.svelte` | `../sk-code-frontend/references/frontend-practice.md` |
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c '^\| FRONTEND \|' .skilled/skills/sk-code/sk-code-skilled/SKILL.md
+Expected output: `1`

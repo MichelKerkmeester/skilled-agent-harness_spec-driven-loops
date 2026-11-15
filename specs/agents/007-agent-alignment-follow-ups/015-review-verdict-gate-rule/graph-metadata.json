@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review verdict gate rule",
+      "phase 15 review verdict gate rule",
+      "review verdict gate rule plan",
+      "review verdict gate rule tasks",
+      "review verdict gate rule acceptance criteria",
+      "review verdict gate rule implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "verdict",
+      "gate",
+      "rule",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "review-mode-contract"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+      ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-schema.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state-contract.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-reducer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion-criteria.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`review-mode-contract.yaml:105` sets FAIL when `activeP0 > 0 OR any required quality gate fails`, and the contract's binary quality gates are `evidence`, `scope` and `coverage`",
+    "created_at": "2026-11-15T05:36:24Z",
+    "last_save_at": "2026-11-15T05:52:00.815Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d38dd3ecd26286af66bbc78dc42c210ab3383e95b102e0b474519d96a209a410",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "dffec9a07abac9208b6115d4bb78b4c2dc5895eb3c5265eec5c76a2514cb1037",
+      "plan.md": "558429d5b1f080cd51dd8ee41f751544d21ceb34358bac7e128552c7bc6a9d66",
+      "tasks.md": "c8f274105e80f2fbe2c549580aadb1fb1f71942a73c99d515c71da93c358515c",
+      "implementation-summary.md": "a84854b36c3c56587acc5e16fe396694e1a4fa4b4839d870b6b1fe441b39ea6b"
+    },
+    "last_active_at": null
+  }
+}

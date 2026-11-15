@@ -14,7 +14,9 @@
     "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity",
     "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder",
     "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry",
-    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill"
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill",
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision",
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill"
   ],
   "manual": {
     "depends_on": [],
@@ -72,7 +74,7 @@
       ".opencode/plugins/session-history-lookup.js",
       "runtime/lib/spec/packet-purpose.ts",
       "006-purpose-carry-follow-ups/plan.md",
-      "001-parent-purpose-scaffold/goal.md"
+      "013-purpose-docs-and-backfill/scratch/sentences.md"
     ],
     "entities": [
       {
@@ -172,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "sentences.md",
+        "kind": "doc",
+        "path": "013-purpose-docs-and-backfill/scratch/sentences.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,17 +220,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator reported on 2026-11-13 that the core reason, problem, purpose or user need behind a piece of work gets lost after several in-session handovers (relaunch hops) or context compactions",
     "created_at": "2026-11-13T20:59:19Z",
-    "last_save_at": "2026-11-14T08:51:18.376Z",
+    "last_save_at": "2026-11-14T22:31:13.062Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -234,17 +236,17 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f15eb98d409413a678c7cf59ab572144a1220d5cd40149443b7367ddc7dc7d92",
+    "source_fingerprint": "sha256:68519dd8ffbfbd21e9bff94e59cdcf7de664c4e49e29807ecffd47f6633aa131",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "70a7018c22a503b624b2afa814dd78a1bd38ad18365bd2638a88a21d55f6b03e",
+      "spec.md": "cfa9f0b14ee38f3611c216caaba9fc066b99e032c73907297bf1206f68c8923d",
       "plan.md": "4d2c2864ea17ecda1f7c0ba309d5417972de1bf3752db73d878ac865c10a5112",
       "tasks.md": "8a27e74d4d2e5fc872676c93a8aaf45e80ce01225d1b3ffd942cf96096e10ec6",
-      "decision-record.md": "20ebcf715e1af893b083d8b34303e8035ec1d7d37292785d267fd7745878da80",
-      "implementation-summary.md": "c0c4ac3ba010de762b9025d5526d4c8edef32c2cb665fdcd0bbfa5d4c3ee749b",
+      "decision-record.md": "6a60fec4c776cad6efac38bb06bac8518f60d049a48e1b303cf65f9884954f9e",
+      "implementation-summary.md": "2a0e68912a0c7e2d3f5cd9c619a81f47d5fb238339630c5f88a19198e59ebf16",
       "research/research.md": "8044ae31f45b4ceb56b793fd4a6f0fb33cdf34fe5ea890469767b156b0e5916d"
     },
-    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups",
-    "last_active_at": "2026-11-14T07:30:54.580Z"
+    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill",
+    "last_active_at": "2026-11-14T19:47:48.033Z"
   }
 }

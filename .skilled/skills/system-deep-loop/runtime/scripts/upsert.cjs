@@ -20,6 +20,7 @@ const {
   classifyExitCode,
   installSignalHandlers,
   maybeThrowTestFault,
+  readStdinSync,
   sleepSync,
   validateNamespaceValue,
 } = require('./lib/cli-guards.cjs');
@@ -47,7 +48,8 @@ if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   const child = spawnSync(process.execPath, ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)], {
     cwd: process.cwd(),
     env: require('./runtime-bootstrap.cjs').tsxChildEnv({ DEEP_LOOP_TSX_LOADED: '1' }),
-    input: process.stdin.isTTY ? undefined : fs.readFileSync(0),
+    // Only `--events -` reads stdin, so stdin is forwarded for that alone.
+    input: process.argv.slice(2).includes('-') ? readStdinSync() : undefined,
     encoding: 'utf8',
   });
   if (child.stdout) process.stdout.write(child.stdout);
@@ -153,6 +155,15 @@ function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
 
+// A review leaf names a dimension with the short prefix it uses locally. The graph keeps
+// one id shape, so a prefixed name folds to that shape before a node or edge is stored.
+function canonicalReviewDimensionId(id) {
+  if (typeof id !== 'string') return id;
+  const match = /^(?:dimension:|dim:|dim-)(.+)$/i.exec(id.trim());
+  if (!match) return id;
+  return `dimension:${match[1].toLowerCase()}`;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -215,6 +226,10 @@ async function main() {
     const rejectedSelfLoops = [];
     const nodes = [];
     const edges = [];
+    // A leaf's own dimension id shape must not add a second node for a dimension the
+    // graph already holds. This map carries an old id to the canonical one so an edge
+    // that still names the old id lands on the same node.
+    const reviewDimensionIds = new Map();
 
     for (const n of rawNodes) {
       const kind = String(n.kind || n.nodeKind || n.type || '').toUpperCase();
@@ -227,9 +242,15 @@ async function main() {
         validationErrors.push(`Invalid node kind "${kind}" for loop type "${loopType}". Valid: ${validKinds.join(', ')}`);
         continue;
       }
+      let nodeId = n.id;
+      if (loopType === 'review' && kind === 'DIMENSION') {
+        const canonicalId = canonicalReviewDimensionId(n.id);
+        if (canonicalId !== n.id) reviewDimensionIds.set(n.id, canonicalId);
+        nodeId = canonicalId;
+      }
       const name = n.name || n.label || n.id;
       const baseNode = {
-        id: n.id,
+        id: nodeId,
         specFolder,
         sessionId,
         kind,
@@ -253,9 +274,12 @@ async function main() {
           });
     }
 
+    const canonicalEdgeEndpoint = (id) => (loopType === 'review'
+      ? canonicalReviewDimensionId(reviewDimensionIds.get(id) ?? id)
+      : id);
     for (const e of rawEdges) {
-      const sourceId = e.sourceId || e.source;
-      const targetId = e.targetId || e.target;
+      const sourceId = canonicalEdgeEndpoint(e.sourceId || e.source);
+      const targetId = canonicalEdgeEndpoint(e.targetId || e.target);
       const relation = String(e.relation || '').toUpperCase();
       if (!e.id || typeof e.id !== 'string') {
         validationErrors.push('Edge missing required id');

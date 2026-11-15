@@ -6,7 +6,7 @@ trigger_phrases:
   - "review baseline handoff"
 importance_tier: normal
 contextType: implementation
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Code Quality Checklist
@@ -39,7 +39,7 @@ Hold the few JavaScript checks the SKILLED surface applies on top of its JavaScr
 
 A site house style is not a SKILLED rule. Webflow conventions, such as `snake_case` JavaScript names, the IIFE wrapper, `/* */` numbered section headers, the `CATEGORY: COMPONENT NAME` header and `WEBFLOW:`, `MOTION:` or `LENIS:` comment prefixes, are not checks here. An operator-private Webflow surface skill carries them. On SKILLED they contradict the camelCase and `MODULE:` header rules of the SKILLED JavaScript checklist.
 
-Comment rules are not here either. Commented-out code, WHY-not-WHAT, function purpose comments, JSDoc and the comment budget are SKILLED JavaScript checklist rules. Ephemeral artifact ids and history comments (CHK-CMT-07) are universal rules in [code-style-guide.md](../../../../sk-code-quality/references/code-style-guide.md) §4.
+Comment rules are not here either. Commented-out code, WHY-not-WHAT, function purpose comments, JSDoc and the comment budget are SKILLED JavaScript checklist rules. Ephemeral artifact ids and history comments are universal rules in [code-style-guide.md](../../../../sk-code-quality/references/code-style-guide.md) §4.
 
 ### Review Baseline Handoff
 

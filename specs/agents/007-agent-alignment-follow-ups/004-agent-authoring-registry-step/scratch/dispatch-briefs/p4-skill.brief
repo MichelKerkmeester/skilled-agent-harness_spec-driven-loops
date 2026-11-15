@@ -1,0 +1,55 @@
+Add one step to the ordered creation workflow of the agent authoring skill: add a registry
+record before the roster check runs. The validation step also quotes the error an author sees
+without a record, and the last two steps move down by one.
+
+In this file the frontmatter `version` line IS one of the changes below, so apply it. It
+overrides the frontmatter note below.
+
+Files:
+1. .skilled/skills/sk-doc/sk-create-agent/SKILL.md
+
+Do not touch the frontmatter. A commit hook raises the `version` field.
+Each change below gives the exact text to find (OLD) and the exact text that replaces it (NEW).
+The first and last lines of OLD and NEW are unchanged context lines, shown so the place is unambiguous.
+Blank lines inside OLD and NEW are part of the text. Apply every change, top to bottom.
+
+######## FILE: .skilled/skills/sk-doc/sk-create-agent/SKILL.md ########
+
+Change 1, at about line 5. Removes 1 line(s), adds 1.
+<<<<<<< OLD
+description: Scaffold OpenCode agents with runtime placement, permission frontmatter, authority boundaries, workflow sections, and validation.
+allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+version: 1.0.7.0
+---
+
+======= NEW
+description: Scaffold OpenCode agents with runtime placement, permission frontmatter, authority boundaries, workflow sections, and validation.
+allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+version: 1.0.8.0
+---
+
+>>>>>>> END
+
+Change 2, at about line 197. Removes 2 line(s), adds 3.
+<<<<<<< OLD
+11. Link supporting skills, commands, references, and companion agents rather than copying their full guidance.
+12. Remove template placeholders and check that the document stays focused on the runtime role.
+13. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links. Run `node .skilled/bin/sync-agent-roster.cjs --check` after adding or editing an agent file and after editing the required-sections list in `assets/agent-template.md`: it compares every agent's outline with that list.
+14. Deliver only after validation passes or after reporting the exact blocker.
+
+When the user invokes `/create:agent`, treat the command as the preferred entry point, but keep this same creation contract as the source of truth for the generated file.
+======= NEW
+11. Link supporting skills, commands, references, and companion agents rather than copying their full guidance.
+12. Remove template placeholders and check that the document stays focused on the runtime role.
+13. Add a record for a new agent to `.skilled/agents/agent-registry.json`, copying an existing record as the pattern. A record carries `name`, `tier`, `priority`, `dispatchers`, `taskType`, `skills`, `notes` and `summary`, and `templateExceptions` only when the file leaves out a required section. Then run `node .skilled/bin/sync-agent-roster.cjs` so the generated rosters pick the agent up.
+14. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links. Run `node .skilled/bin/sync-agent-roster.cjs --check` after adding or editing an agent file and after editing the required-sections list in `assets/agent-template.md`: it compares every agent's outline with that list. A new agent file with no registry record fails it with `agent file without a registry record: <name>`.
+15. Deliver only after validation passes or after reporting the exact blocker.
+
+When the user invokes `/create:agent`, treat the command as the preferred entry point, but keep this same creation contract as the source of truth for the generated file.
+>>>>>>> END
+
+The markers `<<<<<<< OLD`, `======= NEW` and `>>>>>>> END` are not part of any file. Never write them.
+
+Verification (run all, paste the output in the handback):
+  wc -l < .skilled/skills/sk-doc/sk-create-agent/SKILL.md      # expect: 279
+  wc -w < .skilled/skills/sk-doc/sk-create-agent/SKILL.md      # expect: 2164

@@ -9,7 +9,7 @@ trigger_phrases:
   - "ndp compliant council"
 importance_tier: "important"
 contextType: "planning"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # AI Council Depth Dispatch
@@ -85,15 +85,14 @@ The dispatcher must inspect task context and choose the safest mode.
 
 ### Depth 0 Cues
 
-Assume Depth 0 when:
+Use Depth 0 only when the prompt states operator invocation and all of these hold:
 
-- the council is invoked directly by the user;
-- no explicit nesting marker is present;
+- the prompt says the operator invoked the council directly;
 - no parent agent says this is a LEAF call;
 - Task tool dispatch is available and safe;
 - the runtime context does not prohibit sub-dispatch.
 
-Depth 0 is the fallback when no nesting evidence exists.
+Depth 1 is the default. Without a statement of operator invocation in the prompt, the council processes seats in context and dispatches nothing.
 
 ### Depth 1 Cues
 
@@ -139,18 +138,18 @@ If depth is unclear:
 1. Check for explicit `Depth: 1`.
 2. Check caller identity and LEAF language.
 3. Check available tools and nesting constraints.
-4. If no nesting evidence exists, operate as Depth 0.
+4. If the prompt does not state operator invocation, operate at Depth 1.
 5. If runtime safety is uncertain, choose Depth 1 and label dispatch mode honestly.
 
 ---
 
 ## 4. DEPTH 0: PARALLEL DISPATCH
 
-Depth 0 is the default top-level council mode.
+Depth 0 is the operator-invoked council mode.
 
 Use when:
 
-- Multi-AI Council is invoked directly at top level;
+- the prompt states the operator invoked the council directly;
 - Task tool dispatch is allowed;
 - distinct council seats can run independently;
 - the runtime can collect all seat results before synthesis.

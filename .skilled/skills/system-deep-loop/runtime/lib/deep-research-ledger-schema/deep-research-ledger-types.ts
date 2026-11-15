@@ -169,12 +169,18 @@ export interface BranchDecisionData extends JsonObject {
   readonly reservationRef: string;
 }
 
-export interface IterationStartedData extends JsonObject {
+interface IterationStartedCoreData extends JsonObject {
   readonly focusRef: string;
   readonly stateTailDigest: Digest;
   readonly strategyDigest: Digest;
   readonly status: 'started';
 }
+
+// The opening row names its executor only when a non-native executor runs the
+// iteration, so each persisted shape is modeled without an optional property.
+export type IterationStartedData =
+  | IterationStartedCoreData
+  | (IterationStartedCoreData & { readonly executor: JsonObject });
 
 interface IterationCompletedCoreData extends JsonObject {
   readonly status: 'complete' | 'error' | 'insight' | 'stuck' | 'thought' | 'timeout';
@@ -614,6 +620,29 @@ export type PivotLifecycleData = JsonObject & LifecycleRowIdentity & {
   readonly occurredAtIso?: string;
 };
 
+// The audited runner's dispatch failure row, carried field for field. A native
+// run names no executor, and the marker pair is present only when a provider
+// outage marker matched.
+export type DispatchFailureData = JsonObject & {
+  readonly reason: string;
+  readonly iteration: Uint32;
+  readonly executor?: JsonObject;
+  readonly detail?: string;
+  readonly executorUnavailable?: boolean;
+  readonly matchedMarker?: string;
+  readonly sessionId?: string;
+};
+
+// The row the audited runner writes for each dispatch receipt it cannot write.
+export type DispatchReceiptWriteFailedData = JsonObject & {
+  readonly reason: string;
+  readonly phase: string;
+  readonly iteration: Uint32;
+  readonly executor?: JsonObject;
+  readonly detail?: string;
+  readonly sessionId?: string;
+};
+
 // ───────────────────────────────────────────────────────────────────
 // 4. EVENT UNION
 // ───────────────────────────────────────────────────────────────────
@@ -672,6 +701,8 @@ export const DeepResearchEventStems = Object.freeze([
   'deep_research.pivot_selected',
   'deep_research.pivot_completed',
   'deep_research.pivot_failed',
+  'deep_research.dispatch_failure',
+  'deep_research.dispatch_receipt_write_failed',
 ] as const);
 
 export type DeepResearchEventStem = typeof DeepResearchEventStems[number];
@@ -692,7 +723,7 @@ export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
   'deep_research.question_registered': { status: 'reserved', reason: 'No writer emits it today: questions are flat rows in the state log. A question step would speak it once registration appends its dependency and source-class contract.' },
   'deep_research.branch_planned': { status: 'reserved', reason: 'No writer emits it today: branch plans live in strategy prose. A branch step would speak it once a planned branch and its budget are appended.' },
   'deep_research.branch_selected': { status: 'reserved', reason: 'No writer emits it today: selection is a strategy update. A branch step would speak it once the selected branch and its rationale are appended.' },
-  'deep_research.iteration_started': { status: 'reserved', reason: 'No writer emits it today: iteration opening is a flat row. An iteration step would speak it once a pass opens with its focus ref.' },
+  'deep_research.iteration_started': { status: 'reserved', reason: 'No workflow stages it: the pre-dispatch executor audit hands the gateway the legacy iteration_start row, which the gateway upcasts to this stem. An iteration step would speak it once it stages the stem itself.' },
   'deep_research.iteration_completed': { status: 'reserved', reason: 'No writer emits it today: completion is a flat row folded by the reducer. An iteration step would speak it once completion appends its ratio and ruled-out approaches.' },
   'deep_research.source_captured': { status: 'reserved', reason: 'No writer emits it today: captured sources live in the source log. A source step would speak it once capture appends its version and digests.' },
   'deep_research.evidence_admission_decided': { status: 'reserved', reason: 'No writer emits it today: admission is reducer-derived. An admission step would speak it once an admitted or rejected source is appended with its reasons.' },
@@ -739,6 +770,8 @@ export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
   'deep_research.pivot_selected': { status: 'reserved', reason: 'No writer appends it to the research state log: the divergent pivot records its lifecycle in its own council state log. A row already in a ledger-backed research state log upcasts to this stem.' },
   'deep_research.pivot_completed': { status: 'reserved', reason: 'No writer appends it to the research state log: the divergent pivot records its lifecycle in its own council state log. A row already in a ledger-backed research state log upcasts to this stem.' },
   'deep_research.pivot_failed': { status: 'reserved', reason: 'No writer appends it to the research state log: the divergent pivot records its lifecycle in its own council state log. A row already in a ledger-backed research state log upcasts to this stem.' },
+  'deep_research.dispatch_failure': { status: 'reserved', reason: 'No workflow stages it: the audited executor runner hands the gateway the legacy dispatch_failure row, which the gateway upcasts to this stem. A dispatch step would speak it once it stages the stem itself.' },
+  'deep_research.dispatch_receipt_write_failed': { status: 'reserved', reason: 'No workflow stages it: the audited executor runner hands the gateway the legacy dispatch_receipt_write_failed row, which the gateway upcasts to this stem. A dispatch step would speak it once it stages the stem itself.' },
 } as const satisfies Readonly<Record<DeepResearchEventStem, DeepResearchStemProducerStatus>>);
 
 export const DeepResearchWireEventTypes = Object.freeze({
@@ -795,6 +828,8 @@ export const DeepResearchWireEventTypes = Object.freeze({
   'deep_research.pivot_selected': 'deep-research.ledger.pivot-selected',
   'deep_research.pivot_completed': 'deep-research.ledger.pivot-completed',
   'deep_research.pivot_failed': 'deep-research.ledger.pivot-failed',
+  'deep_research.dispatch_failure': 'deep-research.ledger.dispatch-failure',
+  'deep_research.dispatch_receipt_write_failed': 'deep-research.ledger.dispatch-receipt-write-failed',
 } as const satisfies Readonly<Record<DeepResearchEventStem, string>>);
 
 export type DeepResearchWireEventType =
@@ -854,6 +889,8 @@ export interface DeepResearchPayloadMap {
   readonly 'deep_research.pivot_selected': PivotLifecycleData;
   readonly 'deep_research.pivot_completed': PivotLifecycleData;
   readonly 'deep_research.pivot_failed': PivotLifecycleData;
+  readonly 'deep_research.dispatch_failure': DispatchFailureData;
+  readonly 'deep_research.dispatch_receipt_write_failed': DispatchReceiptWriteFailedData;
 }
 
 export interface DeepResearchScopeMap {
@@ -910,6 +947,8 @@ export interface DeepResearchScopeMap {
   readonly 'deep_research.pivot_selected': DeepResearchBaseScope;
   readonly 'deep_research.pivot_completed': DeepResearchBaseScope;
   readonly 'deep_research.pivot_failed': DeepResearchBaseScope;
+  readonly 'deep_research.dispatch_failure': DeepResearchBaseScope;
+  readonly 'deep_research.dispatch_receipt_write_failed': DeepResearchBaseScope;
 }
 
 export interface DeepResearchLedgerPayload<

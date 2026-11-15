@@ -7,7 +7,7 @@ trigger_phrases:
   - "font metrics and layout shift"
 importance_tier: important
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Web Performance and Loading
@@ -108,7 +108,16 @@ This file covers Core Web Vitals, image and font loading, layout stability and m
 - **Support:** Baseline widely available since 2022-07-15 (web-features `will-change`). Chrome 36 / Firefox 36 / Safari 9.1.
 - **See also:** [MDN: CSS will-change](https://developer.mozilla.org/en-US/docs/Web/CSS/will-change)
 
-### P10. Main-thread long tasks
+### M29. GPU promotion and `will-change`
+
+- **Rule:** Use `transform: translateZ(0)` sparingly as a fix for a measured problem, and toggle `will-change` on for the duration of an unperformant scroll animation and off afterwards.
+- **Why:** Both promote a layer, and a permanent promotion costs memory and can change how text is rasterized.
+- **When not to:** Leave the element unpromoted when the animation already holds its frame budget.
+- **Pitfall:** A permanent `will-change` is its own leak.
+- **Support:** Judgment, no version gate.
+- **See also:** [web-performance-and-loading.md](web-performance-and-loading.md).
+
+### P8. Main-thread long tasks
 
 - **Rule:** Split, move or yield work that blocks the main thread for more than 50 milliseconds.
 - **Why:** A long task delays input and rendering until the browser can run another task.
@@ -121,7 +130,7 @@ This file covers Core Web Vitals, image and font loading, layout stability and m
 
 ## 5. RESPONSIVE IMAGE DELIVERY
 
-### P8. srcset and sizes selection
+### P9. srcset and sizes selection
 
 - **Rule:** Describe the image's rendered width in `sizes` when `srcset` uses width descriptors.
 - **Why:** The browser multiplies the selected slot width by device pixel ratio to choose a source candidate. A 600-pixel slot at DPR 2 needs a candidate near 1200 pixels.
@@ -130,7 +139,7 @@ This file covers Core Web Vitals, image and font loading, layout stability and m
 - **Support:** Baseline widely available since 2019-09-27 (web-features `srcset`). Chrome 38 / Firefox 38 / Safari 10.1.
 - **See also:** [MDN: Responsive images](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images)
 
-### P9. Picture formats and image hints
+### P10. Picture formats and image hints
 
 - **Rule:** List preferred AVIF and WebP sources before the JPEG `<img>` fallback, use loading, decoding and priority hints for their intended stages, and use `sizes="auto"` only as an enhancement.
 - **Why:** The browser selects the first supported `<source>` in a `<picture>`.

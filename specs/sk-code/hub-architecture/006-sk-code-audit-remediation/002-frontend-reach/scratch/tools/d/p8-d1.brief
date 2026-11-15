@@ -1,0 +1,21 @@
+TASK: replace two table rows in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md (read lines 252 to 266 only)
+
+EDIT 1. In the table under `## 5. RULE IDS`, replace the whole row that starts with ``| `syntax.json`, `syntax.cjs`, `syntax.mjs`,`` with the one line between the first pair of marker lines below.
+
+<<<TEXT
+| `syntax.cjs`, `syntax.mjs`, `syntax.python`, `syntax.yaml`, `syntax.toml`, `syntax.shell` | P0 exact | A parse fault |
+TEXT>>>
+
+EDIT 2. In the same table, replace the whole row that starts with ``| `syntax.json` | P0 heuristic |`` with the one line between the second pair of marker lines below.
+
+<<<ROW
+| `syntax.json` | P0 exact, or P0 heuristic for JSONC-only content | A parse fault. The confidence is heuristic for a `.json` file outside the JSONC names that parses only once its comments and trailing commas leave, which the tool that reads it may accept |
+ROW>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'syntax\.json' .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md; echo "exit $?"
+Expected output: `1` then `exit 0`

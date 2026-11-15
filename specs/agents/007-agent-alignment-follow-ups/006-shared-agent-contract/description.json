@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-agent-alignment-follow-ups/006-shared-agent-contract",
+  "description": "Phase 6: shared-agent-contract",
+  "keywords": [
+    "phase",
+    "shared-agent-contract"
+  ],
+  "lastUpdated": "2026-11-14T21:52:45.613Z",
+  "specId": "006",
+  "folderSlug": "shared-agent-contract",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "14-11-26_21-47__phase-006-findings-reproduced-before-planning.md",
+    "14-11-26_22-52__built-phase-006-through-speckit-implement-auto.md"
+  ]
+}

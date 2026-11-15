@@ -1,0 +1,26 @@
+TASK: renumber three rule headings in one file so the ids ascend down the page. Only the id changes, never the title or the body.
+
+FILE: .skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md (read lines 100 to 136 only)
+
+Make the three edits in this order, so no two headings share an id at the end.
+
+EDIT 1, line 133. Replace:
+### P9. Picture formats and image hints
+with:
+### P10. Picture formats and image hints
+
+EDIT 2, line 124. Replace:
+### P8. srcset and sizes selection
+with:
+### P9. srcset and sizes selection
+
+EDIT 3, line 111. Replace:
+### P10. Main-thread long tasks
+with:
+### P8. Main-thread long tasks
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -o '^### P[0-9]+' .skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md | tr '\n' ' '
+Expected output: `### P1 ### P2 ### P3 ### P4 ### P5 ### P6 ### P7 ### P8 ### P9 ### P10`

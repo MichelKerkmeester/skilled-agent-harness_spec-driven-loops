@@ -1,7 +1,7 @@
 ---
 title: "DAC-018 -- Resume after interrupted state"
-description: "This scenario validates resume behavior for `DAC-018`. It focuses on continuing from the last completed JSONL event toward council_complete."
-version: 1.7.0.8
+description: "This scenario validates resume behavior for `DAC-018`. It focuses on continuing from the round artifacts on disk toward council_complete."
+version: 1.7.1.0
 ---
 
 # DAC-018 -- Resume after interrupted state
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates resume behavior for `DAC-018`. It focuses on partial `round_start`, missing synthesis, and missing `round_end` recovery rules.
+This scenario validates resume behavior for `DAC-018`. It focuses on missing seat files, missing deliberation, and unconverged round recovery rules.
 
 ### Why This Matters
 
-Council state is append-only. Resume behavior must continue from real JSONL events instead of guessing or rewriting history.
+Council rounds are append-only. Resume behavior must continue from the round artifacts on disk instead of guessing or rewriting history.
 
 ---
 
@@ -24,13 +24,13 @@ Council state is append-only. Resume behavior must continue from real JSONL even
 
 Operators run the exact prompt and command sequence for `DAC-018` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify an interrupted council run can resume from the last completed JSONL event and continue toward `council_complete`.
-- Real user request: Resume an interrupted council run from the last completed JSONL event and continue toward council_complete.
-- Prompt: `Resume an interrupted council run from the last completed JSONL event and continue toward council_complete.`
-- Expected execution process: Inspect `state-format.md` §6 RESUME SEMANTICS and agent body §13 case 3, then verify the documented partial-event recovery paths.
-- Expected signals: Resume rules cover partial `round_start`, missing `deliberation_synthesized`, and missing `round_end`.
-- Desired user-visible outcome: The user sees the next safe resume action based on the last completed event.
-- Pass/fail: PASS if resume rules document partial `round_start`, missing synthesis, and missing `round_end`; FAIL if any recovery path is absent.
+- Objective: Verify an interrupted council run resumes from the round artifacts on disk and continues toward `council_complete`.
+- Real user request: Resume an interrupted council run from the round artifacts on disk and continue toward council_complete.
+- Prompt: `Resume an interrupted council run from the round artifacts on disk and continue toward council_complete.`
+- Expected execution process: Inspect `state-format.md` §6 ROUND MODEL AND RESUME SEMANTICS, then verify the documented artifact-based recovery paths.
+- Expected signals: Resume rules cover missing seat files, a missing `deliberations/round-NNN.md` and a round that did not converge.
+- Desired user-visible outcome: The user sees the next safe resume action based on the last complete artifact.
+- Pass/fail: PASS if the resume rules document missing seat files, missing deliberation and an unconverged round, and name the artifacts on disk as the resume source; FAIL if any recovery path is absent.
 
 ---
 
@@ -38,21 +38,21 @@ Operators run the exact prompt and command sequence for `DAC-018` and confirm th
 
 ### Recommended Orchestration Process
 
-1. Read `state-format.md` §6 RESUME SEMANTICS.
-2. Read `.skilled/agents/ai-council.md` §13 case 3.
-3. Run the grep command and confirm the partial-event cases are documented.
+1. Read `state-format.md` §6 ROUND MODEL AND RESUME SEMANTICS.
+2. Confirm the Resume subsection names the artifacts on disk as the resume source.
+3. Run the grep command and confirm the artifact-based cases are documented.
 
 ### Prompt
 
-`Resume an interrupted council run from the last completed JSONL event and continue toward council_complete.`
+`Resume an interrupted council run from the round artifacts on disk and continue toward council_complete.`
 
 ### Commands
 
-1. `bash: rg -n "RESUME SEMANTICS|round_start.*without|deliberation_synthesized.*missing" .skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
+1. `bash: rg -n "RESUME SEMANTICS|artifacts on disk|seat files|deliberations/round-NNN.md. is missing" .skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
 
 ### Expected
 
-`state-format.md` documents resume behavior for partial `round_start`, missing `deliberation_synthesized`, and missing `round_end`.
+`state-format.md` documents resume from the artifacts on disk for missing seat files, a missing deliberation and an unconverged round.
 
 ### Evidence
 
@@ -60,16 +60,16 @@ Capture grep output and note the matching resume section.
 
 ### Pass / Fail
 
-- **Pass**: Resume rules documented for partial `round_start`, missing synthesis, and missing `round_end`.
+- **Pass**: Resume rules documented for missing seat files, missing deliberation and an unconverged round, with the artifacts on disk as the source.
 - **Fail**: Any of the required resume cases is missing.
 
 ### Failure Triage
 
-Update `state-format.md` from agent §13 resume semantics, then rerun the grep check.
+Update `state-format.md` §6 Resume, then rerun the grep check.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-018 | Resume interrupted state | Verify resume from last JSONL event | `Resume an interrupted council run from the last completed JSONL event and continue toward council_complete.` | `bash: rg -n "RESUME SEMANTICS\|round_start.*without\|deliberation_synthesized.*missing" .skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md` | Resume semantics mention partial round and missing synthesis cases | Grep output | PASS if all resume cases are documented | Update state reference from agent source |
+| DAC-018 | Resume interrupted state | Verify resume from the artifacts on disk | `Resume an interrupted council run from the round artifacts on disk and continue toward council_complete.` | `bash: rg -n "RESUME SEMANTICS\|artifacts on disk\|seat files\|deliberations/round-NNN.md. is missing" .skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md` | Resume rules cover missing seats, missing deliberation and an unconverged round | Grep output | PASS if all resume cases are documented | Update state-format.md §6 Resume |
 
 ---
 

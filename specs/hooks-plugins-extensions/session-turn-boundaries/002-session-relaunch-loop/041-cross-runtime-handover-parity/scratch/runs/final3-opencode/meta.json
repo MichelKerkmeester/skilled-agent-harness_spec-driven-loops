@@ -1,0 +1,17 @@
+{
+  "runtime": "opencode",
+  "label": "final3",
+  "codeWord": "ORCHID-6002",
+  "name": "hoptest-final3-opencode",
+  "startMs": 1794694787073,
+  "logOffset": 3905,
+  "stateDir": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-relaunch-501",
+  "notesDir": "/Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity/.skilled/skills/.state/session-relaunch/handoffs",
+  "launch": [
+    "--auto",
+    "--prompt",
+    "Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-relaunch/README.md, name its first heading and repeat the code word ORCHID-6002. Start by reading the README. Gate 3: D) Skip, no spec folder."
+  ],
+  "endMs": 1794694865143,
+  "trustDialogs": 0
+}

@@ -3,7 +3,7 @@ name: deep-research
 description: "Autonomous deep-research loop: iterative investigation, externalized state, convergence detection, fresh context per pass."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 argument-hint: "[topic] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
-version: 1.15.12.0
+version: 1.15.13.0
 ---
 
 # Autonomous Deep Research Loop
@@ -101,7 +101,7 @@ Executor invariants:
    The gateway takes a single event object per invocation, not a multi-line JSONL delta.
    The multi-line `deltas/iter-NNN.jsonl` file is a separate reducer-owned artifact.
    The gateway authorizes, fences, and receipts the write, then refreshes `{state_paths.state_log}` from the ledger. Do not write that file directly.
-3. Respect the LEAF-agent constraint: no sub-dispatch, no nested loops, and max 12 tool calls per iteration.
+3. Respect the LEAF-agent constraint: no sub-dispatch, no nested loops, and no more tool calls per iteration than `config.maxToolCallsPerIteration`.
 
 Failure modes include `iteration_file_missing`, `iteration_file_empty`, `jsonl_not_appended`, `jsonl_missing_fields`, and `jsonl_parse_error`. Three consecutive failures route to stuck recovery.
 
@@ -203,7 +203,7 @@ Convergence uses newInfoRatio/stuck/question signals; JSONL state remains append
 
 1. **Dispatch sub-agents** -- @deep-research is LEAF-only (NDP compliance)
 2. **Hold findings in context** -- Write everything to files
-3. **Exceed TCB** -- Target 8-11 tool calls per iteration (max 12)
+3. **Exceed TCB** -- Stay within `config.maxToolCallsPerIteration` tool calls per iteration
 4. **Ask the user** -- Autonomous execution; make best-judgment decisions
 5. **Skip convergence checks** -- Every iteration must be evaluated
 6. **Modify config after init** -- Research parameters are read-only after initialization; the terminal `step_update_config_status` flip to `status: complete` is the one permitted write

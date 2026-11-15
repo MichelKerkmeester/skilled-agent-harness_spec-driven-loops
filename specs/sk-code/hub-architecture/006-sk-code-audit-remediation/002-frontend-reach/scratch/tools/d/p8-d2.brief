@@ -1,0 +1,21 @@
+TASK: two edits in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md (read lines 118 to 128 only)
+
+EDIT 1. Find the line that reads exactly `A configured check runs only from a trusted config. One of four rules makes it trusted.` It is followed by a blank line and four bullet lines that start with `- The operator names the file`, ``- `skcode.qualityConfig` is stored``, ``- `git config --local --bool`` and `- The repository under test shares`. Replace that line, the blank line after it and the four bullets with the one line between the marker lines below. The blank line that followed the fourth bullet stays.
+
+<<<TEXT
+A configured check runs only from a trusted config. [`quality-config.md`](./quality-config.md) section 8 holds the four rules that make a config trusted.
+TEXT>>>
+
+EDIT 2. In the paragraph that follows, replace the literal text
+Otherwise a configured check that would start a command reads
+with the literal text
+From an untrusted config, a configured check that would start a command reads
+Keep the rest of that line byte for byte.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'One of four rules makes it trusted|shares its git common dir with the checkout' .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md; echo "exit $?"
+Expected output: `exit 1`

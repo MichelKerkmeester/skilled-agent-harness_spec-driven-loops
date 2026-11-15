@@ -8,7 +8,7 @@ version: 1.0.1.0
 # DeepSeek Harness CLI Orchestrator - Cross-AI Task Delegation
 
 > **Experimental executor kind.** LLM Gateway `deepseek-v4.1-flash-1017` is verified on dsh
-> 0.2.2-rc.1 (2026-11-06) and is the default route. OpenCode Go `deepseek-v4.1-flash` was
+> 0.2.2-rc.3 (2026-11-14) and is the default route. OpenCode Go `deepseek-v4.1-flash` was
 > proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and stays out
 > of defaults.
 
@@ -56,7 +56,7 @@ This packet owns the dispatch contract: the hard rules, the roster, the argv sha
 For research and review lineages, the shared deep-loop runtime owns process construction through the experimental `cli-deepseek-harness` executor kind, described in [fanout-executor.md](./references/fanout-executor.md). The verified LLM Gateway route is the default. OpenCode Go is proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and remains explicit-only.
 Do not add a packet-local wrapper, spawn path or command builder.
 
-**Closed roster: non-roster routes are FORBIDDEN.** Two routes exist, LLM Gateway and OpenCode Go, both serving DeepSeek V4.1 Flash. [providers-and-models.md](./references/providers-and-models.md) section 2 is the one place the ids, endpoints and key variables are recorded. dsh validates no catalog membership, so a patch naming any other model would run. The preflight is the only gate.
+**Closed roster: non-roster routes are FORBIDDEN.** Three routes exist, LLM Gateway, OpenCode Go and Mistral, all serving DeepSeek V4.1 Flash. [providers-and-models.md](./references/providers-and-models.md) section 2 is the one place the ids, endpoints and key variables are recorded. dsh validates no catalog membership, so a patch naming any other model would run. The preflight is the only gate.
 
 ### The Dispatch Shape
 

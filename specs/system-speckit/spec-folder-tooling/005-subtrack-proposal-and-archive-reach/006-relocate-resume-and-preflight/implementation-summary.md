@@ -108,6 +108,7 @@ The planned `reproduce.txt` and `after.txt` were not written as separate files. 
 1. **Edits inside a moved folder.** An operator's own uncommitted edit inside a folder the same map already moved cannot be told apart from the move, so that folder is exempt from the dirty-tree check.
 2. **Old ledger batches.** A batch written before this change has no `steps` record. A rerun of such a map runs the late steps once more and then marks them.
 3. **Renumber resume.** A stopped `--renumber` run leaves no map to rerun, because the map is derived from the live tree. Rerun with an explicit `--map` that names the remaining moves.
+4. **Untracked stop before the ledger.** An untracked packet, one git does not track, stopped after its move and before the ledger step leaves neither git nor the ledger recording the move. The rerun refuses it and asks for the folder to be moved back to its source path, then the map runs again. A tracked packet or a move the ledger already holds is finished by the rerun.
 <!-- /ANCHOR:limitations -->
 
 ---

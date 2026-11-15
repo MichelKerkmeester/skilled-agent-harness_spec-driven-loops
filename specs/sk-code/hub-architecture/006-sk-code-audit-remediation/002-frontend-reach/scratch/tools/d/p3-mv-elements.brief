@@ -1,0 +1,19 @@
+TASK: move 1 rule block(s) from one reference file to another, byte for byte, and leave one link line behind for each.
+
+SOURCE FILE: .skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md
+DESTINATION FILE: .skilled/skills/sk-code/sk-code-frontend/references/web-elements-and-attributes.md
+
+A rule block is exactly 8 lines: the `### M<n>. <title>` heading, one blank line, and six bullet lines from `- **Rule:**` to `- **See also:**`.
+Never retype a block. Copy it with a shell tool so every character survives, for example `sed -n '<first>,<last>p'` into a temporary file under /tmp, then insert that file.
+Find each block by its heading text with `grep -n`, because line numbers shift after each move.
+
+MOVE 1: the block whose heading is `### M2. Autocomplete and spellcheck`.
+  a. In the destination file, insert the 8-line block directly before ### EA6. Form owner and submitter overrides, so it follows the EA5 block. Keep exactly one blank line above the inserted heading and one blank line below the inserted `- **See also:**` line.
+  b. In the source file, replace the 8-line block with this single line, keeping one blank line above it and one blank line below it:
+**M2. Autocomplete and spellcheck** lives in [web-elements-and-attributes.md](web-elements-and-attributes.md#m2-autocomplete-and-spellcheck), beside EA5.
+
+Change nothing else in either file. Two files change. Do not edit any other rule.
+
+VERIFY (run from the repository root):
+cat .skilled/skills/sk-code/sk-code-frontend/references/*.md | rg -c '^### M[0-9]+\.'; rg -c '^### M[0-9]+\.' .skilled/skills/sk-code/sk-code-frontend/references/web-elements-and-attributes.md; rg -c '^\*\*M[0-9]+\. .* lives in ' .skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md
+Expected output: `57`, then the number of rule blocks this file now holds with an M id, then the number of link lines in the source file. Report all three numbers.

@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.26.0
+version: 1.4.27.0
 ---
 
 # cli-opencode
@@ -30,7 +30,7 @@ version: 1.4.26.0
 
 ### What It Does
 
-cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. OpenCode 2 is the expected and recommended version: on OpenCode 2 (2.0.32) the default dispatch is `cd <repo-root> && opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "<prompt>"`. On OpenCode 1 (1.19.3), supported for now as a fallback for users who have not updated, it is `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir <repo-root>`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
+cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. OpenCode 2 is the expected and recommended version: on OpenCode 2 (2.3.0) the default dispatch is `cd <repo-root> && opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "<prompt>"`. On OpenCode 1 (1.19.3), supported for now as a fallback for users who have not updated, it is `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir <repo-root>`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
 
 It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders, memory and continuity. cli-opencode dispatches to OpenCode and hands the result back to the caller.
 
@@ -48,7 +48,7 @@ An external session that needs the project's whole runtime has no native path to
 | **Provider and model surface** | reaches every configured provider catalog through `references/providers-and-models.md`, which is the roster |
 | **Agent delegation** | routes to project-local agents under `.skilled/agents/` with the primary-versus-subagent caveats in `references/agent-delegation.md` |
 
-**Verified versions.** Verified against OpenCode 2.1.4 and OpenCode 1.19.4 on 2026-10-24. Flag and provider observations that name 2.0.32 or 1.19.3 were read on those releases and have not been re-read on 2.1.4 or 1.19.4. OpenCode 2 is the expected and recommended version. OpenCode 1 is supported for now as a fallback for users who have not updated. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
+**Verified versions.** Verified against OpenCode 2.3.0 and OpenCode 1.19.4 on 2026-11-14. Flag and provider observations that name 2.0.32 or 1.19.3 were read on those releases and have not been re-read on 2.3.0 or 1.19.4. OpenCode 2 is the expected and recommended version. OpenCode 1 is supported for now as a fallback for users who have not updated. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
 
 ---
 
@@ -73,7 +73,7 @@ Expected when configured: a table of providers with status and default indicator
 **Step 3: Run the default dispatch.**
 
 ```bash
-# On OpenCode 2 (2.0.32), the expected version:
+# On OpenCode 2 (2.3.0), the expected version:
 cd "$REPO_ROOT" && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \

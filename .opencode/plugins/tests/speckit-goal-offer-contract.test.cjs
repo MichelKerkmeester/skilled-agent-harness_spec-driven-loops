@@ -26,9 +26,11 @@ const WORKFLOW_YAML_FILES = [
   'commands/speckit/assets/speckit-plan.yaml',
   'commands/speckit/assets/speckit-complete.yaml',
   'commands/speckit/assets/speckit-implement.yaml',
-  'commands/speckit/assets/speckit-resume-auto.yaml',
-  'commands/speckit/assets/speckit-resume-confirm.yaml',
+  'commands/speckit/assets/speckit-resume.yaml',
 ];
+
+// The lifecycle workflows point at this include for the blocks they share.
+const LIFECYCLE_SHARED = 'commands/speckit/assets/speckit-lifecycle-shared.yaml';
 
 const ROUTER_FILES = [
   'commands/speckit/plan.md',
@@ -71,13 +73,13 @@ test('goal offer text is present in all presentation contracts', () => {
   }
 });
 
-test('goal_prompt_choice is confined to the five workflow YAML assets', () => {
+test('goal_prompt_choice is confined to the workflow YAML assets and their shared include', () => {
   const actual = listFiles(SPECKIT_ROOT)
     .filter((absolute) => readFileSync(absolute, 'utf8').includes('goal_prompt_choice'))
     .map((absolute) => relative(OPENCODE_ROOT, absolute))
     .sort();
 
-  assert.deepEqual(actual, [...WORKFLOW_YAML_FILES].sort());
+  assert.deepEqual(actual, [...WORKFLOW_YAML_FILES, LIFECYCLE_SHARED].sort());
 });
 
 test('router allowed-tools expose the expected goal tools only', () => {
@@ -110,30 +112,32 @@ test('touched command files do not contain the stale goal command filename', () 
   }
 });
 
-// The three lifecycle workflows each carry the same goal contract. They are
-// separate files because each workflow is read on its own, and they have
-// already drifted once: a runtime that learns the rule from one workflow and
-// meets a different rule in the next has no way to tell which is current.
-test('the three lifecycle workflows carry a byte-identical packet_goal block', () => {
+// The three lifecycle workflows share one goal contract. It lives once, in the
+// shared include, because three copies had already drifted: a runtime that
+// learns the rule from one workflow and meets a different rule in the next
+// has no way to tell which is current.
+test('the goal contract lives once in the shared include and each lifecycle workflow points at it', () => {
   const FILES = [
     'commands/speckit/assets/speckit-plan.yaml',
     'commands/speckit/assets/speckit-implement.yaml',
     'commands/speckit/assets/speckit-complete.yaml',
   ];
-  const blockOf = (relPath) => {
-    const text = readFileSync(join(OPENCODE_ROOT, relPath), 'utf8');
-    const start = text.indexOf('  packet_goal:\n');
-    assert.ok(start >= 0, `${relPath} has no packet_goal block`);
-    const end = text.indexOf('  status_tool_by_runtime:', start);
-    assert.ok(end > start, `${relPath} has no status_tool_by_runtime after packet_goal`);
-    return text.slice(start, end);
-  };
-  const [first, ...rest] = FILES.map(blockOf);
-  for (let i = 0; i < rest.length; i += 1) {
-    assert.equal(rest[i], first, `${FILES[i + 1]} drifted from ${FILES[0]}`);
-  }
+  const shared = read(LIFECYCLE_SHARED);
+  assert.equal(shared.split('\n  packet_goal:\n').length - 1, 1, 'the include must hold packet_goal exactly once');
+  const start = shared.indexOf('  packet_goal:\n');
+  const end = shared.indexOf('  status_tool_by_runtime:', start);
+  assert.ok(end > start, 'the include has no status_tool_by_runtime after packet_goal');
+  const block = shared.slice(start, end);
   // The block is the goal contract, so these load-bearing keys must be in it.
   for (const key of ['nesting:', 'bind_by_runtime:', 'resend:', 'reminder:', 'log:', 'without_a_session:']) {
-    assert.ok(first.includes(key), `the shared block lost ${key}`);
+    assert.ok(block.includes(key), `the shared block lost ${key}`);
+  }
+  for (const relPath of FILES) {
+    const text = read(relPath);
+    assert.equal(text.includes('  packet_goal:\n'), false, `${relPath} still carries its own packet_goal block`);
+    assert.ok(
+      text.includes('goal_prompting:\n  shared_tail: "assets/speckit-lifecycle-shared.yaml#goal_prompting"\n'),
+      `${relPath} must point goal_prompting at the shared include`,
+    );
   }
 });

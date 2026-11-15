@@ -1,0 +1,173 @@
+{
+ "date": "2026-11-14",
+ "title": "Phase 5: hub-router-alignment",
+ "hook": "The hub router's prose now names files that exist and covers all three surfaces, the implement doctrine is routed, and the setup battery passes with an exit status of 0 where it used to fail on 23 files.",
+ "recent": "Aligned the hub router prose with its map and turned the setup battery green",
+ "next": "Start 006-skilled-packet-fixes",
+ "what": "You can follow any path in sections 1 to 7 of the hub `ROUTER.md` and find the file. The language overlay lists each language's real files and folders. The implementation tier, the DEBUGGING row and the VERIFICATION row match section 8. `sk-code-ci` and `sk-code-frontend` have their own rows in the load tiers, the intent notes and the verification table. IMPLEMENTATION loads `shared/references/workflow-implement.md`, which is now a declared shared control. The four authoring checklists open by one stated selector, and the skilled and quality packets repeat the MCP server selector in the same words. The pointer to another repository is gone. The drift guard skips the header rule for a file that is only a one-line re-export, and the loop shell shim lost one blank line, so the guard reports no error. The hub is at version 3.12.0.0 with a release note that names the ledger rows phases 002 to 005 closed.",
+ "files": [
+  [
+   "`.skilled/skills/sk-code/ROUTER.md`",
+   "Modified",
+   "Sections 2, 3, 4, 5, 8 and 10"
+  ],
+  [
+   "`SKILL.md`, `description.json`, `mode-registry.json`, `hub-router.json`",
+   "Modified",
+   "Version 3.12.0.0"
+  ],
+  [
+   "`changelog/v3.12.0.0.md`",
+   "Created",
+   "The hub release note for phases 002 to 005"
+  ],
+  [
+   "`sk-code-skilled/SKILL.md`, `sk-code-quality/SKILL.md`",
+   "Modified",
+   "The MCP server checklist selector, one sentence each"
+  ],
+  [
+   "`sk-code-skilled/assets/scripts/verify_alignment_drift.py` and its test",
+   "Modified",
+   "`is_single_line_reexport`, called from `check_typescript`, and one test"
+  ],
+  [
+   "`sk-code-skilled/assets/checklists/typescript-checklist.md`, `references/typescript/style-guide/overview-strict-and-naming.md`",
+   "Modified",
+   "State the second header exemption"
+  ],
+  [
+   "`sk-code-skilled/assets/scripts/verify-router-sync.cjs`",
+   "Modified",
+   "One comment, which said only debug and verify were routed"
+  ],
+  [
+   "`.skilled/bin/skilled-loop-shell.sh`",
+   "Modified",
+   "One blank line removed"
+  ],
+  [
+   "Two `activation/sk-code/manifest.json` files",
+   "Regenerated",
+   "Policy hash after the router and version change"
+  ]
+ ],
+ "how": "Each cited line was read and each edit was designed as literal text before any dispatch. Twenty-three briefs went to DeepSeek V4.1 Flash at max thinking through cli-pi, one change each, and every diff was read. The orchestrating session ran the path check, the drift guards, the setup battery, the forced failure, the probe replay, the four test suites, the parent-skill check and the quality runner. The first commit attempt was blocked by the mirror-parity gate, because an earlier session had added headers to the 22 Pi entry files. The operator chose the guard exemption, the headers were reverted, and the code landed as `19214454c5`.",
+ "decisions": [
+  [
+   "AC-003 reads the pass line the battery prints",
+   "ADR-001. The battery prints `STATUS=OK legs=9` on a pass and has never printed `STATUS=PASS failed=0`"
+  ],
+  [
+   "The loop shell shim lost one blank line and gained no `set`",
+   "ADR-002. A top-level `set` would change the operator's interactive shell. The operator chose this on 2026-11-14"
+  ],
+  [
+   "The guard skips the header rule for a one-line re-export file",
+   "ADR-003. The mirror-parity gate requires each Pi entry file to be exactly that line. The operator chose this on 2026-11-14"
+  ],
+  [
+   "The MCP server selector is `the target is MCP server source: a file that defines an MCP server, registers its tools or sets how it starts`",
+   "The checklist's own Usage section lists those three cases. The wording is the session's and no second reader checked it"
+  ],
+  [
+   "The hub version rose to 3.12.0.0, a minor step",
+   "IMPLEMENTATION now loads one more file, which changes what a route returns"
+  ],
+  [
+   "The forced failure used `SPECKIT_COMPILED_ROUTING=0`, not a scratch copy",
+   "The battery reads the repository root, so a scratch copy means copying the whole tree. The switch fails two legs without touching a file"
+  ]
+ ],
+ "verify": [
+  [
+   "The path check in `plan.md` section 5",
+   "`missing 0`"
+  ],
+  [
+   "`rg -c 'workflow-implement.md' .skilled/skills/sk-code/ROUTER.md`",
+   "`5`"
+  ],
+  [
+   "`run-all-drift-guards.sh`",
+   "`all 4 guards PASSED, 21 non-blocking warning(s)`, exit 0, 0 `[ERROR]` lines"
+  ],
+  [
+   "`sk-code-setup-check.cjs`",
+   "Nine legs PASS, `STATUS=OK legs=9`, exit 0"
+  ],
+  [
+   "`SPECKIT_COMPILED_ROUTING=0 sk-code-setup-check.cjs`",
+   "`STATUS=FAIL failed=2 skipped=0`, exit 1, saved in `scratch/forced-failure.txt`"
+  ],
+  [
+   "The REQ-005 count of `sk-code-ci` and `sk-code-frontend` lines in sections 3 and 5",
+   "`4`"
+  ],
+  [
+   "`rg -c 'by judgment'` on the three files, and `rg -c 'barter/'` on `ROUTER.md`",
+   "Nothing printed, exit 1, both times"
+  ],
+  [
+   "`sync-hook-registrations.cjs --check`",
+   "`PASS`, 22 Pi extensions resolve"
+  ],
+  [
+   "`pytest test_verify_alignment_drift.py`",
+   "37 passed"
+  ],
+  [
+   "`node --test` on the sk-code-skilled tests, the sk-code-quality tests, `compiled-route-surface-hint.test.cjs`, `sk-code-setup-check.test.cjs` and `skilled-loop-shell.test.cjs`",
+   "55, 154, 15, 17 and 37 pass, 0 fail"
+  ],
+  [
+   "Probe replay",
+   "`13 frontend 13`, `8 negative 0`, `1 review 1`"
+  ],
+  [
+   "`parent-skill-check.cjs .skilled/skills/sk-code`",
+   "All hard invariants passed, 0 warnings"
+  ],
+  [
+   "`quality-gate.cjs`",
+   "`NO_BLOCKER_FOUND`"
+  ]
+ ],
+ "limits": "1. **The battery never prints `STATUS=PASS`.** Its pass line is `STATUS=OK legs=9`. AC-003, this phase's `goal.md` and the parent goal's third criterion quote the guessed line. ADR-001 records it.\n2. **The shim fix depends on a line count.** A line added above line 80 of `skilled-loop-shell.sh` brings the guard error back.\n3. **`spec.md` lists `.pi/extensions/*.ts` as files to change.** They are unchanged. ADR-003 records why.\n4. **The packet router still maps the MCP server checklist under IMPLEMENTATION.** The hub router says a mapped `assets/` entry opens only on its selector. Phase 006 owns the packet router.\n5. **The skilled and quality packets changed without a packet release note.** Phases 006 and 008 write those.",
+ "open": [],
+ "chk": {
+  "CHK-001": "spec.md section 4 rows REQ-001 to REQ-008 each name a command and its expected output",
+  "CHK-002": "plan.md section 3 names `ROUTER.md` sections 2 to 5 and `sk-code-setup-check.cjs`, and the Affected Surfaces table names the rest",
+  "CHK-003": "phase 004 closed in `19c3b365a9`, and `verify-router-sync.test.cjs` passed 18 of 18 there",
+  "CHK-010": "`node -e require(...)` on description.json, mode-registry.json and hub-router.json exits 0",
+  "CHK-011": "all four guards PASS, where the baseline failed alignment-drift on 23 files",
+  "CHK-012": "six files outside the table changed, all inside the hub or generated: the guard script and its test, the TypeScript checklist and style guide, one comment in `verify-router-sync.cjs` and the two regenerated manifests. The 22 `.pi/extensions` files in the table did not change, per ADR-003",
+  "CHK-013": "the changed documents keep their frontmatter and section order, and the doc-claims guard passes 4 of 4",
+  "CHK-020": "AC-001, AC-002 and AC-004 to AC-008 are Met, and AC-003 is Superseded by ADR-001",
+  "CHK-021": "the battery ends `STATUS=OK legs=9` and exits 0, which is its pass line, per ADR-001",
+  "CHK-022": "the spec-folder row holds no hub path and the path check skips it. The Rust row's three folders exist and the check prints `missing 0`. Both logged in goal.md",
+  "CHK-023": "with `SPECKIT_COMPILED_ROUTING=0` the battery printed `STATUS=FAIL failed=2 skipped=0` and exited 1, saved in `scratch/forced-failure.txt`",
+  "CHK-FIX-001": "H2, H3, H4, H6, SK-07 and QL-09 were Confirmed and H5 was Changed before their tasks started",
+  "CHK-FIX-002": "`rg` for the retired file names, `authoring-new`, `by judgment` and `barter/` across the hub finds only changelog history and benchmark reports",
+  "CHK-FIX-003": "the router tests, the path check, the battery callers list, the guard output and the version parity check all ran",
+  "CHK-FIX-004": "rows H2 to H6, SK-07 and QL-09 each name their proving command",
+  "CHK-FIX-005": "each of the seven rows names `19214454c5`",
+  "CHK-030": "the diff holds router prose, two map lines, version strings, a release note, one guard function with its test and one deleted blank line",
+  "CHK-031": "N/A as the line states",
+  "CHK-040": "the three documents name the same files and the same validate.sh command",
+  "CHK-041": "the docstring added to the guard states why an entry file cannot take a header and carries no id or path",
+  "CHK-042": "`.skilled/skills/sk-code/changelog/v3.12.0.0.md` names rows F1 to F13, H1 to H6, SK-07 and QL-09",
+  "CHK-050": "`scratch/forced-failure.txt` is the only working file",
+  "CHK-051": "the parent goal replay reads `scratch/forced-failure.txt` as the failure-path evidence"
+ },
+ "ac": {
+  "AC-001": "`missing 0` on 2026-11-14 at `19214454c5`.",
+  "AC-002": "`5`, and the runner printed `all 4 guards PASSED` and exited 0.",
+  "AC-004": "with `SPECKIT_COMPILED_ROUTING=0` the battery ended `STATUS=FAIL failed=2 skipped=0` and exited 1, saved in `scratch/forced-failure.txt`.",
+  "AC-005": "`4`.",
+  "AC-006": "nothing printed, exit 1, and all three files hold `a file that defines an MCP server, registers its tools or sets how it starts`.",
+  "AC-007": "nothing printed, exit 1.",
+  "AC-008": "all four carriers hold `3.12.0.0`, and `changelog/v3.12.0.0.md` exists."
+ },
+ "closure": "Seven criteria are met with the outputs observed on 2026-11-14 at commit `19214454c5`. AC-003 is superseded by ADR-001 in `decision-record.md`: the battery passes and exits 0, and its pass line reads `STATUS=OK legs=9`."
+}

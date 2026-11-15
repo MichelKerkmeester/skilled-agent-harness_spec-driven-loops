@@ -22,32 +22,32 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-ai-council-auto.yaml",
-      "sha256": "308d6706e513225e6762808448dfd2e61be6d4eb3efd9512508c2731f3db3599",
+      "sha256": "535367a8cc9bd1ee80f08d18207e4002e72568448ce146cbc5466c0a55847226",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-ai-council-confirm.yaml",
-      "sha256": "7db97eaa51aa47659da0d67b8e9edce6cb4829beb378f97f3e86a40204381b96",
+      "sha256": "c295bc28bd0bec1779c610d2deff87e21d29138230adb46ffad4cdd5206e63e3",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "ef2d16ecfd6e9946ffc753ed8d3e5de3c879ef2a371a6aef6906d79c9eec0a0b",
+      "sha256": "2e8dbb77026ac54baa214c211e6bbc63130f64c5a3ef58538149af8ccc6ae3f7",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "cc59065acdf16da29a994cb76ea7e732e6304a13caf46e6cfab23875af817183",
+      "sha256": "f99034b7c9ec7a9ef9678358789cfed4b1914eb8f241da6abcdf66a086573c2e",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "d99ac60483b0d91f22c200fbfe95c044775d359b883fc2ba5131f7701a521cff",
+      "sha256": "2b8a751628370ab20728a02065cae77248c591f195cf5adf6714943ce3d197d2",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md",
-      "sha256": "b34c1224964f639468bcf050cad953103b623ffed2a5bd3bef95849c421a8224",
+      "sha256": "a18cc8fba1d0ee0eab8b080187108786f05a2b48c9b3abd00815a1c5dcee90a4",
       "section": "full"
     },
     {
@@ -57,12 +57,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md",
-      "sha256": "37e8bf45c4240b8a041d9020c632c06efee13b6be821c76c26786dceaecbbb6f",
+      "sha256": "b2808b914c8f9073155811e0b157a8c19c177e49d3ccc346148bf144fd9f59d4",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md",
-      "sha256": "6fcba8d13b95f36752fa7866e4d1259d1bf3bce1ad0aeb9f1abe1c370eaa3834",
+      "sha256": "5273fe0caf932c8b0a8a431e6915ef55b7aebcf7a1bb5bb0581c47cb7a052d9f",
       "section": "full"
     },
     {
@@ -72,22 +72,22 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md",
-      "sha256": "a0e4cb996be6912c0a811736f0487fb2b85738f0b7e2ace115ad652fd480722f",
+      "sha256": "12ba8733a1b0f469550f972dc5a763e98a7addc8d255716d775443f120f887bb",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
-      "sha256": "1892c67285e797e6a3ec6a4a0a7f0ae1ba19d3a9655868d73b8ce7aa3ffb7bcc",
+      "sha256": "ebeec546215c160d60032502bcf09c0c63d55f6b0eb35d2cb82a1cadb7ebfcf6",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md",
-      "sha256": "78bda742591af823ab14e5cdb7dcbb44c542a42c9b3d9142bbc4b8a2a948cdb3",
+      "sha256": "fe64b5bacd1dcbc7f7c1664f03c11647e33e168a0bd697f6d27fd9d93c96d327",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md",
-      "sha256": "d0f1b8f7ef29775245b5fb38f41d2725fa9573d3b4d3f317356cf6214f171645",
+      "sha256": "7917ced842e09befbfc435c9d66097b4a0c26d1e9653e06f5dbd435ebdf76910",
       "section": "full"
     },
     {
@@ -112,12 +112,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
-      "sha256": "ccb4aef40e59ec7def53f7d85b52a7eeee1ff9716d1151f19759a01d90994e17",
+      "sha256": "bea61da3b71ea767d33e8836cffa32922585817fae42af065bcc80dc7109155b",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-      "sha256": "fb6d9c1b47db69d7fdaf503498857c64ef5de0f3d849661f0e6270bfe2f603ac",
+      "sha256": "cc55b297b8a67c08f75575610e16914bf05439aa4fec0b7606acc4af04260c3e",
       "section": "full"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "path": ".skilled/agents/ai-council.md",
-      "sha256": "c8f2ffb22730bf37ed7f9163e9a9933f6f5c801905314472a7da80e4baf209e9",
+      "sha256": "ab339c4855c62f842f984ee8d37848687fd2345da29ace8777c3d2f8a70fbc63",
       "section": "full"
     },
     {

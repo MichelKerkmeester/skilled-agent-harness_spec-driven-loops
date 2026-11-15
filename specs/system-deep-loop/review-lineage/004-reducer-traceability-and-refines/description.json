@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-deep-loop/review-lineage/004-reducer-traceability-and-refines",
+  "description": "Plan reducer fixes for false BLOCKED traceability entries and double-counted refinements",
+  "keywords": [
+    "plan",
+    "reducer",
+    "false",
+    "blocked",
+    "traceability",
+    "entries",
+    "double-counted",
+    "refinements"
+  ],
+  "lastUpdated": "2026-11-14T17:02:09.009Z",
+  "specId": "004",
+  "folderSlug": "reducer-traceability-and-refines",
+  "parentChain": [
+    "system-deep-loop",
+    "review-lineage"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

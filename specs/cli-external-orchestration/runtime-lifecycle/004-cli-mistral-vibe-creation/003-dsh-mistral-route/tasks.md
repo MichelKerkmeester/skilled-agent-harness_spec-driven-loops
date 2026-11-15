@@ -54,8 +54,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [B] T008 Run a keyed harmless dispatch (`scratch/`). Verify: exit 0 and `final.reason.kind` is `completed`. A keyless run on 2026-11-14 passed the preflight and failed only with `MISSING_CREDENTIAL` naming `MISTRAL_API_KEY`.
-- [B] T009 Run the same dispatch with the patch's default `max` (`scratch/`). Verify: exit 0 and no `UNSUPPORTED_REASONING_EFFORT` on stderr.
+- [ ] T008 Run a keyed harmless dispatch (`scratch/`). Verify: exit 0 and `final.reason.kind` is `completed`. A keyless run on 2026-11-14 passed the preflight and failed only with `MISSING_CREDENTIAL` naming `MISTRAL_API_KEY`.
+- [ ] T009 Run the same dispatch with the patch's default `max` (`scratch/`). Verify: exit 0 and no `UNSUPPORTED_REASONING_EFFORT` on stderr.
 - [x] T010 Run the dispatch hook tests (`.skilled/hooks/dispatch/`). Verify: `node --test lib/dispatch-rule-checks.test.mjs tests/dsh-dispatch.test.mjs` prints `pass 53`, `fail 0` (baseline 52).
 <!-- /ANCHOR:phase-3 -->
 

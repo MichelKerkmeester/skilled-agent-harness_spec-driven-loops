@@ -1,0 +1,157 @@
+# SMART SPECKIT: SHARED LIFECYCLE BLOCKS
+# The plan, implement and complete workflows each point at the keys below
+# with shared_tail: "assets/speckit-lifecycle-shared.yaml#<key>", resolved
+# from .skilled/commands/speckit/. Each block lives here once. A workflow
+# may keep local children beside its pointer.
+
+predicate_grammar:
+  typed_form: "A `when` field that gates branch logic uses the typed BooleanExpr form { field, op, value } defined by .skilled/skills/system-spec-kit/shared/predicates/boolean-expr.ts."
+  legacy_literal: "A legacy string literal, such as `<field> == TRUE`, is kept under `when_legacy_literal` as a diagnostic aid. It must stay mechanically equivalent to the typed form."
+  prose_timing: "An `after` field carries prose timing and narrative notes. It is never evaluated as a predicate."
+  operators: "Operators permitted: ==, !=, in, not_in. Boolean literals must match the uppercase TRUE/FALSE contract."
+
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve and continue to next step"
+  - label: "Review"
+    description: "Show more details"
+  - label: "Modify"
+    description: "Make changes before proceeding"
+
+goal_prompting:
+  default_choice: offer
+  choices:
+    offer: "Render the optional session-goal offer only; call no goal tool in any runtime."
+    skip: "Suppress the optional session-goal offer; call no goal tool in any runtime."
+    set: "Set a session goal only when goal_objective is provided."
+  set_mutation:
+    when:
+      field: goal_prompt_choice
+      op: "=="
+      value: set
+    require: goal_objective
+    # Resolved by runtime rather than naming one runtime's tool: three of the
+    # supported runtimes document no adapter for it, including the one whose
+    # native goal surface is the reason this offer exists. A runtime without a
+    # surface hands off to the operator; none is ever faked.
+    # When the resolved packet carries a goal.md, the set path binds instead of
+    # setting text: bindGoal derives the objective from the file, so the packet
+    # is the source from the first turn and the operator has nothing to paste.
+    bind_when_goal_present:
+      rule: "If <spec_path>/goal.md exists, call the bind action with spec_path and skip the text set; goal_objective is then the packet's objective slice."
+    dispatch_by_runtime:
+      opencode:
+        tool: opencode_goal
+        invocation: 'opencode_goal({ action: "bind", packetPath: spec_path }) when <spec_path>/goal.md exists, otherwise opencode_goal({ action: "set", objective: goal_objective })'
+        status_tool: opencode_goal_status
+      pi:
+        command: 'node .skilled/hooks/goal/bin/goal.cjs bind <spec_path> when <spec_path>/goal.md exists, otherwise node .skilled/hooks/goal/bin/goal.cjs set <objective>'
+        note: "Scope flags --runtime, --session and --workspace carry the native session identity and the repository root."
+      cursor:
+        surface: "injection-only; no management surface"
+        handoff: "Report the objective for the operator to set; do not fabricate a call."
+      default:
+        surface: "native session-goal command, when the runtime provides one"
+        handoff: "Report the objective for the operator to set; do not fabricate a call."
+  objective_shape:
+    rule: "Pointer first, then the binding sentence when the packet is phased, then the completion criteria copied out; never the file body and never its frontmatter."
+    why: "Nothing dereferences a path in an objective, every surface caps what it holds, and a truncation must keep the address. The chat resend is a different payload: the chat slice under packet_goal.resend.payload, so the operator can paste it. The objective stored by the runtime is the projection above."
+  # The packet goal.md is the source of the directive, and the session binds to
+  # it rather than to a remembered string. Everything below is the agent's
+  # posture around that file; the mechanics live in the goal hook core.
+  # Authoring the file, its binding rows and its amendments is sk-create-goal's,
+  # through /create:goal.
+  packet_goal:
+    nesting:
+      parent_is_the_directive: "The packet root goal.md is the directive. A phased packet's children each carry their own goal.md, and the parent's binding table names them."
+      read_order: "Read the parent goal.md first, then the child goal.md for the phase being worked. A child's criteria bind as if written in the parent."
+      precedence: "The parent goal's binding section states the precedence rule, and section 6 of .skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md is its full statement. A summary is never the source."
+      budget: "A top-level or phase-parent durable slice holds at most 4,000 characters. A child is unbounded unless it is itself a phase parent, and section 2 of .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md is the rule. Never trim a child into the parent. Cut an over-budget parent in the order section 3 of .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md gives."
+    bind_by_runtime:
+      opencode: 'opencode_goal({ action: "bind", packetPath: spec_path })'
+      pi: 'node .skilled/hooks/goal/bin/goal.cjs bind <spec_path> --runtime Pi --session <native session id> --workspace <repo root>'
+      cursor: "injection-only; report the objective for the operator to set, do not fabricate a call"
+      devin: "injection-only; report the objective for the operator to set, do not fabricate a call"
+      claude-code: "native goal command. Render the chat slice per resend.payload as one fenced code block that holds the slice and nothing else, and ask the operator to set it. There is no session record here, so hold the slice hash for the session instead."
+      codex: "native goal command. Render the chat slice per resend.payload and ask the operator to set it. There is no session record here, so hold the slice hash for the session instead."
+    resend:
+      trigger: "The durable slice hash of the parent goal.md changed: a decision, a binding row or a criterion. Log rows and frontmatter never trigger."
+      payload: "The `chat_slice` of the parent goal.md that `node .skilled/hooks/goal/bin/goal.cjs packet <spec_path> --workspace <repo root>` prints, rendered from the file, never from memory. What it contains, and the `packet_budget=ok` check before it is sent, are section 4 of .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md. On Claude Code, send it as one fenced code block that holds the slice and nothing else."
+      after: "Ask the operator to set it. On a runtime with a bound session, record the send with the goal command's resent action."
+      child_rule: "A child goal change that alters a parent decision or criterion is a parent amendment: run /create:goal <parent> amend, as section 6 of .skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md says."
+      without_a_session: "On claude-code and codex, read the hash at every command entry with `node .skilled/hooks/goal/bin/goal.cjs packet <spec_path> --workspace <repo root>` and compare `packet_slice_hash` against the hash last rendered this session. Different means resend; equal means stay silent. A first entry with no held hash renders once."
+    reminder:
+      while_unset: "Repeat a one-line reminder at every command entry and turn where the runtime injects; never repeat the full slice unless asked."
+      never_halts: "Work never stops because a goal is unset or a reminder went unanswered. Only an explicit operator stop halts."
+      after_set: "Acknowledge in one line and continue the current work at once; do not restate the goal, do not ask whether to proceed."
+    log:
+      rule: "Progress, evidence and deviations go to the goal log, below the durable slice, never into the directive, and always through the locked append: the goal command's log action on a bound session, or `node .skilled/hooks/goal/bin/goal.cjs packet-log <spec_path> \"<item> | <state> | <evidence>\" --workspace <repo root>` on a runtime without a management surface or for an unbound packet. Never hand-edit the table."
+  status_tool_by_runtime:
+    opencode: opencode_goal_status
+    default: "none; report state from the packet documents instead"
+
+documentation_levels:
+  level_1_baseline:
+    name: "Level 1 (Baseline)"
+    required_files: [spec.md, plan.md, tasks.md]
+    loc_guidance: "<100 LOC"
+    use_case: "Simple changes, bug fixes"
+  level_2_verification:
+    name: "Level 2 (Verification)"
+    required_files: [spec.md, plan.md, tasks.md, acceptance-criteria.md]
+    loc_guidance: "100-499 LOC"
+    use_case: "Medium features, refactoring"
+  level_3_full:
+    name: "Level 3 (Full)"
+    required_files: [spec.md, plan.md, tasks.md, acceptance-criteria.md]
+    loc_guidance: ">=500 LOC"
+    use_case: "Complex features, architecture changes"
+  level_selection:
+    note: "recommend-level.sh scores LOC, file count and risk and decides the level; when its answer and judgment differ, go higher. decision-record.md and the other add-ons are lazy at every level, scaffolded on request"
+    default: "Level 1 for simple tasks, escalate based on analysis"
+
+phase_decomposition:
+  enabled: true
+  trigger:
+    flag: ":with-phases"
+    smart_detect: false
+  insert_point: "after_step_1"
+  pre_workflow_steps:
+    - id: P1
+      name: Analyze Scope
+      input: "estimated_loc and estimated_files from the step_1_request_analysis outputs"
+      command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --json --recommend-phases --phase-threshold {phase_threshold} --loc {estimated_loc} --files {estimated_files}"
+      output: phase_recommendation
+    - id: P2
+      name: Define Decomposition
+      activities: ["Generate LITERAL phase names that describe the concrete work in each phase, e.g. data-model-design, api-implementation, ui-integration, NOT generic placeholders like phase-1 / phase-2 / remediation / cleanup. Names must include a specific subject token (the component or behaviour being changed).", "Define scope boundaries per phase", "Map dependencies between phases", "Define deliverables per phase"]
+      output: phase_plan
+    - id: P3
+      name: Create Folders
+      command: 'bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {recommended_level}'
+      input: "--phases takes the number of phases P2 defined. --level takes the level P1 printed."
+      output: parent_and_child_folders
+    - id: P4
+      name: Populate Templates
+      activities: ["Load phase-parent Level template contract", "Fill parent Phase Documentation Map", "Load phase-child Level template contract", "Fill child back-references and scope boundaries", "When the parent needs a goal, author it and bind each child goal with /create:goal {parent_folder} phase-parent"]
+      output: populated_specs
+  templates:
+    phase_parent_section: Level template contract
+    phase_child_header: Level template contract
+  post_decomposition:
+    action: "Update spec_path to first child phase folder, continue with normal workflow"
+    remaining_children: "Every child folder after the first, recorded for termination"
+    validation: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive {parent_folder}"
+  checkpoint:
+    enabled: true
+    modes: { confirm: "ask the prompt below and wait", auto: "take Y, continue with the first child and list it under Defaults taken", autopilot: "take Y and continue with the first child" }
+    prompt: |
+      WORKFLOW CHECKPOINT - Phase Decomposition Complete
+      Parent: {parent_folder} | Phases: {phase_count} children created
+      Continue with first child ({first_child_folder})? [Y/n/review]
+    options:
+      - { key: "Y", action: "continue_with_first_child" }
+      - { key: "n", action: "pause" }
+      - { key: "review", action: "show_folder_tree" }
+  defaults: { phase_names: "auto-generate" }

@@ -2,7 +2,7 @@
   {
     "command": "/speckit:plan",
     "ownerMode": "system-spec-kit",
-    "description": "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
+    "description": "Planning workflow, 7 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
     "argumentHint": "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases] [--level=N]",
     "mutating": "mutates",
     "gate3_location": "spec documents inside the bound spec folder",
@@ -40,6 +40,12 @@
         "skill": "system-spec-kit",
         "resource": ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
         "action": "load the shared save-context tail that closes the workflow"
+      },
+      {
+        "order": 5,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml",
+        "action": "load the shared lifecycle blocks that the workflow points at with shared_tail"
       }
     ]
   },
@@ -84,13 +90,19 @@
         "skill": "system-spec-kit",
         "resource": ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
         "action": "load the shared save-context tail that closes the workflow"
+      },
+      {
+        "order": 5,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml",
+        "action": "load the shared lifecycle blocks that the workflow points at with shared_tail"
       }
     ]
   },
   {
     "command": "/speckit:complete",
     "ownerMode": "system-spec-kit",
-    "description": "End-to-end SpecKit workflow, 14+ steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
+    "description": "End-to-end SpecKit workflow, 13 steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
     "argumentHint": "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-research] [:with-context] [:with-phases]",
     "mutating": "mutates",
     "gate3_location": "tracked code and spec documents under the bound spec folder",
@@ -127,6 +139,12 @@
         "skill": "system-spec-kit",
         "resource": ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
         "action": "load the shared save-context tail that closes the workflow"
+      },
+      {
+        "order": 5,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml",
+        "action": "load the shared lifecycle blocks that the workflow points at with shared_tail"
       }
     ]
   },
@@ -134,7 +152,7 @@
     "command": "/speckit:resume",
     "ownerMode": "system-spec-kit",
     "description": "Resume or recover work on a spec folder: canonical continuity recovery with one next step.",
-    "argumentHint": "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>]",
+    "argumentHint": "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>] [--no-redirect]",
     "mutating": "mutates",
     "gate3_location": "spec documents inside the bound spec folder",
     "userIntent": {
@@ -165,14 +183,8 @@
       {
         "order": 3,
         "skill": "system-spec-kit",
-        "resource": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
-        "action": "load the auto workflow and follow it when the resolved mode is :auto"
-      },
-      {
-        "order": 4,
-        "skill": "system-spec-kit",
-        "resource": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
-        "action": "load the confirm workflow and follow it when the resolved mode is :confirm"
+        "resource": ".skilled/commands/speckit/assets/speckit-resume.yaml",
+        "action": "load the workflow and follow it with execution_mode bound to the resolved mode, auto or confirm"
       }
     ]
   },
@@ -215,7 +227,7 @@
     "command": "/speckit:search",
     "ownerMode": "system-spec-kit",
     "description": "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs.",
-    "argumentHint": "<query> [--packet <specFolder>] [--triggers] [--paths] [--count]",
+    "argumentHint": "<query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--limit <n>] [--include-archive]",
     "mutating": "read-only",
     "gate3_location": "n/a (read-only retrieval; writes nothing)",
     "userIntent": {

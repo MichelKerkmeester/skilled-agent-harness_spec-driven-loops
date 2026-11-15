@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit",
+  "spec_folder": "sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit",
+  "parent_id": "sk-doc/document-standards/003-changelog-system",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remove release size limit",
+      "remove the file total line ceiling from release",
+      "remove release size limit plan",
+      "remove release size limit tasks",
+      "remove release size limit implementation summary"
+    ],
+    "key_topics": [
+      "remove",
+      "release",
+      "size",
+      "limit",
+      "file",
+      "total",
+      "line",
+      "ceiling",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scripts/README.md",
+      ".skilled/commands/create/assets/create-changelog-auto.yaml",
+      ".skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_check_changelog_shape.py",
+      ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+      ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+      ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
+      ".skilled/skills/sk-doc/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "check_changelog_shape.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_check_changelog_shape.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_check_changelog_shape.py",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-script-tests.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`checkchangelogshape.py` fails an expanded release note that runs past 280 lines below its frontmatter",
+    "created_at": "2026-11-14T21:40:01Z",
+    "last_save_at": "2026-11-15T05:54:47.820Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2015925712848db736d77ec5f5d951e05d0081f9e6b9dee209ee0027d444f95c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b79df65a056ff01ce328959999d2aa8653e51e90674c6727c55a90d7cadc611c",
+      "plan.md": "4b070a4baaca48221c6b8b593c6ed1291864cd93731c98451856e2ddb0c3ea5b",
+      "tasks.md": "877233b43833b564bfb20f6b93cc5ebb538f5fa7f10ff0716fba54fefee26fe2",
+      "implementation-summary.md": "f1b83d22a932aded53bf514be5cfa278c42fd6754de2b94d7f34ed18b1b8f3ae"
+    },
+    "last_active_at": null
+  }
+}

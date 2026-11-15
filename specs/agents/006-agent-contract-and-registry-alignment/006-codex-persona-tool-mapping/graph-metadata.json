@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping",
+  "spec_folder": "agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping",
+  "parent_id": "agents/006-agent-contract-and-registry-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "codex persona tool mapping",
+      "phase 6 codex persona tool mapping",
+      "codex persona tool mapping plan",
+      "codex persona tool mapping tasks",
+      "codex persona tool mapping acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "codex persona tool mapping implementation summary"
+    ],
+    "key_topics": [
+      "codex",
+      "persona",
+      "tool",
+      "mapping",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.16.0.md",
+      "scratch/other-modes.md",
+      "scratch/codex-probe-report.txt",
+      ".skilled/agents/context.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "scratch/baseline.txt",
+      "scratch/codex-probe-prompt.txt",
+      "scratch/codex-probe-control.txt",
+      "scratch/after.txt",
+      ".skilled/agents/README.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.9.16.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.16.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "other-modes.md",
+        "kind": "doc",
+        "path": "scratch/other-modes.md",
+        "source": "derived"
+      },
+      {
+        "name": "codex-probe-report.txt",
+        "kind": "file",
+        "path": "scratch/codex-probe-report.txt",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".skilled/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "codex-probe-prompt.txt",
+        "kind": "file",
+        "path": "scratch/codex-probe-prompt.txt",
+        "source": "derived"
+      },
+      {
+        "name": "codex-probe-control.txt",
+        "kind": "file",
+        "path": "scratch/codex-probe-control.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Rule 17 of `cli-codex/SKILL.md` requires every Codex dispatch to inline the agent persona",
+    "created_at": "2026-11-14T11:36:25Z",
+    "last_save_at": "2026-11-14T14:18:18.461Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9149ca5df52c335ac4a07fa9cbe35f9b1de4a4e17070e1fe7f33f2b2aa4458fc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a0fceb2305197d8e7c75f74faed2510598274828c685e434498ee86a883fb1c3",
+      "plan.md": "820c2138c440127fa85b69d4e13d9b39d157780bee47a9ee67420fd4d09fee91",
+      "tasks.md": "03c723cea1f355379ecb02ec7d0a0ce66929dbbb7a447cbde35975673b2bf83f",
+      "implementation-summary.md": "a1c3905ce1903a775483864c0f9e6ff9840ac05eae04838e1b49a53fd991a4a7"
+    },
+    "last_active_at": null
+  }
+}

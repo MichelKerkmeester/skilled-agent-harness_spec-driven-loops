@@ -1,0 +1,36 @@
+Change one line in the orchestrator agent file. The task template lists eight agent names by
+hand, and the registry schedules ten. The line becomes a pointer to the routing table that is
+generated in the same file, so it cannot go stale.
+
+This file has no `version` frontmatter, so the frontmatter note below does not apply.
+
+Files:
+1. .skilled/agents/orchestrate.md
+
+Do not touch the frontmatter. A commit hook raises the `version` field.
+Each change below gives the exact text to find (OLD) and the exact text that replaces it (NEW).
+The first and last lines of OLD and NEW are unchanged context lines, shown so the place is unambiguous.
+Blank lines inside OLD and NEW are part of the text. Apply every change, top to bottom.
+
+######## FILE: .skilled/agents/orchestrate.md ########
+
+Change 1, at about line 211. Removes 1 line(s), adds 1.
+<<<<<<< OLD
+├─ Reach: [The callers, tests, fixtures, config and exports the task must reach, or "none" when nothing outside Scope is reached]
+├─ Boundary: [What this agent MUST NOT do]
+├─ Agent: @code | @context | @markdown | @deep-research | @deep-review | @ai-council | @review | @debug
+├─ Deep Route: [for deep routes only: mode=<workflowMode>; target_agent=@<agent>; execution=<single_iteration|loop|session>; source_of_truth=.skilled/skills/system-deep-loop/mode-registry.json | none]
+├─ Subagent Type: [the agent's own name, the Agent line without the @ | "general-purpose" only on a runtime with no named agents]
+======= NEW
+├─ Reach: [The callers, tests, fixtures, config and exports the task must reach, or "none" when nothing outside Scope is reached]
+├─ Boundary: [What this agent MUST NOT do]
+├─ Agent: [@<name>, exactly one agent from the Agent Selection routing table in §2]
+├─ Deep Route: [for deep routes only: mode=<workflowMode>; target_agent=@<agent>; execution=<single_iteration|loop|session>; source_of_truth=.skilled/skills/system-deep-loop/mode-registry.json | none]
+├─ Subagent Type: [the agent's own name, the Agent line without the @ | "general-purpose" only on a runtime with no named agents]
+>>>>>>> END
+
+The markers `<<<<<<< OLD`, `======= NEW` and `>>>>>>> END` are not part of any file. Never write them.
+
+Verification (run all, paste the output in the handback):
+  wc -l < .skilled/agents/orchestrate.md      # expect: 910
+  wc -w < .skilled/agents/orchestrate.md      # expect: 8515

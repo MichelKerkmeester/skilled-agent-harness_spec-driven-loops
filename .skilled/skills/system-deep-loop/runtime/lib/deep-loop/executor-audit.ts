@@ -6,8 +6,10 @@
 
 import { randomBytes } from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import type { ExecutorConfig, ExecutorKind } from './executor-config.js';
 import { appendJsonlRecord as appendJsonlRecordSafe, repairJsonlTail } from './jsonl-repair.js';
@@ -211,12 +213,29 @@ type RunAuditedExecutorCommandInput = {
   guardContext?: ExecutorDispatchGuardContext;
   timeoutGraceMs?: number;
   lineageId?: string;
+  // The run's session id. On a ledger-backed state log it scopes the failure
+  // rows the runner hands the append gateway.
+  sessionId?: string;
   // Opt-in dispatch-receipt envelope. When receiptDir is set, the engine writes
   // an INTENT receipt before spawn and a COMPLETION countersign after the
   // dispatch returns, to a parent-owned, child-unwritable path. dispatchId is
   // optional; the engine generates a filename-safe unique one when omitted.
   receiptDir?: string;
   dispatchId?: string;
+  // For the cli-deepseek-harness single-lineage branch only: its fresh harness home and
+  // spec-folder marker are keys the per-kind allowlist drops on purpose. They are merged
+  // after the filter, so only the values the caller names reach the child, never an
+  // inherited one. Another kind that needs a key widens its allowlist instead. The allowed
+  // keys are exactly those in DISPATCH_ENV_KEYS for the kind; any other key is refused
+  // before a receipt is written or a child is spawned. Only the synchronous runner reads
+  // this field and completionCheck.
+  dispatchEnv?: Record<string, string>;
+  // The harness prints a JSON event stream the orchestrator never reads, so a caller can
+  // keep that stream off the terminal and record only how many bytes it held.
+  echoStdout?: boolean;
+  // A clean exit does not prove a good run for every CLI. When set, it judges the
+  // output of a child that exited 0, and a non-null reason is recorded as a crash.
+  completionCheck?: (exitCode: number, stdout: string, stderr: string) => string | null;
 };
 
 // ───────────────────────────────────────────────────────────────────
@@ -710,11 +729,12 @@ function emitReceiptWriteFailure(
   iteration: number,
   phase: ReceiptPhase,
   detail: string,
+  sessionId: string | undefined,
 ): void {
   // Distinct from the dispatch_failure event (and never deduped against it) so
   // a write failure is always observable separately from a 'missing' receipt
   // the validator reports later.
-  appendJsonlRecordSafe(stateLogPath, {
+  appendFailureRow(stateLogPath, {
     type: 'event',
     event: 'dispatch_receipt_write_failed',
     reason: 'dispatch_receipt_write_failed' as DispatchFailureReason,
@@ -723,7 +743,7 @@ function emitReceiptWriteFailure(
     ...(getExecutorKind(executor) === 'native' ? {} : { executor: buildExecutorAuditRecord(executor) }),
     timestamp: new Date().toISOString(),
     ...(detail ? { detail } : {}),
-  });
+  }, sessionId);
 }
 
 function tryWriteReceipt(
@@ -733,11 +753,12 @@ function tryWriteReceipt(
   phase: ReceiptPhase,
   receiptPath: string,
   record: Record<string, unknown>,
+  sessionId: string | undefined,
 ): void {
   try {
     writeReceiptAtomic(receiptPath, record);
   } catch (err) {
-    emitReceiptWriteFailure(stateLogPath, executor, iteration, phase, (err as Error).message ?? String(err));
+    emitReceiptWriteFailure(stateLogPath, executor, iteration, phase, (err as Error).message ?? String(err), sessionId);
   }
 }
 
@@ -778,7 +799,7 @@ function beginReceipt(input: RunAuditedExecutorCommandInput): ReceiptContext | n
   archivePriorAttempt(input.receiptDir, dispatchId);
   const paths = receiptPaths(input.receiptDir, dispatchId);
   const record = buildReceiptRecord('intent', dispatchId, buildReceiptFacts(input), key);
-  tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'intent', paths.intentPath, record);
+  tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'intent', paths.intentPath, record, input.sessionId);
   return { dispatchId, key, intentPath: paths.intentPath, completionPath: paths.completionPath };
 }
 
@@ -806,7 +827,7 @@ function completeReceipt(
     sessionId: completion.sessionId,
   };
   const record = buildReceiptRecord('completion', ctx.dispatchId, facts, ctx.key);
-  tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'completion', ctx.completionPath, record);
+  tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'completion', ctx.completionPath, record, input.sessionId);
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1068,18 +1089,142 @@ export function buildExecutorAuditRecord(executor: ExecutorConfig, lineageId?: s
   };
 }
 
+// A stalled gateway would otherwise hold the iteration before its dispatch with no end.
+const APPEND_GATEWAY_TIMEOUT_MS = 120_000;
+const APPEND_GATEWAY_PATH = fileURLToPath(new URL('../../scripts/append-mode-event.cjs', import.meta.url));
+// The gateway binds each append to the checkout's identity, so it runs from the repository root.
+const REPOSITORY_ROOT = fileURLToPath(new URL('../../../../../../', import.meta.url));
+const LEDGER_MODES = Object.freeze([
+  { ledgerDirectory: 'deep-review-ledger', mode: 'review' },
+  { ledgerDirectory: 'deep-research-ledger', mode: 'research' },
+] as const);
+
+// A state log beside a ledger with frames is a projection the append gateway
+// rebuilds from that ledger, so a row written straight into it is dropped at
+// the next refresh.
+function ledgerModeFor(stateLogPath: string): 'review' | 'research' | null {
+  for (const { ledgerDirectory, mode } of LEDGER_MODES) {
+    try {
+      if (readdirSync(join(dirname(stateLogPath), ledgerDirectory, 'frames')).some((name) => name.endsWith('.frame'))) {
+        return mode;
+      }
+    } catch {
+      // No ledger of this mode sits beside the state log.
+    }
+  }
+  return null;
+}
+
+function iterationNamesExecutor(lines: string[], iteration: number): boolean {
+  return lines.some((line) => {
+    const record = line.trim() ? parseJsonlObjectLine(line) : null;
+    return record !== null
+      && record.iteration === iteration
+      && (record.type === 'iteration' || record.type === 'iteration_start')
+      && isObjectRecord(record.executor);
+  });
+}
+
+function appendThroughGateway(mode: 'review' | 'research', stateLogPath: string, record: Record<string, unknown>): void {
+  const eventDir = mkdtempSync(join(tmpdir(), 'executor-audit-event-'));
+  const eventPath = join(eventDir, 'event.json');
+  try {
+    writeFileSync(eventPath, JSON.stringify(record), 'utf8');
+    const result = spawnSync(process.execPath, [
+      APPEND_GATEWAY_PATH,
+      '--mode', mode,
+      '--run-directory', dirname(stateLogPath),
+      '--event-json', eventPath,
+    ], { cwd: REPOSITORY_ROOT, encoding: 'utf8', timeout: APPEND_GATEWAY_TIMEOUT_MS });
+    if (result.status !== 0) {
+      const outcome = String(result.stdout || '').trim().split('\n').at(-1)
+        || String(result.stderr || '').trim()
+        || result.error?.message
+        || `exit signal ${String(result.signal)}`;
+      throw new Error(`append gateway refused the ${String(record.event ?? record.type)} row for iteration ${String(record.iteration)}: ${outcome}`);
+    }
+  } finally {
+    rmSync(eventDir, { recursive: true, force: true });
+  }
+}
+
+// The ledger stores a row's objects with sorted keys, so a row the projection
+// wrote back is compared with a new one by content, not by key order.
+function canonicalJson(value: unknown): string | undefined {
+  if (Array.isArray(value)) {
+    return `[${value.map((entry) => canonicalJson(entry) ?? 'null').join(',')}]`;
+  }
+  if (isObjectRecord(value)) {
+    return `{${Object.keys(value).sort()
+      .filter((key) => value[key] !== undefined)
+      .map((key) => `${JSON.stringify(key)}:${canonicalJson(value[key])}`)
+      .join(',')}}`;
+  }
+  return JSON.stringify(value);
+}
+
+// A failure row on a ledger-backed state log goes through the append gateway,
+// or the next refresh drops it. Recording a failure never throws: when the run
+// names no session id or the gateway refuses, the row is written straight into
+// the state log, where the steps that read it right after the dispatch still
+// find it, and stderr says why it will not last.
+function appendFailureRow(stateLogPath: string, row: Record<string, unknown>, sessionId: string | undefined): void {
+  const ledgerMode = ledgerModeFor(stateLogPath);
+  if (ledgerMode !== null) {
+    if (!sessionId) {
+      process.stderr.write(`no session id scopes the ${String(row.event)} row, so the next refresh of the ledger-backed state log drops it\n`);
+    } else {
+      try {
+        appendThroughGateway(ledgerMode, stateLogPath, { ...row, sessionId });
+        return;
+      } catch (error) {
+        process.stderr.write(`${error instanceof Error ? error.message : String(error)}. The next refresh drops the row written in its place\n`);
+      }
+    }
+  }
+  appendJsonlRecordSafe(stateLogPath, row);
+}
+
 /**
  * Write the first executor provenance record for an iteration.
  *
- * Updates the iteration start record in the JSONL state log with executor
- * audit data, or creates a new iteration_start record if none exists.
+ * On a ledger-backed state log the iteration_start row goes through the append
+ * gateway, so the projection writes it back on every refresh. A state log with
+ * no ledger keeps the direct write: the iteration start record gets the
+ * executor audit data, or a new iteration_start record is created.
  *
  * @param stateLogPath - Path to the JSONL state log.
  * @param executor - Executor configuration.
  * @param iteration - Current iteration number.
+ * @param sessionId - The run's session id, which scopes the ledger event.
  */
-export function writeFirstRecordExecutor(stateLogPath: string, executor: ExecutorConfig, iteration: number): void {
+export function writeFirstRecordExecutor(
+  stateLogPath: string,
+  executor: ExecutorConfig,
+  iteration: number,
+  sessionId?: string,
+): void {
   if (getExecutorKind(executor) === 'native') {
+    return;
+  }
+
+  const ledgerMode = ledgerModeFor(stateLogPath);
+  if (ledgerMode !== null) {
+    if (iterationNamesExecutor(readJsonlFile(stateLogPath).lines, iteration)) {
+      return;
+    }
+    if (!sessionId) {
+      throw new Error('writeFirstRecordExecutor needs the run session id for a ledger-backed state log');
+    }
+    appendThroughGateway(ledgerMode, stateLogPath, {
+      type: 'iteration_start',
+      iteration,
+      runId: sessionId,
+      sessionId,
+      lineageId: sessionId,
+      executor: buildExecutorAuditRecord(executor),
+      timestamp: new Date().toISOString(),
+    });
     return;
   }
 
@@ -1120,6 +1265,8 @@ export function writeFirstRecordExecutor(stateLogPath: string, executor: Executo
  * @param reason - Dispatch failure reason.
  * @param iteration - Current iteration number.
  * @param detail - Optional failure detail string.
+ * @param matchedMarker - The provider outage marker, when one matched.
+ * @param sessionId - The run's session id, which scopes the ledger event.
  */
 export function emitDispatchFailure(
   stateLogPath: string,
@@ -1128,6 +1275,7 @@ export function emitDispatchFailure(
   iteration: number,
   detail?: string,
   matchedMarker?: string | null,
+  sessionId?: string,
 ): void {
   const executorAudit = getExecutorKind(executor) === 'native'
     ? undefined
@@ -1138,12 +1286,12 @@ export function emitDispatchFailure(
     && lastIterationEvent.reason === reason
     && lastIterationEvent.detail === (detail || undefined)
     && lastIterationEvent.matchedMarker === (matchedMarker || undefined)
-    && JSON.stringify(lastIterationEvent.executor) === JSON.stringify(executorAudit)
+    && canonicalJson(lastIterationEvent.executor) === canonicalJson(executorAudit)
   ) {
     return;
   }
 
-  appendJsonlRecordSafe(stateLogPath, {
+  appendFailureRow(stateLogPath, {
     type: 'event',
     event: 'dispatch_failure',
     ...(executorAudit ? { executor: executorAudit } : {}),
@@ -1152,7 +1300,7 @@ export function emitDispatchFailure(
     ...(detail ? { detail } : {}),
     ...(matchedMarker ? { executorUnavailable: true, matchedMarker } : {}),
     timestamp: new Date().toISOString(),
-  });
+  }, sessionId);
 }
 
 /**
@@ -1214,6 +1362,25 @@ export function classifyExecutorUnavailable(stdout: string, stderr: string): str
   return null;
 }
 
+// A dispatchEnv key the per-kind env filter drops on purpose is merged after that filter,
+// so this list is the only place that says which keys a caller may name. A kind with no
+// entry allows none: a caller that needs one widens this list for that kind first.
+const DISPATCH_ENV_KEYS: Readonly<Partial<Record<ExecutorKind, readonly string[]>>> = {
+  'cli-deepseek-harness': ['DSH_HOME', 'DSH_SPEC_FOLDER', 'SYSTEM_SPEC_GATE_DISABLED', 'AI_SESSION_CHILD'],
+};
+
+// Check the caller-named keys at the one boundary that merges them, so no later caller can
+// slip PATH or a secret past the per-kind filter.
+function assertDispatchEnvAllowed(input: RunAuditedExecutorCommandInput): void {
+  const kind = getExecutorKind(input.executor);
+  const allowed = DISPATCH_ENV_KEYS[kind] ?? [];
+  for (const key of Object.keys(input.dispatchEnv ?? {})) {
+    if (!allowed.includes(key)) {
+      throw new Error(`dispatchEnv key ${key} is not allowed for ${kind}`);
+    }
+  }
+}
+
 /**
  * Run a non-native executor command synchronously and log dispatch failures.
  *
@@ -1231,9 +1398,13 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
     // dispatch, so the caller carried on and only a missing-artifact check downstream
     // hinted that nothing ran.
     process.stderr.write(`${formatRecursionGuardRefusal(dispatchAllowed, input.executor)}\n`);
-    emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail);
+    emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail, null, input.sessionId);
     return RECURSION_GUARD_EXIT_CODE;
   }
+
+  // A refused key must fail before the INTENT receipt, so no receipt records a dispatch
+  // whose environment the runner would not have allowed.
+  assertDispatchEnvAllowed(input);
 
   // Pre-dispatch INTENT receipt (engine-signed, no child id yet). Null when the
   // caller did not opt into receipts.
@@ -1246,12 +1417,18 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
     cwd: input.cwd,
     encoding: 'utf8',
     timeout: timeoutMs,
-    env: buildExecutorDispatchEnv(input.executor, input.guardContext?.env ?? process.env),
+    env: { ...buildExecutorDispatchEnv(input.executor, input.guardContext?.env ?? process.env), ...input.dispatchEnv },
     maxBuffer: 10 * 1024 * 1024,
     ...(typeof input.input === 'string' ? { input: input.input } : {}),
   });
 
-  if (typeof result.stdout === 'string' && result.stdout.length > 0) {
+  if (input.echoStdout === false) {
+    // The child still produced the stream the checks below read. Only the terminal copy
+    // is skipped, so a caller can log its size without replaying every event. An empty
+    // stream still logs its size, so a silent child reads as 0 bytes, not as no line.
+    const stdoutBytes = typeof result.stdout === 'string' ? Buffer.byteLength(result.stdout) : 0;
+    process.stderr.write(`[executor-audit] child stdout ${stdoutBytes} bytes, not echoed\n`);
+  } else if (typeof result.stdout === 'string' && result.stdout.length > 0) {
     process.stdout.write(result.stdout);
   }
   if (typeof result.stderr === 'string' && result.stderr.length > 0) {
@@ -1288,6 +1465,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       input.iteration,
       result.error.message,
       unavailableMarker,
+      input.sessionId,
     );
     return 0;
   }
@@ -1300,6 +1478,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       input.iteration,
       `executor exited with status ${result.status}`,
       unavailableMarker,
+      input.sessionId,
     );
     return 0;
   }
@@ -1312,8 +1491,31 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       input.iteration,
       `executor terminated by signal ${result.signal}`,
       unavailableMarker,
+      input.sessionId,
     );
     return 0;
+  }
+
+  // Some CLIs exit 0 after a failure they report only in their output, such as a
+  // plugin that did not load, so the caller's check reads what the child printed.
+  if (input.completionCheck && result.status === 0) {
+    const completionFailure = input.completionCheck(
+      result.status,
+      typeof result.stdout === 'string' ? result.stdout : '',
+      typeof result.stderr === 'string' ? result.stderr : '',
+    );
+    if (completionFailure !== null) {
+      emitDispatchFailure(
+        input.stateLogPath,
+        input.executor,
+        'crash',
+        input.iteration,
+        completionFailure,
+        unavailableMarker,
+        input.sessionId,
+      );
+      return 0;
+    }
   }
 
   // Provenance must not lie: a clean exit can fail loud when the model the CLI
@@ -1339,6 +1541,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
         input.iteration,
         `requested model ${requestedModel} but executor ran ${actualModel}`,
         unavailableMarker,
+        input.sessionId,
       );
       return 0;
     }
@@ -1361,7 +1564,7 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
   const dispatchAllowed = validateExecutorDispatchAllowed(input.executor, input.guardContext);
   if (!dispatchAllowed.allowed) {
     process.stderr.write(`${formatRecursionGuardRefusal(dispatchAllowed, input.executor)}\n`);
-    emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail);
+    emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail, null, input.sessionId);
     return RECURSION_GUARD_EXIT_CODE;
   }
 
@@ -1432,7 +1635,7 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
       if (graceTimer) clearTimeout(graceTimer);
       // Spawn failed before a child existed; countersign with null facts.
       writeCompletionOnce(null, null);
-      emitDispatchFailure(input.stateLogPath, input.executor, 'crash', input.iteration, error.message);
+      emitDispatchFailure(input.stateLogPath, input.executor, 'crash', input.iteration, error.message, null, input.sessionId);
       resolve();
     });
 
@@ -1454,6 +1657,8 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
           'timeout',
           input.iteration,
           `executor timed out after ${timeoutMs}ms`,
+          null,
+          input.sessionId,
         );
         resolve();
         return;
@@ -1466,6 +1671,8 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
           'crash',
           input.iteration,
           `executor exited with status ${status}`,
+          null,
+          input.sessionId,
         );
         resolve();
         return;
@@ -1478,6 +1685,8 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
           'crash',
           input.iteration,
           `executor terminated by signal ${signal}`,
+          null,
+          input.sessionId,
         );
       }
 
@@ -1491,11 +1700,17 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
 /**
  * Append executor audit information to the last JSONL record in the state log.
  *
+ * A ledger-backed state log is rebuilt from its ledger, which cannot carry an
+ * edit to a row it already holds. There the executor of the last record's
+ * iteration lives on that iteration's opening row, which goes through the
+ * append gateway when no row of the iteration names an executor yet.
+ *
  * @param stateLogPath - Path to the JSONL state log.
  * @param executor - Executor configuration.
+ * @param sessionId - The run's session id, which scopes the ledger event.
  * @throws If the state log is empty or the last record is not an object.
  */
-export function appendExecutorAuditToLastRecord(stateLogPath: string, executor: ExecutorConfig): void {
+export function appendExecutorAuditToLastRecord(stateLogPath: string, executor: ExecutorConfig, sessionId?: string): void {
   if (getExecutorKind(executor) === 'native') {
     return;
   }
@@ -1510,6 +1725,14 @@ export function appendExecutorAuditToLastRecord(stateLogPath: string, executor: 
   const parsedRecord = JSON.parse(lines[lastLineIndex]);
   if (parsedRecord === null || Array.isArray(parsedRecord) || typeof parsedRecord !== 'object') {
     throw new Error('Last JSONL record is not an object');
+  }
+
+  if (ledgerModeFor(stateLogPath) !== null) {
+    if (!Number.isSafeInteger(parsedRecord.iteration) || parsedRecord.iteration < 1) {
+      throw new Error('appendExecutorAuditToLastRecord needs the last record to name its iteration on a ledger-backed state log');
+    }
+    writeFirstRecordExecutor(stateLogPath, executor, parsedRecord.iteration, sessionId);
+    return;
   }
 
   const mergedRecord: Record<string, unknown> = {

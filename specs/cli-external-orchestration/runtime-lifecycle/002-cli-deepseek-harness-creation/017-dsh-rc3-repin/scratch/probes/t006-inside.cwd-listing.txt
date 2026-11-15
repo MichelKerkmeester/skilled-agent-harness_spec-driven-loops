@@ -1,0 +1,6 @@
+total 8
+drwx------@ 5 michelkerkmeester  wheel  160 Nov 14 18:10 .
+drwxr-xr-x@ 5 michelkerkmeester  wheel  160 Nov 14 18:09 ..
+drwxr-xr-x@ 5 michelkerkmeester  wheel  160 Nov 14 18:09 .dsh-home
+drwxr-xr-x@ 3 michelkerkmeester  wheel   96 Nov 14 18:09 .skilled
+-rw-------@ 1 michelkerkmeester  wheel    3 Nov 14 18:10 inside.txt

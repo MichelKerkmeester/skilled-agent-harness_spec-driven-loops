@@ -7,7 +7,7 @@ trigger_phrases:
   - "ai-derived slug rule"
   - "generate literal phase names"
   - "SKILL.md rule 20"
-version: 1.6.0.8
+version: 1.6.2.0
 ---
 
 # Spec folder literal naming: AI-derived slugs
@@ -18,13 +18,13 @@ version: 1.6.0.8
 
 Workflow YAMLs and SKILL.md rule 20 require AI agents to propose phase and remediation slugs with a specific subject token, so AI-derived spec folders never default to generic placeholders.
 
-This is the AI-rule layer of the literal-naming discipline that complements the create.sh fallback. Two surfaces carry the rule: the four spec-kit plan and complete workflow YAML files describe a `Generate LITERAL phase names` activity, and `system-spec-kit/SKILL.md` ALWAYS rule 20 names the source and target tokens that every remediation packet slug must carry. Both surfaces share the same stoplist so a single set of validators can catch generic names regardless of which slot produced the slug.
+This is the AI-rule layer of the literal-naming discipline that complements the create.sh fallback. Two surfaces carry the rule: the shared lifecycle include `speckit-lifecycle-shared.yaml` describes a `Generate LITERAL phase names` activity in its `phase_decomposition` block, which the plan and complete workflows point at, and `system-spec-kit/SKILL.md` ALWAYS rule 20 names the source and target tokens that every remediation packet slug must carry. Both surfaces share the same stoplist so a single set of validators can catch generic names regardless of which slot produced the slug.
 
 ---
 
 ## 2. HOW IT WORKS
 
-The workflow side lives in four YAML assets at `.skilled/commands/speckit/assets/`. Each file contains a `Generate LITERAL phase names` activity that tells the active CLI agent to produce phase names with specific subject tokens drawn from the user request, naming the concrete component or behavior being changed. The activity explicitly forbids the generic stoplist (`phase-1`, `phase-2`, `remediation`, `cleanup`, `fix`, `refactor`, `setup`) when used standalone. The activity fires only when a `:with-phases` route is active, so the rule binds to the phase-decomposition entry point rather than every spec-kit command.
+The workflow side lives in one YAML asset, `.skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml`. Its `phase_decomposition` block contains a `Generate LITERAL phase names` activity, and the plan and complete workflows point at that block instead of carrying a copy. The activity tells the active CLI agent to produce phase names with specific subject tokens drawn from the user request, naming the concrete component or behavior being changed. The activity explicitly forbids the generic stoplist (`phase-1`, `phase-2`, `remediation`, `cleanup`, `fix`, `refactor`, `setup`) when used standalone. The activity fires only when a `:with-phases` route is active, so the rule binds to the phase-decomposition entry point rather than every spec-kit command.
 
 The SKILL.md side adds ALWAYS rule 20, `REMEDIATION PACKET NAMING`. Rule 20 governs slugs proposed by an AI agent after a deep-review FAIL verdict or other AI-derived remediation event. The slug must follow `NNN-fix-<source>-for-<target>`, where the source names the trigger (such as `deep-review-p0-p1-findings`, `verdict-fail`, or `audit-finding-NN`) and the target names the specific component being fixed (such as `skill-local-benchmarks-format` or `spec-validation-rule-engine`). Bare slugs such as `remediation`, `cleanup`, `fix`, `phase-N`, `round-N`, and `review-remediation` are forbidden as standalone names. The rule is documentation-layer guidance and is not linted by `validate.sh`; enforcement currently happens through workflow surfacing and operator review.
 
@@ -38,8 +38,7 @@ Together these surfaces close the loop with the create.sh fallback. The fallback
 
 | File | Layer | Role |
 |------|-------|------|
-| `.skilled/commands/speckit/assets/speckit-plan.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for plan in every execution mode |
-| `.skilled/commands/speckit/assets/speckit-complete.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for complete in every execution mode |
+| `.skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity once, in `phase_decomposition`, which the plan and complete workflows point at |
 | `.skilled/skills/system-spec-kit/SKILL.md` | Skill | ALWAYS rule 20 (REMEDIATION PACKET NAMING) defining source/target slug structure for AI-derived remediation packets |
 
 ### Validation And Tests

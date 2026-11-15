@@ -1,0 +1,173 @@
+{
+ "date": "2026-11-14",
+ "title": "Phase 3: frontend-content",
+ "hook": "The frontend packet's documents now state the load rule its router runs, each of the eight duplicated rules lives in the topic file that owns it, and all 11 intents have a playbook scenario the guard replays.",
+ "recent": "Aligned the frontend packet's documents with its router and proved it with the playbook validator and the rule-id count",
+ "next": "Start 004-vocabulary-single-source",
+ "what": "You can read `SKILL.md`, `ROUTER.md` or `frontend-practice.md` and get one load rule: every intent loads the core, web intents add the web layer and their topic file, and the visual, motion and Figma intents add their own files without it. `ROUTER.md` says how `assets/tokens.css` and the three workflow links are reached. Eight rules that restated another topic file moved there with their ids and wording unchanged, so an accessibility request now loads the focus, tooltip and reduced-motion rules that were filed under motion. The playbook grew from 3 scenarios to 11. The registry declares `frontend-practice.md` as the checklist for frontend file extensions. The starter type tokens are in `rem`. The ids `I8` and `P8` to `P10` ascend, and the framework section says where other frameworks live.",
+ "files": [
+  [
+   "`sk-code-frontend/SKILL.md`, `ROUTER.md`, `README.md`",
+   "Modified",
+   "Load rule, load paths, topic-file count, scenario count and versions"
+  ],
+  [
+   "`sk-code-frontend/references/frontend-practice.md`",
+   "Modified",
+   "Section 6 load rule"
+  ],
+  [
+   "`sk-code-frontend/references/web-motion-and-interaction.md`",
+   "Modified",
+   "Eight rule blocks out, one link line in for each, 642 to 586 lines"
+  ],
+  [
+   "`web-elements-and-attributes.md`, `web-visual-values.md`, `web-accessibility-patterns.md`, `web-performance-and-loading.md`",
+   "Modified",
+   "Receive `M2`, `M13` to `M15`, `M17`, `M21`, `M51` and `M29`. The performance ids ascend"
+  ],
+  [
+   "`web-internationalization.md`, `web-markup-and-css.md`",
+   "Modified",
+   "`I9` becomes `I8`, and section 8 names where other frameworks live"
+  ],
+  [
+   "`sk-code-frontend/assets/tokens.css`",
+   "Modified",
+   "Type scale in `rem` with the pixel size in a comment"
+  ],
+  [
+   "`sk-code-frontend/manual-testing-playbook/`",
+   "Modified and created",
+   "Eight scenario files and the root index"
+  ],
+  [
+   "`mode-registry.json`, `sk-code-skilled/SKILL.md`",
+   "Modified",
+   "The frontend `quality.checklists` row and its row in the rendered checklist map"
+  ],
+  [
+   "`sk-code-frontend/changelog/v1.2.0.0.md`",
+   "Created",
+   "Release note for the packet"
+  ],
+  [
+   "Two `activation/sk-code/manifest.json` files",
+   "Regenerated",
+   "Policy hash after the registry change"
+  ]
+ ],
+ "how": "Each edit was designed from a read of the cited lines, then sent to DeepSeek V4.1 Flash at max thinking through cli-pi as one literal brief per file: 27 dispatches. Every moved rule block was compared with a snapshot taken before the move, and every scenario file was compared byte for byte with a rendering made from the existing scenario. The orchestrating session ran the manifest refresh, the playbook validator, the probe replay, the three test suites, the drift guards and the quality runner. The code landed as `62507384e6`.",
+ "decisions": [
+  [
+   "The motion rule id baseline is 57, not 48",
+   "The tree held 57 `### M` headings before any move. The operator corrected the figure on 2026-11-14, recorded as Q001 in `decision-record.md`"
+  ],
+  [
+   "AC-004 is superseded by ADR-001",
+   "Moving the eight audited rules reaches 586 lines. 400 would need about 27 more rules the audit never named. The operator accepted 586 on 2026-11-14"
+  ],
+  [
+   "A moved rule keeps its `### M` heading in its new file",
+   "The id count across the references stays 57, and the motion reference keeps a bold link line in place of each block, not a second heading"
+  ],
+  [
+   "The performance ids were renumbered, not reordered",
+   "`P10` is a main-thread rule and belongs in section 4. Moving it under the image section to make the ids ascend would have filed it wrongly. No link in the repository pointed at `P8`, `P9` or `P10`"
+  ],
+  [
+   "`sk-code-skilled/SKILL.md` gained one table row",
+   "`quality-checklist-map.test.cjs` compares that table with the registry, so REQ-005 cannot pass without it. The file is outside the Files to Change table and inside the hub"
+  ]
+ ],
+ "verify": [
+  [
+   "REQ-001 `rg` pair",
+   "3, then exit 1"
+  ],
+  [
+   "Playbook file count and `validate-playbook-package.cjs`",
+   "11, then `PASS` with `scenarios=11 violations=0`, exit 0"
+  ],
+  [
+   "`cat references/*.md \\| rg -c '^### M[0-9]+\\.'`",
+   "57, equal to the count before the move"
+  ],
+  [
+   "Eight moved rule blocks against their snapshots",
+   "8 identical"
+  ],
+  [
+   "`quality-checklist-map.test.cjs`",
+   "3 pass, 0 fail"
+  ],
+  [
+   "REQ-006 to REQ-010 commands",
+   "Each prints as `spec.md` states"
+  ],
+  [
+   "Probe replay from `002-frontend-reach/plan.md` section 5",
+   "`13 frontend 1`, `8 negative 0`, `1 review 1`"
+  ],
+  [
+   "`compiled-route-guard.cjs --json` and `compiled-route-sync.cjs --check`",
+   "Both exit 0"
+  ],
+  [
+   "`node --test` on the sk-code-skilled tests, the sk-code-quality tests and `compiled-route-surface-hint.test.cjs`",
+   "53, 154 and 15 pass, 0 fail"
+  ],
+  [
+   "`run-all-drift-guards.sh`",
+   "router-sync 5/5, doc-claims 4/4 and stack-folders PASS. alignment-drift fails on the same 23 files as the baseline"
+  ],
+  [
+   "`quality-gate.cjs`",
+   "`NO_BLOCKER_FOUND`"
+  ],
+  [
+   "`validate.sh <phase folder> --strict --quiet`",
+   "`RESULT: PASSED`"
+  ]
+ ],
+ "limits": "1. **The motion reference is 586 lines.** ADR-001 records why the 400-line figure is superseded.\n2. **A motion request no longer loads the eight moved rules.** It loads a link line for each, and the rule is one hop away in its owning file.\n3. **The playbook validator does not catch a wrong `expected_resources` path.** The router-sync guard's check 4 does, with exit 1 and the scenario named. `spec.md` names the validator for that failure path.\n4. **The setup battery still ends `STATUS=FAIL`.** Its drift guard fails on 23 files outside sk-code, which phase 005 owns.",
+ "open": [
+  "CHK-042"
+ ],
+ "chk": {
+  "CHK-001": "spec.md section 4 rows REQ-001 to REQ-010 each name a command and its expected result",
+  "CHK-002": "plan.md Affected Surfaces and the spec Files to Change table name the changed files",
+  "CHK-003": "phase 002 closed in `78a9f12ec9` with 13 of 13 frontend probes",
+  "CHK-010": "`node -e require(...)` on mode-registry.json exits 0",
+  "CHK-011": "router-sync, doc-claims and stack-folders PASS, and alignment-drift reports the same 23 ERROR files as the baseline",
+  "CHK-012": "one file outside the table changed, `sk-code-skilled/SKILL.md`, recorded in the goal log and the summary with its reason, plus the two regenerated manifests",
+  "CHK-013": "`validate_document.py` and the playbook validator pass, and the doc-claims guard passes",
+  "CHK-020": "AC-001 to AC-003 and AC-005 to AC-010 are Met, and AC-004 is Superseded by ADR-001",
+  "CHK-021": "`PASS` with `scenarios=11`, exit 0",
+  "CHK-022": "FRONTEND_WEB keeps its two-resource scenario, and the WEB_VISUAL_HIERARCHY scenario lists all four resources and replays them",
+  "CHK-023": "a wrong path in `web-layout.md` left the validator at exit 0 and made router-sync check 4 exit 1, logged in goal.md as a difference from spec.md",
+  "CHK-FIX-001": "F5 to F13 carried a verdict before T003 started",
+  "CHK-FIX-002": "`rg -n 'web layer before|nine web topic|text-base: ?16px' .skilled/skills/sk-code` finds no copy outside the changelog history",
+  "CHK-FIX-003": "playbook replay, the REQ-001 counts, the router legs and the checklist map test all ran",
+  "CHK-FIX-004": "rows F5 to F13 name their proving command",
+  "CHK-FIX-005": "rows F5 to F13 name `62507384e6`",
+  "CHK-030": "the diff holds documents, one registry row, CSS tokens and scenario files only",
+  "CHK-031": "N/A as the line states",
+  "CHK-040": "the three documents name the same files and the same validate.sh command",
+  "CHK-041": "the one comment added, in tokens.css, explains the unit and carries no id or path",
+  "CHK-050": "the briefs live in `002-frontend-reach/scratch/tools/d/`, and this phase's `scratch/` holds no working file",
+  "CHK-051": "later phases reuse the dispatch tools and briefs in `002-frontend-reach/scratch/tools/`"
+ },
+ "ac": {
+  "AC-001": "3, then exit 1, on 2026-11-14 at `62507384e6`.",
+  "AC-002": "11, and `PASS` with `scenarios=11 violations=0`, exit 0.",
+  "AC-003": "57 on 2026-11-14, equal to the count at `ff0673af0a`.",
+  "AC-005": "3 pass, 0 fail.",
+  "AC-006": "nothing printed, exit 1.",
+  "AC-007": "1, and the ids print P1 to P10 in order.",
+  "AC-008": "nothing printed, exit 1.",
+  "AC-009": "1 inside section 8.",
+  "AC-010": "3 and 1."
+ },
+ "closure": "Nine criteria are met with the outputs observed on 2026-11-14 at commit `62507384e6`. AC-004 is superseded by ADR-001 in `decision-record.md`, on the operator's answer of the same day."
+}

@@ -1,7 +1,7 @@
 ---
 title: "453 -- Speckit autopilot lifecycle"
 description: "Manual validation for the branch-preserved :autopilot/:unattended SpecKit command lifecycle."
-version: 1.6.0.99
+version: 1.6.1.0
 id: lifecycle-speckit-autopilot-lifecycle
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates the SpecKit autopilot lifecycle. It focuses on mode routing, unattended task metadata, terminal reason codes, branch preservation and clean-verification merge behavior for `/speckit:plan`, `/speckit:implement` and `/speckit:complete`.
+This scenario validates the SpecKit autopilot lifecycle. It focuses on mode routing, unattended task metadata, terminal reason codes, the operator's workspace choice, branch preservation and the rule that autopilot never merges, for `/speckit:plan`, `/speckit:implement` and `/speckit:complete`.
 
 ---
 

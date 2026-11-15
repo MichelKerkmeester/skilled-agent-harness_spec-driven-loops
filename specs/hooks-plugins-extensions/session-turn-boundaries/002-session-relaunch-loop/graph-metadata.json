@@ -42,7 +42,9 @@
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity"
   ],
   "manual": {
     "depends_on": [],
@@ -244,7 +246,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-14T07:30:18.606Z",
+    "last_save_at": "2026-11-14T22:50:41.929Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -252,13 +254,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a51bc4ddc1855483660be83bad4dde75f086d97bc6b515988ab74cc541bfb3ed",
+    "source_fingerprint": "sha256:61614c7cc6a76c557953da5dbe35780002ecdcbd98e59abb58b2c4543be2238e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a9e959345d2a0a5638cb7f91c8e169aa3aa5f8dc8127190efa7ec1af6547c3e",
+      "spec.md": "5fbb6554b41086032df21d57e8cdcbb711a5defb7e8e630f1505a6004e07e2f9",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
-    "last_active_at": "2026-11-13T08:36:01.556Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes",
+    "last_active_at": "2026-11-14T22:27:32.983Z"
   }
 }

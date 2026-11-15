@@ -147,6 +147,35 @@ test("session-relaunch is off by default while every other concern stays on", ()
   assert.equal(isHookEnabled("skill-advisor", { SYSTEM_SESSION_RELAUNCH_ENABLED: "0" }), true);
 });
 
+test("Claude Code is the one runtime where session-relaunch is on with no switch set", () => {
+  const { hookFlagDecision, DEFAULT_ON_RUNTIMES, RUNTIMES } = require("./hook-flags.cjs");
+  assert.deepEqual(DEFAULT_ON_RUNTIMES["session-relaunch"], ["claude"]);
+  assert.deepEqual(
+    hookFlagDecision("session-relaunch", {}, {}, { runtime: "claude" }),
+    { enabled: true, key: null, reason: "default" },
+  );
+  for (const runtime of RUNTIMES.filter((name) => name !== "claude")) {
+    assert.deepEqual(
+      hookFlagDecision("session-relaunch", {}, {}, { runtime }),
+      { enabled: false, key: "SYSTEM_SESSION_RELAUNCH_ENABLED", reason: "global" },
+      runtime,
+    );
+  }
+  // A runtime the resolver does not know keeps the global-only answer.
+  assert.equal(isHookEnabled("session-relaunch", {}, {}, { runtime: "cline" }), false);
+  // A set global value decides for Claude too, and a blank one counts as unset.
+  assert.deepEqual(
+    hookFlagDecision("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: "0" }, {}, { runtime: "claude" }),
+    { enabled: false, key: "SYSTEM_SESSION_RELAUNCH_ENABLED", reason: "global" },
+  );
+  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: " " }, {}, { runtime: "claude" }), true);
+  assert.equal(isHookEnabled("session-relaunch", {}, { SYSTEM_SESSION_RELAUNCH_ENABLED: "off" }, { runtime: "claude" }), false);
+  // The Claude switch and every kill switch still answer before the default.
+  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "0" }, {}, { runtime: "claude" }), false);
+  assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_DISABLED: "1" }, {}, { runtime: "claude" }), false);
+  assert.equal(isHookEnabled("session-relaunch", { [MASTER_FLAG]: "1" }, {}, { runtime: "claude" }), false);
+});
+
 test("session-relaunch turns on when its enable flag is set in the environment", () => {
   for (const v of ["1", "true", " YES ", "on"]) {
     assert.equal(isHookEnabled("session-relaunch", { SYSTEM_SESSION_RELAUNCH_ENABLED: v }), true, v);
@@ -512,8 +541,11 @@ test("a per-runtime enable flag answers before the global one in every reader", 
       ["master switch beats a per-runtime opt-in", { SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "1", [MASTER_FLAG]: "1" }, "", "off off off off off"],
       ["empty per-runtime falls through to the global", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "" }, "", "on on on on on"],
       ["file per-runtime off beats an environment global on", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }, "SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0\n", "off on on on on"],
-      ["nothing set", {}, "", "off off off off off"],
-      ["a runtime name with surrounding spaces still finds its switch", { SYSTEM_SESSION_RELAUNCH_PI_ENABLED: "1" }, "", "off on off off off", [" claude ", " pi", "opencode ", "  codex"]],
+      ["nothing set, so only claude is on", {}, "", "on off off off off"],
+      ["global off turns claude off too", { SYSTEM_SESSION_RELAUNCH_ENABLED: "0" }, "", "off off off off off"],
+      ["global off in the file turns claude off too", {}, "SYSTEM_SESSION_RELAUNCH_ENABLED=0\n", "off off off off off"],
+      ["a blank global counts as unset", { SYSTEM_SESSION_RELAUNCH_ENABLED: " " }, "", "on off off off off"],
+      ["a runtime name with surrounding spaces still finds its switch", { SYSTEM_SESSION_RELAUNCH_PI_ENABLED: "1" }, "", "on on off off off", [" claude ", " pi", "opencode ", "  codex"]],
       ["the legacy master alias beats every opt-in", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED: "1", MK_HOOKS_DISABLED: "1" }, "", "off off off off off"],
       ["the legacy master alias in the file beats an environment opt-in", { SYSTEM_SESSION_RELAUNCH_ENABLED: "1" }, "MK_HOOKS_DISABLED=1\n", "off off off off off"],
     ];

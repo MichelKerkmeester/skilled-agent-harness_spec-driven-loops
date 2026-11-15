@@ -1,0 +1,28 @@
+{
+  "run_id": "1794652127582-mfqldk",
+  "loop_type": "review",
+  "spec_folder": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "base_artifact_dir": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  }
+}

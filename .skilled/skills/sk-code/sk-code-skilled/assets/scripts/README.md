@@ -7,7 +7,7 @@ trigger_phrases:
   - "opencode script maintenance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # sk code assets scripts
@@ -76,7 +76,7 @@ Run individual scripts from the repository root with the documented arguments.
 | `test_verify_stack_folders.py` | Builds a temporary references tree and proves `verify_stack_folders.py` exits 1 on an orphan folder and 0 on a clean tree. |
 | `verify_alignment_drift.py` | Recurring read-only alignment verifier for TypeScript, JavaScript, Python, shell, JSON, and JSONC files. |
 | `verify-doc-claims.cjs` | Documentation claim guard: path references in the sk-code docs resolve, including path-shaped link labels and `#anchor` targets, no retired packet name remains, every surface count matches the surface modes in `mode-registry.json` and the `ROUTER.md` load-tier claims match `DEFAULT_RESOURCE`, with an allowlist for deliberate legacy names. Usage: `node verify-doc-claims.cjs [--root <hub dir>] [--checks paths,names,surfaces,tiers]`. |
-| `verify-router-sync.cjs` | Restored router-sync drift guard: four checks over the sk-code router, one PASS or FAIL line per leg. Usage: `node verify-router-sync.cjs [--checks 1a,1b,2,3,4]`. |
+| `verify-router-sync.cjs` | Restored router-sync drift guard: four checks over the sk-code router, one PASS or FAIL line per leg. Check 2 also compares the vocabulary copies: every registry alias must be a keyword in a `hub-router.json` class its mode routes on, and a surface listed under `vocabularyMirrors` in `hub-router.json` must hold one keyword set in its classes, the hub `INTENT_SIGNALS` rows and its own `INTENT_SIGNALS` rows. Usage: `node verify-router-sync.cjs [--checks 1a,1b,2,3,4]`. |
 | `verify_stack_folders.py` | Verifies sk-code-skilled language reference folders match the known language set and flags missing or orphan folders. |
 
 ---

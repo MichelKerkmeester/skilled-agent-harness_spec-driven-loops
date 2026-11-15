@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ba384f5472d4151d4a1a0f2fceabb96754b9a810d82733dd5e2c97f2f8f6e350",
+  "corpusHash": "649495843e5e8c4055e78bcb22e21500b553120b58ff84cf1e840750fbf74e27",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26942,
+  "includedPathCount": 27480,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -121,6 +121,7 @@
     ".skilled/hooks/decision-capture/lib/README.md",
     ".skilled/hooks/decision-capture/pi/README.md",
     ".skilled/hooks/decision-capture/tests/README.md",
+    ".skilled/hooks/decision-capture/vibe/README.md",
     ".skilled/hooks/directive-lifecycle/README.md",
     ".skilled/hooks/directive-lifecycle/claude/README.md",
     ".skilled/hooks/dispatch/README.md",
@@ -257,6 +258,7 @@
     ".skilled/hooks/skill-advisor/dsh/README.md",
     ".skilled/hooks/skill-advisor/opencode/README.md",
     ".skilled/hooks/skill-advisor/pi/README.md",
+    ".skilled/hooks/skill-advisor/vibe/README.md",
     ".skilled/hooks/spec-gate/claude/README.md",
     ".skilled/hooks/spec-gate/codex/README.md",
     ".skilled/hooks/spec-gate/cursor/README.md",
@@ -791,6 +793,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.14.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.1.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.16.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
@@ -1358,6 +1361,32 @@
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/guards/spec-gate-suite.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hard-rules/dispatch-rule-check-suite.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hard-rules/hard-rule-sidecar-integrity.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/agents-mirror-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/classifier-injection-screen-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/compaction-post-tool-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/decision-capture-ask-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/deep-loop-guard-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dispatch-preflight-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dist-freshness-edit-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dist-freshness-shell-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/env-secret-guard-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/git-message-gate-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/mcp-route-guard-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/overlay-guard-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/post-edit-quality-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/prompts-mirror-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-manual-tier-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/render-home-hooks-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/session-cleanup-end-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/skills-mirror-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-classify-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-deny-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-ask-surface-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-completion-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-completion-advisory-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-save-nudge-conversation.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hub-routing/compiled-decision-and-router-row.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hub-routing/front-door-compiled-decision.md",
     ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md",
@@ -3060,6 +3089,8 @@
     ".skilled/skills/sk-code/changelog/v3.11.4.0.md",
     ".skilled/skills/sk-code/changelog/v3.11.5.0.md",
     ".skilled/skills/sk-code/changelog/v3.11.6.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.1.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -3124,6 +3155,9 @@
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-typescript.md",
     ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-negative-probes.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-reach.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-review-bundle.md",
     ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/skcode-vs-skdoc.md",
     ".skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md",
     ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md",
@@ -3151,6 +3185,8 @@
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.13.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.14.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.15.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.16.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.17.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.2.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.4.0.md",
@@ -3181,9 +3217,18 @@
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.4.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.1.0.0.md",
+    ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/figma-check.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/frontend-web.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/motion-interaction.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-hierarchy.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-values.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-accessibility.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-cascade.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-elements.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-internationalization.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-layout.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-performance.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md",
     ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
@@ -3237,6 +3282,8 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.18.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.19.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.2.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.20.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.21.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.5.0.md",
@@ -3333,6 +3380,8 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.14.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.15.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.16.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.17.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.18.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.3.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.4.0.md",
@@ -3462,6 +3511,9 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.7.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.8.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.9.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.0.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.1.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -6550,6 +6602,8 @@
     ".skilled/skills/sk-doc/changelog/v2.9.11.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.12.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.13.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.14.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.15.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
@@ -6703,13 +6757,17 @@
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.1.1.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.1.2.md",
+    ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.10.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.2.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.4.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.5.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.6.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.7.0.md",
+    ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
+    ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.9.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/leaf-denies-delegation.md",
+    ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/registry-record-before-roster-check.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/required-agent-sections.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/component-choice/named-runtime-persona.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/component-choice/reusable-knowledge-stays-a-skill.md",
@@ -6780,6 +6838,8 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -7263,6 +7323,7 @@
     ".skilled/skills/sk-git/changelog/v1.11.1.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.10.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.11.0.md",
+    ".skilled/skills/sk-git/changelog/v1.11.12.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.4.0.md",
@@ -7431,6 +7492,7 @@
     ".skilled/skills/sk-prompt/changelog/v4.0.2.0.md",
     ".skilled/skills/sk-prompt/changelog/v4.0.3.0.md",
     ".skilled/skills/sk-prompt/changelog/v4.0.4.0.md",
+    ".skilled/skills/sk-prompt/changelog/v4.0.5.0.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/change-report-length-warning.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/clashing-rules-resolved.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/deliver-first-open-items.md",
@@ -7525,6 +7587,9 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.23.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.24.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.25.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.26.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.27.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.28.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.5.0.md",
@@ -7557,6 +7622,7 @@
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.0.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.1.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.10.0.md",
+    ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.11.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.2.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.3.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.4.0.md",
@@ -7677,6 +7743,7 @@
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.10.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.11.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.12.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.13.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.2.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.3.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.4.0.md",
@@ -7833,6 +7900,7 @@
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.12.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.13.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.14.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.15.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.2.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.3.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md",
@@ -8763,6 +8831,8 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.8.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.9.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.13.1.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.13.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -8798,6 +8868,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.9.3.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/packet-purpose-carry.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
     ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
@@ -8898,6 +8969,11 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-transcript-sweeps.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-claude-compaction.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-pi-compaction.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-relaunch.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-resume.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-save.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
@@ -9027,6 +9103,7 @@
     ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
     ".skilled/skills/system-spec-kit/references/workflows/intake-contract.md",
     ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
+    ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
     ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
     ".skilled/skills/system-spec-kit/references/workflows/rename-pattern.md",
     ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
@@ -9442,6 +9519,113 @@
     "specs/agents/005-haiku-explore-and-context-agents/plan.md",
     "specs/agents/005-haiku-explore-and-context-agents/spec.md",
     "specs/agents/005-haiku-explore-and-context-agents/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/decision-record.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/decision-record.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/decision-record.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/decision-record.md",
+    "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
@@ -10583,6 +10767,34 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/research.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/acceptance-criteria.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/decision-record.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/acceptance-criteria.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/decision-record.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/deep-review-dashboard.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/deep-review-strategy.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/resource-map.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/review-report.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -10670,6 +10882,57 @@
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/decision-record.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/decision-record.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
@@ -11075,6 +11338,12 @@
     "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/spec.md",
     "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/tasks.md",
     "specs/commands/005-doctor-symlink-install/spec.md",
+    "specs/commands/006-alignment-lane-result-parser/acceptance-criteria.md",
+    "specs/commands/006-alignment-lane-result-parser/goal.md",
+    "specs/commands/006-alignment-lane-result-parser/implementation-summary.md",
+    "specs/commands/006-alignment-lane-result-parser/plan.md",
+    "specs/commands/006-alignment-lane-result-parser/spec.md",
+    "specs/commands/006-alignment-lane-result-parser/tasks.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/implementation-summary.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/plan.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/spec.md",
@@ -12105,6 +12374,7 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/decision-record.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/plan.md",
@@ -12182,9 +12452,101 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/plan.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/decision-record.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/research.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-dashboard.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-strategy.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-001.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-002.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-003.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-004.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-005.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-006.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-007.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-008.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-009.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-010.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-1.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-10.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-2.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-3.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-4.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-5.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-6.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-7.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-8.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-9.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/resource-map.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/review-report.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes/decision-record.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/decision-record.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -13669,6 +14031,72 @@
     "specs/sk-code/hub-architecture/005-private-surface-skills/review/fanout-attribution.md",
     "specs/sk-code/hub-architecture/005-private-surface-skills/review/review-report.md",
     "specs/sk-code/hub-architecture/005-private-surface-skills/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/decision-record.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/decision-record.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/decision-record.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/spec.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/goal.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/implementation-summary.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/plan.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/spec.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/tasks.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/acceptance-criteria.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/decision-record.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/goal.md",
@@ -15332,6 +15760,10 @@
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/research/research.md",
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/tasks.md",
     "specs/sk-doc/document-standards/003-changelog-system/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/timeline.md",
     "specs/sk-doc/document-standards/004-security-policy-alignment/goal.md",
@@ -15614,6 +16046,10 @@
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/plan.md",
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/tasks.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/implementation-summary.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/plan.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/spec.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/tasks.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/acceptance-criteria.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/implementation-summary.md",
@@ -17629,6 +18065,12 @@
     "specs/system-deep-loop/review-lineage/003-fanout-resume-and-containment/plan.md",
     "specs/system-deep-loop/review-lineage/003-fanout-resume-and-containment/spec.md",
     "specs/system-deep-loop/review-lineage/003-fanout-resume-and-containment/tasks.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/acceptance-criteria.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/goal.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/implementation-summary.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/plan.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/spec.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/tasks.md",
     "specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash/acceptance-criteria.md",
     "specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash/implementation-summary.md",
     "specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash/plan.md",
@@ -26522,13 +26964,90 @@
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/decision-record.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/goal.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/research.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/deep-review-dashboard.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/deep-review-strategy.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-001.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-002.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-003.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-004.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-005.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-1.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-2.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-3.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-4.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-5.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/resource-map.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/review-report.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/decision-record.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/plan.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/tasks.md",
@@ -26969,12 +27488,31 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/plan.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/spec.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/tasks.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/decision-record.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/fable-5-2-review.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/fable-plan-verification.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/fanout-attribution.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/review-report.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4085cbfb9850b5688f5f4069445985a120b9a7b4149eeb3c4e3a432e89a9d62d",
+  "manifestHash": "6de3a84d41a54a808c7f0183e0a3a59f36911496cf7e6efc3317720228f21532",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27026,6 +27564,10 @@
     },
     {
       "path": ".skilled/hooks/completion/pi/completion-evidence.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion/vibe/completion-evidence-post-agent.cjs",
       "reason": "symlink not followed"
     },
     {
@@ -27381,11 +27923,19 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/session-lifecycle/vibe/fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/hooks/session-relaunch/opencode/session-relaunch.js",
       "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-relaunch/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/hooks/shared/tests/session-readers/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -27438,6 +27988,10 @@
     },
     {
       "path": ".skilled/hooks/skill-advisor/pi/prompt-advisor.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/vibe/prompt-advisor.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -27978,6 +28532,94 @@
     },
     {
       "path": "specs/agents/005-haiku-explore-and-context-agents/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29285,6 +29927,26 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/001-runtime-code-and-tests/scratch",
       "reason": "excluded directory"
     },
@@ -29366,6 +30028,46 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29766,6 +30468,10 @@
     },
     {
       "path": "specs/commands/005-doctor-symlink-install/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/006-alignment-lane-result-parser/scratch",
       "reason": "excluded directory"
     },
     {
@@ -30605,6 +31311,42 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
@@ -30630,6 +31372,14 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/scratch",
       "reason": "excluded directory"
     },
     {
@@ -31610,6 +32360,46 @@
     },
     {
       "path": "specs/sk-code/hub-architecture/005-private-surface-skills/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/scratch",
       "reason": "excluded directory"
     },
     {
@@ -32993,6 +33783,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/document-standards/004-security-policy-alignment/scratch",
       "reason": "excluded directory"
     },
@@ -33266,6 +34060,10 @@
     },
     {
       "path": "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/scratch",
       "reason": "excluded directory"
     },
     {
@@ -34114,6 +34912,10 @@
     },
     {
       "path": "specs/system-deep-loop/review-lineage/003-fanout-resume-and-containment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/scratch",
       "reason": "excluded directory"
     },
     {
@@ -38225,6 +39027,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
@@ -38242,6 +39052,46 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/scratch",
       "reason": "excluded directory"
     },
     {
@@ -38662,6 +39512,22 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/lineages",
       "reason": "excluded directory"
     },
     {

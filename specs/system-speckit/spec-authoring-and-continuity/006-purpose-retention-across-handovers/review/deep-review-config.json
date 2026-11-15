@@ -1,0 +1,153 @@
+{
+  "topic": "Review: The non-spec files changed by the purpose-carry work: git show --name-only --format= on commits eaba5ab89e 3d237cd97a f0d8c03036 0837fcd5a2 191ce39bad 43bff36f9d e102ba83be f9f96bdc39 e129af3719 fce8b5d81c, excluding specs/ (34 unique files)",
+  "sessionId": "2026-11-14T11:01:50.956Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "createdAt": "2026-11-14T11:01:50.956Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-deepseek-harness",
+    "model": "deepseek-v4.1-flash-1017",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "The non-spec files changed by the purpose-carry work: git show --name-only --format= on commits eaba5ab89e 3d237cd97a f0d8c03036 0837fcd5a2 191ce39bad 43bff36f9d e102ba83be f9f96bdc39 e129af3719 fce8b5d81c, excluding specs/ (34 unique files)",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "Check alignment of these changes with sk-code standards, sk-doc's create-skill, create-command and create-readme standards, and whether any manual-testing playbook, feature catalog, README or the root README.md needs updating for the purpose-carry feature.",
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+    ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+    ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
+    ".skilled/commands/speckit/handoff.md",
+    ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+    ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+    ".skilled/skills/system-spec-kit/runtime/api/index.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+    ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+    ".skilled/skills/system-spec-kit/runtime/hooks/claude/README.md",
+    ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+    ".skilled/skills/system-spec-kit/runtime/hooks/pi/README.md",
+    ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+    ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts",
+    ".skilled/skills/system-spec-kit/runtime/lib/continuity/README.md",
+    ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts",
+    ".skilled/skills/system-spec-kit/runtime/lib/MODULE-MAP.md",
+    ".skilled/skills/system-spec-kit/runtime/lib/README.md",
+    ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
+    ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md",
+    ".skilled/skills/system-spec-kit/runtime/tests/authored-continuity-snapshot.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/tests/history-locator-adapters.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/tests/thin-continuity-record.vitest.ts",
+    ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+    ".skilled/skills/system-spec-kit/templates/spec-kit-docs.json"
+  ],
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

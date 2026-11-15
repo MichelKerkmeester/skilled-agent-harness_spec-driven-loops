@@ -1,0 +1,189 @@
+# T001
+4989b81e2d fix(agents): give the ai-council agent one writer and one round per call
+9a8a5f5026 fix(agents): route deep work to its command and give the orchestrator one retry ladder
+a87fa5cad2 fix(agents): give the code agent one retry rule and one meaning per status
+6c1fca5106 fix(agents): give each shared agent rule one source and make the agents agree
+$ git rev-parse --short HEAD
+9802994021
+exit=0
+$ git diff --stat 09f1d6499a HEAD -- .skilled/agents/context.md .skilled/agents/markdown.md .skilled/agents/design.md | wc -l
+       4
+exit=0
+$ wc -l .skilled/agents/context.md .skilled/agents/markdown.md .skilled/agents/design.md
+     438 .skilled/agents/context.md
+     308 .skilled/agents/markdown.md
+     246 .skilled/agents/design.md
+     992 total
+exit=0
+$ wc -c -l .skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+  160346 5220655 .skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+exit=0
+$ rg -n '"paths": \[|"phrases": \{' <trigger-index.json>
+bash: -c: line 0: syntax error near unexpected token `newline'
+bash: -c: line 0: `rg -n '"paths": \[|"phrases": \{' <trigger-index.json>'
+exit=0
+$ rg -n -o 'Read.{0,6}\.skilled/skills/system-spec-kit/runtime/data/trigger-index\.json' .skilled/agents/context.md
+74:Read` on `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+79:Read `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+183:Read `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+exit=0
+$ rg -n -o 'bash: deny' .skilled/agents/context.md
+10:bash: deny
+exit=0
+$ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "agent registry step"  (results counted)
+bash: -c: line 0: syntax error near unexpected token `('
+bash: -c: line 0: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "agent registry step"  (results counted)'
+exit=0
+$ rg -n --no-config -i --glob '*.md' --glob '!**/z_archive/**' --glob '!**/scratch/**' '^\s*- "[^"]*agent registry step' specs .skilled/skills .skilled/hooks .skilled/changelog/skilled
+.skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md:7:  - "agent registry step"
+exit=0
+$ rg -n -o 'rg --no-config --fixed-strings|Add .-C 2. and .--json.|Exit .1. is a clean no-hit' .skilled/agents/context.md
+206:rg --no-config --fixed-strings
+207:Add `-C 2` and `--json`
+209:Exit `1` is a clean no-hit
+exit=0
+$ rg -n -o 'Record #\[ID\]|memory ID' .skilled/agents/context.md
+252:Record #[ID]
+253:Record #[ID]
+355:memory ID
+379:memory ID
+exit=0
+$ rg -n -o '_No sub-agents dispatched \(policy\)_|Nested Dispatch Status says no sub-agents were dispatched' .skilled/agents/context.md
+270:_No sub-agents dispatched (policy)_
+359:Nested Dispatch Status says no sub-agents were dispatched
+exit=0
+$ rg -n -o 'includes Nested Dispatch Status section' .skilled/agents/orchestrate.md
+377:includes Nested Dispatch Status section
+exit=0
+$ rg -n '^## [0-9]' .skilled/agents/context.md
+37:## 0. ILLEGAL NESTING AND WRITE BOUNDARY (HARD BLOCK)
+50:## 1. CORE WORKFLOW
+64:## 2. CAPABILITY SCAN
+133:## 3. HOOK-INJECTED CONTEXT ROUTING
+141:## 4. RETRIEVAL PARAMETERS
+167:## 5. RETRIEVAL STRATEGY
+216:## 6. NESTING ENFORCEMENT DETAILS
+241:## 7. OUTPUT FORMAT
+315:## 8. INTEGRATION WITH ORCHESTRATOR
+350:## 9. OUTPUT VERIFICATION
+375:## 10. RULES & CONSTRAINTS
+413:## 11. ANTI-PATTERNS
+433:## 12. RELATED RESOURCES
+exit=0
+$ rg -n -o 'BEFORE any state read or workflow step|BINDING: template=|LOAD TEMPLATE|LOAD sk-doc' .skilled/agents/markdown.md
+119:BEFORE any state read or workflow step
+127:BINDING: template=
+141:LOAD sk-doc
+142:LOAD TEMPLATE
+exit=0
+$ rg -c template_path .skilled/commands/create
+exit=0
+$ rg -n -o 'BEFORE any state read or workflow step' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+283:BEFORE any state read or workflow step
+593:BEFORE any state read or workflow step
+exit=0
+$ rg -n -o 'DQI=<manual-score>|extract_structure' .skilled/agents/markdown.md
+253:DQI=<manual-score>
+exit=0
+$ rg -n -o 'Never claim a DQI score without running or reading .extract_structure.py. output' .skilled/skills/sk-doc/sk-create-quality-control/SKILL.md
+99:Never claim a DQI score without running or reading `extract_structure.py` output
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>  (type and dqi.total read from the JSON)
+bash: -c: line 0: syntax error near unexpected token `('
+bash: -c: line 0: `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>  (type and dqi.total read from the JSON)'
+exit=0
+$ rg -n -o '^\| .memory. ' .skilled/agents/markdown.md
+171:| `memory` 
+exit=0
+$ sed -n 6,19p .skilled/agents/markdown.md | rg -c memory
+exit=0
+$ rg -n '^tools:' .claude/agents/markdown.md
+5:tools: Read, Write, Edit, Bash, Grep, Glob
+exit=0
+$ rg -n -o 'thirteen valid' .skilled/agents/markdown.md
+102:thirteen valid
+exit=0
+$ sed -n 50,67p .skilled/agents/markdown.md | rg -c '^- ./create:'
+13
+exit=0
+$ sed -n 207,223p .skilled/agents/markdown.md | rg -c '^\| ./create:'
+13
+exit=0
+$ ls .skilled/commands/create/*.md | rg -cv README
+13
+exit=0
+$ rg -n -o 'which of the four a request is|-> (MEASURE|DECIDE)|DECIDE, MEASURE, or both|Decide measure-versus-decide|/design:(chart|diagram)' .skilled/agents/design.md
+24:which of the four a request is
+60:-> MEASURE
+67:-> DECIDE
+75:-> MEASURE
+132:/design:chart
+134:/design:diagram
+173:DECIDE, MEASURE, or both
+185:Decide measure-versus-decide
+exit=0
+$ rg -n -o '"(workflowMode|command)": "[^"]+"' .skilled/skills/sk-design/mode-registry.json
+13:"workflowMode": "sk-design-md-generator"
+34:"command": "/design:extract"
+49:"workflowMode": "sk-design-diagram"
+70:"command": "/design:diagram"
+105:"workflowMode": "sk-design-chart"
+126:"command": "/design:chart"
+exit=0
+$ rg -n -o 'follow the prompt and report the conflict|Write a Style Reference from a brief alone' .skilled/agents/design.md
+89:follow the prompt and report the conflict
+194:Write a Style Reference from a brief alone
+exit=0
+$ rg -n -o '^\s+(write|edit): allow|to an interface|.code. implements the values this agent decides|hands the author gates to .sk-code-quality.' .skilled/agents/design.md
+8:  write: allow
+9:  edit: allow
+67:to an interface
+99:hands the author gates to `sk-code-quality`
+136:`code` implements the values this agent decides
+exit=0
+$ rg -n -o 'pause and ask the user' .skilled/skills/sk-design/sk-design-diagram/SKILL.md
+67:pause and ask the user
+exit=0
+$ rg -n -o 'Ask the user questions when the next safe step is clear' .skilled/agents/design.md
+199:Ask the user questions when the next safe step is clear
+exit=0
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs > out.txt
+exit=0
+$ rg -o 'all comparable mirrors in sync' out.txt
+all comparable mirrors in sync
+exit=0
+$ bash specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/scratch/negative-checks.sh
+REQ-001 context: 3 3 3 3 3
+REQ-002 design: 2 2 2 2 2
+REQ-004 context: 3 3 3 3 3
+REQ-005 context: 4 4 4 4 4
+REQ-006 context: 2 2 2 2 2
+REQ-008 markdown: 1 1 1 1 1
+REQ-009 markdown: 1 1 1 1 1
+REQ-010 markdown: 1 1 1 1 1
+exit=0
+# negative-checks
+REQ-001 context: 3 3 3 3 3
+REQ-002 design: 2 2 2 2 2
+REQ-004 context: 3 3 3 3 3
+REQ-005 context: 4 4 4 4 4
+REQ-006 context: 2 2 2 2 2
+REQ-008 markdown: 1 1 1 1 1
+REQ-009 markdown: 1 1 1 1 1
+REQ-010 markdown: 1 1 1 1 1
+# T003
+3:description: "Five rules every agent shares are each stated in several places that disagree: tool budgets sit below what the mandatory steps cost, checklists ship pre-ticked, the canonical refusal i
+53:- The untrusted-content rule in the template and in the eight LEAF agents that lack it
+54:- The copied "Daemon-free retrieval" sentence and the "Layer 1" wording removed where they say nothing
+65:The rules every agent shares have no single home, so each agent file carries its own copy and the copies disagree. Tool budgets are the costly case. The fast paths of `code`, `review` and `debug` c
+141:$ rg -l -i 'untrusted' .skilled/agents/
+144:$ rg -n 'Daemon-free retrieval' .skilled/agents/ | cut -c1-60
+145:.skilled/agents/review.md:105:**Daemon-free retrieval:** eve
+146:.skilled/agents/deep-research.md:362:**Daemon-free retrieval
+147:.skilled/agents/ai-council.md:133:**Daemon-free retrieval:**
+148:.skilled/agents/deep-review.md:288:- **Daemon-free retrieval
+149:.skilled/agents/context.md:77:**Daemon-free retrieval:** eve
+150:.skilled/agents/debug.md:369:**Daemon-free retrieval:** ever

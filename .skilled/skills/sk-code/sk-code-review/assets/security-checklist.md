@@ -10,7 +10,7 @@ trigger_phrases:
   - "dependency supply chain audit"
 importance_tier: normal
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Security and Reliability Checklist
@@ -216,7 +216,7 @@ Review prompt:
 
 ## 12. RELATED RESOURCES
 
-- [quick-reference.md](../references/quick-reference.md) - Findings-first review flow, severity model, and output contract.
+- [quick-reference.md](../references/quick-reference.md) - Entry index that routes to the review doctrine and the single-pass flow.
 - [code-quality-checklist.md](./code-quality-checklist.md) - Correctness, scaling, and maintainability checks.
 - [solid-checklist.md](./solid-checklist.md) - Architecture cohesion and coupling checks.
 - [removal-plan.md](./removal-plan.md) - Safe deletion and deferred removal planning.

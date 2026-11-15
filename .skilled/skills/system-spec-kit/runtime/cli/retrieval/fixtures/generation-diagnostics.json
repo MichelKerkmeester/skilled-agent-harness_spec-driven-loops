@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 6780,
-    "ok": 18532,
+    "missing-frontmatter": 6865,
+    "ok": 18985,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26942,
+  "documentsScanned": 27480,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4085cbfb9850b5688f5f4069445985a120b9a7b4149eeb3c4e3a432e89a9d62d",
+  "manifestHash": "6de3a84d41a54a808c7f0183e0a3a59f36911496cf7e6efc3317720228f21532",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -35,7 +35,7 @@
       "folder-token-fallback": 47,
       "generic-workflow-word": 71,
       "numeric-only": 38,
-      "prose-sentence": 10,
+      "prose-sentence": 11,
       "single-token": 346,
       "stop-word-only": 9,
       "template-default": 22
@@ -45,8 +45,8 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43338,
-      "prose-sentence": 19,
+      "ok": 44022,
+      "prose-sentence": 20,
       "single-token": 156,
       "stop-word-only": 1,
       "template-default": 19
@@ -4929,6 +4929,162 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hard-rules/hard-rule-sidecar-integrity.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/agents-mirror-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/classifier-injection-screen-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/compaction-post-tool-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/decision-capture-ask-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/deep-loop-guard-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dispatch-preflight-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dist-freshness-edit-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dist-freshness-shell-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/env-secret-guard-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/git-message-gate-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/mcp-route-guard-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/overlay-guard-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/post-edit-quality-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/prompts-mirror-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/relaunch-manual-tier-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/render-home-hooks-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/session-cleanup-end-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/skills-mirror-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-classify-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/spec-gate-deny-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-ask-surface-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-end-completion-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-advisor-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-compaction-reinjection-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-completion-advisory-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-save-nudge-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10819,6 +10975,24 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-negative-probes.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-reach.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-review-bundle.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/skcode-vs-skdoc.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10939,7 +11113,55 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/motion-interaction.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-hierarchy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-values.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-accessibility.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-cascade.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-elements.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-internationalization.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-layout.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-performance.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -28970,6 +29192,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/registry-record-before-roster-check.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/required-agent-sections.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -34997,6 +35225,42 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/deep-review-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/001-runtime-code-and-tests/acceptance-criteria.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -35681,6 +35945,150 @@
       "line": 1,
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-10.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-7.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-8.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-9.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/review-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -51889,6 +52297,84 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/review-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/research/research.md",
@@ -52142,6 +52628,30 @@
       "line": 1,
       "path": "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/fable-5-2-review.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/fable-plan-verification.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -52187,6 +52697,10 @@
     },
     {
       "path": ".skilled/hooks/completion/pi/completion-evidence.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion/vibe/completion-evidence-post-agent.cjs",
       "reason": "symlink not followed"
     },
     {
@@ -52542,11 +53056,19 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/session-lifecycle/vibe/fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/hooks/session-relaunch/opencode/session-relaunch.js",
       "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-relaunch/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/hooks/shared/tests/session-readers/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -52599,6 +53121,10 @@
     },
     {
       "path": ".skilled/hooks/skill-advisor/pi/prompt-advisor.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/vibe/prompt-advisor.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -53139,6 +53665,94 @@
     },
     {
       "path": "specs/agents/005-haiku-explore-and-context-agents/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
@@ -54446,6 +55060,26 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/001-runtime-code-and-tests/scratch",
       "reason": "excluded directory"
     },
@@ -54527,6 +55161,46 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios/scratch",
       "reason": "excluded directory"
     },
     {
@@ -54927,6 +55601,10 @@
     },
     {
       "path": "specs/commands/005-doctor-symlink-install/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/006-alignment-lane-result-parser/scratch",
       "reason": "excluded directory"
     },
     {
@@ -55766,6 +56444,42 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
@@ -55791,6 +56505,14 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/scratch",
       "reason": "excluded directory"
     },
     {
@@ -56771,6 +57493,46 @@
     },
     {
       "path": "specs/sk-code/hub-architecture/005-private-surface-skills/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/scratch",
       "reason": "excluded directory"
     },
     {
@@ -58154,6 +58916,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/document-standards/004-security-policy-alignment/scratch",
       "reason": "excluded directory"
     },
@@ -58427,6 +59193,10 @@
     },
     {
       "path": "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/scratch",
       "reason": "excluded directory"
     },
     {
@@ -59275,6 +60045,10 @@
     },
     {
       "path": "specs/system-deep-loop/review-lineage/003-fanout-resume-and-containment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/scratch",
       "reason": "excluded directory"
     },
     {
@@ -63386,6 +64160,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
@@ -63403,6 +64185,46 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/scratch",
       "reason": "excluded directory"
     },
     {
@@ -63823,6 +64645,22 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/lineages",
       "reason": "excluded directory"
     },
     {

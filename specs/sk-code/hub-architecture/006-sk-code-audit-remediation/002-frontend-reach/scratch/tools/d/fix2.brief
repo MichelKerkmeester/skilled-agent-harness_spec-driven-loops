@@ -1,0 +1,16 @@
+TASK: update one test expectation in one test file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-surfaces.test.cjs (read lines 143 to 156 only)
+
+WHY: the hub now declares a FRONTEND surface whose file markers include `.css`, so a stylesheet under `.skilled/` detects FRONTEND first and SKILLED second.
+
+EDIT, line 152. Replace:
+  assert.deepEqual(surfaceOf(verdict, '.skilled/tools/look.css'), ['SKILLED']);
+with:
+  assert.deepEqual(surfaceOf(verdict, '.skilled/tools/look.css'), ['FRONTEND', 'SKILLED']);
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-surfaces.test.cjs 2>&1 | grep -E '^ℹ (pass|fail)'
+Expected output: a pass line and `ℹ fail 0`

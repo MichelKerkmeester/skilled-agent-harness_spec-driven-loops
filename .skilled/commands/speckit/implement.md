@@ -23,6 +23,7 @@ Load the presentation contract before showing startup questions, checkpoints, da
 | Presentation source of truth | `.skilled/commands/speckit/assets/speckit-implement-presentation.txt` |
 | Workflow (all execution modes) | `.skilled/commands/speckit/assets/speckit-implement.yaml` |
 | Shared save-context tail | `.skilled/commands/speckit/assets/speckit-save-context-tail.yaml` |
+| Shared lifecycle blocks | `.skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml` |
 
 ---
 
@@ -56,7 +57,7 @@ values without an interactive prompt.
 | Mode | Target |
 |------|----------|
 | `:auto` | `.skilled/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` auto: confirm-only checkpoint blocks skipped |
-| `:autopilot`, `:unattended`, or `--unattended` | `.skilled/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` autopilot and branch-preserved failure semantics |
+| `:autopilot`, `:unattended`, or `--unattended` | `.skilled/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` autopilot under the workflow's `unattended_autopilot` block: the operator's `workspace_choice` and branch-preserved failure |
 | `:confirm` or interactive choice | `.skilled/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` confirm: every `applies_to: confirm` checkpoint runs and `mode_overrides.confirm` wording applies |
 
 ### UNATTENDED TERMINATION
@@ -70,7 +71,7 @@ Terminal failure/no-op reason codes are exactly:
 - `verification_failed`
 - `uncertainty_blocked`
 
-On any of those results, preserve the active branch, do not merge, and emit one machine-readable result line with prefix `SPECKIT_AUTOPILOT_RESULT`. Successful completion emits `reason: null`; it does not add a fifth terminal reason code.
+On any of those results, preserve the active branch and emit one machine-readable result line with prefix `SPECKIT_AUTOPILOT_RESULT`. Successful completion emits `reason: null`; it does not add a fifth terminal reason code. Autopilot works in the operator's workspace, bound at startup as `workspace_choice`, and it never merges, on success as on failure.
 
 ---
 

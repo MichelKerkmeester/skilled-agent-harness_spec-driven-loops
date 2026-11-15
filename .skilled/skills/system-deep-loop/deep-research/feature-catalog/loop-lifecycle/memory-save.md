@@ -7,7 +7,7 @@ trigger_phrases:
   - "generate-context.js"
   - "continuity artifact"
   - "preserve research packet"
-version: 1.14.0.8
+version: 1.14.1.0
 ---
 
 # Memory save
@@ -22,7 +22,7 @@ Memory save is the loop's final preservation step. It hands the finished packet 
 
 ## 2. HOW IT WORKS
 
-The live save contract is narrow. After synthesis, the workflows call `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}` and treat that command as the supported save boundary. The loop does not define an additional indexing phase inside its own contract.
+The live save contract is narrow. After synthesis, the workflows call `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder} --full-auto` and treat that command as the supported save boundary. Without `--full-auto` the writer only plans, so the payload also carries `recent_action`, `next_safe_action`, `blockers` and `key_files`, the fields a full-auto save writes. The loop does not define an additional indexing phase inside its own contract.
 
 The save rules also reject manual writes under `memory/`. The command entrypoint and YAML workflows explicitly mark hand-authored continuity artifacts as unsupported for this path. The workflow expects the save script to produce the support artifact and then verifies the result instead of building those files itself.
 

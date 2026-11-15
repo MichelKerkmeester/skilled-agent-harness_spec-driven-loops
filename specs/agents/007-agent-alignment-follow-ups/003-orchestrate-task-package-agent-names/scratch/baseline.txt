@@ -1,0 +1,17 @@
+# Baseline, phase 003, read from commit 63e6261895 before any edit
+
+$ git show 63e6261895:.skilled/agents/orchestrate.md | sed -n 211p
+├─ Agent: @code | @context | @markdown | @deep-research | @deep-review | @ai-council | @review | @debug
+$ git show 63e6261895:.skilled/agents/orchestrate.md | rg -c '^├─ Agent: @code . @context'
+1
+$ git show 63e6261895:.skilled/agents/orchestrate.md | rg -c '^├─ Agent: @code'   # 2, because line 405 is an example that reads '├─ Agent: @code'
+2
+$ node -e '<count the registry records with a numeric priority>'
+10 @context @deep-research @ai-council @markdown @review @deep-review @code @debug @design @prompt-improver
+$ node .skilled/bin/sync-agent-roster.cjs --check   # at planning, before the edit
+agent-roster: OK
+$ node .skilled/bin/check-agent-mirror-sync.cjs   # at planning, before the edit
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+
+## T002
+mirror write command: three generators and one hand edit, from .skilled/bin/agent-mirror-crosswalk.md section 1. .claude/agents/<name>.md is an authored fork and is edited in the same change. .cursor and .devin are symlinks onto the .claude file. node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs writes .pi, node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs writes .codex, and node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs writes .dsh.

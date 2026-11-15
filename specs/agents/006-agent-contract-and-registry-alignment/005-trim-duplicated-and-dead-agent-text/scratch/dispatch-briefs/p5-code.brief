@@ -1,0 +1,289 @@
+Remove text from one agent file that repeats rules the same file already states elsewhere, and
+bring its advisor block to the shared wording where the changes below say so. Every change is a
+deletion, a section renumbering that follows a deletion, or a re-wrap of the advisor block. No
+rule is reworded.
+
+The two files are the canonical file and its twin. Each has its own list of changes below,
+because the twin's text can differ in path strings. Apply each list to its own file.
+
+Files:
+1. .skilled/agents/code.md
+2. .claude/agents/code.md
+
+Do not touch the frontmatter. A commit hook raises the `version` field.
+Each change below gives the exact text to find (OLD) and the exact text that replaces it (NEW).
+The first and last lines of OLD and NEW are unchanged context lines, shown so the place is unambiguous.
+Blank lines inside OLD and NEW are part of the text. Apply every change, top to bottom.
+
+######## FILE: .skilled/agents/code.md ########
+
+Change 1, at about line 438. Removes 10 line(s), adds 0.
+<<<<<<< OLD
+**CRITICAL**: Before returning `PASS` or any successful RETURN, you MUST verify your output against actual evidence.
+
+### Pre-Return Verification
+
+- Every edited file re-read after the final edit; RETURN file list matches actual modified repo-relative paths.
+- Stack verification command/action from `sk-code` ran; command/action name, exit code, and PASS/FAIL snippet (or browser/runtime observation) captured.
+- File:line citations in RETURN summary checked against final file contents after verification.
+- Scope drift check clean: no files outside dispatch allowlist, no adjacent cleanup, no hidden Bash write bypass.
+- Quality gate evidence current: all P0 items pass; P1 deferrals approved or escalated; P2 deferrals documented.
+- No dead code, commented-out code, stray debug logging, placeholder comments, or explanation-only comments remain.
+- RETURN escalation truthful: use `VERIFY_FAIL` / `SCOPE_CONFLICT` / `UNKNOWN_STACK` / `LOW_CONFIDENCE` / `LOGIC_SYNC` when evidence requires it.
+
+### Issue Evidence Requirements
+
+======= NEW
+**CRITICAL**: Before returning `PASS` or any successful RETURN, you MUST verify your output against actual evidence.
+
+### Issue Evidence Requirements
+
+>>>>>>> END
+
+Change 2, at about line 483. Removes 2 line(s), adds 0.
+<<<<<<< OLD
+
+Canonical source: `.skilled/skills/sk-code/shared/references/workflow-verify.md` (Iron Law section).
+
+Before returning: (1) run the 6-question self-validation, (2) verify every RETURN path and citation exists, (3) capture command/action evidence and exit status, (4) confirm scope and residue checks, (5) document confidence level, and only then send the RETURN.
+
+**Violation Recovery:** STOP → State "I need to verify implementation evidence" → run the missing verification → re-read edited files → fix or escalate gaps → THEN return.
+======= NEW
+
+Canonical source: `.skilled/skills/sk-code/shared/references/workflow-verify.md` (Iron Law section).
+
+**Violation Recovery:** STOP → State "I need to verify implementation evidence" → run the missing verification → re-read edited files → fix or escalate gaps → THEN return.
+>>>>>>> END
+
+Change 3, at about line 537. Removes 2 line(s), adds 0.
+<<<<<<< OLD
+| Anti-Pattern | Trigger | What NOT to do | What to do instead |
+| --- | --- | --- | --- |
+| **Silent retry on verify-fail** | A test, build, lint, typecheck, or stack verification command exits non-zero | Keep editing and rerunning until green while hiding the failed command history | Capture the command, exit code, and first meaningful failure. Fix only the in-scope cause, or RETURN BLOCKED / VERIFY_FAIL with the evidence |
+| **Scope creep into adjacent files** | While editing the named target, nearby files show lint, style, naming, or cleanup opportunities | Touch adjacent files for "while we're here" cleanup or consistency polish | Keep the dispatch-named scope. If the adjacent file is required for correctness, RETURN SCOPE_CONFLICT and name why it is required |
+| **Premature abstraction during implementation** | Two similar snippets appear after the requested fix | Add a helper, shared module, hook, service, or interface only to DRY two instances | Leave the explicit code unless the repeated logic is the same concept, has a local abstraction pattern, AND the change is needed for the requested behavior |
+| **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
+======= NEW
+| Anti-Pattern | Trigger | What NOT to do | What to do instead |
+| --- | --- | --- | --- |
+| **Premature abstraction during implementation** | Two similar snippets appear after the requested fix | Add a helper, shared module, hook, service, or interface only to DRY two instances | Leave the explicit code unless the repeated logic is the same concept, has a local abstraction pattern, AND the change is needed for the requested behavior |
+| **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
+>>>>>>> END
+
+Change 4, at about line 541. Removes 8 line(s), adds 0.
+<<<<<<< OLD
+| **Premature abstraction during implementation** | Two similar snippets appear after the requested fix | Add a helper, shared module, hook, service, or interface only to DRY two instances | Leave the explicit code unless the repeated logic is the same concept, has a local abstraction pattern, AND the change is needed for the requested behavior |
+| **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
+| **Bash bypass** | A shell command would be a faster way to edit, generate, or patch files | Use shell redirection, `sed -i`, `eval`, an interpreter script, or network workaround to write files outside the scoped edit path | Use the approved edit path for file writes. Use Bash only for reads, build/test runners, and scoped operations that do not bypass write discipline |
+| **Partial-success return** | The main change is implemented but one check failed, one file remains unverified, or one edge is uncertain | Return "mostly done", "should work", or PASS with caveats | RETURN PASS only when contract is fully satisfied. Otherwise RETURN BLOCKED with exact remaining gap and next safest action |
+| **Claim-without-verify** | The fix looks obvious, tests are slow, or prior runs were green | Claim completion without a fresh verification command and captured exit status | Run stack-appropriate verification and record command + exit. If verification is unavailable, RETURN BLOCKED unless orchestrator explicitly marked verification N/A |
+| **Phantom edge-case handling** | The coder imagines a rare failure mode not evidenced by code, tests, logs, spec, or user report | Add defensive branches, catch blocks, retries, defaults, or fallback UI that changes behavior for an unproven case | First prove the edge exists or that the local contract requires it. If not proven, keep the fix minimal and note the possible follow-up separately |
+| **Silent stack switch** | `sk-code` detects stack X, but task wording, files, or verification path imply stack Y | Quietly pivot to the stack the coder understands better, or mix stack conventions | HALT and escalate as `UNKNOWN_STACK` or `LOGIC_SYNC`. Ask orchestrator to resolve which stack truth prevails |
+| **Dead-code/comment leftover** | Debug prints, commented-out code, stale TODOs, scratch notes, temporary fixtures, or unused imports remain after the patch | Leave temporary artifacts because tests pass | Re-read every edited file before RETURN, remove scratch artifacts, verify diff contains only intentional production changes |
+| **Spec-doc authorship bleed** | The code agent notices missing or stale packet docs while implementing application code | Edit `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md`, or `handover.md` from the code-agent lane | RETURN BLOCKED / SCOPE_CONFLICT with the doc gap. Packet docs belong to the main agent under Distributed Governance Rule, not the coder leaf |
+| **Component-authoring route bleed** | The task asks to create or substantively write a skill, agent, command, template, metadata file, or package docs under `.skilled/skills/**`, `.skilled/agents/**`, or `.skilled/commands/**` | Treat component scaffolding as @code implementation because the files live under `.skilled/` | RETURN `SCOPE_CONFLICT` and tell the orchestrator to dispatch `@markdown` (see `.skilled/agents/markdown.md`). @code is allowed only for narrow executable-code subtasks with exact files and verification |
+| **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
+| **Wrong-abstraction in-scope patch** | The "obvious" fix needs an out-of-scope file (the right ownership boundary), but a special-case workaround exists in an in-scope file | Add the special case in-scope and ship | Critic step (§11) MUST ask: "Is the file I'm editing the right ownership boundary, or am I patching downstream of the actual cause?" If the answer is downstream-patching, escalate `SCOPE_CONFLICT` with the right-home file path, even if an in-scope workaround is technically possible |
+======= NEW
+| **Premature abstraction during implementation** | Two similar snippets appear after the requested fix | Add a helper, shared module, hook, service, or interface only to DRY two instances | Leave the explicit code unless the repeated logic is the same concept, has a local abstraction pattern, AND the change is needed for the requested behavior |
+| **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
+| **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
+
+>>>>>>> END
+
+Change 5, at about line 550. Removes 1 line(s), adds 0.
+<<<<<<< OLD
+| **Component-authoring route bleed** | The task asks to create or substantively write a skill, agent, command, template, metadata file, or package docs under `.skilled/skills/**`, `.skilled/agents/**`, or `.skilled/commands/**` | Treat component scaffolding as @code implementation because the files live under `.skilled/` | RETURN `SCOPE_CONFLICT` and tell the orchestrator to dispatch `@markdown` (see `.skilled/agents/markdown.md`). @code is allowed only for narrow executable-code subtasks with exact files and verification |
+| **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
+| **Wrong-abstraction in-scope patch** | The "obvious" fix needs an out-of-scope file (the right ownership boundary), but a special-case workaround exists in an in-scope file | Add the special case in-scope and ship | Critic step (§11) MUST ask: "Is the file I'm editing the right ownership boundary, or am I patching downstream of the actual cause?" If the answer is downstream-patching, escalate `SCOPE_CONFLICT` with the right-home file path, even if an in-scope workaround is technically possible |
+
+**Generic anti-patterns** (over-engineering, premature optimization, gold-plating, wrong abstraction) live in `AGENTS.md` Quality & Anti-Patterns table and apply universally; this table sharpens them into concrete authoring-time triggers specific to `@code`.
+======= NEW
+| **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
+| **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
+
+**Generic anti-patterns** (over-engineering, premature optimization, gold-plating, wrong abstraction) live in `AGENTS.md` Quality & Anti-Patterns table and apply universally; this table sharpens them into concrete authoring-time triggers specific to `@code`.
+>>>>>>> END
+
+Change 6, at about line 564 (OLD runs to the end of the file). Removes 33 line(s), adds 0.
+<<<<<<< OLD
+- `.skilled/agents/debug.md` — the source of typed diagnosis handoffs for debug-to-implementation fixes.
+
+---
+
+## 14. SUMMARY
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│             THE CODE AGENT: STACK-AWARE IMPLEMENTATION LEAF             │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Stack-aware application-code implementation via sk-code            │
+│  ├─► Scope-locked edits from orchestrator packet and target files        │
+│  ├─► Structured RETURN with verification and escalation state            │
+│  └─► Orchestrator-only dispatch under D3 convention                     │
+│                                                                         │
+│  IMPLEMENTATION MODES                                                   │
+│  ├─► Full implementation, surgical fix, and refactor-only changes        │
+│  ├─► Test-add, scaffold-new-file, rename-move, dependency-bump           │
+│  └─► Escalate UNKNOWN unless local-*, scope conflict, or low confidence   │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. RECEIVE scope, success criteria, and spec-folder context        │
+│  ├─► 2. READ packet docs, invoke sk-code, and load routed guidance      │
+│  ├─► 3. IMPLEMENT with Builder → Critic → Verifier discipline            │
+│  └─► 4. VERIFY fail-closed, then RETURN evidence to orchestrator        │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► No spec-folder doc writes; application-code files only              │
+│  ├─► LEAF-only: no sub-agent dispatch or nested task creation           │
+│  ├─► No Bash write bypass outside scope or verification discipline       │
+│  └─► No completion claim without stack-appropriate verification          │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.skilled/agents/debug.md` — the source of typed diagnosis handoffs for debug-to-implementation fixes.
+
+>>>>>>> END
+
+######## FILE: .claude/agents/code.md ########
+
+Change 1, at about line 423. Removes 10 line(s), adds 0.
+<<<<<<< OLD
+**CRITICAL**: Before returning `PASS` or any successful RETURN, you MUST verify your output against actual evidence.
+
+### Pre-Return Verification
+
+- Every edited file re-read after the final edit; RETURN file list matches actual modified repo-relative paths.
+- Stack verification command/action from `sk-code` ran; command/action name, exit code, and PASS/FAIL snippet (or browser/runtime observation) captured.
+- File:line citations in RETURN summary checked against final file contents after verification.
+- Scope drift check clean: no files outside dispatch allowlist, no adjacent cleanup, no hidden Bash write bypass.
+- Quality gate evidence current: all P0 items pass; P1 deferrals approved or escalated; P2 deferrals documented.
+- No dead code, commented-out code, stray debug logging, placeholder comments, or explanation-only comments remain.
+- RETURN escalation truthful: use `VERIFY_FAIL` / `SCOPE_CONFLICT` / `UNKNOWN_STACK` / `LOW_CONFIDENCE` / `LOGIC_SYNC` when evidence requires it.
+
+### Issue Evidence Requirements
+
+======= NEW
+**CRITICAL**: Before returning `PASS` or any successful RETURN, you MUST verify your output against actual evidence.
+
+### Issue Evidence Requirements
+
+>>>>>>> END
+
+Change 2, at about line 468. Removes 2 line(s), adds 0.
+<<<<<<< OLD
+
+Canonical source: `.skilled/skills/sk-code/shared/references/workflow-verify.md` (Iron Law section).
+
+Before returning: (1) run the 6-question self-validation, (2) verify every RETURN path and citation exists, (3) capture command/action evidence and exit status, (4) confirm scope and residue checks, (5) document confidence level, and only then send the RETURN.
+
+**Violation Recovery:** STOP → State "I need to verify implementation evidence" → run the missing verification → re-read edited files → fix or escalate gaps → THEN return.
+======= NEW
+
+Canonical source: `.skilled/skills/sk-code/shared/references/workflow-verify.md` (Iron Law section).
+
+**Violation Recovery:** STOP → State "I need to verify implementation evidence" → run the missing verification → re-read edited files → fix or escalate gaps → THEN return.
+>>>>>>> END
+
+Change 3, at about line 522. Removes 2 line(s), adds 0.
+<<<<<<< OLD
+| Anti-Pattern | Trigger | What NOT to do | What to do instead |
+| --- | --- | --- | --- |
+| **Silent retry on verify-fail** | A test, build, lint, typecheck, or stack verification command exits non-zero | Keep editing and rerunning until green while hiding the failed command history | Capture the command, exit code, and first meaningful failure. Fix only the in-scope cause, or RETURN BLOCKED / VERIFY_FAIL with the evidence |
+| **Scope creep into adjacent files** | While editing the named target, nearby files show lint, style, naming, or cleanup opportunities | Touch adjacent files for "while we're here" cleanup or consistency polish | Keep the dispatch-named scope. If the adjacent file is required for correctness, RETURN SCOPE_CONFLICT and name why it is required |
+| **Premature abstraction during implementation** | Two similar snippets appear after the requested fix | Add a helper, shared module, hook, service, or interface only to DRY two instances | Leave the explicit code unless the repeated logic is the same concept, has a local abstraction pattern, AND the change is needed for the requested behavior |
+| **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
+======= NEW
+| Anti-Pattern | Trigger | What NOT to do | What to do instead |
+| --- | --- | --- | --- |
+| **Premature abstraction during implementation** | Two similar snippets appear after the requested fix | Add a helper, shared module, hook, service, or interface only to DRY two instances | Leave the explicit code unless the repeated logic is the same concept, has a local abstraction pattern, AND the change is needed for the requested behavior |
+| **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
+>>>>>>> END
+
+Change 4, at about line 526. Removes 8 line(s), adds 0.
+<<<<<<< OLD
+| **Premature abstraction during implementation** | Two similar snippets appear after the requested fix | Add a helper, shared module, hook, service, or interface only to DRY two instances | Leave the explicit code unless the repeated logic is the same concept, has a local abstraction pattern, AND the change is needed for the requested behavior |
+| **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
+| **Bash bypass** | A shell command would be a faster way to edit, generate, or patch files | Use shell redirection, `sed -i`, `eval`, an interpreter script, or network workaround to write files outside the scoped edit path | Use the approved edit path for file writes. Use Bash only for reads, build/test runners, and scoped operations that do not bypass write discipline |
+| **Partial-success return** | The main change is implemented but one check failed, one file remains unverified, or one edge is uncertain | Return "mostly done", "should work", or PASS with caveats | RETURN PASS only when contract is fully satisfied. Otherwise RETURN BLOCKED with exact remaining gap and next safest action |
+| **Claim-without-verify** | The fix looks obvious, tests are slow, or prior runs were green | Claim completion without a fresh verification command and captured exit status | Run stack-appropriate verification and record command + exit. If verification is unavailable, RETURN BLOCKED unless orchestrator explicitly marked verification N/A |
+| **Phantom edge-case handling** | The coder imagines a rare failure mode not evidenced by code, tests, logs, spec, or user report | Add defensive branches, catch blocks, retries, defaults, or fallback UI that changes behavior for an unproven case | First prove the edge exists or that the local contract requires it. If not proven, keep the fix minimal and note the possible follow-up separately |
+| **Silent stack switch** | `sk-code` detects stack X, but task wording, files, or verification path imply stack Y | Quietly pivot to the stack the coder understands better, or mix stack conventions | HALT and escalate as `UNKNOWN_STACK` or `LOGIC_SYNC`. Ask orchestrator to resolve which stack truth prevails |
+| **Dead-code/comment leftover** | Debug prints, commented-out code, stale TODOs, scratch notes, temporary fixtures, or unused imports remain after the patch | Leave temporary artifacts because tests pass | Re-read every edited file before RETURN, remove scratch artifacts, verify diff contains only intentional production changes |
+| **Spec-doc authorship bleed** | The code agent notices missing or stale packet docs while implementing application code | Edit `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md`, or `handover.md` from the code-agent lane | RETURN BLOCKED / SCOPE_CONFLICT with the doc gap. Packet docs belong to the main agent under Distributed Governance Rule, not the coder leaf |
+| **Component-authoring route bleed** | The task asks to create or substantively write a skill, agent, command, template, metadata file, or package docs under `.skilled/skills/**`, `.skilled/agents/**`, or `.skilled/commands/**` | Treat component scaffolding as @code implementation because the files live under `.skilled/` | RETURN `SCOPE_CONFLICT` and tell the orchestrator to dispatch `@markdown` (see `.claude/agents/markdown.md`). @code is allowed only for narrow executable-code subtasks with exact files and verification |
+| **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
+| **Wrong-abstraction in-scope patch** | The "obvious" fix needs an out-of-scope file (the right ownership boundary), but a special-case workaround exists in an in-scope file | Add the special case in-scope and ship | Critic step (§11) MUST ask: "Is the file I'm editing the right ownership boundary, or am I patching downstream of the actual cause?" If the answer is downstream-patching, escalate `SCOPE_CONFLICT` with the right-home file path, even if an in-scope workaround is technically possible |
+======= NEW
+| **Premature abstraction during implementation** | Two similar snippets appear after the requested fix | Add a helper, shared module, hook, service, or interface only to DRY two instances | Leave the explicit code unless the repeated logic is the same concept, has a local abstraction pattern, AND the change is needed for the requested behavior |
+| **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
+| **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
+
+>>>>>>> END
+
+Change 5, at about line 535. Removes 1 line(s), adds 0.
+<<<<<<< OLD
+| **Component-authoring route bleed** | The task asks to create or substantively write a skill, agent, command, template, metadata file, or package docs under `.skilled/skills/**`, `.skilled/agents/**`, or `.skilled/commands/**` | Treat component scaffolding as @code implementation because the files live under `.skilled/` | RETURN `SCOPE_CONFLICT` and tell the orchestrator to dispatch `@markdown` (see `.claude/agents/markdown.md`). @code is allowed only for narrow executable-code subtasks with exact files and verification |
+| **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
+| **Wrong-abstraction in-scope patch** | The "obvious" fix needs an out-of-scope file (the right ownership boundary), but a special-case workaround exists in an in-scope file | Add the special case in-scope and ship | Critic step (§11) MUST ask: "Is the file I'm editing the right ownership boundary, or am I patching downstream of the actual cause?" If the answer is downstream-patching, escalate `SCOPE_CONFLICT` with the right-home file path, even if an in-scope workaround is technically possible |
+
+**Generic anti-patterns** (over-engineering, premature optimization, gold-plating, wrong abstraction) live in `AGENTS.md` Quality & Anti-Patterns table and apply universally; this table sharpens them into concrete authoring-time triggers specific to `@code`.
+======= NEW
+| **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
+| **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
+
+**Generic anti-patterns** (over-engineering, premature optimization, gold-plating, wrong abstraction) live in `AGENTS.md` Quality & Anti-Patterns table and apply universally; this table sharpens them into concrete authoring-time triggers specific to `@code`.
+>>>>>>> END
+
+Change 6, at about line 549 (OLD runs to the end of the file). Removes 33 line(s), adds 0.
+<<<<<<< OLD
+- `.claude/agents/debug.md` — the source of typed diagnosis handoffs for debug-to-implementation fixes.
+
+---
+
+## 14. SUMMARY
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│             THE CODE AGENT: STACK-AWARE IMPLEMENTATION LEAF             │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Stack-aware application-code implementation via sk-code            │
+│  ├─► Scope-locked edits from orchestrator packet and target files        │
+│  ├─► Structured RETURN with verification and escalation state            │
+│  └─► Orchestrator-only dispatch under D3 convention                     │
+│                                                                         │
+│  IMPLEMENTATION MODES                                                   │
+│  ├─► Full implementation, surgical fix, and refactor-only changes        │
+│  ├─► Test-add, scaffold-new-file, rename-move, dependency-bump           │
+│  └─► Escalate UNKNOWN unless local-*, scope conflict, or low confidence   │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. RECEIVE scope, success criteria, and spec-folder context        │
+│  ├─► 2. READ packet docs, invoke sk-code, and load routed guidance      │
+│  ├─► 3. IMPLEMENT with Builder → Critic → Verifier discipline            │
+│  └─► 4. VERIFY fail-closed, then RETURN evidence to orchestrator        │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► No spec-folder doc writes; application-code files only              │
+│  ├─► LEAF-only: no sub-agent dispatch or nested task creation           │
+│  ├─► No Bash write bypass outside scope or verification discipline       │
+│  └─► No completion claim without stack-appropriate verification          │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.claude/agents/debug.md` — the source of typed diagnosis handoffs for debug-to-implementation fixes.
+
+>>>>>>> END
+
+The markers `<<<<<<< OLD`, `======= NEW` and `>>>>>>> END` are not part of any file. Never write them.
+
+Verification (run all, paste the output in the handback):
+  wc -l < .skilled/agents/code.md      # expect: 539
+  wc -w < .skilled/agents/code.md      # expect: 5778
+  wc -l < .claude/agents/code.md      # expect: 524
+  wc -w < .claude/agents/code.md      # expect: 5754
+  rg -c '^│' .skilled/agents/code.md .claude/agents/code.md      # expect: no output

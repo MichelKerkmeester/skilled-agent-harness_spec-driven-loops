@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "14ba8c5ac057ab2d4ec325b1546d138be2a1c1567d5bbff955ecd7ab04bb02dc",
+      "sha256": "b8aac17eecfcf1f7bceb14e4a3f3c86ab7c46dd74d722629d7de8a0118d1ae5f",
       "section": "full"
     },
     {
@@ -22,32 +22,32 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "f103aea723b6a604b997f2e97dd1223b19841776a66cca05c60e336d1259ed95",
+      "sha256": "483f054ff1c11d394a0bdeff0026671af3e9f2448248e16ab6b634ec075ea02d",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "6bae62d52edc99db7de9a0ad0596743acd440e2a2e98730c1c82d074b3cfb074",
+      "sha256": "d84a27bee8c13437dfb22706ec500ba89370d5416bbc2e04a00ae10e1e409aa6",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "ef2d16ecfd6e9946ffc753ed8d3e5de3c879ef2a371a6aef6906d79c9eec0a0b",
+      "sha256": "2e8dbb77026ac54baa214c211e6bbc63130f64c5a3ef58538149af8ccc6ae3f7",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "cc59065acdf16da29a994cb76ea7e732e6304a13caf46e6cfab23875af817183",
+      "sha256": "f99034b7c9ec7a9ef9678358789cfed4b1914eb8f241da6abcdf66a086573c2e",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "0b70e8815059318b2c2eb23405e2121d878ad48d5f716456b4aaa8b5873d8787",
+      "sha256": "42d6ace163bea91542eb95e5b211970759d907e208495672d49aef97464f0a06",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "f2abb7d154cfd71a8473eec52aadce15e0be2ec2fddf5f213b90c3fdee66b872",
+      "sha256": "c54db77ffc023569972b250053c407791cec7d7704b887eafcb746cd067df2ad",
       "section": "full"
     },
     {
@@ -67,17 +67,17 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
-      "sha256": "072d35003ddf6fa9915ed521f44b7045fd24c7ef9ce0a9ceade2877ad26d73e3",
+      "sha256": "d0d4715bf781985515e4ced469c9b12ff8f4c5b481f9ffe9b8f706987f42a438",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "45a0a3fb47673020204cdf537f63deb991a35c04ecec3c8bf5a9d4d7723cc862",
+      "sha256": "b697d88fc6457211c623debcb9b8c2c073358e355a3547d09d0cd9ea549559c1",
       "section": "full"
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "4cca5268f81acd2e38c2a57e3945f78a182e0dc8b409b4e1ba0585989d1104cb",
+      "sha256": "bf452b071a2224bc076893587b7932a1a166bc281c57a4cbc1288ba9d3d26b59",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "8caff3a88e5cfd88d0691dca47dc28e7a5fb97cf48bb5273b843100d5dd19fd1"
+  "compiledBodyDigest": "582df865f9d7384c22e127080fd6b561c36df99ff4086b47001180eecae31e2f"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -270,7 +270,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
-   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`, the last one fan-out only; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`, the last one a single lineage in `:auto` or a fan-out, and `:confirm` runs only `native`, `cli-claude-code` and `cli-opencode`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -354,7 +354,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
      G) cli-pi — requires `pi`. Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`, no sandbox flag.
-     H) cli-deepseek-harness (experimental, explicit choice only, fan-out only) — a single-executor run exits 2, so give it a fan-out shape such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash --count=2`. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
+     H) cli-deepseek-harness (experimental, explicit choice only) — a single lineage such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash` runs in `:auto` through the shared fan-out command builder, and a fan-out shape such as `--count=2` also works. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
      D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
 
    Reply format examples:

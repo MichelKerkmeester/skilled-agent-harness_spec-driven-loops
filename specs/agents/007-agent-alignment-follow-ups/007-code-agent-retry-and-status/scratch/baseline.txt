@@ -1,0 +1,62 @@
+$ git diff --stat 09f1d6499a HEAD -- .skilled/agents/code.md .claude/agents/code.md | wc -l
+       3
+$ wc -l .skilled/agents/code.md .claude/agents/code.md
+     540 .skilled/agents/code.md
+     525 .claude/agents/code.md
+    1065 total
+$ rg -n 'NO internal retry|fix in place or escalate|Continue fixing if in-scope|plausible in-scope fix|after the targeted in-scope fix' .skilled/agents/code.md | cut -c1-90
+74:   `BLOCKED` means fix in place or escalate.
+81:6. **VERIFY** → Run sk-code's returned verification command. Capture command name, exit
+206:| **NEEDS REVISION** | 50-69 | FAIL | Continue fixing if in-scope; otherwise return `B
+214:| **P1** | REQUIRED | Spec mismatch, correctness bug, integration break, required-chec
+427:- Verification command fails after the targeted in-scope fix
+$ rg -n 'Return BLOCKED with|Verification fails|ordinary .FAIL. scores|returns .BLOCKED. three' .skilled/agents/code.md | cut -c1-62
+318:If @code returns `BLOCKED` three consecutive times for the
+320:This rule does NOT fire on three ordinary `FAIL` scores al
+388:Return BLOCKED with the appropriate escalation classifier 
+390:- Verification fails (per §1 step 6 fail-closed contract) 
+$ rg -n -i 'return .?FAIL|RETURN: FAIL' .skilled/agents/code.md; echo "exit=$?"
+exit=1
+$ rg -n 'UNKNOWN_ROUTE' .skilled/agents/code.md | cut -d: -f1 | paste -sd' ' -
+68 90 131 139
+$ rg -n 'UNKNOWN_STACK' .skilled/agents/code.md | cut -d: -f1 | paste -sd' ' -
+303 329 341 384 389 422 457 528
+$ rg -l 'UNKNOWN_ROUTE' --glob '!specs/**' --glob '!**/trigger-index*' .
+./.skilled/agents/code.md
+$ rg -n 'HALT and return|A direct operator invocation satisfies this gate' .skilled/agents/code.md | cut -c1-90
+28:> ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispa
+32:> **A direct operator invocation satisfies this gate.** When the user names this agent 
+41:> ⛔ **COMPONENT-AUTHORING GATE:** @code MUST NOT author skill, agent, or command compon
+$ rg -n 'Depth: 1. marker' .skilled/agents/ | cut -d: -f1,2
+.skilled/agents/code.md:537
+.skilled/agents/orchestrate.md:180
+.skilled/agents/orchestrate.md:901
+.skilled/agents/agent-registry.json:107
+$ rg -n 'communication aid|^\| \*\*ACCEPTABLE' .skilled/agents/code.md | cut -c1-90
+188:Use this rubric before returning `PASS` or any completion-equivalent status. The score
+205:| **ACCEPTABLE** | 70-89 | PASS | Return `PASS` with notes; documented P2s; any approv
+$ awk '/^## [0-9]+\./{print NR": "$0}' .skilled/agents/code.md | sed -n '7,10p'
+186: ## 6. CODER ACCEPTANCE RUBRIC
+229: ## 7. CODER CHECKLIST
+276: ## 8. ORCHESTRATOR INTEGRATION
+324: ## 9. RETURN CONTRACT
+$ rg -l 'pre_implementation_check|Code Gate Validation' --glob '!specs/**' --glob '!**/trigger-index*' .
+./.skilled/agents/code.md
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+$ node .skilled/bin/check-agent-mirror-sync.cjs | tail -1 | rg -o '11 agent\(s\) checked|all comparable mirrors in sync|OK$'
+11 agent(s) checked
+all comparable mirrors in sync
+OK
+$ node --test .opencode/plugins/tests/speckit-review-dispatch-contract.test.cjs 2>&1 | rg '^ℹ (pass|fail)'
+ℹ pass 5
+ℹ fail 0
+
+# T001 diff against spec.md Measured Behavior, explained
+# Phase 6 (6c1fca5106) added one line to code.md section 0 (the untrusted-content bullet) and edited
+# lines in place, so: code.md is 540 lines (was 539), the fork 525 (was 524), every cited line after
+# section 0 moves by +1, and `git diff --stat 09f1d6499a` is no longer empty. No rule text this phase
+# targets changed. Each task finds its text by search, as the tasks notation requires.
+# T002: phase 6's self-score rule, agent-template.md:472:
+# "A score an agent gives itself never decides a status: report it as advisory, and let a gate read only
+#  a value a named command produced."

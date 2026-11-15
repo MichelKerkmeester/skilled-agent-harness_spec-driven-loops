@@ -9,7 +9,7 @@ trigger_phrases:
   - "error handling review defects"
 importance_tier: normal
 contextType: implementation
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # Code Quality Checklist
@@ -176,7 +176,7 @@ Intentional-simplification evidence, `review.ceiling-marker`:
 
 ## 8. RELATED RESOURCES
 
-- [quick-reference.md](../references/quick-reference.md) - Baseline review flow and severity output contract.
+- [quick-reference.md](../references/quick-reference.md) - Entry index that routes to the review doctrine and the single-pass flow.
 - [security-checklist.md](./security-checklist.md) - Security, authz, abuse, and privacy risk checks.
 - [solid-checklist.md](./solid-checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture risk prompts.
 - [removal-plan.md](./removal-plan.md) - Removal candidate classification and migration planning.

@@ -1,0 +1,22 @@
+TASK: replace six table rows in one file and add one sentence.
+
+FILE: .skilled/skills/sk-code/ROUTER.md (read the subsection `### Language overlay`, about lines 124 to 136, only)
+
+EDIT. The table under `### Language overlay` holds six data rows that start with `| JAVASCRIPT |`, `| TYPESCRIPT |`, `| PYTHON |`, `| SHELL |`, `| RUST |` and `| CONFIG |`. Replace those six rows with the text between the marker lines below. The text holds six rows, one blank line and one sentence. Keep the table header row `| Language | Resources |` and the `| --- | --- |` row above them, and keep the blank line and the heading `### Authoring checklist gating` that follow.
+
+<<<TEXT
+| JAVASCRIPT | `sk-code-skilled/references/javascript/{style-guide,quick-reference}.md`, `sk-code-skilled/references/javascript/quality-standards/` (two topic parts) |
+| TYPESCRIPT | `sk-code-skilled/references/typescript/{style-guide,quality-standards,quick-reference}/` (each split into topic parts) |
+| PYTHON | `sk-code-skilled/references/python/{style-guide,quality-standards,quick-reference}.md` |
+| SHELL | `sk-code-skilled/references/shell/{style-guide,quality-standards,quick-reference}/` (each split into topic parts) |
+| RUST | `sk-code-skilled/references/rust/{style-guide,quality-standards,quick-reference}/` (each split into topic parts) |
+| CONFIG | `sk-code-skilled/references/config/{style-guide,quality-standards,quick-reference}.md`, `sk-code-skilled/assets/checklists/config-checklist.md` |
+
+The JavaScript, TypeScript, Python, Shell and Rust checklists under `sk-code-skilled/assets/checklists/` load with CODE_QUALITY, never with the language intent.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'style_guide|quality_standards|quick_reference' .skilled/skills/sk-code/ROUTER.md; echo "exit $?"
+Expected output: `exit 1`

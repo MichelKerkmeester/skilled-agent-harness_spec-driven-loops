@@ -1,0 +1,10 @@
+rebuild the trigger index => system-spec-kit:0.91 sk-code:0.82
+run a trigger-index rebuild after editing the spec docs => system-spec-kit:0.95 sk-doc:0.92
+build a strategy matrix for the product pricing review => sk-code:0.91 system-deep-loop:0.82
+set fail-fast: false on the strategy matrix in the workflow => sk-code:0.91
+explain the ruleset context for our branch protection => none
+choose an actions cache key for bun install in ci => sk-code:0.83
+add permissions: contents: read to the workflow => sk-code:0.92 sk-doc:0.82
+add an actions concurrency group so pushes cancel older runs => sk-code:0.84
+write a research summary of caching strategies => system-deep-loop:0.82 sk-doc:0.82
+fix a typescript bug in the opencode plugin => sk-code:0.95 mcp-tooling:0.82

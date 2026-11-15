@@ -324,6 +324,29 @@ function sleepSync(ms) {
   Atomics.wait(view, 0, 0, ms);
 }
 
+// Read all of stdin. A caller can hand over a non-blocking stdin, where a plain
+// read throws EAGAIN until the writer sends data, so that error waits and retries.
+function readStdinSync(fd = 0) {
+  const chunks = [];
+  const buffer = Buffer.alloc(64 * 1024);
+  for (;;) {
+    let bytes;
+    try {
+      bytes = fs.readSync(fd, buffer, 0, buffer.length, null);
+    } catch (error) {
+      if (error && error.code === 'EAGAIN') {
+        sleepSync(10);
+        continue;
+      }
+      if (error && error.code === 'EOF') break;
+      throw error;
+    }
+    if (bytes === 0) break;
+    chunks.push(Buffer.from(buffer.subarray(0, bytes)));
+  }
+  return Buffer.concat(chunks);
+}
+
 function readNonNegativeEnvNumber(name, fallback) {
   const raw = process.env[name];
   if (raw === undefined || raw === '') return fallback;
@@ -675,6 +698,7 @@ module.exports = {
   installSignalHandlers,
   maybeThrowTestFault,
   PENDING_QUESTION_PATTERN,
+  readStdinSync,
   sleepSync,
   validateNamespaceValue,
 };

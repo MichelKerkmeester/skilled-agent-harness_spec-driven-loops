@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md (read lines 113 to 119 only)
+
+EDIT. In the line under the heading `### Describe current behavior, not history`, replace the literal text
+**CHK-CMT-07 (P1):** each comment describes
+with the literal text
+**P1:** each comment describes
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'CHK-CMT' .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md; echo "exit $?"
+Expected output: `exit 1`

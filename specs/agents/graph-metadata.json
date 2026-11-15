@@ -8,7 +8,9 @@
     "agents/002-orchestrate-external-cli-delegation",
     "agents/003-retire-code-index-tool-references",
     "agents/004-agent-emphasis-register",
-    "agents/005-haiku-explore-and-context-agents"
+    "agents/005-haiku-explore-and-context-agents",
+    "agents/006-agent-contract-and-registry-alignment",
+    "agents/007-agent-alignment-follow-ups"
   ],
   "manual": {
     "depends_on": [],

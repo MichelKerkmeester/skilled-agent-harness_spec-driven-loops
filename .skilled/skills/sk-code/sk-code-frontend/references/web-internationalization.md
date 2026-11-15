@@ -7,7 +7,7 @@ trigger_phrases:
   - "translation tolerant layout"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Web Internationalization
@@ -115,7 +115,7 @@ This file keeps browser language, direction and locale formatting mechanics. Sup
 
 ## 5. TRANSLATION-TOLERANT TEXT
 
-### I9. Expansion and pseudo-localization
+### I8. Expansion and pseudo-localization
 
 - **Rule:** Test layouts with pseudo-localized text and leave room for German and Dutch strings that can grow by about 30 to 35 percent.
 - **Why:** Translation changes word length and line breaks, which can push fixed-width controls past their available space.

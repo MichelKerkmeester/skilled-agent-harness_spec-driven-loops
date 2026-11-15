@@ -1,0 +1,30 @@
+# T007 probe, before any edit: 2026-11-15, Claude Code session on Opus 5.5 (claude-opus-5-5)
+# Dispatch: Agent(subagent_type=prompt-improver), no model passed, agent file at origin/main 9802994021..152ed6b564 (no change to prompt-improver since 09f1d6499a beyond line shifts)
+# Payload: raw_task "Write a one-line commit message for a typo fix in README.md.", task_type text, complexity_hint low, constraints none
+# Result: REFUSAL. The dispatch ran on the parent session's model (the agent reports claude-opus-5-5), so prompt-improver-1 reproduces on Claude Code.
+
+FRAMEWORK: BLOCKED
+CLEAR_SCORE: 0/50 (C:0 L:0 E:0 A:0 R:0)
+TEST: NOT RUN
+CHANGES: Added nothing; Changed nothing; Removed nothing; Skipped the whole prompt-improvement pass because the model is not eligible to run it
+RATIONALE: The model eligibility rule in section 0.1 blocks this request, so I did not compose or score a prompt. This agent is running as Opus (claude-opus-5-5) on the native Claude route. The table row "any route | Opus | No | Denied under no circumstances" excludes that pair, and the same section says "The denied list outranks the allowance list". It also says an ineligible model "must refuse the prompt-improve work ... It must not do the work anyway with a caveat."
+ENHANCED_PROMPT: |
+  No dispatch-ready prompt generated because the request is blocked.
+ESCALATION_NOTES: BLOCKING: Section 0.1 does not allow Opus to run this agent on any route. Run the same payload again on an eligible pair. Native Claude with Sonnet is the closest match. Native Claude with Haiku would also work and is enough for a task this small. Two input problems remain for the next run: (1) `task_type: text` is not one of the allowed values (generation, review, research, edit, analyze); `generation` looks like the intended one. (2) `complexity_hint: low` should be a number from 1 to 10; `low` most likely means 1 to 3, the quick tier. A one-line commit message for a README typo is routine work, and the inline `/prompt-improve` fast path would probably be enough without sending it to this agent.
+
+# T015 re-probe, after the build: same Opus 5.5 session, Agent(subagent_type=prompt-improver, model=sonnet),
+# the dispatch the /prompt:improve workflow now makes. Payload: same raw_task, task_type generation, complexity_hint 2.
+# Result: PACKAGE, first line starts FRAMEWORK:. The agent cited INT-SKILL-PROMPT-IMPROVER, so it resolved the
+# primary checkout's pre-build agent file: this proves the explicit model=sonnet dispatch path, not the fork's
+# model: sonnet pin. A bare dispatch (no model) against the new fork cannot be run from this session, because
+# the session resolves agents from the primary checkout; it needs a re-probe in a fresh session after merge.
+
+FRAMEWORK: default skeleton (quick effort, complexity 2; the fast path would normally suffice)
+CLEAR_SCORE: 42/50 (C:9 L:8 E:12 A:9 R:4)
+TEST: NOT RUN (no target model was available to run old versus new on sample inputs)
+CHANGES: Added a task statement, an output-format rule (one line, imperative mood, a length cap), a Conventional Commits type, and a stop condition. Changed a bare request into second-person instructions. Removed nothing. Skipped role, examples and steps because the job is simple and a role or examples would add length without improving the output.
+RATIONALE: The task is a single-line generation with no stated constraints, so the compact default skeleton fits better than a named preset. This follows the one-pass checklist and CLEAR screen in `sk-prompt` (`INT-SKILL-PROMPT-IMPROVER`). Row 4 (constraints) was filled in from the repository's Conventional Commits practice, which I saw only in the recent commit subjects in the dispatch context, so it is an assumption.
+ENHANCED_PROMPT: |
+  Task: Write a commit message for a change that fixes a typo in README.md.
+  (remaining prompt lines omitted from this record)
+ESCALATION_NOTES: PARTIAL: Three assumptions are open for the caller. (1) Conventional Commits format assumed. (2) The misspelled word was not provided. (3) The repository's own commit rules were not read. The prompt was not executed, and no commit was created.

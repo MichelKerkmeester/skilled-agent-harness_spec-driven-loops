@@ -29,7 +29,7 @@ Current state:
 | File | Coverage |
 |---|---|
 | `auto-select.test.ts` | `parseOllamaTags` and `providerResolutionFromAutoSelect` from `../embeddings/auto-select.ts`, including missing and malformed tag payloads |
-| `boolean-expr.test.ts` | The predicate grammar in `../predicates/boolean-expr.ts`: string parsing, object validation, `parseWhenField`, the evaluator and prose-bleed detection. Also reads `.skilled/commands/speckit/assets/speckit-complete.yaml` and checks `write_continuity` keeps prose timing under `after:` rather than `when:` |
+| `boolean-expr.test.ts` | The predicate grammar in `../predicates/boolean-expr.ts`: string parsing, object validation, `parseWhenField`, the evaluator and prose-bleed detection. Also reads `.skilled/commands/speckit/assets/speckit-save-context-tail.yaml` and checks `post_save_write` keeps prose timing under `after:` rather than `when:` |
 | `chunking.test.ts` | `semanticChunk` and `MAX_TEXT_LENGTH` from `../chunking.ts`, on text under and over the limit |
 | `config.test.ts` | The telemetry store directory from `config.ts`, read in a child process with `SPEC_KIT_DB_DIR`, `SPECKIT_DB_DIR` and `MEMORY_DB_PATH` removed. It asserts the directory sits under the skill root, not under the shared package |
 | `context-types.test.ts` | `resolveCanonicalContextType` and `isLegacyContextType` from `../context-types.ts`, including the null result for an unknown value |

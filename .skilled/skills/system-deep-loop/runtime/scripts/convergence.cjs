@@ -10,7 +10,6 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
@@ -109,7 +108,6 @@ if (require.main === module && process.env.DEEP_LOOP_TSX_LOADED !== '1') {
     {
       cwd: process.cwd(),
       env: require('./runtime-bootstrap.cjs').tsxChildEnv({ DEEP_LOOP_TSX_LOADED: '1' }),
-      input: process.stdin.isTTY ? undefined : fs.readFileSync(0),
       encoding: 'utf8',
     },
   );

@@ -9,7 +9,7 @@ trigger_phrases:
   - "commented no changes status"
 importance_tier: important
 contextType: implementation
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # PR-State Content-Hash Dedup (M-1)
@@ -22,7 +22,7 @@ An unchanged pull request should not be reviewed twice, and a skip is only trust
 
 ### Purpose
 
-This is the detailed reference for the M-1 PR-state deduplication gate documented in [SKILL.md](../SKILL.md) §8.1. A pull request whose diff and commit subject are unchanged since the last recorded review gets no second full analysis, and the cache entry states which revision was already reviewed.
+This is the specification of the M-1 PR-state deduplication gate that [SKILL.md](../SKILL.md) §8.1 summarises. A pull request whose diff and commit subject are unchanged since the last recorded review gets no second full analysis, and the cache entry states which revision was already reviewed.
 
 ### When to Use
 
@@ -113,7 +113,7 @@ Review status: COMMENTED (no changes since last review at <prev_sha>)
 
 ## 7. CACHE WRITE
 
-After every **full review** that reaches the final status line, write the current signature to cache. If the gate skipped the review (COMMENTED match), do NOT re-write — the existing cache entry remains authoritative.
+After every **full review** that reaches the final status line, write the current signature, the timestamp and the HEAD commit as `prev_sha` to cache. If the gate skipped the review (COMMENTED match), do NOT re-write — the existing cache entry remains authoritative.
 
 ---
 

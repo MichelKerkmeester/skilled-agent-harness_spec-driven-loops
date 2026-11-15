@@ -70,7 +70,7 @@ The wrapper takes `started_wrapper_checksum` once, before the loop. Each hop tha
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.skilled/bin/skilled-loop` | The wrapper that loops and hops | update | `rg -n 'wrapper_checksum\|started_wrapper_checksum\|changed on disk' .skilled/bin/skilled-loop` prints lines 34, 1208, 1469 and 1471 |
+| `.skilled/bin/skilled-loop` | The wrapper that loops and hops | update | `rg -n 'wrapper_checksum\|started_wrapper_checksum\|changed on disk' .skilled/bin/skilled-loop` prints lines 34, 1208, 1469 and 1471 at commit `89e246760e` |
 | `skilled-loop-wrapper-harness.cjs` | Installs the wrapper copy and the runtime stub | update | `rg -n 'WRAPPER_APPEND' .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs` prints lines 213 and 215 |
 | `skilled-loop-wrapper-launch-arguments.test.cjs` | Runs the wrapper against the stub | update | `scratch/green.txt:2` and `scratch/green.txt:3` show both new tests passing |
 | `.skilled/hooks/session-relaunch/README.md` | Describes the wrapper to the operator | update | `rg -n 'changed on disk' .skilled/hooks/session-relaunch/README.md` prints line 112 |

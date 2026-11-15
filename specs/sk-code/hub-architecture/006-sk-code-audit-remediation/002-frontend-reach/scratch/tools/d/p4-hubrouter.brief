@@ -1,0 +1,14 @@
+TASK: add one top-level key to one JSON file.
+
+FILE: .skilled/skills/sk-code/hub-router.json (read lines 1 to 22 only)
+
+WHY: the router-sync guard compares the three keyword copies of each surface this list names.
+
+EDIT. The top-level key `"routerSignals"` starts on line 20, directly after the closing `},` of `"routerPolicy"`. Insert this one line directly before the line `  "routerSignals": {`:
+  "vocabularyMirrors": ["sk-code-frontend"],
+
+Keep the two-space indentation. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+node -e "const h=require('./.skilled/skills/sk-code/hub-router.json');console.log(JSON.stringify(h.vocabularyMirrors),Object.keys(h).join(','))"
+Expected output: ["sk-code-frontend"] skill,version,routerPolicy,vocabularyMirrors,routerSignals,vocabularyClasses

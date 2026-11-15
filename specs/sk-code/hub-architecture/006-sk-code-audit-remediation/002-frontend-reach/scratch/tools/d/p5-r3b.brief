@@ -1,0 +1,20 @@
+TASK: replace two table rows in one file.
+
+FILE: .skilled/skills/sk-code/ROUTER.md (read the subsection `### Intent overlay`, about lines 112 to 124, only)
+
+EDIT 1. In the table under `### Intent overlay`, replace the whole row that starts with `| VERIFICATION |` with the two rows between the marker lines below.
+
+<<<TEXT
+| DEBUGGING | `shared/references/workflow-debug.md` |
+| VERIFICATION | `sk-code-skilled/references/shared/alignment-verification-automation.md`, `shared/references/workflow-verify.md`, `sk-code-skilled/assets/scripts/README.md`, which indexes the guard scripts |
+TEXT>>>
+
+EDIT 2. In the same table, replace the whole row that starts with `| LANGUAGE_STANDARDS |` with this one row:
+
+| LANGUAGE_STANDARDS | The detected language's `style-guide`, `quality-standards` and `quick-reference` entries, each one file or one folder of topic parts, as the language overlay lists |
+
+Keep the rows that start with `| CODE_QUALITY |`, `| HOOKS |` and `| CONFIG |` byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+sed -n '/^### Intent overlay/,/^### Language overlay/p' .skilled/skills/sk-code/ROUTER.md | rg -c 'verify_alignment_drift.py|quick-reference.md'; echo "exit $?"; sed -n '/^### Intent overlay/,/^### Language overlay/p' .skilled/skills/sk-code/ROUTER.md | rg -c '^\| (DEBUGGING|VERIFICATION|LANGUAGE_STANDARDS) '
+Expected output: `exit 1` then `3`

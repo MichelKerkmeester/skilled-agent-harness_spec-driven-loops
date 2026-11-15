@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh hook bridge"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # DeepSeek Harness - Guards and Hooks
@@ -58,7 +58,7 @@ The harness raises these events, and a plugin can attach to them (research synth
 | `session/event` | Read each committed session entry, such as `compaction/end` or a steered user message |
 | `fs/write-intent`, `fs/edit-intent`, `fs/delete-intent` | File-intent checks |
 
-Tool arguments cannot be rewritten at `tools/pre-execute`, so a guard denies, it never edits. Harness tool names are lowercase (`bash`, `write`, `edit`, `subagent`), so a matcher written for capitalized tool names selects nothing. The harness's own guard package is loop hygiene, not repository policy.
+Tool arguments cannot be rewritten at `tools/pre-execute`, so a guard denies, it never edits. Harness tool names are lowercase (`bash`, `write`, `edit`, `subagent`, `read`), so a matcher written for capitalized tool names selects nothing. The harness's own guard package is loop hygiene, not repository policy.
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.15.0
+version: 1.7.16.0
 ---
 
 # sk-code-review mode
@@ -56,7 +56,7 @@ Every finding carries one severity level from `references/review-core.md`, share
 | **P1 - High** | Required before merge | Correctness bugs, spec mismatches and must-fix gate issues land here |
 | **P2 - Suggestion** | Optional | Non-blocking improvements and style follow-ups |
 
-A P0 or P1 finding must name its reach: an input or call path the code's stated contract allows, or a real caller that sends it. A failure that needs input outside that contract, such as `NaN` where the contract says a number, is P2 hardening unless the code claims to validate that input. Data that crosses a trust boundary is always in reach.
+A P0 or P1 finding also names its reach, the input or caller that produces the failure, and a finding that cannot name one is P2. The rule and its exceptions are in [`references/review-core.md`](./references/review-core.md) section 2.
 
 ---
 
@@ -152,7 +152,7 @@ Two optional gates reduce redundant work.
 - The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths.
 - Both gates are opt-in and never change the baseline findings.
 
-The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists this routing for a session. `ultra` biases toward the deep-dive reference set. `lite` maps to the conservative skip. Neither relaxes the security and correctness floor.
+The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists this routing for a session. `ultra` biases toward the deep-dive reference set. `lite` applies the conservative skip only when the `SK_CODE_REVIEW_MIN_CHANGED_LINES` threshold is set. Neither relaxes the security and correctness floor.
 
 ---
 
@@ -220,6 +220,7 @@ A: Downstream automation reads the final line by exact string match to decide wh
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-review/README.md --type readme` reports zero issues |
 | Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` reports zero issues under the playbook rule set |
+| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-review/manual-testing-playbook` prints `PASS` with `violations=0 warnings=0` and exits 0. It is the first check of the playbook's release checklist |
 | Rule invariants | `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0 (canary locking the `Review status:` verdict triplet, the cross-doc Iron Law wording, the resolver step and the four floor ids). In another repository add `--mode-only` |
 | Report shape | `node .skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js <review-output>` and `check-review-findings.js <review-output>` exit 0. The first also checks the `Rule sources:` line when it is present |
 | Behavior | Run the playbook scenarios under `manual-testing-playbook/<topic>/<scenario>.md` (bare descriptive slugs, no numeric prefix) in a live session |

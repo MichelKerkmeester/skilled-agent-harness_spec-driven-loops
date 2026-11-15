@@ -2,7 +2,7 @@
 name: deep-ai-council
 description: "AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.8.10.0
+version: 1.8.11.0
 ---
 
 # AI Council
