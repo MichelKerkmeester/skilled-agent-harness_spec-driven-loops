@@ -54,7 +54,7 @@ node .skilled/bin/skill-advisor.cjs list-tools --format json
 
 ### Check the Install
 
-Open the repository in any of the seven runtimes: OpenCode, Claude Code, Codex, Cursor, Devin, Pi or DeepSeek Harness (DSH). Then run:
+Open the repository in any of the eight runtimes: OpenCode, Claude Code, Codex, Cursor, Devin, Pi, DeepSeek Harness (DSH) or Mistral Vibe. Then run:
 
 ```
 /doctor:setup
