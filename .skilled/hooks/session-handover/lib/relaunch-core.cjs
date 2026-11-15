@@ -1167,6 +1167,19 @@ function handoverGoalPacket({ runtime, roots, env }) {
   return goalPacketProblem(packet, roots) === null ? packet : '';
 }
 
+// Vibe keeps no goal record. Its session_start hook renders the goal from the packet the
+// operator named in VIBE_SPEC_FOLDER, or else from the one a claimed note handed over, so the
+// sender carries whichever of the two its own goal came from, in that order.
+function vibeGoalPacket({ roots, env }) {
+  const named = typeof env?.VIBE_SPEC_FOLDER === 'string' ? env.VIBE_SPEC_FOLDER.trim() : '';
+  const claimed = typeof env?.SESSION_HANDOVER_GOAL_PACKET === 'string'
+    ? env.SESSION_HANDOVER_GOAL_PACKET.trim()
+    : '';
+  const packet = named || claimed;
+  if (packet === '') return '';
+  return goalPacketProblem(packet, roots) === null ? packet : '';
+}
+
 /**
  * Find the packet the sending session's goal is bound to and say why a known goal cannot be
  * carried. Every reader fails closed: a log or record that cannot be read leaves the packet
@@ -1197,6 +1210,9 @@ function resolveGoalPacketResult({
       const recorded = recordedGoalPacket({ runtime, sessionId, roots });
       if (recorded !== '') return { ...none, packet: recorded };
       return { ...none, packet: handoverGoalPacket({ runtime, roots, env }) };
+    }
+    if (runtime === 'vibe') {
+      return { ...none, packet: vibeGoalPacket({ roots, env }) };
     }
     if (runtime === 'claude') {
       return claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env });

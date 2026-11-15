@@ -134,7 +134,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 16 | 016-vibe-turn-end-guards/ | A `post_agent` turn-end composer: ask-surface reprompt through a deny-as-retry, and advisory completion evidence | Complete |
 | 17 | 017-vibe-decision-capture/ | A `post_tool` hook on `ask_user_question` that records answered decisions, with a journal sweep at save time | Complete |
 | 18 | 018-vibe-compaction-context/ | Goal slice and history locator re-injected after a compaction, detected from the journal | Complete |
-| 19 | 019-vibe-relaunch-command-tier/ | The manual tier of session relaunch for Vibe; the automatic tier stays out of scope | Complete: the hop ran; the goal adapter falls back to the claimed packet, so no `VIBE_SPEC_FOLDER` export is needed |
+| 19 | 019-vibe-relaunch-command-tier/ | The manual tier of session relaunch for Vibe; the automatic tier stays out of scope | Complete: a live hop with a bound packet carried the goal to the receiver, after `prepare` learned to record a Vibe sender's packet |
 | 20 | 020-vibe-dispatch-hardening/ | A hard rule for a dispatch that skips the hooks render step, the lineage approval and confinement posture, and the Vibe tests in CI, plus pre-commit where the hook runs test suites | Complete |
 | 21 | 021-vibe-hook-docs-correction/ | `guards-and-hooks.md` and the mode docs corrected from the runs in 013-020, and recursive strict validation | Complete |
 | 22 | 022-vibe-hook-playbook-and-live-scenarios/ | A manual-testing scenario for every Vibe hook, mirror and plugin surface, each run live as a conversation and recorded, then the local Skilled alignment run over the branch | Complete: 26 PASS live, the five checks hardened after the review included |
