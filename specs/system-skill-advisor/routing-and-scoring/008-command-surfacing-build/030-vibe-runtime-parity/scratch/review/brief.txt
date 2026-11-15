@@ -1,0 +1,20 @@
+REVIEW BRIEF: phase 030 vibe-runtime-parity, one read-only reviewer.
+
+Repository root: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research. Run git as `git -c core.fsmonitor=false`.
+Diff under review: `git -c core.fsmonitor=false diff 70975514563 6c026746381 -- <FILES>`, where FILES are the sixteen paths named in the Task Notation block of tasks.md in this phase folder (the files outside specs/ in `git show --stat 6c026746381`).
+Read first: the REQ tables and the Mechanism per Path table of spec.md, and decisions D1 to D8 of plan.md, in this phase folder.
+
+Answer each question with evidence (file:line, a command you ran and its output):
+1. Does every tool call a Vibe run records reach `normalize` in session order, through `vibeRecords` and the Vibe branch of `scoreRun`? Can a call be dropped, duplicated or reordered?
+2. Can any non-Vibe score change? Compare the paths claude, codex, opencode, pi, devin and dsh take through `scoreRun` before and after.
+3. Can the wiring check pass a `.vibe/hooks.toml` whose prompt hook does not run, or fail one whose hook does? Name the TOML shapes it reads wrongly and which way each fails.
+4. Do the three Vibe rows in the runtime-mirrors workflow and route keep the n/a rule while `.vibe/` is absent, and never create that folder?
+5. Can `withCommandDocuments` name a wrong or missing path, match a token that is not a command (a score, a path, a URL, a slash inside a word), or break the repeated-head receipt?
+6. Does the observation label change reach any reader other than tests? What does a codex or opencode caller record now?
+7. Can the proof test (tests/hooks/vibe-prompt-advisor.vitest.ts) pass when the hook returns no brief, or leak real flags-file, socket or receipt state?
+8. Does any added comment name a spec path, phase number, task id, finding id, decision id, ADR or REQ id?
+9. Do the three documents (routing-accuracy README, doctor scripts README.markdown, skill-advisor-hook.md) state the shipped behaviour exactly?
+
+Rules: read-only. Change no repository file and no git state. You may run the focused test files (vitest as `env -u AI_SESSION_CHILD npx vitest run <file>` from .skilled/skills/system-skill-advisor/runtime, `node --test <file>` for doctor tests) and small probes under /tmp that you delete. Never run the full suite, a build, a daemon outside the test helpers' isolated scopes, or a model session. Never open command-prompts.jsonl, holdout-prompts.jsonl or behaviour-fresh-prompts.jsonl except through `jq 'del(.prompt)'`.
+
+Write your report to specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/030-vibe-runtime-parity/scratch/review/report.txt: first line `verdict: SHIP` or `verdict: FIX`, then each finding as `P0`, `P1` or `P2` with its file:line, a failure scenario with concrete input, and the evidence, then a line per question saying how it was answered. That report is the only file you write.

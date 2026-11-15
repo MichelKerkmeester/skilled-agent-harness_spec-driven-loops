@@ -8,7 +8,7 @@
 // scores the advisor varies between runs.
 
 import { spawnSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { mkdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -69,8 +69,11 @@ function vibeHead(scope: IsolatedCliScope, prompt: string, sessionId: string): s
   const env: NodeJS.ProcessEnv = {
     ...scope.env,
     // Both receipts must land inside the scope, or a rerun reads the previous
-    // turn's receipt and drops the head this case asserts on.
+    // turn's receipt and drops the head this case asserts on. The hook-health
+    // records live under the temporary folder, so a proof run must not add
+    // records to the checkout's real health file.
     SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR: join(scope.rootDir, 'directive-state'),
+    TMPDIR: join(scope.rootDir, 'tmp'),
   };
   // A child session receives no brief at all, so the proof run must not inherit
   // the marker this test process may itself carry.
@@ -92,6 +95,7 @@ describe('Vibe prompt advisor with the real advisor', () => {
 
   beforeAll(() => {
     scope = createIsolatedCliScope('vibe-prompt-advisor');
+    mkdirSync(join(scope.rootDir, 'tmp'), { recursive: true });
   });
 
   afterAll(async () => {

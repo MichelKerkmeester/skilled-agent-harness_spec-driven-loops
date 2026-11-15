@@ -228,14 +228,21 @@ function collectCommands(node, commands) {
 // JSON key, and no TOML parser is installed here, so each block is read line by
 // line. A commented line names nothing that runs, so it is skipped. A basic
 // string value escapes the quote and backslash after it, so both are unescaped.
+// A header ends the block before it, so a commented header or another table never
+// lends its keys to a hooks block.
 function tomlCommands(text, event) {
   const blocks = [];
   let current = null;
   for (const line of text.split('\n')) {
     const trimmed = line.trim();
-    if (trimmed === '[[hooks]]') {
-      current = {};
-      blocks.push(current);
+    if (trimmed.startsWith('[')) {
+      const header = trimmed.replace(/#.*$/, '').replace(/\s/g, '');
+      if (header === '[[hooks]]') {
+        current = {};
+        blocks.push(current);
+      } else {
+        current = null;
+      }
       continue;
     }
     if (current === null || trimmed.startsWith('#')) continue;

@@ -278,6 +278,41 @@ test('names Vibe when its folder holds no hooks file', (t) => {
   assert.match(result.out, /^hook-missing vibe /m);
 });
 
+test('reads a commented hooks header as the start of the next block', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, [
+    vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"'),
+    '[[hooks]]  # turn end',
+    'name = "turn-end"',
+    'type = "post_agent"',
+    'command = "node other-hook.mjs"',
+  ].join('\n'));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
+test("does not credit a later table's command to the hooks block before it", (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, [
+    vibeBlock('pre_agent', 'command = "node other-hook.mjs"'),
+    '[[notes]]',
+    'command = "' + VIBE_COMMAND + '"',
+  ].join('\n'));
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('reads a spaced hooks header', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"')
+    .replace('[[hooks]]', '[[ hooks ]]'));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
 test('skips a runtime whose folder is absent', (t) => {
   const f = fixture(t);
   const text = f.run();

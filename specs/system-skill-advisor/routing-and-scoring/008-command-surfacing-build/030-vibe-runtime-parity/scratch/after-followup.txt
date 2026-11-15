@@ -1,0 +1,191 @@
+/tmp/sa count before:        0
+
+## BUILD
+
+> postbuild
+> mkdir -p dist/runtime/data && cp data/*.json dist/runtime/data/ && (node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs record-build --package system-skill-advisor/runtime --entry default || node -e "const r=require('../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs').writePackageSourceHashCache('system-skill-advisor/runtime',{entry:'default'});if(r.status!=='cached')throw new Error(r.message)") && (node ../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs record-build --package system-skill-advisor/runtime --entry skill-advisor-cli || node -e "const r=require('../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs').writePackageSourceHashCache('system-skill-advisor/runtime',{entry:'skill-advisor-cli'});if(r.status!=='cached')throw new Error(r.message)")
+
+@spec-kit/system-skill-advisor dist build attestation recorded
+@spec-kit/system-skill-advisor dist build attestation recorded
+exit=0
+
+## TC
+
+> typecheck
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+
+exit=0
+
+## VX tests/command-transcript-score.vitest.ts
+
+ Test Files  1 passed (1)
+      Tests  199 passed (199)
+   Start at  13:20:10
+   Duration  2.23s (transform 92ms, setup 14ms, import 110ms, tests 2.04s, environment 0ms)
+
+exit=0
+
+## VX tests/command-behaviour-guards.vitest.ts
+
+ Test Files  1 passed (1)
+      Tests  34 passed (34)
+   Start at  13:20:13
+   Duration  845ms (transform 59ms, setup 12ms, import 69ms, tests 705ms, environment 0ms)
+
+exit=0
+
+## VX tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+
+ Test Files  1 passed (1)
+      Tests  39 passed (39)
+   Start at  13:20:14
+   Duration  386ms (transform 158ms, setup 12ms, import 227ms, tests 93ms, environment 0ms)
+
+exit=0
+
+## VX tests/policy-observation-sink.vitest.ts
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  13:20:15
+   Duration  191ms (transform 96ms, setup 12ms, import 120ms, tests 5ms, environment 0ms)
+
+exit=0
+
+## VX tests/command-bridges-drift-guard.vitest.ts
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  13:20:15
+   Duration  359ms (transform 90ms, setup 12ms, import 126ms, tests 164ms, environment 0ms)
+
+exit=0
+
+## VX tests/policy-plan-negative-controls.vitest.ts
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  13:20:16
+   Duration  195ms (transform 95ms, setup 13ms, import 119ms, tests 6ms, environment 0ms)
+
+exit=0
+
+## VX tests/hooks/vibe-prompt-advisor.vitest.ts
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  13:20:16
+   Duration  1.41s (transform 52ms, setup 14ms, import 76ms, tests 1.26s, environment 0ms)
+
+exit=0
+
+## VALL
+
+ Test Files  185 passed (185)
+      Tests  2157 passed | 6 skipped (2163)
+   Start at  13:20:18
+   Duration  192.62s (transform 1.32s, setup 622ms, import 7.03s, tests 174.66s, environment 6ms)
+
+exit=0
+
+## DT
+ℹ pass 1229
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141691.208083
+exit=0
+
+## VT
+ℹ pass 79
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 861.223542
+exit=0
+
+## MIRROR runtime-mirrors/sync-runtime-mirrors.cjs
+[runtime-mirror-sync] visibility claude 44/44, cursor 44/44
+[runtime-mirror-sync] PASS: 257 mirrors across 10 trees are in sync.
+exit=0
+
+## MIRROR codex/sync-agents.cjs
+[codex-agent-sync] PASS: 11 agents are in sync.
+exit=0
+
+## MIRROR codex/sync-prompts.cjs
+[codex-prompt-sync] PASS: 45 prompts are in sync.
+exit=0
+
+## MIRROR pi/sync-agents-pi.cjs
+[pi-agent-sync] PASS: 11 agents are in sync.
+exit=0
+
+## MIRROR pi/sync-prompts-pi.cjs
+[pi-prompt-sync] PASS: 45 prompts are in sync.
+exit=0
+
+## MIRROR dsh/sync-skills-dsh.cjs
+[dsh-skill-sync] LINKS: 55
+[dsh-skill-sync] PASS: 55 skill links are in sync.
+exit=0
+
+## MIRROR dsh/sync-prompts-dsh.cjs
+[dsh-prompt-sync] PASS: 45 prompt stubs are in sync.
+exit=0
+
+## MIRROR dsh/sync-agents-dsh.cjs
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+exit=0
+
+## MIRROR vibe/sync-prompts-vibe.cjs
+[vibe-prompt-sync] PASS: 45 prompt stubs are in sync.
+exit=0
+
+## MIRROR vibe/sync-agents-vibe.cjs
+[vibe-agent-sync] PASS: 11 agent profiles are in sync.
+exit=0
+
+## MIRROR vibe/sync-skills-vibe.cjs
+[vibe-skill-sync] LINKS: 55
+[vibe-skill-sync] PASS: 55 skill links are in sync.
+exit=0
+
+## DRV
+    "generated": 63,
+    "typescriptActive": 47,
+    "pythonActive": 53
+  },
+  "changed": []
+}
+exit=0
+
+## RV
+PASS: J1: targets are in parity with their router and presentation across 14 commands
+PASS: K1/K2: no read-only route declares a write or grants a mutating advisor command
+PASS: L1: all 82 route script invocations are invoked by their workflow YAML
+
+─────────────────────────────────────────────────────────────────
+OK: route-validate — 32 routes validated, 11 warnings
+exit=0
+
+## WIRE
+ok claude
+ok codex
+ok cursor
+ok devin
+ok vibe
+exit=0
+
+## AMC
+[agents-md-manifest] PASS: 44 sections, 31 pins, derived matches AGENTS.md
+[agents-md-manifest] Budget: 16250 / 16384 bytes to the last anchor, 27750 / 32768 bytes total, 24 history bodies
+exit=0
+/tmp/sa count after:        0
+
+## T014 cmp
+floor cmp exit=0
+eval cmp exit=0
+DONE

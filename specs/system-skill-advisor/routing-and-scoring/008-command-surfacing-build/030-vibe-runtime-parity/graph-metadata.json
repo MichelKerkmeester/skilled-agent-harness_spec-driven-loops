@@ -206,7 +206,7 @@
     ],
     "causal_summary": "A Vibe user already gets the advisor brief, but the measures and checks this packet built read Vibe as if it were not there",
     "created_at": "2026-11-15T10:20:11Z",
-    "last_save_at": "2026-11-15T11:38:23.220Z",
+    "last_save_at": "2026-11-15T12:26:22.092Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:e71fe97a873528de7978676b5016e6826d4a7a2eeead8a9d6c02ee823e1c4055",
+    "source_fingerprint": "sha256:c5683238ed6861aa5e3e8d66027886e49aedb8e20317be036b175999f4dbe8a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c01ded47db4bb6a361d965085410d4e218e67e19dd2e5a3ae961f0ef6995e0c7",
       "plan.md": "d8b666f0c8b3b4625929a4bc4002b4233a8f5f09a827afc2e5e4a1cf242a9d4a",
-      "tasks.md": "4540db8c606cab40cc8ec01a670d2a3c131a5188f7dcf82fd7b46deb0676daab"
+      "tasks.md": "1872fc656c0302e02c3cf3f9b0ba24301fd98ccb9d0038fcdd4ecd205a7824d2"
     },
     "last_active_at": null
   }
