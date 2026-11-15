@@ -94,7 +94,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] All 45 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
+- [x] All 46 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
 - [x] `validate.sh` on this packet with `--recursive --strict` prints `RESULT: PASSED`
 - [x] A live Claude Code relaunch through `skilled-loop` is recorded with its `relaunch.log` hop line
 - [x] `sync-hook-registrations.cjs --check`, `sync-runtime-mirrors.cjs --check` and `run-all-drift-guards.sh` all exit 0
@@ -133,6 +133,7 @@ and findings belong here.
 | Phase 044 added | In progress | 2026-11-15: packet 044-in-session-handover-rename joins as phase 44 (session relaunch renamed to in-session handover on every live surface, no aliases; suites at baseline, live Claude hop 5/5; release note pending). Criterion 1 now says 44 phase folders and is open until AC-004 is met |
 | Phase 044 closed | Done | 2026-11-15: session handover is the main name (folder, switches, seed); SYSTEM_IN_SESSION_HANDOVER_* read for the on and off switches while the main one is blank; three phrasings route to /speckit:handoff; goal retitled Session handover loop; gate at baseline, flags 31/0, live Claude hop 5/5; v4.0.2.2 note. Criterion 1 ticked again |
 | Phase 045 added | Complete | 2026-11-15: Vibe joins the automatic tier; live hops 5/5 twice like the Claude Code baseline, withdraw and switch-off live, gate at baseline plus new tests, review no P0 or P1 |
+| 046 vibe history locator | done | 191/191 CLI tests, gate relaunch 1600, live deepseek-flash hop recovered the side word via History Lookup, validate 0/0 |
 
 ### Deviations and findings
 

@@ -820,6 +820,24 @@ function codexRolloutPath(sessionId, env) {
   return latest === null ? null : latest.file;
 }
 
+// Vibe keeps one folder per session under its home, and the handle digests the folder path
+// itself, so the mint has to name the same folder the lookup CLI joins for the same id. A
+// relative home resolves against whatever folder the command runs in, and a folder with no
+// journal leaves the reader nothing to parse, so either one would only mint a dead command.
+function vibeSessionFolder(sessionId, env) {
+  if (!/^[A-Za-z0-9._-]+$/.test(sessionId)) return null;
+  const configuredHome = env?.VIBE_HOME?.trim() ?? '';
+  if (configuredHome !== '' && !path.isAbsolute(configuredHome)) return null;
+  const vibeHome = configuredHome || path.join(os.homedir(), '.vibe');
+  const folder = path.join(vibeHome, 'logs', 'session', 'unified', sessionId);
+  try {
+    if (!fs.statSync(folder).isDirectory()) return null;
+    return fs.statSync(path.join(folder, 'journal')).isDirectory() ? folder : null;
+  } catch {
+    return null;
+  }
+}
+
 // Cursor writes its current model to one config file for every session, so the file is this
 // session's only when it changed after the wrapper launched this hop. Every switch rewrites
 // `model`, while `selectedModel` holds parameters and is rewritten only for a parameterized
@@ -851,9 +869,10 @@ function safeDirectory(directory) {
   }
 }
 
-// The history helpers are compiled into the spec-kit runtime's build output, which a checkout
-// may not have built yet. Requiring them inside the mint keeps this core loadable without that
-// build: a missing build is one more reason to skip the locator, never to fail the hand-over.
+// The hook state is compiled into the spec-kit runtime's build output and the history helpers
+// into this folder's history build, and a checkout may not have built either yet. Requiring them
+// inside the mint keeps this core loadable without those builds: a missing build is one more
+// reason to skip the locator, never to fail the hand-over.
 const HISTORY_RUNTIME_DIST = path.resolve(
   __dirname,
   '..',
@@ -864,29 +883,18 @@ const HISTORY_RUNTIME_DIST = path.resolve(
   'runtime',
   'dist',
 );
+const HISTORY_ENGINE_DIST = path.resolve(__dirname, '..', 'history', 'dist');
 
 function loadHistoryRuntime() {
   return {
     hookState: require(path.join(HISTORY_RUNTIME_DIST, 'hooks', 'claude', 'hook-state.js')),
-    digest: require(path.join(
-      HISTORY_RUNTIME_DIST,
-      'hooks',
-      'lib',
-      'history',
-      'locator-digest.js',
-    )),
+    digest: require(path.join(HISTORY_ENGINE_DIST, 'locator-digest.js')),
     offer: loadLookupOffer(),
   };
 }
 
 function loadLookupOffer() {
-  return require(path.join(
-    HISTORY_RUNTIME_DIST,
-    'hooks',
-    'lib',
-    'history',
-    'lookup-offer.js',
-  ));
+  return require(path.join(HISTORY_ENGINE_DIST, 'lookup-offer.js'));
 }
 
 /**
@@ -914,14 +922,18 @@ function mintHandoverLocator({ runtime, sessionId, cwd = process.cwd(), now } = 
       ? claudeSessionLogPath(sessionId, process.env)
       : runtime === 'codex'
         ? codexRolloutPath(sessionId, process.env)
-        : null;
+        : runtime === 'vibe'
+          ? vibeSessionFolder(sessionId, process.env)
+          : null;
     if (transcriptPath === null) return null;
     const placement = offer.placeLookup(cwd);
     if (placement === null) return null;
     // The transcript is found by session id across every project, so a note could name
     // another project's session. The folder the transcript itself records must sit in the
     // same checkout as the folder the note names.
-    const recordedFolder = transcriptWorkingFolder(transcriptPath);
+    const recordedFolder = runtime === 'vibe'
+      ? vibeWorkingFolder(transcriptPath, sessionId)
+      : transcriptWorkingFolder(transcriptPath);
     if (recordedFolder === null) return null;
     const recordedPlacement = offer.placeLookup(recordedFolder);
     if (
@@ -1001,6 +1013,22 @@ function transcriptWorkingFolder(transcriptPath) {
     }
   }
   return null;
+}
+
+// Vibe records the session's folder in `meta.json`, not in the journal the reader parses, so
+// the mint reads the metadata file beside that journal instead of looking for a cwd in it. A
+// meta that names another session is the one the reader refuses at redeem, so it refuses too.
+function vibeWorkingFolder(sessionFolder, sessionId) {
+  try {
+    const meta = JSON.parse(fs.readFileSync(path.join(sessionFolder, 'meta.json'), 'utf8'));
+    if (nonEmptyString(meta?.session_id) && meta.session_id !== sessionId) return null;
+    if (nonEmptyString(meta?.environment?.working_directory)) {
+      return meta.environment.working_directory;
+    }
+    return nonEmptyString(meta?.origin_directory) ? meta.origin_directory : null;
+  } catch {
+    return null;
+  }
 }
 
 /**

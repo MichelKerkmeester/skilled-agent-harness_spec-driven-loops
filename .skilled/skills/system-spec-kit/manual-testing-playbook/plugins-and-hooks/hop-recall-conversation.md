@@ -4,7 +4,7 @@ description: "This scenario measures whether a session that claims a handoff not
 trigger_phrases:
   - "hop recall conversation"
   - "handoff recall with lookup"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # hop-recall-conversation -- Hop recall conversation
@@ -52,7 +52,7 @@ Operators run this scenario and [hop-recall-baseline-conversation](hop-recall-ba
 
 The conversation runner cannot drive a hop: its only turn actions are `restart` and `compact` (`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md` §3), and `restart` resumes the same session. This page is therefore an operator procedure built on the harness script, not a `json conversation` block.
 
-1. Confirm `tmux`, `node` and a logged-in Claude Code are available, and that the history CLI is built: `test -f .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js && echo built`. This arm needs it on disk.
+1. Confirm `tmux`, `node` and a logged-in Claude Code are available, and that the history CLI is built: `test -f .skilled/hooks/session-handover/history/dist/cli.js && echo built`. This arm needs it on disk.
 2. Run the arm from the repository root with a label that names the runtime and the attempt, for example `lookup claude-1`. The harness captures the pane every 5 seconds, answers the folder-trust and hook-review dialogs itself, and prints nothing until the run ends.
 3. Wait for the observed line. The default bound is 540 seconds; pass a third argument to change it.
 4. Read `result.json` and `pane.txt` under `scratch/runs/<arm>-<label>/` before writing a row. `result.json` holds the sender and receiver session ids, the note name and status, `sender_saw_code`, the answer, the three signals and the receiver's last reply.
@@ -93,7 +93,7 @@ The harness leaves `scratch/runs/<arm>-<label>/` holding `pane.txt` (the capture
 4. **The answer is `pending`.** The question was asked but no reply was captured before the loop ended. Read the receiver's pane; rerun rather than writing a row, because the table records only `correct`, `wrong` or `missing`.
 5. **`lookup_attempted=1` with `answer=missing`.** Confirm the tool call in `pane.txt` and read the refusal code in the reply. The receiver ran the lookup and the CLI refused, so rerun the printed command by hand from the checkout root to see the code, and treat a `store_unreadable` reply as a reader defect to report.
 6. **The sender never ran the script.** `codes.txt` still exists under the run's `work/` folder, or `sender_saw_code=0` in `result.json`. The codes never entered the conversation, so there is nothing to recall; rerun.
-7. **The CLI is missing.** This arm needs `.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js`. Build it with `cd .skilled/skills/system-spec-kit/runtime && npm run build` and rerun, because a run without it is not the lookup arm. If the build cannot be made, record the run as a skip with the missing build as its blocker.
+7. **The CLI is missing.** This arm needs `.skilled/hooks/session-handover/history/dist/cli.js`. Build it with `npm --prefix .skilled/hooks/session-handover/history run build` and rerun, because a run without it is not the lookup arm. If the build cannot be made, record the run as a skip with the missing build as its blocker.
 
 ### Counting Rule
 
@@ -149,7 +149,7 @@ Pi, OpenCode and Codex are optional follow-ups after Claude Code. They need `SYS
 | `specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh` | Runs one arm: generates the codes, starts the sender, waits for the claim, asks the question, prints the observed line |
 | `specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/analyze.py` | Scores one run from the Claude transcripts and the handoff note |
 | `.skilled/hooks/session-handover/README.md` | The handoff protocol, the claim seed and the four note sections |
-| `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md` | The lookup CLI, its locator and its refusal codes |
+| `.skilled/hooks/session-handover/history/README.md` | The lookup CLI, its locator and its refusal codes |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md` | The runner's turn actions, which exclude a hop |
 
 Provenance: manual only - a live hop in tmux, driven by the harness script, with the observed line written by hand into the table

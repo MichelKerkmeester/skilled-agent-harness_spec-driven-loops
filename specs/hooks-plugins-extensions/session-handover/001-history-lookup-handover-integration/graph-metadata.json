@@ -10,7 +10,8 @@
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim",
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer",
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof",
-    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation"
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation",
+    "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement"
   ],
   "manual": {
     "depends_on": [],
@@ -124,16 +125,16 @@
     ],
     "causal_summary": "A model can search and load its own earlier turns through the history lookup, but the lookup is offered only after a compaction",
     "created_at": "2026-11-15T06:24:14Z",
-    "last_save_at": "2026-11-15T15:09:28.005Z",
+    "last_save_at": "2026-11-15T17:14:40.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:44717cc6c05e2ecd9a51c9c15d40b93b0703e6ab2813b5df40b5721971d53db2",
+    "source_fingerprint": "sha256:a41bafd42358b8b266574150a662e17ac004dd09da00cf322ea0c32af0177531",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cd17cb229d3a3da6e4c9ead775f91fa4dd279e2292e654cbc9a746fbe31a867c"
+      "spec.md": "d41ad257ce7eed6ef48c095f6cf3a71db2d09d8671d312d6fced9db0545015c6"
     },
     "last_active_child_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation",
     "last_active_at": "2026-11-15T15:09:28.005Z"

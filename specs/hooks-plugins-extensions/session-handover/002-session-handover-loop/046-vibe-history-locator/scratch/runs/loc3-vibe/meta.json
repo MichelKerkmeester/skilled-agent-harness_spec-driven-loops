@@ -1,0 +1,19 @@
+{
+  "runtime": "vibe",
+  "label": "loc3",
+  "codeWord": "ORCHID-31813",
+  "sideWord": "LAGOON-17653",
+  "name": "hoptest-loc3-vibe",
+  "startMs": 1794759440784,
+  "logOffset": 4195,
+  "stateDir": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-relaunch-501",
+  "notesDir": "/Users/michelkerkmeester/worktrees/public/413-vibe-history-locator/.skilled/skills/.state/session-handover/handoffs",
+  "launch": [
+    "--trust",
+    "--agent",
+    "auto-approve",
+    "Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat the code word ORCHID-31813. Start by reading the README. One more fact for later: the side word is LAGOON-17653. Do not write the side word in the handoff note. The new session must report it too. Gate 3: D) Skip, no spec folder."
+  ],
+  "endMs": 1794759590654,
+  "trustDialogs": 0
+}

@@ -198,7 +198,7 @@ describe('precompact hook', () => {
   describe('recovered context brief', () => {
     const projectRoot = resolve(import.meta.dirname, '../../../../..');
     const commentHygiene = '.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh';
-    const historyFixture = '.skilled/skills/system-spec-kit/runtime/tests/_support/history-fixtures.ts';
+    const historyFixture = '.skilled/hooks/session-handover/history/tests/_support/history-fixtures.ts';
     const transcript = [
       JSON.stringify({ message: { content: `Read ${commentHygiene}` } }),
       JSON.stringify({ message: { content: `Read ${join(projectRoot, historyFixture)}` } }),

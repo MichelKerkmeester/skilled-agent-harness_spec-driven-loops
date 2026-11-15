@@ -26,12 +26,10 @@ const REPO_ROOT = fileURLToPath(new URL('../../../../../', import.meta.url));
 const SCHEMA_PATH = join(
   REPO_ROOT,
   '.skilled',
-  'skills',
-  'system-spec-kit',
-  'runtime',
   'hooks',
-  'lib',
+  'session-handover',
   'history',
+  'lib',
   'history-entry.schema.json',
 );
 

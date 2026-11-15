@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3e72f579ebddff5b592b8bbb81cf8db5c0e1e461f2c17eaae92e07a47d512404",
+  "manifestHash": "f776456f067d706d8b8c5c4bed2eef7b590e5f9beea56bb61c52d4ca896ad22b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7078,6 +7078,9 @@
     ],
     "046 handover anchor naming": [
       "046 handover anchor naming"
+    ],
+    "046 vibe history locator operator decisions": [
+      "046-vibe-history-locator operator decisions"
     ],
     "047 implementation summary": [
       "047 implementation summary"
@@ -59309,6 +59312,9 @@
     "hop recall conversation": [
       "hop recall conversation"
     ],
+    "hop recall on codex and vibe": [
+      "hop recall on codex and vibe"
+    ],
     "hop withdrawn because the transcript was missing": [
       "hop withdrawn because the transcript was missing"
     ],
@@ -84100,6 +84106,9 @@
     ],
     "phase 8 vibe repo guards": [
       "phase 8 vibe repo guards"
+    ],
+    "phase 8 wider hop recall measurement": [
+      "phase 8 wider hop recall measurement"
     ],
     "phase 8 write containment scoping": [
       "phase 8 write containment scoping"
@@ -130478,11 +130487,32 @@
     "vibe handover flag and live hop tasks": [
       "vibe handover flag and live hop tasks"
     ],
+    "vibe handover locator": [
+      "vibe handover locator"
+    ],
     "vibe handover withdraw": [
       "Vibe handover withdraw"
     ],
+    "vibe history locator": [
+      "vibe history locator"
+    ],
+    "vibe history locator acceptance criteria": [
+      "vibe history locator acceptance criteria"
+    ],
+    "vibe history locator implementation summary": [
+      "vibe history locator implementation summary"
+    ],
+    "vibe history locator plan": [
+      "vibe history locator plan"
+    ],
+    "vibe history locator tasks": [
+      "vibe history locator tasks"
+    ],
     "vibe history lookup after compaction": [
       "vibe history lookup after compaction"
+    ],
+    "vibe history lookup at claim": [
+      "vibe history lookup at claim"
     ],
     "vibe home isolation": [
       "vibe home isolation"
@@ -131935,6 +131965,15 @@
     ],
     "widened drift baseline": [
       "widened drift baseline"
+    ],
+    "wider hop recall measurement": [
+      "wider hop recall measurement"
+    ],
+    "wider hop recall measurement plan": [
+      "wider hop recall measurement plan"
+    ],
+    "wider hop recall measurement tasks": [
+      "wider hop recall measurement tasks"
     ],
     "wikilink registry row": [
       "wikilink registry row"

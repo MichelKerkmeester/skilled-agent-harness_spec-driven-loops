@@ -100,6 +100,16 @@ const DIST_PACKAGES = Object.freeze([
     excludedSegments: ['tests', 'stress-test'],
   },
   {
+    // The session handover prints a History Lookup section only when this build exists, and the
+    // printed command imports it, so a stale or missing build silently drops the section.
+    id: 'session-handover/history',
+    name: '@spec-kit/session-handover-history',
+    root: '.skilled/hooks/session-handover/history',
+    distEntries: { default: 'dist/cli.js' },
+    rebuildCommand: 'cd .skilled/hooks/session-handover/history && npm run build',
+    sourceCandidates: ['package.json', 'tsconfig.json', 'lib'],
+  },
+  {
     id: 'mcp-code-mode/mcp-server',
     name: '@utcp/code-mode-mcp',
     root: '.skilled/skills/mcp-code-mode/mcp-server',

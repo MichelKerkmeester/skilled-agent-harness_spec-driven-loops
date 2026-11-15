@@ -23,7 +23,7 @@ version: 1.0.0.0
 | File | Event or role | What it does | On error |
 |---|---|---|---|
 | [`session-handover.cjs`](./session-handover.cjs) | CLI | Exposes `prepare`, `should-relaunch`, `keep`, `claim`, `complete`, `consume`, `cancel`, `hand-over` and `history`. Validates the note, writes or removes the record and prints seed or goal text where needed. | A malformed invocation prints the syntax to stderr and exits 2. A `prepare` outside a loop or at the hop cap prints the claim command and exits 3. |
-| [`history-lookup.mjs`](./history-lookup.mjs) | Lookup entry | Imports `runHistoryLookupCli` from the compiled history core and runs it with the arguments it was given. | A core that cannot load prints `{"ok":false,"code":"core_unavailable"}`, a call that throws prints `{"ok":false,"code":"operation_invalid"}`, and both exit 2. |
+| [`history-lookup.mjs`](./history-lookup.mjs) | Lookup entry | Imports `runHistoryLookupCli` from the history engine's build, `../history/dist/cli.js`, and runs it with the arguments it was given. | A core that cannot load prints `{"ok":false,"code":"core_unavailable"}`, a call that throws prints `{"ok":false,"code":"operation_invalid"}`, and both exit 2. |
 
 ---
 
@@ -31,4 +31,5 @@ version: 1.0.0.0
 
 - [`../README.md`](../README.md): the concern README with the handoff protocol and the runtime matrix.
 - [`../lib/relaunch-core.cjs`](../lib/relaunch-core.cjs): the shared state layer the CLI drives.
+- [`../history/README.md`](../history/README.md): the history lookup engine `history-lookup.mjs` runs.
 - [`../../../bin/skilled-loop`](../../../bin/skilled-loop): the wrapper that calls `consume` and starts the next session.
