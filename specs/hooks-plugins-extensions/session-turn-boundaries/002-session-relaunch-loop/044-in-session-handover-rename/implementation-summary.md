@@ -8,25 +8,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename"
-    last_updated_at: "2026-11-15T09:08:33Z"
+    last_updated_at: "2026-11-15T10:09:02Z"
     last_updated_by: "generate-context"
-    recent_action: "Renamed to session-handover with in-session switch spelling and routing"
-    next_safe_action: "Run the push after the operator approves it"
+    recent_action: "Merged phases 041-044 into the published release notes"
+    next_safe_action: "Run the push and tag republish"
     packet_purpose: "Purpose: Every live surface says session handover, either spelling turns it on or off, and either phrasing in a prompt leads to `/speckit:handoff`."
     blockers: []
     key_files:
+      - ".skilled/changelog/skilled/v4.0.2.1.md"
       - ".skilled/hooks/shared/hook-flags.cjs"
       - ".skilled/hooks/session-handover/README.md"
-      - ".skilled/changelog/skilled/v4.0.2.2.md"
     session_dedup:
-      fingerprint: "sha256:ab7fb41195b13509e4305387ee52949544af320033007dd745d615ccdf76c1ad"
+      fingerprint: "sha256:e19dd5d52ff639a3cfa260071e309ac0f2d69771ff8b5f6994a3d50ec89a8e6c"
       session_id: "scaffold-044-in-session-handover-rename"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "b726ec67-1d85-4833-b219-c038e184d696"
-      workspace: "/Users/michelkerkmeester/worktrees/public/402-in-session-handover-rename"
-      savedAt: "2026-11-15T09:08:33Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/405-v4-0-2-1-handover-notes"
+      savedAt: "2026-11-15T10:09:02Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 95
@@ -129,7 +129,7 @@ The gate ran before the rename to record each count. `git mv` moved the folder a
 1. **Old settings stop working without a word.** A set `SYSTEM_SESSION_RELAUNCH_*` variable is ignored. Rename it in your shell profile and `hook-flags.env`.
 2. **Open notes in the old folder are not found.** Move `.skilled/skills/.state/session-relaunch/` to `.state/session-handover/` in each checkout. The primary checkout's folder holds open notes from sessions still running the old code, so move it only once that checkout runs the new code.
 3. **Installed projects keep the old registrations.** Their hook commands name a folder that no longer exists until the registrations are rendered again. This was read from the registrations, not run in an installed project.
-4. **The release is not tagged.** `v4.0.2.2.md` is an unreleased entry until someone runs `/create:changelog skilled --release`.
+4. **The notes live in v4.0.2.1.** The operator folded this work and phases 041 to 043 into the published v4.0.2.1 entry, and the separate v4.0.2.2 entry was removed.
 <!-- /ANCHOR:limitations -->
 
 ---

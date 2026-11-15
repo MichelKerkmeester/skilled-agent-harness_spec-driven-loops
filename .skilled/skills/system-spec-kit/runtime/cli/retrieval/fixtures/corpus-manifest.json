@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b9bb988070940fcb0ed64bea33ffec32d88ae878782b4d38d5a28a6703af06ff",
+  "corpusHash": "ec9717827a03490e8b1f767db8de21b00a30d6434ade8779dc69ac4844666e81",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27514,
+  "includedPathCount": 27513,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -93,7 +93,6 @@
     ".skilled/changelog/skilled/v4.0.1.0.md",
     ".skilled/changelog/skilled/v4.0.2.0.md",
     ".skilled/changelog/skilled/v4.0.2.1.md",
-    ".skilled/changelog/skilled/v4.0.2.2.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/classifier-injection-screen/claude/README.md",
@@ -27546,7 +27545,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5207e6b834686d793bf6baa8996862f08d7ebf795a35ff230cfae4f51e113bb7",
+  "manifestHash": "105a1d66149161e0c5ff49453d651f65b5932dd63f02fd67088e6b5938d21f50",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

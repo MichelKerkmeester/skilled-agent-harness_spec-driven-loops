@@ -54,7 +54,7 @@
       "scratch/harness/live-hop.sh",
       "scratch/gate.sh",
       "scratch/rename2.pl",
-      ".skilled/changelog/skilled/v4.0.2.2.md"
+      ".skilled/changelog/skilled/v4.0.2.1.md"
     ],
     "entities": [
       {
@@ -148,9 +148,9 @@
         "source": "derived"
       },
       {
-        "name": "v4.0.2.2.md",
+        "name": "v4.0.2.1.md",
         "kind": "doc",
-        "path": ".skilled/changelog/skilled/v4.0.2.2.md",
+        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The operator calls the feature a session handover or an in-session handover, and the README and release notes describe it that way, but every surface a user touches said session relaunch: the hook folder `.skilled/hooks/session-relaunch/`, the switch `SYSTEMSESSIONRELAUNCHENABLED`, the seed `[session-relaunch] claim and continue handoff` and the docs",
     "created_at": "2026-11-15T07:49:00Z",
-    "last_save_at": "2026-11-15T09:08:33.309Z",
+    "last_save_at": "2026-11-15T10:09:02.504Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:890b4ab2fe6df54df1a11e795af1ab91299446b0718a1e94b371301db4fe6488",
+    "source_fingerprint": "sha256:2c3b669afe1bbfdd3967311200820be3f22521768133c7087c8d8febc36697ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "42914aa751de312315d6f47e725df942f7e634fbff17175a67b55a6c676aa938",
       "plan.md": "ffff6f1b452707f6e0a7e56dbeab0a0f2a4769c89b931b75f02c8ad9c3696b8c",
       "tasks.md": "2c4798e8555e4b4f7a84859fb1eda57fb87d5b4938f91a3af0a619f249c5386e",
-      "decision-record.md": "68785ee812de3dacf8359cd053a4082a0a75261b24d76448bd1a5c6388a3e80f",
-      "implementation-summary.md": "6e1309e9979639b7b176d3627bae55c4c06f39b03a5d3e9d81142d4f195b882f"
+      "decision-record.md": "a1b7af9207be31a274908966d82392dc478b821c32fe19c8a109d2e4ba8da1c5",
+      "implementation-summary.md": "58dfcf5988d8f00bf66186e9a0a86c771086a2f011464e59d06bd21716842092"
     },
     "last_active_at": null
   }

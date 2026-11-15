@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5207e6b834686d793bf6baa8996862f08d7ebf795a35ff230cfae4f51e113bb7",
+  "manifestHash": "105a1d66149161e0c5ff49453d651f65b5932dd63f02fd67088e6b5938d21f50",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -60608,9 +60608,6 @@
     "in session handover rename acceptance criteria": [
       "in session handover rename acceptance criteria"
     ],
-    "in session handover spelling": [
-      "in-session handover spelling"
-    ],
     "inbound enhances": [
       "inbound enhances"
     ],
@@ -115245,9 +115242,6 @@
     "skilled v4 0 2 1": [
       "skilled v4.0.2.1"
     ],
-    "skilled v4 0 2 2": [
-      "skilled v4.0.2.2"
-    ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
     ],
@@ -128676,9 +128670,6 @@
     ],
     "v4 0 2 1 release notes": [
       "v4.0.2.1 release notes"
-    ],
-    "v4 0 2 2 release notes": [
-      "v4.0.2.2 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"
