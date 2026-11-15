@@ -95,6 +95,8 @@ FAIL tests/hook-registration-sync.vitest.ts      expected 118 to be 117
 | `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modify | Single deep workflow |
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Modify | Lazy tsx resolve |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts` | Modify | Binding count |
+| `.github/workflows/command-tree-parity.yml` | Modify | Shared package build in the Vibe mirror job |
+| `.skilled/hooks/session-handover/tests/claude-adapters.test.cjs` | Modify | Cleanup retries |
 <!-- /ANCHOR:scope -->
 
 ---

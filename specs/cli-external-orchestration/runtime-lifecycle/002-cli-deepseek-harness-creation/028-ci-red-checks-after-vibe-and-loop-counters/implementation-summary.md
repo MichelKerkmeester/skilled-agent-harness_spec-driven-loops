@@ -63,12 +63,16 @@ A checkout without the operator's private commands now matches the Vibe prompt m
 | `command-contract.json` | Modified | Single deep workflow |
 | `convergence.cjs` | Modified | Lazy tsx resolve |
 | `hook-registration-sync.vitest.ts` | Modified | 118 bindings |
+| `.github/workflows/command-tree-parity.yml` | Modified | Build the shared package in the Vibe mirror job |
+| `.skilled/hooks/session-handover/tests/claude-adapters.test.cjs` | Modified | Cleanup retries |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
+
+The first push turned up two more causes. The Vibe mirror job never built the shared package that the agent sync loads, and a session handover adapter test removed its temp folder while a detached killer still wrote there. The job now builds the package, and the removal retries.
 
 Both CI-only conditions were reproduced locally. With the private command moved away the prompt check passed 44 stubs. With tsx moved away the old `convergence.cjs` failed the reducer test with `Cannot find module 'tsx'`, as CI did, and the new one passed 13 of 13.
 <!-- /ANCHOR:how-delivered -->
@@ -103,7 +107,7 @@ Both CI-only conditions were reproduced locally. With the private command moved 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **None.**
+1. **A fresh worktree reports the private Vibe stub as missing.** Provisioning copies the private command but not its stub, so `sync-prompts-vibe.cjs` without `--check` regenerates it there.
 <!-- /ANCHOR:limitations -->
 
 ---

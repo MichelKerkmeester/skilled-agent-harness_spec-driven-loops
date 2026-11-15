@@ -51,7 +51,8 @@ function createSandbox(t) {
     'SESSION_HANDOVER_MAX_HOPS',
     'SYSTEM_SPEC_FOLDER',
   ]) delete env[key];
-  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  // A detached killer the adapter starts can still be writing here, so the removal retries.
+  t.after(() => fs.rmSync(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }));
   return { root, repoRoot, xdgRuntimeDir, home, env };
 }
 
