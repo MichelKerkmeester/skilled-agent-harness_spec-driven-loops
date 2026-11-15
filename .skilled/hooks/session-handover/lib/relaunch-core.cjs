@@ -851,6 +851,149 @@ function safeDirectory(directory) {
   }
 }
 
+// The history helpers are compiled into the spec-kit runtime's build output, which a checkout
+// may not have built yet. Requiring them inside the mint keeps this core loadable without that
+// build: a missing build is one more reason to skip the locator, never to fail the hand-over.
+const HISTORY_RUNTIME_DIST = path.resolve(
+  __dirname,
+  '..',
+  '..',
+  '..',
+  'skills',
+  'system-spec-kit',
+  'runtime',
+  'dist',
+);
+
+function loadHistoryRuntime() {
+  return {
+    hookState: require(path.join(HISTORY_RUNTIME_DIST, 'hooks', 'claude', 'hook-state.js')),
+    digest: require(path.join(
+      HISTORY_RUNTIME_DIST,
+      'hooks',
+      'lib',
+      'history',
+      'locator-digest.js',
+    )),
+    offer: loadLookupOffer(),
+  };
+}
+
+function loadLookupOffer() {
+  return require(path.join(
+    HISTORY_RUNTIME_DIST,
+    'hooks',
+    'lib',
+    'history',
+    'lookup-offer.js',
+  ));
+}
+
+/**
+ * Mint and save the locator a later session uses to read this session's earlier turns.
+ *
+ * The locator is the shape a compaction mints, keyed by the checkout root above the folder
+ * the session ran in, so the reader proves the session the same way. The transcript comes
+ * from the runtime's own store rather than from a caller-supplied path, because a hand-over
+ * has no host payload to trust.
+ *
+ * @param {Object} options - The sending session.
+ * @param {string} options.runtime - Runtime that owns the session.
+ * @param {string} options.sessionId - The session's identifier.
+ * @param {string} [options.cwd=process.cwd()] - Folder the session ran in.
+ * @param {Date|number|string} [options.now] - Clock value for a deterministic locator.
+ * @returns {Object|null} The stored locator, or null when none could be minted.
+ */
+function mintHandoverLocator({ runtime, sessionId, cwd = process.cwd(), now } = {}) {
+  try {
+    if (!nonEmptyString(runtime) || !nonEmptyString(sessionId)) return null;
+    const { hookState, digest, offer } = loadHistoryRuntime();
+    const locatorKind = hookState.HISTORY_LOCATOR_KINDS[runtime];
+    if (!nonEmptyString(locatorKind)) return null;
+    const transcriptPath = runtime === 'claude'
+      ? claudeSessionLogPath(sessionId, process.env)
+      : runtime === 'codex'
+        ? codexRolloutPath(sessionId, process.env)
+        : null;
+    if (transcriptPath === null) return null;
+    const placement = offer.placeLookup(cwd);
+    if (placement === null) return null;
+
+    const mintedAt = toIsoTimestamp(now);
+    const identity = { runtime, sessionId, ...placement, locatorKind };
+    const locator = {
+      version: hookState.HISTORY_LOCATOR_VERSION,
+      ...identity,
+      handle: digest.historyHandle(identity, transcriptPath),
+      mintedAt,
+      provenance: { source: 'handover', capturedAt: mintedAt },
+    };
+    // The writer keys its file by the process folder, so it moves there for the write and
+    // only reports success when the stored locator still carries the handle minted here.
+    let stored = null;
+    const kept = digest.persistHistoryLocator(locator, () => {
+      hookState.ensureStateDir();
+      const result = hookState.updateState(sessionId, { historyLocator: locator });
+      stored = result?.merged?.historyLocator ?? null;
+      return result;
+    });
+    return kept ? (stored ?? locator) : null;
+  } catch {
+    return null;
+  }
+}
+
+// The lookup CLI compares the folder it runs in with the locator's workspace by real path, so
+// a checkout reached through a link still counts as the same one, and a path that cannot be
+// resolved never matches.
+function sameCheckout(left, right) {
+  try {
+    return fs.realpathSync(left) === fs.realpathSync(right);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Build the history lookup section a claim prints for the session that wrote the note.
+ *
+ * The locator is minted again at claim time rather than reused from prepare, because the
+ * lookup CLI refuses a locator older than half an hour: a fresh mint is what lets a note
+ * claimed hours after it was prepared still redeem. The printed command moves to the
+ * locator's workspace, so the section is withheld unless that workspace is the receiver's
+ * own checkout, which is the only place the command can run.
+ *
+ * @param {Object} options - The claimed note and the receiver.
+ * @param {Object<string, string>} options.frontmatter - The note's parsed frontmatter.
+ * @param {string} [options.cwd=process.cwd()] - Folder the claiming session runs in.
+ * @param {Date|number|string} [options.now] - Clock value for a deterministic locator.
+ * @returns {string|null} The markdown section, or null when no lookup could run.
+ */
+function handoverLookupSection({ frontmatter, cwd = process.cwd(), now } = {}) {
+  try {
+    const sessionId = frontmatter?.session_id;
+    const runtime = frontmatter?.runtime;
+    const noteCwd = frontmatter?.cwd;
+    if (
+      !nonEmptyString(sessionId)
+      || !nonEmptyString(runtime)
+      || !nonEmptyString(noteCwd)
+    ) {
+      return null;
+    }
+    const locator = mintHandoverLocator({ runtime, sessionId, cwd: noteCwd, now });
+    if (locator === null) return null;
+    const offer = loadLookupOffer();
+    const placement = offer.placeLookup(cwd);
+    if (placement === null || !sameCheckout(placement.workspace, locator.workspace)) {
+      return null;
+    }
+    return offer.buildHistoryLookupSection(locator, true);
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Find the model and effort the sending session is using now, so the relaunched session can
  * start on them. Claude is read from the last main-chain assistant entry, Codex from the last
@@ -2271,6 +2414,8 @@ module.exports = {
   resolveGoalPacketReason,
   resolveSessionSettings,
   recordGoalPacket,
+  mintHandoverLocator,
+  handoverLookupSection,
   parentMapFromTable,
   stateDir,
   inspectStateDir,

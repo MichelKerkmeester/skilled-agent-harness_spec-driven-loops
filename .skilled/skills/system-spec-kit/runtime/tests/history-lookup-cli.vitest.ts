@@ -1,12 +1,11 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: History Lookup CLI
 // ───────────────────────────────────────────────────────────────────
-// The CLI is the model-facing redemption path for the opaque handle the
-// compact boundary offers. These cases prove one reply per operation and
-// every refusal gate, including that a call cannot mutate stored state.
+// The CLI is the model-facing redemption path for the opaque handle a session
+// handover offers. These cases prove one reply per operation and every refusal
+// gate, including that a call cannot mutate stored state.
 
 import { mkdirSync, mkdtempSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
-import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
@@ -15,7 +14,6 @@ import { afterAll, afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { dshProjectKey } from '../../../../hooks/shared/session-readers/dsh.mjs';
 import { piProjectDirectory } from '../../../../hooks/shared/session-readers/pi.mjs';
-import { mintHistoryLocator } from '../hooks/claude/compact-inject.js';
 import {
   ensureStateDir,
   getStatePath,
@@ -24,18 +22,7 @@ import {
   type HookState,
 } from '../hooks/claude/hook-state.js';
 import { runHistoryLookupCli } from '../hooks/lib/history/cli.js';
-import { historyHandle } from '../hooks/lib/history/locator-digest.js';
-import { mintHistoryLocator as mintDshLocator } from '../hooks/dsh/session-compact-context.mjs';
-import { mintHistoryLocator as mintPiLocator } from '../hooks/pi/session-compact-context.js';
-import { checkoutRoot } from './_support/history-fixtures.js';
-
-const require = createRequire(import.meta.url);
-
-interface DevinAdapter {
-  mintHistoryLocator(sessionId: string, workspace: string, mintedAt: string): HistoryLocator | null;
-}
-
-const devin = require('../hooks/devin/post-compaction.cjs') as DevinAdapter;
+import { buildLocator, checkoutRoot } from './_support/history-fixtures.js';
 
 const NOW_MS = Date.parse('2026-11-07T12:00:00.000Z');
 // The locator schema bounds a session id to what the lookup offer can print,
@@ -60,8 +47,8 @@ type CliResult = {
 
 const tempHomes: string[] = [];
 const sessions = new Set<string>();
-// The adapters key a locator by the checkout root above the session folder,
-// so each case runs from a root the CLI can serve, as the printed command does.
+// The locator is keyed by the checkout root above the session folder, so each
+// case runs from a root the CLI can serve, as the printed command does.
 const WORKSPACE = checkoutRoot();
 const originalCwd = process.cwd();
 
@@ -168,14 +155,13 @@ function createFixture(options: {
     'utf-8',
   );
 
-  const locator = mintHistoryLocator({
-    sessionId,
-    transcriptPath,
-    workspace,
+  const locator = buildLocator({
     runtime: 'claude',
+    sessionId,
+    cwd: workspace,
+    storePath: transcriptPath,
     mintedAt: options.mintedAt ?? new Date(NOW_MS).toISOString(),
   });
-  if (!locator) throw new Error('history lookup fixture could not mint a locator');
 
   return { home, transcriptPath, locator };
 }
@@ -246,8 +232,12 @@ function createPiFixture(label: string): LocatorFixture {
     },
   ]);
 
-  const locator = mintPiLocator(sessionId, workspace, new Date(NOW_MS).toISOString());
-  if (!locator) throw new Error('history lookup fixture could not mint a Pi locator');
+  const locator = buildLocator({
+    runtime: 'pi',
+    sessionId,
+    cwd: workspace,
+    mintedAt: new Date(NOW_MS).toISOString(),
+  });
   return { home, locator };
 }
 
@@ -285,8 +275,12 @@ function createDevinFixture(label: string): LocatorFixture {
     database.close();
   }
 
-  const locator = devin.mintHistoryLocator(sessionId, workspace, new Date(NOW_MS).toISOString());
-  if (!locator) throw new Error('history lookup fixture could not mint a Devin locator');
+  const locator = buildLocator({
+    runtime: 'devin',
+    sessionId,
+    cwd: workspace,
+    mintedAt: new Date(NOW_MS).toISOString(),
+  });
   return { home, locator };
 }
 
@@ -328,8 +322,12 @@ function createDshFixture(label: string, sessionFolder = process.cwd()): Locator
     },
   ]);
 
-  const locator = mintDshLocator(sessionId, workspace, new Date(NOW_MS).toISOString());
-  if (!locator) throw new Error('history lookup fixture could not mint a DSH locator');
+  const locator = buildLocator({
+    runtime: 'dsh',
+    sessionId,
+    cwd: workspace,
+    mintedAt: new Date(NOW_MS).toISOString(),
+  });
   return { home, locator };
 }
 
@@ -376,19 +374,13 @@ function createVibeFixture(label: string): LocatorFixture {
     },
   ]);
 
-  const identity = {
+  const locator = buildLocator({
     runtime: 'vibe',
     sessionId,
-    workspace,
-    locatorKind: 'transcript_path',
-  };
-  const locator: HistoryLocator = {
-    version: 1,
-    ...identity,
-    handle: historyHandle(identity, sessionRoot),
+    cwd: workspace,
+    storePath: sessionRoot,
     mintedAt: new Date(NOW_MS).toISOString(),
-    provenance: { source: 'post_compaction', capturedAt: new Date(NOW_MS).toISOString() },
-  };
+  });
   return { home, locator };
 }
 
@@ -543,7 +535,8 @@ describe('history lookup CLI', () => {
   });
 
   it('refuses a locator minted for another workspace', async () => {
-    // A folder outside any checkout mints no locator, so a stored one is moved.
+    // The fixture builds a locator for this checkout; this case stores one that
+    // names another workspace.
     const fixture = createFixture({ label: 'wrong-workspace' });
     saveLocator(fixture.locator.sessionId, { ...fixture.locator, workspace: '/tmp/history-lookup-other-project' });
 
@@ -650,7 +643,7 @@ describe('history lookup CLI for a session started in a subfolder', () => {
 });
 
 describe('history lookup CLI on a Devin store', () => {
-  it('prints the search reply for the exact adapter-minted Devin locator', async () => {
+  it('prints the search reply for a Devin locator', async () => {
     const fixture = createDevinFixture('devin-ready');
     saveLocator(fixture.locator.sessionId, fixture.locator);
 
@@ -660,7 +653,7 @@ describe('history lookup CLI on a Devin store', () => {
 });
 
 describe('history lookup CLI on a Vibe journal', () => {
-  it('prints the search reply for the exact adapter-minted Vibe locator', async () => {
+  it('prints the search reply for a Vibe locator', async () => {
     const fixture = createVibeFixture('vibe-ready');
     saveLocator(fixture.locator.sessionId, fixture.locator);
 
@@ -677,7 +670,7 @@ describe.each([
   ['pi', createPiFixture],
   ['dsh', createDshFixture],
 ] as const)('history lookup CLI on %s fixtures', (runtime, createStoreFixture) => {
-  it('prints the search reply for the exact adapter-minted locator', async () => {
+  it('prints the search reply for a locator built from the session identity', async () => {
     const fixture = createStoreFixture(`${runtime}-happy`);
     saveLocator(fixture.locator.sessionId, fixture.locator);
 

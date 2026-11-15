@@ -1135,6 +1135,12 @@ describe('deep-review typed ledger schema', () => {
       data: { ...input.data, stopReason: 'manualStop' },
     }, registry)).not.toThrow();
 
+    // The duration stop is a terminal outcome too, so it reconciles the same way.
+    expect(() => prepareDeepReviewEvent({
+      ...input,
+      data: { ...input.data, stopReason: 'maxDurationReached' },
+    }, registry)).not.toThrow();
+
     expect(() => prepareDeepReviewEvent({
       ...input,
       data: {

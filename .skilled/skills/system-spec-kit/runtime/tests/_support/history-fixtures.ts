@@ -6,21 +6,32 @@ import { mkdirSync, mkdtempSync, realpathSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
+import {
+  HISTORY_LOCATOR_KINDS,
+  HISTORY_LOCATOR_VERSION,
+  type HistoryLocator,
+} from '../../hooks/claude/hook-state.js';
 import type { HistoryContentBlock, HistoryEntry } from '../../hooks/lib/history/history.js';
+import { historyHandle } from '../../hooks/lib/history/locator-digest.js';
+import { placeLookup } from '../../hooks/lib/history/lookup-offer.js';
 
-const CLI_PATH = '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js';
+const ENTRY_PATH = '.skilled/hooks/session-handover/bin/history-lookup.mjs';
+const CORE_PATH = '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js';
 
 /**
  * A temporary folder that looks like a checkout root. The lookup offer is
- * printed only for a workspace with a `.git` entry and the lookup CLI, so an
- * offer fixture needs both. The CLI is a placeholder file, because tests call
- * the CLI in process. The caller removes the folder when its suite ends.
+ * printed only for a workspace with a `.git` entry, the runnable entry and the
+ * compiled core, so an offer fixture needs all three. Both files are
+ * placeholders, because tests call the CLI in process. The caller removes the
+ * folder when its suite ends.
  */
 export function checkoutRoot(): string {
   const root = realpathSync(mkdtempSync(join(tmpdir(), 'history-checkout-')));
   mkdirSync(join(root, '.git'));
-  mkdirSync(dirname(join(root, CLI_PATH)), { recursive: true });
-  writeFileSync(join(root, CLI_PATH), '');
+  for (const relativePath of [ENTRY_PATH, CORE_PATH]) {
+    mkdirSync(dirname(join(root, relativePath)), { recursive: true });
+    writeFileSync(join(root, relativePath), '');
+  }
   return root;
 }
 
@@ -29,6 +40,47 @@ const TIMESTAMP = '2026-11-07T12:00:00.000Z';
 /** A 1x1 transparent PNG, small enough to keep fixtures readable. */
 export const ONE_PIXEL_PNG =
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==';
+
+export type BuildLocatorOptions = {
+  /** Runtime whose reader the locator names. */
+  runtime: HistoryLocator['runtime'];
+  sessionId: string;
+  /** Folder the session ran in; the locator is keyed by the checkout root above it. */
+  cwd: string;
+  /**
+   * Store path a transcript runtime hashes into the handle. The reader-backed
+   * runtimes mint from the session identity alone and omit it.
+   */
+  storePath?: string | null;
+  mintedAt?: string;
+};
+
+/**
+ * Build the locator a handover mints, without running a producer.
+ *
+ * The fields and the digest are the handover's, so a suite can seed a locator
+ * the lookup CLI accepts without a compaction hook to mint one.
+ */
+export function buildLocator(options: BuildLocatorOptions): HistoryLocator {
+  const placement = placeLookup(options.cwd);
+  if (placement === null) {
+    throw new Error(`no checkout root can run the lookup CLI above ${options.cwd}`);
+  }
+  const mintedAt = options.mintedAt ?? TIMESTAMP;
+  const identity = {
+    runtime: options.runtime,
+    sessionId: options.sessionId,
+    ...placement,
+    locatorKind: HISTORY_LOCATOR_KINDS[options.runtime],
+  };
+  return {
+    version: HISTORY_LOCATOR_VERSION,
+    ...identity,
+    handle: historyHandle(identity, options.storePath ?? null),
+    mintedAt,
+    provenance: { source: 'handover', capturedAt: mintedAt },
+  };
+}
 
 export type BuildHistoryEntriesOptions = {
   /** Number of text blocks on the large part fixture. */

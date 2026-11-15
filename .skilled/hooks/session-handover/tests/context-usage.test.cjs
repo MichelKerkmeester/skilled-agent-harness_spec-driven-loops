@@ -17,6 +17,8 @@ const {
   fillFromOpenCodeTokens,
   readCodexUsage,
   resolveCodexWindow,
+  readVibeUsage,
+  resolveVibeWindow,
 } = require('../lib/context-usage.cjs');
 
 const TRANSCRIPT_FIXTURE = path.join(__dirname, 'fixtures', 'transcript-usage.jsonl');
@@ -334,6 +336,130 @@ test('resolveCodexWindow prefers the shared override to the rollout window', () 
   );
   assert.equal(resolveCodexWindow(258400, {}), 258400);
   assert.equal(resolveCodexWindow(null, {}), null);
+});
+
+const VIBE_GENERATION = '0000000000000061';
+
+function createVibeSession(t) {
+  const sessionRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'session-handover-vibe-'));
+  t.after(() => fs.rmSync(sessionRoot, { recursive: true, force: true }));
+  fs.writeFileSync(
+    path.join(sessionRoot, 'CURRENT'),
+    JSON.stringify({ generation: VIBE_GENERATION }),
+  );
+  const generationDirectory = path.join(sessionRoot, 'generations', VIBE_GENERATION);
+  fs.mkdirSync(generationDirectory, { recursive: true });
+  fs.writeFileSync(
+    path.join(generationDirectory, 'runtime-state.json'),
+    JSON.stringify({
+      core_settings: { context: { model_facts: { compaction_threshold: 256000 } } },
+    }),
+  );
+  fs.mkdirSync(path.join(sessionRoot, 'journal'), { recursive: true });
+  return sessionRoot;
+}
+
+function vibeModelCall(inputTokens) {
+  return JSON.stringify({
+    type: 'action_result',
+    payload: {
+      result: {
+        result: {
+          usage: { input_tokens: inputTokens, output_tokens: 11, cached_input_tokens: 19200 },
+        },
+      },
+    },
+  });
+}
+
+function writeVibeSegment(sessionRoot, name, lines) {
+  fs.writeFileSync(path.join(sessionRoot, 'journal', name), lines.map((line) => `${line}\n`).join(''));
+}
+
+// A compaction asks a summarizer to condense the whole pre-compaction context, and that call is
+// journalled as an intent naming its compaction followed by its result.
+function vibeCompactionCall(actionId, inputTokens) {
+  return [
+    JSON.stringify({
+      type: 'action_intent',
+      payload: {
+        action_id: actionId,
+        request: { action_id: actionId, compaction_id: actionId, type: 'llm_call' },
+      },
+    }),
+    JSON.stringify({
+      type: 'action_result',
+      payload: {
+        action_id: actionId,
+        result: { result: { usage: { input_tokens: inputTokens } } },
+      },
+    }),
+  ];
+}
+
+test('readVibeUsage ignores a compaction summarizer and keeps the turn before it', (t) => {
+  const sessionRoot = createVibeSession(t);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [
+    vibeModelCall(9197),
+    ...vibeCompactionCall('d95bb2db-5e4c-5126-9a1d-002ba102d8c4', 6307),
+  ]);
+
+  assert.deepEqual(readVibeUsage(sessionRoot), {
+    fillTokens: 9197,
+    compactionThreshold: 256000,
+  });
+});
+
+test('readVibeUsage returns null when the only model call is a compaction summarizer', (t) => {
+  const sessionRoot = createVibeSession(t);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [
+    ...vibeCompactionCall('d95bb2db-5e4c-5126-9a1d-002ba102d8c4', 6307),
+  ]);
+
+  assert.equal(readVibeUsage(sessionRoot), null);
+});
+
+test('readVibeUsage reports no threshold when the journal holds no CURRENT', (t) => {
+  const sessionRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'session-handover-vibe-no-current-'));
+  t.after(() => fs.rmSync(sessionRoot, { recursive: true, force: true }));
+  fs.mkdirSync(path.join(sessionRoot, 'journal'), { recursive: true });
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(9197)]);
+
+  assert.deepEqual(readVibeUsage(sessionRoot), {
+    fillTokens: 9197,
+    compactionThreshold: null,
+  });
+});
+
+test('readVibeUsage takes the last model call of the newest non-empty segment', (t) => {
+  const sessionRoot = createVibeSession(t);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(20001)]);
+  writeVibeSegment(sessionRoot, '0000000000000002.jsonl', [
+    vibeModelCall(18000),
+    vibeModelCall(21000),
+  ]);
+  // The turn that opened the newest segment has not written its model call yet.
+  writeVibeSegment(sessionRoot, '0000000000000003.jsonl', []);
+
+  assert.deepEqual(readVibeUsage(sessionRoot), {
+    fillTokens: 21000,
+    compactionThreshold: 256000,
+  });
+});
+
+test('readVibeUsage returns null when the session folder is missing', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-handover-vibe-missing-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  assert.equal(readVibeUsage(path.join(root, 'absent')), null);
+});
+
+test('resolveVibeWindow prefers SESSION_HANDOVER_WINDOW_TOKENS to the recorded threshold', () => {
+  assert.equal(
+    resolveVibeWindow(256000, { SESSION_HANDOVER_WINDOW_TOKENS: '100000' }),
+    100000,
+  );
+  assert.equal(resolveVibeWindow(256000, {}), 256000);
+  assert.equal(resolveVibeWindow(null, {}), null);
 });
 
 test('resolveWindow reads the repository settings from a subdirectory cwd', (t) => {

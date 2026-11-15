@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/003-mint-locator-at-prepare",
+  "description": "`prepare` validates the note and writes the relaunch record, and the receiving session then starts with only the note's four sections",
+  "keywords": [
+    "prepare",
+    "validates",
+    "note",
+    "writes",
+    "relaunch",
+    "record",
+    "receiving",
+    "session",
+    "starts",
+    "only",
+    "four",
+    "sections"
+  ],
+  "lastUpdated": "2026-11-15T11:24:12.393Z",
+  "specId": "003",
+  "folderSlug": "mint-locator-at-prepare",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

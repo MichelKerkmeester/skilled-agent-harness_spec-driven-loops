@@ -97,8 +97,9 @@ Cross-CLI delegation inside an executor sandbox is possible but discouraged.
 Do not invoke the same CLI from within itself, and do not assume auth propagates to child CLIs.
 
 The executor kinds are the `EXECUTOR_KINDS` array in `runtime/lib/deep-loop/executor-config.ts`.
-The inline research YAML carries branches for `native`, `cli-claude-code`, `cli-opencode` and `cli-codex`.
-`cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness` are handled by the shared fan-out adapters.
+The research YAML carries an inline branch for every kind. `native` dispatches the `@deep-research` agent.
+`cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness` each run one iteration through `runtime/scripts/dispatch-iteration.cjs`, and `cli-deepseek-harness` also passes `--spec-folder`.
+`cli-mistral-vibe` runs only as a fan-out lineage, so its inline branch fails closed.
 Flag compatibility remains in [loop-protocol.md §3](references/protocol/loop-protocol.md).
 
 Executor invariants:
@@ -110,7 +111,7 @@ Executor invariants:
    The gateway authorizes, fences, and receipts the write, then refreshes `{state_paths.state_log}` from the ledger. Do not write that file directly.
 3. Respect the LEAF-agent constraint: no sub-dispatch, no nested loops, and no more tool calls per iteration than `config.maxToolCallsPerIteration`.
 
-Failure modes include `iteration_file_missing`, `iteration_file_empty`, `jsonl_not_appended`, `jsonl_missing_fields`, and `jsonl_parse_error`. Three trailing failed iterations stop the loop with stop reason `error`.
+Failure modes include `iteration_file_missing`, `iteration_file_empty`, `jsonl_not_appended`, `jsonl_missing_fields`, `jsonl_parse_error` and `executor_missing`, which fails a non-native iteration whose state log or lineage metadata names no executor. Three trailing failed iterations stop the loop with stop reason `error`.
 
 ### Lifecycle Contract
 

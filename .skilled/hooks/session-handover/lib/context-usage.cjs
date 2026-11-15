@@ -83,26 +83,35 @@ function latestTailEntry(transcriptPath, tailBytes, matches) {
   return latestTailEntryWithTrail(transcriptPath, tailBytes, matches).entry;
 }
 
+// A tail read can begin mid-row, so the partial first line is dropped, and blank or
+// unparsable rows are skipped, leaving the entries in the order they were written.
+function tailEntries(tail) {
+  const lines = tail.text.split(/\r?\n/);
+  if (
+    !tail.startsAtBeginning
+    && lines.length > 0
+    && parseTranscriptEntry(lines[0]) === null
+  ) {
+    lines.shift();
+  }
+
+  const entries = [];
+  for (const line of lines) {
+    if (!line.trim()) continue;
+    const entry = parseTranscriptEntry(line);
+    if (entry !== null) entries.push(entry);
+  }
+  return entries;
+}
+
 // Same search, also returning the parsed entries written after the match, in order.
 function latestTailEntryWithTrail(transcriptPath, tailBytes, matches) {
   let byteCount = tailBytes;
   for (;;) {
     const tail = readTail(transcriptPath, byteCount);
-    const lines = tail.text.split(/\r?\n/);
-    if (
-      !tail.startsAtBeginning
-      && lines.length > 0
-      && parseTranscriptEntry(lines[0]) === null
-    ) {
-      lines.shift();
-    }
-
     let latest = null;
     let trail = [];
-    for (const line of lines) {
-      if (!line.trim()) continue;
-      const entry = parseTranscriptEntry(line);
-      if (entry === null) continue;
+    for (const entry of tailEntries(tail)) {
       if (matches(entry)) {
         latest = entry;
         trail = [];
@@ -329,6 +338,101 @@ function resolveCodexWindow(modelContextWindow, env = process.env) {
     ?? positiveNumber(modelContextWindow);
 }
 
+const VIBE_JOURNAL_NAME = /^\d+\.jsonl$/;
+
+// A segment is named by a zero-padded counter, so a numeric sort puts the newest one first
+// however wide the counter grows.
+function vibeJournalSegments(sessionRoot) {
+  const directory = path.join(sessionRoot, 'journal');
+  return fs.readdirSync(directory)
+    .filter((name) => VIBE_JOURNAL_NAME.test(name))
+    .sort((left, right) => Number.parseInt(right, 10) - Number.parseInt(left, 10))
+    .map((name) => path.join(directory, name));
+}
+
+// A compaction's summarizer call is a model call too, and its input is the whole context it is
+// about to replace, so its usage describes a window the session no longer carries. The intent
+// names the compaction it serves, which is what tells its result apart from the turn whose fill
+// the session actually starts from.
+function compactionSummarizerIds(entries) {
+  const ids = new Set();
+  for (const entry of entries) {
+    if (entry.type !== 'action_intent') continue;
+    if (entry.payload?.request?.compaction_id === undefined) continue;
+    const actionId = entry.payload?.action_id;
+    if (typeof actionId === 'string') ids.add(actionId);
+  }
+  return ids;
+}
+
+function segmentFillTokens(segmentPath) {
+  let byteCount = DEFAULT_TAIL_BYTES;
+  for (;;) {
+    const tail = readTail(segmentPath, byteCount);
+    const entries = tailEntries(tail);
+    const summarizerIds = compactionSummarizerIds(entries);
+    let latest = null;
+    for (const entry of entries) {
+      if (entry.type !== 'action_result') continue;
+      if (summarizerIds.has(entry.payload?.action_id)) continue;
+      const inputTokens = positiveNumber(entry.payload?.result?.result?.usage?.input_tokens);
+      if (inputTokens !== null) latest = inputTokens;
+    }
+    if (latest !== null || tail.startsAtBeginning || byteCount >= MAX_TAIL_BYTES) return latest;
+    byteCount = Math.min(Math.max(byteCount * 4, DEFAULT_TAIL_BYTES), MAX_TAIL_BYTES);
+  }
+}
+
+// The newest segment can be empty while the turn that filled it is still being written, so a
+// segment without a counted model call falls through to the one before it.
+function vibeFillTokens(sessionRoot) {
+  for (const segmentPath of vibeJournalSegments(sessionRoot)) {
+    const fillTokens = segmentFillTokens(segmentPath);
+    if (fillTokens !== null) return fillTokens;
+  }
+  return null;
+}
+
+// The threshold lives in the runtime state of the generation the session is on, so the state
+// of a generation the session left behind is never the answer.
+function vibeCompactionThreshold(sessionRoot) {
+  try {
+    const current = JSON.parse(fs.readFileSync(path.join(sessionRoot, 'CURRENT'), 'utf8'));
+    const generation = typeof current?.generation === 'string' ? current.generation.trim() : '';
+    if (generation === '') return null;
+    const statePath = path.join(sessionRoot, 'generations', generation, 'runtime-state.json');
+    const state = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+    return positiveNumber(state?.core_settings?.context?.model_facts?.compaction_threshold);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Read the latest Vibe model-call usage from a session's journal segments.
+ *
+ * @param {string} sessionRoot - Vibe session folder holding `CURRENT` and `journal`.
+ * @returns {{fillTokens: number, compactionThreshold: number|null}|null} Usage, with a
+ * null threshold when the runtime state records none, or null when no segment holds a
+ * model call or the journal cannot be read.
+ */
+function readVibeUsage(sessionRoot) {
+  let fillTokens;
+  try {
+    fillTokens = vibeFillTokens(sessionRoot);
+  } catch {
+    return null;
+  }
+  if (fillTokens === null) return null;
+  return { fillTokens, compactionThreshold: vibeCompactionThreshold(sessionRoot) };
+}
+
+/** Prefer the shared window override to the window recorded by Vibe. */
+function resolveVibeWindow(compactionThreshold, env = process.env) {
+  return positiveNumber(env?.SESSION_HANDOVER_WINDOW_TOKENS)
+    ?? positiveNumber(compactionThreshold);
+}
+
 // A session can start in a subdirectory while the project settings sit at the repository
 // root, so the walk climbs to the directory holding `.git` (a directory, or a file in a
 // worktree). Outside a repository there is no boundary to stop at, so only the cwd counts.
@@ -424,4 +528,6 @@ module.exports = {
   fillFromOpenCodeTokens,
   readCodexUsage,
   resolveCodexWindow,
+  readVibeUsage,
+  resolveVibeWindow,
 };

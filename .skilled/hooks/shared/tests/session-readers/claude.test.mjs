@@ -133,6 +133,37 @@ test('an unreadable store is reported without throwing', () => {
   });
 });
 
+test('one message written as several lines reads as one turn with both results', async () => {
+  await withTempAsync('claude-split-message', async (root) => {
+    const fixture = claudeSession({ root });
+    const assistant = (uuid, block) => ({
+      type: 'assistant', uuid, sessionId: SESSION, timestamp: NOW,
+      message: { id: 'msg-split-1', role: 'assistant', content: [block] },
+    });
+    const result = (uuid, callId) => ({
+      type: 'user', uuid, sessionId: SESSION, timestamp: NOW,
+      message: { role: 'user', content: [{ type: 'tool_result', tool_use_id: callId, content: 'done' }] },
+    });
+    appendFileSync(fixture.filePath, [
+      assistant('claude-split-a', { type: 'tool_use', id: 'claude-split-call-1', name: 'Write', input: { path: 'a.txt' } }),
+      assistant('claude-split-b', { type: 'tool_use', id: 'claude-split-call-2', name: 'Bash', input: { command: 'ls' } }),
+      result('claude-split-r1', 'claude-split-call-1'),
+      result('claude-split-r2', 'claude-split-call-2'),
+      { type: 'assistant', uuid: 'claude-split-c', sessionId: SESSION, timestamp: NOW, message: { id: 'msg-split-2', role: 'assistant', content: [{ type: 'text', text: 'Both ran.' }] } },
+    ].map((entry) => `${JSON.stringify(entry)}\n`).join(''));
+
+    const read = await readSession({ runtime: 'claude', sessionId: SESSION, ...fixture.options });
+    assert.equal(read.ok, true);
+    const turn = read.items.find((item) => item.id === 'claude-split-a');
+    assert.deepEqual(turn.content.map((block) => block.id), ['claude-split-call-1', 'claude-split-call-2']);
+    assert.equal(read.items.some((item) => item.id === 'claude-split-b'), false);
+    assert.deepEqual(
+      read.items.filter((item) => item.role === 'toolResult').slice(-2).map((item) => item.toolCallId),
+      ['claude-split-call-1', 'claude-split-call-2'],
+    );
+  });
+});
+
 test('a local command report stays out of the history and the typed command stays in', async () => {
   await withTempAsync('claude-local-command', async (root) => {
     const fixture = claudeSession({ root });

@@ -304,7 +304,7 @@ export const HistoryLocatorSchema = z.object({
   handle: z.string().regex(/^hl1_[a-f0-9]{32}$/),
   mintedAt: z.string().min(1),
   provenance: z.object({
-    source: z.enum(['precompact', 'post_compaction']),
+    source: z.enum(['precompact', 'post_compaction', 'handover']),
     capturedAt: z.string().min(1),
   }).strict(),
 }).strict().superRefine((value, ctx) => {

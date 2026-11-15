@@ -84,7 +84,7 @@
 - Kill switch: SYSTEM_SESSION_RELAUNCH_DISABLED
 - Packets:
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop | Feature Specification: Session relaunch loop
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-relaunch/001-history-lookup-handover-integration | Feature Specification: Move the session history lookup out of the compaction path and into the in-session handover, so a receiving session can look up the sender's earlier turns.
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration | Feature Specification: Move the session history lookup out of the compaction path and into the in-session handover, so a receiving session can look up the sender's earlier turns.
   - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote | Feature Specification: Phase 3: relaunch-goal-quote
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity | Feature Specification: Phase 45: relaunch-takeover-lock-identity
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter | Feature Specification: Phase 48: skilled-loop-shared-nudge-formatter

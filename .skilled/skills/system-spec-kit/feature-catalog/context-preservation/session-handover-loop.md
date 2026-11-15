@@ -9,6 +9,7 @@ trigger_phrases:
   - "Codex session handover"
   - "Cursor session handover"
   - "Devin session handover"
+  - "Vibe session handover"
   - "/speckit:handoff session handover"
   - "skilled-loop claude"
   - "skilled-loop pi"
@@ -17,7 +18,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.29.0
+version: 1.0.30.0
 ---
 
 # Session handover loop (skilled-loop)
@@ -26,7 +27,7 @@ version: 1.0.29.0
 
 ## 1. OVERVIEW
 
-Shares a structured context handoff across six runtimes through adapter nudges, a validated note and a wrapper relaunch. Claude Code, Pi, OpenCode and Codex run automatically through their adapters. Cursor and Devin run on the `/speckit:handoff` command trigger only. The note's Goal opens with the packet's purpose line, as [Packet purpose carry](packet-purpose-carry.md) describes.
+Shares a structured context handoff across seven runtimes through adapter nudges, a validated note and a wrapper relaunch. Claude Code, Pi, OpenCode, Codex and Vibe run automatically through their adapters. Cursor and Devin run on the `/speckit:handoff` command trigger only. The note's Goal opens with the packet's purpose line, as [Packet purpose carry](packet-purpose-carry.md) describes.
 
 The loop ships on for Claude Code and off for every other runtime. A runtime's `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` turns it on (`1`) or off (`0`) for that runtime when it holds a value, `SYSTEM_SESSION_HANDOVER_ENABLED` decides when it holds one, and with both empty only Claude Code is on. `SYSTEM_SESSION_HANDOVER_DISABLED` and `SYSTEM_HOOKS_DISABLED` win over every enable flag. While the loop is off for a runtime, no adapter nudges and `/speckit:handoff` refuses.
 

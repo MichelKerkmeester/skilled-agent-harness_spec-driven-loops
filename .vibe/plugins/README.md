@@ -132,7 +132,7 @@ Each row is one OpenCode plugin. The entry names are the `name` values in `.vibe
 | `.opencode/plugins/ask-surface-guard.js` | `turn-end`, which sends a prose option menu back once | `post_agent` | `.skilled/hooks/session-lifecycle/vibe/turn-end.mjs` |
 | `.opencode/plugins/session-history-lookup.js` | `turn-start`, `compaction-post-tool` | `pre_agent`, `post_tool` | `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs`, `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs` |
 | `.opencode/plugins/decision-capture.js` | `decision-capture-ask`, plus the save nudge in `turn-start` | `post_tool`, `pre_agent` | `.skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs` |
-| `.opencode/plugins/session-handover.js` | No hook. Vibe has no idle or compaction event, so `skilled-loop vibe` and `/speckit:handoff` prepare the hop and the operator starts it | none | none |
+| `.opencode/plugins/session-handover.js` | `turn-start` delivers the claim seed, withdraws an armed hand-over and nudges past the threshold, `compaction-post-tool` nudges, `turn-end` arms the record and starts the killer | `pre_agent`, `post_tool`, `post_agent` | `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs`, `.skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs`, `.skilled/hooks/session-lifecycle/vibe/turn-end.mjs` |
 | `.opencode/plugins/codex-hooks-watchdog.js` | Not needed: it watches a Codex file a Vibe session never reads | none | none |
 | `.opencode/plugins/sk-git-preflight-advisory.js` | Not needed: sk-git's skill docs state the same rules | none | none |
 | `.opencode/plugins/system-speckit-completion.js` | Not needed: Vibe has no plugin tool registry, and the spec-kit CLI returns the same data | none | none |

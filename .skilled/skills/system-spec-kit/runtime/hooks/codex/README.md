@@ -18,10 +18,10 @@ description: "Codex CLI hook adapters that normalize Codex lifecycle payloads an
 | File | Purpose |
 |------|---------|
 | `shared.ts` | Reads and validates a bounded Codex hook payload, spawns the matching `../claude/*.js` adapter and emits Codex's `hookSpecificOutput` response envelope. Sets `SPECKIT_RUNTIME=codex` for the adapter it spawns so advisor diagnostics are labeled `codex`. |
-| `session-start.ts` | `SessionStart` adapter. Delegates to `session-prime.js` and emits the returned context. After a compaction that context can end with the bounded `## History Lookup` section, when the locator the `PreCompact` adapter stored is still fresh. |
+| `session-start.ts` | `SessionStart` adapter. Delegates to `session-prime.js` and emits the returned context. |
 | `user-prompt-submit.ts` | `UserPromptSubmit` adapter. Delegates to `user-prompt-submit.js` and normalizes its JSON response into the Codex envelope. |
 | `session-stop.ts` | `Stop` adapter. Delegates to `session-stop.js`. |
-| `compact-inject.ts` | `PreCompact` adapter. Delegates to `compact-inject.js`, which also stores a `transcript_path` history locator for the Codex session so the next `SessionStart` can offer the lookup. |
+| `compact-inject.ts` | `PreCompact` adapter. Delegates to `compact-inject.js`. |
 | `completion-evidence-stop.cjs` | Standalone Codex `Stop` sentinel. Reads the last-spec-folder state written by the lifecycle hooks, resolves the active packet and calls `../lib/completion-evidence-sentinel.cjs` for an advisory-only completion-evidence check. Never blocks the turn. |
 
 ---

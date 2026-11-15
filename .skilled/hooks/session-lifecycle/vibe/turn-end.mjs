@@ -3,11 +3,12 @@
 // MODULE: Vibe Turn End Hook
 // ───────────────────────────────────────────────────────────────────
 // Vibe runs every registered post_agent hook at the end of a main turn, and the
-// first deny skips the rest, so the two turn-end concerns share one entry: the
+// first deny skips the rest, so the three turn-end concerns share one entry: the
 // completion part records its advisory first and never denies, then the
-// ask-surface part may deny once with the reprompt Vibe injects as a retry. A
-// failing part contributes nothing, malformed input prints nothing, and the
-// hook never exits non-zero: a guard bug must never end a turn abnormally.
+// ask-surface part may deny once with the reprompt Vibe injects as a retry, and
+// last the hand-over part arms the relaunch. A failing part contributes nothing,
+// malformed input prints nothing, and the hook never exits non-zero: a guard bug
+// must never end a turn abnormally.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -34,6 +35,10 @@ const ASK_SURFACE_PART_URL = new URL(
   '../../ask-surface-guard/vibe/ask-surface-post-agent.mjs',
   import.meta.url,
 ).href;
+const HANDOVER_PART_URL = new URL(
+  '../../session-handover/vibe/handover-parts.mjs',
+  import.meta.url,
+).href;
 
 // The completion part runs first so its advisory is written even when the
 // ask-surface part denies and Vibe abandons the rest of the turn.
@@ -47,7 +52,14 @@ async function askSurfacePart(payload) {
   return buildAskSurfacePart(payload);
 }
 
-const PARTS = [completionPart, askSurfacePart];
+async function handoverPart(payload) {
+  const { armHandoverTurnEnd } = await import(HANDOVER_PART_URL);
+  return armHandoverTurnEnd(payload);
+}
+
+// The hand-over part runs last because the composer stops at the first deny, so a
+// turn another part sends back is never armed and ended; it never denies itself.
+const PARTS = [completionPart, askSurfacePart, handoverPart];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS

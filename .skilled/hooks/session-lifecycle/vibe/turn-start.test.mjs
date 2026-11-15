@@ -24,6 +24,10 @@ import { buildSaveNudgePart, composeTurnStart } from './turn-start.mjs';
 
 const HOOK = join(dirname(fileURLToPath(import.meta.url)), 'turn-start.mjs');
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
+const SESSION_FIXTURE = join(
+  REPO_ROOT,
+  '.skilled/hooks/shared/tests/session-readers/fixtures/vibe/post-agent',
+);
 
 /**
  * Runs the composer as Vibe runs it, under an environment that carries none of
@@ -170,4 +174,50 @@ test('the next turn at the same pending count injects nothing', () => {
     assert.match(buildSaveNudgePart(payload), /^\[decision-capture\] 1 /);
     assert.equal(buildSaveNudgePart(payload), '');
   });
+});
+
+test('the hand-over part adds nothing while its switch is off', (t) => {
+  // The recorded session sits past the threshold once the window is pinned to one token,
+  // so the hand-over part would nudge here if its switch were on.
+  const projectDir = mkdtempSync(join(tmpdir(), 'vibe-turn-start-off-'));
+  t.after(() => rmSync(projectDir, { recursive: true, force: true }));
+  const env = {
+    ...process.env,
+    SYSTEM_SKILL_ADVISOR_DISABLED: '1',
+    HOOK_FLAGS_CONFIG: join(projectDir, 'hook-flags.env'),
+    SESSION_HANDOVER_REPO_ROOT: projectDir,
+    XDG_RUNTIME_DIR: projectDir,
+    SESSION_HANDOVER_THRESHOLD: '0.80',
+    SESSION_HANDOVER_WINDOW_TOKENS: '1',
+    SKILLED_LOOP_ID: 'vibe-turn-start-off-loop',
+  };
+  for (const name of [
+    'AI_SESSION_CHILD',
+    'SESSION_HANDOVER_MAX_HOPS',
+    'SKILLED_LOOP_HOPS',
+    'SYSTEM_HOOKS_DISABLED',
+    'SYSTEM_SESSION_HANDOVER_DISABLED',
+    'SYSTEM_SESSION_HANDOVER_ENABLED',
+    'SYSTEM_SESSION_HANDOVER_VIBE_ENABLED',
+  ]) delete env[name];
+  const payload = payloadFor({ cwd: projectDir, transcript_path: SESSION_FIXTURE });
+
+  const off = spawnSync(process.execPath, [HOOK], {
+    input: JSON.stringify(payload),
+    env,
+    encoding: 'utf8',
+  });
+  assert.equal(off.status, 0, off.stderr);
+  assert.equal(off.stdout, '');
+
+  const on = spawnSync(process.execPath, [HOOK], {
+    input: JSON.stringify(payload),
+    env: { ...env, SYSTEM_SESSION_HANDOVER_VIBE_ENABLED: '1' },
+    encoding: 'utf8',
+  });
+  assert.equal(on.status, 0, on.stderr);
+  assert.match(
+    JSON.parse(on.stdout).hook_specific_output.additional_context,
+    /prepare --handoff/,
+  );
 });

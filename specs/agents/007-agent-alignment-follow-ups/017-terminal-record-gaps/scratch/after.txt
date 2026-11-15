@@ -1,0 +1,58 @@
+commit: e85ca894b9a + working tree
+$ (cd R && npm test)
+exit=0
+ Test Files  177 passed (177)
+      Tests  3019 passed | 9 skipped (3028)
+$ npm run typecheck
+exit=0
+$ census
+92 25 67 []
+$ drift
+[CONTRACT DRIFT] OK commands=2
+$ mirror
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+$ rg -n 'skip_to: gate_pre_synthesis|proceed_to: gate_pre_synthesis' deep-review.yaml
+rg exit=1
+$ rg -n -B1 'skip_to: phase_synthesis' deep-review.yaml
+586-          log: "Prior session already completed. Either archive the completed review/ tree and start a fresh session
+587:          skip_to: phase_synthesis
+--
+903-          run_first: record_terminal_gates
+904:          skip_to: phase_synthesis
+--
+1253-                      run_first: record_terminal_gates
+1254:                      skip_to: phase_synthesis
+--
+1297-                      run_first: record_terminal_gates
+1298:                      skip_to: phase_synthesis
+--
+1300-                  log: "Divergent review pivot {pivot_result.pivotId} failed closed ({pivot_result.failureReason});
+1301:                  skip_to: phase_synthesis
+--
+1304-              log: "Divergent review pivot integration error; failing closed to the existing synthesis path."
+1305:              skip_to: phase_synthesis
+--
+1308-            log: "Loop stopping. Reason: {reason}"
+1309:            skip_to: phase_synthesis
+$ schema test
+      Tests  17 passed (17)
+
+== after @review round 1 fixes (e85ca894b9a + working tree) ==
+$ step order in phase_loop
+877: step_refresh_lock:
+882: step_record_artifact_migration:
+889: step_read_state:
+930: step_check_max_duration:
+957: step_check_pause_sentinel:
+$ (cd R && npm test)
+exit=0
+ Test Files  177 passed (177)
+      Tests  3019 passed | 9 skipped (3028)
+$ typecheck
+exit=0
+$ census
+92 25 67 []
+$ drift
+[CONTRACT DRIFT] OK commands=2
+$ max-duration test
+      Tests  4 passed (4)

@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-agent-alignment-follow-ups/017-terminal-record-gaps",
+  "description": "Phase 17: terminal-record-gaps",
+  "keywords": [
+    "phase",
+    "terminal-record-gaps"
+  ],
+  "lastUpdated": "2026-11-15T10:39:26.206Z",
+  "specId": "017",
+  "folderSlug": "terminal-record-gaps",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "15-11-26_11-24__the-duration-stop-now-writes-the-terminal-gate.md",
+    "15-11-26_11-37__017-built-plus-review-round-1-fixes-duration.md",
+    "15-11-26_11-39__017-shipped-duration-stop-writes-the-terminal.md"
+  ]
+}
