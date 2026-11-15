@@ -138,7 +138,7 @@ The argument contract:
 
 - `--session` and `--handle` are required, and the operation is the first positional argument.
 - `search`, `browse` and `page` take one JSON object. `load` takes a JSON array or `{"historyIds":["..."]}`.
-- Claude runs the command as printed. Codex prefixes it with `SPECKIT_RUNTIME=codex`.
+- Claude runs the command as printed. Codex and Vibe prefix it with `SPECKIT_RUNTIME=codex` or `SPECKIT_RUNTIME=vibe`.
 - The locator must be less than 30 minutes old. A future timestamp counts as clock skew and is treated as stale.
 - The CLI checks the stored state, the handle, the session id, the runtime and `process.cwd()` against the locator workspace. It then checks the reader capability, resolves the exact session and re-derives the digest.
 - Success writes one JSON line and exits 0. Every refusal writes one `{"ok":false,"code":"<code>"}` line and exits 2.
