@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6f0b060645b8555589569e69c9ed90fec43066c37f26e55594846c8fc9cb3550",
+  "corpusHash": "862757b9571d68ec45bca256b0d59d69b50c190e21a8054d02e5f6a2e147181a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27491,
+  "includedPathCount": 27493,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8847,6 +8847,8 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-transcript-sweeps.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-baseline-conversation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-claude-compaction.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-pi-compaction.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-relaunch.md",
@@ -27523,7 +27525,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "90c4bd99db5a29d43e0524e841a02141187c4d57fdd9ab498ffaeaec348c60a4",
+  "manifestHash": "3627ae055bd0340af7e912bf5fa008c990f9d3f3cab2be215cb2b57e80cf8f61",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

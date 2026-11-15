@@ -1,5 +1,5 @@
 {
-  "manifestHash": "90c4bd99db5a29d43e0524e841a02141187c4d57fdd9ab498ffaeaec348c60a4",
+  "manifestHash": "3627ae055bd0340af7e912bf5fa008c990f9d3f3cab2be215cb2b57e80cf8f61",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -57372,6 +57372,12 @@
     "handoff note purpose line": [
       "handoff note purpose line"
     ],
+    "handoff recall baseline": [
+      "handoff recall baseline"
+    ],
+    "handoff recall with lookup": [
+      "handoff recall with lookup"
+    ],
     "handoff record command": [
       "handoff record command"
     ],
@@ -59123,6 +59129,9 @@
     "hop recall baseline": [
       "hop recall baseline"
     ],
+    "hop recall baseline conversation": [
+      "hop recall baseline conversation"
+    ],
     "hop recall baseline goal": [
       "hop recall baseline goal"
     ],
@@ -59134,6 +59143,9 @@
     ],
     "hop recall baseline tasks": [
       "hop recall baseline tasks"
+    ],
+    "hop recall conversation": [
+      "hop recall conversation"
     ],
     "hop withdrawn because the transcript was missing": [
       "hop withdrawn because the transcript was missing"
