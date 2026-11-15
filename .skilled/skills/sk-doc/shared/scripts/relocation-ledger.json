@@ -227,6 +227,21 @@
           "to": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop"
         }
       ]
+    },
+    {
+      "applied_at": "2026-11-15T14:29:19.195Z",
+      "base_commit": "db9c33b1f64e9e3188c71bc0bbb0a187fb3f7f08",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "hooks-plugins-extensions/session-handover/002-session-relaunch-loop",
+          "to": "hooks-plugins-extensions/session-handover/002-session-handover-loop"
+        }
+      ]
     }
   ]
 }

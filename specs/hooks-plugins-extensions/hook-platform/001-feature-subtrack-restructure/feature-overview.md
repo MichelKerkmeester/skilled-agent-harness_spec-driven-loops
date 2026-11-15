@@ -372,7 +372,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - OWNS | CHILD | specs/hooks-plugins-extensions/goal/003-goal-isolation/002-session-scoped-core | Implementation Phase: Session-Scoped Goal Core
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification | Feature Specification: Goal unification
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/004-goal-core-packet-backed | Feature Specification: Goal core packet-backed
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume | Feature Specification: Goals and running workflows survive a session hop on every runtime
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume | Feature Specification: Goals and running workflows survive a session hop on every runtime
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon | Feature Specification: Nested Goal Addon
   - 702 more hits omitted
 - Evidence: .skilled/hooks/goal/lib/goal-core.cjs:510 (`renderGoalBrief` returns '' unless the record is `active`, and re-reads the bound packet's `goal.md` instead of a stored copy), .skilled/hooks/goal/lib/goal-core.cjs:1127 (`bindGoal` resolves the packet inside the workspace and raises `PACKET_GOAL_NOT_FOUND` when there is no `goal.md`), .skilled/hooks/goal/bin/goal.cjs:6 ("The manage command for runtimes with no plugin tool surface ... It never writes goal state directly")
@@ -475,7 +475,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename | Feature Specification: Hook Library mk- Prefix Rename
   - MENTIONS | TOP-LEVEL | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat | Research Record: OpenCode v1 and v2 dual compatibility research
   - MENTIONS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes | Feature Specification: Phase 42: hooks-and-plugins-held-fixes
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/006-deep-review-2-remediation | Feature Specification: Phase 6: deep-review-2-remediation
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/006-deep-review-2-remediation | Feature Specification: Phase 6: deep-review-2-remediation
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/goal/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks | Feature Specification: OpenCode plugin browsability symlinks in the hooks tree
   - 15 more MENTIONS omitted
@@ -543,7 +543,7 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
 - Mirrors: .opencode/plugins/session-handover.js, .pi/extensions/session-handover.ts
 - Kill switch: SYSTEM_SESSION_HANDOVER_ENABLED=0
 - Packets:
-  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop | Feature Specification: Session relaunch loop
+  - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop | Feature Specification: Session relaunch loop
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration | Feature Specification: Move the session history lookup out of the compaction path and into the in-session handover, so a receiving session can look up the sender's earlier turns.
   - OWNS | CHILD | specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote | Feature Specification: Phase 3: relaunch-goal-quote
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity | Feature Specification: Phase 45: relaunch-takeover-lock-identity
@@ -654,9 +654,9 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/004-offer-lookup-at-claim | Feature Specification: Phase 4: offer-lookup-at-claim
   - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/005-deprecate-compaction-offer | Feature Specification: Phase 5: deprecate-compaction-offer
   - OWNS | CHILD | specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/006-docs-and-live-hop-proof | Feature Specification: Phase 6: docs-and-live-hop-proof
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title | Feature Specification: A Claude Code hop refuses a question dialog after prepare, starts the receiver on the packet goal and keeps the generated session title
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env | Feature Specification: Phase 8: history-test-database-env
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/040-claude-default-on-release-notes | Feature Specification: Claude Code session handover on by default and v4.0.2.1 release notes
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title | Feature Specification: A Claude Code hop refuses a question dialog after prepare, starts the receiver on the packet goal and keeps the generated session title
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/008-history-test-database-env | Feature Specification: Phase 8: history-test-database-env
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/040-claude-default-on-release-notes | Feature Specification: Claude Code session handover on by default and v4.0.2.1 release notes
   - MENTIONS | TOP-LEVEL | specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers | Feature Specification: Keep a packet's core purpose across handovers and compactions
 - Evidence: .skilled/skills/system-spec-kit/runtime/hooks/lib/history/core.ts:68 (`createHistoryLookup` wires projection, navigation, loads, pages and the reply bound), .skilled/skills/system-spec-kit/runtime/hooks/lib/history/response.ts:8 (`MAXIMUM_RECOVERY_REPLY_BYTES = 16_384`), .opencode/plugins/session-history-lookup.js:4 (the plugin saves a history locator on `session.compacted` and adds the `## History Lookup` section while it is fresh)
 - Unsure: The parent packet and all six of its phase children carry the `[YOUR_VALUE_HERE: ...]` placeholder in their problem statement, so the OWNS classification rests on the packet title and the folder relationship rather than a written problem. Cursor has no history adapter of its own; its `precompact.ts` proxies the Claude adapter, whose preCompact delivery is recorded as unconfirmed.
@@ -728,13 +728,13 @@ Packet rows read: `OWNS` means the feature is that packet's main subject, `MENTI
   - OWNS | TOP-LEVEL | specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports | Feature Specification: Pi loads hook adapters on every version
   - OWNS | CHILD | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage | Feature Specification: Phase 28: plugin-kill-switch-coverage
   - MENTIONS | TOP-LEVEL | specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches | Feature Specification: Doc validation off switches
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/034-default-off-opt-in | Feature Specification: Session relaunch hooks off by default, opt in with SYSTEM_SESSION_RELAUNCH_ENABLED
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/034-default-off-opt-in | Feature Specification: Session relaunch hooks off by default, opt in with SYSTEM_SESSION_RELAUNCH_ENABLED
   - MENTIONS | TOP-LEVEL | specs/hooks-plugins-extensions/git-hooks/001-git-hook-gate-reduction | Feature Specification: Git Hook Gate Reduction
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity | Feature Specification: Phase 15: dsh-hook-parity
   - MENTIONS | CHILD | specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards | Feature Specification: Phase 8: vibe-repo-guards
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/049-gate-3-delivery-residue | Feature Specification: Phase 49: Gate-3 delivery residue
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/012-ci-red-check-repairs | Feature Specification: Phase 12: ci-red-check-repairs
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume | Feature Specification: Goals and running workflows survive a session hop on every runtime
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/012-ci-red-check-repairs | Feature Specification: Phase 12: ci-red-check-repairs
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume | Feature Specification: Goals and running workflows survive a session hop on every runtime
   - 32 more hits omitted
 - Evidence: .skilled/hooks/shared/README.md:15 (the folder "is pure plumbing for the adapters that do", holding the kill-switch resolver, the stdin/JSON helpers and the session readers), .skilled/hooks/shared/hook-flags.cjs:206 (`isHookEnabled` resolves the master switch, the concern switch and the config file), .skilled/hooks/shared/hook-adapter-shared.cjs:29 (`readStdin` resolves at a 3000 ms deadline with the bytes read so far)
 - Unsure: `.skilled/hooks/shared/` is runtime-neutral and holds only a `dsh/` subfolder, so the "runtime adapter folders" half of this feature is the `system-spec-kit/runtime/hooks/` tree rather than a folder per runtime under `shared/`. The 44-hit count is the union of the `hook-flags` and `hook library` searches, and the 19/22 mirror counts come from `rg -l` over those two folders.

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/044-in-session-handover-rename",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/044-in-session-handover-rename",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "session handover rename",
+      "in-session handover rename",
+      "rename session relaunch",
+      "system session handover enabled",
+      "system in session handover enabled",
+      "session handover rename plan",
+      "session handover rename tasks",
+      "in session handover rename acceptance criteria",
+      "044-in-session-handover-rename operator decisions",
+      "session handover rename implementation summary"
+    ],
+    "key_topics": [
+      "session",
+      "handover",
+      "rename",
+      "in-session",
+      "relaunch",
+      "system",
+      "enabled",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "044-in-session-handover-rename"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/plugins/session-handover.js",
+      ".pi/extensions/session-handover.ts",
+      ".skilled/hooks/shared/hook-flags.cjs",
+      ".skilled/skills/system-spec-kit/command-metadata.json",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      "scratch/harness/live-hop.sh",
+      "scratch/gate.sh",
+      "scratch/rename2.pl",
+      ".skilled/changelog/skilled/v4.0.2.1.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-handover.js",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.ts",
+        "kind": "code",
+        "path": ".pi/extensions/session-handover.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "live-hop.sh",
+        "kind": "script",
+        "path": "scratch/harness/live-hop.sh",
+        "source": "derived"
+      },
+      {
+        "name": "gate.sh",
+        "kind": "script",
+        "path": "scratch/gate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "rename2.pl",
+        "kind": "file",
+        "path": "scratch/rename2.pl",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.1.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator calls the feature a session handover or an in-session handover, and the README and release notes describe it that way, but every surface a user touches said session relaunch: the hook folder `.skilled/hooks/session-relaunch/`, the switch `SYSTEMSESSIONRELAUNCHENABLED`, the seed `[session-relaunch] claim and continue handoff` and the docs",
+    "created_at": "2026-11-15T07:49:00Z",
+    "last_save_at": "2026-11-15T14:28:43.143Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a0e547418bcb89d671325926abee41d2f47ab4cbcd57f3fe4bb525cb0d94b88e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "42914aa751de312315d6f47e725df942f7e634fbff17175a67b55a6c676aa938",
+      "plan.md": "ffff6f1b452707f6e0a7e56dbeab0a0f2a4769c89b931b75f02c8ad9c3696b8c",
+      "tasks.md": "2c4798e8555e4b4f7a84859fb1eda57fb87d5b4938f91a3af0a619f249c5386e",
+      "decision-record.md": "a175bad3e41657351bc9369fd91d532cffce57d5e2c893d1f4facd2810878cd5",
+      "implementation-summary.md": "f7dc6568c082705d3353ffde335333a86d7a8ade6ed184e46bc5e75a817b2f25"
+    },
+    "last_active_at": null
+  }
+}

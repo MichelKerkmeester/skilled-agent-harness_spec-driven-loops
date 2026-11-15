@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/014-handover-docs-promotion",
+  "description": "Phase 013 made every interactive runtime launch hop to a fresh session in the same terminal, and live hops passed on Claude Code, Codex, Pi, OpenCode",
+  "keywords": [
+    "phase",
+    "every",
+    "interactive",
+    "runtime",
+    "launch",
+    "hop",
+    "fresh",
+    "session",
+    "same",
+    "terminal",
+    "live",
+    "hops",
+    "passed",
+    "claude",
+    "code",
+    "codex",
+    "opencode"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.890Z",
+  "specId": "014",
+  "folderSlug": "handover-docs-promotion",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons",
+  "description": "When background tasks run at Stop, `armPendingRecord` logs `deferred-background-tasks`",
+  "keywords": [
+    "background",
+    "tasks",
+    "run",
+    "stop",
+    "armpendingrecord",
+    "logs",
+    "deferred-background-tasks"
+  ],
+  "lastUpdated": "2026-11-15T14:28:40.985Z",
+  "specId": "014",
+  "folderSlug": "claude-stop-notice-and-crons",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

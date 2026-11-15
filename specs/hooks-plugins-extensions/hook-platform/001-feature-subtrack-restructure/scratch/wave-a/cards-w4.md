@@ -16,7 +16,7 @@
   - OWNS | CHILD | specs/hooks-plugins-extensions/goal/003-goal-isolation/002-session-scoped-core | Implementation Phase: Session-Scoped Goal Core
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification | Feature Specification: Goal unification
   - OWNS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/004-goal-core-packet-backed | Feature Specification: Goal core packet-backed
-  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/038-goal-and-workflow-resume | Feature Specification: Goals and running workflows survive a session hop on every runtime
+  - MENTIONS | CHILD | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume | Feature Specification: Goals and running workflows survive a session hop on every runtime
   - MENTIONS | CHILD | specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon | Feature Specification: Nested Goal Addon
   - 702 more hits omitted
 - Evidence: .skilled/hooks/goal/lib/goal-core.cjs:510 (`renderGoalBrief` returns '' unless the record is `active`, and re-reads the bound packet's `goal.md` instead of a stored copy), .skilled/hooks/goal/lib/goal-core.cjs:1127 (`bindGoal` resolves the packet inside the workspace and raises `PACKET_GOAL_NOT_FOUND` when there is no `goal.md`), .skilled/hooks/goal/bin/goal.cjs:6 ("The manage command for runtimes with no plugin tool surface ... It never writes goal state directly")

@@ -5,7 +5,7 @@
   "parent_id": "hooks-plugins-extensions",
   "children_ids": [
     "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration",
-    "hooks-plugins-extensions/session-handover/002-session-relaunch-loop"
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop"
   ],
   "manual": {
     "depends_on": [],

@@ -1,8 +1,8 @@
 {
   "source": {
     "command": "git log -M --diff-filter=R --name-status --format= HEAD",
-    "commit": "fe8bdd46266660b4df811ae6c34d3736ab971dae",
-    "renameRecords": 583817,
+    "commit": "db9c33b1f64e9e3188c71bc0bbb0a187fb3f7f08",
+    "renameRecords": 587257,
     "minRecords": 50,
     "minAgreement": 0.95,
     "derivedBy": "deriveRedirects in cite-drift-scan.mjs"
@@ -4176,6 +4176,12 @@
       "from": "specs/hooks-plugins-extensions/session-relaunch/",
       "to": "specs/hooks-plugins-extensions/session-handover/",
       "records": 121,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/",
+      "to": "specs/hooks-plugins-extensions/session-handover/002-session-relaunch-loop/",
+      "records": 3436,
       "agreement": 1
     },
     {
