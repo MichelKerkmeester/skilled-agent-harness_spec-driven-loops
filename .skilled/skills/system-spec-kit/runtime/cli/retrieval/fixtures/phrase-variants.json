@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1627fd0ed6851cd66d96eedb73ad77c8935409abe70b44bc69dc7b09a6f589cf",
+  "manifestHash": "000473eb681693e8f6e87a79c73311f1a6005383fcdd57c7f3fc1388fb5d6fed",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -28640,12 +28640,6 @@
     "compaction history lookup": [
       "compaction history lookup"
     ],
-    "compaction history recall baseline conversation": [
-      "compaction history recall baseline conversation"
-    ],
-    "compaction history recall conversation": [
-      "compaction history recall conversation"
-    ],
     "compaction packet purpose": [
       "compaction packet purpose"
     ],
@@ -36725,6 +36719,9 @@
     "deep loop save full auto": [
       "deep loop save full-auto"
     ],
+    "deep loop save full auto docs": [
+      "deep loop save full-auto docs"
+    ],
     "deep loop scenario contract": [
       "deep-loop scenario contract"
     ],
@@ -44629,6 +44626,18 @@
     "dsh dispatchenv allowlist": [
       "dsh dispatchEnv allowlist"
     ],
+    "dsh docs alignment": [
+      "dsh docs alignment"
+    ],
+    "dsh docs alignment implementation summary": [
+      "dsh docs alignment implementation summary"
+    ],
+    "dsh docs alignment plan": [
+      "dsh docs alignment plan"
+    ],
+    "dsh docs alignment tasks": [
+      "dsh docs alignment tasks"
+    ],
     "dsh dump config evidence": [
       "dsh dump-config evidence"
     ],
@@ -48067,6 +48076,9 @@
     ],
     "executor matrix audit tasks": [
       "executor matrix audit tasks"
+    ],
+    "executor missing failure mode docs": [
+      "executor_missing failure mode docs"
     ],
     "executor override approach": [
       "executor override approach"
@@ -57426,6 +57438,9 @@
     "handoff gate exemptions tasks": [
       "handoff gate exemptions tasks"
     ],
+    "handoff history lookup": [
+      "handoff history lookup"
+    ],
     "handoff note purpose line": [
       "handoff note purpose line"
     ],
@@ -58531,6 +58546,9 @@
     "history lookup at claim docs": [
       "history lookup at claim docs"
     ],
+    "history lookup at handoff claim": [
+      "history lookup at handoff claim"
+    ],
     "history lookup cli": [
       "history lookup CLI",
       "history lookup cli"
@@ -58543,12 +58561,6 @@
     ],
     "history lookup handover integration": [
       "history lookup handover integration"
-    ],
-    "history lookup recall baseline": [
-      "history lookup recall baseline"
-    ],
-    "history lookup recall with lookup": [
-      "history lookup recall with lookup"
     ],
     "history rewrite": [
       "history rewrite"
@@ -82154,6 +82166,9 @@
     "phase 18 plan": [
       "phase 18 plan"
     ],
+    "phase 18 research duration check": [
+      "phase 18 research duration check"
+    ],
     "phase 18 results": [
       "phase 18 results"
     ],
@@ -82597,6 +82612,9 @@
     ],
     "phase 23 relaunch cancel and test isolation": [
       "phase 23 relaunch cancel and test isolation"
+    ],
+    "phase 24 dsh docs alignment": [
+      "phase 24 dsh docs alignment"
     ],
     "phase 24 goal rebind claude codex hermes probes": [
       "phase 24 goal rebind claude codex hermes probes"
@@ -87123,9 +87141,6 @@
     ],
     "post compaction recovery snapshot": [
       "post-compaction recovery snapshot"
-    ],
-    "post compaction transcript lookup": [
-      "post-compaction transcript lookup"
     ],
     "post consolidation hardening train": [
       "post-consolidation hardening train"
@@ -95992,6 +96007,18 @@
     ],
     "research driven remediation": [
       "research driven remediation"
+    ],
+    "research duration check": [
+      "research duration check"
+    ],
+    "research duration check implementation summary": [
+      "research duration check implementation summary"
+    ],
+    "research duration check plan": [
+      "research duration check plan"
+    ],
+    "research duration check tasks": [
+      "research duration check tasks"
     ],
     "research escalation conditions": [
       "research escalation conditions"

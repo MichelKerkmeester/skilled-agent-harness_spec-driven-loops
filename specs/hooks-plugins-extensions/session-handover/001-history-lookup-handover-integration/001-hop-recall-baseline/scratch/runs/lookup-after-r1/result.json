@@ -1,0 +1,19 @@
+{
+  "arm": "lookup",
+  "label": "after-r1",
+  "runtime": "claude-code",
+  "asked": 0,
+  "trustDialogs": 0,
+  "cliReappeared": 0,
+  "sender": "135d1afc-11dc-48a2-8944-cc27d15e6de5",
+  "receiver": null,
+  "note": "20261115T101435Z-135d1afc-11dc-48a2-8944-cc27d15e6de5.md",
+  "note_status": "done",
+  "note_leaked": 1,
+  "sender_saw_code": 1,
+  "answer": "pending",
+  "lookup_attempted": 0,
+  "native_recall": 0,
+  "transcript_read": 0,
+  "reply": null
+}

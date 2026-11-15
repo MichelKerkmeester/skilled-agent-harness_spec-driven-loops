@@ -134,14 +134,17 @@ describe('workflow max duration', () => {
   for (const name of FILES) {
     const text = readFileSync(resolve(ASSETS, `${name}.yaml`), 'utf8');
 
-    it(`${name} holds step_check_max_duration at the top of the loop`, () => {
+    it(`${name} checks the duration after step_read_state, where every pass re-enters`, () => {
       const refreshIndex = text.indexOf('      step_refresh_lock:\n');
       const durationIndex = text.indexOf('      step_check_max_duration:\n');
       const dispatchIndex = text.indexOf('      step_dispatch_iteration:\n');
+      const readStateIndex = text.indexOf('      step_read_state:\n');
 
       expect(refreshIndex).toBeGreaterThanOrEqual(0);
       expect(durationIndex).not.toBe(-1);
       expect(refreshIndex).toBeLessThan(durationIndex);
+      expect(readStateIndex).toBeGreaterThanOrEqual(0);
+      expect(readStateIndex).toBeLessThan(durationIndex);
       expect(durationIndex).toBeLessThan(dispatchIndex);
 
       const step = phaseStep(text, 'step_check_max_duration');

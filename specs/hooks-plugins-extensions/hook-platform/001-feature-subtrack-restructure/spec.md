@@ -63,13 +63,13 @@ The listing holds the feature sub-tracks this packet keeps, the broad sub-tracks
 ### Out of Scope
 - The two held packets - their worktrees hold unmerged or uncommitted work, so they move after those worktrees merge.
 - A child phase inside another track's phase parent - a phase cannot leave its parent, so the overview points to it instead.
-- A sub-track for the session history lookup - its packet lives in `session-relaunch/` because the lookup is being folded into the handover.
+- A sub-track for the session history lookup - its packet lives in `session-handover/` because the lookup is being folded into the handover.
 - Editing packet prose or code - this is a filing change, so every packet moves as it is.
 - Pushing - the moves stay in the worktree.
 
 ### Held Packets
 
-- 002-session-relaunch-loop (currently `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop`) moves to `specs/hooks-plugins-extensions/session-relaunch/` after that worktree merges.
+- 002-session-relaunch-loop (currently `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop`) moves to `specs/hooks-plugins-extensions/session-handover/` after that worktree merges.
 - 012-file-relative-adapter-imports (currently `specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports`) moves to `specs/hooks-plugins-extensions/hook-platform/` after that worktree merges.
 
 `relocate.mjs` assigns the destination number when the move runs, so neither destination number is fixed here.
@@ -89,7 +89,7 @@ The listing holds the feature sub-tracks this packet keeps, the broad sub-tracks
 
 The approved pairs live in `scratch/move-map/map.txt`; this is the roll-up by destination. Each count is the expected output of `ls -d specs/hooks-plugins-extensions/<sub-track>/[0-9]*/ | wc -l` once the map is applied, and the two held packets are not counted.
 
-- Packets each sub-track holds once the map is applied: `ask-surface-guard` 1, `decision-capture` 1, `directive-lifecycle` 3, `dispatch` 1, `dist-freshness` 2, `env-secret-guard` 1, `git-hooks` 4, `git-live-follow` 2, `git-preflight-and-message-gate` 2, `git-primary-reconcile` 2, `goal` 3, `hook-platform` 5, `pi-cache-optimizer` 9, `pi-fast-mode` 2, `retrieval-integrations` 1, `session-relaunch` 1, `skill-advisor` 2, `spec-gate` 1.
+- Packets each sub-track holds once the map is applied: `ask-surface-guard` 1, `decision-capture` 1, `directive-lifecycle` 3, `dispatch` 1, `dist-freshness` 2, `env-secret-guard` 1, `git-hooks` 4, `git-live-follow` 2, `git-preflight-and-message-gate` 2, `git-primary-reconcile` 2, `goal` 3, `hook-platform` 5, `pi-cache-optimizer` 9, `pi-fast-mode` 2, `retrieval-integrations` 1, `session-handover` 1, `skill-advisor` 2, `spec-gate` 1.
 - Sub-tracks that hold no packet yet: `classifier-injection-screen`, `codex-watchdog`, `completion`, `git-hooks-check`, `git-worktree-guard`, `hook-install`, `mcp-route-guard`, `overlay-guard`, `permission-policy`, `post-edit-quality`, `session-cleanup`, `session-lifecycle`, `task-dispatch`.
 <!-- /ANCHOR:scope -->
 
@@ -104,7 +104,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | Every row of the approved map is applied: each `from` path in `scratch/move-map/map.txt` is gone and each `to` path exists. Verify: `while read -r from arrow to; do test -e "specs/$from" && echo "OLD $from"; test -e "specs/$to" \|\| echo "MISSING $to"; done < specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/scratch/move-map/map.txt \| wc -l` prints 0. |
-| REQ-002 | The two held packets stay where they are and `spec.md` names each one with its destination: `002-session-relaunch-loop` to `session-relaunch/` and `012-file-relative-adapter-imports` to `hook-platform/`. Verify: `ls -d specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports \| wc -l` prints 2, and `rg -c '^- 002-session-relaunch-loop\|^- 012-file-relative-adapter-imports' specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/spec.md` prints 2. |
+| REQ-002 | The two held packets stay where they are and `spec.md` names each one with its destination: `002-session-relaunch-loop` to `session-handover/` and `012-file-relative-adapter-imports` to `hook-platform/`. Verify: `ls -d specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports \| wc -l` prints 2, and `rg -c '^- 002-session-relaunch-loop\|^- 012-file-relative-adapter-imports' specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/spec.md` prints 2. |
 | REQ-003 | The three source sub-tracks that empty out are retired and the two that keep a held packet remain. Verify: `ls -d specs/hooks-plugins-extensions/goal-and-directive-hooks specs/hooks-plugins-extensions/hook-injection-pipeline specs/hooks-plugins-extensions/repo-commit-gates 2>/dev/null \| wc -l` prints 0, and `ls -d specs/hooks-plugins-extensions/pi-extensions specs/hooks-plugins-extensions/session-turn-boundaries \| wc -l` prints 2. |
 | REQ-004 | Every packet in the track passes strict validation. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions --strict --recursive --quiet \| grep '^RESULT:' \| grep -vc '^RESULT: PASSED'` prints 0. |
 | REQ-005 | The track root metadata names `hooks-plugins-extensions` in `description.json` and `graph-metadata.json`. Verify: `rg -n '"specFolder": "hooks"\|"specId": "hooks"\|"folderSlug": "hooks"\|"packet_id": "hooks"\|"spec_folder": "hooks"' specs/hooks-plugins-extensions/description.json specs/hooks-plugins-extensions/graph-metadata.json \| wc -l` prints 0. |

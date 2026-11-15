@@ -136,8 +136,14 @@ function isLocalCommandOutput(entry) {
   return typeof content === 'string' && LOCAL_COMMAND_OUTPUT.test(content);
 }
 
+// The store writes one line per content block, so a message that thinks and then
+// makes two tool calls is three assistant lines under one message id, with both
+// results after the last. Read as three turns, the first call would look
+// unanswered and the whole session would be refused, so consecutive lines of
+// one message are joined back into the single turn the model produced.
 function recordsFromEntries(entries) {
   const records = [];
+  let openMessageId = null;
   entries.forEach((entry, index) => {
     if (!entry || typeof entry !== 'object') return;
     if (entry.isSidechain === true || entry.isMeta === true || entry.isCompactSummary === true) return;
@@ -146,13 +152,23 @@ function recordsFromEntries(entries) {
     if (entry.type === 'assistant') {
       const id = typeof entry.uuid === 'string' && entry.uuid ? entry.uuid : `claude-entry-${index}`;
       const content = assistantBlocks(entry?.message?.content);
-      if (content.length > 0) records.push({ id, role: 'assistant', timestamp, content });
+      if (content.length === 0) return;
+      const messageId = typeof entry?.message?.id === 'string' && entry.message.id ? entry.message.id : null;
+      const previous = records[records.length - 1];
+      if (messageId !== null && messageId === openMessageId && previous?.role === 'assistant') {
+        previous.content.push(...content);
+        return;
+      }
+      records.push({ id, role: 'assistant', timestamp, content });
+      openMessageId = messageId;
       return;
     }
 
     if (entry.type === 'user') {
       if (isLocalCommandOutput(entry)) return;
-      records.push(...userRecords(entry, index, timestamp));
+      const added = userRecords(entry, index, timestamp);
+      if (added.length > 0) openMessageId = null;
+      records.push(...added);
     }
   });
   return records;

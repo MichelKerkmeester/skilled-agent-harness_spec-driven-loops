@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After the 120-minute default, `stepcheckmaxduration` jumps to `phasesynthesis` at `deep-review.yaml:903` without writing the terminal gate record",
     "created_at": "2026-11-15T10:10:52Z",
-    "last_save_at": "2026-11-15T10:39:26.206Z",
+    "last_save_at": "2026-11-15T11:33:48.726Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f7657ca7f816a577bafccb9e71726b5ec44fa6f590625796ca56967c8ea234f",
+    "source_fingerprint": "sha256:30ffe15759559ead2cf926fecc2d1471f516051ca8c9cb21b5fe953bd07f7435",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa82422c32ea97362a9d6952b67399c35af2a066036782981f329ba944bf6ce0",
       "plan.md": "91be06ac86726d0dae270350e1e250cb98065691e8112f0eb9c833f1b1d380ad",
       "tasks.md": "f34dd0cb14b1f8470f70b6e27652b50b31c6cac5078b4f66e71b4198108e8006",
-      "implementation-summary.md": "f8b82f61f2e98b6470bd54ff5f4b6257d49164db259264e0cdaee69ecc5e494c"
+      "implementation-summary.md": "77c6485203c41b9ff0bd7a22a5523fe03ee385451438b98e896da33140690a01"
     },
     "last_active_at": null
   }

@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/024-dsh-docs-alignment",
+  "description": "Phase 24: dsh-docs-alignment",
+  "keywords": [
+    "phase",
+    "dsh-docs-alignment"
+  ],
+  "lastUpdated": "2026-11-15T11:44:15.805Z",
+  "specId": "024",
+  "folderSlug": "dsh-docs-alignment",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "002-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

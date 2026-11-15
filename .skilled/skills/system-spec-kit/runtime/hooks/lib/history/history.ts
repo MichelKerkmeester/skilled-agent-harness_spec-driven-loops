@@ -327,10 +327,12 @@ export function projectHistoryEntries(
 // 5. PUBLIC PREDICATES
 // ───────────────────────────────────────────────────────────────────
 
-// The lookup CLI run by node, as every printed offer writes it. A shell call that
-// runs it is the model paging its own history, the same as a dedicated pager
-// tool. A call that only names the file, such as reading its source, is not.
-const LOOKUP_CLI_RUN = /\bnode\b[^\n]*hooks\/lib\/history\/cli\.js/;
+// The lookup run by node, as a printed offer writes it: the entry the handover
+// concern owns, or the compiled core that earlier offers named and that older
+// transcripts still hold. A shell call that runs either is the model paging its
+// own history, the same as a dedicated pager tool. A call that only names the
+// file, such as reading its source, is not.
+const LOOKUP_CLI_RUN = /\bnode\b[^\n]*(?:hooks\/lib\/history\/cli\.js|session-handover\/bin\/history-lookup\.mjs)/;
 
 function invokesLookupCli(value: unknown, depth = 0): boolean {
   if (typeof value === 'string') return LOOKUP_CLI_RUN.test(value);

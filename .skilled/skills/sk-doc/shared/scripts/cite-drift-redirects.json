@@ -1,8 +1,8 @@
 {
   "source": {
     "command": "git log -M --diff-filter=R --name-status --format= HEAD",
-    "commit": "fe6d51446fab12da94facfa6fa9847f1637a37ef",
-    "renameRecords": 581772,
+    "commit": "cede6d301ab6904e18a4a4da8509122cb79372bb",
+    "renameRecords": 583693,
     "minRecords": 50,
     "minAgreement": 0.95,
     "derivedBy": "deriveRedirects in cite-drift-scan.mjs"
@@ -3855,6 +3855,18 @@
       "agreement": 1
     },
     {
+      "from": ".skilled/hooks/in-session-handover/",
+      "to": ".skilled/hooks/session-handover/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".skilled/hooks/session-relaunch/",
+      "to": ".skilled/hooks/in-session-handover/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
       "from": ".skilled/skills/cli-classifier/cli-usage/",
       "to": ".skilled/skills/cli-classifier/cli-jev/",
       "records": 56,
@@ -4551,6 +4563,12 @@
       "agreement": 1
     },
     {
+      "from": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/",
+      "to": "specs/hooks-plugins-extensions/git-preflight-and-message-gate/001-template-driven-message-enforcement/",
+      "records": 80,
+      "agreement": 0.9876
+    },
+    {
       "from": "specs/system-deep-loop/",
       "to": "specs/system-deep-loop/z_archive/",
       "records": 1467,
@@ -5082,6 +5100,12 @@
       "from": "specs/system-speckit/054-weak-model-spec-authoring/review/lineages/pi-deepseek-2/",
       "to": "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/lineages/pi-deepseek-2/",
       "records": 60,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/",
+      "to": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/",
+      "records": 1597,
       "agreement": 1
     }
   ]

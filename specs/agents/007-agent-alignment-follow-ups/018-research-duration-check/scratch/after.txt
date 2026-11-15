@@ -1,0 +1,37 @@
+commit: 714420ec9a2 + working tree
+$ research loop order
+821: step_refresh_lock:
+826: step_record_artifact_migration:
+833: step_read_state:
+882: step_check_max_duration:
+908: step_run_now_check:
+$ moved lines are the same lines (each line appears once removed and once added)
+       0
+$ yaml
+yaml ok
+$ (cd R && npm test)
+exit=0
+ Test Files  177 passed (177)
+      Tests  3019 passed | 9 skipped (3028)
+$ max-duration test
+      Tests  4 passed (4)
+$ drift
+[CONTRACT DRIFT] OK commands=2
+
+== after @review P2 fixes ==
+$ duration test (now asserts step_read_state < step_check_max_duration in both workflows)
+      Tests  4 passed (4)
+$ the new assertion fails on the old research order (mutation)
+     × deep-research checks the duration after step_read_state, where every pass re-enters 2ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 3 passed (4)
+$ yaml
+yaml ok
+$ (cd R && npm test)
+exit=0
+ Test Files  177 passed (177)
+      Tests  3019 passed | 9 skipped (3028)
+$ typecheck
+exit=0
+$ drift
+[CONTRACT DRIFT] OK commands=2
