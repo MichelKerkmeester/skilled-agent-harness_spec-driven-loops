@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6817,
+    "missing-frontmatter": 6818,
     "ok": 19104,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27548,
+  "documentsScanned": 27549,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1658b59df7d046802fe20b987d1c3d153344833ff159f53e6cd648fc0529d959",
+  "manifestHash": "9d5c5a21162db9fc6191ea2fa09a4eb3a334d56ba3872015a7252239bdd72baa",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -34616,6 +34616,12 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research/ai-council/ai-council-strategy.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -53456,6 +53462,26 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research_archive/20261115T145700Z-api-budget-402/lineages",
       "reason": "excluded directory"
     },
     {

@@ -144,7 +144,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 17 | 017-terminal-record-gaps/ | Write the terminal gate record on the duration stop with stop reason `maxDurationReached`, and send every manual stop through the verdict step | Complete |
 | 18 | 018-research-duration-check/ | Move the deep-research duration check after `step_read_state` so it runs on every pass | Complete |
 | 19 | 019-vibe-agent-sync-check/ | Regenerate the two stale Vibe agent profiles and add the three Vibe drift checks to CI | Complete |
-| 20 | 020-agent-docs-alignment-research/ | Run five deep-research iterations on whether the READMEs and docs across the repo describe the current agents correctly | In Progress |
+| 20 | 020-agent-docs-alignment-research/ | Run five deep-research iterations on whether the READMEs and docs across the repo describe the current agents correctly | Complete |
 
 ### Phase Transition Rules
 
