@@ -64,6 +64,8 @@ contextType: "implementation"
 - [x] T015 Fresh Opus medium review of the diff. Verify: no P0 or P1; the seven P2 findings are fixed or recorded.
 - [x] T016 Live Vibe hop on the operator's plan (`scratch/harness/live-hop.sh`). Verify: `score.cjs` prints `5/5`.
 - [x] T017 Update the docs (`H/README.md`, `.skilled/commands/speckit/handoff.md`). Verify: drift guards print `all 4 guards PASSED`.
+- [x] T018 Amend the Vibe dispatch contract for a write run that passes `--add-dir` (`.skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md`). Verify: `quick_validate.py` prints `Skill is valid` and `validate_document.py` prints `Total issues: 0`.
+- [x] T019 Add the phase to the release notes (`.skilled/changelog/skilled/v4.0.2.1.md`). Verify: `check_changelog_shape.py` prints `PASS`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -91,6 +91,7 @@ cd "$RUN_DIR" && node "$REPO/.vibe/plugins/repo-guards/render-home-hooks.cjs" "$
 - **The typed command leaves the process table.** `vibe` is a Python launcher that execs the bundled Rust `vibe-rs`, which talks to `vibe-app-server`, so a recursion guard matches `vibe-rs` and `vibe-app-server`.
 - **Interactive Vibe exits 1.** A bare `vibe`, or a pipe with no `-p`, fails with `Error: Interactive mode needs a terminal. Use -p/--prompt to run without one.`
 - **`--output-dir` is the only audit trail.** It writes `export.json` and the session journal on every exit, whatever the exit code.
+- **`--add-dir` loads that folder's hooks too.** A build run that writes into the checkout passes `--add-dir "$REPO"`, and Vibe then also loads `$REPO/.vibe/hooks.toml`. Those hooks find the checkout with `git rev-parse --show-toplevel`, which prints nothing from a cwd outside git, so every hook fails with `Cannot find module '/.vibe/plugins/repo-guards/spec-gate.mjs'` and every tool call is skipped. Start such a run from a scratch folder inside the checkout, below its root, with `VIBE_HOME` still outside it.
 
 ### Provider Preflight
 
@@ -110,7 +111,7 @@ The seven fail-closed rules live in [hard-rules.json](./hard-rules.json): `print
 3. Dispatch print mode: `vibe -p TEXT ... </dev/null`, a pipe into a bare `vibe -p`, or `vibe --prompt-file PATH ... </dev/null`.
 4. Set `VIBE_HOME` to a fresh directory outside the checkout, on the same command line as the run, and render the repository hooks into it before the run.
 5. Set `AI_SESSION_CHILD=1` on the run, and `VIBE_SPEC_FOLDER` to the absolute packet path when the task is bound to a packet.
-6. Run from a scratch cwd outside the checkout, never the repository root.
+6. Run from a scratch cwd outside the checkout, never the repository root. A write run that passes `--add-dir` runs from a scratch folder inside the checkout instead, as the `--add-dir` gotcha explains.
 7. Name one roster alias with `--model`, and pass `--output-dir DIR`.
 8. Count a run complete only when `DIR/export.json` records `exit_code` 0 and `outcome` `finished`.
 9. Compose every dispatch as `{child preamble + resolved agent persona + task prompt}`, inlining the persona block, because the fresh `VIBE_HOME` a dispatch builds holds only `config.toml` and the rendered `hooks.toml`, never the `.vibe/agents/` profiles. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` section 6 "PERSONA INJECTION".

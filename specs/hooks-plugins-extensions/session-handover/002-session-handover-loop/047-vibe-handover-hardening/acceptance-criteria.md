@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/047-vibe-handover-hardening"
+    packet_pointer: "hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening"
     last_updated_at: "2026-11-15T17:27:55Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

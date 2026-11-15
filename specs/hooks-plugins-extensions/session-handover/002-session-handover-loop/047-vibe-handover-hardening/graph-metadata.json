@@ -55,7 +55,9 @@
       ".skilled/hooks/session-handover/README.md",
       ".vibe/hooks.toml",
       "scratch/analysis-verification.md",
-      "scratch/harness/live-hop.sh"
+      "scratch/harness/live-hop.sh",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+      ".skilled/changelog/skilled/v4.0.2.1.md"
     ],
     "entities": [
       {
@@ -167,6 +169,18 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.1.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -189,23 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After `prepare`, a looped Vibe session is told \"nothing ends this session\" while the nudge told it the loop ends it, and in the recorded deepseek-flash hop the sender spent 76.5 s and about 20 tool calls on that contradiction",
     "created_at": "2026-11-15T17:27:54Z",
-    "last_save_at": "2026-11-15T18:52:26.384Z",
+    "last_save_at": "2026-11-15T19:07:56.387Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +218,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe088f19c12629885cd1d8c1821275bf26415f6767b9770aff558c04212015f5",
+    "source_fingerprint": "sha256:6e83c73243592ad4828af03e5a8177e0a4ce2ba1687c55e6d8888011b1c8a2db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "49209741fc265645489ac64cafc21b46e6ec0ec94a19037a833bc7b18ddce408",
       "plan.md": "3110b93b2f465011bef17ccd5aed48fea78defae1d8f4179c423c8dad8d134e3",
-      "tasks.md": "fc4a5c46a7534b2258024b7d944e8dde908da03862ea84a7ec641958b9e1a837",
-      "decision-record.md": "96a8a71b2897d11174fa031488800bfdb2aa301a1aa56975e892a49b87ed88d3",
+      "tasks.md": "2826a93ead13b521cdf28ddcbe00e7c89d0b2f38268a4cac6abddacb0fea3c9e",
+      "decision-record.md": "96e6d19adc25f4e6a34525dd748ae4ab5fae5b1861d97049e393618fbeafcf76",
       "implementation-summary.md": "53f2ffb2f8a9869ffdb71a555751d102261fba7510bd7ee0acee5b346a24d6fa"
     },
     "last_active_at": null
