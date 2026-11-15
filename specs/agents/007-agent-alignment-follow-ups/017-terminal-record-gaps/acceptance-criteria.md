@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/017-terminal-record-gaps"
+    packet_pointer: "agents/007-agent-alignment-follow-ups/017-terminal-record-gaps"
     last_updated_at: "2026-11-15T10:10:54Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

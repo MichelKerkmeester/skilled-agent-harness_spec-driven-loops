@@ -1,5 +1,5 @@
 {
-  "manifestHash": "48eeabac353133cdb48c1f9a2e06b20d0710fa0c35556eb53e5271d9e7e089ab",
+  "manifestHash": "acc7c18a5865bc98f97d6ac949404011563b1d5f86e2fc7bba2055b567969db8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -82145,6 +82145,9 @@
     "phase 18 plan": [
       "phase 18 plan"
     ],
+    "phase 18 research duration check": [
+      "phase 18 research duration check"
+    ],
     "phase 18 results": [
       "phase 18 results"
     ],
@@ -95980,6 +95983,18 @@
     ],
     "research driven remediation": [
       "research driven remediation"
+    ],
+    "research duration check": [
+      "research duration check"
+    ],
+    "research duration check implementation summary": [
+      "research duration check implementation summary"
+    ],
+    "research duration check plan": [
+      "research duration check plan"
+    ],
+    "research duration check tasks": [
+      "research duration check tasks"
     ],
     "research escalation conditions": [
       "research escalation conditions"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2500286daf75f7bee80239e7abeef63267a0a6f4d2ed83c18561dcb3d4e87310",
+  "corpusHash": "0970f1e2f7caf8f17a75e35de52de72aeba7a442230d5e3cd2bb96e7be7f25a9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27516,
+  "includedPathCount": 27520,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9515,6 +9515,10 @@
     "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -27548,7 +27552,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "48eeabac353133cdb48c1f9a2e06b20d0710fa0c35556eb53e5271d9e7e089ab",
+  "manifestHash": "acc7c18a5865bc98f97d6ac949404011563b1d5f86e2fc7bba2055b567969db8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28660,6 +28664,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/scratch",
       "reason": "excluded directory"
     },
     {

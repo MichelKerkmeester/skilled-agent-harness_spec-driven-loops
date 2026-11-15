@@ -142,6 +142,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 15 | 015-review-verdict-gate-rule/ | Make the deep-review verdict follow the contract: a required quality gate still failing at the stop forces FAIL, read from one typed terminal-gates record | Complete |
 | 16 | 016-follow-up-fix-sweep/ | Write the terminal gate record on every stop path with its real stop reason, refuse an unknown gate, keep a registry-less lineage in the merge and fix stale lines from 008 to 014 | Complete |
 | 17 | 017-terminal-record-gaps/ | Write the terminal gate record on the duration stop with stop reason `maxDurationReached`, and send every manual stop through the verdict step | Complete |
+| 18 | 018-research-duration-check/ | Move the deep-research duration check after `step_read_state` so it runs on every pass | Complete |
 
 ### Phase Transition Rules
 
@@ -170,6 +171,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 014-prompt-improver-model-eligibility | 015-review-verdict-gate-rule | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 |
 | 015-review-verdict-gate-rule | 016-follow-up-fix-sweep | 015 is pushed and a fresh review names its open items | `validate.sh --strict` on 015 prints `RESULT: PASSED` |
 | 016-follow-up-fix-sweep | 017-terminal-record-gaps | 016 is pushed and its merge-port review names the two upstream gaps | `validate.sh --strict` on 016 prints `RESULT: PASSED` |
+| 017-terminal-record-gaps | 018-research-duration-check | 017 is pushed and records the research limitation | `validate.sh --strict` on 017 prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---

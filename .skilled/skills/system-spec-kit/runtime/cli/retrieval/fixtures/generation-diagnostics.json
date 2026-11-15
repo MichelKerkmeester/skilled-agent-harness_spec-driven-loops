@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6816,
-    "ok": 19073,
+    "ok": 19077,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27516,
+  "documentsScanned": 27520,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "48eeabac353133cdb48c1f9a2e06b20d0710fa0c35556eb53e5271d9e7e089ab",
+  "manifestHash": "acc7c18a5865bc98f97d6ac949404011563b1d5f86e2fc7bba2055b567969db8",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43967,
+      "ok": 43972,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -53442,6 +53442,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/017-terminal-record-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/scratch",
       "reason": "excluded directory"
     },
     {

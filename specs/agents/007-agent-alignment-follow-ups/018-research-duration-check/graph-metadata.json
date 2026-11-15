@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/018-research-duration-check",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/018-research-duration-check",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "research duration check",
+      "phase 18 research duration check",
+      "research duration check plan",
+      "research duration check tasks",
+      "research duration check implementation summary"
+    ],
+    "key_topics": [
+      "research",
+      "duration",
+      "check",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "deep-research",
+      "yaml",
+      "stepcheckmaxduration",
+      "runs"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/deep/assets/deep-research.yaml",
+      "scratch/baseline.txt",
+      "scratch/after.txt",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Move",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In `deep-research.yaml`, `stepcheckmaxduration` runs before `stepreadstate`, and `steploopdecision` returns to `stepreadstate`",
+    "created_at": "2026-11-15T11:22:12Z",
+    "last_save_at": "2026-11-15T11:42:50.047Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:258e63212e12338b10929621f332ad83cec090c5f4dd5389f2f1638e9c940c05",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "66e23434c10fb9652408093187d1e6f187bb35dbd7262c80fc3c2afd9f52613a",
+      "plan.md": "0012462a0ee1848b16a8934461b2ceb09f3e197553c923241e41f0a53e4241e5",
+      "tasks.md": "4823c3d28bc9a68d3ae5e8ef7b5820a4aaac6bb9caff6e597a89f6fd9ffc84ca",
+      "implementation-summary.md": "7cab5c31c4b50d9a7329e43c44471631a2dd671616c4bfcf39673d6af884e1f2"
+    },
+    "last_active_at": null
+  }
+}
