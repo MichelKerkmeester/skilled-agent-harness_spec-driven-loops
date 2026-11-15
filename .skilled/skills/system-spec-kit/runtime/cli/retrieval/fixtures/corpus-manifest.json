@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d079f0cb677142485d5d32a51639b964382ca00e663e9281c815f9ef3bd1333e",
+  "corpusHash": "18847f584753218d4b84b9ec723b32bc7f1ea008c54bd91132754c723d8ad464",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27578,
+  "includedPathCount": 27581,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12107,6 +12107,9 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/fanout-attribution.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/spec.md",
@@ -27610,7 +27613,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5bc1a36a5a41f3b6bc9cbc1ff5142266c1a7f57959c9d078dcf72fbc26f3554a",
+  "manifestHash": "f776456f067d706d8b8c5c4bed2eef7b590e5f9beea56bb61c52d4ca896ad22b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31330,6 +31333,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/scratch",
       "reason": "excluded directory"
     },
     {
