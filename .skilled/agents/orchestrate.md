@@ -376,7 +376,7 @@ The transport that answers a typed judgment question lives in the classifier hub
 □ Advisory hints treated as optional: focus steers attention only; drift is surfaced without auto-mutation
 □ Context Package includes all 6 sections (if from @context — includes Nested Dispatch Status section)
 □ @code's `Quality Gate` field read and handled (if from @code: see Reading @code's Quality Gate below)
-□ @review's verdict read from its final `Review status:` line (if from @review: the score is advisory)
+□ @review's verdict read from its final `Review status:` line (if from @review: the score is advisory; a pass at LOW confidence goes to synthesis with its `Not checked:` line quoted, and @review is dispatched once more to close that gap)
 ```
 
 ### Reading @code's Quality Gate

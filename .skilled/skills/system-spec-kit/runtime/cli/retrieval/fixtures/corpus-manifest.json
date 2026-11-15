@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fe1bbf7b5ed24e7b3433b2a86d3d9df50057e1408f5a3db22b8544a512ba63ed",
+  "corpusHash": "9630da1697fc083647ef847ea26982363064127ddc0f8a1c190d7b58c269bb74",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27505,
+  "includedPathCount": 27511,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9506,6 +9506,11 @@
     "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -18112,6 +18117,7 @@
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/005-caller-sweep-and-verification/tasks.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/goal.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/spec.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/decision-record.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/goal.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/plan.md",
@@ -27537,7 +27543,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4aa549bd0472309e5220d7e7b1db01e18578510396679ff1f1d6b39c27ba8aa3",
+  "manifestHash": "52023f2294a3df129518120e9fcfe42d8a28fd1c8e0126210f473baa935d873b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28641,6 +28647,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/scratch",
       "reason": "excluded directory"
     },
     {

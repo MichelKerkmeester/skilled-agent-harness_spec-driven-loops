@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4aa549bd0472309e5220d7e7b1db01e18578510396679ff1f1d6b39c27ba8aa3",
+  "manifestHash": "52023f2294a3df129518120e9fcfe42d8a28fd1c8e0126210f473baa935d873b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1899,6 +1899,9 @@
     ],
     "007 ollama and bge promotion rollup": [
       "007-ollama-and-bge-promotion rollup"
+    ],
+    "007 open findings follow up operator decisions": [
+      "007-open-findings-follow-up operator decisions"
     ],
     "007 phase 002 changelog": [
       "007 phase 002 changelog"
@@ -52053,6 +52056,21 @@
     "follow up defect fixes tasks": [
       "follow up defect fixes tasks"
     ],
+    "follow up fix sweep": [
+      "follow up fix sweep"
+    ],
+    "follow up fix sweep acceptance criteria": [
+      "follow up fix sweep acceptance criteria"
+    ],
+    "follow up fix sweep implementation summary": [
+      "follow up fix sweep implementation summary"
+    ],
+    "follow up fix sweep plan": [
+      "follow up fix sweep plan"
+    ],
+    "follow up fix sweep tasks": [
+      "follow up fix sweep tasks"
+    ],
     "follow up fixes": [
       "follow up fixes"
     ],
@@ -82003,6 +82021,9 @@
     ],
     "phase 16 ended goal mark match": [
       "phase 16 ended goal mark match"
+    ],
+    "phase 16 follow up fix sweep": [
+      "phase 16 follow up fix sweep"
     ],
     "phase 16 handover trigger review": [
       "phase 16 handover trigger review"

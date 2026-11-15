@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6816,
-    "ok": 19062,
+    "ok": 19068,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27505,
+  "documentsScanned": 27511,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4aa549bd0472309e5220d7e7b1db01e18578510396679ff1f1d6b39c27ba8aa3",
+  "manifestHash": "52023f2294a3df129518120e9fcfe42d8a28fd1c8e0126210f473baa935d873b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43952,
+      "ok": 43959,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -53434,6 +53434,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/scratch",
       "reason": "excluded directory"
     },
     {
