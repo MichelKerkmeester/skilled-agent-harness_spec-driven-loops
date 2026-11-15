@@ -150,6 +150,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 22 | 022-dsh-verify-iteration-executor/ | Make `verify-iteration.cjs`, the post-dispatch gate the review and research workflows run, fail a non-native iteration that names no executor with `executor_missing`. Native runs, unconfigured runs and fan-out lineages stay unchecked | Complete |
 | 23 | 023-dsh-lineage-executor-check/ | Check a fan-out lineage against the `invocation-metadata.json` the fan-out runner writes, so a CLI lineage fails with `executor_missing` when that file is missing or names another executor. It also lets `validateIterationOutputs` take the `iteration_start` row on a log with no ledger | Complete |
 | 24 | 024-dsh-docs-alignment/ | Bring the v4.0.2.1 release notes, the root and spec-kit READMEs and the deep-loop protocol and skill docs in line with the executor row, the failure rows, the full-auto loop save and the `executor_missing` gate phases 019 to 023 shipped. Doc edits only | Complete |
+| 25 | 025-alignment-open-findings/ | Fix the findings the alignment run left open: two red CI checks, the deep-review FAIL rule for a failed required gate, Mistral Vibe in the handover docs, a release coverage miss and two advisor routing misses. Docs, intent signals and one allowlist entry | Complete |
 
 ### Phase Transition Rules
 
@@ -185,6 +186,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 021-dsh-remaining-direct-writers | 022-dsh-verify-iteration-executor | Phase 021 is in the base, because phase 022 checks the executor on the `iteration_start` row phases 019 to 021 write | `rg -c "parsed.type === .iteration_start." .skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts` prints 1 |
 | 022-dsh-verify-iteration-executor | 023-dsh-lineage-executor-check | Phase 022 is in the base, because phase 023 replaces the lineage exemption in the check it added | `rg -c "function checkExecutorProvenance" .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` prints 1 |
 | 023-dsh-lineage-executor-check | 024-dsh-docs-alignment | Phase 023 is in the base, because phase 024 documents the lineage check it added | `rg -c "const INVOCATION_METADATA" .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` prints 1 |
+| 024-dsh-docs-alignment | 025-alignment-open-findings | Phase 024 is in the base, because phase 025 edits the release notes and README lines it wrote | `rg -c "Each Pass Keeps Its Executor" .skilled/changelog/skilled/v4.0.2.1.md` prints 1 |
 <!-- /ANCHOR:phase-map -->
 
 ---

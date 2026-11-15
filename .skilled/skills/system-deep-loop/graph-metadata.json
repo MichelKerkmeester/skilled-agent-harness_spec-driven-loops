@@ -67,7 +67,9 @@
     "severity weighted findings",
     "convergence review",
     "find out everything",
-    "findings stop changing"
+    "findings stop changing",
+    "executor_missing gate",
+    "names no executor"
   ],
   "derived": {
     "trigger_phrases": [

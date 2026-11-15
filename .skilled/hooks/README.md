@@ -33,7 +33,7 @@ A session-handover concern, documented in [session-handover/](./session-handover
 
 Beyond those real-code cores, this tree is now the **full browsable index of every repo-authored hook**. Skill-owned hooks whose logic is genuinely their skill's engine still keep their **code** in the owning skill, but each is **symlinked in** here under `<concern>/<runtime>/` (the symlink is the index entry, the code stays local): so one directory shows every hook the repo installs, organized by concern and runtime.
 
-Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED` switch and its canonical `SYSTEM_<CONCERN>_DISABLED` switch. The message gate has none on purpose: the commit, PR and branch rules carry no bypass on any surface, and the place to change them is the rules block in the sk-git templates. The default is enabled, except `session-handover`, which ships on for Claude Code and off for every other runtime. The flag that decides is `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` when it holds a value, where `<RUNTIME>` is `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR` or `DEVIN`, then `SYSTEM_SESSION_HANDOVER_ENABLED` when it holds one. With both empty or unset, only Claude Code runs it. So `SYSTEM_SESSION_HANDOVER_ENABLED=1` with `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` is on for every runtime except Claude Code. The disable switch and the master switch still win over every enable flag. Truthy disable values are `1`, `true`, `yes`, and `on` (case-insensitive). See the kill-switch index below for the complete concern and alias inventory.
+Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED` switch and its canonical `SYSTEM_<CONCERN>_DISABLED` switch. The message gate has none on purpose: the commit, PR and branch rules carry no bypass on any surface, and the place to change them is the rules block in the sk-git templates. The default is enabled, except `session-handover`, which ships on for Claude Code and off for every other runtime. The flag that decides is `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` when it holds a value, where `<RUNTIME>` is `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` or `VIBE`, then `SYSTEM_SESSION_HANDOVER_ENABLED` when it holds one. With both empty or unset, only Claude Code runs it. So `SYSTEM_SESSION_HANDOVER_ENABLED=1` with `SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0` is on for every runtime except Claude Code. The disable switch and the master switch still win over every enable flag. Truthy disable values are `1`, `true`, `yes`, and `on` (case-insensitive). See the kill-switch index below for the complete concern and alias inventory.
 
 ### Kill-switch index
 
@@ -196,14 +196,15 @@ hooks/
 |   +-- pi/       task-dispatch-guard.ts (real file; `.pi/extensions/` re-exports it)
 |   +-- dsh/      task-dispatch-guard.mjs (real file; the DSH adapters folder symlinks to it)
 |   `-- opencode/ system-deep-loop-guard.js (browsability symlink -> .opencode/plugins/)
-+-- session-handover/              # Claude, Pi, OpenCode and Codex context nudge and relaunch adapters
++-- session-handover/              # Claude, Pi, OpenCode, Codex and Vibe context nudge and relaunch adapters
 |   +-- bin/session-handover.cjs
 |   +-- claude/compact-pointer.mjs, context-nudge.mjs, stop-arm.mjs, subagent-guard.mjs
 |   +-- codex/context-nudge.mjs, prompt-seed.mjs, shared.mjs, stop-arm.mjs
 |   +-- pi/session-handover.ts, session-handover.test.ts
 |   +-- opencode/session-handover.js (browsability symlink -> .opencode/plugins/session-handover.js)
+|   +-- vibe/handover-parts.mjs
 |   +-- lib/context-usage.cjs, nudge.cjs, relaunch-core.cjs, killer.cjs, goal-handover.cjs, hop-history.cjs, withdraw.cjs
-|   `-- tests/ fourteen Node test files plus payload fixtures
+|   `-- tests/ nineteen Node test files plus payload fixtures
 `-- goal/                            # cross-runtime passive session-goal tracking (sibling of opencode-goal)
     +-- lib/goal-core.cjs, goal-core.test.cjs
     +-- lib/goal-slice.cjs, goal-slice.test.cjs   # packet goal.md projections shared with the OpenCode plugin

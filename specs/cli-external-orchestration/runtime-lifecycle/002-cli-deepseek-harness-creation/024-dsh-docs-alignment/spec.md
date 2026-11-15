@@ -26,9 +26,9 @@ contextType: "general"
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/407-dsh-docs-alignment` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 24 of 24 |
+| **Phase** | 24 of 25 |
 | **Predecessor** | 023-dsh-lineage-executor-check |
-| **Successor** | None |
+| **Successor** | 025-alignment-open-findings |
 | **Handoff Criteria** | Each edited doc validates with no new issue, the contract drift check prints OK and both spec folders validate strict |
 <!-- /ANCHOR:metadata -->
 

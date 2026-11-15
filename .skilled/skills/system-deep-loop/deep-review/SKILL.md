@@ -50,7 +50,7 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 - Skip the state machine: `deep-review-state.jsonl`, `deep-review-config.json`, `deltas/`, `prompts/`, `logs/`
 - Manage iteration state outside the resolved local review packet under `{spec_folder}/review/`
 
-**COMMAND-DRIVEN FAN-OUT IS SUPPORTED:** use `--executor`/`--executors`/`--concurrency` flags on `/deep:review`. The command's YAML `step_fanout_spawn` owns multi-lineage dispatch; `fanout-merge.cjs` applies strongest-restriction (any lineage active P0 → merged FAIL). This is not ad-hoc shell dispatch — it is the canonical fan-out path. Intra-lineage wave orchestration remains deferred.
+**COMMAND-DRIVEN FAN-OUT IS SUPPORTED:** use `--executor`/`--executors`/`--concurrency` flags on `/deep:review`. The command's YAML `step_fanout_spawn` owns multi-lineage dispatch; `fanout-merge.cjs` applies strongest-restriction (any lineage with an active P0, or a required quality gate still failing at its stop → merged FAIL). This is not ad-hoc shell dispatch — it is the canonical fan-out path. Intra-lineage wave orchestration remains deferred.
 
 **ALWAYS:**
 - Invoke via `/deep:review :auto` or `/deep:review :confirm`
@@ -182,7 +182,7 @@ An unconverted out-of-scale severity reaches the cross-lineage merge unranked, w
 |---------|-----------|
 | **PASS** | No P0/P1 findings, P2 findings recorded as advisories (`hasAdvisories: true`) |
 | **CONDITIONAL** | P1 findings present, remediation plan included in report |
-| **FAIL** | Any P0 finding confirmed after adversarial self-check |
+| **FAIL** | Any P0 finding confirmed after adversarial self-check, or a required quality gate (evidence, scope, coverage) still failing at the terminal stop |
 
 ### Acceptance-Coverage Signal
 
@@ -216,7 +216,7 @@ Downstream automation (including the synthesis phase and CI gate parser) parses 
 **What the check proves:** the post-dispatch verifier validates the *shape* of this line, and nothing more: exactly one well-formed verdict line, and it is final.
 It does not read findings, so a `PASS` written above active P1 findings satisfies it, and no parser here makes the line true.
 The verdict a release decision reads is recomputed from the findings registry.
-In a fan-out run the cross-lineage merge is the authoritative rollup, where any active P0 becomes a merged FAIL.
+In a fan-out run the cross-lineage merge is the authoritative rollup, where any active P0, or any lineage's required quality gate still failing at its stop, becomes a merged FAIL.
 Treat the final line as the leaf's self-report and the registry as the record.
 
 ### Executor Selection Contract
