@@ -1,6 +1,6 @@
 # VIB-HK verdicts
 
-One row per hook scenario. `Runner row` is the `vibe` row of the scenario's `matrix.md` as last run. `hand-driven hop` marks the one scenario the runner cannot drive: its verdict comes from a live hop run by hand in a tmux pane and recorded in `hop-record.md`, not from a runner row.
+One row per hook scenario this phase owns. `Runner row` is the `vibe` row of the scenario's `matrix.md` as last run. `hand-driven hop` marks the one scenario the runner cannot drive: its verdict comes from a live hop run by hand in a tmux pane and recorded in `hop-record.md`, not from a runner row.
 
 | Scenario | Title | Verdict | Runner row | Evidence |
 |---|---|---|---|---|
@@ -43,3 +43,4 @@ Every runner scenario sends two or more user messages, and VIB-HK-026 spans two 
 - VIB-HK-026 passed as a live hop driven by hand. It needs `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`, and the printed claim command leaves out `--trust` (`scratch/live/VIB-HK-026/hop-record.md`).
 - VIB-HK-009, 010, 011, 014, 015, 016, 017, 021, 022 and 023 each gained a second sent turn on 2026-11-15. These are a second completion claim accepted with the advisory rewritten, a plain file read allowed after a dotenv refusal, an ordinary shell call allowed after a dispatch refusal, a `git status` that finds only a compliant commit, the refusal reason carried into a file, the hygiene finding cleared by the fix, no dist warning for an edit outside the package, the resumed session holding the earlier question, a dotenv refusal logged after the restart, and the skill's prompt carried into a file.
 - VIB-HK-014 and VIB-HK-017 failed their new turn on the first run, and both causes were in the scenario, not the hook. In VIB-HK-014 the model committed `a.txt` with a compliant message after the refusal, which the gate allows, so the check now accepts that branch. In VIB-HK-017 the model read "this folder" as the package's `src/`, so the prompt now names the project root. Both reruns passed 3/3.
+- VIB-HK-027, the automatic handover tier, came in with the merge of origin/main as `2d4fb4d0f92`. It belongs to the automatic handover work, not this phase, so it has no row here. The same merge cut VIB-HK-006 from four turns to three by dropping its history-offer turn. Its 4/4 row is from the four-turn version, which covered every turn the three-turn version checks.

@@ -171,7 +171,7 @@
     ],
     "causal_summary": "The operator subscribed to Mistral, whose plan serves DeepSeek V4.1 Flash 1017 and GLM-5.3-Flash beside Mistral's own models and its Vibe coding agent",
     "created_at": "2026-11-14T12:01:21Z",
-    "last_save_at": "2026-11-15T13:31:21.089Z",
+    "last_save_at": "2026-11-15T13:49:05.154Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,7 +184,7 @@
       "spec.md": "a447e8e4bb6ef124301ef84066ed32600fedfff41f656d1a2e30190ee00bd333",
       "decision-record.md": "d8425c69e4ae33b5d1ee38db151dbd898f831ede62797ef6384adf77cbccb5ed"
     },
-    "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier",
-    "last_active_at": "2026-11-15T13:31:21.089Z"
+    "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios",
+    "last_active_at": "2026-11-15T13:49:05.154Z"
   }
 }

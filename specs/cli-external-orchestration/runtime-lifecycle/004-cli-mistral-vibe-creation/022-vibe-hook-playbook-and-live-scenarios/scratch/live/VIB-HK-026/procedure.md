@@ -29,3 +29,7 @@ Run these in a terminal at the repository root, with `MISTRAL_API_KEY` exported 
 - The note under `.skilled/skills/.state/session-handover/handoffs/` carries `status: claimed`, `claimed_at` and `claimed_by` in its frontmatter, and `status: done` once the receiver runs `complete`.
 - `session-handover.cjs history` prints a `claimed` line for the note, with runtime `vibe`.
 - The fresh session's first turn carries the claim's output.
+
+## Scope after the automatic tier
+
+The automatic handover tier, VIB-HK-027, arrived with the merge of origin/main as `2d4fb4d0f92`, and the scenario now frames this manual tier as the fallback for a hand-typed `/speckit-handoff`. The hop recorded beside this file is that fallback: the session followed the handoff command by hand, `prepare` returned `RESULT=manual`, and the claim command was run from the shell.
