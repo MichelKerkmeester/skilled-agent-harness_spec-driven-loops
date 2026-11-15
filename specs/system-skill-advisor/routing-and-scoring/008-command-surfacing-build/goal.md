@@ -327,6 +327,7 @@ and findings belong here.
 | Arena build on the committed tree | ok | 0173020dfc2: ok true, 22 copied trees, trackedDotenv names the two tracked .env.example files. Needed the system-spec-kit runtime rebuild (stale_build) and T053 (git ENOBUFS), and one clone run straight after a commit raced the hook's repack and passed on rerun |
 | Session save after phase 032 | Saved | 6 operator answers written as Q074 to Q079, 10 matched to existing rows Q059 to Q073, no orphan sessions |
 | catch-up merge of origin/main 695f4191d36 | done | c88dabe8292: 13 conflicts resolved, own spec-kit changelog renumbered to v2.13.4.0 (main published v2.13.3.0), suite 2313/0, doctor 1239/0, Vibe 91/0, floors 24/44 0/35 2/44 and eval [160,49,21,5] cmp-equal, links 0 broken, every hub manifest fresh. Waiting on operator: the v4.0.2.1 root release note range now names main's v2.13.3.0 |
+| Stopped arm lines set aside | Recorded | claude 72, devin 23, dsh 23, opencode 8, pi 12 and smoke 10 lines (148) from arenas at 6ccb2b5157 and 067c2cf029, older than the pass-five runner, moved to 026 runs/discarded with a stopped-arm- prefix, unscored. Phase 033 reruns the arm at one new commit. Correction to the merge row: sk-prompt and system-spec-kit read missing-manifest, as on main, every other hub fresh |
 
 ### Deviations and findings
 
