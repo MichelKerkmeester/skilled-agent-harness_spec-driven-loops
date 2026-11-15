@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs"
-    last_updated_at: "2026-11-15T06:37:41Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_at: "2026-11-15T16:05:00Z"
+    last_updated_by: "claude"
+    recent_action: "Marked every criterion Met with cited evidence"
+    next_safe_action: "Commit phase 006, then start phase 007"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-006-cli-external-orchestration-changelogs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,9 +37,9 @@ _memory:
 ## 1. METADATA
 <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
+**Packet:** 007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-11-15
 <!-- /ANCHOR:metadata -->
 
@@ -53,7 +53,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the 212 files on the list, When the waves finish, Then each file is kept with every gate passed, recorded unchanged, or done in the pilot | `scratch/evidence.txt:22` shows 184 kept, 26 unchanged and 0 missing. The pilot's 2 files match HEAD at `scratch/evidence.txt:26` | Met | - |
+| AC-002 | REQ-002 | Given the finished waves, When `wave-verify.cjs` runs, Then it reports no problem for a file this phase rewrote | `scratch/evidence.txt:22` lists 2 problems, and `scratch/evidence.txt:23` and `scratch/evidence.txt:24` show both are pilot files whose saved original predates the pilot | Met | - |
+| AC-003 | REQ-003 | Given the 210 queued files, When `measure-voice.py` runs after the waves, Then it prints 0 sentences over 22 words and 0 files with a hard blocker | `scratch/evidence.txt:9` and `scratch/evidence.txt:10`, against the baseline at `scratch/evidence.txt:5` | Met | - |
+| AC-004 | REQ-004 | Given the 180 files the budget outage restored, When the driver retries them on the Vibe login key, Then all pass and the run hits no limit | `scratch/evidence.txt:12` shows the outage wave, `scratch/evidence.txt:32` the Keychain test call, and `scratch/evidence.txt:19` the retry with 180 passed and 0 restored | Met | - |
+| AC-005 | REQ-005 | Given the run state, When the phase tokens are summed, Then the total is reported | `scratch/evidence.txt:30` shows 7,953,730 tokens | Met | - |
 
 ### Status values
 
@@ -79,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Yes. Every criterion is met with observed evidence.
 <!-- /ANCHOR:closure -->

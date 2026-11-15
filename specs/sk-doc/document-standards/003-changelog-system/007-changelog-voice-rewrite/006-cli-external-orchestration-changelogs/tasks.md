@@ -24,6 +24,8 @@ contextType: "general"
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
 
+`S` is `specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/scratch`. `P` is this phase folder, `specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs`.
+
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 <!-- /ANCHOR:notation -->
 
@@ -31,34 +33,34 @@ contextType: "general"
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [ ] T001 Create project structure (`<folder>`). Verify: `ls <folder>` lists it.
-- [ ] T002 Install dependencies (`<manifest>`). Verify: `<install command>` exits 0.
-- [ ] T003 [P] Configure development tools (`<config>`). Verify: `<tool> --version` exits 0.
+- [x] T001 Confirm the list (`$S/lists/006.txt`). Verify: `wc -l < $S/lists/006.txt` prints 212. Evidence: 212 lines (`$P/scratch/evidence.txt:2`).
+- [x] T002 Dry-run the driver on the list (`$S/rewrite-driver.cjs`). Verify: `--dry-run --slots 2` prints `queued=210`. Evidence: `listed=212 queued=210 refused=0`. The 2 pilot files, committed in `e673c77ba93`, were skipped.
+- [x] T003 [P] Measure the 210 queued files at HEAD (`$S/measure-voice.py`). Verify: it prints the baseline. Evidence: avg 12.2 words, 296 sentences over 22, 13 files with a hard blocker (`$P/scratch/evidence.txt:4`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-<!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
 
-- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
-- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
-- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
-- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
+- [x] T004 Run the wave (`$S/wave-006.log`). Verify: `node $S/rewrite-driver.cjs --slots 2 $S/lists/006.txt` exits 0. Evidence: `pass=4 restored=180 unchanged=26`, driver exit 0 (`$P/scratch/evidence.txt:12`).
+- [x] T005 Read why 180 files failed (`$S/state.jsonl`, `$S/runs/`). Verify: each record lists its findings. Evidence: 543 worker attempts ended as `infrastructure_failure` with no tokens (`$P/scratch/evidence.txt:15`). The worker logs held HTTP 402 "API budget exhausted" (`$P/scratch/evidence.txt:17`). The first restore came at 14:19:53, and two of the four first-wave passes also lost early attempts to it.
+- [x] T006 Confirm every restored file is untouched (`$S/wave-verify.cjs`). Verify: each restored file equals HEAD. Evidence: wave-verify found no drift on the 180, and `git status` showed only the 4 kept rewrites.
+- [x] T007 Stop the driver on a spent budget (`$S/rewrite-driver.cjs`). Verify: `node --check` exits 0, and the new pattern matches every budget log and no other log. Evidence: 543 budget logs matched. The pattern names `status 402`, `budget exhausted` and `billing_api`, because a bare 402 matched token counts such as `"output_tokens":402`.
+- [x] T008 Run the worker on the Vibe login key (`$S/rewrite-driver.cjs`). Verify: an isolated call without `MISTRAL_API_KEY` finishes. Evidence: `exit 0`, `finished`, cost 0, reading the key from the macOS Keychain (`$P/scratch/evidence.txt:32`). The operator chose this after signing in with the browser.
+- [x] T009 Retry the 180 restored files (`$S/wave-006-retry.log`). Verify: `--retry-failed --wave 006-retry` exits 0. Evidence: `pass=180 restored=0`, driver exit 0 (`$P/scratch/evidence.txt:19`). 144 passed on the first attempt, 34 on the second and 2 on the third.
+- [x] T010 End a sentence inside closing quotes in the measure (`$S/measure-voice.py`). Verify: the after count shows 0 over 22 and earlier phases stay at 0. Evidence: the old splitter merged two sentences in `cli-external-orchestration/changelog/v1.4.1.0.md` at `"six." Every`. Phases 002 to 005 still show 0 (`$P/scratch/evidence.txt:34`).
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
-- [ ] T008 Test happy path manually (`<file>`). Verify: `<command>` prints <expected output>.
-- [ ] T009 Test edge cases (`<test>`). Verify: `<test command>` exits 0.
-- [ ] T010 Update documentation (`<doc>`). Verify: `rg -n '<term>' <doc>` prints one line.
+- [x] T011 Check the wave against HEAD (`$S/wave-verify.cjs`). Verify: no problem for a file this phase rewrote and no missing file. Evidence: `{"listed":212,"keep":184,"restored":26,"missing":0,"problems":2}`. The 2 problems are the pilot files, whose saved original predates the pilot. Both match HEAD, `git diff --quiet` exit 0 (`$P/scratch/evidence.txt:22`, `$P/scratch/evidence.txt:26`).
+- [x] T012 Measure the 210 files after the waves (`$S/measure-voice.py`). Verify: `sentences_over_22=0` and `files_with_hvr_hard_blockers=0`. Evidence: avg 8.3 words, 0 over 22, 0 hard blockers (`$P/scratch/evidence.txt:8`).
+- [x] T013 Sum the phase tokens (`$S/state.jsonl`). Verify: the summary names the total. Evidence: 7,953,730 tokens for the two waves (`$P/scratch/evidence.txt:30`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,9 +69,9 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -102,100 +104,83 @@ contextType: "general"
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-<!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md Evidence: spec.md REQ-001 to REQ-005.
+- [x] CHK-002 [P0] Technical approach defined in plan.md Evidence: plan.md.
+- [x] CHK-003 [P1] Worker and fact-check usage is available Evidence: the API budget ran out in wave 006. The retry ran on the Vibe login key with no limit hit.
 <!-- /ANCHOR:pre-impl -->
 
 ---
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-<!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] The edited driver still parses Evidence: `node --check` on the driver exits 0.
+- [x] CHK-011 [P0] Every driver run exits 0 Evidence: `driver exit=0` twice (`$P/scratch/evidence.txt:13`, `$P/scratch/evidence.txt:20`).
+- [x] CHK-012 [P1] A file that fails three attempts is restored to HEAD Evidence: all 180 outage failures were restored, and `wave-verify.cjs` found no drift.
+- [x] CHK-013 [P1] The new comments state the durable reason and name no packet Evidence: one says a spent budget is a limit because retrying it only restores files. The other says Vibe reads the browser-login key from the Keychain without the environment key.
 <!-- /ANCHOR:code-quality -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
-<!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met Evidence: every row in acceptance-criteria.md is Met.
+- [x] CHK-021 [P0] The wider limit pattern stops no healthy run Evidence: over every run log it matched the 543 budget logs and nothing else. The older patterns still match some prose, but only after a worker has failed.
+- [x] CHK-022 [P1] Files already passing were left unchanged Evidence: 26 recorded `unchanged`, each with no diff against HEAD.
+- [x] CHK-023 [P1] A restored file was retried Evidence: the retry on the Vibe login key kept all 180.
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
-<!-- FILL: Write this section when the packet fixes a reported finding. Delete it otherwise. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+N/A: this phase fixes no reported finding. The driver and measure changes are recorded under Key Decisions in implementation-summary.md.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
 
 <!-- ANCHOR:security -->
 ## Security
-<!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] `scripts/rotate-logs.sh` reads no credential. WEAK: Security is fine. -->
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] CHK-030 [P0] No brief, log or state row holds a credential Evidence: the state holds tokens and verdicts only. The Keychain key is read by Vibe and never written by the driver.
+- [x] CHK-031 [P0] The fact-check executor runs with no write access Evidence: each verifier record shows `sandbox` `read-only`.
+- [x] CHK-032 [P1] N/A: no auth surface changes. The worker drops one environment variable and uses the operator's own Vibe login.
 <!-- /ANCHOR:security -->
 
 ---
 
 <!-- ANCHOR:docs -->
 ## Documentation
-<!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-041 [P1] The driver and measure changes are recorded where a later phase will read them Evidence: implementation-summary.md Key Decisions.
+- [x] CHK-042 [P2] N/A: no README changes
 <!-- /ANCHOR:docs -->
 
 ---
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-<!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Run state and logs live in the parent's `scratch/`, and phase evidence in this phase's `scratch/` Evidence: `$S/state.jsonl`, `$S/wave-006*.log`, `$P/scratch/evidence.txt`.
+- [x] CHK-051 [P1] No parked rewrite is left in a changelog Evidence: `$S/failed/` holds no draft from this phase, because the outage failures produced no draft. The worktree files are the kept rewrites, which `wave-verify.cjs` checked against HEAD.
 <!-- /ANCHOR:file-org -->
 
 ---
 
 <!-- ANCHOR:summary -->
 ## Verification Summary
-<!-- FILL: Count the boxes by priority and write the three totals. GOOD: P0 12, P1 13, P2 1. WEAK: Most items done. -->
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 10 | 10/10 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-15
 <!-- /ANCHOR:summary -->
 
 ---
-
-
-

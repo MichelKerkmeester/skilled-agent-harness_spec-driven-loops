@@ -30,16 +30,17 @@
       "criteria",
       "implementation",
       "summary",
-      "yourvaluehere"
+      "cli-external-orchestration"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/evidence.txt"
     ],
     "entities": [
       {
@@ -70,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence.txt",
+        "kind": "file",
+        "path": "scratch/evidence.txt",
         "source": "derived"
       },
       {
@@ -121,7 +128,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,13 +146,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,18 +186,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The cli-external-orchestration changelogs hold long sentences",
     "created_at": "2026-11-15T06:37:38Z",
-    "last_save_at": "2026-11-15T06:47:29.633Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T15:54:02.328Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +200,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c93e0ad65dc2dab13286ffa1c0825b6fbd50b61471dafd482cd6abfee0ee35c9",
+    "source_fingerprint": "sha256:eb27884c7b990f2000dad6b162536a4ae5d9d4b4c6a75f1bc88bd1d7450bc8b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31560989f2fd73f9244b75471ab4f0bf4487c18ef6ab4bedace930973bc340ff",
-      "plan.md": "f53d9b46ecb8579609bc29c23e3888af58668e2ae1dfdc568d9771901e3fc5aa",
-      "tasks.md": "7618f51bc99e35d2b23c274721554aac88480f57726971bc5db04ef0ea634320",
-      "implementation-summary.md": "e7035946be98b2bf54a1ec73c90ef424d41e25a9239c26ad896477b60d2cc959"
+      "spec.md": "fd9a8ed1865bd6e2b527a26c51fdcd6c708afd6868a4e58c1bf00a2e12fcf39b",
+      "plan.md": "a0ed5d86bb0f400607f2942be4bf4748e0d8a3a2ec622d8333777c1d3dc01eb4",
+      "tasks.md": "0e70255ed165987bf957a4fd2a0fd86e8aae0f624409fe3400789aab4ab3327a",
+      "implementation-summary.md": "7144afc14e2791fc4747628aff326ddac883624f6a9d89a232c6f893bad2b992"
     },
     "last_active_at": null
   }

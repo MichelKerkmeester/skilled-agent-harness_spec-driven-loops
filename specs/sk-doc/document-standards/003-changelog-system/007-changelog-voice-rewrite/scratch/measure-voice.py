@@ -29,7 +29,8 @@ def sentences(text):
         keep.append(re.sub(r"^[-*]\s+|\*\*", "", s))
     out = []
     for line in keep:
-        for piece in re.split(r"(?<=[.!?])\s+", line):
+        # A sentence can end inside closing quotes or brackets, as in "six." Every.
+        for piece in re.split(r"(?<=[.!?])[\"')\]]*\s+", line):
             if len(piece.split()) > 1:
                 out.append(len(piece.split()))
     return out

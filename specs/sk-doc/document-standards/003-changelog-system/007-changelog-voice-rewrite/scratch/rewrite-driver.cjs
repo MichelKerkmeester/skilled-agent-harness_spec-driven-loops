@@ -56,7 +56,8 @@ const SENTENCE_RULES = new Set(['sentence-max', 'sentence-mean']);
 // entries.
 const ENTRY_RE = /^\.skilled\/(?:changelog\/skilled|skills\/.+\/changelogs?)\/(?:v\d+\+\/)?v\d+(?:\.\d+)+[^/]*\.md$/;
 // A usage limit stops the run instead of moving work to another provider.
-const LIMIT_RE = /usage limit|rate[ _-]?limit|too many requests|\b429\b|insufficient_quota|quota exceeded|hit your (usage )?limit/i;
+// A spent API budget (HTTP 402) is a limit too: retrying it only restores files.
+const LIMIT_RE = /usage limit|rate[ _-]?limit|too many requests|\b429\b|status 402|insufficient_quota|quota exceeded|hit your (usage )?limit|budget exhausted|billing_api/i;
 
 const CHILD_ENV = { ...process.env, AI_SESSION_CHILD: '1', SYSTEM_SPEC_GATE_ENFORCE: '0', MK_SPEC_GATE_ENFORCE: '0' };
 
@@ -258,7 +259,9 @@ function gates(file, oldText, baseline) {
 function runProcess(cmd, args, opts) {
   return new Promise((resolve) => {
     const log = fs.openSync(opts.log, 'w');
-    const child = spawn(cmd, args, { cwd: opts.cwd, env: { ...CHILD_ENV, ...(opts.env || {}) }, stdio: ['ignore', log, log] });
+    const env = { ...CHILD_ENV, ...(opts.env || {}) };
+    for (const name of opts.unsetEnv || []) delete env[name];
+    const child = spawn(cmd, args, { cwd: opts.cwd, env, stdio: ['ignore', log, log] });
     let timedOut = false;
     const timer = setTimeout(() => {
       timedOut = true;
@@ -308,6 +311,9 @@ async function dispatchWorker(prompt, tag) {
   const log = path.join(RUN_DIR, `${tag}.worker.log`);
   const res = await runProcess('vibe', ['--prompt-file', promptFile, '--model', WORKER_ALIAS, '--output', 'text', '--output-dir', out, '--time-limit', String(REWRITE_TIMEOUT_S)], {
     cwd: runDir, log, timeoutMs: (REWRITE_TIMEOUT_S + 120) * 1000, env: { VIBE_HOME: home },
+    // Without the environment key Vibe reads the browser-login key from the macOS
+    // Keychain, which bills the Vibe plan instead of the separate API budget.
+    unsetEnv: ['MISTRAL_API_KEY'],
   });
   let exp = null;
   const expFile = path.join(out, 'export.json');

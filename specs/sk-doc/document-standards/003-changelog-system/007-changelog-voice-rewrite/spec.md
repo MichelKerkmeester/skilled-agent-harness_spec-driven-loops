@@ -115,7 +115,7 @@ Every skill and release changelog reads in short, plain sentences that pass the 
 | 3 | 003-sk-doc-changelogs/ | 298 sk-doc changelogs | Complete |
 | 4 | 004-system-spec-kit-changelogs/ | 167 system-spec-kit changelogs | Complete |
 | 5 | 005-sk-code-changelogs/ | 204 sk-code changelogs | Complete |
-| 6 | 006-cli-external-orchestration-changelogs/ | 212 cli-external-orchestration changelogs | Pending |
+| 6 | 006-cli-external-orchestration-changelogs/ | 212 cli-external-orchestration changelogs | Complete |
 | 7 | 007-system-deep-loop-changelogs/ | 160 system-deep-loop changelogs | Pending |
 | 8 | 008-mcp-tooling-changelogs/ | 171 mcp-tooling changelogs | Pending |
 | 9 | 009-system-skill-advisor-changelogs/ | 74 system-skill-advisor changelogs | Pending |
