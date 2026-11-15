@@ -26,7 +26,15 @@ import { renderVibeGoalSlice } from '../../goal/vibe/goal-inject.mjs';
 import { compactionsSince, loadVibeSession } from '../../shared/session-readers/vibe.mjs';
 
 const require = createRequire(import.meta.url);
-const { claimCommandFor, openNotePathFor, resolveRepoRoot } = require('../../session-handover/lib/nudge.cjs');
+const {
+  claimCommandFor,
+  handoffPending,
+  handoffWithdrawn,
+  openNotePathFor,
+  resolveRepoRoot,
+  staleNoteText,
+  writeState,
+} = require('../../session-handover/lib/nudge.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -171,10 +179,20 @@ function writeJournalSize(stateDir, sessionId, size) {
 // 4. HANDOFF POINTER
 // ─────────────────────────────────────────────────────────────────────────────
 
-function handoffSection(sessionId, env) {
+function handoffSection(sessionId, env, {
+  pending = handoffPending,
+  withdrawn = handoffWithdrawn,
+  notePathFor = openNotePathFor,
+} = {}) {
   try {
-    const notePath = openNotePathFor({ repoRoot: resolveRepoRoot(env), sessionId });
+    // A prepared hop already owns the note; pointing this session at a claim would leave
+    // the fresh session nothing to claim.
+    if (pending({ sessionId, env })) return '';
+    const notePath = notePathFor({ repoRoot: resolveRepoRoot(env), sessionId });
     if (!notePath) return '';
+    // The operator withdrew the hand-over after this note was written, so the work since is
+    // not in it, and claiming it would resume work that is already done.
+    if (withdrawn({ sessionId, notePath, env })) return staleNoteText({ notePath });
     return [
       '## Handoff',
       `An open handoff note survives this compaction: ${notePath}`,
@@ -182,6 +200,17 @@ function handoffSection(sessionId, env) {
     ].join('\n');
   } catch {
     return '';
+  }
+}
+
+// A compaction frees the context, so the next fill climbs from the start and earns its nudges
+// again. Best effort: a level that cannot be written only costs a nudge.
+function resetNudgeLevel(sessionId, env) {
+  try {
+    writeState(sessionId, 0, env);
+    return true;
+  } catch {
+    return false;
   }
 }
 
@@ -213,6 +242,8 @@ function resetDirectiveReceipt(sessionId) {
  * @param {Function} [options.listCompactions] - The compaction list, replaced in tests.
  * @param {Function} [options.goalSlice] - The slice renderer, replaced in tests.
  * @param {Function} [options.resetReceipt] - The directive boundary, replaced in tests.
+ * @param {Function} [options.resetNudge] - The nudge level reset, replaced in tests.
+ * @param {Object} [options.handoff] - The hand-over state readers, replaced in tests.
  * @returns {string} The re-injected text, or an empty string.
  */
 export function buildCompactionPart(payload, {
@@ -223,6 +254,8 @@ export function buildCompactionPart(payload, {
   listCompactions = compactionsSince,
   goalSlice = renderVibeGoalSlice,
   resetReceipt = resetDirectiveReceipt,
+  resetNudge = resetNudgeLevel,
+  handoff = {},
 } = {}) {
   try {
     if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return '';
@@ -254,6 +287,8 @@ export function buildCompactionPart(payload, {
       // A receipt that cannot be advanced only costs a suppressed directive.
     }
 
+    resetNudge(sessionId, env);
+
     const sections = [];
     try {
       const slice = String(goalSlice({ env, workspace }) ?? '').trim();
@@ -262,8 +297,8 @@ export function buildCompactionPart(payload, {
       // A missing packet or goal document leaves the other sections intact.
     }
 
-    const handoff = handoffSection(sessionId, env);
-    if (handoff) sections.push(handoff);
+    const handoffText = handoffSection(sessionId, env, handoff);
+    if (handoffText) sections.push(handoffText);
 
     if (sections.length === 0) return '';
     return [COMPACTION_HEADING, ...sections].join('\n\n');

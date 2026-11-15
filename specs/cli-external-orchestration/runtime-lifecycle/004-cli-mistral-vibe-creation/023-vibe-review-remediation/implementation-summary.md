@@ -122,7 +122,7 @@ All five passed on the first run, on `f8dcf4940db` plus this phase's changes. Ea
 | R3-P2-003 | instance-only | Deferred: the cost was asserted, not measured |
 | R3-P2-001--09922ec53397 | cross-consumer | No change: the same `arm` call is in the Claude and Codex adapters, and `skilled-loop` checks the cwd before entering it |
 | R3-P2-002--26cf29d2e12e | cross-consumer | No change: `ensureStateDir` uses a uid-suffixed name, re-inspects through a symlink and sets mode 0700 |
-| R4-P2-003--f6d51a8e69ea | instance-only | Fixed: a typed prompt is required; blank-prompt test |
+| R4-P2-003--f6d51a8e69ea | instance-only | Fixed: a typed prompt is required. Merging origin/main brought an early withdraw step, `withdrawBeforeTurnStart`, and the same check now guards it; the blank-prompt test covers both paths |
 | R4-P2-005 | instance-only | Fixed the comment; the template literal belongs to another change and is left |
 | R4-P2-001--3e1b6633d712 | instance-only | Fixed the `turn-start.mjs` header |
 | R4-P2-002--a0bfc4ef4adc | test-isolation | Fixed: empty-restore test |

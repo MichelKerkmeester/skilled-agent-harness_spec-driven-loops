@@ -3,9 +3,10 @@ AGENTS DIRECTORY
 
 This directory contains agent definitions for the OpenCode runtime.
 Each .md file carries frontmatter (mode, temperature, permission) and behavioral instructions,
-and is the canonical source the .codex and .pi trees are generated from.
+and is the canonical source the .codex, .pi, .dsh and .vibe trees are generated from.
 
-Sibling runtime: .claude/agents/ (.md)
+Sibling runtime: .claude/agents/ (.md), a hand-carried fork; .cursor/agents/ and .devin/agents/ link to it.
+.opencode/agents/ is a link to this directory.
 Inventory rule: if an agent file is not present in this directory, it is not a live runtime surface here.
 
 Translation contract: .skilled/bin/agent-mirror-crosswalk.md

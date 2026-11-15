@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/024-terminal-gates-script",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/024-terminal-gates-script",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "terminal gates script",
+      "phase 24 terminal gates script",
+      "terminal gates script plan",
+      "terminal gates script tasks",
+      "024-terminal-gates-script operator decisions",
+      "terminal gates script implementation summary"
+    ],
+    "key_topics": [
+      "terminal",
+      "gates",
+      "script",
+      "phase",
+      "plan",
+      "tasks",
+      "024-terminal-gates-script",
+      "operator",
+      "decisions",
+      "implementation",
+      "summary",
+      "session"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/terminal-gates.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/terminal-gates.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "terminal-gates.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/terminal-gates.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "terminal-gates.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/terminal-gates.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow At",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The session verdict fails when a required gate still fails at the terminal stop, but the gate results come from the loop agent reading a prose rule",
+    "created_at": "2026-11-15T17:32:07Z",
+    "last_save_at": "2026-11-15T18:14:00.774Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c580c14de5879eb4697605ff9fbf25018dd3b5dc334c0374dbe4135105ea1fee",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a9361e99b2661fcbc908fb4b0a25c27ae47de306edd5b634b6eaa6912d9a5319",
+      "plan.md": "c6752ddde420db778823fab6570e66c09d83271d97b46e8f167221ba2dadeb31",
+      "tasks.md": "1c851f5af94c7865e7b8bc9cb8691de22e7991d6c11d40c5926d95fa577adaa4",
+      "decision-record.md": "22fed0ccb8fd51ebda64b514b195b3eab7116f681cb7046c0baa00d93041a212",
+      "implementation-summary.md": "178f92167099bb43cda875841ea9654201af56be489774f484a415c2e7456d6e"
+    },
+    "last_active_at": null
+  }
+}

@@ -85,8 +85,7 @@ copy_file() {
 }
 
 require_path "${REPO_ROOT}/.skilled/commands/deep/research.md"
-require_path "${REPO_ROOT}/.skilled/commands/deep/assets/deep-research-auto.yaml"
-require_path "${REPO_ROOT}/.skilled/commands/deep/assets/deep-research-confirm.yaml"
+require_path "${REPO_ROOT}/.skilled/commands/deep/assets/deep-research.yaml"
 require_path "${REPO_ROOT}/.skilled/skills/system-deep-loop/deep-research"
 require_path "${REPO_ROOT}/.skilled/skills/system-spec-kit"
 require_path "${REPO_ROOT}/.skilled/agents/deep-research.md"
@@ -103,5 +102,9 @@ copy_dir "${REPO_ROOT}/.skilled/skills/system-spec-kit" "${SANDBOX_DIR}/.skilled
 
 copy_file "${REPO_ROOT}/.skilled/agents/deep-research.md" "${SANDBOX_DIR}/.skilled/agents/deep-research.md"
 copy_file "${REPO_ROOT}/.claude/agents/deep-research.md" "${SANDBOX_DIR}/.claude/agents/deep-research.md"
+
+# OpenCode reads agents through .opencode/agents, a link to the source tree, as in the repo.
+mkdir -p "${SANDBOX_DIR}/.opencode"
+ln -s ../.skilled/agents "${SANDBOX_DIR}/.opencode/agents"
 
 echo "Created deep-research command sandbox at ${SANDBOX_DIR}"

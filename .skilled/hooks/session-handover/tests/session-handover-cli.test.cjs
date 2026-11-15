@@ -1776,7 +1776,7 @@ test('an unknown subcommand exits two and lists the commands on stderr', (t) => 
   assert.equal(result.status, 2);
   assert.match(
     result.stderr,
-    /command must be one of prepare, should-relaunch, keep, claim, complete, consume, cancel, hand-over, history, window\n/,
+    /command must be one of prepare, should-relaunch, keep, claim, complete, consume, cancel, hand-over, history, session-id, window\n/,
   );
   assert.match(result.stderr, /claim <handoff-path>/);
   assert.equal(result.stdout, '');
@@ -2581,6 +2581,31 @@ test('manual route for a cursor or devin session', (t) => {
     '[session-handover] handoff prepared; nothing ends this session. '
       + 'Exit it and run the claim command the wrapper prints.\n',
   ]);
+});
+
+test('a vibe session with a session folder is told to stop, a made-up id is told to end by hand', (t) => {
+  const outputs = [];
+
+  for (const withFolder of [true, false]) {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox);
+    sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+    sandbox.env.SKILLED_LOOP_RUNTIME = 'vibe';
+    sandbox.env.CLAUDE_PID = String(process.pid);
+    if (withFolder) writeVibeSession(sandbox, SESSION_ID, { cwd: sandbox.root });
+    else sandbox.env.VIBE_HOME = path.join(sandbox.root, 'vibe-home');
+    const result = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
+
+    assert.equal(result.status, 0, result.stderr);
+    outputs.push(result.stdout);
+  }
+
+  assert.match(outputs[0], /stop now and end this turn/);
+  assert.equal(
+    outputs[1],
+    '[session-handover] handoff prepared; nothing ends this session. '
+      + 'Exit it and run the claim command the wrapper prints.\n',
+  );
 });
 
 // One row per sender runtime: how the goal is made findable for that runtime.
@@ -3742,4 +3767,36 @@ test('claim prints no history lookup section for a runtime with no locator contr
   assert.equal(result.status, 0, result.stderr);
   assert.match(result.stdout, /Finish the relaunch loop/);
   assert.doesNotMatch(result.stdout, /## History Lookup/);
+});
+
+test('session-id prints the Vibe session the loop recorded and refuses when there is none', (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'vibe';
+
+  const missing = runCli(sandbox, ['session-id']);
+  assert.notEqual(missing.status, 0);
+  assert.match(missing.stderr, /a Vibe session started by skilled-loop/);
+
+  core.recordVibeSessionId({ loopId: LOOP_ID, sessionId: SESSION_ID, env: sandbox.env });
+  const found = runCli(sandbox, ['session-id']);
+  assert.equal(found.status, 0, found.stderr);
+  assert.equal(found.stdout, `${SESSION_ID}\n`);
+});
+
+test('prepare on Vibe without --session uses the id the loop recorded', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'vibe';
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const refused = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+  assert.notEqual(refused.status, 0);
+
+  core.recordVibeSessionId({ loopId: LOOP_ID, sessionId: SESSION_ID, env: sandbox.env });
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+  assert.equal(result.status, 0, result.stderr);
+  const record = JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8'));
+  assert.equal(record.sessionId, SESSION_ID);
 });

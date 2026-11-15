@@ -1134,14 +1134,15 @@ workflow:
         if_stop:
           record_terminal_gates:
             when: "Run once, immediately before control jumps to phase_synthesis: in if_existing_terminal_path, in the divergent pivot's if_failed and on_error branches, and in every confirm-mode manualStop exit (on_C) into phase_synthesis: both divergent pivot gates, gate_pre_iteration and the post-iteration gate. The auto three-errors stop (reason error) reaches it through if_existing_terminal_path. The duration stop in step_check_max_duration runs it, once, before its jump to phase_synthesis. Never run it when the pivot continues the loop."
+            bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/terminal-gates.cjs --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.findings_registry}"'
+            note: "The script computes all three gates from the config, state log and registry: evidence by the evidenceDensityGate rule, coverage by the dimensionCoverageGate rule, and scope by matching every open finding's file against reviewScopeFiles. Never judge a gate from the findings yourself. Run it fresh at this stop, even when an earlier blocked stop recorded failures."
+            on_error: "When the script exits non-zero or prints status error, fail closed: bind terminal_gate_results_json to three rows, evidence, scope and coverage, each with status fail, reasonCode gate-script-error and evidenceDigest the sha256 of the script's error text, and bind failed_required_gate_ids to [\"evidence\",\"scope\",\"coverage\"]."
             evaluate: |
-              evidence: pass when every active P0/P1 finding has concrete file:line evidence and none relies only on inference (the evidenceDensityGate rule).
-              scope: pass when every active finding's file lies inside the review target.
-              coverage: pass when configured dimensions and required traceability coverage are complete and coverage_age >= 1 (the dimensionCoverageGate rule).
-              Evaluate all three fresh at this stop, even when an earlier blocked stop recorded failures.
-              terminal_gate_results_json = JSON array of exactly three rows {"gateId":"evidence"|"scope"|"coverage","status":"pass"|"fail","reasonCode":"<short code such as all-findings-cited or missing-dimensions>","evidenceDigest":"<64 lowercase hex sha256 of the evidence summary for that gate>"}
-              failed_required_gate_ids = JSON array of the gateIds whose status is fail, in the order evidence, scope, coverage; [] when all pass
               terminal_stop_reason = reason when it is maxIterationsReached, maxDurationReached, manualStop or error, else "converged". Read reason, never stopReason: every manual stop sets reason to manualStop while stopReason may still hold blockedStop or stuckRecovery
+            outputs:
+              - terminal_gate_results_json: "Tool terminal_gate_results_json: three rows {gateId, status, reasonCode, evidenceDigest} in the order evidence, scope, coverage"
+              - failed_required_gate_ids: "Tool failed_required_gate_ids: the gateIds whose status is fail, in that order; [] when all pass"
+              - terminal_stop_reason: "From evaluate"
             append_jsonl: '{"stem":"deep_review.terminal_gates_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"stopReason":"{terminal_stop_reason}","gateResults":{terminal_gate_results_json},"failedRequiredGateIds":{failed_required_gate_ids},"appendPosition":{current_iteration}}}'
             log: "Terminal gates recorded at stop {terminal_stop_reason}. Failed required gates: {failed_required_gate_ids}"
           branch_on: "convergence_mode == 'divergent' AND stop_decision.reasonDetail == 'all_dimensions_clean'"

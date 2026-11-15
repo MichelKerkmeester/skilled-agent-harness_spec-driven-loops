@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6822,
-    "ok": 19139,
+    "missing-frontmatter": 6823,
+    "ok": 19167,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27588,
+  "documentsScanned": 27617,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "fdc6776da7e84122e256a0a9704f09756c5be368df2eb92317bd203caa5d5390",
+  "manifestHash": "60737d6d733bd410faca1908f812e68a1c0f4ed98598a2579f58f2d4092fe433",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44068,
+      "ok": 44102,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -34621,6 +34621,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research/ai-council/ai-council-strategy.md",
       "reason": "no opening frontmatter delimiter"
@@ -53573,6 +53579,22 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents/007-agent-alignment-follow-ups/022-agent-source-and-drift-checks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/023-agent-docs-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/024-terminal-gates-script/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/agents/007-agent-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
@@ -56574,6 +56596,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/046-vibe-history-locator/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/scratch",
       "reason": "excluded directory"
     },
     {

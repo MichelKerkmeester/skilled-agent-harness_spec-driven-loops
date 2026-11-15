@@ -4,8 +4,8 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-// Drives the roster checker as a process against throwaway roots holding the
-// canonical Claude tree plus every runtime mirror, real symlinks included.
+// Drives the roster checker as a process against throwaway roots holding the source
+// roster plus every runtime tree, real symlinks included.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS AND FIXTURES
@@ -33,19 +33,23 @@ function link(target, abs) {
   fs.symlinkSync(target, abs);
 }
 
-// A root where every surface mirrors the canonical roster the way the real
-// tree does: relative symlinks for Cursor and Devin, native files elsewhere.
+// A root where every surface mirrors the source roster the way the real tree does:
+// relative symlinks into the Claude fork for Cursor and Devin, one directory symlink
+// for OpenCode, and a generated native file per remaining dialect.
 function buildRoot() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'agent-roster-mirror-'));
   roots.push(root);
   for (const name of AGENTS) {
+    writeFile(path.join(root, '.skilled/agents', `${name}.md`), `# ${name}\n`);
     writeFile(path.join(root, '.claude/agents', `${name}.md`), `# ${name}\n`);
     link(`../../.claude/agents/${name}.md`, path.join(root, '.cursor/agents', `${name}.md`));
     link(`../../../.claude/agents/${name}.md`, path.join(root, '.devin/agents', name, 'AGENT.md'));
-    writeFile(path.join(root, '.skilled/agents', `${name}.md`), `# ${name}\n`);
     writeFile(path.join(root, '.codex/agents', `${name}.toml`), `name = "${name}"\n`);
     writeFile(path.join(root, '.pi/agents', `${name}.md`), `# ${name}\n`);
+    writeFile(path.join(root, '.dsh/agents', `${name}.patch.yml`), `name: ${name}\n`);
+    writeFile(path.join(root, '.vibe/agents', `${name}.toml`), `name = "${name}"\n`);
   }
+  link('../.skilled/agents', path.join(root, '.opencode/agents'));
   return root;
 }
 
@@ -65,7 +69,7 @@ test.after(() => {
 test('a root whose surfaces all mirror the roster passes', () => {
   const { status, out } = run(['--root', buildRoot()]);
   assert.equal(status, 0, out);
-  assert.match(out, /canonical: \.claude\/agents \(2 agents\)/);
+  assert.match(out, /canonical: \.skilled\/agents \(2 agents\)/);
   assert.match(out, /STATUS=OK agent-roster-mirror/);
 });
 
@@ -74,16 +78,34 @@ test('a Claude-only agent needs no mirror and is not counted in the roster', () 
   writeFile(path.join(root, '.claude/agents/Explore.md'), '# Explore\n');
   const { status, out } = run(['--root', root]);
   assert.equal(status, 0, out);
-  assert.match(out, /canonical: \.claude\/agents \(2 agents\)/);
+  assert.match(out, /canonical: \.skilled\/agents \(2 agents\)/);
 });
 
-test('an authored surface missing an agent is drift', () => {
+test('a generated surface missing an agent is drift', () => {
   const root = buildRoot();
   fs.rmSync(path.join(root, '.codex/agents/beta.toml'));
   const { status, out } = run(['--root', root]);
   assert.equal(status, 1, out);
   assert.match(out, /beta \(missing\)/);
   assert.match(out, /STATUS=DRIFT agent-roster-mirror/);
+});
+
+test('a missing vibe agent is drift on the vibe surface', () => {
+  const root = buildRoot();
+  fs.rmSync(path.join(root, '.vibe/agents/beta.toml'));
+  const { status, out } = run(['--root', root]);
+  assert.equal(status, 1, out);
+  assert.match(out, /DRIFT vibe\s+1\/2 present/);
+  assert.match(out, /beta \(missing\)/);
+});
+
+test('a missing dsh agent is drift on the dsh surface', () => {
+  const root = buildRoot();
+  fs.rmSync(path.join(root, '.dsh/agents/beta.patch.yml'));
+  const { status, out } = run(['--root', root]);
+  assert.equal(status, 1, out);
+  assert.match(out, /DRIFT dsh\s+1\/2 present/);
+  assert.match(out, /beta \(missing\)/);
 });
 
 test('a real file where a symlink belongs is drift', () => {
@@ -96,9 +118,9 @@ test('a real file where a symlink belongs is drift', () => {
   assert.match(out, /alpha \(not a symlink/);
 });
 
-test('a missing canonical directory is a checker error, exit 2', () => {
+test('a missing canonical source directory is a checker error, exit 2', () => {
   const root = buildRoot();
-  fs.rmSync(path.join(root, '.claude'), { recursive: true });
+  fs.rmSync(path.join(root, '.skilled/agents'), { recursive: true });
   const { status, out } = run(['--root', root]);
   assert.equal(status, 2, out);
   assert.match(out, /STATUS=ERROR agent-roster-mirror/);
@@ -131,9 +153,10 @@ test('a broken symlink directly under the devin tree is reported, not a crash', 
   assert.match(out, /STATUS=DRIFT agent-roster-mirror/);
 });
 
-test('a README beside the authored agents is not an orphan', () => {
+test('a README beside the agents is not an orphan in the source or the fork', () => {
   const root = buildRoot();
   writeFile(path.join(root, '.skilled/agents/README.md'), '# Agents\n');
+  writeFile(path.join(root, '.claude/agents/README.md'), '# Agents\n');
   const { status, out } = run(['--root', root]);
   assert.equal(status, 0, out);
 });

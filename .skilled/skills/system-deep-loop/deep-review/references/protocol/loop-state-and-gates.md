@@ -8,7 +8,7 @@ trigger_phrases:
   - "review iteration status enum"
 importance_tier: normal
 contextType: implementation
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # Deep Review State Transitions and Quality Gates
@@ -75,7 +75,7 @@ STOP is only final after convergence and quality gates agree.
 
 ### Iteration Status Enum
 
-`complete | timeout | error | stuck | insight`
+`complete | timeout | error | stuck | insight | thought`
 
 - `complete`: Normal iteration with findings processed
 - `timeout`: Iteration exceeded budget limits

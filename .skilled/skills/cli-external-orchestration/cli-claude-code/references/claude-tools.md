@@ -10,7 +10,7 @@ trigger_phrases:
   - "claude code plan mode read-only"
 importance_tier: normal
 contextType: implementation
-version: 1.5.4.0
+version: 1.5.5.0
 ---
 
 # Claude Code CLI Built-in Tools Reference
@@ -244,7 +244,7 @@ Every OpenCode-side claim below is sourced from a live `opencode run --help` cap
 | **Structured Output** | `--json-schema` (schema-validated) | `--format json` newline-delimited event stream (prompt-shaped, not schema-validated) |
 | **Read-Only Mode** | `--permission-mode plan` (session-level flag) | No CLI-level read-only flag, achieved via a read-only agent's own tool permissions (e.g. the `context` subagent) |
 | **Cost Control** | `--max-budget-usd` | No equivalent flag documented for `opencode run` |
-| **Agent System** | 11 agents via `.claude/agents/*.md`, all directly invokable with `--agent <name>` | 11 agents via `.skilled/agents/*.md`, split into 3 classes: primary (`general`, `plan`, `orchestrate`, of which only `orchestrate` is a project file usable with top-level `--agent`), subagent (`context`, `markdown`, `review`, `debug`, `ai-council`, routed via `--agent orchestrate`, never direct), and command-owned (`deep-research`, `deep-review`, `prompt-improver`, dispatched only by their parent `/deep:*` command) |
+| **Agent System** | 11 agents via `.claude/agents/*.md`, all directly invokable with `--agent <name>` | 11 agents via `.skilled/agents/*.md`, beside OpenCode's built-in `general` and `plan`. `orchestrate` is the one `mode: primary` project agent and the only one usable with top-level `--agent`. The other ten are `mode: subagent`: `orchestrate` dispatches them, and four also have a command that dispatches them, `/deep:research` and `/deep:review` for `deep-research` and `deep-review`, `/prompt:improve` for `prompt-improver` and `/speckit:ai-council` for `ai-council` |
 | **Session Continuity** | `--continue`/`-c`, `--resume [id]`/`-r`, `--fork-session` | `--continue`/`-c`, `--session <id>`/`-s`, `--fork` (all flags on `opencode run`, not standalone subcommands) |
 | **File Attachment** | `--file <specs...>` (downloads named file resources at startup) | `-f`/`--file <files...>` (attaches files to the message) |
 | **Memory System** | Spec-folder continuity docs via `/speckit:save` and `/speckit:search` | The same spec-folder continuity docs: `cli-opencode` dispatches load the project's full plugin/skill/MCP runtime, which is the skill's own primary value proposition. This is NOT an area where Claude Code has an advantage |

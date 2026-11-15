@@ -25,8 +25,12 @@ import {
   appendLog,
   arm,
   armableRecord,
+  ensureStateDir,
   findLoopChildPid,
+  markDeferred,
   readRelaunchFile,
+  stateDir,
+  recordVibeSessionId,
 } from '../lib/relaunch-core.cjs';
 import nudge from '../lib/nudge.cjs';
 import withdraw from '../lib/withdraw.cjs';
@@ -75,6 +79,9 @@ function isPayloadObject(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
+// Only the unscoped post_tool hook needs this check: pre_agent and post_agent are registered
+// for the main alias, which Vibe gives root sessions and forks, so there a parent id marks a
+// fork or a rewind of the operator's own session, not a subagent.
 function isSubagent(payload) {
   const parent = payload?.parent_session_id;
   return parent !== undefined && parent !== null && String(parent).trim() !== '';
@@ -98,7 +105,7 @@ function withdrawOnOperatorPrompt(sessionId, env) {
       loopId,
       sessionId,
       reason: 'user-message',
-      pending: 'none',
+      pending: 'deferred',
       env,
       onError: (stage, error) => {
         logEvent('context-nudge-error', { stage, message: error.message }, env);
@@ -175,6 +182,89 @@ async function spawnKiller(loopId, targetPid, transcriptPath, env, spawnProcess)
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Vibe gives its tools no session id, so a hand-over the operator types cannot name the
+// session. The turn-start hook sees it on every prompt and leaves it where the CLI reads it.
+function rememberSessionId(sessionId, env) {
+  const loopId = env.SKILLED_LOOP_ID;
+  if (!loopId) return;
+  try {
+    recordVibeSessionId({ loopId, sessionId, env });
+  } catch (error) {
+    logEvent('context-nudge-error', { stage: 'session-id', message: error.message }, env);
+  }
+}
+
+// Only a turn the operator typed withdraws an armed hand-over; a turn start
+// that carries no prompt is not the operator taking the session back.
+function operatorTyped(payload) {
+  return typeof payload.prompt === 'string' && payload.prompt.trim() !== '';
+}
+
+// Sessions whose armed hand-over the early withdraw step already cancelled this turn, so the
+// context part still answers with the withdrawn notice once the record is disarmed.
+const earlyWithdrawn = new Set();
+
+/**
+ * Withdraw an armed hand-over at the start of an operator turn, before slower turn-start parts.
+ *
+ * @param {Object} payload - The parsed Vibe pre_agent payload.
+ * @param {Object} [dependencies] - Seams for tests.
+ * @param {NodeJS.ProcessEnv} [dependencies.env=process.env] - Runtime environment.
+ * @returns {boolean} Whether a hand-over was withdrawn.
+ */
+function withdrawBeforeTurnStart(payload, dependencies = {}) {
+  const env = dependencies.env || process.env;
+  if (!isPayloadObject(payload) || payload.hook_event_name !== 'pre_agent') return false;
+  if (!handoverEnabled(env, hookConfig())) return false;
+  const sessionId = payload.session_id;
+  if (!nudge.validSessionId(sessionId)) return false;
+  rememberSessionId(sessionId, env);
+  if (nudge.isSeedPrompt(payload.prompt)) return false;
+  if (!operatorTyped(payload)) return false;
+  const withdrawn = withdrawOnOperatorPrompt(sessionId, env);
+  if (withdrawn) earlyWithdrawn.add(sessionId);
+  return withdrawn;
+}
+
+// Vibe runs tool calls side by side, so two post_tool hooks can decide on the same nudge at
+// once. Only the hook that creates the claim file delivers. A claim older than this was left
+// by a hook that died, and is taken over.
+// Two hooks that both find the same stale claim can, rarely, both end up holding one; the
+// cost is one repeated nudge, which is what this claim exists to prevent in the common case.
+const NUDGE_CLAIM_STALE_MS = 10000;
+
+function claimNudge(sessionId, env) {
+  let claimPath;
+  try {
+    ensureStateDir(env);
+    claimPath = path.join(stateDir(env), `nudge-${sessionId}.claim`);
+  } catch {
+    // Without a state directory there is no stored level to race on either.
+    return { release() {} };
+  }
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      fs.closeSync(fs.openSync(claimPath, 'wx', 0o600));
+      return {
+        release() {
+          try {
+            fs.rmSync(claimPath, { force: true });
+          } catch {}
+        },
+      };
+    } catch (error) {
+      if (error.code !== 'EEXIST') return { release() {} };
+      try {
+        if (Date.now() - fs.statSync(claimPath).mtimeMs <= NUDGE_CLAIM_STALE_MS) return null;
+        fs.rmSync(claimPath, { force: true });
+      } catch {
+        return null;
+      }
+    }
+  }
+  return null;
+}
+
 /**
  * Build the turn-start context a Vibe session receives at a prompt or after a tool call.
  *
@@ -194,7 +284,7 @@ async function buildHandoverContextPart(payload, dependencies = {}) {
 
   const sessionId = payload.session_id;
   if (!nudge.validSessionId(sessionId)) return '';
-  if (isSubagent(payload)) return '';
+  if (eventName === 'post_tool' && isSubagent(payload)) return '';
 
   if (eventName === 'pre_agent' && nudge.isSeedPrompt(payload.prompt)) {
     try {
@@ -206,11 +296,8 @@ async function buildHandoverContextPart(payload, dependencies = {}) {
     }
   }
 
-  // Only a turn the operator typed withdraws an armed hand-over; a turn start
-  // that carries no prompt is not the operator taking the session back.
-  const operatorTyped = typeof payload.prompt === 'string' && payload.prompt.trim() !== '';
-  const withdrawn = eventName === 'pre_agent' && operatorTyped
-    && withdrawOnOperatorPrompt(sessionId, env);
+  const withdrawn = eventName === 'pre_agent' && operatorTyped(payload)
+    && (earlyWithdrawn.delete(sessionId) || withdrawOnOperatorPrompt(sessionId, env));
   // Every quiet exit below still tells the session its hand-over was withdrawn.
   const quiet = () => (withdrawn ? nudge.WITHDRAWN_NOTICE : '');
 
@@ -252,10 +339,22 @@ async function buildHandoverContextPart(payload, dependencies = {}) {
     return '';
   }
 
+  const claim = claimNudge(sessionId, env);
+  if (claim === null) return '';
   try {
-    nudge.writeState(sessionId, decision.level, env);
+    // Decide again under the claim: a hook that delivered first has already written its level.
+    const confirmed = nudge.nudgeDecision({
+      ratio,
+      threshold: nudge.relaunchThreshold(config, env),
+      sessionId,
+      env,
+    });
+    if (!confirmed.nudge) return '';
+    nudge.writeState(sessionId, confirmed.level, env);
   } catch (error) {
     logEvent('context-nudge-error', { stage: 'state', message: error.message }, env);
+  } finally {
+    claim.release();
   }
 
   try {
@@ -272,6 +371,17 @@ async function buildHandoverContextPart(payload, dependencies = {}) {
   } catch (error) {
     logEvent('context-nudge-error', { stage: 'text', message: error.message }, env);
     return '';
+  }
+}
+
+// A turn end that finds this session's pending record but cannot arm it marks the record,
+// so the operator's next prompt withdraws it. Left unmarked, the record would wait for a
+// later turn end and relaunch from a note that predates the work done since.
+function markParked(loopId, env) {
+  try {
+    markDeferred({ loopId, env });
+  } catch (error) {
+    logEvent('stop-arm-error', { stage: 'defer', loopId, message: error.message }, env);
   }
 }
 
@@ -299,7 +409,6 @@ async function armHandoverTurnEnd(payload, dependencies = {}) {
 
     const sessionId = payload.session_id;
     if (!nudge.validSessionId(sessionId)) return null;
-    if (isSubagent(payload)) return null;
 
     loopId = env.SKILLED_LOOP_ID;
     if (!loopId) return null;
@@ -311,12 +420,17 @@ async function armHandoverTurnEnd(payload, dependencies = {}) {
       logEvent('stop-arm-error', { stage: 'read', loopId, message: error.message }, env);
       return null;
     }
-    if (!armableRecord(record, { loopId, sessionId, runtime: 'vibe', env }).armable) {
+    const verdict = armableRecord(record, { loopId, sessionId, runtime: 'vibe', env });
+    if (!verdict.armable) {
+      if (record && record.sessionId === sessionId) {
+        logEvent('stop-arm-refused', { loopId, sessionId, reason: verdict.reason }, env);
+      }
       return null;
     }
 
     if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) {
       logEvent('missing-transcript-path', { loopId, sessionId: record.sessionId }, env);
+      markParked(loopId, env);
       return null;
     }
 
@@ -325,6 +439,7 @@ async function armHandoverTurnEnd(payload, dependencies = {}) {
       transcriptPath = newestJournalFile(payload.transcript_path);
     } catch (error) {
       logEvent('stop-arm-error', { stage: 'journal', loopId, message: error.message }, env);
+      markParked(loopId, env);
       return null;
     }
     if (transcriptPath === null) {
@@ -333,6 +448,7 @@ async function armHandoverTurnEnd(payload, dependencies = {}) {
         sessionId: record.sessionId,
         journal: path.join(payload.transcript_path, 'journal'),
       }, env);
+      markParked(loopId, env);
       return null;
     }
 
@@ -343,6 +459,7 @@ async function armHandoverTurnEnd(payload, dependencies = {}) {
     });
     if (targetPid === null) {
       logEvent('stop-arm-error', { stage: 'target-pid', loopId }, env);
+      markParked(loopId, env);
       return null;
     }
 
@@ -351,14 +468,17 @@ async function armHandoverTurnEnd(payload, dependencies = {}) {
       armed = arm({ loopId, cwd: payload.cwd || process.cwd(), env });
     } catch (error) {
       logEvent('stop-arm-error', { stage: 'arm', loopId, message: error.message }, env);
+      markParked(loopId, env);
       return null;
     }
     if (armed === null || armed.status !== 'armed') return null;
 
+    // The killer watches the whole journal folder: Vibe starts a new segment at the fold
+    // that ends the turn, so the segment found above stops changing while the session runs on.
     await spawnKiller(
       loopId,
       String(targetPid),
-      transcriptPath,
+      path.join(payload.transcript_path, 'journal'),
       env,
       dependencies.spawn || spawn,
     );
@@ -376,4 +496,4 @@ async function armHandoverTurnEnd(payload, dependencies = {}) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-export { buildHandoverContextPart, armHandoverTurnEnd };
+export { buildHandoverContextPart, armHandoverTurnEnd, withdrawBeforeTurnStart };

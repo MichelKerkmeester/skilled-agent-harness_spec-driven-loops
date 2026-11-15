@@ -89,7 +89,16 @@ async function handoverPart(payload) {
   return buildHandoverContextPart(payload);
 }
 
-const PARTS = [
+// An armed hand-over is withdrawn before any other part runs, so a slow part cannot hold the
+// withdraw past the moment the killer ends the session. It adds no text of its own.
+export async function handoverWithdrawPart(payload) {
+  const { withdrawBeforeTurnStart } = await import(HANDOVER_PART_URL);
+  withdrawBeforeTurnStart(payload);
+  return '';
+}
+
+export const PARTS = [
+  handoverWithdrawPart,
   (payload) => pendingCompletionAdvisoryPart(payload),
   // The compaction part runs before the advisor part, so the receipt it
   // re-arms is already advanced when the advisor decides what to deliver.
