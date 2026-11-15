@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs",
+  "spec_folder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs",
+  "parent_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "small skill changelogs",
+      "phase 12 small skill changelogs",
+      "small skill changelogs plan",
+      "small skill changelogs tasks",
+      "small skill changelogs acceptance criteria",
+      "small skill changelogs implementation summary"
+    ],
+    "key_topics": [
+      "small",
+      "skill",
+      "changelogs",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "five",
+      "skills"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md",
+      "scratch/evidence.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.10.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence.txt",
+        "kind": "file",
+        "path": "scratch/evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The changelogs of the five small skills hold long sentences",
+    "created_at": "2026-11-15T06:37:56Z",
+    "last_save_at": "2026-11-15T19:24:52.095Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:158eeb9c9e10e6cf8354cc0068010baf5003ebf8c8a22bb07cc9237232022d02",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "19bdc1811703ec0d2d462145462d7530f1184ed6012f0e37e400197ae4d3c669",
+      "plan.md": "590f07834d8d33f88cbeffa082777c24bed024f1fecb1b4f1bf2650f52ee0799",
+      "tasks.md": "62de742749919f0a0db9975ab5fa0f89f3dca400916b0f84860165dd1e1230b9",
+      "implementation-summary.md": "b86a7efbc6f7c201feca616fec0cbaef43bba9064179abe3a9061832c7a08eea"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite",
+  "spec_folder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite",
+  "parent_id": "sk-doc/document-standards/003-changelog-system",
+  "children_ids": [
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/002-skilled-release-line",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/003-sk-doc-changelogs",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/004-system-spec-kit-changelogs",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/005-sk-code-changelogs",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/006-cli-external-orchestration-changelogs",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/007-system-deep-loop-changelogs",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/008-mcp-tooling-changelogs",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/009-system-skill-advisor-changelogs",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/010-sk-design-changelogs",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/011-sk-git-changelogs",
+    "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "changelog voice rewrite phase parent spec",
+      "rewrite changelogs to human voice",
+      "shorter changelog sentences"
+    ],
+    "key_topics": [
+      "changelog",
+      "voice",
+      "rewrite",
+      "phase",
+      "parent",
+      "spec",
+      "changelogs",
+      "human",
+      "shorter",
+      "sentences",
+      "standard",
+      "caps"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "scratch/scope-list.txt",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
+      ".skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md",
+      ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.10.0.md",
+      "scratch/followup-main-changelogs.txt",
+      ".vibe/config.toml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope-list.txt",
+        "kind": "file",
+        "path": "scratch/scope-list.txt",
+        "source": "derived"
+      },
+      {
+        "name": "scope-and-exemptions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.10.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.10.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.10.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "followup-main-changelogs.txt",
+        "kind": "file",
+        "path": "scratch/followup-main-changelogs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".vibe/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The changelog standard caps a sentence at 22 words and an entry at 10 words a sentence on average",
+    "created_at": "2026-11-15T06:37:25Z",
+    "last_save_at": "2026-11-15T19:37:32.347Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:921399b6c4924873b0977463f22917cf546e81f2589598c0865eb6765eacfd93",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bec3692da11dd6b2c376022d0c5aed5dbb6dd2c907e42efa62719f72c2dc6f04"
+    },
+    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs",
+    "last_active_at": "2026-11-15T19:24:52.118Z"
+  }
+}

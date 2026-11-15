@@ -7,8 +7,8 @@ trigger_phrases:
   - "spec kit feature inventory"
   - "what does spec kit do"
   - "spec kit capability inventory"
-last_updated: "2026-11-13"
-version: 2.1.38.0
+last_updated: "2026-11-15"
+version: 2.1.39.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -356,22 +356,6 @@ Warns when a spec.md stamped v2.4 or later leaves its measured-behavior block wi
 #### Source Files
 
 See [`tooling-and-scripts/measured-behavior-block.md`](tooling-and-scripts/measured-behavior-block.md) for full implementation and test file listings.
-
----
-
-### Nested changelog generator
-
-#### Description
-
-Deprecated. Renders a packet-local changelog for a spec root or phase from the packet's own documents, with a search phrase that names the packet and frontmatter that stays valid for any title.
-
-#### Current Reality
-
-Deprecated. Spec folders no longer get changelogs, and `/create:changelog` writes new entries to `.skilled/changelog/` only. `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` stays so the existing packet changelogs can still be rendered, and every run prints a deprecation notice on stderr.
-
-#### Source Files
-
-See [`tooling-and-scripts/nested-changelog-generator.md`](tooling-and-scripts/nested-changelog-generator.md) for full implementation and test file listings.
 
 ---
 

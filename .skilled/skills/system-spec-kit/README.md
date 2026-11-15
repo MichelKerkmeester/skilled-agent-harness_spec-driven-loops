@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.43.0
+version: 2.7.44.0
 ---
 
 # System Spec Kit
@@ -306,7 +306,7 @@ Use `create.sh --phase` to create a parent with its first child in one step. Run
 
 ### Packet-Local Changelogs
 
-Packet-local changelogs are deprecated. Spec folders no longer get changelogs, and `/speckit:implement` and `/speckit:complete` no longer write one. Changelogs live in `.skilled/changelog/` and in each skill's own `changelog/` folder, and `/create:changelog` writes them. The existing `changelog/` folders inside spec folders stay and still validate. The nested changelog generator stays too, prints a deprecation notice and can still render those files.
+Packet-local changelogs are deprecated. Spec folders no longer get changelogs, and `/speckit:implement` and `/speckit:complete` no longer write one. Changelogs live in `.skilled/changelog/` and in each skill's own `changelog/` folder, and `/create:changelog` writes them. The existing `changelog/` folders inside spec folders stay as history and still validate. The nested changelog generator that rendered them is removed.
 
 ### Template Rendering
 

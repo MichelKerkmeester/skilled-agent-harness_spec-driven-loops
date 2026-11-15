@@ -82,10 +82,6 @@
       "reason": "Fixture text quoting a historical save gate message; the gate lives in the continuity writer."
     },
     {
-      "pathPrefixOrGlob": ".skilled/skills/system-spec-kit/runtime/cli/tests/nested-changelog.vitest.ts",
-      "reason": "Fixture text; historical narrative inside a test fixture."
-    },
-    {
       "pathPrefixOrGlob": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
       "reason": "Names retired variables in their retirement rows; the engine tree that read them is gone."
     },

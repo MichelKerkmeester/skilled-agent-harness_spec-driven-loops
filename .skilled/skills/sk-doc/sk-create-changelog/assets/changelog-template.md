@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.3.3.0
+version: 1.3.4.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -292,7 +292,7 @@ The release title is the tag, an em dash and the editorial title, `v{VERSION} â€
 
 Spec folders no longer get changelogs, so no workflow writes a new file under `specs/**/changelog/`. A change recorded in a spec folder goes into a global entry for the component it touched, written from this template.
 
-Existing `changelog-<packet>-root.md` and `changelog-<packet>-<phase-folder>.md` files stay and still validate. The spec-kit nested generator remains only to render them and prints a deprecation notice. Do not reuse this template for them.
+Existing `changelog-<packet>-root.md` and `changelog-<packet>-<phase-folder>.md` files stay as history and still validate. The spec-kit nested generator that rendered them is removed. Do not reuse this template for them.
 
 ---
 
@@ -305,4 +305,3 @@ Existing `changelog-<packet>-root.md` and `changelog-<packet>-<phase-folder>.md`
 - [hvr-rules.md](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules (banned words, punctuation, structure)
 - [core-standards.md](../../shared/references/core-standards.md) - Markdown structure and naming conventions
 - [worked-examples.md](../references/worked-examples.md) - a filled-in v4-style entry with annotations
-- [nested-changelog.md](../../../system-spec-kit/references/workflows/nested-changelog.md) - the deprecated nested packet-local changelog workflow

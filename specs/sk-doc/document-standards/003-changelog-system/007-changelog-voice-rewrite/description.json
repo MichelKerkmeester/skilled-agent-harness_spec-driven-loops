@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite",
+  "description": "Rewrite every skill and release changelog to the Human Voice Rules with shorter sentences",
+  "keywords": [
+    "rewrite",
+    "every",
+    "skill",
+    "release",
+    "changelog",
+    "human",
+    "voice",
+    "rules",
+    "shorter",
+    "sentences"
+  ],
+  "lastUpdated": "2026-11-15T19:24:52.095Z",
+  "specId": "007",
+  "folderSlug": "changelog-voice-rewrite",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_20-24__all-12-phases-complete-1-570-of-1-571-changelogs.md"
+  ]
+}

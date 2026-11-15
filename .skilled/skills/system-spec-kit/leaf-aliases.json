@@ -196,11 +196,6 @@
   },
   {
     "workflowMode": "system-spec-kit",
-    "leafResourceId": "references/workflows/nested-changelog.md",
-    "diskPath": "references/workflows/nested-changelog.md"
-  },
-  {
-    "workflowMode": "system-spec-kit",
     "leafResourceId": "references/workflows/orchestrator-dispatch.md",
     "diskPath": "references/workflows/orchestrator-dispatch.md"
   },

@@ -9,7 +9,7 @@ trigger_phrases:
   - "five field frontmatter block"
 importance_tier: important
 contextType: general
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # YAML Frontmatter Templates - Document Type Reference
@@ -725,7 +725,7 @@ contextType: "general"
 ```
 
 **Where to go**: the Frontmatter Contract in section 5 of `sk-create-changelog/SKILL.md` for skill and
-release entries. Packet-local changelogs are deprecated, and existing ones keep the block the nested generator renders.
+release entries. Packet-local changelogs are deprecated, and existing ones keep the block the removed nested generator rendered.
 
 ---
 

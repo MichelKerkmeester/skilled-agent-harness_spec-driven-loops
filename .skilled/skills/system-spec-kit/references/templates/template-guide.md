@@ -8,7 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.11.0
+version: 1.6.12.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
@@ -78,7 +78,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.
 - Level 2: baseline + verification sections
 - Level 3: Level 2 + architecture sections
 - Level 3+: Level 3 + governance sections
-- Nested packet changelog templates live in `templates/changelog/` and are consumed directly by the generator, not by the composition pipeline. Packet changelogs are deprecated, so these templates only re-render the existing files.
+- Spec folders no longer get changelogs, so the templates hold no changelog template. New entries go to `.skilled/changelog/` through `/create:changelog`.
 
 > **Note:** Maintainers should use `inline-gate-renderer --level N --out-dir DIR file...` after modifying manifest templates to inspect rendered output before running validation tests.
 

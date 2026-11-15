@@ -1,6 +1,6 @@
 ---
 title: "Spec Folder Utilities"
-description: "TypeScript utilities for spec-folder detection, alignment checks, metadata generation and the deprecated nested changelog output."
+description: "TypeScript utilities for spec-folder detection, alignment checks and metadata generation."
 trigger_phrases:
   - "spec folder detection"
   - "alignment validation"
@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`runtime/cli/spec-folder/` contains source modules used by continuity save and spec-maintenance workflows. The utilities detect active spec folders, validate content-to-folder alignment, create required packet directories, generate `description.json` and build nested changelog data for root specs or phase children. The nested changelog generator is deprecated: spec folders no longer get changelogs, and `/create:changelog` writes new entries to `.skilled/changelog/`. It stays so the existing packet changelogs can still be rendered.
+`runtime/cli/spec-folder/` contains source modules used by continuity save and spec-maintenance workflows. The utilities detect active spec folders, validate content-to-folder alignment, create required packet directories, generate `description.json`. Spec folders no longer get changelogs, and `/create:changelog` writes new entries to `.skilled/changelog/`.
 
 Current state:
 
@@ -34,7 +34,6 @@ runtime/cli/spec-folder/
 +-- alignment-validator.ts   # Topic and folder alignment scoring
 +-- directory-setup.ts       # Directory existence and setup helpers
 +-- generate-description.ts  # description.json generator
-+-- nested-changelog.ts      # Deprecated nested changelog data and CLI output
 `-- README.md
 ```
 
@@ -46,8 +45,7 @@ runtime/cli/dist/spec-folder/
 +-- folder-detector.js
 +-- alignment-validator.js
 +-- directory-setup.js
-+-- generate-description.js
-`-- nested-changelog.js
+`-- generate-description.js
 ```
 
 Allowed direction:
@@ -73,7 +71,6 @@ Disallowed direction:
 | `alignment-validator.ts` | Scores how well session topics match a target spec folder. |
 | `directory-setup.ts` | Ensures selected packet directories exist before downstream writes. |
 | `generate-description.ts` | Builds per-folder `description.json` metadata. |
-| `nested-changelog.ts` | Deprecated. Builds nested changelog payloads for root packets and phase children, kept to render existing files. |
 
 ---
 
@@ -86,12 +83,6 @@ npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
 ```
 
 Expected result: TypeScript compiles and emits `runtime/cli/dist/spec-folder/` files.
-
-```bash
-node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder>
-```
-
-Expected result: prints a deprecation notice on stderr, then nested changelog data for the supplied packet path when the path exists.
 
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data.json specs/<###-feature-name>/
