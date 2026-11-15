@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a9c18119efc098c3f48c448b77463e875b4010feccdc35ee07b155d455c25364",
+  "manifestHash": "4e1da3dea78b10932d955d08e8e65c69f41b1f43ba51aaefeddc7716df9c27b6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2317,6 +2317,9 @@
     ],
     "009 deep review audit": [
       "009 deep review audit"
+    ],
+    "009 deep review p2 remediation operator decisions": [
+      "009-deep-review-p2-remediation operator decisions"
     ],
     "009 deep review remediation": [
       "009 deep-review remediation"
@@ -38470,6 +38473,18 @@
     "deep review p2 plan check build summary": [
       "deep review p2 plan check build summary"
     ],
+    "deep review p2 remediation": [
+      "deep review p2 remediation"
+    ],
+    "deep review p2 remediation implementation summary": [
+      "deep review p2 remediation implementation summary"
+    ],
+    "deep review p2 remediation plan": [
+      "deep review p2 remediation plan"
+    ],
+    "deep review p2 remediation tasks": [
+      "deep review p2 remediation tasks"
+    ],
     "deep review packet 013": [
       "deep-review packet 013"
     ],
@@ -58708,6 +58723,9 @@
     ],
     "history lookup handover integration": [
       "history lookup handover integration"
+    ],
+    "history lookup p2 fixes": [
+      "history lookup p2 fixes"
     ],
     "history lookup review fixes": [
       "history lookup review fixes"
@@ -84254,6 +84272,9 @@
     "phase 9 deep loop executor kind": [
       "phase 9 deep loop executor kind"
     ],
+    "phase 9 deep review p2 remediation": [
+      "phase 9 deep review p2 remediation"
+    ],
     "phase 9 doctor ci review wiring": [
       "phase 9 doctor ci review wiring"
     ],
@@ -94756,6 +94777,9 @@
     "remove obsidian plugin support": [
       "remove obsidian plugin support"
     ],
+    "remove predecessor hard block": [
+      "remove predecessor hard block"
+    ],
     "remove process derived root source": [
       "remove process-derived root source"
     ],
@@ -103382,6 +103406,9 @@
     ],
     "search index integrity sweep changelog": [
       "search-index-integrity-sweep changelog"
+    ],
+    "search index memory measurement": [
+      "search index memory measurement"
     ],
     "search intelligence findings behind 017": [
       "search intelligence findings behind 017"

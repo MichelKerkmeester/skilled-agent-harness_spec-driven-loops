@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6821,
-    "ok": 19248,
+    "missing-frontmatter": 6845,
+    "ok": 19253,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27696,
+  "documentsScanned": 27725,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a9c18119efc098c3f48c448b77463e875b4010feccdc35ee07b155d455c25364",
+  "manifestHash": "4e1da3dea78b10932d955d08e8e65c69f41b1f43ba51aaefeddc7716df9c27b6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44203,
+      "ok": 44212,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -35765,8 +35765,152 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/fanout-attribution.md",
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-10.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-7.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-8.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/prompts/iteration-9.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -56127,7 +56271,11 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/lineages",
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/lineages",
       "reason": "excluded directory"
     },
     {
