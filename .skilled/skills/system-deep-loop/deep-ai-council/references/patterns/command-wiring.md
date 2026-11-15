@@ -8,12 +8,12 @@ trigger_phrases:
   - "council yaml workflow"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.7.3.0
+version: 1.7.4.0
 ---
 
 # AI Council Command Wiring
 
-This reference defines the canonical post-dispatch wiring for callers that run `@deep-ai-council` and need durable packet artifacts.
+This reference defines who writes AI Council packet artifacts, how state events reach the append gateway, and the helper fallback for callers that hold a council report the agent did not write.
 
 ---
 
@@ -21,17 +21,39 @@ This reference defines the canonical post-dispatch wiring for callers that run `
 
 ### Purpose
 
-Durable packet artifacts for a returned council report, written by the caller that holds write access.
+Durable packet artifacts for every council run, with one named writer per run.
 
 ### When to Use
 
-- A top-level caller dispatches `@deep-ai-council` and needs durable artifacts.
-- `@orchestrate` runs the council as a LEAF.
-- A command YAML or an external CLI playbook owns the persistence step.
+- A caller dispatches `@ai-council` and needs to know what the agent writes and what the caller still owns.
+- A command YAML or an external CLI playbook holds a council report and owns the persistence step.
 
-`@deep-ai-council` is planning-only. It returns a council report and cannot write, edit, patch, or run shell commands. The dispatching parent owns persistence by invoking `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` after the report is captured.
+### Single Writer Authority
 
-Future `/speckit:*` consumers and CLI-skill playbooks should use the same helper invocation so council artifacts, state JSONL, and optional memory-save payloads stay consistent.
+When a caller dispatches `@ai-council`, the agent is the one writer of that run's `ai-council/**` artifacts. It writes them with Write and Edit, in the shapes the named exports of `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` produce: `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique` and `writeReport`. The dispatching parent does not write council artifacts and does not run the helper after the agent returns. It handles code or spec changes once the council's plan is in.
+
+Runs that never dispatch `@ai-council` have their own writer. `/deep:ai-council` dispatches each seat through `orchestrate-session.cjs` and persists it with the helper. A playbook that captures a report from an external runtime runs the helper itself. In those runs the helper is the one writer.
+
+### Recording State Through the Append Gateway
+
+The agent has no Bash, so it names every state event in its report, in order, and the caller records each one:
+
+```bash
+node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+  --mode ai-council \
+  --run-directory <resolved ai-council packet root> \
+  --event-json <event payload file>
+```
+
+The gateway authorizes the event against the mode's durable authority and keeps it in the mode ledger. Exit `0` means the event is durable; exit `2` means it was refused, so halt and name the check the refusal reports. The gateway does not refresh `ai-council-state.jsonl`, because `append-mode-event.ts` registers no projection for this mode. Never fall back to a direct write of that file from the agent.
+
+### Scoped-Write Rules
+
+1. **Allowed root**: `<packet>/ai-council/**` only.
+2. **Denied operations**: Bash and Patch stay denied to the agent. It does not shell out for persistence.
+3. **Out-of-scope writes**: any target outside `ai-council/**` fails with `OUT_OF_SCOPE_WRITE` before it touches the filesystem.
+
+This convention applies to council runs from its adoption forward. Outputs in earlier packets stay where they are and are not migrated.
 
 ---
 
@@ -39,31 +61,29 @@ Future `/speckit:*` consumers and CLI-skill playbooks should use the same helper
 
 ### Top-Level Task Dispatch
 
-A user or top-level assistant dispatches `@deep-ai-council`, stores the returned report as `council-report.md`, then invokes the helper.
-
-Use this when the council is requested directly and the caller can run shell commands after the planning agent returns.
+A user or top-level assistant dispatches `@ai-council`. The agent writes its artifacts, and the caller records the state events the report names.
 
 ### `@orchestrate` at Depth 1
 
-`@orchestrate` dispatches `@deep-ai-council` as a LEAF. The LEAF returns report text only. `@orchestrate` then persists artifacts using the helper from its own write-capable context.
+`@orchestrate` dispatches `@ai-council` as a LEAF. The agent writes its artifacts in context and returns the report with its state events. `@orchestrate` runs no helper afterwards.
 
 Use this when multi-agent planning is part of a larger implementation workflow.
 
-### `/speckit:*` YAML Workflow
+### Command YAML Workflow
 
-A command YAML dispatches the council as a planning step and follows it with a persistence step. The command workflow owns the helper invocation, not the council agent.
-
-Use this for future command-owned council workflows, completion flows, or planning commands.
+A command YAML that holds a council report it did not get from `@ai-council` follows it with a persistence step. The command workflow owns the helper invocation. `/deep:ai-council` is this pattern.
 
 ### CLI-Skill Playbook
 
-`cli-claude-code`, `cli-opencode`, and `cli-codex` playbooks may capture a council report from an external runtime and then invoke the same helper locally. Each playbook stays within ONE CLI per round (`SKILL.md §5` ALWAYS rule 6); multi-CLI deliberations stage additional dedicated rounds.
+`cli-claude-code`, `cli-opencode`, and `cli-codex` playbooks may capture a council report from an external runtime and then invoke the helper locally. Each playbook stays within ONE CLI per round (`SKILL.md §5` ALWAYS rule 6); multi-CLI deliberations stage additional dedicated rounds.
 
 Use this when an external AI vantage contributes the report but packet artifacts still need to land in the local spec folder.
 
 ---
 
 ## 3. SHELL SNIPPET
+
+The snippets in this section and the next show the helper fallback, for a caller that holds a council report from a runtime that could not write it. Do not run the helper after an `@ai-council` dispatch: the agent already wrote that run's artifacts.
 
 ```bash
 PACKET="<spec-folder>"
@@ -182,7 +202,7 @@ It always exits `0` and is not part of `validate.sh --strict`.
 
 ## 8. CROSS-REFERENCES
 
-- Agent body §16: `.skilled/agents/ai-council.md`
+- Agent body §7 RULES (persistence rule and the pointer to this reference): `.skilled/agents/ai-council.md`
 - Output schema: `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md`
 - State format: `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
 - Persistence helper: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`

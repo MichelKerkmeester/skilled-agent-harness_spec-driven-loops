@@ -111,7 +111,6 @@ agent_config:
   leaf_only: true
   tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
   mcp_servers: []
-  tool_call_budget: { target: 12, max: 24 }
 
 # ─────────────────────────────────────────────────────────────────
 # STATE FILE PATHS
@@ -1211,6 +1210,7 @@ workflow:
             stateLogPath: "{state_paths.state_log}"
             executor: "{config.executor}"
             iteration: "{current_iteration}"
+            sessionId: "{config.lineage.sessionId}"
         branch_on: "config.executor.kind"
         if_native:
           dispatch:

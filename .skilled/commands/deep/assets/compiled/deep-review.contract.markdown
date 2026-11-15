@@ -22,32 +22,32 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "a7d960e299975bc958bdc3c757c67fb482ce5a9c10b22966604975505844ddfe",
+      "sha256": "fa9cf7f5e04ae7a2c5b452b2efeafa09cf0272aede1e7a4b2b327ccba55eb092",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "0d198b234291a0107b99ee0c137d33ffe93be8f29803a102be4b8b3a5e7424af",
+      "sha256": "b2c45769eeeb6c3153337724bbc33bd23505e13d1d576f0359f968385a9ec9ad",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "c84233295473f06f483bd38c90afc4a270e2b63b0083b1ae9936189577fcec42",
+      "sha256": "1fc4abfd85b6302cf2268fb4e8129ad19c7149dd08711e92cff232f4c9615693",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "7255fc18b9d1593d051c94597439b349f2ea014e4bfc54c5c894049f0c3782a3",
+      "sha256": "ec10f4597ce62215e91842d5513c7697a8bf5f75bb4d8e1be221545cd15135b1",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "0b70e8815059318b2c2eb23405e2121d878ad48d5f716456b4aaa8b5873d8787",
+      "sha256": "42d6ace163bea91542eb95e5b211970759d907e208495672d49aef97464f0a06",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "f2abb7d154cfd71a8473eec52aadce15e0be2ec2fddf5f213b90c3fdee66b872",
+      "sha256": "c54db77ffc023569972b250053c407791cec7d7704b887eafcb746cd067df2ad",
       "section": "full"
     },
     {
@@ -67,17 +67,17 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
-      "sha256": "072d35003ddf6fa9915ed521f44b7045fd24c7ef9ce0a9ceade2877ad26d73e3",
+      "sha256": "d0d4715bf781985515e4ced469c9b12ff8f4c5b481f9ffe9b8f706987f42a438",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "42aae41d16f155b6fa599b119f071d5ec6b32a172be46700278b364509a8bdb7",
+      "sha256": "b697d88fc6457211c623debcb9b8c2c073358e355a3547d09d0cd9ea549559c1",
       "section": "full"
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "9b423d761f2b4664ea96d7bc011e7017f66368b1a8537de1e9ad8e2ad7a01bbc",
+      "sha256": "bf452b071a2224bc076893587b7932a1a166bc281c57a4cbc1288ba9d3d26b59",
       "section": "full"
     },
     {

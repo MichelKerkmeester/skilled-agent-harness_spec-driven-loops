@@ -1,0 +1,87 @@
+$ git rev-parse --short HEAD
+c1dbb1bcc4
+$ git diff --quiet 09f1d6499a HEAD -- .skilled/agents/ .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md; echo "exit=$?"
+exit=0
+$ wc -l .skilled/agents/{ai-council,code,context,debug,deep-research,deep-review,design,orchestrate,prompt-improver,review}.md
+     816 .skilled/agents/ai-council.md
+     539 .skilled/agents/code.md
+     438 .skilled/agents/context.md
+     648 .skilled/agents/debug.md
+     599 .skilled/agents/deep-research.md
+     600 .skilled/agents/deep-review.md
+     244 .skilled/agents/design.md
+     910 .skilled/agents/orchestrate.md
+     399 .skilled/agents/prompt-improver.md
+     462 .skilled/agents/review.md
+    5655 total
+$ rg -n 'Max 5 tool calls' .skilled/agents/ | cut -c1-90
+.skilled/agents/code.md:114:Max 5 tool calls. Minimum deliverable: RETURN line with verifi
+.skilled/agents/debug.md:153:**If dispatched with `Complexity: low`:** Keep all 5 phases i
+.skilled/agents/review.md:63:**If dispatched with `Complexity: low`:** LOAD STANDARDS stil
+$ rg -n 'hard max 12|\| Write outputs|max 13 calls|Respect max 13' .skilled/agents/deep-research.md .skilled/agents/deep-review.md | cut -c1-110
+.skilled/agents/deep-research.md:183:**Budget**: Target 8-11 total tool calls, hard max 12. Reserve enough cal
+.skilled/agents/deep-research.md:413:| Write outputs | 2-3 | 3 |
+.skilled/agents/deep-review.md:506:3. Exceed tool budget (max 13 calls).
+.skilled/agents/deep-review.md:580:| Exceeding budget | Timeout risks losing iteration work | Respect max 13 c
+$ rg -n -o '`(scan|verify|adjudicate)`: [0-9-]+ tool calls' .skilled/agents/deep-review.md
+388:`scan`: 9-11 tool calls
+389:`verify`: 11-13 tool calls
+390:`adjudicate`: 8-10 tool calls
+$ rg -n 'tool_call_budget|maxToolCallsPerIteration"|Max \{max_tool|Soft max 12|Max 24 tool|default: 12|max 12 tool|\(max 12\)|Max 12 tool' .skilled/commands/deep/assets .skilled/skills/system-deep-loop --glob '!**/fixtures/**' --glob '!**/changelog/**' | cut -c1-120
+.skilled/commands/deep/assets/deep-research-confirm.yaml:114:  tool_call_budget: { target: 12, max: 24 }
+.skilled/commands/deep/assets/deep-review-auto.yaml:90:  tool_call_budget: { target: 9, soft_max: 12, hard_max: 13 }
+.skilled/commands/deep/assets/deep-research-auto.yaml:98:  tool_call_budget: { target: 12, max: 24 }
+.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl:94:- Target 9 tool calls. Soft max 12,
+.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json:18:  "maxToolCallsPerIteration": 12,
+.skilled/commands/deep/assets/deep-review-confirm.yaml:89:  tool_call_budget: { target: 9, soft_max: 12, hard_max: 13 }
+.skilled/skills/system-deep-loop/deep-review/SKILL.md:246:3. **Exceed TCB**, Target 8-11 tool calls per iteration (max 1
+.skilled/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.j
+.skilled/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.j
+.skilled/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report
+.skilled/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:310:- Target 8-11 tool calls per itera
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:708:3. Respect the LEAF-agent constrai
+.skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts:160:    expect(researchRendered).toContain('Ma
+.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:36:- Target 3-5 research actions. Ma
+.skilled/skills/system-deep-loop/deep-research/SKILL.md:104:3. Respect the LEAF-agent constraint: no sub-dispatch, no ne
+.skilled/skills/system-deep-loop/deep-research/SKILL.md:206:3. **Exceed TCB** -- Target 8-11 tool calls per iteration (m
+.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md:307:- **Tool call count**: tracked a
+.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json:12:  "maxToolCallsPerIteration": 24,
+$ rg -n 'MUST SPLIT|more than 12 tool calls|\*\*Tool Calls\*\*' .skilled/agents/ | cut -c1-110
+.skilled/agents/orchestrate.md:816:| **13+**         | 🚫 MUST SPLIT | Split into agents of ≤8 tool calls each 
+.skilled/agents/orchestrate.md:833:> **SELF-GOVERNANCE:** If you determine this task requires more than 12 too
+.skilled/agents/context.md:150:| **Tool Calls** | 10-20 for thorough mode |
+.skilled/agents/markdown.md:182:| **Tool Calls**     | 8-25 for normal mode, depending on package size        
+$ rg -c '\[x\]' .skilled/agents/
+.skilled/agents/deep-research.md:19
+.skilled/agents/deep-review.md:9
+.skilled/agents/debug.md:3
+$ rg -n 'Rubric Score|Advisory score: XX|Quality score ≥ 70|^DQI=' .skilled/agents/ | cut -c1-90
+.skilled/agents/orchestrate.md:555:□ Quality score ≥ 70 (see Scoring Dimensions below)
+.skilled/agents/review.md:254:**One vocabulary.** Every format below states its verdict in
+.skilled/agents/review.md:261:`## PR Review: [Title]` → Summary (`Recommendation: [APPROVE
+.skilled/agents/code.md:339:**Rubric Score:** <0-100 plus optional compact breakdown>
+.skilled/agents/markdown.md:246:DQI=<score>
+$ rg -n 'All LEAF agents must use this exact string' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+307:All LEAF agents must use this exact string when asked to dispatch, invoke the Task tool, or delegate outside their boundary:
+$ rg -c -F 'REFUSE: nested Task tool dispatch is forbidden for LEAF agents.' .skilled/agents/ .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md:3
+.skilled/agents/deep-review.md:1
+.skilled/agents/markdown.md:1
+$ rg -l -i 'untrusted' .skilled/agents/
+.skilled/agents/deep-research.md
+.skilled/agents/deep-review.md
+$ rg -n 'Daemon-free retrieval' .skilled/agents/ | cut -c1-60
+.skilled/agents/review.md:105:**Daemon-free retrieval:** eve
+.skilled/agents/deep-research.md:362:**Daemon-free retrieval
+.skilled/agents/ai-council.md:133:**Daemon-free retrieval:**
+.skilled/agents/deep-review.md:288:- **Daemon-free retrieval
+.skilled/agents/context.md:77:**Daemon-free retrieval:** eve
+.skilled/agents/debug.md:369:**Daemon-free retrieval:** ever
+$ rg -n 'Layer 1|Layer-1' .skilled/agents/{code,debug,review}.md | cut -c1-110
+.skilled/agents/debug.md:155:**If dispatched with a Context Package** (from @context or orchestrator): Skip th
+.skilled/agents/code.md:116:**If dispatched with a Context Package** (from @context or orchestrator): Skip Lay
+.skilled/agents/review.md:65:**If dispatched with a Context Package** (from @context or orchestrator): Skip th
+.skilled/agents/review.md:461:- `.skilled/agents/context.md`: the optional Context Package provider that lets 
+$ rg -c '^#+ .*Layer 1' .skilled/agents/{code,debug,review,context}.md
+.skilled/agents/context.md:1

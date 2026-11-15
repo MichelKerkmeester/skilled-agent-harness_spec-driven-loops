@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry",
+  "description": "Phase 8: orchestrate-routing-and-retry",
+  "keywords": [
+    "phase",
+    "orchestrate-routing-and-retry"
+  ],
+  "lastUpdated": "2026-11-14T23:24:15.067Z",
+  "specId": "008",
+  "folderSlug": "orchestrate-routing-and-retry",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "14-11-26_21-47__phase-008-findings-reproduced-before-planning.md",
+    "15-11-26_00-07__started-phase-8-of-the-agent-alignment-follow-ups.md",
+    "15-11-26_00-23__phase-8-built-t005-t014-by-deepseek-flash-via-cli.md",
+    "15-11-26_00-24__phase-8-built-t005-t014-by-deepseek-flash-via-cli.md"
+  ]
+}

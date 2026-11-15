@@ -8,7 +8,7 @@ trigger_phrases:
   - "council validator graduation"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # AI Council Convergence Signals
@@ -72,5 +72,5 @@ Carrying threshold expectations across siblings will cause unexpected iteration 
 
 ## 6. CROSS-REFERENCES
 
-- Agent body: `.skilled/agents/ai-council.md` §16
+- Agent body: `.skilled/agents/ai-council.md` §7 RULES (pointer to this reference)
 - Decision context: local doctor command ADRs ADR-001 and ADR-003

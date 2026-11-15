@@ -5,7 +5,7 @@ trigger_phrases:
   - "github actions workflow standards"
   - "ci workflow rules"
   - "workflow yaml evidence"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # sk-code-ci
@@ -81,6 +81,7 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
 | Hub gate | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code` exits 0 |
 | Drift guards | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0 |
 | Compiled route | `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` exits 0 |
+| Keyword copies | `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 2` exits 0. The hub lists this packet under `vocabularyMirrors`, so the check compares the `CI_WORKFLOW` rows in `../ROUTER.md` and `ROUTER.md` with the `code-ci-aliases` and `code-ci-runtime` classes of `../hub-router.json` |
 | Playbook replay | `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 4` exits 0 |
 | CI doctor scripts | `node --test .skilled/commands/doctor/scripts/tests/ci-profile.test.cjs .skilled/commands/doctor/scripts/tests/ci-report.test.cjs .skilled/commands/doctor/scripts/tests/ci-scaffold.test.cjs .skilled/commands/doctor/scripts/tests/ci-toggle.test.cjs` exits 0 |
 

@@ -1,0 +1,65 @@
+# T001
+$ rg -n '\*\*Status\*\*' specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/spec.md
+25:| **Status** | Complete |
+exit=0
+# T002
+$ rg -c 'set status to .error.' .skilled/agents/deep-research.md
+2
+exit=0
+$ rg -c 'Append the structured JSONL record' .skilled/agents/deep-research.md
+1
+exit=0
+$ grep -c durationMs .skilled/agents/deep-research.md
+2
+exit=0
+$ rg -c 'BEFORE any state read' .skilled/agents/deep-review.md
+1
+exit=0
+$ rg -c 'and JSONL state log listed' .skilled/agents/deep-review.md
+1
+exit=0
+$ rg -c 'append a typed .restarted. event' .skilled/agents/deep-review.md
+1
+exit=0
+$ wc -l .skilled/agents/deep-research.md .skilled/agents/deep-review.md
+     589 .skilled/agents/deep-research.md
+     592 .skilled/agents/deep-review.md
+    1181 total
+exit=0
+# T004
+$ rg -n durationMs .skilled/skills/system-deep-loop/deep-research .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml | cut -c1-170
+.skilled/commands/deep/assets/deep-research-auto.yaml:949:                    ? { status, output: {pivot_seat_001_output_json}, startedAtIso: '{pivot_seat_001_started_at_
+.skilled/commands/deep/assets/deep-research-auto.yaml:950:                    : { status: 'rejected', error: {pivot_seat_001_error_json}, startedAtIso: '{pivot_seat_001_s
+.skilled/commands/deep/assets/deep-research-auto.yaml:982:                    ? { status, output: {pivot_seat_002_output_json}, startedAtIso: '{pivot_seat_002_started_at_
+.skilled/commands/deep/assets/deep-research-auto.yaml:983:                    : { status: 'rejected', error: {pivot_seat_002_error_json}, startedAtIso: '{pivot_seat_002_s
+.skilled/commands/deep/assets/deep-research-auto.yaml:1015:                    ? { status, output: {pivot_seat_003_output_json}, startedAtIso: '{pivot_seat_003_started_at
+.skilled/commands/deep/assets/deep-research-auto.yaml:1016:                    : { status: 'rejected', error: {pivot_seat_003_error_json}, startedAtIso: '{pivot_seat_003_
+.skilled/commands/deep/assets/deep-research-auto.yaml:2215:            # Canonical iteration record: include mode, sessionId, generation, durationMs, keyQuestions, answer
+.skilled/commands/deep/assets/deep-research-auto.yaml:2217:            append_jsonl: '{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode"
+.skilled/commands/deep/assets/deep-research-confirm.yaml:914:                    ? { status, output: {pivot_seat_001_output_json}, startedAtIso: '{pivot_seat_001_started_
+.skilled/commands/deep/assets/deep-research-confirm.yaml:915:                    : { status: 'rejected', error: {pivot_seat_001_error_json}, startedAtIso: '{pivot_seat_00
+.skilled/commands/deep/assets/deep-research-confirm.yaml:948:                    ? { status, output: {pivot_seat_002_output_json}, startedAtIso: '{pivot_seat_002_started_
+.skilled/commands/deep/assets/deep-research-confirm.yaml:949:                    : { status: 'rejected', error: {pivot_seat_002_error_json}, startedAtIso: '{pivot_seat_00
+.skilled/commands/deep/assets/deep-research-confirm.yaml:982:                    ? { status, output: {pivot_seat_003_output_json}, startedAtIso: '{pivot_seat_003_started_
+.skilled/commands/deep/assets/deep-research-confirm.yaml:983:                    : { status: 'rejected', error: {pivot_seat_003_error_json}, startedAtIso: '{pivot_seat_00
+.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md:105:  "durationMs": 45000
+exit=0
+# T003
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs | tail -1
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+$ node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/research 2>&1 | tail -1
+[CONTRACT DRIFT] OK commands=1
+exit=0
+$ node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/review 2>&1 | tail -1
+[CONTRACT DRIFT] OK commands=1
+exit=0
+$ (cd .skilled/skills/system-spec-kit/runtime/cli && npx --no-install vitest run --config ../../vitest.config.ts --project cli tests/deep-review-contract-parity.vitest.ts tests/deep-research-contract-parity.vitest.ts 2>&1 | grep -E 'Tests ')
+      Tests  19 passed (19)
+exit=0
+$ (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --config vitest.config.ts tests/fanout-loop-prompt-in-process.test.ts 2>&1 | grep -E 'Tests ')
+      Tests  8 passed (8)
+exit=0

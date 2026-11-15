@@ -1,7 +1,7 @@
 ---
 title: "Create Changelog Scripts: shape gate and release notes builder"
 description: "A Python gate that fails a global changelog entry whose shape breaks the template's ceilings, and a builder that turns an entry into its GitHub release body."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Create Changelog Scripts
@@ -16,7 +16,6 @@ An entry is expanded when it carries an H4 item or an `## Upgrade Notes` section
 
 | Rule | Fails when | Applies to |
 |---|---|---|
-| `file-total` | The entry runs past 280 lines below its frontmatter, blank lines included | Expanded |
 | `h4-items` | The entry carries more than 32 H4 items | Expanded |
 | `glance-bullets` | `## What's New at a Glance` holds more than 14 bullets | Both |
 | `glance-order` | A tagged glance bullet comes before a bullet whose section sits earlier in the body, a tag names no topical section or one bullet lacks the tag the others carry | Expanded |
@@ -35,7 +34,7 @@ The order rule reads the trailing `<!-- section: {Topical Domain} -->` comment o
 
 | File | Purpose |
 |------|---------|
-| `check_changelog_shape.py` | Gate for the expanded file total, the H4 item ceiling, the glance bullet ceiling, the glance order, the spec-folder line, the How It Was Checked section and the sentence length. |
+| `check_changelog_shape.py` | Gate for the H4 item ceiling, the glance bullet ceiling, the glance order, the spec-folder line, the How It Was Checked section and the sentence length. |
 | `build_release_notes.py` | Builds a GitHub release body from an entry. It drops the frontmatter and the title H1 and appends the `Full changelog` pointer. The publish step uses it, and so does the step that keeps a published release in step with its entry. |
 
 ---

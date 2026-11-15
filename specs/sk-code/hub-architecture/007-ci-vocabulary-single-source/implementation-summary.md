@@ -62,6 +62,8 @@ The `sk-code-ci` routing keywords are one set of 72 in all three copies, and the
 
 You can replay a CI request through the hub row or the packet row and get the answer the live route gives, because both rows now hold the 72 keywords of the two CI classes in `hub-router.json`. The hub row gained 14 keywords. The packet row went from 12 to 72 and lost `.github/workflows/`, which the JSON's `.github/workflows` covers. `hub-router.json` lists `sk-code-ci` under `vocabularyMirrors`, so check 2 of the router-sync guard compares the three copies on every run. The packet's intent model points at its row and no longer repeats the keywords. The hub is at version 3.12.1.0 and the packet at 1.1.16.0. This closes row `H7` of the audit packet's ledger.
 
+A later edit added a Keyword copies row to the `sk-code-ci` README's verification table. It names check 2 as the guard over the CI keyword copies, so a reader editing one row knows which check catches a mismatch. The packet is at 1.1.17.0.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -73,6 +75,7 @@ You can replay a CI request through the hub row or the packet row and get the an
 | `mode-registry.json`, `description.json`, `SKILL.md`, `sk-code-ci/SKILL.md` | Modified | Version strings |
 | Two `changelog/` files | Created | One release note for the hub and one for the packet |
 | The sk-code route manifest and its authored copy | Modified | Re-minted by the commit gate |
+| `sk-code-ci/README.md`, `sk-code-ci/SKILL.md`, `sk-code-ci/changelog/v1.1.17.0.md` | Modified, Created | The README names the keyword guard, the version and its release note |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -118,6 +121,7 @@ The three sets were compared with the guard's own library before planning. A scr
 | `diff scratch/advisor-before.txt scratch/advisor-after.txt` | Six of ten lines differ. Four CI prompts now surface `sk-code`. `rebuild the trigger index` keeps `system-spec-kit` first at 0.91 and its second pick changes from `sk-doc` to `sk-code`, both at 0.82 |
 | `check_changelog_shape.py` on the two release notes | `PASS` on each |
 | `sk-code-setup-check.cjs` | `STATUS=OK legs=9`, exit 0 |
+| Gates after the README row | `PASS check 2`, `router-sync: 5/5 checks passed`, `all 4 guards PASSED`, `STATUS=OK legs=9` and `validate_document.py` 0 issues, each exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

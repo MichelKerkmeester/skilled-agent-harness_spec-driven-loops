@@ -1,8 +1,9 @@
 ---
-title: "Feature Specification: Agent alignment follow-ups: close the four findings the agent contract and registry alignment packet left open"
-description: "The agent contract and registry alignment packet closed with four findings it did not own: two persona dispatch paths with no tool-mapping line, one hand-typed agent list in the orchestrator's task template, and an authoring skill that never names the agent registry. Four phases settle each by evidence."
+title: "Feature Specification: Agent alignment follow-ups: close the predecessor's four open findings and every finding of the agent file review"
+description: "The agent contract and registry alignment packet closed with four findings it did not own, settled by phases 1 to 5. A later read-only review of the eleven agent files found 62 more: budgets the mandatory steps exceed, retry and completion rules that contradict each other, and routing to agents that refuse the work. Phases 6 to 14 plan a fix or a recorded no-fix decision for each."
 trigger_phrases:
   - "agent alignment follow ups phase parent spec"
+  - "agent file review findings"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -36,7 +37,7 @@ _memory:
     - What needs done: the high-level outcome the phases work toward
 -->
 
-# Feature Specification: Agent alignment follow-ups: close the four findings the agent contract and registry alignment packet left open
+# Feature Specification: Agent alignment follow-ups: close the predecessor's four open findings and every finding of the agent file review
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -45,14 +46,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | None, this is the packet root |
 | **Parent Packet** | agents/007-agent-alignment-follow-ups |
 | **Predecessor** | 006-agent-contract-and-registry-alignment |
 | **Successor** | None |
-| **Handoff Criteria** | Every child phase has a recorded decision or a shipped change, and `validate.sh --recursive --strict` prints `RESULT: PASSED` for the parent and all five children |
+| **Handoff Criteria** | Every child phase has a recorded decision or a shipped change, every row of `scratch/agent-review/finding-to-phase.tsv` is closed by its owning phase, and `validate.sh --recursive --strict` prints `RESULT: PASSED` for the parent and all fourteen children |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -63,8 +64,10 @@ _memory:
 ### Problem Statement
 The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope. The deep-loop fan-out runner inlines an agent persona for every executor that is not native and adds no tool-mapping line, the line the Codex dispatch rule now requires. The DeepSeek Harness documents name no read tool, so nobody knows whether a harness child given a read-only persona reads files. The orchestrator's task template lists eight agent names typed by hand while the registry schedules ten, so a task package cannot name `@design` or `@prompt-improver` from the template. The agent authoring skill never tells an author to add a registry record, so a new agent file fails the roster check with an error the skill does not explain. Two of the four are suspected failures with no observed run behind them, and acting on them without evidence would add text to prompts and rules that nothing needs.
 
+A fresh read-only review of the eleven agent files in `.skilled/agents/` then reported 62 findings, kept in `scratch/agent-review/agents-review.out.md`. Seven of the eleven agents carry an instruction they cannot satisfy or two instructions that contradict each other. Tool-call budgets sit below what the mandatory steps cost. The code, ai-council and orchestrate agents state retry and completion rules that disagree. The orchestrator routes work to leaves that refuse it. The roster check passes on all of it, because it checks headings and not behavior. The review is one model's reading and ran nothing, so each phase reproduces its findings before it plans an edit.
+
 ### Purpose
-Each of the four findings ends as a shipped fix or as a recorded decision that no fix is needed, and each rests on a command output or a live dispatch.
+Each of the predecessor's four findings and each of the 62 review findings ends as a shipped fix or as a recorded decision that no fix is needed, and each rests on a command output or a live dispatch.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -79,9 +82,13 @@ Each of the four findings ends as a shipped fix or as a recorded decision that n
 - Decide by live harness dispatch whether a DeepSeek Harness child needs a tool-mapping line, and add the rule to the harness skill only when the control run reads nothing (phase 2)
 - Remove the hand-typed agent list from the orchestrator's task template so it cannot disagree with the registry (phase 3)
 - Add the registry record to the agent authoring workflow, with the error an author sees without it (phase 4)
+- Give each shared rule one source: tool budgets, the canonical refusal string, the untrusted-content rule and self-attested checklists and scores (phase 6)
+- Fix the per-agent contradictions the review reproduces, one phase per coupled group of agents, with every agent edit carried through its runtime mirrors (phases 7 to 14)
+- Bring `orchestrate.md`, `ai-council.md` and `debug.md` to the 600-line cap the agent template sets (phases 8, 9 and 11)
 
 ### Out of Scope
-- Changing any agent's role, permissions or outline
+- Changing any agent's role or permissions beyond what a reproduced finding requires
+- Fixing a review finding that does not reproduce at the current base. Its phase records the evidence instead
 - Changing the Codex dispatch rule or the canonical persona-injection contract, which the predecessor packet shipped
 - The Routing Registry Drift Guard failure on main, which another packet owns
 - Adding a mapping line to an executor no run has shown to need one
@@ -97,6 +104,16 @@ Each of the four findings ends as a shipped fix or as a recorded decision that n
 | `.claude/agents/`, `.codex/agents/`, `.pi/agents/`, `.cursor/agents/`, `.devin/agents/`, `.dsh/agents/` | Regenerate | 3 | Runtime copies of `orchestrate.md` |
 | `.skilled/skills/sk-doc/sk-create-agent/SKILL.md` | Modify | 4 | Registry step in the ordered creation workflow |
 | `.skilled/skills/sk-doc/sk-create-agent/changelog/` | Create | 4 | One entry for the new packet version |
+| `.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md` | Modify | 6 | Shared rules: refusal string, untrusted content, budgets, self-attested output |
+| `.skilled/commands/deep/assets/deep-research-*.yaml`, `deep-review-*.yaml` | Modify, if phase 6 picks the workflow as the budget source | 6 | Tool budgets the leaves read |
+| `.skilled/agents/*.md` (all eleven) | Modify | 6 to 14 | Per-phase fixes, each phase names its own lines |
+| `.skilled/agents/agent-registry.json` | Modify, if phase 9 changes the ai-council writer | 9 | The ai-council record's persistence note |
+| `.claude/agents/`, `.codex/agents/`, `.pi/agents/`, `.dsh/agents/` and the other runtime directories | Hand-edit or regenerate | 6 to 14 | Runtime copies of each changed agent |
+| `.skilled/skills/system-deep-loop/` mode `SKILL.md` and `loop-protocol.md` files, deep-review config and prompt template, two vitest suites, compiled deep command contracts | Modify or regenerate | 6, 9, 10 | Budget source and contract hashes that pin the agent files |
+| `.skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md` with its `leaf-manifest.json`, `leaf-aliases.json` and `ROUTER.md` entries | Create and register | 8 | Sections moved out of `orchestrate.md`. A hub-routing change, so `skill-hub-routing.md` governs the build |
+| `.skilled/skills/system-deep-loop/` deep-ai-council references and playbook scenarios | Modify | 9 | Sections 12 to 17 moved out of `ai-council.md`, and 17 citations repointed |
+| `.skilled/skills/sk-prompt/SKILL.md` and a new changelog entry, and the prompt-improve workflow YAMLs | Modify, workflows only on one operator answer | 14 | Where model eligibility lives |
+| `.skilled/agents/README.txt`, `.skilled/bin/agent-mirror-crosswalk.md` and the trigger-index outputs | Regenerate or modify | 6 to 14 | Generated roster and index surfaces |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -113,6 +130,15 @@ Each of the four findings ends as a shipped fix or as a recorded decision that n
 | 3 | 003-orchestrate-task-package-agent-names/ | Replace the eight hand-typed agent names in the orchestrator's task template with a pointer to the generated routing table | Complete |
 | 4 | 004-agent-authoring-registry-step/ | Add the registry record to the agent authoring workflow so a new agent file passes the roster check | Complete |
 | 5 | 005-alignment-report-fixes/ | Fix the ten distinct findings of the alignment check on phases 1 to 4, in the skill, the command, the playbook, the READMEs, the routing vocabulary and the release notes | Complete |
+| 6 | 006-shared-agent-contract/ | Give each shared rule one source: tool budgets (deep-loop workflows, fast-path caps, the orchestrator's split footer), the canonical refusal string, the untrusted-content rule and self-attested checklists and scores | Complete |
+| 7 | 007-code-agent-retry-and-status/ | State one retry rule in the code agent, define FAIL against BLOCKED, unify the unknown-route status and remove the gate that never fires | Complete |
+| 8 | 008-orchestrate-routing-and-retry/ | Route deep work in the orchestrator to the commands, keep one retry ladder and one spec-doc owner, stop double-loading definitions and bring the file to 600 lines | Complete |
+| 9 | 009-ai-council-writer-and-round-model/ | Name one writer for ai-council artifacts, make completion question 11 satisfiable, run one round per invocation and bring the file to 600 lines | Complete |
+| 10 | 010-deep-loop-leaf-state-and-status/ | Make the deep-research and deep-review leaves agree with themselves on status values, state-log writes, bindings and the FAIL mapping | Complete |
+| 11 | 011-debug-agent-revert-and-handoff/ | Revert a rejected debug fix before the next hypothesis, bound the cycle, settle who writes the delegation file and bring the file to 600 lines | Complete |
+| 12 | 012-review-agent-gates/ | Give the review agent's fast path, low-confidence case and final-line checker an exit the agent can take | Complete |
+| 13 | 013-context-markdown-design-fixes/ | Fix the context, markdown and design agents' instructions their granted tools cannot carry out | Complete |
+| 14 | 014-prompt-improver-model-eligibility/ | Settle the prompt-improver's model deny rows, its TEST field and its caller names | Complete |
 
 ### Phase Transition Rules
 
@@ -129,6 +155,15 @@ Each of the four findings ends as a shipped fix or as a recorded decision that n
 | 002-deepseek-harness-persona-probe | 003-orchestrate-task-package-agent-names | The harness verdict is recorded with both report files | `rg -c '^verdict: ' specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/scratch/verdict.md` prints 1 |
 | 003-orchestrate-task-package-agent-names | 004-agent-authoring-registry-step | The task template holds no hand-typed agent list and the runtime copies match | `rg -c '^├─ Agent: @code . @context' .skilled/agents/orchestrate.md` prints no line, and `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 |
 | 004-agent-authoring-registry-step | 005-alignment-report-fixes | The creation workflow names the registry record and the packet version has its changelog entry | `rg -c 'agent-registry' .skilled/skills/sk-doc/sk-create-agent/SKILL.md` prints 1 or more |
+| 005-alignment-report-fixes | 006-shared-agent-contract | The agent file review is copied into the packet and every finding has one owning phase | `wc -l < specs/agents/007-agent-alignment-follow-ups/scratch/agent-review/finding-to-phase.tsv` prints 63, a header and 62 rows |
+| 006-shared-agent-contract | 007-code-agent-retry-and-status | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
+| 007-code-agent-retry-and-status | 008-orchestrate-routing-and-retry | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
+| 008-orchestrate-routing-and-retry | 009-ai-council-writer-and-round-model | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
+| 009-ai-council-writer-and-round-model | 010-deep-loop-leaf-state-and-status | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
+| 010-deep-loop-leaf-state-and-status | 011-debug-agent-revert-and-handoff | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
+| 011-debug-agent-revert-and-handoff | 012-review-agent-gates | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
+| 012-review-agent-gates | 013-context-markdown-design-fixes | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
+| 013-context-markdown-design-fixes | 014-prompt-improver-model-eligibility | The predecessor's spec.md records a shipped fix or a recorded no-fix decision for each owned finding, and the agent mirror check passes | `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 and `validate.sh <predecessor> --strict` prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -141,6 +176,14 @@ Each of the four findings ends as a shipped fix or as a recorded decision that n
 - Phase 3: the planning default replaces the hand-typed list with a pointer to the generated routing table. The alternative makes the roster script write that one line from the registry. The child's `spec.md` section 7 holds both. Operator answer: the pointer (2026-11-14).
 - The executor model for implementation: DeepSeek V4.1 Flash at max through OpenCode on LLM Gateway, by operator instruction on 2026-11-14.
 - Outcome, 2026-11-14: phases 1 and 2 closed on a recorded decision with no file changed, because every live run read its file. Phases 3 and 4 shipped their change. The rows in Files to Change marked `only on a failed probe` and `only on a failed control` were therefore not touched.
+- Phases 6 to 14, added 2026-11-14 on the operator's request "Please do create needed phases to fix all", with Gate 3 answered as more phases in this packet. They are planned and not built. The build waits for the operator.
+- The phases are grouped by coupling, not one per finding. Phase 6 owns every shared rule and every line two phases would otherwise both edit, and phases 7 to 14 depend on it. `scratch/agent-review/finding-to-phase.tsv` names the one owner of each finding.
+- Answered 2026-11-14 (see below), phase 8: is `orchestrate.md:461`, where the main agent writes spec-folder docs, deliberate under the speckit authoring card? The spec-doc owner fix in that phase builds to the answer.
+- Answered 2026-11-14 (see below), phase 9: who owns ai-council artifact writes, the agent, `persist-artifacts.cjs` or the command workflow? The answer decides its scope.
+- Answered 2026-11-14 (see below), phase 14: are the prompt-improver's Opus and Fable deny rows deliberate policy? The model-eligibility fix in that phase builds to the answer.
+- Phases 6, 8, 10, 11, 12 and 13 raised further questions while planning. Each child's own open-questions section lists them with the default its plan takes, so only the three above blocked a build, and all three are answered.
+- Operator answers, 2026-11-14, through the question tool. Phase 9: the agent stays the one writer of ai-council artifacts, and the registry drops its `persist-artifacts.cjs` step. Phase 14: keep the Opus and Fable rule but move it to the dispatcher, so the workflows pass `model=sonnet`, the Claude copy pins sonnet, the table lives in sk-prompt and the agent keeps a one-line refusal. Phase 8: the main agent owns spec-folder docs, so `orchestrate.md:461` stays and the `@markdown` route at `:444` and the rejection at `:499` go. Next step: rebuild the trigger index, commit the plan on branch 384 without pushing, then build phase 6.
+- Build order: phase 6 first. Phase 7 lands before phase 8, because it edits two lines of `orchestrate.md`. Phase 8's planned size of about 591 lines is re-measured after phases 6 and 7 land.
 <!-- /ANCHOR:questions -->
 
 ---

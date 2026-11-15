@@ -8,7 +8,7 @@ trigger_phrases:
   - "council report path"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.7.2.0
+version: 1.7.3.0
 ---
 
 # AI Council Folder Layout
@@ -54,11 +54,11 @@ specs/<track>/<NNN-name>/ai-council/
 |-- council-report.md
 ```
 
-`ai-council-config.json` is one mutable packet config. It tracks the active `spec_folder`, `current_round`, `max_rounds`, `seats_per_round`, `convergence_signal`, timestamps, and status.
+`ai-council-config.json` is one mutable packet config: `{spec_folder, current_round, max_rounds, seats_per_round, convergence_signal, created_at, updated_at, status}`. `max_rounds` defaults to 3. Mutate it across runs; do not write a second config.
 
 `ai-council-strategy.md` is the first-run charter. It records task framing, selected lenses, executor/vantage targets, input evidence, constraints, and the convergence rule.
 
-`ai-council-state.jsonl` is the append-only state log. It records `round_start`, `seat_returned`, `deliberation_synthesized`, `round_end`, `council_complete`, `artifact_written`, `rollback`, and `artifact_superseded` events for resume and audit.
+`ai-council-state.jsonl` is the append-only state log for `round_start`, `seat_returned`, `deliberation_synthesized`, `round_end`, `council_complete`, `artifact_written`, `rollback`, and `artifact_superseded` events. The `persist-artifacts.cjs` helper writes it when a caller runs the helper. The append gateway records events in the mode ledger and does not touch this file, because `append-mode-event.ts` registers no projection for `ai-council`. The council agent never writes it.
 
 `seats/round-NNN/seat-MMM-<executor>.md` stores one seat output per executor and lens. Each file has frontmatter for `round`, `seat`, `executor`, `lens`, `status`, `timestamp`, and optional `simulated`.
 
@@ -70,7 +70,7 @@ specs/<track>/<NNN-name>/ai-council/
 
 `council-report.md` is the final synthesized plan. It includes council composition, comparison, roadmap, rejected alternatives, risks, confidence, and convergence status.
 
-**Canonical writer:** the council writes these artifacts directly with `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` named exports. Each writer is scoped to `ai-council/**` and appends an `artifact_written` audit event. `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` remains a helper fallback for non-council callers.
+**Canonical writer:** when a caller dispatches `@ai-council`, the agent writes these artifacts with Write and Edit, in the shapes the named exports of `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` produce. Bash is denied to the agent, so it runs no script. `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` remains a helper fallback for callers that capture a council report from another runtime. `/deep:ai-council` persists its own seats through that helper and does not dispatch the agent. See `patterns/command-wiring.md` for the single writer rule.
 
 **Schema authority:** the §8 OUTPUT FORMAT shape this layout is derived from is documented at `references/structure/output-schema.md`.
 
@@ -78,10 +78,10 @@ specs/<track>/<NNN-name>/ai-council/
 
 ## 2. CROSS-REFERENCES
 
-- Agent body: `.skilled/agents/ai-council.md` §12 OUTPUT PROTOCOL (this layout) + §13 INVOCATION CONTRACT + §14 STATE SCHEMA + §16 COUNCIL PERSISTENCE PROTOCOL + §18 ROLLBACK FOR OPERATORS
+- Agent body: `.skilled/agents/ai-council.md` §7 RULES (persistence rule and the pointer to these references)
 - Council writer library: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`
 - Helper fallback: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
 - Schema: `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md`
 - State format: `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
 - Command wiring: `.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md`
-- Decision records: ADR-002 (folder layout), ADR-004 (validator policy); the helper/schema/§17/parity ADRs; the v1.1 metadata + payload routing + advisor + command wiring ADRs
+- Decision records: ADR-002 (folder layout), ADR-004 (validator policy); the helper, schema, persistence-protocol placement and parity ADRs (the placement ADR put the protocol in the agent body; its details now live in `patterns/command-wiring.md` and the agent keeps the rule and a pointer); the v1.1 metadata + payload routing + advisor + command wiring ADRs

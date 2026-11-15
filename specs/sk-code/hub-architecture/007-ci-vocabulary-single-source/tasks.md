@@ -60,6 +60,7 @@ Run every command from the repository root. A path with no folder in front of it
 - [x] T011 Run the guard tests, the drift guards, the two playbook validators and the setup battery (`.skilled/skills/sk-code`). Verify: `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests` prints `fail 0`, `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0, each validator prints `PASS`, and `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` ends with `STATUS=OK legs=9`.
 - [x] T012 Confirm the CI classes did not change (`.skilled/skills/sk-code/hub-router.json`). Verify: `git show <code commit> -- .skilled/skills/sk-code/hub-router.json` changes two lines, `version` and `vocabularyMirrors`. [EVIDENCE: two lines changed, `version` and `vocabularyMirrors`]
 - [x] T013 Validate the packet folder (`spec.md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/hub-architecture/007-ci-vocabulary-single-source --strict --quiet` prints `RESULT: PASSED`.
+- [x] T014 Name the keyword guard in the packet README (`.skilled/skills/sk-code/sk-code-ci/README.md`). Verify: `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 2` prints `PASS check 2`, `sed -n 5p .skilled/skills/sk-code/sk-code-ci/SKILL.md` prints `version: 1.1.17.0` and `check_changelog_shape.py` prints `PASS` for `changelog/v1.1.17.0.md`. [EVIDENCE: `PASS check 2`, `version: 1.1.17.0`, `PASS`]
 <!-- /ANCHOR:phase-3 -->
 
 ---

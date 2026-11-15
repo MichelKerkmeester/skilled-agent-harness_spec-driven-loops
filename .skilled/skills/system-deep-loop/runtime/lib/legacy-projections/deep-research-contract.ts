@@ -288,6 +288,9 @@ export function createDeepResearchProjectionContract(
           iteration: iter,
           run: iter,
           focus: typeof data.focusRef === 'string' ? data.focusRef : '',
+          ...(data.executor && typeof data.executor === 'object' && !Array.isArray(data.executor)
+            ? { executor: data.executor as JsonObject }
+            : {}),
           timestamp: occurredAt,
         };
       } else if (stem === 'deep_research.iteration_completed') {

@@ -8,7 +8,7 @@ trigger_phrases:
   - "council resume semantics"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # AI Council State Format
@@ -29,7 +29,7 @@ Make the event log sufficient to tell an interrupted run from a completed one.
 - You are verifying that a run completed and its artifacts were written.
 - You are adding or changing a state event type.
 
-Every council run MUST include a `council_complete` event once the round completes and convergence is known. Runs that exit before `council_complete` is written are incomplete and should be resumed or rolled back before completion is claimed. `council_complete` is not necessarily the final line in the file: each artifact write that follows it (the state log itself, config, strategy, deliberation, report, and seat files) appends its own `artifact_written` audit event — see §5.1.
+Every council run MUST end with a `council_complete` event once it converges or reaches `max_rounds`. Runs that exit before `council_complete` is written are incomplete and should be resumed or rolled back before completion is claimed. `council_complete` is not necessarily the final line in the file: each artifact write that follows it (the state log itself, config, strategy, deliberation, report, and seat files) appends its own `artifact_written` audit event — see §5.1.
 
 ```ts
 type RoundStart = {
@@ -131,7 +131,7 @@ State schema evolution is additive-only:
 4. Existing rows are append-only history and MUST NOT be rewritten to backfill metadata.
 5. Changes that would break v1 callers require a new packet and explicit migration plan.
 
-This follows agent body §14 and ADR-001 in the internal design notes.
+This follows ADR-001 in the internal design notes.
 
 ---
 
@@ -220,14 +220,41 @@ v1 readers must ignore `progress_record` events without error. v1.3 readers use 
 
 ---
 
-## 6. RESUME SEMANTICS
+## 6. ROUND MODEL AND RESUME SEMANTICS
 
-The last completed event determines the next action.
+### One Round per Invocation
 
-- `round_start` exists without all expected `seat_returned` events: redo or complete that round.
-- All seats returned but `deliberation_synthesized` is missing: synthesize deliberation.
-- Deliberation exists but `round_end` is missing: close the round.
-- `council_complete` exists: treat the council as done unless the user requests another round.
+`@ai-council` runs one round per invocation, then returns. The caller owns the round loop, the resume and the round limit. `max_rounds` defaults to 3, matching `lib/persist-artifacts.cjs` and `/deep:ai-council`.
+
+The agent writes each artifact with Write and Edit and names every state event in its report, in order. The caller records those events through the append gateway (`append-mode-event.cjs --mode ai-council`). The gateway keeps them in the mode ledger and does not refresh `ai-council-state.jsonl`, because `append-mode-event.ts` registers no projection for this mode. Never write, rewrite or truncate `ai-council-state.jsonl` from the agent, and never put secrets, credentials, tokens or private keys into a state event.
+
+### First Call
+
+When no `ai-council/` folder exists at the resolved packet path, one invocation runs these steps in order. Each writer name is the shape of a file the agent writes with Write or Edit, and each event is one the agent names for the caller to record.
+
+1. `writeConfig` initializes `ai-council-config.json` with `current_round: 1`, `status: "in_progress"` and timestamps.
+2. `writeStrategyMd` authors the charter: purpose, task framing, selected lenses, vantage targets, evidence inputs, convergence rule and known constraints.
+3. Event `round_start` (`round`, `seats`) opens the round.
+4. Seats run: in parallel through the runtime's delegation tool at Depth 0, in context at Depth 1.
+5. For each returning seat, `writeSeat` writes `seats/round-NNN/seat-MMM-*.md`, then event `seat_returned` (`round`, `seat`, `status`).
+6. `writeDeliberation` writes `deliberations/round-NNN.md`: composition, comparison table, agreements, disagreements, cross-seat critique, synthesis and convergence decision.
+7. Events `deliberation_synthesized` (`round`, `convergence_score`) and `round_end` (`round`).
+8. Convergence check by the two-of-three rule in `../convergence/convergence-signals.md`. If converged, or if this round reached `max_rounds`, `writeReport` writes `council-report.md` and event `council_complete` (`final_report_path`, `convergence`) closes the run. Otherwise the agent returns with the round's result and the caller decides whether to invoke the next round.
+
+### Subsequent Call
+
+When the `ai-council/` folder exists, the agent reads `ai-council-config.json` and the round artifacts on disk. The next round is the highest round with a `deliberations/round-NNN.md` file, plus one. It runs that one round with the prior deliberation as input, steps 3 to 8, and does not rewrite earlier rounds.
+
+### Resume
+
+The caller resumes from the artifacts on disk, because the events of an interrupted invocation were never recorded. The last complete artifact decides the next action:
+
+- `seats/round-NNN/` holds fewer seat files than the round started: rerun the missing seats, then continue from step 6.
+- All seat files exist but `deliberations/round-NNN.md` is missing: run step 6 onward.
+- `deliberations/round-NNN.md` exists but no `council-report.md` and the round did not converge: invoke the next round.
+- `council-report.md` exists: treat the council as done unless the user requests another round.
+
+When the helper wrote `ai-council-state.jsonl`, its events give the same answer: `round_start` without `round_end` means the round is incomplete, and `council_complete` means the council is done.
 
 ---
 
@@ -239,6 +266,6 @@ Per ADR-003, validation is convention-only for v1. Do not add a runtime schema v
 
 ## 8. CROSS-REFERENCES
 
-- Agent body: `.skilled/agents/ai-council.md` §14
+- Agent body: `.skilled/agents/ai-council.md` §7 RULES (round model and the pointer to this reference)
 - Decision context: ADR-001 in internal design notes
 - Decision context: local doctor command ADRs ADR-003 and ADR-004

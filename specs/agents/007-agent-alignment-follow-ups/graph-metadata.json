@@ -8,7 +8,16 @@
     "agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe",
     "agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names",
     "agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step",
-    "agents/007-agent-alignment-follow-ups/005-alignment-report-fixes"
+    "agents/007-agent-alignment-follow-ups/005-alignment-report-fixes",
+    "agents/007-agent-alignment-follow-ups/006-shared-agent-contract",
+    "agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status",
+    "agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry",
+    "agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model",
+    "agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status",
+    "agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff",
+    "agents/007-agent-alignment-follow-ups/012-review-agent-gates",
+    "agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes",
+    "agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility"
   ],
   "manual": {
     "depends_on": [],
@@ -17,7 +26,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "agent alignment follow ups phase parent spec"
+      "agent alignment follow ups phase parent spec",
+      "agent file review findings"
     ],
     "key_topics": [
       "agent",
@@ -27,27 +37,47 @@
       "phase",
       "parent",
       "spec",
+      "file",
+      "review",
+      "findings",
       "packet",
-      "agents",
-      "006-agent-contract-and-registry-alignment",
-      "closed",
-      "recorded"
+      "agents"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "scratch/agent-review/finding-to-phase.tsv",
+      "scratch/agent-review/agents-review.out.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
       ".skilled/agents/orchestrate.md",
-      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md"
+      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
+      ".skilled/skills/sk-prompt/SKILL.md",
+      ".skilled/agents/README.txt",
+      ".skilled/bin/agent-mirror-crosswalk.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding-to-phase.tsv",
+        "kind": "file",
+        "path": "scratch/agent-review/finding-to-phase.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "agents-review.out.md",
+        "kind": "doc",
+        "path": "scratch/agent-review/agents-review.out.md",
         "source": "derived"
       },
       {
@@ -75,7 +105,43 @@
         "source": "derived"
       },
       {
+        "name": "agent-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator-dispatch.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -103,28 +169,22 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Each",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-14T18:24:37.277Z",
+    "last_save_at": "2026-11-15T00:26:53.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:25118433caf60aea4a362b8799d99ac0c5a07b077eb4097468d5a6fad4840a9b",
+    "source_fingerprint": "sha256:6cc36a9f47b9bc6c78fe33ee64a53ead8cf101912934c1c0987a6c8f0c4f2381",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d59f25d06630afa4e4e8460e49e1606a0d72edcf7175a6b8fe8c01c860bf9028"
+      "spec.md": "4d0715d6da2ec6d0d6e44db1a690172c1bdb795398dcf6e72b4aebe27cc462e0"
     },
-    "last_active_child_id": "agents/007-agent-alignment-follow-ups/005-alignment-report-fixes",
-    "last_active_at": "2026-11-14T18:24:12.267Z"
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility",
+    "last_active_at": "2026-11-15T00:26:27.929Z"
   }
 }

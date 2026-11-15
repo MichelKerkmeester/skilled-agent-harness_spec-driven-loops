@@ -1,5 +1,5 @@
 {
-  "corpusHash": "592f0d9032585b8413947f3a94c4cc28c5b4934afce1579fe437814f4adf7a99",
+  "corpusHash": "798e79b76ff71b3b5868671979debd1299ed671e46de0897cac50afbb0905343",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27277,
+  "includedPathCount": 27341,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3119,6 +3119,7 @@
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.14.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.15.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.16.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.17.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.2.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.4.0.md",
@@ -6534,6 +6535,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.11.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.12.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.13.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.14.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
@@ -6767,6 +6769,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -7419,6 +7422,7 @@
     ".skilled/skills/sk-prompt/changelog/v4.0.2.0.md",
     ".skilled/skills/sk-prompt/changelog/v4.0.3.0.md",
     ".skilled/skills/sk-prompt/changelog/v4.0.4.0.md",
+    ".skilled/skills/sk-prompt/changelog/v4.0.5.0.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/change-report-length-warning.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/clashing-rules-resolved.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/deliver-first-open-items.md",
@@ -7514,6 +7518,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.24.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.25.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.26.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.27.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.5.0.md",
@@ -7546,6 +7551,7 @@
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.0.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.1.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.10.0.md",
+    ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.11.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.2.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.3.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.4.0.md",
@@ -7666,6 +7672,7 @@
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.10.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.11.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.12.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.13.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.2.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.3.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.4.0.md",
@@ -7822,6 +7829,7 @@
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.12.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.13.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.14.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.15.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.2.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.3.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md",
@@ -8753,6 +8761,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.9.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.1.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.13.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -9023,6 +9032,7 @@
     ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
     ".skilled/skills/system-spec-kit/references/workflows/intake-contract.md",
     ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
+    ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
     ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
     ".skilled/skills/system-spec-kit/references/workflows/rename-pattern.md",
     ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
@@ -9500,6 +9510,45 @@
     "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -10657,8 +10706,19 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/implementation-summary.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/deep-review-dashboard.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/deep-review-strategy.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/resource-map.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/review/review-report.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -15561,6 +15621,10 @@
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/research/research.md",
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/tasks.md",
     "specs/sk-doc/document-standards/003-changelog-system/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/timeline.md",
     "specs/sk-doc/document-standards/004-security-policy-alignment/goal.md",
@@ -27309,7 +27373,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ff475bd655ed7ad08232d684c145b057e5261beba4fb976e73cff9212f7020e7",
+  "manifestHash": "318e0f30e84b67d0fefccd22490809624ae9db84d3ee187ebdad2d0d4101e3e3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28357,6 +28421,46 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29677,6 +29781,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway/scratch",
       "reason": "excluded directory"
     },
     {
@@ -33469,6 +33577,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/scratch",
       "reason": "excluded directory"
     },
     {

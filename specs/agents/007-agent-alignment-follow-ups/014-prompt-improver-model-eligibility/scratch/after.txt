@@ -1,0 +1,71 @@
+$ git rev-parse --short HEAD
+152ed6b564
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs | tail -1
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs >/dev/null; echo mirror-exit=$?
+mirror-exit=0
+exit=0
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ wc -l .skilled/agents/prompt-improver.md
+     361 .skilled/agents/prompt-improver.md
+exit=0
+$ rg -c 'Denied under no circumstances' .skilled/agents/prompt-improver.md
+exit=1
+$ rg -c 'Denied under no circumstances' .skilled/skills/sk-prompt/SKILL.md
+2
+exit=0
+$ rg -n '^model: sonnet' .claude/agents/prompt-improver.md
+5:model: sonnet
+exit=0
+$ rg -c 'subagent_type=prompt-improver, model=sonnet' .skilled/commands/prompt/assets/prompt_improve_auto.yaml
+1
+exit=0
+$ rg -c 'subagent_type=prompt-improver, model=sonnet' .skilled/commands/prompt/assets/prompt_improve_confirm.yaml
+1
+exit=0
+$ for f in .skilled/commands/prompt/assets/prompt_improve_auto.yaml .skilled/commands/prompt/assets/prompt_improve_confirm.yaml; do python3 -c 'import yaml,sys; yaml.safe_load(open(sys.argv[1])); print("parse ok", sys.argv[1])' $f; done
+parse ok .skilled/commands/prompt/assets/prompt_improve_auto.yaml
+parse ok .skilled/commands/prompt/assets/prompt_improve_confirm.yaml
+exit=0
+$ rg -n '^TEST: ' .skilled/agents/prompt-improver.md
+194:TEST: NOT RUN
+exit=0
+$ rg -c 'quick test' .skilled/agents/prompt-improver.md
+exit=1
+$ rg -c 'ran: summary' .skilled/skills/sk-prompt/SKILL.md
+exit=1
+$ rg -c 'Quick test: NOT RUN' .skilled/skills/sk-prompt/SKILL.md
+1
+exit=0
+$ rg -c 'general-purpose|/prompt-improve' .skilled/agents/prompt-improver.md
+exit=1
+$ rg -c '/prompt:improve' .skilled/agents/prompt-improver.md
+4
+exit=0
+$ rg -c 'INT-[A-Z]|Integration ID' .skilled/agents/prompt-improver.md
+exit=1
+$ sed -n 5p .skilled/skills/sk-prompt/SKILL.md
+version: 4.0.5.0
+exit=0
+$ python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/sk-prompt/changelog/v4.0.5.0.md
+PASS .skilled/skills/sk-prompt/changelog/v4.0.5.0.md
+SUMMARY files=1 pass=1 fail=0
+exit=0
+$ rg -c 'prompt-improver' .skilled/bin/agent-mirror-crosswalk.md
+3
+exit=0
+$ sed -n 14,15p .skilled/agents/README.txt
+Model and effort: no agent file here pins a model. The Claude tree pins `context`, `markdown` and
+  `Explore` to haiku and `prompt-improver` to sonnet. Dispatched routes pass model and effort
+exit=0
+$ sed -n '/^## 0\.1/,/^---/p' .skilled/agents/prompt-improver.md
+## 0.1 MODEL ELIGIBILITY (HARD BLOCK)
+
+The dispatcher picks an eligible (model, route) pair from the Model Eligibility table in `.skilled/skills/sk-prompt/SKILL.md`. If this agent runs on a pair that table denies, it does no prompt-improve work and returns the blocked package with `ESCALATION_NOTES` starting `REFUSE: <model> on <route> is not an eligible pair for @prompt-improver. Re-dispatch on an eligible pair, such as Sonnet on native Claude.`
+
+---
+exit=0
