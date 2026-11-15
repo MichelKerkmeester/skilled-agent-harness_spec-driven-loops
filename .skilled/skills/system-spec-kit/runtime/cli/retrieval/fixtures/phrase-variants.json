@@ -1,5 +1,5 @@
 {
-  "manifestHash": "69ce980a0acb55b4b297d20373f506e4f48835f820236d44cb882c76496589a7",
+  "manifestHash": "31d7532bca45351ef6d31f9024aec86353509c47b1a2fbd984272b021b526857",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1113,6 +1113,9 @@
     ],
     "004 graphify task list": [
       "004-graphify task list"
+    ],
+    "004 history preview readability operator decisions": [
+      "004-history-preview-readability operator decisions"
     ],
     "004 implementation summary": [
       "004 implementation summary"
@@ -7111,6 +7114,9 @@
     ],
     "047 v8 dominates relaxation": [
       "047 V8 dominates relaxation"
+    ],
+    "048 cross runtime handover parity fixes operator decisions": [
+      "048-cross-runtime-handover-parity-fixes operator decisions"
     ],
     "048 remaining p1 p2 remediation": [
       "048 remaining P1 P2 remediation"
@@ -27543,6 +27549,9 @@
     "codex persona tool mapping tasks": [
       "codex persona tool mapping tasks"
     ],
+    "codex pi opencode deferred record": [
+      "codex pi opencode deferred record"
+    ],
     "codex pi sync agents": [
       "codex pi sync agents"
     ],
@@ -32779,6 +32788,9 @@
     ],
     "cross runtime handover parity acceptance criteria": [
       "cross runtime handover parity acceptance criteria"
+    ],
+    "cross runtime handover parity fixes": [
+      "cross runtime handover parity fixes"
     ],
     "cross runtime handover parity implementation summary": [
       "cross runtime handover parity implementation summary"
@@ -45485,6 +45497,9 @@
     "duplicate hash collapse": [
       "duplicate hash collapse"
     ],
+    "duplicate nudge race": [
+      "duplicate nudge race"
+    ],
     "duplicate packet number 001": [
       "duplicate packet number 001"
     ],
@@ -49349,6 +49364,21 @@
     ],
     "fail restore vs sentinel": [
       "fail restore vs sentinel"
+    ],
+    "failed arm deferred mark": [
+      "failed arm deferred mark"
+    ],
+    "failed arm deferred mark acceptance criteria": [
+      "failed arm deferred mark acceptance criteria"
+    ],
+    "failed arm deferred mark implementation summary": [
+      "failed arm deferred mark implementation summary"
+    ],
+    "failed arm deferred mark plan": [
+      "failed arm deferred mark plan"
+    ],
+    "failed arm deferred mark tasks": [
+      "failed arm deferred mark tasks"
     ],
     "failed embedding cleanup": [
       "failed embedding cleanup"
@@ -58739,6 +58769,21 @@
     "history lookup review fixes": [
       "history lookup review fixes"
     ],
+    "history preview readability": [
+      "history preview readability"
+    ],
+    "history preview readability acceptance criteria": [
+      "history preview readability acceptance criteria"
+    ],
+    "history preview readability implementation summary": [
+      "history preview readability implementation summary"
+    ],
+    "history preview readability plan": [
+      "history preview readability plan"
+    ],
+    "history preview readability tasks": [
+      "history preview readability tasks"
+    ],
     "history rewrite": [
       "history rewrite"
     ],
@@ -59410,6 +59455,9 @@
     ],
     "hop recall on codex and vibe": [
       "hop recall on codex and vibe"
+    ],
+    "hop scorecard side word": [
+      "hop scorecard side word"
     ],
     "hop withdrawn because the transcript was missing": [
       "hop withdrawn because the transcript was missing"
@@ -75645,6 +75693,21 @@
     "nudge note lines tasks": [
       "nudge note lines tasks"
     ],
+    "nudge parity and hop scoring acceptance criteria": [
+      "nudge parity and hop scoring acceptance criteria"
+    ],
+    "nudge parity and hop scoring plan": [
+      "nudge parity and hop scoring plan"
+    ],
+    "nudge parity and hop scoring tasks": [
+      "nudge parity and hop scoring tasks"
+    ],
+    "nudge parity decision record": [
+      "nudge parity decision record"
+    ],
+    "nudge parity implementation summary": [
+      "nudge parity implementation summary"
+    ],
     "numbered all caps sections": [
       "numbered all caps sections"
     ],
@@ -77240,6 +77303,9 @@
     ],
     "opencode goal wall clock cap": [
       "opencode goal wall clock cap"
+    ],
+    "opencode history locator": [
+      "opencode history locator"
     ],
     "opencode hook adapter": [
       "opencode hook adapter"
@@ -83498,6 +83564,9 @@
     "phase 47 vibe handover hardening": [
       "phase 47 vibe handover hardening"
     ],
+    "phase 48 cross runtime handover parity fixes": [
+      "phase 48 cross runtime handover parity fixes"
+    ],
     "phase 48 skilled loop shared nudge formatter": [
       "phase 48 skilled loop shared nudge formatter"
     ],
@@ -85622,6 +85691,9 @@
     "pi help": [
       "pi help"
     ],
+    "pi history locator": [
+      "pi history locator"
+    ],
     "pi hook adapter blocking": [
       "pi hook adapter blocking"
     ],
@@ -85774,6 +85846,21 @@
     ],
     "pi opencode gate pg tasks": [
       "Pi OpenCode Gate PG tasks"
+    ],
+    "pi opencode history lookup": [
+      "pi opencode history lookup"
+    ],
+    "pi opencode history lookup acceptance criteria": [
+      "pi opencode history lookup acceptance criteria"
+    ],
+    "pi opencode history lookup implementation summary": [
+      "pi opencode history lookup implementation summary"
+    ],
+    "pi opencode history lookup plan": [
+      "pi opencode history lookup plan"
+    ],
+    "pi opencode history lookup tasks": [
+      "pi opencode history lookup tasks"
     ],
     "pi openrouter roster": [
       "pi openrouter roster"
@@ -105570,6 +105657,9 @@
     ],
     "shared neutrality": [
       "shared neutrality"
+    ],
+    "shared nudge claim": [
+      "shared nudge claim"
     ],
     "shared opt in helper migration": [
       "shared opt-in helper migration"
@@ -126240,6 +126330,9 @@
     ],
     "tool call integration matrix": [
       "tool_call integration matrix"
+    ],
+    "tool call preview json": [
+      "tool call preview json"
     ],
     "tool count 37": [
       "tool count 37"

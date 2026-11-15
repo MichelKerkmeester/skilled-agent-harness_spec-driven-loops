@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6846,
-    "ok": 19275,
+    "ok": 19299,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27748,
+  "documentsScanned": 27772,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "69ce980a0acb55b4b297d20373f506e4f48835f820236d44cb882c76496589a7",
+  "manifestHash": "31d7532bca45351ef6d31f9024aec86353509c47b1a2fbd984272b021b526857",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44241,
+      "ok": 44272,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -56778,6 +56778,26 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/scratch",
       "reason": "excluded directory"
     },
     {

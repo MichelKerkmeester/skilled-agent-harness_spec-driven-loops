@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fce72c5e66e4e546aaf5b626938bd2774e2ea9f4cac8c95fb6f6f16136661fd0",
+  "corpusHash": "ce227fdb0e307fc5bd9ef371344604a163e18b4f6d994a2b72644a6efe2d0bf1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27748,
+  "includedPathCount": 27772,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12838,6 +12838,30 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/timeline.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -27780,7 +27804,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "69ce980a0acb55b4b297d20373f506e4f48835f820236d44cb882c76496589a7",
+  "manifestHash": "31d7532bca45351ef6d31f9024aec86353509c47b1a2fbd984272b021b526857",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32048,6 +32072,26 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/004-history-preview-readability/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/scratch",
       "reason": "excluded directory"
     },
     {
