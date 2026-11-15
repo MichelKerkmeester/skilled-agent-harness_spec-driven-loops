@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6821,
-    "ok": 19171,
+    "ok": 19178,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27619,
+  "documentsScanned": 27626,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "fb110d21ebbfdf38a563f323b47291d676494f6a053801d6bd6fdb1bd7b8b744",
+  "manifestHash": "b240a4ab8978f362c0090f9936c9ed0161a5e82a83b2dbbd25588745d19c2e4e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44104,
+      "ok": 44114,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -56592,6 +56592,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/046-vibe-history-locator/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening/scratch",
       "reason": "excluded directory"
     },
     {

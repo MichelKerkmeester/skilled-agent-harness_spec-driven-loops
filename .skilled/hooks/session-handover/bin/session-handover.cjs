@@ -68,6 +68,11 @@ const SUBCOMMANDS = {
     summary: `Print the latest hops from the hop history, ${hopHistory.DEFAULT_HISTORY_LINES}`
       + ' by default.',
   },
+  'session-id': {
+    syntax: 'session-id [--runtime <runtime>]',
+    summary: 'Print the session id prepare and claim use when --session is omitted: the Claude Code'
+      + ' session, or the Vibe session skilled-loop last saw.',
+  },
   window: {
     syntax: 'window',
     summary: 'Print the configured Claude context window or the settings needed to configure it.',
@@ -355,13 +360,22 @@ function printHandoffBody(filePath) {
   process.stdout.write(`${body}${body ? '\n' : ''}`);
 }
 
+// Vibe gives its tools no session id, so inside the loop the id comes from what the turn-start
+// hook last recorded for this loop.
+function loopVibeSessionId() {
+  const loopId = process.env.SKILLED_LOOP_ID;
+  if (!loopId) return undefined;
+  return core.readVibeSessionId({ loopId, env: process.env }) ?? undefined;
+}
+
 function sessionIdFor(options, runtime) {
   const sessionId = options['--session']
-    || (runtime === 'claude' ? process.env.CLAUDE_CODE_SESSION_ID : undefined);
+    || (runtime === 'claude' ? process.env.CLAUDE_CODE_SESSION_ID : undefined)
+    || (runtime === 'vibe' ? loopVibeSessionId() : undefined);
   if (!sessionId) {
-    const sessionSource = runtime === 'claude'
-      ? '--session or CLAUDE_CODE_SESSION_ID'
-      : '--session';
+    let sessionSource = '--session';
+    if (runtime === 'claude') sessionSource = '--session or CLAUDE_CODE_SESSION_ID';
+    if (runtime === 'vibe') sessionSource = '--session, or a Vibe session started by skilled-loop';
     throw new Error(`session id is required through ${sessionSource}`);
   }
   return sessionId;
@@ -607,8 +621,13 @@ function prepare(args) {
   } catch {}
   // A caller that shows output but not the exit status reads a silent success as a
   // command that never ran, so the arming run states its outcome and the one action
-  // left. Cursor, Devin and Vibe have no relaunch hook, so their session ends by hand.
-  const prepared = runtime === 'cursor' || runtime === 'devin' || runtime === 'vibe'
+  // left. Cursor and Devin have no relaunch hook, so their session ends by hand. A Vibe
+  // session is armed at turn end only when its id names a real Vibe session folder; a
+  // made-up id, such as one from a typed hand-over, still ends by hand.
+  // The folder check reads Vibe's default session log location, so a setup that moves
+  // session_logging.save_dir is still armed at turn end but is told here to end by hand.
+  const manualVibe = runtime === 'vibe' && core.vibeSessionFolder(sessionId, process.env) === null;
+  const prepared = runtime === 'cursor' || runtime === 'devin' || manualVibe
     ? '[session-handover] handoff prepared; nothing ends this session.'
       + ' Exit it and run the claim command the wrapper prints.'
     : '[session-handover] handoff prepared; stop now and end this turn.'
@@ -933,6 +952,13 @@ function history(args) {
   return 0;
 }
 
+function sessionId(args) {
+  const { options } = parseArgs(args, { flags: ['--runtime'] });
+  const runtime = options['--runtime'] ?? (process.env.SKILLED_LOOP_RUNTIME || 'claude');
+  process.stdout.write(`${sessionIdFor({}, runtime)}\n`);
+  return 0;
+}
+
 function window(args) {
   if (args.length > 0) throw invocationError('window takes no arguments');
   const { resolveWindow } = require('../lib/context-usage.cjs');
@@ -969,6 +995,7 @@ function main(args = process.argv.slice(2)) {
       case 'hand-over': return handOver(commandArgs);
       case 'cancel': return cancel(commandArgs);
       case 'history': return history(commandArgs);
+      case 'session-id': return sessionId(commandArgs);
       case 'window': return window(commandArgs);
       default: throw invocationError(
         `command must be one of ${Object.keys(SUBCOMMANDS).join(', ')}`,

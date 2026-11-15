@@ -139,9 +139,25 @@ function targetIsRunning(targetPid) {
   }
 }
 
+// Vibe journal segments are named by number, and a fold starts a new one.
+const JOURNAL_SEGMENT_NAME = /^\d+\.jsonl$/;
+
 function transcriptMtime(transcriptPath) {
   try {
-    return fs.statSync(transcriptPath).mtimeMs;
+    const stats = fs.statSync(transcriptPath);
+    if (!stats.isDirectory()) return stats.mtimeMs;
+    // A Vibe session folder is idle only when neither the folder, which changes when a
+    // segment is added or removed, nor any segment in it has been written.
+    let newest = stats.mtimeMs;
+    for (const name of fs.readdirSync(transcriptPath)) {
+      if (!JOURNAL_SEGMENT_NAME.test(name)) continue;
+      try {
+        newest = Math.max(newest, fs.statSync(path.join(transcriptPath, name)).mtimeMs);
+      } catch {
+        // A segment removed between the listing and the stat is not a write.
+      }
+    }
+    return newest;
   } catch {
     return null;
   }

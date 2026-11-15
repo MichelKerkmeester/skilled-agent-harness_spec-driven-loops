@@ -1208,6 +1208,12 @@ export SKILLED_LOOP_MANUAL_TEMPLATE
 manual_template_conflict=$(find_manual_template_conflict)
 export SKILLED_LOOP_ID="$$"
 export SKILLED_LOOP_RUNTIME="$runtime"
+# Vibe reads an exported MISTRAL_API_KEY before the plan key its browser sign-in stored, so a
+# key from another budget bills there, and every session after a hop inherits it.
+# With the CLI sign-in mode on, Vibe reads no API key at all.
+if [ "$runtime" = vibe ] && [ -n "${MISTRAL_API_KEY:-}" ] && [ -z "${VIBE_CLI_OIDC_ENABLED:-}" ]; then
+  printf '%s\n' '[skilled-loop] MISTRAL_API_KEY is exported, so Vibe bills that key instead of the plan key from its browser sign-in. Unset it to use the plan.' >&2
+fi
 SKILLED_LOOP_HOPS=${SKILLED_LOOP_HOPS:-0}
 if [[ ! "$SKILLED_LOOP_HOPS" =~ ^[0-9]+$ ]]; then
   printf '%s\n' 'SKILLED_LOOP_HOPS must be a non-negative integer' >&2
@@ -1224,11 +1230,13 @@ leftover_record=$(node -e '
   const [corePath, loopId] = process.argv.slice(1);
   const core = require(corePath);
   if (core.inspectStateDir(core.stateDir()) !== true) process.exit(0);
-  process.stdout.write(core.relaunchFilePath(loopId));
+  process.stdout.write(`${core.relaunchFilePath(loopId)}\n${core.vibeSessionIdPath(loopId)}`);
 ' -- "$relaunch_core" "$SKILLED_LOOP_ID" 2>/dev/null) || leftover_record=''
-if [[ -n "$leftover_record" ]]; then
-  rm -f -- "$leftover_record" || true
-fi
+# The relaunch record and the Vibe session id the turn-start hook recorded both belong to a
+# loop that reused this process id, so neither may carry into this one.
+while IFS= read -r leftover_path; do
+  [[ -n "$leftover_path" ]] && { rm -f -- "$leftover_path" || true; }
+done <<< "$leftover_record"
 
 # The note a relaunch seeded and its spec folder, kept so a later decline can name the
 # note that session was handed and never claimed.

@@ -2492,6 +2492,47 @@ function dropNestedLoop(env, { hostPid, pid = process.pid, processTable } = {}) 
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+function vibeSessionIdPath(loopId, env) {
+  if (!validLoopId(loopId)) {
+    throw new Error(
+      'loopId must contain only letters, numbers, dots, underscores, or hyphens',
+    );
+  }
+  return path.join(stateDir(env), `vibe-session-${loopId}`);
+}
+
+/**
+ * Record the Vibe session id the loop's turn-start hook last saw. Vibe gives its tools no
+ * session id, so this is how a hand-over typed by the operator learns it.
+ *
+ * @param {Object} options - Inputs.
+ * @param {string} options.loopId - Wrapper process identifier.
+ * @param {string} options.sessionId - The Vibe session id from the hook payload.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ */
+function recordVibeSessionId({ loopId, sessionId, env = process.env }) {
+  const filePath = vibeSessionIdPath(loopId, env);
+  ensureStateDir(env);
+  atomicWriteFile(filePath, `${sessionId}\n`);
+}
+
+/**
+ * Read the Vibe session id the loop's turn-start hook last recorded.
+ *
+ * @param {Object} options - Inputs.
+ * @param {string} options.loopId - Wrapper process identifier.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @returns {string|null} The id, or null when none is recorded or it is malformed.
+ */
+function readVibeSessionId({ loopId, env = process.env }) {
+  try {
+    const value = fs.readFileSync(vibeSessionIdPath(loopId, env), 'utf8').trim();
+    return /^[A-Za-z0-9._-]+$/.test(value) ? value : null;
+  } catch {
+    return null;
+  }
+}
+
 module.exports = {
   HANDOFF_SECTIONS,
   RUNTIMES,
@@ -2514,6 +2555,10 @@ module.exports = {
   resolveGoalPacketReason,
   resolveSessionSettings,
   recordGoalPacket,
+  vibeSessionFolder,
+  recordVibeSessionId,
+  readVibeSessionId,
+  vibeSessionIdPath,
   mintHandoverLocator,
   handoverLookupSection,
   parentMapFromTable,

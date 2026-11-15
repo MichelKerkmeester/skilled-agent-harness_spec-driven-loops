@@ -127,6 +127,29 @@ test('a Vibe hop never replays the headless-only --model flag', (t) => {
   assert.equal(records[1].args.includes('--model'), false);
 });
 
+test('a Vibe loop warns once when MISTRAL_API_KEY is exported and still starts', (t) => {
+  const warning = '[skilled-loop] MISTRAL_API_KEY is exported';
+  const runs = [];
+  for (const [runtime, key, oidc] of [
+    ['vibe', 'placeholder-not-a-key', ''],
+    ['vibe', '', ''],
+    ['claude', 'placeholder-not-a-key', ''],
+    ['vibe', 'placeholder-not-a-key', '1'],
+  ]) {
+    const sandbox = createSandbox(t);
+    const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });
+    installVibeStub(sandbox);
+    if (key) sandbox.env.MISTRAL_API_KEY = key;
+    else delete sandbox.env.MISTRAL_API_KEY;
+    if (oidc) sandbox.env.VIBE_CLI_OIDC_ENABLED = oidc; else delete sandbox.env.VIBE_CLI_OIDC_ENABLED;
+    const result = runWrapper(sandbox, [runtime, 'first prompt']);
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(readRecords(recordPath).length, 2);
+    runs.push(result.stderr.split(warning).length - 1);
+  }
+  assert.deepEqual(runs, [1, 0, 0, 0]);
+});
+
 test('a dispatched Vibe child never gets a relaunch nudge', (t) => {
   const sandbox = createSandbox(t);
   installRuntimeStub(sandbox);
