@@ -866,6 +866,72 @@ test('killer times out on an active transcript, unarms and releases its lock', a
   }
 });
 
+test('killer times out on a journal folder whose newest segment keeps changing', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const journal = path.join(sandbox.root, 'journal');
+  fs.mkdirSync(journal);
+  fs.writeFileSync(path.join(journal, '0000000000000001.jsonl'), '{}\n');
+  const active = path.join(journal, '0000000000000002.jsonl');
+  fs.writeFileSync(active, '{}\n');
+  const target = startTarget(sandbox, path.join(sandbox.root, 'target-signal'));
+  await waitForTargetReady(target);
+  createRelaunchRecord(sandbox, loopId);
+  const touchTimer = setInterval(() => {
+    const now = new Date();
+    fs.utimesSync(active, now, now);
+  }, 100);
+  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath: journal });
+  try {
+    const result = await waitForExit(killer, 5000);
+    assert.equal(result.timedOut, undefined, 'killer should stop after its configured timeout');
+    assert.equal(process.kill(target.pid, 0), true);
+    const record = JSON.parse(fs.readFileSync(
+      path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `relaunch-${loopId}.json`),
+      'utf8',
+    ));
+    assert.equal(record.disarmReason, 'killer-timeout');
+  } finally {
+    clearInterval(touchTimer);
+    killChild(killer);
+    killChild(target);
+  }
+});
+
+test('killer keeps watching the remaining segment after the first one is removed', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const journal = path.join(sandbox.root, 'journal');
+  fs.mkdirSync(journal);
+  const first = path.join(journal, '0000000000000001.jsonl');
+  const second = path.join(journal, '0000000000000002.jsonl');
+  fs.writeFileSync(first, '{}\n');
+  fs.writeFileSync(second, '{}\n');
+  const target = startTarget(sandbox, path.join(sandbox.root, 'target-signal'));
+  await waitForTargetReady(target);
+  createRelaunchRecord(sandbox, loopId);
+  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath: journal });
+  setTimeout(() => fs.rmSync(first, { force: true }), 300);
+  const touchTimer = setInterval(() => {
+    const now = new Date();
+    fs.utimesSync(second, now, now);
+  }, 100);
+  try {
+    const result = await waitForExit(killer, 5000);
+    assert.equal(result.timedOut, undefined, 'killer should stop after its configured timeout');
+    assert.equal(process.kill(target.pid, 0), true);
+    const record = JSON.parse(fs.readFileSync(
+      path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `relaunch-${loopId}.json`),
+      'utf8',
+    ));
+    assert.equal(record.disarmReason, 'killer-timeout');
+  } finally {
+    clearInterval(touchTimer);
+    killChild(killer);
+    killChild(target);
+  }
+});
+
 test('a second killer respects the lock held by the first killer', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = String(process.pid);

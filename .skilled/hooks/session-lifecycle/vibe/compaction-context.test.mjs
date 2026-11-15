@@ -64,6 +64,7 @@ function optionsFor(stateDir, overrides = {}) {
     workspace: REPO_ROOT,
     stateDir,
     resetReceipt: () => true,
+    resetNudge: () => true,
     ...overrides,
   };
 }
@@ -252,4 +253,33 @@ test('a repeat leaves the advisor directive receipt alone', (t) => {
   buildCompactionPart(payloadFor(), optionsFor(stateDir, { resetReceipt }));
 
   assert.deepEqual(seen, [SESSION_ID]);
+});
+
+test('a new compaction resets the nudge level once', (t) => {
+  const stateDir = tempStateDir(t);
+  const seen = [];
+  const resetNudge = (sessionId) => { seen.push(sessionId); return true; };
+  buildCompactionPart(payloadFor(), optionsFor(stateDir, { resetNudge }));
+  buildCompactionPart(payloadFor(), optionsFor(stateDir, { resetNudge }));
+
+  assert.deepEqual(seen, [SESSION_ID]);
+});
+
+test('a pending hop gets no claim pointer and a withdrawn one gets the stale-note text', (t) => {
+  const notePathFor = () => '/tmp/handoff-note.md';
+  const pendingText = buildCompactionPart(payloadFor(), optionsFor(tempStateDir(t), {
+    handoff: { pending: () => true, withdrawn: () => false, notePathFor },
+  }));
+  assert.ok(!pendingText.includes('Claim it with'), pendingText);
+
+  const withdrawnText = buildCompactionPart(payloadFor(), optionsFor(tempStateDir(t), {
+    handoff: { pending: () => false, withdrawn: () => true, notePathFor },
+  }));
+  assert.ok(withdrawnText.includes('predates the work done since then'), withdrawnText);
+  assert.ok(!withdrawnText.includes('Claim it with'), withdrawnText);
+
+  const openText = buildCompactionPart(payloadFor(), optionsFor(tempStateDir(t), {
+    handoff: { pending: () => false, withdrawn: () => false, notePathFor },
+  }));
+  assert.ok(openText.includes('Claim it with'), openText);
 });

@@ -20,7 +20,7 @@ import { fileURLToPath } from 'node:url';
 
 import { appendRecords, toolSourceKey } from '../../decision-capture/lib/capture-core.mjs';
 import { ADVISOR_RUNTIME, buildAdvisorPart } from '../../../skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs';
-import { buildSaveNudgePart, composeTurnStart } from './turn-start.mjs';
+import { PARTS, buildSaveNudgePart, composeTurnStart, handoverWithdrawPart } from './turn-start.mjs';
 
 const HOOK = join(dirname(fileURLToPath(import.meta.url)), 'turn-start.mjs');
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
@@ -220,4 +220,8 @@ test('the hand-over part adds nothing while its switch is off', (t) => {
     JSON.parse(on.stdout).hook_specific_output.additional_context,
     /prepare --handoff/,
   );
+});
+
+test('the hand-over withdraw step runs before every other turn-start part', () => {
+  assert.equal(PARTS[0], handoverWithdrawPart);
 });

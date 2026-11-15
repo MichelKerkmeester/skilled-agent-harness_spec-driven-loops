@@ -135,6 +135,7 @@ and findings belong here.
 | Phase 045 added | Complete | 2026-11-15: Vibe joins the automatic tier; live hops 5/5 twice like the Claude Code baseline, withdraw and switch-off live, gate at baseline plus new tests, review no P0 or P1 |
 | 046 vibe history locator | done | 191/191 CLI tests, gate relaunch 1600, live deepseek-flash hop recovered the side word via History Lookup, validate 0/0 |
 | Criterion 1 wording | amended | operator chose to count ADR-backed Waived or Superseded rows; 282 of 289 rows Met, 7 Waived or Superseded with ADRs in 022, 025, 027, 028 |
+| Phase 047 Vibe hand-over hardening | done in worktree 418, not merged | strict PASSED, suite 1025/1025, live hops 5/5 at 5.9 s and 5.2 s |
 
 ### Deviations and findings
 

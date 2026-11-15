@@ -222,6 +222,23 @@ test('wrapper removes its own leftover relaunch record before the first launch',
   )), false);
 });
 
+test('wrapper removes its own leftover recorded Vibe session id before the first launch', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox);
+  const launcherPath = installLeftoverRecordLauncher(sandbox, [
+    ['vibe-session-$$', '$$'],
+    ['vibe-session-999999', '999999'],
+  ]);
+
+  const result = runWrapperScript(sandbox, launcherPath, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const loopId = readRecords(recordPath)[0].env.SKILLED_LOOP_ID;
+  const stateDirectory = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
+  assert.equal(fs.existsSync(path.join(stateDirectory, `vibe-session-${loopId}`)), false);
+  assert.equal(fs.existsSync(path.join(stateDirectory, 'vibe-session-999999')), true);
+});
+
 test('a leftover relaunch record for another loop is kept', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath } = installRuntimeStub(sandbox);
