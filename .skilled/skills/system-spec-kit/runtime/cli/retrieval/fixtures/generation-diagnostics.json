@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6865,
-    "ok": 18985,
+    "ok": 18996,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27480,
+  "documentsScanned": 27491,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6de3a84d41a54a808c7f0183e0a3a59f36911496cf7e6efc3317720228f21532",
+  "manifestHash": "24e61dd15a84d2a5531ecd85117356a53205004724d3fea954b05c0c72319475",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44022,
+      "ok": 44038,
       "prose-sentence": 20,
       "single-token": 156,
       "stop-word-only": 1,
@@ -56516,6 +56516,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research/lineages",
       "reason": "excluded directory"
     },
@@ -64225,6 +64229,10 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override/scratch",
       "reason": "excluded directory"
     },
     {

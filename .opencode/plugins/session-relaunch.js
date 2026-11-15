@@ -24,6 +24,7 @@ const hookFlags = require('../hooks/shared/hook-flags.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const CONCERN = 'session-relaunch';
+const QUESTION_TOOL = 'question';
 const MAX_SESSIONS = 1_000;
 const KILLER_PATH = require.resolve('../hooks/session-relaunch/lib/killer.cjs');
 // Both the nudge and the seed read a note through the core's one classification:
@@ -437,6 +438,10 @@ function sessionRelaunchPlugin(ctx = {}) {
               // granted for a step above its fill.
               state.activeNudge = null;
               state.pendingNudge = null;
+              // The model asked for the hand-over and would otherwise still expect to end.
+              state.withdrawnNotice = true;
+            } else if (isNewUserMessage) {
+              state.withdrawnNotice = false;
             }
             state.latestUserMessageId = info.id;
             return;
@@ -512,6 +517,8 @@ function sessionRelaunchPlugin(ctx = {}) {
             state.activeNudge = null;
             state.pendingNudge = null;
             state.pendingUsage = null;
+            // The compaction's own text about a withdrawn note replaces the notice.
+            state.withdrawnNotice = false;
           }
           if (nudge.handoffPending({ sessionId: sessionID, env: process.env })) return;
 
@@ -577,6 +584,11 @@ function sessionRelaunchPlugin(ctx = {}) {
             state.activeSeed = null;
           }
         }
+        // Every request of the withdrawing turn rebuilds this prompt, so the notice stays until
+        // the next operator prompt, as the seed does until its note is claimed.
+        if (state.withdrawnNotice && !output.system.includes(nudge.WITHDRAWN_NOTICE)) {
+          output.system.push(nudge.WITHDRAWN_NOTICE);
+        }
         const activeNudge = state.activeNudge;
         const shouldPushNudge = shouldPushActiveNudge(activeNudge, sessionID);
         if (state.pendingNudge) {
@@ -593,6 +605,22 @@ function sessionRelaunchPlugin(ctx = {}) {
       } catch {
         return undefined;
       }
+    },
+
+    // Only the idle event arms a prepared hand-over, and a question dialog holds the session
+    // busy until the operator answers, so the dialog is refused while this session's record
+    // can be armed. A throw is how both OpenCode hosts refuse a call, so it leaves the guard.
+    async 'tool.execute.before'(input) {
+      let reason = null;
+      try {
+        if (input?.tool !== QUESTION_TOOL || !isEnabled()) return;
+        const sessionID = input.sessionID;
+        if (!nudge.validSessionId(sessionID) || childSessions.has(sessionID)) return;
+        reason = nudge.questionHoldReason({ sessionId: sessionID, runtime: 'opencode', env: process.env });
+      } catch {
+        return;
+      }
+      if (reason !== null) throw new Error(reason);
     },
   };
 }

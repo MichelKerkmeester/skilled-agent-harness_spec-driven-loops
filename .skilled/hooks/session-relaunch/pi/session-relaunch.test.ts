@@ -15,7 +15,7 @@ import type {
   ExtensionContext,
   MessageEndEvent,
 } from '@earendil-works/pi-coding-agent';
-import { readState, staleNoteText, writeState } from '../lib/nudge.cjs';
+import { WITHDRAWN_NOTICE, readState, staleNoteText, writeState } from '../lib/nudge.cjs';
 import relaunchCore, {
   arm,
   preparePending,
@@ -1030,6 +1030,62 @@ describe('session-relaunch Pi extension', () => {
     });
   });
 
+  it('agent_start tells the model its armed hand-over was withdrawn, once', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-withdrawn-notice-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+    await emit(handlers, 'agent_settled', { aborted: false }, ctx);
+
+    await emit(handlers, 'agent_start', {}, ctx);
+
+    expect(api.sendMessage).toHaveBeenCalledTimes(1);
+    expect(api.sendMessage).toHaveBeenCalledWith(
+      expect.objectContaining({ content: WITHDRAWN_NOTICE, display: false }),
+      expect.objectContaining({ deliverAs: 'steer' }),
+    );
+
+    // The next run finds nothing armed, so it is told nothing.
+    await emit(handlers, 'agent_start', {}, ctx);
+    expect(api.sendMessage).toHaveBeenCalledTimes(1);
+  });
+
+  it('tool_call refuses a question dialog while this session holds a pending hand-over', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-question-guard-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+
+    for (const toolName of ['question', 'ask_user_question']) {
+      const result = await emit(handlers, 'tool_call', { toolName, input: {} }, ctx);
+      expect(result).toMatchObject({ block: true, reason: expect.stringContaining('/workspace/pi/handoff.md') });
+    }
+    expect(await emit(handlers, 'tool_call', { toolName: 'bash', input: {} }, ctx)).toBeUndefined();
+    expect(
+      await emit(handlers, 'tool_call', { toolName: 'question', input: {} }, makeContext('pi-session-0002')),
+    ).toBeUndefined();
+  });
+
   it('agent_start leaves another session\'s armed record alone', async () => {
     setupEnv();
     const loopId = 'pi-loop-other-session-0001';
@@ -1339,6 +1395,8 @@ describe('session_compact pointer', () => {
     sessionRelaunch(api);
     await emit(handlers, 'agent_settled', { aborted: false }, makeContext(SESSION_ID));
     await emit(handlers, 'agent_start', {}, makeContext(SESSION_ID));
+    // The withdrawal itself sends its notice; the compaction's own message is the one checked.
+    vi.mocked(api.sendMessage).mockClear();
 
     await emit(handlers, 'session_compact', {}, makeContext(SESSION_ID));
 

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/040-claude-default-on-release-notes"
+    packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes"
     last_updated_at: "2026-11-14T19:45:31Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
@@ -74,6 +74,7 @@ and findings belong here.
 | Resolver and tests | Done | 29 of 29 resolver tests, 2 failed before the change |
 | Docs, README and release notes | Done | shape PASS at 280 lines, voice 0 hard blockers |
 | Full gate | Done | 1,556, 29, 200 and 62 passed, both sync checks PASS |
+| Dotenv template | Done | .env.example sections 8 and 18 say on for Claude Code only, edited on the operator's request 2026-11-15 |
 
 ### Deviations and findings
 

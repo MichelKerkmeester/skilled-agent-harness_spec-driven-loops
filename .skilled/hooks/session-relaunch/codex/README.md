@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`codex/` holds the Codex CLI adapters for session relaunch. `.codex/hooks.json` wires `prompt-seed.mjs` to `UserPromptSubmit`, `context-nudge.mjs` to `PostToolUse` and `stop-arm.mjs` to `Stop`. The Codex hook installer allows each script under one event only, so seed detection and the mid-session nudge are separate entry points over `shared.mjs`. Fill comes from the rollout's latest `token_count` event, and the nudge reaches the model as `hookSpecificOutput.additionalContext`.
+`codex/` holds the Codex CLI adapters for session relaunch. `.codex/hooks.json` wires `prompt-seed.mjs` to `UserPromptSubmit`, `context-nudge.mjs` to `PostToolUse`, `stop-arm.mjs` to `Stop` and `compact-pointer.mjs` to `SessionStart`. The Codex hook installer allows each script under one event only, so seed detection and the mid-session nudge are separate entry points over `shared.mjs`. Fill comes from the rollout's latest `token_count` event, and the nudge reaches the model as `hookSpecificOutput.additionalContext`.
 
 ---
 
@@ -22,6 +22,7 @@ version: 1.0.0.0
 
 | File | Event or role | What it does | On error |
 |---|---|---|---|
+| [`compact-pointer.mjs`](./compact-pointer.mjs) | `SessionStart` | On `source: compact`, which Codex sends after it compacts a root session, resets the nudge level and points the session at its open note, or sends the stale-note text for a withdrawn one. Any other source adds nothing. | Exits quietly. State errors are logged. |
 | [`context-nudge.mjs`](./context-nudge.mjs) | `PostToolUse` | Runs `runCodexAdapter('PostToolUse')` from `shared.mjs`. | Exits quietly. |
 | [`prompt-seed.mjs`](./prompt-seed.mjs) | `UserPromptSubmit` | Runs `runCodexAdapter('UserPromptSubmit')`, which answers a `[session-relaunch]` prompt with the claim instructions and withdraws a prepared record on an operator prompt. | Exits quietly. |
 | [`shared.mjs`](./shared.mjs) | Shared dispatcher | Parses the payload, checks the event name, reads Codex usage, applies the threshold and emits the seed or handoff text. | Exits quietly. Usage and nudge errors are logged. |

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "649495843e5e8c4055e78bcb22e21500b553120b58ff84cf1e840750fbf74e27",
+  "corpusHash": "923e9e143fc32644ccf86b8010f48e813410ffb7a7765a1f396bc2bba2544cc1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27480,
+  "includedPathCount": 27491,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12547,6 +12547,12 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/plan.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure/decision-record.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -15760,6 +15766,7 @@
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/research/research.md",
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/decision-record.md",
     "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/implementation-summary.md",
     "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/spec.md",
@@ -27047,6 +27054,10 @@
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/plan.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/spec.md",
@@ -27512,7 +27523,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6de3a84d41a54a808c7f0183e0a3a59f36911496cf7e6efc3317720228f21532",
+  "manifestHash": "24e61dd15a84d2a5531ecd85117356a53205004724d3fea954b05c0c72319475",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31380,6 +31391,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/041-cross-runtime-handover-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure/scratch",
       "reason": "excluded directory"
     },
     {
@@ -39092,6 +39107,10 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override/scratch",
       "reason": "excluded directory"
     },
     {

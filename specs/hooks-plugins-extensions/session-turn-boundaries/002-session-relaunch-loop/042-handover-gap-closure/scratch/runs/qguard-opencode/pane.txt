@@ -1,0 +1,50 @@
+ • Session rela • Session rela   Session rela • session-rela • Session rela • Session rela • Session rela • session-rela • Session rela • Session rela • Session rela ? README line count and handoff +
+                                                                                                                                                           █
+  ┃                                                                                                                                                        █    README line count and handoff
+  ┃  Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-        █    preference
+  ┃  relaunch/README.md and repeat the code word ORCHID-23861. Start by reading the README. Gate 3: D) Skip, no spec folder. Test instruction: when the    █
+  ┃  session-relaunch nudge asks you to hand over, do its steps, and right after the prepare command succeeds ask me one short multiple-choice question    █    Context
+  ┃  with your question tool (which answer format I prefer) before you stop.                                                                               █    34,330 tokens
+  ┃                                                                                                                                                        █    3% used
+                                                                                                                                                           █    $0.01 spent
+     + 3 commands, 1 edit, 5 thoughts, 1 read                                                                                                              █
+                                                                                                                                                           █    MCP
+     → Asked 1 question                                                                                                                                    █    • code_mode                     Error
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+
+  ┃
+  ┃  Questions
+  ┃
+  ┃  Which answer format do you prefer for the final task reply?
+  ┃
+  ┃  1. Two labelled lines
+  ┃     Line count on one line, code word on the next, each labelled.
+  ┃  2. One compact line
+  ┃     Both facts in a single sentence.
+  ┃  3. Short bullet list
+  ┃     Two bullets, no prose.
+  ┃  4. Type your own answer
+  ┃
+  ┃  ↑↓ select  enter submit  esc dismiss
+  ┃                                                                                                                                                             …/3…/392-cross-runtime-handover-parity
+

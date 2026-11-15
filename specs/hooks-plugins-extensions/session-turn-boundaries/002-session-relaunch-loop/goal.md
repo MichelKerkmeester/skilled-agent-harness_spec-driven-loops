@@ -94,7 +94,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] All 41 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
+- [x] All 42 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
 - [x] `validate.sh` on this packet with `--recursive --strict` prints `RESULT: PASSED`
 - [x] A live Claude Code relaunch through `skilled-loop` is recorded with its `relaunch.log` hop line
 - [x] `sync-hook-registrations.cjs --check`, `sync-runtime-mirrors.cjs --check` and `run-all-drift-guards.sh` all exit 0
@@ -128,6 +128,7 @@ and findings belong here.
 | Phase 039 added | Done | 2026-11-13: packet `039-hop-dialog-goal-title` with three Complete children joins as phase 39. Criterion 1 now says 39 phase folders, which keeps the slice at 3,993 characters |
 | Phase 040 added | Done | 2026-11-14: packet 040-claude-default-on-release-notes joins as phase 40 (Claude Code default on, v4.0.2.1 notes). Criterion 1 now says 40 phase folders, same length, slice unchanged in size. No binding row: the slice has 7 characters to spare, so a row waits for the operator |
 | Phase 041 added | Done | 2026-11-14: packet 041-cross-runtime-handover-parity joins as phase 41 (live harness, Pi, OpenCode and Codex hop fixes). Criterion 1 now says 41 phase folders, same length, slice unchanged in size |
+| Phase 042 added | Done | 2026-11-15: packet 042-handover-gap-closure joins as phase 42 (question guard and withdraw notice on Pi and OpenCode, Codex compaction pointer). Criterion 1 now says 42 phase folders, same length, slice unchanged in size |
 
 ### Deviations and findings
 

@@ -1,0 +1,10 @@
+2026-11-15, OpenCode v2.3.0, worktree 392, each launch in tmux, footer read after 14 s
+env OPENCODE_CONFIG_CONTENT='{"model":"llmgateway/claude-haiku-5-5"}' opencode --standalone
+  Build · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max
+env OPENCODE_CONFIG_CONTENT='{"model":{"providerID":"llmgateway","model":"claude-haiku-5-5"}}' opencode --standalone
+  Build · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max
+env OPENCODE_CONFIG=<scratch file with "model":"llmgateway/claude-haiku-5-5"> opencode --standalone
+  Build · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max
+opencode --help: root flags --standalone --server --auto --continue --session --prompt, no model flag
+opencode.json in the checkout: model {"providerID":"llmgateway","model":"deepseek-v4.1-flash-1017"}
+~/.local/state/opencode/model.json recent[0]: xiaomi/mimo-v2.6-pro (not used at launch)

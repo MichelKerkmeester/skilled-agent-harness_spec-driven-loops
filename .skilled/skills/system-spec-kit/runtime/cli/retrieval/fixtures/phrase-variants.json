@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6de3a84d41a54a808c7f0183e0a3a59f36911496cf7e6efc3317720228f21532",
+  "manifestHash": "24e61dd15a84d2a5531ecd85117356a53205004724d3fea954b05c0c72319475",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1695,6 +1695,9 @@
     ],
     "006 remediation summary": [
       "006 remediation summary"
+    ],
+    "006 remove release size limit operator decisions": [
+      "006-remove-release-size-limit operator decisions"
     ],
     "006 research changelog index": [
       "006-research changelog index"
@@ -6937,6 +6940,9 @@
     ],
     "042 fanout containment": [
       "042 fanout containment"
+    ],
+    "042 handover gap closure operator decisions": [
+      "042-handover-gap-closure operator decisions"
     ],
     "042 implementation summary": [
       "042 implementation summary"
@@ -27136,6 +27142,9 @@
     ],
     "codex compact inject": [
       "codex compact inject"
+    ],
+    "codex compaction pointer": [
+      "codex compaction pointer"
     ],
     "codex completion claim check": [
       "codex completion claim check"
@@ -57819,6 +57828,21 @@
     "handover freshness timestamp field": [
       "handover freshness timestamp field"
     ],
+    "handover gap closure": [
+      "handover gap closure"
+    ],
+    "handover gap closure acceptance criteria": [
+      "handover gap closure acceptance criteria"
+    ],
+    "handover gap closure implementation summary": [
+      "handover gap closure implementation summary"
+    ],
+    "handover gap closure plan": [
+      "handover gap closure plan"
+    ],
+    "handover gap closure tasks": [
+      "handover gap closure tasks"
+    ],
     "handover goal and model carry over": [
       "handover goal and model carry-over"
     ],
@@ -77298,6 +77322,9 @@
     "opencode mistral provider": [
       "opencode mistral provider"
     ],
+    "opencode model carry": [
+      "opencode model carry"
+    ],
     "opencode model context windows": [
       "opencode model context windows"
     ],
@@ -81907,6 +81934,9 @@
     ],
     "phase 11 pre existing gate failures": [
       "phase 11 pre existing gate failures"
+    ],
+    "phase 11 prerequisites bound folder override": [
+      "phase 11 prerequisites bound folder override"
     ],
     "phase 11 relocate and restore fixes": [
       "phase 11 relocate and restore fixes"
@@ -88030,6 +88060,18 @@
     "prerelease versioning and residue tasks": [
       "prerelease versioning and residue tasks"
     ],
+    "prerequisites bound folder override": [
+      "prerequisites bound folder override"
+    ],
+    "prerequisites bound folder override implementation summary": [
+      "prerequisites bound folder override implementation summary"
+    ],
+    "prerequisites bound folder override plan": [
+      "prerequisites bound folder override plan"
+    ],
+    "prerequisites bound folder override tasks": [
+      "prerequisites bound folder override tasks"
+    ],
     "presentation adherence research": [
       "presentation adherence research"
     ],
@@ -90180,6 +90222,9 @@
     ],
     "question guard killer gone tasks": [
       "question guard killer gone tasks"
+    ],
+    "question guard pi opencode": [
+      "question guard pi opencode"
     ],
     "question origin provenance": [
       "question origin provenance"
@@ -131952,6 +131997,9 @@
     ],
     "withdrawn acceptance criterion": [
       "withdrawn acceptance criterion"
+    ],
+    "withdrawn notice pi opencode": [
+      "withdrawn notice pi opencode"
     ],
     "withspecfolderlock": [
       "withSpecFolderLock"

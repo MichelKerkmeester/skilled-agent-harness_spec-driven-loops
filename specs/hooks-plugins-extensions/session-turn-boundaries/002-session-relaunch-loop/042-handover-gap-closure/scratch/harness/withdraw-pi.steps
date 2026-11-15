@@ -1,0 +1,2 @@
+log	prepare .*sessionId=01a	NONE
+screen!	tokens · [0-9]	DELAY:1:Status check: what is the state of your hand-over right now, and what should you do next? Answer in one or two sentences.

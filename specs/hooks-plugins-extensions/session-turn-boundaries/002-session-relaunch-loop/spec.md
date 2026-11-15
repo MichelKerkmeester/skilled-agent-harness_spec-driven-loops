@@ -144,6 +144,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 39 | 039-hop-dialog-goal-title/ | Three children close gaps seen on Claude Code after phase 38: a pending hand-over refuses a question dialog so the hop is not parked behind it, a sender that set no goal hands on the unfinished goal of its packet, and a session with only a generated title keeps it after a hop. Eight more close the open ends the research of 2026-11-13 found in those fixes: a changed wrapper says so before a hop, a record Stop cannot arm stops blocking questions, a record with no note is read as absent, an ended goal stays ended, the goal fallback stops at the parent folder, two tests are fixed and five documents are corrected | Complete |
 | 40 | 040-claude-default-on-release-notes/ | Claude Code hands over by default while every other runtime stays off until its switch is set, and the v4.0.2.1 release notes and root README describe every hand-over change | Complete |
 | 41 | 041-cross-runtime-handover-parity/ | A live-hop harness scores Claude Code, Codex, Pi and OpenCode on one task. Fixes let OpenCode 2 hop from its own tool shell, steer Pi's nudge in mid-run, keep Pi's claim instructions when other extensions extend the seed and print the closing step in the `claim` output | Complete |
+| 42 | 042-handover-gap-closure/ | Live probes measure five gaps phase 41 left. Pi and OpenCode refuse a question dialog while a hand-over is pending and tell the model when one is withdrawn, and Codex points a compacted session at its note. OpenCode 2 model carry has no launch route and is recorded | Complete |
 
 ### Phase Transition Rules
 
@@ -196,6 +197,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 038-goal-and-workflow-resume | 039-hop-dialog-goal-title | Phase 38 is Complete and the four failed runs of its child 016 are saved for the opening check | `validate.sh 038-goal-and-workflow-resume --recursive --strict` RESULT: PASSED, and `039-hop-dialog-goal-title/001-sender-dialog-after-prepare/scratch/failed-runs/` holds the four runs |
 | 039-hop-dialog-goal-title | 040-claude-default-on-release-notes | Phase 39 is Complete and pushed, because phase 40 rewrites the release notes that describe it | `validate.sh 039-hop-dialog-goal-title --recursive --strict` RESULT: PASSED |
 | 040-claude-default-on-release-notes | 041-cross-runtime-handover-parity | Phase 40 is Complete and pushed, so the live harness measures the shipped defaults | `validate.sh 040-claude-default-on-release-notes --strict` RESULT: PASSED |
+| 041-cross-runtime-handover-parity | 042-handover-gap-closure | Phase 41 is Complete and pushed, so the probes measure the shipped parity fixes | `validate.sh 041-cross-runtime-handover-parity --strict` RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

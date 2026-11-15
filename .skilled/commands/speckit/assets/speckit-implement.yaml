@@ -296,7 +296,7 @@ quality_gates:
     pass_when: every check passes
     blocking: hard
     checks:
-      - { id: prerequisites_complete, from: step_1_review_plan_and_spec, criteria: ".skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh exited 0 and spec.md and plan.md exist." }
+      - { id: prerequisites_complete, from: step_1_review_plan_and_spec, criteria: ".skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh, run with SPECIFY_FEATURE set to the bound [SPEC_FOLDER] without its leading specs/, exited 0 and spec.md and plan.md exist." }
       - { id: plan_clarity, from: step_1_review_plan_and_spec, criteria: "plan.md states a concrete technical approach and affected files, and leaves no material design choice open." }
       - { id: tasks_exists, from: step_2_task_breakdown, criteria: "tasks.md passes exists_rule." }
       - { id: task_breakdown_quality, from: step_3_analysis, criteria: "The consistency analysis reports no CRITICAL or HIGH finding and no P0 requirement without a task." }
@@ -372,7 +372,7 @@ workflow:
     code_search_guidance:
       example_queries: ["project structure entry points", "similar feature implementation", "existing utility patterns"]
     activities:
-    - Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json
+    - Run SPECIFY_FEATURE=<[SPEC_FOLDER] without its leading specs/> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json
     - Verify spec.md and plan.md exist
     - Load and review all planning artifacts
     - Understand requirements, analyze approach, identify dependencies, note constraints
