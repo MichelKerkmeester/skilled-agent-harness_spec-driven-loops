@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/006-vibe-runtime-folder-and-mirrors",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/006-vibe-runtime-folder-and-mirrors",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe runtime folder and mirrors",
+      "phase 6 vibe runtime folder and mirrors",
+      "vibe sync generators",
+      "vibe runtime folder and mirrors plan",
+      "vibe runtime folder and mirrors tasks",
+      "vibe runtime folder and mirrors goal",
+      "vibe runtime folder implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "runtime",
+      "folder",
+      "mirrors",
+      "phase",
+      "sync",
+      "generators",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".vibe/config.toml",
+      ".vibe/SYNC.md",
+      "scratch/validate-config.py",
+      "scratch/allowed-models-probe.md",
+      "scratch/trust-probe.md",
+      ".dsh/SYNC.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs",
+      "scratch/strict-load/export.json",
+      "scratch/allowed-models/export.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".vibe/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".vibe/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-config.py",
+        "kind": "file",
+        "path": "scratch/validate-config.py",
+        "source": "derived"
+      },
+      {
+        "name": "allowed-models-probe.md",
+        "kind": "doc",
+        "path": "scratch/allowed-models-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "trust-probe.md",
+        "kind": "doc",
+        "path": "scratch/trust-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-vibe.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-vibe.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-vibe.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "export.json",
+        "kind": "config",
+        "path": "scratch/strict-load/export.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Without a `.vibe/` folder, a Vibe run in this repository has an open model list and none of the repository's agents, skills or command prompts",
+    "created_at": "2026-11-14T12:56:18Z",
+    "last_save_at": "2026-11-14T14:57:07.944Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:878a4e7aa48ea3277d63beac5b251d881be6dd62a131096602e4e9972129f001",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b7344ab2139d9725c4922d67a1deaeb0e6f6971d124f6c7c44a3e6481d556e40",
+      "plan.md": "8962b03ba2b91588fb35db051b7e91134653a84e88ac5f8d4de05fdb3c13852c",
+      "tasks.md": "d57d02bc0e4bcfbf38d1a5feb4b28fe0639b3dc23655b24d21b6021bdeb5bc26",
+      "implementation-summary.md": "6e4de7269552fb9ae3248c9732767fd441731e78e18c2bdf1960ae660f8aaae4"
+    },
+    "last_active_at": null
+  }
+}

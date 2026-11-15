@@ -1,0 +1,33 @@
+{
+  "session_id": "68e051a3-06ae-f7f7-1e65-793b623009ef",
+  "parent_session_id": null,
+  "start_time": "2026-11-14T17:49:18.854000+00:00",
+  "end_time": "2026-11-14T17:49:22.709000+00:00",
+  "git_commit": null,
+  "git_branch": null,
+  "environment": {
+    "working_directory": "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime"
+  },
+  "origin_directory": "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime",
+  "username": "michelkerkmeester",
+  "child_sessions": [],
+  "loops": [],
+  "title": null,
+  "title_source": "auto",
+  "bumped_at": "2026-11-14T17:49:19.989171+00:00",
+  "pinned_at": null,
+  "archived_at": null,
+  "unseen_at": "2026-11-14T17:49:22.717440+00:00",
+  "seen_at": null,
+  "experiments": null,
+  "config": {
+    "active_model": "deepseek-flash",
+    "model_name": "deepseek-v4-1-flash-1017"
+  },
+  "runtime_path": "direct",
+  "import_provenance": null,
+  "created_worktree": null,
+  "project": null,
+  "artifacts": [],
+  "worktrees": []
+}

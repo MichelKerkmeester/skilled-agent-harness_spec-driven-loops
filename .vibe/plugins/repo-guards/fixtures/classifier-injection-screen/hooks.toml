@@ -1,0 +1,6 @@
+# Appends an injection advisory to a fetched web page's tool result when its text reads as instructions aimed at the agent.
+[[hooks]]
+name = "classifier-injection-screen"
+type = "post_tool"
+match = "re:web_fetch|open_url"
+command = "node @REPO@/.vibe/plugins/repo-guards/classifier-injection-screen.mjs"

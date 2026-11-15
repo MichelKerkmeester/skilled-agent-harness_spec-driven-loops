@@ -1,12 +1,12 @@
 ---
 title: cli-deepseek-harness
-description: Cross-AI dispatcher for DeepSeek Harness (dsh) headless runs, with a pinned version, a closed two-route roster and thirteen fail-closed dispatch rules.
+description: Cross-AI dispatcher for DeepSeek Harness (dsh) headless runs, with a pinned version, a closed three-route roster and thirteen fail-closed dispatch rules.
 trigger_phrases:
   - "deepseek harness"
   - "dsh headless"
   - "delegate to dsh"
   - "deepseek harness cli"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # cli-deepseek-harness
@@ -36,7 +36,7 @@ DeepSeek Harness picks its own model. Headless mode has no model, provider, time
 
 A dispatch that omits the route patch reaches that default. A dispatch started from the repository root can read the root `.env`. A keyless run can produce a parseable `final` event and still exit 1.
 
-This packet fixes the argv shape, names the two routes that may run and states thirteen rules the dispatch preflight checks. Every flag it names was captured from the installed binary.
+This packet fixes the argv shape, names the three routes that may run and states thirteen rules the dispatch preflight checks. Every flag it names was captured from the installed binary.
 
 ### Status
 
@@ -109,7 +109,7 @@ cli-deepseek-harness/
   changelog/                                # Versioned release notes
   references/
     cli-reference.md                        # Version pin, headless options, launcher flags, dispatch shape, exit contract
-    providers-and-models.md                 # The closed two-route roster and the route patch shape
+    providers-and-models.md                 # The closed three-route roster and the route patch shape
     runtime-folder-and-sync.md              # .dsh/ layout, DSH_HOME isolation, skills, prompts, personas
     guards-and-hooks.md                     # Harness seams, the repo-guards plugin bundle, the port table
     mcp.md                                  # MCP off by default and the opt-in Code Mode patch
@@ -132,6 +132,7 @@ Use cli-deepseek-harness when the request names DeepSeek Harness, `dsh`, `dsh he
 | cli-pi | Pi's coding agent. It also reaches DeepSeek models, through its own provider flags |
 | cli-opencode | Full OpenCode runtime, plugins and detached sessions |
 | cli-claude-code, cli-codex, cli-cursor, cli-devin | Their own vendors' CLIs and model families |
+| cli-mistral-vibe | Mistral Vibe print-mode runs over a closed DeepSeek and GLM roster, with an `export.json` outcome record |
 
 ### Resource Map
 

@@ -1,0 +1,50 @@
+> Please commit a.txt for me with the commit message stuff, using git commit -m.                                                                                                                        
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+⏵ Ran 1 command, thought                                                                                                                                                                                
+                                                                                                                                                                                                        
+  The repo's commit-msg rule rejected stuff — it requires conventional-commit format. Let me read the rule before retrying.                                                                             
+                                                                                                                                                                                                        
+⏵ Ran 2 commands, thought                                                                                                                                                                               
+                                                                                                                                                                                                        
+  The contract also forbids Co-Authored-By trailers, so I'll drop that. Let me check the enforced scope list and where the hook lives.                                                                  
+                                                                                                                                                                                                        
+⏵ Ran 1 command, thought                                                                                                                                                                                
+                                                                                                                                                                                                        
+  stuff is literally in the contract's vagueSummaries list, so it can never pass — there's no bypass. I'll commit with the closest compliant message and flag the deviation.                           ▄
+                                                                                                                                                                                                        
+⏵ Ran 2 commands                                                                                                                                                                                        
+                                                                                                                                                                                                        
+  Committed as 69ab6fb on main (root commit, a.txt only).                                                                                                                                               
+                                                                                                                                                                                                        
+  I could not use the message you asked for. git commit -m "stuff" was rejected by the repo's commit-msg gate:                                                                                          
+                                                                                                                                                                                                        
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ sk-git blocked this commit message: it breaks the repository's commit message rules.                                                                                                            │   
+  │   • [subject.format] Authored subject must match type(scope): imperative summary                                                                                                                │   
+  │   Fix the text and run the command again; there is no bypass.                                                                                                                                   │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  The contract at .skilled/skills/sk-git/assets/commit-message-template.md lists stuff explicitly in vagueSummaries, so it fails on two rules at once and cannot be forced through. I used the          
+  closest compliant equivalent:                                                                                                                                                                         
+                                                                                                                                                                                                        
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ chore(repo): add a.txt                                                                                                                                                                          │   
+  │                                                                                                                                                                                                 │   
+  │ Context: The repository tracked no files, so a.txt is added as its first tracked file.                                                                                                          │   
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  Two things worth knowing:                                                                                                                                                                             
+                                                                                                                                                                                                        
+  • I dropped the usual Co-Authored-By: Mistral Vibe trailer. The same contract enforces attribution.forbidden on Co-Authored-By, so the repo rule wins over my default.                                
+  • No Spec: or Commit-Id: trailer. There is no specs/ directory here, and trailer.spec-exists would reject a Spec: naming a nonexistent packet. Commit-Id is normally stamped by prepare-commit-msg,   
+    which is not installed in this repo.                                                                                                                                                                
+                                                                                                                                                                                                        
+  If you want different wording, git commit --amend -m "..." is one command — but it still has to satisfy type(scope): summary plus a prose body. .conversation-scratch is left untracked.              
+
+                                                 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>   
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.UIDOobbIPX/vibe                                                                                                       ctx ▌      18.9k/256k

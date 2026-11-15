@@ -1248,6 +1248,181 @@ function piAnswerKeys(question, answer) {
   return steps;
 }
 
+/** Prefix for the disposable Vibe home a subject reads its config and hooks from. */
+const VIBE_HOME_PREFIX = 'vibe-home-';
+
+/**
+ * Create the disposable home a Vibe subject reads its config and hooks from.
+ *
+ * A scratch project is not a trusted folder, so Vibe ignores its `.vibe/config.toml` and
+ * `.vibe/hooks.toml`; only the home copies apply. The home sits beside the scratch project so it
+ * stays outside the checkout the subject may not write to, and a new folder per launch keeps a
+ * previous run's journal from being read as this run's.
+ *
+ * @param {Object} ctx - Run context with `project` and `repoRoot`.
+ * @returns {string} Absolute home path.
+ */
+function prepareVibeHome(ctx) {
+  const parent = path.dirname(ctx.project);
+  mkdirp(parent);
+  const home = fs.mkdtempSync(path.join(parent, VIBE_HOME_PREFIX));
+
+  const config = path.join(ctx.repoRoot, '.vibe', 'config.toml');
+  if (fs.existsSync(config)) fs.copyFileSync(config, path.join(home, 'config.toml'));
+
+  const hooks = path.join(ctx.repoRoot, '.vibe', 'hooks.toml');
+  if (fs.existsSync(hooks)) {
+    const renderer = path.join(ctx.repoRoot, '.vibe', 'plugins', 'repo-guards', 'render-home-hooks.cjs');
+    require(renderer).renderHomeHooks({ vibeHome: home, repoRoot: ctx.repoRoot });
+  }
+  return home;
+}
+
+/**
+ * Find the session id Vibe wrote into the home's journal tree.
+ *
+ * Vibe names its own sessions, so the folder it creates under `logs/session/unified` is the only
+ * durable record of the id. The newest folder is the session this run just played.
+ *
+ * @param {string} home - Vibe home.
+ * @returns {string|null} Session id, or null before the first session starts.
+ */
+function vibeSessionId(home) {
+  const root = path.join(home, 'logs', 'session', 'unified');
+  let entries;
+  try {
+    entries = fs.readdirSync(root, { withFileTypes: true });
+  } catch {
+    return null;
+  }
+  const names = entries
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort();
+  return names.length > 0 ? names[names.length - 1] : null;
+}
+
+// A Vibe question is a bordered box: a tab row when several questions are queued, the question
+// text, numbered rows and a footer naming the keys. The footer is the reliable signal, because an
+// answered box stays in the scrollback after the widget closes.
+const VIBE_QUESTION_FOOTER = /navigate\b.*Esc cancel/;
+const VIBE_QUESTION_MULTI = /Space\/Enter toggle/;
+const VIBE_QUESTION_TAB = /^\[[^\]]+\]|✓/;
+const VIBE_QUESTION_OTHER = /^Type your answer\.\.\.$/;
+
+/**
+ * Parse the newest Vibe question box on screen.
+ *
+ * @param {string} screen - Captured pane text.
+ * @returns {{text: string, options: string[], multi: boolean, other: boolean, submitIndex: number}|null}
+ *   Parsed question, or null when no box is open.
+ */
+function parseVibeQuestion(screen) {
+  const lines = String(screen).split('\n');
+  let top = -1;
+  let bottom = -1;
+  for (let index = 0; index < lines.length; index += 1) {
+    if (lines[index].startsWith('┌')) {
+      top = index;
+      bottom = -1;
+    } else if (top >= 0 && lines[index].startsWith('└')) {
+      bottom = index;
+    }
+  }
+  if (top < 0 || bottom < 0) return null;
+
+  const inner = lines.slice(top + 1, bottom).map((line) => (
+    line.replace(/^│/, '').replace(/│\s*$/, '').trimEnd()
+  ));
+  const footerIndex = inner.findIndex((line) => VIBE_QUESTION_FOOTER.test(line));
+  if (footerIndex < 0) return null;
+  const multi = VIBE_QUESTION_MULTI.test(inner[footerIndex]);
+
+  let index = 0;
+  while (index < footerIndex && inner[index].trim() === '') index += 1;
+  if (index < footerIndex && VIBE_QUESTION_TAB.test(inner[index].trim())) {
+    index += 1;
+    while (index < footerIndex && inner[index].trim() === '') index += 1;
+  }
+
+  const textLines = [];
+  while (index < footerIndex && !/^\s*\d+\.\s/.test(inner[index])) {
+    if (inner[index].trim() !== '') textLines.push(inner[index].trim());
+    index += 1;
+  }
+  const text = textLines.join(' ');
+  if (text === '') return null;
+
+  const options = [];
+  let other = false;
+  for (; index < footerIndex; index += 1) {
+    const row = /^\s*\d+\.\s+(.*)$/.exec(inner[index]);
+    if (!row) continue;
+    let label = row[1].trim();
+    if (multi) label = label.replace(/^\[[ xX]\]\s*/, '');
+    if (VIBE_QUESTION_OTHER.test(label)) {
+      other = true;
+      continue;
+    }
+    options.push(label.split(' - ')[0].trim());
+  }
+  if (options.length === 0) return null;
+  // A single-select box has no Submit row; the free-text row is the last row it can reach.
+  const submitIndex = multi ? options.length + (other ? 1 : 0) : options.length;
+  return { text, options, multi, other, submitIndex };
+}
+
+/**
+ * Answer the Vibe question box.
+ *
+ * A single-select box selects with Enter. A multi-select box toggles with Space and sends from its
+ * Submit row. The free-text row opens with Enter; a multi-select needs the typed value toggled on
+ * before Submit, because Enter only commits the text and leaves the row unchecked.
+ *
+ * @param {{options: string[], multi: boolean, other: boolean, submitIndex: number}|null} question
+ *   Parsed question.
+ * @param {Object} answer - Script answer with one of `select`, `other` or `reply`.
+ * @returns {Array<Object>} Ordered tmux send-keys steps.
+ */
+function vibeAnswerKeys(question, answer) {
+  if (!answer) return [];
+  if (typeof answer.reply === 'string') return [typeStep(answer.reply), keyStep('Enter')];
+  const otherIndex = question.options.length;
+  if (typeof answer.other === 'string') {
+    if (!question.other) return [];
+    if (!question.multi) {
+      return [
+        ...moveClaudeCursor(0, otherIndex),
+        keyStep('Enter'),
+        typeStep(answer.other),
+        keyStep('Enter'),
+      ];
+    }
+    return [
+      ...moveClaudeCursor(0, otherIndex),
+      keyStep('Enter'),
+      typeStep(answer.other),
+      keyStep('Enter'),
+      keyStep('Space'),
+      ...moveClaudeCursor(otherIndex, question.submitIndex),
+      keyStep('Enter'),
+    ];
+  }
+  if (!Array.isArray(answer.select) || answer.select.length === 0) return [];
+  if (!question.multi) {
+    return [...moveClaudeCursor(0, findOptionIndex(question.options, answer.select[0])), keyStep('Enter')];
+  }
+  const steps = [];
+  let cursor = 0;
+  for (const label of answer.select) {
+    const target = findOptionIndex(question.options, label);
+    steps.push(...moveClaudeCursor(cursor, target), keyStep('Space'));
+    cursor = target;
+  }
+  steps.push(...moveClaudeCursor(cursor, question.submitIndex), keyStep('Enter'));
+  return steps;
+}
+
 const ADAPTERS = {
   'claude-code': makeAdapter('claude-code', {
     probed: true,
@@ -1358,6 +1533,41 @@ const ADAPTERS = {
     echoGlyph: '❭',
     parseQuestion: parseDevinQuestion,
     answerKeys: devinAnswerKeys,
+  }),
+  vibe: makeAdapter('vibe', {
+    // Confirmed by a live pass of the runner's own sample scenario: the ready line, the busy line
+    // above the prompt and the question box were all read from that run's screens.
+    probed: true,
+    bin: 'vibe',
+    launch: (ctx) => {
+      const home = prepareVibeHome(ctx);
+      ctx.vibeHome = home;
+      ctx.scriptEnv = { ...ctx.scriptEnv, VIBE_HOME: home };
+      return ['vibe', '--output-dir', path.join(home, 'output'), '--auto-approve'];
+    },
+    resume: (ctx) => {
+      const home = ctx.vibeHome || prepareVibeHome(ctx);
+      ctx.vibeHome = home;
+      ctx.scriptEnv = { ...ctx.scriptEnv, VIBE_HOME: home };
+      const sessionId = vibeSessionId(home);
+      return [
+        'vibe',
+        ...(sessionId ? ['--resume', sessionId] : ['--continue']),
+        '--output-dir', path.join(home, 'output'),
+        '--auto-approve',
+      ];
+    },
+    compact: '/compact',
+    exitKeys: [typeStep('/exit'), keyStep('Enter')],
+    // The input line is the only line that starts with the prompt glyph; an echoed send does too,
+    // so the idle test reads the last match.
+    ready: /^> /,
+    busy: /Esc\/Ctrl\+C to interrupt/,
+    // Vibe draws its busy line above the prompt, so the whole screen is tested.
+    busyAnywhere: true,
+    echoGlyph: '>',
+    parseQuestion: parseVibeQuestion,
+    answerKeys: vibeAnswerKeys,
   }),
 };
 

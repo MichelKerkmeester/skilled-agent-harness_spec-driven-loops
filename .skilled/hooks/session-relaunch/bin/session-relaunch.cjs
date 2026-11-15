@@ -607,8 +607,8 @@ function prepare(args) {
   } catch {}
   // A caller that shows output but not the exit status reads a silent success as a
   // command that never ran, so the arming run states its outcome and the one action
-  // left. Cursor and Devin have no relaunch hook, so their session ends by hand.
-  const prepared = runtime === 'cursor' || runtime === 'devin'
+  // left. Cursor, Devin and Vibe have no relaunch hook, so their session ends by hand.
+  const prepared = runtime === 'cursor' || runtime === 'devin' || runtime === 'vibe'
     ? '[session-relaunch] handoff prepared; nothing ends this session.'
       + ' Exit it and run the claim command the wrapper prints.'
     : '[session-relaunch] handoff prepared; stop now and end this turn.'

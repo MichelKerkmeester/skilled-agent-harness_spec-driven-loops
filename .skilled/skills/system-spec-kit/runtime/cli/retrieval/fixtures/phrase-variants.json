@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1cd7a6a0bec7e2858f26ca81c19890d6b96dbf84372fcf311fba50833b017a76",
+  "manifestHash": "4085cbfb9850b5688f5f4069445985a120b9a7b4149eeb3c4e3a432e89a9d62d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -100,6 +100,9 @@
     ],
     "001 continuity memory runtime rollup": [
       "001-continuity-memory-runtime rollup"
+    ],
+    "001 deep research operator decisions": [
+      "001-deep-research operator decisions"
     ],
     "001 eval benchmark fidelity implementation summary": [
       "001-eval-benchmark-fidelity implementation summary"
@@ -987,6 +990,9 @@
     ],
     "004 cli fallback envelope and bridge tasks": [
       "004-cli-fallback-envelope-and-bridge tasks"
+    ],
+    "004 cli mistral vibe creation operator decisions": [
+      "004-cli-mistral-vibe-creation operator decisions"
     ],
     "004 cli tooling ux rollup": [
       "004-cli-tooling-ux rollup"
@@ -7678,6 +7684,9 @@
     ],
     "ac 011 sibling path narrowing": [
       "ac-011 sibling path narrowing"
+    ],
+    "ac 012 superseded rationale": [
+      "ac-012 superseded rationale"
     ],
     "ac closure adr": [
       "ac closure adr"
@@ -21832,6 +21841,9 @@
     "cli deepseek harness 1 0 0 0": [
       "cli-deepseek-harness 1.0.0.0"
     ],
+    "cli deepseek harness 1 0 1 0": [
+      "cli-deepseek-harness 1.0.1.0"
+    ],
     "cli deepseek harness commit follow up": [
       "cli-deepseek-harness commit follow-up"
     ],
@@ -21873,6 +21885,9 @@
     ],
     "cli deepseek harness v1 0 0 0": [
       "cli-deepseek-harness v1.0.0.0"
+    ],
+    "cli deepseek harness v1 0 1 0": [
+      "cli-deepseek-harness v1.0.1.0"
     ],
     "cli deepseek research scope": [
       "cli-deepseek research scope"
@@ -22293,6 +22308,9 @@
     "cli external orchestration 2 0 0 0": [
       "cli-external-orchestration 2.0.0.0"
     ],
+    "cli external orchestration 2 1 0 0": [
+      "cli-external-orchestration 2.1.0.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -22430,6 +22448,9 @@
     ],
     "cli external orchestration v2 0 0 0": [
       "cli-external-orchestration v2.0.0.0"
+    ],
+    "cli external orchestration v2 1 0 0": [
+      "cli-external-orchestration v2.1.0.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -22950,6 +22971,54 @@
     "cli mcp parity": [
       "cli mcp parity"
     ],
+    "cli mistral vibe": [
+      "cli-mistral-vibe"
+    ],
+    "cli mistral vibe 1 0 0 0": [
+      "cli-mistral-vibe 1.0.0.0"
+    ],
+    "cli mistral vibe creation phase parent spec": [
+      "cli mistral vibe creation phase parent spec"
+    ],
+    "cli mistral vibe executor kind": [
+      "cli-mistral-vibe executor kind"
+    ],
+    "cli mistral vibe hub registration": [
+      "cli-mistral-vibe hub registration"
+    ],
+    "cli mistral vibe manual testing playbook": [
+      "cli-mistral-vibe manual testing playbook"
+    ],
+    "cli mistral vibe mode packet": [
+      "cli-mistral-vibe mode packet"
+    ],
+    "cli mistral vibe research scope": [
+      "cli mistral vibe research scope"
+    ],
+    "cli mistral vibe router": [
+      "cli-mistral-vibe router"
+    ],
+    "cli mistral vibe routing": [
+      "cli-mistral-vibe routing"
+    ],
+    "cli mistral vibe skill packet": [
+      "cli mistral vibe skill packet"
+    ],
+    "cli mistral vibe skill packet goal": [
+      "cli mistral vibe skill packet goal"
+    ],
+    "cli mistral vibe skill packet implementation summary": [
+      "cli mistral vibe skill packet implementation summary"
+    ],
+    "cli mistral vibe skill packet plan": [
+      "cli mistral vibe skill packet plan"
+    ],
+    "cli mistral vibe skill packet tasks": [
+      "cli mistral vibe skill packet tasks"
+    ],
+    "cli mistral vibe v1 0 0 0": [
+      "cli-mistral-vibe v1.0.0.0"
+    ],
     "cli opencode": [
       "cli opencode"
     ],
@@ -23066,6 +23135,9 @@
     ],
     "cli opencode 1 5 10 0": [
       "cli-opencode 1.5.10.0"
+    ],
+    "cli opencode 1 5 11 0": [
+      "cli-opencode 1.5.11.0"
     ],
     "cli opencode 1 5 2 0": [
       "cli-opencode 1.5.2.0"
@@ -23327,6 +23399,9 @@
     ],
     "cli opencode v1 5 10 0": [
       "cli-opencode v1.5.10.0"
+    ],
+    "cli opencode v1 5 11 0": [
+      "cli-opencode v1.5.11.0"
     ],
     "cli opencode v1 5 2 0": [
       "cli-opencode v1.5.2.0"
@@ -23609,6 +23684,9 @@
     "cli pi 1 5 21 0": [
       "cli-pi 1.5.21.0"
     ],
+    "cli pi 1 5 22 0": [
+      "cli-pi 1.5.22.0"
+    ],
     "cli pi 1 5 3 0": [
       "cli-pi 1.5.3.0"
     ],
@@ -23825,6 +23903,9 @@
     ],
     "cli pi v1 5 21 0": [
       "cli-pi v1.5.21.0"
+    ],
+    "cli pi v1 5 22 0": [
+      "cli-pi v1.5.22.0"
     ],
     "cli pi v1 5 3 0": [
       "cli-pi v1.5.3.0"
@@ -36050,6 +36131,9 @@
     "deep loop executor kind acceptance criteria": [
       "deep loop executor kind acceptance criteria"
     ],
+    "deep loop executor kind decision record": [
+      "deep loop executor kind decision record"
+    ],
     "deep loop executor kind goal": [
       "deep loop executor kind goal"
     ],
@@ -38845,6 +38929,9 @@
     "deepseek harness mirrors": [
       "DeepSeek Harness mirrors"
     ],
+    "deepseek harness mistral deepseek": [
+      "deepseek harness mistral deepseek"
+    ],
     "deepseek harness mode": [
       "deepseek harness mode"
     ],
@@ -39192,6 +39279,12 @@
     ],
     "delegate to pi": [
       "delegate to pi"
+    ],
+    "delegate to vibe": [
+      "delegate to vibe"
+    ],
+    "delegate to vibe routing": [
+      "delegate to vibe routing"
     ],
     "delegated label arbiter": [
       "delegated label arbiter"
@@ -41445,6 +41538,18 @@
     ],
     "dispatch receipt verifier": [
       "dispatch receipt verifier"
+    ],
+    "dispatch recognition and hard rules": [
+      "dispatch recognition and hard rules"
+    ],
+    "dispatch recognition and hard rules goal": [
+      "dispatch recognition and hard rules goal"
+    ],
+    "dispatch recognition and hard rules plan": [
+      "dispatch recognition and hard rules plan"
+    ],
+    "dispatch recognition and hard rules tasks": [
+      "dispatch recognition and hard rules tasks"
     ],
     "dispatch recognition and stress adapter": [
       "dispatch recognition and stress adapter"
@@ -44677,6 +44782,21 @@
     ],
     "dsh mirror generators tasks": [
       "dsh mirror generators tasks"
+    ],
+    "dsh mistral route": [
+      "dsh mistral route"
+    ],
+    "dsh mistral route goal": [
+      "dsh mistral route goal"
+    ],
+    "dsh mistral route implementation summary": [
+      "dsh mistral route implementation summary"
+    ],
+    "dsh mistral route plan": [
+      "dsh mistral route plan"
+    ],
+    "dsh mistral route tasks": [
+      "dsh mistral route tasks"
     ],
     "dsh model roster": [
       "dsh model roster"
@@ -71763,6 +71883,69 @@
     "misspelled enforcement value": [
       "misspelled enforcement value"
     ],
+    "mistral deepseek v4 1 flash 1017 route": [
+      "mistral deepseek v4 1 flash 1017 route"
+    ],
+    "mistral provider roster": [
+      "mistral provider roster"
+    ],
+    "mistral provider roster goal": [
+      "mistral provider roster goal"
+    ],
+    "mistral provider roster implementation summary": [
+      "mistral provider roster implementation summary"
+    ],
+    "mistral provider roster plan": [
+      "mistral provider roster plan"
+    ],
+    "mistral provider roster tasks": [
+      "mistral provider roster tasks"
+    ],
+    "mistral route probe evidence": [
+      "mistral route probe evidence"
+    ],
+    "mistral subscription routes": [
+      "mistral subscription routes"
+    ],
+    "mistral support": [
+      "mistral support"
+    ],
+    "mistral vibe": [
+      "mistral vibe"
+    ],
+    "mistral vibe closeout": [
+      "mistral vibe closeout"
+    ],
+    "mistral vibe deep research": [
+      "mistral vibe deep research"
+    ],
+    "mistral vibe deep research goal": [
+      "mistral vibe deep research goal"
+    ],
+    "mistral vibe deep research plan": [
+      "mistral vibe deep research plan"
+    ],
+    "mistral vibe deep research tasks": [
+      "mistral vibe deep research tasks"
+    ],
+    "mistral vibe dispatch mode": [
+      "Mistral Vibe Dispatch Mode"
+    ],
+    "mistral vibe integration": [
+      "mistral vibe integration"
+    ],
+    "mistral vibe mode": [
+      "mistral vibe mode"
+    ],
+    "mistral vibe mode packet": [
+      "mistral vibe mode packet"
+    ],
+    "mistral vibe research angles": [
+      "mistral vibe research angles"
+    ],
+    "mistral zai glm 5 3 flash route": [
+      "mistral zai glm 5 3 flash route"
+    ],
     "mixed epoch promotion rejection": [
       "mixed epoch promotion rejection"
     ],
@@ -76359,6 +76542,12 @@
     "opencode minimax llmgateway gpt dispatch": [
       "opencode minimax llmgateway gpt dispatch"
     ],
+    "opencode mistral deepseek glm route": [
+      "opencode mistral deepseek glm route"
+    ],
+    "opencode mistral route": [
+      "opencode mistral route"
+    ],
     "opencode model context windows": [
       "opencode model context windows"
     ],
@@ -80750,6 +80939,9 @@
     "phase 10 goal ending carry": [
       "phase 10 goal ending carry"
     ],
+    "phase 10 hub registration and routing": [
+      "phase 10 hub registration and routing"
+    ],
     "phase 10 mixed track sweep guard": [
       "phase 10 mixed track sweep guard"
     ],
@@ -80888,6 +81080,9 @@
     "phase 11 typed command delivery": [
       "phase 11 typed command delivery"
     ],
+    "phase 11 vibe context and goal hooks": [
+      "phase 11 vibe context and goal hooks"
+    ],
     "phase 12 advisor doc target and engines": [
       "phase 12 advisor doc target and engines"
     ],
@@ -80920,6 +81115,9 @@
     ],
     "phase 12 plain offer reach": [
       "phase 12 plain offer reach"
+    ],
+    "phase 12 playbook docs and closeout": [
+      "phase 12 playbook docs and closeout"
     ],
     "phase 12 post merge deep review": [
       "phase 12 post merge deep review"
@@ -81386,6 +81584,9 @@
     "phase 2 mcp aside devtools": [
       "phase 2 mcp aside devtools"
     ],
+    "phase 2 mistral provider roster": [
+      "phase 2 mistral provider roster"
+    ],
     "phase 2 onboarding fixes": [
       "phase 2 onboarding fixes"
     ],
@@ -81767,6 +81968,9 @@
     "phase 3 drift guard warning count": [
       "phase 3 drift guard warning count"
     ],
+    "phase 3 dsh mistral route": [
+      "phase 3 dsh mistral route"
+    ],
     "phase 3 example tolerant drift guards": [
       "phase 3 example tolerant drift guards"
     ],
@@ -82133,6 +82337,9 @@
     "phase 4 trigger index rebuild hardening": [
       "phase 4 trigger index rebuild hardening"
     ],
+    "phase 4 vibe contract pin": [
+      "phase 4 vibe contract pin"
+    ],
     "phase 4 webflow and obsidian": [
       "phase 4 webflow and obsidian"
     ],
@@ -82201,6 +82408,9 @@
     ],
     "phase 5 cli devin": [
       "phase 5 cli devin"
+    ],
+    "phase 5 cli mistral vibe skill packet": [
+      "phase 5 cli mistral vibe skill packet"
     ],
     "phase 5 completed diagnostics governance": [
       "phase 5 completed diagnostics governance"
@@ -82568,6 +82778,9 @@
     "phase 6 tasks": [
       "phase 6 tasks"
     ],
+    "phase 6 vibe runtime folder and mirrors": [
+      "phase 6 vibe runtime folder and mirrors"
+    ],
     "phase 60 v4 0 0 13 changelog rewrite": [
       "phase 60 v4 0 0 13 changelog rewrite"
     ],
@@ -82621,6 +82834,9 @@
     ],
     "phase 7 deep loop state and stop policy": [
       "phase 7 deep loop state and stop policy"
+    ],
+    "phase 7 dispatch recognition and hard rules": [
+      "phase 7 dispatch recognition and hard rules"
     ],
     "phase 7 dispatch recognition and stress adapter": [
       "phase 7 dispatch recognition and stress adapter"
@@ -82859,6 +83075,9 @@
     "phase 8 track subtrack regrouping": [
       "phase 8 track subtrack regrouping"
     ],
+    "phase 8 vibe repo guards": [
+      "phase 8 vibe repo guards"
+    ],
     "phase 8 write containment scoping": [
       "phase 8 write containment scoping"
     ],
@@ -82879,6 +83098,9 @@
     ],
     "phase 9 compaction purpose folder": [
       "phase 9 compaction purpose folder"
+    ],
+    "phase 9 deep loop executor kind": [
+      "phase 9 deep loop executor kind"
     ],
     "phase 9 doctor ci review wiring": [
       "phase 9 doctor ci review wiring"
@@ -84247,6 +84469,12 @@
     ],
     "pi mcp route guard": [
       "pi mcp route guard"
+    ],
+    "pi mistral deepseek glm route": [
+      "pi mistral deepseek glm route"
+    ],
+    "pi mistral route": [
+      "pi mistral route"
     ],
     "pi mode and descendant walk": [
       "pi mode and descendant walk"
@@ -128295,6 +128523,198 @@
     ],
     "vi usefaketimers envelope latency": [
       "vi.useFakeTimers envelope latency"
+    ],
+    "vibe allowed models": [
+      "vibe allowed_models"
+    ],
+    "vibe authenticated dispatch evidence": [
+      "vibe authenticated dispatch evidence"
+    ],
+    "vibe cli": [
+      "vibe cli"
+    ],
+    "vibe cli reference": [
+      "vibe cli reference"
+    ],
+    "vibe config discovery": [
+      "vibe config discovery"
+    ],
+    "vibe context and goal hooks": [
+      "vibe context and goal hooks"
+    ],
+    "vibe context and goal hooks goal": [
+      "vibe context and goal hooks goal"
+    ],
+    "vibe context and goal hooks implementation summary": [
+      "vibe context and goal hooks implementation summary"
+    ],
+    "vibe context and goal hooks plan": [
+      "vibe context and goal hooks plan"
+    ],
+    "vibe context and goal hooks tasks": [
+      "vibe context and goal hooks tasks"
+    ],
+    "vibe contract pin": [
+      "vibe contract pin"
+    ],
+    "vibe contract pin goal": [
+      "vibe contract pin goal"
+    ],
+    "vibe contract pin implementation summary": [
+      "vibe contract pin implementation summary"
+    ],
+    "vibe contract pin plan": [
+      "vibe contract pin plan"
+    ],
+    "vibe contract pin tasks": [
+      "vibe contract pin tasks"
+    ],
+    "vibe deepseek flash alias": [
+      "vibe deepseek-flash alias"
+    ],
+    "vibe dispatch preflight": [
+      "vibe dispatch preflight"
+    ],
+    "vibe dispatch prompt discipline": [
+      "vibe dispatch prompt discipline"
+    ],
+    "vibe dispatch recognition implementation summary": [
+      "vibe dispatch recognition implementation summary"
+    ],
+    "vibe exit code contract": [
+      "vibe exit code contract"
+    ],
+    "vibe export json fields": [
+      "vibe export.json fields"
+    ],
+    "vibe glm flash alias": [
+      "vibe glm-flash alias"
+    ],
+    "vibe goal bridge": [
+      "vibe goal bridge"
+    ],
+    "vibe goal injection": [
+      "vibe goal injection"
+    ],
+    "vibe guard porting": [
+      "vibe guard porting"
+    ],
+    "vibe home isolation": [
+      "vibe home isolation"
+    ],
+    "vibe hooks": [
+      "vibe hooks"
+    ],
+    "vibe hooks toml": [
+      "vibe hooks.toml"
+    ],
+    "vibe mistral provider": [
+      "vibe mistral provider"
+    ],
+    "vibe model roster": [
+      "vibe model roster"
+    ],
+    "vibe opencode feature parity research": [
+      "vibe opencode feature parity research"
+    ],
+    "vibe p": [
+      "vibe -p"
+    ],
+    "vibe packet slice": [
+      "vibe packet slice"
+    ],
+    "vibe parity with opencode extensions hooks plugins": [
+      "vibe parity with opencode extensions hooks plugins"
+    ],
+    "vibe post agent": [
+      "vibe post_agent"
+    ],
+    "vibe pre tool hook": [
+      "vibe pre_tool hook"
+    ],
+    "vibe print mode": [
+      "vibe print mode"
+    ],
+    "vibe print mode flags": [
+      "vibe print mode flags"
+    ],
+    "vibe print mode prompt": [
+      "vibe print mode prompt"
+    ],
+    "vibe prompt framework selection": [
+      "vibe prompt framework selection"
+    ],
+    "vibe prompt quality card": [
+      "vibe prompt quality card"
+    ],
+    "vibe prompt sources": [
+      "vibe prompt sources"
+    ],
+    "vibe provider row": [
+      "vibe provider row"
+    ],
+    "vibe repo guards": [
+      "vibe repo guards"
+    ],
+    "vibe repo guards goal": [
+      "vibe repo guards goal"
+    ],
+    "vibe repo guards implementation summary": [
+      "vibe repo guards implementation summary"
+    ],
+    "vibe repo guards plan": [
+      "vibe repo guards plan"
+    ],
+    "vibe repo guards tasks": [
+      "vibe repo guards tasks"
+    ],
+    "vibe runtime folder": [
+      "vibe runtime folder"
+    ],
+    "vibe runtime folder and mirrors": [
+      "vibe runtime folder and mirrors"
+    ],
+    "vibe runtime folder and mirrors goal": [
+      "vibe runtime folder and mirrors goal"
+    ],
+    "vibe runtime folder and mirrors plan": [
+      "vibe runtime folder and mirrors plan"
+    ],
+    "vibe runtime folder and mirrors tasks": [
+      "vibe runtime folder and mirrors tasks"
+    ],
+    "vibe runtime folder implementation summary": [
+      "vibe runtime folder implementation summary"
+    ],
+    "vibe session lifecycle": [
+      "vibe session lifecycle"
+    ],
+    "vibe session start context": [
+      "vibe session start context"
+    ],
+    "vibe session start goal": [
+      "vibe session start goal"
+    ],
+    "vibe session start goal slice": [
+      "vibe session_start goal slice"
+    ],
+    "vibe session start hook": [
+      "vibe session_start hook"
+    ],
+    "vibe skill mirror": [
+      "vibe skill mirror"
+    ],
+    "vibe strict hook": [
+      "vibe strict hook"
+    ],
+    "vibe strict pre tool hooks": [
+      "vibe strict pre_tool hooks"
+    ],
+    "vibe sync generators": [
+      "vibe sync generators"
+    ],
+    "vibe trust gate": [
+      "vibe trust gate"
     ],
     "viewport emulation": [
       "viewport emulation"

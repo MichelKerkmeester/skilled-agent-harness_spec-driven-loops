@@ -66,11 +66,11 @@ A resident daemon scores your prompt across five signal lanes and renders its pi
 
 ### 🤖 Agent Library
 
-Eleven specialized agents own focused roles. Seven CLI bridges let a runtime dispatch other AI CLIs as sub-tools, including the experimental DeepSeek Harness target.
+Eleven specialized agents own focused roles. Eight CLI bridges let a runtime dispatch other AI CLIs as sub-tools, including the experimental DeepSeek Harness and Mistral Vibe targets.
 
 A review can fan out across several models at once, with the safest verdict winning. The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns.
 
-The six bridges for repository-opening runtimes refuse self-dispatch except `cli-pi`. The experimental dsh target is a separate run surface, for a headless dispatch or an interactive session such as `dsh web`. Fan-out lineages and dispatch stacks are bounded, so delegation never loops.
+The six bridges for repository-opening runtimes refuse self-dispatch except `cli-pi`. The experimental dsh and Vibe targets are separate run surfaces: dsh for a headless dispatch or an interactive session such as `dsh web`, Vibe for a pinned print-mode run that reads its config from `.vibe/`. Fan-out lineages and dispatch stacks are bounded, so delegation never loops.
 
 &nbsp;
 
@@ -629,13 +629,13 @@ Deltas feed the reducer. Each iteration also writes a structured delta file that
 
 A loop can spread its iterations across several AI models at once, then merge what they find. Bind two or more executors on the command and each one becomes its own lineage. A matrix that expands to one lineage runs the ordinary single-executor loop, and the fan-out runner refuses a one-lineage research or review run.
 
-You can run the same review or research across native agents and CLI bridges in parallel: Codex, Claude Code, OpenCode, Cursor, Devin, Pi and DeepSeek Harness. Each lineage runs on its own state, and a pool caps how many run at once.
+You can run the same review or research across native agents and CLI bridges in parallel: Codex, Claude Code, OpenCode, Cursor, Devin, Pi, DeepSeek Harness and Mistral Vibe. Each lineage runs on its own state, and a pool caps how many run at once.
 
 For a review, the merge follows the strongest restriction. Any lineage that reports an active P0 pulls the merged verdict to FAIL, so the safest reading wins rather than the average one.
 
 Fan-out is supervised, not unattended. A stall watchdog aborts a lineage that stops emitting progress, and a per-lineage cost cap bounds spend. A dead or rate-limited lineage is tolerated without failing the whole run.
 
-Every executor kind dispatches through the same shared runner, selected per lineage. Adding a model is a list edit rather than new plumbing. A Cursor, Pi or Devin model must be on the runner's allowlist. DeepSeek Harness accepts only models in its two-route roster.
+Every executor kind dispatches through the same shared runner, selected per lineage. Adding a model is a list edit rather than new plumbing. A Cursor, Pi or Devin model must be on the runner's allowlist. DeepSeek Harness accepts only models in its two-route roster. Mistral Vibe accepts only its two roster aliases.
 
 &nbsp;
 
@@ -872,7 +872,7 @@ A bridge checks before it runs. It confirms its CLI is installed and usable, so 
 
 **`cli-external-orchestration`** - parent hub for external CLI dispatch
 
-One skill with seven bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness`. Each bridge checks a dispatch against the rules in its own `hard-rules.json` before the command runs, and the `dsh` bridge carries 13 of them. That bridge is experimental. Its LLM Gateway `deepseek-v4.1-flash-1017` route passed a keyed run on 2026-11-06 and is the default. Its OpenCode Go route passed one on 2026-11-07 and runs only when you name it. All seven bridges are also deep-loop fan-out executors, so a research, review or council run can bind any of them as a lineage.
+One skill with eight bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe`. Each bridge checks a dispatch against the rules in its own `hard-rules.json` before the command runs, and the `dsh` bridge carries 13 of them. That bridge is experimental. Its LLM Gateway `deepseek-v4.1-flash-1017` route passed a keyed run on 2026-11-06 and is the default. Its OpenCode Go route passed one on 2026-11-07 and runs only when you name it. All eight bridges are also deep-loop fan-out executors, so a research, review or council run can bind any of them as a lineage.
 
 &nbsp;
 

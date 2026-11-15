@@ -2,7 +2,7 @@
 name: cli-opencode
 description: "OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback with full runtime context."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.10.0
+version: 1.5.11.0
 ---
 
 # OpenCode CLI Orchestrator - Full-Runtime Cross-AI Dispatch
@@ -144,7 +144,7 @@ OpenCode 1 fallback supports:
 
 On OpenCode 2, run `opencode models --standalone` filtered for the `<provider>/` prefix (2.0.32's `models` takes no provider argument). On OpenCode 1 (fallback), run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Defaults live in §3 Default Invocation, and the roster is [references/providers-and-models.md](references/providers-and-models.md).
 
-**Four providers are reachable** (`opencode-go`, `openai`, `llmgateway` (**DevPass**), `minimax`), with `llmgateway/deepseek-v4.1-flash-1017` the single default on both OpenCode 2 and OpenCode 1, and the full roster and per-provider caveats in [references/providers-and-models.md](references/providers-and-models.md).
+**Five providers are reachable** (`opencode-go`, `openai`, `llmgateway` (**DevPass**), `minimax`, `mistral`), with `llmgateway/deepseek-v4.1-flash-1017` the single default on both OpenCode 2 and OpenCode 1, and the full roster and per-provider caveats in [references/providers-and-models.md](references/providers-and-models.md).
 One cross-provider footgun is worth carrying here: **id shape differs per provider**, and copying a form between providers returns a 400 (see [references/providers-and-models.md](references/providers-and-models.md) §2).
 
 **Closed roster: only models catalogued in that reference may be dispatched. Any model outside it is FORBIDDEN for cli-opencode** (a hard discipline rule, since cli-opencode has no code-enforced allowlist).

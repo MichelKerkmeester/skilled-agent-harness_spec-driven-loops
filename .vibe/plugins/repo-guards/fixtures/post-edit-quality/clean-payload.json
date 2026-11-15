@@ -1,0 +1,25 @@
+{
+  "session_id": "<session_id>",
+  "transcript_path": "<transcript_path>",
+  "cwd": ".",
+  "parent_session_id": null,
+  "hook_event_name": "post_tool",
+  "tool_name": "file_system.edit",
+  "tool_call_id": "<tool_call_id>",
+  "tool_input": {
+    "file_path": ".vibe/plugins/repo-guards/fixtures/post-edit-quality/sample-clean.ts",
+    "old_string": "export const sample = 1;",
+    "new_string": "export const sample = 2;",
+    "replace_all": false
+  },
+  "tool_status": "success",
+  "tool_output": {
+    "file": ".vibe/plugins/repo-guards/fixtures/post-edit-quality/sample-clean.ts",
+    "message": "Replaced 1 occurrence",
+    "old_string": "export const sample = 1;",
+    "new_string": "export const sample = 2;"
+  },
+  "tool_output_text": "Replaced 1 occurrence in .vibe/plugins/repo-guards/fixtures/post-edit-quality/sample-clean.ts",
+  "tool_error": null,
+  "duration_ms": 0
+}

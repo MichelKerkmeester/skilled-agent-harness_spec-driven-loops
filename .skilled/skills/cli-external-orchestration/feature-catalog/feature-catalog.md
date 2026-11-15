@@ -1,6 +1,6 @@
 ---
 title: "cli-external-orchestration: Feature Catalog"
-description: "Current-state inventory for CLI executor routing, compiled dispatch, Cursor hooks, authorization, session-isolated goal bindings and the experimental DeepSeek Harness mode."
+description: "Current-state inventory for CLI executor routing, compiled dispatch, Cursor hooks, authorization, session-isolated goal bindings, the experimental DeepSeek Harness mode and the experimental Mistral Vibe mode."
 trigger_phrases:
   - "cli-external-orchestration feature catalog"
   - "cli-external-orchestration hub capabilities"
@@ -10,13 +10,14 @@ trigger_phrases:
   - "Cursor CLI spec-gate integration"
   - "cross-runtime goal isolation"
   - "DeepSeek Harness Dispatch Mode"
-last_updated: "2026-11-06"
-version: 1.7.5.0
+  - "Mistral Vibe Dispatch Mode"
+last_updated: "2026-11-14"
+version: 1.7.7.0
 ---
 
 # cli-external-orchestration: Feature Catalog
 
-This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of seven CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness`), each independently classifying intent, choosing or confirming a provider and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
+This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of eight CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness`, `cli-mistral-vibe`), each independently classifying intent, choosing or confirming a provider and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -32,11 +33,11 @@ Use this catalog as the current-state inventory for the `cli-external-orchestrat
 
 #### Description
 
-`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's seven modes.
+`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's eight modes.
 
 #### Current Reality
 
-The seven workflow packets are `packetKind: "workflow"`. Each dispatches writes into this repository's own workspace. The transport this hub used to carry, `cli-jev`, moved to the `cli-classifier` hub at [`../../cli-classifier/SKILL.md`](../../cli-classifier/SKILL.md) as mode `cli-jev` over the `cli-jev` packet, and the `transport-axis` extension went with it, so this registry declares no extension at all. The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
+The eight workflow packets are `packetKind: "workflow"`. Each dispatches writes into this repository's own workspace. The transport this hub used to carry, `cli-jev`, moved to the `cli-classifier` hub at [`../../cli-classifier/SKILL.md`](../../cli-classifier/SKILL.md) as mode `cli-jev` over the `cli-jev` packet, and the `transport-axis` extension went with it, so this registry declares no extension at all. The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
 
 #### Source Files
 
@@ -86,7 +87,7 @@ See [`cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md`](cursor-hooks-an
 
 #### Description
 
-One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous` or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. Claude, Codex, Devin and Pi call the shared cores directly, Cursor translates its hook events through Claude adapters, and DeepSeek Harness calls the same preflight and audit cores from its repo-guards adapters. It recognizes all seven executors plus the `cli-jev` judgment shapes, including the `dsh` headless forms.
+One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous` or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. Claude, Codex, Devin and Pi call the shared cores directly, Cursor translates its hook events through Claude adapters, DeepSeek Harness calls the same preflight and audit cores from its repo-guards adapters, and Mistral Vibe calls the same rule engine from its repo-guards preflight. It recognizes all eight executors plus the `cli-jev` judgment shapes, including the `dsh` headless forms.
 
 #### Current Reality
 
@@ -140,7 +141,7 @@ See [`opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`](opencod
 
 #### Description
 
-`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental. Both routes answered a keyed run, LLM Gateway on 2026-11-06 and OpenCode Go on 2026-11-07.
+`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed three-route DeepSeek V4.1 Flash roster, and it remains experimental. LLM Gateway (2026-11-06) and OpenCode Go (2026-11-07) answered a keyed run, and the Mistral route composes but has no keyed run yet.
 
 #### Current Reality
 
@@ -149,3 +150,21 @@ The mode routes on harness vocabulary only: `dsh`, `dsh headless`, `deepseek har
 #### Source Files
 
 See [`deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md`](deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md) for the routing vocabulary, the dispatch shape the rules enforce and what stays unconfirmed.
+
+---
+
+## 9. MISTRAL VIBE DISPATCH MODE
+
+### Mistral Vibe Dispatch Mode
+
+#### Description
+
+`cli-mistral-vibe` is the eighth workflow mode. It composes and checks a one-task `vibe -p` print-mode dispatch over a closed two-alias DeepSeek and GLM roster, and it remains experimental. Print mode is pinned on vibe 3.1.2 from captures in this repository; both roster rows are hand-written, `allowed_models` closes the roster by model name, and ACP (`vibe-acp`) is deferred.
+
+#### Current Reality
+
+The mode routes on Vibe vocabulary only: `mistral vibe`, `vibe -p`, `vibe print mode` and `delegate to vibe`. The bare word "vibe" stays ordinary design language and selects nothing. A dispatch runs from a scratch cwd with a disposable `VIBE_HOME`, names one of `deepseek-flash` and `glm-flash`, and counts as complete only when `export.json` records `exit_code` 0 and `outcome` `finished`. The shared dispatch inspector classifies a Vibe print run as `direct cli-mistral-vibe`, and the rule engine judges it against the packet's six hard rules before it spawns.
+
+#### Source Files
+
+See [`mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md`](mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md) for the routing vocabulary, the dispatch shape the rules enforce and what stays unconfirmed.

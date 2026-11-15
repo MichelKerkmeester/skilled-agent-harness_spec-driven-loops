@@ -25,6 +25,7 @@ export const ADAPTER_KINDS = [
   'cli-devin',
   'cli-cursor',
   'cli-deepseek-harness',
+  'cli-mistral-vibe',
 ] as const;
 
 export type AdapterKind = typeof ADAPTER_KINDS[number];
@@ -36,6 +37,7 @@ const BINARY_BY_KIND: Record<AdapterKind, string> = {
   'cli-devin': 'devin',
   'cli-cursor': 'cursor-agent',
   'cli-deepseek-harness': 'dsh',
+  'cli-mistral-vibe': 'vibe',
 };
 
 const SHIM_BY_KIND: Record<AdapterKind, string> = {
@@ -45,6 +47,7 @@ const SHIM_BY_KIND: Record<AdapterKind, string> = {
   'cli-devin': 'devin-shim.cjs',
   'cli-cursor': 'cursor-shim.cjs',
   'cli-deepseek-harness': 'dsh-shim.cjs',
+  'cli-mistral-vibe': 'vibe-shim.cjs',
 };
 
 export const MODEL_BY_KIND: Record<AdapterKind, string> = {
@@ -54,6 +57,7 @@ export const MODEL_BY_KIND: Record<AdapterKind, string> = {
   'cli-devin': 'glm-5-2',
   'cli-cursor': 'composer-2.5',
   'cli-deepseek-harness': 'deepseek-v4.1-flash-1017',
+  'cli-mistral-vibe': 'deepseek-flash',
 };
 
 export interface AdapterShimCapture {

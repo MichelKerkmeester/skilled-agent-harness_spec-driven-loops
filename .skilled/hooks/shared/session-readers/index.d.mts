@@ -55,5 +55,10 @@ export const capabilities: Readonly<{
         storeRoot: "(unconfirmed)";
         reason: "PreCompact delivery is unconfirmed, so there is no trustworthy capture point";
     }>;
+    vibe: Readonly<{
+        status: "ready";
+        locatorKind: "transcript_path";
+        storeRoot: "$VIBE_HOME/logs/session/unified/<session_id>";
+    }>;
 }>;
 //# sourceMappingURL=index.d.mts.map

@@ -1,0 +1,51 @@
+> Spawn a child from the prompt-improver agent type (config_name prompt-improver) to rewrite this rough request into a dispatch-ready prompt: make the build faster. One attempt only; report the       
+  result.                                                                                                                                                                                               
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+⏵ Called 3 tools, ran 1 subagent, thought                                                                                                                                                               
+                                                                                                                                                                                                        
+  Spawn failed with subagent_type_not_found. Let me check what agent types actually exist so the report is actionable — this is a lookup, not a retry.                                                  
+                                                                                                                                                                                                        
+⏵ Ran 2 commands, called 1 tool, thought                                                                                                                                                                
+                                                                                                                                                                                                        
+  Spawn failed. No child was created.                                                                                                                                                                  ▆
+                                                                                                                                                                                                        
+  Result                                                                                                                                                                                                
+                                                                                                                                                                                                        
+  ┌───────────────────────────────────────────────────────────────────────────────────────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────┐   
+  │ Step                                                                                  │ Outcome                                                                                                 │   
+  ├───────────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ agents.spawn with config_name: "prompt-improver"                                      │ Failed — subagent_type_not_found ("Unknown subagent type")                                              │   
+  ├───────────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Side effects                                                                          │ None; agents.list returns []                                                                            │   
+  ├───────────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────┤   
+  │ Retries                                                                               │ None, per your one-attempt constraint                                                                   │   
+  └───────────────────────────────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────┘   
+                                                                                                                                                                                                        
+  Why it failed                                                                                                                                                                                         
+                                                                                                                                                                                                        
+  This isn't a typo or a transient error — no agent types are configured on this machine at all:                                                                                                        
+                                                                                                                                                                                                        
+  • $VIBE_HOME/agents/ — does not exist                                                                                                                                                                 
+  • ~/.vibe/agents/ — does not exist                                                                                                                                                                    
+  • .vibe/agents/ in the project — does not exist                                                                                                                                                       
+                                                                                                                                                                                                        
+  prompt-improver has no definition anywhere, so the runtime rejected the name before any child was admitted. The advisor note (sk-prompt 0.95/0.15 pass) doesn't register an agent type either — it    
+  reads as sampling guidance, not a config.                                                                                                                                                             
+                                                                                                                                                                                                        
+  To unblock                                                                                                                                                                                            
+                                                                                                                                                                                                        
+  Define the agent type first, then the spawn will resolve. A minimal $VIBE_HOME/agents/prompt-improver.toml with a name, description, and instructions is enough. I can write that file if you want    
+  the type to exist — say the word and I'll create it, then re-spawn.                                                                                                                                   
+                                                                                                                                                                                                        
+  Alternatively, the rewrite itself is a single short step; I can produce the dispatch-ready prompt for "make the build faster" inline right now without the child. Which do you want?                  
+                                                                                                                                                                                                        
+✓ Resumed session 9a6b8b7c.                                                                                                                                                                             
+
+                 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>  
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.CVxvwv35kW/vibe                                                                                                       ctx ▍      14.3k/256k
+

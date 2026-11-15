@@ -1,0 +1,1 @@
+../../../skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs

@@ -1,0 +1,3 @@
+turn	status	attempts	evidence	observed
+bindings	PASS	1	turns/bindings	turn-hooks-and-session-start-bound
+close	PASS	1	turns/close	2026-11-15T01:09:11+0100 action=skip reason=no-session-pid

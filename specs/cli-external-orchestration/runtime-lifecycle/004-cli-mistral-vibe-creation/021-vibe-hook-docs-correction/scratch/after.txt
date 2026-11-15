@@ -1,0 +1,14 @@
+$ rg -c "not portable" .skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md
+1
+
+$ rg -c "UNKNOWN wire format" .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md
+no match (exit=1)
+
+$ rg -c "UNKNOWN wire format" .skilled/skills/cli-external-orchestration/cli-mistral-vibe/README.md
+no match (exit=1)
+
+$ rg -n "Vibe has no such tool" .skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md
+no match (exit=1)
+
+$ rg -n "a deny does not" .vibe/plugins/repo-guards/spec-gate-classify.mjs
+no match (exit=1)

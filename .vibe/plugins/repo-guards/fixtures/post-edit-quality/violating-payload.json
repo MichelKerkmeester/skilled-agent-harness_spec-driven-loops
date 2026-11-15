@@ -1,0 +1,22 @@
+{
+  "session_id": "<session_id>",
+  "transcript_path": "<transcript_path>",
+  "cwd": ".",
+  "parent_session_id": null,
+  "hook_event_name": "post_tool",
+  "tool_name": "file_system.write_file",
+  "tool_call_id": "<tool_call_id>",
+  "tool_input": {
+    "file_path": ".vibe/plugins/repo-guards/fixtures/post-edit-quality/sample-bad.ts",
+    "content": "// review finding: replace this stub before shipping.\nexport const sample = 1;\n"
+  },
+  "tool_status": "success",
+  "tool_output": {
+    "file_path": ".vibe/plugins/repo-guards/fixtures/post-edit-quality/sample-bad.ts",
+    "bytes_written": 79,
+    "content": "// review finding: replace this stub before shipping.\nexport const sample = 1;\n"
+  },
+  "tool_output_text": "Wrote 79 bytes to .vibe/plugins/repo-guards/fixtures/post-edit-quality/sample-bad.ts",
+  "tool_error": null,
+  "duration_ms": 0
+}

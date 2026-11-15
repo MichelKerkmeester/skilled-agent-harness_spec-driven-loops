@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dsh mistral route",
+      "phase 3 dsh mistral route",
+      "deepseek harness mistral deepseek",
+      "dsh mistral route plan",
+      "dsh mistral route tasks",
+      "dsh mistral route goal",
+      "dsh mistral route implementation summary"
+    ],
+    "key_topics": [
+      "dsh",
+      "mistral",
+      "route",
+      "phase",
+      "deepseek",
+      "harness",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "model"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".dsh/patches/route-mistral-deepseek.patch.yml",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/SKILL.md",
+      "scratch/draft-route-mistral-deepseek.patch.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "route-mistral-deepseek.patch.yml",
+        "kind": "config",
+        "path": ".dsh/patches/route-mistral-deepseek.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "draft-route-mistral-deepseek.patch.yml",
+        "kind": "config",
+        "path": "scratch/draft-route-mistral-deepseek.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Promote",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Route",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "dsh has no model option, so its route patch is the model choice, and the `closed-roster` rule allows only the LLM Gateway and OpenCode Go patches",
+    "created_at": "2026-11-14T12:01:23Z",
+    "last_save_at": "2026-11-14T14:06:44.229Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:74b7b7ce1ca95a8b62ea84f1adebdde75b479fb6faf774a171d8a546f75a448e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "62667c2fefa56bbfe618478dd8ef1b80528273795e8111a9e807cd958dcbfcf5",
+      "plan.md": "8919e826cc33f22a3f325493ecb6be5f1c98f9975a97f166b97a27c7d0d0b2f7",
+      "tasks.md": "3116aa5d3f55c139c07ae6a5ad6bb80614dec6adb6fa482dd0bad998ce7eb616",
+      "implementation-summary.md": "615e942b75e60c7633b5ff38de47b6eae021a2b8cca6b409e27b23f505cd4909"
+    },
+    "last_active_at": null
+  }
+}

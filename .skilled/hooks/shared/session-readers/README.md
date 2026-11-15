@@ -45,6 +45,9 @@ Failure codes:
 | `session_mismatch` | A record was found, but its recorded id or path does not match |
 | `session_ambiguous` | More than one record claims the id |
 | `store_unreadable` | The store could not be read or projected |
+| `unsupported_format` | The journal holds no record shape the reader knows, so it fails instead of returning an empty session |
+
+Vibe is gated. Its reader projects `harness.public-session-state/v1` and the completion records beside it, and its helpers are `loadVibeSession`, `lastAssistantText`, `turnToolCalls`, `compactionsSince` and `turnId`. The reply is read from the current turn's completion record first, because Vibe runs a `post_agent` hook before it appends the assistant message to the projection. A hook passes the payload's `transcript_path` (the session storage root); the journal is `<transcript_path>/journal/*.jsonl`. An interactive session folds its journal into a snapshot generation at each quiet point and restarts the journal after it, so the reader starts from the generation `CURRENT` names, its projection chunks under `chunks/`, and applies the journal tail after that generation's `snapshot_sequence`. A compaction folded into a snapshot carries the snapshot's sequence.
 
 ---
 
@@ -61,6 +64,7 @@ Failure codes:
 | `opencode.mjs` | OpenCode SQLite store reader, which proves the session's recorded directory when the caller names one |
 | `devin.mjs` | Devin `sessions.db` reader over the session's main message chain and, through each compaction's `summarized_from` link, the threads before it. A recorded folder at or below the named folder passes, because Devin's hooks receive the project root. Falls back to the transcript file for a store without the session's turns |
 | `dsh.mjs` | DSH session log reader |
+| `vibe.mjs` | Vibe session journal reader, gated: the public session state under the hook's `transcript_path`, with the current turn's reply, tool calls and compactions since a watermark |
 | `cursor.mjs` | Cursor gate, which returns before touching any file |
 
 ---

@@ -7,7 +7,7 @@ trigger_phrases:
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.5.4.0
+version: 1.5.5.0
 ---
 
 # cli-pi
@@ -150,6 +150,7 @@ Use cli-pi when the request names Pi, needs Pi's native model or provider surfac
 | cli-cursor | Cursor Composer, plan/ask modes and shared editor configuration |
 | cli-devin | Devin models, subagents and cloud handoff |
 | cli-deepseek-harness | DeepSeek Harness pinned headless one-task dispatch over a closed DeepSeek V4.1 Flash roster. Experimental, no route proven live yet |
+| cli-mistral-vibe | Mistral Vibe pinned print-mode one-task dispatch over a closed DeepSeek and GLM roster, outcome read from `export.json`. Experimental, ACP deferred |
 
 ### Resource Map
 

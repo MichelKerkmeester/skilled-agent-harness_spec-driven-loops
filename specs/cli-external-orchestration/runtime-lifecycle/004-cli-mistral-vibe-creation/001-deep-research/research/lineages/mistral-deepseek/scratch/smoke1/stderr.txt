@@ -1,0 +1,2 @@
+Reading API keys from the macOS Keychain (set them as environment variables to skip this)
+Error: Missing MISTRAL_API_KEY environment variable for mistral provider

@@ -1,0 +1,3 @@
+$ grep -rqs '"content":"Denied tool' "$VIBE_HOME/logs/session/unified" && echo deny-notice-recorded
+deny-notice-recorded
+[exit 0]

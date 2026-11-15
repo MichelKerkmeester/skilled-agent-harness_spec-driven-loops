@@ -77,6 +77,7 @@ The core is runtime-neutral; each adapter binds it to a native lifecycle event a
 | **Pi** | `pi/goal-context.ts` | `input` + `session_start` + `turn_end`; registers `/goal-pi` command, discovered via `.pi/extensions/` | `ctx.sessionManager.getSessionId()` for native identity; `ctx.cwd` for workspace | `input` → `{action: "transform", text: ...}` (per-turn injection, chains additively). `session_start` → restore via `pi.sendMessage`. `turn_end` → heuristic verify, observe-only nudge via `pi.sendMessage` when not met, records turn. `/goal-pi` shells to `bin/goal.cjs` with scope flags. |
 | **Cursor** | `cursor/goal-inject.mjs` | `sessionStart` only | `session_id` then `conversation_id` fallback; `workspace_roots[0]` for workspace | `{permission: 'allow', agent_message: brief + reminder}`. Injection-only: management needs identity the prompt command does not carry, so `/goal-cursor` answers only `packet <path>`, a session-free read. No mid-session refresh, no verify/continue. Model-visibility is recorded-evidence, not a proven end-to-end guarantee. |
 | **Devin** | `devin/goal-inject.mjs` | `SessionStart` + `UserPromptSubmit` in `.devin/hooks.v1.json` | `session_id`; `cwd` or `DEVIN_PROJECT_DIR` for workspace | `{hookSpecificOutput: {hookEventName, additionalContext: brief + reminder}}`. Injection-only: the repository exposes no Devin prompt-command surface. |
+| **Vibe** | `vibe/goal-inject.mjs` | `session_start` through `.vibe/hooks.toml`; exports `renderVibeGoalSlice` for the session-start hook | `VIBE_SPEC_FOLDER` for the packet path; no session identity is used | No envelope of its own: the session-start hook puts the slice in `hook_specific_output.additional_context`. Injection-only: no goal object, no `/goal` command, no goal tool, no per-turn refresh, no compaction re-injection. |
 | **OpenCode** | `.opencode/plugins/opencode-goal.js` (mirrored at `opencode/`) | Native OpenCode plugin, outside this core | Owns per-OpenCode-session files, token accounting, lifecycle events | Native `/goal-opencode` tools with `bind`, `resent` and `packet`, native verifier, guarded continuation. A separate implementation that shares the kill switch, the state-directory contract and `lib/goal-slice.cjs`. |
 | **Claude** | — | native goal command | — | Keeps its host goal command, operator-confirmed 2026-09-12 and re-checkable only against a live host. The speckit workflows render the parent goal's durable slice, frontmatter excluded, and hand it over to be set; the `AGENTS.md` goal posture row binds the agent on every turn. |
 | **Codex** | — | native goal command | — | Same as Claude, on the same confirmation. |
@@ -120,6 +121,7 @@ goal/
 +-- cursor/   goal-inject.mjs       # sessionStart-only injection plus the resend reminder
 +-- devin/    goal-inject.mjs       # SessionStart + UserPromptSubmit injection plus the resend reminder
 +-- pi/       goal-context.ts       # Pi native lifecycle + /goal-pi command (real file; `.pi/extensions/` holds a one-line entry file that re-exports it)
++-- vibe/     goal-inject.mjs       # renderVibeGoalSlice: the packet chat_slice for the Vibe session-start hook
 `-- opencode/ opencode-goal.js      # browsability symlink -> ../../../plugins/opencode-goal.js
 ```
 
@@ -135,6 +137,7 @@ goal/
 | `pi/goal-context.ts` | Pi native lifecycle binding. Registers `/goal-pi`, injects on `input`, restores on `session_start`, verifies on `turn_end`. Dynamic-imports the core from this folder; the long specifier left from the link-based layout does not resolve. Binds a hand-over packet at `session_start` or the first `input`. |
 | `cursor/goal-inject.mjs` | Cursor `sessionStart`-only injection. Reads the active goal, renders the brief and the resend reminder, returns them as `agent_message`. Fails open unconditionally. |
 | `devin/goal-inject.mjs` | Devin `SessionStart` and `UserPromptSubmit` injection. Same brief and reminder, returned as `additionalContext` in Devin's `hookSpecificOutput` envelope. Fails open to `{}`. |
+| `vibe/goal-inject.mjs` | Vibe `session_start` slice. Reads the packet path from `VIBE_SPEC_FOLDER` and returns exactly the `chat_slice` that `goal.cjs packet` prints. No variable means no goal text. |
 | `lib/goal-core.test.cjs`, `bin/goal.test.cjs` | Core, lifecycle, concurrency, legacy, hardening, CLI binding, privacy, and legacy action coverage. |
 
 `.opencode/plugins/opencode-goal.js` is the OpenCode-native plugin; it is a separate implementation that shares the kill switch, the state directory, `lib/goal-slice.cjs` and the core's `appendPacketLog`, and imports nothing else from this tree.
@@ -181,7 +184,8 @@ node --test \
   .skilled/hooks/goal/bin/goal.test.cjs \
   .skilled/hooks/goal/pi/goal-pi.test.mjs \
   .skilled/hooks/goal/cursor/goal-cursor.test.mjs \
-  .skilled/hooks/goal/devin/goal-devin.test.mjs
+  .skilled/hooks/goal/devin/goal-devin.test.mjs \
+  .skilled/hooks/goal/vibe/goal-vibe.test.mjs
 ```
 
 Expected result: all tests pass.

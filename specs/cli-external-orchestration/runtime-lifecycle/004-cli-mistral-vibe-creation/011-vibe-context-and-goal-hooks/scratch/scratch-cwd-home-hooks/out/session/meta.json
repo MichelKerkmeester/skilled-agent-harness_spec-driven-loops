@@ -1,0 +1,33 @@
+{
+  "session_id": "08b32b11-0d8a-bb26-2385-86bb47a2ca7d",
+  "parent_session_id": null,
+  "start_time": "2026-11-14T18:51:22.362000+00:00",
+  "end_time": "2026-11-14T18:51:28.431000+00:00",
+  "git_commit": null,
+  "git_branch": null,
+  "environment": {
+    "working_directory": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.DBFjpo0aru"
+  },
+  "origin_directory": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.DBFjpo0aru",
+  "username": "michelkerkmeester",
+  "child_sessions": [],
+  "loops": [],
+  "title": null,
+  "title_source": "auto",
+  "bumped_at": "2026-11-14T18:51:23.846032+00:00",
+  "pinned_at": null,
+  "archived_at": null,
+  "unseen_at": "2026-11-14T18:51:28.434824+00:00",
+  "seen_at": null,
+  "experiments": null,
+  "config": {
+    "active_model": "deepseek-flash",
+    "model_name": "deepseek-v4-1-flash-1017"
+  },
+  "runtime_path": "direct",
+  "import_provenance": null,
+  "created_worktree": null,
+  "project": null,
+  "artifacts": [],
+  "worktrees": []
+}

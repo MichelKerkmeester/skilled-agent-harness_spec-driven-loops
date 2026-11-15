@@ -1,5 +1,5 @@
 {
-  "corpusHash": "08a04ec4a44daa66324ac57b32e2313883065b822dcf72b564d5b83cfb829be4",
+  "corpusHash": "ba384f5472d4151d4a1a0f2fceabb96754b9a810d82733dd5e2c97f2f8f6e350",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26830,
+  "includedPathCount": 26942,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -185,6 +185,7 @@
     ".skilled/hooks/goal/opencode/README.md",
     ".skilled/hooks/goal/pi/README.md",
     ".skilled/hooks/goal/tests/README.md",
+    ".skilled/hooks/goal/vibe/README.md",
     ".skilled/hooks/hook-install/README.md",
     ".skilled/hooks/hook-install/claude/README.md",
     ".skilled/hooks/hook-install/cursor/README.md",
@@ -236,6 +237,7 @@
     ".skilled/hooks/session-lifecycle/dsh/README.md",
     ".skilled/hooks/session-lifecycle/pi/README.md",
     ".skilled/hooks/session-lifecycle/tests/README.md",
+    ".skilled/hooks/session-lifecycle/vibe/README.md",
     ".skilled/hooks/session-relaunch/README.md",
     ".skilled/hooks/session-relaunch/bin/README.md",
     ".skilled/hooks/session-relaunch/claude/README.md",
@@ -431,6 +433,7 @@
     ".skilled/skills/cli-external-orchestration/changelog/v1.7.9.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v1.8.0.0.md",
     ".skilled/skills/cli-external-orchestration/changelog/v2.0.0.0.md",
+    ".skilled/skills/cli-external-orchestration/changelog/v2.1.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/README.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/ROUTER.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
@@ -1090,6 +1093,7 @@
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/assets/prompt-quality-card.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/assets/prompt-templates.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.0.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/cli-invocation/keyless-boot-per-route.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/cli-invocation/repo-root-dispatch-refusal.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/fanout/deep-research-lineage.md",
@@ -1342,6 +1346,41 @@
     ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/README.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/ROUTER.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/assets/prompt-quality-card.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/changelog/v1.0.0.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/cli-invocation/first-turn-print-mode.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/fanout/adapter-stress-cells.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/goal-hook/first-turn-goal-injection.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/goal-hook/goal-hook-suite.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/guards/spec-gate-suite.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hard-rules/dispatch-rule-check-suite.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hard-rules/hard-rule-sidecar-integrity.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hub-routing/compiled-decision-and-router-row.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hub-routing/front-door-compiled-decision.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/mirrors/sync-generator-checks.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/model-dispatch/keyed-roster-alias-dispatch.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/auth-failure.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/budget-rejection.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/child-spec-gate.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/model-or-balance.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/node-modules-integrity.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/orphan-cleanup.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/partial-lineage-death.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/rate-limit.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/sandbox-permission.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/self-invocation.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/stdin-hang.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/timeout.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/transport-missing.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/worktree-collision.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/cli-reference.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/providers-and-models.md",
+    ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/runtime-folder-and-sync.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/ROUTER.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
@@ -1632,6 +1671,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.10.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.11.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.4.0.md",
@@ -1899,6 +1939,7 @@
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.20.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.21.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.22.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.4.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.5.0.md",
@@ -1957,6 +1998,7 @@
     ".skilled/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
     ".skilled/skills/cli-external-orchestration/feature-catalog/deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md",
     ".skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
+    ".skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md",
     ".skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/compiled-routing/ordered-bundle-cli-transport-compiled-routing.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/auth-failure.md",
@@ -10560,6 +10602,76 @@
     "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/decision-record.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research-angles.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/research.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/evidence/probes.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin/evidence/catalog.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin/evidence/stdin.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/005-cli-mistral-vibe-skill-packet/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/005-cli-mistral-vibe-skill-packet/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/005-cli-mistral-vibe-skill-packet/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/005-cli-mistral-vibe-skill-packet/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/005-cli-mistral-vibe-skill-packet/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/006-vibe-runtime-folder-and-mirrors/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/006-vibe-runtime-folder-and-mirrors/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/006-vibe-runtime-folder-and-mirrors/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/006-vibe-runtime-folder-and-mirrors/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/006-vibe-runtime-folder-and-mirrors/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/007-dispatch-recognition-and-hard-rules/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/007-dispatch-recognition-and-hard-rules/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/007-dispatch-recognition-and-hard-rules/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/007-dispatch-recognition-and-hard-rules/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/007-dispatch-recognition-and-hard-rules/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/acceptance-criteria.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/decision-record.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/010-hub-registration-and-routing/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/010-hub-registration-and-routing/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/010-hub-registration-and-routing/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/010-hub-registration-and-routing/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/010-hub-registration-and-routing/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/decision-record.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/orca-worktree-terminal.md",
@@ -26862,7 +26974,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1cd7a6a0bec7e2858f26ca81c19890d6b96dbf84372fcf311fba50833b017a76",
+  "manifestHash": "4085cbfb9850b5688f5f4069445985a120b9a7b4149eeb3c4e3a432e89a9d62d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29182,6 +29294,82 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/evidence",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/004-vibe-contract-pin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/005-cli-mistral-vibe-skill-packet/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/006-vibe-runtime-folder-and-mirrors/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/007-dispatch-recognition-and-hard-rules/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/010-hub-registration-and-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/012-playbook-docs-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/scratch",
       "reason": "excluded directory"
     },
     {

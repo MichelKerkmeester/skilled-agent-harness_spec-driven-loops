@@ -1,17 +1,17 @@
 ---
 name: cli-external-orchestration
-description: "Parent hub for external CLI dispatch: routes to seven workflow modes through mode-registry.json; dispatches by workflowMode."
+description: "Parent hub for external CLI dispatch: routes to eight workflow modes through mode-registry.json; dispatches by workflowMode."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 2.0.0.0
+version: 2.1.0.0
 metadata:
   family: cli
 ---
 
-<!-- Keywords: cli-external-orchestration, mode-registry, hub-router, workflowMode, packetKind, cli-opencode, opencode-cli, opencode-run, cli-claude-code, claude-code, claude-cli, cli-codex, codex-cli, codex-exec, cli-cursor, cursor-cli, cursor-agent, composer, cli-devin, devin-cli, cli-pi, pi-cli, pi-agent, pi.dev, cli-deepseek-harness, dsh, dsh-headless, deepseek-harness, cross-ai, agent-delegation, executor-delegation -->
+<!-- Keywords: cli-external-orchestration, mode-registry, hub-router, workflowMode, packetKind, cli-opencode, opencode-cli, opencode-run, cli-claude-code, claude-code, claude-cli, cli-codex, codex-cli, codex-exec, cli-cursor, cursor-cli, cursor-agent, composer, cli-devin, devin-cli, cli-pi, pi-cli, pi-agent, pi.dev, cli-deepseek-harness, dsh, dsh-headless, deepseek-harness, cli-mistral-vibe, mistral-vibe, vibe-cli, vibe-print-mode, vibe-headless, cross-ai, agent-delegation, executor-delegation -->
 
 # CLI External Dispatch Hub (cli-external-orchestration)
 
-One skill, seven workflow modes, and one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo.
+One skill, eight workflow modes, and one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo.
 Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`.
 This hub holds NO per-mode logic. Each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet. The hub routes by `workflowMode`.
 
@@ -29,7 +29,8 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 | **cli-cursor** | workflow | Cursor CLI orchestration: cursor-agent-backed coding, Composer-model dispatch, read-only plan/ask modes; fails closed when `cursor-agent` is absent | `cli-external-orchestration/cli-cursor/` |
 | **cli-devin** | workflow | Devin CLI orchestration: Cognition-backed coding, cloud handoff, subagent delegation, MCP host integration; fails closed when `devin` is absent | `cli-external-orchestration/cli-devin/` |
 | **cli-pi** | workflow | Pi CLI orchestration: guarded headless print, JSON event, RPC, native-resource, and community-package dispatch; fails closed when `pi` is absent | `cli-external-orchestration/cli-pi/` |
-| **cli-deepseek-harness** | workflow | DeepSeek Harness (`dsh`) CLI orchestration: pinned headless one-task dispatch over a closed two-route DeepSeek V4.1 Flash roster, JSON event stream, cross-AI validation. Experimental: both routes answered a keyed run, LLM Gateway on 2026-11-06 as the default and OpenCode Go on 2026-11-07 when named. Fails closed when `dsh` is absent or not the pinned version | `cli-external-orchestration/cli-deepseek-harness/` |
+| **cli-deepseek-harness** | workflow | DeepSeek Harness (`dsh`) CLI orchestration: pinned headless one-task dispatch over a closed three-route DeepSeek V4.1 Flash roster, JSON event stream, cross-AI validation. Experimental: LLM Gateway (the default, 2026-11-06) and OpenCode Go (when named, 2026-11-07) answered a keyed run; Mistral composes but has no keyed run yet. Fails closed when `dsh` is absent or not the pinned version | `cli-external-orchestration/cli-deepseek-harness/` |
+| **cli-mistral-vibe** | workflow | Mistral Vibe (`vibe`) CLI orchestration: pinned print-mode one-task dispatch (`vibe -p`) over a closed two-alias `deepseek-flash` / `glm-flash` roster, `export.json` outcome record, cross-AI second opinions. Experimental: the pin is `vibe 3.1.2`, ACP (`vibe-acp`) is deferred, and behavior outside the saved captures stays UNKNOWN. Fails closed when `vibe` is absent, not the pinned version, or `MISTRAL_API_KEY` is unset | `cli-external-orchestration/cli-mistral-vibe/` |
 
 ### When NOT to Use
 
@@ -61,14 +62,14 @@ Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selectin
 ### Terms
 
 - **`workflowMode`**: the public mode key this hub resolves to one CLI packet.
-- **`packetKind`**: the axis a mode sits on, and every mode here is `workflow` because all seven orchestrate a CLI binary.
+- **`packetKind`**: the axis a mode sits on, and every mode here is `workflow` because all eight orchestrate a CLI binary.
 - **`backendKind`**: which backend runs the mode, recorded per mode in `mode-registry.json`.
 - **`toolSurface`**: the tools a mode may and may not use, together with its `mutatesWorkspace` flag.
 - **`advisorRouting`**: how the advisor finds the mode, which is `routingClass: "metadata"` throughout this hub, so the advisor routes the hub and the hub picks the mode.
 - **`mode-registry.json`**: the registry that owns each mode's discriminator, packet folder, aliases and `advisorRouting`, plus the executor-delegation scorer's one list of CLI executors.
 - **`hub-router.json`**: stage one's `routerPolicy`, `routerSignals` and `vocabularyClasses`.
 - **`vocabularyClasses`**: the authored mode vocabulary that `routerSignals` are scored against.
-- **`tieBreak`**: the `routerPolicy` order that ranks the seven modes when scores are close.
+- **`tieBreak`**: the `routerPolicy` order that ranks the eight modes when scores are close.
 - **leaf resource**: a packet-qualified file that a selected mode loads, named in `RESOURCE_MAP` and dual-read to a typed pair through `leaf-manifest.json`.
 - **`orderedBundle`**: the outcome where several explicitly requested executors route in `tieBreak` order.
 - **`defer`**: the outcome where unclear or contradictory dispatch intent asks for disambiguation instead of defaulting to `cli-opencode`.
@@ -146,6 +147,13 @@ cli-external-orchestration/
     assets/
     manual-testing-playbook/
     changelog/
+  cli-mistral-vibe/
+    SKILL.md
+    ROUTER.md
+    hard-rules.json
+    references/
+    assets/
+    changelog/
 ```
 
 ### Companion Metadata
@@ -210,7 +218,7 @@ The layers that bound a spawn chain, fan-out lineage and dispatch stack apply to
 - Surface router: `ROUTER.md`.
 - Advisor description: `description.json`.
 - Skill graph identity: `graph-metadata.json`.
-- Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`, `cli-cursor/SKILL.md`, `cli-devin/SKILL.md`, `cli-pi/SKILL.md`, `cli-deepseek-harness/SKILL.md`.
+- Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`, `cli-cursor/SKILL.md`, `cli-devin/SKILL.md`, `cli-pi/SKILL.md`, `cli-deepseek-harness/SKILL.md`, `cli-mistral-vibe/SKILL.md`.
 - Per-mode provider/model/invocation catalogs: each mode's `references/providers-and-models.md` is the dedicated single-source index of that mode's providers, model ids, personas/effort tiers, and dispatch shapes.
 - Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
 - Constitutional CLI dispatch skill-preload rule: Read the target mode's `SKILL.md` before composing any dispatch prompt.

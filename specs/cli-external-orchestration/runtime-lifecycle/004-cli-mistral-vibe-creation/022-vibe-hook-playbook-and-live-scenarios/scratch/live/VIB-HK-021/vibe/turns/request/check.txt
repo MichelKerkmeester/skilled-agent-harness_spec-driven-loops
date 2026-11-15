@@ -1,0 +1,3 @@
+$ grep -rqsF 'user:turn-start' "$VIBE_HOME/logs/session/unified" && echo turn-start-bound
+turn-start-bound
+[exit 0]

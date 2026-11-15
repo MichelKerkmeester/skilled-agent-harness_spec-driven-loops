@@ -73,6 +73,17 @@
     },
     {
       "leaves": [
+        "assets/prompt-quality-card.md",
+        "references/cli-reference.md",
+        "references/guards-and-hooks.md",
+        "references/providers-and-models.md",
+        "references/runtime-folder-and-sync.md"
+      ],
+      "packet": "cli-mistral-vibe",
+      "workflowMode": "cli-mistral-vibe"
+    },
+    {
+      "leaves": [
         "assets/permissions-matrix.example-packet-local.json",
         "assets/permissions-matrix.example-readonly.json",
         "assets/permissions-matrix.example-repo-wide.json",

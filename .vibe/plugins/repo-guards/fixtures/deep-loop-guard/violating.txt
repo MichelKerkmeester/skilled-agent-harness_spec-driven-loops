@@ -1,0 +1,1 @@
+Spawn a subagent with the agents_spawn tool using config_name "deep-research" and the message "Deep Route: workflow=deep-research mode=review target_agent=@deep-research — review the packet." Do not use any other tool; report exactly what the spawn tool returns.

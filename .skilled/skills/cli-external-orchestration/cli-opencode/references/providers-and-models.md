@@ -7,9 +7,10 @@ trigger_phrases:
   - "opencode variant reasoning effort"
   - "opencode default model llmgateway flash"
   - "opencode minimax llmgateway gpt dispatch"
+  - "opencode mistral deepseek glm route"
 importance_tier: normal
 contextType: implementation
-version: 1.4.18.0
+version: 1.4.19.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -95,6 +96,21 @@ DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-
 | `llmgateway/deepseek-v4.1-flash` | no | The **2026-09-10** release of DeepSeek V4.1 Flash via DevPass, still selectable and pinnable. It carries the same 1.05M context, 384K output, $0.15 in and $0.60 out per million tokens and cached reads $0.003, and the same effort ladder as the `-1017` release, so pinning it trades no capability and no price. DeepSeek's own provider route for it **deactivates on 2026-10-24**, after which the `-1017` default is the one that keeps answering. On OpenCode 2 the equivalent is `-m llmgateway/deepseek-v4.1-flash#max`; on the OpenCode 1 fallback it is pinned `--variant max`, which the route accepts. Live-verified 2026-09-10. `low`/**`high`**/**`max`** plus off, default `high`; `ultra` and the integer form are rejected here. It replaced `deepseek-v4-flash-vision-exp`, which the gateway deactivated and now answers `410` for |
 | `llmgateway/glm-5.3-flash` | no | GLM-5.3-Flash via DevPass, a reasoning route with the full ladder including **both `xhigh` and `max`**, the only GLM-5.3-Flash route carrying both, so `-m llmgateway/glm-5.3-flash#max` on OpenCode 2 and `--variant max` on the OpenCode 1 fallback. Context 1.05M, output 131K. Dispatch-tested 2026-09-04 |
 
+### mistral
+
+The operator's Mistral subscription, through OpenCode's built-in `mistral` provider at `https://api.mistral.ai/v1`. Mistral hosts both models below as third-party open-weight models it serves without modification. The credential is saved through OpenCode's connect flow and registers as the `mistral` integration. On 2026-11-14, `opencode models --standalone` on OpenCode 2.3.0 listed both ids, and a one-turn `opencode run --standalone` on each replied `OK`. The OpenCode 1 fallback is not checked for this provider. A non-default route: `llmgateway/deepseek-v4.1-flash-1017` stays the mode default.
+
+> **Mistral ids use dashes, not dots.** The DeepSeek id is `deepseek-v4-1-flash-1017` and the GLM id carries the vendor, `zai-glm-5-3-flash`. The DevPass forms (`deepseek-v4.1-flash-1017`, `glm-5.3-flash`) do not resolve on this provider. Mistral's docs page URL drops the `-1` (`deepseek-v4-flash-1017`), and that slug is not the id either.
+
+> **Billing is unconfirmed.** OpenCode prices a turn at Mistral's API list rate, so the DeepSeek route reads as double the DevPass rate ($0.30 in, $1.20 out, $0.007 cached per million tokens, against $0.15, $0.60 and $0.003). Mistral documents one monthly usage pool shared across Studio, the API and Vibe Code. Whether an OpenCode turn draws on that pool or on pay-as-you-go is UNKNOWN until the Mistral console's usage counter is read after a run.
+
+> **`mistral` fronts many more ids. Exactly the two below are in scope.** The rest, and the `llmgateway-providers/mistral/*` ids OpenCode also lists, are forbidden under the closed-roster rule.
+
+| Model id | Default? | Notes |
+|----------|----------|-------|
+| `mistral/deepseek-v4-1-flash-1017` | no | DeepSeek V4.1 Flash, the 2026-10-17 release, hosted by Mistral, text and images. Context 1M, output 128K. On OpenCode 2, `-m mistral/deepseek-v4-1-flash-1017#max` replied `OK` on 2026-11-14 at $0.0050 for 16,286 input tokens, and `#ultra` is refused with `Variant unavailable for mistral/deepseek-v4-1-flash-1017: ultra`. Pass `#max` to match the DeepSeek Flash policy elsewhere in this file |
+| `mistral/zai-glm-5-3-flash` | no | Z.AI GLM-5.3-Flash, hosted by Mistral, text and images. Context 1M, output 131K. On OpenCode 2, `-m mistral/zai-glm-5-3-flash#max` replied `OK` on 2026-11-14 at $0.0024 for 16,084 input tokens. Its full variant ladder on this route is not measured, so pass `#max` explicitly |
+
 ---
 
 ## 3. DEFAULTS & QUICK INVOCATION
@@ -141,6 +157,7 @@ cli-opencode expresses reasoning effort through the model id on OpenCode 2, the 
 | `minimax` (MiniMax-M3) | behavior unverified, omitted by default. Confirm before relying |
 | `openai` GPT-6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**, with Pro tiers at `medium`/`high`/`xhigh`. The `-fast` slugs are the low-latency Fast tier with the same range. GPT-6.1 Terra's variant range on OpenCode is not yet measured, and the Codex catalog lists its efforts as `low` through `ultra` |
 | `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash-1017` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`, and the older `deepseek-v4.1-flash` release carries the same ladder. `glm-5.3-flash` carries the full ladder to `max`. Always pass the level explicitly here |
+| `mistral` | OpenCode 2 only so far. Both roster ids accept `#max`, and the DeepSeek id refuses `#ultra`. The rest of either ladder is not measured, so pass `#max` explicitly |
 
 ---
 

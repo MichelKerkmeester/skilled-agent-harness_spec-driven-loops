@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe turn end guards",
+      "phase 16 vibe turn end guards",
+      "vibe post_agent ask surface",
+      "vibe completion evidence",
+      "vibe turn end guards plan",
+      "vibe turn end guards tasks",
+      "vibe turn end guards goal",
+      "vibe turn end guards implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "turn",
+      "end",
+      "guards",
+      "phase",
+      "ask",
+      "surface",
+      "completion",
+      "evidence",
+      "plan",
+      "tasks",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs",
+      ".skilled/hooks/session-lifecycle/vibe/turn-end.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+      ".vibe/hooks.toml",
+      ".skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs",
+      ".skilled/hooks/completion/vibe/completion-evidence-post-agent.cjs",
+      ".skilled/hooks/session-lifecycle/vibe/turn-end.test.mjs",
+      ".skilled/hooks/completion/README.md",
+      ".skilled/hooks/session-lifecycle/vibe/README.md",
+      "scratch/post-agent-facts.md",
+      "scratch/turn-end-retry/procedure.md",
+      "scratch/turn-end-retry/print-mode-smoke.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs",
+      ".skilled/hooks/shared/session-readers/vibe.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-post-agent.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/vibe/ask-surface-post-agent.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-post-agent.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/vibe/completion-evidence-post-agent.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "turn-end.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-end.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "turn-end.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-end.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/completion/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-agent-facts.md",
+        "kind": "doc",
+        "path": "scratch/post-agent-facts.md",
+        "source": "derived"
+      },
+      {
+        "name": "procedure.md",
+        "kind": "doc",
+        "path": "scratch/turn-end-retry/procedure.md",
+        "source": "derived"
+      },
+      {
+        "name": "print-mode-smoke.md",
+        "kind": "doc",
+        "path": "scratch/turn-end-retry/print-mode-smoke.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "vibe.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/vibe.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.vibe/hooks.toml` registers no `postagent` hook and `ask-surface-core.cjs` has no Vibe row, so a Vibe turn that ends with a prose option menu or an unproven \"done\" claim reaches the operator unchecked",
+    "created_at": "2026-11-14T20:13:09Z",
+    "last_save_at": "2026-11-14T22:01:13.101Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d60a65cf26e69a92b99ac0dd1045177c3d6c09c9555d474754f4ebf794a68973",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ab3df7ff19178ae9dff532c09496321d3fcb2084388a2f7d33518e2b97ca69a5",
+      "plan.md": "476b51b6dee635500e0fb285a066d0b0d4e7b15410cb7f053420f57c6e49cb0b",
+      "tasks.md": "8ed36f6056bc57693ec90f4d226b5903cdee61de020129ae207bf1b82bb7c047",
+      "implementation-summary.md": "9d757b0a0a73224e413aee0368a74aaa586b80303b94e9d96baf8190cef79b18"
+    },
+    "last_active_at": null
+  }
+}

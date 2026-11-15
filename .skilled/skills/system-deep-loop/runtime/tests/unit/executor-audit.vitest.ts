@@ -456,6 +456,13 @@ describe('executor-audit', () => {
     expect(detectFromAncestry('cli-pi', ['/usr/local/bin/node worker.js', '/Users/x/.local/bin/pi --print'])).toBe(true);
   });
 
+  it('detectFromAncestry matches any Vibe binary name and no lookalike', () => {
+    expect(detectFromAncestry('cli-mistral-vibe', ['/usr/local/bin/node worker.js', '/Users/x/.local/bin/vibe-rs -p x'])).toBe(true);
+    expect(detectFromAncestry('cli-mistral-vibe', ['/Users/x/.local/bin/vibe-app-server'])).toBe(true);
+    expect(detectFromAncestry('cli-mistral-vibe', ['/opt/homebrew/bin/vibe -p'])).toBe(true);
+    expect(detectFromAncestry('cli-mistral-vibe', ['/usr/bin/vim notes.md'])).toBe(false);
+  });
+
   it('detectFromRuntimeEnv matches the runtime-specific session variable only', () => {
     expect(detectFromRuntimeEnv('cli-claude-code', { CLAUDE_CODE_SESSION_ID: 'session-1' })).toBe(true);
     expect(detectFromRuntimeEnv('cli-claude-code', { OPENCODE_SESSION_ID: 'session-1' })).toBe(false);
@@ -1094,5 +1101,36 @@ describe('executor-audit: cli-deepseek-harness environment filter', () => {
     expect(nextEnv).not.toHaveProperty('DSH_FOO');
     expect(nextEnv).not.toHaveProperty('OPENCODE_FOO');
     expect(nextEnv).not.toHaveProperty('UNRELATED_TOKEN');
+  });
+});
+
+describe('executor-audit: cli-mistral-vibe environment filter', () => {
+  const executor: ExecutorConfig = {
+    kind: 'cli-mistral-vibe',
+    model: 'deepseek-flash',
+    configDir: null,
+    reasoningEffort: null,
+    serviceTier: null,
+    sandboxMode: null,
+    timeoutSeconds: 900,
+  };
+
+  it('passes the provider key and Vibe variables but never an inherited VIBE_HOME', () => {
+    const nextEnv = buildExecutorDispatchEnv(executor, {
+      PATH: '/usr/bin',
+      MISTRAL_API_KEY: 'mistral-secret',
+      VIBE_PROBE: 'probe-value',
+      VIBE_HOME: 'must-drop',
+      OPENAI_API_KEY: 'wrong-provider',
+    });
+
+    expect(nextEnv).toMatchObject({
+      PATH: '/usr/bin',
+      MISTRAL_API_KEY: 'mistral-secret',
+      VIBE_PROBE: 'probe-value',
+      [CLI_DISPATCH_STACK_ENV]: 'cli-mistral-vibe',
+    });
+    expect(nextEnv).not.toHaveProperty('OPENAI_API_KEY');
+    expect(nextEnv).not.toHaveProperty('VIBE_HOME');
   });
 });

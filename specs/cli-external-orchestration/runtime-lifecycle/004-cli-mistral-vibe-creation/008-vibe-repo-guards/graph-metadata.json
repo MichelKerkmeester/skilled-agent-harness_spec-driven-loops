@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/008-vibe-repo-guards",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe repo guards",
+      "phase 8 vibe repo guards",
+      "vibe strict pre_tool hooks",
+      "vibe repo guards plan",
+      "vibe repo guards tasks",
+      "vibe repo guards goal",
+      "vibe repo guards implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "repo",
+      "guards",
+      "phase",
+      "strict",
+      "hooks",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "never"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".vibe/hooks.toml",
+      ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+      ".vibe/plugins/repo-guards/tests/spec-gate.test.mjs",
+      ".vibe/SYNC.md",
+      ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+      ".vibe/config.toml",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "hook-io.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/lib/hook-io.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate.test.mjs",
+        "kind": "file",
+        "path": ".vibe/plugins/repo-guards/tests/spec-gate.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".vibe/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "guards-and-hooks.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".vibe/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Declarative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Vibe never imports or evaluates OpenCode's JavaScript or TypeScript plugins (research section 6, `vibe/core/plugins/foreign.py:310`), so every guard this repository runs under OpenCode is absent in a Vibe session",
+    "created_at": "2026-11-14T12:56:21Z",
+    "last_save_at": "2026-11-14T17:17:04.261Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b8dcd767ce2dea95fe0b94599bad3e59dd2628d7ce4635eaea4c12b07bb262aa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "05a08847436d6bb90a8f428f49c43a94f5b4d9527fd141a198969391f9b757b6",
+      "plan.md": "021283d991d8cd29259e7098a3656f74a39b4c8adbb7416240fd58a512f40a21",
+      "tasks.md": "257b87c285d928c0e89351ace1baf37a7cbe64287f0f80958da2f78f1efafeb3",
+      "implementation-summary.md": "93d3d62fb0d81a36ac82cd56a98f3c52352726a3fcd4ef4abceb6630992a727c"
+    },
+    "last_active_at": null
+  }
+}

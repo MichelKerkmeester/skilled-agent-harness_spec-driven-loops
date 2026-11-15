@@ -1,0 +1,3 @@
+$ grep -qF 'reread the request' .skilled/skills/.state/completion-sentinel/vibe-pending-advisory.txt || { echo advisory-missing-reread; exit 1; }; if grep -rqsF '"kind":"hook_completed","scope":"post_agent"' "$VIBE_HOME/logs/session/unified"; then echo retry-recorded; exit 1; fi; echo "no-retry advisory-holds-reread"
+no-retry advisory-holds-reread
+[exit 0]

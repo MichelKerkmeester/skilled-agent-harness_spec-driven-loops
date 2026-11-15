@@ -1,0 +1,35 @@
+## stage2: delegate to vibe
+{"hubId":"cli-external-orchestration","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-mistral-vibe","packetKind":"workflow","skillId":"cli-external-orchestration","workflowMode":"cli-mistral-vibe"}],"effectivePolicyHash":"3bc7c5fea6e1caa22c2ce66348b1468d7ab1c02dee2dbfa0bacd399ef545af3e","generation":5}
+exit=0
+## stage2: use cli-opencode with mistral deepseek-v4-1-flash-1017
+{"hubId":"cli-external-orchestration","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-opencode","packetKind":"workflow","skillId":"cli-external-orchestration","workflowMode":"cli-opencode"}],"effectivePolicyHash":"3bc7c5fea6e1caa22c2ce66348b1468d7ab1c02dee2dbfa0bacd399ef545af3e","generation":5}
+exit=0
+## stage2: give this landing page a calmer vibe
+{"hubId":"cli-external-orchestration","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"3bc7c5fea6e1caa22c2ce66348b1468d7ab1c02dee2dbfa0bacd399ef545af3e","generation":5}
+exit=0
+## stage1: delegate to vibe
+[
+  {
+    "skill": "cli-external-orchestration",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.733515,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "cli-external-orchestration",
+      "liveScore": 0.733515,
+      "shadowScore": 0.677667,
+      "delta": -0.055848,
+      "dominantShadowLane": "explicit_author"
+    }
+  }
+]
+exit=0
+## stage1: give this landing page a calmer vibe
+[]
+exit=0

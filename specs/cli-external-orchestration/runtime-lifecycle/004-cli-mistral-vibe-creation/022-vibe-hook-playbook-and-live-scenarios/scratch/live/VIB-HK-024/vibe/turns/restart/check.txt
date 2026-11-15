@@ -1,0 +1,3 @@
+$ test -f "$VIBE_HOME/agents/prompt-improver.toml" && touch "$CONVERSATION_TURN_DIR/agent-mirror-ready" && echo restart-with-agent-mirror
+restart-with-agent-mirror
+[exit 0]

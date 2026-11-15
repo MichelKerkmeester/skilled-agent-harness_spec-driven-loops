@@ -1220,6 +1220,16 @@ workflow:
           wait_for_completion: true
           notes:
             - "Fails closed before any dispatch receipt is written; the pre_dispatch_audit provenance row for the attempted executor remains"
+        if_cli_mistral_vibe:
+          command: |
+            node --input-type=module <<'EOF'
+            console.error('cli-mistral-vibe runs only as a fan-out lineage; rerun with --count=2 or a second --executor group, or choose another executor kind');
+            process.exit(2);
+            EOF
+          working_directory: "{repo_root}"
+          wait_for_completion: true
+          notes:
+            - "Fails closed before any dispatch receipt is written; the pre_dispatch_audit provenance row for the attempted executor remains"
         if_cli_claude_code:
           command: |
             node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'

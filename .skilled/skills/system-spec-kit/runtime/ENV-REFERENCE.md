@@ -33,7 +33,7 @@ All variables are optional. The engine runs with sensible defaults when none are
 **There is no longer a feature-flag registry to tabulate.** `lib/search/search-flags.ts` was deleted with the memory engine, taking about ninety retrieval, ranking, graph, cognitive and feedback gates with it. `lib/config/capability-flags.ts` survives but now declares six gates, all of them in [Section 3](#3-spec-validation-and-generated-metadata): `SPECKIT_GENERATOR_HARDENING`, `SPECKIT_GENERATED_METADATA_GRANDFATHER`, `SPECKIT_GENERATED_METADATA_DRIFT_GATE`, `SPECKIT_IDENTITY_MERGE_SAFETY`, `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` and `SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE`.
 
 Every variable below now lives in the section that owns its reader, and each row's Source column names that file. If you are looking for a flag that used to be in this table and cannot find it, it was retired: nothing reads it, and setting it does nothing.
-Total unique variables documented: 213, counted as unique backticked names in the `Variable` column of every table below. Recount with that method when adding rows. Multi-variable cells count once per name. The flag tables name their variables in a `governing env var` column instead, so the four names that appear only there (`SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP`, `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR`, `SPECKIT_ENTITY_CONFIG_PATH`, `SPECKIT_PI_DIRECTIVE_DEDUP`) sit outside this count. With them the document names 217. Every spec-kit-owned name must have a verified reader in its source. The DeepSeek Harness names are listed for adjacent setup and are verified against its external run-surface documentation.
+Total unique variables documented: 214, counted as unique backticked names in the `Variable` column of every table below. Recount with that method when adding rows. Multi-variable cells count once per name. The flag tables name their variables in a `governing env var` column instead, so the four names that appear only there (`SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP`, `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR`, `SPECKIT_ENTITY_CONFIG_PATH`, `SPECKIT_PI_DIRECTIVE_DEDUP`) sit outside this count. With them the document names 218. Every spec-kit-owned name must have a verified reader in its source. The DeepSeek Harness names are listed for adjacent setup and are verified against its external run-surface documentation.
 
 ### Data Quality and Generator Hardening (028/005)
 
@@ -488,6 +488,23 @@ DeepSeek Harness configuration names are listed here without values. The dispatc
 | `DSH_AGENTS_OUTPUT_DIR` |
 
 The six `DSH_*_DIR` names are mirror-sync overrides documented in `.skilled/skills/system-spec-kit/runtime/cli/dsh/README.md`. `DSH_SPEC_FOLDER` accepts a packet path relative to the DSH workspace or an absolute path inside it.
+
+---
+
+## MISTRAL VIBE RUN SURFACE
+
+Mistral Vibe configuration names are listed here without values. The dispatch runs print mode from a scratch working directory with a disposable `VIBE_HOME`, and it does not read a repository-root `.env`.
+
+| Variable |
+|----------|
+| `MISTRAL_API_KEY` |
+| `MISTRAL_VIBE_SESSION_ROOT` |
+| `VIBE_HOME` |
+| `VIBE_SPEC_FOLDER` |
+
+`MISTRAL_API_KEY` is the Mistral provider key for Vibe and the `mistral` routes. `MISTRAL_VIBE_SESSION_ROOT` overrides the session root the save-time `sweep-vibe.mjs` reads, which defaults to `~/.vibe/logs/session`; a keyed or isolated run points it at its own `VIBE_HOME` tree so the sweep finds the journal it wrote. `VIBE_HOME` is Vibe's home override; a fan-out lineage sets its own. `VIBE_SPEC_FOLDER` names the packet whose goal slice the session-start hook injects, as a checkout-relative or absolute path; a fan-out lineage receives it as an absolute path.
+
+A Vibe lineage also receives `SPECKIT_DIST_AUTO_REBUILD=0`. Every lineage runs the session-start dist check, and that check's default self-heal compiles into the checkout, so sibling lineages starting together would race one build. With the switch off, the lineage keeps the staleness warning and the parent session keeps the rebuild. The switch never disables the check itself; [the hook kill-switches](#hook-kill-switches) carry its general meaning.
 
 ---
 

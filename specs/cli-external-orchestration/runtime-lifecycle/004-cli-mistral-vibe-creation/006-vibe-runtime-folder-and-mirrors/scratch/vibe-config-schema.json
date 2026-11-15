@@ -1,0 +1,3549 @@
+{
+  "$defs": {
+    "Backend": {
+      "enum": [
+        "mistral",
+        "generic"
+      ],
+      "title": "Backend",
+      "type": "string"
+    },
+    "ConnectorConfig": {
+      "properties": {
+        "name": {
+          "description": "Normalized connector alias to match against.",
+          "title": "Name",
+          "type": "string"
+        },
+        "disabled": {
+          "default": false,
+          "description": "Disable all tools from this connector. Tools are still discovered but hidden.",
+          "title": "Disabled",
+          "type": "boolean"
+        },
+        "disabled_tools": {
+          "description": "Tool names (without the connector prefix) to disable. E.g. ['search'] to hide 'connector_{name}_search'.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Disabled Tools",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "ConnectorConfig",
+      "type": "object"
+    },
+    "ExperimentsConfig": {
+      "properties": {
+        "enable": {
+          "default": true,
+          "title": "Enable",
+          "type": "boolean"
+        },
+        "api_host": {
+          "default": "https://experiments.mistral.services/",
+          "title": "Api Host",
+          "type": "string"
+        },
+        "client_key": {
+          "default": "sdk-OE8yJgTXZY6tj",
+          "title": "Client Key",
+          "type": "string"
+        }
+      },
+      "title": "ExperimentsConfig",
+      "type": "object"
+    },
+    "MCPHttp": {
+      "properties": {
+        "url": {
+          "description": "Base URL of the MCP HTTP server",
+          "title": "Url",
+          "type": "string"
+        },
+        "auth": {
+          "discriminator": {
+            "mapping": {
+              "oauth": "#/$defs/MCPOAuth",
+              "static": "#/$defs/MCPStaticAuth"
+            },
+            "propertyName": "type"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/MCPStaticAuth"
+            },
+            {
+              "$ref": "#/$defs/MCPOAuth"
+            }
+          ],
+          "title": "Auth"
+        },
+        "name": {
+          "description": "Short alias used to prefix tool names",
+          "title": "Name",
+          "type": "string"
+        },
+        "prompt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional usage hint appended to tool descriptions",
+          "title": "Prompt"
+        },
+        "startup_timeout_sec": {
+          "default": 10.0,
+          "description": "Timeout in seconds for the server to start and initialize.",
+          "exclusiveMinimum": 0,
+          "title": "Startup Timeout Sec",
+          "type": "number"
+        },
+        "tool_timeout_sec": {
+          "default": 60.0,
+          "description": "Timeout in seconds for tool execution.",
+          "exclusiveMinimum": 0,
+          "title": "Tool Timeout Sec",
+          "type": "number"
+        },
+        "sampling_enabled": {
+          "default": false,
+          "description": "Opt this MCP server into sampling/createMessage when the host provides a sampling completion.",
+          "title": "Sampling Enabled",
+          "type": "boolean"
+        },
+        "disabled": {
+          "default": false,
+          "description": "Disable all tools from this MCP server. Tools are still discovered but hidden.",
+          "title": "Disabled",
+          "type": "boolean"
+        },
+        "disabled_tools": {
+          "description": "Tool names (without the server prefix) to disable from this server. E.g. ['search', 'read'] to hide '{alias}_search' and '{alias}_read'.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Disabled Tools",
+          "type": "array"
+        },
+        "transport": {
+          "const": "http",
+          "title": "Transport",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "name",
+        "transport"
+      ],
+      "title": "MCPHttp",
+      "type": "object"
+    },
+    "MCPOAuth": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "oauth",
+          "title": "Type",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "OAuth scopes to request. Pass an empty list to accept the AS default.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Scopes",
+          "type": "array"
+        },
+        "client_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Pre-registered OAuth public client_id (PKCE). Mutually exclusive with client_metadata_url.",
+          "title": "Client Id"
+        },
+        "client_metadata_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "RFC 9728 client-metadata-document URL. Mutually exclusive with client_id.",
+          "title": "Client Metadata Url"
+        },
+        "redirect_port": {
+          "default": 47823,
+          "description": "Loopback port for the OAuth callback handler.",
+          "maximum": 65535,
+          "minimum": 1024,
+          "title": "Redirect Port",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "type",
+        "scopes"
+      ],
+      "title": "MCPOAuth",
+      "type": "object"
+    },
+    "MCPStaticAuth": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "static",
+          "default": "static",
+          "title": "Type",
+          "type": "string"
+        },
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional HTTP headers (e.g., Authorization or X-API-Key).",
+          "title": "Headers",
+          "type": "object"
+        },
+        "api_key_env": {
+          "default": "",
+          "description": "Environment variable name containing an API token to send for HTTP transport.",
+          "title": "Api Key Env",
+          "type": "string"
+        },
+        "api_key_header": {
+          "default": "Authorization",
+          "description": "HTTP header name to carry the token when 'api_key_env' is set (e.g., 'Authorization' or 'X-API-Key').",
+          "title": "Api Key Header",
+          "type": "string"
+        },
+        "api_key_format": {
+          "default": "Bearer {token}",
+          "description": "Format string for the header value when 'api_key_env' is set. Use '{token}' placeholder.",
+          "title": "Api Key Format",
+          "type": "string"
+        }
+      },
+      "title": "MCPStaticAuth",
+      "type": "object"
+    },
+    "MCPStdio": {
+      "properties": {
+        "name": {
+          "description": "Short alias used to prefix tool names",
+          "title": "Name",
+          "type": "string"
+        },
+        "prompt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional usage hint appended to tool descriptions",
+          "title": "Prompt"
+        },
+        "startup_timeout_sec": {
+          "default": 10.0,
+          "description": "Timeout in seconds for the server to start and initialize.",
+          "exclusiveMinimum": 0,
+          "title": "Startup Timeout Sec",
+          "type": "number"
+        },
+        "tool_timeout_sec": {
+          "default": 60.0,
+          "description": "Timeout in seconds for tool execution.",
+          "exclusiveMinimum": 0,
+          "title": "Tool Timeout Sec",
+          "type": "number"
+        },
+        "sampling_enabled": {
+          "default": false,
+          "description": "Opt this MCP server into sampling/createMessage when the host provides a sampling completion.",
+          "title": "Sampling Enabled",
+          "type": "boolean"
+        },
+        "disabled": {
+          "default": false,
+          "description": "Disable all tools from this MCP server. Tools are still discovered but hidden.",
+          "title": "Disabled",
+          "type": "boolean"
+        },
+        "disabled_tools": {
+          "description": "Tool names (without the server prefix) to disable from this server. E.g. ['search', 'read'] to hide '{alias}_search' and '{alias}_read'.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Disabled Tools",
+          "type": "array"
+        },
+        "transport": {
+          "const": "stdio",
+          "title": "Transport",
+          "type": "string"
+        },
+        "command": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          ],
+          "title": "Command"
+        },
+        "args": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Args",
+          "type": "array"
+        },
+        "env": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Environment variables to set for the MCP server process.",
+          "title": "Env",
+          "type": "object"
+        },
+        "cwd": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Working directory for the MCP server process.",
+          "title": "Cwd"
+        }
+      },
+      "required": [
+        "name",
+        "transport",
+        "command"
+      ],
+      "title": "MCPStdio",
+      "type": "object"
+    },
+    "MCPStreamableHttp": {
+      "properties": {
+        "url": {
+          "description": "Base URL of the MCP HTTP server",
+          "title": "Url",
+          "type": "string"
+        },
+        "auth": {
+          "discriminator": {
+            "mapping": {
+              "oauth": "#/$defs/MCPOAuth",
+              "static": "#/$defs/MCPStaticAuth"
+            },
+            "propertyName": "type"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/MCPStaticAuth"
+            },
+            {
+              "$ref": "#/$defs/MCPOAuth"
+            }
+          ],
+          "title": "Auth"
+        },
+        "name": {
+          "description": "Short alias used to prefix tool names",
+          "title": "Name",
+          "type": "string"
+        },
+        "prompt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional usage hint appended to tool descriptions",
+          "title": "Prompt"
+        },
+        "startup_timeout_sec": {
+          "default": 10.0,
+          "description": "Timeout in seconds for the server to start and initialize.",
+          "exclusiveMinimum": 0,
+          "title": "Startup Timeout Sec",
+          "type": "number"
+        },
+        "tool_timeout_sec": {
+          "default": 60.0,
+          "description": "Timeout in seconds for tool execution.",
+          "exclusiveMinimum": 0,
+          "title": "Tool Timeout Sec",
+          "type": "number"
+        },
+        "sampling_enabled": {
+          "default": false,
+          "description": "Opt this MCP server into sampling/createMessage when the host provides a sampling completion.",
+          "title": "Sampling Enabled",
+          "type": "boolean"
+        },
+        "disabled": {
+          "default": false,
+          "description": "Disable all tools from this MCP server. Tools are still discovered but hidden.",
+          "title": "Disabled",
+          "type": "boolean"
+        },
+        "disabled_tools": {
+          "description": "Tool names (without the server prefix) to disable from this server. E.g. ['search', 'read'] to hide '{alias}_search' and '{alias}_read'.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Disabled Tools",
+          "type": "array"
+        },
+        "transport": {
+          "const": "streamable-http",
+          "title": "Transport",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "name",
+        "transport"
+      ],
+      "title": "MCPStreamableHttp",
+      "type": "object"
+    },
+    "ModelConfig": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "alias": {
+          "title": "Alias",
+          "type": "string"
+        },
+        "display_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Display Name"
+        },
+        "temperature": {
+          "default": 0.2,
+          "title": "Temperature",
+          "type": "number"
+        },
+        "top_p": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "maximum": 1,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Top P"
+        },
+        "max_output_tokens": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Output Tokens"
+        },
+        "input_price": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Input Price",
+          "type": "number"
+        },
+        "output_price": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Output Price",
+          "type": "number"
+        },
+        "cached_input_price": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Price per million cached input tokens; unset bills them at input_price",
+          "title": "Cached Input Price"
+        },
+        "thinking": {
+          "$ref": "#/$defs/ThinkingLevel",
+          "default": "off"
+        },
+        "thinking_levels": {
+          "items": {
+            "$ref": "#/$defs/ThinkingLevel"
+          },
+          "title": "Thinking Levels",
+          "type": "array"
+        },
+        "supports_images": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Supports Images"
+        },
+        "max_context_length": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Context Length"
+        },
+        "auto_compact_threshold": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Auto Compact Threshold"
+        }
+      },
+      "required": [
+        "name",
+        "provider",
+        "alias"
+      ],
+      "title": "ModelConfig",
+      "type": "object"
+    },
+    "OtelRedactionMode": {
+      "enum": [
+        "default",
+        "none",
+        "strict"
+      ],
+      "title": "OtelRedactionMode",
+      "type": "string"
+    },
+    "OutsideWorkdirPolicy": {
+      "description": "What a tool call reaching outside the working directory gets instead of running.",
+      "enum": [
+        "ask",
+        "deny"
+      ],
+      "title": "OutsideWorkdirPolicy",
+      "type": "string"
+    },
+    "ProjectContextConfig": {
+      "properties": {
+        "default_commit_count": {
+          "default": 5,
+          "title": "Default Commit Count",
+          "type": "integer"
+        },
+        "timeout_seconds": {
+          "default": 2.0,
+          "title": "Timeout Seconds",
+          "type": "number"
+        }
+      },
+      "title": "ProjectContextConfig",
+      "type": "object"
+    },
+    "ProviderConfig": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "api_base": {
+          "title": "Api Base",
+          "type": "string"
+        },
+        "api_key_env_var": {
+          "default": "",
+          "title": "Api Key Env Var",
+          "type": "string"
+        },
+        "browser_auth_base_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Browser Auth Base Url"
+        },
+        "browser_auth_api_base_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Browser Auth Api Base Url"
+        },
+        "browser_auth_allow_origin_rewrite": {
+          "default": false,
+          "title": "Browser Auth Allow Origin Rewrite",
+          "type": "boolean"
+        },
+        "preserve_api_base": {
+          "default": false,
+          "title": "Preserve Api Base",
+          "type": "boolean"
+        },
+        "api_style": {
+          "default": "openai",
+          "title": "Api Style",
+          "type": "string"
+        },
+        "backend": {
+          "$ref": "#/$defs/Backend",
+          "default": "generic"
+        },
+        "reasoning_field_name": {
+          "default": "reasoning_content",
+          "title": "Reasoning Field Name",
+          "type": "string"
+        },
+        "emits_finish_reason": {
+          "default": true,
+          "title": "Emits Finish Reason",
+          "type": "boolean"
+        },
+        "project_id": {
+          "default": "",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "region": {
+          "default": "",
+          "title": "Region",
+          "type": "string"
+        },
+        "extra_headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Extra Headers",
+          "type": "object"
+        }
+      },
+      "required": [
+        "name",
+        "api_base"
+      ],
+      "title": "ProviderConfig",
+      "type": "object"
+    },
+    "SessionLoggingConfig": {
+      "properties": {
+        "save_dir": {
+          "default": "",
+          "title": "Save Dir",
+          "type": "string"
+        },
+        "session_prefix": {
+          "default": "session",
+          "title": "Session Prefix",
+          "type": "string"
+        },
+        "enabled": {
+          "default": true,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "generate_titles": {
+          "default": true,
+          "title": "Generate Titles",
+          "type": "boolean"
+        }
+      },
+      "title": "SessionLoggingConfig",
+      "type": "object"
+    },
+    "SpeechOutputFormat": {
+      "enum": [
+        "pcm",
+        "wav",
+        "mp3",
+        "flac",
+        "opus"
+      ],
+      "type": "string"
+    },
+    "TTSClient": {
+      "enum": [
+        "mistral"
+      ],
+      "title": "TTSClient",
+      "type": "string"
+    },
+    "TTSModelConfig": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "alias": {
+          "title": "Alias",
+          "type": "string"
+        },
+        "voice": {
+          "default": "gb_jane_neutral",
+          "title": "Voice",
+          "type": "string"
+        },
+        "response_format": {
+          "$ref": "#/$defs/SpeechOutputFormat",
+          "default": "wav"
+        }
+      },
+      "required": [
+        "name",
+        "provider",
+        "alias"
+      ],
+      "title": "TTSModelConfig",
+      "type": "object"
+    },
+    "TTSProviderConfig": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "api_base": {
+          "default": "https://api.mistral.ai",
+          "title": "Api Base",
+          "type": "string"
+        },
+        "api_key_env_var": {
+          "default": "",
+          "title": "Api Key Env Var",
+          "type": "string"
+        },
+        "client": {
+          "$ref": "#/$defs/TTSClient",
+          "default": "mistral"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "TTSProviderConfig",
+      "type": "object"
+    },
+    "ThinkingLevel": {
+      "examples": [
+        "off",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "TranscribeClient": {
+      "enum": [
+        "mistral"
+      ],
+      "title": "TranscribeClient",
+      "type": "string"
+    },
+    "TranscribeModelConfig": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "alias": {
+          "title": "Alias",
+          "type": "string"
+        },
+        "sample_rate": {
+          "default": 16000,
+          "title": "Sample Rate",
+          "type": "integer"
+        },
+        "encoding": {
+          "$ref": "#/$defs/TranscriptionEncoding",
+          "default": "pcm_s16le"
+        },
+        "language": {
+          "default": "en",
+          "title": "Language",
+          "type": "string"
+        },
+        "target_streaming_delay_ms": {
+          "default": 500,
+          "title": "Target Streaming Delay Ms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "provider",
+        "alias"
+      ],
+      "title": "TranscribeModelConfig",
+      "type": "object"
+    },
+    "TranscribeProviderConfig": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "api_base": {
+          "default": "wss://api.mistral.ai",
+          "title": "Api Base",
+          "type": "string"
+        },
+        "api_key_env_var": {
+          "default": "",
+          "title": "Api Key Env Var",
+          "type": "string"
+        },
+        "client": {
+          "$ref": "#/$defs/TranscribeClient",
+          "default": "mistral"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "TranscribeProviderConfig",
+      "type": "object"
+    },
+    "TranscriptionEncoding": {
+      "const": "pcm_s16le",
+      "type": "string"
+    },
+    "UtilityModelsConfig": {
+      "description": "Per-feature model aliases; empty means automatic selection.",
+      "properties": {
+        "title": {
+          "default": "",
+          "title": "Title",
+          "type": "string"
+        },
+        "smart_approve": {
+          "default": "",
+          "title": "Smart Approve",
+          "type": "string"
+        }
+      },
+      "title": "UtilityModelsConfig",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "active_model": {
+      "default": "",
+      "title": "Active Model",
+      "type": "string"
+    },
+    "routed_default_model": {
+      "default": "",
+      "title": "Routed Default Model",
+      "type": "string"
+    },
+    "routed_model_config": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ModelConfig"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "catalog_model_aliases": {
+      "additionalProperties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": "Catalog Model Aliases",
+      "type": "object"
+    },
+    "catalog_recommended_model": {
+      "default": "",
+      "title": "Catalog Recommended Model",
+      "type": "string"
+    },
+    "catalog_default_model": {
+      "default": "",
+      "title": "Catalog Default Model",
+      "type": "string"
+    },
+    "routed_extra_models": {
+      "items": {
+        "$ref": "#/$defs/ModelConfig"
+      },
+      "title": "Routed Extra Models",
+      "type": "array"
+    },
+    "providers": {
+      "items": {
+        "$ref": "#/$defs/ProviderConfig"
+      },
+      "title": "Providers",
+      "type": "array"
+    },
+    "models": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ModelConfig"
+      },
+      "title": "Models",
+      "type": "object"
+    },
+    "allowed_models": {
+      "description": "An explicit list of model names/patterns to allow. If set, only these models are selectable. An empty list allows all configured models. Supports glob patterns (e.g., 'mistral-*') and regex with 're:' prefix.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Allowed Models",
+      "type": "array"
+    },
+    "compaction_model": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ModelConfig"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "vision_model": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ModelConfig"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Vision-capable model that describes attached images for an active model that cannot see them. Only needed to override the default, which is any vision-capable model on the active model's own provider; set this to reach a different provider."
+    },
+    "utility_models": {
+      "$ref": "#/$defs/UtilityModelsConfig",
+      "description": "Per-feature model for secondary completions (session titles, the smart-approve classifier). Each value is a model alias from 'models' or 'active' to use the session's active model. Unset leaves the feature on automatic selection."
+    },
+    "auto_compact_threshold": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Token count before automatic compaction for models without their own threshold. Unset uses each model's default, derived from its context window. A threshold outside the range the window allows is moved into that range, with a warning.",
+      "title": "Auto Compact Threshold"
+    },
+    "active_transcribe_model": {
+      "default": "voxtral-realtime",
+      "title": "Active Transcribe Model",
+      "type": "string"
+    },
+    "transcribe_providers": {
+      "items": {
+        "$ref": "#/$defs/TranscribeProviderConfig"
+      },
+      "title": "Transcribe Providers",
+      "type": "array"
+    },
+    "transcribe_models": {
+      "items": {
+        "$ref": "#/$defs/TranscribeModelConfig"
+      },
+      "title": "Transcribe Models",
+      "type": "array"
+    },
+    "active_tts_model": {
+      "default": "voxtral-tts",
+      "title": "Active Tts Model",
+      "type": "string"
+    },
+    "tts_providers": {
+      "items": {
+        "$ref": "#/$defs/TTSProviderConfig"
+      },
+      "title": "Tts Providers",
+      "type": "array"
+    },
+    "tts_models": {
+      "items": {
+        "$ref": "#/$defs/TTSModelConfig"
+      },
+      "title": "Tts Models",
+      "type": "array"
+    },
+    "tools": {
+      "additionalProperties": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Tools",
+      "type": "object",
+      "properties": {
+        "ask_user_question": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            }
+          },
+          "additionalProperties": false
+        },
+        "bash": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "ask"
+            },
+            "allowlist": {
+              "description": "Command prefixes that are automatically allowed",
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "description": "Command prefixes that are automatically denied",
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "default": [
+                "sudo"
+              ],
+              "description": "Command prefixes that always ASK regardless of arity approval.",
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_output_bytes": {
+              "default": 16000,
+              "description": "Maximum bytes to capture from stdout and stderr.",
+              "title": "Max Output Bytes",
+              "type": "integer"
+            },
+            "default_timeout": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Seconds a command may run when the call gives no timeout. Set alone, it must be at most Vibe's own maximum (300). Unset, Vibe's own default applies.",
+              "title": "Default Timeout"
+            },
+            "max_timeout_seconds": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Longest foreground wait one tool call may ask for, in seconds. Set it with `default_timeout`, or neither. Unset, Vibe's own maximum applies.",
+              "title": "Max Timeout Seconds"
+            },
+            "denylist_standalone": {
+              "description": "Commands that are denied only when run without arguments",
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist Standalone",
+              "type": "array"
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "shell": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Optional default shell executable override.",
+              "title": "Shell"
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "bash_log_file": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "ask"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "bash_output": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_poll_seconds": {
+              "default": 300.0,
+              "description": "No effect with the unified harness.",
+              "title": "Max Poll Seconds",
+              "type": "number",
+              "deprecated": true
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "bash_sessions": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "bash_stdin": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            }
+          },
+          "additionalProperties": false
+        },
+        "edit": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "ask"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "description": "File patterns that trigger ASK even when permission is ALWAYS.",
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            }
+          },
+          "additionalProperties": false
+        },
+        "git_bash": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "ask"
+            },
+            "allowlist": {
+              "description": "Command prefixes that are automatically allowed",
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "description": "Command prefixes that are automatically denied",
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "default": [
+                "sudo"
+              ],
+              "description": "Command prefixes that always ASK regardless of arity approval.",
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_output_bytes": {
+              "default": 16000,
+              "description": "Maximum bytes to capture from stdout and stderr.",
+              "title": "Max Output Bytes",
+              "type": "integer"
+            },
+            "default_timeout": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Seconds a command may run when the call gives no timeout. Set alone, it must be at most Vibe's own maximum (300). Unset, Vibe's own default applies.",
+              "title": "Default Timeout"
+            },
+            "max_timeout_seconds": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Longest foreground wait one tool call may ask for, in seconds. Set it with `default_timeout`, or neither. Unset, Vibe's own maximum applies.",
+              "title": "Max Timeout Seconds"
+            },
+            "denylist_standalone": {
+              "description": "Commands that are denied only when run without arguments",
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist Standalone",
+              "type": "array"
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "shell": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Optional default shell executable override.",
+              "title": "Shell"
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "git_bash_log_file": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "ask"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "git_bash_output": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_poll_seconds": {
+              "default": 300.0,
+              "description": "No effect with the unified harness.",
+              "title": "Max Poll Seconds",
+              "type": "number",
+              "deprecated": true
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "git_bash_sessions": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "git_bash_stdin": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            }
+          },
+          "additionalProperties": false
+        },
+        "grep": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always",
+              "deprecated": true,
+              "description": "No effect with the unified harness."
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array",
+              "deprecated": true,
+              "description": "No effect with the unified harness."
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array",
+              "deprecated": true,
+              "description": "No effect with the unified harness."
+            },
+            "sensitive_patterns": {
+              "description": "No effect with the unified harness.",
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array",
+              "deprecated": true
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "No effect with the unified harness.",
+              "deprecated": true
+            },
+            "max_output_bytes": {
+              "default": 64000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Output Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "default_max_matches": {
+              "default": 100,
+              "description": "No effect with the unified harness.",
+              "title": "Default Max Matches",
+              "type": "integer",
+              "deprecated": true
+            },
+            "default_timeout": {
+              "default": 60,
+              "description": "No effect with the unified harness.",
+              "title": "Default Timeout",
+              "type": "integer",
+              "deprecated": true
+            },
+            "exclude_patterns": {
+              "default": [
+                ".venv/",
+                "venv/",
+                ".env/",
+                "env/",
+                "node_modules/",
+                ".git/",
+                "__pycache__/",
+                ".pytest_cache/",
+                ".mypy_cache/",
+                ".tox/",
+                ".nox/",
+                ".coverage/",
+                "htmlcov/",
+                "dist/",
+                "build/",
+                ".idea/",
+                ".vscode/",
+                "*.egg-info",
+                "*.pyc",
+                "*.pyo",
+                "*.pyd",
+                ".DS_Store",
+                "Thumbs.db"
+              ],
+              "description": "No effect with the unified harness.",
+              "items": {
+                "type": "string"
+              },
+              "title": "Exclude Patterns",
+              "type": "array",
+              "deprecated": true
+            },
+            "codeignore_file": {
+              "default": ".vibeignore",
+              "description": "No effect with the unified harness.",
+              "title": "Codeignore File",
+              "type": "string",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "powershell": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "ask"
+            },
+            "allowlist": {
+              "description": "Command prefixes that are automatically allowed",
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "description": "Command prefixes that are automatically denied",
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "default": [
+                "sudo"
+              ],
+              "description": "Command prefixes that always ASK regardless of arity approval.",
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_output_bytes": {
+              "default": 16000,
+              "description": "Maximum bytes to capture from stdout and stderr.",
+              "title": "Max Output Bytes",
+              "type": "integer"
+            },
+            "default_timeout": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Seconds a command may run when the call gives no timeout. Set alone, it must be at most Vibe's own maximum (300). Unset, Vibe's own default applies.",
+              "title": "Default Timeout"
+            },
+            "max_timeout_seconds": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Longest foreground wait one tool call may ask for, in seconds. Set it with `default_timeout`, or neither. Unset, Vibe's own maximum applies.",
+              "title": "Max Timeout Seconds"
+            },
+            "denylist_standalone": {
+              "description": "Commands that are denied only when run without arguments",
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist Standalone",
+              "type": "array"
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "shell": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Optional default shell executable override.",
+              "title": "Shell"
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "powershell_log_file": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "ask"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "powershell_output": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_poll_seconds": {
+              "default": 300.0,
+              "description": "No effect with the unified harness.",
+              "title": "Max Poll Seconds",
+              "type": "number",
+              "deprecated": true
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "powershell_sessions": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_inline_bytes": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "max_inline_chars": {
+              "default": 30000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Inline Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "powershell_stdin": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            }
+          },
+          "additionalProperties": false
+        },
+        "read_file": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "description": "File patterns that trigger ASK even when permission is ALWAYS.",
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_read_bytes": {
+              "default": 64000,
+              "description": "No effect with the unified harness.",
+              "exclusiveMinimum": 0,
+              "title": "Max Read Bytes",
+              "type": "integer",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "skill": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            }
+          },
+          "additionalProperties": false
+        },
+        "task": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "ask",
+              "deprecated": true,
+              "description": "No effect with the unified harness."
+            },
+            "allowlist": {
+              "default": [
+                "explore"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array",
+              "deprecated": true,
+              "description": "No effect with the unified harness."
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array",
+              "deprecated": true,
+              "description": "No effect with the unified harness."
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array",
+              "deprecated": true,
+              "description": "No effect with the unified harness."
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "No effect with the unified harness.",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "todo": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "always"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_todos": {
+              "default": 100,
+              "title": "Max Todos",
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        },
+        "web_fetch": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "ask"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "default_timeout": {
+              "default": 30,
+              "description": "No effect with the unified harness.",
+              "title": "Default Timeout",
+              "type": "integer",
+              "deprecated": true
+            },
+            "max_timeout": {
+              "default": 120,
+              "description": "No effect with the unified harness.",
+              "title": "Max Timeout",
+              "type": "integer",
+              "deprecated": true
+            },
+            "max_content_bytes": {
+              "default": 120000,
+              "description": "No effect with the unified harness.",
+              "title": "Max Content Bytes",
+              "type": "integer",
+              "deprecated": true
+            },
+            "user_agent": {
+              "default": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+              "description": "No effect with the unified harness.",
+              "title": "User Agent",
+              "type": "string",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "web_search": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "ask"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "timeout": {
+              "default": 120,
+              "description": "No effect with the unified harness.",
+              "title": "Timeout",
+              "type": "integer",
+              "deprecated": true
+            },
+            "model": {
+              "default": "mistral-vibe-cli-with-tools",
+              "description": "No effect with the unified harness.",
+              "title": "Model",
+              "type": "string",
+              "deprecated": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "write_file": {
+          "type": "object",
+          "properties": {
+            "permission": {
+              "enum": [
+                "always",
+                "never",
+                "ask"
+              ],
+              "title": "ToolPermission",
+              "type": "string",
+              "default": "ask"
+            },
+            "allowlist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Allowlist",
+              "type": "array"
+            },
+            "denylist": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Denylist",
+              "type": "array"
+            },
+            "sensitive_patterns": {
+              "description": "File patterns that trigger ASK even when permission is ALWAYS.",
+              "items": {
+                "type": "string"
+              },
+              "title": "Sensitive Patterns",
+              "type": "array"
+            },
+            "outside_workdir": {
+              "anyOf": [
+                {
+                  "description": "What a tool call reaching outside the working directory gets instead of running.",
+                  "enum": [
+                    "ask",
+                    "deny"
+                  ],
+                  "title": "OutsideWorkdirPolicy",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Overrides the global 'outside_workdir' policy for this tool. Unset follows the global policy."
+            },
+            "max_write_bytes": {
+              "default": 64000,
+              "title": "Max Write Bytes",
+              "type": "integer",
+              "deprecated": true,
+              "description": "No effect with the unified harness."
+            },
+            "create_parent_dirs": {
+              "default": true,
+              "title": "Create Parent Dirs",
+              "type": "boolean",
+              "deprecated": true,
+              "description": "No effect with the unified harness."
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "description": "Settings per tool. A builtin tool takes the keys listed here; an MCP or connector tool takes any keys."
+    },
+    "outside_workdir": {
+      "$ref": "#/$defs/OutsideWorkdirPolicy",
+      "default": "ask",
+      "description": "What happens when a file or shell tool call reaches a path outside the working directory and its added directories: 'ask' prompts for approval, 'deny' refuses the call and tells the agent why, so it keeps working. Allowlisted paths are unaffected. Override per tool with 'outside_workdir' under [tools.<name>]."
+    },
+    "enabled_tools": {
+      "description": "An explicit list of tool names/patterns to enable. If set, only these tools will be active. Supports glob patterns (e.g., 'serena_*') and regex with 're:' prefix (e.g., 're:^serena_.*').",
+      "items": {
+        "type": "string"
+      },
+      "title": "Enabled Tools",
+      "type": "array"
+    },
+    "disabled_tools": {
+      "description": "A list of tool names/patterns to disable after 'enabled_tools' filtering. Supports glob patterns and regex with 're:' prefix.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Disabled Tools",
+      "type": "array"
+    },
+    "mcp_servers": {
+      "description": "Preferred MCP server configuration entries.",
+      "items": {
+        "discriminator": {
+          "mapping": {
+            "http": "#/$defs/MCPHttp",
+            "stdio": "#/$defs/MCPStdio",
+            "streamable-http": "#/$defs/MCPStreamableHttp"
+          },
+          "propertyName": "transport"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/$defs/MCPHttp"
+          },
+          {
+            "$ref": "#/$defs/MCPStreamableHttp"
+          },
+          {
+            "$ref": "#/$defs/MCPStdio"
+          }
+        ]
+      },
+      "title": "Mcp Servers",
+      "type": "array"
+    },
+    "enable_connectors": {
+      "default": true,
+      "title": "Enable Connectors",
+      "type": "boolean"
+    },
+    "enable_mcp": {
+      "default": true,
+      "title": "Enable Mcp",
+      "type": "boolean"
+    },
+    "experimental_enable_document_library_connector": {
+      "default": false,
+      "description": "Experimental: expose the Mistral document_library connector and its MCP tools. Off by default while the backend endpoints are stabilized; when enabled, document_library is requested from the connector bootstrap alongside web_search.",
+      "title": "Experimental Enable Document Library Connector",
+      "type": "boolean"
+    },
+    "experimental_enable_mistral_mcp_connector": {
+      "default": false,
+      "description": "Experimental: expose the Mistral MCP builtin connector and its tools. Rolled out through the vibe_cli_mistral_mcp_connector GrowthBook experiment.",
+      "title": "Experimental Enable Mistral Mcp Connector",
+      "type": "boolean"
+    },
+    "connectors": {
+      "description": "Per-connector settings (disable, disabled_tools).",
+      "items": {
+        "$ref": "#/$defs/ConnectorConfig"
+      },
+      "title": "Connectors",
+      "type": "array"
+    },
+    "agent_paths": {
+      "description": "Additional directories to search for custom agent profiles. Each path may be absolute or relative to the current working directory.",
+      "items": {
+        "format": "path",
+        "type": "string"
+      },
+      "title": "Agent Paths",
+      "type": "array"
+    },
+    "enabled_agents": {
+      "description": "An explicit list of agent names/patterns to enable. If set, only these agents will be available. Supports glob patterns (e.g., 'custom-*') and regex with 're:' prefix.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Enabled Agents",
+      "type": "array"
+    },
+    "disabled_agents": {
+      "description": "A list of agent names/patterns to disable. Ignored if 'enabled_agents' is set. Supports glob patterns and regex with 're:' prefix.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Disabled Agents",
+      "type": "array"
+    },
+    "installed_agents": {
+      "description": "A list of opt-in builtin agent names that have been explicitly installed.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Installed Agents",
+      "type": "array"
+    },
+    "default_agent": {
+      "default": "accept-edits",
+      "description": "Agent profile to use when no --agent flag is passed. Builtin: ask, accept-edits, smart-approve, auto-approve. Applies in both interactive and programmatic (-p/--prompt) mode.",
+      "title": "Default Agent",
+      "type": "string"
+    },
+    "smart_approve_available": {
+      "default": false,
+      "description": "Expose the smart-approve mode in the mode picker/cycle. Set by the vibe_cli_smart_approve experiment; does not change the default.",
+      "title": "Smart Approve Available",
+      "type": "boolean"
+    },
+    "enable_auto_approve": {
+      "default": true,
+      "description": "Allow the auto-approve (YOLO) mode: the 'auto-approve' agent and the --auto-approve/--yolo flag. When false, no agent with the 'yolo' safety level is available and the flag and bypass_tool_permissions are ignored (per-tool permissions still apply). Intended for admin-managed (enterprise) config to forbid auto-approving tool calls.",
+      "title": "Enable Auto Approve",
+      "type": "boolean"
+    },
+    "skill_paths": {
+      "description": "Additional directories to search for skills. Each path may be absolute or relative to the current working directory.",
+      "items": {
+        "format": "path",
+        "type": "string"
+      },
+      "title": "Skill Paths",
+      "type": "array"
+    },
+    "enabled_skills": {
+      "description": "An explicit list of skill names/patterns to enable. If set, only these skills will be active. Supports glob patterns (e.g., 'search-*') and regex with 're:' prefix.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Enabled Skills",
+      "type": "array"
+    },
+    "disabled_skills": {
+      "description": "A list of skill names/patterns to disable. Ignored if 'enabled_skills' is set. Supports glob patterns and regex with 're:' prefix.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Disabled Skills",
+      "type": "array"
+    },
+    "enabled_plugins": {
+      "description": "Names of installed plugins to turn on that are off by default. 'disabled_plugins' wins when a plugin is in both.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Enabled Plugins",
+      "type": "array"
+    },
+    "disabled_plugins": {
+      "description": "Names of installed plugins to disable. A disabled plugin stays installed but contributes nothing to sessions.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Disabled Plugins",
+      "type": "array"
+    },
+    "experimental_enable_registry_skills": {
+      "default": false,
+      "description": "Experimental: pull shared workspace skills from Mistral (api.mistral.ai) and make them available alongside local skills. Requires a Mistral provider and API key. On a name collision the project's skills win over global ones, skill_paths included, and within a scope a local skill wins over a shared one. Builtin skills are named vibe:<name>, so they never collide.",
+      "title": "Experimental Enable Registry Skills",
+      "type": "boolean"
+    },
+    "experimental_enable_model_catalog": {
+      "default": false,
+      "description": "Experimental: fetch the curated model catalog from the Mistral provider at session start and cache it per user on disk. Requires a Mistral provider and API key; any failure silently falls back to local config.",
+      "title": "Experimental Enable Model Catalog",
+      "type": "boolean"
+    },
+    "experimental_enable_local_projects": {
+      "default": false,
+      "description": "Experimental, in development: switch Vibe Desktop to local projects (local_projects.toml) instead of project links. Not used yet. Read once when Vibe Desktop starts its app server.",
+      "title": "Experimental Enable Local Projects",
+      "type": "boolean"
+    },
+    "enable_pr_monitoring": {
+      "default": true,
+      "description": "Detect pull requests and merge requests created during a session (gh pr create, glab mr create) and discover the ones that already exist for the session's repository at session load (gh pr list, glab mr list), persist them as session artifacts, keep their status in sync with the provider, and expose them via the artifacts/ RPC namespace. Requires gh/glab (system-installed or bundled).",
+      "title": "Enable Pr Monitoring",
+      "type": "boolean"
+    },
+    "experimental_local_runtime_session_api": {
+      "default": false,
+      "description": "Experimental: the app server drives local Sessions through the Session API instead of calling the local runtime directly. Set by the vibe_cli_local_runtime_session_api_migration experiment; the VIBE_EXPERIMENTAL_LOCAL_RUNTIME_SESSION_API environment variable takes precedence. Read when a Session opens.",
+      "title": "Experimental Local Runtime Session Api",
+      "type": "boolean"
+    },
+    "enable_otel": {
+      "default": false,
+      "description": "Export OpenTelemetry traces for agent, model, and tool operations. Requires enable_telemetry to be enabled.",
+      "title": "Enable Otel",
+      "type": "boolean"
+    },
+    "otel_endpoint": {
+      "default": "",
+      "description": "Base URL of a custom OTLP/HTTP collector. Vibe appends /v1/traces. When empty, Vibe uses the configured Mistral telemetry endpoint.",
+      "title": "Otel Endpoint",
+      "type": "string"
+    },
+    "otel_redaction": {
+      "$ref": "#/$defs/OtelRedactionMode",
+      "default": "default",
+      "description": "Client-side span attribute redaction: default redacts sensitive values, strict redacts sensitive attributes, and none disables redaction."
+    },
+    "console_base_url": {
+      "default": "https://console.mistral.ai",
+      "title": "Console Base Url",
+      "type": "string"
+    },
+    "theme": {
+      "default": "auto",
+      "title": "Theme",
+      "type": "string"
+    },
+    "applied_migrations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Applied Migrations",
+      "type": "array"
+    },
+    "disable_welcome_banner_animation": {
+      "default": false,
+      "title": "Disable Welcome Banner Animation",
+      "type": "boolean"
+    },
+    "cursor_blink": {
+      "default": true,
+      "description": "Blink the input cursor. Disable for a steady cursor.",
+      "title": "Cursor Blink",
+      "type": "boolean"
+    },
+    "vim_keybindings": {
+      "default": false,
+      "description": "Edit the prompt input with vim Normal and Insert modes.",
+      "title": "Vim Keybindings",
+      "type": "boolean"
+    },
+    "show_greeting": {
+      "default": true,
+      "description": "Show greeting at startup (Mistral providers only, once per 24h).",
+      "title": "Show Greeting",
+      "type": "boolean"
+    },
+    "autocopy_to_clipboard": {
+      "default": true,
+      "title": "Autocopy To Clipboard",
+      "type": "boolean"
+    },
+    "enable_mouse_capture": {
+      "default": true,
+      "description": "Capture the mouse for scrolling, clicks and in-app selection. Disable to keep the terminal's native text selection.",
+      "title": "Enable Mouse Capture",
+      "type": "boolean"
+    },
+    "enable_sticky_prompt": {
+      "default": true,
+      "description": "Pin the prompt of the conversation section at the top of the transcript while scrolling; a click scrolls back to it.",
+      "title": "Enable Sticky Prompt",
+      "type": "boolean"
+    },
+    "enable_file_autocomplete": {
+      "default": true,
+      "description": "Offer @ file mentions with repository file completion. Disable to skip building the file index and watching the filesystem for it.",
+      "title": "Enable File Autocomplete",
+      "type": "boolean"
+    },
+    "file_watcher_for_autocomplete": {
+      "default": true,
+      "title": "File Watcher For Autocomplete",
+      "type": "boolean"
+    },
+    "ask_confirmation_on_exit": {
+      "default": true,
+      "title": "Ask Confirmation On Exit",
+      "type": "boolean"
+    },
+    "displayed_workdir": {
+      "default": "",
+      "deprecated": true,
+      "description": "Deprecated: accepted for older configs, with no effect on Unified execution.",
+      "title": "Displayed Workdir",
+      "type": "string"
+    },
+    "context_warnings": {
+      "default": false,
+      "deprecated": true,
+      "description": "Deprecated: accepted for older configs, with no effect on Unified execution.",
+      "title": "Context Warnings",
+      "type": "boolean"
+    },
+    "voice_mode_enabled": {
+      "default": false,
+      "title": "Voice Mode Enabled",
+      "type": "boolean"
+    },
+    "narrator_enabled": {
+      "default": false,
+      "title": "Narrator Enabled",
+      "type": "boolean"
+    },
+    "show_thinking_nodes": {
+      "default": true,
+      "title": "Show Thinking Nodes",
+      "type": "boolean"
+    },
+    "show_subagent_status_list": {
+      "default": true,
+      "description": "Show the subagent status list and read-only transcript views in the interactive prompt.",
+      "title": "Show Subagent Status List",
+      "type": "boolean"
+    },
+    "worktree_limit": {
+      "default": 15,
+      "description": "Maximum number of recent managed worktrees kept locally.",
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Worktree Limit",
+      "type": "integer"
+    },
+    "worktree_copy_on_write": {
+      "default": true,
+      "description": "macOS only: create managed worktrees of a trusted repository by cloning an idle template checkout with APFS copy-on-write, which uses less disk and is faster on large repositories. Keeps one template checkout per repository under ~/.vibe/worktrees/.templates, and sets extensions.worktreeConfig in the repository's .git/config. Falls back to a normal checkout.",
+      "title": "Worktree Copy On Write",
+      "type": "boolean"
+    },
+    "bypass_tool_permissions": {
+      "default": false,
+      "title": "Bypass Tool Permissions",
+      "type": "boolean"
+    },
+    "raise_on_compaction_failure": {
+      "default": false,
+      "deprecated": true,
+      "description": "Deprecated: accepted for older configs, with no effect on Unified execution.",
+      "title": "Raise On Compaction Failure",
+      "type": "boolean"
+    },
+    "enable_telemetry": {
+      "default": true,
+      "title": "Enable Telemetry",
+      "type": "boolean"
+    },
+    "system_prompt_id": {
+      "default": "cli",
+      "title": "System Prompt Id",
+      "type": "string"
+    },
+    "managed_shell_tools_enabled": {
+      "default": false,
+      "title": "Managed Shell Tools Enabled",
+      "type": "boolean"
+    },
+    "enable_background_processes": {
+      "default": true,
+      "description": "Offer the agent background processes (tools.process in run_typescript). Off, commands only run to completion in the foreground.",
+      "title": "Enable Background Processes",
+      "type": "boolean"
+    },
+    "enable_subagents": {
+      "default": true,
+      "description": "Offer the agent subagents (tools.subagent in run_typescript). Off, the agent works alone.",
+      "title": "Enable Subagents",
+      "type": "boolean"
+    },
+    "max_subagents": {
+      "default": 32,
+      "description": "Maximum number of subagents that can be alive at once; a spawn beyond this fails until a subagent is stopped.",
+      "minimum": 1,
+      "title": "Max Subagents",
+      "type": "integer"
+    },
+    "max_concurrent_subagents": {
+      "default": 32,
+      "description": "Maximum number of subagents running a turn at the same time; spawning or messaging beyond this fails until a subagent finishes its turn.",
+      "minimum": 1,
+      "title": "Max Concurrent Subagents",
+      "type": "integer"
+    },
+    "compaction_prompt_id": {
+      "default": "compact",
+      "title": "Compaction Prompt Id",
+      "type": "string"
+    },
+    "title_prompt_id": {
+      "default": "session_title",
+      "title": "Title Prompt Id",
+      "type": "string"
+    },
+    "include_commit_signature": {
+      "default": true,
+      "title": "Include Commit Signature",
+      "type": "boolean"
+    },
+    "include_model_info": {
+      "default": true,
+      "deprecated": true,
+      "description": "Retired: accepted for older configs, with no effect.",
+      "title": "Include Model Info",
+      "type": "boolean"
+    },
+    "include_project_context": {
+      "default": true,
+      "title": "Include Project Context",
+      "type": "boolean"
+    },
+    "include_prompt_detail": {
+      "default": true,
+      "deprecated": true,
+      "description": "Retired: accepted for older configs, with no effect.",
+      "title": "Include Prompt Detail",
+      "type": "boolean"
+    },
+    "strict_config": {
+      "default": false,
+      "description": "Refuse a config with settings Vibe does not use (unknown, retired, or without effect) instead of warning about them. For programmatic and headless runs; also VIBE_STRICT_CONFIG=1.",
+      "title": "Strict Config",
+      "type": "boolean"
+    },
+    "enable_update_checks": {
+      "default": true,
+      "title": "Enable Update Checks",
+      "type": "boolean"
+    },
+    "enable_auto_update": {
+      "default": true,
+      "title": "Enable Auto Update",
+      "type": "boolean"
+    },
+    "enable_notifications": {
+      "default": true,
+      "title": "Enable Notifications",
+      "type": "boolean"
+    },
+    "experimental_enable_tab_status": {
+      "default": true,
+      "title": "Experimental Enable Tab Status",
+      "type": "boolean"
+    },
+    "enable_system_trust_store": {
+      "default": false,
+      "title": "Enable System Trust Store",
+      "type": "boolean"
+    },
+    "api_timeout": {
+      "default": 720.0,
+      "title": "Api Timeout",
+      "type": "number"
+    },
+    "api_retry_max_elapsed_time": {
+      "default": 300.0,
+      "title": "Api Retry Max Elapsed Time",
+      "type": "number"
+    },
+    "api_stream_idle_timeout": {
+      "default": 300.0,
+      "description": "Seconds of silence after the model starts answering before the response counts as stalled and is retried once. 0 allows the same silence as before the first output (api_timeout). Unified harness only.",
+      "minimum": 0,
+      "title": "Api Stream Idle Timeout",
+      "type": "number"
+    },
+    "agent_max_output_tokens": {
+      "default": 0,
+      "description": "Output token cap sent as max_tokens on every agent and subagent request, whatever the provider, held to the model's max output and to the room the context window leaves above the compaction threshold. 0 sends a cap only where the provider requires one: the model's max_output_tokens. Unified harness only.",
+      "minimum": 0,
+      "title": "Agent Max Output Tokens",
+      "type": "integer"
+    },
+    "compaction_max_output_tokens": {
+      "default": 0,
+      "description": "Output token cap sent as max_tokens on every compaction request, whatever the provider, held to the compaction model's max output and to the room its context window leaves above the compaction threshold. 0 sends a cap only where the provider requires one: the compaction model's max_output_tokens. Unified harness only.",
+      "minimum": 0,
+      "title": "Compaction Max Output Tokens",
+      "type": "integer"
+    },
+    "compaction_reasoning_limit_tokens": {
+      "default": 32000,
+      "description": "Approximate reasoning tokens after which the first compaction request is stopped, as if cut off at its output limit, and the summary is asked for once more, briefly, without tools and with reasoning off or at its lowest level. Reasoning is no longer watched once the answer starts. 0 disables the limit. Unified harness only.",
+      "minimum": 0,
+      "title": "Compaction Reasoning Limit Tokens",
+      "type": "integer"
+    },
+    "output_limit_retries": {
+      "default": 6,
+      "description": "Answers cut off at the output token limit that a turn discards and asks again for, with feedback asking for a shorter response. 0 ends the turn on the first cut-off answer. Unified harness only.",
+      "minimum": 0,
+      "title": "Output Limit Retries",
+      "type": "integer"
+    },
+    "api_connect_timeout": {
+      "default": 10.0,
+      "deprecated": true,
+      "description": "Retired: accepted for older configs, with no effect.",
+      "title": "Api Connect Timeout",
+      "type": "number"
+    },
+    "api_write_timeout": {
+      "default": 30.0,
+      "deprecated": true,
+      "description": "Retired: accepted for older configs, with no effect.",
+      "title": "Api Write Timeout",
+      "type": "number"
+    },
+    "api_pool_timeout": {
+      "default": 10.0,
+      "deprecated": true,
+      "description": "Retired: accepted for older configs, with no effect.",
+      "title": "Api Pool Timeout",
+      "type": "number"
+    },
+    "vibe_base_url": {
+      "default": "https://chat.mistral.ai",
+      "title": "Vibe Base Url",
+      "type": "string"
+    },
+    "vibe_code_sessions_base_url": {
+      "default": "https://chat.mistral.ai",
+      "title": "Vibe Code Sessions Base Url",
+      "type": "string"
+    },
+    "log_level": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Log Level"
+    },
+    "project_context": {
+      "$ref": "#/$defs/ProjectContextConfig"
+    },
+    "session_logging": {
+      "$ref": "#/$defs/SessionLoggingConfig"
+    },
+    "experiments": {
+      "$ref": "#/$defs/ExperimentsConfig"
+    }
+  },
+  "title": "VibeConfigSchema",
+  "type": "object",
+  "additionalProperties": false,
+  "$comment": "version sha256:6d9c2a07361eb54dde770f31255fa4b4d97edcecca60de3890a5d8c8d66365d1"
+}

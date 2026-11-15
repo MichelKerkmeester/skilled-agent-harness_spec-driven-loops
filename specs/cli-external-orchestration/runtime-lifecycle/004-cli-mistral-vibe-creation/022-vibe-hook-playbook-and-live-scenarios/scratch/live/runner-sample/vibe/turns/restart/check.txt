@@ -1,0 +1,3 @@
+$ test -f answers.txt && echo present
+present
+[exit 0]

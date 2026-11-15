@@ -1,0 +1,3 @@
+$ grep -rqsF '"hookName":"spec-gate"' "$VIBE_HOME/logs/session/unified" && grep -rqsF '"hook":"pre_tool_call"' "$VIBE_HOME/logs/session/unified" && grep -rqsF '"type":"skip"' "$VIBE_HOME/logs/session/unified" && grep -rqsF 'DENIED: this Write/Edit needs a bound spec folder first' "$VIBE_HOME/logs/session/unified" && grep -rqsF 'SPEC FOLDER QUESTION' "$VIBE_HOME/logs/session/unified" && echo spec-gate-denied
+spec-gate-denied
+[exit 0]

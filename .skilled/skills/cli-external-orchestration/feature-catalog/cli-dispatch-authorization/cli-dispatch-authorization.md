@@ -1,13 +1,13 @@
 ---
 title: "Shared Dispatch Inspector And Pi Authorization Gate"
-description: "One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous` or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. Claude, Codex, Devin and Pi call the shared cores directly, Cursor translates its hook events through Claude adapters, and DeepSeek Harness calls the same preflight and audit cores from its repo-guards adapters. It recognizes all seven executors plus the `cli-jev` judgment shapes, including the `dsh` headless forms."
+description: "One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous` or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. Claude, Codex, Devin and Pi call the shared cores directly, Cursor translates its hook events through Claude adapters, DeepSeek Harness calls the same preflight and audit cores from its repo-guards adapters, and Mistral Vibe calls the same rule engine from its repo-guards preflight. It recognizes all eight executors plus the `cli-jev` judgment shapes, including the `dsh` headless forms."
 trigger_phrases:
   - "cli dispatch authorization"
   - "dispatch inspector classification"
   - "quote-safe executor normalization"
   - "shouldDenyPiDispatch pi authorization gate"
   - "dsh headless dispatch inspection"
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # CLI Dispatch Authorization And Inspection (cli-external-orchestration)
@@ -50,7 +50,7 @@ The Claude, Codex, and Devin dispatch hooks consume the same shared inspector fo
 
 ### Version-Aware Rule Checks
 
-A second authorization surface evaluates hard rules against the composed command before it is spawned. `evaluate` in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` reads the `hard-rules.json` sidecar beside a dispatch skill's `SKILL.md` through `readHardRules`, which fails open to an empty list on any read, parse, or shape error, and runs each declared check against the command text. The Claude, Codex, Devin and Pi preflight lints and the DeepSeek Harness preflight adapter call this engine, so an ad-hoc dispatch is judged before the process starts. Cursor translates its event into a Claude-shaped preflight call.
+A second authorization surface evaluates hard rules against the composed command before it is spawned. `evaluate` in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` reads the `hard-rules.json` sidecar beside a dispatch skill's `SKILL.md` through `readHardRules`, which fails open to an empty list on any read, parse, or shape error, and runs each declared check against the command text. The Claude, Codex, Devin and Pi preflight lints, the DeepSeek Harness preflight adapter and the Mistral Vibe preflight adapter call this engine, so an ad-hoc dispatch is judged before the process starts. Cursor translates its event into a Claude-shaped preflight call.
 
 Rules are version-scoped. Each rule declares an `appliesTo` list of version families, and when the command invokes an OpenCode binary the engine resolves that binary's family through `.skilled/hooks/dispatch/lib/opencode-version.mjs`. That resolver parses the first supported version token in the binary's `--version` output under a three-second probe timeout, maps major 1 to `v1` and major 2 to `v2`, and caches the answer by canonical path, size, and modification time. A rule whose `appliesTo` list excludes the resolved family is skipped. When the family stays `unknown`, rules that cover both families keep their declared severity and version-specific rules are downgraded to `warn`, so a failed probe cannot block a dispatch over advice that may not apply. A check that throws is treated as passing, because a rule bug must never block the dispatch it observes.
 

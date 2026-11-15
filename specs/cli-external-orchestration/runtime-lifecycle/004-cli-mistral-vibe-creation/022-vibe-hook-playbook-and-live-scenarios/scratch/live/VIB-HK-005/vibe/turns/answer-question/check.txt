@@ -1,0 +1,3 @@
+$ q=$(find .skilled/skills/.state/decision-capture -name '*.jsonl' ! -name consumed.jsonl 2>/dev/null | head -1); [ -n "$q" ] && [ "$(grep -c . "$q")" -eq 1 ] && ! grep -rqsF 'are not in a decision record yet' "$VIBE_HOME/logs/session/unified" && echo one-answer-captured-no-nudge-yet
+one-answer-captured-no-nudge-yet
+[exit 0]

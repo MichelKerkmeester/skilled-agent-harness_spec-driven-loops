@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe compaction context",
+      "phase 18 vibe compaction context",
+      "vibe history lookup after compaction",
+      "vibe context_compacted",
+      "vibe compaction context plan",
+      "vibe compaction context tasks",
+      "vibe compaction context goal",
+      "vibe compaction context implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "compaction",
+      "context",
+      "phase",
+      "history",
+      "lookup",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "compacts"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".vibe/hooks.toml",
+      ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/compaction-context.test.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/README.md",
+      ".skilled/hooks/shared/session-readers/index.mjs",
+      ".skilled/hooks/shared/tests/session-readers/vibe-reader.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/cli.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/history-lookup-cli.vitest.ts",
+      "scratch/compaction-entry.md",
+      "scratch/forced-compaction/excerpt.md",
+      ".skilled/hooks/goal/vibe/goal-inject.mjs",
+      ".skilled/hooks/goal/vibe/goal-vibe.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-context.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-post-tool.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-context.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/compaction-context.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "turn-start.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-lifecycle/vibe/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "vibe-reader.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/tests/session-readers/vibe-reader.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-state.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "history-lookup-cli.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/history-lookup-cli.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-entry.md",
+        "kind": "doc",
+        "path": "scratch/compaction-entry.md",
+        "source": "derived"
+      },
+      {
+        "name": "excerpt.md",
+        "kind": "doc",
+        "path": "scratch/forced-compaction/excerpt.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/vibe/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-vibe.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/vibe/goal-vibe.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "After Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Vibe compacts automatically and records it as a `contextcompacted` observation with its trigger and summary (`mistralaivibelocalharness/protocol.py:1419-1427`), but it has no hook type for it (`vibe/core/hooks/models.py:20-27`), and `sessionstart` fires only on `startup`, `resume`, `clear` and `fork`",
+    "created_at": "2026-11-14T20:13:10Z",
+    "last_save_at": "2026-11-14T22:22:05.841Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d17ccb2de1b79fef7208842ba4e872480434ac1ba585bdffdea31fc2ed1c2b15",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c9c41f95a783d495460bea9a29538ffe15e67c38ed3572370183a046d9c3ecab",
+      "plan.md": "69266d27f3a899ce0dab7dee23910316d57e3e25b59416ce5f60c0591262c87b",
+      "tasks.md": "c08c08ce4ecf7c2b79fcc8c237b7833e6faee5b523ba9d33bd1eb7e63e1dfa32",
+      "implementation-summary.md": "20d4a21c365c067008c04d8283a26de6e8054fa55bb7c86bc25940e7133c37ba"
+    },
+    "last_active_at": null
+  }
+}

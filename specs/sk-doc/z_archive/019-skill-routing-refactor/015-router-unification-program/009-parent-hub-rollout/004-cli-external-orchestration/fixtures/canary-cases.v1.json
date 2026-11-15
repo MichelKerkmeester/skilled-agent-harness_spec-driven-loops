@@ -81,8 +81,38 @@
       }
     },
     {
+      "id": "vibe-single",
+      "prompt": "delegate to vibe",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "cli-mistral-vibe"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "cli-mistral-vibe"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "opencode-deepseek-model-remains-opencode",
       "prompt": "use cli-opencode with deepseek-v4.1-flash",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "cli-opencode"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "cli-opencode"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "opencode-mistral-model-remains-opencode",
+      "prompt": "use cli-opencode with mistral deepseek-v4-1-flash-1017",
       "expectedAction": "route",
       "expectedSelectionKind": "single",
       "expectedModes": [
@@ -221,6 +251,18 @@
         "expectedResources": []
       },
       "legacyExact": false
+    },
+    {
+      "id": "vibe-plain-english-defer",
+      "prompt": "give this landing page a calmer vibe",
+      "expectedAction": "defer",
+      "expectedReason": "no-match",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
     }
   ],
   "advisorCases": [

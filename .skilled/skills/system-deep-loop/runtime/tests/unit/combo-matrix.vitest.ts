@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';
-import { existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, join, resolve } from 'node:path';
 
@@ -15,6 +15,7 @@ import {
   EXECUTOR_KINDS,
   DSH_SUPPORTED_MODELS,
   PI_SUPPORTED_MODELS,
+  VIBE_SUPPORTED_MODELS,
   type ExecutorKind,
 } from '../../lib/deep-loop/executor-config';
 import { runtimeRoot } from '../helpers/spawn-cjs';
@@ -70,6 +71,7 @@ const MODELS_BY_KIND: Record<ExecutorKind, readonly (string | undefined)[]> = {
   'cli-devin': DEVIN_SUPPORTED_MODELS,
   'cli-pi': PI_SUPPORTED_MODELS,
   'cli-deepseek-harness': DSH_SUPPORTED_MODELS,
+  'cli-mistral-vibe': VIBE_SUPPORTED_MODELS,
 };
 
 const DSH_GUARDS_PATCH = resolve(runtimeRoot, '..', '..', '..', '..', '.dsh', 'patches', 'guards.patch.yml');
@@ -83,6 +85,7 @@ const COMMAND_BY_KIND: Record<ExecutorKind, string> = {
   'cli-devin': 'devin',
   'cli-pi': 'pi',
   'cli-deepseek-harness': 'dsh',
+  'cli-mistral-vibe': 'vibe',
 };
 
 const CREDENTIALS_GATED_KINDS = new Set<ExecutorKind>(EXECUTOR_KINDS);
@@ -100,7 +103,9 @@ function writeStubBinary(binDir: string, name: string): string {
     ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 1.19.3; exit 0; fi\nexit 0\n'
     : name === 'dsh'
       ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 0.2.2-rc.1; exit 0; fi\nexit 0\n'
-    : '#!/bin/sh\nexit 0\n';
+      : name === 'vibe'
+        ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 3.1.2; exit 0; fi\nexit 0\n'
+        : '#!/bin/sh\nexit 0\n';
   writeFileSync(stubPath, script, { mode: 0o755 });
   return stubPath;
 }
@@ -168,6 +173,12 @@ function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefine
         // The builder mounts the guards patch only when the repository ships it.
         ...(existsSync(DSH_GUARDS_PATCH) ? ['--patch', DSH_GUARDS_PATCH] : []),
         '--json', '--permission-mode', 'read-only', '--approval-policy', 'never', '-',
+      ];
+    case 'cli-mistral-vibe':
+      return [
+        '--prompt-file', join(realpathSync(MATRIX_OPTIONS.lineageDir), 'vibe-prompt.txt'),
+        '--output-dir', join(realpathSync(MATRIX_OPTIONS.lineageDir), 'vibe-output'),
+        '--trust', '--model', model ?? '', '--auto-approve',
       ];
   }
 }

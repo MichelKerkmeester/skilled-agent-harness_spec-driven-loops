@@ -32,7 +32,7 @@ const SPEC_FOLDER_PATTERN =
 const NOTE_STATUSES = Object.freeze(['open', 'claimed', 'done']);
 // The runtimes skilled-loop can launch. The CLI refuses any other, so a runtime the wrapper
 // gains has to be added here or prepare refuses the loops that run it.
-const RUNTIMES = Object.freeze(['claude', 'pi', 'opencode', 'codex', 'cursor', 'devin']);
+const RUNTIMES = Object.freeze(['claude', 'pi', 'opencode', 'codex', 'cursor', 'devin', 'vibe']);
 // A record disarmed for either reason means the operator kept the session going after its
 // hand-over was prepared, so the note it names stopped matching the work.
 const WITHDRAWN_DISARM_REASONS = new Set(['cancelled', 'user-message']);

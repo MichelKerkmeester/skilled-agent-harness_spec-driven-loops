@@ -627,6 +627,25 @@ skilled_loop_replay_takes_value() {
       devin:--export|devin:-r|devin:--resume|devin:--respect-workspace-trust|\
       devin:--print|devin:-p|devin:--verbosity)
       return 0 ;;
+    vibe:--workdir|\
+      vibe:--resume|\
+      vibe:--prompt|\
+      vibe:-p|\
+      vibe:--output|\
+      vibe:--max-turns|\
+      vibe:--max-price|\
+      vibe:--max-tokens|\
+      vibe:--time-limit|\
+      vibe:--prompt-file|\
+      vibe:--system-prompt-file|\
+      vibe:--output-dir|\
+      vibe:--agent|\
+      vibe:--model|\
+      vibe:--enabled-tools|\
+      vibe:--disabled-tools|\
+      vibe:--worktree|\
+      vibe:--add-dir)
+      return 0 ;;
   esac
   return 1
 }
@@ -672,6 +691,10 @@ skilled_loop_replay_takes_none() {
     devin:--sandbox|devin:--cloud|devin:--continue|devin:-c|devin:-h|\
       devin:--help|devin:-V|devin:--version)
       return 0 ;;
+    vibe:-v|vibe:--version|vibe:-c|vibe:--continue|vibe:--setup|\
+      vibe:--auto-approve|vibe:--yolo|vibe:--smart-approve|vibe:--trust|\
+      vibe:--check-upgrade|vibe:-h|vibe:--help)
+      return 0 ;;
   esac
   return 1
 }
@@ -688,7 +711,8 @@ skilled_loop_replay_denied() {
       codex:--include-non-interactive|devin:-c|devin:--continue|devin:-p|\
       devin:--print|devin:-r|devin:--resume|devin:--prompt-file|cursor:--resume|\
       cursor:--continue|cursor:-w|cursor:--worktree|cursor:--worktree-base|\
-      cursor:--skip-worktree-setup)
+      cursor:--skip-worktree-setup|vibe:-c|vibe:--continue|vibe:--resume|\
+      vibe:-p|vibe:--prompt|vibe:--prompt-file|vibe:--worktree|vibe:--model)
       return 0 ;;
   esac
   return 1
@@ -786,6 +810,12 @@ build_relaunch_arguments() {
       launch_arguments+=(-- "$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
+    vibe)
+      # Vibe's --model is headless-only, so an interactive relaunch keeps the configured
+      # active_model and passes only the seed.
+      launch_arguments+=("$seed")
+      relaunch_seed_index=$((${#launch_arguments[@]} - 1))
+      ;;
   esac
   if [[ "$mode" == 'hop' && "$runtime" != 'devin' ]] \
     && [[ ${#replayed_extra_arguments[@]} -gt 0 ]]; then
@@ -848,7 +878,7 @@ runtime=claude
 runtime_command=claude
 if [[ $# -gt 0 ]]; then
   case "$1" in
-    claude|pi|opencode|codex|devin)
+    claude|pi|opencode|codex|devin|vibe)
       runtime="$1"
       runtime_command="$1"
       shift
