@@ -115,7 +115,7 @@ Acceptance criteria: 4 total, 4 Met, none waived ([acceptance-criteria.md](accep
 ## Known Limitations
 
 1. **The gates are still judged by the executing agent.** The schema can refuse a record that contradicts itself but cannot check a judgment.
-2. **Deep research has the same duration-check placement.** `deep-research.yaml` runs `step_check_max_duration` before `step_read_state`, and its loop returns to `step_read_state`, so a research run checks its clock only on the first pass. Out of this phase's scope.
+2. **Deep research had the same duration-check placement.** Child `018-research-duration-check` moves it.
 3. **The workflow is traced, not run.** No live deep-review run exercised the duration stop or a manual stop; the checks are the schema test, the contract digest and the reading of each jump.
 <!-- /ANCHOR:limitations -->
 

@@ -823,32 +823,6 @@ workflow:
         command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
         on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than iterate without it."
 
-      step_check_max_duration:
-        action: "Stop the loop when the run has used its wall-clock budget, and still synthesize"
-        command: |
-          node -e '
-            const config = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
-            const maxDurationMinutes = Number(config.maxDurationMinutes);
-            const startedMs = Date.parse(config.createdAt);
-            const elapsedMinutes = Math.floor((Date.now() - startedMs) / 60000);
-            const reached = Number.isFinite(maxDurationMinutes) && maxDurationMinutes > 0
-              && Number.isFinite(startedMs) && elapsedMinutes >= maxDurationMinutes;
-            console.log(JSON.stringify({ elapsedMinutes, maxDurationMinutes, reached }));
-          ' "{state_paths.config}"
-        outputs:
-          - duration_reached: "reached from the JSON output"
-          - elapsed_minutes: "elapsedMinutes from the JSON output"
-        note: "The clock starts at the createdAt of the current generation's config. A resume keeps it and a restart resets it, so paused and waiting time counts."
-        if_reached:
-          when: "duration_reached == true"
-          set: { decision: "STOP", reason: "maxDurationReached", stopReason: "maxDurationReached" }
-          bookkeeping_log: '{"type":"event","event":"maxDurationReached","mode":"research","run":{current_iteration},"stopReason":"maxDurationReached","elapsedMinutes":{elapsed_minutes},"maxDurationMinutes":{config.maxDurationMinutes},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-          log: "Duration limit reached after {elapsed_minutes} minutes. Skipping dispatch and entering synthesis with partial findings."
-          skip_to: phase_synthesis
-          note: "The stop row is printed, not appended: the gateway refuses an event it has no ledger stem for. The reason reaches the synthesis report through the bound reason."
-        if_not_reached:
-          action: "Continue with the iteration"
-
       step_record_artifact_migration:
         action: "Record a legacy artifact alias read once per session, after the run is open"
         skip_when: "legacy_migration_detected != true or migration_recorded == true"
@@ -904,6 +878,32 @@ workflow:
           - suppressed_ideas_count: "Read registry.suppressedIdeas length when registry exists, else 0"
           - pivot_lineage: "Summarize registry.divergence.completed and registry.divergence.overrides with pivot ids, source iterations, and selected focus; else 'none yet'"
           - saturated_directions: "List registry.divergence.saturatedDirections; else 'none yet'"
+
+      step_check_max_duration:
+        action: "Stop the loop when the run has used its wall-clock budget, and still synthesize"
+        command: |
+          node -e '
+            const config = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+            const maxDurationMinutes = Number(config.maxDurationMinutes);
+            const startedMs = Date.parse(config.createdAt);
+            const elapsedMinutes = Math.floor((Date.now() - startedMs) / 60000);
+            const reached = Number.isFinite(maxDurationMinutes) && maxDurationMinutes > 0
+              && Number.isFinite(startedMs) && elapsedMinutes >= maxDurationMinutes;
+            console.log(JSON.stringify({ elapsedMinutes, maxDurationMinutes, reached }));
+          ' "{state_paths.config}"
+        outputs:
+          - duration_reached: "reached from the JSON output"
+          - elapsed_minutes: "elapsedMinutes from the JSON output"
+        note: "The clock starts at the createdAt of the current generation's config. A resume keeps it and a restart resets it, so paused and waiting time counts."
+        if_reached:
+          when: "duration_reached == true"
+          set: { decision: "STOP", reason: "maxDurationReached", stopReason: "maxDurationReached" }
+          bookkeeping_log: '{"type":"event","event":"maxDurationReached","mode":"research","run":{current_iteration},"stopReason":"maxDurationReached","elapsedMinutes":{elapsed_minutes},"maxDurationMinutes":{config.maxDurationMinutes},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "Duration limit reached after {elapsed_minutes} minutes. Skipping dispatch and entering synthesis with partial findings."
+          skip_to: phase_synthesis
+          note: "The stop row is printed, not appended: the gateway refuses an event it has no ledger stem for. The reason reaches the synthesis report through the bound reason."
+        if_not_reached:
+          action: "Continue with the iteration"
 
       step_run_now_check:
         action: "Detect and consume a one-shot run-now sentinel before pause/convergence/dispatch"
@@ -1768,7 +1768,7 @@ workflow:
         wait_for: "User response"
         after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
         on_A: { proceed_to: step_read_all_iterations }
-        on_B: { action: "Increase max_iterations, return to loop", proceed_to: phase_loop }
+        on_B: { action: "Increase max_iterations, return to loop. When reason is maxDurationReached, raise maxDurationMinutes in the config too, or the duration check stops the loop again", proceed_to: phase_loop }
         on_C: { action: "Cancel synthesis, keep artifacts", status: "PARTIAL" }
 
       step_read_all_iterations:
