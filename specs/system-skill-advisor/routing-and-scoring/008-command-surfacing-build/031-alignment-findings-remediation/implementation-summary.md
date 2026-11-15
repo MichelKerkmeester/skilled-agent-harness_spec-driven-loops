@@ -134,7 +134,7 @@ Between lane R tasks the coordinator gated each metadata change on the floors an
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Two P1 probes stay declined.** P07 needs a scorer change for read-only explainer prompts that name no skill, and P01 belongs to the Vibe packet. A recheck cannot read 0 P1 until one of them is built or the operator accepts the decline.
+1. **Two P1 probes stay declined.** P07 needs a scorer change for read-only explainer prompts that name no skill, and P01 belongs to the Vibe packet. The operator accepted both declines as a waiver of the 0-P1 criterion (Q073).
 2. **Three P0 battery rows stay open until the catch-up merge.** BAT-02, BAT-06 and BAT-07 fail at the merge base and pass on `origin/main`.
 3. **P11 wins on a tie.** The advisor and `sk-doc` both read 0.82 on the probe. The advisor ranks first on score, and the order held on every run.
 4. **The floors cannot measure every row.** They do not show whether the six phrases change the top skill on the 36 behaviour-fresh rows or the skill-only and decline holdout rows. Answering that needs a count-only measure at BASE and at the fix.

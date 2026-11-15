@@ -31,7 +31,7 @@ contextType: "general"
 | **Phase** | 31 of 31 |
 | **Predecessor** | 030-vibe-runtime-parity |
 | **Successor** | None |
-| **Handoff Criteria** | Every task in `tasks.md` is `[x]`, every suite reports 0 failed, the floor and eval lines equal their before lines, `scratch/matrix-after.txt` shows each built finding line changed as SC-001 states, the fix is committed, the Opus review reports no open P0 or P1, the recheck result is recorded as REQ-012 states, `scratch/handback.md` lists every handed-back finding and strict validation prints `RESULT: PASSED` |
+| **Handoff Criteria** | Every task in `tasks.md` is `[x]` except T015, which is `[B]` because P07 was declined (the operator accepted the decline, Q073), every suite reports 0 failed, the floor and eval lines equal their before lines, `scratch/matrix-after.txt` shows each built finding line changed as SC-001 states, the fix is committed, the Opus review reports no open P0 or P1, the recheck result is recorded as REQ-012 states, `scratch/handback.md` lists every handed-back finding and strict validation prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -316,6 +316,7 @@ and findings belong here.
 | Phase 031 alignment findings remediation | Planned | 24 tasks fix D-01, X-01, D-03 and B-S4-01, tune P02, P04, P07 and P11 behind the floors, decline P01, rebuild BAT-01 and record BAT-02, BAT-06 and BAT-07 as pre-existing (fail on the merge base, pass on main) |
 | Phase 031 probe P07 | Declined | floor: {"correct":24,"total":44} {"count":0,"total":35} {"own":2,"attached":0,"combined":2,"total":44} eval: [160,49,21,5] blocked=1 probe=[] |
 | Phase 031 alignment findings remediation | Complete | d509e9d5c07 + 2efe3204e3e: validator, CI Vibe checks, offer-rule docs, NC-012/CL-009/CL-010, P02 P04 P11 routed, P07 P01 declined, floors equal, review SHIP twice, recheck new=0 |
+| Q073 P1 probe declines | Accepted | operator accepted P07 and P01 declines as a waiver of the 0-P1 alignment criterion |
 
 ### Deviations and findings
 

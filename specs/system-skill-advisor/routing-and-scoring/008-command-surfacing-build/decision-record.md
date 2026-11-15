@@ -106,6 +106,7 @@ _memory:
 | Q070 | After phase 031 and its alignment recheck, run /deep:review to convergence, then /deep:research, building or declining each recommendation. | Not stated. | None | the loops after phase 031 |
 | Q071 | The Vibe gaps of phase 030's hand-back stay with the Vibe packet 004 and are handed over with scratch/handback.md. | Not stated. | None | 030 scratch/handback.md |
 | Q072 | The advisor keeps offering a typed command unless the prompt refuses it or asks about it, and the release note and docs are corrected to say so. The typed-recall floor depends on typed commands being offered. | Not stated. | None | phase 031 |
+| Q073 | The two declined P1 probes, P07 and P01, are accepted as a recorded waiver of the 0-P1 alignment criterion. P07 needs a scorer change for read-only explainer prompts and P01 belongs to the Vibe packet. A later alignment run that raises them again is covered by this waiver. | Not stated. | None | phase 031, goal criterion 6 |
 
 ### Answer Log, 2026-11-14
 
@@ -122,7 +123,7 @@ Q059 to Q062 above, as asked.
 
 ### Answer Log, 2026-11-15
 
-Q069 to Q072 above, as asked.
+Q069 to Q073 above, as asked.
 
 | ID | Date | Topic | Question | Options | Answer |
 |----|------|-------|----------|---------|--------|
@@ -130,6 +131,7 @@ Q069 to Q072 above, as asked.
 | Q070 | 2026-11-15 | Deep loops | Decision D3 calls for a /deep:review loop over the packet code and a /deep:research loop on UX, performance and cross-CLI usefulness, and neither has run. These are long multi-iteration loops with paid model calls. When should they run? | Both, after 031 (Recommended); Review only; Neither now | Both, after 031 (Recommended) |
 | Q071 | 2026-11-15 | Vibe gaps | Phase 030 handed back Vibe gaps that live in the Vibe packet (004) and the hooks docs, owned by another session: goal binding and resend for interactive Vibe sessions, a git advisory on Vibe through a post_tool hook, doc drift and a guard matcher that may miss process.start. Who builds them? | Leave to packet 004 (Recommended); Build here in a new phase; Only the guard matcher here | Leave to packet 004 (Recommended) |
 | Q072 | 2026-11-15 | Mention rule | The alignment check found that the advisor still offers a command the prompt only mentions, for example 'the /create:sk-skill command is slow' gets offered with policy start, while the release note says a mentioned command is not offered. Which side should change? | Fix the note (Recommended); Change the code | Fix the note (Recommended) |
+| Q073 | 2026-11-15 | P1 probes | The goal requires /local-skilled-alignment to report 0 P1 on the branch. Phase 031 fixed every in-scope finding except two P1 routing probes, which it declined. P07 ('the linter does not appear in my tool list' should reach the doctor skill) is blocked by a scorer floor: the word 'list' marks the prompt read-only, so confidence is pinned at 0.25, and no metadata phrase can lift it. P01 ('add the prompt-time skill advisor to my Mistral Vibe runtime') goes to cli-mistral-vibe first, with the advisor second, and the Vibe wiring belongs to packet 004. How should these two be handled? | Accept both declines (Recommended); Build P07, waive P01; Build both | Accept both declines (Recommended) |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1434,6 +1436,26 @@ Change the code
 Answer:
 ```text
 Fix the note (Recommended)
+```
+
+### Q073
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:AskUserQuestion:2026-11-15 -->
+
+Question:
+```text
+The goal requires /local-skilled-alignment to report 0 P1 on the branch. Phase 031 fixed every in-scope finding except two P1 routing probes, which it declined. P07 ('the linter does not appear in my tool list' should reach the doctor skill) is blocked by a scorer floor: the word 'list' marks the prompt read-only, so confidence is pinned at 0.25, and no metadata phrase can lift it. P01 ('add the prompt-time skill advisor to my Mistral Vibe runtime') goes to cli-mistral-vibe first, with the advisor second, and the Vibe wiring belongs to packet 004. How should these two be handled?
+```
+
+Options:
+```text
+Accept both declines (Recommended)
+Build P07, waive P01
+Build both
+```
+
+Answer:
+```text
+Accept both declines (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
