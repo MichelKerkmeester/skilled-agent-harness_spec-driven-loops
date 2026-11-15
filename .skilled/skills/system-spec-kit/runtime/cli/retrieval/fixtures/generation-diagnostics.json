@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6865,
-    "ok": 19002,
+    "ok": 19006,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27497,
+  "documentsScanned": 27501,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c2b7c47e12885d906379729877c22ba2a30f6205f87b5cd6d2070b7a1a8b558b",
+  "manifestHash": "2fb5ff3f69dcd7435898b451458d2bed1e81d91688459e59d5b0336982d5e58d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44051,
+      "ok": 44058,
       "prose-sentence": 20,
       "single-token": 156,
       "stop-word-only": 1,
@@ -56521,6 +56521,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop/scratch",
       "reason": "excluded directory"
     },
     {

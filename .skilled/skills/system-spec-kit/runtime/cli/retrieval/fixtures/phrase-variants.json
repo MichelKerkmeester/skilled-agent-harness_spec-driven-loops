@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c2b7c47e12885d906379729877c22ba2a30f6205f87b5cd6d2070b7a1a8b558b",
+  "manifestHash": "2fb5ff3f69dcd7435898b451458d2bed1e81d91688459e59d5b0336982d5e58d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -122016,6 +122016,9 @@
     "system session relaunch enabled": [
       "SYSTEM_SESSION_RELAUNCH_ENABLED"
     ],
+    "system session relaunch vibe enabled": [
+      "system session relaunch vibe enabled"
+    ],
     "system skill advisor": [
       "system skill advisor"
     ],
@@ -130556,6 +130559,18 @@
     "vibe guard porting": [
       "vibe guard porting"
     ],
+    "vibe handover flag and live hop": [
+      "vibe handover flag and live hop"
+    ],
+    "vibe handover flag and live hop implementation summary": [
+      "vibe handover flag and live hop implementation summary"
+    ],
+    "vibe handover flag and live hop plan": [
+      "vibe handover flag and live hop plan"
+    ],
+    "vibe handover flag and live hop tasks": [
+      "vibe handover flag and live hop tasks"
+    ],
     "vibe history lookup after compaction": [
       "vibe history lookup after compaction"
     ],
@@ -130621,6 +130636,9 @@
     ],
     "vibe lineage auto approve posture": [
       "vibe lineage auto-approve posture"
+    ],
+    "vibe live hop": [
+      "vibe live hop"
     ],
     "vibe mistral provider": [
       "vibe mistral provider"
@@ -130699,6 +130717,9 @@
     ],
     "vibe relaunch command tier tasks": [
       "vibe relaunch command tier tasks"
+    ],
+    "vibe relaunch enable switch": [
+      "vibe relaunch enable switch"
     ],
     "vibe render step hard rule": [
       "vibe render step hard rule"

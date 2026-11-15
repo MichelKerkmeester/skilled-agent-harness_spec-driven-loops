@@ -530,6 +530,7 @@ describe('save writer session_ref', () => {
     ['devin', 'transcript_file'],
     ['pi', 'live_branch_or_session_log'],
     ['dsh', 'session_log'],
+    ['vibe', 'transcript_path'],
   ])('mints the canonical %s locator kind directly', async (runtime, locatorKind) => {
     await save(LEAF, { recent_action: 'Minted a runtime-specific pointer' }, true, [
       '--session-id', SESSION_ID,
