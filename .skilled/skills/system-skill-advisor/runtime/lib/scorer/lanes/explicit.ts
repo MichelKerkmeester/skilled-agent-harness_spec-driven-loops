@@ -134,9 +134,14 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'commonjs helper': [['sk-code', 1]],
   'create a prompt': [['sk-prompt', 0.95]],
   'deep research': [['system-deep-loop', 1]],
-  'deep review': [['system-deep-loop', 1]],
+  // A deep review of a branch is a review loop, not git work, so the word
+  // branch must not let the git skill tie the phrase.
+  'deep review': [['system-deep-loop', 1], ['sk-git', -0.5]],
   'deep-research': [['system-deep-loop', 1.3]],
   'deep-review': [['system-deep-loop', 1.3]],
+  // Asking about the council names the council command; the word review in the
+  // same question is the comparison, not a code review request.
+  'ai council': [['command-speckit-ai-council', 1], ['sk-code', -0.6]],
   // Plain wording for a deep run: each phrase asks for the effort a deep loop exists for.
   'find out everything': [['system-deep-loop', 1]],
   'findings stop changing': [['system-deep-loop', 1.2], ['sk-code', -0.6]],
