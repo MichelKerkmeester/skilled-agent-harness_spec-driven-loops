@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 // The switch is read by two callers in two processes, the daemon handler and the
-// CLI client, so its exact-value rule and the envelope it builds are pinned here
+// CLI client, so the resolution it borrows from the hooks and the envelope it builds are pinned here
 // once rather than twice through each caller.
 
 import { mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs';

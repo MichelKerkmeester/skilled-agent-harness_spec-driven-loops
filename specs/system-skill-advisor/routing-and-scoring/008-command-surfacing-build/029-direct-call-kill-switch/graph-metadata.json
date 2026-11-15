@@ -205,7 +205,7 @@
     ],
     "causal_summary": "A user who disables the advisor the documented way, with `SYSTEMSKILLADVISORDISABLED=1` in the shell or in `.skilled/hooks/hook-flags.env`, gets no brief from the prompt hooks and still gets `sk-doc → /create:readme (start)` from the Gate 2 direct call that `AGENTS.md` tells every model to run",
     "created_at": "2026-11-15T07:01:23Z",
-    "last_save_at": "2026-11-15T08:39:48.005Z",
+    "last_save_at": "2026-11-15T08:56:07.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:6ef827b2feb72f11b8a55d52c382af1fc727cc498ea6d803345a56b75242bb19",
+    "source_fingerprint": "sha256:62fd27a74a1240eef2fcf5062e631bac00c389fb0a42be5118f6cad178ac23b8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a142f0fa52718c4760b9c4e31b3cf1e0b9de08b6b1ba7548f05b20e38834060c",
+      "spec.md": "a5b6f82caebbbd82409467b7e7f86886d21f8127f3b435bc78715bb7baf9e616",
       "plan.md": "e8119d5c508f46f721a351a74300f18b59e5b634c1e85e6e14f98933f7fae57f",
-      "tasks.md": "4762ab83500f691439591de30d630bd10b7d54dec498036935fa67d59ba4b829"
+      "tasks.md": "c0b81531d9ec68d4f73c2aca05a59e98c7aeca87429cb70d08798c33e06c186a"
     },
     "last_active_at": null
   }

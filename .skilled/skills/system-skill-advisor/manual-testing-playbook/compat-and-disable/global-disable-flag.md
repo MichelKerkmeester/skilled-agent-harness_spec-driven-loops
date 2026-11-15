@@ -6,7 +6,7 @@ trigger_phrases:
   - "global disable flag"
   - "global disable"
   - "global"
-version: 0.8.5.0
+version: 0.8.6.0
 id: CP-003
 category: compat_and_disable
 stage: routing
@@ -40,13 +40,13 @@ Validate the common disable flag across the native CLI, Python shim, runtime hoo
 
 ### Commands
 
-1. Native CLI against the warm workspace daemon, which runs without the switch. The client reads the switch in its own process before it connects, so each flagged call must abstain although the daemon would answer, the legacy name set to `1` and the canonical name set to `true`, and the unflagged call after them must still recommend:
+1. Native CLI against the warm workspace daemon, which runs without the switch. The client reads the switch in its own process before it connects, so each flagged call must abstain although the daemon would answer, the legacy name set to `1` and the canonical name set to `true`, and the unflagged call after them must still recommend. Each call names `/dev/null` as its flags file, so a switch saved in `.skilled/hooks/hook-flags.env` cannot decide it:
 
 ```bash
 node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --no-warm-only > /dev/null
-SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
-SYSTEM_SKILL_ADVISOR_DISABLED=true node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
-env -u SPECKIT_SKILL_ADVISOR_HOOK_DISABLED -u SYSTEM_SKILL_ADVISOR_HOOK_DISABLED -u SYSTEM_SKILL_ADVISOR_DISABLED -u SYSTEM_HOOKS_DISABLED node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1}' --format json --timeout-ms 30000
+HOOK_FLAGS_CONFIG=/dev/null SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
+HOOK_FLAGS_CONFIG=/dev/null SYSTEM_SKILL_ADVISOR_DISABLED=true node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
+HOOK_FLAGS_CONFIG=/dev/null env -u SPECKIT_SKILL_ADVISOR_HOOK_DISABLED -u SYSTEM_SKILL_ADVISOR_HOOK_DISABLED -u SYSTEM_SKILL_ADVISOR_DISABLED -u SYSTEM_HOOKS_DISABLED node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1}' --format json --timeout-ms 30000
 ```
 
 2. Python shim:

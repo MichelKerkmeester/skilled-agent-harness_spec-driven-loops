@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.15.0
+version: 3.6.16.0
 ---
 
 # Skill Advisor Hook Reference
@@ -168,12 +168,12 @@ The advisor is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 |---|---|
 | `SYSTEM_SKILL_ADVISOR_DISABLED=1` | Canonical kill-switch. Every adapter checks `isHookEnabled('skill-advisor')` and returns empty/skipped prompt-safe output, and the `advisor_recommend` direct call abstains. |
 | `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` | Alias. Disables the native adapters and makes the `advisor_recommend` direct call abstain. |
-| `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Alias. Disables the OpenCode plugin. |
+| `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Alias. Disables every adapter and makes the `advisor_recommend` direct call abstain. |
 | `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Legacy alias for the native adapters and the `advisor_recommend` direct call. The standalone Python CLI (`skill_advisor.py`) reads only this name, set to exactly `1`, from `runtime/schemas/compat-contract.json`. |
-| `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Legacy alias for the OpenCode plugin. |
+| `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Legacy alias. Disables every adapter and makes the `advisor_recommend` direct call abstain. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 
-The direct call decides in the caller's own process, by the same resolution the adapters use. `node .skilled/bin/skill-advisor.cjs advisor_recommend` asks `hookFlagDecision('skill-advisor')` in `.skilled/hooks/shared/hook-flags.cjs`, with the caller's environment over `.skilled/hooks/hook-flags.env`, before it connects to a daemon or runs the local scorer. Whenever the adapters are off, under any name in this table, any truthy value or a line in the flags file, it prints the empty envelope with `ADVISOR_DISABLED` and names the switch that decided. A daemon reads the same names from its own environment and never reads the flags file, and the launcher passes no switch name and no `HOOK_FLAGS_CONFIG` to a daemon it starts, so a flagged command that happens to start the daemon does not leave it abstaining for every later caller. The standalone Python CLI keeps its own rule: only `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, set to exactly `1`.
+The direct call decides in the caller's own process, by the same resolution the adapters use. `node .skilled/bin/skill-advisor.cjs advisor_recommend` asks `hookFlagDecision('skill-advisor')` in `.skilled/hooks/shared/hook-flags.cjs`, with the caller's environment over `.skilled/hooks/hook-flags.env`, before it connects to a daemon or runs the local scorer. Whenever the adapters are off, under any name in this table or its older `MK_` form, any truthy value or a line in the flags file, it prints the empty envelope with `ADVISOR_DISABLED` and names the switch that decided. A daemon reads the same names from its own environment and never reads the flags file, and the launcher passes no switch name and no `HOOK_FLAGS_CONFIG` to a daemon it starts, so a flagged command that happens to start the daemon does not leave it abstaining for every later caller. The standalone Python CLI keeps its own rule: only `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, set to exactly `1`.
 
 Additional controls: `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` (force local Python fallback where supported) and `--force-native` / `--force-local` / `--threshold` / `--stdin` (Python shim flags, default threshold `0.8`). `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000) is owned by the `system-skill-advisor` hub: its live consumers are `runtime/lib/subprocess.ts`, `skill-advisor-brief.ts`, the OpenCode bridge and `skill_advisor.py`. On timeout the OpenCode bridge serves prompt-safe stale context with a timeout marker. OpenCode tuning: `SYSTEM_SKILL_ADVISOR_CACHE_TTL_MS` (default 5 min), `SYSTEM_SKILL_ADVISOR_MAX_TOKENS` (default 80), `SYSTEM_SKILL_ADVISOR_MAX_BRIEF_CHARS` (default 2 KiB), `SYSTEM_SKILL_ADVISOR_MAX_PROMPT_BYTES` (default 64 KiB, measured on the whole stdin request after JSON escaping), `SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING` (kept for existing configs: the transform adds no compiled-route line, so it changes only the `bounded_compiled_route_summary` status field).
 
