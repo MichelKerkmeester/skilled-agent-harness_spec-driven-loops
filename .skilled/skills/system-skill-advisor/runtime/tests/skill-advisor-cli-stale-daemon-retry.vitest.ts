@@ -2,8 +2,9 @@
 // MODULE: Skill Advisor CLI Stale-Daemon Retry Tests
 // ───────────────────────────────────────────────────────────────
 
-import { existsSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import net from 'node:net';
+import { join } from 'node:path';
 import { StringDecoder } from 'node:string_decoder';
 
 import { afterEach, describe, expect, it } from 'vitest';
@@ -154,6 +155,12 @@ function switchEnv(scope: IsolatedCliScope, flag?: string): NodeJS.ProcessEnv {
   return env;
 }
 
+function flagsFile(scope: IsolatedCliScope): string {
+  const filePath = join(scope.rootDir, 'hook-flags.env');
+  writeFileSync(filePath, 'SYSTEM_SKILL_ADVISOR_DISABLED=1\n');
+  return filePath;
+}
+
 async function cleanup(): Promise<void> {
   while (sockets.length > 0) {
     sockets.pop()?.destroy();
@@ -209,7 +216,9 @@ describe('skill-advisor CLI stale-daemon retry', () => {
 });
 
 describe('skill-advisor CLI disable switch', () => {
-  it.each(ADVISOR_DISABLED_FLAGS.map((flag) => [flag]))('abstains under %s before it asks a warm daemon', async (flag) => {
+  // The resolver copies an MK_ value onto its new name when it loads, so the
+  // reason an MK_ name gets depends on load order. The loop leaves those out.
+  it.each(ADVISOR_DISABLED_FLAGS.filter((flag) => !flag.startsWith('MK_')).map((flag) => [flag]))('abstains under %s before it asks a warm daemon', async (flag) => {
     const scope = createIsolatedCliScope('disable-switch-warm');
     scopes.push(scope);
     const daemon = await startFakeAdvisorDaemon(scope.socketPath, 'answer');
@@ -252,4 +261,58 @@ describe('skill-advisor CLI disable switch', () => {
     expect(readSkillAdvisorLauncherPid(scope.skillAdvisorDbDir)).toBeNull();
     expect(existsSync(scope.socketPath)).toBe(false);
   }, 30_000);
+});
+
+describe('skill-advisor CLI kill switch, as the hooks resolve it', () => {
+  it.each([
+    ['SYSTEM_SKILL_ADVISOR_DISABLED', '1'],
+    ['SYSTEM_SKILL_ADVISOR_DISABLED', 'true'],
+    ['SYSTEM_SKILL_ADVISOR_HOOK_DISABLED', 'yes'],
+    ['SYSTEM_HOOKS_DISABLED', '1'],
+  ])('abstains under %s=%s before it asks a warm daemon', async (name, value) => {
+    const scope = createIsolatedCliScope('kill-switch-name');
+    scopes.push(scope);
+    const daemon = await startFakeAdvisorDaemon(scope.socketPath, 'answer');
+
+    const run = await runRecommend(scope, { ...switchEnv(scope), [name]: value });
+    const payload = parseJsonOutput<CliPayload>(run);
+
+    expect(run.exitCode, run.stderr).toBe(0);
+    expect(payload.status).toBe('ok');
+    expect(payload.data?.recommendations).toEqual([]);
+    expect(payload.data?.abstainReasons).toEqual([`Skill advisor disabled by ${name}.`]);
+    expect(payload.data?.warnings).toEqual(['ADVISOR_DISABLED']);
+    expect(daemon.calls).toHaveLength(0);
+  });
+
+  it('abstains under a flags-file entry before it asks a warm daemon', async () => {
+    const scope = createIsolatedCliScope('kill-switch-flags-file');
+    scopes.push(scope);
+    const daemon = await startFakeAdvisorDaemon(scope.socketPath, 'answer');
+
+    const run = await runRecommend(scope, { ...switchEnv(scope), HOOK_FLAGS_CONFIG: flagsFile(scope) });
+    const payload = parseJsonOutput<CliPayload>(run);
+
+    expect(run.exitCode, run.stderr).toBe(0);
+    expect(payload.data?.recommendations).toEqual([]);
+    expect(payload.data?.abstainReasons).toEqual(['Skill advisor disabled by SYSTEM_SKILL_ADVISOR_DISABLED.']);
+    expect(daemon.calls).toHaveLength(0);
+  });
+
+  it('still asks a warm daemon when the environment sets the switch to 0 over the file', async () => {
+    const scope = createIsolatedCliScope('kill-switch-file-override');
+    scopes.push(scope);
+    const daemon = await startFakeAdvisorDaemon(scope.socketPath, 'answer');
+
+    const run = await runRecommend(scope, {
+      ...switchEnv(scope),
+      HOOK_FLAGS_CONFIG: flagsFile(scope),
+      SYSTEM_SKILL_ADVISOR_DISABLED: '0',
+    });
+    const payload = parseJsonOutput<CliPayload>(run);
+
+    expect(run.exitCode, run.stderr).toBe(0);
+    expect(payload.data?.recommendations?.[0]?.skillId).toBe('sk-code');
+    expect(daemon.calls).toHaveLength(1);
+  });
 });

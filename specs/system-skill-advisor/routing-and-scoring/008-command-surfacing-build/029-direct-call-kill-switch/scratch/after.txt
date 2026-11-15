@@ -1,0 +1,60 @@
+$ env | rg -c -e '^(SYSTEM_HOOKS_DISABLED|MK_HOOKS_DISABLED|HOOK_FLAGS_CONFIG|[A-Z_]*SKILL_ADVISOR[A-Z_]*_DISABLED)='
+exit 1
+
+$ cd .skilled/skills/system-skill-advisor/runtime && npm run build
+@spec-kit/system-skill-advisor dist build attestation recorded
+@spec-kit/system-skill-advisor dist build attestation recorded
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && env -u AI_SESSION_CHILD npx vitest run tests/advisor-disabled.vitest.ts 2>&1 | grep -E 'Test Files|Tests |FAIL'
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && env -u AI_SESSION_CHILD npx vitest run tests/handlers/advisor-recommend.vitest.ts 2>&1 | grep -E 'Test Files|Tests |FAIL'
+ Test Files  1 passed (1)
+      Tests  24 passed (24)
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && env -u AI_SESSION_CHILD npx vitest run tests/skill-advisor-cli-stale-daemon-retry.vitest.ts 2>&1 | grep -E 'Test Files|Tests |FAIL'
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && env -u AI_SESSION_CHILD npx vitest run tests/skill-advisor-cli-dual-client.vitest.ts 2>&1 | grep -E 'Test Files|Tests |FAIL'
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && npm run typecheck
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+
+exit 0
+
+$ cd .skilled/skills/system-skill-advisor/runtime && env -u AI_SESSION_CHILD npx vitest run 2>&1 | grep -E 'Test Files|Tests |FAIL'
+ Test Files  185 passed (185)
+      Tests  2139 passed | 6 skipped (2145)
+exit 0
+
+$ node --test .skilled/commands/doctor/scripts/tests/*.test.cjs 2>&1 | grep -E '^ℹ (tests|pass|fail)'
+ℹ tests 1221
+ℹ pass 1221
+ℹ fail 0
+exit 0
+
+$ env -u AI_SESSION_CHILD node --test .opencode/plugins/tests/system-skill-advisor.test.cjs 2>&1 | grep -E '^ℹ (tests|pass|fail)'
+ℹ tests 45
+ℹ pass 45
+ℹ fail 0
+exit 0
+
+$ node --test .skilled/hooks/shared/hook-flags.test.cjs 2>&1 | grep -E '^ℹ (tests|pass|fail)'
+ℹ tests 28
+ℹ pass 28
+ℹ fail 0
+exit 0
+
+$ python3 -m pytest .skilled/skills/sk-doc/scripts/tests/test_validation_switch.py -q -p no:cacheprovider -k every_example_line 2>&1 | tail -n 1
+1 passed, 7 deselected in 0.05s
+exit 0
+

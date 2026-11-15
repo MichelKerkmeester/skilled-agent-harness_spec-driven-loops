@@ -640,7 +640,10 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
 
 export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResponse> {
   const input = AdvisorRecommendInputSchema.parse(args);
-  const data = disabledRecommendOutput(input) ?? await computeRecommendationOutput(input);
+  // A shared daemon decides from the environment it was started with and never
+  // from the flags file, because a caller's own `0` must beat the file and only
+  // the caller can see it.
+  const data = disabledRecommendOutput(input, process.env, {}) ?? await computeRecommendationOutput(input);
   return {
     content: [{
       type: 'text',

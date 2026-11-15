@@ -40,17 +40,22 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "scratch/repro-after.txt",
       ".skilled/hooks/hook-flags.env.example",
       ".skilled/hooks/shared/hook-flags.cjs",
       "runtime/lib/README.md",
       "runtime/tests/README.md",
       ".skilled/commands/doctor/env.md",
+      "scratch/floor-before.txt",
+      "scratch/eval-before.txt",
+      "scratch/before.txt",
+      "scratch/repro-before.txt",
+      "scratch/timing-before.txt",
       ".skilled/hooks/shared/hook-flags.ts",
       ".skilled/bin/system-skill-advisor-launcher.cjs",
       ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-      "scratch/planning/kill-switch-matrix.sh",
-      "scratch/planning/kill-switch.env"
+      "scratch/floor-after.txt"
     ],
     "entities": [
       {
@@ -78,6 +83,12 @@
         "source": "derived"
       },
       {
+        "name": "repro-after.txt",
+        "kind": "file",
+        "path": "scratch/repro-after.txt",
+        "source": "derived"
+      },
+      {
         "name": "hook-flags.env.example",
         "kind": "file",
         "path": ".skilled/hooks/hook-flags.env.example",
@@ -99,6 +110,36 @@
         "name": "env.md",
         "kind": "doc",
         "path": ".skilled/commands/doctor/env.md",
+        "source": "derived"
+      },
+      {
+        "name": "floor-before.txt",
+        "kind": "file",
+        "path": "scratch/floor-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "eval-before.txt",
+        "kind": "file",
+        "path": "scratch/eval-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "timing-before.txt",
+        "kind": "file",
+        "path": "scratch/timing-before.txt",
         "source": "derived"
       },
       {
@@ -126,15 +167,9 @@
         "source": "derived"
       },
       {
-        "name": "kill-switch-matrix.sh",
-        "kind": "script",
-        "path": "scratch/planning/kill-switch-matrix.sh",
-        "source": "derived"
-      },
-      {
-        "name": "kill-switch.env",
+        "name": "floor-after.txt",
         "kind": "file",
-        "path": "scratch/planning/kill-switch.env",
+        "path": "scratch/floor-after.txt",
         "source": "derived"
       },
       {
@@ -166,41 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Reuse",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A user who disables the advisor the documented way, with `SYSTEMSKILLADVISORDISABLED=1` in the shell or in `.skilled/hooks/hook-flags.env`, gets no brief from the prompt hooks and still gets `sk-doc → /create:readme (start)` from the Gate 2 direct call that `AGENTS.md` tells every model to run",
     "created_at": "2026-11-15T07:01:23Z",
-    "last_save_at": "2026-11-15T07:23:58.003Z",
+    "last_save_at": "2026-11-15T08:39:48.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +214,12 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:5aea5b0c1ae3a00b7277b9f6863844ecb42c38920d31acfb97305af57fe4243f",
+    "source_fingerprint": "sha256:6ef827b2feb72f11b8a55d52c382af1fc727cc498ea6d803345a56b75242bb19",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a142f0fa52718c4760b9c4e31b3cf1e0b9de08b6b1ba7548f05b20e38834060c",
       "plan.md": "e8119d5c508f46f721a351a74300f18b59e5b634c1e85e6e14f98933f7fae57f",
-      "tasks.md": "de4ab373239d4c5706dafe91bebf7364df599b40776a6fa55346c64699f15243"
+      "tasks.md": "4762ab83500f691439591de30d630bd10b7d54dec498036935fa67d59ba4b829"
     },
     "last_active_at": null
   }

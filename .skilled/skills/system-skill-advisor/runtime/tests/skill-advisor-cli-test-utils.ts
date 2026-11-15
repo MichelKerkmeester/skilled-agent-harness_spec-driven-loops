@@ -64,6 +64,9 @@ export function createIsolatedCliScope(label: string): IsolatedCliScope {
 
   const env: NodeJS.ProcessEnv = {
     ...process.env,
+    // A flags file named in the shell or present in the checkout would make every
+    // isolated call abstain, so the scope names one that does not exist.
+    HOOK_FLAGS_CONFIG: join(rootDir, 'no-such-hook-flags.env'),
     SPECKIT_IPC_SOCKET_DIR: socketDir,
     SPECKIT_DAEMON_REELECTION: 'on',
     SPECKIT_LEASE_PROBE_RETRIES: '1',
