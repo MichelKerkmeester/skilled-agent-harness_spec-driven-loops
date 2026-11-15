@@ -1,0 +1,1873 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude Session Handover Adapter Tests
+// ───────────────────────────────────────────────────────────────────
+'use strict';
+
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const { spawn } = require('node:child_process');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const { pathToFileURL } = require('node:url');
+
+const CONTEXT_NUDGE_PATH = path.resolve(__dirname, '../claude/context-nudge.mjs');
+const STOP_ARM_PATH = path.resolve(__dirname, '../claude/stop-arm.mjs');
+const POST_TOOL_USE = require('./fixtures/payload-post-tool-use.json');
+const USER_PROMPT_SUBMIT = require('./fixtures/payload-user-prompt-submit.json');
+const STOP_PAYLOAD = require('./fixtures/payload-stop.json');
+const { runNested } = require('./fixtures/nested-run.cjs');
+const { withoutRelaunchSwitches } = require('./fixtures/relaunch-env.cjs');
+const SESSION_ID = 'session-adapter-00000001';
+
+function createSandbox(t) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-handover-adapter-'));
+  const repoRoot = path.join(root, 'repo');
+  const xdgRuntimeDir = path.join(root, 'runtime');
+  const home = path.join(root, 'home');
+  fs.mkdirSync(repoRoot, { recursive: true });
+  fs.mkdirSync(xdgRuntimeDir, { recursive: true });
+  fs.mkdirSync(home, { recursive: true });
+  const env = {
+    ...withoutRelaunchSwitches(process.env),
+    HOME: home,
+    XDG_RUNTIME_DIR: xdgRuntimeDir,
+    SESSION_HANDOVER_REPO_ROOT: repoRoot,
+    HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),
+    // The relaunch hooks are off until opted in; these cases exercise them on.
+    SYSTEM_SESSION_HANDOVER_ENABLED: '1',
+  };
+  for (const key of [
+    'SKILLED_LOOP_ID',
+    'SKILLED_LOOP_HOPS',
+    'SKILLED_LOOP_NAME',
+    'CLAUDE_PID',
+    'CLAUDE_CODE_SESSION_ID',
+    'SYSTEM_SESSION_HANDOVER_DISABLED',
+    'SYSTEM_HOOKS_DISABLED',
+    'MK_HOOKS_DISABLED',
+    'SESSION_HANDOVER_THRESHOLD',
+    'SESSION_HANDOVER_WINDOW_TOKENS',
+    'SESSION_HANDOVER_MAX_HOPS',
+    'SYSTEM_SPEC_FOLDER',
+  ]) delete env[key];
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  return { root, repoRoot, xdgRuntimeDir, home, env };
+}
+
+function writeTranscript(sandbox, fillTokens) {
+  const transcriptPath = path.join(sandbox.repoRoot, 'transcript.jsonl');
+  const entry = {
+    type: 'assistant',
+    isSidechain: false,
+    message: {
+      model: 'claude-haiku-5-5',
+      usage: {
+        input_tokens: fillTokens,
+        cache_read_input_tokens: 0,
+        cache_creation_input_tokens: 0,
+      },
+    },
+  };
+  fs.writeFileSync(transcriptPath, `${JSON.stringify(entry)}\n`);
+  return transcriptPath;
+}
+
+function runAdapter(sandbox, adapterPath, payload) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [adapterPath], {
+      cwd: sandbox.repoRoot,
+      env: sandbox.env,
+      stdio: ['pipe', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.once('error', reject);
+    child.once('close', (code, signal) => resolve({ code, signal, stdout, stderr }));
+    child.stdin.end(JSON.stringify(payload));
+  });
+}
+
+test('context-nudge skips and logs when the window is unknown', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-unknown-window-loop-0001';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  const log = fs.readFileSync(path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8');
+  assert.match(log, /context-nudge-skipped[^\n]*reason=window-unknown/);
+});
+
+test('context-nudge logs the unknown window once per session', async (t) => {
+  const sandbox = createSandbox(t);
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+
+  await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+
+  const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
+  const firstSessionLines = fs.readFileSync(logPath, 'utf8')
+    .split(/\r?\n/)
+    .filter((line) => line.includes('context-nudge-skipped'));
+  assert.equal(firstSessionLines.length, 1);
+
+  await runAdapter(sandbox, CONTEXT_NUDGE_PATH, { ...payload, session_id: 'session-adapter-00000002' });
+  const allSkippedLines = fs.readFileSync(logPath, 'utf8')
+    .split(/\r?\n/)
+    .filter((line) => line.includes('context-nudge-skipped'));
+  assert.equal(allSkippedLines.length, 2);
+});
+
+function createPendingRecord(
+  sandbox, loopId, sessionId, handoffPath = path.join(sandbox.repoRoot, 'handoff.md'),
+  status = 'pending',
+) {
+  const stateDir = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
+  fs.mkdirSync(stateDir, { recursive: true });
+  const recordPath = path.join(stateDir, `relaunch-${loopId}.json`);
+  const record = {
+    version: 1,
+    status,
+    loopId: String(loopId),
+    handoff: handoffPath,
+    sessionId,
+    runtime: 'claude',
+    name: null,
+    cwd: sandbox.repoRoot,
+    hops: 0,
+    preparedAt: new Date().toISOString(),
+  };
+  fs.writeFileSync(recordPath, JSON.stringify(record));
+  return { stateDir, recordPath, record };
+}
+
+function startTarget(sandbox) {
+  return spawn(process.execPath, ['-e', 'setInterval(() => {}, 1000);'], {
+    cwd: sandbox.repoRoot,
+    env: sandbox.env,
+    stdio: 'ignore',
+  });
+}
+
+function killChild(child) {
+  if (!child || child.exitCode !== null || child.signalCode !== null) return;
+  try {
+    child.kill('SIGKILL');
+  } catch (error) {
+    if (error.code !== 'ESRCH') throw error;
+  }
+}
+
+async function waitFor(predicate, timeoutMs = 1500) {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    if (predicate()) return true;
+    await new Promise((resolve) => setTimeout(resolve, 25));
+  }
+  return predicate();
+}
+
+test('context-nudge fires at 0.80, suppresses the same level, and fires again at +0.05', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+  const first = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(first.code, 0, first.stderr);
+  const firstOutput = JSON.parse(first.stdout.trim());
+  assert.equal(firstOutput.hookSpecificOutput.hookEventName, 'PostToolUse');
+  assert.match(
+    firstOutput.hookSpecificOutput.additionalContext,
+    /prepare --handoff.*--runtime 'claude'/,
+  );
+  assert.ok(firstOutput.hookSpecificOutput.additionalContext.includes(`--session '${SESSION_ID}'`));
+  const repeated = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(repeated.code, 0, repeated.stderr);
+  assert.equal(repeated.stdout, '');
+  writeTranscript(sandbox, 850);
+  const nextLevel = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(nextLevel.code, 0, nextLevel.stderr);
+  const nextOutput = JSON.parse(nextLevel.stdout.trim());
+  assert.equal(nextOutput.hookSpecificOutput.hookEventName, 'PostToolUse');
+  assert.match(
+    nextOutput.hookSpecificOutput.additionalContext,
+    /prepare --handoff.*--runtime 'claude'/,
+  );
+});
+
+test('a nested run gets the outside-the-loop nudge', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = String(process.pid);
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+  const result = await runNested({
+    argv: [CONTEXT_NUDGE_PATH],
+    env: sandbox.env,
+    cwd: sandbox.repoRoot,
+    input: JSON.stringify(payload),
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.ok(context.includes('cannot relaunch'), context);
+  assert.doesNotMatch(context, /prepare --handoff/);
+  const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
+  assert.match(fs.readFileSync(logPath, 'utf8'), /loop-nested-run/);
+});
+
+test('the loop runtime itself still gets the in-loop nudge', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = String(process.pid);
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.match(
+    JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext,
+    /prepare --handoff.*--runtime 'claude'/,
+  );
+});
+
+test('context-nudge stays silent for a sub-agent tool call', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    agent_id: 'a78dbc9773274be92',
+    agent_type: 'fork',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  assert.equal(fs.existsSync(stateFile), false, stateFile);
+});
+
+test('context-nudge still nudges the main session when agent_id is empty', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    agent_id: '',
+    agent_type: 'fork',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout.trim());
+  assert.equal(output.hookSpecificOutput.hookEventName, 'PostToolUse');
+  assert.match(
+    output.hookSpecificOutput.additionalContext,
+    /prepare --handoff.*--runtime 'claude'/,
+  );
+  assert.ok(output.hookSpecificOutput.additionalContext.includes(`--session '${SESSION_ID}'`));
+});
+
+test('context-nudge carries the payload spec_folder into the note frontmatter', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    spec_folder: 'specs/hooks/001-session-relaunch',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /^ +spec_folder: specs\/hooks\/001-session-relaunch$/m);
+});
+
+test('context-nudge emits nothing below the configured threshold', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 799);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('context-nudge emits nothing while this session already has a prepared handoff', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const loopId = 'claude-loop-prepared-0001';
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  createPendingRecord(sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'));
+  const transcriptPath = writeTranscript(sandbox, 900);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('context-nudge emits nothing at the hop limit', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.HOOK_FLAGS_CONFIG = path.join(sandbox.home, 'hook-flags.env');
+  sandbox.env.SKILLED_LOOP_ID = 'claude-loop-hop-cap-0001';
+  sandbox.env.SKILLED_LOOP_HOPS = '1';
+  sandbox.env.SESSION_HANDOVER_MAX_HOPS = '1';
+  const transcriptPath = writeTranscript(sandbox, 900);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('context-nudge emits nothing when the relaunch concern is disabled', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SYSTEM_SESSION_HANDOVER_DISABLED = '1';
+  const transcriptPath = writeTranscript(sandbox, 950);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('context-nudge nudges when no relaunch switch is set, because Claude is on by default', async (t) => {
+  const sandbox = createSandbox(t);
+  delete sandbox.env.SYSTEM_SESSION_HANDOVER_ENABLED;
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 950);
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+  const byDefault = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(byDefault.code, 0, byDefault.stderr);
+  assert.notEqual(byDefault.stdout, '');
+
+  // The same fill stays silent once the flags file turns Claude off.
+  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED=0\n');
+  const optedOut = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(optedOut.code, 0, optedOut.stderr);
+  assert.equal(optedOut.stdout, '');
+});
+
+test('context-nudge stays silent with its runtime switched off while the global flag is on', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED = '0';
+  // Another runtime's switch says nothing about this one.
+  sandbox.env.SYSTEM_SESSION_HANDOVER_PI_ENABLED = '1';
+  const transcriptPath = writeTranscript(sandbox, 950);
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+  const silent = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(silent.code, 0, silent.stderr);
+  assert.equal(silent.stdout, '');
+
+  // Emptying the runtime switch hands the answer back to the global flag.
+  sandbox.env.SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED = '';
+  const fallsThrough = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(fallsThrough.code, 0, fallsThrough.stderr);
+  assert.notEqual(fallsThrough.stdout, '');
+});
+
+test('context-nudge emits nothing when session_id fails the charset gate', async (t) => {
+  const sandbox = createSandbox(t);
+  const badSessionId = 'session; echo injected';
+  const seedPayload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: badSessionId,
+    cwd: sandbox.repoRoot,
+    prompt: '[session-handover] claim and continue handoff /real/handoff.md',
+  };
+  const seed = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, seedPayload);
+  assert.equal(seed.code, 0, seed.stderr);
+  assert.equal(seed.stdout, '');
+
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  const transcriptPath = writeTranscript(sandbox, 950);
+  const nudgePayload = {
+    ...POST_TOOL_USE,
+    session_id: badSessionId,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+  const nudge = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, nudgePayload);
+  assert.equal(nudge.code, 0, nudge.stderr);
+  assert.equal(nudge.stdout, '');
+});
+
+test('UserPromptSubmit relaunch seed receives claim and completion instructions', async (t) => {
+  const sandbox = createSandbox(t);
+  const payload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    prompt: '[session-handover] claim and continue handoff /real/handoff.md',
+  };
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout.trim());
+  assert.equal(output.hookSpecificOutput.hookEventName, 'UserPromptSubmit');
+  assert.match(output.hookSpecificOutput.additionalContext, /claim/);
+  assert.match(output.hookSpecificOutput.additionalContext, /complete/);
+});
+
+test('UserPromptSubmit seed resumes its carried packet folder', async (t) => {
+  const sandbox = createSandbox(t);
+  const specFolder = 'specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop';
+  const prompt = '[session-handover] claim and continue handoff /real/handoff.md | Spec folder: ' + specFolder
+    + ' (carried from the handoff; Gate 3 answered in the sending session)';
+  const payload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    prompt,
+  };
+
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout.trim());
+  assert.ok(
+    output.hookSpecificOutput.additionalContext.includes(`/speckit:resume ${specFolder}`),
+    output.hookSpecificOutput.additionalContext,
+  );
+});
+
+test('UserPromptSubmit seed carries Gate 3 Skip without a resume command', async (t) => {
+  const sandbox = createSandbox(t);
+  const prompt = '[session-handover] claim and continue handoff /real/handoff.md | Spec folder: none '
+    + '(Gate 3 answered D, Skip, in the sending session)';
+  const payload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    prompt,
+  };
+
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout.trim());
+  const context = output.hookSpecificOutput.additionalContext;
+  assert.match(context, /Gate 3 is already answered Skip for this session/);
+  assert.doesNotMatch(context, /\/speckit:resume/);
+});
+
+test('UserPromptSubmit seed without a suffix has no resume or Skip instruction', async (t) => {
+  const sandbox = createSandbox(t);
+  const payload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    prompt: '[session-handover] claim and continue handoff /real/handoff.md',
+  };
+
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout.trim());
+  const context = output.hookSpecificOutput.additionalContext;
+  assert.doesNotMatch(context, /\/speckit:resume/);
+  assert.doesNotMatch(context, /Gate 3 is already answered Skip/);
+});
+
+test('stop-arm arms a matching pending record, starts the killer lock, and prints nothing', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const transcriptPath = writeTranscript(sandbox, 10);
+  const target = startTarget(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.CLAUDE_PID = String(target.pid);
+  const liveCwd = path.join(sandbox.root, 'live-cwd');
+  fs.mkdirSync(liveCwd, { recursive: true });
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: liveCwd,
+    background_tasks: [],
+  };
+  try {
+    const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+    assert.equal(result.code, 0, result.stderr);
+    assert.equal(result.stdout, '');
+    const armed = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+    assert.equal(armed.status, 'armed');
+    assert.equal(armed.cwd, liveCwd);
+    assert.equal(
+      await waitFor(() => fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`))),
+      true,
+    );
+  } finally {
+    killChild(target);
+    await waitFor(() => !fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`)), 2500);
+  }
+});
+
+test('stop-arm leaves a pending record alone when the relaunch concern is disabled', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const transcriptPath = writeTranscript(sandbox, 10);
+  const target = startTarget(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.CLAUDE_PID = String(target.pid);
+  sandbox.env.SYSTEM_SESSION_HANDOVER_DISABLED = '1';
+  const liveCwd = path.join(sandbox.root, 'live-cwd');
+  fs.mkdirSync(liveCwd, { recursive: true });
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: liveCwd,
+    background_tasks: [],
+  };
+  try {
+    const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+    assert.equal(result.code, 0, result.stderr);
+    assert.equal(result.stdout, '');
+    assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'pending');
+    assert.equal(fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`)), false);
+  } finally {
+    killChild(target);
+  }
+});
+
+async function armStopPayload(t, overrides = {}) {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const transcriptPath = writeTranscript(sandbox, 10);
+  const target = startTarget(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.CLAUDE_PID = String(target.pid);
+  const payload = {
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+    ...overrides,
+  };
+  try {
+    const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+    assert.equal(result.code, 0, result.stderr);
+    assert.equal(result.stdout, '');
+    return { record: JSON.parse(fs.readFileSync(recordPath, 'utf8')) };
+  } finally {
+    killChild(target);
+    await waitFor(() => !fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`)), 2500);
+  }
+}
+
+test('stop-arm stamps the payload permission mode on the armed record', async (t) => {
+  const { record } = await armStopPayload(t, { permission_mode: 'acceptEdits' });
+
+  assert.equal(record.status, 'armed');
+  assert.equal(record.permissionMode, 'acceptEdits');
+});
+
+test('stop-arm arms without a permission mode when the payload has none', async (t) => {
+  const { record } = await armStopPayload(t);
+
+  assert.equal(record.status, 'armed');
+  assert.equal(Object.hasOwn(record, 'permissionMode'), false);
+});
+
+test("stop-arm leaves a nested run's pending record untouched", async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const transcriptPath = writeTranscript(sandbox, 10);
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  };
+  const result = await runNested({
+    argv: [STOP_ARM_PATH],
+    env: sandbox.env,
+    cwd: sandbox.repoRoot,
+    input: JSON.stringify(payload),
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'pending');
+  assert.equal(fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`)), false);
+});
+
+test('stop-arm defers pending state when background tasks exist and logs the reason', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath, record } = createPendingRecord(
+    sandbox, loopId, SESSION_ID, handoffPath,
+  );
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    background_tasks: [{ task_id: 'task-1' }],
+  };
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+  assert.equal(result.code, 0, result.stderr);
+  assert.notEqual(result.stdout, '', 'a deferred Stop tells the operator why it waits');
+  const lines = result.stdout.trim().split('\n');
+  assert.equal(lines.length, 1);
+  const notice = JSON.parse(lines[0]);
+  assert.equal(typeof notice.systemMessage, 'string');
+  assert.match(notice.systemMessage, /1 background task\b/);
+  assert.match(notice.systemMessage, /session-handover\.cjs cancel/);
+  assert.equal(Object.hasOwn(notice, 'decision'), false);
+  // The record stays pending for the next Stop and gains only the deferral mark.
+  const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.deepEqual(unchanged, record);
+  assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);
+  assert.match(
+    fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8'),
+    /deferred-background-tasks/,
+  );
+});
+
+test('stop-arm logs the cron count of a session whose hop is armable', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const spawns = installKillerRecorder(sandbox);
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+    session_crons: [
+      { id: 'cron-1', schedule: '*/10 * * * *', recurring: true, prompt: 'echo ping' },
+      { id: 'cron-2', schedule: '0 9 * * *', recurring: false, prompt: 'echo pong' },
+    ],
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(spawns().length, 1);
+  assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'armed');
+  const cronLines = fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8')
+    .split('\n')
+    .filter((line) => line.includes('session-crons'));
+  assert.equal(cronLines.length, 1, cronLines.join('\n'));
+  assert.match(cronLines[0], new RegExp(`loopId=${loopId}`));
+  assert.match(cronLines[0], new RegExp(`sessionId=${SESSION_ID}`));
+  assert.match(cronLines[0], /crons=2/);
+});
+
+function deferredPromptCase(t, { prompt, deferred = true, armed = false }) {
+  const sandbox = createSandbox(t);
+  const loopId = 'claude-loop-deferred-0001';
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  const { recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  if (armed) {
+    // A Stop that found no background work armed the record and started its killer.
+    record.status = 'armed';
+    record.armedAt = new Date().toISOString();
+    record.armId = 'arm-before-the-prompt';
+    fs.writeFileSync(recordPath, JSON.stringify(record));
+  } else if (deferred) {
+    record.deferredAt = new Date().toISOString();
+    fs.writeFileSync(recordPath, JSON.stringify(record));
+  }
+  const payload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 500),
+    cwd: sandbox.repoRoot,
+    prompt,
+  };
+  return { sandbox, recordPath, record, run: () => runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload) };
+}
+
+test('context-nudge withdraws a deferred handoff when the operator sends a prompt', async (t) => {
+  const { recordPath, run } = deferredPromptCase(t, { prompt: 'Continue here.' });
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /prepared hand-over was withdrawn/);
+  assert.match(context, /one more context nudge will come/);
+  assert.match(context, /update the note and hand over again/);
+  assert.doesNotMatch(context, /no further context nudge/);
+  const stored = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(stored.status, 'disarmed');
+  assert.equal(stored.disarmReason, 'user-message');
+});
+
+test('context-nudge records the withdrawal in the hop history', async (t) => {
+  const { sandbox, run } = deferredPromptCase(t, { prompt: 'Continue here.' });
+  const historyPath = path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-handover', 'hop-history.log',
+  );
+
+  assert.equal((await run()).code, 0);
+
+  const fields = fs.readFileSync(historyPath, 'utf8').trim().split('\n').map((line) => line.split('\t'));
+  assert.equal(fields.length, 1);
+  assert.equal(fields[0][1], 'withdrawn');
+  assert.equal(fields[0][6], 'handoff.md');
+  assert.equal(fields[0][7], SESSION_ID.slice(0, 8));
+});
+
+test('context-nudge records no withdrawal for a prompt that withdrew nothing', async (t) => {
+  const { sandbox, run } = deferredPromptCase(t, { prompt: 'Continue here.', deferred: false });
+  const historyPath = path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-handover', 'hop-history.log',
+  );
+
+  assert.equal((await run()).code, 0);
+
+  assert.equal(fs.existsSync(historyPath), false);
+});
+
+test('the withdraw prompt carries only the notice, then one nudge comes a step above its fill', async (t) => {
+  const { sandbox } = deferredPromptCase(t, { prompt: 'Continue here.' });
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const promptPayload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    prompt: 'Continue here.',
+  };
+  const toolPayload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+  const fillAt = (tokens) => writeTranscript(sandbox, tokens);
+
+  // At the threshold a fresh level would nudge, but the withdraw prompt answers with the notice alone.
+  const withdraw = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, promptPayload);
+  assert.equal(withdraw.code, 0, withdraw.stderr);
+  const context = JSON.parse(withdraw.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /prepared hand-over was withdrawn/);
+  assert.doesNotMatch(context, /prepare --handoff|Write the handoff note/);
+
+  const same = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, toolPayload);
+  assert.equal(same.stdout, '');
+  fillAt(840);
+  const justAbove = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, toolPayload);
+  assert.equal(justAbove.stdout, '');
+  fillAt(850);
+  const floor = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, toolPayload);
+  assert.match(JSON.parse(floor.stdout.trim()).hookSpecificOutput.additionalContext, /prepare --handoff/);
+  const spent = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, toolPayload);
+  assert.equal(spent.stdout, '');
+  fillAt(990);
+  const after = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, toolPayload);
+  assert.equal(after.stdout, '');
+});
+
+test('context-nudge keeps a deferred handoff when a background task reports back', async (t) => {
+  // The completion a deferred hand-over waits for arrives as a prompt of its own.
+  const { recordPath, record, run } = deferredPromptCase(t, {
+    prompt: '<task-notification>\n<task-id>task-1</task-id>\n</task-notification>',
+  });
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+});
+
+test('context-nudge keeps a handoff that was prepared and never deferred', async (t) => {
+  const { recordPath, record, run } = deferredPromptCase(t, {
+    prompt: 'Continue here.',
+    deferred: false,
+  });
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+});
+
+// The killer signals after a short silence in the transcript, so a new turn that runs one
+// long tool would otherwise be ended mid-turn and relaunched onto a note that predates it.
+test('context-nudge withdraws an armed handoff when the operator sends a prompt', async (t) => {
+  const { sandbox, recordPath, run } = deferredPromptCase(t, {
+    prompt: 'Continue here.',
+    armed: true,
+  });
+  const historyPath = path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-handover', 'hop-history.log',
+  );
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /prepared hand-over was withdrawn/);
+  const stored = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.equal(stored.status, 'disarmed');
+  assert.equal(stored.disarmReason, 'user-message');
+  const lines = fs.readFileSync(historyPath, 'utf8').trim().split('\n');
+  assert.equal(lines.length, 1);
+  assert.equal(lines[0].split('\t')[1], 'withdrawn');
+});
+
+test('context-nudge keeps an armed handoff when a background task reports back', async (t) => {
+  const { recordPath, record, run } = deferredPromptCase(t, {
+    prompt: '<task-notification>\n<task-id>task-1</task-id>\n</task-notification>',
+    armed: true,
+  });
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+});
+
+test('context-nudge keeps an armed handoff for a relaunch seed prompt', async (t) => {
+  const { recordPath, record, run } = deferredPromptCase(t, {
+    prompt: '[session-handover] claim and continue handoff /tmp/handoff.md',
+    armed: true,
+  });
+  const result = await run();
+  assert.equal(result.code, 0, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+});
+
+test('context-nudge leaves another session\'s armed handoff alone', async (t) => {
+  const { sandbox, recordPath, record } = deferredPromptCase(t, {
+    prompt: 'Continue here.',
+    armed: true,
+  });
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...USER_PROMPT_SUBMIT,
+    session_id: 'session-adapter-00000002',
+    transcript_path: writeTranscript(sandbox, 500),
+    cwd: sandbox.repoRoot,
+    prompt: 'Continue here.',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+});
+
+test('stop-arm logs missing-transcript-path and marks the pending record deferred', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath, record } = createPendingRecord(
+    sandbox, loopId, SESSION_ID, handoffPath,
+  );
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  };
+  delete payload.transcript_path;
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+  assert.equal(result.code, 0, result.stderr);
+  assert.notEqual(result.stdout, '', 'stdout is empty: the missing-transcript Stop printed no notice');
+  const lines = result.stdout.trim().split('\n');
+  assert.equal(lines.length, 1);
+  const notice = JSON.parse(lines[0]);
+  assert.equal(typeof notice.systemMessage, 'string');
+  assert.match(notice.systemMessage, /no transcript path/);
+  assert.match(notice.systemMessage, /next prompt withdraws/);
+  assert.equal(Object.hasOwn(notice, 'decision'), false);
+  // The record is marked so a prompt withdraws it, and a Stop with no typed prompt tries again.
+  const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.deepEqual(unchanged, record);
+  assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);
+  const logLines = fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8')
+    .split(/\r?\n/)
+    .filter((line) => line.includes('missing-transcript-path'));
+  assert.equal(logLines.length, 1);
+});
+
+test('stop-arm arms nothing for a pending record that names no note', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const { stateDir, recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID);
+  const { handoff: _handoff, ...withoutNote } = record;
+  fs.writeFileSync(recordPath, JSON.stringify(withoutNote));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const spawns = installKillerRecorder(sandbox);
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), withoutNote);
+  assert.deepEqual(spawns(), []);
+  const log = fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8');
+  assert.match(log, /corrupt-relaunch-file/);
+});
+
+test('stop-arm logs an async killer spawn error and leaves the record armed', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const { recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID);
+  const fixturePath = path.join(sandbox.root, 'spawn-async-error.cjs');
+  fs.writeFileSync(fixturePath, [
+    "'use strict';",
+    "const { EventEmitter } = require('node:events');",
+    "const childProcess = require('node:child_process');",
+    "const { syncBuiltinESMExports } = require('node:module');",
+    'const originalSpawn = childProcess.spawn;',
+    'childProcess.spawn = function (command, args = []) {',
+    "  if (typeof args[0] === 'string' && args[0].endsWith('killer.cjs')) {",
+    '    const child = new EventEmitter();',
+    '    child.unref = () => child;',
+    "    setImmediate(() => child.emit('error', new Error('spawn denied')));",
+    '    return child;',
+    '  }',
+    '  return originalSpawn.call(this, command, args);',
+    '};',
+    'syncBuiltinESMExports();',
+    '',
+  ].join('\n'));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.NODE_OPTIONS = `--require=${fixturePath}`;
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'armed');
+  const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
+  const spawnErrors = fs.readFileSync(logPath, 'utf8')
+    .split(/\r?\n/)
+    .filter((line) => line.includes('stop-arm-error stage=spawn'));
+  assert.equal(spawnErrors.length, 1);
+  assert.match(spawnErrors[0], /message=spawn_denied/);
+});
+
+test('stop-arm logs a synchronous killer spawn throw and leaves the record armed', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const { recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID);
+  const fixturePath = path.join(sandbox.root, 'spawn-sync-throw.cjs');
+  fs.writeFileSync(fixturePath, [
+    "'use strict';",
+    "const childProcess = require('node:child_process');",
+    "const { syncBuiltinESMExports } = require('node:module');",
+    'const originalSpawn = childProcess.spawn;',
+    'childProcess.spawn = function (command, args = []) {',
+    "  if (typeof args[0] === 'string' && args[0].endsWith('killer.cjs')) {",
+    "    throw new Error('spawn denied');",
+    '  }',
+    '  return originalSpawn.call(this, command, args);',
+    '};',
+    'syncBuiltinESMExports();',
+    '',
+  ].join('\n'));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.NODE_OPTIONS = `--require=${fixturePath}`;
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'armed');
+  const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
+  const spawnErrors = fs.readFileSync(logPath, 'utf8')
+    .split(/\r?\n/)
+    .filter((line) => line.includes('stop-arm-error stage=spawn'));
+  assert.equal(spawnErrors.length, 1);
+  assert.match(spawnErrors[0], /message=spawn_denied/);
+});
+
+test('context-nudge plans the handoff note under the resolved repo root', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout.trim());
+  const match = output.hookSpecificOutput.additionalContext
+    .match(/Write the handoff note at '([^']+)'/);
+  assert.ok(match);
+  assert.equal(
+    path.dirname(match[1]),
+    path.join(
+      sandbox.repoRoot,
+      '.skilled', 'skills', '.state', 'session-handover', 'handoffs',
+    ),
+  );
+  assert.match(path.basename(match[1]), /^\d{8}T\d{6}Z-session-adapter-00000001\.md$/);
+});
+
+test('context-nudge resolves a relative SESSION_HANDOVER_REPO_ROOT into an absolute note path', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SESSION_HANDOVER_REPO_ROOT = 'relative-repo';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout.trim());
+  const match = output.hookSpecificOutput.additionalContext
+    .match(/Write the handoff note at '([^']+)'/);
+  assert.ok(match);
+  assert.equal(path.isAbsolute(match[1]), true, match[1]);
+  assert.equal(
+    path.dirname(match[1]),
+    path.join(
+      fs.realpathSync(sandbox.repoRoot),
+      'relative-repo',
+      '.skilled', 'skills', '.state', 'session-handover', 'handoffs',
+    ),
+  );
+});
+
+test('context-nudge keeps the default threshold when the env switch is invalid', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = 'bogus';
+  sandbox.env.HOOK_FLAGS_CONFIG = path.join(sandbox.root, 'hook-flags.env');
+  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SESSION_HANDOVER_THRESHOLD=0.5\n');
+  const transcriptPath = writeTranscript(sandbox, 600);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('UserPromptSubmit seed claims the absolute note path it carries', async (t) => {
+  const sandbox = createSandbox(t);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    prompt: '[session-handover] claim and continue handoff /real/handoff.md',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.ok(context.includes("claim '/real/handoff.md'"), context);
+  assert.ok(!context.includes("claim '<handoff-path>'"), context);
+});
+
+test('UserPromptSubmit seed with a relative note path emits nothing', async (t) => {
+  const sandbox = createSandbox(t);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    prompt: '[session-handover] claim and continue handoff relative/handoff.md',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('stop-arm makes no change without SKILLED_LOOP_ID and prints nothing', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = 'loop-without-environment';
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const before = fs.readFileSync(recordPath, 'utf8');
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.equal(fs.readFileSync(recordPath, 'utf8'), before);
+});
+
+test('stop-arm spawns exactly one killer across repeated Stop payloads on a pending record', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const transcriptPath = writeTranscript(sandbox, 10);
+  const spawnLog = installKillerSpawnRecorder(sandbox, '{ command, args, options }');
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  };
+
+  const first = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+  assert.equal(first.code, 0, first.stderr);
+  const lockPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `killer-${loopId}.lock`);
+  fs.writeFileSync(lockPath, `${process.pid} ${new Date().toISOString()}\n`);
+  const second = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+  assert.equal(second.code, 0, second.stderr);
+
+  const spawns = fs.readFileSync(spawnLog, 'utf8').trim().split('\n');
+  assert.equal(spawns.length, 1);
+});
+
+test('stop-arm respawns one killer for an armed record whose killer is gone', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath, 'armed');
+  const transcriptPath = writeTranscript(sandbox, 10);
+  const spawnLog = installKillerSpawnRecorder(sandbox, '{ command, args, options }');
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  };
+
+  const respawn = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+  assert.equal(respawn.code, 0, respawn.stderr);
+  const spawns = fs.readFileSync(spawnLog, 'utf8').trim().split('\n');
+  assert.equal(spawns.length, 1);
+
+  const lockPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `killer-${loopId}.lock`);
+  fs.writeFileSync(lockPath, `${process.pid} ${new Date().toISOString()}\n`);
+  const suppressed = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+  assert.equal(suppressed.code, 0, suppressed.stderr);
+  assert.equal(fs.readFileSync(spawnLog, 'utf8').trim().split('\n').length, 1);
+});
+
+function installKillerSpawnRecorder(sandbox, recordExpression) {
+  const recorderPath = path.join(sandbox.root, 'killer-spawn-recorder.cjs');
+  const spawnLog = path.join(sandbox.root, 'killer-spawns.jsonl');
+  fs.writeFileSync(recorderPath, [
+    "'use strict';",
+    "const fs = require('node:fs');",
+    "const childProcess = require('node:child_process');",
+    "const { syncBuiltinESMExports } = require('node:module');",
+    'const originalSpawn = childProcess.spawn;',
+    'childProcess.spawn = function (command, args = [], options = {}) {',
+    "  if (typeof args[0] === 'string' && args[0].endsWith('killer.cjs')) {",
+    '    fs.appendFileSync(',
+    '      process.env.CLAUDE_KILLER_ARGS_FILE,',
+    '      JSON.stringify(' + recordExpression + ') + "\\n",',
+    '    );',
+    '    return { unref() { return this; } };',
+    '  }',
+    '  return originalSpawn.call(this, command, args, options);',
+    '};',
+    'syncBuiltinESMExports();',
+    '',
+  ].join('\n'));
+  sandbox.env.CLAUDE_KILLER_ARGS_FILE = spawnLog;
+  sandbox.env.NODE_OPTIONS = `--require=${recorderPath}`;
+  return spawnLog;
+}
+
+function installKillerRecorder(sandbox) {
+  const spawnLog = installKillerSpawnRecorder(
+    sandbox,
+    '{ args, hookPid: process.pid, hookParent: process.ppid }',
+  );
+  return () => (fs.existsSync(spawnLog)
+    ? fs.readFileSync(spawnLog, 'utf8').trim().split('\n').map((line) => JSON.parse(line))
+    : []);
+}
+
+function targetPidOf(spawnRecord) {
+  return spawnRecord.args[spawnRecord.args.indexOf('--target-pid') + 1];
+}
+
+test('stop-arm without CLAUDE_PID targets the loop child, never the hook parent', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  createPendingRecord(sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const spawns = installKillerRecorder(sandbox);
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  const [spawned] = spawns();
+  // The hook here runs directly under the loop, so the loop child is the hook itself;
+  // The old fallback named its parent, which is the loop.
+  assert.equal(targetPidOf(spawned), String(spawned.hookPid));
+  assert.notEqual(targetPidOf(spawned), loopId);
+});
+
+test('stop-arm keeps a CLAUDE_PID inside the loop and drops one outside it', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  createPendingRecord(sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const spawns = installKillerRecorder(sandbox);
+  const target = startTarget(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  };
+  try {
+    sandbox.env.CLAUDE_PID = String(target.pid);
+    assert.equal((await runAdapter(sandbox, STOP_ARM_PATH, payload)).code, 0);
+    assert.equal(targetPidOf(spawns()[0]), String(target.pid));
+
+    createPendingRecord(sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'));
+    sandbox.env.CLAUDE_PID = '1';
+    assert.equal((await runAdapter(sandbox, STOP_ARM_PATH, payload)).code, 0);
+    const second = spawns()[1];
+    assert.equal(targetPidOf(second), String(second.hookPid));
+  } finally {
+    killChild(target);
+  }
+});
+
+test('stop-arm marks the pending record deferred when no process below the loop can be found', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = '999999999';
+  const { recordPath, record } = createPendingRecord(
+    sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'),
+  );
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const spawns = installKillerRecorder(sandbox);
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.notEqual(result.stdout, '', 'stdout is empty: the parked Stop printed no notice');
+  assert.equal(result.stdout.trim().split('\n').length, 1);
+  const notice = JSON.parse(result.stdout.trim());
+  assert.equal(typeof notice.systemMessage, 'string');
+  assert.match(notice.systemMessage, /could not arm/);
+  assert.match(notice.systemMessage, /next prompt withdraws/);
+  assert.match(notice.systemMessage, /later Stop/);
+  assert.equal(Object.hasOwn(notice, 'decision'), false);
+  const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.deepEqual(unchanged, record);
+  assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);
+  assert.deepEqual(spawns(), []);
+  const log = fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'),
+    'utf8',
+  );
+  assert.match(log, /stop-arm-error stage=target-pid/);
+});
+
+test('stop-arm marks the pending record deferred when arming throws', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = '100';
+  const { recordPath, record } = createPendingRecord(
+    sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'),
+  );
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const { armPendingRecord } = await import(pathToFileURL(STOP_ARM_PATH).href);
+  const spawns = [];
+  const lines = [];
+
+  // A cwd that cannot be written as JSON makes the arm throw after the target resolved.
+  const armed = await armPendingRecord({
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: 1n,
+    background_tasks: [],
+  }, {
+    env: sandbox.env,
+    pid: 41,
+    processTable: '41 60\n60 100\n100 1\n',
+    write: (text) => lines.push(text),
+    spawn: (...call) => {
+      spawns.push(call);
+      return { unref() {} };
+    },
+  });
+
+  assert.equal(armed, null);
+  assert.equal(lines.length, 1);
+  assert.equal(lines[0].trim().split('\n').length, 1);
+  const notice = JSON.parse(lines[0].trim());
+  assert.equal(typeof notice.systemMessage, 'string');
+  assert.match(notice.systemMessage, /could not arm/);
+  assert.match(notice.systemMessage, /next prompt withdraws/);
+  assert.match(notice.systemMessage, /later Stop/);
+  assert.equal(Object.hasOwn(notice, 'decision'), false);
+  assert.deepEqual(spawns, []);
+  const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.deepEqual(unchanged, record);
+  assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);
+  const log = fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'),
+    'utf8',
+  );
+  assert.match(log, /stop-arm-error stage=arm/);
+});
+
+test('stop-arm defers an armed record with a dead killer while background tasks run', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const { stateDir } = createPendingRecord(
+    sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'), 'armed',
+  );
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const spawns = installKillerRecorder(sandbox);
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [{ task_id: 'task-1' }],
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.deepEqual(spawns(), []);
+  assert.match(
+    fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8'),
+    /deferred-background-tasks/,
+  );
+});
+
+test('context-nudge writes SYSTEM_SPEC_FOLDER into the note when the payload carries none', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SYSTEM_SPEC_FOLDER = 'specs/hooks/001-session-relaunch';
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 800),
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /^ +spec_folder: specs\/hooks\/001-session-relaunch$/m);
+});
+
+const COMPACT_POINTER = path.resolve(__dirname, '../claude/compact-pointer.mjs');
+const NOTE_CREATED_AT = '2026-10-25T10:00:00Z';
+
+function writeOpenNote(sandbox, sessionId = SESSION_ID) {
+  const directory = path.join(sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-handover', 'handoffs');
+  fs.mkdirSync(directory, { recursive: true });
+  const notePath = path.join(directory, `20261021T080000Z-${sessionId.slice(0, 8)}.md`);
+  fs.writeFileSync(notePath, [
+    '---',
+    'status: open',
+    `session_id: ${sessionId}`,
+    'loop_id: ',
+    'runtime: claude',
+    `cwd: ${sandbox.repoRoot}`,
+    'spec_folder: ',
+    `created_at: ${NOTE_CREATED_AT}`,
+    '---',
+    '## Goal', 'g', '## Done', 'd', '## Remaining work', 'r', '## In-flight state', 'i',
+  ].join('\n'));
+  return notePath;
+}
+
+function writeSessionTranscripts(sandbox, { forkBoundaryAgoMs } = {}) {
+  const projectDir = path.join(sandbox.root, 'project');
+  fs.mkdirSync(projectDir, { recursive: true });
+  const parentPath = path.join(projectDir, `${SESSION_ID}.jsonl`);
+  fs.writeFileSync(parentPath, `${JSON.stringify({ type: 'user' })}\n`);
+  if (typeof forkBoundaryAgoMs !== 'number') return { parentPath, forkPath: null };
+
+  // A fork inherits its parent's session id and files its own transcript under that
+  // id's subagents directory, so a fork's compaction is not the parent's.
+  const subagentsDir = path.join(projectDir, SESSION_ID, 'subagents');
+  fs.mkdirSync(subagentsDir, { recursive: true });
+  const forkPath = path.join(subagentsDir, 'agent-abc123.jsonl');
+  const boundary = {
+    type: 'system',
+    subtype: 'compact_boundary',
+    timestamp: new Date(Date.now() - forkBoundaryAgoMs).toISOString(),
+    compactMetadata: { trigger: 'auto' },
+  };
+  fs.writeFileSync(forkPath, `${JSON.stringify(boundary)}\n`);
+  return { parentPath, forkPath };
+}
+
+function compactPayload(source = 'compact', transcriptPath) {
+  const payload = { hook_event_name: 'SessionStart', source, session_id: SESSION_ID };
+  if (!transcriptPath) return payload;
+  return { ...payload, transcript_path: transcriptPath };
+}
+
+test('compact-pointer points a compacted session at its open note and resets the nudge level', async (t) => {
+  const sandbox = createSandbox(t);
+  const notePath = writeOpenNote(sandbox);
+  const { parentPath } = writeSessionTranscripts(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2}\n');
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout).hookSpecificOutput.additionalContext;
+  assert.match(context, /^\[session-handover\] This session was compacted after it wrote a handoff note/);
+  assert.ok(context.includes(`claim '${notePath}' --session '${SESSION_ID}'`), context);
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 0 });
+});
+
+test('compaction pointer carries the note date', async (t) => {
+  const sandbox = createSandbox(t);
+  writeOpenNote(sandbox);
+  const { parentPath } = writeSessionTranscripts(sandbox);
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout).hookSpecificOutput.additionalContext;
+  assert.ok(context.includes(`git log --since='${NOTE_CREATED_AT}'`), context);
+  assert.ok(context.includes('git status'), context);
+});
+
+test('compact-pointer adds nothing on a fresh start or when no note is open', async (t) => {
+  const sandbox = createSandbox(t);
+  writeOpenNote(sandbox);
+  const startup = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+  assert.equal(startup.code, 0, startup.stderr);
+  assert.equal(startup.stdout, '');
+
+  const empty = createSandbox(t);
+  const { parentPath } = writeSessionTranscripts(empty);
+  const compacted = await runAdapter(
+    empty, COMPACT_POINTER, compactPayload('compact', parentPath),
+  );
+  assert.equal(compacted.code, 0, compacted.stderr);
+  assert.equal(compacted.stdout, '');
+});
+
+test('compact-pointer leaves a note alone while its hop is prepared', async (t) => {
+  const sandbox = createSandbox(t);
+  const notePath = writeOpenNote(sandbox);
+  createPendingRecord(sandbox, '7001', SESSION_ID, notePath);
+  sandbox.env.SKILLED_LOOP_ID = '7001';
+  const { parentPath } = writeSessionTranscripts(sandbox);
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('compact-pointer stays silent for a fork that just compacted', async (t) => {
+  const sandbox = createSandbox(t);
+  writeOpenNote(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2}\n');
+  const { parentPath } = writeSessionTranscripts(sandbox, { forkBoundaryAgoMs: 300 });
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 2 });
+});
+
+test('compact-pointer still points the parent when a fork compacted long ago', async (t) => {
+  const sandbox = createSandbox(t);
+  const notePath = writeOpenNote(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2}\n');
+  const { parentPath } = writeSessionTranscripts(sandbox, { forkBoundaryAgoMs: 60000 });
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout).hookSpecificOutput.additionalContext;
+  assert.ok(context.includes(`claim '${notePath}' --session '${SESSION_ID}'`), context);
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 0 });
+});
+
+test('compact-pointer stays silent when the transcript path names a fork file', async (t) => {
+  const sandbox = createSandbox(t);
+  writeOpenNote(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2}\n');
+  const { forkPath } = writeSessionTranscripts(sandbox, { forkBoundaryAgoMs: 60000 });
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', forkPath));
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 2 });
+});
+
+test('compact-pointer skips and logs when the payload has no transcript path', async (t) => {
+  const sandbox = createSandbox(t);
+  writeOpenNote(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2}\n');
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload());
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 2 });
+  const log = fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'),
+    'utf8',
+  );
+  assert.match(log, /compact-pointer-skipped/);
+  assert.match(log, /reason=no-transcript/);
+});
+
+function writeRecord(sandbox, loopId, handoffPath, fields) {
+  const { recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  fs.writeFileSync(recordPath, JSON.stringify({ ...record, ...fields }));
+}
+
+test('compact-pointer tells a session whose hand-over was withdrawn not to claim the stale note', async (t) => {
+  const sandbox = createSandbox(t);
+  const notePath = writeOpenNote(sandbox);
+  writeRecord(sandbox, '7002', notePath, { status: 'disarmed', disarmReason: 'cancelled' });
+  sandbox.env.SKILLED_LOOP_ID = '7002';
+  const { parentPath } = writeSessionTranscripts(sandbox);
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout).hookSpecificOutput.additionalContext;
+  assert.ok(context.includes(notePath), context);
+  assert.match(context, /predates the work/);
+  assert.doesNotMatch(context, /claim '/);
+  assert.match(
+    fs.readFileSync(path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8'),
+    /compact-pointer-stale-note/,
+  );
+});
+
+test('compact-pointer keeps the claim seed for a disarmed record that is not a withdrawal of this note', async (t) => {
+  for (const [label, fields, handoff] of [
+    ['another reason', { status: 'disarmed', disarmReason: 'launch-failed' }, null],
+    ['another note', { status: 'disarmed', disarmReason: 'cancelled' }, 'other-note.md'],
+  ]) {
+    const sandbox = createSandbox(t);
+    const notePath = writeOpenNote(sandbox);
+    writeRecord(sandbox, '7003', handoff ? path.join(sandbox.repoRoot, handoff) : notePath, fields);
+    sandbox.env.SKILLED_LOOP_ID = '7003';
+    const { parentPath } = writeSessionTranscripts(sandbox);
+
+    const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+    assert.equal(result.code, 0, `${label}: ${result.stderr}`);
+    const context = JSON.parse(result.stdout).hookSpecificOutput.additionalContext;
+    assert.ok(context.includes(`claim '${notePath}' --session '${SESSION_ID}'`), `${label}: ${context}`);
+  }
+});
+
+test('compact-pointer clears a pending re-arm along with the nudge level', async (t) => {
+  const sandbox = createSandbox(t);
+  const { parentPath } = writeSessionTranscripts(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2,"rearm":{"floor":0.9}}\n');
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('compact', parentPath));
+  assert.equal(result.code, 0, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 0 });
+});
+
+// A receiver whose start prompt is the goal command cannot also be sent its claim as a prompt,
+// so the wrapper passes the claim it would have sent and the start hook delivers it as context.
+const START_SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop/027-goal-start';
+
+function claimSeedFor(sandbox) {
+  const notePath = path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-handover', 'handoffs', 'note.md',
+  );
+  const suffix = ` | Spec folder: ${START_SPEC_FOLDER}`
+    + ' (carried from the handoff; Gate 3 answered in the sending session)';
+  return {
+    notePath,
+    seed: `[session-handover] claim and continue handoff ${notePath}${suffix}`,
+  };
+}
+
+test('compact-pointer names the SessionStart event on a start claim with no hook event', async (t) => {
+  const sandbox = createSandbox(t);
+  const { notePath, seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+
+  // A start claim comes from the startup source alone, and the claim must not fall back
+  // to a tool event just because this payload carries no event name of its own.
+  const result = await runAdapter(sandbox, COMPACT_POINTER, {
+    source: 'startup',
+    session_id: SESSION_ID,
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout).hookSpecificOutput;
+  assert.equal(output.hookEventName, 'SessionStart');
+  assert.ok(
+    output.additionalContext.includes(`claim '${notePath}' --session '${SESSION_ID}'`),
+    output.additionalContext,
+  );
+});
+
+test('compact-pointer delivers the claim at the start of a goal-command receiver', async (t) => {
+  const sandbox = createSandbox(t);
+  const { notePath, seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout).hookSpecificOutput;
+  assert.equal(output.hookEventName, 'SessionStart');
+  assert.ok(output.additionalContext.includes(seed), 'the carried seed keeps the Gate 3 answer');
+  assert.ok(
+    output.additionalContext.includes(`claim '${notePath}' --session '${SESSION_ID}'`),
+    output.additionalContext,
+  );
+  assert.ok(output.additionalContext.includes(`/speckit:resume ${START_SPEC_FOLDER}`));
+  assert.match(fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8',
+  ), /goal-start-claim/);
+});
+
+test('compact-pointer delivers the start claim with the Claude enable switch off', async (t) => {
+  const sandbox = createSandbox(t);
+  const { notePath, seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+  sandbox.env.SYSTEM_SESSION_HANDOVER_CLAUDE_ENABLED = '0';
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.notEqual(result.stdout, '', 'the start claim must be emitted');
+  const output = JSON.parse(result.stdout).hookSpecificOutput;
+  assert.equal(output.hookEventName, 'SessionStart');
+  assert.ok(output.additionalContext.includes(seed), 'the carried seed keeps its spec folder');
+  assert.ok(
+    output.additionalContext.includes(`claim '${notePath}' --session '${SESSION_ID}'`),
+    output.additionalContext,
+  );
+  assert.ok(output.additionalContext.includes(`/speckit:resume ${START_SPEC_FOLDER}`));
+  assert.match(fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8',
+  ), /goal-start-claim/);
+});
+
+test('compact-pointer stays silent on a start claim under the master switch', async (t) => {
+  const sandbox = createSandbox(t);
+  const { seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+  sandbox.env.SYSTEM_HOOKS_DISABLED = '1';
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('compact-pointer adds no start claim without the seed, off the start event or for a bad seed', async (t) => {
+  const sandbox = createSandbox(t);
+  const { seed } = claimSeedFor(sandbox);
+
+  const without = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+  assert.equal(without.stdout, '');
+
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+  for (const source of ['resume', 'clear']) {
+    const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload(source));
+    assert.equal(result.code, 0, result.stderr);
+    assert.equal(result.stdout, '', source);
+  }
+
+  for (const badSeed of [
+    '[session-handover] claim and continue handoff relative/note.md',
+    '[session-handover] claim and continue handoff ',
+    'claim and continue handoff /tmp/note.md',
+    '',
+  ]) {
+    sandbox.env.SKILLED_LOOP_CLAIM_SEED = badSeed;
+    const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+    assert.equal(result.code, 0, result.stderr);
+    assert.equal(result.stdout, '', badSeed);
+  }
+});
+
+test('compact-pointer adds no start claim for a dispatched child, a switched-off goal or a disabled hook', async (t) => {
+  const sandbox = createSandbox(t);
+  const { seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+
+  const child = await runAdapter(
+    { ...sandbox, env: { ...sandbox.env, AI_SESSION_CHILD: '1' } },
+    COMPACT_POINTER,
+    compactPayload('startup'),
+  );
+  assert.equal(child.code, 0, child.stderr);
+  assert.equal(child.stdout, '');
+
+  const switchedOff = await runAdapter(
+    { ...sandbox, env: { ...sandbox.env, SESSION_HANDOVER_GOAL: '0' } },
+    COMPACT_POINTER,
+    compactPayload('startup'),
+  );
+  assert.equal(switchedOff.stdout, '');
+
+  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SESSION_HANDOVER_GOAL=off\n');
+  const flagsOff = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+  assert.equal(flagsOff.stdout, '');
+  fs.rmSync(sandbox.env.HOOK_FLAGS_CONFIG);
+
+  const disabled = await runAdapter(
+    { ...sandbox, env: { ...sandbox.env, SYSTEM_SESSION_HANDOVER_DISABLED: '1' } },
+    COMPACT_POINTER,
+    compactPayload('startup'),
+  );
+  assert.equal(disabled.stdout, '');
+
+  const control = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+  assert.notEqual(control.stdout, '', 'the same environment without the switches claims');
+});
+
+test('compact-pointer adds no start claim to a runtime started from the loop session shell', async (t) => {
+  const sandbox = createSandbox(t);
+  const { seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+  sandbox.env.SKILLED_LOOP_ID = String(process.pid);
+
+  const nested = await runNested({
+    argv: [COMPACT_POINTER],
+    env: sandbox.env,
+    cwd: sandbox.repoRoot,
+    input: JSON.stringify(compactPayload('startup')),
+  });
+  assert.equal(nested.code, 0, nested.stderr);
+  assert.equal(nested.stdout, '');
+
+  const own = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+  assert.notEqual(own.stdout, '', 'the loop runtime itself still receives its claim');
+});

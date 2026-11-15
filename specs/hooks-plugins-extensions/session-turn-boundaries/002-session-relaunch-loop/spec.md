@@ -1,8 +1,9 @@
 ---
-title: "Feature Specification: Session relaunch loop"
+title: "Feature Specification: Session handover loop"
 description: "This packet defines a phased relaunch loop for CLI sessions near the context limit. Auto-compaction settings stay unchanged and compaction remains the fallback when a hop fails."
 trigger_phrases:
   - "session relaunch loop"
+  - "session handover loop"
   - "auto-handoff near the context limit"
 importance_tier: "important"
 contextType: "implementation"
@@ -20,7 +21,7 @@ contextType: "implementation"
     - What needs done: the high-level outcome the phases work toward
 -->
 
-# Feature Specification: Session relaunch loop
+# Feature Specification: Session handover loop
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -146,6 +147,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 41 | 041-cross-runtime-handover-parity/ | A live-hop harness scores Claude Code, Codex, Pi and OpenCode on one task. Fixes let OpenCode 2 hop from its own tool shell, steer Pi's nudge in mid-run, keep Pi's claim instructions when other extensions extend the seed and print the closing step in the `claim` output | Complete |
 | 42 | 042-handover-gap-closure/ | Live probes measure five gaps phase 41 left. Pi and OpenCode refuse a question dialog while a hand-over is pending and tell the model when one is withdrawn, and Codex points a compacted session at its note. OpenCode 2 model carry has no launch route and is recorded | Complete |
 | 43 | 043-vibe-handover-flag-and-live-hop/ | Both flag readers learn the Vibe runtime, so `SYSTEM_SESSION_RELAUNCH_VIBE_ENABLED` decides, and a test keeps their runtime list in step with the relaunch loop's. One Vibe hop runs live through `skilled-loop vibe`, and the handoff command and continuity writer learn Vibe | Complete |
+| 44 | 044-in-session-handover-rename/ | Every live surface says session handover: the hook folder, the plugin files, the `SYSTEM_SESSION_HANDOVER_*` switches, the seed and the docs. The on and off switches also read the in-session spelling while the main one is blank, and both phrasings route to `/speckit:handoff`. Changelogs and spec folders keep the old name as history | Complete |
 
 ### Phase Transition Rules
 
@@ -200,6 +202,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 040-claude-default-on-release-notes | 041-cross-runtime-handover-parity | Phase 40 is Complete and pushed, so the live harness measures the shipped defaults | `validate.sh 040-claude-default-on-release-notes --strict` RESULT: PASSED |
 | 041-cross-runtime-handover-parity | 042-handover-gap-closure | Phase 41 is Complete and pushed, so the probes measure the shipped parity fixes | `validate.sh 041-cross-runtime-handover-parity --strict` RESULT: PASSED |
 | 042-handover-gap-closure | 043-vibe-handover-flag-and-live-hop | Phase 42 is Complete and pushed, so the Vibe run starts from the shipped gap fixes | `validate.sh 042-handover-gap-closure --strict` RESULT: PASSED |
+| 043-vibe-handover-flag-and-live-hop | 044-in-session-handover-rename | Phase 43 is Complete and pushed, so the rename starts from the Vibe fixes | `validate.sh 043-vibe-handover-flag-and-live-hop --strict` RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

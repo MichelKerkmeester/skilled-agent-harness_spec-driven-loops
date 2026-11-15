@@ -2338,18 +2338,21 @@
       "command": "/speckit:handoff",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+      "description": "Write the handoff note and prepare the session handover loop: the manual trigger on every runtime.",
       "ownedSignals": [
         "/speckit:handoff",
         "hand this off",
         "write a handoff note",
         "wrap up this session",
-        "running out of context"
+        "running out of context",
+        "session handover",
+        "in session handover",
+        "session-handover"
       ],
       "standalone": true,
       "mutating": "mutates",
       "source": ".skilled/skills/system-spec-kit/command-metadata.json",
-      "embeddingText": "I want to stop cleanly and hand this work to a fresh session through a written handoff note. hand this off. write a handoff note. wrap up this session. running out of context",
+      "embeddingText": "I want to stop cleanly and hand this work to a fresh session through a written handoff note. hand this off. write a handoff note. wrap up this session. running out of context. session handover. in session handover. session-handover",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2357,13 +2360,16 @@
           "order": 44,
           "id": "command-speckit-handoff",
           "name": "command-speckit-handoff",
-          "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+          "description": "Write the handoff note and prepare the session handover loop: the manual trigger on every runtime.",
           "keywords": [
             "/speckit:handoff",
             "hand this off",
             "write a handoff note",
             "wrap up this session",
-            "running out of context"
+            "running out of context",
+            "session handover",
+            "in session handover",
+            "session-handover"
           ],
           "domains": [
             "speckit",
@@ -2374,7 +2380,10 @@
             "hand this off",
             "write a handoff note",
             "wrap up this session",
-            "running out of context"
+            "running out of context",
+            "session handover",
+            "in session handover",
+            "session-handover"
           ]
         },
         "python": {
@@ -2382,7 +2391,7 @@
           "inventoryId": "command-speckit-handoff",
           "order": 54,
           "id": "command-speckit-handoff",
-          "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+          "description": "Write the handoff note and prepare the session handover loop: the manual trigger on every runtime.",
           "slashMarkers": [
             "/speckit:handoff",
             "speckit:handoff"

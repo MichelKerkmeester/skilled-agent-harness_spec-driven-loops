@@ -73,8 +73,8 @@ and findings belong here.
 
 ### Decision inputs
 
-Threshold: UNKNOWN
-Decision: UNKNOWN
+Threshold: none set in advance. The operator chose on 2026-11-15 to decide after seeing the numbers.
+Decision: GO, by the operator on 2026-11-15. On Claude Code (Sonnet, medium effort) 6 of 6 counted runs lost the detail: the receiver replied UNKNOWN, with `lookup_attempted=0` and `transcript_read=0` in every run, three with the lookup CLI on disk and three with it hidden. One uncounted run (`note_leaked=1`) answered correctly because its sender was told a follow-up question would come and copied the codes into the note. Limits: one model and effort level, one kind of detail, Claude Code only.
 
 The operator sets the threshold before phase 002. The decision line is written after the threshold is set and the rows are recorded.
 
@@ -97,6 +97,8 @@ The operator sets the threshold before phase 002. The decision line is written a
 | The compaction pair's expected code is unchanged | The same generator yields `K073 PDSNMMBW`, so a row means the same thing in both pairs. |
 
 ### Open questions
+
+
 
 Answered 2026-11-15: the operator sets no threshold in advance. Phase 001 records the raw results, and the operator decides go or no-go after seeing the numbers. Phase 002 does not start before that decision.
 Open question: How many runs per arm per runtime count toward that threshold? The same operator answer fixes the denominator, and one run per arm is the floor.

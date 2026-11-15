@@ -306,6 +306,8 @@ and findings belong here.
 | Full advisor suite, idle rerun | Met | at b5805efeccd with no worker running: 185 files, 2121 passed, 6 skipped, 0 failed (029 scratch/before.txt). Floors 24/44, 0/35, 1/44 and eval [160,51,21,5] unchanged |
 | Phase 029 direct-call kill switch | Complete | 0bc486b1637 plus follow-up 01788431d19: the direct call abstains whenever the hooks are off, 14 of 14 matrix lines match, suite 2139 passed 0 failed, review SHIP |
 | Merge onto origin/main e263e5481e7 | Approved | operator chose 2026-11-15 to merge and hand-apply main's four ai-council table edits to the branch's command-attach.ts (35 conflicts, one in runtime code), regenerate generated files with committed scripts, and record any floor move caused by the retired /deep:ai-council as main's change |
+| Branch on origin/main | Met | merge f582d21924f brings main e263e5481e7 in; 0 behind, unpushed; gates on the merged tree: advisor suite 2137 passed 0 failed, typed recall 24/44, false offers 0/35, switch matrix 14/14; scorer eval holdout 49 is main's own recorded baseline |
+| Branch on origin/main, correction | Partly met | the row above is wrong to say 0 behind: f582d21924f merges main as of e263e5481e7, but other sessions pushed 16 more commits to origin/main (now 544a4092244) while the merge ran, including the session relaunch to in-session handover rename; a catch-up merge is needed before the pull request |
 
 ### Deviations and findings
 

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6824,
-    "ok": 19142,
+    "ok": 19151,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27593,
+  "documentsScanned": 27602,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "23af6dc5db79c16b054a65e12530c77ee16126932be075948b477d3d3739caaa",
+  "manifestHash": "28f9616023e70a65423f380e58ab69ad2c2fecb8b806728f4f9c6b4b671b9c69",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44071,
+      "ok": 44089,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -6932,7 +6932,7 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-handover.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -52665,6 +52665,14 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/session-handover/opencode/session-handover.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-handover/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/hooks/session-lifecycle/claude/compact-inject.js",
       "reason": "symlink not followed"
     },
@@ -52790,14 +52798,6 @@
     },
     {
       "path": ".skilled/hooks/session-lifecycle/vibe/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/hooks/session-relaunch/opencode/session-relaunch.js",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/session-relaunch/tests/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -56482,6 +56482,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename/scratch",
       "reason": "excluded directory"
     },
     {

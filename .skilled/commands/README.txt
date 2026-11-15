@@ -27,7 +27,7 @@ Commands are organized into six groups:
 | **doctor** | `commands/doctor/` | 17 | Setup overview, problem-to-command routing, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, CI workflow switches, skill format check, git hook and standards, MCP, release-update, project-repo symlink check, link and unlink, ordered install guide, vendored-tree overlay status, apply and re-pin, root instruction-file check and embed, and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
-| **speckit** | `commands/speckit/` | 8 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search), the manual trigger for the session relaunch loop (handoff) and a single-round AI council (ai-council) |
+| **speckit** | `commands/speckit/` | 8 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search), the manual trigger for the session handover loop (handoff) and a single-round AI council (ai-council) |
 
 One OpenCode-only command lives outside this tree: `/goal-opencode` manages the passive session goal via the `opencode-goal` plugin, so it is authored in `.opencode/commands/goal-opencode.md`, beside that directory's links to these groups. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
 
@@ -91,7 +91,7 @@ command/
 └── speckit/                  # Spec folder workflow, continuity write and retrieval commands
     ├── ai-council.md         # Single-round AI council on a planning question
     ├── complete.md           # Full end-to-end workflow
-    ├── handoff.md            # Write the handoff note and prepare the session relaunch loop
+    ├── handoff.md            # Write the handoff note and prepare the session handover loop
     ├── implement.md          # Execute pre-planned work
     ├── plan.md               # Spec through plan only
     ├── resume.md             # Resume existing spec work
@@ -185,7 +185,7 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 |---------|------------|---------|
 | AI Council | `/speckit:ai-council <question-or-task> [:auto\|:confirm] [--spec-folder=PATH]` | Bind the spec folder, dispatch `@ai-council` once and report its plan |
 | Complete | `/speckit:complete <description>` | Full end-to-end workflow (13 steps) |
-| Handoff | `/speckit:handoff (no arguments)` | Write the handoff note and prepare the session relaunch loop |
+| Handoff | `/speckit:handoff (no arguments)` | Write the handoff note and prepare the session handover loop |
 | Implement | `/speckit:implement <spec-folder>` | Execute pre-planned work (requires plan.md) |
 | Plan | `/speckit:plan <description> [--intake-only] [:with-phases]` | Planning workflow (spec through plan only). `--intake-only` publishes just `spec.md`, `description.json` and `graph-metadata.json`. `:with-phases` adds phase decomposition |
 | Resume | `/speckit:resume [spec-folder]` | Resume work on existing spec folder |

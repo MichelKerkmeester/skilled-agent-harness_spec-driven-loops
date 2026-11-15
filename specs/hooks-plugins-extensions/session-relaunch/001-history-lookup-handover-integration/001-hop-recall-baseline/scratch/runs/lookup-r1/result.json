@@ -1,0 +1,19 @@
+{
+  "arm": "lookup",
+  "label": "r1",
+  "runtime": "claude-code",
+  "asked": 1,
+  "trustDialogs": 0,
+  "cliReappeared": 0,
+  "sender": "103310cb-7374-43b1-b833-41e92f556d0d",
+  "receiver": "a149d1eb-7c83-49ae-a2cb-0e0d918e7c96",
+  "note": "20261115T081014Z-103310cb-7374-43b1-b833-41e92f556d0d.md",
+  "note_status": "claimed",
+  "note_leaked": 1,
+  "sender_saw_code": 1,
+  "answer": "correct",
+  "lookup_attempted": 0,
+  "native_recall": 0,
+  "transcript_read": 0,
+  "reply": "PDSNMMBW"
+}
