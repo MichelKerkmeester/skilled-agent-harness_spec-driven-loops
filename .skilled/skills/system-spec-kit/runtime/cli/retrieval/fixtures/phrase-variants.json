@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a2b7e0121de89cff4165115847418a27eaaf8ad311e5aa20781cf72da9be2897",
+  "manifestHash": "7b48caedaa8e2c2ff41c60cba2f4255bca9e6dec561a7dc160c092f508e1b86d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11481,6 +11481,18 @@
     ],
     "alignment mode retired six modes": [
       "alignment mode retired six modes"
+    ],
+    "alignment open findings": [
+      "alignment open findings"
+    ],
+    "alignment open findings implementation summary": [
+      "alignment open findings implementation summary"
+    ],
+    "alignment open findings plan": [
+      "alignment open findings plan"
+    ],
+    "alignment open findings tasks": [
+      "alignment open findings tasks"
     ],
     "alignment phase status": [
       "alignment phase status"
@@ -38149,6 +38161,9 @@
     ],
     "deep review fail release blocking": [
       "deep-review FAIL release-blocking"
+    ],
+    "deep review failed required gate verdict docs": [
+      "deep review failed required gate verdict docs"
     ],
     "deep review fan out dashboard": [
       "deep review fan-out dashboard"
@@ -72480,6 +72495,9 @@
     "mistral vibe research angles": [
       "mistral vibe research angles"
     ],
+    "mistral vibe session handover docs": [
+      "mistral vibe session handover docs"
+    ],
     "mistral zai glm 5 3 flash route": [
       "mistral zai glm 5 3 flash route"
     ],
@@ -82636,6 +82654,9 @@
     ],
     "phase 24 typed command ambiguity": [
       "phase 24 typed command ambiguity"
+    ],
+    "phase 25 alignment open findings": [
+      "phase 25 alignment open findings"
     ],
     "phase 25 cli opencode docs": [
       "phase 25 cli opencode docs"

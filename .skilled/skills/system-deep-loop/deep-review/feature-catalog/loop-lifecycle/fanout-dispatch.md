@@ -7,7 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "strongest-restriction verdict"
   - "multi-executor review"
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # Fan-out loop dispatch
@@ -52,7 +52,7 @@ Fully shipped in `deep-review.yaml`. Parity gate:
 zero behavioral change for single-executor mode. Full vitest suite (197/197) confirms no
 single-executor regression. Command surface: `--executor` (repeatable), `--executors <json>`,
 `--concurrency N`. Review fan-out verdict note: strongest-restriction means any lineage
-active P0 → merged FAIL.
+active P0, or any lineage required gate still failing at its stop → merged FAIL.
 
 An optional `--review-focus "TEXT"` (or a pre-bound `review_focus` answer) carries the
 operator's focus to every lineage. `step_fanout_spawn_cli` passes it to `fanout-run.cjs`,

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The open v4.0.2.1 release notes never mention the executor row, the failure rows reaching the ledger, the loop save's `--full-auto` or the `executormissing` gate",
     "created_at": "2026-11-15T11:44:14Z",
-    "last_save_at": "2026-11-15T11:49:34.531Z",
+    "last_save_at": "2026-11-15T13:43:02.669Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3ee733daae50535c1d743a185b3fb06c85d046855855c161b4f7cd6987eaedf",
+    "source_fingerprint": "sha256:30fdd468c4460d5275d0b2ce9fcf470ece1cea4211c3689f351a2f5359b5c161",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da49c6a8d7993792740931efbf24de4668208f28cfe6677b6752e2dc90aa0e06",
+      "spec.md": "ecbd09ad3e07357e07cec1ac173f316d3a6e8107311b825aedc21b1c5f76ad21",
       "plan.md": "c09424cc887b2642a57b5029b600014b7390e0f5bce82cccf1d223de88cbdf0a",
       "tasks.md": "92eec9c8be1d53c95349bc8f831482fed33d8292bbc7dd1adcffd75ea15fccbe",
-      "implementation-summary.md": "4c4d323d36f6b7fa493cd427a8524c3eecbc62307969624ac9378e179ca2194f"
+      "implementation-summary.md": "7736b2b78320b26554f3e95d964318ebfc52d6b82cc204b26cdfdc227d04e4dd"
     },
     "last_active_at": null
   }
