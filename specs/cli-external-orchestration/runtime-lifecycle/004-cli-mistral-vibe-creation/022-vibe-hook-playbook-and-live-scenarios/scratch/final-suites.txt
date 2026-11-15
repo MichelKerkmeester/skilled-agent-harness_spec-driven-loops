@@ -1,0 +1,97 @@
+$ node --test .vibe/plugins/repo-guards/tests/ .skilled/hooks/session-lifecycle/vibe/ .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs
+PASS conversation runner suite
+✔ a matched shell command returns the staleness warning (0.312458ms)
+✔ an unmatched command and malformed input stay silent (36.684541ms)
+ℹ tests 42
+ℹ pass 42
+ℹ fail 0
+exit=0
+
+$ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+✔ isolated-vibe-home resolves a relative home from the folder the run starts in (0.098542ms)
+✔ every runtime dispatch shape resolves to its skill (mutation-proof) (0.137084ms)
+✔ a dispatch is resolved from the command, not from text that merely contains one (0.598041ms)
+ℹ tests 65
+ℹ pass 65
+ℹ fail 0
+exit=0
+
+$ node --test .skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-vibe.test.mjs .skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-vibe.test.mjs .skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-vibe.test.mjs
+✔ a .DS_Store in the skills mirror is not drift (1220.619833ms)
+ℹ tests 15
+ℹ pass 15
+ℹ fail 0
+exit=0
+
+$ node --test .skilled/hooks/shared/tests/session-readers/
+✔ an older session resolves by header id and matching cwd (6.815583ms)
+✔ the current session resolves from the live branch without a disk read (0.265833ms)
+✔ a mismatched tool result is rejected (0.050625ms)
+ℹ tests 101
+ℹ pass 101
+ℹ fail 0
+exit=0
+
+$ node --test .skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs
+ℹ tests 6
+ℹ pass 6
+ℹ fail 0
+exit=0
+
+$ node --test .skilled/bin/tests/compiled-route-manifest.test.cjs
+  ✔ failed finalize and revert verification retain both recoverable roots (993.034875ms)
+  ✔ closure fingerprints reject code-byte drift in the retained rollback (556.779834ms)
+  ✔ keeps fixed routing maps unchanged and reports only authorized pre-publication drift (37.451541ms)
+ℹ tests 48
+ℹ pass 48
+ℹ fail 0
+exit=0
+
+$ python3 -m pytest -q .skilled/skills/sk-doc/sk-create-readme/scripts/tests/test_readme_references.py
+11 passed in 0.03s
+exit=0
+
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook
+PASS package=cli-external-orchestration/cli-mistral-vibe tier=FAIL_CLOSED scenarios=51 categories=10 operator=51 routing_gold_excluded=0 violations=0 warnings=0
+exit=0
+
+$ node .skilled/bin/check-agent-mirror-sync.cjs --all
+SAME FILE  design [opencode] .opencode/agents/design.md resolves to the canonical file
+SAME FILE  markdown [opencode] .opencode/agents/markdown.md resolves to the canonical file
+SAME FILE  orchestrate [opencode] .opencode/agents/orchestrate.md resolves to the canonical file
+SAME FILE  prompt-improver [opencode] .opencode/agents/prompt-improver.md resolves to the canonical file
+SAME FILE  review [opencode] .opencode/agents/review.md resolves to the canonical file
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs --check
+[vibe-agent-sync] PASS: 11 agent profiles are in sync.
+exit=0
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs --check
+[vibe-skill-sync] PASS: 56 skill links are in sync.
+exit=0
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs --check
+[vibe-prompt-sync] PASS: 45 prompt stubs are in sync.
+exit=0
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+exit=0
+
+$ node .skilled/bin/compiled-route-sync.cjs --check
+  014-runtime-engine/lib/resolve.cjs
+all 7 hubs resolve
+all 55 served copies match their authored files
+exit=0
+
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-external-orchestration
+PASS: 12a-router-contract: cli-external-orchestration/cli-pi: ROUTER.md conforms to the two-state contract (active)
+PASS: 12b-routing-shape: hub and 8 packet(s) follow the routing canon (0 known debt)
+PASS: 13a-version: all JSON routing files carry the SKILL.md version 2.1.0.0
+PASS: 13b-version: SKILL.md version 2.1.0.0 matches the newest changelog entry
+PASS: 13d-packet-version: 8 mode packet(s) match their newest changelog entry
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+exit=0
+
