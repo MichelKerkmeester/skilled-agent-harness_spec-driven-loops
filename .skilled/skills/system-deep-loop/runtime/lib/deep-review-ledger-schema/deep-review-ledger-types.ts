@@ -383,6 +383,13 @@ export type BlockedStopRecordedData = JsonObject & {
   readonly recoveryHint?: string;
 };
 
+export type TerminalGatesRecordedData = JsonObject & {
+  readonly stopReason: 'converged' | 'maxIterationsReached';
+  readonly gateResults: GateResult[];
+  readonly failedRequiredGateIds: string[];
+  readonly appendPosition: Uint32;
+};
+
 export interface PauseRecordedData extends JsonObject {
   readonly normalizedStopReason: string;
   readonly sentinelCause: string;
@@ -573,6 +580,7 @@ export const DeepReviewEventStems = Object.freeze([
   'deep_review.convergence_evaluated',
   'deep_review.graph_convergence_evaluated',
   'deep_review.blocked_stop_recorded',
+  'deep_review.terminal_gates_recorded',
   'deep_review.pause_recorded',
   'deep_review.recovery_started',
   'deep_review.synthesis_started',
@@ -620,6 +628,7 @@ export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
   'deep_review.convergence_evaluated': { status: 'reserved', reason: 'No writer emits it today: convergence is recomputed by the reducer from flat rows. A convergence step would speak it once the decision is appended rather than inferred.' },
   'deep_review.graph_convergence_evaluated': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.blocked_stop_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.terminal_gates_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.pause_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.recovery_started': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.synthesis_started': { status: 'reserved', reason: 'No writer emits it today: synthesis is a workflow phase. The synthesis step would speak it once the report phase opens with its finalized event range.' },
@@ -656,6 +665,7 @@ export const DeepReviewWireEventTypes = Object.freeze({
   'deep_review.convergence_evaluated': 'deep-review.ledger.convergence-evaluated',
   'deep_review.graph_convergence_evaluated': 'deep-review.ledger.graph-convergence-evaluated',
   'deep_review.blocked_stop_recorded': 'deep-review.ledger.blocked-stop-recorded',
+  'deep_review.terminal_gates_recorded': 'deep-review.ledger.terminal-gates-recorded',
   'deep_review.pause_recorded': 'deep-review.ledger.pause-recorded',
   'deep_review.recovery_started': 'deep-review.ledger.recovery-started',
   'deep_review.synthesis_started': 'deep-review.ledger.synthesis-started',
@@ -695,6 +705,7 @@ export interface DeepReviewPayloadMap {
   readonly 'deep_review.convergence_evaluated': ConvergenceEvaluatedData;
   readonly 'deep_review.graph_convergence_evaluated': GraphConvergenceEvaluatedData;
   readonly 'deep_review.blocked_stop_recorded': BlockedStopRecordedData;
+  readonly 'deep_review.terminal_gates_recorded': TerminalGatesRecordedData;
   readonly 'deep_review.pause_recorded': PauseRecordedData;
   readonly 'deep_review.recovery_started': RecoveryStartedData;
   readonly 'deep_review.synthesis_started': SynthesisStartedData;
@@ -731,6 +742,7 @@ export interface DeepReviewScopeMap {
   readonly 'deep_review.convergence_evaluated': DeepReviewIterationScope;
   readonly 'deep_review.graph_convergence_evaluated': DeepReviewIterationScope;
   readonly 'deep_review.blocked_stop_recorded': DeepReviewIterationScope;
+  readonly 'deep_review.terminal_gates_recorded': DeepReviewIterationScope;
   readonly 'deep_review.pause_recorded': DeepReviewIterationScope;
   readonly 'deep_review.recovery_started': DeepReviewDimensionScope;
   readonly 'deep_review.synthesis_started': DeepReviewReportScope;

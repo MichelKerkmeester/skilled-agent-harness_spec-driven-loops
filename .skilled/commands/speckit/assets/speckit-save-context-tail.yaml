@@ -14,6 +14,6 @@ save_context_core:
   post_save_write:
     invocation:
       command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto --session-id <id> --runtime <slug> {spec_path}"
-      note: "Compose the save JSON and pipe it to this call on stdin. <id> is the calling session id, and a runtime with no session-id variable runs uuidgen once and reuses that value. <slug> is one of claude, codex, opencode, pi, devin, dsh or cursor. Only a --full-auto run writes the continuity fields."
+      note: "Compose the save JSON and pipe it to this call on stdin. <id> is the calling session id, and a runtime with no session-id variable runs uuidgen once and reuses that value. <slug> is one of claude, codex, opencode, pi, devin, dsh, cursor or vibe. Only a --full-auto run writes the continuity fields."
     critical_note: "The writer is the whole write, and it refreshes description.json and graph-metadata.json itself. There is no indexing handoff, no daemon to wait for and no launcher file to check. One read-only check follows it: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh {spec_path} --strict."
     after: "Immediately after the canonical spec document is refreshed on disk"

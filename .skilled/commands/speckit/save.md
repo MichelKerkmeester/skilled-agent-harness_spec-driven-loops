@@ -20,7 +20,7 @@ Outputs:
   That script is the whole write.
   The JSON can carry the packet's continuity (`recent_action`, `next_safe_action`, `blockers`, `key_files`, `completion_pct`, `open_questions`, `answered_questions`), which only a `--full-auto` run writes.
   The field rules are in `save-workflow.md` under Continuity Fields.
-  `<id>` is the calling session id. `<slug>` is one of the `--runtime` values of `generate-context.js`, its `KNOWN_RUNTIMES` list: claude, codex, opencode, pi, devin, dsh or cursor. With both present, the writer mints the writer-owned `_memory.continuity.session_ref` pointer from them, the repository root and the save time.
+  `<id>` is the calling session id. `<slug>` is one of the `--runtime` values of `generate-context.js`, its `KNOWN_RUNTIMES` list: claude, codex, opencode, pi, devin, dsh, cursor or vibe. With both present, the writer mints the writer-owned `_memory.continuity.session_ref` pointer from them, the repository root and the save time.
   Never send `session_ref` in the JSON: the writer ignores a payload copy and names it, and a known runtime with a gated reader (cursor) omits the pointer while the save continues.
   The `session_ref` field rules are in `save-workflow.md` under Session Reference.
   The JSON can also carry `operatorDecisions`, which a `--full-auto` run writes into the target packet's `decision-record.md`, creating that file when it is absent. The field rules are in `save-workflow.md` under Operator Decisions.

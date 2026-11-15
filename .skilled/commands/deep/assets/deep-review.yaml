@@ -1131,6 +1131,18 @@ workflow:
             on_C: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
           note: "The failure count is rebuilt from the state log, so this gate asks again after each further failed iteration and stops asking once an iteration completes."
         if_stop:
+          record_terminal_gates:
+            when: "Run once, immediately before control leaves this if_stop for phase_synthesis or gate_pre_synthesis: in if_existing_terminal_path, in the divergent pivot's if_failed and on_error branches, and in the confirm-mode manualStop exit (on_C) that skips to gate_pre_synthesis. Never run it when the pivot continues the loop."
+            evaluate: |
+              evidence: pass when every active P0/P1 finding has concrete file:line evidence and none relies only on inference (the evidenceDensityGate rule).
+              scope: pass when every active finding's file lies inside the review target.
+              coverage: pass when configured dimensions and required traceability coverage are complete and coverage_age >= 1 (the dimensionCoverageGate rule).
+              Evaluate all three fresh at this stop, even when an earlier blocked stop recorded failures.
+              terminal_gate_results_json = JSON array of exactly three rows {"gateId":"evidence"|"scope"|"coverage","status":"pass"|"fail","reasonCode":"<short code such as all-findings-cited or missing-dimensions>","evidenceDigest":"<64 lowercase hex sha256 of the evidence summary for that gate>"}
+              failed_required_gate_ids = JSON array of the gateIds whose status is fail, in the order evidence, scope, coverage; [] when all pass
+              terminal_stop_reason = "maxIterationsReached" when stopReason is maxIterationsReached, else "converged"
+            append_jsonl: '{"stem":"deep_review.terminal_gates_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"stopReason":"{terminal_stop_reason}","gateResults":{terminal_gate_results_json},"failedRequiredGateIds":{failed_required_gate_ids},"appendPosition":{current_iteration}}}'
+            log: "Terminal gates recorded at stop {terminal_stop_reason}. Failed required gates: {failed_required_gate_ids}"
           branch_on: "convergence_mode == 'divergent' AND stop_decision.reasonDetail == 'all_dimensions_clean'"
           if_divergent_eligible:
             eligibility_contract:
@@ -1280,13 +1292,17 @@ workflow:
                     on_C:
                       bookkeeping_log: '{"type":"event","event":"manualStop","mode":"review","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
                       set: { reason: "manualStop" }
+                      run_first: record_terminal_gates
                       skip_to: gate_pre_synthesis
+                  run_first: record_terminal_gates
                   log: "Divergent review pivot {pivot_result.pivotId} failed closed ({pivot_result.failureReason}); proceeding to synthesis."
                   skip_to: phase_synthesis
             on_error:
+              run_first: record_terminal_gates
               log: "Divergent review pivot integration error; failing closed to the existing synthesis path."
               skip_to: phase_synthesis
           if_existing_terminal_path:
+            run_first: record_terminal_gates
             log: "Loop stopping. Reason: {reason}"
             skip_to: phase_synthesis
         if_blocked:
@@ -1577,6 +1593,7 @@ workflow:
           dispatchReceipt:
             receiptDir: "{state_paths.packet_dir}/dispatch-receipts"
             dispatchId: "review-i{current_iteration}-g{generation}"
+          sessionId: "{session_id}"
           assert_canonical_type: "iteration"
           assert_delta_file_exists: "{state_paths.delta_pattern}"
           assert_delta_file_has_iteration_record: true
@@ -1808,6 +1825,7 @@ workflow:
           p0_count: "active_p0"
           p1_count: "active_p1"
           p2_count: "active_p2"
+          failed_required_gate_ids: "failed_required_gate_ids"
 
       step_hydrate_summary_metrics:
         action: "Hydrate summary metrics before synthesis"
@@ -1825,6 +1843,7 @@ workflow:
           - p0_count: "Total P0 findings across all iterations (deduped)"
           - p1_count: "Total P1 findings across all iterations (deduped)"
           - p2_count: "Total P2 findings across all iterations (deduped)"
+          - failed_required_gate_ids: "When step_fanout_merge bound it, keep the merged value. Otherwise take failedRequiredGateIds from the last line of {state_paths.state_log} with type === 'event' and event === 'terminal_gates', else []. Read the state log, not the registry: the reducer last ran before the stop wrote that row."
           - dimensions_covered: "List of reviewed dimensions"
           - dimension_coverage: "covered / total"
           - ac_coverage_signal: "For spec-folder targets only: if level is 2+ and acceptance-criteria.md exists and implementation-summary.md is in-progress or later, surface the AC_COVERAGE advisory status; otherwise mark exempt."
@@ -1834,12 +1853,12 @@ workflow:
       # H-1 verdict derivation: parse findings JSONL, map highest severity to verdict
       # - PASS: no P0 or P1 findings (P2-only or clean)
       # - CONDITIONAL: any P1 findings (no P0)
-      # - FAIL: any P0 findings
+      # - FAIL: any P0 finding, or a required quality gate (evidence, scope, coverage) still failing at the terminal stop
       # Final line of iteration-NNN.md MUST be exactly: "Review verdict: PASS" / "Review verdict: CONDITIONAL" / "Review verdict: FAIL"
       step_derive_verdict:
         action: "Derive review verdict from accumulated findings"
         algorithm: |
-          if p0_count > 0:
+          if p0_count > 0 or len(failed_required_gate_ids) > 0:
             verdict = "FAIL"
           elif p1_count > 0:
             verdict = "CONDITIONAL"

@@ -38,6 +38,11 @@ _memory:
 | Q002 | Merge worktree 390's three commits into main and push. | Not stated. | None | merge 150c87ad62 and 889e35599c, origin/main c1dbb1bcc4 |
 | Q003 | Move tag v4.0.2.1 to the merged main and republish its GitHub release body. | Not stated. | None | tag v4.0.2.1 at c1dbb1bcc4, implementation-summary.md Known Limitations |
 | Q004 | Add no goal binding row for phase 040 to the 002 parent goal. | Not stated. | None | ../goal.md |
+| Q005 | Leave the other session's uncommitted loop-architecture graph-metadata.json in the primary checkout untouched. | Not stated. | None | The primary checkout; this session never stages or edits another session's files |
+| Q006 | Merge none of the 18 other worktrees; each stays with its own session. | Not stated. | None | Worktrees 217 to 399 outside 392 |
+| Q007 | Fix the Vibe per-runtime flag gap first, then run the live Vibe hop. | Not stated. | None | Phase 043-vibe-handover-flag-and-live-hop, REQ-001 and REQ-004 |
+| Q008 | Record this session's unrecorded operator answers in phase 040's decision record. | Not stated. | None | This decision-record.md |
+| Q009 | Merge and push phase 043 and the decision save to main once the checks pass. | Not stated. | None | Phase 043 tasks T007 and T008, the merge and push of worktree 400 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -124,6 +129,103 @@ Add with trims
 Answer:
 ```text
 No row (Recommended)
+```
+
+### Q005
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_017dymmrLw9kmopMCTQws4Jk:1 -->
+
+Question:
+```text
+The primary checkout has another session's uncommitted file, specs/system-deep-loop/loop-architecture/graph-metadata.json. It names a child folder 004-workflow-logic-hardening that is not on disk, and it was left uncommitted on purpose before. What should happen to it?
+```
+
+Options:
+```text
+Leave it (Recommended)
+Commit and push it
+Discard it
+```
+
+Answer:
+```text
+Leave it (Recommended)
+```
+
+### Q006
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_017dymmrLw9kmopMCTQws4Jk:2 -->
+
+Question:
+```text
+Should any of the 18 other worktrees be merged to main? Each one belongs to another session or packet. I would check each branch's state and ask again before merging or pushing anything.
+```
+
+Options:
+```text
+None (Recommended)
+Survey them first
+```
+
+Answer:
+```text
+None (Recommended)
+```
+
+### Q007
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01SRCnTaZJCbvq2ywGD4P2si:0 -->
+
+Question:
+```text
+Mistral Vibe's interactive handover hop has never run live (phase 019 records it as blocked because its worker had no terminal). The Vibe CLI is installed and the Mistral key is set. What next?
+```
+
+Options:
+```text
+Live-test the hop (Recommended)
+Fix the flag gap first
+Analysis only
+```
+
+Answer:
+```text
+Fix the flag gap first
+```
+
+### Q008
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01SRCnTaZJCbvq2ywGD4P2si:1 -->
+
+Question:
+```text
+11 of your answers from this session are not in a decision record yet. Record them now?
+```
+
+Options:
+```text
+Save to phase 040 (Recommended)
+Skip
+```
+
+Answer:
+```text
+Save to phase 040 (Recommended)
+```
+
+### Q009
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01WyuGSZNJeGZwAEycBRz5tc:2 -->
+
+Question:
+```text
+Once the fix, the live hop and the decision save are done and the checks pass, should I merge and push to main?
+```
+
+Options:
+```text
+Merge and push (Recommended)
+Ask me again
+```
+
+Answer:
+```text
+Merge and push (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

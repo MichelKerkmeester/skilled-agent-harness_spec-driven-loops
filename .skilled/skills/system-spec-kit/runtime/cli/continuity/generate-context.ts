@@ -47,7 +47,7 @@ interface ParsedCliArguments {
 
 // cursor is accepted as a known runtime but cannot mint a locator while its
 // compaction trigger stays unconfirmed, so the writer omits the pointer for it.
-const KNOWN_RUNTIMES = ['claude', 'codex', 'opencode', 'pi', 'devin', 'dsh', 'cursor'] as const;
+const KNOWN_RUNTIMES = ['claude', 'codex', 'opencode', 'pi', 'devin', 'dsh', 'cursor', 'vibe'] as const;
 
 // ───────────────────────────────────────────────────────────────────
 // 2. INTERFACES
@@ -89,7 +89,7 @@ Options:
   --session-id <id>    Explicit session ID to attach to the saved memory metadata
                        and to the writer-owned continuity session_ref pointer
   --runtime <slug>     Runtime that produced the session: claude, codex, opencode,
-                       pi, devin, dsh or cursor. Given with --session-id on a
+                       pi, devin, dsh, cursor or vibe. Given with --session-id on a
                        --full-auto save, the writer mints session_ref; cursor is
                        accepted but never mints one
   --planner-mode <mode>  plan-only (default), hybrid or full-auto. Every mode refreshes

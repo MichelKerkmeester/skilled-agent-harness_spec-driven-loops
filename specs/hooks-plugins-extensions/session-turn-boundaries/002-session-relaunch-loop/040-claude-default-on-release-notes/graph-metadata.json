@@ -208,7 +208,7 @@
     ],
     "causal_summary": "`hookFlagDecision` in `.skilled/hooks/shared/hook-flags.cjs` returns off for the `session-relaunch` concern on every runtime when no enable switch holds a value, and `hookenabled` in `hook-flags.sh` copies that rule",
     "created_at": "2026-11-14T19:45:31Z",
-    "last_save_at": "2026-11-15T06:27:14.065Z",
+    "last_save_at": "2026-11-15T07:18:44.651Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +220,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f661748e5eff3dbefac272b72e8fe652a4bbe79ba5082713fefb0823d6d83322",
+    "source_fingerprint": "sha256:76bbf719a4eec08de67a38b3121eb1a263770c30e076ac47fa803a7eaf2f3fe8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "13edee464a7ec6d9f5c0ca004141503cf913cb492b1cb73a96f74275e4d80ddb",
       "plan.md": "2c50e2c644960234e86eb59dd21abdfdc6ee922add90f2d9252b80d424b12a12",
       "tasks.md": "61a312faa842e4e57452808ddb22dfd54e13bf2aef54de18cdad6f6532982707",
-      "decision-record.md": "6477f3843fd23059276055416b12805a50efbb3fdf66e3149832043784c70131",
-      "implementation-summary.md": "1a4697ffa602f21fa891d753ab42dd8a3206f5bb2361f45fadeb1ee28ddcf6e2"
+      "decision-record.md": "58141e4b3b30daed4635e95e8e912104ae6d558183dbd4c0370209340970b856",
+      "implementation-summary.md": "22dfcf7412ff5fd013ed918edbac0a53ad6ce539c994c3667a039e95e891de9c"
     },
     "last_active_at": null
   }

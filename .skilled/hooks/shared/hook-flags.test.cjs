@@ -578,3 +578,32 @@ test("a per-runtime enable flag answers before the global one in every reader", 
     fs.rmSync(dir, { recursive: true, force: true });
   }
 });
+
+// A runtime the relaunch loop accepts but the flag readers do not know gets the
+// global-only answer, so its own enable switch is ignored without a word.
+test("every runtime the relaunch loop accepts has its own enable switch in both readers", () => {
+  const { spawnSync } = require("node:child_process");
+  const { RUNTIMES, hookFlagDecision } = require("./hook-flags.cjs");
+  const relaunch = require("../session-relaunch/lib/relaunch-core.cjs");
+  assert.deepEqual([...RUNTIMES].sort(), [...relaunch.RUNTIMES].sort());
+
+  const env = { ...process.env };
+  for (const name of Object.keys(env)) {
+    if (/^SYSTEM_SESSION_RELAUNCH_/.test(name) || name === MASTER_FLAG || name === "MK_HOOKS_DISABLED") delete env[name];
+  }
+  const script = '. "$1"; hook_enabled session-relaunch "$2" && echo on || echo off';
+  const shell = (runtime, values) => spawnSync(
+    "bash",
+    ["-c", script, "probe", path.join(__dirname, "hook-flags.sh"), runtime],
+    { env: { ...env, HOOK_FLAGS_CONFIG: path.join(os.tmpdir(), "no-such-hook-flags.env"), ...values }, encoding: "utf8" },
+  ).stdout.trim();
+  for (const runtime of relaunch.RUNTIMES) {
+    const key = `SYSTEM_SESSION_RELAUNCH_${runtime.toUpperCase()}_ENABLED`;
+    const on = { [key]: "1" };
+    const off = { SYSTEM_SESSION_RELAUNCH_ENABLED: "1", [key]: "0" };
+    assert.deepEqual(hookFlagDecision("session-relaunch", on, {}, { runtime }), { enabled: true, key, reason: "runtime" }, runtime);
+    assert.deepEqual(hookFlagDecision("session-relaunch", off, {}, { runtime }), { enabled: false, key, reason: "runtime" }, runtime);
+    assert.equal(shell(runtime, on), "on", `${runtime}: hook-flags.sh`);
+    assert.equal(shell(runtime, off), "off", `${runtime}: hook-flags.sh`);
+  }
+});

@@ -10,8 +10,7 @@ import { existsSync, readFileSync, renameSync, rmSync, statSync, truncateSync, w
 import { join, resolve } from 'node:path';
 
 import { validateEvidenceContract } from './evidence-contract.js';
-import { appendJsonlRecord } from './jsonl-repair.js';
-import { deriveReceiptKeyForDispatch } from './executor-audit.js';
+import { appendFailureRow, deriveReceiptKeyForDispatch, ledgerModeFor } from './executor-audit.js';
 import { canonicalReceiptJson, verifyReceipt } from './receipt-crypto.js';
 import type { ExecutorKind } from './executor-config.js';
 
@@ -56,6 +55,9 @@ export type PostDispatchValidateInput = {
   // validateDispatchReceipt). Dispatches that did not opt into receipts omit
   // it and keep legacy behavior.
   dispatchReceipt?: DispatchReceiptExpectation;
+  // The run's session id. On a ledger-backed state log it scopes the
+  // verification_degraded row the validator hands the append gateway.
+  sessionId?: string;
 };
 
 /** Failure class recorded for a hardened judge attempt. */
@@ -999,6 +1001,24 @@ function warningsFromV2Failures(failures: V2ValidationFailure[]): PostDispatchAd
   }));
 }
 
+// On a ledger-backed state log the executor audit records the executor on the
+// iteration's opening iteration_start row, because the ledger cannot carry an
+// edit to the iteration record it already holds.
+function openingRowNamesExecutor(content: Buffer, iteration: unknown): boolean {
+  return content.toString('utf8').split(/\r?\n/).some((line) => {
+    if (!line.trim()) return false;
+    try {
+      const parsed = JSON.parse(line);
+      return isObjectRecord(parsed)
+        && parsed.type === 'iteration_start'
+        && parsed.iteration === iteration
+        && isObjectRecord(parsed.executor);
+    } catch {
+      return false;
+    }
+  });
+}
+
 function findLastIterationRecord(content: string): Record<string, unknown> | null {
   const lines = content.split(/\r?\n/);
   for (let index = lines.length - 1; index >= 0; index -= 1) {
@@ -1679,7 +1699,12 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
       };
     }
 
-    if (input.executorKind && input.executorKind !== 'native' && !isObjectRecord(parsedRecord.executor)) {
+    if (
+      input.executorKind
+      && input.executorKind !== 'native'
+      && !isObjectRecord(parsedRecord.executor)
+      && !(ledgerModeFor(input.stateLogPath) !== null && openingRowNamesExecutor(stateLogContent, parsedRecord.iteration))
+    ) {
       return {
         ok: false,
         reason: 'executor_missing',
@@ -1810,7 +1835,9 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
 
     const verificationResult = runOptionalVerificationPass(input.iterationFile, input.recipeConfig);
     if (!verificationResult.ok) {
-      appendJsonlRecord(
+      // On a ledger-backed state log the row goes through the append gateway,
+      // or the next refresh drops it.
+      appendFailureRow(
         input.stateLogPath,
         JSON.parse(buildVerificationDegradedEvent({
           confidence: verificationResult.confidence,
@@ -1818,6 +1845,7 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
           language: verificationResult.language,
           details: verificationResult.details,
         })),
+        input.sessionId,
       );
       return {
         ok: false,

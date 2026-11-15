@@ -593,6 +593,67 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     expect(result.activeP1).toBe(0);
   });
 
+  it('merges FAIL when one lineage\'s terminal record names a failed required gate', () => {
+    // A lineage that stopped with a required gate still failing did not pass; with no
+    // findings to carry the failure, the terminal record is the only record of it.
+    const data = [
+      { label: 'clean', registry: { openFindings: [] }, stateRecords: [] },
+      {
+        label: 'gated',
+        registry: { openFindings: [] },
+        stateRecords: [
+          { type: 'event', event: 'terminal_gates', run: 3, stopReason: 'maxIterationsReached', failedRequiredGateIds: ['coverage'] },
+        ],
+      },
+    ];
+
+    const result = mergeReviewRegistries(data);
+    expect(result.mergedVerdict).toBe('FAIL');
+    expect(result.activeP0).toBe(0);
+    expect(result.failedRequiredGateIds).toEqual(['coverage']);
+  });
+
+  it('reads a lineage\'s failed gates from its registry when its state log has no terminal row', () => {
+    // The reducer can run before the terminal-gates row is written, so the registry is
+    // the fallback source; either way the failed gate must reach the merged verdict.
+    const data = [
+      { label: 'clean', registry: { openFindings: [] }, stateRecords: [] },
+      {
+        label: 'gated',
+        registry: { openFindings: [], terminalGates: { run: 2, stopReason: 'converged', failedRequiredGateIds: ['evidence'] } },
+        stateRecords: [],
+      },
+    ];
+
+    const result = mergeReviewRegistries(data);
+    expect(result.mergedVerdict).toBe('FAIL');
+    expect(result.failedRequiredGateIds).toEqual(['evidence']);
+  });
+
+  it('marks the failing lineage FAIL in the attribution table', () => {
+    // The table is read beside the merged verdict, so a lineage whose required gate is
+    // still failing must not report PASS next to a FAIL merge.
+    const lineageData = [
+      {
+        label: 'gated',
+        registry: { openFindings: [] },
+        stateRecords: [
+          { type: 'event', event: 'terminal_gates', run: 3, stopReason: 'maxIterationsReached', failedRequiredGateIds: ['coverage'] },
+        ],
+        kind: 'cli',
+        model: 'test-model',
+      },
+      { label: 'clean', registry: { openFindings: [] }, stateRecords: [], kind: 'cli', model: 'test-model' },
+    ];
+
+    const md = buildAttributionMd(lineageData, 'review');
+    const rows = md.split('\n').filter((line) => line.startsWith('| '));
+    const gatedRow = rows.find((line) => line.startsWith('| gated |'));
+    const cleanRow = rows.find((line) => line.startsWith('| clean |'));
+    expect(gatedRow?.endsWith('| FAIL |')).toBe(true);
+    expect(cleanRow?.endsWith('| PASS |')).toBe(true);
+  });
+
   it('reports an out-of-scale severity instead of letting it rank below every P2 in silence', () => {
     const result = mergeReviewRegistries([
       {

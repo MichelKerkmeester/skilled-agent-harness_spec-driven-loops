@@ -78,7 +78,17 @@ const ENUM_PLACEHOLDER_VALUES: Record<string, string> = {
   compatibility_decision: 'compatible',
   decision: 'continue',
   graph_decision: 'continue',
+  terminal_stop_reason: 'converged',
 };
+
+// The terminal record requires exactly the three required gates, and its
+// failed ids must match the failing ones, so the template gets a clean stop.
+const TERMINAL_GATE_RESULTS_JSON = JSON.stringify(['evidence', 'scope', 'coverage'].map((gateId) => ({
+  gateId,
+  status: 'pass',
+  reasonCode: 'gate-passed',
+  evidenceDigest: HEX_DIGEST,
+})));
 
 const SIGNAL_OBJECT_JSON = JSON.stringify({
   noveltyRatio: 0,
@@ -122,6 +132,8 @@ function barePlaceholderValue(token: string): string {
   if (ENUM_PLACEHOLDER_VALUES[token]) {
     return JSON.stringify(ENUM_PLACEHOLDER_VALUES[token]);
   }
+  if (token === 'terminal_gate_results_json') return TERMINAL_GATE_RESULTS_JSON;
+  if (token === 'failed_required_gate_ids') return '[]';
   if (/^gate_results(_array)?_json$/.test(token)) return GATE_RESULTS_JSON;
   if (/(^|_)signals_json$/.test(token)) return SIGNAL_OBJECT_JSON;
   if (/(^|_)finding_counts_json$/.test(token)) return FINDING_COUNTS_JSON;

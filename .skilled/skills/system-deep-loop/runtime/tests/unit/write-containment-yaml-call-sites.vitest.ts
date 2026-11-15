@@ -64,4 +64,14 @@ describe('write-containment call sites in the dispatch script', () => {
       .map((site) => `${site.file}:${site.line}`);
     expect(missing).toEqual([]);
   });
+
+  // On a ledger-backed state log the guard hands its rows to the append gateway, which scopes
+  // them to the run by its session id. Without one the rows are written directly and the next
+  // refresh drops them.
+  it('every call site names the run session id', () => {
+    const missing = sites
+      .filter((site) => !/sessionId[:,]/.test(site.body.slice(0, site.body.indexOf('});'))))
+      .map((site) => `${site.file}:${site.line}`);
+    expect(missing).toEqual([]);
+  });
 });

@@ -6,12 +6,13 @@
 // the ledger, so the pre-dispatch executor row has to reach the ledger to
 // survive the next refresh. Each test opens a real run through the gateway,
 // writes the executor row, then hands the gateway the leaf's iteration record,
-// which rebuilds the state log.
+// which rebuilds the state log. The failure, verification and write-containment
+// rows get the same check, and the executor check is run against the opening row.
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -23,6 +24,8 @@ import {
   writeFirstRecordExecutor,
 } from '../../lib/deep-loop/executor-audit.js';
 import type { ExecutorConfig } from '../../lib/deep-loop/executor-config.js';
+import { validateIterationOutputs } from '../../lib/deep-loop/post-dispatch-validate.js';
+import { enforceWriteContainment, snapshotOutOfScopeDirtyPaths } from '../../lib/deep-loop/write-containment.js';
 
 type Mode = 'review' | 'research';
 
@@ -233,6 +236,188 @@ describe('the failure rows and the post-dispatch audit on a ledger-backed state 
       expect(stateRows(run.stateLogPath).filter((row) => row.event === 'dispatch_failure')).toHaveLength(1);
     } finally {
       rmSync(run.root, { recursive: true, force: true });
+    }
+  });
+});
+
+describe('the verification and write-containment rows on a ledger-backed state log', () => {
+  function openRun(mode: Mode, root: string): { runDirectory: string; stateLogPath: string; sessionId: string } {
+    const runDirectory = join(root, mode);
+    mkdirSync(runDirectory, { recursive: true });
+    const sessionId = `session-diagnostics-${mode}`;
+    appendThroughGateway(mode, runDirectory, runOpenEvent(mode, sessionId));
+    return { runDirectory, stateLogPath: join(runDirectory, `deep-${mode}-state.jsonl`), sessionId };
+  }
+
+  // git must answer for the fixture repository, never for the worktree the suite runs in.
+  function git(repoRoot: string, args: string[]): void {
+    const env = { ...process.env };
+    for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE']) delete env[key];
+    const result = spawnSync('git', ['-c', 'core.hooksPath=/dev/null', '-C', repoRoot, ...args], { encoding: 'utf8', env });
+    expect(result.status, result.stderr).toBe(0);
+  }
+
+  // A run whose state log sits inside the lane's artifact directory, with an operator draft that
+  // is dirty before the dispatch and changes again during it, and a stray lane write to a clean
+  // tracked file.
+  function containmentRun(mode: Mode, root: string) {
+    git(root, ['init', '-q']);
+    git(root, ['config', 'user.email', 'test@local']);
+    git(root, ['config', 'user.name', 'test']);
+    git(root, ['config', 'core.excludesFile', '/dev/null']);
+    writeFileSync(join(root, 'tracked-outside.txt'), 'ORIGINAL\n');
+    const artifactDir = join(root, 'artifact');
+    mkdirSync(artifactDir);
+    writeFileSync(join(artifactDir, 'seed.md'), 'seed\n');
+    git(root, ['add', '-A']);
+    git(root, ['commit', '-q', '-m', 'baseline']);
+    const run = openRun(mode, artifactDir);
+    writeFileSync(join(root, 'operator-notes.md'), 'NOTES_DRAFT_1\n');
+    const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir, captureContentDir: artifactDir });
+    writeFileSync(join(root, 'operator-notes.md'), 'NOTES_DRAFT_2\n');
+    writeFileSync(join(root, 'tracked-outside.txt'), 'LANE_WROTE_THIS\n');
+    return { ...run, artifactDir, preDispatchDirtyPaths };
+  }
+
+  it.each(['review', 'research'] as const)('keeps the %s verification_degraded row through a projection refresh', (mode) => {
+    const root = mkdtempSync(join(tmpdir(), 'diagnostic-ledger-'));
+    try {
+      const run = openRun(mode, root);
+      const previousStateLogSize = statSync(run.stateLogPath).size;
+      appendThroughGateway(mode, run.runDirectory, leafIterationRecord(mode, run.sessionId));
+      const iterationFile = join(root, 'iteration-001.md');
+      writeFileSync(iterationFile, ['# Iteration 1', '', '```typescript', 'export function broken() {', '  return 1;', '```', ''].join('\n'));
+
+      const result = validateIterationOutputs({
+        iterationFile,
+        stateLogPath: run.stateLogPath,
+        previousStateLogSize,
+        requiredJsonlFields: ['type', 'iteration'],
+        recipeConfig: { verification_enabled: true, verification_languages: ['typescript'], verification_threshold: 0.5 },
+        sessionId: run.sessionId,
+      });
+      expect(result).toMatchObject({ ok: false, reason: 'verification_degraded' });
+      appendThroughGateway(mode, run.runDirectory, { ...leafIterationRecord(mode, run.sessionId), iteration: 2, run: 2 });
+
+      const degraded = stateRows(run.stateLogPath).filter((row) => row.event === 'verification_degraded');
+      expect(degraded).toHaveLength(1);
+      expect(degraded[0]).toMatchObject({
+        type: 'event',
+        status: 'degraded',
+        language: 'typescript',
+        threshold: 0.5,
+        reason: 'verification_degraded',
+        detail: 'verification confidence 0.00 below threshold 0.50',
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it.each(['review', 'research'] as const)('keeps the %s containment rows through a projection refresh', (mode) => {
+    const root = mkdtempSync(join(tmpdir(), 'diagnostic-ledger-'));
+    try {
+      const run = containmentRun(mode, root);
+      enforceWriteContainment({
+        repoRoot: root,
+        artifactDir: run.artifactDir,
+        preDispatchDirtyPaths: run.preDispatchDirtyPaths,
+        baselineContentRoot: run.artifactDir,
+        stateLogPath: run.stateLogPath,
+        sessionId: run.sessionId,
+        iteration: 1,
+        label: `${mode}-i1-g1`,
+      });
+      appendThroughGateway(mode, run.runDirectory, leafIterationRecord(mode, run.sessionId));
+
+      const rows = stateRows(run.stateLogPath);
+      const violations = rows.filter((row) => row.event === 'containment_violation');
+      const contested = rows.filter((row) => row.event === 'containment_contested');
+      expect(violations).toHaveLength(1);
+      expect(violations[0]).toMatchObject({
+        type: 'event',
+        severity: 'error',
+        iteration: 1,
+        label: `${mode}-i1-g1`,
+        violations: [{ path: 'tracked-outside.txt' }],
+      });
+      expect(contested).toHaveLength(1);
+      expect(contested[0]).toMatchObject({
+        type: 'event',
+        severity: 'warning',
+        iteration: 1,
+        paths: [{ path: 'operator-notes.md' }],
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('writes a containment row straight into a ledger-backed log when the run names no session id', () => {
+    const root = mkdtempSync(join(tmpdir(), 'diagnostic-ledger-'));
+    const stderr = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+    try {
+      const run = containmentRun('review', root);
+      expect(() => enforceWriteContainment({
+        repoRoot: root,
+        artifactDir: run.artifactDir,
+        preDispatchDirtyPaths: run.preDispatchDirtyPaths,
+        baselineContentRoot: run.artifactDir,
+        stateLogPath: run.stateLogPath,
+        iteration: 1,
+      })).not.toThrow();
+
+      const rows = stateRows(run.stateLogPath);
+      expect(rows.filter((row) => row.event === 'containment_violation')).toHaveLength(1);
+      expect(rows.filter((row) => row.event === 'containment_contested')).toHaveLength(1);
+      expect(stderr.mock.calls.map(([line]) => String(line)).join('')).toContain('no session id scopes the containment_violation row');
+    } finally {
+      stderr.mockRestore();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it.each(['review', 'research'] as const)('accepts the %s executor from the opening row of a ledger-backed log', (mode) => {
+    const root = mkdtempSync(join(tmpdir(), 'diagnostic-ledger-'));
+    try {
+      const run = openRun(mode, root);
+      writeFirstRecordExecutor(run.stateLogPath, EXECUTOR, 1, run.sessionId);
+      const previousStateLogSize = statSync(run.stateLogPath).size;
+      appendThroughGateway(mode, run.runDirectory, leafIterationRecord(mode, run.sessionId));
+      const iterationFile = join(root, 'iteration-001.md');
+      writeFileSync(iterationFile, '# Iteration 1\n');
+
+      const result = validateIterationOutputs({
+        iterationFile,
+        stateLogPath: run.stateLogPath,
+        previousStateLogSize,
+        requiredJsonlFields: ['type', 'iteration'],
+        executorKind: 'cli-claude-code',
+      });
+      expect(result.ok, JSON.stringify(result)).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('still reports executor_missing on a ledger-backed log whose opening row names no executor', () => {
+    const root = mkdtempSync(join(tmpdir(), 'diagnostic-ledger-'));
+    try {
+      const run = openRun('review', root);
+      const previousStateLogSize = statSync(run.stateLogPath).size;
+      appendThroughGateway('review', run.runDirectory, leafIterationRecord('review', run.sessionId));
+      const iterationFile = join(root, 'iteration-001.md');
+      writeFileSync(iterationFile, '# Iteration 1\n');
+
+      expect(validateIterationOutputs({
+        iterationFile,
+        stateLogPath: run.stateLogPath,
+        previousStateLogSize,
+        requiredJsonlFields: ['type', 'iteration'],
+        executorKind: 'cli-claude-code',
+      })).toMatchObject({ ok: false, reason: 'executor_missing' });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
     }
   });
 });

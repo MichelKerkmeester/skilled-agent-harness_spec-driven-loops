@@ -289,6 +289,7 @@ function reportWriteContainment({
   repoRoot,
   artifactDir,
   stateLogPath,
+  sessionId,
   iteration,
   label,
 }) {
@@ -297,6 +298,7 @@ function reportWriteContainment({
     artifactDir,
     preDispatchDirtyPaths,
     stateLogPath,
+    sessionId,
     iteration,
     label,
   });
@@ -325,6 +327,7 @@ function dispatchWithContainment({
   repoRoot,
   artifactDir,
   stateLogPath,
+  sessionId,
   iteration,
   label,
 }) {
@@ -335,6 +338,7 @@ function dispatchWithContainment({
     repoRoot,
     artifactDir,
     stateLogPath,
+    sessionId,
     iteration,
     label,
   });
@@ -498,6 +502,7 @@ function runLineageBuiltin(context) {
     stateLogPath: context.stateLogPath,
     iteration: context.iteration,
     label: context.dispatchId,
+    sessionId: context.sessionId,
   });
 }
 
@@ -549,6 +554,7 @@ function runResearchOpencode(context) {
     stateLogPath: context.stateLogPath,
     iteration: context.iteration,
     label: context.dispatchId,
+    sessionId: context.sessionId,
   });
 }
 
@@ -645,6 +651,7 @@ function runDeepseekHarness(context) {
     stateLogPath: context.stateLogPath,
     iteration: context.iteration,
     label: context.dispatchId,
+    sessionId: context.sessionId,
   });
   return dispatchExit;
 }
@@ -844,6 +851,7 @@ function runReviewOpencode(context) {
       stateLogPath: context.stateLogPath,
       iteration: context.iteration,
       label: context.dispatchId,
+      sessionId: context.sessionId,
     });
   }
   return drainStatus !== 0 ? drainStatus : dispatchStatus;
@@ -966,6 +974,7 @@ function runCodex(context) {
     stateLogPath: context.stateLogPath,
     iteration: context.iteration,
     label: context.dispatchId,
+    sessionId: context.sessionId,
   });
 }
 
