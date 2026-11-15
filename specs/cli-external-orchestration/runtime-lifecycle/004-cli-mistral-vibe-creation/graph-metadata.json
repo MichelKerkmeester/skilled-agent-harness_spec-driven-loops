@@ -56,7 +56,7 @@
       "routes"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "decision-record.md",
@@ -115,12 +115,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -134,6 +128,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -171,20 +171,20 @@
     ],
     "causal_summary": "The operator subscribed to Mistral, whose plan serves DeepSeek V4.1 Flash 1017 and GLM-5.3-Flash beside Mistral's own models and its Vibe coding agent",
     "created_at": "2026-11-14T12:01:21Z",
-    "last_save_at": "2026-11-15T15:01:17.212Z",
+    "last_save_at": "2026-11-15T16:30:30.963Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:0740940c7c38c8942cb0272a69e3910b9285a63d8fc7bf5bd74dc6867adbd531",
+    "source_fingerprint": "sha256:ce420dcf565b2b76a2363bddbdda798d802fafd01d776d23558ba78ac02773b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e16ba525acfe9e56444594f50ce3fbad9ec7683f613699a5925320d864810a41",
+      "spec.md": "c309a00084b8573499a062cf0b413cb1b8fefe1ab8cb28db024b0171b9a09b68",
       "decision-record.md": "402d177ba91912474789bd8fe6dae7266c9b820726fdd90524d3d7ef7e83521d"
     },
     "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier",
-    "last_active_at": "2026-11-15T15:01:17.212Z"
+    "last_active_at": "2026-11-15T16:28:59.781Z"
   }
 }

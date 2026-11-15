@@ -1,7 +1,7 @@
 
- ⢠⢢    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⢸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
- ⠈⠒⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+ ⢠⢢    ⡠⡀⡠⡀   Mistral Vibe v3.1.2
+ ⢸⢸⣀⡔⢉⢑⠇⠨⡠⢇   GLM-5.3 Flash (Mistral Hosted)[high] · Pro
+ ⠈⠒⠒⠣⠤⠵⠭⠭⠯⠇   Type /help for more information
 
 Hello Michel, how can I help you?
 
@@ -10,11 +10,9 @@ Hello Michel, how can I help you?
 > Create notes.txt in this folder with one line of text, then reply with one short sentence that says the work is completed.
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-⏵ Ran 2 commands, wrote 1 file, thought                                                                                       
+⏵ Wrote 1 file, thought                                                                                                       
 
-  Created notes.txt in this folder with a single line of text, and the work is completed.
-
-
+  Created notes.txt with one line of text — the work is completed.
 
 
 
@@ -41,10 +39,12 @@ Hello Michel, how can I help you?
 
 
 
-                                                
-─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
->                                                                                                                            
+
+
+                                             
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── GLM-5.3 Flash (Mistral Hosted)[high] · auto approve ─
+>   
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.an5iUXJyLy/vibe                                                                                                       ctx ▎      10.7k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.GPMgNQX1RD/vibe                                                                                     usage ▏      0% · ctx ▏      9.46k/400k

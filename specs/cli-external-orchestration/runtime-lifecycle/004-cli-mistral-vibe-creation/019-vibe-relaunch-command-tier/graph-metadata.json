@@ -35,7 +35,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`relaunch-core.cjs:35` freezes the loop's runtimes as `claude pi opencode codex cursor devin`, and `skilled-loop` has no `vibe` case, so `skilled-loop vibe` falls through to Claude and `session-relaunch.cjs` refuses `--runtime vibe`",
     "created_at": "2026-11-14T20:13:11Z",
-    "last_save_at": "2026-11-15T15:01:17.127Z",
+    "last_save_at": "2026-11-15T16:28:59.764Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5edcdfc61f512977f50116ceac46d3f34b98c60f96aa5df6735ec3d5ca61705",
+    "source_fingerprint": "sha256:9890ae12890dbf2dd0810904b9444d946bbebbaaefe9113ad4ddf5c236292493",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fe99a341294630d342eefc8a8a1e00b1ee53d7589a63d768e7d8ea56a37a7312",
       "plan.md": "1dddd540dc91376764a437158e6265ab0f763df9789fb0b92e853db9d1597e8f",
       "tasks.md": "ba7bd7647d97b1187547a055c54ae7b0781762798492044e62bee34f7cd3eaea",
-      "implementation-summary.md": "5d6b27dd44ca5d0017c87d9f4b446afc928a0eeb2e966f9ad201a67c4d2baee0"
+      "implementation-summary.md": "02a3f1d3f473804fef8bfc066c602eb78f759f2379090181058c0ad4ffdd273e"
     },
     "last_active_at": null
   }

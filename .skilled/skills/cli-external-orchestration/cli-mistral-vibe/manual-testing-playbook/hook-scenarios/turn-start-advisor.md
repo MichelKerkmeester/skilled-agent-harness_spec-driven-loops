@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-003 -- Turn-start advisor adds the skill advisor brief once"
 description: "This scenario validates that the Vibe turn-start pre_agent hook injects the skill advisor brief on the first turn and delivers nothing for an identical repeat message, judged from the session journal."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # VIB-HK-003 -- Turn-start advisor adds the skill advisor brief once
@@ -72,13 +72,22 @@ Operators run the conversation script through the shared runner with the `vibe` 
     {
       "id": "advisor-2",
       "send": "I need to write a README for a brand new skill, where do I start?",
+      "questions": [
+        {
+          "match": "[Mm]ode|[Ww]hich|[Rr]eference|[Ss]kill|[Tt]ype of|[Ss]ame",
+          "answer": {
+            "other": "Just give me the first step, no need to open anything."
+          },
+          "optional": true
+        }
+      ],
       "check": "sid=$(ls \"$VIBE_HOME/logs/session/unified\" | head -1); h=$(printf '%s' \"$sid\" | shasum -a 256 | cut -c1-16); f=\"$TMPDIR/speckit-advisor/vibe-turn-start/$h.head\"; test -s \"$f\" || { echo head-receipt-missing; exit 1; }; n=$(grep -rohF '\"kind\":\"hook_run_completed\",\"scope\":\"pre_agent\"' \"$VIBE_HOME/logs/session/unified\" | wc -l | tr -d ' '); base=$(tr -d ' ' < \"$CONVERSATION_RUN_DIR/pre-agent-runs-turn1.txt\"); [ \"$n\" -gt \"$base\" ] || { echo pre-agent-hooks-did-not-run-on-turn2 base=$base now=$n; exit 1; }; now=$(stat -f %m \"$f\"); first=$(tr -d ' ' < \"$CONVERSATION_RUN_DIR/receipt-turn1.txt\"); test \"$now\" = \"$first\" && echo \"no-second-brief receipt=unchanged-since-turn1 pre-agent-runs=$base->$n\""
     }
   ]
 }
 ```
 
-Turn 2 sends turn 1's message word for word, because the suppression under test only applies while the route stays the same; a differently worded second message can change the routing and would then prove nothing. The advisor part keeps a per-session head receipt under the operator's temporary folder and rewrites it on every delivery, so the receipt's modification time is the delivery clock: turn 1 records it, and turn 2 requires it unchanged. A count of the brief's text in the journal cannot carry this check, because Vibe rewrites the journal between turns and the copies of one delivered context move and shrink as it does. The first check also reads the journal notice Vibe writes for the injected context, which is what pairs the brief with the hook that added it. The spec gate is switched off for this run, because the scenario judges only the advisor part and no step of it needs a documentation answer. The optional question lets the subject ask which mode of the routed skill applies.
+Turn 2 sends turn 1's message word for word, because the suppression under test only applies while the route stays the same; a differently worded second message can change the routing and would then prove nothing. The advisor part keeps a per-session head receipt under the operator's temporary folder and rewrites it on every delivery, so the receipt's modification time is the delivery clock: turn 1 records it, and turn 2 requires it unchanged. A count of the brief's text in the journal cannot carry this check, because Vibe rewrites the journal between turns and the copies of one delivered context move and shrink as it does. The first check also reads the journal notice Vibe writes for the injected context, which is what pairs the brief with the hook that added it. The spec gate is switched off for this run, because the scenario judges only the advisor part and no step of it needs a documentation answer. The optional question lets the subject ask which mode of the routed skill applies, and turn 2 carries it too, because a model that sees the same message twice may ask which of the two answers was meant.
 
 ### Expected
 
