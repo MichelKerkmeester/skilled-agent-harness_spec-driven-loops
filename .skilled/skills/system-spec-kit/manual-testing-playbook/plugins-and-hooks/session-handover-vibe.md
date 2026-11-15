@@ -7,7 +7,7 @@ trigger_phrases:
   - "skilled-loop vibe handover"
   - "Vibe automatic relaunch tier"
   - "Vibe handover withdraw"
-version: 1.0.0.0
+version: 1.0.1.0
 id: session-handover-vibe
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -228,6 +228,8 @@ Evidence: the filtered log, the pane text, the wrapper line and the note status.
 | `.skilled/bin/skilled-loop` | The wrapper that relaunches `vibe` on the claim seed. |
 | `.vibe/hooks.toml` | The hook bindings a Vibe session runs. |
 | `.skilled/hooks/session-handover/tests/vibe-adapters.test.cjs` | The adapter suite for this scenario. |
+
+Provenance: .skilled/hooks/session-handover/tests/vibe-adapters.test.cjs
 
 ---
 
