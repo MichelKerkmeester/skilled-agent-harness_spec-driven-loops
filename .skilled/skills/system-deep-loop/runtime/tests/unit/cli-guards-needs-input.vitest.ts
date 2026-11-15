@@ -78,6 +78,12 @@ describe('quota exhaustion', () => {
     });
   });
 
+  it('finds a budget refusal inside a provider error body', () => {
+    const stderr = 'starting session\nError: API error occurred: Status 402. Body: {"object":"error","message":"API budget exhausted.","type":"billing_api_budget_exhausted","param":null,"code":"2303","raw_status_code":402}\n';
+
+    expect(detectQuotaExhaustion(stderr, '')?.cause).toContain('API budget exhausted');
+  });
+
   it('ignores a transcript that only discusses quotas', () => {
     const stdout = 'The reviewer checks how the pool reports quota and rate limit handling.';
 

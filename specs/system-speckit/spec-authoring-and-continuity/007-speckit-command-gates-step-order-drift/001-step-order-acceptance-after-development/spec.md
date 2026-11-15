@@ -24,7 +24,7 @@ contextType: "general"
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 8 |
+| **Phase** | 1 of 11 |
 | **Predecessor** | None |
 | **Successor** | 002-required-artifact-gates |
 | **Handoff Criteria** | Implement and complete run acceptance verification after development, findings L1 to L7 are closed and this phase's `acceptance-criteria.md` has no `Unmet` row |

@@ -25,7 +25,7 @@ contextType: "general"
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 8 |
+| **Phase** | 3 of 11 |
 | **Predecessor** | 002-required-artifact-gates |
 | **Successor** | 004-code-review-and-dispatch-policy |
 | **Handoff Criteria** | All three lifecycle workflows define auto, confirm and autopilot the same way, findings M1 to M7 are closed and this phase's `acceptance-criteria.md` has no `Unmet` row |

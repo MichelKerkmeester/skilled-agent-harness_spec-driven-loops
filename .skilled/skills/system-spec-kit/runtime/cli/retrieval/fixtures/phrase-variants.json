@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4974500ec89ce36eedc2100700337390863ee7116e4cde84ac05f498507e56f4",
+  "manifestHash": "3e72f579ebddff5b592b8bbb81cf8db5c0e1e461f2c17eaae92e07a47d512404",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -82673,6 +82673,9 @@
     "phase 21 test db temp leak": [
       "phase 21 test db temp leak"
     ],
+    "phase 21 vibe budget default": [
+      "phase 21 vibe budget default"
+    ],
     "phase 21 vibe hook docs correction": [
       "phase 21 vibe hook docs correction"
     ],
@@ -130318,6 +130321,18 @@
     ],
     "vibe automatic relaunch tier": [
       "Vibe automatic relaunch tier"
+    ],
+    "vibe budget default": [
+      "vibe budget default"
+    ],
+    "vibe budget default implementation summary": [
+      "vibe budget default implementation summary"
+    ],
+    "vibe budget default plan": [
+      "vibe budget default plan"
+    ],
+    "vibe budget default tasks": [
+      "vibe budget default tasks"
     ],
     "vibe cli": [
       "vibe cli"

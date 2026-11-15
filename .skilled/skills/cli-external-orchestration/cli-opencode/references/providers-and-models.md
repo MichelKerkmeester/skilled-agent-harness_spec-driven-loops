@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode mistral deepseek glm route"
 importance_tier: normal
 contextType: implementation
-version: 1.4.19.0
+version: 1.4.20.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -102,7 +102,7 @@ The operator's Mistral subscription, through OpenCode's built-in `mistral` provi
 
 > **Mistral ids use dashes, not dots.** The DeepSeek id is `deepseek-v4-1-flash-1017` and the GLM id carries the vendor, `zai-glm-5-3-flash`. The DevPass forms (`deepseek-v4.1-flash-1017`, `glm-5.3-flash`) do not resolve on this provider. Mistral's docs page URL drops the `-1` (`deepseek-v4-flash-1017`), and that slug is not the id either.
 
-> **Billing is unconfirmed.** OpenCode prices a turn at Mistral's API list rate, so the DeepSeek route reads as double the DevPass rate ($0.30 in, $1.20 out, $0.007 cached per million tokens, against $0.15, $0.60 and $0.003). Mistral documents one monthly usage pool shared across Studio, the API and Vibe Code. Whether an OpenCode turn draws on that pool or on pay-as-you-go is UNKNOWN until the Mistral console's usage counter is read after a run.
+> **Billing follows the key.** OpenCode prices a turn at Mistral's API list rate, so the DeepSeek route reads as double the DevPass rate ($0.30 in, $1.20 out, $0.007 cached per million tokens, against $0.15, $0.60 and $0.003). What Mistral charges depends on the key: the Vibe browser sign-in key (macOS keychain item `ai.mistral.vibe`) bills the plan's Vibe budget, and any other Mistral key bills the separate API budget. Save the sign-in key as the `mistral` credential so OpenCode turns bill the Vibe budget. On 2026-11-15 a `--standalone` `#max` turn with it replied `ok` and moved only the Vibe budget, while a run against a server started before the key change answered `Model unavailable`.
 
 > **`mistral` fronts many more ids. Exactly the two below are in scope.** The rest, and the `llmgateway-providers/mistral/*` ids OpenCode also lists, are forbidden under the closed-roster rule.
 
