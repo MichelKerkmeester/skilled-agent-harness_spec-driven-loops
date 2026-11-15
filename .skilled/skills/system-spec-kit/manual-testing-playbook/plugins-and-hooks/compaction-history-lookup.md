@@ -7,7 +7,7 @@ trigger_phrases:
   - "opaque history handle"
   - "history lookup CLI"
   - "locator freshness"
-version: 2.0.2.0
+version: 2.0.3.0
 id: plugins-and-hooks-compaction-history-lookup
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -144,7 +144,7 @@ This scenario validates:
 
 ### Expected
 
-The section appears only for a claimed note whose sender is a Claude Code or Codex session with a transcript in this checkout. Its command redeems the handle with one bounded JSON reply and exit 0. A missing locator returns `state_missing`, a stale one returns `locator_stale` and an unsupported runtime returns `unsupported_runtime`, each with exit 2. A claim that cannot offer a lookup prints exactly what it printed before. No refusal writes state or blocks the handoff.
+The section appears only for a claimed note whose sender is a Claude Code, Codex or Vibe session with a transcript in this checkout. Its command redeems the handle with one bounded JSON reply and exit 0. A missing locator returns `state_missing`, a stale one returns `locator_stale` and an unsupported runtime returns `unsupported_runtime`, each with exit 2. A claim that cannot offer a lookup prints exactly what it printed before. No refusal writes state or blocks the handoff.
 
 ### Evidence
 
@@ -163,7 +163,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-1. **No section on a Claude Code claim.** Read the note's `session_id`, `runtime` and `cwd` lines. The sender must be Claude Code or Codex, its transcript must still exist, and `cwd` must be this checkout. A note copied from another checkout keeps that checkout on the locator, so the claim withholds the section.
+1. **No section on a Claude Code claim.** Read the note's `session_id`, `runtime` and `cwd` lines. The sender must be Claude Code, Codex or Vibe, its transcript must still exist, and `cwd` must be this checkout. A note copied from another checkout keeps that checkout on the locator, so the claim withholds the section.
 2. **The section appears but the command refuses.** Confirm `.skilled/hooks/session-handover/history/dist/cli.js` exists and is current. A missing core withholds the section, and a build that predates the current locator schema can refuse a locator the claim just minted.
 3. **`locator_stale` right after a claim.** The claim's fresh mint did not persist, so check the sender's hook state file under the OS temp directory's `speckit-claude-hooks/<project-hash>/` folder and confirm `historyLocator.mintedAt` is the claim time.
 
@@ -182,8 +182,8 @@ Capture, for every step in the Commands sequence above:
 - Runtime reader dispatcher: `.skilled/hooks/shared/session-readers/index.mjs`
 - Claim offer suite: `.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs`
 - Printed entry suite: `.skilled/hooks/session-handover/tests/history-lookup-entry.test.cjs`
-- CLI refusal suite: `.skilled/skills/system-spec-kit/runtime/tests/history-lookup-cli.vitest.ts`
-- Locator suite: `.skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts`
+- CLI refusal suite: `.skilled/hooks/session-handover/history/tests/history-lookup-cli.vitest.ts`
+- Locator suite: `.skilled/hooks/session-handover/history/tests/history-locator.vitest.ts`
 
 Provenance: .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs
 

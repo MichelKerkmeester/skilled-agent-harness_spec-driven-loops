@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation",
+  "spec_folder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation",
+  "parent_id": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review p2 remediation",
+      "phase 9 deep review p2 remediation",
+      "history lookup p2 fixes",
+      "search index memory measurement",
+      "remove predecessor hard block",
+      "deep review p2 remediation plan",
+      "deep review p2 remediation tasks",
+      "009-deep-review-p2-remediation operator decisions",
+      "deep review p2 remediation implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "remediation",
+      "phase",
+      "history",
+      "lookup",
+      "search",
+      "index",
+      "memory",
+      "measurement",
+      "remove",
+      "predecessor"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".github/workflows/spec-kit-check.yml",
+      ".skilled/hooks/shared/tests/session-readers/project.test.mjs",
+      ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+      ".skilled/hooks/session-handover/history/tests/history-locator.vitest.ts",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md",
+      ".skilled/commands/speckit/assets/speckit-complete.yaml",
+      "scratch/measure-search-index.mjs",
+      "scratch/measure-real-transcript.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "project.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/tests/session-readers/project.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "lookup-offer.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-handover/history/lib/lookup-offer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "history-locator.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/session-handover/history/tests/history-locator.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-history-lookup.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+        "source": "derived"
+      },
+      {
+        "name": "hop-recall-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/hop-recall-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "measure-search-index.mjs",
+        "kind": "file",
+        "path": "scratch/measure-search-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "measure-real-transcript.mjs",
+        "kind": "file",
+        "path": "scratch/measure-real-transcript.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep review left seven P2 advisories",
+    "created_at": "2026-11-15T19:48:11Z",
+    "last_save_at": "2026-11-15T20:05:23.750Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f2e87eb2798cbad413e2d1d3222bb827745e7b57d32a1f99ddc8235b669b2e9e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8e30d9e06e60501f3ea6d9e6b3c21105e995988bc19fd41998d7320737c68156",
+      "plan.md": "3fc520e609a947eca5a47494e62c08c9efbd572471ab706233adfa6deeaeffd8",
+      "tasks.md": "7a3c784b703ab36e124628b567833e991988ba2368cdcf99af03bd485bdf96e2",
+      "decision-record.md": "3c913b30546bc6367a00d1f254d83888b7176f07c5bf43be1990528fe2dc4cb2",
+      "implementation-summary.md": "416bdf46e3afd7a1ae6411294481f73a4e17f77a87da1bf98ec70e4d21850f71"
+    },
+    "last_active_at": null
+  }
+}
