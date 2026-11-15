@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-006 -- Turn start re-injects the goal slice after a compaction"
 description: "This scenario validates that the Vibe turn-start compaction part re-injects the bound packet's goal slice at the first turn start after a manual compaction, judged from the session journal."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # VIB-HK-006 -- Turn start re-injects the goal slice after a compaction
@@ -77,7 +77,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
     {
       "id": "compact",
       "action": "compact",
-      "check": "for i in $(seq 1 40); do if grep -rqs '\"kind\":\"compaction\"' \"$VIBE_HOME/logs/session/unified\"; then echo compaction-checkpoint-recorded; exit 0; fi; sleep 1; done; echo no-compaction-checkpoint; exit 1"
+      "check": "for i in $(seq 1 40); do if grep -rqs '\"generationStatus\":\"completed\",\"id\":\"checkpoint-compaction-' \"$VIBE_HOME/logs/session/unified\"; then echo compaction-checkpoint-recorded; exit 0; fi; sleep 1; done; echo no-compaction-checkpoint; exit 1"
     },
     {
       "id": "reinject",
@@ -97,7 +97,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 }
 ```
 
-The compaction part reads the packet from `VIBE_SPEC_FOLDER`, which every Vibe hook resolves against the checkout, so setup points it at this phase's folder rather than copying a goal document. The spec gate is switched off for this run, because the scenario judges the compaction part and a refused write would derail the conversation instead.
+The compaction part reads the packet from `VIBE_SPEC_FOLDER`, which every Vibe hook resolves against the checkout, so setup points it at this phase's folder rather than copying a goal document. The spec gate is switched off for this run, because the scenario judges the compaction part and a refused write would derail the conversation instead. The `compact` check waits for the finished checkpoint, not the first `compaction` entry: Vibe writes that entry when the compaction starts, and a message sent before it finishes is refused with `Context compaction is already running`. Vibe serializes an entry's keys in sorted order, so a finished checkpoint always reads `"generationStatus":"completed","id":"checkpoint-compaction-…`.
 
 ### Expected
 

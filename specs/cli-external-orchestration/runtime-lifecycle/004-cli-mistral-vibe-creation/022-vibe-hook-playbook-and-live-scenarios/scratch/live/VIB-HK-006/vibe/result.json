@@ -2,12 +2,15 @@
   "runtime": "vibe",
   "verdict": "PASS",
   "blocker": null,
-  "seed": 1409565350,
-  "socket": "conv-20003-vibe",
-  "session_id": "2874569c-f0f0-4ff8-9142-eb39c411950b",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.s45REfUPTk/vibe",
-  "started_at": "2026-11-15T06:34:48.628Z",
-  "finished_at": "2026-11-15T06:36:40.417Z",
+  "seed": 1541067785,
+  "socket": "conv-12876-vibe",
+  "session_id": "0e25b461-d3cd-4aad-945e-d8d07d42bb82",
+  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.VHjQjLWnw2/vibe",
+  "vibe_home": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.VHjQjLWnw2/vibe-home-aspTkO",
+  "vibe_model": "deepseek-flash",
+  "vibe_home_removed": false,
+  "started_at": "2026-11-15T19:23:55.743Z",
+  "finished_at": "2026-11-15T19:25:07.987Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -57,15 +60,6 @@
       "blocker": null,
       "observed": "reinjection-with-goal-slice",
       "evidence": "turns/reinject"
-    },
-    {
-      "id": "history-offer",
-      "status": "PASS",
-      "attempts": 1,
-      "reason": null,
-      "blocker": null,
-      "observed": "history-lookup-offer-injected",
-      "evidence": "turns/history-offer"
     }
   ]
 }

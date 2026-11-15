@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 The adapter has no hook entry of its own. `.skilled/hooks/session-lifecycle/vibe/session-start.mjs` imports it and puts the returned text in the one `session_start` reply, so the goal arrives in the first turn without a second registration.
 
-Vibe is injection-only. There is no goal object, no `/goal` command and no goal tool. Nothing refreshes the slice per turn, and nothing re-injects it after compaction, because Vibe has no idle or compaction event. `session_start` fires for a main session, not a subagent.
+Vibe is injection-only. There is no goal object, no `/goal` command and no goal tool. Nothing refreshes the slice per turn. Vibe has no compaction event, so `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs` imports `renderVibeGoalSlice` too and re-injects the slice when it finds a new compaction in the session journal, at the next turn start or the next tool call. `session_start` fires for a main session, not a subagent.
 
 ---
 

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1a6531cf3430f248bc8f8f960d4ca4e82010b871965fb53809aee35f905481f9",
+  "manifestHash": "fdc6776da7e84122e256a0a9704f09756c5be368df2eb92317bd203caa5d5390",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -82736,6 +82736,9 @@
     "phase 23 relaunch cancel and test isolation": [
       "phase 23 relaunch cancel and test isolation"
     ],
+    "phase 23 vibe review remediation": [
+      "phase 23 vibe review remediation"
+    ],
     "phase 24 dsh docs alignment": [
       "phase 24 dsh docs alignment"
     ],
@@ -130364,6 +130367,9 @@
     "vibe compaction context tasks": [
       "vibe compaction context tasks"
     ],
+    "vibe compaction scenario rerun": [
+      "vibe compaction scenario rerun"
+    ],
     "vibe completion evidence": [
       "vibe completion evidence"
     ],
@@ -130684,6 +130690,24 @@
     ],
     "vibe repo guards tasks": [
       "vibe repo guards tasks"
+    ],
+    "vibe review remediation": [
+      "vibe review remediation"
+    ],
+    "vibe review remediation acceptance criteria": [
+      "vibe review remediation acceptance criteria"
+    ],
+    "vibe review remediation implementation summary": [
+      "vibe review remediation implementation summary"
+    ],
+    "vibe review remediation plan": [
+      "vibe review remediation plan"
+    ],
+    "vibe review remediation tasks": [
+      "vibe review remediation tasks"
+    ],
+    "vibe runner model pin": [
+      "vibe runner model pin"
     ],
     "vibe runtime folder": [
       "vibe runtime folder"

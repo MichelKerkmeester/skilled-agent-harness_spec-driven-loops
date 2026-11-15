@@ -206,7 +206,11 @@ async function buildHandoverContextPart(payload, dependencies = {}) {
     }
   }
 
-  const withdrawn = eventName === 'pre_agent' && withdrawOnOperatorPrompt(sessionId, env);
+  // Only a turn the operator typed withdraws an armed hand-over; a turn start
+  // that carries no prompt is not the operator taking the session back.
+  const operatorTyped = typeof payload.prompt === 'string' && payload.prompt.trim() !== '';
+  const withdrawn = eventName === 'pre_agent' && operatorTyped
+    && withdrawOnOperatorPrompt(sessionId, env);
   // Every quiet exit below still tells the session its hand-over was withdrawn.
   const quiet = () => (withdrawn ? nudge.WITHDRAWN_NOTICE : '');
 

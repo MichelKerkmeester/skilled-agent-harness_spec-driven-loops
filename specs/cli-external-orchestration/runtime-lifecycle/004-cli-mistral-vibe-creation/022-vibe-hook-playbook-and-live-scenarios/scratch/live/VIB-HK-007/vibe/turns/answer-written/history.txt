@@ -1,0 +1,50 @@
+
+  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   compaction-probe[max] · Pro
+  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+
+Hello Michel, how can I help you?
+
+
+
+> Read big.txt with your file read tool, then read small.txt the same way. Only after both reads, write small.txt's only line into a new file named answer.txt with your file write tool, then reply
+  with that line.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⚠ [turn-start] Added context for the model: "Advisor: no skill matched. Directives: - Comment hygiene [HARD BLOCK]: NEVER em…"
+
+  I'll start by reading both files.
+
+⏵ Read 2 files   
+
+✓ Context compacted 
+
+⚠ The history rebuilt after compaction did not fit the context and was reduced.
+
+⏵ Wrote 1 file, thought  
+
+  compaction-proof-ok
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                             
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── compaction-probe[max] · auto approve ─
+>                                                                                                                                                                                                   
+                  
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.qszRCwaVFF/vibe                                                                                      usage ▍      6% · ctx ████▊  11.8k/15k

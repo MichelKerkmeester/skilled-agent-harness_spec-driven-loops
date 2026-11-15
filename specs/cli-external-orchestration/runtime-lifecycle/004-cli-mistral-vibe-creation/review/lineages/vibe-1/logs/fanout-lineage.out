@@ -1,0 +1,11 @@
+Lineage complete. All five iterations ran inline, each recorded through the append gateway (ledger sequences 2-6) and reduced; synthesis committed at sequence 7 with `stopReason: maxIterationsReached`.
+
+**Result: CONDITIONAL** — 0 P0, 3 P1, 10 P2, 13 active findings, 0 corruption, dimension coverage 4/4.
+
+The operator's open lead is answered. `buildCompactionPart` writes the watermark at `compaction-context.mjs:231` before building sections, then returns `''` at `:252` when no section resolves; the `seen` filter at `:220`/`:223` suppresses every later attempt, so the compaction is consumed with nothing injected. Reproduced: same journal, fresh state dir → 1199 chars with `Context restored after a compaction.`; consumed state dir → 0 chars. `e5b8611a4fa` never touched that file.
+
+The VIB-HK-005 half is *not* that commit: its `turn-start.mjs` diff is three additive hunks and leaves `buildSaveNudgePart` and `composeTurnStart` byte-identical. That cause stays open, narrowed to `capture-core.mjs`, the `decision-capture-ask` post-tool hook, and the runner's scratch `cwd`.
+
+One correction worth flagging: I initially tagged R4-P2-002 with `refines: R1-P1-001`, and the reducer read that as a supersession — it downgraded the headline P1 to P2 and overwrote its title. I removed the field from `deltas/iter-004.jsonl` and re-reduced; the registry now shows R1-P1-001 at P1 on line 231 with its own title. The `refines` key means "replaces", not "relates to".
+
+FANOUT_LINEAGE_COMPLETE:vibe-1

@@ -1,7 +1,7 @@
 
-  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
-  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+ ⢠⢢    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⢸⣀⡔⢉⠱⣃⡐⣔⡣   deepseek-flash[max] · Pro
+ ⠈⠒⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
 
 Hello Michel, how can I help you?
 
@@ -12,7 +12,7 @@ Hello Michel, how can I help you?
 
 ⏵ Ran 3 commands, wrote 1 file, thought                                                                                       
 
-  Created hello.txt in the current folder containing the single line hello; the task is finished.
+  Created hello.txt in this folder containing the single line hello; the task is finished.
 
 
 
@@ -43,8 +43,8 @@ Hello Michel, how can I help you?
 
                                                 
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
->                                                                                                                                       
+>   
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.j2nzXaU0Hp/vibe                                                                                                       ctx ▎      10.7k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.zyqFSQnvY4/vibe                                                                                     usage ▍      6% · ctx ▎      10.6k/256k
