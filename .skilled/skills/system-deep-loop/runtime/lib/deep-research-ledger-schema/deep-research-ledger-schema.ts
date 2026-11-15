@@ -628,6 +628,16 @@ const DATA_FIELD_RULES = Object.freeze({
   'deep_research.pivot_failed': { pivotId: 'identifier' },
   'deep_research.dispatch_failure': { reason: 'code', iteration: 'uint32' },
   'deep_research.dispatch_receipt_write_failed': { reason: 'code', phase: 'code', iteration: 'uint32' },
+  'deep_research.verification_degraded': {
+    status: 'code',
+    confidence: 'finite-number',
+    threshold: 'finite-number',
+    language: 'code',
+    reason: 'code',
+    detail: 'prose',
+  },
+  'deep_research.containment_violation': { severity: 'code', violations: 'json', reverted: 'json' },
+  'deep_research.containment_contested': { severity: 'code', paths: 'json', note: 'prose' },
 } as const satisfies Readonly<
   Record<DeepResearchEventStem, Readonly<Record<string, DataFieldRule>>>
 >);
@@ -710,6 +720,20 @@ const OPTIONAL_DATA_FIELD_RULES: Readonly<
     detail: 'prose',
     sessionId: 'prose',
   }),
+  'deep_research.verification_degraded': Object.freeze({ sessionId: 'prose' }),
+  'deep_research.containment_violation': Object.freeze({
+    iteration: 'uint32',
+    label: 'prose',
+    revertedPatchPath: 'prose',
+    revertedPatchError: 'prose',
+    dataLossPossible: 'json',
+    sessionId: 'prose',
+  }),
+  'deep_research.containment_contested': Object.freeze({
+    iteration: 'uint32',
+    label: 'prose',
+    sessionId: 'prose',
+  }),
 });
 
 const SCOPE_FIELDS = Object.freeze({
@@ -772,6 +796,9 @@ const SCOPE_FIELDS = Object.freeze({
   'deep_research.pivot_failed': ['runId', 'lineageId'],
   'deep_research.dispatch_failure': ['runId', 'lineageId'],
   'deep_research.dispatch_receipt_write_failed': ['runId', 'lineageId'],
+  'deep_research.verification_degraded': ['runId', 'lineageId'],
+  'deep_research.containment_violation': ['runId', 'lineageId'],
+  'deep_research.containment_contested': ['runId', 'lineageId'],
 } as const satisfies Readonly<Record<DeepResearchEventStem, readonly string[]>>);
 
 const HASH_PATTERN = /^[a-f0-9]{64}$/;

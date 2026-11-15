@@ -30,6 +30,7 @@ The folder follows the `.dsh/` split: hand-authored files, three generated trees
 | `prompts/*.md` | generated pointer stub | `.skilled/commands/**/*.md` | Yes. `sync-prompts-vibe.cjs --check` |
 | `hooks.toml` | hand-authored | none | No. No generator reads or writes it |
 | `plugins/repo-guards/` | hand-authored | the shared guard cores under `.skilled/` | No. Each hook imports its core at run time, so a core change needs no copy |
+| `plugins/README.md` | hand-authored | `hooks.toml` and `.opencode/plugins/` | Yes, by hand. It maps each OpenCode plugin to its hook entry, so a new plugin or entry needs a row. Vibe skips plain files in `plugins/`, so it is never loaded as a plugin |
 
 ### Agents
 

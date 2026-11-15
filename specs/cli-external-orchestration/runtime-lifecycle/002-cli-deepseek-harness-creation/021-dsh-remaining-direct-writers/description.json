@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/021-dsh-remaining-direct-writers",
+  "description": "Phase 21: dsh-remaining-direct-writers",
+  "keywords": [
+    "phase",
+    "dsh-remaining-direct-writers"
+  ],
+  "lastUpdated": "2026-11-15T05:44:33.317Z",
+  "specId": "021",
+  "folderSlug": "dsh-remaining-direct-writers",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "002-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

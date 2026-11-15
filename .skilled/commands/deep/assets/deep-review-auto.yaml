@@ -1350,6 +1350,7 @@ workflow:
               artifactDir,
               preDispatchDirtyPaths,
               stateLogPath: '{state_paths.state_log}',
+              sessionId: '{session_id}',
               iteration: Number('{current_iteration}'),
               label: dispatchId,
             });
@@ -1776,6 +1777,7 @@ workflow:
               artifactDir,
               preDispatchDirtyPaths,
               stateLogPath: '{state_paths.state_log}',
+              sessionId: '{session_id}',
               iteration: Number('{current_iteration}'),
               label: dispatchId,
             });
@@ -1882,6 +1884,7 @@ workflow:
               artifactDir,
               preDispatchDirtyPaths,
               stateLogPath: '{state_paths.state_log}',
+              sessionId: '{session_id}',
               iteration: Number('{current_iteration}'),
               label: dispatchId,
             });
@@ -1984,6 +1987,7 @@ workflow:
               artifactDir,
               preDispatchDirtyPaths,
               stateLogPath: '{state_paths.state_log}',
+              sessionId: '{session_id}',
               iteration: Number('{current_iteration}'),
               label: dispatchId,
             });
@@ -2087,6 +2091,7 @@ workflow:
               artifactDir,
               preDispatchDirtyPaths,
               stateLogPath: '{state_paths.state_log}',
+              sessionId: '{session_id}',
               iteration: Number('{current_iteration}'),
               label: dispatchId,
             });
@@ -2132,6 +2137,7 @@ workflow:
           dispatchReceipt:
             receiptDir: "{state_paths.packet_dir}/dispatch-receipts"
             dispatchId: "review-i{current_iteration}-g{generation}"
+          sessionId: "{session_id}"
           assert_canonical_type: "iteration"
           assert_delta_file_exists: "{state_paths.delta_pattern}"
           assert_delta_file_has_iteration_record: true

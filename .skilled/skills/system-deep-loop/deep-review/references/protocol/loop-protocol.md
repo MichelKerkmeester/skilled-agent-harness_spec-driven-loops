@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.8.0
+version: 1.11.9.0
 ---
 
 # Deep Review Loop Protocol
@@ -718,7 +718,7 @@ Every executor path MUST satisfy:
 
 ### JSONL Audit Field
 
-Non-native executor runs append an `executor` block with model and runtime settings to the iteration's JSONL record via `executor-audit.ts`. Native runs are recoverable from YAML alone.
+Non-native executor runs record an `executor` block with model and runtime settings through `executor-audit.ts`. On a ledger-backed state log it lands on the iteration's opening `iteration_start` row, which the append gateway keeps through every refresh. On a log with no ledger it is merged onto the iteration's JSONL record. Native runs are recoverable from YAML alone.
 
 ### Template And Config Surface
 
