@@ -1,0 +1,165 @@
+Remove text from one agent file that repeats rules the same file already states elsewhere, and
+bring its advisor block to the shared wording where the changes below say so. Every change is a
+deletion, a section renumbering that follows a deletion, or a re-wrap of the advisor block. No
+rule is reworded.
+
+The two files are the canonical file and its twin. Each has its own list of changes below,
+because the twin's text can differ in path strings. Apply each list to its own file.
+
+Files:
+1. .skilled/agents/context.md
+2. .claude/agents/context.md
+
+Do not touch the frontmatter. A commit hook raises the `version` field.
+Each change below gives the exact text to find (OLD) and the exact text that replaces it (NEW).
+The first and last lines of OLD and NEW are unchanged context lines, shown so the place is unambiguous.
+Blank lines inside OLD and NEW are part of the text. Apply every change, top to bottom.
+
+######## FILE: .skilled/agents/context.md ########
+
+Change 1, at about line 433. Removes 13 line(s), adds 0.
+<<<<<<< OLD
+---
+
+
+Use exact tools when the query gives exact evidence handles. When it does not, Grep is still the entry point — widen the pattern rather than narrowing it.
+
+1. **Semantic discovery** ("find code that...", "how is X implemented", "similar pattern", "where is the logic for...") -> `Grep` across likely vocabulary first.
+2. **Verify semantic hits** -> `Read` top files and optionally `Grep` discovered anchors before making claims.
+3. **Structural questions** ("what calls...", "what imports...", "impact of...", "dependency path") -> `Grep` the symbol, then `Grep` its callers, then `Read` to confirm each edge.
+4. **Exact text/symbol/literal** -> `Grep` first, then `Read`.
+5. **Known file path** -> `Read` directly.
+6. **File name or directory shape** -> `Glob` or `List`, then `Read`.
+7. **Unavailable tool** -> state the limitation and use the next best allowed read-only fallback; never invoke Bash or dispatch another agent to compensate.
+
+---
+
+## 12. RELATED RESOURCES
+
+======= NEW
+---
+
+## 12. RELATED RESOURCES
+
+>>>>>>> END
+
+Change 2, at about line 453 (OLD runs to the end of the file). Removes 33 line(s), adds 0.
+<<<<<<< OLD
+- `.skilled/commands/create/agent.md` — dispatches @context before scaffolding a new agent.
+
+---
+
+## 13. SUMMARY
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│            THE CONTEXT AGENT: READ-ONLY RETRIEVAL SPECIALIST            │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Canonical continuity recovery before implementation                │
+│  ├─► Evidence-based retrieval across memory and codebase layers         │
+│  ├─► Structured Context Package synthesis with explicit gaps            │
+│  └─► Tool routing by query type and verification need                    │
+│                                                                         │
+│  RETRIEVAL LAYERS                                                       │
+│  ├─► Layer 1: handover.md, _memory.continuity, spec docs, trigger index │
+│  ├─► Layer 2: Glob, Grep, List, Read                                    │
+│  └─► Layer 3: deep memory search and spec cross-reference               │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. Receive request and lock scope                                  │
+│  ├─► 2. Recover canonical continuity when relevant                      │
+│  ├─► 3. Route search through the correct read-only tools                │
+│  ├─► 4. Verify findings with cited evidence                              │
+│  └─► 5. Return Context Package with gaps and recommendation             │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► Read-only: never write, edit, patch, bash, sync, or persist files   │
+│  ├─► LEAF-only: nested sub-agent dispatch is illegal                    │
+│  └─► Structured output only, with explicit evidence and unknowns        │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.skilled/commands/create/agent.md` — dispatches @context before scaffolding a new agent.
+
+>>>>>>> END
+
+######## FILE: .claude/agents/context.md ########
+
+Change 1, at about line 419. Removes 13 line(s), adds 0.
+<<<<<<< OLD
+---
+
+
+Use exact tools when the query gives exact evidence handles. When it does not, Grep is still the entry point — widen the pattern rather than narrowing it.
+
+1. **Semantic discovery** ("find code that...", "how is X implemented", "similar pattern", "where is the logic for...") -> `Grep` across likely vocabulary first.
+2. **Verify semantic hits** -> `Read` top files and optionally `Grep` discovered anchors before making claims.
+3. **Structural questions** ("what calls...", "what imports...", "impact of...", "dependency path") -> `Grep` the symbol, then `Grep` its callers, then `Read` to confirm each edge.
+4. **Exact text/symbol/literal** -> `Grep` first, then `Read`.
+5. **Known file path** -> `Read` directly.
+6. **File name or directory shape** -> `Glob` or `List`, then `Read`.
+7. **Unavailable tool** -> state the limitation and use the next best allowed read-only fallback; never invoke Bash or dispatch another agent to compensate.
+
+---
+
+## 12. RELATED RESOURCES
+
+======= NEW
+---
+
+## 12. RELATED RESOURCES
+
+>>>>>>> END
+
+Change 2, at about line 439 (OLD runs to the end of the file). Removes 33 line(s), adds 0.
+<<<<<<< OLD
+- `.skilled/commands/create/agent.md` — dispatches @context before scaffolding a new agent.
+
+---
+
+## 13. SUMMARY
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│            THE CONTEXT AGENT: READ-ONLY RETRIEVAL SPECIALIST            │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Canonical continuity recovery before implementation                │
+│  ├─► Evidence-based retrieval across memory and codebase layers         │
+│  ├─► Structured Context Package synthesis with explicit gaps            │
+│  └─► Tool routing by query type and verification need                    │
+│                                                                         │
+│  RETRIEVAL LAYERS                                                       │
+│  ├─► Layer 1: handover.md, _memory.continuity, spec docs, trigger index │
+│  ├─► Layer 2: Glob, Grep, List, Read                                    │
+│  └─► Layer 3: deep memory search and spec cross-reference               │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. Receive request and lock scope                                  │
+│  ├─► 2. Recover canonical continuity when relevant                      │
+│  ├─► 3. Route search through the correct read-only tools                │
+│  ├─► 4. Verify findings with cited evidence                              │
+│  └─► 5. Return Context Package with gaps and recommendation             │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► Read-only: never write, edit, patch, bash, sync, or persist files   │
+│  ├─► LEAF-only: nested sub-agent dispatch is illegal                    │
+│  └─► Structured output only, with explicit evidence and unknowns        │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.skilled/commands/create/agent.md` — dispatches @context before scaffolding a new agent.
+
+>>>>>>> END
+
+The markers `<<<<<<< OLD`, `======= NEW` and `>>>>>>> END` are not part of any file. Never write them.
+
+Verification (run all, paste the output in the handback):
+  wc -l < .skilled/agents/context.md      # expect: 438
+  wc -w < .skilled/agents/context.md      # expect: 3675
+  wc -l < .claude/agents/context.md      # expect: 424
+  wc -w < .claude/agents/context.md      # expect: 3650
+  rg -c '^│' .skilled/agents/context.md .claude/agents/context.md      # expect: no output

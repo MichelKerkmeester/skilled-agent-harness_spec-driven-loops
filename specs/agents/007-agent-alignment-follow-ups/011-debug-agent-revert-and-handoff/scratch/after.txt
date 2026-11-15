@@ -1,0 +1,57 @@
+$ rg -c -i 'revert' .skilled/agents/debug.md
+2
+exit=0
+$ rg -c -i 'in total' .skilled/agents/debug.md
+3
+exit=0
+$ rg -n 'Same error\? → Try next post-challenge hypothesis$' .skilled/agents/debug.md
+exit=1
+$ rg -n 'git checkout|git restore' .skilled/agents/debug.md | cut -c1-80
+327:7. Revert a rejected fix with `Edit` before the next attempt, so one fix at 
+exit=0
+$ wc -l < .skilled/agents/debug.md
+     553
+exit=0
+$ wc -l < .claude/agents/debug.md
+     538
+exit=0
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs | tail -1
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+$ rg -c -i 'revert' .skilled/agents/debug.md .claude/agents/debug.md .pi/agents/debug.md .codex/agents/debug.toml .dsh/agents/debug.patch.yml
+.dsh/agents/debug.patch.yml:2
+.pi/agents/debug.md:2
+.codex/agents/debug.toml:2
+.skilled/agents/debug.md:2
+.claude/agents/debug.md:2
+exit=0
+$ rg -c 'ONLY @debug may create|Write all findings and evidence to' .skilled/agents/debug.md
+exit=1
+$ rg -c 'scaffold-debug-delegation.sh' .skilled/agents/debug.md
+1
+exit=0
+$ rg -c 'debug-delegation-NNN.md' .skilled/agents/debug.md
+1
+exit=0
+$ sed -n '/^## 2\./,/^## 3\./p' .skilled/agents/debug.md | rg -c 'root_cause'
+exit=1
+$ rg -c 'AGENT_IO_HANDOFF v1' .skilled/agents/debug.md
+1
+exit=0
+$ rg -c 'quality-gate.cjs' .skilled/agents/debug.md
+1
+exit=0
+$ rg -c 'diagnose only' .skilled/agents/debug.md
+2
+exit=0
+$ rg -c 'Ask for missing information' .skilled/agents/debug.md
+exit=1
+$ rg -c '^## (Debug Escalation|ESCALATION: Debug Exhausted)' .skilled/agents/debug.md
+1
+exit=0
+$ diff <(sed -n '/^# The Debugger/,$p' .skilled/agents/debug.md) <(sed -n '/^# The Debugger/,$p' .claude/agents/debug.md) | grep -c '^[<>]'
+6
+exit=0

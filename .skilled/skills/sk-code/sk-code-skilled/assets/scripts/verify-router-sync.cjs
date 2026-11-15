@@ -44,8 +44,8 @@ function callerIsHostRepository() {
 const skipNotes = [];
 
 // Each surface reaches the implement, debug and verify doctrine through a symlink, so the
-// symlinked copies stay unrouted. The hub ROUTER routes the canonical debug and verify paths
-// as shared controls. Exact paths, not a folder, keep any other unrouted doc under shared/
+// symlinked copies stay unrouted. The hub ROUTER routes the three canonical paths as shared
+// controls. Exact paths, not a folder, keep any other unrouted doc under shared/
 // reported.
 const NON_ROUTED_ALLOWLIST = new Set([
   'shared/references/workflow-implement.md',
@@ -113,6 +113,70 @@ function surfaceSignalProblems(problems) {
     }
     if (!tieBreak.includes(key)) problems.push(`surface ${key} has no hub-router.json tieBreak position`);
     if (!Object.prototype.hasOwnProperty.call(signals, key)) problems.push(`surface ${key} has no hub-router.json routerSignals entry`);
+  }
+}
+
+// A keyword can sit in a hub-router.json class, in the hub ROUTER.md INTENT_SIGNALS rows, in the
+// packet's own INTENT_SIGNALS rows and in a registry alias. Two rules keep those copies equal.
+// Every alias of a mode is a keyword of a class that mode routes on. A surface that
+// hub-router.json lists under vocabularyMirrors holds one keyword set in all three routers. A
+// surface left off that list keeps copies that differ on purpose, so it is not compared.
+function keywordsOf(signals, intents) {
+  const out = new Set();
+  for (const intent of intents) for (const keyword of ((signals || {})[intent] || {}).keywords || []) out.add(keyword);
+  return out;
+}
+
+function vocabularyProblems(problems) {
+  let hub;
+  try {
+    hub = JSON.parse(fs.readFileSync(path.join(SKCODE, 'hub-router.json'), 'utf8'));
+  } catch {
+    return; // surfaceSignalProblems reports what a missing or broken hub-router.json costs.
+  }
+  const classes = hub.vocabularyClasses && typeof hub.vocabularyClasses === 'object' ? hub.vocabularyClasses : {};
+  const signals = hub.routerSignals && typeof hub.routerSignals === 'object' ? hub.routerSignals : {};
+  const routedKeywords = (key) => {
+    const names = signals[key] && Array.isArray(signals[key].classes) ? signals[key].classes : [];
+    return new Set(names.flatMap((name) => (classes[name] && classes[name].keywords) || []));
+  };
+  const modes = JSON.parse(fs.readFileSync(REGISTRY_FILE, 'utf8')).modes || [];
+  for (const mode of modes) {
+    const aliases = mode && Array.isArray(mode.aliases) ? mode.aliases : [];
+    const routed = aliases.length > 0 ? routedKeywords(mode.workflowMode) : new Set();
+    for (const alias of aliases) {
+      if (!routed.has(alias)) problems.push(`mode-registry.json alias "${alias}" of ${mode.workflowMode} is in no hub-router.json class that mode routes on`);
+    }
+  }
+  const mirrors = hub.vocabularyMirrors;
+  if (mirrors === undefined) return;
+  if (!Array.isArray(mirrors)) {
+    problems.push('hub-router.json vocabularyMirrors must be a list of surface packets');
+    return;
+  }
+  const parent = lib.loadSurfaceRouter(SKCODE);
+  const parentSignals = (parent && parent.intentSignals) || {};
+  for (const packet of mirrors) {
+    const mode = SURFACE_MODES.find((m) => m.packet === packet);
+    if (!mode) {
+      problems.push(`vocabularyMirrors names ${packet}, which is not a registered surface packet on disk`);
+      continue;
+    }
+    const packetSignals = readSkillRouter(path.join(SKCODE, packet)).intentSignals || {};
+    const intents = Object.keys(packetSignals);
+    const copies = [
+      ['hub-router.json', routedKeywords(mode.workflowMode)],
+      ['ROUTER.md INTENT_SIGNALS', keywordsOf(parentSignals, intents)],
+      [`${packet} INTENT_SIGNALS`, keywordsOf(packetSignals, intents)],
+    ];
+    if (copies[0][1].size === 0) problems.push(`${packet} has no keyword in its hub-router.json classes, so the vocabulary check would be vacuous`);
+    for (const [name, keywords] of copies) {
+      for (const [otherName, other] of copies) {
+        for (const keyword of other) {
+          if (!keywords.has(keyword)) problems.push(`${packet} keyword "${keyword}" is in ${otherName} and missing from ${name}`);
+        }
+      }
+    }
   }
 }
 
@@ -279,11 +343,13 @@ function legOrphans() {
   return problems;
 }
 
-// Leg 2: the parent surface RESOURCE_MAP equals the union of the surface children plus the parent tier.
+// Leg 2: the parent surface RESOURCE_MAP equals the union of the surface children plus the parent tier,
+// and the vocabulary copies agree.
 function legSurfaceMap() {
   if (REGISTRY_MISSING) return ['mode-registry.json is missing, so no surface can be checked'];
   const problems = [];
   surfaceSignalProblems(problems);
+  vocabularyProblems(problems);
   const sharedControls = sharedControlResources();
   if (sharedControls.size === 0) {
     problems.push('ROUTER.md declares no SHARED_CONTROL_RESOURCES, so the parent-tier check would be vacuous');
@@ -421,7 +487,7 @@ function legScenarios() {
 const LEGS = [
   ['1a', 'machine-router paths exist and the prose maps are routed', legPaths],
   ['1b', 'every routable reference or asset doc is routed', legOrphans],
-  ['2', 'surface RESOURCE_MAP equals the children union plus the parent tier', legSurfaceMap],
+  ['2', 'surface RESOURCE_MAP equals the children union plus the parent tier, and the vocabulary copies agree', legSurfaceMap],
   ['3', 'compiled destinations, leaf-manifest and code-skilled RESOURCE_MAP agree', legBijection],
   ['4', 'playbook expected_resource is emitted by the router', legScenarios],
 ];

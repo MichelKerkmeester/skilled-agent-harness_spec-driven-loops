@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`opencode/` holds one relative symlink. `session-relaunch.js` points to `../../../../.opencode/plugins/session-relaunch.js`, and OpenCode loads the real plugin from that folder through its flat plugin glob. Nothing loads through this link. The plugin tracks each session's context window, queues a nudge from `message.updated` and `message.part.updated`, arms at `session.idle`, seeds after `session.compacted` and pushes the active nudge or seed into `experimental.chat.system.transform`. A child session is excluded so a sub-agent cannot hand off its parent.
+`opencode/` holds one relative symlink. `session-relaunch.js` points to `../../../../.opencode/plugins/session-relaunch.js`, and OpenCode loads the real plugin from that folder through its flat plugin glob. Nothing loads through this link. The plugin tracks each session's context window, queues a nudge from `message.updated` and `message.part.updated`, arms at `session.idle`, seeds after `session.compacted` and pushes the active nudge, the seed or the withdrawn notice into `experimental.chat.system.transform`. Its `tool.execute.before` hook throws for the `question` tool while the session's record can still be armed, because an open dialog keeps the session from going idle. A child session is excluded so a sub-agent cannot hand off its parent.
 
 ---
 
@@ -22,7 +22,7 @@ version: 1.0.0.0
 
 | File | Event or role | What it does | On error |
 |---|---|---|---|
-| [`session-relaunch.js`](./session-relaunch.js) | Symlink, plugin events | Points at `.opencode/plugins/session-relaunch.js`. The target imports `../hooks/session-relaunch/lib/`, handles `session.created`, `session.updated`, `message.updated`, `message.part.updated`, `session.idle` and `session.compacted`, and exports through `dualPlugin`. | Fails open. The target catches every event error and never writes stdout or stderr. |
+| [`session-relaunch.js`](./session-relaunch.js) | Symlink, plugin events | Points at `.opencode/plugins/session-relaunch.js`. The target imports `../hooks/session-relaunch/lib/`, handles `session.created`, `session.updated`, `message.updated`, `message.part.updated`, `session.idle` and `session.compacted`, refuses the `question` tool in `tool.execute.before` while the session's record can still be armed, and exports through `dualPlugin`. | Fails open. The target catches every event error and never writes stdout or stderr. |
 
 ---
 

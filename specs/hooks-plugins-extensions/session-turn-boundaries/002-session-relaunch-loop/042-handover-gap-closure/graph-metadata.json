@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/042-handover-gap-closure",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "handover gap closure",
+      "question guard pi opencode",
+      "withdrawn notice pi opencode",
+      "codex compaction pointer",
+      "opencode model carry",
+      "handover gap closure plan",
+      "handover gap closure tasks",
+      "handover gap closure acceptance criteria",
+      "042-handover-gap-closure operator decisions",
+      "handover gap closure implementation summary"
+    ],
+    "key_topics": [
+      "handover",
+      "gap",
+      "closure",
+      "question",
+      "guard",
+      "opencode",
+      "withdrawn",
+      "notice",
+      "codex",
+      "compaction",
+      "pointer",
+      "model"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/harness/probe.sh",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+      ".opencode/plugins/session-relaunch.js",
+      ".skilled/hooks/session-relaunch/codex/compact-pointer.mjs",
+      ".codex/hooks/compact-pointer.mjs",
+      ".codex/hooks.json",
+      ".opencode/plugins/tests/session-relaunch.test.cjs",
+      "codex/README.md",
+      "pi/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe.sh",
+        "kind": "script",
+        "path": "scratch/harness/probe.sh",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "subagent-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "compact-pointer.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/codex/compact-pointer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "codex/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refuse Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 041 brought all four runtimes to a completed hop and left five gaps that no live run had exercised",
+    "created_at": "2026-11-15T05:18:57Z",
+    "last_save_at": "2026-11-15T06:11:29.871Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a33debd53f946a6610479f26a18b3ffd15ae8f83962743a656b187baf675bdf6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "73a75819b93025a3c9c0c81110b97a15617aaf19ea49a53834f1539f2a485ac8",
+      "plan.md": "91e809c279ba820a244df67af053092644462e2e401e6b35a4c5f77d639503ec",
+      "tasks.md": "32c423eda3900874919cacf92e6be47e29f02d0160887dd3abe0ff3f7617eb0a",
+      "decision-record.md": "30e17239a7cc71837f7f269e3684e676a31a4f4e9cd2bff35ee9be68087ae9f4",
+      "implementation-summary.md": "bb229e8cc28ee0d9c08559587c1084b7a0f3b9c1c379be5fd1d2b4251aedd4f4"
+    },
+    "last_active_at": null
+  }
+}

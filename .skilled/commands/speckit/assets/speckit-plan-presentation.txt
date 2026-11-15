@@ -8,6 +8,8 @@ For `:confirm` or no suffix, the consolidated setup prompt is the first visible 
 
 For `:auto`, do not show the consolidated prompt by default. Resolve setup through the auto-mode table below. Ask targeted questions only for fields marked Tier 2.
 
+For `:autopilot`, `:unattended` or `--unattended`, resolve setup like `:auto` and also bind `workspace_choice` to `worktree` or `current_branch`. Nothing is asked after startup. A required field or a `workspace_choice` that is neither pre-bound nor answered at startup ends the run with the Autopilot Result line and reason `uncertainty_blocked`, before any write.
+
 ### Auto Pre-Bound Setup Answers
 
 Accept one optional marker block in the prompt body before applying defaults.
@@ -17,8 +19,7 @@ PRE-BOUND SETUP ANSWERS:
   feature_description: Add passwordless login
   spec_folder: <spec-folder>
   execution_mode: AUTONOMOUS
-  dispatch_mode: single_agent
-  memory_choice: skip
+  prior_continuity_choice: skip
   research_intent: add_feature
   context_integration: false
   phase_decomposition: false
@@ -44,8 +45,7 @@ Unknown fields warn. Malformed lines are parse errors. Marker values override fl
 | `feature_description` | Yes | none | No |
 | `spec_folder` | Yes | none | Yes, when feature is present but folder choice is ambiguous |
 | `execution_mode` | Yes | `AUTONOMOUS` under `:auto` | No |
-| `dispatch_mode` | Yes | `single_agent` | No |
-| `memory_choice` | No | `skip` when no prior continuity exists | No |
+| `prior_continuity_choice` | No | `skip` when no prior continuity exists | No |
 | `research_intent` | Yes | none | Yes |
 | `context_integration` | No | `false` | No |
 | `phase_decomposition` | Yes | `false` | No |
@@ -60,6 +60,7 @@ Unknown fields warn. Malformed lines are parse errors. Marker values override fl
 | `depends_on` | No | none | No |
 | `related_to` | No | none | No |
 | `supersedes` | No | none | No |
+| `workspace_choice` | Autopilot only | none | No. Autopilot stops with `uncertainty_blocked` when it is unbound |
 
 ### Consolidated Prompt Template
 
@@ -70,19 +71,18 @@ Mode: [auto|confirm|ask]
 Feature flags: [with-context yes/no] [with-phases yes/no] [intake-only yes/no]
 
 Q0. Feature Description, if not provided: What feature should be planned?
-Q1. Spec Folder: A) Use existing  B) Create new (new or unrelated work only)  C) Related (Use a related folder, phase child, new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track)  D) Skip documentation
-Q2. Execution Mode, if no suffix: A) Autonomous  B) Interactive
-Q3. Dispatch Mode: A) Single Agent  B) Multi-Agent (1+2)  C) Multi-Agent (1+3)
-Q4. Prior Work Context, only when prior records exist: A) Latest  B) Recent 3  C) Skip
-Q5. Research Intent: A) add_feature  B) fix_bug  C) refactor  D) understand
-Q6. Phase Decomposition, if not already enabled: A) No  B) Yes
-Q7. Phase Count, if phase decomposition is enabled and not provided: default 3
-Q8. Phase Names, if phase decomposition is enabled and not provided: optional comma-separated names
-Q9. Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Set goal: <objective>  C) Skip
+Q1. Spec Folder: A) Use existing  B) Create new (new or unrelated work only)  C) Related (Use a related folder, phase child, new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track)  D) Skip documentation (the run stops before step 1 and writes nothing)
+Q2. Execution Mode, if no suffix: A) Autonomous  B) Interactive  C) Autopilot (unattended; also answer Workspace: worktree or current branch)
+Q3. Prior Work Context, only when prior records exist: A) Latest  B) Recent 3  C) Skip
+Q4. Research Intent: A) add_feature  B) fix_bug  C) refactor  D) understand
+Q5. Phase Decomposition, if not already enabled: A) No  B) Yes
+Q6. Phase Count, if phase decomposition is enabled and not provided: default 3
+Q7. Phase Names, if phase decomposition is enabled and not provided: optional comma-separated names
+Q8. Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Set goal: <objective>  C) Skip
 
 If folder intake is required, include the intake interview in this same prompt.
 
-Reply format covers Q0-Q9 in order, with `-` for omitted conditional answers: "Add auth, B, A, B-single, C, add_feature, A, -, -, A" or "-, B, A, A, -, fix_bug, B, 3, (api; tests; docs), B".
+Reply format covers Q0-Q8 in order, with `-` for omitted conditional answers: "Add auth, B, A, C, add_feature, A, -, -, A" or "-, B, A, -, fix_bug, B, 3, (api; tests; docs), B".
 ```
 
 Never split these questions into separate visible prompts. If `--intake-only` is present, stop after intake emit and do not continue to planning steps.
@@ -96,6 +96,14 @@ Provide the missing inputs or rerun with :confirm.
 STATUS=FAIL ERROR="missing required setup inputs"
 ```
 
+Under autopilot the display ends with the result line in place of the `STATUS=FAIL` line:
+
+```text
+SpecKit Plan autopilot setup failed
+Missing required inputs: [field-list]
+SPECKIT_AUTOPILOT_RESULT {"mode":"autopilot","ok":false,"reason":"uncertainty_blocked","branch":"<branch>","merged":false,"verification":"not run"}
+```
+
 ## 2. Dashboard Layout
 
 Use this compact progress panel whenever the user needs workflow visibility.
@@ -103,11 +111,11 @@ Use this compact progress panel whenever the user needs workflow visibility.
 ```text
 SPECKIT PLAN DASHBOARD
 Spec: [spec_path]
-Mode: [AUTONOMOUS|INTERACTIVE]
+Mode: [AUTONOMOUS|INTERACTIVE|AUTOPILOT]
 Step: [current] / 7 - [step name]
 Inputs: feature=[set|missing] folder=[set|missing] intent=[value]
 Optional flows: context=[on|off] phases=[on|off] intake_only=[on|off]
-Artifacts: spec.md [status] | plan.md [status] | tasks.md [status] | acceptance-criteria.md [status]
+Artifacts: spec.md [status] | plan.md [status] | tasks.md [status]
 Next: [next action]
 ```
 
@@ -134,8 +142,21 @@ Continue planning first child ([first_child_folder])? [Y/n/review]
 
 ```text
 SpecKit Planning Complete - All 7 steps executed.
-Artifacts: spec.md, plan.md, tasks.md, acceptance-criteria.md when Level 2+, graph-metadata.json scaffolded, continuity refreshed in canonical spec docs
+Artifacts: spec.md, plan.md, tasks.md, graph-metadata.json scaffolded, continuity refreshed in canonical spec docs
 Ready for: /speckit:implement [spec-folder-path]
+Defaults taken: [none | each default an auto run took in place of a question]
+STATUS=OK PATH=[spec-folder-path]
+```
+
+### Intake-Only Result
+
+Shown when `/speckit:plan --intake-only` stops at `step_0.6_intake_only_gate`. It replaces the Success block, because no planning step ran.
+
+```text
+Intake-only mode complete.
+Published trio at [spec-folder-path]: spec.md, description.json, graph-metadata.json
+Planning Steps 1-6 bypassed.
+Next: run /speckit:plan [spec-folder-path] without --intake-only to resume planning.
 STATUS=OK PATH=[spec-folder-path]
 ```
 
@@ -144,8 +165,20 @@ STATUS=OK PATH=[spec-folder-path]
 ```text
 SpecKit Planning Failed
 Error: [description] | Step: [number]
+Defaults taken: [none | each default an auto run took in place of a question]
 STATUS=FAIL ERROR="[message]"
 ```
+
+### Autopilot Result
+
+An autopilot run ends with exactly one of these two lines, in place of the Success or Failure block. The schema and the reason codes are `unattended_autopilot.terminal_result` in the workflow.
+
+```text
+SPECKIT_AUTOPILOT_RESULT {"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":false,"verification":"passed"}
+SPECKIT_AUTOPILOT_RESULT {"mode":"autopilot","ok":false,"reason":"<no_eligible_tasks|retry_exhausted|verification_failed|uncertainty_blocked>","branch":"<branch>","merged":false,"verification":"<summary>"}
+```
+
+The first line reports a run that passed verification and the second a stop. Autopilot never merges and never pushes, so `merged` is always false and the merge is left to the operator.
 
 ### Next-Step Suggestions
 

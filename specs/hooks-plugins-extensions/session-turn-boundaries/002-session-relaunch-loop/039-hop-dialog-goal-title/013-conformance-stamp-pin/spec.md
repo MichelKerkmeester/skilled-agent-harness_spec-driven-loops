@@ -58,7 +58,7 @@ This is **Phase 13** of the Close what two reviews of the eleven relaunch fixes 
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The shared conformance case `an arm leaves the record pending when no process below the loop is found` checks its result with `assertStillPending`. That helper removes `deferredAt` from the record before it compares, for every runtime (`.skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:412` to `:418`, used at `:465`). Claude Stop stamps the record through `markParked` (`claude/stop-arm.mjs:53` to `:59`, called at `:183`). No file under `codex/` calls `markDeferred`. So the case pins neither behavior: Claude could stop stamping, or Codex could start, and the conformance suite would stay green. Review A of 2026-11-14 raised this as a P2.
+The shared conformance case `an arm leaves the record pending when no process below the loop is found` checks its result with `assertStillPending`. That helper removes `deferredAt` from the record before it compares, for every runtime (`.skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:412` to `:418`, used at `:465`). Claude Stop stamps the record through `markParked` (`claude/stop-arm.mjs:53` to `:59`, called at `:183` as of commit `c69f278cfc`). No file under `codex/` calls `markDeferred`. So the case pins neither behavior: Claude could stop stamping, or Codex could start, and the conformance suite would stay green. Review A of 2026-11-14 raised this as a P2.
 
 Only the Claude half has cover elsewhere, in three tests of `claude-adapters.test.cjs` (lines 940, 1342 and 1371). Nothing states that Codex leaves the record unstamped, which child 005 records as its known limitation 1.
 
@@ -105,7 +105,7 @@ The conformance file names `deferredAt` once, at line 415, where it is dropped. 
 ### In Scope
 - Mark in the adapter table of the conformance file which runtime stamps a record its Stop could not arm. Claude does.
 - Change `assertStillPending` to read that mark from the adapter it is given: a stamping runtime must leave a `deferredAt` that parses as a time, and any other runtime must leave no `deferredAt` key. The rest of the record must equal the record before, as now.
-- Prove the Claude assertion by taking the `markParked` call at `claude/stop-arm.mjs:183` out of the working tree, running the case, and putting it back.
+- Prove the Claude assertion by taking the `markParked` call at `claude/stop-arm.mjs:183` (`c69f278cfc`) out of the working tree, running the case, and putting it back.
 - Prove the Codex assertion by setting the mark for Codex in the working tree, running the case, and putting it back.
 - Prove the branch for a runtime that should not stamp and does, by taking the mark off the Claude entry in the working tree, running the case, and putting the mark back. This mutation is in the test file only.
 - Rewrite the comment above the helper to say which runtime stamps and why the other does not.
@@ -133,7 +133,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | For Claude, the shared no-target case fails when the Stop adapter leaves no `deferredAt` on the record. With the `markParked` call at `claude/stop-arm.mjs:183` removed from the working tree the case `claude: an arm leaves the record pending when no process below the loop is found` fails, and with the call restored it passes. The same removal leaves the case passing before the test edit. |
+| REQ-001 | For Claude, the shared no-target case fails when the Stop adapter leaves no `deferredAt` on the record. With the `markParked` call at `claude/stop-arm.mjs:183` (`c69f278cfc`) removed from the working tree the case `claude: an arm leaves the record pending when no process below the loop is found` fails, and with the call restored it passes. The same removal leaves the case passing before the test edit. |
 | REQ-002 | For Codex, the same case fails when the record carries a `deferredAt`, or when the table says Codex stamps and it does not. With the mark set for Codex in the working tree the case `codex: an arm leaves the record pending when no process below the loop is found` fails, and with the mark removed it passes. That mutation reaches only the branch where a stamp is expected and none is found. The other branch, a stamp on a record whose runtime the table does not mark, is proven on Claude, the one runtime that stamps: with the mark taken off the Claude entry in the working tree the case `claude: an arm leaves the record pending when no process below the loop is found` fails, and with the mark back it passes. |
 
 ### P1 - Required (complete OR user-approved deferral)

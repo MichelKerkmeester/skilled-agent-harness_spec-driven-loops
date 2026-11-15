@@ -14,13 +14,13 @@
   {
     "id": "route-patch-required",
     "check": "route-patch-required",
-    "message": "A dsh headless dispatch MUST pass exactly one roster route patch (`.dsh/patches/route-llmgateway-deepseek.patch.yml` or `.dsh/patches/route-opencode-go-deepseek.patch.yml`) with `--patch` before the app flags. Without it the base `agent-default-model` row selects the official DeepSeek route, which this repository never dispatches.",
+    "message": "A dsh headless dispatch MUST pass exactly one roster route patch (`.dsh/patches/route-llmgateway-deepseek.patch.yml`, `.dsh/patches/route-opencode-go-deepseek.patch.yml` or `.dsh/patches/route-mistral-deepseek.patch.yml`) with `--patch` before the app flags. Without it the base `agent-default-model` row selects the official DeepSeek route, which this repository never dispatches.",
     "severity": "error"
   },
   {
     "id": "closed-roster",
     "check": "closed-roster",
-    "message": "Only two routes may be dispatched: LLM Gateway `deepseek-v4.1-flash-1017` and OpenCode Go `deepseek-v4.1-flash`, and every `--patch` must be one of this checkout's `.dsh/patches/` or `.dsh/agents/` files. dsh does not validate catalog membership, so any other provider, model or hand-written patch is refused before launch.",
+    "message": "Only three routes may be dispatched: LLM Gateway `deepseek-v4.1-flash-1017`, OpenCode Go `deepseek-v4.1-flash` and Mistral `deepseek-v4-1-flash-1017`, and every `--patch` must be one of this checkout's `.dsh/patches/` or `.dsh/agents/` files. dsh does not validate catalog membership, so any other provider, model or hand-written patch is refused before launch.",
     "severity": "error"
   },
   {
@@ -56,7 +56,7 @@
   {
     "id": "pinned-version-required",
     "check": "pinned-version-required",
-    "message": "Run `command -v dsh` and `dsh --version </dev/null` before every dispatch, and refuse anything but the pinned 0.2.2-rc.1. The npm dist-tags moved during research, so a tag is never a pin. A new release is re-pinned offline first.",
+    "message": "Run `command -v dsh` and `dsh --version </dev/null` before every dispatch, and refuse anything but the pinned 0.2.2-rc.3. The npm dist-tags moved during research, so a tag is never a pin. A new release is re-pinned offline first.",
     "severity": "error"
   },
   {

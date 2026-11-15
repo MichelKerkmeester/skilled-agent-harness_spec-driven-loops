@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift",
+  "description": "Add the nine hub-router.json phrases to the sk-doc and system-deep-loop root ROUTER.md intents so the hub vocabulary source check passes",
+  "keywords": [
+    "nine",
+    "hub-router",
+    "json",
+    "phrases",
+    "sk-doc",
+    "system-deep-loop",
+    "root",
+    "router",
+    "intents",
+    "hub",
+    "vocabulary",
+    "source",
+    "check",
+    "passes"
+  ],
+  "lastUpdated": "2026-11-13T21:40:26.199Z",
+  "specId": "008",
+  "folderSlug": "hub-vocabulary-drift",
+  "parentChain": [
+    "sk-doc",
+    "hub-routing-and-surfaces"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -10,10 +10,19 @@
   --space-9:  96px;   --space-10:128px;   --space-11:192px;   --space-12:256px;
   --space-13:384px;   --space-14:512px;   --space-15:640px;   --space-16:768px;
 
-  /* ---- Type scale: px/rem only, never em ---- */
-  --text-xs:  12px;   --text-sm:  14px;   --text-base:16px;   --text-lg:  18px;
-  --text-xl:  20px;   --text-2xl: 24px;   --text-3xl: 30px;   --text-4xl: 36px;
-  --text-5xl: 48px;   --text-6xl: 60px;   --text-7xl: 72px;
+  /* ---- Type scale: rem, so text follows the reader's browser font size. Never em.
+         The comment beside each step is its size at the 16px browser default. ---- */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.25rem;    /* 20px */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  1.875rem;   /* 30px */
+  --text-4xl:  2.25rem;    /* 36px */
+  --text-5xl:  3rem;       /* 48px */
+  --text-6xl:  3.75rem;    /* 60px */
+  --text-7xl:  4.5rem;     /* 72px */
 
   /* ---- Weight: two, and nothing under 400 ---- */
   --weight-normal: 400;

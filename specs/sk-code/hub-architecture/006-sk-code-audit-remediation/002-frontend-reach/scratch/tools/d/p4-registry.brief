@@ -1,0 +1,16 @@
+TASK: replace one sentence inside one JSON string in one file.
+
+FILE: .skilled/skills/sk-code/mode-registry.json (read lines 1 to 8 only)
+
+EDIT, line 5, inside the top-level "description" string. Replace this text:
+Its aliases are checked against the hub-router.json mode vocabulary, and SKILL.md
+with:
+Every alias of a mode must be a keyword in a hub-router.json class that mode routes on, and check 2 of verify-router-sync.cjs fails when one is not. SKILL.md
+
+Then, in the same string, the words that follow `SKILL.md` are `§2 SMART ROUTING names the routing authority.` Leave them as they are. The sentence now reads `SKILL.md §2 SMART ROUTING names the routing authority.`
+
+Change nothing else. One file changes. The file must stay valid JSON.
+
+VERIFY (run from the repository root):
+node -e "const d=require('./.skilled/skills/sk-code/mode-registry.json').description;console.log(d.slice(d.indexOf('Every alias')))"
+Expected output: Every alias of a mode must be a keyword in a hub-router.json class that mode routes on, and check 2 of verify-router-sync.cjs fails when one is not. SKILL.md §2 SMART ROUTING names the routing authority.

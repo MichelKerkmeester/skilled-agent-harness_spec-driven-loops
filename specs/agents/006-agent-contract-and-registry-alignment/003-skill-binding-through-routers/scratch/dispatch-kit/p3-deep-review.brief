@@ -1,0 +1,26 @@
+Make the deep-review agent load the shared review doctrine through the review mode's entry
+file, `sk-code-review/SKILL.md`, instead of citing the doctrine file's own path. Four lines change.
+
+Files (exactly two, same change in each):
+1. .skilled/agents/deep-review.md
+2. .claude/agents/deep-review.md
+
+Change A. The line that starts with
+`- Load the review mode's `references/review-core.md` before assigning severity:` is replaced, whole line, with:
+- Load the review doctrine before assigning severity: read the review mode's `sk-code-review/SKILL.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`), and load the doctrine file it names first.
+
+Change B. In the `### Skills` table, the row that starts with `| `sk-code` (code-review mode) |`
+is replaced, whole line, with:
+| `sk-code` (code-review mode) | Shared review doctrine, loaded through `sk-code-review/SKILL.md` |
+
+Change C. The line that starts with `This agent loads shared review doctrine from the review mode's`
+is replaced, whole line, with:
+This agent loads shared review doctrine through the review mode's `sk-code-review/SKILL.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`), for severity definitions, evidence requirements, and baseline check families. That file names the doctrine reference as the first resource it loads.
+
+Change D. Near the end of the file, the bullet that starts with
+`- `sk-code-review/references/review-core.md` in the installed sk-code skill` is replaced, whole line, with:
+- `sk-code-review/SKILL.md` in the installed sk-code skill (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`): the review mode entry file, which names the shared review doctrine for severity and evidence.
+
+Verification (run all, paste the output in the handback):
+  rg -n 'review-core' .skilled/agents/deep-review.md .claude/agents/deep-review.md                 # expect: no output
+  rg -c 'sk-code-review/SKILL.md' .skilled/agents/deep-review.md .claude/agents/deep-review.md     # expect: 4 for each file

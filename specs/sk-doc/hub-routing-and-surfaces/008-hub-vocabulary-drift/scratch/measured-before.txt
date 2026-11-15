@@ -1,0 +1,15 @@
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs | grep -v 'stage-two-reverse '
+DRIFT sk-doc                       alias=0 stage-two=6 triggers=0 packets=0 stage-two-reverse=118
+  stage-two sk-create-agent: "agent definition" routes here in hub-router.json but no ROUTER.md intent for this mode carries it
+  stage-two sk-create-agent: "specialist persona file" routes here in hub-router.json but no ROUTER.md intent for this mode carries it
+  stage-two sk-create-command: "prompt shortcut" routes here in hub-router.json but no ROUTER.md intent for this mode carries it
+  stage-two sk-create-command: "confirm flag" routes here in hub-router.json but no ROUTER.md intent for this mode carries it
+  stage-two sk-create-diff: "before and after my rewrite" routes here in hub-router.json but no ROUTER.md intent for this mode carries it
+  stage-two sk-create-goal: "intent file" routes here in hub-router.json but no ROUTER.md intent for this mode carries it
+DRIFT system-deep-loop             alias=0 stage-two=3 triggers=0 packets=0 stage-two-reverse=0
+  stage-two research: "find out everything" routes here in hub-router.json but no ROUTER.md intent for this mode carries it
+  stage-two review: "findings stop changing" routes here in hub-router.json but no ROUTER.md intent for this mode carries it
+  stage-two ai-council: "several models" routes here in hub-router.json but no ROUTER.md intent for this mode carries it
+checked=7 hub(s), drift=9
+RESULT: FAILED
+(exit status 1, measured on origin/main 2ecb17e7a6 before any edit; the five hubs that print OK are left out)

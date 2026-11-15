@@ -65,7 +65,9 @@
     "research convergence detection",
     "deep review",
     "severity weighted findings",
-    "convergence review"
+    "convergence review",
+    "find out everything",
+    "findings stop changing"
   ],
   "derived": {
     "trigger_phrases": [
@@ -159,6 +161,8 @@
     "research convergence detection",
     "deep review",
     "severity weighted findings",
-    "convergence review"
+    "convergence review",
+    "find out everything",
+    "findings stop changing"
   ]
 }

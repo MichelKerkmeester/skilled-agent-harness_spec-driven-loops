@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-13"
-version: 2.1.30.0
+version: 2.1.33.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -671,7 +671,7 @@ Coordinated shell lifecycle for recommending spec depth, creating spec folders a
 
 #### Current Reality
 
-`create.sh`, `recommend-level.sh`, `upgrade-level.sh`, `calculate-completeness.sh`, `check-completion.sh` and `archive.sh` are the entry points. `create.sh` counts archived numbers when it numbers a packet and, with `--track`, prints at most one advisory sub-track line from `suggest-subtracks.mjs`. `archive.sh` archives into the `z_archive/` beside the packet, a declared sub-track's own included, refreshes the description cache after a move and restores a packet whose number is taken onto the next free number through `relocate.mjs`.
+`create.sh`, `recommend-level.sh`, `upgrade-level.sh`, `calculate-completeness.sh`, `check-completion.sh` and `archive.sh` are the entry points. `create.sh` counts archived numbers when it numbers a packet and, with `--track`, prints at most one advisory sub-track line from `suggest-subtracks.mjs`. `archive.sh` archives into the `z_archive/` beside the packet, a declared sub-track's own included, refreshes the description cache after a move and restores a packet whose number is taken onto the next free number through `relocate.mjs`. A restore whose relocation exits 3 is reported as restored with a warning, and a restore into a track that holds sub-tracks is refused.
 
 #### Source Files
 
@@ -687,7 +687,7 @@ Moves, renumbers and re-parents spec packets and rewrites every store that recor
 
 #### Current Reality
 
-`relocate.mjs` takes one mode: `--map`, `--from` with `--to`, `--renumber` or `--declare-subtrack`. It prints the plan and exits 1 when a dry run finds work, and `--apply` writes. Every refusal happens before the first write. An applied run moves the folders, rewrites references under `specs/`, re-derives the packets' recorded paths, refreshes the track roots, the relocation ledger, the redirect table and the trigger index, then closes with the track-root sweep and strict validation of each moved packet. Code and CI files are never rewritten: a moved path named there refuses the run.
+`relocate.mjs` takes one mode: `--map`, `--from` with `--to`, `--renumber` or `--declare-subtrack`. It prints the plan and exits 1 when a dry run finds work, and `--apply` writes. Every refusal happens before the first write. An applied run moves the folders, rewrites references under `specs/`, re-derives the packets' recorded paths, refreshes the track roots, the relocation ledger, the redirect table and the trigger index, then closes with the track-root sweep and strict validation of each moved packet. It exits 3 when every step landed and only a moved packet's own validation printed `RESULT: FAILED`, and a rerun finishes a run that stopped on a failed step. Code and CI files are never rewritten: a moved path named there refuses the run.
 
 #### Source Files
 
@@ -735,7 +735,7 @@ Proposes a sub-track grouping for a whole flat track, or names the declared sub-
 
 #### Current Reality
 
-`suggest-subtracks.mjs --track <name>` prints a JSON map of every live packet in a flat track to a proposed sub-track, in the shape `relocate.mjs --map` takes, or one line that says why there is no map. With `--describe` it prints the best-fitting declared sub-track or says that none fits. It reads packet metadata only and exits 0 for a proposal and for an explained non-answer.
+`suggest-subtracks.mjs --track <name>` prints a JSON map of every live packet in a flat track to a proposed sub-track, in the shape `relocate.mjs --map` takes, or says why there is no map. With `--describe` it prints the best-fitting declared sub-track or says that none fits. It reads packet metadata only and exits 0 for a proposal and for an explained non-answer.
 
 #### Source Files
 
@@ -1075,7 +1075,7 @@ Searches archived packets on request, labels each archived hit and lists the arc
 
 #### Current Reality
 
-Every recipe leaves `z_archive/` out by default. `rg-wrapper.mjs --include-archive` searches archived packets too. Human output marks each archived path `[archived]`, and JSON rows in `results` and `counts` carry `archived: true` or `archived: false`. A second lane lists the `description.json` and `graph-metadata.json` files of archived packets that match, under a `json    :` section in human output and as `jsonLane` in JSON, and it is not bounded by the file limit.
+Every recipe leaves `z_archive/` out by default. `rg-wrapper.mjs --include-archive` searches archived packets too. Human output marks each archived path `[archived]`, and JSON rows in `results` and `counts` carry `archived: true` or `archived: false`. The path recipe's JSON keeps `paths` as plain strings and adds `archivedPaths`. A second lane lists the `description.json` and `graph-metadata.json` files of archived packets that match, under a `json    :` section in human output and as `jsonLane` in JSON, and it is not bounded by the file limit.
 
 #### Source Files
 
@@ -1093,7 +1093,7 @@ Hands a session near its context limit to a fresh one through a structured hando
 
 #### Current Reality
 
-The loop ships off: a runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` decides for it when it holds a value, and `SYSTEM_SESSION_RELAUNCH_ENABLED` decides otherwise. Claude Code, Pi, OpenCode and Codex prepare handoffs through automatic adapters. Cursor and Devin use `/speckit:handoff`. `prepare --runtime <name>` selects the manual claim runtime outside the loop and rejects a conflicting runtime inside it. The wrapper relaunches only an armed, fresh record below `SESSION_RELAUNCH_MAX_HOPS`. If a record is still pending at exit, it prints the selected runtime's manual claim command. A session can call a prepared hand-over off with `session-relaunch.cjs cancel`, and an operator prompt does the same on Claude, Codex, Pi and OpenCode when the session carried on after the hand-over was deferred or armed. A withdrawn hand-over earns one more context nudge, a `withdrawn` history line, one warning from the wrapper and no manual claim command. The wrapper writes the `handed-over` line only for an open note and prints its warning, without a claim command, for a claimed, done or missing one. Inside the wrapper the automatic nudge asks for a hop, and a sourced shell shim starts each interactive runtime launch under it, including in a repository that links `.skilled`. The shim runs only a wrapper inside the sourced checkout, a linked worktree registered to it or a checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS`. Outside it the nudge asks only for a note the session keeps with `keep` and, on Claude Code, claims after a compaction. Every hand-over, withdrawal, kept note, claim, finish and killer timeout adds a line to a gitignored hop history that `session-relaunch.cjs history` and `/doctor:setup` read along with any notes still open, and `SESSION_RELAUNCH_NOTIFY_HOPS` adds an opt-in macOS notice per hand-over.
+The loop ships on for Claude Code and off for every other runtime: a runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` decides for it when it holds a value, `SYSTEM_SESSION_RELAUNCH_ENABLED` decides when it holds one, and with both empty only Claude Code is on. Claude Code, Pi, OpenCode and Codex prepare handoffs through automatic adapters. Cursor and Devin use `/speckit:handoff`. `prepare --runtime <name>` selects the manual claim runtime outside the loop and rejects a conflicting runtime inside it. The wrapper relaunches only an armed, fresh record below `SESSION_RELAUNCH_MAX_HOPS`. If a record is still pending at exit, it prints the selected runtime's manual claim command. A session can call a prepared hand-over off with `session-relaunch.cjs cancel`, and an operator prompt does the same on Claude, Codex, Pi and OpenCode when the session carried on after the hand-over was deferred or armed. A withdrawn hand-over earns one more context nudge, a `withdrawn` history line, one warning from the wrapper and no manual claim command. The wrapper writes the `handed-over` line only for an open note and prints its warning, without a claim command, for a claimed, done or missing one. Inside the wrapper the automatic nudge asks for a hop, and a sourced shell shim starts each interactive runtime launch under it, including in a repository that links `.skilled`. The shim runs only a wrapper inside the sourced checkout, a linked worktree registered to it or a checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS`. Outside it the nudge asks only for a note the session keeps with `keep` and, on Claude Code, claims after a compaction. Every hand-over, withdrawal, kept note, claim, finish and killer timeout adds a line to a gitignored hop history that `session-relaunch.cjs history` and `/doctor:setup` read along with any notes still open, and `SESSION_RELAUNCH_NOTIFY_HOPS` adds an opt-in macOS notice per hand-over.
 
 #### Source Files
 
@@ -1114,6 +1114,22 @@ The compaction hooks mint an opaque locator for the exact session and may inject
 #### Source Files
 
 See [context-preservation/compaction-history-lookup.md](context-preservation/compaction-history-lookup.md) for implementation and test file listings.
+
+---
+
+### Packet purpose carry
+
+#### Description
+
+Carries one sentence of why a packet exists across every hop: the resume brief, the relaunch note, the context recovered after a compaction and the continuity save.
+
+#### Current Reality
+
+One reader takes the packet's `### Purpose`, a labelled `Purpose:` paragraph or the opening paragraph of a `## PURPOSE` or `## ROOT PURPOSE` section. Without one it takes the nearest phase parent's purpose, then the packet's `goal.md` Objective. The compaction hooks print it with the problem sentence beside it, the resume brief and the relaunch note follow the same rule in words, and each save stores it as `packet_purpose`.
+
+#### Source Files
+
+See [context-preservation/packet-purpose-carry.md](context-preservation/packet-purpose-carry.md) for implementation and test file listings.
 
 ---
 

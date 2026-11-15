@@ -202,6 +202,14 @@ describe('precompact hook', () => {
       ])).toBe(folder);
     });
 
+    it('counts a path with a line suffix toward its folder', () => {
+      expect(detectSpecFolder([
+        'Read specs/a/001-x/spec.md:12',
+        'Edit specs/a/001-x/spec.md:40:3',
+        'Read specs/b/002-y/plan.md',
+      ])).toBe('specs/a/001-x');
+    });
+
     it('detects a spec folder under a top-level specs directory and names it in the brief', async () => {
       const folder = 'specs/system-speckit/x/y';
       const lines = [`Read /repo/${folder}/spec.md during compaction`];

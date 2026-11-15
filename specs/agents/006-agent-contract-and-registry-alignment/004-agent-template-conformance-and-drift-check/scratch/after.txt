@@ -1,0 +1,26 @@
+# After the phase 004 edits
+
+## T014: one required section renamed in a scratch copy
+# Method: the agents directory and the script were copied to a temp tree whose .skilled/skills links to the real one.
+# In the copy of review.md, the heading CAPABILITY SCAN was renamed to ROUTING SCAN.
+agent-roster: OK
+control exit=0
+missing required section: review: CAPABILITY SCAN
+agent-roster: FAIL (1 problem(s))
+renamed exit=1
+
+## CHK-023: the END marker removed from a scratch copy of the template
+sync-agent-roster.cjs: cannot read the required sections from .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md: missing REQUIRED-SECTIONS:END marker
+unparsable exit=2
+
+## T016: time of the check on the real tree
+agent-roster: OK
+node .skilled/bin/sync-agent-roster.cjs --check  0.03s user 0.01s system 75% cpu 0.052 total
+
+## Measured Behavior rerun
+$ rg -l '^## [0-9]+\. CAPABILITY SCAN' .skilled/agents | wc -l
+      11
+$ rg -l -i '^## [0-9]+\. ROUTING SCAN' .skilled/agents | wc -l
+       0
+$ rg -l '^## [0-9]+\. HOOK-INJECTED CONTEXT ROUTING' .skilled/agents | wc -l
+      11

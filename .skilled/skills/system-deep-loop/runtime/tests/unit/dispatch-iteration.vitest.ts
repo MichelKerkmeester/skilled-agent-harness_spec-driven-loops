@@ -52,19 +52,30 @@ describe('dispatch-iteration CLI refusals', () => {
     }
   });
 
-  it('exits 2 with the fan-out-lineage refusal for cli-deepseek-harness', () => {
-    const result = runScript(['--executor', 'cli-deepseek-harness']);
+  // Every flag but --spec-folder, so the usage check is the first thing that fails.
+  const harnessFlags = [
+    '--executor', 'cli-deepseek-harness', '--loop-type', 'research', '--repo-root', '.',
+    '--prompt-file', 'prompt.md', '--state-log', 'state.jsonl', '--packet-dir', 'packet',
+    '--artifact-dir', 'packet', '--iteration', '1', '--generation', '1', '--session-id', 's',
+    '--model', 'null', '--reasoning-effort', 'null', '--service-tier', 'null',
+    '--sandbox-mode', 'null', '--timeout-seconds', '60',
+  ];
 
-    expect(result.status).toBe(2);
-    expect(result.stderr).toContain('runs only as a fan-out lineage');
+  it('requires --spec-folder for a single cli-deepseek-harness lineage', () => {
+    const result = runScript(harnessFlags);
+
+    expect(result.status).toBe(64);
+    expect(result.stderr).toContain("missing required flag '--spec-folder'");
+    expect(result.stderr).not.toContain('runs only as a fan-out lineage');
   });
 
-  it('refuses cli-deepseek-harness before it validates any other flag', () => {
-    const result = runScript(['--executor', 'cli-deepseek-harness', '--bogus', 'x']);
+  it('rejects --spec-folder for an executor other than cli-deepseek-harness', () => {
+    const flags = [...harnessFlags];
+    flags[1] = 'cli-pi';
+    const result = runScript([...flags, '--spec-folder', 'specs/x']);
 
-    expect(result.status).toBe(2);
-    expect(result.stderr).toContain('runs only as a fan-out lineage');
-    expect(result.stderr).not.toContain("unknown flag '--bogus'");
+    expect(result.status).toBe(64);
+    expect(result.stderr).toContain("flag '--spec-folder' is only valid with --executor cli-deepseek-harness");
   });
 
   it('exits 64 for native because native dispatch belongs to the orchestrator', () => {

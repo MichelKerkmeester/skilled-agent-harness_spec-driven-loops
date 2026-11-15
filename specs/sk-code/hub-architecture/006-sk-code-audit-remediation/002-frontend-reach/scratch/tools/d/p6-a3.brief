@@ -1,0 +1,15 @@
+TASK: replace six bullet lines with one bullet line in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md (read lines 128 to 146 only)
+
+EDIT. Find the bullet line that starts with two spaces and then `- `assets/scripts/verify-router-sync.cjs` is the router-sync guard. It restores the four checks`. Under it are four deeper bullets that start with `- Check (1):`, `- Check (2):`, `- Check (3):` and `- Check (4):`. Under those is one bullet that starts with two spaces and then `- The dead-path part of check (1) is also checked`. Replace all six of those lines with the one line between the marker lines below. The new line starts with two spaces.
+
+<<<TEXT
+  - `assets/scripts/verify-router-sync.cjs` is the router-sync guard, and the wrapper runs every leg of it. `references/shared/alignment-verification-automation.md` lists its four checks, the legs and what covers each. That file is the one place the list is kept.
+TEXT>>>
+
+Keep the bullet that starts with two spaces and then `- `.github/workflows/routing-registry-drift.yml`` directly under the new line. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'Leg 1b|Check \(1\)' .skilled/skills/sk-code/sk-code-skilled/SKILL.md; echo "exit $?"; rg -c 'That file is the one place the list is kept' .skilled/skills/sk-code/sk-code-skilled/SKILL.md
+Expected output: `exit 1` then `1`

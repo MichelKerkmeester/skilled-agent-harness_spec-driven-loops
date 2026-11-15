@@ -1,0 +1,37 @@
+TASK: add one function and extend one condition in one python file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py (read lines 564 to 598 only)
+
+EDIT 1. The function `is_compiler_emitted_declaration` ends with the line
+    return bool(tail) and tail[-1].startswith("//# sourceMappingURL=")
+Directly after that line, and before the two blank lines that precede `def check_typescript`, insert the text between the marker lines below. The text starts with two blank lines.
+
+<<<TEXT
+
+
+SINGLE_REEXPORT_PATTERN = re.compile(r"^export \{ default \} from (['\"])[^'\"]+\1;$")
+
+
+def is_single_line_reexport(lines: List[str]) -> bool:
+    """A file that holds only one default re-export is an entry point, not a module.
+
+    A runtime that loads entry files from a fixed folder can require each one to be
+    exactly that line, so a header cannot be added without failing the loader's check.
+    """
+    body = [line.strip() for line in lines if line.strip()]
+    return len(body) == 1 and bool(SINGLE_REEXPORT_PATTERN.match(body[0]))
+TEXT>>>
+
+EDIT 2. Inside `check_typescript`, replace the line
+    if should_skip_ts_module_header(path) or is_compiler_emitted_declaration(path, lines):
+with the three lines
+    if should_skip_ts_module_header(path) or is_compiler_emitted_declaration(path, lines):
+        return findings
+    if is_single_line_reexport(lines):
+The existing `        return findings` line under it stays, so the function reads: first condition, return findings, second condition, return findings.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+python3 -c "import ast,sys; ast.parse(open('.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py').read()); print('parsed')"; rg -c 'is_single_line_reexport' .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py
+Expected output: `parsed` then `2`

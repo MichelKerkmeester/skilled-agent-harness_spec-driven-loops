@@ -1,0 +1,109 @@
+Remove text from one agent file that repeats rules the same file already states elsewhere, and
+bring its advisor block to the shared wording where the changes below say so. Every change is a
+deletion, a section renumbering that follows a deletion, or a re-wrap of the advisor block. No
+rule is reworded.
+
+The two files are the canonical file and its twin. Each has its own list of changes below,
+because the twin's text can differ in path strings. Apply each list to its own file.
+
+Files:
+1. .skilled/agents/prompt-improver.md
+2. .claude/agents/prompt-improver.md
+
+Do not touch the frontmatter. A commit hook raises the `version` field.
+Each change below gives the exact text to find (OLD) and the exact text that replaces it (NEW).
+The first and last lines of OLD and NEW are unchanged context lines, shown so the place is unambiguous.
+Blank lines inside OLD and NEW are part of the text. Apply every change, top to bottom.
+
+######## FILE: .skilled/agents/prompt-improver.md ########
+
+Change 1, at about line 401 (OLD runs to the end of the file). Removes 31 line(s), adds 0.
+<<<<<<< OLD
+- `.skilled/skills/sk-doc/SKILL.md` — agent-template alignment when a caller asks for documentation packaging.
+
+---
+
+## 12. SUMMARY
+
+```text
+┌─────────────────────────────────────────────────────────────────────────┐
+│          THE PROMPT-IMPROVER AGENT: PROMPT ESCALATION SPECIALIST         │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Run the one-pass checklist                                         │
+│  ├─► Apply CLEAR screening                                              │
+│  └─► Return a dispatch-ready structured prompt package                  │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. Read prompt-engineering source material                         │
+│  ├─► 2. Run the checklist and compose the enhanced prompt               │
+│  └─► 3. Validate boundaries, integrations, edge cases, and CLEAR        │
+│                                                                         │
+│  INTEGRATIONS                                                           │
+│  ├─► Callers: @general-purpose                                                  │
+│  ├─► Command: /prompt-improve                                   │
+│  ├─► Skills: sk-prompt, sk-doc                                          │
+│  └─► Tool constraints: target_cli and caller-supplied mcp_tools         │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► Read-only and leaf-only                                            │
+│  ├─► No file edits, delegation, execution, or scope expansion            │
+│  └─► No hidden ambiguity, integration gaps, or completion claims        │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.skilled/skills/sk-doc/SKILL.md` — agent-template alignment when a caller asks for documentation packaging.
+
+>>>>>>> END
+
+######## FILE: .claude/agents/prompt-improver.md ########
+
+Change 1, at about line 386 (OLD runs to the end of the file). Removes 31 line(s), adds 0.
+<<<<<<< OLD
+- `.skilled/skills/sk-doc/SKILL.md` — agent-template alignment when a caller asks for documentation packaging.
+
+---
+
+## 12. SUMMARY
+
+```text
+┌─────────────────────────────────────────────────────────────────────────┐
+│          THE PROMPT-IMPROVER AGENT: PROMPT ESCALATION SPECIALIST         │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Run the one-pass checklist                                         │
+│  ├─► Apply CLEAR screening                                              │
+│  └─► Return a dispatch-ready structured prompt package                  │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. Read prompt-engineering source material                         │
+│  ├─► 2. Run the checklist and compose the enhanced prompt               │
+│  └─► 3. Validate boundaries, integrations, edge cases, and CLEAR        │
+│                                                                         │
+│  INTEGRATIONS                                                           │
+│  ├─► Callers: @general-purpose                                                  │
+│  ├─► Command: /prompt-improve                                   │
+│  ├─► Skills: sk-prompt, sk-doc                                          │
+│  └─► Tool constraints: target_cli and caller-supplied mcp_tools         │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► Read-only and leaf-only                                            │
+│  ├─► No file edits, delegation, execution, or scope expansion            │
+│  └─► No hidden ambiguity, integration gaps, or completion claims        │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.skilled/skills/sk-doc/SKILL.md` — agent-template alignment when a caller asks for documentation packaging.
+
+>>>>>>> END
+
+The markers `<<<<<<< OLD`, `======= NEW` and `>>>>>>> END` are not part of any file. Never write them.
+
+Verification (run all, paste the output in the handback):
+  wc -l < .skilled/agents/prompt-improver.md      # expect: 399
+  wc -w < .skilled/agents/prompt-improver.md      # expect: 3411
+  wc -l < .claude/agents/prompt-improver.md      # expect: 384
+  wc -w < .claude/agents/prompt-improver.md      # expect: 3384
+  rg -c '^│' .skilled/agents/prompt-improver.md .claude/agents/prompt-improver.md      # expect: no output

@@ -1,0 +1,33 @@
+$ env -u AI_SESSION_CHILD node --test .skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs
+▶ runner extracts findings and enforces timeout watchdog rules
+  ✔ writes a findings object for valid lane output (144.689583ms)
+  ✔ writes timeout reason for a sleeping lane (4081.026875ms)
+  ✔ kills a lane with an old pending non-test tool call (309.055542ms)
+  ✔ lets a matching test runner reach the hard timeout (4118.237792ms)
+✔ runner extracts findings and enforces timeout watchdog rules (8667.127375ms)
+▶ --preset selects a cli-pi preset and rejects an unknown name
+  ✔ runs the selected preset instead of the lanes block (161.845708ms)
+  ✔ exits 2 for an unknown preset name (91.791917ms)
+✔ --preset selects a cli-pi preset and rejects an unknown name (259.430667ms)
+▶ cli-opencode and cli-codex presets build their own argv, and --critic writes critic.json
+  ✔ cli-opencode puts the model behind -m and the prompt last (248.418333ms)
+  ✔ cli-codex runs read-only with the pinned effort and tier (252.110208ms)
+  ✔ an unknown kind exits 2 (85.067792ms)
+  ✔ --critic runs the critic block and writes critic.json in the run folder (145.752166ms)
+  ✔ --critic refuses a native critic (57.900083ms)
+✔ cli-opencode and cli-codex presets build their own argv, and --critic writes critic.json (803.553625ms)
+▶ recovers the last top-level findings object from messy transcripts
+  ✔ recovers a lane object after prose with a brace and quote (192.355917ms)
+  ✔ prefers the lane object over a later nested findings object (212.925708ms)
+  ✔ recovers a pretty-printed critic object (120.411792ms)
+  ✔ records no JSON object with findings and removes a stale result (147.944125ms)
+✔ recovers the last top-level findings object from messy transcripts (691.385083ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10484.358875
+EXIT_STATUS=0

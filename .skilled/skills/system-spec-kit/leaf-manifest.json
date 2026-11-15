@@ -42,6 +42,7 @@
         "references/workflows/goal-set-string-playbook.md",
         "references/workflows/intake-contract.md",
         "references/workflows/nested-changelog.md",
+        "references/workflows/orchestrator-dispatch.md",
         "references/workflows/quick-reference.md",
         "references/workflows/rename-pattern.md",
         "references/workflows/spec-authoring-card.md",

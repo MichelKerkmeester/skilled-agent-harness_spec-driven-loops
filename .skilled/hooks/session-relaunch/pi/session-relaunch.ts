@@ -71,6 +71,12 @@ interface NudgeDecision {
 
 interface NudgeModule {
   CLI_COMMAND: string;
+  WITHDRAWN_NOTICE: string;
+  questionHoldReason(options: {
+    sessionId: string;
+    runtime: string;
+    env?: NodeJS.ProcessEnv;
+  }): string | null;
   handoffText(options: {
     notePath: string;
     sessionId: string;
@@ -159,6 +165,14 @@ type AgentStartRegistrar = {
   ): void;
 };
 
+// Nor the turn end, which a running Pi emits after each model call and the tool calls it made.
+type TurnEndRegistrar = {
+  on(
+    event: 'turn_end',
+    handler: (event: unknown, ctx: ExtensionContext) => unknown,
+  ): void;
+};
+
 // Nor the settle event, which a running Pi emits once a run has ended for good.
 type AgentSettledRegistrar = {
   on(
@@ -168,6 +182,8 @@ type AgentSettledRegistrar = {
 };
 
 const CONCERN = 'session-relaunch';
+// Two installed extensions each give Pi a question dialog, under these names.
+const QUESTION_TOOLS = new Set(['question', 'ask_user_question']);
 let modulesPromise: Promise<AdapterModules> | null = null;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -556,9 +572,12 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
       if (!isEnabled(config) || !('prompt' in event)) return;
       const modules = await loadModules();
       const sessionId = sessionIdOf(ctx, modules.nudge);
-      if (!sessionId || !modules.nudge.isSeedPrompt(event.prompt)) return;
+      // Pi chains input transforms, and the advisor, goal and spec-gate extensions each add their
+      // block after a blank line, so the seed this extension reads is the prompt's first block.
+      const seed = typeof event.prompt === 'string' ? event.prompt.split('\n\n')[0] : event.prompt;
+      if (!sessionId || !modules.nudge.isSeedPrompt(seed)) return;
 
-      const text = modules.nudge.seedInstructions({ prompt: event.prompt, sessionId });
+      const text = modules.nudge.seedInstructions({ prompt: seed, sessionId });
       if (text === null) return;
       return { systemPrompt: `${event.systemPrompt}\n\n${text}` };
     } catch {
@@ -566,33 +585,54 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
     }
   });
 
-  // The held nudge leaves on agent_end rather than on the settle: a follow-up queued here runs
-  // as a continuation of the same run, so the run settles only after the prepare turn it asks
-  // for, and the settle then arms the record that turn wrote.
+  async function deliverHeldNudge(
+    ctx: ExtensionContext,
+    deliverAs: 'steer' | 'followUp',
+  ): Promise<void> {
+    const config = loadConfigFile(configPath());
+    if (!isEnabled(config)) return;
+    const modules = await loadModules();
+    const sessionId = sessionIdOf(ctx, modules.nudge);
+    if (!sessionId) return;
+
+    const held = heldNudges.get(sessionId);
+    if (held === undefined) return;
+    heldNudges.delete(sessionId);
+    // A record for this session already covers the handoff the nudge asks
+    // for, so a pending or still-armed one retires the held text unread.
+    if (modules.nudge.handoffPending({ sessionId })) return;
+    // The hop count can reach the cap between holding the text and this stop,
+    // and a prompt that cannot relaunch must not reach the model.
+    if (modules.nudge.hopLimitReached()) return;
+
+    pi.sendMessage(
+      { customType: CONCERN, content: held, display: false },
+      // The nudge must reach the model without an operator turn: a steer joins the
+      // running loop before its next model call, a follow-up starts a turn once it stops.
+      { deliverAs, triggerTurn: true },
+    );
+  }
+
+  // A turn whose tool calls ran is followed by another model call in the same run, and its
+  // tools have finished, so a prepare call they made already left its record. Steering the
+  // held nudge in here reaches the model mid-run, the way a tool hook does on other runtimes,
+  // instead of waiting for a long run to stop on its own.
+  (pi as unknown as TurnEndRegistrar).on('turn_end', async (event, ctx) => {
+    try {
+      const toolResults = (event as { toolResults?: unknown[] }).toolResults;
+      if (!Array.isArray(toolResults) || toolResults.length === 0) return;
+      await deliverHeldNudge(ctx, 'steer');
+    } catch {
+      return undefined;
+    }
+  });
+
+  // A turn with no tool calls ends the loop, so the nudge leaves on agent_end rather than on the
+  // settle: a follow-up queued here runs as a continuation of the same run, so the run settles
+  // only after the prepare turn it asks for, and the settle then arms the record that turn wrote.
   pi.on('agent_end', async (_event, ctx) => {
     try {
-      const config = loadConfigFile(configPath());
-      if (!isEnabled(config)) return;
-      const modules = await loadModules();
-      const sessionId = sessionIdOf(ctx, modules.nudge);
-      if (!sessionId) return;
-
-      const held = heldNudges.get(sessionId);
-      if (held === undefined) return;
-      heldNudges.delete(sessionId);
-      // A record for this session already covers the handoff the nudge asks
-      // for, so a pending or still-armed one retires the held text unread.
-      if (modules.nudge.handoffPending({ sessionId })) return;
-      // The hop count can reach the cap between holding the text and this stop,
-      // and a prompt that cannot relaunch must not reach the model.
-      if (modules.nudge.hopLimitReached()) return;
-
-      pi.sendMessage(
-        { customType: CONCERN, content: held, display: false },
-        // The nudge must reach the model without an operator turn: queue it on a
-        // streaming loop, start a turn on an idle one.
-        { deliverAs: 'followUp', triggerTurn: true },
-      );
+      await deliverHeldNudge(ctx, 'followUp');
     } catch {
       return undefined;
     }
@@ -645,6 +685,31 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
       });
       if (withdrawn === null) return;
       logArmCancelled(modules.core, loopId, sessionId);
+      // The model asked for this hand-over and would otherwise still believe it is about to
+      // end. Pi awaits this handler before the run's first model call reads its steers.
+      pi.sendMessage(
+        { customType: CONCERN, content: modules.nudge.WITHDRAWN_NOTICE, display: false },
+        { deliverAs: 'steer' },
+      );
+    } catch {
+      return undefined;
+    }
+  });
+
+  // Only the settle arms a prepared hand-over, and a question dialog holds the run open until
+  // the operator answers, so the dialog is refused while this session's record can be armed.
+  pi.on('tool_call', async (event, ctx) => {
+    try {
+      if (!QUESTION_TOOLS.has(event.toolName)) return;
+      const config = loadConfigFile(configPath());
+      if (!isEnabled(config)) return;
+      const modules = await loadModules();
+      const sessionId = sessionIdOf(ctx, modules.nudge);
+      if (!sessionId) return;
+
+      const reason = modules.nudge.questionHoldReason({ sessionId, runtime: 'pi', env: process.env });
+      if (reason === null) return;
+      return { block: true, reason };
     } catch {
       return undefined;
     }

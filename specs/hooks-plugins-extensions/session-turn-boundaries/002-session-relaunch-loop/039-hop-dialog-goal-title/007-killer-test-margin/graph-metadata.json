@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The test `killer keeps the record armed when the target exits during its grace period` ran the killer with `idleMs: 400` and `timeoutMs: 450`",
     "created_at": "2026-11-14T04:47:40Z",
-    "last_save_at": "2026-11-14T05:33:15.255Z",
+    "last_save_at": "2026-11-14T17:34:40.122Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98021fdc31e471fd7cc7077eafa5b1e7588328f8898535656f8a2c3d1e921abd",
+    "source_fingerprint": "sha256:bec91c204325ddfd65df5ab8554cb6a47f250aa932b50e74c5e852677d1fd3d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0a3006078688e342b273d2a3a3aa16af8c047f259ee800e9fffa4e7242171fb1",

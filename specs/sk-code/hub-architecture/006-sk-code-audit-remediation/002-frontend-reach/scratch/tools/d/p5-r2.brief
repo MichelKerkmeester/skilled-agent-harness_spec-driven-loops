@@ -1,0 +1,22 @@
+TASK: two literal edits inside one table of one file.
+
+FILE: .skilled/skills/sk-code/ROUTER.md (read the section `## 3. LOAD TIERS`, about lines 82 to 96, only)
+
+EDIT 1. In the table row that starts with `| ALWAYS |`, replace the literal text
+`workflow-debug.md` with DEBUGGING and `workflow-verify.md` with VERIFICATION
+with the literal text
+`workflow-implement.md` with IMPLEMENTATION, `workflow-debug.md` with DEBUGGING and `workflow-verify.md` with VERIFICATION
+Keep the rest of that row byte for byte.
+
+EDIT 2. Directly after the table row that starts with `| SURFACE | After SKILLED detection |`, insert the two rows between the marker lines below.
+
+<<<TEXT
+| SURFACE | When the hub bundles `sk-code-ci` | The four rule references under `sk-code-ci/references/`, as the CI Workflow Map in §4 lists |
+| SURFACE | When the hub bundles `sk-code-frontend` | `sk-code-frontend/references/frontend-practice.md` plus the topic references the matched frontend intent maps, as the Frontend Map in §4 lists |
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+sed -n '/^## 3\./,/^## 4\./p' .skilled/skills/sk-code/ROUTER.md | rg -c 'sk-code-ci|sk-code-frontend|workflow-implement.md'
+Expected output: `3`

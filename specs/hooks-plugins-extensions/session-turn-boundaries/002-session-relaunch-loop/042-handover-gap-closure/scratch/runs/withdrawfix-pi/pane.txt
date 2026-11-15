@@ -1,0 +1,50 @@
+session-compact-context.ts, session-relaunch.ts, session-start-advisories.ts, session-start-context.ts, session-stop-context.ts, spec-gate-classify.ts, spec-gate-enforce.ts, task-dispatch-guard.ts
+
+
+ Warning: tmux extended-keys is off. Modified Enter keys may not work. Add `set -g extended-keys on` to ~/.tmux.conf and restart tmux.
+
+
+   Carry this short task through a context handoff. The task: report the line count of .skilled/hooks/session-relaunch/README.md and repeat the code word ORCHID-6730. Start by reading the README.
+   Gate 3: D) Skip, no spec folder. When the session-relaunch nudge asks you to hand over, do its steps, then end your turn with one short line.
+
+   Advisor: live; ambiguous: system-spec-kit 0.95/0.16 vs sk-doc 0.91/0.12 pass.
+   Directives:
+   - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks
+     violations.
+
+
+ Warning: MCP servers need attention:
+   code_mode: failed: MCP connection closed
+ Run /mcp to fix.
+
+ ● Bash Looking up relevant repository guidance                                                                                                                                                     <1s
+   └ Exit 1 (202 lines) (ctrl+o to toggle)
+
+ Observational memory: observer running on ~1,530-token chunk (of 19,559 accumulated)
+
+ ● Read 1 file, ran 1 shell command (ctrl+o to toggle)
+
+ ● Handoff prepared; the fresh session will finish the remaining task.
+
+
+   Status check: what is the state of your hand-over right now, and what should you do next? Answer in one or two sentences.
+
+   Advisor: no skill matched.
+   Directives:
+   - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks
+     violations.
+
+
+ ● The prepared hand-over was withdrawn when your new prompt arrived, so it hasn’t taken effect. I should continue here and wait for the next context nudge before updating the note and handing over
+   again.
+
+ Observational memory: 3 observations recorded
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · gpt-6-luna [openai] · low ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+                                                                                                                                                                                                    fast
+worktrees/392-cross-runtime-handover-parity | GPT-6 Luna | ctx: 88% left | used: 33.7k tok | $0.00

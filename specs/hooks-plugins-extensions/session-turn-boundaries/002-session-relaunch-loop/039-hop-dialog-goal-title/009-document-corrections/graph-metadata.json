@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The 2026-11-13 research found five places where a document said something the code or the recorded evidence no longer supported",
     "created_at": "2026-11-14T04:47:42Z",
-    "last_save_at": "2026-11-14T07:11:06.743Z",
+    "last_save_at": "2026-11-14T13:22:13.376Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb2bec15539e9c534f560a1ca958f925b1dcd10b8ed63da58d300277150a04af",
+    "source_fingerprint": "sha256:076474ca97e29046be345681661439bcade12c3df937badc7ce4134c4a56ba66",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b72dff242a4d114abce6e0c37e275e44e2440ddba7ec309142c1ad05fe69c73c",

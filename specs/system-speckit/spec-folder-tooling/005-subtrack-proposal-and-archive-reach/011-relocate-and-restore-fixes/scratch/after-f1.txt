@@ -1,0 +1,16 @@
+# F1 rerun against the changed script
+
+The two cases that reproduced F1 (see reproduce-f1.txt), run by the orchestrator on 2026-11-14 against the final relocate.mjs:
+
+```
+vitest run --project cli tests/relocate.vitest.ts -t "finishes the (phase rows after a tracked move|new parent rows when)" --reporter verbose
+ ✓ relocate re-parent > finishes the phase rows after a tracked move stopped before the rewrite
+ ✓ relocate re-parent > finishes the new parent rows when the old parent no longer has them
+ Test Files  1 passed (1)
+      Tests  2 passed | 38 skipped (40)
+exit=0
+```
+
+What the cases assert (relocate.vitest.ts, re-parent describe block):
+- Case 1, folder moved by `git mv` and no row rewritten: the run exits 0; the old parent's spec.md and goal.md no longer contain `003-gamma`; the new parent's spec.md has the map row `| 2 | 002-gamma/ |` and its goal.md the binding row `| 002-gamma |`; the moved child's Predecessor is `001-delta` and Successor `None`; the next run exits 0 and prints `relocate: nothing to do`.
+- Case 2, folder moved and the old parent's rows already removed: the run exits 0, the new parent's spec.md has the map row, and the next run exits 0 and prints `relocate: nothing to do`.

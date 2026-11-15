@@ -1,0 +1,5 @@
+Add one paragraph to the canonical persona-injection contract: where a child's tools differ
+from the names an agent persona uses, a tool-mapping line goes directly above the inlined
+persona block.
+
+This file has no twin; ignore the twin instructions in RUN CONTEXT.

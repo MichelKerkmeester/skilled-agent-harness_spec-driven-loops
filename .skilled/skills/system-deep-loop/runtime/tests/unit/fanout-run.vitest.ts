@@ -6,6 +6,7 @@ import {
   renameSync,
   cpSync,
   existsSync,
+  lstatSync,
   mkdirSync,
   mkdtempSync,
   readdirSync,
@@ -13,6 +14,7 @@ import {
   realpathSync,
   rmSync,
   symlinkSync,
+  utimesSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -67,6 +69,38 @@ describe('fanout-run.cjs — withAgentPersona', () => {
     const repoRoot = makeTempDir('fanout-persona-missing-');
     expect(() => withAgentPersona('deep-research', 'iteration prompt', repoRoot))
       .toThrow(`Agent persona file not found: ${join(repoRoot, '.skilled', 'agents', 'deep-research.md')}`);
+  });
+});
+
+describe('fanout-run.cjs — stale harness home sweep', () => {
+  it('removes only an old default home, keeping a young home, a named home and a link', () => {
+    const { sweepStaleDshHomes } = requireCjs('../../scripts/fanout-run.cjs') as {
+      sweepStaleDshHomes: (now?: number, tmpRoot?: string) => string[];
+    };
+    const now = Date.now();
+    const hour = 60 * 60 * 1000;
+    const tmpRoot = makeTempDir('fanout-stale-homes-');
+    const targetRoot = makeTempDir('fanout-stale-home-target-');
+    const oldHome = join(tmpRoot, 'dsh-home-AbC123');
+    const youngHome = join(tmpRoot, 'dsh-home-XyZ789');
+    const namedHome = join(tmpRoot, 'dsh-home-archive');
+    const linkHome = join(tmpRoot, 'dsh-home-Lnk456');
+    const linkTarget = join(targetRoot, 'kept-target');
+
+    for (const dir of [oldHome, youngHome, namedHome, linkTarget]) mkdirSync(dir);
+    symlinkSync(linkTarget, linkHome);
+    utimesSync(oldHome, new Date(now - 25 * hour), new Date(now - 25 * hour));
+    utimesSync(youngHome, new Date(now - hour), new Date(now - hour));
+    utimesSync(namedHome, new Date(now - 25 * hour), new Date(now - 25 * hour));
+    // An old link target proves the sweep never follows the link to judge its age.
+    utimesSync(linkTarget, new Date(now - 25 * hour), new Date(now - 25 * hour));
+
+    expect(sweepStaleDshHomes(now, tmpRoot)).toEqual(['dsh-home-AbC123']);
+    expect(existsSync(oldHome)).toBe(false);
+    expect(existsSync(youngHome)).toBe(true);
+    expect(existsSync(namedHome)).toBe(true);
+    expect(lstatSync(linkHome).isSymbolicLink()).toBe(true);
+    expect(existsSync(linkTarget)).toBe(true);
   });
 });
 
@@ -172,7 +206,7 @@ function writeStubBinary(binDir: string, name: string): string {
     [
       '#!/bin/sh',
       ...(name === 'opencode' ? [OPENCODE_VERSION_PROBE] : []),
-      ...(name === 'dsh' ? ['if [ "$1" = "--version" ]; then echo 0.2.2-rc.1; exit 0; fi'] : []),
+      ...(name === 'dsh' ? ['if [ "$1" = "--version" ]; then echo 0.2.2-rc.3; exit 0; fi'] : []),
       'write_fanout_artifacts',
       ...(name === 'dsh'
         ? ['printf \'{"type":"final","reason":{"kind":"completed"}}\\n\'']
@@ -1850,7 +1884,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
     validateDshCompletion: (exitCode: number, stdout: string, stderr?: string) => string | null;
   };
 
-  function writeDshStub(binDir: string, version = '0.2.2-rc.1'): string {
+  function writeDshStub(binDir: string, version = '0.2.2-rc.3'): string {
     const stubPath = join(binDir, 'dsh');
     writeFileSync(stubPath, `#!/bin/sh\nif [ "$1" = "--version" ]; then printf '%s\\n' '${version}'; exit 0; fi\nexit 0\n`, { mode: 0o755 });
     return stubPath;
@@ -1885,7 +1919,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
 
     expect([...DSH_ALLOWED_MODELS]).toEqual([...DSH_SUPPORTED_MODELS]);
     expect(DSH_DEFAULT_MODEL).toBe(TS_DSH_DEFAULT_MODEL);
-    expect(DSH_VERSION).toBe('0.2.2-rc.1');
+    expect(DSH_VERSION).toBe('0.2.2-rc.3');
     const command = buildLineageCommand({
       kind: 'cli-deepseek-harness',
       model: 'deepseek-v4.1-flash',
@@ -1981,7 +2015,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
     };
     expect(() => buildLineageCommand(
       { kind: 'cli-deepseek-harness' }, 'p', 'workspace-write', 'default', opts,
-    )).toThrow(/requires dsh 0\.2\.2-rc\.1; found '0\.2\.2-alpha\.3'/);
+    )).toThrow(/requires dsh 0\.2\.2-rc\.3; found '0\.2\.2-alpha\.3'/);
   });
 
   it.each([
@@ -2005,7 +2039,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
     const binDir = makeTempDir('fanout-run-dsh-home-bin-');
     writeFileSync(join(binDir, 'dsh'), [
       '#!/bin/sh',
-      'if [ "$1" = "--version" ]; then printf "0.2.2-rc.1\\n"; exit 0; fi',
+      'if [ "$1" = "--version" ]; then printf "0.2.2-rc.3\\n"; exit 0; fi',
       'lineage_dir=$(dirname "$SPECKIT_DEEPSEEK_HARNESS_STATE_DIR")',
       'mkdir -p "$lineage_dir"',
       'printf "%s\\n" "$@" > "$lineage_dir/dsh-argv.txt"',

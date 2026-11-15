@@ -354,3 +354,38 @@ test('leg 3 skips a missing route gold in a host and reports it in its own check
   assert.equal(own.status, 1, own.stdout);
   assert.match(own.stdout, /route-gold not found/);
 });
+
+// The vocabulary check reads three copies of a mirrored surface's keywords and the registry
+// aliases, so this hub declares all four beside the leg-two fixture.
+function buildVocabularyHub(t, classKeywords) {
+  const guard = buildLegTwoHub(t, ['shared/references/control.md'], ['shared/references/undeclared.md']);
+  const hub = path.resolve(path.dirname(guard), '..', '..', '..');
+  const row = 'INTENT_SIGNALS = {\n    "DEMO": {"weight": 4, "keywords": ["demo phrase", "second phrase"]},\n}\n';
+  fs.appendFileSync(path.join(hub, 'ROUTER.md'), row);
+  fs.appendFileSync(path.join(hub, 'sk-code-skilled', 'SKILL.md'), row);
+  write(path.join(hub, 'mode-registry.json'), JSON.stringify({
+    modes: [{ workflowMode: 'sk-code-skilled', packetKind: 'surface', packet: 'sk-code-skilled', aliases: ['demo phrase'] }],
+  }));
+  write(path.join(hub, 'hub-router.json'), JSON.stringify({
+    routerPolicy: { tieBreak: ['sk-code-skilled'] },
+    vocabularyMirrors: ['sk-code-skilled'],
+    routerSignals: { 'sk-code-skilled': { weight: 4, classes: ['demo-class'] } },
+    vocabularyClasses: { 'demo-class': { keywords: classKeywords } },
+  }));
+  return guard;
+}
+
+test('leg 2 passes when a mirrored surface holds one keyword set in all three routers', (t) => {
+  const guard = buildVocabularyHub(t, ['demo phrase', 'second phrase']);
+  const { status, out } = runGuard(guard, ['--checks', '2']);
+  assert.equal(status, 0, out);
+  assert.match(out, /PASS check 2/);
+});
+
+test('leg 2 reports a keyword and an alias that hub-router.json no longer holds', (t) => {
+  const guard = buildVocabularyHub(t, ['second phrase']);
+  const { status, out } = runGuard(guard, ['--checks', '2']);
+  assert.equal(status, 1, out);
+  assert.match(out, /sk-code-skilled keyword "demo phrase" is in ROUTER\.md INTENT_SIGNALS and missing from hub-router\.json/);
+  assert.match(out, /mode-registry\.json alias "demo phrase" of sk-code-skilled is in no hub-router\.json class/);
+});

@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research",
+  "description": "Mistral Vibe is Mistral's own coding agent and the client its subscription is built around, but this repository has no mode for it",
+  "keywords": [
+    "mistral",
+    "vibe",
+    "own",
+    "coding",
+    "agent",
+    "client",
+    "subscription",
+    "around",
+    "repository",
+    "mode"
+  ],
+  "lastUpdated": "2026-11-14T12:51:29.782Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "004-cli-mistral-vibe-creation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_13-51__mistral-support-roster-routes-on-cli-opencode-and.md"
+  ]
+}

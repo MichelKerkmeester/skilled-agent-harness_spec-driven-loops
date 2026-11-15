@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence",
+  "description": "Phase 18: sk-git-rebase-sentence",
+  "keywords": [
+    "phase",
+    "sk-git-rebase-sentence"
+  ],
+  "lastUpdated": "2026-11-14T11:42:59.345Z",
+  "specId": "018",
+  "folderSlug": "sk-git-rebase-sentence",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

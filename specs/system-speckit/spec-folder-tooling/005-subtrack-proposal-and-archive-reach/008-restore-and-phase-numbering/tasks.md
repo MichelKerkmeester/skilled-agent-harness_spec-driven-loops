@@ -33,9 +33,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Reproduce A6, A7 and A9 in `SCRATCH`, and run the sub-track restore command the A7 refusal will name, saving each command with its output and exit status (`scratch/reproduce.txt`). Verify: `rg -c '^## (A6|A7|A9|A7 sub-track restore)' scratch/reproduce.txt` prints 4, and each section ends with the exit status the review reports or states the difference. Evidence: Deviation: no separate reproduce.txt. Each finding was reproduced as a failing test before its fix; see scratch/build-evidence.md.
+- [x] T001 Reproduce A6, A7 and A9 in `SCRATCH`, and run the sub-track restore command the A7 refusal will name, saving each command with its output and exit status (`scratch/build-evidence.md`). Verify: `rg -c '^## (A6|A7|A9|A7 sub-track restore)' scratch/build-evidence.md` prints 4, and each section ends with the exit status the review reports or states the difference. Evidence: Deviation: no separate reproduce.txt. Each finding was reproduced as a failing test before its fix; see scratch/build-evidence.md.
 - [x] T002 List every caller of `relocate.mjs` that reads its exit status (`scratch/relocate-callers.txt`). Verify: `rg -n 'relocate\.mjs' .skilled --glob '*.sh' --glob '*.mjs' --glob '*.cjs' --glob '*.ts'` output is saved with one line per caller saying what it does with the status. Evidence: scratch/relocate-callers.txt: archive.sh is the only production caller.
-- [x] T003 Save the suite baseline before any edit (`scratch/baseline.txt`). Verify: the file holds the output of `V tests/archive-track.vitest.ts tests/archive-numbering.vitest.ts tests/relocate.vitest.ts` with its `Tests` line and `exit=0`. Evidence: Baseline 98 passed (three suites) after phase 007, recorded in scratch/build-evidence.md.
+- [x] T003 Save the suite baseline before any edit (`scratch/build-evidence.md`). Verify: the file holds the output of `V tests/archive-track.vitest.ts tests/archive-numbering.vitest.ts tests/relocate.vitest.ts` with its `Tests` line and `exit=0`. Evidence: Baseline 98 passed (three suites) after phase 007, recorded in scratch/build-evidence.md.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -59,9 +59,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T013 Rerun the reproductions from T001 against the changed scripts (`scratch/after.txt`). Verify: `rg -c '^## (A6|A7|A9)' scratch/after.txt` prints 3 and each section shows the output its requirement names. Evidence: Deviation: no separate after.txt. The failing-first cases pass after the fixes (107 passed); see scratch/build-evidence.md.
+- [x] T013 Rerun the reproductions from T001 against the changed scripts (`scratch/build-evidence.md`). Verify: `rg -c '^## (A6|A7|A9)' scratch/build-evidence.md` prints 3 and each section shows the output its requirement names. Evidence: Deviation: no separate after.txt. The failing-first cases pass after the fixes (107 passed); see scratch/build-evidence.md.
 - [x] T014 Check the three scripts parse (`$C/spec/archive.sh`). Verify: `bash -n $C/spec/archive.sh`, `bash -n $C/spec/create.sh` and `node --check $C/spec/relocate.mjs` each exit 0. Evidence: bash -n archive.sh and create.sh exit 0, node --check relocate.mjs exit 0.
-- [x] T015 Run the three suites and compare with the baseline (`scratch/baseline.txt`). Verify: `V tests/archive-track.vitest.ts tests/archive-numbering.vitest.ts tests/relocate.vitest.ts` exits 0 and its passed count is the baseline count plus the new cases. Evidence: 107 passed against a baseline of 98, exit 0; full CLI suite 2595 passed, 0 failed.
+- [x] T015 Run the three suites and compare with the baseline (`scratch/build-evidence.md`). Verify: `V tests/archive-track.vitest.ts tests/archive-numbering.vitest.ts tests/relocate.vitest.ts` exits 0 and its passed count is the baseline count plus the new cases. Evidence: 107 passed against a baseline of 98, exit 0; full CLI suite 2595 passed, 0 failed.
 - [x] T016 Confirm no added code comment names a spec path, a packet number or a finding id (`$C/spec/archive.sh`). Verify: `git diff -U0 -- $C/spec $C/tests` shows no added comment line with such a label. Evidence: Added comment lines checked: no spec path, packet number or finding id.
 - [x] T017 Validate this phase folder (`spec.md`). Verify: `bash $C/spec/validate.sh <this folder> --strict --quiet` prints `RESULT: PASSED`. Evidence: validate.sh --strict prints RESULT: PASSED.
 <!-- /ANCHOR:phase-3 -->
@@ -74,7 +74,7 @@ contextType: "general"
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
-- [x] `scratch/after.txt` shows a new phase numbered `003`, a restore that exits 0 with a warning and a refused restore with the tree unchanged - deviation: shown by the failing-first tests in scratch/build-evidence.md, not a separate after.txt
+- [x] `scratch/build-evidence.md` shows a new phase numbered `003`, a restore that exits 0 with a warning and a refused restore with the tree unchanged - deviation: shown by the failing-first tests in scratch/build-evidence.md, not a separate after.txt
 <!-- /ANCHOR:completion -->
 
 ---

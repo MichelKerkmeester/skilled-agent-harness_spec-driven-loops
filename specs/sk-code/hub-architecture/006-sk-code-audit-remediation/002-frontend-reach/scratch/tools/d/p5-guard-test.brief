@@ -1,0 +1,29 @@
+TASK: add one test method to one python test file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py (read lines 118 to 134 only)
+
+EDIT. The method `test_compiler_emitted_declarations_skip_ts_module_header` ends with the line
+            self.assertTrue(any(item.rule_id == "TS-MODULE-HEADER" for item in authored_findings))
+Directly after that line, and before the blank line that precedes `def test_warning_only_exit_code_is_zero_by_default`, insert the text between the marker lines below. The text starts with one blank line. Keep the four-space method indentation exactly as given.
+
+<<<TEXT
+
+    def test_single_line_reexport_skips_ts_module_header(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            entry = root / "entry.ts"
+            self.write_file(entry, "export { default } from '../hooks/guard.ts';\n")
+            module = root / "guard.ts"
+            self.write_file(module, "export { default } from './core.ts';\nexport const name = 'guard';\n")
+
+            entry_findings = self.module.check_file(str(entry))
+            module_findings = self.module.check_file(str(module))
+            self.assertFalse(any(item.rule_id == "TS-MODULE-HEADER" for item in entry_findings))
+            self.assertTrue(any(item.rule_id == "TS-MODULE-HEADER" for item in module_findings))
+TEXT>>>
+
+Change nothing else. One file changes. Do not run the test file, the orchestrator runs it.
+
+VERIFY (run from the repository root):
+python3 -c "import ast; ast.parse(open('.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py').read()); print('parsed')"; rg -c 'def test_single_line_reexport_skips_ts_module_header' .skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py
+Expected output: `parsed` then `1`

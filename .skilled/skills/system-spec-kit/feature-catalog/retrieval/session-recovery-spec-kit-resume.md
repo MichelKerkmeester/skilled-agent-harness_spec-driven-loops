@@ -7,7 +7,7 @@ trigger_phrases:
   - "interrupted session reconstruction"
   - "resume workflow"
   - "session continuity recovery"
-version: 2.0.2.0
+version: 2.0.4.0
 ---
 
 # Session recovery via /speckit:resume
@@ -22,11 +22,11 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 
 **SHIPPED.** `/speckit:resume` owns both standard continuation and interrupted-session recovery. Since the memory server was removed, the ladder itself is entirely file-backed: it reads documents that exist on disk and never infers session state from an index.
 
-- **`handover.md`** -- The preferred continuation context when a fresh structured handoff exists in the packet.
+- **`handover.md`** -- Read at any age when the packet has one. When `_memory.continuity` also exists, continuity wins over an unbound handover, and between a bound handover and continuity the more recently updated one wins.
 - **`_memory.continuity`** (in `implementation-summary.md`) -- Supporting continuity state when `handover.md` is absent or needs enrichment from the canonical packet.
 - **Packet-first spec docs and bounded anchors** -- `spec.md`, `plan.md`, `tasks.md` and the `<!-- ANCHOR:... -->` blocks inside them, read directly rather than retrieved.
 - **The ripgrep recipes** in `references/retrieval/retrieval-conventions.md` §2 -- Free-text evidence when the packet is thin and the operator needs to locate a phrase across `specs/` and `.skilled/`. Ripgrep produces matches; the caller ranks them per §5.
-- **The trigger index** -- `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` matches a prompt against author-declared `trigger_phrases` when the operator does not yet know which packet to open.
+- **The trigger index** -- `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` matches a prompt against author-declared `trigger_phrases`. The operator runs it to find a packet when the command asks for a spec folder path. The resume workflow never calls it.
 
 There is no session inference, no semantic paraphrase and no candidate ranking behind the ladder. When the ladder produces nothing, the command asks rather than guessing. `references/retrieval/retrieval-conventions.md` §1 records that boundary as a deliberate loss.
 
@@ -34,19 +34,20 @@ One store-backed path sits outside the ladder. When a compaction hook minted a f
 
 ### Resume Modes
 
-- **Auto** (`:auto`) -- Resolves the strongest session candidate with minimal prompting. Prefers a candidate when folder discovery matches a single spec folder, top results cluster around one `specFolder`, or returned content contains state/next-steps/summary/blockers anchors.
-- **Confirm** (`:confirm` or default interactive mode) -- Presents the detected session, optional supplemental context choices, and continuation options when confidence is lower or the operator wants checkpoints.
+Both modes run one workflow, `speckit-resume.yaml`, and detect the packet in the same order: the spec folder given as the CLI argument, then the handoff note of the calling session, then the packet whose `session_ref` names the calling session. A packet is opened only when the operator named it or the calling session's own records name it, never by modification time.
+
+- **Auto** (`:auto`) -- Loads the default recovery packet without prompting. When no source names a packet, it prints the No Session result, asks for a spec folder path and opens nothing.
+- **Confirm** (`:confirm` or default interactive mode) -- Asks at three checkpoints: session detection, context depth and continuation. When no source names a packet, it lists at most three packets by modification time, labels each as not matched to this session and waits for the operator's choice.
 
 ### Recovery Chain (Priority Order)
 
 | Priority | Source | Use |
 |----------|--------|-----|
-| 1 | `handover.md` (<24h) | Preferred continuation context when a fresh structured handoff exists |
+| 1 | `handover.md`, at any age | Continuation context when the packet has a handover, weighed against `_memory.continuity` as described above |
 | 2 | `_memory.continuity` in `implementation-summary.md` | Supporting continuity state when the handover packet needs enrichment |
 | 3 | Packet-first spec docs and bounded anchors | Direct read when the packet is still thin |
 | 4 | Ripgrep recipes (`retrieval-conventions.md` §2) | Free-text evidence, ranked caller-side |
-| 5 | Trigger index lookup | Prompt-to-packet routing when no candidate is known |
-| 6 | User confirmation | Final fallback |
+| 5 | User confirmation | Final fallback |
 
 ### Post-Recovery Routing
 
@@ -63,8 +64,7 @@ One store-backed path sits outside the ladder. When a compaction hook minted a f
 | File | Role |
 |------|------|
 | `.skilled/commands/speckit/resume.md` | `/speckit:resume` command: standard continuation plus interrupted-session recovery |
-| `.skilled/commands/speckit/assets/speckit-resume-auto.yaml` | Autonomous resume and recovery workflow |
-| `.skilled/commands/speckit/assets/speckit-resume-confirm.yaml` | Interactive resume and recovery workflow |
+| `.skilled/commands/speckit/assets/speckit-resume.yaml` | Resume and recovery workflow for both execution modes |
 
 ### Related Implementation
 

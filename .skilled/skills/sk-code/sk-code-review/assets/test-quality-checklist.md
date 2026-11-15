@@ -9,7 +9,7 @@ trigger_phrases:
   - "test pyramid awareness"
 importance_tier: normal
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Test Quality Checklist
@@ -153,7 +153,7 @@ Severity guidance:
 
 ## 7. RELATED RESOURCES
 
-- [quick-reference.md](../references/quick-reference.md) - Baseline review flow and severity output contract.
+- [quick-reference.md](../references/quick-reference.md) - Entry index that routes to the review doctrine and the single-pass flow.
 - [code-quality-checklist.md](./code-quality-checklist.md) - Correctness, performance, KISS, and DRY checks.
 - [security-checklist.md](./security-checklist.md) - Security, authz, abuse, and privacy risk checks.
 - [solid-checklist.md](./solid-checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture risk prompts.

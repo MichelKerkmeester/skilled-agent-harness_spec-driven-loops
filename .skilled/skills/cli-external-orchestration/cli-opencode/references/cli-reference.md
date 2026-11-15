@@ -1,6 +1,6 @@
 ---
 title: "OpenCode CLI - Complete Command Reference"
-description: "Comprehensive reference for OpenCode CLI subcommands, flags, models, configuration, agent flags, sandbox boundaries, and troubleshooting. Covers OpenCode 2.1.4 (recommended) and OpenCode 1.19.4 (fallback)."
+description: "Comprehensive reference for OpenCode CLI subcommands, flags, models, configuration, agent flags, sandbox boundaries, and troubleshooting. Covers OpenCode 2.3.0 (recommended) and OpenCode 1.19.4 (fallback)."
 trigger_phrases:
   - "opencode cli reference"
   - "opencode run flags"
@@ -10,12 +10,12 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.29.0
+version: 1.4.30.0
 ---
 
 # OpenCode CLI - Complete Command Reference
 
-Comprehensive reference for the OpenCode CLI binary, every subcommand the cli-opencode skill dispatches against, the flag set it relies on, the agent surface it can target and the failure modes that need explicit handling. Version baselines: OpenCode 2 at 2.1.4, the recommended target, and OpenCode 1 at 1.19.4, the backwards-compatible fallback for users who have not updated.
+Comprehensive reference for the OpenCode CLI binary, every subcommand the cli-opencode skill dispatches against, the flag set it relies on, the agent surface it can target and the failure modes that need explicit handling. Version baselines: OpenCode 2 at 2.3.0, the recommended target, and OpenCode 1 at 1.19.4, the backwards-compatible fallback for users who have not updated.
 
 ---
 
@@ -47,7 +47,7 @@ OpenCode is the framework that owns this repository. The same binary that hosts 
 | **Version baseline** | OpenCode 1 (fallback): 1.19.4 |
 | **Runtime** | Node.js 18+ for the npm install path or the standalone binary on macOS |
 
-**Verified versions.** Verified against OpenCode 2.3.0 on 2026-11-15, and against OpenCode 2.1.4 and OpenCode 1.19.4 on 2026-10-24. Flag and provider observations that name 2.0.32 or 1.19.3 were read on those releases and have not been re-read on 2.1.4 or 1.19.4. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
+**Verified versions.** Verified against OpenCode 2.3.0 and OpenCode 1.19.4 on 2026-11-14. Flag and provider observations that name 2.0.32 or 1.19.3 were read on those releases and have not been re-read on 2.3.0 or 1.19.4. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
 
 ---
 
@@ -98,29 +98,33 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 
 ### Core flags
 
-OpenCode 2 (2.0.32) is the recommended target, so its `run` surface comes first. The OpenCode 1 (1.19.3) fallback surface and the flags only it takes follow. The full per-version flag delta and the side-by-side layouts are in [install-and-versions.md](./install-and-versions.md).
+OpenCode 2 (2.3.0) is the recommended target, so its `run` surface comes first. The OpenCode 1 (1.19.3) fallback surface and the flags only it takes follow. The full per-version flag delta and the side-by-side layouts are in [install-and-versions.md](./install-and-versions.md).
 
 **OpenCode 2 (recommended), `opencode run`:**
 
 | Flag / Option | Type | Purpose |
 |---------------|------|---------|
 | `[message..]` | positional | One or more positional message strings. Place the message before variadic `-f` flags |
-| `--standalone` | boolean | Run with a private server instead of the background service |
+| `--standalone` | global flag | Run with a private server instead of the background service |
 | `--server` | string | Attach to a running OpenCode server URL |
 | `-c`, `--continue` | boolean | Continue the last session in this project |
 | `-s`, `--session` | string | Continue a specific session id |
 | `--fork` | boolean | Fork before continuing. It requires `--continue` or `--session` |
+| `-w`, `--worktree` | optional string | Start a new session in a new git worktree, optionally with this name |
 | `-m`, `--model` | string | Provider/model selector, which carries effort in the same flag: `-m provider/model#<level>` |
 | `--agent` | string | Agent slug (loads from `.opencode/agents/<slug>.md`, which links to `.skilled/agents/` in this repository). Runs the session as that agent, `general` included. An unknown slug exits 1 |
 | `--format` | enum | `default` (formatted) or `json` (raw event stream) |
-| `-f`, `--file` | string | Attach files to the message. The positional message must come first. Listed as a single string on 2.0.32 (`--file, -f string`); whether it repeats is unverified, so pass one file per flag |
+| `-f`, `--file` | string | Attach files to the message. The positional message must come first. Listed as a single string on 2.3.0 (`--file, -f string`); whether it repeats is unverified, so pass one file per flag |
 | `--title` | string | Session title (truncated message used when omitted) |
+| `--archived` | boolean | Create the session archived so it stays out of session lists (useful for scripted or CI runs) |
 | `--thinking` | boolean | Show thinking blocks (default false) |
 | `--auto` | boolean | Auto-approve permissions that are not explicitly denied. Dangerous |
 | `--print-logs` | global flag | Stream logs to stderr |
 | `--log-level` | global enum | lowercase `all`, `trace`, `debug`, `info`, `warn`, `warning`, `error`, `fatal`, `none` |
 
 On OpenCode 2 there is no `--dir`: the spawn directory carries the working directory. There is no `--variant`: effort rides on `-m` as `#<level>`. There is no `--port`, `--password`, `--username` or `--interactive` on `run`. There is no `--command` on `run`: a registered command runs through the server API (`POST /api/session/{id}/command`). There is no `--share` on OpenCode 2 `run`.
+
+`--worktree` and `--archived` appear on 2.3.0's `run --help` and are absent from 2.1.4's. The skill passes neither; its dispatch shape starts in the target directory.
 
 **Shared by both versions:** `[message..]` (positional message text, variadic on both versions), `--agent` (agent slug, the same surface on both versions) and `--format` (`default` or `json`, the same on both versions) appear in the OpenCode 2 table above and are not repeated below.
 
@@ -206,7 +210,7 @@ On OpenCode 2, `--port` is absent on `run` (see [install-and-versions.md](./inst
 
 ### Provider Auth Pre-Flight (smart fallback)
 
-Before the first dispatch in a session, run a one-shot auth pre-flight so a missing default doesn't fail mid-dispatch. OpenCode 2 (2.0.32) is the recommended path: list with `opencode models --standalone` and filter for the `<provider-id>/` prefix, because v2 `models` takes no provider argument. On the OpenCode 1 fallback, `opencode models <provider-id>` exits 0 when the provider is configured and 1 when it is not; OpenCode 2 rejects that form with `Unexpected positional argument`. `--standalone` runs a private server instead of asking the shared background service. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session and re-run it only on auth failure.
+Before the first dispatch in a session, run a one-shot auth pre-flight so a missing default doesn't fail mid-dispatch. OpenCode 2 (2.3.0) is the recommended path: list with `opencode models --standalone` and filter for the `<provider-id>/` prefix, because v2 `models` takes no provider argument. On the OpenCode 1 fallback, `opencode models <provider-id>` exits 0 when the provider is configured and 1 when it is not; OpenCode 2 rejects that form with `Unexpected positional argument`. `--standalone` runs a private server instead of asking the shared background service. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session and re-run it only on auth failure.
 
 Run the block for the version you are about to dispatch. Side by side, OpenCode 1 answers to `opencode1`, so replace `opencode` with `opencode1` in the OpenCode 1 block there.
 
@@ -319,9 +323,9 @@ On OpenCode 2 the default is `-m llmgateway/deepseek-v4.1-flash-1017#max` (DevPa
 
 | Command | What it shows |
 |---------|---------------|
-| `opencode agent list` | All registered agent slugs across project + user scopes |
-| `opencode debug agent <slug>` | Resolved frontmatter and system prompt for a slug |
-| `opencode debug skill <slug>` | Skill resolution for a slug if the agent loads one |
+| `opencode debug agents` on 2.3.0, `opencode agent list` on earlier releases | All registered agent slugs across project + user scopes |
+| `opencode debug agent <slug>` (earlier releases; on 2.3.0 `debug agents` prints every resolved prompt) | Resolved frontmatter and system prompt for a slug |
+| `opencode debug skill <slug>` (earlier releases; 2.3.0 has no `debug skill`) | Skill resolution for a slug if the agent loads one |
 
 ### Agent slugs in this repo
 

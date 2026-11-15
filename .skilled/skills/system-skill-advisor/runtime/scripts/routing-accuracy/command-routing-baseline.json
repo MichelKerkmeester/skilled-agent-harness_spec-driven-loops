@@ -1648,7 +1648,7 @@
     },
     "cmd-design-extract-plain-holdout-01": {
       "expected_command": "/design:extract",
-      "top": "sk-doc",
+      "top": "sk-code",
       "top1": false,
       "top3": false,
       "offered": false

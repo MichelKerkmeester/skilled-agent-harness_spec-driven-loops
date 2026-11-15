@@ -4,7 +4,7 @@ description: "Scaffolds or updates one runtime agent markdown file with runtime-
 trigger_phrases:
   - "create agent"
   - "agent frontmatter"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # create-agent
@@ -22,7 +22,7 @@ version: 1.0.5.0
 | **Use it for** | Scaffolding or updating one OpenCode or Claude Code agent markdown file |
 | **Invoke with** | `/create:agent`, "create agent" or a direct read of `SKILL.md` |
 | **Works on** | Agent files under `.skilled/agents/` or `.claude/agents/` |
-| **Produces** | One validated agent file with runtime-correct frontmatter, boundaries, workflow and verification |
+| **Produces** | One validated agent file with runtime-correct frontmatter, boundaries, workflow and verification. An agent under `.skilled/agents/` also gets its record in the agent registry |
 
 ### What It Does
 
@@ -62,13 +62,22 @@ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/agents/<age
 
 A clean file reports `✅ VALID: <path>` with `Total issues: 0`.
 
+**Step 4: Add the registry record.** An agent under `.skilled/agents/` needs a record in `.skilled/agents/agent-registry.json`. Copy an existing record as the pattern, then rewrite the generated rosters and check them.
+
+```bash
+node .skilled/bin/sync-agent-roster.cjs
+node .skilled/bin/sync-agent-roster.cjs --check
+```
+
+The check prints `agent-roster: OK`. An agent that lives only in `.claude/agents/` gets no record, because the check reads `.skilled/agents/` alone.
+
 ---
 
 ## 3. HOW IT WORKS
 
 Start by choosing the component. A skill answers how the work should be done, a command answers how a user triggers it. An agent answers who does it, with explicit authority. Search existing agents for overlap before creating a new one, so you don't end up with two personas covering the same authority. Resolve the runtime directory (`.skilled/agents/` or `.claude/agents/`) and draft frontmatter first, especially `permission` or `tools`. Write the hard boundary section before the general workflow. The boundary comes first on purpose: it states what the agent must never do, nested dispatch, writes outside its scope, before the file describes what it does do, so a reader who only skims the top already knows the limits.
 
-From there, add a capability scan of relevant skills and tools, explicit output verification, anti-patterns and related resources. Together with the H1, the hard boundary and the core workflow already written, that's the full required shape, seven sections beyond frontmatter, each earning its place. Remove every placeholder from the template and run the validation gate before delivery.
+From there, add a capability scan of relevant skills and tools, explicit output verification, anti-patterns and related resources. Together with the H1, the hard boundary and the core workflow already written, that's the full required shape, seven sections beyond frontmatter, each earning its place. Remove every placeholder from the template. For an agent under `.skilled/agents/`, add its record to `agent-registry.json` and rewrite the rosters. Then run the validation gate before delivery.
 
 One family of agents uses a different section vocabulary on purpose. The deep-loop leaf-iteration agents (`@deep-review` and `@deep-research`) read more clearly under lane-named headings like `ROUTING SCAN` and `ADVERSARIAL CHECK` instead of the default skeleton. That's a documented, sanctioned dialect, not drift. It still carries every boundary and verification responsibility the default shape requires. Reach for it only when authoring another member of that specific family.
 
@@ -103,6 +112,7 @@ Reach for create-agent when a request needs a stable named persona with explicit
 | Validator flags a missing section | Hard boundary, workflow, verification or related resources section absent | Copy the full scaffold from `assets/agent-template.md` rather than writing from a blank file |
 | Filename and `name` field disagree | Frontmatter `name` was edited without renaming the file or the reverse | Keep the filename stem and frontmatter `name` identical |
 | Agent has broad permissions "just in case" | Permissions were scoped to the role's imagined ceiling instead of its actual authority | Grant only what the current responsibilities need. Revisit if the role genuinely grows |
+| Roster check prints `agent file without a registry record: <name>` | A new file under `.skilled/agents/` has no record in `agent-registry.json` | Add the record, run `node .skilled/bin/sync-agent-roster.cjs` and rerun the check |
 | New agent overlaps an existing one | An agent covering the same authority already exists | Search the active runtime directory first and extend the existing agent instead of duplicating it |
 
 ---
@@ -134,6 +144,7 @@ A: Yes. Read the current file completely first, apply the same frontmatter and s
 | Document structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <agent-file> --type agent` | `✅ VALID` with zero blocking issues |
 | Structure extraction | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py <agent-file>` | Section list matches the required body shape |
 | Filename discipline | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <agent-file>` | Filename stem is valid kebab-case and matches `name` |
+| Registry and rosters | `node .skilled/bin/sync-agent-roster.cjs --check` | `agent-roster: OK`, for an agent under `.skilled/agents/` |
 
 ---
 

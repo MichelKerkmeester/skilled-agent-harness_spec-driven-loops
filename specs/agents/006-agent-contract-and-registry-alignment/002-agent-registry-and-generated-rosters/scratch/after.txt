@@ -1,0 +1,27 @@
+# After, on the working tree above commit 0a72104ead
+
+$ time node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+
+real	0m0.035s
+user	0m0.023s
+sys	0m0.010s
+
+$ rg -c '@design' .skilled/agents/orchestrate.md
+3
+
+$ rg -c '@prompt-improver' .skilled/agents/orchestrate.md
+3
+
+$ vitest run bin/sync-agent-roster.vitest.ts
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  13:36:37
+   Duration  447ms (transform 16ms, setup 0ms, import 25ms, tests 314ms, environment 0ms)
+
+
+$ node .skilled/bin/check-agent-mirror-sync.cjs --all | tail -1
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+
+## Row parity after conversion
+Every pre-conversion row in scratch/row-parity.md is present in its generated block with the same cell text. The only content changes are two added agents in three tables, the external CLI row renumbered from 9 to 11, and the leaf list reordered to routing order.

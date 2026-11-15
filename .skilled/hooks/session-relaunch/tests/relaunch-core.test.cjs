@@ -1511,6 +1511,48 @@ test('hostRuntimePid returns the direct parent when it is not a shell', () => {
   assert.equal(hostRuntimePid({ pid: 500, processTable: table }), 400);
 });
 
+// OpenCode 2 runs a tool shell under its pty daemon, which its serve process
+// starts below the `opencode` launcher the loop started.
+const OPENCODE_TWO_TABLE = [
+  '600 590 node',
+  '590 550 /bin/zsh',
+  '550 520 /Users/me/.cache/opencode/bin/opencode-pty/0.5.2-ed3adb8c/opencode-pty',
+  '520 510 /Users/me/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe',
+  '510 100 opencode',
+  '100 1 bash',
+  '',
+].join('\n');
+
+test('hostRuntimePid climbs past the OpenCode 2 pty daemon and serve process', () => {
+  assert.equal(hostRuntimePid({ pid: 600, processTable: OPENCODE_TWO_TABLE }), 510);
+});
+
+test('dropNestedLoop keeps the loop variables for an OpenCode 2 tool shell', () => {
+  const env = { SKILLED_LOOP_ID: '100', SKILLED_LOOP_RUNTIME: 'opencode', OTHER: 'x' };
+  assert.equal(dropNestedLoop(env, { pid: 600, processTable: OPENCODE_TWO_TABLE }), false);
+  assert.deepEqual(env, { SKILLED_LOOP_ID: '100', SKILLED_LOOP_RUNTIME: 'opencode', OTHER: 'x' });
+});
+
+test('dropNestedLoop still drops the loop for OpenCode 2 started inside OpenCode 2', (t) => {
+  const { xdgRuntimeDir } = createSandbox(t);
+  const table = [
+    '900 890 node',
+    '890 850 /bin/zsh',
+    '850 820 /x/opencode-pty',
+    '820 810 /x/opencode.exe',
+    '810 590 opencode',
+    '590 550 /bin/zsh',
+    '550 520 /x/opencode-pty',
+    '520 510 /x/opencode.exe',
+    '510 100 opencode',
+    '100 1 bash',
+    '',
+  ].join('\n');
+  const env = { SKILLED_LOOP_ID: '100', SKILLED_LOOP_RUNTIME: 'opencode', XDG_RUNTIME_DIR: xdgRuntimeDir };
+  assert.equal(dropNestedLoop(env, { pid: 900, processTable: table }), true);
+  assert.deepEqual(env, { XDG_RUNTIME_DIR: xdgRuntimeDir });
+});
+
 test('hostRuntimePid returns null for a missing table or a broken chain', () => {
   assert.equal(hostRuntimePid({ pid: 500, processTable: '' }), null);
   assert.equal(hostRuntimePid({ pid: 500, processTable: 'not a process table' }), null);
@@ -2859,6 +2901,13 @@ test('resolveGoalPacket leaves an ended or unreadable Claude goal uncarried', (t
     roots,
     env: writeClaudeLog(sandbox, entries),
   });
+  const claudeResult = (entries) => resolveGoalPacketResult({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots,
+    env: writeClaudeLog(sandbox, entries),
+  });
   const condition = `${GOAL_HEADLINE}\n\nbody`;
 
   assert.equal(claude([goalStatus({ met: true, condition })]), '', 'a met goal stays ended');
@@ -2871,9 +2920,22 @@ test('resolveGoalPacket leaves an ended or unreadable Claude goal uncarried', (t
   assert.equal(claude([goalStatus({ met: false, condition: '# Goal: A different goal\n' })]), '',
     'a goal the sender set outranks the packet goal, even when no packet carries it');
 
-  // Past the tail cap an older goal entry cannot be ruled out, so nothing is assumed.
+  // Past the tail cap the bytes before the tail are read too, so a log with no goal entry
+  // anywhere is read whole and a goal that ended before the cap still ends the goal. One
+  // comparison reports both, because a failed assertion ends the test at the first one.
   const filler = { type: 'user', message: { content: 'x'.repeat(1024 * 1024) } };
-  assert.equal(claude(Array.from({ length: 17 }, () => filler)), '', 'a log read only in part');
+  const bigLog = Array.from({ length: 17 }, () => filler);
+  assert.deepEqual(
+    {
+      noGoal: claude(bigLog),
+      endedBeforeTail: claudeResult([goalStatus({ met: true, condition }), ...bigLog]),
+    },
+    {
+      noGoal: GOAL_PARENT,
+      endedBeforeTail: { packet: '', reason: '', ended: true },
+    },
+    'a log read whole with no goal entry, and an ended goal before the tail cap still ends it',
+  );
 
   assert.equal(resolveGoalPacket({
     runtime: 'claude',
@@ -2938,10 +3000,11 @@ test('a goal the sender ended stays ended for a receiver that sets none', (t) =>
   setEnded('\ngoal_ended: true');
   assert.deepEqual(resolve(), { packet: '', reason: '', ended: true });
 
-  // Past the tail cap the log cannot rule a goal in or out, and the note still speaks.
+  // The whole log holds no goal entry, so the note the session claimed last still says the
+  // goal ended.
   const filler = { type: 'user', message: { content: 'x'.repeat(1024 * 1024) } };
   assert.deepEqual(resolve(Array.from({ length: 17 }, () => filler)),
-    { packet: '', reason: '', ended: true }, 'a log read only in part');
+    { packet: '', reason: '', ended: true }, 'a log read whole with no goal entry');
 
   const condition = `${GOAL_HEADLINE}\n`;
   writeGoalPacket(sandbox.repoRoot, GOAL_PACKET, `${GOAL_HEADLINE}\n`);
@@ -2950,6 +3013,75 @@ test('a goal the sender ended stays ended for a receiver that sets none', (t) =>
 
   fs.writeFileSync(claimedPath, readNote(claimedPath).replace(GOAL_SESSION_ID, 'ses_someoneelse01'));
   assert.equal(resolve().packet, GOAL_PARENT, 'a note another session claimed says nothing here');
+});
+
+// A session can claim a second note while the first one stays behind as done. The note it works
+// from now is the one whose mark counts, or a mark left on the earlier note would end a goal the
+// session never had.
+test('the ended-goal mark counts only from the note this session claimed last', (t) => {
+  const sandbox = createSandbox(t);
+  const roots = [sandbox.repoRoot];
+  writeGoalBudget(sandbox.repoRoot);
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, packetGoalText());
+  const older = writeHandoff(sandbox, {
+    sessionId: 'ses_olderw01', status: 'done', claimedBy: GOAL_SESSION_ID,
+  });
+  const newer = writeHandoff(sandbox, {
+    sessionId: 'ses_newerw01', status: 'claimed', claimedBy: GOAL_SESSION_ID,
+  });
+  const addFields = (notePath, ...lines) => fs.writeFileSync(
+    notePath,
+    readNote(notePath).replace(/^(status: .*)$/m, (line) => [line, ...lines].join('\n')),
+  );
+  addFields(older, 'claimed_at: 2026-10-16T11:00:00.000Z', 'goal_ended: true');
+  addFields(newer, 'claimed_at: 2026-10-16T12:00:00.000Z');
+  const handoffPath = path.join(path.dirname(older), 'outgoing.md');
+  const resolve = () => resolveGoalPacketResult({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots,
+    handoffPath,
+    env: writeClaudeLog(sandbox, [{ type: 'user', message: { content: 'hello' } }]),
+  });
+
+  assert.deepEqual(resolve(), { packet: GOAL_PARENT, reason: '', ended: false },
+    'the note claimed last says nothing about an ending');
+  fs.rmSync(newer);
+  assert.deepEqual(resolve(), { packet: '', reason: '', ended: true },
+    'the only note left is the marked one');
+});
+
+// A log that cannot be read cannot undo an ending the claimed note already states.
+test('a goal the sender ended stays ended when the session log cannot be read', (t) => {
+  const sandbox = createSandbox(t);
+  const claimedPath = writeHandoff(sandbox, { status: 'claimed', claimedBy: GOAL_SESSION_ID });
+  const handoffPath = path.join(path.dirname(claimedPath), 'outgoing.md');
+  const marked = readNote(claimedPath).replace(
+    /^(status: .*)$/m,
+    '$1\nclaimed_at: 2026-10-16T12:00:00.000Z\ngoal_ended: true',
+  );
+  fs.writeFileSync(claimedPath, marked);
+  const resolve = (configDirectory) => resolveGoalPacketResult({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots: [sandbox.repoRoot],
+    handoffPath,
+    env: { ...sandbox.env, CLAUDE_CONFIG_DIR: configDirectory },
+  });
+  const missingConfig = path.join(sandbox.root, 'no-such-config');
+  const configDirectory = path.join(sandbox.root, 'claude-config');
+  fs.mkdirSync(path.join(configDirectory, 'projects', '-some-project', `${GOAL_SESSION_ID}.jsonl`), {
+    recursive: true,
+  });
+
+  assert.deepEqual(resolve(missingConfig), { packet: '', reason: '', ended: true }, 'no log found');
+  assert.deepEqual(resolve(configDirectory), { packet: '', reason: '', ended: true }, 'an unreadable log');
+
+  fs.writeFileSync(claimedPath, marked.replace('\ngoal_ended: true', ''));
+  assert.deepEqual(resolve(missingConfig), { packet: '', reason: '', ended: false },
+    'a note with no mark says nothing about an ending');
 });
 
 test('resolveGoalPacket answers empty when no Claude log can be read', (t) => {

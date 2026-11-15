@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "a318b48e674c987f1f6ecba5a6bbca9e75954061e6df935b3530311d177965e0",
+      "sha256": "51dbd5da949e73564df55e76666c04118e3dc39f39c91983891560a5fd073920",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "cbc83babb8610846ec5af68ffeffe1ca66173ba0338529fc879ef0ec5ec4edb3",
+      "sha256": "66451fdbb4c79995069eaa04fc579e5f6b117852508245faee66427c5a784c08",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "f59a567f2f1478a03f5f93dcb7f562639ea14b10bb31577a1a96292c2543e252",
+      "sha256": "37c6e69780e5c2d1f0089f2cf4d6726b689d2b9875bbe1b138312d4b47d727c8",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "2cd7e494002f971779b119f3a2a6179cf0adcfcfee0aee4dcdeaefa4d45cca04",
+      "sha256": "bf9b0ef36e43788b45ef6987ba2b1d25a933f860182133246e52c1f79d050dbd",
       "section": "full"
     },
     {
@@ -62,17 +62,17 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
-      "sha256": "072d35003ddf6fa9915ed521f44b7045fd24c7ef9ce0a9ceade2877ad26d73e3",
+      "sha256": "d0d4715bf781985515e4ced469c9b12ff8f4c5b481f9ffe9b8f706987f42a438",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "45a0a3fb47673020204cdf537f63deb991a35c04ecec3c8bf5a9d4d7723cc862",
+      "sha256": "b697d88fc6457211c623debcb9b8c2c073358e355a3547d09d0cd9ea549559c1",
       "section": "full"
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "80b654fee971ee393a2a576f56bbcf3413689d8413512bd6da825a81d1200e5f",
+      "sha256": "b01965518d45ef15a09be3cbab6c25badc9d0bfc4e1c4d1ff446cee087e9068b",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "b7b4a968bef8af4ea3544106d0c3aef5eec3a5a90faed3dedae08e165808082f"
+  "compiledBodyDigest": "3452494fcc44cd3da22330d7e3a17a2fc573d773f59fc47da839aa924f8f3d23"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -264,7 +264,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
-   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`, the last one fan-out only; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`, the last one a single lineage in `:auto` or a fan-out, and `:confirm` runs only `native`, `cli-claude-code` and `cli-opencode`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -348,7 +348,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
      G) cli-pi — requires `pi`. Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`, no sandbox flag.
-     H) cli-deepseek-harness (experimental, explicit choice only, fan-out only) — a single-executor run exits 2, so give it a fan-out shape such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash --count=2`. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
+     H) cli-deepseek-harness (experimental, explicit choice only) — a single lineage such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash` runs in `:auto` through the shared fan-out command builder, and a fan-out shape such as `--count=2` also works. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
      D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
 
    Reply format examples:

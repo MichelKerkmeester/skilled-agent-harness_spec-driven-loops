@@ -34,7 +34,7 @@ CLI adapter stress and playbooks, executor wiring and parity, write-containment 
 
 ## Root Purpose
 
-This phase groups the related child phases below so parent-level context stays a short thematic map. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
+Make every CLI executor the deep loop dispatches run correctly and safely, with stress playbooks, wiring parity, write containment and trustworthy state records. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
 
 ## PHASE DOCUMENTATION MAP
 

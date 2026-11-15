@@ -34,7 +34,7 @@ Market and effectiveness research, baseline taxonomy and state census, and the a
 
 ## Root Purpose
 
-This phase groups the related child phases below so parent-level context stays a short thematic map. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
+Gather the market research, effectiveness evidence, baseline census and architecture contract the deep-loop program builds on, so every later phase starts from measured inputs. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
 
 ## PHASE DOCUMENTATION MAP
 

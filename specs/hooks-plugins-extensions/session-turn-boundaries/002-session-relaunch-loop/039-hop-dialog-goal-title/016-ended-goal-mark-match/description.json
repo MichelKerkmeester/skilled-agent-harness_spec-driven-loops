@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match",
+  "description": "Phase 16: ended-goal-mark-match",
+  "keywords": [
+    "phase",
+    "ended-goal-mark-match"
+  ],
+  "lastUpdated": "2026-11-14T11:42:55.924Z",
+  "specId": "016",
+  "folderSlug": "ended-goal-mark-match",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

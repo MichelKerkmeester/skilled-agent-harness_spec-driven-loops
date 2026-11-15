@@ -75,9 +75,9 @@ Do not add a packet-local wrapper, spawn path or command builder. Direct `openco
 
 ### Prerequisites
 
-**Verified versions.** This skill was verified against OpenCode 2.3.0 on 2026-11-15, and against OpenCode 2.1.4 and OpenCode 1.19.4 on 2026-10-24.
-On 2.3.0 the `run` flags match the OpenCode 2 delta below. Two subcommands moved: credentials are under `opencode auth`, and agents are listed by `opencode debug agents`.
-Flag and provider observations naming 2.0.32 or 1.19.3 were read on those releases, not re-read on 2.1.4 or 1.19.4.
+**Verified versions.** This skill was verified against OpenCode 2.3.0 and OpenCode 1.19.4 on 2026-11-14.
+Flag and provider observations naming 2.0.32 or 1.19.3 were read on those releases, not re-read on 2.3.0 or 1.19.4.
+Two subcommands moved in 2.3.0: credentials are under `opencode auth`, and agents are listed by `opencode debug agents`.
 OpenCode 2 is expected and recommended; OpenCode 1 remains supported for now as a fallback for users who have not updated.
 The skill loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified.
 The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
@@ -89,7 +89,7 @@ This skill's OpenCode 1 command lines name `opencode`, which is right on a v1-on
 ```bash
 # Binary pick and version check: references/install-and-versions.md §4-5.
 OC=${OPENCODE_BIN:-}; if [ -z "$OC" ]; then OC=$(command -v opencode2 2>/dev/null); [ -z "$OC" ] && OC=$(command -v opencode 2>/dev/null); fi
-"$OC" --version   # `opencode v2.3.0` = OpenCode 2 (expected, `v2.1.4` still passes), `1.19.4` = OpenCode 1 (fallback); either major passes
+"$OC" --version   # `opencode v2.3.0` = OpenCode 2 (expected), `1.19.4` = OpenCode 1 (fallback); either major passes
 
 # Self-invocation guard. OPENCODE_API_KEY is a provider key an operator exports, not a session marker.
 env | grep -v '^OPENCODE_API_KEY=' | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
@@ -129,7 +129,8 @@ Honor explicit user model, port, and handback phrasing verbatim. Otherwise use t
 
 Core flags on OpenCode 2:
 - Effort goes in `-m provider/model#<level>`; `--dir` becomes a start-in-directory `cd`.
-- `run` adds `--standalone` and `--server`. Log flags are global.
+- `--standalone`, `--server` and the log flags are global, and `run` accepts them on its command line.
+- `run` also takes `--worktree` and `--archived`, neither of which this skill passes.
 - `--share`, `--port` and `--pure` are absent on `run`.
 
 OpenCode 1 fallback supports:
@@ -145,7 +146,7 @@ OpenCode 1 fallback supports:
 
 On OpenCode 2, run `opencode models --standalone` filtered for the `<provider>/` prefix (2.0.32's `models` takes no provider argument). On OpenCode 1 (fallback), run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Defaults live in §3 Default Invocation, and the roster is [references/providers-and-models.md](references/providers-and-models.md).
 
-**Four providers are reachable** (`opencode-go`, `openai`, `llmgateway` (**DevPass**), `minimax`), with `llmgateway/deepseek-v4.1-flash-1017` the single default on both OpenCode 2 and OpenCode 1, and the full roster and per-provider caveats in [references/providers-and-models.md](references/providers-and-models.md).
+**Five providers are reachable** (`opencode-go`, `openai`, `llmgateway` (**DevPass**), `minimax`, `mistral`), with `llmgateway/deepseek-v4.1-flash-1017` the single default on both OpenCode 2 and OpenCode 1, and the full roster and per-provider caveats in [references/providers-and-models.md](references/providers-and-models.md).
 One cross-provider footgun is worth carrying here: **id shape differs per provider**, and copying a form between providers returns a 400 (see [references/providers-and-models.md](references/providers-and-models.md) §2).
 
 **Closed roster: only models catalogued in that reference may be dispatched. Any model outside it is FORBIDDEN for cli-opencode** (a hard discipline rule, since cli-opencode has no code-enforced allowlist).

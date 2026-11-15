@@ -33,9 +33,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Reproduce A2 for a renumber, A2 for a re-parent and A8 in `SCRATCH` and save each command with its output and exit status (`scratch/reproduce.txt`). Verify: `rg -c '^## (A2 renumber|A2 re-parent|A8)' scratch/reproduce.txt` prints 3, each section shows the stale name the review reports or states the difference, and the renumber section holds the `BARE` output, which says whether the moved child's Spec Folder row is stale today, and whether any validation rule reads the Phase column number. Evidence: Deviation: no separate reproduce.txt. Each finding was reproduced as a failing test before its fix; see scratch/build-evidence.md.
-- [x] T002 List every place a `create.sh --phase` scaffold writes a bare sibling folder name (`scratch/bare-name-places.txt`). Verify: `rg -n '00[0-9]-' PP --glob '*.md' --glob '!scratch/**'` output is saved, grouped by document and table, with one line that says whether the scaffold wrote the parent `goal.md` binding rows or the fixture added them. Evidence: Deviation: no separate file. The places are the parent map and handoff table, sibling Predecessor and Successor rows, the parent goal.md binding table and the moved child Spec Folder row, as the worker reports in scratch/build-evidence.md.
-- [x] T003 Save the suite baseline before any edit (`scratch/baseline.txt`). Verify: the file holds the output of `V tests/relocate.vitest.ts tests/archive-track.vitest.ts` with its `Tests` line and `exit=0`. Evidence: Baseline 88 passed after phase 006, recorded in scratch/build-evidence.md.
+- [x] T001 Reproduce A2 for a renumber, A2 for a re-parent and A8 in `SCRATCH` and save each command with its output and exit status (`scratch/build-evidence.md`). Verify: `rg -c '^## (A2 renumber|A2 re-parent|A8)' scratch/build-evidence.md` prints 3, each section shows the stale name the review reports or states the difference, and the renumber section holds the `BARE` output, which says whether the moved child's Spec Folder row is stale today, and whether any validation rule reads the Phase column number. Evidence: Deviation: no separate reproduce.txt. Each finding was reproduced as a failing test before its fix; see scratch/build-evidence.md.
+- [x] T002 List every place a `create.sh --phase` scaffold writes a bare sibling folder name (`scratch/build-evidence.md`). Verify: `rg -n '00[0-9]-' PP --glob '*.md' --glob '!scratch/**'` output is saved, grouped by document and table, with one line that says whether the scaffold wrote the parent `goal.md` binding rows or the fixture added them. Evidence: Deviation: no separate file. The places are the parent map and handoff table, sibling Predecessor and Successor rows, the parent goal.md binding table and the moved child Spec Folder row, as the worker reports in scratch/build-evidence.md.
+- [x] T003 Save the suite baseline before any edit (`scratch/build-evidence.md`). Verify: the file holds the output of `V tests/relocate.vitest.ts tests/archive-track.vitest.ts` with its `Tests` line and `exit=0`. Evidence: Baseline 88 passed after phase 006, recorded in scratch/build-evidence.md.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -57,9 +57,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T011 Rerun the three reproductions from T001 against the changed script (`scratch/after.txt`). Verify: `rg -c '^## (A2 renumber|A2 re-parent|A8)' scratch/after.txt` prints 3 and each section shows no stale name. Evidence: Deviation: no separate after.txt. The failing-first cases pass after the fixes (94 passed); see scratch/build-evidence.md.
+- [x] T011 Rerun the three reproductions from T001 against the changed script (`scratch/build-evidence.md`). Verify: `rg -c '^## (A2 renumber|A2 re-parent|A8)' scratch/build-evidence.md` prints 3 and each section shows no stale name. Evidence: Deviation: no separate after.txt. The failing-first cases pass after the fixes (94 passed); see scratch/build-evidence.md.
 - [x] T012 Confirm a dry run prints every new rewrite before it is applied (`$C/spec/relocate.mjs`). Verify: in `SCRATCH`, `R --renumber PP` without `--apply` lists `PP/spec.md` among its rewrites and exits 1, and `git status --porcelain` prints nothing. Evidence: By reading, not run: printPlan prints the phase-row report lines in both the dry run and the apply.
-- [x] T013 Run both suites and compare with the baseline (`scratch/baseline.txt`). Verify: `V tests/relocate.vitest.ts tests/archive-track.vitest.ts` exits 0 and its passed count is the baseline count plus the new cases. Evidence: 94 passed against a baseline of 88, exit 0; full CLI suite 2586 passed, 0 failed.
+- [x] T013 Run both suites and compare with the baseline (`scratch/build-evidence.md`). Verify: `V tests/relocate.vitest.ts tests/archive-track.vitest.ts` exits 0 and its passed count is the baseline count plus the new cases. Evidence: 94 passed against a baseline of 88, exit 0; full CLI suite 2586 passed, 0 failed.
 - [x] T014 Confirm no added code comment names a spec path, a packet number or a finding id (`$C/spec/relocate.mjs`). Verify: `git diff -U0 -- $C/spec/relocate.mjs $C/tests` shows no added comment line with such a label. Evidence: Added comment lines checked: no spec path, packet number or finding id.
 - [x] T015 Validate this phase folder (`spec.md`). Verify: `bash $C/spec/validate.sh <this folder> --strict --quiet` prints `RESULT: PASSED`. Evidence: validate.sh --strict prints RESULT: PASSED.
 <!-- /ANCHOR:phase-3 -->
@@ -72,7 +72,7 @@ contextType: "general"
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
-- [x] `scratch/after.txt` shows no stale folder name after a renumber, a re-parent and a renumbering restore - deviation: shown by the failing-first tests in scratch/build-evidence.md, not a separate after.txt
+- [x] `scratch/build-evidence.md` shows no stale folder name after a renumber, a re-parent and a renumbering restore - deviation: shown by the failing-first tests in scratch/build-evidence.md, not a separate after.txt
 <!-- /ANCHOR:completion -->
 
 ---

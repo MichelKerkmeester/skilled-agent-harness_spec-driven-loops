@@ -115,7 +115,7 @@ The selected cases run with `--test-name-pattern='no process below the loop'`. T
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | The arm loop passing the adapter to each check (`adapter-conformance.test.cjs:494` to `:499`) | Internal | Green | The helper would need the runtime passed another way |
-| `markParked` at `claude/stop-arm.mjs:183` on the no-target path | Internal | Green | The Claude mutation would have no line to remove |
+| `markParked` at `claude/stop-arm.mjs:183` (`c69f278cfc`) on the no-target path | Internal | Green | The Claude mutation would have no line to remove |
 | Node.js test runner, `git` and `rg` | Internal | Green | No test, revert check or search can run |
 <!-- /ANCHOR:dependencies -->
 

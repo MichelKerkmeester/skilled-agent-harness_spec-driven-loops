@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.8.0
+version: 1.11.9.0
 ---
 
 # Deep Review Loop Protocol
@@ -307,7 +307,7 @@ Failure handling is unchanged: `schema_mismatch` → conflict event → retry. T
 **Agent constraints**:
 - `@deep-review` is LEAF-only: it cannot dispatch sub-agents
 - No WebFetch: review is code-only and read-only
-- The per-iteration tool-call budget is the `- Target` line of `assets/prompt-pack-iteration.md.tmpl`. Breadth over depth per cycle
+- Stay within `config.maxToolCallsPerIteration` tool calls per iteration. Breadth over depth per cycle
 
 #### Step 3a: Cross-Reference Protocol Execution
 
@@ -705,7 +705,7 @@ Every executor path MUST satisfy:
 
 1. Produce an iteration markdown file at `{state_paths.iteration_pattern}` (non-empty).
 2. Append a JSONL delta record to `{state_paths.state_log}` with required fields: `type`, `iteration`, `dimensions`, `filesReviewed`, `findingsSummary`, `findingsNew`, `findingDetails`, `newFindingsRatio`.
-3. Respect the LEAF-agent constraint: no sub-dispatch, no nested loops. The prompt pack's `- Target` line carries the per-iteration tool-call budget.
+3. Respect the LEAF-agent constraint: no sub-dispatch, no nested loops. No more tool calls per iteration than `config.maxToolCallsPerIteration`.
 
 ### Failure Modes
 

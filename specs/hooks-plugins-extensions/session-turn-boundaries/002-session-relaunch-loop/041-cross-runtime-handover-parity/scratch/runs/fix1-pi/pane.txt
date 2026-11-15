@@ -1,0 +1,70 @@
+
+ ▀▀█  v1.5.2
+ █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+ Press ctrl+o to show full startup help and loaded resources.
+
+ Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.
+
+ Model scope: deepseek-v4.1-flash-1017, gpt-6-luna, deepseek-v4.1-flash, glm-5.3-flash, glm-5.3-flash, deepseek-v4-1-flash-1017, zai-glm-5-3-flash (Ctrl+P to cycle)
+
+
+[Context]
+  AGENTS.md
+
+[Skills]
+  btw, cli-classifier, cli-external-orchestration, cli-orca, mcp-code-mode, mcp-tooling, sk-code, sk-design, sk-doc, sk-git, sk-prompt, system-deep-loop, system-skill-advisor, system-skilled-doctor,
+system-spec-kit
+
+[Prompts]
+  /create-agent, /create-benchmark, /create-changelog, /create-command, /create-diff, /create-feature-catalog, /create-goal, /create-manual-testing-playbook, /create-readme, /create-repo-rule,
+/create-skill, /create-skill-parent, /create-with-human-voice, /deep-ai-council, /deep-research, /deep-review, /design-chart, /design-diagram, /design-extract, /doctor-agents-md, /doctor-ci,
+session-compact-context.ts, session-relaunch.ts, session-start-advisories.ts, session-start-context.ts, session-stop-context.ts, spec-gate-classify.ts, spec-gate-enforce.ts, task-dispatch-guard.ts
+
+
+ Warning: tmux extended-keys is off. Modified Enter keys may not work. Add `set -g extended-keys on` to ~/.tmux.conf and restart tmux.
+
+
+   [session-relaunch] claim and continue handoff
+   /Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity/.skilled/skills/.state/session-relaunch/handoffs/20261114T214310Z-01a1dc03-87c7-7598-a42a-f470907f78f5.md | Spec
+   folder: none (Gate 3 answered D, Skip, in the sending session)
+
+   Advisor: live; use system-spec-kit 0.95/0.12 pass.
+   Directives:
+   - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks
+     violations.
+
+
+ Warning: MCP servers need attention:
+   code_mode: failed: MCP connection closed
+ Run /mcp to fix.
+
+ ● Bash Looking up handoff and spec-kit context                                                                                                                                                      1s
+   └ Done (305 lines) (ctrl+o to toggle)
+
+ Observational memory: observer running on ~2,197-token chunk (of 20,226 accumulated)
+
+ ● Ask User Question
+
+ ✢ Waiting for your answer… (↓ 374 tokens · 4m 56s)
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Spec folder
+
+ This turn may write continuity state while claiming the handoff. Gate 3 asks where documentation belongs. Which route should I use?
+
+❯ 1. Existing (Recommended)
+     Continue in the detected parity packet if the handoff work fits its scope; reply with its folder path.
+  2. New
+     Create a new top-level packet because no existing packet fits; reply with the new folder path.
+  3. Related
+     Use another existing packet or related child; reply with its folder path.
+  4. Skip
+     Explicitly skip documentation, with the required warning; no spec folder will be used.
+  5. Type something.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · n to add notes · Esc to cancel · Ctrl+] to collapse
+                                                                                                                                                                                                    fast
+worktrees/392-cross-runtime-handover-parity | GPT-6 Luna | ctx: 94% left | used: 15.7k tok | $0.00

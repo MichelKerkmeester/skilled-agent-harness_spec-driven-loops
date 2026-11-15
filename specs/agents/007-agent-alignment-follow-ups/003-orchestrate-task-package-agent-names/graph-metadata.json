@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "orchestrate task package agent names",
+      "phase 3 orchestrate task package agent names",
+      "orchestrate task package agent names plan",
+      "orchestrate task package agent names tasks",
+      "orchestrate task package agent names implementation summary"
+    ],
+    "key_topics": [
+      "orchestrate",
+      "task",
+      "package",
+      "agent",
+      "names",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "line",
+      "skilled"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      ".pi/agents/orchestrate.md",
+      ".codex/agents/orchestrate.toml",
+      ".dsh/agents/orchestrate.patch.yml",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".skilled/bin/sync-agent-roster.cjs",
+      ".skilled/bin/sync-agent-roster.vitest.ts",
+      "scratch/baseline.txt",
+      "scratch/after.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/orchestrate.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/sync-agent-roster.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Line",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Line 211 of `.skilled/agents/orchestrate.md` is the `Agent:` line of the template the orchestrator fills for every task it delegates",
+    "created_at": "2026-11-14T15:48:59Z",
+    "last_save_at": "2026-11-14T16:32:47.318Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0104b1b97f12753b215b3687b92c3210af40df65de586c7b201c2368802dbfd0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5abfa5be5e902839f63855e0bf68bd4a7c09ad93d37c2c127216d2ccc2e0fda0",
+      "plan.md": "b00a14a1e006a1e10c277cd56e30901f3936040067e905a79f7061d730f7ed65",
+      "tasks.md": "059534da5c12bba818d45e26852d85ff5367d8fd20a45c3a97e3ad97168ebc80",
+      "implementation-summary.md": "fbbb362d4bcaeb6438905ca933404d8789ba062bb069c48cf29dd65235a93f98"
+    },
+    "last_active_at": null
+  }
+}

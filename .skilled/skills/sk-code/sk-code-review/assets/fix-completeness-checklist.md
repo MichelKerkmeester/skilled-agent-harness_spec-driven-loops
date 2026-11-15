@@ -9,12 +9,14 @@ trigger_phrases:
   - "instance only opt out"
 importance_tier: normal
 contextType: implementation
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # Fix Completeness Checklist
 
 A finding names one site; the defect behind it rarely stops there. This checklist is the proof that a fix reached every place the same class of mistake can appear.
+
+---
 
 ## 1. OVERVIEW
 

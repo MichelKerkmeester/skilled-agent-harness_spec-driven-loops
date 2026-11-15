@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "purpose docs and backfill",
+      "phase 13 purpose docs and backfill",
+      "purpose line feature catalog",
+      "purpose line playbook scenarios",
+      "purpose docs and backfill plan",
+      "purpose docs and backfill tasks",
+      "purpose docs and backfill acceptance criteria",
+      "purpose docs and backfill goal",
+      "purpose docs and backfill implementation summary"
+    ],
+    "key_topics": [
+      "purpose",
+      "docs",
+      "backfill",
+      "phase",
+      "line",
+      "feature",
+      "catalog",
+      "playbook",
+      "scenarios",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/spec.md",
+      "specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/spec.md",
+      "specs/sk-design/020-chart-and-diagram-review/spec.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/packet-purpose-carry.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/hooks/injection-contract.md",
+      ".skilled/skills/system-spec-kit/runtime/lib/README.md",
+      "scratch/check-parents.mjs",
+      "scratch/sentences.md",
+      "runtime/lib/README.md",
+      ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "packet-purpose-carry.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/packet-purpose-carry.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-loop.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-history-lookup.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-parents.mjs",
+        "kind": "file",
+        "path": "scratch/check-parents.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sentences.md",
+        "kind": "doc",
+        "path": "scratch/sentences.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-snippet-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An operator or a model reading the docs cannot learn that every hop carries the packet's purpose, because no feature catalog entry, playbook scenario, injection contract section or root README passage names it",
+    "created_at": "2026-11-14T11:27:14Z",
+    "last_save_at": "2026-11-14T19:47:48.009Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c2944dfd355b6ee5c0f22f8a08d8944d32a11a48c7c257198b3d9957c502e2f4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b27887fc1e68ada96b35fd75fd677e2ec8ef72486f7c531e30024d1d3afd36e6",
+      "plan.md": "ab69844358688623346596133185a0cd9b2860666d734bcd178503d2e6b52001",
+      "tasks.md": "0465cee873067620f755127c105fb40a9fd1be13db05a13e5e45c89bcf35a0a4",
+      "implementation-summary.md": "e255665cf2aa7f47bfb5acc24d9f44b1d4c22cd338b4d97fe4ad10934c23080b"
+    },
+    "last_active_at": null
+  }
+}

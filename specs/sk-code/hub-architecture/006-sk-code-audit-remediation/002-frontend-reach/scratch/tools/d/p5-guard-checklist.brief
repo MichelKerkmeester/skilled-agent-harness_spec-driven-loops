@@ -1,0 +1,15 @@
+TASK: append one sentence to one paragraph in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md (read lines 46 to 54 only)
+
+EDIT. Line 50 is one paragraph that starts with ``A `.d.ts`, `.d.mts` or `.d.cts` file the compiler emitted`` and ends with `A hand-written declaration file still needs the header.` Append one space and the sentence between the marker lines below to the end of that same line.
+
+<<<TEXT
+A file that holds only one `export { default } from '<path>';` line is exempt too, because it is an entry point with no module body.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'still needs the header. A file that holds only one `export \{ default \} from' .skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md
+Expected output: `1`

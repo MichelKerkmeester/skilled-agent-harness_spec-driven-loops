@@ -1,0 +1,42 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='ended or unreadable Claude goal' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+✖ resolveGoalPacket leaves an ended or unreadable Claude goal uncarried (34.625084ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 79.340042
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2850:1
+✖ resolveGoalPacket leaves an ended or unreadable Claude goal uncarried (34.625084ms)
+  AssertionError [ERR_ASSERTION]: a log read whole with no goal entry, and an ended goal before the tail cap still ends it
+  + actual - expected
+  
+    {
+      endedBeforeTail: {
+  +     ended: false,
+  -     ended: true,
+        packet: '',
+        reason: ''
+      },
+  +   noGoal: ''
+  -   noGoal: 'specs/hooks/023-session-relaunch-loop'
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2886:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { noGoal: '', endedBeforeTail: { packet: '', reason: '', ended: false } },
+    expected: { noGoal: 'specs/hooks/023-session-relaunch-loop', endedBeforeTail: { packet: '', reason: '', ended: true } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+exit=1

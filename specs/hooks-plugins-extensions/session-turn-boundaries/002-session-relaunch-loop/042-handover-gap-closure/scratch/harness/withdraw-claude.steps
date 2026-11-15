@@ -1,0 +1,2 @@
+log	prepare .*sessionId=[0-9a-f]{8}-[0-9a-f]{4}-4	NONE
+screen!	esc to interrupt	DELAY:0.5:Status check: what is the state of your hand-over right now, and what should you do next? Answer in one or two sentences.

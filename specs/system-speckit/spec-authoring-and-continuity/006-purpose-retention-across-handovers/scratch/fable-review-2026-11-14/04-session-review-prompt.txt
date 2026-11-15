@@ -1,0 +1,13 @@
+You are an independent reviewer. Read only. Do not edit, commit or dispatch anything. Do not ask questions.
+
+Review all work done in one session on 2026-11-14 in this repository (Skilled). Cite file:line for every finding.
+
+PART A, shipped: the purpose-carry remediation, phases 006 to 011 of
+specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers
+merged to main as dee9003366 (commits 43bff36f9d, e102ba83be, f9f96bdc39, e129af3719, fce8b5d81c, e686356a6d, 6a13b695fd). Use `git show <sha>` to read each diff. Goal: a packet's purpose and reason survive a resume, relaunch, compaction and continuity save. Check: correctness of the code (packet-purpose.ts, session-prime.ts, pi session-compact-context.ts, compact-inject.ts, nudge.cjs), test quality, whether each phase's goal.md criteria are really met, whether the 21 backfilled parent purpose sentences (phase 011 scratch/sentences.md) are true to their children, and doc accuracy (READMEs, command assets, packet docs). Also say whether any manual-testing playbook, feature catalog or README (including the root README.md) should have been updated and was not.
+
+PART B, in progress: phase 017 in the git worktree /Users/michelkerkmeester/worktrees/public/376-dsh-single-executor-loop at
+specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-single-executor-loop
+It plans letting /deep:review and /deep:research run a single cli-deepseek-harness lineage (today the if_cli_deepseek_harness branch in .skilled/commands/deep/assets/deep-*-auto.yaml exits 2). Its docs may still be being written. Review the plan's design for safety (DSH_HOME isolation, never starting dsh at the repo root, completion check, env allowlist) and gaps.
+
+RETURN: a verdict per part (PASS, CONDITIONAL or FAIL), then findings ranked P0/P1/P2, each with file:line, evidence and a concrete fix, then anything you could not check.

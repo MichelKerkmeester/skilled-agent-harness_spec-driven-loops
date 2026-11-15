@@ -201,6 +201,11 @@
   },
   {
     "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/orchestrator-dispatch.md",
+    "diskPath": "references/workflows/orchestrator-dispatch.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
     "leafResourceId": "references/workflows/quick-reference.md",
     "diskPath": "references/workflows/quick-reference.md"
   },

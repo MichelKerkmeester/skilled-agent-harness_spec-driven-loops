@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment",
+  "description": "Phase 12: catalog-and-playbook-alignment",
+  "keywords": [
+    "phase",
+    "catalog-and-playbook-alignment"
+  ],
+  "lastUpdated": "2026-11-14T11:10:42.110Z",
+  "specId": "012",
+  "folderSlug": "catalog-and-playbook-alignment",
+  "parentChain": [
+    "system-speckit",
+    "spec-folder-tooling",
+    "005-subtrack-proposal-and-archive-reach"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

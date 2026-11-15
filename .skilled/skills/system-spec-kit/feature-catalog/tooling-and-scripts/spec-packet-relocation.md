@@ -7,7 +7,7 @@ trigger_phrases:
   - "move or renumber a spec packet"
   - "declare a sub-track"
   - "re-parent packets into a sub-track"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Spec packet relocation (relocate.mjs)
@@ -41,7 +41,10 @@ An applied plan runs in a fixed order, and each step prints `ok` or `FAILED`:
 
 1. New sub-tracks are declared: a `description.json` with level `sub-track` and a `z_archive/.gitkeep`.
 2. Each folder moves, through `git mv` when git tracks it and a plain rename when it does not.
-3. References to the old path are rewritten in the text files under `specs/`, and a phase parent's `children_ids` drops or adds the moved child. An old id is matched as a whole path, so a longer id that starts with it is left alone.
+3. References to the old path are rewritten in the text files under `specs/`, and a phase parent's `children_ids` drops or adds the moved child. An old id is matched as a whole path, so a longer id that starts with it is left alone. Three more passes run in the same step:
+   - **Bare names.** A renumber inside a phase parent also rewrites the child's bare folder name, such as `003-gamma`, in the parent's map, handoff and goal rows, each child's neighbour rows and the moved child's own location row. A bare name written behind another folder's path, such as `other-track/003-gamma`, is left alone. It is rewritten only behind `./`, `../` or the phase parent's own folder name.
+   - **Re-parent phase rows.** A phase moved between two phase parents leaves the old parent's map, handoff and binding rows and gains the same rows in the new parent, and its own Predecessor and Successor rows name its new neighbours. The new parent is written before the old one.
+   - **Pre-archive id.** A packet restored from a `z_archive/` folder is also found under the id it had before it was archived, because a document written before the archive still names that id.
 4. The moved packets' own recorded paths are re-derived: `description.json` through the generated-JSON migration, then graph ids and document packet pointers through `repair-derived.cjs`. Packets whose references changed are re-derived too.
 5. The affected track and sub-track roots are refreshed through `refresh-track-roots.mjs`.
 6. The moves are recorded in the relocation ledger, the citation redirect table is rebuilt and the trigger index is regenerated.
@@ -63,9 +66,9 @@ Every refusal happens before the first write, each is printed as `relocate: refu
 - a tracked source with uncommitted changes, or an uncommitted file the run would rewrite
 - `--declare-subtrack` on a track without `graph-metadata.json`, on a folder that holds `spec.md` or on a track that still holds flat packets
 
-Exit status 0 means nothing is left to do, and after `--apply` it means every step landed and the close passed. Status 1 means a dry run found work. Status 2 means a rejected argument, a refused plan, a failed step or a failed close.
+Exit status 0 means nothing is left to do, and after `--apply` it means every step landed and the close passed. Status 1 means a dry run found work. Status 2 means a rejected argument, a refused plan, a failed step, a failed sweep, or a moved packet's validation that failed without printing a `RESULT` line. Status 3 means `--apply` landed every step and the close sweep, and the only failure is a moved packet's own validation printing `RESULT: FAILED`. The move is complete in that case, so a rerun finds nothing to do. When one packet earns 2 and another 3, the run exits 2.
 
-The run is safe to repeat. An entry whose folder already sits at its destination is checked for stale records only, a second `--apply` of an applied map finds nothing to do, and a run that stopped on a failed step is finished by running the same map again.
+The run is safe to repeat. An entry whose folder already sits at its destination is checked for stale records only, a second `--apply` of an applied map finds nothing to do, and a run that stopped on a failed step is finished by running the same map again. The late steps, the redirect table, the trigger index and the close sweep, are each flagged in the relocation ledger once they land. Until every flag is set a rerun treats the move as unfinished and runs the late steps again, which are safe to repeat. A re-parent stopped after its folder moved is finished the same way: the rerun still writes both parents' phase rows. The close is recorded only when every moved packet's validation printed a `RESULT` line or exited 0, so a validator that never reported is asked again on the rerun.
 
 ---
 
@@ -88,7 +91,8 @@ The run is safe to repeat. An entry whose folder already sits at its destination
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts` | Vitest | Covers move, renumber, re-parent, sub-track declaration, the refusals, the dry-run exit status and a repeated apply |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts` | Vitest | Covers move, renumber, re-parent, sub-track declaration, the refusals, the dry-run exit status, a repeated apply, a stopped re-parent, the close statuses and the bare-name boundary |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate-real-pipeline.vitest.ts` | Vitest | Runs the tool and `archive.sh` with the true store writers in a temp repository, so a removed pipeline step fails a test |
 
 ---
 

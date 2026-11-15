@@ -1,0 +1,21 @@
+TASK: two literal replacements in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md (read lines 21 to 27 and lines 112 to 118 only)
+
+EDIT 1. In the line under `### Purpose`, replace the literal text
+This is the detailed reference for the M-1 PR-state deduplication gate documented in [SKILL.md](../SKILL.md) §8.1.
+with the literal text
+This is the specification of the M-1 PR-state deduplication gate that [SKILL.md](../SKILL.md) §8.1 summarises.
+Keep the rest of that line byte for byte.
+
+EDIT 2. In the line under `## 7. CACHE WRITE`, replace the literal text
+write the current signature to cache.
+with the literal text
+write the current signature, the timestamp and the HEAD commit as `prev_sha` to cache.
+Keep the rest of that line byte for byte.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c '§8.1 summarises|the HEAD commit as `prev_sha`' .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md; echo "exit $?"
+Expected output: `2` then `exit 0`

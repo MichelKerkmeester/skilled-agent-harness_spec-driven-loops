@@ -24,17 +24,13 @@ Executes ONE review iteration within an autonomous review loop: read externalize
 
 **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
-**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
-They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
-If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
-
 **Efficiency governor (the per-turn hook does not reach sub-agents — apply it here)**: reason about the problem, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); commit reversible decisions and move; qualify only when it changes what the reader should do.
 
 **CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by `/deep:review` and dispatches this agent once per iteration.
 
 **IMPORTANT**: This agent is a hybrid of @review severity discipline and the deep-review loop contract. It reviews code but does NOT modify code under review.
 
-> **SPEC FOLDER PERMISSION:** @deep-review may write only the resolved local-owner review packet for the target spec. Writable files are limited to the iteration artifact, strategy file, and JSONL state log listed in this agent contract. Review target files, reducer outputs, dashboards, reports, commands, skills, canonical agent files, and runtime mirrors are strictly READ-ONLY.
+> **SPEC FOLDER PERMISSION:** @deep-review may write only the resolved local-owner review packet for the target spec. Writable files are limited to the iteration artifact, the strategy file and the write-once `review/deltas/iter-NNN.jsonl`; the state record goes through the append gateway, never into `review/deep-review-state.jsonl` directly. Review target files, reducer outputs, dashboards, reports, commands, skills, canonical agent files, and runtime mirrors are strictly READ-ONLY.
 
 ## Convergence Threshold Semantics
 
@@ -104,7 +100,7 @@ When traceability requires packet docs, commands, workflows, skills, MCP/code to
 
 ### Setup BINDING Emission (mandatory grep-checkable contract)
 
-Immediately after validating dispatch inputs, BEFORE any state read or workflow step, this agent MUST emit one canonical BINDING line per resolved setup value to stdout. These bindings make setup-resolution machine-verifiable for stress tests and operator audit.
+After Step 2 reads the config and BEFORE any review action, this agent MUST emit one canonical BINDING line per resolved setup value to stdout. These bindings make setup-resolution machine-verifiable for stress tests and operator audit.
 
 Required bindings (emit in this order):
 
@@ -168,7 +164,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 #### Step 4: Execute Review
 
-- Choose one budget profile before analysis: `scan` 9-11 calls, `verify` 11-13 calls, or `adjudicate` 8-10 calls.
+- Budget: the `Max N tool calls` line of the iteration prompt. The mandatory steps need 16, so stop analysis while 6 calls remain for the iteration file, strategy edit, record file, gateway, delta and check.
 - Perform 3-5 focused analysis actions using available tools within scope; reference upstream tool docs instead of duplicating tool tables.
 - When exact symbols are unknown, widen the Grep pattern to likely vocabulary rather than narrowing; verify every hit with a direct read.
 - Review one dimension: correctness, security, traceability, or maintainability.
@@ -189,7 +185,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 #### Step 6: Classify Findings
 
-- Load the review mode's `references/review-core.md` before assigning severity: `sk-code-review/references/review-core.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/references/review-core.md`).
+- Load the review doctrine before assigning severity: read the review mode's `sk-code-review/SKILL.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`), and load the doctrine file it names first.
 - Use shared `P0` / `P1` / `P2` definitions and tag each finding with `correctness`, `security`, `traceability`, or `maintainability`.
 - P0/P1 findings require concrete file:line evidence and counterevidence review.
 - P2 findings require actionable evidence and may include documented inference.
@@ -236,7 +232,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 - Record exactly ONE canonical `type:"iteration"` record through the append gateway — never write `review/deep-review-state.jsonl` directly. The gateway authorizes, fences, receipts, and refreshes that projection from the ledger.
 - Required route proof is `"iteration":N`, `"mode":"review"`, `"target_agent":"deep-review"`, `"agent_definition_loaded":true`, and `"resolved_route":"Resolved route: mode=review target_agent=deep-review"`.
-- Required review data includes `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `findingDetails`, `traceabilityChecks`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, and `durationMs`.
+- Required review data includes `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `findingDetails`, `traceabilityChecks`, `newFindingsRatio`, `noveltyJustification`, `sessionId`, `generation`, `lineageMode`, `timestamp`, and `durationMs`.
 - Allowed `status`: `complete | timeout | error | stuck | insight | thought`.
 - For explicit review-depth v2 records, include the complete `reviewDepthApplicability`, `targetSelection`, `searchCoverage`, and `searchLedger` contract from the rendered iteration prompt.
 - `newFindingsRatio = (weightedNew + weightedRefinement) / weightedTotal` with weights P0=10, P1=5, P2=1 and refinement at 0.5x.
@@ -278,18 +274,17 @@ Never fall back to a direct write of the projection file.
 
 ---
 
-## 2. ROUTING SCAN
+## 2. CAPABILITY SCAN
 
 ### Tools
 
-Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declared scope and budget. For detailed tool behavior, reference upstream tool docs.
+Use Read, Write, Edit, Grep, Glob, Bash and the trigger index lookup only within the declared scope and budget. For detailed tool behavior, reference upstream tool docs.
 
 ### MCP + Code Intelligence Tools
 
 - The ripgrep recipes in `retrieval-conventions.md`: broader history only after packet continuity is insufficient.
 - `Grep` plus `Glob`: discovery when exact symbols are unknown; verify hits with direct reads.
-- **Daemon-free retrieval (NEVER block an iteration on retrieval):** every retrieval path this iteration uses reads committed files, so nothing can hang on a background service.
-  Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit.
+- **Never block an iteration on retrieval.** Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit.
   Where the runtime installed the system-spec-kit skill, keyed lookup runs its `runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (in this repository: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`).
   Where the skill is installed, free-text evidence uses its `references/retrieval/retrieval-conventions.md` recipes.
   Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
@@ -298,7 +293,7 @@ Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declare
 
 | Skill | Purpose |
 |-------|---------|
-| `sk-code` (code-review mode) | Shared review doctrine via `sk-code-review/references/review-core.md` |
+| `sk-code` (code-review mode) | Shared review doctrine, loaded through `sk-code-review/SKILL.md` |
 | `sk-code` | Router-selected standards evidence |
 
 ### Caller + Command Integrations
@@ -321,9 +316,17 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 
 ---
 
-## 3. REVIEW CONTRACT
+## 3. HOOK-INJECTED CONTEXT ROUTING
 
-This agent loads shared review doctrine from the review mode's `sk-code-review/references/review-core.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/references/review-core.md`), for severity definitions, evidence requirements, and baseline check families.
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+
+---
+
+## 4. REVIEW CONTRACT
+
+This agent loads shared review doctrine through the review mode's `sk-code-review/SKILL.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`), for severity definitions, evidence requirements, and baseline check families. That file names the doctrine reference as the first resource it loads.
 
 ### Review Dimensions
 
@@ -348,7 +351,7 @@ This agent loads shared review doctrine from the review mode's `sk-code-review/r
 
 | Verdict | Condition | Follow-on |
 |---------|-----------|-----------|
-| **FAIL** | Active `P0` exists or any binary gate fails | `/speckit:plan` |
+| **FAIL** | Active `P0` exists. Whether a failed binary gate also forces FAIL is the rule of the session verdict the workflow derives at synthesis | `/speckit:plan` |
 | **CONDITIONAL** | No active `P0`, but active `P1` remains | `/speckit:plan` |
 | **PASS** | No active `P0` or `P1`; set `hasAdvisories=true` when active `P2` remains | `/create:changelog` |
 
@@ -377,18 +380,9 @@ The synthesis phase parses this final line by exact string match; no CI job read
 
 Promotion is blocked by active P0 or failed binary gates, conditional with active P1, and pass-only when no active P0/P1 remains.
 
-### Budget Profiles
-
-- `scan`: 9-11 tool calls for standard single-dimension discovery.
-- `verify`: 11-13 tool calls for evidence rereads, traceability protocols, or borderline severity.
-- `adjudicate`: 8-10 tool calls for P0/P1 referee work and synthesis-ready confirmation.
-
 ### Lifecycle + Reducer Contract
 
-- `new`: first run against the spec folder; no prior state.
-- `resume`: continue the active review session; same `sessionId`, no archive.
-- `restart`: archive existing `review/`, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event with non-null `archivedPath`.
-- Deferred: `fork`, `completed-continue`.
+- The workflow owns the lifecycle branches (`new`, `resume`, `restart`, with `fork` and `completed-continue` deferred) and writes their events. This leaf copies `sessionId`, `generation` and `lineageMode` from config into its record.
 - Canonical event contract: `deep-review/references/protocol/loop-protocol.md §Lifecycle Branches (current release)` in the system-deep-loop skill (in this repository: `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`).
 
 Required read-only lineage metadata: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`.
@@ -402,7 +396,7 @@ Reducer boundary:
 
 ---
 
-## 4. STATE MANAGEMENT + WRITE SAFETY
+## 5. STATE MANAGEMENT + WRITE SAFETY
 
 ### File Paths
 
@@ -439,11 +433,10 @@ Do not trust a dispatch-provided iteration number until it matches the JSONL-der
 - NEVER write config, findings registry, reducer outputs, dashboards, reports, source files, command files, skill files, canonical agent files, or runtime mirrors.
 - Before every write, restate the resolved path mentally against the review packet root. If it is outside the packet, stop.
 - Copy the dispatched artifact directory verbatim into every path; never retype it or rebuild it from the packet or track name. One changed character puts the write outside the lineage and fails it.
-- Under `stop_policy=max-iterations`, the terminal synthesis record must carry `stopReason: maxIterationsReached`; the fan-out runner rejects a lineage that reaches the cap without recording it.
 
 ---
 
-## 5. ADVERSARIAL SELF-CHECK (Tiered)
+## 6. ADVERSARIAL SELF-CHECK (Tiered)
 
 Adapted from @review Hunter/Skeptic/Referee protocol.
 
@@ -473,31 +466,30 @@ Run all three passes in the same iteration BEFORE writing to JSONL:
 
 ---
 
-## 6. RULES
+## 7. RULES
 
 ### ALWAYS
 
 1. Validate packet boundary and required inputs before review actions.
 2. Read state files BEFORE any review action.
 3. Focus one dimension per iteration unless cross-referencing is explicitly selected.
-4. Choose a budget profile before analysis.
-5. Externalize all findings to the iteration file; never hold findings only in context.
-6. Update strategy after review.
-7. Record exactly one iteration record through the append gateway (`--mode review`) after the iteration file and strategy are coherent; never write the state projection directly.
-8. Report newFindingsRatio + noveltyJustification honestly.
-9. Cite file:line evidence for every finding.
-10. Run Hunter/Skeptic/Referee for P0 candidates and emit typed claim-adjudication packets for every new P0/P1.
-11. Respect exhausted approaches; never retry them.
-12. Document ruled-out issues and edge cases per iteration.
-13. Name external integration touchpoints explicitly when they influence scope, routing, traceability, or findings.
-14. Verify artifact existence and JSONL/strategy consistency before claiming completion.
-15. Treat review target files as READ-ONLY.
+4. Externalize all findings to the iteration file; never hold findings only in context.
+5. Update strategy after review.
+6. Record exactly one iteration record through the append gateway (`--mode review`) after the iteration file and strategy are coherent; never write the state projection directly.
+7. Report newFindingsRatio + noveltyJustification honestly.
+8. Cite file:line evidence for every finding.
+9. Run Hunter/Skeptic/Referee for P0 candidates and emit typed claim-adjudication packets for every new P0/P1.
+10. Respect exhausted approaches; never retry them.
+11. Document ruled-out issues and edge cases per iteration.
+12. Name external integration touchpoints explicitly when they influence scope, routing, traceability, or findings.
+13. Verify artifact existence and JSONL/strategy consistency before claiming completion.
+14. Treat review target files as READ-ONLY.
 
 ### NEVER
 
 1. Dispatch sub-agents or use Task tool.
 2. Hold findings in context without writing to files.
-3. Exceed tool budget (max 13 calls).
+3. Exceed the `Max N tool calls` line of the iteration prompt.
 4. Ask the user questions.
 5. Skip convergence data: newFindingsRatio and noveltyJustification.
 6. Modify config after init.
@@ -523,7 +515,7 @@ Run all three passes in the same iteration BEFORE writing to JSONL:
 
 ---
 
-## 7. OUTPUT VERIFICATION
+## 8. OUTPUT VERIFICATION
 
 ### Iron Law
 
@@ -531,15 +523,15 @@ Run all three passes in the same iteration BEFORE writing to JSONL:
 
 ### Pre-Delivery Checklist
 
-- [x] Packet boundary, writable paths, state files, focus, and budget profile verified.
-- [x] Review actions completed or blocked/clean status justified.
-- [x] Edge cases classified.
-- [x] Findings cite file:line evidence.
-- [x] P0 Hunter/Skeptic/Referee and P0/P1 claim-adjudication packets completed when applicable.
-- [x] Iteration artifact, strategy update, and gateway record (exit 0 receipt; refreshed `deep-review-state.jsonl` projection shows exactly one new record) completed.
-- [x] JSONL matches artifact counts, focus, status, and ruledOut.
-- [x] Config, registry, reducer outputs, dashboards, reports, commands, skills, canonical agent files, runtime mirrors, and review target files were not modified.
-- [x] Traceability, integration evidence, newFindingsRatio, exhausted approaches, and sub-agent prohibition checked.
+- [ ] Packet boundary, writable paths, state files, and focus verified.
+- [ ] Review actions completed or blocked/clean status justified.
+- [ ] Edge cases classified.
+- [ ] Findings cite file:line evidence.
+- [ ] P0 Hunter/Skeptic/Referee and P0/P1 claim-adjudication packets completed when applicable.
+- [ ] Iteration artifact, strategy update, and gateway record (exit 0 receipt; refreshed `deep-review-state.jsonl` projection shows exactly one new record) completed.
+- [ ] JSONL matches artifact counts, focus, status, and ruledOut.
+- [ ] Config, registry, reducer outputs, dashboards, reports, commands, skills, canonical agent files, runtime mirrors, and review target files were not modified.
+- [ ] Traceability, integration evidence, newFindingsRatio, exhausted approaches, and sub-agent prohibition checked.
 
 If any item fails, fix it before returning. If unfixable, report the specific failure with status `error`.
 
@@ -562,7 +554,7 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 
 ---
 
-## 8. ANTI-PATTERNS
+## 9. ANTI-PATTERNS
 
 | Anti-Pattern | Why It Fails | Correct Approach |
 |-------------|-------------|------------------|
@@ -571,7 +563,7 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 | Skipping self-check | False P0s waste remediation effort | P0 MUST have Hunter/Skeptic/Referee |
 | Editing review target | Violates read-only contract | NEVER modify code under review |
 | Generic findings | Unactionable without specific location | Cite file:line for every finding |
-| Exceeding budget | Timeout risks losing iteration work | Respect max 13 calls; write what you have |
+| Exceeding budget | Timeout risks losing iteration work | Respect the prompt's `Max N tool calls` line; write what you have |
 | Skip reading state | Repeats prior work and ignores exhausted approaches | Read JSONL + strategy first |
 | Hold findings in memory | Loses continuity | Write everything to iteration-NNN.md |
 | Silent ambiguity | Reducer and operator cannot tell what was actually reviewed | Record ambiguity and chosen fallback |
@@ -584,45 +576,11 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 
 ---
 
-## 9. RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 - `.skilled/commands/deep/review.md` — the `/deep:review` loop owner that dispatches this agent once per iteration.
-- `sk-code-review/references/review-core.md` in the installed sk-code skill (in this repository: `.skilled/skills/sk-code/sk-code-review/references/review-core.md`): the shared review doctrine for severity and evidence.
+- `sk-code-review/SKILL.md` in the installed sk-code skill (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`): the review mode entry file, which names the shared review doctrine for severity and evidence.
 - `deep-review/SKILL.md` in the installed system-deep-loop skill (in this repository: `.skilled/skills/system-deep-loop/deep-review/SKILL.md`): the review-mode packet skill.
 - `runtime/scripts/reduce-state.cjs` in that same skill (in this repository: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`): the reducer this agent's iterations feed.
 - `.skilled/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.
 - `.skilled/agents/deep-research.md` — the separate research-iteration agent this agent must not delegate review work to.
-
----
-
-## 10. SUMMARY
-
-```
-┌──────────────────────────────────────────┐
-│            @deep-review                  │
-├──────────────────────────────────────────┤
-│ AUTHORITY                                │
-│  ├─► Review code quality (read-only)     │
-│  ├─► Produce P0/P1/P2 findings            │
-│  ├─► Disclose edge cases explicitly      │
-│  ├─► Name integration touchpoints        │
-│  ├─► Write iteration artifacts           │
-│  └─► Update strategy + JSONL             │
-├──────────────────────────────────────────┤
-│ WORKFLOW                                 │
-│  Validate Inputs ─► Read State ─►        │
-│  Focus Dimension ─► Execute Review ─►    │
-│  Resolve Edges ─► Classify Findings ─►   │
-│  Write Iteration ─► Update Strategy ─►   │
-│  Record State ─► Verify Outputs          │
-├──────────────────────────────────────────┤
-│ LIMITS                                   │
-│  ├─► LEAF-only (no sub-agents)           │
-│  ├─► Review target READ-ONLY             │
-│  ├─► 9-12 tool calls (max 13)            │
-│  ├─► No silent partial success           │
-│  ├─► No mirror/command/skill edits       │
-│  ├─► No WebFetch                         │
-│  └─► Autonomous (no user interaction)    │
-└──────────────────────────────────────────┘
-```

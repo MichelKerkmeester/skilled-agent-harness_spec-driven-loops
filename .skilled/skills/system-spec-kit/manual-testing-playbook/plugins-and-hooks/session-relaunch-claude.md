@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.23.0
+version: 1.0.26.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -29,7 +29,7 @@ Operators confirm that a context nudge can lead to a validated note, Stop-time a
 - Objective: Verify threshold context, note validation, Stop arming, process shutdown, wrapper relaunch, note status changes, hop and age limits, the hop history and calling off a prepared hand-over with an operator prompt or `cancel`.
 - Real user request: Carry this task into a new Claude session before context compaction, then finish the remaining work.
 - Prompt: Start a short task. Follow the session-relaunch nudge. Finish the remaining work in the receiving Claude session.
-- Precondition: the session-relaunch hooks ship off. Every check that expects a nudge, an arm or a hop runs with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. A non-empty `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED`, the Claude Code value of `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED`, overrides that flag, so a `0` there in the environment or in `hook-flags.env` keeps every Claude check silent. Unset it before a run. The kill-switch check sets `SYSTEM_SESSION_RELAUNCH_DISABLED=1` instead and passes as written, because the disable switch wins over the enable flag. The `node --test` suites set their own environment.
+- Precondition: the session-relaunch hooks ship on for Claude Code, so a check needs no flag unless a flag file or the environment turns Claude off. Every check that expects a nudge, an arm or a hop still runs with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. A non-empty `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED`, the Claude Code value of `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED`, overrides that flag, so a `0` there in the environment or in `hook-flags.env` keeps every Claude check silent. Unset it before a run. The kill-switch check sets `SYSTEM_SESSION_RELAUNCH_DISABLED=1` instead and passes as written, because the disable switch wins over the enable flag. The `node --test` suites set their own environment.
 - Expected execution process: Run Claude inside tmux with `SESSION_RELAUNCH_THRESHOLD=0.05`, prepare the note when the nudge appears, wait for Stop to arm the record when the transcript path is present and background tasks have drained, then confirm the wrapper relaunches with the claim seed.
 - Expected signals: The relaunch record moves from pending to armed and is consumed by the wrapper. The receiving session starts with a `[session-relaunch]` claim seed. The note moves from open to claimed to done. `history` shows `handed-over`, `claimed ... by <id>` and `done` for that note. A hand-over the operator calls off ends disarmed with reason `user-message` or `cancelled`, `should-relaunch` reports `withdrawn`, the session earns one more context nudge and the wrapper prints one warning and no manual claim command.
 - Pass/fail: PASS if the new session claims the same note and completes its remaining work after an armed handoff, and a called-off hand-over keeps its session running with the signals above. FAIL if Stop arms without a transcript path, the wrapper declines an eligible record, the receiving session cannot claim the note, an operator prompt leaves an armed or deferred record in place or a `<task-notification>` prompt withdraws a deferred one.
@@ -257,7 +257,7 @@ Run the Claude adapter suite:
 node --test .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
 ~~~
 
-Evidence: a context-nudge payload with an invalid session id produces no output. A Stop payload without `transcript_path` keeps the record pending, stamps `deferredAt` on it and logs `missing-transcript-path`. PASS when both cases keep their stated outputs and state. FAIL when the invalid id is injected or the Stop hook arms without a transcript path.
+Evidence: a context-nudge payload with an invalid session id produces no output. A Stop payload without `transcript_path` keeps the record pending, stamps `deferredAt` on it, logs `missing-transcript-path` and prints one `systemMessage` notice that says the Stop carried no transcript path, the next prompt withdraws the hand-over and a later Stop that carries the path arms it instead. The case is `stop-arm logs missing-transcript-path and marks the pending record deferred`. PASS when both cases keep their stated outputs and state. FAIL when the invalid id is injected, the Stop hook arms without a transcript path, or the notice stays silent.
 
 #### Killer lock and signal checks (Automatable)
 
@@ -371,7 +371,7 @@ Run the wrapper suite:
 node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs
 ~~~
 
-Evidence: tests cover the Claude default with no args or a prompt, first-launch `-n` preservation, `--` ending name scanning, exit 130 printing the manual command without a hop, missing cwd or CR/LF returning 1, consume failure warning while the wrapper continues, a withdrawn decline printing one warning and no manual command, and decider failure preserving Claude's exit code. PASS when each case returns the expected arguments, warning or exit code. FAIL when the wrapper relaunches after exit 130 or changes the runtime exit code after a decider failure.
+Evidence: tests cover the Claude default with no args or a prompt, first-launch `-n` preservation, `--` ending name scanning, exit 130 printing the manual command without a hop, missing cwd or CR/LF returning 1, consume failure warning while the wrapper continues, a withdrawn decline printing one warning and no manual command, and decider failure preserving Claude's exit code. A hop whose wrapper file changed after the loop started prints one `note: skilled-loop changed on disk after this loop started` line and appends one `wrapper-changed` line with the loop id to `relaunch.log` (`a hop says so when the wrapper file changed after the loop started` and `a hop logs wrapper-changed when the wrapper file changed after the loop started`). A wrapper file that cannot be read at the hop, or could not be read at loop start, prints and logs nothing, because a checksum read at one end and not the other is unknown and never a change (`a hop prints and logs nothing when the wrapper file cannot be read` and `a hop prints and logs nothing when the wrapper file could not be read at loop start`). PASS when each case returns the expected arguments, warning or exit code. FAIL when the wrapper relaunches after exit 130, changes the runtime exit code after a decider failure, or reports a change it cannot prove.
 
 #### Note-only nudge outside skilled-loop (Automatable)
 
@@ -808,6 +808,10 @@ Evidence: exit code 0 and these cases pass.
 - `goal-handover.test.cjs`: `renders exactly the chat slice the goal command prints, without frontmatter or comments` and `sends a slice of exactly 4000 characters and refuses 4001`.
 - `claude-adapters.test.cjs`: `compact-pointer delivers the claim at the start of a goal-command receiver` and `compact-pointer adds no start claim for a dispatched child, a switched-off goal or a disabled hook`.
 - `skilled-loop-wrapper-*.test.cjs`: `a Claude hop with a goal starts on the goal command and carries the claim in the environment`, `a Claude hop keeps the claim seed as its start prompt when no goal can be sent` and `wrapper exports no goal packet when SESSION_RELAUNCH_GOAL is 0`.
+- `relaunch-core.test.cjs`: `a goal the sender ended stays ended for a receiver that sets none`, `the ended-goal mark counts only from the note this session claimed last`, `a goal the sender ended stays ended when the session log cannot be read` and `resolveGoalPacket looks no further up than the parent of the note folder`.
+- `session-relaunch-cli.test.cjs`: `prepare gives a Claude sender with no goal the unfinished goal of the note packet` and `prepare marks an ended Claude goal in the note and keeps it ended one hop later`.
+
+An ended Claude goal leaves `goal_ended: true` in the note, and a receiver that sets no goal of its own keeps it ended one hop later. The mark counts only from the note that session claimed last, and a session log the sender cannot read cannot undo it.
 
 PASS when every named case passes. FAIL when a case is missing from the run or fails.
 
@@ -931,11 +935,35 @@ NO_GOAL=1 bash "$out/run-hop-worker.sh" claude "$sandbox" "$out" worker
 bash "$harness/finish-run.sh" claude "$out"
 ~~~
 
-`patch` writes the variant to `$out` and leaves `run-hop.sh` unchanged. The diff changes the note's Remaining work paragraph to the worker and prepare commands. It also replaces the fixed sender prompt with one that runs both commands and then replies `DONE`. The sender starts the worker in its first Bash tool call. The shell that started it exits, so the worker is reparented to pid `1`. The sender runs `prepare` in its next call. `run-hop.sh` sets `here` to the folder that holds the script and reads `goal-records.cjs` from that folder. The check links that helper from the harness folder into `$out`, so the patched script finds it beside itself. `build-sandbox.sh` and `finish-run.sh` read their helpers from the harness folder.
+`patch` writes the variant to `$out` and leaves `run-hop.sh` unchanged. The diff changes the note's Remaining work paragraph to the worker and prepare commands. It also replaces the fixed sender prompt with one that runs both commands and then replies `DONE`. The sender starts the worker in its first Bash tool call. The shell that started it exits, so the worker is reparented to pid `1`. The sender runs `prepare` in its next call. `run-hop.sh` sets `here` to the folder that holds the script and reads `goal-records.cjs` from that folder. The check copies that helper from the harness folder into `$out`, so the patched script finds it beside itself. `build-sandbox.sh` and `finish-run.sh` read their helpers from the harness folder.
 
 The note's `Running workers:` line says `none` and names no worker while the `&` worker runs. `prepare` accepts it because `runningWorkersReason` reads only the note text and takes `none` as the answer, so the worker is invisible to that check. `PREPARE.exit` is `0` for this note.
 
 Evidence: the `RECEIVER.marker` line with the worker's pid and parent pid, the `PREPARE.exit` line, the `worker.log lines` count and the `note status` line in `$out/summary.txt`, plus the `claimed` line in `$out/history.txt`. PASS when `PREPARE.exit` is `0`, the worker's parent pid is `1` and the receiver claimed the note. FAIL when `prepare` refuses the note. FAIL also when the worker's parent pid is another pid. FAIL also when the receiver never claims the note.
+
+#### HS-9 One real hop checks the question guard, the packet goal and the generated title (Operator-run)
+
+This scenario is operator-run. It needs a real Claude Code question dialog and a title that Claude Code generated on its own, so no committed suite can cover it, and this file records no run of it.
+
+Run from the repository root with `tmux`, `node` and `claude`. Work in a throwaway checkout that binds an unfinished packet whose `goal.md` has at least one unticked criterion and a slice within budget. Start the sender with no `--name`, set no goal of its own, and never run `/rename`, so the only title the session has is the generated one.
+
+~~~bash
+repo_root="$(git rev-parse --show-toplevel)"
+sandbox="$(mktemp -d)/checkout"
+git clone --shared "$repo_root" "$sandbox"
+tmux new-session -d -s hop-check -c "$sandbox" \
+  'SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=2 bash .skilled/bin/skilled-loop claude "Start a short task and wait for the handoff nudge."'
+tmux attach -t hop-check
+~~~
+
+1. Answer Gate 3 with the packet path, then run a short task until the handoff nudge arrives. Set no goal in the sender.
+2. Run `prepare` with the command the nudge prints, then call `AskUserQuestion` in the same turn. The guard must deny the call. Read the denial and confirm it names the note and the `cancel` command.
+3. End the turn. `Stop` must arm the record, so `relaunch-<loopId>.json` in the relaunch state directory reads `status: armed` with an `armedAt` stamp, and `killer-<loopId>.lock` there names the killer's pid. The state directory is `${XDG_RUNTIME_DIR}/skilled-relaunch`, or `skilled-relaunch-<uid>` under the temporary directory when `XDG_RUNTIME_DIR` is unset.
+4. Take the receiver's pid from the killed sender's child, then run `ps -o command= -p <pid>`. The command line must start on `/goal <slice>` for the packet the note names, which is the packet goal fallback, because the sender had no goal of its own.
+5. Start a second sender the same way in a fresh loop, again with no `--name`, and let Claude Code generate its title before the nudge. After that hop, the receiver's `ps -o command= -p <pid>` line must carry `--name "<generated title> (2)"`, with the `generatedName` that `prepare` read from the sender's transcript.
+6. Keep `relaunch.log`, both `ps` lines, `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history --last 3` and the note frontmatter as evidence.
+
+Evidence: the denial text, the armed record and its lock file, the two `ps -o command=` lines, the `history --last 3` output and the note's `spec_folder`. Record the app title apart from the command line, because whether the app title follows `--name` is unconfirmed. PASS when the denial, the `/goal` start and the `--name` carry all appear. FAIL when the dialog opens, when the receiver starts with no goal prompt, or when the receiver has a fresh generated title with no hop number.
 
 ### Expected
 

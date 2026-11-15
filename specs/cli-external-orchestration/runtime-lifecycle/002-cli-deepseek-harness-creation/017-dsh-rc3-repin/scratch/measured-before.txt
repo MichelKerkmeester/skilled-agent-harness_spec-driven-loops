@@ -1,0 +1,15 @@
+$ command -v dsh; dsh --version </dev/null; git grep -c "0\.2\.2-rc\.1" -- ":!specs" | wc -l
+/Users/michelkerkmeester/.local/bin/dsh
+0.2.2-rc.3
+      15
+$ npm view @deepseek-ai/dsh dist-tags --json
+{
+  "alpha": "0.2.2-alpha.3",
+  "latest": "0.2.2-rc.1",
+  "next": "0.2.2-rc.3"
+}
+$ npm view @deepseek-ai/dsh@0.2.2-rc.3 version dist.integrity --json
+{
+  "version": "0.2.2-rc.3",
+  "dist.integrity": "sha512-S+4oUYVKWuc1SCMMp1mpUa2llxVy0o9gIgp7TDg/Ea7PuvXVkAfnykqSH1/oDXVB+y5VzEm0QIJulo1LIB3qRg=="
+}

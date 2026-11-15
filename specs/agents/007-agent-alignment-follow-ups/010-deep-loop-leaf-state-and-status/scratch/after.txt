@@ -1,0 +1,110 @@
+## .skilled/agents/deep-research.md
+$ rg -c 'set status to .error.' .skilled/agents/deep-research.md
+exit=1
+$ rg -c 'Tier 3\+ escalation' .skilled/agents/deep-research.md
+1
+exit=0
+$ rg -c 'Append the structured JSONL record' .skilled/agents/deep-research.md
+exit=1
+$ grep -c durationMs .skilled/agents/deep-research.md
+0
+exit=1
+$ rg -c 'gateway stamps' .skilled/agents/deep-research.md
+1
+exit=0
+$ rg -c '^## Convergence Threshold Semantics|^### Error-Aware Execution|^### Write Safety' .skilled/agents/deep-research.md
+exit=1
+$ rg -c 'Tier 1 \(Source failure\)' .skilled/agents/deep-research.md
+1
+exit=0
+## .claude/agents/deep-research.md
+$ rg -c 'set status to .error.' .claude/agents/deep-research.md
+exit=1
+$ rg -c 'Tier 3\+ escalation' .claude/agents/deep-research.md
+1
+exit=0
+$ rg -c 'Append the structured JSONL record' .claude/agents/deep-research.md
+exit=1
+$ grep -c durationMs .claude/agents/deep-research.md
+0
+exit=1
+$ rg -c 'gateway stamps' .claude/agents/deep-research.md
+1
+exit=0
+$ rg -c '^## Convergence Threshold Semantics|^### Error-Aware Execution|^### Write Safety' .claude/agents/deep-research.md
+exit=1
+$ rg -c 'Tier 1 \(Source failure\)' .claude/agents/deep-research.md
+1
+exit=0
+## .skilled/agents/deep-review.md
+$ rg -c 'BEFORE any state read' .skilled/agents/deep-review.md
+exit=1
+$ rg -n 'BINDING line' .skilled/agents/deep-review.md | cut -c1-90
+104:After Step 2 reads the config and BEFORE any review action, this agent MUST emit one c
+exit=0
+$ rg -c 'and JSONL state log listed' .skilled/agents/deep-review.md
+exit=1
+$ rg -c 'SPEC FOLDER PERMISSION.*deltas/iter-NNN.jsonl' .skilled/agents/deep-review.md
+1
+exit=0
+$ rg -c 'FAIL.*session verdict' .skilled/agents/deep-review.md
+1
+exit=0
+$ rg -c 'FAIL when any active P0 remains' .skilled/agents/deep-review.md
+1
+exit=0
+$ rg -c '^- Required review data includes.*noveltyJustification' .skilled/agents/deep-review.md
+1
+exit=0
+$ rg -c 'append a typed .restarted. event' .skilled/agents/deep-review.md
+exit=1
+$ rg -c 'stopReason: maxIterationsReached' .skilled/agents/deep-review.md
+exit=1
+## .claude/agents/deep-review.md
+$ rg -c 'BEFORE any state read' .claude/agents/deep-review.md
+exit=1
+$ rg -n 'BINDING line' .claude/agents/deep-review.md | cut -c1-90
+90:After Step 2 reads the config and BEFORE any review action, this agent MUST emit one ca
+exit=0
+$ rg -c 'and JSONL state log listed' .claude/agents/deep-review.md
+exit=1
+$ rg -c 'SPEC FOLDER PERMISSION.*deltas/iter-NNN.jsonl' .claude/agents/deep-review.md
+1
+exit=0
+$ rg -c 'FAIL.*session verdict' .claude/agents/deep-review.md
+1
+exit=0
+$ rg -c 'FAIL when any active P0 remains' .claude/agents/deep-review.md
+1
+exit=0
+$ rg -c '^- Required review data includes.*noveltyJustification' .claude/agents/deep-review.md
+1
+exit=0
+$ rg -c 'append a typed .restarted. event' .claude/agents/deep-review.md
+exit=1
+$ rg -c 'stopReason: maxIterationsReached' .claude/agents/deep-review.md
+exit=1
+## REQ-010
+$ wc -l .skilled/agents/deep-research.md .skilled/agents/deep-review.md
+     564 .skilled/agents/deep-research.md
+     588 .skilled/agents/deep-review.md
+    1152 total
+exit=0
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs | tail -1
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+$ node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/research 2>&1 | tail -1
+[CONTRACT DRIFT] OK commands=1
+exit=0
+$ node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/review 2>&1 | tail -1
+[CONTRACT DRIFT] OK commands=1
+exit=0
+$ (cd .skilled/skills/system-spec-kit/runtime/cli && npx --no-install vitest run --config ../../vitest.config.ts --project cli tests/deep-review-contract-parity.vitest.ts tests/deep-research-contract-parity.vitest.ts 2>&1 | grep -E 'Tests ')
+      Tests  19 passed (19)
+exit=0
+$ (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --config vitest.config.ts tests/fanout-loop-prompt-in-process.test.ts 2>&1 | grep -E 'Tests ')
+      Tests  8 passed (8)
+exit=0

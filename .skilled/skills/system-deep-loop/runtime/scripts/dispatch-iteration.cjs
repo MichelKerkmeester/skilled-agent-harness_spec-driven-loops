@@ -28,10 +28,6 @@ const EXECUTOR_KIND_NAMES = Object.freeze([
   'cli-deepseek-harness',
 ]);
 
-const DEEPSEEK_HARNESS_REFUSAL =
-  'cli-deepseek-harness runs only as a fan-out lineage; rerun with --count=2 or a second '
-  + '--executor group, or choose another executor kind';
-
 const NATIVE_REFUSAL =
   "native dispatch runs through the orchestrator's if_native branch; dispatch-iteration.cjs "
   + 'has no native path';
@@ -45,7 +41,7 @@ function usageLine(kinds) {
     + ' --loop-type research|review --repo-root <dir> --prompt-file <path> --state-log <path>'
     + ' --packet-dir <dir> --artifact-dir <dir> --iteration <n> --generation <n> --session-id <id>'
     + ' --model <m|null> --reasoning-effort <e|null> --service-tier <t|null> --sandbox-mode <s|null>'
-    + ' --timeout-seconds <n> [--claude-config-dir <dir>]';
+    + ' --timeout-seconds <n> [--claude-config-dir <dir>] [--spec-folder <dir>]';
 }
 
 /**
@@ -64,10 +60,6 @@ function earlyExecutorExit(argv) {
         + `Supported kinds: ${EXECUTOR_KIND_NAMES.join(', ')}\n`,
     );
     return 64;
-  }
-  if (executor === 'cli-deepseek-harness') {
-    process.stderr.write(`${DEEPSEEK_HARNESS_REFUSAL}\n`);
-    return 2;
   }
   if (executor === 'native') {
     process.stderr.write(`${NATIVE_REFUSAL}\n`);
@@ -109,7 +101,9 @@ const {
 } = require('../lib/deep-loop/write-containment.ts');
 const {
   buildLineageCommand,
+  sweepStaleDshHomes,
   validateClaudeConfigDir,
+  validateDshCompletion,
   withAgentPersona,
 } = require('./fanout-run.cjs');
 
@@ -136,6 +130,7 @@ const FLAG_NAMES = [
   'sandbox-mode',
   'timeout-seconds',
   'claude-config-dir',
+  'spec-folder',
 ];
 
 const REQUIRED_FLAGS = [
@@ -224,6 +219,13 @@ function validateFlags(values) {
       "flag '--claude-config-dir' is only valid with --executor cli-claude-code --loop-type review",
     );
   }
+  const harness = values.executor === 'cli-deepseek-harness';
+  if (harness && !hasFlag(values, 'specFolder')) {
+    throw new UsageError("missing required flag '--spec-folder'");
+  }
+  if (!harness && hasFlag(values, 'specFolder')) {
+    throw new UsageError("flag '--spec-folder' is only valid with --executor cli-deepseek-harness");
+  }
 }
 
 function usageExit(reason) {
@@ -260,6 +262,7 @@ function buildContext(values) {
     sandboxMode: nullable(values.sandboxMode),
     timeoutSeconds: Number(values.timeoutSeconds),
     claudeConfigDir: hasFlag(values, 'claudeConfigDir') ? values.claudeConfigDir : '',
+    specFolder: hasFlag(values, 'specFolder') ? values.specFolder : '',
     dispatchId: `${loopType}-i${values.iteration}-g${values.generation}`,
     receiptDir: `${values.packetDir}/dispatch-receipts`,
   };
@@ -393,6 +396,7 @@ function runClaude(context) {
       guardContext: { env: parentEnv },
       receiptDir: context.receiptDir,
       dispatchId: context.dispatchId,
+      sessionId: context.sessionId,
     });
   }
 
@@ -428,6 +432,7 @@ function runClaude(context) {
     iteration: context.iteration,
     receiptDir: context.receiptDir,
     dispatchId: context.dispatchId,
+    sessionId: context.sessionId,
   });
 }
 
@@ -486,6 +491,7 @@ function runLineageBuiltin(context) {
       input,
       receiptDir: context.receiptDir,
       dispatchId: context.dispatchId,
+      sessionId: context.sessionId,
     },
     repoRoot,
     artifactDir: context.artifactDir,
@@ -536,6 +542,7 @@ function runResearchOpencode(context) {
       input,
       receiptDir: context.receiptDir,
       dispatchId: context.dispatchId,
+      sessionId: context.sessionId,
     },
     repoRoot,
     artifactDir: context.artifactDir,
@@ -543,6 +550,103 @@ function runResearchOpencode(context) {
     iteration: context.iteration,
     label: context.dispatchId,
   });
+}
+
+function runDeepseekHarness(context) {
+  const kind = 'cli-deepseek-harness';
+  const model = nullable(context.model);
+  const timeoutSeconds = context.timeoutSeconds;
+  // The iteration must write its own iteration file, delta and state record,
+  // so the leaf runs workspace-write.
+  const sandboxMode = 'workspace-write';
+  const reasoningEffort = context.reasoningEffort;
+  const lineage = { kind, model, sandboxMode, reasoningEffort };
+  const resolvedSandbox = resolveSandboxMode(sandboxMode);
+  const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
+
+  const repoRoot = context.repoRoot;
+  const artifactDir = context.artifactDir;
+  // The prompt pack says every path is relative to the repo root and calls the append
+  // gateway by a repo-relative path, but the harness starts in the artifact folder, so
+  // the prompt names the root and tells the leaf to run commands from it.
+  const promptBody = 'REPOSITORY ROOT: ' + repoRoot + '. Resolve every relative path in this prompt '
+    + 'against it and run every command as `cd ' + repoRoot + ' && <command>`.\n\n'
+    + readPrompt(context);
+  // The command builder is the one the fan-out lineage path uses, so the pinned harness
+  // release, the model allowlist, the route, lineage and guards patches and the headless
+  // write flags stay one source of truth. It throws (fail closed) when the harness binary
+  // is absent or off its pinned release, or the model is off the allowlist, so a requested
+  // harness executor never becomes native. The headless harness reads the dotenv file in
+  // its working directory and the repository root holds one, so the builder starts it in
+  // the artifact folder and the dispatch runs from the cwd it returns.
+  const { command, args, input, cwd } = buildLineageCommand(
+    lineage,
+    promptBody,
+    resolvedSandbox,
+    resolvedPermission,
+    { env: process.env, cwd: repoRoot, lineageDir: artifactDir, repoRoot },
+  );
+
+  const executor = {
+    kind,
+    model,
+    configDir: null,
+    reasoningEffort,
+    serviceTier: null,
+    sandboxMode,
+    timeoutSeconds,
+    governor: null,
+  };
+  // The step timeout equals the executor timeout, so the child gets a shorter one. An
+  // outer kill while the child still runs would skip the finally block and strand the home.
+  const dispatchTimeoutSeconds = Math.max(Math.ceil(timeoutSeconds / 2), timeoutSeconds - 30);
+  const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
+  // The harness writes profiles and an anonymous id into its home, so every run gets a
+  // fresh one outside the checkout, removed once the run settles. The env allowlist drops
+  // every DSH_ key, so the home and the absolute spec folder the repo-guards goal bridge
+  // reads ride in dispatchEnv. DSH_HOME on this process would instead trip the
+  // nested-dispatch guard.
+  sweepStaleDshHomes();
+  const dshHome = fs.mkdtempSync(path.join(os.tmpdir(), 'dsh-home-'));
+  let dispatchExit;
+  try {
+    dispatchExit = runAuditedExecutorCommand({
+      command,
+      args,
+      cwd,
+      timeoutSeconds: dispatchTimeoutSeconds,
+      stateLogPath: context.stateLogPath,
+      executor,
+      iteration: context.iteration,
+      input,
+      receiptDir: context.receiptDir,
+      dispatchId: context.dispatchId,
+      sessionId: context.sessionId,
+      dispatchEnv: {
+        DSH_HOME: dshHome,
+        DSH_SPEC_FOLDER: path.resolve(repoRoot, context.specFolder),
+        // The leaf has no user turn to answer the spec gate, and ENFORCE=0 alone only stops
+        // the deny, so DISABLED makes classify and enforce no-ops, as in fan-out.
+        SYSTEM_SPEC_GATE_DISABLED: '1',
+        AI_SESSION_CHILD: '1',
+      },
+      // The harness can exit 0 after a guard plugin failed to load, so its event stream
+      // and stderr are judged as well as its exit code.
+      completionCheck: validateDshCompletion,
+      echoStdout: false,
+    });
+  } finally {
+    fs.rmSync(dshHome, { recursive: true, force: true });
+  }
+  reportWriteContainment({
+    preDispatchDirtyPaths,
+    repoRoot,
+    artifactDir,
+    stateLogPath: context.stateLogPath,
+    iteration: context.iteration,
+    label: context.dispatchId,
+  });
+  return dispatchExit;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -699,6 +803,7 @@ function stageAndDispatchReviewOpencode(context, eventDir) {
     input,
     receiptDir: context.receiptDir,
     dispatchId: context.dispatchId,
+    sessionId: context.sessionId,
   };
   // The caller reports containment after the staged-event drain: the gateway rewrites
   // the state log from its ledger, so a row appended before the drain is lost.
@@ -854,6 +959,7 @@ function runCodex(context) {
       input: promptBody,
       receiptDir: context.receiptDir,
       dispatchId: context.dispatchId,
+      sessionId: context.sessionId,
     },
     repoRoot: context.repoRoot,
     artifactDir: context.artifactDir,
@@ -882,6 +988,8 @@ function runDispatch(values) {
         : runResearchOpencode(context);
     case 'cli-codex':
       return runCodex(context);
+    case 'cli-deepseek-harness':
+      return runDeepseekHarness(context);
     default:
       throw new Error(`unhandled executor kind '${context.executorKind}'`);
   }
@@ -904,10 +1012,6 @@ function main(argv) {
     throw error;
   }
 
-  if (values.executor === 'cli-deepseek-harness') {
-    console.error(DEEPSEEK_HARNESS_REFUSAL);
-    return 2;
-  }
   if (values.executor === 'native') {
     console.error(NATIVE_REFUSAL);
     return 64;

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A packet's purpose is meant to read the same after every hop, so the next AI recognizes it as the one fixed line in a context that otherwise changes",
     "created_at": "2026-11-14T06:14:05Z",
-    "last_save_at": "2026-11-14T07:51:28.173Z",
+    "last_save_at": "2026-11-14T13:46:26.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f2642587c7463aba5d057bae24ef8cc636785f4b284128940acef18d3ee61bb",
+    "source_fingerprint": "sha256:6e728bf3b086e5ec00f0cd457377f6fece19137459afbeca102139df1e823f64",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9d19567606918d559070316ce541d4dd816a676be5b827b9e839e47bbad9d21a",
       "plan.md": "e7788853510f3f7b3e05025b44c28f59084cd4449c085ca3a1f4f55a4d920cd9",
       "tasks.md": "562627907dfba205fe06cb9c78bc6a2ab28fb18324662c47e3f0e89668d31ea6",
-      "implementation-summary.md": "9b2f61271fd7b7ee57e9ebecd9070253ea3570510237989897e5681fde98004e"
+      "implementation-summary.md": "678caceba83303f2e1f9d2e42d039fbc45b20718800af3807dacb9bdfee39581"
     },
     "last_active_at": null
   }

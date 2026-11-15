@@ -1,0 +1,35 @@
+TASK: author one new manual testing playbook scenario file.
+
+NEW FILE: .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-negative-probes.md
+
+FORMAT: copy the structure of the sibling file .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/skcode-vs-skdoc.md exactly (read that one file in full first): the same frontmatter keys (title, description, version: 1.0.0.0), the H1 equal to the title, then the sections "## 1. OVERVIEW", "## 2. SCENARIO CONTRACT", "## 3. TEST EXECUTION" (with the sub-headings Preconditions, Exact Command Sequence, Expected Signals, Pass/Fail Criteria, Failure Triage and the "Evidence:" line), "## 4. SOURCE FILES" and "## 5. SOURCE METADATA", separated by "---" dividers the same way. In section 2 keep both the fenced "**Exact prompt**" block and the single line that starts with "Prompt: " followed by the same prompt in backticks.
+Write plain sentences. No em dash, no semicolon. Do not mention any spec folder, task id or finding id.
+In section 5 use: Group: Routing Disambiguation, the Playbook ID below, Created 2026-11-14, Critical path: No, Destructive: No, Concurrent-safe: Yes, Last validated: 2026-11-14.
+In section 4 list: ../manual-testing-playbook.md, .skilled/skills/sk-code/hub-router.json (the frontend vocabulary classes), .skilled/skills/sk-code/mode-registry.json (the FRONTEND detection block) and .skilled/bin/compiled-route.cjs. End section 4 with the line: Catalog: `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, the entry that states how the hub bundles a surface packet beside a workflow mode.
+Create exactly one file. Do not edit any other file.
+
+CONTENT
+Playbook ID: RD-005. Title: "RD-005: Non-Frontend Requests Stay Off the Frontend Surface".
+What it verifies: requests that share a word with frontend work, such as padding, hover, easing, transition, contrast or shadow, but concern other code, never return sk-code-frontend. The risk it guards: bare single-word keywords once matched inside unrelated sentences and sent binary, shell and language-server work to the frontend references.
+Realistic user request: a developer asks for backend or tooling work whose wording happens to contain a frontend-sounding word.
+Exact prompt (the first of the set, used for the "Exact prompt" block and the "Prompt:" line):
+add left padding to the binary buffer before hashing
+The full prompt set, which section 3 replays, one per line:
+add left padding to the binary buffer before hashing
+hover over the symbol to debug the typescript type error
+pad the string with zeros in the python formatter
+easing the migration of the shell scripts to bash 5
+the transition between workflow states fails in the reducer
+add a hover provider to the language server
+fix the contrast stretch in the image processing python script
+the shadow copy of the config file is stale
+Preconditions: node is callable, and `node .skilled/bin/compiled-route-guard.cjs --json` reports the sk-code hub as fresh.
+Exact Command Sequence: 1. save the 8 prompts, one per line, to /tmp/skc-RD005-prompts.txt. 2. run: while IFS= read -r p; do node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "$p"; done < /tmp/skc-RD005-prompts.txt > /tmp/skc-RD005-routes.txt  3. run: grep -c '"workflowMode":"sk-code-frontend"' /tmp/skc-RD005-routes.txt
+Expected signals: 8 decision lines. A line may be a defer or a route to another packet such as sk-code-skilled. The count command prints 0 and exits 1.
+PASS iff the count is 0. FAIL iff any decision names sk-code-frontend.
+Evidence: /tmp/skc-RD005-routes.txt
+Failure triage: 1. Find the failing prompt's line in the routes file. 2. List the frontend keywords with no space and no hyphen: node -e "const v=require('./.skilled/skills/sk-code/hub-router.json').vocabularyClasses;console.log(Object.keys(v).filter(c=>c.startsWith('code-frontend')).flatMap(c=>v[c].keywords).filter(k=>!/[ -]/.test(k)))" 3. Replace each single-word keyword it prints with a phrase of two or more words, in hub-router.json and in the INTENT_SIGNALS rows of both ROUTER.md files. 4. If the list is empty, a phrase is too broad, so narrow the phrase that matched. Never edit a prompt to make it pass.
+
+VERIFY (run from the repository root):
+grep -c '^## [1-5]\. ' .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-negative-probes.md
+Expected output: 5

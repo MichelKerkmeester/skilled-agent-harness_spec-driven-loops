@@ -1,0 +1,47 @@
+# After the change, on the working tree at 1756387767 plus the phase 006 changes
+
+## T012: the hub's vocabulary and version checks
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub cli-external-orchestration
+  stage-two-reverse cli-deepseek-harness: "deepseek harness headless" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+
+note: stage-two-reverse=28 term(s) are ROUTER.md intent keywords hub-router.json does not route. Stage two also carries the leaf keywords that pick a file once the mode is chosen, so this leg reports and never fails.
+
+checked=1 hub(s), drift=0
+RESULT: PASSED
+exit=0
+
+$ node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill cli-external-orchestration
+[verify] 440 files | ok=440
+exit=0
+
+$ bash .skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh
+  PASS  cli-external-orchestration/cli-cursor/SKILL.md
+  PASS  cli-external-orchestration/cli-pi/SKILL.md
+  PASS  cli-external-orchestration/cli-codex/SKILL.md
+  PASS  cli-external-orchestration/cli-devin/SKILL.md
+  PASS  cli-external-orchestration/cli-deepseek-harness/SKILL.md
+GUARD PASS — tables not inlined, deep-path pointer-only
+exit=0
+
+## Version and newest changelog entry
+$ rg -n '^version:' .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md
+5:version: 1.9.16.0
+$ ls .skilled/skills/cli-external-orchestration/cli-codex/changelog | sort -V | tail -1
+v1.9.16.0.md
+
+## Searches
+$ rg -c -i 'tool mapping' .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md
+1
+$ rg -c -i 'tool mapping' .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+1
+$ rg -c 'FILES READ: none' .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md
+2
+$ git diff --stat 1756387767 -- .skilled/agents .claude/agents | wc -l   # no agent file changed since the phase started
+       0
+
+## The two live Codex runs, codex-cli 0.169.0, gpt-6-luna at medium on the fast tier, --sandbox read-only
+probe, with the mapping line: exit 0, one command run: cat .skilled/agents/README.txt. Last line of the report:
+FILES READ: .skilled/agents/README.txt
+control, the same prompt without the mapping line: exit 0, two commands run: the trigger-index lookup (exit 1, no hit) and cat .skilled/agents/README.txt. Last line of the report:
+FILES READ: .skilled/agents/README.txt
+# The control read the file, so the failure the spec observed on codex-cli 0.167.2 did not reproduce. With the line the child ran the one read command the task needed. Without it the child also ran a node script, which the mapping text forbids.

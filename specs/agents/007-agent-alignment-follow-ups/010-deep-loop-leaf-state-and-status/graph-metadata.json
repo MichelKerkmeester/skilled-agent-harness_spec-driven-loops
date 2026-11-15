@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop leaf state and status",
+      "phase 10 deep loop leaf state and status",
+      "deep loop leaf state and status plan",
+      "deep loop leaf state and status tasks",
+      "deep loop leaf state and status implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "leaf",
+      "state",
+      "status",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "deep-research",
+      "tells"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/after.txt",
+      ".skilled/agents/deep-research.md",
+      ".skilled/agents/deep-review.md",
+      ".claude/agents/deep-research.md",
+      ".claude/agents/deep-review.md",
+      "scratch/baseline.txt",
+      "scratch/measured.txt",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs",
+      ".skilled/bin/sync-agent-roster.cjs",
+      ".skilled/bin/check-agent-mirror-sync.cjs",
+      "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/spec.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/fanout-loop-prompt-in-process.test.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "measured.txt",
+        "kind": "file",
+        "path": "scratch/measured.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-pi.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-dsh.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-loop-prompt-in-process.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/fanout-loop-prompt-in-process.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-research.md` tells the leaf to set status `error` when source recovery fails, while its own status rule keeps `error` for state corruption and the workflow halts after 3 consecutive errors",
+    "created_at": "2026-11-14T20:19:21Z",
+    "last_save_at": "2026-11-15T05:24:49.764Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ad1df05ce05023abf41aced869c5c818e60a3b78be7739da2c1b844ab3d3c797",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "127cb83386512e8091c944ac273ced712ff70473024aa4cb4dbe2a1537c71ce0",
+      "plan.md": "2fee2e19d6050d9c019991cbe440a8513e2292f0500752862c283761abfe223e",
+      "tasks.md": "3cf126266d609d9d48b468d8e4294c28b2e57ffb0a9ecff78201fe6e445015a2",
+      "implementation-summary.md": "1885bb68f1c934e1480babea8deed7fd8710ab6586f14de66f74601311d194f5"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,15 @@
+# Baseline at 3018fbbd44
+
+$ rg -l 'compiled-route' .skilled/agents | wc -l
+       0
+
+$ rg -o 'sk-code/sk-code-frontend/[a-z/.-]+' .skilled/agents/design.md | sort -u | wc -l
+       4
+
+$ rg -o '\.skilled/skills/sk-doc/sk-create-[a-z-]+/[A-Za-z0-9_./-]+' .skilled/agents/markdown.md | sort -u | wc -l
+      17
+
+# Tool-call count of one design dispatch before any edit
+# Method: a general-purpose agent on Sonnet was told to read .claude/agents/design.md in this worktree and act as it, read-only,
+# for the task: decide padding, corner radius and shadow for a compact settings card with no tokens, and the hover transition.
+tool calls: 4 (design.md, web-visual-values.md, web-motion-and-interaction.md, tokens.css)

@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/020-dsh-direct-writer-gateway",
+  "description": "Phase 20: dsh-direct-writer-gateway",
+  "keywords": [
+    "phase",
+    "dsh-direct-writer-gateway"
+  ],
+  "lastUpdated": "2026-11-14T22:20:26.926Z",
+  "specId": "020",
+  "folderSlug": "dsh-direct-writer-gateway",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "002-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

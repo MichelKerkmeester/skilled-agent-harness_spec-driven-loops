@@ -148,8 +148,10 @@ Provenance markers exist in one tree: every `.codex` agent opens with `# Agent: 
 
 ### 2.5 `model`
 
-Three files in the Claude tree declare a model, all `model: haiku`: `context.md`, `markdown.md`
-and the Claude-only `Explore.md` override.
+Four files in the Claude tree declare a model: `context.md`, `markdown.md` and the Claude-only
+`Explore.md` override declare `model: haiku`, and `prompt-improver.md` declares `model: sonnet`,
+because the `sk-prompt` Model Eligibility table denies Opus and Fable on every route.
+`.cursor` also reaches `prompt-improver.md` through its symlink.
 `.cursor` and `.devin` reach `context.md` and `markdown.md` through their symlinks, so they carry
 the line too, and whether either runtime honors it is untested. No other agent file
 in `.skilled`, `.claude`, `.pi`, `.cursor` or `.devin` declares a model. `.codex` pins one on all
@@ -193,7 +195,7 @@ rather than widening the normalization.
 
 A dispatched route passes model and effort explicitly, so the drift surface is manual invocation
 alone. Read the silence correctly: a tree that declares no model means "no pin", not "unowned
-setting". `.codex` pins one on every agent, and the Claude tree pins `context`, `markdown` and `Explore`. Only a
+setting". `.codex` pins one on every agent, and the Claude tree pins `context`, `markdown`, `Explore` and `prompt-improver`. Only a
 manual invocation reads those pins; the other trees run whatever the runtime default is for the
 invoking session.
 Manual invokers who need a specific model or effort should pass it at invocation time instead of

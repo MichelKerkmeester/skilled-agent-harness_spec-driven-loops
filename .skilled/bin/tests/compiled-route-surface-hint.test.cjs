@@ -160,7 +160,7 @@ test('a SKILLED hint never moves the fallback ahead of another surface', () => {
 test('a surface another repository adds to the hub outranks SKILLED when both match', () => {
   const snapshot = compileHub(hubWithAddedSurface());
   assert.equal(snapshot.routingModel.surfaceDetection.fallback, 'sk-code-skilled');
-  assert.deepEqual(snapshot.routingModel.surfaceDetection.specific, ['sk-code-webflow']);
+  assert.deepEqual(snapshot.routingModel.surfaceDetection.specific, ['sk-code-frontend', 'sk-code-webflow']);
   const prompt = 'fix the webflow slider typescript';
   for (const surfaceHint of [undefined, 'SKILLED', 'WEBFLOW']) {
     assert.deepEqual(routedTargets(snapshot, prompt, surfaceHint), ['sk-code-webflow', 'sk-code-skilled'], String(surfaceHint));

@@ -1,0 +1,29 @@
+TASK: replace one subsection with a shorter one in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/SKILL.md (read lines 312 to 350 only)
+
+EDIT. Replace everything from the heading line `### 8.1 M-1: PR-State Content-Hash Dedup` up to, and not including, the heading line `### 8.2 M-2: Opt-In Minimum Evidence Gate`. Put the content between the marker lines below in its place, byte for byte. The content ends with one blank line, so exactly one blank line stands before the 8.2 heading.
+
+<<<TEXT
+### 8.1 M-1: PR-State Content-Hash Dedup
+
+Prevents redundant re-reviews when a PR has not changed since the last review.
+
+The gate hashes the diff and the latest commit subject into one signature and looks it up in a cache file in the reviewing user's cache directory. The gate never writes into the reviewed repository. Its one side effect is that file, and deleting it resets the gate.
+
+[`references/pr-state-dedup.md`](./references/pr-state-dedup.md) is the specification. It holds the signature formula, the cache path and key, the optional pathspec scope, the line schema, the retention cap and the cache write.
+
+**Skip behavior:**
+When the current signature matches a prior cache entry, the review emits:
+```
+Review status: COMMENTED (no changes since last review at <prev_sha>)
+```
+No full review analysis runs. Automation may treat `COMMENTED` as a pass (no new findings).
+
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'sha256|100 entries' .skilled/skills/sk-code/sk-code-review/SKILL.md; echo "exit $?"
+Expected output: `exit 1`

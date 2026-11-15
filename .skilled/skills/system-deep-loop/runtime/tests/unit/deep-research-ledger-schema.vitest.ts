@@ -138,6 +138,18 @@ const LEGACY_LIFECYCLE_ROWS = {
     lifecycle: { from: 'PIVOT_PENDING', to: 'PIVOT_PENDING' }, reason: 'no_valid_candidates',
     recoverableByOverride: false, timestamp: LEGACY_ROW_TIMESTAMP,
   },
+  dispatchFailure: {
+    type: 'event', event: 'dispatch_failure',
+    executor: { kind: 'cli-claude-code', model: 'claude-opus-4-6', reasoningEffort: 'high', serviceTier: null },
+    reason: 'crash', iteration: 3, detail: 'executor exited with status 1', executorUnavailable: true,
+    matchedMarker: 'rate limit', timestamp: LEGACY_ROW_TIMESTAMP, sessionId: 'session-1',
+  },
+  dispatchReceiptWriteFailed: {
+    type: 'event', event: 'dispatch_receipt_write_failed', reason: 'dispatch_receipt_write_failed',
+    phase: 'intent', iteration: 3,
+    executor: { kind: 'cli-claude-code', model: 'claude-opus-4-6', reasoningEffort: 'high', serviceTier: null },
+    timestamp: LEGACY_ROW_TIMESTAMP, detail: 'ENOTDIR: not a directory', sessionId: 'session-1',
+  },
 } as const;
 
 // The ledger payload a legacy row travels as: everything but its envelope.
@@ -676,6 +688,8 @@ function dataFor<TStem extends DeepResearchEventStem>(
     'deep_research.pivot_selected': legacyRowData(LEGACY_LIFECYCLE_ROWS.pivotSelected),
     'deep_research.pivot_completed': legacyRowData(LEGACY_LIFECYCLE_ROWS.pivotCompleted),
     'deep_research.pivot_failed': legacyRowData(LEGACY_LIFECYCLE_ROWS.pivotFailed),
+    'deep_research.dispatch_failure': legacyRowData(LEGACY_LIFECYCLE_ROWS.dispatchFailure),
+    'deep_research.dispatch_receipt_write_failed': legacyRowData(LEGACY_LIFECYCLE_ROWS.dispatchReceiptWriteFailed),
   };
   return data[stem] as DeepResearchPayloadMap[TStem];
 }
@@ -1652,6 +1666,8 @@ describe('deep-research typed ledger schema', () => {
     { stem: 'deep_research.pivot_selected', record: LEGACY_LIFECYCLE_ROWS.pivotSelected },
     { stem: 'deep_research.pivot_completed', record: LEGACY_LIFECYCLE_ROWS.pivotCompleted },
     { stem: 'deep_research.pivot_failed', record: LEGACY_LIFECYCLE_ROWS.pivotFailed },
+    { stem: 'deep_research.dispatch_failure', record: LEGACY_LIFECYCLE_ROWS.dispatchFailure },
+    { stem: 'deep_research.dispatch_receipt_write_failed', record: LEGACY_LIFECYCLE_ROWS.dispatchReceiptWriteFailed },
   ] as const;
 
   it('projects a completed iteration with its focus, mode and answered questions', () => {

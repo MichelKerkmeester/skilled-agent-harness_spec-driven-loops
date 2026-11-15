@@ -1,7 +1,7 @@
 ---
 title: "CR-032 -- PR-state content-hash dedup"
 description: "This scenario validates the M-1 PR-state content-hash dedup gate for `CR-032`. It focuses on the two-hash signature, the cache file outside the reviewed repository, the exact skip status line, the cache write after a full review, and the pathspec scope that keeps its own key."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CR-032 -- PR-state content-hash dedup
@@ -255,7 +255,7 @@ The step 2 and step 3 signature transcripts, the cache file contents after step 
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | Section 8.1 M-1 signature, cache storage, retention and skip behavior; section 4 Extension Floors |
+| `../../SKILL.md` | Section 8.1 M-1 summary and skip behavior; section 4 Extension Floors |
 | `../../references/pr-state-dedup.md` | The signature recipe, pathspec scope, retention and cache-write rules this scenario runs |
 | `../../scripts/check-review-final-line.js` | Accepts the skip status only as the whole output |
 | `../../scripts/check-review-findings.js` | Confirms a skip status is never compared against findings |

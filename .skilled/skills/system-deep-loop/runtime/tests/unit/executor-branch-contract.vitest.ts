@@ -68,6 +68,52 @@ function branchBody(step: string, branch: string): string {
   return lines.slice(start + 1, end).join('\n');
 }
 
+const DSH_SINGLE_BRANCH_TOKENS = [
+  'buildLineageCommand',
+  'DSH_HOME',
+  'SYSTEM_SPEC_GATE_DISABLED',
+  'REPOSITORY ROOT',
+  'validateDshCompletion',
+];
+
+// A branch body runs from its key to the next line at the same or a shallower indent.
+function dshSingleBranchText(yaml: string): string {
+  const lines = yaml.split(/\r?\n/);
+  const start = lines.findIndex((line) => /^\s*if_cli_deepseek_harness:\s*$/.test(line));
+  if (start === -1) return '';
+  const indent = /^\s*/.exec(lines[start])![0].length;
+  let end = start + 1;
+  while (end < lines.length) {
+    const line = lines[end];
+    if (line.trim() && /^\s*/.exec(line)![0].length <= indent) break;
+    end += 1;
+  }
+  return lines.slice(start + 1, end).join('\n');
+}
+
+function dshSingleBranchGaps(yaml: string): string[] {
+  const body = dshSingleBranchText(yaml);
+  if (body === '') return ['if_cli_deepseek_harness'];
+  // The ancestry recursion guard reads the parent shell's command line, which carries
+  // the heredoc text, so a bare harness binary word there refuses the dispatch as nested.
+  const bareBinary = body
+    .split(/\s+/)
+    .map((token) => token.replace(/^['"]|['"]$/g, ''))
+    .some((token) => token.split('/').pop() === 'dsh');
+  return [
+    ...DSH_SINGLE_BRANCH_TOKENS.filter((token) => !body.includes(token)),
+    ...(bareBinary ? ['bare dsh word'] : []),
+  ];
+}
+
+// The harness handler runs from its function line to the next top-level function.
+function harnessHandlerText(script: string): string {
+  const start = script.indexOf('function runDeepseekHarness(context) {');
+  if (start === -1) return '';
+  const end = script.indexOf('\nfunction ', start + 1);
+  return end === -1 ? script.slice(start) : script.slice(start, end);
+}
+
 function readWorkflows(): Map<string, string> {
   return new Map(WORKFLOW_YAMLS.map((file) => [file, readFileSync(resolve(ASSETS, file), 'utf8')]));
 }
@@ -112,5 +158,35 @@ describe('deep-loop executor branch contract', () => {
 
   it('builds lineage commands through buildLineageCommand in dispatch-iteration.cjs', () => {
     expect(readFileSync(DISPATCH_SCRIPT, 'utf8')).toContain('buildLineageCommand');
+  });
+
+  it('routes the cli-deepseek-harness branch through dispatch-iteration.cjs in both workflows', () => {
+    for (const [file, yaml] of workflows) {
+      expect(yaml, file).not.toContain('runs only as a fan-out lineage');
+      expect(dshSingleBranchText(yaml), file)
+        .toContain('dispatch-iteration.cjs --executor cli-deepseek-harness {cli_dispatch_args} --spec-folder "{spec_folder}"');
+    }
+    expect(dshSingleBranchText('if_cli_codex:\n  command: codex\n')).toBe('');
+  });
+
+  it('runs a single harness lineage through the shared builder in dispatch-iteration.cjs', () => {
+    const body = harnessHandlerText(readFileSync(DISPATCH_SCRIPT, 'utf8'));
+    expect(DSH_SINGLE_BRANCH_TOKENS.filter((token) => !body.includes(token))).toEqual([]);
+    expect(body.split(/\s+/).some((token) => token.replace(/^['"]|['"]$/g, '').split('/').pop() === 'dsh'))
+      .toBe(false);
+    expect(harnessHandlerText('function runCodex(context) {\n}\n')).toBe('');
+  });
+
+  it('sweeps stale harness homes before it mints a new one', () => {
+    const body = harnessHandlerText(readFileSync(DISPATCH_SCRIPT, 'utf8'));
+    const sweepAt = body.indexOf('sweepStaleDshHomes();');
+    const mintAt = body.indexOf("fs.mkdtempSync(path.join(os.tmpdir(), 'dsh-home-'))");
+    expect(sweepAt).toBeGreaterThanOrEqual(0);
+    expect(mintAt).toBeGreaterThan(sweepAt);
+  });
+
+  it('passes echoStdout false so the harness event stream is counted rather than echoed', () => {
+    const body = harnessHandlerText(readFileSync(DISPATCH_SCRIPT, 'utf8'));
+    expect(body).toMatch(/completionCheck: validateDshCompletion,\n\s+echoStdout: false,/);
   });
 });

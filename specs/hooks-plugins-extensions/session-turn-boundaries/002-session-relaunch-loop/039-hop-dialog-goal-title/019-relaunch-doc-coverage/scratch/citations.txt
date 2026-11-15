@@ -1,0 +1,28 @@
+Test names named by the new playbook text
+OK   stop-arm logs missing-transcript-path and marks the pending record deferred  [.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs x1]
+OK   a hop says so when the wrapper file changed after the loop started  [.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs x1]
+OK   a hop logs wrapper-changed when the wrapper file changed after the loop started  [.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs x1]
+OK   a hop prints and logs nothing when the wrapper file cannot be read  [.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs x1]
+OK   a hop prints and logs nothing when the wrapper file could not be read at loop start  [.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs x1]
+OK   a goal the sender ended stays ended for a receiver that sets none  [.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs x1]
+OK   the ended-goal mark counts only from the note this session claimed last  [.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs x1]
+OK   a goal the sender ended stays ended when the session log cannot be read  [.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs x1]
+OK   resolveGoalPacket looks no further up than the parent of the note folder  [.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs x1]
+OK   prepare gives a Claude sender with no goal the unfinished goal of the note packet  [.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs x1]
+OK   prepare marks an ended Claude goal in the note and keeps it ended one hop later  [.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs x1]
+
+Source lines the new text describes
+skilled-loop:34   wrapper_checksum() {
+skilled-loop:1208 started_wrapper_checksum=$(wrapper_checksum)
+skilled-loop:1472       hop_wrapper_checksum=$(wrapper_checksum)
+skilled-loop:1476           'note: skilled-loop changed on disk after this loop started, restart the wrapper to run the new code' >&2
+skilled-loop:1480           appendLog("wrapper-changed", { loopId });
+stop-arm.mjs:139      logEvent('missing-transcript-path', { loopId, sessionId: record.sessionId }, env);
+stop-arm.mjs:146          systemMessage: 'Session relaunch could not arm the hop because this Stop carried no transcript path. '
+relaunch-core.cjs:652   return lastClaimed !== null && lastClaimed.frontmatter.goal_ended === 'true';
+relaunch-core.cjs:691     const nearby = lineage.slice(0, 2);
+relaunch-core.cjs:997       updates.goal_ended = markEnded ? 'true' : null;
+relaunch-core.cjs:1246     const deferred = { ...record, deferredAt: toIsoTimestamp(now) };
+relaunch-core.cjs:1315   if (record !== null && typeof record === 'object' && typeof record.handoff === 'string') {
+
+mismatches: 0

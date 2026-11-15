@@ -1218,6 +1218,16 @@
             "script": ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
             "timeout": 10,
             "fallback": "envelope"
+          },
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 5,
+            "matcher": null,
+            "runner": "node",
+            "script": ".skilled/hooks/session-relaunch/codex/compact-pointer.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
           }
         ]
       },

@@ -143,7 +143,6 @@ agent_config:
   leaf_only: true
   tools: [Read, Write, Edit, Bash, Grep, Glob]
   mcp_servers: []
-  tool_call_budget: { target: 9, soft_max: 12, hard_max: 13 }
 
 # ────────
 # STATE FILE PATHS
@@ -1436,6 +1435,7 @@ workflow:
               state_summary: "{state_summary}"
               current_iteration: "{current_iteration}"
               max_iterations: "{max_iterations}"
+              max_tool_calls_per_iteration: "{config.maxToolCallsPerIteration}"
               next_dimension: "{next_dimension}"
               review_target: "{review_target}"
               review_scope_files: "{review_scope_files}"
@@ -1458,6 +1458,7 @@ workflow:
             stateLogPath: "{state_paths.state_log}"
             executor: "{config.executor}"
             iteration: "{current_iteration}"
+            sessionId: "{session_id}"
         branch_on: "config.executor.kind"
         cli_dispatch_args: '--loop-type review --repo-root "{repo_root}" --prompt-file "{state_paths.prompt_dir}/iteration-{current_iteration}.md" --state-log "{state_paths.state_log}" --packet-dir "{state_paths.packet_dir}" --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --generation "{generation}" --session-id "{session_id}" --model "{config.executor.model}" --reasoning-effort "{config.executor.reasoningEffort}" --service-tier "{config.executor.serviceTier}" --sandbox-mode "{config.executor.sandboxMode}" --timeout-seconds "{config.executor.timeoutSeconds}"'
         if_native:
@@ -1469,11 +1470,18 @@ workflow:
           wait_for_completion: true
         if_cli_deepseek_harness:
           command: |
-            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-deepseek-harness
+            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-deepseek-harness {cli_dispatch_args} --spec-folder "{spec_folder}"
           working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
           notes:
-            - "Fails closed before any dispatch receipt is written; the pre_dispatch_audit provenance row for the attempted executor remains"
+            - "cli-deepseek-harness single-executor: builds through the shared fan-out command builder (buildLineageCommand), so the pinned harness release, the model allowlist and the route, lineage and guards patches stay one source of truth. runAuditedExecutorCommand emits INTENT + COMPLETION receipts"
+            - "The harness starts in the artifact directory, never the repository root, with a fresh DSH_HOME outside the checkout. DSH_HOME, DSH_SPEC_FOLDER, SYSTEM_SPEC_GATE_DISABLED and AI_SESSION_CHILD reach the child through dispatchEnv, and the home is removed in a finally block. The event stream is judged and counted, not echoed"
+            - "The prompt opens with a REPOSITORY ROOT line, because the prompt pack's paths and gateway call are repo-relative while the harness starts in the artifact directory"
+            - "The child timeout is 30 s under the step timeout (at least half of it), so the finally block removes the home before any outer kill"
+            - "validateDshCompletion judges a clean exit, so a plugin that did not activate or a missing final event records a crash dispatch_failure"
+            - "Fails closed when the harness binary is absent, off its pinned release or the model is off the allowlist (buildLineageCommand throws, exit non-zero). A requested cli-deepseek-harness executor never degrades to native"
+            - "The command text never names the harness binary as a bare word, because the ancestry recursion guard reads the parent shell's command line"
         if_cli_claude_code:
           command: |
             node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-claude-code {cli_dispatch_args} --claude-config-dir "{optional_claude_config_dir}"
@@ -1543,7 +1551,7 @@ workflow:
           notes:
             - "cli-pi single-executor: dispatches per-iteration through the shared fan-out command builder (buildLineageCommand) so the enforced cli-pi model allowlist + headless write flags stay one source of truth; runAuditedExecutorCommand emits INTENT + COMPLETION receipts"
             - "Fails closed when pi is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-pi executor never degrades to native"
-            - "cli-deepseek-harness has no single-executor path: its branch above exits 2, and the kind runs only as a fan-out lineage"
+            - "cli-deepseek-harness has its own single-executor branch, if_cli_deepseek_harness above, built through the same buildLineageCommand. Fan-out also runs the kind"
         post_dispatch_validate:
           validator: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type review --artifact-dir {artifact_dir} --iteration {current_iteration}"
@@ -1593,13 +1601,11 @@ workflow:
             redispatch_once: "On the FIRST failure of the mechanical command check for this iteration, re-run step_dispatch_iteration exactly once for the same iteration number, then re-run the check. If it still fails, record the iteration as error (per step_evaluate_results.on_missing_outputs) and continue. Never re-dispatch a given iteration more than once."
         record_executor_audit:
           skip_when: "config.executor.kind == 'native'"
-          target: "{state_paths.state_log}"
-          field: "executor"
-          value:
-            kind: "{config.executor.kind}"
-            model: "{config.executor.model}"
-            reasoningEffort: "{config.executor.reasoningEffort}"
-            serviceTier: "{config.executor.serviceTier}"
+          call: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts#appendExecutorAuditToLastRecord"
+          args:
+            stateLogPath: "{state_paths.state_log}"
+            executor: "{config.executor}"
+            sessionId: "{session_id}"
 
       step_evaluate_results:
         action: "Verify iteration outputs and extract metrics"
@@ -2088,7 +2094,7 @@ workflow:
         output: "/tmp/save-context-data-<session-id>.json"
         requirements:
           - "Write this file before invoking generate-context.js; the loader fails closed if the explicit JSON file is absent."
-          - "Include `specFolder`, a concise `sessionSummary`, curated `observations`, `recent_context`, `toolCalls`, and `exchanges` from the completed review loop."
+          - "Include `specFolder`, a concise `sessionSummary`, curated `observations`, `recent_context`, `toolCalls`, and `exchanges` from the completed review loop. Without `--full-auto` the writer only plans, and a full-auto save writes continuity only from `recent_action`, `next_safe_action`, `blockers` and `key_files`, so the payload carries all four."
           - "Use a session-scoped temp filename; do not use the retired shared `/tmp/save-context-data.json` path."
         example_payload: |
           {
@@ -2097,13 +2103,17 @@ workflow:
             "observations": ["Summarize the active findings, verdict, and remediation guidance."],
             "recent_context": ["Point to the generated review artifacts and next action."],
             "exchanges": [],
-            "toolCalls": []
+            "toolCalls": [],
+            "recent_action": "Deep review finished with verdict {verdict} after {iteration_count} iterations",
+            "next_safe_action": "Act on the verdict in review/review-report.md",
+            "blockers": [],
+            "key_files": ["review/review-report.md"]
           }
 
       step_generate_context:
         action: "Route continuity content into the correct canonical spec document via generate-context.js"
         dry_run_boundary: "state-mutation"
-        command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"
+        command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder} --full-auto"
         critical_rule: "NEVER manually author files under retired memory/ paths (the runtime rejects them); use generate-context.js so the save routes into decision-record.md, implementation-summary.md, or handover.md"
 
       step_verify_save:

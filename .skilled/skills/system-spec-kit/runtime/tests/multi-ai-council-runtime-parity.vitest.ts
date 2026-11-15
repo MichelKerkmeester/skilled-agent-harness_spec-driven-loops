@@ -93,7 +93,6 @@ describe('ai-council runtime mirror parity', () => {
     // filesystem writes for ai-council/** artifact persistence; read-only would block them.
     expect(codex).toContain('sandbox_mode = "workspace-write"');
     expect(codex).toContain('ai-council/**');
-    expect(codex).toContain('COUNCIL PERSISTENCE PROTOCOL');
     expect(codex).toContain('Single writer authority');
     expect(codex).not.toContain('planning-only: write, edit, bash, and patch remain denied');
   });

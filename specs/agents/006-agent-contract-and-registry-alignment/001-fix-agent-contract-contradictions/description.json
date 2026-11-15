@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions",
+  "description": "Phase 1: fix-agent-contract-contradictions",
+  "keywords": [
+    "phase",
+    "fix-agent-contract-contradictions"
+  ],
+  "lastUpdated": "2026-11-14T12:24:08.883Z",
+  "specId": "001",
+  "folderSlug": "fix-agent-contract-contradictions",
+  "parentChain": [
+    "agents",
+    "006-agent-contract-and-registry-alignment"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "14-11-26_13-09__recorded-the-eight-operator-answers-given-while.md",
+    "14-11-26_13-24__closed-phase-1-eight-agent-files-state-one.md"
+  ]
+}

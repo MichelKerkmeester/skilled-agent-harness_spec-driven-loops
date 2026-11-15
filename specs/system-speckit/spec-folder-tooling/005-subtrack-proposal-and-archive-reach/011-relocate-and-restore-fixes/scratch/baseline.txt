@@ -1,0 +1,8 @@
+## three suites
+ Test Files  3 passed (3)
+      Tests  105 passed (105)
+exit=0
+## npm test
+ Test Files  212 passed | 3 skipped (215)
+      Tests  2603 passed | 20 skipped (2623)
+exit=0

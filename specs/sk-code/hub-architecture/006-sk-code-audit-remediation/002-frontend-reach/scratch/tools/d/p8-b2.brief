@@ -1,0 +1,15 @@
+TASK: insert one paragraph in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/README.md (read lines 22 to 33 only)
+
+EDIT. Under `### At a Glance` there is a table whose last row starts with `| **Produces** |`. After that row comes one blank line and then the heading `### Why This Mode Exists`. Insert the paragraph between the marker lines below between the table and that heading, so the order is: the `| **Produces** |` row, one blank line, the new paragraph, one blank line, the heading `### Why This Mode Exists`.
+
+<<<TEXT
+**Version authority.** `SKILL.md` carries the packet's release version, which matches the newest entry under `changelog/`. The `version` in this file and in `ROUTER.md` counts that document's own revisions, the same split the hub `SKILL.md` states for the hub's files.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c -i 'version authority' .skilled/skills/sk-code/sk-code-quality/README.md; echo "exit $?"
+Expected output: `1` then `exit 0`

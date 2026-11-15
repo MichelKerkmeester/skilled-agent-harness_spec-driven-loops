@@ -71,6 +71,12 @@ Run from the repository root unless noted.
 
 Expected result: prints `FEATURE_DIR` and available supporting documents for the active spec folder.
 
+Without an override, the script takes the packet from the current branch and exits 1 on any branch that is not an `NNN-` feature branch, such as a worktree or release branch. The speckit workflows therefore set `SPECIFY_FEATURE` to the bound spec folder without its leading `specs/`, which names the packet directly and skips the branch check. A track-nested packet takes the form `<track>/<NNN-name>`. `common.sh` reads the value in place of the branch name, and `check-prerequisites.sh` skips its branch check when the value is set. A wrong path still fails at the directory check.
+
+```bash
+SPECIFY_FEATURE=<track>/<NNN-name> .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json
+```
+
 ```bash
 .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate-strict
 ```

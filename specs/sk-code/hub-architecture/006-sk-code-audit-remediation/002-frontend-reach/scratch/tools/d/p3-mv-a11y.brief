@@ -1,0 +1,29 @@
+TASK: move 3 rule block(s) from one reference file to another, byte for byte, and leave one link line behind for each.
+
+SOURCE FILE: .skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md
+DESTINATION FILE: .skilled/skills/sk-code/sk-code-frontend/references/web-accessibility-patterns.md
+
+A rule block is exactly 8 lines: the `### M<n>. <title>` heading, one blank line, and six bullet lines from `- **Rule:**` to `- **See also:**`.
+Never retype a block. Copy it with a shell tool so every character survives, for example `sed -n '<first>,<last>p'` into a temporary file under /tmp, then insert that file.
+Find each block by its heading text with `grep -n`, because line numbers shift after each move.
+
+MOVE 1: the block whose heading is `### M17. A focus indicator that survives forced colors`.
+  a. In the destination file, insert the 8-line block directly before ### A9. Reduced motion, so it follows the A8 block. Keep exactly one blank line above the inserted heading and one blank line below the inserted `- **See also:**` line.
+  b. In the source file, replace the 8-line block with this single line, keeping one blank line above it and one blank line below it:
+**M17. A focus indicator that survives forced colors** lives in [web-accessibility-patterns.md](web-accessibility-patterns.md#m17-a-focus-indicator-that-survives-forced-colors), beside A8.
+
+MOVE 2: the block whose heading is `### M51. Reduced motion`.
+  a. In the destination file, insert the 8-line block directly before ### A10. Contrast, color scheme and transparency preferences, so it follows the A9 block. Keep exactly one blank line above the inserted heading and one blank line below the inserted `- **See also:**` line.
+  b. In the source file, replace the 8-line block with this single line, keeping one blank line above it and one blank line below it:
+**M51. Reduced motion** lives in [web-accessibility-patterns.md](web-accessibility-patterns.md#m51-reduced-motion), beside A9.
+
+MOVE 3: the block whose heading is `### M21. Disabled controls and tooltips`.
+  a. In the destination file, insert the 8-line block directly before the `---` line that follows the `### A14. Tooltip` block, so it follows the A14 block. Keep exactly one blank line above the inserted heading and one blank line below the inserted `- **See also:**` line.
+  b. In the source file, replace the 8-line block with this single line, keeping one blank line above it and one blank line below it:
+**M21. Disabled controls and tooltips** lives in [web-accessibility-patterns.md](web-accessibility-patterns.md#m21-disabled-controls-and-tooltips), beside A14.
+
+Change nothing else in either file. Two files change. Do not edit any other rule.
+
+VERIFY (run from the repository root):
+cat .skilled/skills/sk-code/sk-code-frontend/references/*.md | rg -c '^### M[0-9]+\.'; rg -c '^### M[0-9]+\.' .skilled/skills/sk-code/sk-code-frontend/references/web-accessibility-patterns.md; rg -c '^\*\*M[0-9]+\. .* lives in ' .skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md
+Expected output: `57`, then the number of rule blocks this file now holds with an M id, then the number of link lines in the source file. Report all three numbers.

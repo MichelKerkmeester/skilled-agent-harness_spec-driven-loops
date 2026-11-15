@@ -1,0 +1,156 @@
+$ git diff --quiet 09f1d6499a HEAD -- .skilled/agents/ai-council.md .claude/agents/ai-council.md .skilled/agents/agent-registry.json; echo "exit=$?"
+exit=0
+# ai-council-1
+$ sed -n 405p;569,570p ai-council.md | cut -c1-170
+  The calling workflow records every state event (`round_start` + `seat_returned` x N + `deliberation_synthesized` + `round_end` + `council_complete`) through the append 
+If ANY answer is NO -> DO NOT CLAIM COMPLETION
+Fix verification gaps first. For Q11 specifically: re-run the missing writer calls, record each `artifact_written` event through the append gateway (exit 0 receipt), and 
+$ rg -c refresh ai-council.md
+9
+$ rg -c "exit 0 receipt" ai-council.md
+2
+$ sed -n 255,275p append-mode-event.ts | rg -n "mode ===|return null"
+6:  if (mode === 'deep-research' || mode === 'research') {
+13:  if (mode === 'deep-review' || mode === 'review') {
+20:  return null;
+$ sed -n 77,78p deep-ai-council-auto.yaml
+    file: no projection contract is registered for this mode, so `projectionRefreshed` comes back
+    false and the legacy file is left untouched. Exit 0 therefore means the event is durable in
+# ai-council-2
+$ sed -n 403p;739p ai-council.md | cut -c1-150
+- **Persist `ai-council/**` artifacts with Write and Edit BEFORE claiming completion.** Write each file in the shape §12 gives; the named writers of `
+**Single writer authority:** The LEAF council is the sole writer authority for `ai-council/**` artifacts. The dispatching parent does not write to cou
+$ sed -n 44p agent-registry.json | cut -c1-190
+      "notes": "Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .skilled/skills/system-deep-loop/d
+$ sed -n 169p deep-ai-council-auto.yaml | cut -c1-170
+          contract: "Per-seat stepwise persistence (GAP-32/GAP-36). Each seat is persisted as it returns via persist-artifacts.cjs --seat (lib/persist-artifacts.cjs#persi
+$ rg -n "persistSeatStepwise\(packetSpecFolder|const persisted = |--agent., .plan" orchestrate-session.cjs
+240:  return ['run', '--agent', 'plan', '--model', model, seatPrompt];
+417:  const persisted = persistSeat(packetSpecFolder, persistedSeat, { round: context.round_number || 1 });
+$ sed -n 160p;181p deep-ai-council-auto.yaml | cut -c1-120
+          - route_fields: { mode: ai-council, target_agent: "@ai-council", execution: multi_topic_session_round, state_s
+            target_agent: ai-council
+$ rg -n "fs.writeFileSync\(targetPath|fs.appendFileSync\(statePath|writeStateJsonl\(packetRoot" persist-artifacts.cjs (lib)
+522:  fs.writeFileSync(targetPath, content, 'utf8');
+699:    () => writeStateJsonl(packetRoot, rendered.stateLog, { round_id: roundId, timestamp: DEFAULT_TIMESTAMP }),
+735:  fs.appendFileSync(statePath, `${JSON.stringify(metadataEvent(event))}\n`, 'utf8');
+# ai-council-3
+$ sed -n 668p;678p;685p ai-council.md | cut -c1-150
+   Each "record ... through the append gateway" below is done by the calling workflow (`append-mode-event.cjs --mode ai-council`, exit 0 receipt); thi
+   8. Convergence check (per §15 two-of-three-agree rule). If NOT converged: increment `current_round`, then repeat from step 3 with the updated round
+3. **Resume after interruption**: read the state log and resume from the next incomplete event. If `round_start` exists without matching `round_end`, 
+$ rg -n max_rounds ai-council.md | cut -c1-110
+652:- `ai-council-config.json`: `{spec_folder, current_round, max_rounds, seats_per_round, convergence_signal,
+729:- `max_rounds` reached without convergence: emit `council_complete` with `convergence:false` and recommend
+$ rg -n "DEFAULT_MAX_ROUNDS = " persist-artifacts.cjs (lib); sed -n 21p deep-ai-council-auto.yaml
+39:const DEFAULT_MAX_ROUNDS = 3;
+  max_rounds_per_topic: "[MAX_ROUNDS_PER_TOPIC] - Default: 3."
+# ai-council-4
+$ sed -n 16p;59p;63p ai-council.md
+  task: allow
+The AI Council is a LEAF when another agent dispatches it, and may dispatch council seats only when the operator invokes it directly.
+- Otherwise, operate at Depth 0.
+$ for f in .skilled/agents/*.md; do rg -l "^  task: allow" $f; done
+.skilled/agents/ai-council.md
+.skilled/agents/orchestrate.md
+$ rg -n "fallback when no nesting|operate as Depth 0" depth-dispatch.md
+96:Depth 0 is the fallback when no nesting evidence exists.
+142:4. If no nesting evidence exists, operate as Depth 0.
+# ai-council-5
+$ sed -n 10p;110,111p;241p;244p;394p ai-council.md | cut -c1-120
+  bash: deny
+| `cli-opencode` | External AI vantage | Need code-generation, refactoring, or implementation-plan contrast | OpenCode e
+| `cli-claude-code` | External AI vantage | Need deep code reasoning, structured decomposition, or edge-case analysis | 
+If this runtime cannot actually invoke that external system, state that your answer is a simulated vantage lens, not ext
+Operate at temperature <TEMP>, using <deterministic | balanced | exploratory> reasoning.
+- Seek distinct AI vantage points such as `cli-opencode`, `cli-claude-code`, `cli-opencode`, and native `@deep-research`
+$ rg -n "^\| Strategy \| Temp" ai-council.md seat-diversity-patterns.md
+.skilled/agents/ai-council.md:148:| Strategy | Temp | Reasoning Lens | Best For |
+.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md:51:| Strategy | Temp | Reasoning Lens | Best For |
+# ai-council-6
+$ rg -n "15 point|25\+|within 10|<10 point" ai-council.md scoring-rubric.md | cut -c1-130
+.skilled/agents/ai-council.md:337:   - Required when scores are within 15 points, when assumptions conflict, or when the leading p
+.skilled/agents/ai-council.md:343:2. **Adversarial cross-critique** is required when seats are within 15 points; skip only when on
+.skilled/agents/ai-council.md:348:   - If two seats score within 10 points -> merge complementary elements.
+.skilled/agents/ai-council.md:356:**When:** Required when strategies are within 15 points of each other after initial scoring, whe
+.skilled/agents/ai-council.md:380:| Clear winner (>15 point lead) | Adopt winner, note alternatives |
+.skilled/agents/ai-council.md:381:| Close race (<10 point spread) | Merge best elements from top 2 |
+.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md:149:- scores are within 15 points;
+.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md:170:- strategies are within 15 points after 
+.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md:174:Skip only when one seat leads by 25+ poi
+.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md:265:| Clear winner (>15 point lead) | Adopt 
+.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md:266:| Close race (<10 point spread) | Merge 
+# ai-council-7 and across-6
+$ wc -l ai-council.md; sed -n 62p agent-template.md | cut -c1-80
+     816 .skilled/agents/ai-council.md
+Production agent files should stay at or below **600 lines**. If an agent needs 
+$ rg -n "^## 1[2-8]\. " ai-council.md | cut -c1-60
+631:## 12. OUTPUT PROTOCOL - `ai-council/` SUBFOLDER CONVENT
+664:## 13. INVOCATION CONTRACT - FIRST-CALL VS SUBSEQUENT VS
+691:## 14. STATE SCHEMA - JSONL EVENT TYPES
+724:## 15. CONVERGENCE SIGNAL - 2/3 AGREEMENT RULE
+737:## 16. COUNCIL PERSISTENCE PROTOCOL
+784:## 17. ROLLBACK FOR OPERATORS
+799:## 18. HOOK-INJECTED CONTEXT ROUTING
+$ sed -n 748p;788p ai-council.md | cut -c1-110
+**The calling workflow records state through the append gateway** (shown for reference; this agent never runs 
+Then move the round artifacts into `ai-council/failed/round-NNN-<timestamp>/`, and record an `artifact_superse
+$ sed -n 631,798p ai-council.md | wc -l
+168
+$ rg -n "§1[2-8]" deep-ai-council/ (agent-section citations, changelog excluded)
+references/structure/output-schema.md:142:- Agent body: `.skilled/agents/ai-council.md` §8 OUTPUT FORMAT and §
+references/structure/folder-layout.md:81:- Agent body: `.skilled/agents/ai-council.md` §12 OUTPUT PROTOCOL (th
+references/structure/folder-layout.md:87:- Decision records: ADR-002 (folder layout), ADR-004 (validator polic
+references/convergence/convergence-signals.md:75:- Agent body: `.skilled/agents/ai-council.md` §16
+manual-testing-playbook/depth-and-failure-handling/resume-after-interrupted-state.md:30:- Expected execution p
+manual-testing-playbook/depth-and-failure-handling/resume-after-interrupted-state.md:42:2. Read `.skilled/agen
+manual-testing-playbook/depth-and-failure-handling/resume-after-interrupted-state.md:68:Update `state-format.m
+manual-testing-playbook/writer-library-contract/out-of-scope-write-rejection.md:30:- Expected execution proces
+manual-testing-playbook/writer-library-contract/out-of-scope-write-rejection.md:41:1. Read `.skilled/agents/ai
+references/structure/state-format.md:134:This follows agent body §14 and ADR-001 in the internal design notes.
+references/structure/state-format.md:242:- Agent body: `.skilled/agents/ai-council.md` §14
+references/convergence/failure-handling.md:284:- Agent body: `.skilled/agents/ai-council.md` §10 FAILURE HANDL
+references/patterns/seat-diversity-patterns.md:284:- Agent body: `.skilled/agents/ai-council.md` §3 and §16.
+references/patterns/command-wiring.md:185:- Agent body §16: `.skilled/agents/ai-council.md`
+$ rg -n "§1[2-9]" .skilled .claude/agents (no node_modules, runtime/data, retrieval/fixtures, benchmark/reports) | rg -i council | cut -c1-90
+.claude/agents/ai-council.md:388:- **Persist `ai-council/**` artifacts with Write and Edit
+.claude/agents/ai-council.md:663:   8. Convergence check (per §15 two-of-three-agree rule)
+.skilled/agents/ai-council.md:403:- **Persist `ai-council/**` artifacts with Write and Edi
+.skilled/agents/ai-council.md:678:   8. Convergence check (per §15 two-of-three-agree rule
+.skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.1.0.0.md:117:External toolin
+.skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/depth-and-failure
+.skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/depth-and-failure
+.skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/depth-and-failure
+.skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-co
+.skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-co
+.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signal
+.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.m
+.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md:185
+.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patter
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md:81:
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md:87:
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md:142
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md:134:
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md:242:
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/multi-ai-council/council-output
+$ (same search) | wc -l
+20
+$ rg -l "(ai-council\.md.?|[Aa]gent body|[Aa]gent) §[0-9]+" deep-ai-council/ | wc -l
+15
+$ sed -n 49p agent-registry.json | cut -c1-120
+          "reason": "Twelve files in the deep-ai-council skill cite this agent's sections 3 to 17 by number, so the sect
+$ rg -n "COUNCIL PERSISTENCE PROTOCOL|Single writer authority|threshold scores" multi-ai-council-runtime-parity.vitest.ts
+83:    expect(canonicalBody).toContain('deep-ai-council threshold scores');
+96:    expect(codex).toContain('COUNCIL PERSISTENCE PROTOCOL');
+97:    expect(codex).toContain('Single writer authority');
+# baselines
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs | tail -1
+agent-mirror-sync: 11 agent(s) checked - all comparable mirrors in sync - OK
+exit=0
+$ node compile-command-contracts.cjs --command deep/ai-council | diff -q - deep-ai-council.contract.markdown
+exit=0
+$ ls .skilled/skills/system-spec-kit/runtime/node_modules/.bin/vitest
+No such file or directory

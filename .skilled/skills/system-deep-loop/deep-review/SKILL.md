@@ -2,7 +2,7 @@
 name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
 argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]"
-version: 1.11.16.0
+version: 1.11.17.0
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
 ---
 <!-- Note: Task is for the command executor (loop management); @deep-review agent is LEAF-only (no Task). No WebFetch: review is code-only. -->
@@ -251,7 +251,7 @@ Each pass also compares `maxDurationMinutes` with the config `createdAt`. When t
 
 1. **Dispatch sub-agents**, `@deep-review` is LEAF-only. It cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 9).
 2. **Hold findings in context**, Write everything to iteration files. Context is discarded after each dispatch.
-3. **Exceed TCB**, Breadth over depth per cycle. The per-iteration tool-call budget is the `- Target` line of `assets/prompt-pack-iteration.md.tmpl`, the only budget the review agent sees.
+3. **Exceed TCB**, Stay within `config.maxToolCallsPerIteration` tool calls per iteration. Breadth over depth per cycle.
 4. **Ask the user**, The leaf agent never asks. It makes best-judgment decisions without pausing. The workflow asks only in `:confirm` mode, at its approval gates.
 5. **Skip convergence checks**, Every iteration must be evaluated against convergence criteria before the next dispatch.
 6. **Modify config after init**, review parameters in `deep-review-config.json` are read-only after initialization; the terminal `step_update_config_status` flip to `status: complete` is the one permitted write.

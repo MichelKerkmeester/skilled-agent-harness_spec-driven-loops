@@ -1,6 +1,6 @@
 ---
 description: "Resume or recover work on a spec folder: canonical continuity recovery with one next step."
-argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>]"
+argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>] [--no-redirect]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, opencode_goal_status
 ---
 
@@ -21,8 +21,7 @@ Load the presentation contract before showing startup questions, checkpoints, da
 | Purpose | Asset |
 |---------|-------|
 | Presentation source of truth | `.skilled/commands/speckit/assets/speckit-resume-presentation.txt` |
-| Auto workflow | `.skilled/commands/speckit/assets/speckit-resume-auto.yaml` |
-| Confirm workflow | `.skilled/commands/speckit/assets/speckit-resume-confirm.yaml` |
+| Workflow (both execution modes) | `.skilled/commands/speckit/assets/speckit-resume.yaml` |
 
 ---
 
@@ -32,7 +31,18 @@ Load the presentation contract before showing startup questions, checkpoints, da
 2. Treat `--phase-folder`, `--no-redirect`, and the positional spec-folder path as workflow inputs.
 3. If no mode suffix is present, default to interactive mode unless the presentation contract's startup display says a confirmation is required.
 4. For `:auto`, resolve required setup inputs using the presentation contract's auto-resolution rules before loading YAML.
-5. Load the selected workflow asset and execute it step by step.
+5. Load the workflow asset, bind `execution_mode` to the resolved mode and execute it step by step.
+
+### Workflow Flag Surface
+
+The argument hint names the invocation shape. The whole flag surface is here, and every entry
+below is a workflow input, never an execution mode.
+
+| Input | Value | Effect |
+|-------|-------|--------|
+| `<spec-folder>` | `PATH` | The packet to resume. Leave it out to open the packet the calling session owns. |
+| `--phase-folder` | `PATH` | Targets one phase child of that packet and skips the phase redirect. |
+| `--no-redirect` | none | Stays on a phase parent and shows its `spec.md` and child list in place of following the last-active pointer. |
 
 ---
 
@@ -40,8 +50,8 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.skilled/commands/speckit/assets/speckit-resume-auto.yaml` |
-| `:confirm` or default interactive choice | `.skilled/commands/speckit/assets/speckit-resume-confirm.yaml` |
+| `:auto` | `.skilled/commands/speckit/assets/speckit-resume.yaml` with `execution_mode` auto: confirm-only blocks skipped |
+| `:confirm` or default interactive choice | `.skilled/commands/speckit/assets/speckit-resume.yaml` with `execution_mode` confirm: every `applies_to: confirm` block runs and `mode_overrides.confirm` wording applies |
 
 ---
 

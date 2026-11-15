@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.37.0
+version: 2.7.40.0
 ---
 
 # System Spec Kit
@@ -86,7 +86,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 
 **Session relaunch**
 
-- Ships off until `SYSTEM_SESSION_RELAUNCH_ENABLED` turns it on, or a runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime.
+- Ships on for Claude Code and off for every other runtime until `SYSTEM_SESSION_RELAUNCH_ENABLED` turns it on, or a runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime.
 - `skilled-loop` (`.skilled/bin/`) then relaunches a near-limit session in a fresh runtime in the same terminal, on its own for Claude Code, Codex, Pi and OpenCode and through `/speckit:handoff` for Cursor and Devin: the handoff note links to the bound packet, `/speckit:save` runs before the hop and `/speckit:resume` after the claim, while the seed carries the session's Gate 3 answer.
 - Inside the loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction.
 - Sourcing `.skilled/bin/skilled-loop-shell.sh` from the shell profile starts every interactive runtime under the wrapper, also in a repository that links `.skilled`. The shim runs only a wrapper inside the sourced checkout, a linked worktree registered to it or a checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS`.
@@ -344,8 +344,8 @@ Retrieval is two lexical lanes: the committed trigger index, which on a zero-hit
 | `/speckit:plan --intake-only` | none | standalone intake interview that publishes `spec.md`, `description.json` and `graph-metadata.json` |
 | `/speckit:plan` | 7 | planning only, spec through plan, no implementation |
 | `/speckit:implement` | 9 | execute pre-planned work, requires an existing `plan.md` |
-| `/speckit:complete` | 14 | full end-to-end workflow from spec through implementation, verification and closeout |
-| `/speckit:resume` | 4 | resume a previous session on an existing spec folder |
+| `/speckit:complete` | 13 | full end-to-end workflow from spec through implementation, verification and closeout |
+| `/speckit:resume` | 5 | resume a previous session on an existing spec folder |
 | `/speckit:save` | none | update packet continuity surfaces through `generate-context.js`; no indexing hand-off |
 | `/speckit:search` | none | retrieval over spec docs using the ripgrep recipes, scoped by track and packet |
 | `/deep:research` | none | autonomous research loop with convergence detection |
@@ -360,12 +360,12 @@ The tool counts `/speckit:save` and `/speckit:search` used to carry were counts 
 | Suffix | Behavior |
 |---|---|
 | `:auto` | execute without approval gates |
-| `:autopilot`, `:unattended` or `--unattended` | run the branch-preserved unattended lifecycle and emit `SPECKIT_AUTOPILOT_RESULT` on terminal exits |
+| `:autopilot`, `:unattended` or `--unattended` | run the unattended lifecycle, in which the operator chooses the workspace and autopilot never merges, and emit `SPECKIT_AUTOPILOT_RESULT` on terminal exits |
 | `:confirm` | pause at each step for approval |
 | `:with-phases` | phase decomposition mode on planning or completion flows |
 | `:with-research` | dispatch deep research before verification, `/speckit:complete` only |
 
-Autopilot is distinct from `:auto`. It requires unattended task metadata during planning, preserves the branch on hard failure, skips merge unless verification is clean and limits terminal reasons to `no_eligible_tasks`, `retry_exhausted`, `verification_failed` and `uncertainty_blocked`.
+Autopilot is distinct from `:auto`. It requires unattended task metadata during planning, works in a worktree or on the current branch as bound at startup, preserves the branch on hard failure, never merges or pushes and limits terminal reasons to `no_eligible_tasks`, `retry_exhausted`, `verification_failed` and `uncertainty_blocked`.
 
 Command source files: `.skilled/commands/speckit/`.
 
@@ -636,7 +636,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/<tr
 | `progressive-validate.sh` | progressive validation for in-progress work |
 | `quality-audit.sh` | run a quality audit on spec folder content |
 | `archive.sh` | archive completed spec folders into the `z_archive/` beside them, which for a packet in a declared sub-track is the sub-track's own `z_archive/`. `--restore` returns a folder to the place its archive belongs to, and when a live packet already holds its number it lands on the next free number, counting archived packets, through `relocate.mjs`. After an archive or a plain restore the description cache `specs/descriptions.json` is rebuilt when it exists |
-| `relocate.mjs` | move, renumber or re-parent spec packets and rewrite every store that records the path, from `--map <file.json>`, `--from` with `--to`, `--renumber <folder>` or `--declare-subtrack <track>/<name>`. Dry run by default, `--apply` writes |
+| `relocate.mjs` | move, renumber or re-parent spec packets and rewrite every store that records the path, from `--map <file.json>`, `--from` with `--to`, `--renumber <folder>` or `--declare-subtrack <track>/<name>`. Dry run by default, `--apply` writes. `relocate.mjs` exits 3 when every step landed and only a moved packet's own validation printed `RESULT: FAILED`, and a rerun then finds nothing to do |
 | `suggest-subtracks.mjs` | propose a whole-track sub-track map for a flat track, or with `--describe` name the declared sub-track a new packet fits best. Prints the proposal and writes nothing |
 | `test-validation.sh` | test the validation rules themselves |
 

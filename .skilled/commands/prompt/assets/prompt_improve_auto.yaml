@@ -82,7 +82,7 @@ workflow:
   phase_2_enhance:
     purpose: Produce the enhanced prompt via the resolved dispatch path
     activities:
-      - "dispatch_mode AGENT: dispatch Task(subagent_type=prompt-improver) with raw_task, task_type, complexity_hint, constraints; capture FRAMEWORK, CLEAR_SCORE, TEST, CHANGES, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES."
+      - "dispatch_mode AGENT: dispatch Task(subagent_type=prompt-improver, model=sonnet) with raw_task, task_type, complexity_hint, constraints; capture FRAMEWORK, CLEAR_SCORE, TEST, CHANGES, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES."
       - "dispatch_mode INLINE, standard or thorough (text/improve/refine/auto): run the ten-row checklist (each row present, absent or not needed with a reason); exit early if the prompt already passes; write from the default skeleton or a named preset; self-check against the success criteria; thorough also runs the quick test."
       - "dispatch_mode INLINE, quick (short): checklist rows 1, 3, 4 and 6 only; no quick test."
       - "dispatch_mode INLINE, raw: pass through with no checklist; format only."

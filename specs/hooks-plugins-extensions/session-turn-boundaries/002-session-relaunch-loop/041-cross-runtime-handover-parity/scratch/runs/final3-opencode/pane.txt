@@ -1,0 +1,50 @@
+ • Session relaunch R • Session relaunch R   Session relaunch h • session-relaunch R • Session relaunch h • Session relaunch R • Session relaunch h • session-relaunch R • Session relaunch handoff c +
+                                                                                                                                                           █
+  ┃                                                                                                                                                        █    Session relaunch handoff
+  ┃  [session-relaunch] claim and continue handoff /Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity/.skilled/skills/.state/     █    continuation
+  ┃  session-relaunch/handoffs/20261114T221953Z-ses_e23daca0effeq48kl43yuWO1d1.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session)    █
+  ┃                                                                                                                                                        █    Context
+                                                                                                                                                           █    26,732 tokens
+     + 5 commands, 4 thoughts, 2 reads, 1 tool                                                                                                             █    3% used
+                                                                                                                                                           █    $0.01 spent
+     The file has 377 lines, its first heading is # Session Relaunch (line 9), and the code word is ORCHID-6002, repeated: ORCHID-6002.                    █
+                                                                                                                                                           █    MCP
+     Both facts were re-measured here rather than trusted from the note: wc -l .skilled/hooks/session-relaunch/README.md returned 377, and a heading grep  █    • code_mode                     Error
+     found 9:# Session Relaunch above 15:## 1. OVERVIEW. YAML frontmatter occupies lines 1-8, so line 9 is genuinely the first heading.                    █
+                                                                                                                                                           █
+     The handoff note is closed: session-relaunch.cjs complete ran with no output and exit 0, and the hop history now records it as done.                  █
+                                                                                                                                                           █
+     State of the work: read-only, nothing edited, committed or pushed. Residual risk: none known. Nothing is blocked on you.                              █
+                                                                                                                                                           █
+     Build · DeepSeek V4.1 Flash 1017 · 29.7s · 21830.5 tok/s · 3.2s ttft                                                                                  █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  ~/worktrees/public/392-cross-runtime-handover-parity:worktrees/392-cross-runtime-handover-parity                       26.7K (3%) · $0.01  ctrl+p commands    …/3…/392-cross-runtime-handover-parity
+

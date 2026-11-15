@@ -1,0 +1,13 @@
+TASK: add one paragraph to one file.
+
+FILE: .skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md (read lines 148 to 156 only)
+
+EDIT. Under the heading `## 8. FRAMEWORK SECTIONS` there is one paragraph that starts with `The entries below are examples`. Directly after that paragraph, add a blank line and then this new paragraph:
+
+This file carries React and Next.js only. Rules for another framework, such as Vue, Svelte or Angular, live in the project mode that owns that stack, under the `Frontend overrides` heading of its `SKILL.md`.
+
+Keep one blank line between the new paragraph and the `### React` heading. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+sed -n '/^## 8. FRAMEWORK SECTIONS/,/^### React/p' .skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md | rg -c 'project mode'
+Expected output: `1`

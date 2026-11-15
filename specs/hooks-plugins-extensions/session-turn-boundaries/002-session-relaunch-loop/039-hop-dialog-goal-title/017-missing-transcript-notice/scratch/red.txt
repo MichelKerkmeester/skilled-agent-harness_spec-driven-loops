@@ -1,0 +1,28 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='missing-transcript-path and marks' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+✖ stop-arm logs missing-transcript-path and marks the pending record deferred (120.982875ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 173.478125
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940:1
+✖ stop-arm logs missing-transcript-path and marks the pending record deferred (120.982875ms)
+  AssertionError [ERR_ASSERTION]: stdout is empty: the missing-transcript Stop printed no notice
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/380-relaunch-review-fixes/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:958:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: '',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+exit=1

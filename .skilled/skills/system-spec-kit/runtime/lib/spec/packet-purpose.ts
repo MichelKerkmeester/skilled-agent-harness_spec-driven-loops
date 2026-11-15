@@ -26,20 +26,24 @@ export interface PacketPurpose {
   source: PacketPurposeSource;
   /** Absolute path of the folder whose spec.md or goal.md held the text. */
   folder: string;
-  /** The first sentence of that folder's `### Problem Statement`, or null when it states none. */
+  /** The packet's own problem sentence, else the parent's that supplied the purpose, or null. */
   problem: string | null;
 }
 
-// The phase-parent scaffold has written this sentence, in two wordings, in
-// place of a purpose. It describes the document layout, not the work, so it
-// never counts as one.
-const SCAFFOLD_PARENT_PURPOSE = /^Keep parent documentation lean while child phases own detailed plans\b/;
+// Phase-parent scaffolds have written these layout sentences in place of a
+// purpose. They describe the document layout, not the work, so neither counts
+// as one.
+const SCAFFOLD_PARENT_PURPOSE = /^(?:Keep parent documentation lean while child phases own detailed plans|This phase groups the related child phases below so parent-level context stays a short thematic map)\b/;
 // One sentence has to fit even a pressure-shrunk recovery budget.
 const MAX_PURPOSE_CHARS = 300;
 const MAX_ANCESTOR_DEPTH = 8;
 // Packets written before the `### Purpose` subheading hold the purpose under
 // one of these level-two headings, with or without a section number.
 const PURPOSE_SECTION_HEADING = /^##\s+(?:\d+\.\s+)?(?:PROBLEM\s+(?:&|AND)\s+PURPOSE|ROOT\s+PURPOSE|PURPOSE)\s*$/i;
+// In a combined section the opening paragraph states the problem, not the purpose.
+const COMBINED_SECTION_HEADING = /^##\s+(?:\d+\.\s+)?PROBLEM\s+(?:&|AND)\s+PURPOSE\s*$/i;
+// A lead-in this short, such as "Measure it.", says nothing alone, so the next sentence joins it.
+const MAX_LEAD_IN_WORDS = 3;
 // Inside that section an author may mark the purpose paragraph with a label.
 const PURPOSE_LABEL = /^(?:[-*]\s+)?\*{0,2}Purpose\*{0,2}\s*:\*{0,2}\s*/i;
 // A numbered or bulleted purpose opens with a marker that is not its sentence.
@@ -78,7 +82,9 @@ function paragraphAfter(lines: string[], start: number): string {
 /**
  * The packet's purpose paragraph. Reads the `### Purpose` subheading first.
  * Without one it reads the purpose section: the paragraph an author labelled
- * `Purpose:` when there is one, else the section's first paragraph.
+ * `Purpose:` when there is one, else the first paragraph of a `## PURPOSE` or
+ * `## ROOT PURPOSE` section. A combined problem and purpose section states its
+ * problem first, so without a label it yields no purpose.
  */
 function extractPurposeParagraph(markdown: string): string {
   const lines = markdown.split(/\r?\n/);
@@ -94,6 +100,7 @@ function extractPurposeParagraph(markdown: string): string {
     (line, index) => index > section && index < sectionEnd && PURPOSE_LABEL.test(line),
   );
   if (labelled >= 0) return paragraphAfter(lines, labelled - 1).replace(PURPOSE_LABEL, '');
+  if (COMBINED_SECTION_HEADING.test(trimmed[section])) return '';
   return paragraphAfter(lines, section);
 }
 
@@ -102,17 +109,31 @@ function extractGoalObjective(markdown: string): string {
 }
 
 /**
- * The first sentence of authored text, or null for a template token, a
- * bracketed prompt, UNKNOWN or the scaffold's layout sentence.
+ * The first sentence of authored text, joined to the next one when it is a
+ * lead-in of three words or fewer, or null for a template token, a bracketed
+ * prompt, UNKNOWN or a scaffold layout sentence. Bold markers and control
+ * characters are dropped, because the line is printed as plain text.
  */
 function authoredSentence(raw: string): string | null {
-  const text = raw.replace(/<!--[\s\S]*?-->/g, ' ').replace(/\s+/g, ' ').trim().replace(LIST_MARKER, '');
+  const text = raw
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
+    .replace(/\*\*/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(LIST_MARKER, '');
   if (!text || SCAFFOLD_PARENT_PURPOSE.test(text)) return null;
   if (text.includes('[YOUR_VALUE_HERE') || /^\[[^\]]*\]$/.test(text) || /^unknown\.?$/i.test(text)) return null;
-  const sentence = text.match(SENTENCE_END)?.[0] ?? text;
-  return sentence.length <= MAX_PURPOSE_CHARS
-    ? sentence
-    : `${sentence.slice(0, MAX_PURPOSE_CHARS - 3).trimEnd()}...`;
+  const first = text.match(SENTENCE_END)?.[0] ?? text;
+  const rest = text.slice(first.length).trim();
+  const sentence = first.split(' ').length <= MAX_LEAD_IN_WORDS && rest
+    ? `${first} ${rest.match(SENTENCE_END)?.[0] ?? rest}`
+    : first;
+  if (sentence.length <= MAX_PURPOSE_CHARS) return sentence;
+  // The cut counts UTF-16 units, so a cut inside a surrogate pair drops the
+  // lone high half instead of printing a broken character.
+  const cut = sentence.slice(0, MAX_PURPOSE_CHARS - 3).replace(/[\uD800-\uDBFF]$/, '');
+  return `${cut.trimEnd()}...`;
 }
 
 function purposeIn(folder: string): string | null {
@@ -120,13 +141,22 @@ function purposeIn(folder: string): string | null {
   return markdown === null ? null : authoredSentence(extractPurposeParagraph(markdown));
 }
 
-/** The first sentence under `### Problem Statement`: what is broken, and for whom. */
+/**
+ * The first sentence under `### Problem Statement`: what is broken, and for
+ * whom. Without that heading it is the opening paragraph of a combined problem
+ * and purpose section, unless that paragraph is the labelled purpose.
+ */
 function problemIn(folder: string): string | null {
   const markdown = readTextFile(path.join(folder, 'spec.md'));
   if (markdown === null) return null;
   const lines = markdown.split(/\r?\n/);
-  const heading = lines.findIndex((line) => /^###\s+Problem Statement\s*$/.test(line.trim()));
-  return heading < 0 ? null : authoredSentence(paragraphAfter(lines, heading));
+  const trimmed = lines.map((line) => line.trim());
+  const heading = trimmed.findIndex((line) => /^###\s+Problem Statement\s*$/.test(line));
+  if (heading >= 0) return authoredSentence(paragraphAfter(lines, heading));
+  const combined = trimmed.findIndex((line) => COMBINED_SECTION_HEADING.test(line));
+  if (combined < 0) return null;
+  const opening = paragraphAfter(lines, combined);
+  return PURPOSE_LABEL.test(opening) ? null : authoredSentence(opening);
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -139,8 +169,9 @@ function problemIn(folder: string): string | null {
  * Reads the packet's own purpose first. When that is empty or a
  * placeholder, walks up through enclosing phase parents that carry a spec.md
  * and takes the nearest authored purpose. When neither exists, takes the
- * packet's goal.md Objective. Returns null when nothing authored exists or a
- * read fails.
+ * packet's goal.md Objective. The problem is the packet's own when it states
+ * one, else the parent's that supplied the purpose. Returns null when no
+ * purpose is authored or a read fails.
  *
  * @param specFolderAbsPath - Absolute path to the spec packet folder
  * @returns The purpose sentence with its source and folder, or null
@@ -148,8 +179,9 @@ function problemIn(folder: string): string | null {
 export function resolvePacketPurpose(specFolderAbsPath: string): PacketPurpose | null {
   try {
     const folder = path.resolve(specFolderAbsPath);
+    const ownProblem = problemIn(folder);
     const own = purposeIn(folder);
-    if (own) return { text: own, source: 'packet', folder, problem: problemIn(folder) };
+    if (own) return { text: own, source: 'packet', folder, problem: ownProblem };
 
     let current = folder;
     for (let depth = 0; depth < MAX_ANCESTOR_DEPTH; depth += 1) {
@@ -157,13 +189,13 @@ export function resolvePacketPurpose(specFolderAbsPath: string): PacketPurpose |
       if (parent === current) break;
       if (!fs.existsSync(path.join(parent, 'spec.md')) || !isPhaseParent(parent)) break;
       const inherited = purposeIn(parent);
-      if (inherited) return { text: inherited, source: 'ancestor', folder: parent, problem: problemIn(parent) };
+      if (inherited) return { text: inherited, source: 'ancestor', folder: parent, problem: ownProblem ?? problemIn(parent) };
       current = parent;
     }
 
     const goal = readTextFile(path.join(folder, 'goal.md'));
     const objective = goal === null ? null : authoredSentence(extractGoalObjective(goal));
-    return objective ? { text: objective, source: 'goal', folder, problem: null } : null;
+    return objective ? { text: objective, source: 'goal', folder, problem: ownProblem } : null;
   } catch {
     return null;
   }
@@ -182,4 +214,22 @@ export function formatPacketPurpose(purpose: PacketPurpose, projectRoot: string)
 /** Render the problem behind a resolved purpose as one line, or null when the packet states none. */
 export function formatPacketProblem(purpose: PacketPurpose): string | null {
   return purpose.problem ? `Problem: ${purpose.problem}` : null;
+}
+
+/**
+ * The nearest folder at or below `projectRoot`, starting at `folder`, that
+ * holds a spec.md. A recorded folder can be a track folder or a packet's
+ * scratch or research subfolder, and only the packet carries the purpose. A
+ * value that leaves the project is refused before any file is opened.
+ */
+export function enclosingPacketFolder(folder: string, projectRoot: string): string | null {
+  const root = path.resolve(projectRoot);
+  let current = path.resolve(root, folder);
+  if (!current.startsWith(root + path.sep)) return null;
+  while (!fs.existsSync(path.join(current, 'spec.md'))) {
+    const parent = path.dirname(current);
+    if (!parent.startsWith(root + path.sep)) return null;
+    current = parent;
+  }
+  return current;
 }

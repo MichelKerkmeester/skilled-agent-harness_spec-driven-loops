@@ -8,9 +8,10 @@ trigger_phrases:
   - "pi has no default model"
   - "pi openai opencode-go minimax llmgateway"
   - "pi passthrough model selection"
+  - "pi mistral deepseek glm route"
 importance_tier: normal
 contextType: implementation
-version: 1.5.10.0
+version: 1.5.11.0
 ---
 
 # cli-pi Providers, Models & Invocation
@@ -48,7 +49,7 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 ## 2. PROVIDERS & MODELS
 
-> **CLOSED ROSTER — non-roster models are FORBIDDEN.** Dispatch ONLY the models listed in this section. Any model not in this roster MUST NOT be called through cli-pi. Enforcement lives in the deep-loop external-CLI fan-out, which hard-rejects any off-roster id (`isPiModelAllowed` over `PI_SUPPORTED_MODELS` in `executor-config.ts`, byte-mirrored in `fanout-run.cjs`); the `pi` binary itself is a passthrough with no allowlist, so for any direct (non-fan-out) invocation this is a **hard discipline rule**, not a runtime gate. To add a model, amend the roster (spec packet + `PI_SUPPORTED_MODELS`) first — never dispatch an unlisted id ad hoc. **A provider's live catalog is not a roster.** Every gateway below fronts far more ids than this file lists, and the extra ids are forbidden exactly as an unknown provider would be: the roster is per provider, and a model allowed on one route is not thereby allowed on another.
+> **CLOSED ROSTER — non-roster models are FORBIDDEN.** Dispatch ONLY the models listed in this section. Any model not in this roster MUST NOT be called through cli-pi. Enforcement lives in the deep-loop external-CLI fan-out, which hard-rejects any off-roster id (`isPiModelAllowed` over `PI_SUPPORTED_MODELS` in `executor-config.ts`, byte-mirrored in `fanout-run.cjs`); the `pi` binary itself is a passthrough with no allowlist, so for any direct (non-fan-out) invocation this is a **hard discipline rule**, not a runtime gate. To add a fan-out model, amend the roster (spec packet + `PI_SUPPORTED_MODELS`) first; a direct-dispatch-only row needs the roster alone — never dispatch an unlisted id ad hoc. **A provider's live catalog is not a roster.** Every gateway below fronts far more ids than this file lists, and the extra ids are forbidden exactly as an unknown provider would be: the roster is per provider, and a model allowed on one route is not thereby allowed on another.
 
 Pi is a multi-provider passthrough at the binary layer. Pi's own CLI accepts either `--provider <name>` plus `--model <pattern>` or a single `--model provider/id`, but **only the single provider-qualified form is usable here** — the enforcement guard refuses the split form before launch, so every example below uses `--model provider/id`. `--model` also accepts an inline thinking suffix (`--model sonnet:high`). Reasoning effort stays independent of the model id (see §4).
 
@@ -99,10 +100,25 @@ Effort policy: the ladders differ, so there is no single tier for this provider 
 | `llmgateway/deepseek-v4.1-flash-1017` | DeepSeek V4.1 Flash, the 2026-10-17 release, via DevPass — reasoning **and images**, billed per token at normal API list rates, like every DevPass route; the account's 3x credit bonus discounts the bill, it does not make usage free. **This is the deep-loop fan-out default for DeepSeek Flash** (bare literal `deepseek-v4.1-flash-1017`, mapped to `llmgateway`); the effort pin in `isFlashMaxPinnedModel` forces `max`, which this route accepts. It is also Pi's default model in `.pi/settings.json` and the pi-blackhole worker model at `high`. Same 1.05M context, 384K output and $0.15 in / $0.60 out per million tokens with cached reads at $0.003 as the 2026-09-10 release, and the same **effort ladder, three real levels plus off**: `none` disables thinking, `minimal` and `low` both reach **low**, `medium`, `high` and `xhigh` all reach **high** on the gateway (in Pi the map marks `xhigh` null, so `--thinking xhigh` rounds up to `max`), `max` reaches **max**, the default when nothing is sent is `high`, and this route rejects `ultra` and the integer 1-100 form. **It carries `"compat": {"supportsDeveloperRole": false}`**, for the `runware` upstream that refuses the `developer` role |
 | `llmgateway/glm-5.3-flash` | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route that has both. **This is the deep-loop fan-out route for GLM-5.3-Flash** (bare literal `glm-5.3-flash`, mapped to `llmgateway` since 2026-09-05); the effort pin in `isFlashMaxPinnedModel` forces `max`, a tier this route has. Context 1.05M, output 131K. Dispatch-verified 2026-09-04 at `--thinking max` |
 
-Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the four authenticated providers above have a confirmed installed catalog.
+### mistral
+
+The operator's Mistral subscription, through Pi's **builtin** `mistral` provider (base `https://api.mistral.ai`). No `.pi/models.json` block is needed: `pi --list-models mistral` on Pi 1.5.2 lists both ids below, and `.pi/settings.json` carries both in `enabledModels`. The credential lives in `~/.pi/agent/auth.json` under `mistral`, saved with `pi auth login mistral --api-key`. Mistral hosts both models as third-party open-weight models it serves without modification.
+
+**Direct dispatch only.** Neither id is in `PI_SUPPORTED_MODELS`, so the deep-loop fan-out refuses them, the same standing as the opencode-go GLM row above. The bare `deepseek-v4.1-flash-1017` and `glm-5.3-flash` literals keep DevPass. The Mistral ids are distinct literals (dashes, and a `zai-` vendor prefix on GLM), so a later fan-out wiring could map them to `mistral` without moving the DevPass slots.
+
+Model-id gotcha: Mistral ids use **dashes, not dots**. `mistral/deepseek-v4.1-flash-1017` does not resolve. Write `mistral/deepseek-v4-1-flash-1017` and `mistral/zai-glm-5-3-flash`.
+
+Billing: Mistral's API list rate for the DeepSeek route is $0.30 in, $1.20 out and $0.007 cached per million tokens, double the DevPass rate. Mistral documents one monthly usage pool shared across Studio, the API and Vibe Code. Whether a Pi turn draws on that pool or on pay-as-you-go is UNKNOWN until the Mistral console's usage counter is read after a run.
+
+| Model id | Notes |
+|----------|-------|
+| `mistral/deepseek-v4-1-flash-1017` | DeepSeek V4.1 Flash, the 2026-10-17 release, hosted by Mistral. Reasoning and images, context 1M, output 128K (`pi --list-models mistral`). Dispatch-verified 2026-11-14: `pi -p --offline --model mistral/deepseek-v4-1-flash-1017` replied `OK` at both `--thinking max` and `--thinking off`. Pass `--thinking max` to match the DeepSeek Flash policy elsewhere in this file |
+| `mistral/zai-glm-5-3-flash` | Z.AI GLM-5.3-Flash, hosted by Mistral. Reasoning and images, context 1M, output 131K. Dispatch-verified 2026-11-14: replied `OK` at both `--thinking max` and `--thinking xhigh`. How the route maps each level on the wire is not measured, so pass `--thinking` explicitly |
+
+Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the five authenticated providers above have a confirmed installed catalog.
 
 **OpenRouter is off this roster, and deliberately still in the fan-out.** Direct dispatch has the
-four providers above. The deep-loop fan-out additionally keeps two OpenRouter literals,
+five providers above. The deep-loop fan-out additionally keeps two OpenRouter literals,
 `deepseek/deepseek-v4-flash-vision-exp` and `z-ai/glm-5.3-flash`, mapped in `PI_MODEL_PROVIDERS`.
 Those are *distinct literals* from the bare `deepseek-v4.1-flash-1017` and `glm-5.3-flash` rows
 above: one literal maps to one provider, so the slash-prefixed pair composes an OpenRouter selector

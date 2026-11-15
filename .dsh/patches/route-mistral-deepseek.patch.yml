@@ -1,0 +1,24 @@
+# Pins dispatch to Mistral's hosted DeepSeek V4.1 Flash. Mistral answers 422 to the DeepSeek
+# `thinking` field and accepts `reasoning_effort`, so this route carries no DeepSeek thinking format.
+- id: llm-pi-ai
+  config:
+    providers:
+      mistral:
+        displayName: Mistral
+        apiKeyEnv: MISTRAL_API_KEY
+        api: openai-completions
+        baseURL: https://api.mistral.ai/v1
+        compat:
+          supportsDeveloperRole: false
+        models:
+          - id: deepseek-v4-1-flash-1017
+            name: DeepSeek V4.1 Flash (Mistral)
+            reasoningEfforts:
+              off:
+              high: high
+              max: max
+- id: agent-default-model
+  config:
+    provider: mistral
+    model: deepseek-v4-1-flash-1017
+    reasoningEffort: max

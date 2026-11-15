@@ -1,0 +1,16 @@
+## unmodified scratch copy
+PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier, and the vocabulary copies agree
+router-sync: 1/1 checks passed
+exit=0
+## removed keyword from code-frontend-aliases: semantic html markup
+FAIL check 2: surface RESOURCE_MAP equals the children union plus the parent tier, and the vocabulary copies agree (3 problem(s))
+  - mode-registry.json alias "semantic html markup" of sk-code-frontend is in no hub-router.json class that mode routes on
+  - sk-code-frontend keyword "semantic html markup" is in ROUTER.md INTENT_SIGNALS and missing from hub-router.json
+  - sk-code-frontend keyword "semantic html markup" is in sk-code-frontend INTENT_SIGNALS and missing from hub-router.json
+router-sync: 0/1 checks passed
+exit=1
+## added a registry alias no class holds
+FAIL check 2: surface RESOURCE_MAP equals the children union plus the parent tier, and the vocabulary copies agree (1 problem(s))
+  - mode-registry.json alias "not a routed phrase" of sk-code-ci is in no hub-router.json class that mode routes on
+router-sync: 0/1 checks passed
+exit=1

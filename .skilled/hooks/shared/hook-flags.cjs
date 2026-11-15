@@ -98,9 +98,9 @@ const LEGACY_ALIASES = {
 
 // concern -> the switch that turns it on. A concern listed here is off until the
 // operator opts in, because it acts on the session itself (the relaunch loop can
-// end a running session and start a new one), which nobody should get by just
-// checking out the repo. The opt-in resolves like every other flag, environment
-// over file, and the master and kill switches still win over it.
+// end a running session and start a new one), except on a runtime DEFAULT_ON_RUNTIMES
+// names for it. The opt-in resolves like every other flag, environment over file,
+// and the master and kill switches still win over it.
 const DEFAULT_OFF = {
   "session-relaunch": "SYSTEM_SESSION_RELAUNCH_ENABLED",
 };
@@ -111,6 +111,15 @@ const DEFAULT_OFF = {
 // the global one whenever it holds a value. A caller names its runtime explicitly;
 // the resolver never guesses it from the environment.
 const RUNTIMES = Object.freeze(["claude", "codex", "pi", "opencode", "cursor", "devin"]);
+
+// concern -> the runtimes where a default-off concern is on when neither its runtime
+// switch nor its global switch holds a value. Claude Code's hand-over needs no extra
+// wiring beyond the hooks every install registers, so a project gets it without
+// finding the switch; the other runtimes still wait for their owner to opt in. A set
+// value, the master switch and the kill switches all answer before this default.
+const DEFAULT_ON_RUNTIMES = Object.freeze({
+  "session-relaunch": Object.freeze(["claude"]),
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -191,8 +200,9 @@ function _resetConfigCache() {
 // The environment always overrides the config file for a given key.
 // `options.runtime` names the calling runtime. For a default-off concern, that
 // runtime's enable switch decides whenever it resolves to a non-empty value, and
-// the global enable switch decides otherwise; the master and kill switches still
-// win over both. With no runtime, or one outside RUNTIMES, only the global applies.
+// the global enable switch decides whenever it does. With both blank, a runtime in
+// DEFAULT_ON_RUNTIMES is on and any other is off. The master and kill switches still
+// win over all of them. With no runtime, or one outside RUNTIMES, only the global applies.
 function isHookEnabled(concern, env, config, options) {
   return hookFlagDecision(concern, env, config, options).enabled;
 }
@@ -202,7 +212,8 @@ function isHookEnabled(concern, env, config, options) {
 // when nothing did and the concern is on by default. `reason` says which rung of the
 // precedence answered: "master" (the master switch or an alias), "kill" (the concern's
 // kill switch or a legacy alias), "runtime" (the runtime's enable switch, which held a
-// value), "global" (the global enable switch, unset or set) or "default". Arguments are
+// value), "global" (the global enable switch, unset or set) or "default" (a default-on
+// concern, or a default-off one on a runtime DEFAULT_ON_RUNTIMES names). Arguments are
 // those of isHookEnabled.
 function hookFlagDecision(concern, env, config, options) {
   const hasEnv = env !== undefined && env !== null;
@@ -234,7 +245,14 @@ function hookFlagDecision(concern, env, config, options) {
       }
     }
     const globalFlag = DEFAULT_OFF[concern];
-    return { enabled: isTruthy(resolve(globalFlag)), key: globalFlag, reason: "global" };
+    const globalValue = resolve(globalFlag);
+    if (typeof globalValue !== "string" || globalValue.trim() === "") {
+      const runtime = options && typeof options.runtime === "string" ? options.runtime.trim().toLowerCase() : "";
+      if ((DEFAULT_ON_RUNTIMES[concern] || []).includes(runtime)) {
+        return { enabled: true, key: null, reason: "default" };
+      }
+    }
+    return { enabled: isTruthy(globalValue), key: globalFlag, reason: "global" };
   }
   return { enabled: true, key: null, reason: "default" };
 }
@@ -296,6 +314,7 @@ module.exports = {
   CONCERN_CANONICAL,
   LEGACY_ALIASES,
   DEFAULT_OFF,
+  DEFAULT_ON_RUNTIMES,
   RUNTIMES,
   configPath,
   _resetConfigCache,

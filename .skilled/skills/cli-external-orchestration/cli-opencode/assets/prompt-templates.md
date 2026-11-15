@@ -10,7 +10,7 @@ trigger_phrases:
   - "minimax dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.16.0
+version: 1.4.14.0
 ---
 
 # OpenCode CLI - Prompt Templates

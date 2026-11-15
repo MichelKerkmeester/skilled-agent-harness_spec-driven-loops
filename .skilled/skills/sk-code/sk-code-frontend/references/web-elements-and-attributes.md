@@ -7,7 +7,7 @@ trigger_phrases:
   - "html resource loading attributes"
 importance_tier: important
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Web Elements and Attributes
@@ -94,6 +94,15 @@ This file keeps the detailed HTML element and attribute mechanics.
 - **Pitfall:** Using `autocomplete="off"` on sign-in or payment fields can block useful credential or payment autofill.
 - **Support:** Baseline widely available since 2024-06-07 (web-features `inputmode`). Chrome 66 / Firefox 95 / Safari 12.1. Baseline widely available since 2024-05-02 (web-features `enterkeyhint`). Chrome 77 / Firefox 94 / Safari 13.1. Baseline: no web-features entry. Chrome Unknown / Firefox Unknown / Safari Unknown.
 - **See also:** [MDN: autocomplete attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete)
+
+### M2. Autocomplete and spellcheck
+
+- **Rule:** Disable `spellcheck` and `autocomplete` on inputs where they are noise, which is most free-text fields.
+- **Why:** Browser spell and history suggestions cover the content with red underlines or stale values the field does not want.
+- **When not to:** Keep `autocomplete` and its token on identity, contact, address, payment and credential fields, as [web-markup-and-css.md](web-markup-and-css.md#3-forms) sets out.
+- **Pitfall:** Disabling `autocomplete` on a password or address field breaks password managers and autofill.
+- **Support:** Judgment, no version gate.
+- **See also:** [web-markup-and-css.md](web-markup-and-css.md#3-forms).
 
 ### EA6. Form owner and submitter overrides
 
