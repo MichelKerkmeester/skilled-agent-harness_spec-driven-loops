@@ -1,0 +1,11 @@
+claude off briefDelivered=false restored=true
+claude on briefDelivered=true restored=true
+devin off briefDelivered=false restored=true
+devin on briefDelivered=true restored=true
+dsh off briefDelivered=false restored=true
+dsh on briefDelivered=true restored=true
+opencode off briefDelivered=unknown restored=true
+opencode on briefDelivered=unknown restored=true
+pi off briefDelivered=false restored=true
+pi on briefDelivered=true restored=true
+codex not run: the operator chose to leave Codex out after its /hooks approval did not reach ~/.codex/config.toml (dry run printed codex-hooks-unapproved)

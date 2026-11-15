@@ -1,0 +1,17 @@
+RECOMMENDATION: D. Stop every runtime after its "on 1" pass, then rerun only the 8 decline rows once more in the on arm as run 2 on each runtime (40 sessions). That is about 400 sessions in place of 720. Claude's "off 2" lines are set aside unscored.
+
+**What sessions add.** The cheap check shows what the advisor says, not what a model does. Only sessions show whether a model follows an offered workflow, whether it finds the skill's own workflow when nothing is offered, how often the off arm already follows, and whether it declines a wrong offer. Run 1 answers all four. Run 2 only narrows noise.
+
+**Expectation (inference).** With the command offered on 6 of 20 fit rows, the gain is probably small and the verdict may be Not shown. Run 1 is still the only outcome evidence on untuned rows.
+
+**Cost of each cut.**
+- A: about 5.3 more hours on devin and dsh, against about 2.5 for D (inference from 2.6 minutes a session).
+- B or D: the sign test counts only rows where the arms differ, and one run yields fewer of them (inference, not computed). For scale, 10 gained against 3 lost prints 0.046 and passes, while 9 against 3 prints 0.073 and fails.
+- C: devin, dsh, pi and opencode have no on-arm rows yet, so the pooled test would be claude alone.
+
+**Decline result.** It raises the value of running, because it tests the "flexible" half of the need: a model refusing a wrong offer. Plain B would halve on-arm decline sessions from 80 to 40 after the leak was seen, loosening the Met clause most at risk. D keeps all 80.
+
+**Amendment to log before scoring.**
+"Amended 2026-11-15 07:15, before any scoring. Each runtime keeps run 1 of both arms. A row gains when its on run followed and its off run did not, and loses on the reverse. Run 2 exists only for the 8 decline rows in the on arm, and counts only toward the decline-start clause and the B-5 trigger. Claude's off 2 lines are set aside unscored. All else stands."
+
+Not checked (inference): that the scorer counts decline starts over both runs. If not, score the run 2 lines in a separate summary.

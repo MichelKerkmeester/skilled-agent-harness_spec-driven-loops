@@ -1,0 +1,142 @@
+AC 6ccb2b5157e05669fdd69eb3993d246c3ca4a50b
+merge-base --is-ancestor c4f1b1452a AC exit 0
+df: /dev/disk3s5      1858 1161       663    64% 16577632 6954541200    0%   /System/Volumes/Data
+## claude
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs --source . --dest /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-behaviour-arenas/fresh-claude
+{"ok":true,"dest":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/fresh-claude","head":"6ccb2b5157e05669fdd69eb3993d246c3ca4a50b","copied":[".opencode/node_modules",".pi/extensions/pi-cache-optimizer/node_modules",".pi/extensions/pi-fast-mode-w-subagent-support/node_modules",".skilled/node_modules",".skilled/skills/.state/advisor/skill-graph-daemon-lease.sqlite",".skilled/skills/mcp-code-mode/mcp-server/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",".skilled/skills/sk-doc/node_modules",".skilled/skills/system-deep-loop/node_modules",".skilled/skills/system-deep-loop/runtime/node_modules",".skilled/skills/system-skill-advisor/runtime/database/skill-graph-daemon-lease.sqlite",".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",".skilled/skills/system-skill-advisor/runtime/dist",".skilled/skills/system-skill-advisor/runtime/node_modules",".skilled/skills/system-spec-kit/node_modules",".skilled/skills/system-spec-kit/runtime/cli/dist",".skilled/skills/system-spec-kit/runtime/cli/node_modules",".skilled/skills/system-spec-kit/runtime/dist",".skilled/skills/system-spec-kit/shared/dist","node_modules"]}
+exit 0
+$ git rev-parse HEAD
+6ccb2b5157e05669fdd69eb3993d246c3ca4a50b
+exit 0
+$ git remote
+exit 0
+$ git status --porcelain
+exit 0
+$ cat CLAUDE.md
+@AGENTS.md
+exit 0
+$ rg -c -F 'If you take the command, read its document in full and follow it' AGENTS.md
+1
+exit 0
+$ ls .skilled/hooks/hook-flags.env
+ls: .skilled/hooks/hook-flags.env: No such file or directory
+exit 1
+$ direct advisor call
+{"status":"ok","freshness":"live","recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+exit 0
+## codex
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs --source . --dest /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-behaviour-arenas/fresh-codex
+{"ok":true,"dest":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/fresh-codex","head":"6ccb2b5157e05669fdd69eb3993d246c3ca4a50b","copied":[".opencode/node_modules",".pi/extensions/pi-cache-optimizer/node_modules",".pi/extensions/pi-fast-mode-w-subagent-support/node_modules",".skilled/node_modules",".skilled/skills/.state/advisor/skill-graph-daemon-lease.sqlite",".skilled/skills/mcp-code-mode/mcp-server/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",".skilled/skills/sk-doc/node_modules",".skilled/skills/system-deep-loop/node_modules",".skilled/skills/system-deep-loop/runtime/node_modules",".skilled/skills/system-skill-advisor/runtime/database/skill-graph-daemon-lease.sqlite",".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",".skilled/skills/system-skill-advisor/runtime/dist",".skilled/skills/system-skill-advisor/runtime/node_modules",".skilled/skills/system-spec-kit/node_modules",".skilled/skills/system-spec-kit/runtime/cli/dist",".skilled/skills/system-spec-kit/runtime/cli/node_modules",".skilled/skills/system-spec-kit/runtime/dist",".skilled/skills/system-spec-kit/shared/dist","node_modules"]}
+exit 0
+$ git rev-parse HEAD
+6ccb2b5157e05669fdd69eb3993d246c3ca4a50b
+exit 0
+$ git remote
+exit 0
+$ git status --porcelain
+exit 0
+$ cat CLAUDE.md
+@AGENTS.md
+exit 0
+$ rg -c -F 'If you take the command, read its document in full and follow it' AGENTS.md
+1
+exit 0
+$ ls .skilled/hooks/hook-flags.env
+ls: .skilled/hooks/hook-flags.env: No such file or directory
+exit 1
+$ direct advisor call
+{"status":"ok","freshness":"live","recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+exit 0
+## opencode
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs --source . --dest /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-behaviour-arenas/fresh-opencode
+{"ok":true,"dest":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/fresh-opencode","head":"6ccb2b5157e05669fdd69eb3993d246c3ca4a50b","copied":[".opencode/node_modules",".pi/extensions/pi-cache-optimizer/node_modules",".pi/extensions/pi-fast-mode-w-subagent-support/node_modules",".skilled/node_modules",".skilled/skills/.state/advisor/skill-graph-daemon-lease.sqlite",".skilled/skills/mcp-code-mode/mcp-server/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",".skilled/skills/sk-doc/node_modules",".skilled/skills/system-deep-loop/node_modules",".skilled/skills/system-deep-loop/runtime/node_modules",".skilled/skills/system-skill-advisor/runtime/database/skill-graph-daemon-lease.sqlite",".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",".skilled/skills/system-skill-advisor/runtime/dist",".skilled/skills/system-skill-advisor/runtime/node_modules",".skilled/skills/system-spec-kit/node_modules",".skilled/skills/system-spec-kit/runtime/cli/dist",".skilled/skills/system-spec-kit/runtime/cli/node_modules",".skilled/skills/system-spec-kit/runtime/dist",".skilled/skills/system-spec-kit/shared/dist","node_modules"]}
+exit 0
+$ git rev-parse HEAD
+6ccb2b5157e05669fdd69eb3993d246c3ca4a50b
+exit 0
+$ git remote
+exit 0
+$ git status --porcelain
+exit 0
+$ cat CLAUDE.md
+@AGENTS.md
+exit 0
+$ rg -c -F 'If you take the command, read its document in full and follow it' AGENTS.md
+1
+exit 0
+$ ls .skilled/hooks/hook-flags.env
+ls: .skilled/hooks/hook-flags.env: No such file or directory
+exit 1
+$ direct advisor call
+{"status":"ok","freshness":"live","recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+exit 0
+## pi
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs --source . --dest /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-behaviour-arenas/fresh-pi
+{"ok":true,"dest":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/fresh-pi","head":"6ccb2b5157e05669fdd69eb3993d246c3ca4a50b","copied":[".opencode/node_modules",".pi/extensions/pi-cache-optimizer/node_modules",".pi/extensions/pi-fast-mode-w-subagent-support/node_modules",".skilled/node_modules",".skilled/skills/.state/advisor/skill-graph-daemon-lease.sqlite",".skilled/skills/mcp-code-mode/mcp-server/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",".skilled/skills/sk-doc/node_modules",".skilled/skills/system-deep-loop/node_modules",".skilled/skills/system-deep-loop/runtime/node_modules",".skilled/skills/system-skill-advisor/runtime/database/skill-graph-daemon-lease.sqlite",".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",".skilled/skills/system-skill-advisor/runtime/dist",".skilled/skills/system-skill-advisor/runtime/node_modules",".skilled/skills/system-spec-kit/node_modules",".skilled/skills/system-spec-kit/runtime/cli/dist",".skilled/skills/system-spec-kit/runtime/cli/node_modules",".skilled/skills/system-spec-kit/runtime/dist",".skilled/skills/system-spec-kit/shared/dist","node_modules"]}
+exit 0
+$ git rev-parse HEAD
+6ccb2b5157e05669fdd69eb3993d246c3ca4a50b
+exit 0
+$ git remote
+exit 0
+$ git status --porcelain
+exit 0
+$ cat CLAUDE.md
+@AGENTS.md
+exit 0
+$ rg -c -F 'If you take the command, read its document in full and follow it' AGENTS.md
+1
+exit 0
+$ ls .skilled/hooks/hook-flags.env
+ls: .skilled/hooks/hook-flags.env: No such file or directory
+exit 1
+$ direct advisor call
+{"status":"ok","freshness":"live","recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+exit 0
+## devin
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs --source . --dest /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-behaviour-arenas/fresh-devin
+{"ok":true,"dest":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/fresh-devin","head":"6ccb2b5157e05669fdd69eb3993d246c3ca4a50b","copied":[".opencode/node_modules",".pi/extensions/pi-cache-optimizer/node_modules",".pi/extensions/pi-fast-mode-w-subagent-support/node_modules",".skilled/node_modules",".skilled/skills/.state/advisor/skill-graph-daemon-lease.sqlite",".skilled/skills/mcp-code-mode/mcp-server/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",".skilled/skills/sk-doc/node_modules",".skilled/skills/system-deep-loop/node_modules",".skilled/skills/system-deep-loop/runtime/node_modules",".skilled/skills/system-skill-advisor/runtime/database/skill-graph-daemon-lease.sqlite",".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",".skilled/skills/system-skill-advisor/runtime/dist",".skilled/skills/system-skill-advisor/runtime/node_modules",".skilled/skills/system-spec-kit/node_modules",".skilled/skills/system-spec-kit/runtime/cli/dist",".skilled/skills/system-spec-kit/runtime/cli/node_modules",".skilled/skills/system-spec-kit/runtime/dist",".skilled/skills/system-spec-kit/shared/dist","node_modules"]}
+exit 0
+$ git rev-parse HEAD
+6ccb2b5157e05669fdd69eb3993d246c3ca4a50b
+exit 0
+$ git remote
+exit 0
+$ git status --porcelain
+exit 0
+$ cat CLAUDE.md
+@AGENTS.md
+exit 0
+$ rg -c -F 'If you take the command, read its document in full and follow it' AGENTS.md
+1
+exit 0
+$ ls .skilled/hooks/hook-flags.env
+ls: .skilled/hooks/hook-flags.env: No such file or directory
+exit 1
+$ direct advisor call
+{"status":"ok","freshness":"live","recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+exit 0
+## dsh
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs --source . --dest /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-behaviour-arenas/fresh-dsh
+{"ok":true,"dest":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/fresh-dsh","head":"6ccb2b5157e05669fdd69eb3993d246c3ca4a50b","copied":[".opencode/node_modules",".pi/extensions/pi-cache-optimizer/node_modules",".pi/extensions/pi-fast-mode-w-subagent-support/node_modules",".skilled/node_modules",".skilled/skills/.state/advisor/skill-graph-daemon-lease.sqlite",".skilled/skills/mcp-code-mode/mcp-server/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",".skilled/skills/sk-doc/node_modules",".skilled/skills/system-deep-loop/node_modules",".skilled/skills/system-deep-loop/runtime/node_modules",".skilled/skills/system-skill-advisor/runtime/database/skill-graph-daemon-lease.sqlite",".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",".skilled/skills/system-skill-advisor/runtime/dist",".skilled/skills/system-skill-advisor/runtime/node_modules",".skilled/skills/system-spec-kit/node_modules",".skilled/skills/system-spec-kit/runtime/cli/dist",".skilled/skills/system-spec-kit/runtime/cli/node_modules",".skilled/skills/system-spec-kit/runtime/dist",".skilled/skills/system-spec-kit/shared/dist","node_modules"]}
+exit 0
+$ git rev-parse HEAD
+6ccb2b5157e05669fdd69eb3993d246c3ca4a50b
+exit 0
+$ git remote
+exit 0
+$ git status --porcelain
+exit 0
+$ cat CLAUDE.md
+@AGENTS.md
+exit 0
+$ rg -c -F 'If you take the command, read its document in full and follow it' AGENTS.md
+1
+exit 0
+$ ls .skilled/hooks/hook-flags.env
+ls: .skilled/hooks/hook-flags.env: No such file or directory
+exit 1
+$ direct advisor call
+{"status":"ok","freshness":"live","recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+exit 0
+DONE 00:39:11

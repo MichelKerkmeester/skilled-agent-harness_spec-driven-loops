@@ -1,0 +1,3 @@
+{"ok":true,"head":"2d3944a3d9a74ff8bd4ce7d159809f409f33f7a6"}
+head 2d3944a3d9a74ff8bd4ce7d159809f409f33f7a6 remote=[] status=[] claude=@AGENTS.md b6=1
+"llmgateway/deepseek-v4.1-flash-1017"
