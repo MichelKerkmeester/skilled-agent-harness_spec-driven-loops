@@ -36,28 +36,28 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/hooks/session-handover/README.md",
+      "runtime/hooks/lib/history/README.md",
+      ".opencode/plugins/README.md",
+      ".skilled/changelog/skilled/v4.0.2.2.md",
+      ".skilled/hooks/shared/session-readers/claude.mjs",
+      "runtime/tests/compaction-adapters.vitest.ts",
+      "scratch/live-hop.md",
+      "scratch/measurement.md",
       ".skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js",
       ".skilled/changelog/skilled/v4.0.2.0.md",
       ".skilled/skills/system-spec-kit/changelog/v2.12.37.0.md",
       ".skilled/hooks/shared/session-readers/index.mjs",
       ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
       ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-      ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-conversation.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-baseline-conversation.md",
-      ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md",
-      ".skilled/hooks/session-relaunch/README.md",
-      ".skilled/commands/speckit/handoff.md",
-      ".opencode/plugins/README.md",
-      ".skilled/skills/system-spec-kit/SKILL.md"
+      ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md"
     ],
     "entities": [
       {
@@ -88,6 +88,42 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-handover/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.2.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "claude.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/claude.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-adapters.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/compaction-adapters.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "live-hop.md",
+        "kind": "doc",
+        "path": "scratch/live-hop.md",
+        "source": "derived"
+      },
+      {
+        "name": "measurement.md",
+        "kind": "doc",
+        "path": "scratch/measurement.md",
         "source": "derived"
       },
       {
@@ -133,36 +169,6 @@
         "source": "derived"
       },
       {
-        "name": "compaction-history-recall-conversation.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-conversation.md",
-        "source": "derived"
-      },
-      {
-        "name": "compaction-history-recall-baseline-conversation.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-baseline-conversation.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "handoff.md",
-        "kind": "doc",
-        "path": ".skilled/commands/speckit/handoff.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -197,17 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Seventeen Markdown files outside `specs/` mention the lookup, and the ones that describe where it is offered all place it after a compaction",
     "created_at": "2026-11-15T06:24:29Z",
-    "last_save_at": "2026-11-15T06:46:36.744Z",
+    "last_save_at": "2026-11-15T11:11:52.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d849353d841abeedb04b60463f0d7ed97f1da6267f73384d9a14681304ef48dd",
+    "source_fingerprint": "sha256:5e14d85ada21dd067c39b471215764526c47ecfb323bcaa1b2ed0d3479ea264e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b4f809561d8e4169a59eb8ea32b316bf864443f2d6bf6bdfe5120efb308109fd",
-      "plan.md": "849a16713fd638006451068cc289b835243d9b3ef4f51f2661a201d3b734f10d",
-      "tasks.md": "99d5589539005781578e87762a7e649d2e1cbec1773e4e59c15a580926654e66",
-      "implementation-summary.md": "f1539b571356de3a5e09c20952230f958e0e7edd285bdb0129249b62972f91bb"
+      "spec.md": "a4a10e55c2031e6943d1b8354b18da76a9c623225b622a533fc8de2322786c50",
+      "plan.md": "cbe72b5030f790e6b8f4aa98da5c009cb1ca93a0b3aab0376d92fda1aa36c292",
+      "tasks.md": "6de8373756089347c5ca07f9b49d2cff05a4d88833f0df3f5aaac75d67839c6f",
+      "implementation-summary.md": "15bf464fbcd0b2fe68c317cb4fab2cb6d7bd8f548b8fc55a8992e0d8ffb67a24"
     },
     "last_active_at": null
   }

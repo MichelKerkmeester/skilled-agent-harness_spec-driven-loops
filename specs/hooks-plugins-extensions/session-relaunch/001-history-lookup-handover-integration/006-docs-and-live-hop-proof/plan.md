@@ -133,10 +133,10 @@ Every path, symbol and number above comes from one of these lines.
 | The locator schema is closed and versioned, with `runtime`, `sessionId`, `workspace`, `locatorKind`, `handle`, `mintedAt` and `provenance` | `.skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:285-324` |
 | `provenance.source` accepts `precompact` and `post_compaction` today | `.skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:306` |
 | Each runtime declares one locator kind | `.skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:228-235` |
-| `claim` prints the note body, the `complete` line and the optional `Goal packet:` line | `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:692-722` |
-| `claimHandoff` moves the note `open -> claimed` under one lock | `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1494-1513` |
+| `claim` prints the note body, the `complete` line and the optional `Goal packet:` line | `.skilled/hooks/session-handover/bin/session-handover.cjs:692-722` |
+| `claimHandoff` moves the note `open -> claimed` under one lock | `.skilled/hooks/session-handover/lib/relaunch-core.cjs:1494-1513` |
 | The receiver claims the note, reads its four sections and runs `complete` at the end | `.skilled/commands/speckit/handoff.md:211-227` |
-| The receiver claims the note and reads its four sections | `.skilled/hooks/session-relaunch/README.md:170` |
+| The receiver claims the note and reads its four sections | `.skilled/hooks/session-handover/README.md:170` |
 | The root README says a compaction can carry the section, on six runtimes, at most 16 KiB per reply, with a 30-minute handle | `README.md:536-542` |
 | The plugins README row describes `session-history-lookup.js` as a `session.compacted` offer | `.opencode/plugins/README.md:53` |
 | The catalog index describes the offer as post-compaction | `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:1104-1116` |

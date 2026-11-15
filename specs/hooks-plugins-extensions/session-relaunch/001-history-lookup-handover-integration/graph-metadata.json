@@ -38,14 +38,13 @@
       "offer"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-handover/bin/session-handover.cjs",
       "runtime/hooks/claude/hook-state.ts",
       ".skilled/commands/speckit/handoff.md",
-      "runtime/hooks/claude/compact-inject.ts",
-      ".opencode/plugins/session-history-lookup.js"
+      "runtime/hooks/claude/compact-inject.ts"
     ],
     "entities": [
       {
@@ -55,9 +54,9 @@
         "source": "derived"
       },
       {
-        "name": "session-relaunch.cjs",
+        "name": "session-handover.cjs",
         "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "path": ".skilled/hooks/session-handover/bin/session-handover.cjs",
         "source": "derived"
       },
       {
@@ -76,12 +75,6 @@
         "name": "compact-inject.ts",
         "kind": "code",
         "path": "runtime/hooks/claude/compact-inject.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-history-lookup.js",
-        "kind": "code",
-        "path": ".opencode/plugins/session-history-lookup.js",
         "source": "derived"
       },
       {
@@ -123,16 +116,16 @@
     ],
     "causal_summary": "A model can search and load its own earlier turns through the history lookup, but the lookup is offered only after a compaction",
     "created_at": "2026-11-15T06:24:14Z",
-    "last_save_at": "2026-11-15T07:58:20.948Z",
+    "last_save_at": "2026-11-15T11:11:50.905Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6dffc8a32fc59f188d63d7fcc7e73cff579bb88cb8dbe97014e2cc1b79926f7f",
+    "source_fingerprint": "sha256:15326de15b0797831bfc7e83d9d1fc8cc415b644a840623493645f258ac95519",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ed6a2c3f2d283292ad4f92116301c57f4f2cf98e77b4d769f119c95dd00188b2"
+      "spec.md": "c305e772f2682207bea319dfeefa7be2832a38193b969b001555a71fddf695fe"
     },
     "last_active_at": null
   }

@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/399-hook-feature-subtracks` |
 | **Parent Spec** | None |
@@ -99,8 +99,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 |-----------|-------------|-------|-------------|
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/` | Create | 001-hop-recall-baseline | Hop versions of the recall scenario pair and their recorded results. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/`, its importers and `runtime/tests/history-*.vitest.ts` | Modify | 002-history-core-relocation | The lookup core under the handover concern's ownership. |
-| `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs`, `lib/relaunch-core.cjs`, `runtime/hooks/claude/hook-state.ts` | Modify | 003-mint-locator-at-prepare | A locator minted at `prepare` and a second provenance source in the locator schema. |
-| `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs`, `.skilled/commands/speckit/handoff.md` | Modify | 004-offer-lookup-at-claim | The lookup section in the claim output and one receiver step. |
+| `.skilled/hooks/session-handover/bin/session-handover.cjs`, `lib/relaunch-core.cjs`, `runtime/hooks/claude/hook-state.ts` | Modify | 003-mint-locator-at-prepare | A locator minted at `prepare` and a second provenance source in the locator schema. |
+| `.skilled/hooks/session-handover/bin/session-handover.cjs`, `.skilled/commands/speckit/handoff.md` | Modify | 004-offer-lookup-at-claim | The lookup section in the claim output and one receiver step. |
 | `runtime/hooks/claude/compact-inject.ts`, `claude/session-prime.ts`, the Pi, DSH and Devin compaction hooks, `.opencode/plugins/session-history-lookup.js` | Modify and delete | 005-deprecate-compaction-offer | The compaction-time mint and offer removed. |
 | Feature catalog, playbook pages, READMEs, changelog | Modify | 006-docs-and-live-hop-proof | Docs that match the new home, and the live hop record. |
 <!-- /ANCHOR:scope -->
@@ -114,12 +114,12 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-hop-recall-baseline/ | Measure on a live hop whether a receiver recovers a detail the note left out. Go or no-go gate for the rest. | Pending |
-| 2 | 002-history-core-relocation/ | The handover concern owns the lookup core. Behaviour and test count unchanged. | Pending |
-| 3 | 003-mint-locator-at-prepare/ | `prepare` mints and persists a locator for the sending session, failing open. | Pending |
-| 4 | 004-offer-lookup-at-claim/ | `claim` re-mints and prints the lookup section, and the receiver steps gain one line. | Pending |
-| 5 | 005-deprecate-compaction-offer/ | No runtime mints or offers the lookup after a compaction. | Pending |
-| 6 | 006-docs-and-live-hop-proof/ | Docs, catalog and playbooks updated, one live hop recorded, the phase 1 measurement rerun. | Pending |
+| 1 | 001-hop-recall-baseline/ | Measure on a live hop whether a receiver recovers a detail the note left out. Go or no-go gate for the rest. | Complete |
+| 2 | 002-history-core-relocation/ | The handover concern owns the lookup core. Behaviour and test count unchanged. | Complete |
+| 3 | 003-mint-locator-at-prepare/ | `prepare` mints and persists a locator for the sending session, failing open. | Complete |
+| 4 | 004-offer-lookup-at-claim/ | `claim` re-mints and prints the lookup section, and the receiver steps gain one line. | Complete |
+| 5 | 005-deprecate-compaction-offer/ | No runtime mints or offers the lookup after a compaction. | Complete |
+| 6 | 006-docs-and-live-hop-proof/ | Docs, catalog and playbooks updated, one live hop recorded, the phase 1 measurement rerun. | Complete |
 
 ### Phase Transition Rules
 

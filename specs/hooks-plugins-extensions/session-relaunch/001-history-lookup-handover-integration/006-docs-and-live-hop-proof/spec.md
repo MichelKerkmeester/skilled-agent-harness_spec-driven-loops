@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/399-hook-feature-subtracks` |
 | **Parent Spec** | ../spec.md |
@@ -126,7 +126,7 @@ Section 2's Problem Statement quotes the `17` above as its evidence: seventeen M
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-conversation.md` | Modify | The scenario becomes a hop where the receiver is offered the lookup. |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-baseline-conversation.md` | Modify | The baseline becomes a hop with no lookup offered. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md` | Modify | Section 1 and section 11 name the handover producer beside the compaction adapters. |
-| `.skilled/hooks/session-relaunch/README.md` | Modify | Documents the locator at `prepare` and the section at `claim`. |
+| `.skilled/hooks/session-handover/README.md` | Modify | Documents the locator at `prepare` and the section at `claim`. |
 | `.skilled/commands/speckit/handoff.md` | Modify | Section 5, Receiving A Handoff, gains one lookup step. |
 | `README.md` | Modify | The history section is retitled and rewritten for the hop. |
 | `.opencode/plugins/README.md` | Modify | The `session-history-lookup.js` row. |
@@ -153,7 +153,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-001 | The catalog entry names `prepare` and `claim` as the offer site and stops calling the offer compaction-only (`feature-catalog/context-preservation/compaction-history-lookup.md`) | `rg -n 'Offers one bounded, read-only history lookup after a compaction' <file>` prints nothing, and `rg -n 'claim' <file>` prints at least one line |
 | REQ-002 | The playbook page runs the scenario at a claim and no longer asks for a live compaction (`manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md`) | `rg -n 'Trigger a live compaction' <file>` prints nothing, and `rg -n 'claim' <file>` prints at least one line |
 | REQ-003 | The history README names the handover producer in section 1 and in section 11 (`runtime/hooks/lib/history/README.md`) | `rg -n 'session-relaunch' <file>` prints at least two lines |
-| REQ-004 | The session-relaunch README documents the locator at `prepare` and the section at `claim` (`.skilled/hooks/session-relaunch/README.md`) | `rg -n 'History Lookup' <file>` prints at least one line, and `rg -n 'prepare' <file>` prints at least one line |
+| REQ-004 | The session-relaunch README documents the locator at `prepare` and the section at `claim` (`.skilled/hooks/session-handover/README.md`) | `rg -n 'History Lookup' <file>` prints at least one line, and `rg -n 'prepare' <file>` prints at least one line |
 | REQ-005 | The handoff command doc gains one receiver step that runs the printed lookup command (`.skilled/commands/speckit/handoff.md`) | `rg -n 'history/cli.js' <file>` prints one line under section 5 |
 | REQ-006 | The root README section is retitled and describes the hop instead of the compaction (`README.md`) | `rg -n 'History after compaction' <file>` prints nothing, and `rg -c 'handoff' <file>` prints 9 or more |
 | REQ-007 | The plugins README no longer describes `session-history-lookup.js` as an active compaction offer (`.opencode/plugins/README.md`) | `rg -n 'session-history-lookup.js' <file>` prints nothing |

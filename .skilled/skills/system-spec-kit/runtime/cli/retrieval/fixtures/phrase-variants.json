@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8dccc6d8529808f7ffaeae615330a5f0216dbb371a5168a954c9c6aff82ebae2",
+  "manifestHash": "5b2e1047a37437ec235c1bb6aad7a61ac0920b117345228202852372ad38b6cd",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -28624,12 +28624,6 @@
     ],
     "compaction history lookup": [
       "compaction history lookup"
-    ],
-    "compaction history recall baseline conversation": [
-      "compaction history recall baseline conversation"
-    ],
-    "compaction history recall conversation": [
-      "compaction history recall conversation"
     ],
     "compaction packet purpose": [
       "compaction packet purpose"
@@ -57372,6 +57366,9 @@
     "handoff gate exemptions tasks": [
       "handoff gate exemptions tasks"
     ],
+    "handoff history lookup": [
+      "handoff history lookup"
+    ],
     "handoff note purpose line": [
       "handoff note purpose line"
     ],
@@ -58477,6 +58474,9 @@
     "history lookup at claim docs": [
       "history lookup at claim docs"
     ],
+    "history lookup at handoff claim": [
+      "history lookup at handoff claim"
+    ],
     "history lookup cli": [
       "history lookup CLI",
       "history lookup cli"
@@ -58489,12 +58489,6 @@
     ],
     "history lookup handover integration": [
       "history lookup handover integration"
-    ],
-    "history lookup recall baseline": [
-      "history lookup recall baseline"
-    ],
-    "history lookup recall with lookup": [
-      "history lookup recall with lookup"
     ],
     "history rewrite": [
       "history rewrite"
@@ -87051,9 +87045,6 @@
     ],
     "post compaction recovery snapshot": [
       "post-compaction recovery snapshot"
-    ],
-    "post compaction transcript lookup": [
-      "post-compaction transcript lookup"
     ],
     "post consolidation hardening train": [
       "post-consolidation hardening train"
