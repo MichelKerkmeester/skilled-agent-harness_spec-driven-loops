@@ -109,7 +109,7 @@ function bindHandOverGoal(core: GoalCore, options: GoalOptions): void {
     core.bindRelaunchGoal(options);
   } finally {
     // Never leave the packet where a new session or a nested runtime could bind it.
-    delete process.env.SESSION_RELAUNCH_GOAL_PACKET;
+    delete process.env.SESSION_HANDOVER_GOAL_PACKET;
   }
 }
 

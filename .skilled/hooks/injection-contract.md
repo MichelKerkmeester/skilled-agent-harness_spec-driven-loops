@@ -17,7 +17,7 @@ version: 1.0.1.0
 
 Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi, DeepSeek Harness and Mistral Vibe) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
 
-**Kill-switches.** Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED` switch plus its canonical `SYSTEM_<CONCERN>_DISABLED` switch, and every concern except session relaunch is default-on. Session relaunch ships on for Claude Code and off for every other runtime: a runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime when it holds a value, `SYSTEM_SESSION_RELAUNCH_ENABLED` decides when it holds one, and with both blank only Claude Code is on. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index). This contract does not duplicate it.
+**Kill-switches.** Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED` switch plus its canonical `SYSTEM_<CONCERN>_DISABLED` switch, and every concern except session handover is default-on. Session handover ships on for Claude Code and off for every other runtime: a runtime's `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` turns it on or off for that runtime when it holds a value, `SYSTEM_SESSION_HANDOVER_ENABLED` decides when it holds one, and with both blank only Claude Code is on. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index). This contract does not duplicate it.
 
 ---
 
@@ -120,14 +120,14 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 
 ---
 
-### Session Relaunch Context Nudge
+### Session Handover Context Nudge
 
 | Concern | Events | Payload | Frequency |
 |---|---|---|---|
-| Session relaunch | Claude Code: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
-| Session relaunch | Codex: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
-| Session relaunch | Pi: `message_end` decides, `turn_end` steers the held nudge into a run whose tools ran and `agent_end` delivers it when the run ended | `pi.sendMessage` with `display: false` | Once per reached threshold level in a session |
-| Session relaunch | OpenCode: `experimental.chat.system.transform` pushes the pending nudge, fed by message events | an entry in the system array | Once per reached threshold level in a session |
+| Session handover | Claude Code: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
+| Session handover | Codex: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
+| Session handover | Pi: `message_end` decides, `turn_end` steers the held nudge into a run whose tools ran and `agent_end` delivers it when the run ended | `pi.sendMessage` with `display: false` | Once per reached threshold level in a session |
+| Session handover | OpenCode: `experimental.chat.system.transform` pushes the pending nudge, fed by message events | an entry in the system array | Once per reached threshold level in a session |
 
 The Codex nudge reads its fill from the transcript rollout's latest `token_count` record and emits the same `[SYS]` envelope the Claude adapter uses, so it is model-context-only by default. Neither the arming nor the usage records inject content: both are `[NONE]` side effects. Cursor, Devin and DSH carry no adapter, so `/speckit:handoff` is the only trigger on those runtimes and this table adds no row for them.
 
@@ -318,4 +318,4 @@ The bundle README, [`../../.dsh/plugins/repo-guards/README.md`](../../.dsh/plugi
 - [`../../.opencode/plugins/README.md`](../../.opencode/plugins/README.md): full OpenCode plugin inventory and hook-event model this doc's OpenCode column cites.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): Pi's own extension inventory, including the `session_compact`-untraced caveat this doc's §4 repeats.
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors this doc cross-links from.
-- [`README.md`](./README.md): why the real cores of `dispatch`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `post-edit-quality`, `task-dispatch`, `classifier-injection-screen`, `goal`, `decision-capture` and `session-relaunch` live under `.skilled/hooks/` instead of `.skilled/skills/`, while every skill-owned hook in this doc stays inside its owning skill.
+- [`README.md`](./README.md): why the real cores of `dispatch`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `post-edit-quality`, `task-dispatch`, `classifier-injection-screen`, `goal`, `decision-capture` and `session-handover` live under `.skilled/hooks/` instead of `.skilled/skills/`, while every skill-owned hook in this doc stays inside its owning skill.

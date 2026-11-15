@@ -27,7 +27,7 @@ import { capabilities } from '../../shared/session-readers/index.mjs';
 import { compactionsSince, loadVibeSession } from '../../shared/session-readers/vibe.mjs';
 
 const require = createRequire(import.meta.url);
-const { claimCommandFor, openNotePathFor, resolveRepoRoot } = require('../../session-relaunch/lib/nudge.cjs');
+const { claimCommandFor, openNotePathFor, resolveRepoRoot } = require('../../session-handover/lib/nudge.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

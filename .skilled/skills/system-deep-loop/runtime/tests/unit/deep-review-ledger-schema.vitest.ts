@@ -1127,6 +1127,42 @@ describe('deep-review typed ledger schema', () => {
         failedRequiredGateIds: [],
       },
     }, registry)).toThrow();
+
+    // An operator stop is a terminal outcome like any other, so the same gate
+    // reconciliation applies to it.
+    expect(() => prepareDeepReviewEvent({
+      ...input,
+      data: { ...input.data, stopReason: 'manualStop' },
+    }, registry)).not.toThrow();
+
+    expect(() => prepareDeepReviewEvent({
+      ...input,
+      data: {
+        ...input.data,
+        stopReason: 'error',
+        gateResults: [
+          gateReport('evidence', 'pass'),
+          gateReport('scope', 'pass'),
+          gateReport('coverage', 'fail'),
+        ],
+        failedRequiredGateIds: ['coverage'],
+      },
+    }, registry)).not.toThrow();
+
+    // An unreconciled status is neither pass nor fail, so it cannot stand in
+    // for a satisfied gate even when the failed ids agree.
+    expect(() => prepareDeepReviewEvent({
+      ...input,
+      data: {
+        ...input.data,
+        gateResults: [
+          gateReport('evidence', 'pass'),
+          { ...gateReport('scope', 'pass'), status: 'unknown' },
+          gateReport('coverage', 'pass'),
+        ],
+        failedRequiredGateIds: [],
+      },
+    }, registry)).toThrow();
   });
 
   it('validates the complete semantic-fingerprint lineage vocabulary', () => {

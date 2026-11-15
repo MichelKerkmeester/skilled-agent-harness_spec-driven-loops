@@ -1,1 +1,1 @@
-../../.skilled/hooks/session-relaunch/codex/prompt-seed.mjs
+../../.skilled/hooks/session-handover/codex/prompt-seed.mjs

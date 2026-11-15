@@ -1,7 +1,7 @@
 ---
 title: "DV-024 -- A bound Devin goal guides a later task"
 description: "This scenario validates later-turn goal injection for DV-024. It checks that Devin uses a packet goal bound through the session hand-over."
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # DV-024 -- A bound Devin goal guides a later task
@@ -16,7 +16,7 @@ This scenario validates the Devin goal hook for DV-024. It focuses on binding a 
 
 ### Why This Matters
 
-Devin has no prompt command for managing its active goal. Its hook binds the packet named by SESSION_RELAUNCH_GOAL_PACKET to the native session when the session starts, then injects the goal on each later prompt.
+Devin has no prompt command for managing its active goal. Its hook binds the packet named by SESSION_HANDOVER_GOAL_PACKET to the native session when the session starts, then injects the goal on each later prompt.
 
 ---
 
@@ -27,7 +27,7 @@ Run the prompt and command sequence for DV-024. Check the scratch goal record an
 - Objective: Bind a scratch packet goal through Devin's session hand-over, then confirm a later task uses the injected completion marker.
 - Real user request: Ask which completion marker to use, then ask Devin to complete the next task.
 - Prompt: What completion marker should I use for this Devin session?
-- Expected execution process: Create a scratch packet with a unique marker, copy the repository .skilled and .devin trees into the scratch project, keep only the goal adapter's SessionStart and UserPromptSubmit registrations, then set SESSION_RELAUNCH_GOAL_PACKET for the Devin session. Ask for the marker, then send a later task that relies on the same active goal.
+- Expected execution process: Create a scratch packet with a unique marker, copy the repository .skilled and .devin trees into the scratch project, keep only the goal adapter's SessionStart and UserPromptSubmit registrations, then set SESSION_HANDOVER_GOAL_PACKET for the Devin session. Ask for the marker, then send a later task that relies on the same active goal.
 - Expected signals: The first turn leaves a Devin record active for packet specs/conversation-goal-probe. The later-task record can stay active or be archived with status complete. Both Devin answer screens contain JUNIPER-WAVE-64 after their echoed sends.
 - Evidence requirements: The turn folders contain the captured screens and check outputs. The scratch project contains the matching Devin goal record.
 - Desired user-visible outcome: Devin uses the packet goal on its first prompt and on the later task.
@@ -52,7 +52,7 @@ Run the prompt and command sequence for DV-024. Check the scratch goal record an
     "AI_SESSION_CHILD": "",
     "DEVIN_PROJECT_DIR": ".",
     "OPENCODE_GOAL_STATE_DIR": ".goal-state",
-    "SESSION_RELAUNCH_GOAL_PACKET": "specs/conversation-goal-probe"
+    "SESSION_HANDOVER_GOAL_PACKET": "specs/conversation-goal-probe"
   },
   "setup": [
     "mkdir -p .goal-state specs/conversation-goal-probe",
@@ -102,7 +102,7 @@ The first-turn goal record in .goal-state/ identifies the active Devin packet. A
 
 ### Failure Triage
 
-Confirm the scratch .devin/hooks.v1.json registers the goal adapter for both events. Then check that SESSION_RELAUNCH_GOAL_PACKET points inside the scratch workspace and AI_SESSION_CHILD is empty. Inspect .goal-state/ before changing the adapter.
+Confirm the scratch .devin/hooks.v1.json registers the goal adapter for both events. Then check that SESSION_HANDOVER_GOAL_PACKET points inside the scratch workspace and AI_SESSION_CHILD is empty. Inspect .goal-state/ before changing the adapter.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

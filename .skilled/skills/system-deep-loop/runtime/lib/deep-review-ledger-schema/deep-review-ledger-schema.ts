@@ -350,7 +350,7 @@ const DATA_FIELD_RULES = Object.freeze({
     recoveryHint: optionalFieldRule('prose'),
   },
   'deep_review.terminal_gates_recorded': {
-    stopReason: enumRule('converged', 'maxIterationsReached'),
+    stopReason: enumRule('converged', 'maxIterationsReached', 'manualStop', 'error'),
     gateResults: 'gate-results',
     failedRequiredGateIds: 'identifier-array',
     appendPosition: 'uint32',
@@ -967,7 +967,8 @@ function isData(stem: DeepReviewEventStem, value: unknown): boolean {
       && requiredGateIds.every((gateId) => reportedGateIds.has(gateId))
       && failedGateIdsSeen.size === failedGateIds.length
       && failedGateIdsSeen.size === failedGateIdsExpected.size
-      && [...failedGateIdsSeen].every((gateId) => failedGateIdsExpected.has(gateId));
+      && [...failedGateIdsSeen].every((gateId) => failedGateIdsExpected.has(gateId))
+      && results.every((result) => result.status === 'pass' || result.status === 'fail');
   }
   if (stem === 'deep_review.convergence_evaluated') {
     return value.decision !== 'blocked'

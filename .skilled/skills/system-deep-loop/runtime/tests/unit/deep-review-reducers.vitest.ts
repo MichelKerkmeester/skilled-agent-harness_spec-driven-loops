@@ -242,6 +242,61 @@ function passCompleted(index = 5): DeepReviewLedgerEvent {
   );
 }
 
+function blockedStop(index = 6): DeepReviewLedgerEvent {
+  return event(
+    'deep_review.blocked_stop_recorded',
+    index,
+    {
+      runId: 'run-1',
+      sessionId: 'session-1',
+      generation: 1,
+      iterationId: 'iteration-1',
+    },
+    {
+      blockedGateIds: ['dimensionCoverageGate'],
+      gateResults: [{
+        gateId: 'dimensionCoverageGate',
+        status: 'fail',
+        reasonCode: 'dimension-coverage-gate-failed',
+        evidenceDigest: digest('dimension-coverage-gate'),
+      }],
+      activeFindingCounts: { candidates: 1, adjudicated: 1, p0: 0, p1: 1, p2: 0 },
+      recoveryStrategy: 'repeat-dimension',
+      targetDimensionId: 'correctness',
+      originatingConvergenceEventId: 'iteration-1-convergence',
+      appendPosition: index,
+    },
+  );
+}
+
+function terminalGates(
+  index = 10,
+  failedGateIds: readonly string[] = [],
+  stopReason: 'converged' | 'maxIterationsReached' = 'converged',
+): DeepReviewLedgerEvent {
+  return event(
+    'deep_review.terminal_gates_recorded',
+    index,
+    {
+      runId: 'run-1',
+      sessionId: 'session-1',
+      generation: 1,
+      iterationId: 'iteration-1',
+    },
+    {
+      stopReason,
+      gateResults: ['evidence', 'scope', 'coverage'].map((gateId) => ({
+        gateId,
+        status: failedGateIds.includes(gateId) ? 'fail' : 'pass',
+        reasonCode: failedGateIds.includes(gateId) ? 'gate-failed' : 'gate-passed',
+        evidenceDigest: digest(`terminal-gate:${gateId}`),
+      })),
+      failedRequiredGateIds: [...failedGateIds],
+      appendPosition: index,
+    },
+  );
+}
+
 interface CandidateOptions {
   readonly candidateId?: string;
   readonly evidenceId?: string;
@@ -3255,4 +3310,104 @@ describe('deep-review reducers and projections', () => {
       throw new DeepReviewReducerError('event-schema-invalid', 'fixture');
     }).toThrowError(DeepReviewReducerError);
   });
+
+  it('lets a passing terminal gate record clear an earlier blocked stop before synthesis', () => {
+    const upToTerminal = [
+      runInitialized(),
+      scopeResolved(),
+      dimensionOrdered(),
+      passStarted(),
+      passCompleted(),
+      blockedStop(6),
+      passStarted(7),
+      passCompleted(8),
+      convergence(9),
+      terminalGates(10),
+    ];
+    const reviewed = foldDeepReviewEvents(upToTerminal);
+    expect(reviewed.outcome).toBe('projected');
+    if (reviewed.outcome !== 'projected') return;
+    expect(reviewed.projection.reviewLoop.outcome).toBe('converged');
+
+    const withSynthesis = [...upToTerminal, synthesisStarted(11)];
+    expect(() => foldDeepReviewEvents(withSynthesis)).not.toThrow();
+    const converging = foldDeepReviewEvents(withSynthesis);
+    expect(converging.outcome).toBe('projected');
+    if (converging.outcome !== 'projected') return;
+    expect(converging.projection.status.state).toBe('converging');
+  });
+
+  it('does not call a passing max-iterations terminal record converged', () => {
+    const maxStop = terminalGates(10, [], 'maxIterationsReached');
+    const result = foldDeepReviewEvents([
+      runInitialized(),
+      scopeResolved(),
+      dimensionOrdered(),
+      passStarted(),
+      passCompleted(),
+      blockedStop(6),
+      passStarted(7),
+      passCompleted(8),
+      convergence(9),
+      maxStop,
+    ]);
+    expect(result.outcome).toBe('projected');
+    if (result.outcome !== 'projected') return;
+    expect(result.projection.reviewLoop.outcome).toBe('active');
+    expect(result.projection.status.state).toBe('active');
+  });
+
+  it('clears a blocked stop that comes right before a passing terminal record', () => {
+    const result = foldDeepReviewEvents([
+      runInitialized(),
+      scopeResolved(),
+      dimensionOrdered(),
+      passStarted(),
+      passCompleted(),
+      convergence(6),
+      blockedStop(7),
+      terminalGates(8, [], 'maxIterationsReached'),
+    ]);
+    expect(result.outcome).toBe('projected');
+    if (result.outcome !== 'projected') return;
+    const { reviewLoop, status } = result.projection;
+    expect(reviewLoop.blockerIds).not.toContain('dimensionCoverageGate');
+    expect(reviewLoop.blockerIds).not.toContain('gate:dimensionCoverageGate');
+    expect(reviewLoop.obligations
+      .filter((obligation) => obligation.obligationId.startsWith('gate:'))
+      .every((obligation) => obligation.status === 'resolved')).toBe(true);
+    expect(status.state).toBe('active');
+  });
+
+  it('accepts a passing terminal record after synthesis has started', () => {
+    expect(() => foldDeepReviewEvents([
+      runInitialized(),
+      scopeResolved(),
+      dimensionOrdered(),
+      passStarted(),
+      passCompleted(),
+      convergence(6),
+      synthesisStarted(7),
+      terminalGates(8),
+    ])).not.toThrow();
+  });
+
+  it('keeps a failing terminal gate record blocked', () => {
+    const result = foldDeepReviewEvents([
+      runInitialized(),
+      scopeResolved(),
+      dimensionOrdered(),
+      passStarted(),
+      passCompleted(),
+      blockedStop(6),
+      passStarted(7),
+      passCompleted(8),
+      convergence(9),
+      terminalGates(10, ['coverage']),
+    ]);
+    expect(result.outcome).toBe('projected');
+    if (result.outcome !== 'projected') return;
+    expect(result.projection.reviewLoop.outcome).toBe('blocked');
+  });
+
 });

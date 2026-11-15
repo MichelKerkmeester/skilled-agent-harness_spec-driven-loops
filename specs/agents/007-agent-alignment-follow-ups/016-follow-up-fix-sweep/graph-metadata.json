@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "follow up fix sweep",
+      "phase 16 follow up fix sweep",
+      "follow up fix sweep plan",
+      "follow up fix sweep tasks",
+      "follow up fix sweep acceptance criteria",
+      "follow up fix sweep implementation summary"
+    ],
+    "key_topics": [
+      "follow",
+      "sweep",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "records",
+      "required",
+      "gates"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/agents/orchestrate.md",
+      ".skilled/agents/markdown.md",
+      "scratch/baseline.txt",
+      "scratch/after.txt",
+      "scratch/after-fix-open.txt",
+      "scratch/after-merge.txt",
+      "scratch/sc-002-summary.txt",
+      ".claude/agents/orchestrate.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+      ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+      ".skilled/bin/agent-mirror-crosswalk.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-fix-open.txt",
+        "kind": "file",
+        "path": "scratch/after-fix-open.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-merge.txt",
+        "kind": "file",
+        "path": "scratch/after-merge.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sc-002-summary.txt",
+        "kind": "file",
+        "path": "scratch/sc-002-summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-schema.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-reducer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "cli-prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "015 records the required gates only inside `stephandleconvergence` `ifstop`",
+    "created_at": "2026-11-15T08:26:05Z",
+    "last_save_at": "2026-11-15T09:36:26.693Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:adcea5a8b166ba3b6393108016ae9d2a5b2b725cf2167a839dfd1cb3792ace43",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0494469a556de03802874832effc9b1e572683259152f3ee6af5b5aac1fc2ddb",
+      "plan.md": "10e26ce5b756d34f0cd8647b502c96487fd55352e5a39306fe517dd0f9c39028",
+      "tasks.md": "d83011c6d7dc35df168af035f467e26163125d47b7956e66761fe791addefbec",
+      "implementation-summary.md": "000fc78e2542338c3c4c7742f2dd811ccaf21331e292ee120daf71914bfedbfe"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,35 @@
+commit: 91c76c650d7 + working tree
+$ (cd R && npm test)
+exit=1
+ Test Files  2 failed | 175 passed (177)
+      Tests  2 failed | 2989 passed | 9 skipped (3000)
+ FAIL  |parallel| tests/unit/check-contract-drift.vitest.ts > check-contract-drift > passes against the real current compiled contracts
+ FAIL  |parallel| tests/unit/render-command-contract.vitest.ts > render-command-contract > renders fix BODY as compiled contract followed by legacy body for deep/ai-council
+---
+$ npm run typecheck
+exit=0
+---
+$ census
+92 24 68 []
+---
+$ parity
+      Tests  19 passed (19)
+---
+$ drift
+[CONTRACT DRIFT] command=deep/ai-council class=STALE_SOURCE_DIGEST reason=source digest mismatch for .skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md recordedSha256=ebeec546215c160d60032502bcf09c0c63d55f6b0eb35d2cb82a1cadb7ebfcf6 liveSha256=fad048cf4699ad902d349f717e8d8fda745688d29c281a98d9fb98912db85d8b
+---
+$ mirror
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+---
+$ stale strings (each should print nothing)
+stale-done
+$ wc -l orchestrate
+     599
+$ scaffold --help
+exit=0
+
+$ compile-command-contracts --command deep/ai-council --write (folder-layout.md is one of its sources)
+$ check-contract-drift
+[CONTRACT DRIFT] OK commands=3
+$ vitest check-contract-drift + render-command-contract
+      Tests  43 passed (43)

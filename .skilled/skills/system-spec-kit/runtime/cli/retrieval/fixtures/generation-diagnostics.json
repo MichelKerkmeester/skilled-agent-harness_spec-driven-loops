@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6816,
-    "ok": 19050,
+    "ok": 19071,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27493,
+  "documentsScanned": 27514,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6603e180217788066d2590e39c4427d7ab5166aafb62831ce9d42fec1a7e7b76",
+  "manifestHash": "5207e6b834686d793bf6baa8996862f08d7ebf795a35ff230cfae4f51e113bb7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43928,
+      "ok": 43966,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -6932,7 +6932,7 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-handover.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -52617,6 +52617,14 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/session-handover/opencode/session-handover.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-handover/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/hooks/session-lifecycle/claude/compact-inject.js",
       "reason": "symlink not followed"
     },
@@ -52742,14 +52750,6 @@
     },
     {
       "path": ".skilled/hooks/session-lifecycle/vibe/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/hooks/session-relaunch/opencode/session-relaunch.js",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/session-relaunch/tests/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -53434,6 +53434,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/015-review-verdict-gate-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep/scratch",
       "reason": "excluded directory"
     },
     {
@@ -54770,6 +54774,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/022-dsh-verify-iteration-executor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/023-dsh-lineage-executor-check/scratch",
       "reason": "excluded directory"
     },
     {
@@ -56434,6 +56442,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/043-vibe-handover-flag-and-live-hop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/044-in-session-handover-rename/scratch",
       "reason": "excluded directory"
     },
     {

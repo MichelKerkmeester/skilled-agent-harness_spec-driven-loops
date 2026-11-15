@@ -13,7 +13,7 @@ version: 1.17.0.0
 
 # Agent Mirror Crosswalk
 
-Six runtime trees ship the same twelve agents: `.skilled/agents/`, `.claude/agents/`,
+Six runtime trees ship the same eleven agents: `.skilled/agents/`, `.claude/agents/`,
 `.cursor/agents/`, `.pi/agents/`, `.codex/agents/` and `.devin/agents/`. Each tree speaks a
 different dialect, so a declaration made once lands six different ways — or does not land at all.
 This document is the contract between them: for each source key it names where the declaration
@@ -96,7 +96,7 @@ emitted (even empty) so a Pi loader can never fall back to its full built-in too
 
 **The `.codex` boundary.** The Codex generator owns the translation: `deriveSandboxMode()` grants
 `workspace-write` when the frontmatter grants `write`, `edit` or `bash`, and `read-only` otherwise.
-Its per-agent settings table pins the boundary for the twelve shipped agents and for two effort
+Its per-agent settings table pins the boundary for the eleven shipped agents and for two effort
 tiers, and a new agent falls through to the derivation. `sandbox_mode` is coarser than the
 permission map: it confines what the agent may touch, not which tools it may call.
 
@@ -151,11 +151,11 @@ Provenance markers exist in one tree: every `.codex` agent opens with `# Agent: 
 Four files in the Claude tree declare a model: `context.md`, `markdown.md` and the Claude-only
 `Explore.md` override declare `model: haiku`, and `prompt-improver.md` declares `model: sonnet`,
 because the `sk-prompt` Model Eligibility table denies Opus and Fable on every route.
-`.cursor` also reaches `prompt-improver.md` through its symlink.
+`.cursor` and `.devin` also reach `prompt-improver.md` through their symlinks.
 `.cursor` and `.devin` reach `context.md` and `markdown.md` through their symlinks, so they carry
 the line too, and whether either runtime honors it is untested. No other agent file
 in `.skilled`, `.claude`, `.pi`, `.cursor` or `.devin` declares a model. `.codex` pins one on all
-twelve: `model = "gpt-5.5"` with `model_reasoning_effort`, `high` for most, `low` for `context`
+eleven: `model = "gpt-6-luna"` with `model_reasoning_effort`, `high` for most, `low` for `context`
 and `medium` for `markdown`, alongside `sandbox_mode`.
 
 `Explore.md` is not a roster agent. Claude Code resolves a subagent by exact name and lets a
@@ -164,7 +164,7 @@ The roster check and the symlink sync both skip it.
 
 Model and effort are otherwise dispatch decisions, not agent declarations. A dispatched route
 passes both explicitly, and a model passed on a Claude Code Agent call wins over the file's
-`model:`, so a pin governs only invocation that reads the agent file directly.
+`model:`, so a pin governs any invocation that passes no model, dispatched or manual.
 
 ---
 
@@ -195,8 +195,8 @@ rather than widening the normalization.
 
 A dispatched route passes model and effort explicitly, so the drift surface is manual invocation
 alone. Read the silence correctly: a tree that declares no model means "no pin", not "unowned
-setting". `.codex` pins one on every agent, and the Claude tree pins `context`, `markdown`, `Explore` and `prompt-improver`. Only a
-manual invocation reads those pins; the other trees run whatever the runtime default is for the
+setting". `.codex` pins one on every agent, and the Claude tree pins `context`, `markdown`, `Explore` and `prompt-improver`. Any
+invocation that passes no model reads those pins; the other trees run whatever the runtime default is for the
 invoking session.
 Manual invokers who need a specific model or effort should pass it at invocation time instead of
 expecting an agent file to carry it.

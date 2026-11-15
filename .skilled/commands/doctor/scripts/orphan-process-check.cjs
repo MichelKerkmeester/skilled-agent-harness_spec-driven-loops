@@ -265,7 +265,7 @@ function classify(command, pathExists = () => false) {
   if (isShellExecutable) return null;
 
   const normalizedCommand = String(command).replace(/\\/g, '/');
-  const relaunchPath = normalizedCommand.indexOf('.skilled/hooks/session-relaunch/');
+  const relaunchPath = normalizedCommand.indexOf('.skilled/hooks/session-handover/');
   if (isNodeExecutable && relaunchPath >= 0 && /test|helper/i.test(normalizedCommand.slice(relaunchPath))) {
     return 'relaunch-test-helper';
   }
