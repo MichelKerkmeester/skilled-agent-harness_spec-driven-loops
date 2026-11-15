@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-11-13"
-version: 2.1.26.0
+version: 2.1.27.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -285,6 +285,8 @@ Doctor command scenarios for system-spec-kit now live in the [central manual tes
 | compaction-history-lookup | Compaction history lookup: fresh locator, missing or stale locator, unsupported runtime, printed command and the 30-minute TTL | [compaction-history-lookup](plugins-and-hooks/compaction-history-lookup.md) | [compaction-history-lookup](../feature-catalog/context-preservation/compaction-history-lookup.md) |
 | compaction-history-recall-baseline-conversation | Compaction history recall baseline conversation: the same recall task with the lookup CLI absent, recording whether a dropped code is recovered without it | [compaction-history-recall-baseline-conversation](plugins-and-hooks/compaction-history-recall-baseline-conversation.md) | [compaction-history-lookup](../feature-catalog/context-preservation/compaction-history-lookup.md) |
 | compaction-history-recall-conversation | Compaction history recall conversation: a code printed once and dropped by compaction is recovered through the offered lookup, and whether the model ran it unprompted is recorded | [compaction-history-recall-conversation](plugins-and-hooks/compaction-history-recall-conversation.md) | [compaction-history-lookup](../feature-catalog/context-preservation/compaction-history-lookup.md) |
+| hop-recall-baseline-conversation | Hop recall baseline conversation: the same hop with the lookup CLI hidden, recording whether a receiver recovers a code the handoff note left out | [hop-recall-baseline-conversation](plugins-and-hooks/hop-recall-baseline-conversation.md) | [session-relaunch-loop](../feature-catalog/context-preservation/session-relaunch-loop.md) |
+| hop-recall-conversation | Hop recall conversation: a receiver claims a handoff note that omits a code, and whether it reaches for the history lookup unprompted is recorded | [hop-recall-conversation](plugins-and-hooks/hop-recall-conversation.md) | [session-relaunch-loop](../feature-catalog/context-preservation/session-relaunch-loop.md) |
 | packet-purpose-resume | Packet purpose on resume: the brief's Purpose row quotes the packet, its phase parent or its goal.md, and is left out when none states one | [packet-purpose-resume](plugins-and-hooks/packet-purpose-resume.md) | [packet-purpose-carry](../feature-catalog/context-preservation/packet-purpose-carry.md) |
 | packet-purpose-relaunch | Packet purpose on relaunch: the handoff note's Goal opens with the purpose line | [packet-purpose-relaunch](plugins-and-hooks/packet-purpose-relaunch.md) | [packet-purpose-carry](../feature-catalog/context-preservation/packet-purpose-carry.md) |
 | packet-purpose-claude-compaction | Packet purpose after a Claude compaction: the recovered context opens with the purpose and problem lines | [packet-purpose-claude-compaction](plugins-and-hooks/packet-purpose-claude-compaction.md) | [packet-purpose-carry](../feature-catalog/context-preservation/packet-purpose-carry.md) |
