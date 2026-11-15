@@ -74,7 +74,8 @@
       ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
       ".skilled/skills/sk-prompt/SKILL.md",
       ".skilled/agents/README.txt",
-      ".skilled/bin/agent-mirror-crosswalk.md"
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".skilled/CROSS-CLI.md"
     ],
     "entities": [
       {
@@ -150,6 +151,12 @@
         "source": "derived"
       },
       {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -188,16 +195,16 @@
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-15T19:36:05.664Z",
+    "last_save_at": "2026-11-15T19:51:31.662Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:97e264dc9385fbd6b7bf2f47cd999123dd5934d35625e1a847599ea862dbc657",
+    "source_fingerprint": "sha256:cdc5052a3e9afe19c57e46bdb41e670896a240677e6f77f890b68d20e5656b96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d73a5a62c3b93e86f39d2db6a32f10fde63ab9253aad6a847c1f310498a0e811"
+      "spec.md": "06aeb2c61c054c9194aff4eb6ce3c8397a7088d6aa26b689e594cd54316bd057"
     },
     "last_active_child_id": "agents/007-agent-alignment-follow-ups/029-review-verdict-script",
     "last_active_at": "2026-11-15T19:35:57.991Z"
