@@ -36,3 +36,12 @@ exit 0
 $ cat specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm/scratch/runs/*.jsonl | jq -s 'map(has("prompt")) | any'
 false
 exit 0
+$ git diff --stat 83723f699d f2aff786c0 -- . ':!specs' with the eleven direct-call phase files excluded
+ .../runtime/scripts/routing-accuracy/README.md     |  18 +-
+ .../routing-accuracy/prepare-behaviour-arena.mjs   |  13 +-
+ .../routing-accuracy/run-command-behaviour.mjs     | 181 +++++-
+ .../routing-accuracy/score-command-transcripts.mjs | 263 +++++++-
+ .../tests/command-behaviour-guards.vitest.ts       | 281 +++++++-
+ .../tests/command-transcript-score.vitest.ts       | 705 ++++++++++++++++++++-
+ 6 files changed, 1405 insertions(+), 56 deletions(-)
+exit 0
