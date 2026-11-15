@@ -3,7 +3,7 @@
 import glob, json, os, re, sys
 
 project_dir, start_ms, notes_dir, code, question = sys.argv[1], int(sys.argv[2]), sys.argv[3], sys.argv[4], sys.argv[5]
-SEED = '[session-relaunch] claim and continue handoff'
+SEED = '[session-handover] claim and continue handoff'
 
 def load(path):
     rows = []
@@ -55,7 +55,7 @@ if receiver:
         tools = [json.dumps(b.get('input', {})) for r in after if r.get('type') == 'assistant'
                  for b in ((r.get('message') or {}).get('content') or [])
                  if isinstance(b, dict) and b.get('type') == 'tool_use']
-        out['lookup_attempted'] = int(any('history/cli.js' in t for t in tools))
+        out['lookup_attempted'] = int(any('history/cli.js' in t or 'history-lookup.mjs' in t for t in tools))
         out['transcript_read'] = int(any('.claude/projects' in t or '.jsonl' in t for t in tools))
         replies = [text_of(r) for r in after if r.get('type') == 'assistant' and text_of(r).strip()]
         out['native_recall'] = int(any(re.search(r'searched memor|recalled|searched (the )?(session|conversation)', t, re.I) for t in replies))

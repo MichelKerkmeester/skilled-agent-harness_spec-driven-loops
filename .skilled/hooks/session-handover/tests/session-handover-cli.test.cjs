@@ -3376,3 +3376,112 @@ test('the usage text names the goal packet on claim and consume', (t) => {
   assert.match(result.stdout, /print its body, then the goal packet it carries/);
   assert.match(result.stdout, /its spec folder and its goal packet/);
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLAIM HISTORY LOOKUP
+// ─────────────────────────────────────────────────────────────────────────────
+
+const RECEIVER_SESSION_ID = 'session-cli-00000002';
+const LOOKUP_SENTENCE = 'Use it for a detail this note does not spell out, before you guess.';
+
+function setNoteLine(handoffPath, pattern, line) {
+  const text = fs.readFileSync(handoffPath, 'utf8');
+  fs.writeFileSync(handoffPath, text.replace(pattern, line));
+}
+
+// A claim mints the sender's locator from the folder the note records, so a note written by a
+// session in this checkout names it, and the receiver claims from that same folder.
+function claimableHandoff(sandbox) {
+  const handoffPath = writeHandoff(sandbox);
+  const workspace = fs.realpathSync(sandbox.repoRoot);
+  setNoteLine(handoffPath, /^cwd: .*$/m, `cwd: ${workspace}`);
+  markCheckoutRoot(sandbox);
+  return { handoffPath, workspace };
+}
+
+function prepareInLoop(sandbox, handoffPath) {
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+  const prepared = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+  assert.equal(prepared.status, 0, prepared.stderr);
+}
+
+test('claim prints the history lookup section for the sender after the note body', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath } = claimableHandoff(sandbox);
+  writeClaudeSessionLog(sandbox, SESSION_ID);
+  prepareInLoop(sandbox, handoffPath);
+
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  const bodyAt = result.stdout.indexOf('Finish the relaunch loop');
+  const sectionAt = result.stdout.indexOf('## History Lookup');
+  const completeAt = result.stdout.indexOf('When the remaining work is done');
+  assert.ok(bodyAt >= 0 && sectionAt > bodyAt, result.stdout);
+  assert.ok(completeAt > sectionAt, result.stdout);
+  assert.ok(result.stdout.includes(`--session '${SESSION_ID}'`), result.stdout);
+  assert.ok(result.stdout.includes(LOOKUP_SENTENCE), result.stdout);
+});
+
+test('claim keeps the history lookup section inside the offer budget', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath } = claimableHandoff(sandbox);
+  writeClaudeSessionLog(sandbox, SESSION_ID);
+  prepareInLoop(sandbox, handoffPath);
+
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  const sectionAt = result.stdout.indexOf('## History Lookup');
+  const sentenceAt = result.stdout.indexOf(LOOKUP_SENTENCE);
+  assert.ok(sectionAt >= 0 && sentenceAt > sectionAt, result.stdout);
+  const section = result.stdout.slice(sectionAt, sentenceAt).trimEnd();
+  assert.ok(section.length <= 600, `${section.length}: ${section}`);
+});
+
+test('claim mints the sender locator again so a stale stored one is fresh at claim time', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath, workspace } = claimableHandoff(sandbox);
+  writeClaudeSessionLog(sandbox, SESSION_ID);
+  prepareInLoop(sandbox, handoffPath);
+  const statePath = hookStatePath(sandbox, workspace, SESSION_ID);
+  const stored = readHookState(sandbox, workspace, SESSION_ID);
+  stored.historyLocator.mintedAt = new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString();
+  fs.writeFileSync(statePath, JSON.stringify(stored));
+
+  const claimedAt = Date.now();
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /## History Lookup/);
+  const rewritten = JSON.parse(fs.readFileSync(statePath, 'utf8')).historyLocator;
+  const ageMs = Date.parse(rewritten.mintedAt) - claimedAt;
+  assert.ok(Math.abs(ageMs) < 60 * 1000, `${rewritten.mintedAt} at ${claimedAt}`);
+});
+
+test('claim prints no history lookup section when the sender session log is gone', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath } = claimableHandoff(sandbox);
+
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Finish the relaunch loop/);
+  assert.doesNotMatch(result.stdout, /## History Lookup/);
+  assert.ok(!result.stdout.includes(LOOKUP_SENTENCE), result.stdout);
+});
+
+test('claim prints no history lookup section for a runtime with no locator contract', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath } = claimableHandoff(sandbox);
+  setNoteLine(handoffPath, /^runtime: .*$/m, 'runtime: cursor');
+  writeClaudeSessionLog(sandbox, SESSION_ID);
+
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Finish the relaunch loop/);
+  assert.doesNotMatch(result.stdout, /## History Lookup/);
+});

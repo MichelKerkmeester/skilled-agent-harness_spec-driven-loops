@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] A locator stored with `mintedAt` three hours before the claim still redeems, because the claim rewrote it to the claim time.
 - [ ] A claim that finds no stored locator exits 0, prints the note body and prints no `## History Lookup` heading.
 - [ ] `rg -c '^[0-9]+\. ' .skilled/commands/speckit/handoff.md` prints 9.
-- [ ] `node --test .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs` prints `ℹ fail 0`.
+- [ ] `node --test .skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` prints `ℹ fail 0`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,8 +76,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning docs authored | Done | `spec.md`, `plan.md`, `tasks.md` and this file filled; `validate.sh --strict --quiet` prints `RESULT: PASSED` |
-| Claim output measured | Done | `rg -n "printHandoffBody|completeCommandFor|Goal packet" .skilled/hooks/session-relaunch/bin/session-relaunch.cjs` prints lines 350, 644, 706, 711 and 717 |
-| Lookup section absent from the handover today | Done | `rg -n "History Lookup|buildHistoryLookupSection" .skilled/hooks/session-relaunch/ .skilled/commands/speckit/handoff.md` exits 1 with no output |
+| Claim output measured | Done | `rg -n "printHandoffBody|completeCommandFor|Goal packet" .skilled/hooks/session-handover/bin/session-handover.cjs` prints lines 350, 644, 706, 711 and 717 |
+| Lookup section absent from the handover today | Done | `rg -n "History Lookup|buildHistoryLookupSection" .skilled/hooks/session-handover/ .skilled/commands/speckit/handoff.md` exits 1 with no output |
 | Implementation | Pending | Tasks T005 to T010 |
 
 ### Deviations and findings

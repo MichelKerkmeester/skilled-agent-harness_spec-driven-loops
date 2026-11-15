@@ -875,14 +875,18 @@ function loadHistoryRuntime() {
       'history',
       'locator-digest.js',
     )),
-    offer: require(path.join(
-      HISTORY_RUNTIME_DIST,
-      'hooks',
-      'lib',
-      'history',
-      'lookup-offer.js',
-    )),
+    offer: loadLookupOffer(),
   };
+}
+
+function loadLookupOffer() {
+  return require(path.join(
+    HISTORY_RUNTIME_DIST,
+    'hooks',
+    'lib',
+    'history',
+    'lookup-offer.js',
+  ));
 }
 
 /**
@@ -934,6 +938,57 @@ function mintHandoverLocator({ runtime, sessionId, cwd = process.cwd(), now } = 
       return result;
     });
     return kept ? (stored ?? locator) : null;
+  } catch {
+    return null;
+  }
+}
+
+// The lookup CLI compares the folder it runs in with the locator's workspace by real path, so
+// a checkout reached through a link still counts as the same one, and a path that cannot be
+// resolved never matches.
+function sameCheckout(left, right) {
+  try {
+    return fs.realpathSync(left) === fs.realpathSync(right);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Build the history lookup section a claim prints for the session that wrote the note.
+ *
+ * The locator is minted again at claim time rather than reused from prepare, because the
+ * lookup CLI refuses a locator older than half an hour: a fresh mint is what lets a note
+ * claimed hours after it was prepared still redeem. The printed command moves to the
+ * locator's workspace, so the section is withheld unless that workspace is the receiver's
+ * own checkout, which is the only place the command can run.
+ *
+ * @param {Object} options - The claimed note and the receiver.
+ * @param {Object<string, string>} options.frontmatter - The note's parsed frontmatter.
+ * @param {string} [options.cwd=process.cwd()] - Folder the claiming session runs in.
+ * @param {Date|number|string} [options.now] - Clock value for a deterministic locator.
+ * @returns {string|null} The markdown section, or null when no lookup could run.
+ */
+function handoverLookupSection({ frontmatter, cwd = process.cwd(), now } = {}) {
+  try {
+    const sessionId = frontmatter?.session_id;
+    const runtime = frontmatter?.runtime;
+    const noteCwd = frontmatter?.cwd;
+    if (
+      !nonEmptyString(sessionId)
+      || !nonEmptyString(runtime)
+      || !nonEmptyString(noteCwd)
+    ) {
+      return null;
+    }
+    const locator = mintHandoverLocator({ runtime, sessionId, cwd: noteCwd, now });
+    if (locator === null) return null;
+    const offer = loadLookupOffer();
+    const placement = offer.placeLookup(cwd);
+    if (placement === null || !sameCheckout(placement.workspace, locator.workspace)) {
+      return null;
+    }
+    return offer.buildHistoryLookupSection(locator, true);
   } catch {
     return null;
   }
@@ -2360,6 +2415,7 @@ module.exports = {
   resolveSessionSettings,
   recordGoalPacket,
   mintHandoverLocator,
+  handoverLookupSection,
   parentMapFromTable,
   stateDir,
   inspectStateDir,

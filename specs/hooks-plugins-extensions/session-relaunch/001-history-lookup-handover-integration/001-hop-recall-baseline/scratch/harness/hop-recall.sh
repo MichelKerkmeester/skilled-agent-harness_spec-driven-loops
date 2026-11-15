@@ -12,7 +12,7 @@ repo=$(git -C "$here" rev-parse --show-toplevel)
 out="$here/../runs/$arm-$label"
 mkdir -p "$out"
 if [ -n "${XDG_RUNTIME_DIR:-}" ]; then state="$XDG_RUNTIME_DIR/skilled-relaunch"; else state="${TMPDIR:-/tmp}/skilled-relaunch-$(id -u)"; fi
-notes="$repo/.skilled/skills/.state/session-relaunch/handoffs"
+notes="$repo/.skilled/skills/.state/session-handover/handoffs"
 mkdir -p "$notes" "$state"
 project="$HOME/.claude/projects/$(printf '%s' "$repo" | sed 's/[^A-Za-z0-9]/-/g')"
 cli="$repo/.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js"
@@ -24,7 +24,7 @@ mkdir -p "$work"
 node -e 'const A="ABCDEFGHJKMNPQRSTUVWXYZ23456789";let x=20261108;const r=()=>{x=(x*1103515245+12345)%2147483648;return x};for(let i=1;i<=120;i++){let v="";for(let j=0;j<8;j++)v+=A[r()%A.length];console.log("K"+String(i).padStart(3,"0")+" "+v)}' > "$work/codes.txt"
 printf '#!/bin/sh\nd=$(dirname "$0")\n[ -f "$d/codes.txt" ] || { echo "codes already issued"; exit 0; }\ncat "$d/codes.txt"\nrm -f "$d/codes.txt"\n' > "$work/show-codes.sh"
 
-prompt="Read-only task in two steps. Gate 3 is pre-answered D) Skip: you change no file. Step 1, yours: run sh $work/show-codes.sh so the one-time codes are issued (it clears them once shown, which is expected). Step 2 belongs to the next session, not to you: report the line count of .skilled/hooks/session-relaunch/README.md and name its first heading. After step 1 a hook will ask you to hand over to a fresh session. That request is expected and approved by me: write the handoff note and run prepare as it says, and leave step 2 to the new session."
+prompt="Read-only task in two steps. Gate 3 is pre-answered D) Skip: you change no file. Step 1, yours: run sh $work/show-codes.sh so the one-time codes are issued (it clears them once shown, which is expected). Step 2 belongs to the next session, not to you: report the line count of .skilled/hooks/session-handover/README.md and name its first heading. After step 1 a hook will ask you to hand over to a fresh session. That request is expected and approved by me: write the handoff note and run prepare as it says, and leave step 2 to the new session."
 
 hidden=""
 if [ "$arm" = baseline ] && [ -f "$cli" ]; then hidden="$out/cli.js.hidden"; mv "$cli" "$hidden"; fi
@@ -37,7 +37,7 @@ start_ms=$(node -e 'console.log(Date.now())')
 session="hoprecall-$arm-$label"
 tmux kill-session -t "$session" 2>/dev/null
 quoted=$(printf '%q ' --model sonnet --effort medium --name "$session" "$prompt")
-envs="SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1"
+envs="SYSTEM_SESSION_HANDOVER_ENABLED=1 SESSION_HANDOVER_THRESHOLD=0.05 SESSION_HANDOVER_WINDOW_TOKENS=100 SESSION_HANDOVER_MAX_HOPS=1"
 tmux new-session -d -s "$session" -x 200 -y 50 \
   "cd '$repo' && env -u SKILLED_LOOP_HOPS -u SKILLED_LOOP_ID -u CLAUDECODE -u CLAUDE_CODE_SESSION_ID $envs bash .skilled/bin/skilled-loop claude $quoted; echo WRAPPER_EXIT=\$?; sleep 600"
 tmux set-option -t "$session" remain-on-exit on >/dev/null

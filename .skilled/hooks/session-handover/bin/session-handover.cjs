@@ -709,6 +709,19 @@ function claim(args) {
   const claimed = core.claimHandoff(handoffPath, { sessionId });
   hopHistory.recordHop('claimed', handoffPath, { session: sessionId });
   printHandoffBody(handoffPath);
+  // The lookup is a convenience for the receiver, so a note whose sender kept no locator, or
+  // a checkout that cannot run the command, leaves the claim output exactly as it was.
+  try {
+    const lookupSection = core.handoverLookupSection({
+      frontmatter: claimed.frontmatter,
+      cwd: process.cwd(),
+    });
+    if (lookupSection !== null) {
+      process.stdout.write(
+        `\n${lookupSection}\n\nUse it for a detail this note does not spell out, before you guess.\n`,
+      );
+    }
+  } catch {}
   // The claim instructions reach some runtimes once, with the seed, and a model that answers
   // straight from the note body can drop their last step. This output is the text it reads
   // right before it answers, so the closing step is repeated here.

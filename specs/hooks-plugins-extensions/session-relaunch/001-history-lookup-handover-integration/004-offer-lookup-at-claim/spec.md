@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/399-hook-feature-subtracks` |
 | **Parent Spec** | ../spec.md |
@@ -57,7 +57,7 @@ This is **Phase 4** of the Move the session history lookup out of the compaction
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A session that claims a handoff receives the note's four sections, the complete command and the goal packet, and nothing else (`session-relaunch.cjs:706-720`). The sending session's transcript is still readable by the runtime reader, and the lookup CLI redeems it for whoever holds the locator, because it compares the `--session` argument with the stored locator and never asks who is calling (`cli.ts:540-548`). The claim output prints no such command, so a detail the sender did not write down is unreachable and the receiver can only guess or ask.
+A session that claims a handoff receives the note's four sections, the complete command and the goal packet, and nothing else (`session-handover.cjs:706-720`). The sending session's transcript is still readable by the runtime reader, and the lookup CLI redeems it for whoever holds the locator, because it compares the `--session` argument with the stored locator and never asks who is calling (`cli.ts:540-548`). The claim output prints no such command, so a detail the sender did not write down is unreachable and the receiver can only guess or ask.
 
 ### Purpose
 A session that claims a handoff can look up the sending session's earlier turns from the claim output, on the same runtime and for the immediate predecessor only.
@@ -67,14 +67,14 @@ A session that claims a handoff can look up the sending session's earlier turns 
 ### Measured Behavior
 
 ```text
-$ rg -n "printHandoffBody|completeCommandFor|Goal packet" .skilled/hooks/session-relaunch/bin/session-relaunch.cjs
+$ rg -n "printHandoffBody|completeCommandFor|Goal packet" .skilled/hooks/session-handover/bin/session-handover.cjs
 350:function printHandoffBody(filePath) {
 644:      + `\`${nudge.completeCommandFor(handoffPath, USAGE_PROGRAM)}\`.\n`,
 706:  printHandoffBody(handoffPath);
 711:    `\nWhen the remaining work is done, run \`${nudge.completeCommandFor(handoffPath, nudge.CLI_COMMAND)}\``
 717:      `\nGoal packet: ${goalPacket} (the goal the sending session worked under;`
 
-$ rg -n "History Lookup|buildHistoryLookupSection" .skilled/hooks/session-relaunch/ .skilled/commands/speckit/handoff.md
+$ rg -n "History Lookup|buildHistoryLookupSection" .skilled/hooks/session-handover/ .skilled/commands/speckit/handoff.md
 $ echo $?
 1
 ```
@@ -103,10 +103,10 @@ The `claim` function prints the note body at line 706, the complete command at l
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs` | Modify | A re-stamp helper that rewrites `mintedAt` and `provenance.capturedAt` on the sender's stored locator and persists it through the hook-state writer. |
-| `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs` | Modify | `claim` re-mints the sender's locator, builds the section and prints it after the note body, all inside a fail-open guard. |
+| `.skilled/hooks/session-handover/lib/relaunch-core.cjs` | Modify | A re-stamp helper that rewrites `mintedAt` and `provenance.capturedAt` on the sender's stored locator and persists it through the hook-state writer. |
+| `.skilled/hooks/session-handover/bin/session-handover.cjs` | Modify | `claim` re-mints the sender's locator, builds the section and prints it after the note body, all inside a fail-open guard. |
 | `.skilled/commands/speckit/handoff.md` | Modify | One receiver step in section 5 that points at the printed lookup command. |
-| `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs` | Modify | Claim cases for the section, its position, the re-minted timestamp and the fail-open path. |
+| `.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs` | Modify | Claim cases for the section, its position, the re-minted timestamp and the fail-open path. |
 <!-- /ANCHOR:scope -->
 
 ---
