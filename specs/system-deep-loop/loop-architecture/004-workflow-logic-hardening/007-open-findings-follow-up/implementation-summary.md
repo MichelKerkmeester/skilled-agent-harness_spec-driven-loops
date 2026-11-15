@@ -60,7 +60,7 @@ The six findings phase 006 left open are all fixed. A runner can now hand the de
 | `.skilled/skills/system-spec-kit/package.json` | Modified | `build` runs the runtime prepare and finalize steps around the compile |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/test-dist-freshness.sh` | Modified | Backs up and restores the real freshness records it used to delete |
 | `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modified | The coverage sentence |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/` docs, `scripts/opencode-setup.sh` and two changelogs | Modified, Created | Verified on 2.3.0, `opencode auth` and `opencode debug agents`, then the install pin moved to 2.3.0, version 1.5.12.0 |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/` docs and `changelog/v1.5.12.0.md` | Modified, Created | `opencode auth` and `opencode debug agents` on 2.3.0, version 1.5.12.0. Main already verified 2.3.0 and moved the install pin in its own 1.5.11.0 |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | Modified | Two phrase boosts |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl` | Modified | The two prompts pinned as golden cases |
 <!-- /ANCHOR:what-built -->
@@ -82,8 +82,14 @@ Each fix started with a reproduction that failed. The stdin test failed 4 of 5 c
 |----------|-----|
 | Phrase boosts with a bounded rival penalty, not a lane rule | Both rivals saturate the explicit and lexical lanes, and the lane already uses this pattern for `findings stop changing` and `:review:auto`. Only prompts that contain the phrase move |
 | No Python mirror change | `skill_advisor.py` already ranks both prompts on target |
-| The install pin in `opencode-setup.sh` moved to 2.3.0 | The operator approved it after the skill was verified there. 2.3.0 is the `latest` tag and keeps the `bin/opencode.exe` path, so the link target is unchanged |
+| The install pin in `opencode-setup.sh` is 2.3.0 | The operator approved the move. Main made the same change in its own 1.5.11.0, so after the merge the pin comes from main and this branch adds no change to the script |
 | No advisor version bump | Earlier scorer fixes such as `acf206285e` did not bump it |
+| The merge with main keeps the council retirement and ports main's council-agent changes | The operator chose it. The agent takes main's Depth 1 default, simulated vantage lenses and Lead Thresholds table, and keeps its inline persistence sections, because the mode references main moved them into are retired |
+| Main's one-round-per-call council model is not ported | It relies on `/deep:ai-council` running the round loop. `/speckit:ai-council` dispatches the agent once, so one round per call would end every council after its first round |
+| Main's single-executor DeepSeek Harness branch moves into `dispatch-iteration.cjs` | This branch replaced the inline workflow heredocs with that script, so the harness home, completion check, spec-gate env and shorter child timeout live there, with a `--spec-folder` flag the harness alone needs |
+| Main's `:confirm` unsupported-executor guard is not ported | The single workflow file runs every executor kind in both modes through the script, so the guard would refuse kinds that work |
+| Main's stdin fix in the runtime scripts gives way to this branch's | Both fixed the same eager read. This branch lets the child inherit stdin, which also covers `upsert`, and the stdin test checks all four |
+| The root README's council text moves from Deep Loop to Spec Kit | The operator noted the README still listed the council under Deep Loop. The sub-section now sits in the Spec Kit section and the agent entry in the agent orchestration group |
 <!-- /ANCHOR:decisions -->
 
 ---
