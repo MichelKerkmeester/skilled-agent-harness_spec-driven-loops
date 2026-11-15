@@ -40,13 +40,12 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      ".skilled/commands/deep/assets/deep-review-confirm.yaml",
       ".skilled/agents/orchestrate.md",
       ".skilled/agents/markdown.md",
       "scratch/baseline.txt",
       "scratch/after.txt",
       "scratch/after-fix-open.txt",
+      "scratch/after-merge.txt",
       "scratch/sc-002-summary.txt",
       ".claude/agents/orchestrate.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
@@ -54,7 +53,8 @@
       ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
       ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
-      ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md"
+      ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+      ".skilled/bin/agent-mirror-crosswalk.md"
     ],
     "entities": [
       {
@@ -88,18 +88,6 @@
         "source": "derived"
       },
       {
-        "name": "deep-review-auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-confirm.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-        "source": "derived"
-      },
-      {
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".skilled/agents/orchestrate.md",
@@ -127,6 +115,12 @@
         "name": "after-fix-open.txt",
         "kind": "file",
         "path": "scratch/after-fix-open.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-merge.txt",
+        "kind": "file",
+        "path": "scratch/after-merge.txt",
         "source": "derived"
       },
       {
@@ -172,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "015 records the required gates only inside `stephandleconvergence` `ifstop`",
     "created_at": "2026-11-15T08:26:05Z",
-    "last_save_at": "2026-11-15T09:15:00.949Z",
+    "last_save_at": "2026-11-15T09:36:26.693Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2e82ce2631ed9b268a8b9d402b6db9f4ddf032fc22517cf2784a22473a27e93",
+    "source_fingerprint": "sha256:adcea5a8b166ba3b6393108016ae9d2a5b2b725cf2167a839dfd1cb3792ace43",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0494469a556de03802874832effc9b1e572683259152f3ee6af5b5aac1fc2ddb",
       "plan.md": "10e26ce5b756d34f0cd8647b502c96487fd55352e5a39306fe517dd0f9c39028",
-      "tasks.md": "7b0e688d1ee6e8455155cb3b1e97c7f1fd49e27c8f5f5c60162c35573b597e1e",
-      "implementation-summary.md": "3028b00854391e4e19037dc504730c5a38397a950ed23c7792da7a509322c6bc"
+      "tasks.md": "d83011c6d7dc35df168af035f467e26163125d47b7956e66761fe791addefbec",
+      "implementation-summary.md": "000fc78e2542338c3c4c7742f2dd811ccaf21331e292ee120daf71914bfedbfe"
     },
     "last_active_at": null
   }

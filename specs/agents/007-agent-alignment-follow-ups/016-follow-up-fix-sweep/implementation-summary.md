@@ -8,22 +8,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "agents/007-agent-alignment-follow-ups/016-follow-up-fix-sweep"
-    last_updated_at: "2026-11-15T09:15:00Z"
+    last_updated_at: "2026-11-15T09:36:26Z"
     last_updated_by: "generate-context"
     recent_action: "Built and verified the phase"
-    next_safe_action: "Commit and push complete; no open item remains in packet 007"
+    next_safe_action: "Commit and push complete; open a follow-up packet for the two recorded upstream gaps"
     packet_purpose: "Purpose: Every deep-review run that reaches synthesis gets a verdict from a terminal gate record with its true stop reason, and the docs the earlier children touched say what the files now do."
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:1fdd8787bf76b579fabc02ecf5434d7b5842bee87fd32c68aef90440af18d61a"
+      fingerprint: "sha256:72765fc2597828c1165adaa3a7b0708150209f565dd2aab5d2acea10a01b8dce"
       session_id: "scaffold-016-follow-up-fix-sweep"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "a84f4eed-26f9-49ac-91eb-e2375c207e96"
       workspace: "/Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups"
-      savedAt: "2026-11-15T09:15:00Z"
+      savedAt: "2026-11-15T09:36:26Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -99,6 +99,7 @@ A fresh Fable 5.2 review at medium effort read each open item and proposed the f
 | A passing terminal record clears the blocked outcome (reverses the earlier comment-only choice) | A repro showed `synthesis_started` throws `blocked to converging` after a legal recovery; only gates still failing at the terminal stop count |
 | Outcome `converged` only when the record's stop reason is `converged` | A max-iterations stop that passes its gates did not converge; its outcome goes to `active` |
 | A passing record returns the status to active only from `blocked` | From `converging` that transition is forbidden; any other state keeps its status |
+| Upstream's deletion of the council skill wins in the merge, and the 016 YAML changes are ported into its merged `deep-review.yaml` | Operator answer 2026-11-15: "Port and push". The skill was retired in `adbba5a06a9`; the auto and confirm workflows became one file |
 | I applied the @review round-1 fixes myself [DEVIATION] | Each was a few lines named exactly by the review; the mutation checks prove the tests |
 | I wrote the prerequisites playbook change myself [DEVIATION] | Its evidence block needed the command's real output from this run |
 | I applied the agent edits to the `.claude` orchestrate fork by hand [DEVIATION] | The fork script does not reproduce that fork at HEAD (20 lines differ) |
@@ -109,13 +110,16 @@ A fresh Fable 5.2 review at medium effort read each open item and proposed the f
 <!-- ANCHOR:verification -->
 ## Verification
 
-Acceptance criteria: 9 total, 9 Met, none waived ([acceptance-criteria.md](acceptance-criteria.md)).
+Acceptance criteria: 10 total, 10 Met, none waived ([acceptance-criteria.md](acceptance-criteria.md)).
 
 | Check | Result |
 |-------|--------|
 | `npm run typecheck` in the runtime | exit 0 |
 | `npm test` in the runtime, after the open-item fixes | 2996 passed, 0 failed (`scratch/after-fix-open.txt`) |
 | @review gate on the open-item fixes, round 1 | REQUESTED_CHANGES 88/100: one P1 (DAC-001 objective reversed) and three P2s; all four fixed |
+| Merge of `origin/main` (`scratch/after-merge.txt`) | 3016 passed, 0 failed; typecheck 0; census 92/25/67, where the new spoken stem `deep_research.run_restarted` is upstream's (`f921b2c65b0`); drift `OK commands=2`; mirrors in sync |
+| @review gate on the merge port, round 1 | REQUESTED_CHANGES 72/100. Fixed: the stop-reason rule now reads `reason`, because a manual stop after a blocked or stuck pass was recorded as `converged`; the override gate's wording names its `run_first`. Two P1/P2 items predate the merge and are listed under Known Limitations |
+| @review gate on the merge port, round 2 | APPROVED 85/100, no findings; known limitations 2 and 3 do not block the push |
 | @review gate on the open-item fixes, round 2 | APPROVED 95/100; its one P2 (mirror count in `output-schema.md`) fixed |
 | `npm test` in the runtime, first pass | 2989 passed; the 2 failures were the stale deep-ai-council contract digest and pass 43/43 after the recompile (baseline 2990 passed, 0 failed) |
 | `check-contract-drift.cjs` | `OK commands=3` |
@@ -133,7 +137,9 @@ Acceptance criteria: 9 total, 9 Met, none waived ([acceptance-criteria.md](accep
 ## Known Limitations
 
 1. **The gates are still judged by the executing agent.** The workflows state the three gate rules; the schema can refuse a record that contradicts itself but cannot check a judgment.
-2. **The fork script misses the orchestrate fork.** `regen-claude-fork.sh` does not reproduce `.claude/agents/orchestrate.md` at HEAD, so a later edit there needs the same hand step.
+2. **The duration stop writes no terminal gate record.** This was already on upstream main. After the 120-minute default, `step_check_max_duration` jumps to `phase_synthesis` without writing the record, so the verdict can PASS while a gate fails. Fixing it needs a decision: add `maxDurationReached` to the record's stop-reason enum, or map it to an existing value.
+3. **Manual stops skip verdict derivation.** This was already on upstream main. Each `on_C` exit jumps to `gate_pre_synthesis`, which skips `step_hydrate_summary_metrics` and `step_derive_verdict`, so the new record is written but never turned into a verdict.
+4. **The fork script misses the orchestrate fork.** `regen-claude-fork.sh` does not reproduce `.claude/agents/orchestrate.md` at HEAD, so a later edit there needs the same hand step.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -6,18 +6,21 @@
     "phase",
     "follow-up-fix-sweep"
   ],
-  "lastUpdated": "2026-11-15T09:15:00.949Z",
+  "lastUpdated": "2026-11-15T09:36:26.693Z",
   "specId": "016",
   "folderSlug": "follow-up-fix-sweep",
   "parentChain": [
     "agents",
     "007-agent-alignment-follow-ups"
   ],
-  "memorySequence": 4,
+  "memorySequence": 7,
   "memoryNameHistory": [
     "15-11-26_09-44__every-deep-review-stop-path-that-reaches.md",
     "15-11-26_09-57__fixed-the-two-open-items-after-016-the-council.md",
     "15-11-26_10-10__fixed-the-two-open-items-after-016-and-the-review.md",
-    "15-11-26_10-14__fixed-the-two-open-items-after-016-plus-both.md"
+    "15-11-26_10-14__fixed-the-two-open-items-after-016-plus-both.md",
+    "15-11-26_10-28__merged-origin-main-council-skill-retired-upstream.md",
+    "15-11-26_10-34__merged-origin-main-and-ported-016-yaml-changes.md",
+    "15-11-26_10-36__merged-origin-main-ported-016-yaml-changes-into.md"
   ]
 }

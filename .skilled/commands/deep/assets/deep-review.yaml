@@ -1140,7 +1140,7 @@ workflow:
               Evaluate all three fresh at this stop, even when an earlier blocked stop recorded failures.
               terminal_gate_results_json = JSON array of exactly three rows {"gateId":"evidence"|"scope"|"coverage","status":"pass"|"fail","reasonCode":"<short code such as all-findings-cited or missing-dimensions>","evidenceDigest":"<64 lowercase hex sha256 of the evidence summary for that gate>"}
               failed_required_gate_ids = JSON array of the gateIds whose status is fail, in the order evidence, scope, coverage; [] when all pass
-              terminal_stop_reason = the run's stopReason (or reason) when it is maxIterationsReached, manualStop or error, else "converged"
+              terminal_stop_reason = reason when it is maxIterationsReached, manualStop or error, else "converged". Read reason, never stopReason: every manual stop sets reason to manualStop while stopReason may still hold blockedStop or stuckRecovery
             append_jsonl: '{"stem":"deep_review.terminal_gates_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"stopReason":"{terminal_stop_reason}","gateResults":{terminal_gate_results_json},"failedRequiredGateIds":{failed_required_gate_ids},"appendPosition":{current_iteration}}}'
             log: "Terminal gates recorded at stop {terminal_stop_reason}. Failed required gates: {failed_required_gate_ids}"
           branch_on: "convergence_mode == 'divergent' AND stop_decision.reasonDetail == 'all_dimensions_clean'"
@@ -1264,7 +1264,7 @@ workflow:
                     type: approval_gate
                     purpose: "Offer the audited operator override when a failed pivot is recoverable"
                     condition: "Runs only when pivot_result.failedEvent.recoverableByOverride == true AND pivot_result.agreement.reason == 'insufficient_endorsement'. Otherwise this gate is skipped and the branch fails closed as written."
-                    order: "Under confirm this gate runs before the log and skip_to of this branch."
+                    order: "Under confirm this gate runs before the run_first, log and skip_to of this branch."
                     present: |
                       ## Divergent Review Pivot Did Not Converge
 
@@ -1280,7 +1280,7 @@ workflow:
                       C) manualStop and proceed to the existing pre-synthesis gate
                     wait_for: "User response"
                     after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
-                    on_A: { continue: "Fail closed: run the log and skip_to of this branch." }
+                    on_A: { continue: "Fail closed: run the run_first, log and skip_to of this branch." }
                     on_B:
                       action: "Read pivot_result.paths.configPath, validate the supplied id against acceptedCandidates, bind the exact candidate and persisted previousFocus/saturatedDirections/frontier, and reject ids outside that frontier or any candidate that authorizes a fix, target expansion, or file mutation."
                       bookkeeping_log: '{"type":"event","event":"pivot_override_accepted","mode":"review","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{operator_selected_candidate},"selectedFrontier":{operator_selected_frontier},"previousFocus":"{operator_previous_focus}","saturatedDirections":{operator_saturated_directions},"reason":"{operator_override_rationale}","agreementReason":"insufficient_endorsement","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
