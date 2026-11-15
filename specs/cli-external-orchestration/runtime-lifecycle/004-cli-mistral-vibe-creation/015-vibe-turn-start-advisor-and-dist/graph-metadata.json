@@ -35,7 +35,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -180,12 +180,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,11 +196,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every other governed runtime injects the skill advisor brief on each prompt, but a Vibe session sees it only if the model runs the skill step itself",
     "created_at": "2026-11-14T20:13:08Z",
-    "last_save_at": "2026-11-14T21:49:37.764Z",
+    "last_save_at": "2026-11-15T09:59:33.997Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c8e5333b8c9dd0f91051e5260958323c64a08724d311e9e6a653130ab88ddf7",
+    "source_fingerprint": "sha256:2da9e06292d3012437ce4585577a41ed1dc3b33e9390c99b74339b900ffaa9a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68c912f4ec0c2d185bf40caaf6c571922b51bde52ba912e03f5017ffac3a9155",
+      "spec.md": "69c18530f24357a50180c5b4692743871dc7c5dd2b16537f151bc7df8a9be22e",
       "plan.md": "b58e6cc6b3585f6a24080575a2367d6c152798710efc9db530c79e141fdf5ce9",
-      "tasks.md": "6bfacbaed81890d707df82b0f6bcd61a9d0dfad678b683f33d8dc8c0c8d8ac96",
-      "implementation-summary.md": "d5e8ace3ecebc5665ce5b29f75e1d13c882ca59d2d3e8bd167e22a816d18cf75"
+      "tasks.md": "61a64ce491811c78689527eec68328c06ad7953bbddc0b6a33e1a03364bf9bde",
+      "implementation-summary.md": "416e4c7c58a910ed1771bf1c046c1cae8b4dd80bafc0a5a331b7e315f348bd26"
     },
     "last_active_at": null
   }

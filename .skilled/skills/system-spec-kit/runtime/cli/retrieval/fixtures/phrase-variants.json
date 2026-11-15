@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e58e43eb7e00b4d1f53a7ce56609e1e62043dc9c1ce923897b0489f5afb6ef3a",
+  "manifestHash": "9a57e07b4e2c21515471f19258e3bd2e0700da316caefe20ae355c007c54849e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -729,6 +729,9 @@
     ],
     "003 documentation truth validation resource map": [
       "003-documentation-truth-validation resource map"
+    ],
+    "003 dsh mistral route operator decisions": [
+      "003-dsh-mistral-route operator decisions"
     ],
     "003 embedder testing and architecture changelog index": [
       "003-embedder-testing-and-architecture changelog index"
@@ -22058,6 +22061,9 @@
     "cli deepseek harness 1 0 1 0": [
       "cli-deepseek-harness 1.0.1.0"
     ],
+    "cli deepseek harness 1 0 2 0": [
+      "cli-deepseek-harness 1.0.2.0"
+    ],
     "cli deepseek harness commit follow up": [
       "cli-deepseek-harness commit follow-up"
     ],
@@ -22102,6 +22108,9 @@
     ],
     "cli deepseek harness v1 0 1 0": [
       "cli-deepseek-harness v1.0.1.0"
+    ],
+    "cli deepseek harness v1 0 2 0": [
+      "cli-deepseek-harness v1.0.2.0"
     ],
     "cli deepseek research scope": [
       "cli-deepseek research scope"
@@ -44855,6 +44864,9 @@
     "dsh mistral route plan": [
       "dsh mistral route plan"
     ],
+    "dsh mistral route retired": [
+      "dsh mistral route retired"
+    ],
     "dsh mistral route tasks": [
       "dsh mistral route tasks"
     ],
@@ -60595,9 +60607,6 @@
     ],
     "in session handover rename acceptance criteria": [
       "in session handover rename acceptance criteria"
-    ],
-    "in session handover spelling": [
-      "in-session handover spelling"
     ],
     "inbound enhances": [
       "inbound enhances"
@@ -115239,9 +115248,6 @@
     "skilled v4 0 2 1": [
       "skilled v4.0.2.1"
     ],
-    "skilled v4 0 2 2": [
-      "skilled v4.0.2.2"
-    ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
     ],
@@ -128685,9 +128691,6 @@
     ],
     "v4 0 2 1 release notes": [
       "v4.0.2.1 release notes"
-    ],
-    "v4 0 2 2 release notes": [
-      "v4.0.2.2 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"

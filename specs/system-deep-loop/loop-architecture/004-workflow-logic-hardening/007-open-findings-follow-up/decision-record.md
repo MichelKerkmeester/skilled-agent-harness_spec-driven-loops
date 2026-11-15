@@ -38,6 +38,9 @@ _memory:
 | Q002 | The push to main was authorized once past the mass-deletion gate, since all 197 deleted files are the council retirement and the folded workflow files. | Not stated. | None | origin/main 8f218b3e1da, implementation-summary.md |
 | Q003 | The session's operator answers are recorded in this phase's decision record through a full-auto save. | Not stated. | None | decision-record.md |
 | Q004 | The primary checkout is brought level with origin/main by committing its pending change, pushing and fast-forwarding, rather than left behind. | Not stated. | None | primary checkout main at 544a4092244 |
+| Q005 | The retired deep-ai-council folder left in the primary checkout, which held only gitignored vitest cache, is deleted so the parent-skill doctor passes. | Not stated. | None | primary checkout, merge commit bc4f668022a |
+| Q006 | The packet's work is added to the existing v4.0.2.1 release notes rather than a new v4.0.2.2 entry. | Not stated. | None | .skilled/changelog/skilled/v4.0.2.1.md |
+| Q007 | The v4.0.2.1 GitHub release body is rebuilt and the tag is republished at the commit holding the amended notes. | Not stated. | None | tag v4.0.2.1 at 27a6374aeab, GitHub release v4.0.2.1 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -122,6 +125,65 @@ Stash, pull, pop
 Answer:
 ```text
 commit push merge, sync fast forward
+```
+
+### Q005
+<!-- source: claude:6b959364-9580-45bd-923d-efd800111a7f:toolu_01Jdjzs4FdSsbbBz8EAbCXaZ:0 -->
+
+Question:
+```text
+The merge commit on main is blocked by the parent-skill doctor because .skilled/skills/system-deep-loop/deep-ai-council/ still exists in your primary checkout. It holds only two gitignored vitest cache files (node_modules/.vite/vitest/<hash>/results.json) and no tracked file. Delete that leftover folder so the commit can go through?
+```
+
+Options:
+```text
+Delete the folder (Recommended)
+Keep it, stop here
+```
+
+Answer:
+```text
+Delete the folder (Recommended)
+```
+
+### Q006
+<!-- source: claude:6b959364-9580-45bd-923d-efd800111a7f:toolu_01XSvmcHMQUJKKRt9jv3TeKc:0 -->
+
+Question:
+```text
+The v4.0.2.1 release notes miss this branch's work: the council retired as a Deep Loop mode (now /speckit:ai-council), one workflow file per deep loop, the stdin hang fix, the cli-opencode 1.5.12.0 corrections and the advisor routing fixes. The v4.0.2.1 tag is older than this work. Where should it go?
+```
+
+Options:
+```text
+New v4.0.2.2 notes (Recommended)
+Amend v4.0.2.1
+Leave it
+```
+
+Answer:
+```text
+Amend v4.0.2.1
+```
+
+### Q007
+<!-- source: claude:6b959364-9580-45bd-923d-efd800111a7f:toolu_01AALw1y71AXYo5fgLjUNL8n:0 -->
+
+Question:
+```text
+The v4.0.2.1 notes on main now include the deep-loop work (commit 27a6374aeab). The published GitHub release still shows the old body, and its tag v4.0.2.1 (tag object bee7245a45c) points at a commit without this work. Another session also just added its handover phases to the same notes. What should I do with the public release?
+```
+
+Options:
+```text
+Update body and republish tag (Recommended)
+Update body only
+Leave the release
+```
+
+Answer:
+```text
+Update body and republish tag (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "37bbe20720c3671fd035c92f916b500353d8661a31ce323b44cf2506f6de15c1",
+  "corpusHash": "db400554912732b40d72b1dcf44ab84b1650e5928f8ec9ea88b974cb7acff7a8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27517,
+  "includedPathCount": 27518,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -93,7 +93,6 @@
     ".skilled/changelog/skilled/v4.0.1.0.md",
     ".skilled/changelog/skilled/v4.0.2.0.md",
     ".skilled/changelog/skilled/v4.0.2.1.md",
-    ".skilled/changelog/skilled/v4.0.2.2.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/classifier-injection-screen/claude/README.md",
@@ -1098,6 +1097,7 @@
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/assets/prompt-templates.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.1.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/cli-invocation/keyless-boot-per-route.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/cli-invocation/repo-root-dispatch-refusal.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/fanout/deep-research-lineage.md",
@@ -10735,6 +10735,7 @@
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/decision-record.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/implementation-summary.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/plan.md",
@@ -27549,7 +27550,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e58e43eb7e00b4d1f53a7ce56609e1e62043dc9c1ce923897b0489f5afb6ef3a",
+  "manifestHash": "9a57e07b4e2c21515471f19258e3bd2e0700da316caefe20ae355c007c54849e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
