@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f64bddf7a636a60aef2dc9d64f120f3d72b4ccccabed0a6184b3df85116f18b1",
+  "corpusHash": "f9d5be35763cf5b691cc68323659f8b41304d5c42433524ce38a7e0911df9637",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27352,
+  "includedPathCount": 27354,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6536,6 +6536,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.12.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.13.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.14.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.15.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
@@ -6771,6 +6772,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -27384,7 +27386,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b7cd482a6a5c88e6c2cf380bad260bfeb6c95410856a8c37a4b529f4a97211be",
+  "manifestHash": "fcd863266828254f4623053d7ead41474388e0d894f4daf912dfa4e346b0f5fd",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

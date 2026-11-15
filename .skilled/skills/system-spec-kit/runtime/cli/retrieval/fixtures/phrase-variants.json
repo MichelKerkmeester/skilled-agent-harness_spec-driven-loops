@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b7cd482a6a5c88e6c2cf380bad260bfeb6c95410856a8c37a4b529f4a97211be",
+  "manifestHash": "fcd863266828254f4623053d7ead41474388e0d894f4daf912dfa4e346b0f5fd",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -93951,6 +93951,9 @@
     "release line split tasks": [
       "release-line-split tasks"
     ],
+    "release note item ceilings removed": [
+      "release note item ceilings removed"
+    ],
     "release note line ceiling removed": [
       "release note line ceiling removed"
     ],
@@ -109056,6 +109059,9 @@
     "sk create changelog 1 5 1 0": [
       "sk-create-changelog 1.5.1.0"
     ],
+    "sk create changelog 1 5 2 0": [
+      "sk-create-changelog 1.5.2.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -109166,6 +109172,9 @@
     ],
     "sk create changelog v1 5 1 0": [
       "sk-create-changelog v1.5.1.0"
+    ],
+    "sk create changelog v1 5 2 0": [
+      "sk-create-changelog v1.5.2.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -111477,6 +111486,9 @@
     "sk doc 2 9 14 0": [
       "sk-doc 2.9.14.0"
     ],
+    "sk doc 2 9 15 0": [
+      "sk-doc 2.9.15.0"
+    ],
     "sk doc 2 9 2 0": [
       "sk-doc 2.9.2.0"
     ],
@@ -111986,6 +111998,9 @@
     ],
     "sk doc v2 9 14 0": [
       "sk-doc v2.9.14.0"
+    ],
+    "sk doc v2 9 15 0": [
+      "sk-doc v2.9.15.0"
     ],
     "sk doc v2 9 2 0": [
       "sk-doc v2.9.2.0"

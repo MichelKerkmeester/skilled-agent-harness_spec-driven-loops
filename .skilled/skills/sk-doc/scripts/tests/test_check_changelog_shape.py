@@ -69,15 +69,9 @@ def test_a_compact_entry_has_no_line_or_h4_rule():
     assert rules(compact + "Filler line.\n" * 300) == []
 
 
-def test_h4_items_fail_past_32():
-    assert rules(expanded(sections=[("Alpha", 16), ("Beta", 16)])) == []
-    assert rules(expanded(sections=[("Alpha", 17), ("Beta", 16)])) == ["h4-items"]
-
-
-def test_glance_bullets_fail_past_14():
-    bullets = [f"- **Gain {n}.** It helps." for n in range(14)]
-    assert rules(expanded(glance=bullets)) == []
-    assert rules(expanded(glance=bullets + ["- **Gain 15.** It helps."])) == ["glance-bullets"]
+def test_an_entry_has_no_h4_or_glance_ceiling():
+    bullets = [f"- **Gain {n}.** It helps." for n in range(30)]
+    assert rules(expanded(glance=bullets, sections=[("Alpha", 30), ("Beta", 30)])) == []
 
 
 def test_glance_order_follows_the_tagged_sections():
@@ -152,8 +146,6 @@ def test_the_template_ceilings_match_the_checker():
                     return int(numbers[0])
         raise AssertionError(f"no ceiling row named {row}")
 
-    assert ceiling("Expanded H4 items") == shape.EXPANDED_MAX_H4_ITEMS
-    assert ceiling("What's New at a Glance") == shape.GLANCE_MAX_BULLETS
     assert ceiling("Sentence") == shape.SENTENCE_MAX_WORDS
     assert ceiling("Sentence average") == shape.SENTENCE_MEAN_WORDS
 
@@ -166,8 +158,6 @@ def test_the_workflow_ceilings_match_the_checker():
     for mode in ("auto", "confirm"):
         workflow = (REPO_ROOT / ".skilled" / "commands" / "create" / "assets" / f"create-changelog-{mode}.yaml").read_text(encoding="utf-8")
         line = workflow.split("Expanded ceilings", 1)[1]
-        assert int(re.search(r"(\d+) H4 items", line).group(1)) == shape.EXPANDED_MAX_H4_ITEMS, mode
-        assert int(re.search(r"(\d+) glance bullets", line).group(1)) == shape.GLANCE_MAX_BULLETS, mode
         assert int(re.search(r"(\d+) words a sentence,", line).group(1)) == shape.SENTENCE_MAX_WORDS, mode
         assert int(re.search(r"(\d+) words a sentence on average", line).group(1)) == shape.SENTENCE_MEAN_WORDS, mode
 
