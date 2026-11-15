@@ -2,7 +2,7 @@
 // MODULE: Behaviour Runner Guard Tests
 // ───────────────────────────────────────────────────────────────
 
-import { existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
+import { chmodSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -38,6 +38,43 @@ describe('childEnv', () => {
     expect(env.GH_CONFIG_DIR).toBe('/tmp/gh-empty');
     expect(env.GIT_TERMINAL_PROMPT).toBe('0');
     expect(env.GIT_CONFIG_KEY_0).toBe('credential.helper');
+  });
+
+  // Git would otherwise let a turn push over ssh or https to any URL it can name,
+  // so only the local file transport survives the child environment.
+  it('closes the network transports a live turn could push over', () => {
+    expect(childEnv('/tmp/gh-empty', 'on').GIT_ALLOW_PROTOCOL).toBe('file');
+
+    const root = mkdtempSync(join(tmpdir(), 'behaviour-child-env-'));
+    try {
+      const repo = join(root, 'repo');
+      mkdirSync(repo);
+      const git = (args: string[]) => spawnSync('git', args, { cwd: repo, encoding: 'utf8' });
+      expect(git(['init', '-q']).status).toBe(0);
+      writeFileSync(join(repo, 'a.txt'), 'a\n');
+      expect(git(['add', '.']).status).toBe(0);
+      const committed = git([
+        '-c',
+        'user.name=t',
+        '-c',
+        'user.email=t@example.invalid',
+        'commit',
+        '-qm',
+        'init',
+      ]);
+      expect(committed.status).toBe(0);
+
+      const pushed = spawnSync('git', ['push', 'ssh://example.invalid/x.git', 'HEAD'], {
+        cwd: repo,
+        env: childEnv('/tmp/gh-empty', 'on'),
+        encoding: 'utf8',
+      });
+
+      expect(pushed.status).not.toBe(0);
+      expect(pushed.stderr).toContain("transport 'ssh' not allowed");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   it('switches the advisor off and on by arm', () => {
@@ -660,6 +697,26 @@ describe('arena builder', () => {
     }
   });
 
+  it('refuses a build tree link written as an absolute path', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = makeBuiltSource(root);
+      writeFileSync(join(source, 'dist', 'config.json'), '{"key":"value"}\n');
+      symlinkSync(join(source, 'dist', 'config.json'), join(source, 'dist', 'config'));
+      stamp(source, new Date('2020-01-01T00:00:00Z'), new Date('2020-01-01T01:00:00Z'));
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(2);
+      expect(JSON.parse(built.stdout).code).toBe('symlink_escape');
+      expect(built.stdout).toContain('dist/config');
+      expect(existsSync(arena)).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it('names a tracked dotenv file in its output and the marker', () => {
     const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
     try {
@@ -688,6 +745,88 @@ describe('arena builder', () => {
 
       expect(built.status).toBe(0);
       expect(JSON.parse(built.stdout)).not.toHaveProperty('trackedDotenv');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  // A build compiles sources that sit outside the folder holding its output, and the
+  // tsconfig beside the build is what names them. A committed edit there leaves the
+  // build stale while every tracked file in its own folder still predates it.
+  const makeReachingSource = (root: string) => {
+    const source = join(root, 'source');
+    mkdirSync(join(source, 'skill', 'runtime'), { recursive: true });
+    mkdirSync(join(source, 'skill', 'hooks', 'claude'), { recursive: true });
+    const gitRun = (args: string[]) => spawnSync('git', args, { cwd: source, encoding: 'utf8' });
+    const identity = [
+      '-c',
+      'user.name=t',
+      '-c',
+      'user.email=t@example.invalid',
+      '-c',
+      'core.hooksPath=/dev/null',
+    ];
+    expect(gitRun(['init', '-q']).status).toBe(0);
+    writeFileSync(join(source, '.gitignore'), 'dist/\n');
+    writeFileSync(join(source, 'skill', 'runtime', 'lib.ts'), 'export const value = "v1";\n');
+    writeFileSync(
+      join(source, 'skill', 'runtime', 'tsconfig.build.json'),
+      '{"include":["**/*.ts","../hooks/**/*.ts"]}\n',
+    );
+    writeFileSync(join(source, 'skill', 'hooks', 'claude', 'hook.ts'), 'export const hook = "v1";\n');
+    expect(gitRun(['add', '.']).status).toBe(0);
+    expect(gitRun([...identity, 'commit', '-qm', 'init']).status).toBe(0);
+    writeFileSync(join(source, 'skill', 'hooks', 'claude', 'hook.ts'), 'export const hook = "v2";\n');
+    expect(gitRun(['add', '.']).status).toBe(0);
+    expect(gitRun([...identity, 'commit', '-qm', 'edit']).status).toBe(0);
+    mkdirSync(join(source, 'skill', 'runtime', 'dist', 'hooks', 'claude'), { recursive: true });
+    writeFileSync(
+      join(source, 'skill', 'runtime', 'dist', 'hooks', 'claude', 'hook.js'),
+      'exports.hook = "v2";\n',
+    );
+    return source;
+  };
+
+  // The build is newer than the tsconfig and the file beside it, so only the folder
+  // the tsconfig reaches can make it stale.
+  const stampReaching = (source: string, hookTime: Date, buildTime: Date) => {
+    const older = new Date('2020-01-01T00:00:00Z');
+    utimesSync(join(source, '.gitignore'), older, older);
+    utimesSync(join(source, 'skill', 'runtime', 'lib.ts'), older, older);
+    utimesSync(join(source, 'skill', 'runtime', 'tsconfig.build.json'), older, older);
+    utimesSync(join(source, 'skill', 'hooks', 'claude', 'hook.ts'), hookTime, hookTime);
+    utimesSync(join(source, 'skill', 'runtime', 'dist', 'hooks', 'claude', 'hook.js'), buildTime, buildTime);
+  };
+
+  it('refuses a build whose tsconfig reaches a source edited after it', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = makeReachingSource(root);
+      stampReaching(source, new Date('2020-01-01T02:00:00Z'), new Date('2020-01-01T01:00:00Z'));
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(2);
+      expect(JSON.parse(built.stdout).code).toBe('stale_build');
+      expect(built.stdout).toContain('skill/runtime/dist');
+      expect(existsSync(arena)).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('accepts that build when the source it reaches is older', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = makeReachingSource(root);
+      stampReaching(source, new Date('2020-01-01T00:30:00Z'), new Date('2020-01-01T01:00:00Z'));
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(0);
+      expect(existsSync(join(arena, 'skill', 'runtime', 'dist', 'hooks', 'claude', 'hook.js'))).toBe(true);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -722,6 +861,31 @@ describe('arena builder', () => {
       expect(existsSync(join(arena, 'dist', '.env.local'))).toBe(false);
       expect(lstatSync(join(arena, 'dist', 'out.js')).mtimeMs).toBeGreaterThanOrEqual(before.getTime());
     } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  // The source checks read the worktree before any refusal can name a reason, so a
+  // folder they cannot read has to end the run in the shape a caller already reads.
+  it('answers a source check it cannot read with the JSON failure line', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    const locked = join(root, 'source', 'dist', 'locked');
+    try {
+      const source = makeBuiltSource(root);
+      mkdirSync(locked);
+      chmodSync(locked, 0o000);
+      stamp(source, new Date('2020-01-01T00:00:00Z'), new Date('2020-01-01T01:00:00Z'));
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(1);
+      const lines = built.stdout.split('\n').filter((line) => line !== '');
+      expect(lines).toHaveLength(1);
+      expect(JSON.parse(lines[0])).toEqual({ ok: false, code: 'EACCES' });
+      expect(existsSync(arena)).toBe(false);
+    } finally {
+      if (existsSync(locked)) chmodSync(locked, 0o755);
       rmSync(root, { recursive: true, force: true });
     }
   });

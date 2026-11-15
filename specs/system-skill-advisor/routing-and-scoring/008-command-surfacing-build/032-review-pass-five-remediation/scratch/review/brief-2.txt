@@ -1,0 +1,16 @@
+Review brief, phase 032 second fix diff (read-only re-read)
+
+Worktree: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Diff: git -c core.fsmonitor=false diff d0f605b42f8 FIX2 -- .skilled, with FIX2 = @FIX2@ and the three prompt-file excludes on every git diff, show or log -p (':(exclude)**/command-prompts.jsonl' ':(exclude)**/holdout-prompts.jsonl' ':(exclude)**/behaviour-fresh-prompts.jsonl'). Never open those row files except through jq 'del(.prompt)', never read or create .skilled/hooks/hook-flags.env, run no model session, live runner, daemon or build, and put probes under a mktemp folder in TMPDIR, removed after. Write nothing in the repository except the report below.
+
+This commit answers your first report, scratch/review/report.txt in this phase folder. Tasks T044 to T052 (with T048a, T050a to T050d and T051a) in tasks.md say what each change was meant to do. The shell write reader went through three failed fixes and was rebuilt as option D of a Fable review, kept in /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/77af2d6d-58e8-4180-b6da-697f12833f71/scratchpad/fable-t050/report.txt, which names its accepted risks.
+
+Answer with evidence from the code or a probe you ran:
+1. Is each finding of your first report closed, or recorded with a reason? The indented-code case of Q2 is left open on purpose: skipping lines indented four spaces would also drop COMMAND lines nested under list items.
+2. Does the rebuilt shell write reader lose any write the reader at d0f605b42f8 caught, beyond the four absences the Fable report allows and the accepted su -c case? Does it add a false write on a read-only command?
+3. Can the stale-build rule now pass a build older than a committed edit in a folder its tsconfig include reaches, or refuse a clean tree whose builds are current (the real advisor runtime is the case to try, from reading only)?
+4. Does every builder refusal and failure print the JSON line, and does GIT_ALLOW_PROTOCOL=file break anything a live turn needs?
+5. Do the doc rows changed in this diff state what the code does?
+6. Does any added comment name a spec path, phase number, task id, finding id, lineage label or decision id?
+
+Write the report to scratch/review/report-2.txt in this phase folder. First line "verdict: SHIP" or "verdict: FIX", then one line per item as "P0|P1|P2 <file>:<line> <claim> | evidence: <command or read> | fix: <one line>". Grade P0 or P1 only with a probe or cited input that shows the failure.

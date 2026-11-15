@@ -18,7 +18,7 @@ rg exit=1 (1 means nothing printed)
 $ added doc lines with no backtick holding a semicolon (count)
 rg exit=1 (1 means nothing printed)
 $ G status --porcelain --untracked-files=all -- .skilled .opencode .github .vibe AGENTS.md, paths outside FILES
-status paths:       28
+status paths:        7
 outside FILES grep exit=1 (1 means none)
 $ LEFT
        0

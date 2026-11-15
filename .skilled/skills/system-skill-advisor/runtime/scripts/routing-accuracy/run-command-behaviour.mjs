@@ -32,11 +32,12 @@
 //
 // A live turn is also a turn that can reach the network, so the runner takes the
 // reach away before the model has it. The child gets none of the GitHub tokens, an
-// empty GitHub CLI config, no credential helper and no terminal to be prompted on.
-// A live arm additionally refuses to start in a checkout that has any git remote,
-// because a command wrongly started there could push, tag or publish something the
-// arm cannot take back. A dry run spawns nothing, so it keeps running in this
-// checkout and its guards stay about file paths alone.
+// empty GitHub CLI config, no credential helper and no terminal to be prompted on,
+// while Git is allowed only the file transport, so SSH and HTTPS stay out of reach
+// whatever keys HOME holds. A live arm additionally refuses to start in a checkout
+// that has any git remote, because a command wrongly started there could push, tag
+// or publish something the arm cannot take back. A dry run spawns nothing, so it
+// keeps running in this checkout and its guards stay about file paths alone.
 //
 // Usage:
 //   node run-command-behaviour.mjs --print-argv <runtime>
@@ -608,10 +609,12 @@ function gitSnapshot() {
 
 // A remote is what a turn could push to by name, so a live arm refuses to start
 // when one is listed. It is only half the boundary: the push boundary is childEnv's
-// empty credential helper, empty GH_CONFIG_DIR and GIT_TERMINAL_PROMPT=0, because a
-// push to an explicit URL needs no remote at all. The builder's marker then proves
-// the root came from the arena builder, because only that checkout has no remote, no
-// outer repository and no dotenv file in its copied build trees.
+// empty credential helper, empty GH_CONFIG_DIR, GIT_TERMINAL_PROMPT=0 and
+// GIT_ALLOW_PROTOCOL=file, because a push to an explicit URL needs no remote at all
+// and the protocol setting keeps SSH and HTTPS out of reach whatever keys HOME
+// holds. The builder's marker then proves the root came from the arena builder,
+// because only that checkout has no remote, no outer repository and no dotenv file
+// in its copied build trees.
 export function liveArmRefusal(root) {
   const gitAt = (args) => {
     const result = spawnSync('git', ['-C', root, ...GIT_PREFIX, ...args], {
@@ -1051,6 +1054,8 @@ export function childEnv(ghConfig, arm) {
   }
   env.GH_CONFIG_DIR = ghConfig;
   env.GIT_TERMINAL_PROMPT = '0';
+  // Git's network transports would let a turn push with whatever identity HOME holds.
+  env.GIT_ALLOW_PROTOCOL = 'file';
   Object.assign(env, GIT_CREDENTIAL_OVERRIDES);
   return env;
 }
@@ -1283,9 +1288,11 @@ async function runTurn(job, options, exempt, isFirst) {
   const before = { status: statusPaths(), ...gitSnapshot() };
   // A live turn can push, so it may only start in the arena the builder made: no
   // remote it could push to by name and the builder's marker in place. The push
-  // boundary is childEnv's empty credential helper, empty GH_CONFIG_DIR and
-  // GIT_TERMINAL_PROMPT=0, because a push to an explicit URL needs no remote. A dry
-  // run spawns nothing and keeps running in this checkout.
+  // boundary is childEnv's empty credential helper, empty GH_CONFIG_DIR,
+  // GIT_TERMINAL_PROMPT=0 and GIT_ALLOW_PROTOCOL=file, because a push to an explicit
+  // URL needs no remote and the protocol setting keeps SSH and HTTPS out of reach
+  // whatever keys HOME holds. A dry run spawns nothing and keeps running in this
+  // checkout.
   const refusal = turnRefusal(REPO_ROOT, { dryRun: options.dryRun });
   if (refusal !== null) {
     return { status: EXIT_REFUSED, refusal };

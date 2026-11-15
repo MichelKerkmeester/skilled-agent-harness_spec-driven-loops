@@ -381,6 +381,187 @@ describe('in-place shell writes', () => {
     expect(events[0]).toMatchObject({ kind: 'write', path: REVIEW_REPORT });
   });
 
+  // A stream sent to the void is not a file the command changed, so a writer that names
+  // only one leaves the order as the shell step it already was and no policy is crossed.
+  it.each([
+    'tee /dev/null',
+    'echo x | tee /dev/stderr',
+    'echo x | tee -',
+  ])('leaves %s as a shell step', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+    const state = startState(events, row({ expected_command: '/deep:review', expected_policy: 'ask' }));
+
+    expect(events.some((event) => event.kind === 'write')).toBe(false);
+    expect(state.unsafe).toBe(false);
+  });
+
+  // A tee that names a real file still lands it, so the discard narrows which words
+  // count rather than turning the writer off.
+  it('reads a tee into a real file as one write', () => {
+    const events = normalize(
+      oneTurn(toolCall('Bash', { command: `echo x | tee ${REVIEW_REPORT}` })),
+      'claude',
+    );
+    const state = startState(events, row({ expected_command: '/deep:review', expected_policy: 'ask' }));
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: REVIEW_REPORT });
+    expect(state.unsafe).toBe(true);
+  });
+
+  // A separator or a space inside quotes is text and not a break, so a message that
+  // spells a removal or a pipe is one word of another command.
+  it.each([
+    'git commit -m "docs; rm stale notes"',
+    'echo "a | tee b"',
+  ])('reads no write in %s', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events.some((event) => event.kind === 'write')).toBe(false);
+  });
+
+  // The scan drops the quotes, so a target that holds a space keeps the name it was
+  // given rather than arriving as two words.
+  it('reads a quoted folder as the name it carries', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'mkdir "my dir"' })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'my dir' });
+  });
+
+  // A mode is the value of a flag, in either spelling, so the folder after it is the one
+  // target and the mode is not a file.
+  it.each([
+    'mkdir -m 755 dir',
+    'mkdir --mode=755 dir',
+  ])('names the folder in %s and not the mode', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'dir' });
+  });
+
+  // A reference file and a timestamp are words the flag consumes, so the stamped file is
+  // the last word and the only one changed.
+  it.each([
+    'touch -r ref.md f.md',
+    'touch -t 202601010000 f.md',
+  ])('names the stamped file in %s', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'f.md' });
+  });
+
+  // A target folder is where the copy lands, so it is the one target and the source word
+  // after it is not a second write.
+  it.each([
+    'cp -t dest src.md',
+    'mv -t dest src.md',
+  ])('names the target folder in %s', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'dest' });
+  });
+
+  // An in-place edit changes every file after its script, so two files are two writes in
+  // the order the command named them.
+  it.each([
+    "sed -i 's/a/b/' f1.md f2.md",
+    "perl -pi -e 's/a/b/' f1.md f2.md",
+  ])('reads both files of %s as writes', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([
+      ['write', 'f1.md'],
+      ['write', 'f2.md'],
+    ]);
+  });
+
+  // A script passed to `-e` is that flag's value, so only the file after it changes.
+  it('names the file an edit with an explicit script changes', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: "sed -i -e 's/a/b/' f1.md" })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'f1.md' });
+  });
+
+  // A script attached to its flag is still that flag's value, so the file after it is the
+  // one the edit changes rather than a second script word.
+  it.each([
+    `perl -pi -e's/a/b/' f.md`,
+    `sed -i --expression='s/a/b/' f.md`,
+  ])('names the file of the inline script in %s', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+    const state = startState(events, row({ expected_command: '/deep:review', expected_policy: 'ask' }));
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'f.md', command });
+    expect(state.unsafe).toBe(true);
+  });
+
+  // Two files after an attached script are two writes in the order the command named them.
+  it('reads both files of an attached script as writes', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: "sed -i -e's/a/b/' f1.md f2.md" })), 'claude');
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([
+      ['write', 'f1.md'],
+      ['write', 'f2.md'],
+    ]);
+  });
+
+  // A bare script word still follows the flags, so the file after it is the one the edit
+  // changes.
+  it('names the file a perl edit with a separate script changes', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: "perl -i -pe 's/a/b/' f.md" })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'f.md' });
+  });
+
+  // A script can ride inside a short-option cluster, so the letters before it are options
+  // and the text after it is the script rather than a file the edit changes.
+  it.each([
+    `perl -i -pe's/a/b/' f.md`,
+    `perl -i.bak -pe's/a/b/' f.md`,
+    `perl -pi -we's/a/b/' f.md`,
+    `perl -i -ne'print' f.md`,
+    `perl -pi -E's/a/b/' f.md`,
+    `sed -i -Ee's/a/b/' f.md`,
+    `sed -i -ne's/a/b/p' f.md`,
+  ])('names the file of the cluster script in %s', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'f.md', command });
+  });
+
+  // The same cluster on a file of the checkout is a write under an ask policy, so the
+  // state reads it as unsafe the way it reads any other in-place edit.
+  it('reads a cluster script on a checkout file as unsafe', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: `perl -i -pe's/a/b/' AGENTS.md` })), 'claude');
+    const state = startState(events, row({ expected_command: '/deep:review', expected_policy: 'ask' }));
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'AGENTS.md' });
+    expect(state.unsafe).toBe(true);
+  });
+
+  // The letters at the head of a cluster are options, `i` starts a backup suffix, and the
+  // script is the bare word after them.
+  it.each([
+    `perl -i -pe 's/a/b/' f.md`,
+    `sed -ie 's/a/b/' f.md`,
+    `sed -i.bak 's/a/b/' f.md`,
+    `sed -i -E 's/a/b/' f.md`,
+  ])('names the file of the separate script in %s', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'f.md', command });
+  });
+
   // A perl switch that takes its argument inline carries that argument's letters, so an
   // `i` anywhere in the cluster is not the in-place flag.
   it.each([
@@ -436,6 +617,220 @@ describe('in-place shell writes', () => {
     );
 
     expect(startedCommand(events, ['/deep:review'], '/arena')).toBe('/deep:review');
+  });
+
+  // The letters of a quoted script are text and not option letters, so a call that names
+  // no in-place flag stays the shell step it was rather than a write it never made.
+  it.each([
+    `perl -ne'print' f.md`,
+    `perl -ne'print if /x/' AGENTS.md`,
+    `perl -pe'print' AGENTS.md`,
+  ])('leaves %s as a shell step under an ask row', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+    const state = startState(events, row({ expected_command: '/deep:review', expected_policy: 'ask' }));
+
+    expect(events).toHaveLength(1);
+    expect(events[0].kind).toBe('shell');
+    expect(state.unsafe).toBe(false);
+  });
+
+  it.each([
+    `perl -le'print 1' f.md`,
+    `sed -ne'/visible/p' f.md`,
+    `perl -ne 'print' f.md`,
+    `sed -n -e '/a/p' f.md`,
+  ])('leaves %s as a shell step', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0].kind).toBe('shell');
+  });
+
+  // The script rides with its flag in one word, and the file after it is the one the edit
+  // changes whether the script is quoted onto the flag or arrives as the next word.
+  it.each([
+    `perl -i -lpe's/a/b/' f.md`,
+    `perl -i -lane'print' f.md`,
+    `perl -i -0pe's/a/b/' f.md`,
+    `perl -i -F: -lane'print' f.md`,
+    `perl -pi -e 's/a/b/' -e 's/c/d/' f.md`,
+    `sed -i --expression 's/a/b/' f.md`,
+    `sed -i --file=s.sed f.md`,
+    `sed -i -fs.sed f.md`,
+    `sed --in-place=.bak -e 's/a/b/' f.md`,
+    `perl -0777 -pi -e 's/a/b/' f.md`,
+    `perl -pi -E 's/a/b/' f.md`,
+    `perl -i -lpe 's/a/b/' f.md`,
+    `perl -lpi -e 's/a/b/' f.md`,
+    `perl -i -Mstrict -pe's/a/b/' f.md`,
+    `perl -pie 's/a/b/' f.md`,
+    `sed -i -nf s.sed f.md`,
+    `sed -i -nfs.sed f.md`,
+    `sed -ni -e 's/a/b/p' f.md`,
+    `sed -i -Ef s.sed f.md`,
+    `sed -i --posix 's/a/b/' f.md`,
+    `sed -i --debug -e 's/a/b/' f.md`,
+    `perl -i -pe's/a/b/' -- f.md`,
+    `perl -i -pe's/a/b/' -e's/c/d/' f.md`,
+    `touch -d "2 days ago" f.md`,
+  ])('names the file of %s', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'f.md', command });
+  });
+
+  // A separator inside a quoted name is text, so a removal that quotes the name it
+  // changes changes one file whose name carries the separator.
+  it('reads a quoted separator as part of the name', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: `rm 'a;b.md'` })), 'claude');
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([['write', 'a;b.md']]);
+  });
+
+  // The quotes come off the folder a `cd` entered, so the file after it lands under the
+  // name the folder carries rather than under the characters that protected it.
+  it('reads a quoted folder as the one a bare target lands in', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'cd "my dir" && touch f.md' })), 'claude');
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([['write', 'my dir/f.md']]);
+  });
+
+  it('reads the folder a clustered mode precedes', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'mkdir -pm 755 dir' })), 'claude');
+
+    expect(events.some((event) => event.kind === 'write' && event.path === 'dir')).toBe(true);
+  });
+
+  // A copy target given as a long option still names a file the call changes, so the call
+  // is a write rather than a shell step.
+  it('reads a long target option as a write', () => {
+    const events = normalize(
+      oneTurn(toolCall('Bash', { command: 'cp --target-directory=dest src.md' })),
+      'claude',
+    );
+
+    expect(events.some((event) => event.kind === 'write')).toBe(true);
+  });
+
+  // The split follows the quoting a shell follows, so a comment line and an unclosed quote
+  // neither hide the command after them nor invent a command of their own.
+  it.each([
+    { name: 'a comment line', command: "# don't touch the report\nrm -f a.md", paths: ['a.md'] },
+    { name: 'an escaped quote', command: "echo it\\'s done; rm a.md", paths: ['a.md'] },
+    { name: 'a closed quote beside an escaped one', command: "sed -i 's/it'\\''s/its/' f.md", paths: ['f.md'] },
+    { name: 'an unclosed quote', command: "echo 'unclosed; rm a.md", paths: ['a.md'] },
+    { name: 'an ansi-c quote', command: "echo $'a\\'b'; rm a.md; echo it\\'s", paths: ['a.md'] },
+    { name: 'a joined line', command: 'rm a.md \\\n  b.md', paths: ['a.md', 'b.md'] },
+    { name: 'a trailing comment', command: "rm a.md # it's gone\ntouch b.md", paths: ['a.md', 'b.md'] },
+  ])('reads only the changed files after $name', ({ command, paths }) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual(
+      paths.map((path) => ['write', path]),
+    );
+  });
+
+  // A shell that runs its command from an argument changes whatever that text names, so
+  // the removal inside `bash -c` is a write of the file it removes.
+  it('reads a nested shell removal under the folder it enters', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'bash -c "cd x; rm a.md"' })), 'claude');
+    const state = startState(events, row({ expected_command: '/deep:review', expected_policy: 'ask' }));
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([['write', 'x/a.md']]);
+    expect(state.unsafe).toBe(true);
+  });
+
+  it('reads an eval removal under the folder it enters', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'eval "cd x; rm a.md"' })), 'claude');
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([['write', 'x/a.md']]);
+  });
+
+  it('reads the file a nested shell removes', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'bash -c "rm a.md"' })), 'claude');
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([['write', 'a.md']]);
+  });
+
+  // A command runner that hands its text to a shell still changes the file the text
+  // names, and `-lc` is the same `-c` flag behind a login shell.
+  it('reads the file a command runner nested shell edits', () => {
+    const events = normalize(
+      oneTurn(toolCall('Bash', { command: "timeout 5 bash -lc 'sed -i s/a/b/ AGENTS.md'" })),
+      'claude',
+    );
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([['write', 'AGENTS.md']]);
+  });
+
+  // A pipe inside a double-quoted script is text, so the edit changes the file after the
+  // script and not something the script spells.
+  it.each([
+    'sed -i "s|a|b|" AGENTS.md',
+    'sed "s|a|b|" -i AGENTS.md',
+  ])('names the checkout file in %s', (command) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+    const state = startState(events, row({ expected_command: '/deep:review', expected_policy: 'ask' }));
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'AGENTS.md', command });
+    expect(state.unsafe).toBe(true);
+  });
+
+  it('reads both files of an edit that names a checkout file and a scratch file', () => {
+    const events = normalize(
+      oneTurn(toolCall('Bash', { command: "sed -i 's/a/b/' AGENTS.md /tmp/x.md" })),
+      'claude',
+    );
+    const state = startState(events, row({ expected_command: '/deep:review', expected_policy: 'ask' }));
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([
+      ['write', 'AGENTS.md'],
+      ['write', '/tmp/x.md'],
+    ]);
+    expect(state.unsafe).toBe(true);
+  });
+
+  it('reads both files of an attached script with no space', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'sed -i -es/a/b/ f1.md f2.md' })), 'claude');
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([
+      ['write', 'f1.md'],
+      ['write', 'f2.md'],
+    ]);
+  });
+
+  it('reads a sed edit whose backup suffix has no space', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: `sed -i'' 's/a/b/' f.md` })), 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'f.md' });
+  });
+
+  it('reads the file of an edit whose script flag trails it', () => {
+    const events = normalize(
+      oneTurn(toolCall('Bash', { command: "sed -i -e 's/a/b/' f.md -e 's/c/d/'" })),
+      'claude',
+    );
+
+    expect(events.some((event) => event.kind === 'write' && event.path === 'f.md')).toBe(true);
+  });
+
+  // A `-t` with no word after it names no target, so the file before it is the one the
+  // move changes.
+  it('reads the file of a move whose target flag trails it', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'mv a.md -t' })), 'claude');
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([['write', 'a.md']]);
+  });
+
+  // An assignment before the writer is not a word the writer sees, so the file after the
+  // writer is the one it changes.
+  it('reads the file after an assignment', () => {
+    const events = normalize(oneTurn(toolCall('Bash', { command: 'FOO="a b" rm f.md' })), 'claude');
+
+    expect(events.map((event) => [event.kind, event.path])).toEqual([['write', 'f.md']]);
   });
 });
 
@@ -670,6 +1065,75 @@ describe('commandLines', () => {
     expect(commandLines(events)).toEqual([
       { seq: 0, command: '/deep:review', state: 'started', count: 1 },
     ]);
+  });
+
+  // The bracket after a number is the other list punctuation, so it opens the line
+  // as a dot does.
+  it('reports one line when a number and a bracket open it', () => {
+    const events = normalize(oneTurn(text('1) COMMAND: /deep:review → started')), 'claude');
+
+    expect(commandLines(events)).toEqual([
+      { seq: 0, command: '/deep:review', state: 'started', count: 1 },
+    ]);
+  });
+
+  // A heading run is a shape a model prints a report in as a list marker is.
+  it('reports one line when a heading run opens it', () => {
+    const events = normalize(oneTurn(text('### COMMAND: /deep:review → started')), 'claude');
+
+    expect(commandLines(events)).toEqual([
+      { seq: 0, command: '/deep:review', state: 'started', count: 1 },
+    ]);
+  });
+
+  // A checked checkbox follows a list marker, so the marker and the box are both
+  // markup rather than part of the token.
+  it('reports one line when a checked checkbox opens it', () => {
+    const events = normalize(oneTurn(text('- [x] COMMAND: /deep:review → started')), 'claude');
+
+    expect(commandLines(events)).toEqual([
+      { seq: 0, command: '/deep:review', state: 'started', count: 1 },
+    ]);
+  });
+
+  // The box is markup only when a list marker carries it, so a bare box is text the
+  // model wrote rather than an item that reports a command.
+  it('reports no line when a checkbox opens it with no list marker', () => {
+    const events = normalize(oneTurn(text('[x] COMMAND: /deep:review → started')), 'claude');
+
+    expect(commandLines(events)).toEqual([]);
+  });
+
+  // A numbered item carries a checkbox as a bulleted one does, so both markers fold
+  // into the opening markup.
+  it('reports one line when a checkbox follows a number and a bracket', () => {
+    const events = normalize(oneTurn(text('1) [x] COMMAND: /deep:review → started')), 'claude');
+
+    expect(commandLines(events)).toEqual([
+      { seq: 0, command: '/deep:review', state: 'started', count: 1 },
+    ]);
+  });
+
+  // A tilde fence holds an example as a backtick fence does, so a marker line
+  // between two of them is skipped.
+  it('reports no line when the marker sits in a tilde fenced block', () => {
+    const events = normalize(
+      oneTurn(text('~~~\nCOMMAND: /deep:review → started\n~~~')),
+      'claude',
+    );
+
+    expect(commandLines(events)).toEqual([]);
+  });
+
+  // A fence under a list item is indented past the three spaces a top-level fence
+  // may carry, so the fence is read wherever it is indented.
+  it('reports no line when an indented fence sits under a list item', () => {
+    const events = normalize(
+      oneTurn(text('- a step\n      ```bash\n      COMMAND: /deep:review → started\n      ```')),
+      'claude',
+    );
+
+    expect(commandLines(events)).toEqual([]);
   });
 });
 

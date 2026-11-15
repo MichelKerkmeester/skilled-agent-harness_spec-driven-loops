@@ -1,7 +1,7 @@
 Review brief, phase 032 fix diff (read-only)
 
 Worktree: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
-Diff: git -c core.fsmonitor=false diff BASE FIX -- <FILES>, with BASE = 2a1a42263cc and FIX = @FIX@.
+Diff: git -c core.fsmonitor=false diff BASE FIX -- <FILES>, with BASE = 2a1a42263cc and FIX = d0f605b42f8.
 FILES is the list of twenty-eight paths in the notation block of specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation/tasks.md.
 Every git diff, show or log -p must add ':(exclude)**/command-prompts.jsonl' ':(exclude)**/holdout-prompts.jsonl' ':(exclude)**/behaviour-fresh-prompts.jsonl'. Never open those three row files except through jq 'del(.prompt)'. Never read or create .skilled/hooks/hook-flags.env. Run no model session, live runner, daemon or build. Probes go under a mktemp folder in TMPDIR and are removed after.
 

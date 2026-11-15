@@ -44,7 +44,7 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────
 
-import { appendFileSync, existsSync, lstatSync, lutimesSync, mkdirSync, readdirSync, realpathSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
+import { appendFileSync, existsSync, lstatSync, lutimesSync, mkdirSync, readFileSync, readdirSync, readlinkSync, realpathSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -212,8 +212,10 @@ function newestFileTime(path) {
   return newest;
 }
 
-// The guard a CLI shim runs compares a build with the newest watched source, so the
-// build has to be at least as new as every tracked file in the folder that holds it.
+// The guard a CLI shim runs compares a build with the newest watched source, so a
+// build's inputs are the folder that holds it and, where a tsconfig beside it names
+// sources above, the folders those includes reach. The build has to be at least as
+// new as the newest tracked file in every one of them.
 function newestTrackedTime(source, folder) {
   const prefix = folder === '.' ? '' : `${folder}/`;
   const tracked = gitText(['ls-files', '-z', '--', folder], source, 'tracked_files_unreadable')
@@ -229,14 +231,106 @@ function newestTrackedTime(source, folder) {
   return newest;
 }
 
+// A tsconfig is read by the compiler with `//` and `/* */` comments allowed, so the
+// text is scanned here instead of being handed to JSON as it stands. A string is
+// copied through untouched, because one may hold `//` of its own.
+function stripJsonComments(text) {
+  let out = '';
+  let index = 0;
+  let inString = false;
+  while (index < text.length) {
+    const char = text[index];
+    if (inString) {
+      out += char;
+      if (char === '\\' && index + 1 < text.length) {
+        out += text[index + 1];
+        index += 2;
+        continue;
+      }
+      if (char === '"') inString = false;
+      index += 1;
+      continue;
+    }
+    if (char === '"') {
+      inString = true;
+      out += char;
+      index += 1;
+      continue;
+    }
+    if (char === '/' && text[index + 1] === '/') {
+      while (index < text.length && text[index] !== '\n') index += 1;
+      continue;
+    }
+    if (char === '/' && text[index + 1] === '*') {
+      const end = text.indexOf('*/', index + 2);
+      index = end === -1 ? text.length : end + 2;
+      continue;
+    }
+    out += char;
+    index += 1;
+  }
+  return out;
+}
+
+// An include entry names files as patterns, and the folder a change can land in is
+// the path above the first segment holding a wildcard. Everything below that segment
+// names files, so nothing below it names a folder to watch.
+function includeFolder(entry) {
+  const segments = entry.split('/');
+  const first = segments.findIndex((segment) => /[*?{]/.test(segment));
+  return (first === -1 ? segments : segments.slice(0, first)).join('/');
+}
+
+// A build's inputs are its own folder, plus every folder a tsconfig beside it reaches
+// when an include entry climbs out of that folder. A tsconfig that cannot be read or
+// parsed adds nothing, because nothing then shows which files it would watch.
+function buildInputFolders(source, folder) {
+  const folders = [folder];
+  let names;
+  try {
+    names = readdirSync(join(source, folder));
+  } catch {
+    return folders;
+  }
+  const root = realpathSync(source);
+  const own = resolve(root, folder);
+  const ownPrefix = `${own}${sep}`;
+  for (const name of names.sort()) {
+    if (!/^tsconfig.*\.json$/.test(name)) continue;
+    let include;
+    try {
+      include = JSON.parse(stripJsonComments(readFileSync(join(source, folder, name), 'utf8'))).include;
+    } catch {
+      continue;
+    }
+    if (!Array.isArray(include)) continue;
+    for (const entry of include) {
+      if (typeof entry !== 'string') continue;
+      const prefix = includeFolder(entry);
+      if (prefix === '') continue;
+      const reached = resolve(root, folder, prefix);
+      if (reached === own || reached.startsWith(ownPrefix)) continue;
+      const fromRoot = relative(root, reached);
+      if (isAbsolute(fromRoot) || fromRoot === '..' || fromRoot.startsWith(`..${sep}`)) continue;
+      const relFolder = fromRoot === '' ? '.' : fromRoot.split(sep).join('/');
+      if (!folders.includes(relFolder)) folders.push(relFolder);
+    }
+  }
+  return folders;
+}
+
 // One refusal lists every stale build, so a single rebuild round clears the tree
 // instead of one refusal per build.
 function staleBuilds(source, copied) {
   const stale = [];
   for (const relPath of copied) {
     if (basename(relPath) !== 'dist') continue;
+    const folder = dirname(relPath);
     const buildTime = newestFileTime(join(source, relPath));
-    const sourceTime = newestTrackedTime(source, dirname(relPath));
+    const sourceTime = buildInputFolders(source, folder).reduce(
+      (newest, inputFolder) => Math.max(newest, newestTrackedTime(source, inputFolder)),
+      0,
+    );
     if (buildTime >= sourceTime) continue;
     stale.push({
       path: relPath,
@@ -250,8 +344,11 @@ function staleBuilds(source, copied) {
 // A copied build tree can hold a link whose target sits outside the checkout, and
 // copying the link would bring that data into the arena where a run can read it.
 // A link is allowed only when it already resolves inside the source, so a dangling
-// link is refused too because nothing shows where it would land. The walk reads
-// the trees a clone never carries, which is where such a link can hide.
+// link is refused too because nothing shows where it would land. A link written as
+// an absolute path is refused even when it resolves inside the source, because the
+// copy keeps its text and it would still name the source instead of the arena it
+// sits in. The walk reads the trees a clone never carries, which is where such a
+// link can hide.
 function escapingLinks(source, copied) {
   const root = realpathSync(source);
   const escapes = [];
@@ -269,7 +366,7 @@ function escapingLinks(source, copied) {
         }
         const fromRoot = relative(root, target);
         const outside = isAbsolute(fromRoot) || fromRoot === '..' || fromRoot.startsWith(`..${sep}`);
-        if (outside) escapes.push({ path: childRel, target });
+        if (outside || isAbsolute(readlinkSync(childPath))) escapes.push({ path: childRel, target });
         continue;
       }
       if (entry.isDirectory()) visit(childRel);
@@ -460,18 +557,26 @@ function main(argv) {
   if (isInsideRepository(nearestExistingAncestor(dirname(dest)))) refuse('dest_in_repo', { dest });
 
   // An uncommitted edit also makes its build read stale, so the tree is checked
-  // before the builds, and both run before anything is copied.
-  const changes = sourceChanges(source);
-  if (changes.length > 0) refuse('source_dirty', { paths: changes.slice(0, 10) });
+  // before the builds, and both run before anything is copied. A source check reads
+  // the worktree itself, so a folder it cannot read has to end the run the way a
+  // failed step does rather than as a stack trace a caller cannot read.
+  let copied;
+  let trackedDotenv;
+  try {
+    const changes = sourceChanges(source);
+    if (changes.length > 0) refuse('source_dirty', { paths: changes.slice(0, 10) });
 
-  const copied = copyPlan(source);
-  const stale = staleBuilds(source, copied);
-  if (stale.length > 0) refuse('stale_build', { stale });
+    copied = copyPlan(source);
+    const stale = staleBuilds(source, copied);
+    if (stale.length > 0) refuse('stale_build', { stale });
 
-  const escaping = escapingLinks(source, copied);
-  if (escaping.length > 0) refuse('symlink_escape', { links: escaping });
+    const escaping = escapingLinks(source, copied);
+    if (escaping.length > 0) refuse('symlink_escape', { links: escaping });
 
-  const trackedDotenv = trackedDotenvFiles(source);
+    trackedDotenv = trackedDotenvFiles(source);
+  } catch (error) {
+    abort(error.code ?? 'arena_failed', error.message);
+  }
 
   mkdirSync(dirname(dest), { recursive: true });
   try {

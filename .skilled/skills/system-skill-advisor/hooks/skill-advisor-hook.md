@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.19.0
+version: 3.6.20.0
 ---
 
 # Skill Advisor Hook Reference
@@ -176,6 +176,10 @@ The advisor is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Legacy alias that disables every adapter and makes the `advisor_recommend` direct call abstain. The standalone Python CLI (`skill_advisor.py`) reads only this name, set to exactly `1`, from `runtime/schemas/compat-contract.json`. |
 | `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Legacy alias. Disables every adapter and makes the `advisor_recommend` direct call abstain. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
+| `MK_HOOKS_DISABLED=1` | Older alias of `SYSTEM_HOOKS_DISABLED`. Master switch that disables this concern along with every other repo hook. |
+| `MK_SKILL_ADVISOR_DISABLED=1` | Older alias of `SYSTEM_SKILL_ADVISOR_DISABLED`. Every adapter checks `isHookEnabled('skill-advisor')` and returns empty/skipped prompt-safe output, and the `advisor_recommend` direct call abstains. |
+| `MK_SKILL_ADVISOR_HOOK_DISABLED=1` | Older alias of `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED`. Disables every adapter and makes the `advisor_recommend` direct call abstain. |
+| `MK_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Older alias of `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED`. Disables every adapter and makes the `advisor_recommend` direct call abstain. |
 
 The direct call decides in the caller's own process, by the same resolution the adapters use. `node .skilled/bin/skill-advisor.cjs advisor_recommend` asks `hookFlagDecision('skill-advisor')` in `.skilled/hooks/shared/hook-flags.cjs`, with the caller's environment over `.skilled/hooks/hook-flags.env`, before it connects to a daemon or runs the local scorer. Whenever the adapters are off, under any name in this table or its older `MK_` form, any truthy value or a line in the flags file, it prints the empty envelope with `ADVISOR_DISABLED` and names the switch that decided. A daemon reads the same names from its own environment and never reads the flags file, and the launcher passes no switch name and no `HOOK_FLAGS_CONFIG` to a daemon it starts, so a flagged command that happens to start the daemon does not leave it abstaining for every later caller. The standalone Python CLI keeps its own rule: only `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, set to exactly `1`.
 

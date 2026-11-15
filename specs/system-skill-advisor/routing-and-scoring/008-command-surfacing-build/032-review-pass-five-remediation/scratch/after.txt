@@ -1,25 +1,12 @@
 
 ## status FILES (whole tree)
- M .skilled/skills/system-skill-advisor/leaf-aliases.json
- M .skilled/skills/system-skill-advisor/leaf-manifest.json
- M .skilled/skills/system-skill-advisor/leaf-scopes.json
- M .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
- M .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
- M .skilled/skills/system-skill-advisor/runtime/lib/README.md
+ M .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
  M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
- M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs
  M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs
  M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs
  M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
- M .skilled/skills/system-skill-advisor/runtime/tests/README.md
  M .skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts
- M .skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts
  M .skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
- M .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
- M .skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts
- M .skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts
- M .skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts
- M .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
 exit=0
 
 ## flags file
@@ -38,12 +25,12 @@ exit=0
 
 ## VX tests/command-transcript-score.vitest.ts
  Test Files  1 passed (1)
-      Tests  229 passed (229)
+      Tests  322 passed (322)
 exit=0
 
 ## VX tests/command-behaviour-guards.vitest.ts
  Test Files  1 passed (1)
-      Tests  46 passed (46)
+      Tests  51 passed (51)
 exit=0
 
 ## VX tests/command-offer.vitest.ts
@@ -83,7 +70,7 @@ exit=0
 
 ## VALL
  Test Files  185 passed (185)
-      Tests  2206 passed | 6 skipped (2212)
+      Tests  2304 passed | 6 skipped (2310)
 exit=0
 
 ## DT

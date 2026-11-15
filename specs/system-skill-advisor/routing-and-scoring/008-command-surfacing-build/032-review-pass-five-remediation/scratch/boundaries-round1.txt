@@ -1,0 +1,25 @@
+FILES count: 28
+$ G diff --quiet BASE -- AGENTS.md .vibe .skilled/hooks $ADV/lib/advisor-disabled.ts .skilled/bin
+exit=0
+$ test rev-parse BASE:$RAD/command-prompts.jsonl = hash-object
+exit=0
+$ test rev-parse BASE:$RAD/holdout-prompts.jsonl = hash-object
+exit=0
+$ test rev-parse BASE:$RAD/behaviour-fresh-prompts.jsonl = hash-object
+exit=0
+$ G diff --quiet BASE -- $RAD/command-routing-baseline.json $RAD/scorer-eval-baseline.json $RL
+exit=0
+$ G diff --stat BASE -- '*package.json' '*package-lock.json'
+exit=0 (output above, none expected)
+$ added comment lines in code files naming an id (count)
+rg exit=1 (1 means nothing printed)
+$ added doc lines with an em dash (count)
+rg exit=1 (1 means nothing printed)
+$ added doc lines with no backtick holding a semicolon (count)
+rg exit=1 (1 means nothing printed)
+$ G status --porcelain --untracked-files=all -- .skilled .opencode .github .vibe AGENTS.md, paths outside FILES
+status paths:       28
+outside FILES grep exit=1 (1 means none)
+$ LEFT
+       0
+       0

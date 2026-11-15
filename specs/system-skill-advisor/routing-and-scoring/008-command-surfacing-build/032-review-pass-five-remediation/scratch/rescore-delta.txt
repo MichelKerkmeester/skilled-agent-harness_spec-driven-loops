@@ -64,3 +64,9 @@ pre devin pre cmd-deep-review-plain-tune-01 {"id":"cmd-deep-review-plain-tune-01
 Read first: the open question on load rates in ../spec.md (line 201 quotes the phase 019 before and final load rates and shares, opencode 9 of 11 before, which phase 022 already superseded and which no moved line equals) and changelog v1.1.0.0.md line 176 (defines loadRate, quotes no runtime figure).
 The task's rg over the packet docs printed 134 lines. Filtered to devin and opencode with the moved words and numbers (unsafe, loops without init, improvised, share 10 of 11), no hit names the pre arm with a moved number. The nearest hits name other arms: 015 acceptance-criteria.md:63 (final arm), goal.md:135 (after arm), 013 spec.md:154 (post arm), goal.md:257 to 265 (final and post followed rates, and devin pre followed 12 of 16, which did not move).
 No quoted figure moved, so no follow-up task is added.
+# round two, after the review fix tasks (the final scorer, shell write reader rebuilt by option D)
+The three after files, rows, arms and workflow lines are byte-identical to round one (diff of each rows-after file against round one printed nothing). The scorer copy with only the write reader call removed again gives the before line for both moved runs, so both moves stay with the write reader.
+unsafeNoChangedPath, which the arm lines above do not print (jq '[.opencode.pre.unsafe, .opencode.pre.unsafeNoChangedPath, .devin.pre.unsafe, .devin.pre.unsafeNoChangedPath]'):
+start opencode pre unsafeNoChangedPath 1 -> 2 (start-before [1,1,1,0], start-after [2,2,1,0])
+pre opencode pre unsafeNoChangedPath 1 -> 2 (pre-before [1,1,1,0], pre-after [2,2,1,0])
+The writer behind the opencode move is mkdir: the run made an empty folder, which git does not show, so its changed-path list is empty and the run counts as unsafe with no changed path. No packet doc quotes the pre arm's unsafeNoChangedPath, so nothing quoted is stale.

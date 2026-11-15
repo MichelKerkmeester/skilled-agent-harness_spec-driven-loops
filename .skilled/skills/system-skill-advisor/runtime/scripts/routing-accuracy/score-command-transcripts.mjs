@@ -499,18 +499,20 @@ export function vibeRecords(entries) {
 // three state words are the whole vocabulary it may carry.
 //
 // The token has to open the line, after the markup a model wraps it in: optional
-// whitespace, a list marker or a number with a dot, and a run of emphasis
-// markers, a backtick or a square bracket. A sentence that quotes the format is
-// not a report, and a line inside a fenced block or a blockquote holds text the
-// model is showing rather than printing as its own, so neither is read. The name
-// must open with a letter or digit so a reply that quotes the instruction's
-// `[/name]` placeholder is not read as a command the model reported.
+// whitespace, a list marker or a number with a dot or a closing bracket, a
+// heading run, a checkbox after a list marker, and a run of emphasis markers, a
+// backtick or a square bracket. A sentence that quotes the format is not a
+// report, and a line inside a fenced block or a blockquote holds text the model
+// is showing rather than printing as its own, so neither is read. The name must
+// open with a letter or digit so a reply that quotes the instruction's `[/name]`
+// placeholder is not read as a command the model reported.
 const COMMAND_LINE =
-  /^[ \t]*(?:(?:[-*+]|\d+\.)[ \t]+|[`*_\[])*COMMAND:[ \t`\[]*(\/[A-Za-z0-9][\w.:-]*)[ \t`\]]*(?:→|->)[ \t`\[]*(started|offered|declined)\b/i;
+  /^[ \t]*(?:(?:[-*+]|\d+[.)])[ \t]+(?:\[[ xX]\][ \t]+)?|#{1,6}[ \t]+|[`*_\[])*COMMAND:[ \t`\[]*(\/[A-Za-z0-9][\w.:-]*)[ \t`\]]*(?:→|->)[ \t`\[]*(started|offered|declined)\b/i;
 
 // A fenced block or a blockquote holds text a model is showing, so a line inside
-// one is skipped rather than read as a report.
-const FENCE_LINE = /^[ \t]{0,3}```/;
+// one is skipped rather than read as a report. A fence opens wherever it is
+// indented, and only a fence on its own character closes the one it opened.
+const FENCE_LINE = /^[ \t]*(`{3,}|~{3,})/;
 const QUOTE_LINE = /^[ \t]*>/;
 
 // A model writes the mode it chose onto the command, so one command reported once
@@ -544,14 +546,17 @@ export function commandLines(events) {
 
     // One text block is one document, so a fence it leaves open does not hide the
     // report a later block prints.
-    let fenced = false;
+    let fence = null;
 
     for (const text of event.text.split('\n')) {
-      if (FENCE_LINE.test(text)) {
-        fenced = !fenced;
+      const fenceMatch = FENCE_LINE.exec(text);
+      if (fenceMatch !== null) {
+        const marker = fenceMatch[1][0];
+        if (fence === null) fence = marker;
+        else if (fence === marker) fence = null;
         continue;
       }
-      if (fenced || QUOTE_LINE.test(text)) continue;
+      if (fence !== null || QUOTE_LINE.test(text)) continue;
 
       const match = COMMAND_LINE.exec(text);
       if (match === null) continue;
@@ -797,9 +802,9 @@ const ALWAYS_SHELL_WRITERS = Object.freeze(['cp', 'mv', 'tee', 'rm', 'mkdir', 't
 // writes and the order the command wrote them is kept.
 const EVERY_WORD_WRITERS = Object.freeze(['tee', 'rm', 'mkdir', 'touch']);
 
-// A short-flag cluster holds `i` when its flag letters reach one, as `-i`, `-ni` and
-// `-i.bak` do. The script a sed or perl call runs is a word without a dash, so it comes
-// before the file and the last word is the one the writer changes.
+// These patterns decide whether a sed or perl call edits in place. They read the quoted
+// words the scan keeps, and `editedWords` picks the files, so a short-flag cluster only
+// has to reach its `i` here, as `-i`, `-ni` and `-i.bak` do.
 const SHORT_FLAG_IN_PLACE = /^-[A-Za-z]*i/;
 
 // A perl switch takes its argument inline, as `-Mstrict` and `-Ilib` do, so only the
@@ -814,13 +819,6 @@ const REDIRECT_WORD = /^(?:\d*[<>]|&>)/;
 // A bare operator carries no file of its own, so the word after it is its target.
 const REDIRECT_OPERATOR = /^(?:\d+|&)?[<>]+$/;
 
-function unquoteWord(word) {
-  const first = word[0];
-  return word.length > 1 && (first === '"' || first === "'") && word[word.length - 1] === first
-    ? word.slice(1, -1)
-    : word;
-}
-
 function isShellWriter(writer, args) {
   if (ALWAYS_SHELL_WRITERS.includes(writer)) return true;
   if (writer === 'sed') {
@@ -832,47 +830,277 @@ function isShellWriter(writer, args) {
   return false;
 }
 
+// A writer is handed the words a shell would hand it, so one scan splits the command at
+// the separators a shell runs and keeps every quote and backslash in its word. A
+// separator or a space inside quotes is text, a backslash outside quotes carries the
+// character after it, and a `#` that opens a word runs to the end of its line. Text that
+// ends inside a quote cannot be split this way, so it returns null and the caller reads
+// it by the plain split.
+function shellSegments(text) {
+  const segments = [];
+  let words = [];
+  let word = '';
+  let quoted = null;
+  let escaped = false;
+
+  const endWord = () => {
+    if (word !== '') words.push(word);
+    word = '';
+  };
+  const endSegment = () => {
+    endWord();
+    if (words.length > 0) segments.push(words);
+    words = [];
+  };
+
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    if (quoted !== null) {
+      word += char;
+      if (char === '\\' && escaped) {
+        word += text[index + 1] ?? '';
+        index += 1;
+      } else if (char === quoted) {
+        quoted = null;
+      }
+      continue;
+    }
+    if (char === '#' && word === '') {
+      while (index + 1 < text.length && text[index + 1] !== '\n') index += 1;
+      continue;
+    }
+    if (char === '\\') {
+      // A backslash before a newline joins the two lines, and every other one carries the
+      // character after it so a quote it protects cannot open a quoted run.
+      if (text[index + 1] === '\n') {
+        index += 1;
+        continue;
+      }
+      if (text[index + 1] === '\r' && text[index + 2] === '\n') {
+        index += 2;
+        continue;
+      }
+      word += char + (text[index + 1] ?? '');
+      index += 1;
+      continue;
+    }
+    if (char === '"' || char === "'") {
+      quoted = char;
+      // A double quote and a quote opened right after `$` take a backslash escape, while
+      // a plain single quote keeps every character up to its closer.
+      escaped = char === '"' || text[index - 1] === '$';
+      word += char;
+      continue;
+    }
+    // A lone `&` belongs to a word, as the `&` of `2>&1` does.
+    if (char === '&' && text[index + 1] !== '&') {
+      word += char;
+      continue;
+    }
+    if (char === '&' || char === '|' || char === ';' || char === '\n' || char === '\r') {
+      if (text[index + 1] === char) index += 1;
+      endSegment();
+      continue;
+    }
+    if (/\s/.test(char)) {
+      endWord();
+      continue;
+    }
+    word += char;
+  }
+  endSegment();
+
+  return quoted === null ? segments : null;
+}
+
+// A word reaches a writer with the quotes and escapes a shell would drop, so a name keeps
+// the characters it was given rather than the ones that protected it. A word that strips
+// to nothing names no file at all.
+function shellWord(word) {
+  return word.replace(/["'\\]/g, '');
+}
+
+// The plain split reads text the one scan cannot, because an unclosed quote leaves the
+// rest of the command inside it.
+function plainSplit(text) {
+  return text.split(/;|&&|\|\||\||\r?\n/).map((part) => part.trim().split(/\s+/).filter(Boolean));
+}
+
+// A redirect names the file the command sends its output to rather than one it changed,
+// so its word leaves the list, and the word after a bare operator leaves with it.
+function plainWords(args) {
+  const words = [];
+  let bareRedirect = false;
+  for (const word of args) {
+    if (REDIRECT_WORD.test(word)) {
+      bareRedirect = REDIRECT_OPERATOR.test(word);
+      continue;
+    }
+    if (bareRedirect) {
+      bareRedirect = false;
+      continue;
+    }
+    words.push(word);
+  }
+  return words;
+}
+
+// An option that takes a value consumes the word after it, so a mode, a time or a
+// reference is not a file the writer changed.
+const WRITER_VALUE_FLAGS = Object.freeze({
+  mkdir: Object.freeze(['-m']),
+  touch: Object.freeze(['-t', '-d', '-r']),
+  cp: Object.freeze(['-t']),
+  mv: Object.freeze(['-t']),
+});
+
+// A sed or perl script is the value of `-e`, `-f`, `--expression` or `--file` when one is
+// named, either as the next bare word or as text carried on the flag itself, and the first
+// bare word of the call otherwise. A short option names one when a script letter ends it,
+// and carries its script inline when a script letter opens it and more text follows. A
+// quoted script keeps its letters out of the option text, because the scan leaves the
+// quotes in place and only the text before the first quote is read as flags. A sed script
+// letter and a perl one differ, so sed's `-E` stays a plain option while perl's carries a
+// script.
+function scriptFlag(writer, word) {
+  const cut = word.search(/["']/);
+  const text = cut === -1 ? word : word.slice(0, cut);
+
+  if (text === '--expression' || text === '--file') return 'next';
+  if (text.startsWith('--expression=') || text.startsWith('--file=')) return 'inline';
+  if (!text.startsWith('-') || text.startsWith('--')) return null;
+
+  const option = text.slice(1);
+  if (!option) return null;
+  const letters = writer === 'sed' ? 'ef' : 'eE';
+  if (letters.includes(option[0]) && option.length > 1) return 'inline';
+  if (letters.includes(option[option.length - 1])) return cut === -1 ? 'next' : 'inline';
+  return null;
+}
+
+// A sed or perl call changes every bare word it names after its script, and the last bare
+// word is always a file, so a call whose script rides on its flag still names what it
+// changes rather than reading the file as a second script.
+function editedWords(writer, words) {
+  const bare = words
+    .map((word, index) => ({ index, word }))
+    .filter(({ word }) => !word.startsWith('-') && shellWord(word) !== '');
+  if (bare.length === 0) return [];
+
+  const marked = new Set();
+  let inline = false;
+  for (let index = 0; index < words.length; index += 1) {
+    const flag = words[index].startsWith('-') ? scriptFlag(writer, words[index]) : null;
+    if (flag === 'inline') inline = true;
+    if (flag !== 'next') continue;
+    const next = words[index + 1];
+    if (next === undefined || next.startsWith('-') || shellWord(next) === '') continue;
+    marked.add(index + 1);
+  }
+
+  // A call that names its script nowhere still reads its first bare word as the script.
+  if (!inline && marked.size === 0) marked.add(bare[0].index);
+
+  const last = bare[bare.length - 1].index;
+  return bare
+    .filter(({ index }) => !marked.has(index) || index === last)
+    .map(({ word }) => word);
+}
+
+function writtenWords(writer, args) {
+  const words = plainWords(args);
+  if (writer === 'sed' || writer === 'perl') return editedWords(writer, words);
+
+  const valued = WRITER_VALUE_FLAGS[writer] ?? [];
+  const every = EVERY_WORD_WRITERS.includes(writer);
+  // A `-t` names the target folder itself, so it is the one target and the source words
+  // after it are only read. A bare `-t` with no word after it names nothing, so the file
+  // before it is still the one the call changes.
+  if (!every) {
+    const at = words.indexOf('-t');
+    if (at !== -1 && words[at + 1] !== undefined) return [words[at + 1]];
+  }
+
+  const named = [];
+  let skipNext = false;
+  for (const word of words) {
+    if (skipNext) {
+      skipNext = false;
+      continue;
+    }
+    if (word.startsWith('-')) {
+      if (valued.includes(word)) skipNext = true;
+      continue;
+    }
+    named.push(word);
+  }
+
+  // A copy or a move changes what it is given last, while every other writer names one
+  // file per word.
+  return every ? named : named.slice(-1);
+}
+
+// A shell that runs its command from an argument changes whatever that text names, and a
+// command runner can put its own words before the shell. A shell name may carry a path, and
+// `-c` can ride in a login cluster as `-lc` does.
+const SHELL_NAME = /(?:^|\/)(?:sh|bash|zsh|dash|ksh)$/;
+const SHELL_COMMAND_FLAG = /^-[A-Za-z]*c$/;
+
+// The command text a segment carries, or null when it carries none. The text is stripped
+// of the quotes that kept it one word so it can be read as a command of its own.
+function nestedCommand(words) {
+  const shellAt = words.findIndex((word) => SHELL_NAME.test(shellWord(word)));
+  if (shellAt !== -1) {
+    for (let index = shellAt + 1; index < words.length; index += 1) {
+      if (!SHELL_COMMAND_FLAG.test(words[index])) continue;
+      const text = words[index + 1];
+      return text === undefined ? null : shellWord(text);
+    }
+    return null;
+  }
+
+  const evalAt = words.findIndex((word) => shellWord(word) === 'eval');
+  if (evalAt === -1) return null;
+  const text = words.slice(evalAt + 1).map(shellWord).join(' ');
+  return text === '' ? null : text;
+}
+
+// Every word a writer lands is a file it changed, and the folder an earlier `cd` entered
+// prefixes a bare name. A nested command is read as a command of its own, and a word that
+// strips to nothing names no file at all.
 function shellWriteTargets(command) {
   const text = (typeof command === 'string' ? command : '').replace(HEREDOC_BODY, '$1');
-  const parts = text.split(/;|&&|\|\||\||\r?\n/);
   const targets = [];
   // A bare file name is changed in the folder an earlier `cd` of the same command
   // entered.
   let folder = null;
 
-  for (const part of parts) {
-    const words = part.trim().split(/\s+/).filter(Boolean);
+  for (const words of shellSegments(text) ?? plainSplit(text)) {
     let start = 0;
     while (start < words.length && /^[A-Za-z_][A-Za-z0-9_]*=/.test(words[start])) start += 1;
     if (start < words.length && words[start] === 'cd') {
       const next = words[start + 1];
-      folder = next === undefined ? null : unquoteWord(next).replace(/\/+$/, '');
+      folder = next === undefined ? null : shellWord(next).replace(/\/+$/, '');
       continue;
     }
     if (start >= words.length) continue;
 
-    const writer = words[start];
-    if (!isShellWriter(writer, words.slice(start + 1))) continue;
-
-    const named = [];
-    let bareRedirect = false;
-    for (const word of words.slice(start + 1)) {
-      if (REDIRECT_WORD.test(word)) {
-        bareRedirect = REDIRECT_OPERATOR.test(word);
-        continue;
+    const nested = nestedCommand(words.slice(start));
+    if (nested !== null) {
+      for (const word of shellWriteTargets(nested)) {
+        targets.push(folder !== null && !/^[/~]/.test(word) ? `${folder}/${word}` : word);
       }
-      if (bareRedirect) {
-        bareRedirect = false;
-        continue;
-      }
-      if (word.startsWith('-')) continue;
-      const unquoted = unquoteWord(word);
-      if (unquoted !== '') named.push(unquoted);
+      continue;
     }
-    const chosen = EVERY_WORD_WRITERS.includes(writer) ? named : named.slice(-1);
 
-    for (const word of chosen) {
-      targets.push(folder !== null && !/^[/~]/.test(word) ? `${folder}/${word}` : word);
+    const writer = words[start];
+    const args = words.slice(start + 1);
+    if (!isShellWriter(writer, args)) continue;
+
+    for (const word of writtenWords(writer, args)) {
+      const target = shellWord(word);
+      if (target === '' || DISCARDED_TARGET.test(target)) continue;
+      targets.push(folder !== null && !/^[/~]/.test(target) ? `${folder}/${target}` : target);
     }
   }
 

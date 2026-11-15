@@ -34,14 +34,14 @@ cut: /tmp/v5-arena-probe/arena-a/.git/skilled-behaviour-arena: No such file or d
 arena src.js:   arena dist/out.js:   marker head: 
 == B: source committed clean at v3, dist still holds the v2 build
 source status lines: 0
-{"ok":false,"code":"stale_build","stale":[{"path":"dist","source":"2026-11-15T19:20:22.375Z","build":"2026-11-15T19:20:22.311Z"}]}
+{"ok":false,"code":"stale_build","stale":[{"path":"dist","source":"2026-11-15T21:32:54.101Z","build":"2026-11-15T21:32:54.016Z"}]}
 builder exit=2
 cat: /tmp/v5-arena-probe/arena-b/src.js: No such file or directory
 cat: /tmp/v5-arena-probe/arena-b/dist/out.js: No such file or directory
 arena src.js:   arena dist/out.js: 
 stat: /tmp/v5-arena-probe/arena-b/src.js: stat: No such file or directory
 stat: /tmp/v5-arena-probe/arena-b/dist/out.js: stat: No such file or directory
-mtime src.js   mtime dist/out.js   source src.js 1794770422.375270240  source dist/out.js 1794770422.311335994
+mtime src.js   mtime dist/out.js   source src.js 1794778374.101718711  source dist/out.js 1794778374.016737880
 == C: a dist symlink that points outside the source
 {"ok":false,"code":"symlink_escape","links":[{"path":"dist/linked","target":"/private/tmp/v5-arena-probe/outside"}]}
 builder exit=2
