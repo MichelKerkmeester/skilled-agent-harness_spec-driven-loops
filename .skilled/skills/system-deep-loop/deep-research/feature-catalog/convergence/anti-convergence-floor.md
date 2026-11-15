@@ -7,7 +7,7 @@ trigger_phrases:
   - "convergenceMode off"
   - "min_iterations_guard_pass"
   - "premature research stop guard"
-version: 1.14.0.13
+version: 1.14.1.0
 ---
 
 # Anti-convergence floor
@@ -22,7 +22,7 @@ The anti-convergence floor keeps deep-research from ending after a shallow early
 
 ## 2. HOW IT WORKS
 
-The config template defines `antiConvergence.minIterations` with a default of `3` and `antiConvergence.convergenceMode` with a default of `default`. The auto workflow writes those values into the config record, validates older or malformed configs at read time, and clamps the effective floor to the hard `maxIterations` cap when needed.
+The config template defines `antiConvergence.minIterations` with a default of `3` and `antiConvergence.convergenceMode` with a default of `default`. The workflow writes those values into the config record, validates older or malformed configs at read time, and clamps the effective floor to the hard `maxIterations` cap when needed.
 
 During convergence checking, a STOP candidate is blocked while the completed iteration count is below the effective floor. When the floor clears, the workflow emits `min_iterations_guard_pass`, keeping attribution separate from quality-guard events. `convergenceMode: "off"` disables convergence-driven STOP while leaving max iterations, pause, and other explicit halts active.
 
@@ -35,13 +35,13 @@ During convergence checking, a STOP candidate is blocked while the completed ite
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Asset | Defines the anti-convergence defaults and locked config fields. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Reads the floor, validates compatibility with `maxIterations`, blocks early STOP, and emits floor events. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Writes the floor into the config and emits floor events; convergence.cjs enforces the floor before a STOP. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts` | Vitest | Verifies config shape, YAML guard behavior, and backward-compatible missing-field handling. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts` | Vitest | Verifies config shape, floor behavior, and backward-compatible missing-field handling. |
 | `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/anti-convergence-floor.md` | Manual playbook | Verifies the operator-visible floor and `convergenceMode` contract. |
 
 ---

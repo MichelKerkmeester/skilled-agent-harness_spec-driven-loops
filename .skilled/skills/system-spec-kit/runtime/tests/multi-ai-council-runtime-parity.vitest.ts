@@ -36,7 +36,6 @@ function normalizeProse(text: string): string {
 
 function sharedBody(text: string): string {
   return text
-    .replace(/\n## Convergence Threshold Semantics\n[\s\S]*?\n---\n/, '\n---\n')
     .replace(/\.(?:skilled|opencode|claude|pi)\/agents\/\*\.md/g, '<runtime-agent-path>')
     .replace(/\.(?:skilled|opencode|claude|pi)\/agents\/[A-Za-z0-9_<>-]+\.md/g, '<runtime-agent-file>').replace(/\.(?:skilled|opencode|claude|pi)\/agents\/(?![A-Za-z0-9_<>*-])/g, '<runtime-agent-dir>')
     .replace(/\s+/g, ' ')
@@ -48,16 +47,18 @@ describe('ai-council runtime mirror parity', () => {
     const canonical = frontmatter(read(markdownMirrors[0]));
     // OpenCode permission schema accepts `allow` | `ask` | `deny` strings or
     // a glob-keyed object — NOT a `paths: [...]` array. Path-scope to
-    // `ai-council/**` is enforced in lib/persist-artifacts.js via
-    // OUT_OF_SCOPE_WRITE rejection. See follow-up note
+    // `ai-council/**` is a rule in the agent body: it refuses any other
+    // target and reports OUT_OF_SCOPE_WRITE.
     expect(canonical).toContain('write: allow');
     expect(canonical).toContain('edit: allow');
     expect(canonical).toContain('bash: deny');
-    expect(canonical).toContain('patch: deny');
+    // OpenCode 2 exposes its write tool only when patch (or bash) is allowed, so
+    // patch is allowed here and bash stays the denied shell path.
+    expect(canonical).toContain('patch: allow');
 
     // Claude uses a translated frontmatter schema (commit 85bd60b9f) — `tools:` list
     // instead of the OpenCode `mode:`/`temperature:`/`permission:` block. Path-scope
-    // is enforced by the same OUT_OF_SCOPE_WRITE rejection in the helper library.
+    // is the same body rule.
     // Assert the shared identity fields (name + description prose) match and that
     // the Claude-specific tools whitelist is present.
     const claudeFM = frontmatter(read('.claude/agents/ai-council.md'));
@@ -80,7 +81,6 @@ describe('ai-council runtime mirror parity', () => {
     expect(descMatch, 'canonical description field').not.toBeNull();
 
     const canonicalBody = body(read(markdownMirrors[0]));
-    expect(canonicalBody).toContain('deep-ai-council threshold scores');
     const canonicalSharedBody = sharedBody(canonicalBody);
     for (const mirror of markdownMirrors.slice(1)) {
       expect(sharedBody(body(read(mirror))), mirror).toBe(canonicalSharedBody);
@@ -89,7 +89,7 @@ describe('ai-council runtime mirror parity', () => {
     const codex = read('.codex/agents/ai-council.toml');
     expect(codex).toContain(`name = "${nameMatch![1]}"`);
     expect(normalizeProse(codex)).toContain(normalizeProse(descMatch![1]));
-    // ai-council allows write+edit (denies only bash+patch), so its codex sandbox must permit
+    // ai-council allows write+edit (denies only bash), so its codex sandbox must permit
     // filesystem writes for ai-council/** artifact persistence; read-only would block them.
     expect(codex).toContain('sandbox_mode = "workspace-write"');
     expect(codex).toContain('ai-council/**');

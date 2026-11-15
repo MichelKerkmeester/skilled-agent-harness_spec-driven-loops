@@ -1,7 +1,7 @@
 ---
 title: "DRV-030 -- Stop on max iterations"
 description: "Verify review stops at maxIterations (default 7) even if dimensions remain uncovered."
-version: 1.11.0.16
+version: 1.11.1.0
 ---
 
 # DRV-030 -- Stop on max iterations
@@ -27,7 +27,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify review stops at maxIterations (default 7) even if dimensions remain uncovered.
 - Real user request: If the review keeps finding new issues, does it ever stop on its own?
 - Prompt: `Validate the deep-review hard iteration cap and report whether synthesis still runs after maxIterations stops the loop.`
-- Expected execution process: Inspect the convergence reference for hard stop rules, then the YAML workflow step that enforces the cap, then the quick reference and SKILL.md for user-facing documentation.
+- Expected execution process: Inspect the convergence reference for hard stop rules, then the `convergence.cjs` hard-stop decision, then the quick reference and SKILL.md for user-facing documentation.
 - Desired user-facing outcome: The user is told that the review loop always terminates at maxIterations and still produces a review report even if not all dimensions were covered.
 - Expected signals: `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
 - Pass/fail posture: PASS if the hard cap is enforced unconditionally and synthesis still runs. FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop.
@@ -46,16 +46,16 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate the deep-review hard iteration cap and report whether synthesis still runs after maxIterations stops the loop.
 ### Commands
 1. `bash: rg -n 'maxIterations|hard.stop|HARD_STOP|max_iterations|iteration.*cap' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'maxIterations|max_iterations|hard.stop|step_check_convergence|iteration_count' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'maxIterations|max_iterations|hard.stop|step_check_convergence|iteration_count' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'maxIterations|max-iterations|default.*7|hard stop' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
 ### Expected
 `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
 ### Evidence
-Capture the hard-stop condition from convergence.md, the YAML enforcement step, and the user-facing documentation of the default.
+Capture the hard-stop condition from convergence.md, the runtime stop decision, and the user-facing documentation of the default.
 ### Pass/Fail
 PASS if the hard cap is enforced unconditionally and synthesis still runs. FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop.
 ### Failure Triage
-Privilege the convergence reference for exact algorithm and use YAML workflow steps as the enforcement authority.
+Privilege the convergence reference for exact algorithm and use the runtime stop decision as the enforcement authority.
 ---
 
 ## 4. SOURCE FILES
@@ -72,8 +72,7 @@ Privilege the convergence reference for exact algorithm and use YAML workflow st
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math including hard stop rules |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect `step_check_convergence` for hard stop enforcement |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect `step_check_convergence` for hard stop enforcement |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow branch on the `convergence.cjs` stop decision, inspect `step_check_convergence` for hard stop enforcement |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | User-facing parameter defaults, use `ANCHOR:commands` and `ANCHOR:convergence` |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Skill rules and convergence documentation, use `ANCHOR:rules` |
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary and configuration defaults |

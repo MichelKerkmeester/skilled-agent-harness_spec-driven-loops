@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/004-advisor-council-removal",
+  "description": "Phase 4: advisor-council-removal",
+  "keywords": [
+    "phase",
+    "advisor-council-removal"
+  ],
+  "lastUpdated": "2026-11-14T20:19:52.750Z",
+  "specId": "004",
+  "folderSlug": "advisor-council-removal",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "004-workflow-logic-hardening",
+    "006-ai-council-mode-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

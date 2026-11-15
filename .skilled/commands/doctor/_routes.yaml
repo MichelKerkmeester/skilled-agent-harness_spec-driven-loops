@@ -88,7 +88,7 @@ routes:
     target: deep-loop
     yaml: doctor-deep-loop.yaml
     setup_vars: [execution_mode, intent, scope]
-    allowed_flags: ["--scope=research|review|council|both|all"]
+    allowed_flags: ["--scope=research|review|both|all"]
     mutating: add-only
     write_scope: spec-folder
     gate3_location: "<active-spec-folder>/scratch/doctor-deep-loop-state.<timestamp>.json"

@@ -7,7 +7,7 @@ trigger_phrases:
   - "set up research session"
   - "canonical state files"
   - "lineage mode"
-version: 1.14.0.8
+version: 1.14.1.0
 ---
 
 # Initialization
@@ -35,8 +35,7 @@ Lineage handling is narrower than some older drafts. The runtime supports `new`,
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/commands/deep/research.md` | Command | Defines the init phase inputs, packet outputs, and setup contract before the YAML workflow loads. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Creates canonical state files and applies the autonomous initialization path. |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Mirrors the init path with confirm-mode charter review and state checks. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Creates canonical state files on the initialization path. Confirm mode adds charter review and state checks. |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Documents session classification, canonical names, and the resumed or restarted lifecycle event contract. |
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Asset | Supplies the default config shape written during initialization. |
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Asset | Supplies the initial strategy structure and anchor layout. |

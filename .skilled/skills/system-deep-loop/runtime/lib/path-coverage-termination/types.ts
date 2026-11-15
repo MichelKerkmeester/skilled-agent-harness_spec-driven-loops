@@ -33,8 +33,7 @@ export const PATH_COVERAGE_PROJECTION_VERSION = 'path-coverage-projection@1' as 
 export type PathCoverageMode =
   | 'research'
   | 'review'
-  | 'context'
-  | 'council';
+  | 'context';
 
 export type PathState = 'unvisited' | 'active' | 'addressed' | 'blocked' | 'excluded';
 export type CloseablePathState = Extract<PathState, 'addressed' | 'excluded'>;
@@ -377,7 +376,7 @@ export interface PathCoverageEvaluation {
   readonly partialCoverage: PartialCoverageReport | null;
 }
 
-export interface LegacyCouncilBridge {
+export interface LegacyConvergenceBridge {
   readonly status: unknown;
   readonly data: unknown;
   readonly graph_decision: string;
@@ -394,9 +393,9 @@ export interface LegacyCouncilBridge {
 export interface PathCoverageShadowEvaluation {
   readonly authority: 'legacy-convergence';
   readonly authoritativeDecision: string;
-  readonly legacyBridge: Readonly<LegacyCouncilBridge>;
+  readonly legacyBridge: Readonly<LegacyConvergenceBridge>;
   readonly pathCoverage: PathCoverageEvaluation;
-  readonly bridge: Readonly<LegacyCouncilBridge & {
+  readonly bridge: Readonly<LegacyConvergenceBridge & {
     path_coverage_shadow_only: true;
     path_coverage_decision: TerminationDecision;
     path_coverage_certificate: CoverageCertificate;

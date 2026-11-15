@@ -1,0 +1,55 @@
+ROLE: You are a YAML editor. Make three edits to ONE file.
+
+CONTEXT: deep-review.yaml serves both execution modes. In confirm mode a resumed session asks the
+operator to resume, restart or cancel. That ask moves here from the confirm twin as one block
+marked `applies_to: confirm`. The lock step and the lifecycle step also get mode-neutral wording.
+
+ALLOWED WRITE PATHS (only this file):
+- .skilled/commands/deep/assets/deep-review.yaml   (the TARGET)
+SOURCE, read only: .skilled/commands/deep/assets/deep-review-confirm.yaml
+
+EDIT 1. In the TARGET, find `step_classify_session:` and its `on_resume:` key. Directly after
+the `skip_to: phase_loop` line of `on_resume:`, insert these three lines:
+          confirm_choice:
+            applies_to: confirm
+            preempts: "Under confirm this block runs in place of the sibling log, append_jsonl and skip_to keys of on_resume. Under auto it is skipped and those keys run."
+Then, directly below them, insert a copy of SOURCE lines 336-398, with every line indented two spaces
+deeper than in the SOURCE, so the first copied key `show_dashboard:` sits at twelve spaces.
+From the copy, delete every line that starts with `dry_run_halt_event:`. Keep its
+`dry_run_boundary:` lines. Change nothing else in the copy.
+
+EDIT 2. In the TARGET, `step_acquire_lock:` has an `on_acquire:` line. Its text ends with
+"already holds this packet." Add this sentence at the end of that text, inside the closing quote:
+   Under confirm, mode_overrides.confirm.lock_not_acquired applies instead.
+Change nothing else on that line.
+
+EDIT 3. In the TARGET, in `step_apply_lifecycle_request:`, replace the `description:` line with
+    description: "Honor an explicit restart request before fan-out or normal initialization"
+and replace every line of its `instructions: |` text (from "This is the autonomous
+equivalent" to "the packet directory.") with these six lines, at the same indentation:
+      Run this step in both execution modes, immediately after artifact resolution
+      and before fan-out, so old packet files cannot be merged with fresh lineage
+      outputs. A restart request must never fall back to resume. The explicit
+      restart flag is operator authorization to archive the resolved review packet,
+      so do not ask for a second confirmation. Rollback is to move the timestamped
+      archive back to the packet directory.
+In EDIT 1 for this file, also add the line `dry_run_boundary: "state-mutation"` as the first key
+under `on_resume_choice:` and as the first key under `on_restart_choice:` of the copy, if the
+copy does not already hold one there.
+
+CHECKS. Run from the repository root and fix the file until all pass:
+  python3 -c "
+import yaml
+d=yaml.safe_load(open('.skilled/commands/deep/assets/deep-review.yaml'))
+s=d['workflow']['phase_init']['steps']
+r=s['step_classify_session']['on_resume']
+c=r['confirm_choice']
+print(c['applies_to'], c['options'], sorted(k for k in c if k.startswith('on_')), r['skip_to'])
+print('lock_not_acquired' in s['step_acquire_lock']['on_acquire'], 'autonomous' in d['workflow']['step_apply_lifecycle_request']['instructions'])
+"
+    must print these two lines:
+    confirm ['resume', 'restart', 'cancel'] ['on_cancel_choice', 'on_restart_choice', 'on_resume_choice'] phase_loop
+    True False
+  grep -c 'dry_run_halt_event' .skilled/commands/deep/assets/deep-review.yaml    must print 0
+
+REPORT: one line per edit, "done" or "failed, <reason>", then the output of each check.

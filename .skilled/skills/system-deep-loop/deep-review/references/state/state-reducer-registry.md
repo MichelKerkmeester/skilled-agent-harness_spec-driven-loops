@@ -8,7 +8,7 @@ trigger_phrases:
   - "review state reconstruction"
 importance_tier: important
 contextType: implementation
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Deep Review State Reducer And Registry
@@ -36,9 +36,9 @@ Keep the findings registry, dashboard, and strategy current by deriving them fro
 | Surface | Writer | Rule |
 |---------|--------|------|
 | JSONL state | Workflow plus validated iteration append | Append-only |
-| Findings registry | `scripts/reduce-state.cjs` | Regenerate from JSONL |
-| Dashboard | `scripts/reduce-state.cjs` | Regenerate from registry and latest events |
-| Strategy machine sections | `scripts/reduce-state.cjs` | Update from coverage and findings |
+| Findings registry | `runtime/scripts/reduce-state.cjs` | Regenerate from JSONL |
+| Dashboard | `runtime/scripts/reduce-state.cjs` | Regenerate from registry and latest events |
+| Strategy machine sections | `runtime/scripts/reduce-state.cjs` | Update from coverage and findings |
 | Iteration markdown | Review iteration agent | Write-once |
 | Review report | Synthesis | Final handoff |
 
@@ -116,7 +116,7 @@ If JSONL is incomplete but iteration files exist, recovery is manual and must be
 
 ## 7. RELATED RESOURCES
 
-- `scripts/reduce-state.cjs` is the reducer implementation.
+- `runtime/scripts/reduce-state.cjs` is the reducer implementation.
 - `references/state/state-format.md` defines state records.
 - `references/state/state-outputs.md` defines operator-visible outputs.
 - `references/convergence/convergence-signals.md` defines STOP fields reducer views display.

@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-mistral-vibe routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -21,8 +21,8 @@ link that points here; this file holds the declaration a reader parses to decide
 ## 1. OVERVIEW
 
 Requests reach this skill when they use Vibe vocabulary: "Mistral Vibe", "`vibe -p`", "vibe print
-mode" or "delegate to Vibe". No hub row routes here yet, so a request arrives when the operator
-names Mistral Vibe or this packet's path. After that, the router matches requests about the dispatch
+mode" or "delegate to Vibe". The hub selects this mode through its `cli-mistral-vibe` rows in
+`mode-registry.json` and `hub-router.json`, and naming this packet's path also reaches it. After that, the router matches requests about the dispatch
 shape, the closed roster, the runtime folder, hooks, prompt composition and the hard rules to their
 packet resources.
 
@@ -32,7 +32,7 @@ It routes to two skill-local families:
   and the guard plan.
 - The one `assets/` scaffold that carries the prompt-quality card and its print-mode addenda.
 
-The six fail-closed dispatch rules live in `hard-rules.json`, which [SKILL.md](./SKILL.md) links directly. It is not a routed resource: only `references/` and `assets/` files can be leaves.
+The seven fail-closed dispatch rules live in `hard-rules.json`, which [SKILL.md](./SKILL.md) links directly. It is not a routed resource: only `references/` and `assets/` files can be leaves.
 
 `command -v vibe` plus the pinned version probe decide whether the route exists at all.
 

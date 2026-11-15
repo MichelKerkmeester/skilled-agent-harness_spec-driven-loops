@@ -45,8 +45,7 @@ function readWorkspaceFile(relativePath: string): string {
   ];
 
   const commandAssets = [
-    '.skilled/commands/deep/assets/deep-review-auto.yaml',
-    '.skilled/commands/deep/assets/deep-review-confirm.yaml',
+    '.skilled/commands/deep/assets/deep-review.yaml',
   ];
 
   it('keeps primary deep-review docs aligned on canonical artifacts and lifecycle terms', () => {
@@ -119,14 +118,12 @@ function readWorkspaceFile(relativePath: string): string {
     // test mirrors the shipped contract by asserting the live branches exist
     // and the retraction note is present, rather than pinning the legacy
     // four-option list.
-    const autoContent = readWorkspaceFile(commandAssets[0]);
-    expect(autoContent).toContain('on_restart:');
-    expect(autoContent).toContain('note_deferred_branches:');
-    expect(autoContent).not.toContain('on_fork:');
-
-    const confirmContent = readWorkspaceFile(commandAssets[1]);
-    expect(confirmContent).toContain('options: [resume, restart, cancel]');
-    expect(confirmContent).toContain('fork and completed-continue branches are deferred');
+    const workflowContent = readWorkspaceFile(commandAssets[0]);
+    expect(workflowContent).toContain('on_restart:');
+    expect(workflowContent).toContain('note_deferred_branches:');
+    expect(workflowContent).not.toContain('on_fork:');
+    expect(workflowContent).toContain('options: [resume, restart, cancel]');
+    expect(workflowContent).toContain('fork and completed-continue are deferred');
   });
 
   it('never eagerly creates the archive root at init and archives lazily on restart (121/006)', () => {
@@ -141,8 +138,8 @@ function readWorkspaceFile(relativePath: string): string {
       );
       // The archive root is created lazily, guarded on an existing packet,
       // immediately before the restart move.
-      expect(content, `${docPath} restart must archive lazily + guarded`).toContain(
-        'if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi',
+      expect(content, `${docPath} restart must archive lazily + guarded`).toMatch(
+        /if \[ -d "\{state_paths\.packet_dir\}" \]; then\n\s+mkdir -p "\{state_paths\.archive_root\}" && mv "\{state_paths\.packet_dir\}" "\{state_paths\.archive_root\}\/\{timestamp_slug\}" \|\| exit 1\n\s+fi/,
       );
     }
   });
@@ -159,28 +156,21 @@ function readWorkspaceFile(relativePath: string): string {
     expect(content).not.toContain('{spec_folder}/review/deep-review-config.json');
   });
 
-  it('uses the same canonical agent_file path in both auto and confirm YAMLs', () => {
+  it('uses the canonical agent_file path in the workflow YAML', () => {
     const canonicalAgentPath = '.skilled/agents/deep-review.md';
 
-    for (const docPath of commandAssets) {
-      const content = readWorkspaceFile(docPath);
-      expect(content, `${docPath} should reference the canonical agent path`).toContain(
-        `agent_file: "${canonicalAgentPath}"`,
-      );
-      // Must NOT reference .claude/agents/ as the agent_file (that is a mirror, not canonical)
-      expect(content, `${docPath} should not use .claude/agents/ as agent_file`).not.toMatch(
-        /agent_file:\s*["']?\.claude\/agents\//,
-      );
-    }
+    const content = readWorkspaceFile(commandAssets[0]);
+    expect(content, `${commandAssets[0]} should reference the canonical agent path`).toContain(
+      `agent_file: "${canonicalAgentPath}"`,
+    );
+    // Must NOT reference .claude/agents/ as the agent_file (that is a mirror, not canonical)
+    expect(content, `${commandAssets[0]} should not use .claude/agents/ as agent_file`).not.toMatch(
+      /agent_file:\s*["']?\.claude\/agents\//,
+    );
 
-    // Both YAMLs must agree on the same path
-    const autoContent = readWorkspaceFile(commandAssets[0]);
-    const confirmContent = readWorkspaceFile(commandAssets[1]);
-    const autoMatch = autoContent.match(/agent_file:\s*"([^"]+)"/);
-    const confirmMatch = confirmContent.match(/agent_file:\s*"([^"]+)"/);
-    expect(autoMatch, 'auto YAML should have agent_file').not.toBeNull();
-    expect(confirmMatch, 'confirm YAML should have agent_file').not.toBeNull();
-    expect(autoMatch![1]).toBe(confirmMatch![1]);
+    const agentMatch = content.match(/agent_file:\s*"([^"]+)"/);
+    expect(agentMatch, 'workflow YAML should have agent_file').not.toBeNull();
+    expect(agentMatch![1]).toBe(canonicalAgentPath);
   });
 
   it('command doc dimension list matches the supported dimension taxonomy', () => {
@@ -202,7 +192,7 @@ function readWorkspaceFile(relativePath: string): string {
     }
   });
 
-  it('seeds review graph coverage from canonical dimensions/filesReviewed without gating on graphEvents, and both YAMLs agree', () => {
+  it('seeds review graph coverage from canonical dimensions/filesReviewed without gating on graphEvents in the single workflow', () => {
     const stepBlockPattern = /^ {6}step_graph_upsert:[\s\S]*?(?=\n {6}\S)/m;
 
     for (const docPath of commandAssets) {
@@ -227,10 +217,6 @@ function readWorkspaceFile(relativePath: string): string {
         'Merge optional graphEvents',
       );
     }
-
-    const autoBlock = readWorkspaceFile(commandAssets[0]).match(stepBlockPattern)![0];
-    const confirmBlock = readWorkspaceFile(commandAssets[1]).match(stepBlockPattern)![0];
-    expect(confirmBlock, 'auto and confirm step_graph_upsert blocks should be identical').toBe(autoBlock);
   });
 
   // Add executable coverage for deep-review runtime-capabilities.cjs

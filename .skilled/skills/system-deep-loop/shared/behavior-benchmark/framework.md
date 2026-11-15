@@ -27,7 +27,7 @@ Open this file before authoring a scenario, scoring a run or calibrating a bench
 
 This document is the single-source measurement contract for the active
 `behavior_benchmark` packages carried by the deep-loop workflow sub-skills
-(`deep-ai-council`, `deep-research`, `deep-review`).
+(`deep-research`, `deep-review`).
 Each active package measures what an executor **model** actually does
 when its command surface is triggered with a realistic user prompt. The unit of
 measurement is a single run of one scenario against one executor, scored on a
@@ -85,7 +85,7 @@ rather than guessing their shape.
 | `schema_version` | int (optional) | Defaults to `1`. Only the exact value `2` opts the scenario into schema v2. |
 | `id` | string | Scenario identifier, e.g. `RVB-001`. Prefixes are fixed per package (see PACKAGE CONVENTIONS). |
 | `title` | string | Short human title. |
-| `mode` | enum | `context` \| `research` \| `review` \| `ai-council`. |
+| `mode` | enum | `context` \| `research` \| `review`. |
 | `entry_surface` | enum | `E1` \| `E2` \| `E3` \| `E4` (see below). |
 | `clarity` | enum | `C1` \| `C2` \| `C3` (see below). |
 | `prompt` | string | The verbatim user-style text fed to the executor. |
@@ -93,7 +93,7 @@ rather than guessing their shape.
 | `fixture` | string | Repo-relative directory that absorbs all writes for the run. |
 | `expected_interaction` | enum | `autonomous` \| `question_halt` \| `fail_fast`. |
 | `expected_presentation_markers` | array | Literal strings or `/regex/` (optionally `/regex/flags`; case-insensitivity always applied) the visible output must contain. |
-| `expected_delegation` | object | `{ "evidence_kind": enum, "leaf_agent": string \| null, "min_task_events": int, "route_proof_required": bool, "role_absorption_forbidden": bool, "min_seats": int, "expected_targets": array, "forbidden_targets": array }`. `evidence_kind` (optional, default `task_dispatch`) selects how delegation is measured. `min_seats` applies only to `seat_artifacts`; target arrays apply only to schema-v2 `direct_dispatch`. |
+| `expected_delegation` | object | `{ "evidence_kind": enum, "leaf_agent": string \| null, "min_task_events": int, "route_proof_required": bool, "role_absorption_forbidden": bool, "expected_targets": array, "forbidden_targets": array }`. `evidence_kind` (optional, default `task_dispatch`) selects how delegation is measured. Target arrays apply only to schema-v2 `direct_dispatch`. |
 | `budget_ms` | int | Per-scenario hard budget (see BUDGET POLICY for how it is derived). |
 | `artifacts_required` | bool (optional) | Declares whether the run owes new fixture artifacts. Defaults to `min_task_events > 0`; set `false` on inline-reporting hand-off cells. |
 | `postconditions` | array (optional, v2) | Allowlisted post-run probes. Every declared probe must pass for a `pass` result. |
@@ -135,14 +135,8 @@ selects how D3 (delegation) is measured and what counts as `role_absorption`:
 | Kind | Modes | Delegation evidence | D3 = 2 when | role_absorption when |
 | --- | --- | --- | --- | --- |
 | `task_dispatch` (default) | research, review | Structured `Agent`/`task` tool-call events + route-proof records | task events ≥ `min_task_events` (and route proof matches `leaf_agent` if required) | `role_absorption_forbidden` and `min_task_events > 0` and a work product was produced with ZERO task events |
-| `seat_artifacts` | ai-council | Distinct seat ids (`seat-001`, `seat-002`, …) named in the persisted `ai-council/` artifacts (deliberation, council-report, state JSONL) — seats are sections/identifiers WITHIN the artifacts, not separate files | distinct seats ≥ `min_seats` | `role_absorption_forbidden` and a plan/report was produced naming ZERO seats |
 | `direct_dispatch` (v2) | command and direct-dispatch families | Case-insensitive stdout-line events matching `expected_targets`, checked against `forbidden_targets`; each target is a literal substring or `/regex/[flags]` matcher | expected-target events ≥ `min_task_events` (default `1`) and ZERO forbidden-target events | `role_absorption_forbidden`, fixture work was produced, and expected-target evidence is absent |
 
-The critical property: the **common ai-council case is IN-CLI** — its seats are the active
-runtime's own models, so a correct council run has ZERO task-dispatch events. Scoring council
-delegation on task events would flag every correct run as absorption. `seat_artifacts` measures
-the persisted seat outputs instead, so a legit in-CLI council that convened and persisted its
-seats has evidence and is NOT flagged; a council that emitted a plan without seat diversity is.
 `task_dispatch` behavior is unchanged — contracts without `evidence_kind` score exactly as before.
 
 ---
@@ -246,8 +240,7 @@ budget_ms = max(3 * claude_baseline_tTerminal, 180000)
 ```
 
 Capped at `900000` ms (15 minutes) for `research` and `review`
-scenarios. `ai-council` scenarios cap at
-`1500000` ms (25 minutes) for their multi-seat cost.
+scenarios.
 
 ### Watchdog (no-progress kill)
 
@@ -344,7 +337,6 @@ fixed layout:
 
 | Prefix | Package |
 | --- | --- |
-| `ACB` | `deep-ai-council` |
 | `RSB` | `deep-research` |
 | `RVB` | `deep-review` |
 

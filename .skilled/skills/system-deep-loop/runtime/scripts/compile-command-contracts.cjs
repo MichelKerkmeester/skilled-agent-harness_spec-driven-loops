@@ -42,130 +42,6 @@ const REFS = {
 };
 
 const COMMANDS = {
-  'deep/ai-council': {
-    id: 'deep/ai-council',
-    commandName: '/deep:ai-council',
-    title: 'Deep Council',
-    slug: 'deep-ai-council',
-    mode: 'ai-council',
-    runtimeLoopType: 'council',
-    commandPath: '.skilled/commands/deep/ai-council.md',
-    presentationPath: '.skilled/commands/deep/assets/deep-ai-council-presentation.txt',
-    autoWorkflowPath: '.skilled/commands/deep/assets/deep-ai-council-auto.yaml',
-    confirmWorkflowPath: '.skilled/commands/deep/assets/deep-ai-council-confirm.yaml',
-    modeSkillPath: '.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md',
-    agentPath: '.skilled/agents/ai-council.md',
-    promptPackPath: '.skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md',
-    delegationKind: 'in_cli_seats',
-    minSeats: 3,
-    sourcePaths: [
-      '.skilled/commands/deep/ai-council.md',
-      '.skilled/commands/deep/assets/deep-ai-council-presentation.txt',
-      SHARED_SOURCES.autoModeContract,
-      '.skilled/commands/deep/assets/deep-ai-council-auto.yaml',
-      '.skilled/commands/deep/assets/deep-ai-council-confirm.yaml',
-      SHARED_SOURCES.modeRegistry,
-      SHARED_SOURCES.hubSkill,
-      '.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-config.json',
-      '.skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md',
-      '.skilled/skills/system-deep-loop/deep-ai-council/assets/runtime-capabilities.json',
-      '.skilled/agents/ai-council.md',
-      SHARED_SOURCES.resolveInjectionMode,
-    ],
-    renderMarkers: {
-      autoStart: '### `:auto` Setup Resolution',
-      autoEnd: '### Consolidated Setup Prompt for `:confirm` and No-Suffix Mode',
-      confirmStart: '### Consolidated Setup Prompt for `:confirm` and No-Suffix Mode',
-      confirmEnd: '## 2. Dashboard / Checkpoint Layout',
-    },
-    setup: {
-      mode: 'AUTONOMOUS for :auto, INTERACTIVE for :confirm, ASK when no suffix is supplied',
-      requiredFields: [
-        'deliberation_topic',
-        'spec_folder',
-        'max_rounds_per_topic',
-        'max_topics_per_session',
-        'saturation_threshold',
-        'executor',
-      ],
-      optionalFields: [
-        'topics',
-        'convergenceThreshold',
-        'executor.mode',
-        'executor.cli',
-        'executor.model',
-        'executor.reasoning',
-        'executor.service_tier',
-        'executor.timeout',
-      ],
-    },
-    outputTemplate: {
-      requiredArtifacts: [
-        '{state_paths.session_config} council session configuration JSON',
-        '{state_paths.session_state_log} append-only canonical JSONL session record',
-        '{state_paths.findings_registry} cross-topic findings registry JSON',
-        '{state_paths.topics_dir}/** topic, round, and seat artifacts',
-        '{state_paths.topic_report_pattern} per-topic topic report markdown',
-        '{state_paths.council_report_pattern} per-topic council report markdown',
-        '{state_paths.session_report} session-wide council report markdown',
-      ],
-    },
-    writeBoundary: {
-      approvedRoot: '{spec_folder}/ai-council resolved from spec_folder for ai-council',
-      allowed: [
-        '{state_paths.packet_dir} resolved packet-local ai-council root',
-        '{state_paths.lock_file} advisory lock acquire/release',
-        '{state_paths.session_config}',
-        '{state_paths.session_state_log} append only',
-        '{state_paths.findings_registry}',
-        '{state_paths.topics_dir}/** topic, round, and seat artifacts',
-        '{state_paths.topic_report_pattern}',
-        '{state_paths.council_report_pattern}',
-        '{state_paths.session_report}',
-        '{state_paths.prompt_dir} rendered council prompts',
-        'coverage-graph records for loop_type=council',
-      ],
-      readOnly: [
-        'declared deliberation topic and source files used as context',
-        'command Markdown',
-        'workflow YAML assets',
-        'agent definitions',
-        'compiled contracts other than the selected build target',
-        'implementation files outside the council artifact root',
-      ],
-      banned: [
-        'delete, rename, move, or truncate operations outside the allowed list',
-        'writes outside the resolved council packet',
-        'implementation fixes during council execution',
-        'council seats writing source files or graph storage directly',
-        'mixing multiple CLI executors within one round',
-      ],
-    },
-    tools: {
-      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task'],
-      permittedByExecutor: {
-        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task'],
-        'cli-opencode': ['headless command execution through YAML-owned audited dispatch only'],
-        'cli-claude-code': ['headless command execution through YAML-owned audited dispatch only'],
-      },
-    },
-  },
   'deep/review': {
     id: 'deep/review',
     commandName: '/deep:review',
@@ -175,8 +51,7 @@ const COMMANDS = {
     runtimeLoopType: 'review',
     commandPath: '.skilled/commands/deep/review.md',
     presentationPath: '.skilled/commands/deep/assets/deep-review-presentation.txt',
-    autoWorkflowPath: '.skilled/commands/deep/assets/deep-review-auto.yaml',
-    confirmWorkflowPath: '.skilled/commands/deep/assets/deep-review-confirm.yaml',
+    workflowPath: '.skilled/commands/deep/assets/deep-review.yaml',
     modeSkillPath: '.skilled/skills/system-deep-loop/deep-review/SKILL.md',
     agentPath: '.skilled/agents/deep-review.md',
     promptPackPath: '.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl',
@@ -184,8 +59,7 @@ const COMMANDS = {
       '.skilled/commands/deep/review.md',
       '.skilled/commands/deep/assets/deep-review-presentation.txt',
       SHARED_SOURCES.autoModeContract,
-      '.skilled/commands/deep/assets/deep-review-auto.yaml',
-      '.skilled/commands/deep/assets/deep-review-confirm.yaml',
+      '.skilled/commands/deep/assets/deep-review.yaml',
       SHARED_SOURCES.modeRegistry,
       SHARED_SOURCES.hubSkill,
       '.skilled/skills/system-deep-loop/deep-review/SKILL.md',
@@ -277,8 +151,7 @@ const COMMANDS = {
     runtimeLoopType: 'research',
     commandPath: '.skilled/commands/deep/research.md',
     presentationPath: '.skilled/commands/deep/assets/deep-research-presentation.txt',
-    autoWorkflowPath: '.skilled/commands/deep/assets/deep-research-auto.yaml',
-    confirmWorkflowPath: '.skilled/commands/deep/assets/deep-research-confirm.yaml',
+    workflowPath: '.skilled/commands/deep/assets/deep-research.yaml',
     modeSkillPath: '.skilled/skills/system-deep-loop/deep-research/SKILL.md',
     agentPath: '.skilled/agents/deep-research.md',
     promptPackPath: '.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl',
@@ -286,8 +159,7 @@ const COMMANDS = {
       '.skilled/commands/deep/research.md',
       '.skilled/commands/deep/assets/deep-research-presentation.txt',
       SHARED_SOURCES.autoModeContract,
-      '.skilled/commands/deep/assets/deep-research-auto.yaml',
-      '.skilled/commands/deep/assets/deep-research-confirm.yaml',
+      '.skilled/commands/deep/assets/deep-research.yaml',
       SHARED_SOURCES.modeRegistry,
       SHARED_SOURCES.hubSkill,
       '.skilled/skills/system-deep-loop/deep-research/SKILL.md',
@@ -494,25 +366,14 @@ function buildContractBody(definition) {
   const sourceList = definition.sourcePaths.map((sourcePath, index) => `${index + 1}. \`${sourcePath}\``).join('\n');
   const mode = definition.commandName.replace('/deep:', '');
   const leaf = definition.agentPath.split('/').pop().replace(/\.md$/, '');
-  // Council convenes its seats in-CLI (the runtime's own models); every other deep
-  // mode delegates one leaf per iteration. The delegation directive + its proof of
-  // work differ accordingly, so the executor is told the right thing per mode.
-  const delegationKind = definition.delegationKind || 'leaf_dispatch';
-  const minSeats = definition.minSeats || 3;
-  const delegationBullets = delegationKind === 'in_cli_seats'
-    ? [
-        `- PROCEED immediately: load the auto workflow YAML and convene the ${mode} round over the bound topic.`,
-        `- CONVENE IN-CLI: run the round's seats using your OWN model bench / distinct reasoning lenses in-CLI — do NOT dispatch a task per seat (in-CLI is the default and common council mode). Produce at least ${minSeats} DISTINCT seats.`,
-        `- SEAT PROOF: persist each seat stepwise as it returns (persist-artifacts.cjs --seat / persistSeatStepwise) so the persisted artifacts name distinct seat ids; the completed per-seat progress-record count must equal seats_per_round. The delegation evidence is the persisted distinct seats, not a task dispatch.`,
-      ]
-    : [
-        `- PROCEED immediately: load the auto workflow YAML and dispatch the \`${leaf}\` agent to run ONE iteration of the ${mode} loop over the bound target.`,
-        `- DISPATCH ONLY: you dispatch \`${leaf}\` to run one iteration; you do NOT read, edit, patch, or run the ${mode} loop over the target yourself. The auto workflow YAML owns the loop itself — setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis, and all loop-level artifact writes; the \`${leaf}\` leaf owns only its own single-iteration artifacts — mixing your own inline work with the dispatch is a route violation.`,
-        `- ROUTE PROOF: dispatch through the auto workflow with its prompt pack so \`${leaf}\` writes each iteration state record with the route-proof fields present — \`target_agent: "${leaf}"\`, \`resolved_route\`, \`agent_definition_loaded: true\`, and \`mode: "${mode}"\`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.`,
-      ];
-  const delegationClosing = delegationKind === 'in_cli_seats'
-    ? `Your job is to CONVENE ${minSeats}+ distinct ${mode} seats in-CLI over the bound topic and persist each as it returns — NOT to write a single-lens plan yourself, and NOT to review, analyze, or summarize this contract. This contract is your instruction set; the topic is the bound spec_folder/target named in your message, never this document.`
-    : `Your job is to DISPATCH \`${leaf}\` to run ONE iteration of the ${mode} loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. The auto workflow YAML owns the loop itself (setup, dispatch-per-iteration, reducer sync, convergence, synthesis, and loop-level writes). This contract is your instruction set; the ${mode} target is the bound spec_folder/target named in your message, never this document.`;
+  // Each deep mode delegates one leaf per iteration. The delegation directive and
+  // its proof of work are stated per mode, so the executor is told the right thing.
+  const delegationBullets = [
+    `- PROCEED immediately: load the auto workflow YAML and dispatch the \`${leaf}\` agent to run ONE iteration of the ${mode} loop over the bound target.`,
+    `- DISPATCH ONLY: you dispatch \`${leaf}\` to run one iteration; you do NOT read, edit, patch, or run the ${mode} loop over the target yourself. The auto workflow YAML owns the loop itself — setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis, and all loop-level artifact writes; the \`${leaf}\` leaf owns only its own single-iteration artifacts — mixing your own inline work with the dispatch is a route violation.`,
+    `- ROUTE PROOF: dispatch through the auto workflow with its prompt pack so \`${leaf}\` writes each iteration state record with the route-proof fields present — \`target_agent: "${leaf}"\`, \`resolved_route\`, \`agent_definition_loaded: true\`, and \`mode: "${mode}"\`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.`,
+  ];
+  const delegationClosing = `Your job is to DISPATCH \`${leaf}\` to run ONE iteration of the ${mode} loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. The auto workflow YAML owns the loop itself (setup, dispatch-per-iteration, reducer sync, convergence, synthesis, and loop-level writes). This contract is your instruction set; the ${mode} target is the bound spec_folder/target named in your message, never this document.`;
   const directiveOpening = `You were invoked via \`opencode run --command ${definition.id}\` with the \`:auto\` suffix and a bound spec_folder and target in your message. The \`:auto\` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:`;
   const setupDirectiveBullets = [
     '- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.',
@@ -573,8 +434,7 @@ function buildContractBody(definition) {
     renderYamlList(definition.setup.requiredFields, '  '),
     'optionalFields:',
     renderYamlList(definition.setup.optionalFields, '  '),
-    `autoWorkflow: ${definition.autoWorkflowPath}`,
-    `confirmWorkflow: ${definition.confirmWorkflowPath}`,
+    `workflow: ${definition.workflowPath}`,
     '```',
     '',
     '## outputTemplate',
@@ -724,7 +584,7 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  process.stdout.write('Usage: node compile-command-contracts.cjs --command deep/ai-council|deep/review|deep/research [--write]\n');
+  process.stdout.write('Usage: node compile-command-contracts.cjs --command deep/review|deep/research [--write]\n');
 }
 
 function main(argv = process.argv.slice(2)) {

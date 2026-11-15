@@ -45,8 +45,31 @@ import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'nod
 import type { LoopLockData } from './loop-lock.js';
 
 // The fan-out runner loads this module under plain Node, where executor-audit.ts cannot resolve
-// its own .js imports. Those callers pass no state log, so there the module loads without it.
-const gatewayAppend = await import('./executor-audit.js').catch(() => null);
+// its own .js imports. Those callers pass no state log, so there the module runs without it.
+// The single-lineage dispatch script requires this module as CommonJS, where a top-level await
+// cannot compile, so the gateway arrives one of two ways. An ES module loader resolves the
+// import below before any caller runs. A CommonJS caller blocks its event loop through the
+// dispatch, so that import may never settle there, and the first use requires it instead.
+type GatewayAppendModule = typeof import('./executor-audit.js');
+let gatewayAppendModule: GatewayAppendModule | null = null;
+let gatewayRequireFailed = false;
+
+void import('./executor-audit.js').then(
+  (loaded) => {
+    gatewayAppendModule ??= loaded;
+  },
+  () => undefined,
+);
+
+function loadGatewayAppend(): GatewayAppendModule | null {
+  if (gatewayAppendModule !== null || gatewayRequireFailed) return gatewayAppendModule;
+  try {
+    gatewayAppendModule = createRequire(import.meta.url)('./executor-audit.ts') as GatewayAppendModule;
+  } catch {
+    gatewayRequireFailed = true;
+  }
+  return gatewayAppendModule;
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -1952,6 +1975,7 @@ function appendContainmentEvent(
   try {
     // A state log beside a ledger is rebuilt from it, so the row goes through the append
     // gateway there, or the next refresh drops it.
+    const gatewayAppend = loadGatewayAppend();
     if (gatewayAppend !== null && gatewayAppend.ledgerModeFor(stateLogPath) !== null) {
       gatewayAppend.appendFailureRow(stateLogPath, { ...event }, sessionId);
       return;

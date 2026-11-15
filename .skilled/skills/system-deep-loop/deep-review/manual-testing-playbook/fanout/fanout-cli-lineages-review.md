@@ -1,7 +1,7 @@
 ---
 title: "Fan-out review with two CLI lineages"
 description: "Validate that a two-CLI-lineage fan-out review config triggers step_fanout_spawn → fanout-run.cjs pool → two isolated lineages sub-packets → step_fanout_merge with p0/p1/p2 binding → step_derive_verdict using merged counts → review-report.md."
-version: 1.11.0.3
+version: 1.11.1.0
 ---
 
 # DRV-064 -- Fan-out review with two CLI lineages
@@ -39,7 +39,7 @@ zero counts from the empty base artifact dir state log and produces an incorrect
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-review-auto.yaml` and `review.md` present.
+- `deep-review.yaml` and `review.md` present.
 
 ### Prompt
 
@@ -47,12 +47,12 @@ zero counts from the empty base artifact dir state log and produces an incorrect
 
 ### Commands
 
-1. `bash: grep -n "step_fanout_spawn\|step_fanout_merge\|bind_from_output\|active_p0\|active_p1\|skip_when" .skilled/commands/deep/assets/deep-review-auto.yaml | head -25`
+1. `bash: grep -n "step_fanout_spawn\|step_fanout_merge\|bind_from_output\|active_p0\|active_p1\|skip_when" .skilled/commands/deep/assets/deep-review.yaml | head -25`
 2. Confirm `step_fanout_merge` has `bind_from_output:` mapping `active_p0` → `p0_count`, `active_p1` → `p1_count`, `active_p2` → `p2_count`.
 3. Confirm `step_fanout_spawn_cli` calls `fanout-run.cjs` with `--loop-type review`.
 4. `bash: grep -n "fanout_executors\|--executor\|strongest.restriction\|merged FAIL" .skilled/commands/deep/review.md | head -15`
 5. Confirm strongest-restriction note in review command docs.
-6. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-merge.vitest.ts --reporter=verbose`
+6. `bash: npx vitest run .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts --reporter=verbose`
 7. Confirm 10/10 pass (5 review tests + 3 research tests + 2 e2e tests).
 
 ### RECOMMENDED ORCHESTRATION PROCESS
@@ -85,7 +85,7 @@ Source inspection confirms `bind_from_output` mapping is present. Review command
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | `step_fanout_spawn`, `step_fanout_merge` (with `bind_from_output`), `step_resolve_artifact_root` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | `step_fanout_spawn`, `step_fanout_merge` (with `bind_from_output`), `step_resolve_artifact_root` |
 | `.skilled/commands/deep/review.md` | `--executor` flag docs, strongest-restriction note |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Review strongest-restriction merge |
 

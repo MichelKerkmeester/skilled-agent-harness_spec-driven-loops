@@ -1,7 +1,7 @@
 ---
 title: "DRV-020 -- Dimension coverage convergence signal"
 description: "Verify the dimension coverage signal (weight 0.45) requires all 4 dimensions plus minStabilizationPasses >= 1 before contributing to convergence."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-020 -- Dimension coverage convergence signal
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate the deep-review dimension coverage convergence signal and its stabilization requirement.
 ### Commands
 1. `bash: rg -n 'dimension.coverage|Dimension Coverage|0\.45|minStabilization|stabilization|all.*dimension|4.*dimension' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'dimension_coverage|0\.45|minStabilization|stabilization|all_dimensions|dimension.*covered' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'dimension_coverage|0\.45|minStabilization|stabilization|all_dimensions|dimension.*covered' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'Dimension Coverage|0\.45|minStabilization|stabilization|Covered|D1|D2|D3|D4|Correctness|Security|Traceability|Maintainability' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
 ### Expected
 Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
@@ -72,8 +72,7 @@ Privilege the convergence reference for the signal formula and use the strategy 
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, dimension coverage signal definition and minStabilizationPasses |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect dimension coverage check in `step_check_convergence` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect dimension coverage check in `step_check_convergence` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow branch on the `convergence.cjs` stop decision, inspect dimension coverage check in `step_check_convergence` |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence signal table, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Review dimensions and convergence rules, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
 | `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template showing dimension tracking in "Covered" list |

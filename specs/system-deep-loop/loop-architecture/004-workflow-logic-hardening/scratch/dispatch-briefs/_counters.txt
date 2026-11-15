@@ -1,0 +1,29 @@
+
+CONTRACT of deriveLoopCounters (file .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs):
+
+  deriveLoopCounters(records, options) returns { stuckCount, consecutiveFailureCount }
+
+  records: array of parsed state-log rows in file order. An entry that is not a plain object is ignored.
+  options: { loopType: 'research' | 'review', convergenceThreshold?: number }
+
+  Rules:
+  R1. An iteration row has type === 'iteration'. Its number is a finite `iteration`, else a finite
+      `run`. When several iteration rows share a number, only the LAST one in file order counts,
+      and it counts at the position of that last row. A row with no number counts at its own position.
+  R2. Walk the rows in file order, starting with stuckCount 0 and consecutiveFailureCount 0:
+      a. A recovery event sets stuckCount to 0. A recovery event is a row with type === 'event' and
+         event === 'stuckRecovery', or a row with stem === 'deep_review.recovery_started'.
+      b. An iteration with status 'thought' changes nothing.
+      c. An iteration with status 'error' or 'timeout' adds 1 to consecutiveFailureCount and leaves
+         stuckCount unchanged.
+      d. Any other iteration sets consecutiveFailureCount to 0. Then: status 'insight' sets
+         stuckCount to 0. Otherwise read the ratio: `newInfoRatio` for research, `newFindingsRatio`
+         for review. Research: the iteration is low when the ratio is a finite number below the
+         threshold (options.convergenceThreshold when it is a finite number above 0, else 0.05).
+         Review: low when the ratio is a finite number at or below
+         mapReviewThresholds(options.convergenceThreshold).noProgressCutoff, which is 0.5 x the
+         threshold with a default threshold of 0.1. A low iteration adds 1 to stuckCount. Any
+         other iteration, a missing ratio included, sets stuckCount to 0.
+      e. Every other row is ignored.
+  R3. An empty array returns { stuckCount: 0, consecutiveFailureCount: 0 }.
+  R4. The function is pure: no file read, no clock, no mutation of its arguments.

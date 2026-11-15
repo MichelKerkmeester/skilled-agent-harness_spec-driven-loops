@@ -1,0 +1,14 @@
+COMMAND: `/deep:research:confirm "How does the packet lock heartbeat decide that a lock is stale?" --spec-folder=specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/scratch/901-dry-run-probe --max-iterations=1 --dry-run`
+WORKFLOW: `.skilled/commands/deep/assets/deep-research.yaml`
+EXECUTION_MODE: confirm
+STEP step_resolve_artifact_root: ran read-only
+STEP step_bind_reducer_artifact_arg: ran read-only
+STEP step_apply_lifecycle_request: skipped by skip_when
+STEP step_fanout_spawn: skipped by skip_when
+STEP step_preflight_contract: ran read-only
+STEP step_create_directories: halted
+GATE: none before the halt; the first approval gate, gate_preinit_spec_mutation_approval, sits after step_create_directories.
+{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_create_directories","timestamp":"2026-11-14T18:59:29Z"}
+WRITES: none
+DISPATCHES: none
+Ambiguity: `deep-research-presentation.txt` line 32 says both execution modes run the telemetry heartbeat and the run-now check, but a fresh packet halts at `step_create_directories`, before `step_telemetry_heartbeat_started` and `step_run_now_check`, so neither runs; `step_telemetry_heartbeat_started` also writes a status ledger without a `dry_run_boundary` tag.

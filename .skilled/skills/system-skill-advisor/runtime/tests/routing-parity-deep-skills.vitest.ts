@@ -24,7 +24,7 @@ const advisorScript = resolve(
   '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
 );
 
-type DeepMode = 'research' | 'review' | 'ai-council';
+type DeepMode = 'research' | 'review';
 
 interface RoutingResult {
   readonly skill: 'system-deep-loop';
@@ -96,55 +96,6 @@ describe('routing-parity-deep-skills', () => {
     expect(result.winner).toBe('research');
     expect(result.scores.research).toBeGreaterThanOrEqual(0.75);
     expect(result.scores.review).toBeLessThan(0.30);
-  });
-
-  it('INV-003: architecture decision convergence routes to system-deep-loop ai-council mode', () => {
-    const result = scoreRouting(
-      'iterate on the spec folder until the architecture decision converges',
-      {
-        artifacts: ['ai-council/topics/topic-001/council-report.md'],
-        recent_recommendations: ['deep-ai-council'],
-      },
-    );
-
-    expect(result.skill).toBe('system-deep-loop');
-    expect(result.mode).toBe('ai-council');
-    expect(result.winner).toBe('ai-council');
-    expect(result.scores['ai-council']).toBeGreaterThanOrEqual(0.65);
-    expect(result.scores.review).toBeLessThan(0.45);
-  });
-
-  it('INV-004: deliberate + option comparison routes to system-deep-loop ai-council mode', () => {
-    const result = scoreRouting(
-      'deliberate on whether deep-council should use coverage-graph signals or adjudicator self-scoring for stability',
-      {
-        artifacts: ['ai-council/session-report.md', 'ai-council/topics/topic-001/council-report.md'],
-        recent_recommendations: ['sk-ai-council'],
-      },
-    );
-
-    expect(result.skill).toBe('system-deep-loop');
-    expect(result.mode).toBe('ai-council');
-    expect(result.winner).toBe('ai-council');
-    expect(result.scores['ai-council']).toBeGreaterThanOrEqual(0.80);
-    expect(result.scores.research).toBeLessThan(0.30);
-  });
-
-  it('INV-009: multi-seat strategy options routes to system-deep-loop ai-council mode', () => {
-    const result = scoreRouting(
-      'deliberate across multi-seat strategy options until the architecture decision converges',
-      {
-        artifacts: ['ai-council/session-report.md', 'ai-council/topics/topic-001/council-report.md'],
-        recent_recommendations: ['deep-ai-council'],
-      },
-    );
-
-    expect(result.skill).toBe('system-deep-loop');
-    expect(result.mode).toBe('ai-council');
-    expect(result.winner).toBe('ai-council');
-    expect(result.scores['ai-council']).toBeGreaterThanOrEqual(0.80);
-    expect(result.scores.review).toBeLessThan(0.30);
-    expect(result.scores.research).toBeLessThan(0.30);
   });
 
   it('INV-005: loop + findings stabilize routes to system-deep-loop review mode', () => {

@@ -10,7 +10,7 @@ trigger_phrases:
   - "vibe guard porting"
 importance_tier: normal
 contextType: implementation
-version: 1.3.2.0
+version: 1.3.3.0
 ---
 
 # Mistral Vibe - Guards and Hooks
@@ -145,7 +145,7 @@ Phase 008 builds the ten `hook` rows that guard a call or a session boundary: th
 
 The seven `pre_tool` rows all refuse a call before it runs, which is the one thing `pre_tool` does and the only engine seam that fires before a tool call. `pre_tool` also accepts `strict`, so a failing guard blocks instead of allowing. The dispatch preflight is the one row the research maps to both `pre_tool` and `pre_agent`; the classification lands it on `pre_tool` alone, because the hard-rule engine reads the Bash command, which exists only at the tool call.
 
-The self-invocation row in research section 6 has no `.opencode/plugins/*.js` file behind it: the check is a router-level rule in the cli-claude-code packet, so it has no row above and stays a rule the dispatch preflight or the prompt carries.
+The self-invocation row in research section 6 has no `.opencode/plugins/*.js` file behind it: the check is a router-level rule in the cli-claude-code packet, so it has no row above. For Vibe it is the self-invocation refusal at the top of [SKILL.md](../SKILL.md), which reads `VIBE_SESSION=1`.
 
 ### Why Post-Edit Quality Lands on `post_tool`
 

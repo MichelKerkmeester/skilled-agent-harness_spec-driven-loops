@@ -23,6 +23,10 @@
 // check cross-checks the state log against check-direct-append.cjs's gateway
 // watermark so a receipt-less projection cannot be counted as a verified
 // iteration once the mode has actually moved to ledger authority.
+//
+// When the run's config names a non-native executor, the iteration must also say
+// which executor ran it, on its own record or on its iteration_start row, so a run
+// whose executor audit never landed cannot pass as a verified iteration.
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -70,6 +74,12 @@ const REASONS = {
   FINDINGS_NOT_ENUMERATED: 'findings_not_enumerated',
   GATEWAY_BYPASS_DETECTED: 'gateway_bypass_detected',
   LEDGER_BACKING_MISSING: 'ledger_backing_missing',
+  EXECUTOR_MISSING: 'executor_missing',
+};
+
+const CONFIG_BY_LOOP = {
+  review: 'deep-review-config.json',
+  research: 'deep-research-config.json',
 };
 
 // ───────────────────────────────────────────────────────────────────
@@ -339,6 +349,58 @@ function checkLedgerBacking(loopType, artifactDir, legacyFilePath) {
   };
 }
 
+// The run's executor kind comes from its config, read the way the executor audit
+// reads it: kind, then type, then native. A missing config or executor block means
+// nothing names a non-native executor, so there is nothing to check.
+function configuredExecutorKind(loopType, artifactDir) {
+  let config;
+  try {
+    config = JSON.parse(fs.readFileSync(path.join(artifactDir, CONFIG_BY_LOOP[loopType]), 'utf8'));
+  } catch (_) {
+    return { kind: null, config: null };
+  }
+  const executor = config && typeof config === 'object' ? config.executor : null;
+  if (!executor || typeof executor !== 'object' || Array.isArray(executor)) return { kind: null, config };
+  const kind = executor.kind ?? executor.type ?? 'native';
+  return { kind: typeof kind === 'string' && kind.trim() !== '' ? kind : null, config };
+}
+
+// A fan-out lineage runs its iterations inline in the lineage process, which treats
+// the per-iteration dispatch steps, the pre-dispatch executor audit among them, as
+// already satisfied. No executor row is written there, and the runner records the
+// lineage's executor in its own invocation metadata, so the check stands down.
+function isFanoutLineage(artifactDir, config) {
+  if (isNonEmptyString(process.env.SPECKIT_FANOUT_LINEAGE_ID)) return true;
+  if (config && (isNonEmptyString(config.fanout_lineage_artifact_dir)
+    || (config.fanout && typeof config.fanout === 'object')
+    || (config.fanoutLineage && typeof config.fanoutLineage === 'object'))) {
+    return true;
+  }
+  return path.basename(path.dirname(path.resolve(artifactDir))) === 'lineages';
+}
+
+function namesExecutor(record) {
+  return Boolean(record) && typeof record.executor === 'object' && record.executor !== null && !Array.isArray(record.executor);
+}
+
+// The pre-dispatch audit records a non-native executor before the leaf runs. On a
+// ledger-backed log it goes on the iteration's opening iteration_start row, since the
+// ledger cannot carry an edit to a row it already holds. With no ledger it is merged
+// onto an existing row for the iteration or written as a new iteration_start row.
+// Either row satisfies the check, as does the iteration record itself.
+function checkExecutorProvenance(loopType, artifactDir, stateRecords, iterationRecord, iteration) {
+  const { kind, config } = configuredExecutorKind(loopType, artifactDir);
+  if (!kind || kind === 'native') return null;
+  if (isFanoutLineage(artifactDir, config)) return null;
+  if (namesExecutor(iterationRecord)) return null;
+  const opened = (stateRecords || []).some((r) => r
+    && (r.type === 'iteration_start' || r.type === 'iteration')
+    && Number(r.iteration) === iteration
+    && namesExecutor(r));
+  if (opened) return null;
+  return `iteration ${iteration} ran under executor kind '${kind}' but neither its iteration record nor its iteration_start row in ${STATE_LOG_BY_LOOP[loopType]} names an executor`;
+}
+
 function readReceipt(filePath) {
   try {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -480,6 +542,12 @@ function verify(loopType, artifactDir, iteration) {
   }
   if (stateRouteReason) {
     routeWarnings.push(`route proof for iteration ${iteration} came from deltas/iter-${pad3(iteration)}.jsonl; the ${stateLogName} projection carries no leaf dispatch fields`);
+  }
+
+  // 5. Executor provenance for a run the config gives a non-native executor.
+  const executorMissing = checkExecutorProvenance(loopType, artifactDir, stateRecords, iterationRecord, iteration);
+  if (executorMissing) {
+    return { ok: false, reason: REASONS.EXECUTOR_MISSING, detail: executorMissing };
   }
 
   // 2b. Structural ledger-backing gate (default on; DEEP_LOOP_LEDGER_BACKING_GATE=0

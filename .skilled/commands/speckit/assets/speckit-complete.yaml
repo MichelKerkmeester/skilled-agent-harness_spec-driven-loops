@@ -111,7 +111,7 @@ optional_workflows:
       smart_detect: true
       uncertainty_threshold: 60
     insert_point: "after_phase_2"
-    workflow_reference: ".skilled/commands/deep/assets/deep-research-auto.yaml"
+    workflow_reference: "../deep/assets/deep-research.yaml"
     checkpoint:
       enabled: true
       modes: { confirm: "ask the prompt below and wait", auto: "take Y, continue to Step 1 and list it under Defaults taken", autopilot: "take Y and continue to Step 1" }
@@ -577,7 +577,8 @@ workflow:
     actions:
       if_triggered:
       - log: "Initiating research phase (reason: {trigger_reason})"
-      - execute_workflow: ".skilled/commands/deep/assets/deep-research-auto.yaml"
+      - execute_workflow: "../deep/assets/deep-research.yaml"
+      - execution_mode: auto
       - { on_complete: "show_checkpoint", modes: { confirm: "show optional_workflows.research_integration.checkpoint", auto: "skip the checkpoint and continue to step_3", autopilot: "skip the checkpoint and continue to step_3" } }
       if_skipped:
       - log: "Research phase skipped (confidence: {confidence_score}%)"

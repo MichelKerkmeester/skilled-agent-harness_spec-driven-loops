@@ -1,0 +1,42 @@
+
+ALLOWED WRITE PATHS (R = .skilled/skills/system-deep-loop/runtime):
+R/lib/blinded-adjudication/**  R/lib/write-set-conflict-graph/**  R/lib/locks-and-fencing/**
+R/lib/path-coverage-termination/**  R/lib/stopping-clocks/**  R/lib/per-mode-authority-flip/**
+R/lib/authorized-ledger/**  R/lib/legacy-projections/**
+R/lib/deep-loop/continuity-identity/continuity-identity-types.ts
+R/tests/unit/authorized-ledger.vitest.ts  R/tests/unit/blinded-adjudication.vitest.ts
+R/tests/unit/locks-and-fencing.vitest.ts  R/tests/unit/path-coverage-termination.vitest.ts
+R/tests/unit/write-set-conflict-graph.vitest.ts  R/tests/unit/observability-events.vitest.ts
+R/tests/fixtures/event-envelope-producers.ts  R/tests/helpers/legacy-real-log.ts
+and any other test file under R/tests that fails ONLY because it uses the council member of one
+of these libraries. NOT anything under R/scripts, R/lib/council, R/lib/deep-loop/divergent-pivot.ts
+or R/lib/deep-research-ledger-schema.
+
+TASK: several shared runtime libraries carry a council member next to research and review
+(a union type member, a map key, a profile, a registry row, a graph node or edge). Remove the
+council member from each. The library and its research and review members stay.
+
+1. Find every anchor first:
+   rg -n -i 'council' R/lib/blinded-adjudication R/lib/write-set-conflict-graph R/lib/locks-and-fencing R/lib/path-coverage-termination R/lib/stopping-clocks R/lib/per-mode-authority-flip R/lib/authorized-ledger R/lib/legacy-projections R/lib/deep-loop/continuity-identity
+2. R/lib/legacy-projections/index.ts: delete both export blocks that import from
+   `./deep-ai-council-config-state-contract.js` (that file is deleted). In
+   legacy-projection-manifest.ts delete the council entries.
+3. blinded-adjudication: delete the council mode adapter, its registry events and its exports.
+4. write-set-conflict-graph: delete the council node, the research-council edge and the council
+   census rows (a census row that names a deleted file is deleted).
+5. locks-and-fencing: delete the council protected resources and the council type member.
+6. path-coverage-termination, stopping-clocks, per-mode-authority-flip, authorized-ledger,
+   continuity-identity: delete the council profile or union member.
+7. Tests in the allowed paths: delete the cases that cover the council member, and change
+   expected lists and counts. Do not weaken an assertion about research or review.
+8. Do not add a code comment that names a task, a phase or a spec path.
+
+CHECKS (run from R):
+  rg -n -i 'council' lib/blinded-adjudication lib/write-set-conflict-graph lib/locks-and-fencing lib/path-coverage-termination lib/stopping-clocks lib/per-mode-authority-flip lib/authorized-ledger lib/legacy-projections      prints nothing
+  npm run typecheck 2>&1 | grep -c 'error TS'      prints 0, OR every remaining error is in a file under R/scripts or R/tests that this brief does not allow (list them)
+  node_modules/.bin/vitest run --no-coverage tests/unit/authorized-ledger.vitest.ts tests/unit/blinded-adjudication.vitest.ts tests/unit/locks-and-fencing.vitest.ts tests/unit/path-coverage-termination.vitest.ts tests/unit/write-set-conflict-graph.vitest.ts tests/unit/observability-events.vitest.ts      all pass
+  node_modules/.bin/vitest run --no-coverage tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts      all pass
+
+REPORT: per file what you removed, each test case you deleted with one line why, every remaining
+`council` line in the allowed library folders with one line why it stays, then the output of
+each check. Do NOT run the full test suite or any generator.

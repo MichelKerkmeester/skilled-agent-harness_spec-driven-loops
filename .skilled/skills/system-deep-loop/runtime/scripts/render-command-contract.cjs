@@ -24,11 +24,6 @@ const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const MANIFEST_PATH = '.skilled/commands/deep/assets/compiled/manifest.jsonl';
 
 const COMMANDS = {
-  'deep/ai-council': {
-    slug: 'deep_ai-council',
-    legacyBodyPath: '.skilled/commands/deep/assets/legacy/deep-ai-council.body.markdown',
-    compiledContractPath: '.skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown',
-  },
   'deep/review': {
     slug: 'deep_review',
     legacyBodyPath: '.skilled/commands/deep/assets/legacy/deep-review.body.markdown',

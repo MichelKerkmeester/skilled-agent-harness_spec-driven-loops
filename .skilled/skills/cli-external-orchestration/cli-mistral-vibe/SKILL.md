@@ -11,6 +11,12 @@ version: 1.0.0.0
 > Both roster rows are hand-written, `allowed_models` closes the roster by model name, and ACP
 > (`vibe-acp`) is deferred.
 
+> **CRITICAL: SELF-INVOCATION PROHIBITED**
+>
+> This skill dispatches to the Mistral Vibe binary (`vibe`). If the agent reading this skill is itself running inside Vibe, the skill MUST refuse to load and build no `vibe` command. The detection signals are `VIBE_SESSION=1` in the environment, which Vibe 3.1.2 sets on every shell command it spawns (`vibe/core/utils/shell.py` in the installed package), and `vibe-rs` or `vibe-app-server` in the process ancestry.
+>
+> A running CLI skill never dispatches itself. The cli-X skills are for **cross-AI delegation only**, never self-invocation.
+
 Orchestrate Mistral Vibe (`vibe`, uv tool package `mistral-vibe`) for one-task print-mode runs: a read-only review, a single scoped implementation or an independent second opinion, with the model fixed by a hand-written roster row.
 The packet's one pin record is [cli-reference.md](./references/cli-reference.md) section 1, and every flag it names was captured from a 3.1.2 run or read from the code that writes the record.
 Each live result applies only to the route and behavior the saved capture exercised. Keep every behavior outside the saved captures marked UNKNOWN with the reason.
@@ -23,13 +29,14 @@ Each live result applies only to the route and behavior the saved capture exerci
 
 ### Activation Triggers
 
-- **Explicit Vibe dispatch**: the task names Mistral Vibe, `vibe` or `vibe -p`.
+- **Explicit Vibe dispatch**: the task names Mistral Vibe or `vibe -p`.
 - **Cross-AI validation**: an independent review or second opinion from a Vibe run that is not the calling runtime.
 - **One-task print-mode work**: a bounded task that answers once and exits, with `export.json` as the outcome record.
 - **Roster checks**: proving an alias resolves to a `mistral`-provider row with `thinking = "max"` before any model call.
 
 ### When NOT to Use
 
+- **You ARE Vibe already.** If `VIBE_SESSION=1` is set, or `vibe-rs` or `vibe-app-server` is in the process ancestry, this skill refuses to load. Self-invocation creates a circular dispatch loop and burns tokens for no value. Do the work in the current session instead.
 - `vibe` is not on PATH, or `vibe --version` does not print `vibe 3.1.2`.
 - `MISTRAL_API_KEY` is not exported in the child's environment.
 - The task needs ACP (`vibe-acp`), an interactive session, a human answer mid-run or a persistent client.
@@ -94,7 +101,7 @@ Fail closed — do not build a command — when the variable is absent, when `co
 
 ## 4. RULES
 
-The six fail-closed rules live in [hard-rules.json](./hard-rules.json): `print-mode-only`, `isolated-vibe-home`, `output-dir-required`, `vibe-closed-roster`, `no-repo-root-cwd` and `stdin-redirect-required`.
+The seven fail-closed rules live in [hard-rules.json](./hard-rules.json): `print-mode-only`, `isolated-vibe-home`, `output-dir-required`, `vibe-closed-roster`, `no-repo-root-cwd`, `stdin-redirect-required` and `rendered-home-hooks`.
 
 ### ✅ ALWAYS
 
@@ -106,10 +113,10 @@ The six fail-closed rules live in [hard-rules.json](./hard-rules.json): `print-m
 6. Run from a scratch cwd outside the checkout, never the repository root.
 7. Name one roster alias with `--model`, and pass `--output-dir DIR`.
 8. Count a run complete only when `DIR/export.json` records `exit_code` 0 and `outcome` `finished`.
-9. Compose every dispatch as `{child preamble + resolved agent persona + task prompt}`, inlining the persona block, because `.vibe/agents/` does not exist yet. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` section 6 "PERSONA INJECTION".
-9. Set `AI_SESSION_CHILD=1` in the child's environment and copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of the prompt.
-10. Give a build dispatch one change per brief: the file, the edit and the check that proves it.
-11. Keep status specific: print mode is pinned, ACP is deferred, and unresolved behaviors remain UNKNOWN with their evidence gap.
+9. Compose every dispatch as `{child preamble + resolved agent persona + task prompt}`, inlining the persona block, because the fresh `VIBE_HOME` a dispatch builds holds only `config.toml` and the rendered `hooks.toml`, never the `.vibe/agents/` profiles. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` section 6 "PERSONA INJECTION".
+10. Set `AI_SESSION_CHILD=1` in the child's environment and copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of the prompt.
+11. Give a build dispatch one change per brief: the file, the edit and the check that proves it.
+12. Keep status specific: print mode is pinned, ACP is deferred, and unresolved behaviors remain UNKNOWN with their evidence gap.
 
 ### ⛔ NEVER
 
@@ -195,6 +202,6 @@ sk-code owns code verification. system-spec-kit owns Gate 3, spec folders and co
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-Start with the CLI reference and the prompt-quality card, then load only the references matching the task. This file is the packet's entry point: it has no `ROUTER.md` and no prompt templates yet, and the prompt-quality card's router link stays dangling until a router lands.
+Start with the CLI reference and the prompt-quality card, then load only the references matching the task. This file is the packet's entry point, and [ROUTER.md](./ROUTER.md) maps each request to the resources it loads. The packet has no prompt templates yet.
 
 Related skills: cli-deepseek-harness, cli-pi, cli-opencode, cli-claude-code, cli-codex, cli-cursor and cli-devin for sibling CLI dispatch, sk-code for code standards and system-spec-kit for packet handback.

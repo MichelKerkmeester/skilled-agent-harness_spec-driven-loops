@@ -6,7 +6,7 @@ trigger_phrases:
   - "research pivot council"
   - "composite_converged pivot"
   - "all_questions_answered pivot"
-version: 1.14.0.1
+version: 1.14.1.0
 ---
 
 # Divergent convergence mode
@@ -19,9 +19,9 @@ version: 1.14.0.1
 
 ## 2. HOW IT WORKS
 
-The auto workflow admits the exact reasons `composite_converged` and `all_questions_answered`. A successful pivot selects a new focus from persisted adjacent questions, contradiction or verification gaps, missing source classes, alternate evidence methods, and independent finding checks. The shared adapter runs exactly three native seats in one round, persists the transaction under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, restores the selected focus, and continues the loop.
+The workflow admits the exact reasons `composite_converged` and `all_questions_answered`. A successful pivot selects a new focus from persisted adjacent questions, contradiction or verification gaps, missing source classes, alternate evidence methods, and independent finding checks. The shared adapter runs exactly three native seats in one round, persists the transaction under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, restores the selected focus, and continues the loop.
 
-`maxIterationsReached`, `blockedStop`, `stuckRecovery`, `minIterationsNotReached`, `error`, `manualStop`, and `userPaused` do not pivot. A pivot failure follows the existing synthesis path.
+`maxIterationsReached`, `blockedStop`, `stuckRecovery`, `minIterationsNotReached`, `error`, `manualStop`, `userPaused` and `maxDurationReached` do not pivot. A pivot failure follows the existing synthesis path.
 
 ---
 
@@ -31,7 +31,7 @@ The auto workflow admits the exact reasons `composite_converged` and `all_questi
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Owns STOP eligibility, native seat dispatch, continuation, and fail-closed synthesis routing. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Routes an eligible stop returned by convergence.cjs into native seat dispatch, continuation, and fail-closed synthesis. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` | Mode adapter | Builds bounded research candidates and the three research seat mandates. |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Shared runtime | Owns the mechanics-only pivot transaction, event vocabulary, quorum, agreement, and artifact layout. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Shared runtime | Validates the four-value convergence-mode enum without translating STOP decisions. |

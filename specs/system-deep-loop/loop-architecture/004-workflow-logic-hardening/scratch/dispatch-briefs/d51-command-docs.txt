@@ -1,0 +1,76 @@
+ROLE: You are a documentation editor. Update seven command documents to name one workflow file
+per command and to document the dry-run flag for both modes.
+
+CONTEXT: /deep:research and /deep:review each ran from an auto and a confirm workflow twin. Each
+now runs from ONE file that serves both modes, selected by `execution_mode` (auto or confirm):
+  .skilled/commands/deep/assets/deep-research.yaml
+  .skilled/commands/deep/assets/deep-review.yaml
+`--dry-run` now works in both modes of both commands. With dry_run=true the workflow prints
+`dry_run_halt` JSONL preview lines to the terminal and halts before any executor dispatch,
+persistent state write, reducer refresh or child-lineage spawn. It writes nothing under the
+spec folder.
+
+ALLOWED WRITE PATHS (all under .skilled/commands/deep/):
+- research.md
+- review.md
+- assets/deep-research-presentation.txt
+- assets/deep-review-presentation.txt
+- assets/legacy/deep-research.body.markdown
+- assets/legacy/deep-review.body.markdown
+- assets/legacy/README.markdown
+
+WRITING RULES: plain short sentences. No em dash, no semicolon, no comma before the "and" or
+"or" that closes a list. Change only what the edits name. Find each place with grep -n.
+
+EDIT 1. In all seven files: every place that names deep-research-auto.yaml or
+deep-research-confirm.yaml names deep-research.yaml, and every place that names
+deep-review-auto.yaml or deep-review-confirm.yaml names deep-review.yaml.
+  - Where two adjacent lines or table rows gave one file per mode (for example "Auto workflow"
+    and "Confirm workflow", or `:auto` and `:confirm` rows, or "AUTONOMOUS" and "INTERACTIVE"
+    bullets), merge them into ONE line or row that names the single file for both modes and says
+    the mode binds `execution_mode` to `auto` or `confirm`.
+  - Where a sentence says to load the confirm (or auto) file for one mode, it says to load the
+    single file with `execution_mode` bound to that mode.
+
+EDIT 2. research.md and assets/legacy/deep-research.body.markdown, section "### Dry-Run Flag":
+remove the confirm-only scope. Replace "`--dry-run` is a first-class flag on the confirm flow,
+not a third execution mode." with "`--dry-run` is a first-class flag in both execution modes,
+not a third execution mode." Replace "the confirm YAML emits" with "the workflow emits".
+The text "confirm flow" must not remain in research.md.
+
+EDIT 3. review.md:
+  a. In the frontmatter `argument-hint`, add `[--dry-run]` in the same position research.md has it
+     relative to the other flags (before `[--restart]` when that is present, else at the end).
+  b. In the Workflow Flag Surface table, add this row directly after the `--no-resource-map` row:
+| `--dry-run` | no value | See Dry-Run Flag below. |
+  c. Add a "### Dry-Run Flag" section modelled on the one in research.md after EDIT 2, placed
+     after the last existing "### ... Flag" section of review.md. Say "review" where research.md
+     says "research".
+  d. Where review.md lists the setup values or required inputs it binds before loading the
+     workflow, add `dry_run` (default false unless `--dry-run` is present), in the same form
+     research.md uses.
+  e. In the sentence that lists the flags to treat as setup input (it starts "Treat target text,"),
+     add `--dry-run` after `--stop-policy`.
+  Apply a. to e. to assets/legacy/deep-review.body.markdown too, wherever it holds the same text.
+
+EDIT 4. Both presentation files: add a short section named "Dry-Run Halt" near the place that
+names the workflow file. Three sentences: `--dry-run` binds dry_run=true in both modes. The
+workflow then prints `dry_run_halt` preview lines and stops before any dispatch or state write.
+Show the operator the halt line and say that nothing was written. In
+assets/deep-research-presentation.txt also add one sentence to that section: confirm sessions now
+run the telemetry heartbeat and the run-now check, which earlier ran only in auto mode.
+
+EDIT 5. assets/legacy/README.markdown: the two rows that say "load the auto workflow" and "load
+the confirm workflow" say "load the command's workflow with execution_mode auto" and "load the
+command's workflow with execution_mode confirm". The texts "auto workflow" and "confirm workflow"
+must not remain.
+
+CHECKS, from the repository root:
+  rg -c 'deep-(research|review)-(auto|confirm)\.yaml' .skilled/commands/deep/research.md .skilled/commands/deep/review.md .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/deep-review-presentation.txt .skilled/commands/deep/assets/legacy      must print nothing
+  rg -n 'confirm flow' .skilled/commands/deep/research.md                     must print nothing
+  rg -c -- '--dry-run' .skilled/commands/deep/review.md                       must print at least 3
+  rg -ci 'dry[-_]run' .skilled/commands/deep/assets/deep-research-presentation.txt .skilled/commands/deep/assets/deep-review-presentation.txt    must print at least 1 per file
+  rg -n 'auto workflow|confirm workflow' .skilled/commands/deep/assets/legacy/README.markdown    must print nothing
+Do not run any test and do not edit a compiled contract.
+
+REPORT: one line per edit and file, "done" or "failed, <reason>", then the output of each check.

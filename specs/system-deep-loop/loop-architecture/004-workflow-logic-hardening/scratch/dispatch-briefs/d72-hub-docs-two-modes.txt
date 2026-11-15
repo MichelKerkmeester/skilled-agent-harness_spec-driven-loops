@@ -1,0 +1,42 @@
+ALLOWED WRITE PATHS (S = .skilled/skills/system-deep-loop):
+S/SKILL.md  S/README.md  S/ARCHITECTURE.md
+every *.md file under S/feature-catalog and S/manual-testing-playbook
+S/shared/rollout/command-injection-rollout.json and the files under S/shared/behavior-benchmark
+  (NOT its node_modules)
+every file under S/deep-research and S/deep-review EXCEPT their changelog/ folders
+
+TASK: these docs describe a three-mode hub. Make them describe the two-mode hub that now exists.
+Work file by file. List the files with:
+  rg -l -i 'council' .skilled/skills/system-deep-loop/SKILL.md .skilled/skills/system-deep-loop/README.md .skilled/skills/system-deep-loop/ARCHITECTURE.md .skilled/skills/system-deep-loop/feature-catalog .skilled/skills/system-deep-loop/manual-testing-playbook .skilled/skills/system-deep-loop/shared .skilled/skills/system-deep-loop/deep-research .skilled/skills/system-deep-loop/deep-review -g '!**/changelog/**' -g '!**/node_modules/**'
+
+PER FILE:
+1. A mode table row, list item, tree line or sentence about the `ai-council` MODE, the
+   `deep-ai-council` packet, the `/deep:ai-council` command, the `council` loop type or the
+   council coverage graph: delete it. "Three modes" becomes "two modes", and every count that
+   included the council is recounted.
+2. In S/SKILL.md, S/README.md and S/ARCHITECTURE.md add ONE sentence, where the mode list is
+   introduced, that tells a reader where the council went:
+   "A planning council is not a mode of this hub. It runs as the standalone `@ai-council` agent, reached through `/speckit:ai-council`."
+3. A catalog or playbook file that exists only for the council mode: do NOT delete the file
+   (you may not delete). List it in your report under FILES TO DELETE and leave it unchanged.
+   Remove its row from the index file that links it.
+4. In S/deep-research and S/deep-review: a line that names `deep-ai-council` as a sibling mode
+   or gives its 0.20 threshold is deleted, and the list around it still reads correctly. A
+   sentence about the divergent Council pivot stays byte for byte.
+5. S/shared/rollout/command-injection-rollout.json: delete the `deep/ai-council` key. In
+   S/shared/behavior-benchmark remove the council mode from mode lists, tables and examples in
+   the docs and in behavior-bench-run.cjs and its test, so the runner covers research and review.
+6. A sentence that is still true stays byte for byte. Do not rewrite a paragraph for style.
+7. Any SKILL.md whose body you change: bump the last segment of its frontmatter `version` by one.
+
+CHECKS (repository root):
+  rg -n 'deep-ai-council|/deep:ai-council' .skilled/skills/system-deep-loop/SKILL.md .skilled/skills/system-deep-loop/README.md .skilled/skills/system-deep-loop/ARCHITECTURE.md      prints nothing
+  rg -n 'deep-ai-council|deep/ai-council' .skilled/skills/system-deep-loop/shared -g '!**/node_modules/**'      prints nothing
+  rg -n 'deep-ai-council' .skilled/skills/system-deep-loop/deep-research .skilled/skills/system-deep-loop/deep-review -g '!**/changelog/**'      prints nothing
+  rg -l -i 'ai[-_ ]council' .skilled/skills/system-deep-loop/feature-catalog .skilled/skills/system-deep-loop/manual-testing-playbook      prints only files you listed under FILES TO DELETE
+  node --test .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs      exits 0
+  node -e "JSON.parse(require('fs').readFileSync('.skilled/skills/system-deep-loop/shared/rollout/command-injection-rollout.json','utf8'))"      exits 0
+
+REPORT: the number of files changed, FILES TO DELETE (one path per line, or none), every
+remaining line under S (outside changelog and benchmark/reports) that still says "council" with
+one line why it stays, then the output of each check. Do NOT run any generator or sync script.

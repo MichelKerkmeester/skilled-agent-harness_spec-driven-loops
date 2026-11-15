@@ -1,7 +1,7 @@
 ---
 title: "DLR-029 -- Artifact-dir override and single-executor parity"
 description: "Validate the YAML artifact-dir override branch is byte-identical to the original resolver in single-executor mode, and that step_fanout_spawn + step_fanout_merge are fully skipped when config.fanout is absent."
-version: 1.4.0.4
+version: 1.4.1.0
 ---
 
 # DLR-029 -- Artifact-dir override and single-executor parity
@@ -38,7 +38,7 @@ runs for users who never use fan-out. The `skip_when` guards are the primary pro
 ### Prerequisites
 
 - Working directory is repository root.
-- All 4 deep-loop YAML files present.
+- Both deep-loop workflow files present.
 
 ### Prompt
 
@@ -46,11 +46,11 @@ runs for users who never use fan-out. The `skip_when` guards are the primary pro
 
 ### Commands
 
-1. `bash: grep -n "if_absent\|skip_when\|fanout_lineage_artifact_dir" .skilled/commands/deep/assets/deep-research-auto.yaml | head -20`
+1. `bash: grep -n "if_absent\|skip_when\|fanout_lineage_artifact_dir" .skilled/commands/deep/assets/deep-research.yaml | head -20`
 2. Confirm `if_absent.command` contains `resolveArtifactRoot('{spec_folder}', 'research')` — byte-identical to pre-change.
 3. Confirm `step_fanout_spawn:` has `skip_when: "config.fanout is absent"`.
 4. Confirm `step_fanout_merge:` has `skip_when: "config.fanout is absent"`.
-5. Repeat steps 1–4 for `deep-review-auto.yaml` (substituting `'review'`).
+5. Repeat steps 1–4 for `deep-review.yaml` (substituting `'review'`).
 6. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/`
 7. Confirm 197/197 pass (or 196+1 known loop-lock flake that passes in isolation).
 
@@ -60,7 +60,7 @@ Source inspection confirms `if_absent` branch is unchanged. Both fan-out steps s
 
 ### Evidence
 
-- Source excerpts from `.skilled/commands/deep/assets/deep-research-auto.yaml`, `.skilled/commands/deep/assets/deep-review-auto.yaml`, `.skilled/commands/deep/assets/deep-research-confirm.yaml`, `.skilled/commands/deep/assets/deep-review-confirm.yaml` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Source excerpts from `.skilled/commands/deep/assets/deep-research.yaml`, `.skilled/commands/deep/assets/deep-review.yaml` showing the anchors named in the commands above, read from the current files rather than recalled.
 - Captured stdout and exit status for every command run in this section.
 - A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
 
@@ -78,10 +78,8 @@ Source inspection confirms `if_absent` branch is unchanged. Both fan-out steps s
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | `step_resolve_artifact_root` (if_present/if_absent), `step_fanout_spawn`, `step_fanout_merge` |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Same steps (review variant) |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Same steps (confirm variant) |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Same steps (review confirm) |
+| `.skilled/commands/deep/assets/deep-research.yaml` | `step_resolve_artifact_root` (if_present/if_absent), `step_fanout_spawn`, `step_fanout_merge` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Same steps (review variant), in both execution modes |
 
 ### Validation
 

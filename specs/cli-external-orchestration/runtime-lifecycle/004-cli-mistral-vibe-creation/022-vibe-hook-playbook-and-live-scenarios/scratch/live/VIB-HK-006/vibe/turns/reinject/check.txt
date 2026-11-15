@@ -1,0 +1,3 @@
+$ for i in $(seq 1 40); do if grep -rqsF 'Context restored after a compaction.\n\n# Goal' "$VIBE_HOME/logs/session/unified"; then echo reinjection-with-goal-slice; exit 0; fi; sleep 1; done; echo no-reinjection-with-goal-slice; exit 1
+reinjection-with-goal-slice
+[exit 0]

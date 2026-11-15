@@ -551,13 +551,21 @@ The command runs the compiled helper, so run `npm run build` in `.skilled/skills
 
 &nbsp;
 
+#### Multi AI Council
+
+Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/speckit:ai-council` binds the spec folder and dispatches it. The council is a standalone agent, not a Deep Loop mode.
+
+Different AI seats reason from different angles, then critique each other. They converge on a recommendation with the evidence behind it. The council plans only, so it never touches your implementation files. The plan and its reasoning persist as `ai-council/**` files in the packet.
+
+&nbsp;
+
 ## 7. 🔄 DEEP LOOP
 
 The Deep Loop system runs autonomous, iterative agent workflows.
 
 Each loop dispatches a fresh-context worker against externalized state. It keeps going until a convergence check, not the agent's own claim, decides a stop is safe.
 
-Three loop families (research, review and AI council) live as nested mode packets inside one parent skill, `system-deep-loop`. All consume one shared runtime, `runtime/`, for state, scoring and fan-out. Research, review and AI council also share its loop contract.
+Two loop families (research and review) live as nested mode packets inside one parent skill, `system-deep-loop`. All consume one shared runtime, `runtime/`, for state, scoring and fan-out. Research and review also share its loop contract.
 
 &nbsp;
 
@@ -599,7 +607,7 @@ Once a stop is legal, the loop synthesizes. It writes its report and saves conti
 
 #### Deep Loop Runtime (the shared foundation)
 
-One engine sits under every loop, so they all work the same way and you learn the workflow once. Research, review and council dispatch, track and stop the same way.
+One engine sits under every loop, so they all work the same way and you learn the workflow once. Research and review dispatch, track and stop the same way.
 
 Progress is saved outside the chat, so you can pause and resume anytime. A loop survives crashes, new sessions and long runs. A loop ends only when the work has converged and passed its quality checks, never because an agent says it is done.
 
@@ -607,7 +615,7 @@ Run fully autonomous with `:auto` or pause at each step with `:confirm`. You can
 
 Autonomy stays bounded. Cross-AI fan-out lineages can run with elevated CLI permissions in their own sandboxed workdir. A stall watchdog, a per-lineage cost cap and a lag-ceiling guard bound and observe those subprocesses, so autonomy stays supervised, not unattended.
 
-The runtime is self-contained and MCP-free. It declares its own dependency manifest and resolves `zod`, `better-sqlite3` and the `tsx` loader from its own `node_modules`. Its one sibling dependency is system-spec-kit's shared package, and it type-checks with that skill's TypeScript. It carries executor config, atomic state, scoring, fallback routing and the coverage / council graph scripts.
+The runtime is self-contained and MCP-free. It declares its own dependency manifest and resolves `zod`, `better-sqlite3` and the `tsx` loader from its own `node_modules`. Its one sibling dependency is system-spec-kit's shared package, and it type-checks with that skill's TypeScript. It carries executor config, atomic state, scoring, fallback routing and the coverage graph scripts.
 
 &nbsp;
 
@@ -652,14 +660,6 @@ It knows when it is done: it stops once findings stabilize, not after a fixed nu
 Audits your code in passes and never edits it. `/deep:review` runs `@deep-review`.
 
 Every issue is ranked P0/P1/P2 across correctness, security, traceability and maintainability, so you fix what matters first. Each critical finding is re-challenged before it sticks, which cuts false alarms. An open P0 forces another pass, and the audit must clear its quality checks before it can stop. The result is a `review-report.md` that ends in a PASS, CONDITIONAL or FAIL verdict. It is FAIL when a P0 is open or a required quality gate (evidence, scope or coverage) still fails at the stop.
-
-&nbsp;
-
-#### Multi AI Council
-
-Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/deep:ai-council` handles multi-topic sessions.
-
-Different AI seats reason from different angles, then critique each other. They converge on a recommendation with the evidence behind it. The council plans only, so it never touches your implementation files. The plan and its reasoning persist as `ai-council/**` files in the packet.
 
 For details, see the [Deep Loop Runtime README](.skilled/skills/system-deep-loop/runtime/README.md), or the [system-deep-loop README](.skilled/skills/system-deep-loop/README.md), which documents each mode.
 
@@ -852,7 +852,7 @@ It reviews before you ship (`code-review` mode). The security and correctness fl
 
 #### DEEP LOOP
 
-One skill powers the autonomous loops described in [Deep Loop](#7--deep-loop), in two layers. **`runtime/`** is the shared MCP-free execution layer every active loop consumes. **`system-deep-loop`** is the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`).
+One skill powers the autonomous loops described in [Deep Loop](#7--deep-loop), in two layers. **`runtime/`** is the shared MCP-free execution layer every active loop consumes. **`system-deep-loop`** is the parent skill routing to active nested modes (`deep-research`, `deep-review`).
 
 Use `@context` separately for one-shot retrieval. This parent-nested-skill pattern is the reusable standard behind `/create:skill-parent`.
 
@@ -864,7 +864,7 @@ Run **cross-CLI agent teams from supported runtimes**. Claude Code, OpenCode or 
 
 A bridge works with any model its CLI supports. Point it at another provider or model and the next dispatch uses it.
 
-The bridges are built for deep-loop fan-out. Bind several bridges to one research, review or council run, and each becomes its own lineage with its own state, budget and stall watchdog. The safest verdict wins the merge.
+The bridges are built for deep-loop fan-out. Bind several bridges to one research or review run, and each becomes its own lineage with its own state, budget and stall watchdog. The safest verdict wins the merge.
 
 Skills, agents and commands travel with the dispatch. Each bridge mirrors them into the runtime's own config, and commit hooks plus a CI check keep those mirrors in step with `.skilled/`. Each runtime folder's README says what is generated there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [OpenCode](.opencode/README.md), [Cursor](.cursor/README.md), [Pi](.pi/README.md) and [Devin](.devin/README.md).
 
@@ -872,7 +872,7 @@ A bridge checks before it runs. It confirms its CLI is installed and usable, so 
 
 **`cli-external-orchestration`** - parent hub for external CLI dispatch
 
-One skill with eight bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe`. Each bridge checks a dispatch against the rules in its own `hard-rules.json` before the command runs, and the `dsh` bridge carries 13 of them. That bridge is experimental. Its LLM Gateway `deepseek-v4.1-flash-1017` route passed a keyed run on 2026-11-06 and is the default. Its OpenCode Go route passed one on 2026-11-07 and runs only when you name it. All eight bridges are also deep-loop fan-out executors, so a research, review or council run can bind any of them as a lineage.
+One skill with eight bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe`. Each bridge checks a dispatch against the rules in its own `hard-rules.json` before the command runs, and the `dsh` bridge carries 13 of them. That bridge is experimental. Its LLM Gateway `deepseek-v4.1-flash-1017` route passed a keyed run on 2026-11-06 and is the default. Its OpenCode Go route passed one on 2026-11-07 and runs only when you name it. All eight bridges are also deep-loop fan-out executors, so a research or review run can bind any of them as a lineage.
 
 &nbsp;
 
@@ -1000,13 +1000,13 @@ Picks the best `sk-prompt` framework, applies DEPTH at the right energy and vali
 
 Decides values and behavior through the visual references in `sk-code-frontend`. It measures an existing surface into a Style Reference through `sk-design-md-generator`. It authors charts and diagrams through `sk-design-chart` and `sk-design-diagram`.
 
+**AI Council** - several AI strategies, one vetted plan
+
+Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and native for multi-round deliberation. Planning-only. `/speckit:ai-council` dispatches it. See [Spec Kit](#6--spec-kit).
+
 &nbsp;
 
 #### DEEP LOOP
-
-**AI Council** - several AI strategies, one vetted plan
-
-Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and native for multi-round deliberation. Planning-only. See [Deep Loop](#7--deep-loop).
 
 **Deep Research** - one research iteration at a time, state on disk
 
@@ -1198,6 +1198,8 @@ Requires `plan.md` to already exist. A 9-step workflow covers task breakdown, im
 
 Continues a previous session by auto-loading continuity from the spec folder. It presents a session summary and shows progress against `tasks.md`. It works after crashes, compactions or new sessions. The summary opens with a Purpose row quoted from the packet's `spec.md`, or from its phase parent or `goal.md` when the packet states none.
 
+**`/speckit:ai-council`** - plan hard decisions with several models, planning-only
+
 **Spec-first command chains**
 
 ```text
@@ -1290,9 +1292,8 @@ Applies the Human Voice Rules to a file or passage, or scores it against them, t
 
 #### DEEP
 
-The active autonomous loop families. See [Deep Loop](#7--deep-loop) for how they run. Use `@context` for one-shot retrieval before planning. All three accept the modes `:auto` and `:confirm`.
+The active autonomous loop families. See [Deep Loop](#7--deep-loop) for how they run. Use `@context` for one-shot retrieval before planning. Both accept the modes `:auto` and `:confirm`.
 
-- **`/deep:ai-council`** - plan hard decisions with several models. Multi-seat planning for complex decisions, planning-only
 - **`/deep:research`** - research until the answer holds. Iterative research until convergence, anchored to a real `spec.md`, with `new`/`resume`/`restart` lifecycle
 - **`/deep:review`** - audit code until it is clean. Iterative code audit until convergence, ending in a PASS/CONDITIONAL/FAIL verdict
 
@@ -1322,7 +1323,7 @@ Every target that writes asks for your yes first. When a prompt describes a prob
 | `/doctor:symlink` | `check`, `link`, `unlink` | `check` | `link`, `unlink` |
 | `/doctor:speckit` | retrieval | the index, lookup and recipe checks | a report and state file in the packet's `scratch/` |
 | `/doctor:skill-advisor` | `tune`, `rebuild`, `skill-graph-freshness`, `router-reach`, `skill-budget`, `parent-skill` | the four audits | `tune`, `rebuild` |
-| `/doctor:deep-loop` | `--scope=research\|review\|council\|both\|all` | the graph and convergence read | a state file in the active spec folder's `scratch/` |
+| `/doctor:deep-loop` | `--scope=research\|review\|both\|all` | the graph and convergence read | a state file in the active spec folder's `scratch/` |
 | `/doctor:runtime-mirrors` | none | the mirror check | none |
 | `/doctor:sk-code` | `setup`, `quality` | `setup` | `quality` (creates the quality config once) |
 | `/doctor:sk-skill` | `check`, `convert` | `check` | `convert` |
@@ -1368,7 +1369,7 @@ It also offers the citation-drift census over all docs or skill docs only, read-
 
 With no target it shows an interactive menu. Examples: `/doctor:skill-advisor rebuild --dry-run`, `/doctor:skill-advisor router-reach --hub=sk-doc`.
 
-**`/doctor:deep-loop [--scope=research|review|council|both|all]`** - deep-loop coverage graphs and convergence, read through the loop's own scripts
+**`/doctor:deep-loop [--scope=research|review|both|all]`** - deep-loop coverage graphs and convergence, read through the loop's own scripts
 
 For research and review scopes, it also lists the unresolved `[SOURCE: path:line]` tags per lineage.
 
@@ -1561,9 +1562,9 @@ Every other shipped skill is codebase-agnostic:
 | **`system-skill-advisor`** | Prompt-time skill routing over the shared skill graph. Works for any project |
 | **`system-skilled-doctor`** | Doctor commands that install, link, update and check Skilled in a project, and keep a vendored copy's overlays. Works for any project |
 | **`mcp-code-mode`** | Multi-tool MCP orchestration. Works for any project |
-| **`system-deep-loop`** | Parent hub for the unified deep-loop skill (research, review and ai-council modes) over nested `runtime/` infrastructure. Works for any topic / target |
+| **`system-deep-loop`** | Parent hub for the unified deep-loop skill (research and review modes) over nested `runtime/` infrastructure. Works for any topic / target |
 | **`sk-prompt`** | Prompt-engineering framework. Works for any project |
-| **`cli-external-orchestration`** | Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness`. Stack-independent |
+| **`cli-external-orchestration`** | Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe`. Stack-independent |
 | **`cli-classifier`** | Parent hub for typed-judgment transports: routes to `cli-jev` (Pi's classifier first for yes-or-no and choice questions, the `jev` CLI otherwise) for a probability, an option key, a score position or a batch of keyed answers. Stack-independent. Needs the `jev` CLI on PATH (`uv tool install jev-cli`) and a key stored with `jev auth set --provider official`, which also turns on its four measured features |
 | **`mcp-tooling`** | Parent hub for eight MCP tool bridges, each described under [MCP Integration](#mcp-integration). Stack-independent |
 | **`cli-orca`** | Drives the Orca app's worktrees, terminals, browser and automations from a dispatch. Works for any project that runs Orca |

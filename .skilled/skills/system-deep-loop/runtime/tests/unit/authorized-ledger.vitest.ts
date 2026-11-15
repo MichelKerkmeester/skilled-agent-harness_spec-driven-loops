@@ -806,7 +806,6 @@ describe('dark adapter legacy isolation', () => {
       'runtime/scripts/reduce-state.cjs',
       'runtime/lib/deep-loop/atomic-state.ts',
       'runtime/lib/deep-loop/jsonl-repair.ts',
-      'runtime/lib/council/round-state-jsonl.cjs',
       'runtime/scripts/fanout-pool.cjs',
       'runtime/scripts/fanout-run.cjs',
       'runtime/lib/deep-loop/observability-events.cjs',
@@ -845,7 +844,7 @@ describe('dark adapter legacy isolation', () => {
     );
     const deniedAdapter = new DarkLedgerAdapter(denied.gateway, denied.ledger);
     expect(await deniedAdapter.recordAfterLegacy(
-      'council-round-state',
+      'fanout-wait-checkpoint',
       legacyResult,
       deniedEvent,
       deniedRequest,

@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.29.0
+version: 1.4.30.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -362,7 +362,7 @@ Expected signals: Both exit 0. Max-variant byte count >= 2x minimal-variant byte
 
 ## 10. AGENT ROUTING (`CO-013..CO-017`, `CO-032..CO-034`)
 
-This category covers 8 scenario summaries while the linked feature files remain the canonical execution contract. cli-opencode distinguishes 3 primary agents (directly invokable via --agent: general + plan as OpenCode built-ins, and orchestrate as the repo-defined primary) from N subagents (context, review, write, debug, ai-council, deep-research, deep-review, prompt-improver) which dispatch as Task subagents from a primary (`ai-council` additionally reachable via its own `/deep:ai-council` command). CO-013..CO-017 + CO-032..CO-034 exercise both surfaces: direct primary invocation and primary-dispatches-subagent routing.
+This category covers 8 scenario summaries while the linked feature files remain the canonical execution contract. cli-opencode distinguishes 3 primary agents (directly invokable via --agent: general + plan as OpenCode built-ins, and orchestrate as the repo-defined primary) from N subagents (context, review, write, debug, ai-council, deep-research, deep-review, prompt-improver) which dispatch as Task subagents from a primary (`ai-council` additionally reachable via its own `/speckit:ai-council` command). CO-013..CO-017 + CO-032..CO-034 exercise both surfaces: direct primary invocation and primary-dispatches-subagent routing.
 
 ### CO-013 | General agent default route
 

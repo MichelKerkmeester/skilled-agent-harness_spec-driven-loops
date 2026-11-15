@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/005-command-and-skill-doc-alignment",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/005-command-and-skill-doc-alignment",
+  "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command and skill doc alignment",
+      "phase 5 command and skill doc alignment",
+      "deep research review doc drift guard",
+      "command and skill doc alignment plan",
+      "command and skill doc alignment tasks",
+      "command and skill doc alignment acceptance criteria",
+      "command and skill doc alignment goal",
+      "command and skill doc alignment implementation summary"
+    ],
+    "key_topics": [
+      "command",
+      "skill",
+      "doc",
+      "alignment",
+      "phase",
+      "deep",
+      "research",
+      "review",
+      "drift",
+      "guard",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/check-documentation-drift.vitest.ts",
+      ".skilled/commands/deep/research.md",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      ".skilled/agents/deep-research.md",
+      ".skilled/commands/speckit/README.txt",
+      ".skilled/commands/deep/review.md",
+      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      ".skilled/agents/deep-review.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+      ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md",
+      ".skilled/skills/system-spec-kit/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-documentation-drift.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-documentation-drift.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/check-documentation-drift.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-authoring.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An operator or agent who reads the deep-research or deep-review docs gets facts that the running loop does not follow",
+    "created_at": "2026-11-14T11:33:22Z",
+    "last_save_at": "2026-11-14T20:15:05.004Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c74b501449048cdc1fc4684c64f958a98a2897bb9b2d04820729193ba50a3098",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0ea175100ebce331b719682c413a2334052b8f390b2521bf4d50a6a1aa5ed843",
+      "plan.md": "399929471e02724d66f499835771101a934d0f22fa692ad4e88ee2610ac92acb",
+      "tasks.md": "ba572aa35432ddd152002feb8c3ff22511264890ab765f688a382ce123dcbd8e",
+      "implementation-summary.md": "43c9da402eb7e2c37a967b82ab932a2372c0f8ec52514a55f551e86ae5b0c9af"
+    },
+    "last_active_at": null
+  }
+}

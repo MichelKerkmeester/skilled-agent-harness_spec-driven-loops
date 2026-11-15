@@ -10,9 +10,10 @@ import { join, resolve } from 'node:path';
 
 import { createHermeticEnv, runtimeRoot, type HermeticEnv } from '../helpers/spawn-cjs';
 
-const RESEARCH_YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research-auto.yaml');
-const REVIEW_YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review-auto.yaml');
+const RESEARCH_YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research.yaml');
+const REVIEW_YAML_PATH = resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review.yaml');
 const YAML_PATH = RESEARCH_YAML_PATH;
+const REPO_ROOT = resolve(runtimeRoot, '..', '..', '..', '..');
 
 type JsonRecord = Record<string, unknown>;
 
@@ -31,7 +32,7 @@ function extractStepCommand(stepName: string, yamlPath = YAML_PATH): string {
   const text = readFileSync(yamlPath, 'utf8');
   const stepStart = text.indexOf(`      ${stepName}:\n`);
   if (stepStart === -1) {
-    throw new Error(`${stepName} was not found in deep_research_auto.yaml`);
+    throw new Error(`${stepName} was not found in ${yamlPath}`);
   }
 
   const stepText = text.slice(stepStart);
@@ -89,7 +90,7 @@ function renderTemplate(command: string, replacements: Record<string, string>): 
 
 function runCommand(command: string, fixture: Fixture): void {
   const result = spawnSync('/bin/sh', ['-c', renderCommand(command, fixture)], {
-    cwd: runtimeRoot,
+    cwd: REPO_ROOT,
     env: fixture.env.env,
     encoding: 'utf8',
   });

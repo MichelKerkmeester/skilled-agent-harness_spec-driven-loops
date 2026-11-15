@@ -1,5 +1,7 @@
 # VIB-HK-007 procedure: an automatic mid-turn compaction needs a model window the runner cannot install
 
+Verdict: **OPERATOR-ONLY**. The automatic compaction fires on the model's context window, and the runner installs the repository's window, so no runner turn can reach the threshold.
+
 The shared conversation runner cannot drive this scenario. The live run recorded the reason:
 the session reported `ctx 16.9k/256k` and the journal held no `kind` `compaction` entry, so both
 turn checks reported the same blocker.

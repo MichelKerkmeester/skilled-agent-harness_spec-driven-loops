@@ -1,0 +1,75 @@
+ROLE: You are a careful editor. Make exactly the edits below, nothing else. Do not refactor,
+reformat, reorder or fix anything adjacent. The WORKFLOW TEXT CONTRACT above is background: this
+brief does NOT edit any workflow YAML file.
+
+CONTEXT: /deep:review already accepts `--restart` and `--lineage-mode=auto|resume|restart` and
+binds `lineage_mode`. /deep:research must accept the same two flags and bind the same value, with
+the same meaning. The research workflow files are changed by another brief.
+
+ALLOWED WRITE PATHS (only these four files):
+- .skilled/commands/deep/research.md
+- .skilled/commands/deep/assets/deep-research-presentation.txt
+- .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts
+- .skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts
+
+FILE 1: .skilled/commands/deep/research.md
+EDIT 1.1. On the `argument-hint:` line, add ` [--restart]` directly after `[--dry-run]`, inside the
+closing quote.
+EDIT 1.2. Under `YAML START CONDITION`, the bullet that lists the required inputs reads
+  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`
+Add `, `lineage_mode`` at its end (with the backticks around lineage_mode).
+EDIT 1.3. Directly after the bullet `- `dry_run` is normalized to `true` or `false`; absence means `false``
+and before the `## 1. ROUTER CONTRACT` heading, add one blank line and then this paragraph:
+In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag (invocation form `--restart|--lineage-mode=restart`) is operator authorization to archive the resolved research packet before fan-out or phase init. Do not ask for a second confirmation; preserve rollback by moving the timestamped archive directory back to `research/` if needed.
+EDIT 1.4. In `## 3. MODE ROUTING`, item 2, add ` lifecycle flags (`--restart`, `--lineage-mode`),`
+directly after `` `--spec-folder`, `` so the item reads `... `--dry-run`, `--spec-folder`, lifecycle flags (`--restart`, `--lineage-mode`), `--executor`, ...`.
+EDIT 1.5. In the `### Workflow Flag Surface` table, directly after the `--dry-run` row, add this row:
+| `--restart`, `--lineage-mode` | `auto` \| `resume` \| `restart` | Session lifecycle intent, default `auto`. `resume` keeps the same `sessionId` and archives nothing; `restart`, which bare `--restart` selects, opens a new `sessionId` at generation+1 and archives the prior `research/`. `fork` and `completed-continue` are deferred and rejected. |
+
+FILE 2: .skilled/commands/deep/assets/deep-research-presentation.txt
+First read how the review presentation does it, for wording only:
+  grep -n 'lineage_mode\|--restart\|Lifecycle policy' .skilled/commands/deep/assets/deep-review-presentation.txt
+EDIT 2.1. In the `PRE-BOUND SETUP ANSWERS:` yaml block, directly after the `convergence_mode:` line,
+add this line with the same two-space indentation as its neighbours:
+  lineage_mode: auto  # one of: auto | resume | restart
+EDIT 2.2. In the Default Resolution Table, directly after the `stop_policy` row, add a row for
+`lineage_mode`. Use the same column layout as the `stop_policy` row. Required is `Y`, the source
+is: flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default.
+The default is `auto`. Copy the last column value of the `stop_policy` row.
+EDIT 2.3. Directly before the line that starts with `**Fan-out default policy:**`, add this
+paragraph followed by one blank line:
+**Lifecycle policy:** `lineage_mode=auto` preserves the existing classifier behavior, `lineage_mode=resume` continues a valid packet, and `lineage_mode=restart` archives the resolved `{artifact_dir}` before any config write, phase init, or fan-out spawn. In `:auto`, an explicit `--restart` or `--lineage-mode=restart` flag is operator authorization for this archive move, so do not ask for a second confirmation. Preserve rollback by moving the timestamped archive back to `research/` if needed. A restart request must never silently downgrade to resume; if the archive step cannot run, halt with `STATUS=FAIL`.
+EDIT 2.4. In the `3. PARSE optional flags from $ARGUMENTS:` tree, directly after the line
+`   |-- --spec-folder=PATH -> spec_path = PATH, omit Q1`, add these two lines:
+   |-- --restart -> lineage_mode = restart
+   |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
+EDIT 2.5. On the line that starts with `   +-- Defaults: maxIterations=10`, add ` lineage_mode=`auto`,`
+directly after ``antiConvergence.divergent=`{}`,``.
+EDIT 2.6. If the file holds a list of bound values shown to the operator that includes a
+`stop_policy` entry (grep -n 'stop_policy' the file), add a matching `lineage_mode` entry directly
+after each such list entry, in the same form. Do not touch the table row from 2.2 again.
+
+FILE 3: .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts
+EDIT 3.1. In DEEP_RESEARCH_STEM_PRODUCERS replace the whole entry line for
+'deep_research.run_restarted' with:
+  'deep_research.run_restarted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml', '.skilled/commands/deep/assets/deep-research-confirm.yaml'] },
+
+FILE 4: .skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts
+EDIT 4.1. In the test `finds every registered stem declared and every spoken stem emitted`, change
+`expect(r.payload.spoken).toBe(23);` to `expect(r.payload.spoken).toBe(24);` and
+`expect(r.payload.reserved).toBe(63);` to `expect(r.payload.reserved).toBe(62);`. If the comment
+above those lines states a count of whole dotted literals in words (for example "sixteen written
+as whole dotted literals"), raise that word by one. Change nothing else.
+
+VERIFY (run from the repository root and print the output):
+  rg -c -- '--restart|--lineage-mode' .skilled/commands/deep/research.md .skilled/commands/deep/assets/deep-research-presentation.txt
+  rg -n 'lineage_mode' .skilled/commands/deep/research.md .skilled/commands/deep/assets/deep-research-presentation.txt
+  rg -n "'deep_research.run_restarted': \{" .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts
+  git status --short
+  (cd .skilled/skills/system-deep-loop/runtime && npm run typecheck 2>&1 | tail -3)
+
+EXPECTED: a count above 0 for both files, the `spoken` entry line, and the typecheck exits 0.
+The check-ledger-stem-producers test is expected to FAIL until the workflow files are edited by
+another brief: do not run it and do not try to fix it.
+
+RETURN: the outputs of the verify commands.

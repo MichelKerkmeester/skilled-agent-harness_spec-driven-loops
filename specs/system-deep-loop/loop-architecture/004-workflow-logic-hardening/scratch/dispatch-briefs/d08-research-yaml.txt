@@ -1,0 +1,114 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a code implementation worker. Make exactly the four edits below in each of
+two YAML files, nothing else. Do not reformat, re-indent or fix anything adjacent. Do not
+commit.
+
+ALLOWED WRITE PATHS (only these two files, in .skilled/commands/deep/assets/):
+- deep-research-auto.yaml
+- deep-research-confirm.yaml
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any
+write outside the two allowed paths, any package install, any edit to a test file.
+Do NOT read these files whole (each is over 150 KB). Find the lines with grep -n, then
+read only the 100 lines around `step_graph_convergence:`.
+
+CONTEXT: the step `step_check_convergence` holds stop-vote arithmetic in prose. The script
+convergence.cjs now computes the whole decision and prints it as `stop_decision`. The
+workflow must pass the new flags and only branch on that object. The same four edits apply
+to BOTH files. The two files hold the same text for these steps.
+
+EDIT 1. In `step_graph_convergence`, on the `bash:` line, the command ends with
+  --persist-snapshot --iteration "{current_iteration}"'
+Insert the new flags before the closing single quote, so the line ends with:
+  --persist-snapshot --iteration "{current_iteration}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.registry}" --iteration-count "{iteration_count}" --stuck-count "{stuck_count}"'
+
+EDIT 2. In the same step:
+- Replace the `action:` line with:
+        action: "Run convergence.cjs once: it evaluates the coverage graph, persists the graph snapshot and computes the whole stop decision"
+- Replace the `note:` line with:
+        note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output."
+- Under `outputs:`, add this line directly after the `- graph_convergence_score:` line:
+          - stop_decision: "Tool stop_decision object: decision, stopReason, reasonDetail, weightedStopScore, signals, gates, blockedBy, graphDecision, inputs"
+
+EDIT 3. In `step_check_convergence`, replace the `action:` line and the WHOLE `algorithm: |`
+block (every line from `algorithm: |` down to, but not including, the line `        outputs:`)
+with exactly this text (keep the leading spaces exactly):
+
+        action: "Branch on the stop decision that convergence.cjs computed in step_graph_convergence"
+        algorithm: |
+          The whole stop decision is computed by convergence.cjs from the loop config, the state log, the findings registry and the coverage graph. This step performs no arithmetic and never recomputes or overrides the result.
+          The script applies this fixed order, first match wins:
+          1. if iteration_count >= max_iterations: STOP (maxIterationsReached). This terminal cap bypasses every guard and veto; failed guards are recorded in stop_decision.blockedBy as synthesis evidence.
+          2. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
+          3. if convergence_mode == "off": skip convergence stop candidates and continue.
+          3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: the vote is telemetry only and the decision is CONTINUE.
+          4. a STOP candidate exists when every question is answered (all_questions_answered) or the weighted vote passes (composite_converged).
+          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)
+          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)
+          7. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
+          Bind the outputs from stop_decision:
+            decision = stop_decision.decision
+            reason = stop_decision.stopReason when it is not null, else stop_decision.reasonDetail
+            reason_detail = stop_decision.reasonDetail
+            weighted_stop_score = stop_decision.weightedStopScore
+            stop_blocked = (stop_decision.decision == "BLOCKED")
+            blocked_by_json = stop_decision.blockedBy
+            blocked_by_csv = the members of stop_decision.blockedBy joined with commas
+            gate_convergence_pass = (stop_decision.graphDecision == "STOP_ALLOWED")
+            gate_convergence_score = graph_convergence_score
+            gate_key_question_coverage_pass = no blocker named questionCoverage
+            gate_evidence_density_pass = no blocker named sourceDiversity or evidenceDepth
+            gate_evidence_density_sources = graph_signals_json.sourceDiversity or 0
+            gate_hotspot_saturation_pass = true
+            recovery_strategy = first blocker reason/message, else "Collect deeper graph evidence before stopping."
+            min_iterations_guard_blocked = (stop_decision.reasonDetail == "minIterationsNotReached")
+            min_iterations_guard_pass = true when effective_min_iterations > 1 and iteration_count >= effective_min_iterations and min_iterations_guard_already_passed == false
+          If stop_decision is missing from the step_graph_convergence output, do not decide by hand: halt and report the script output.
+          When stop_decision.reasonDetail == "qualityGuardFailed", log: "Quality guard failed: {blocked_by_csv}. Continuing."
+          Segment-aware convergence is experimental/reference-only; live workflow uses the current session as a single segment.
+
+Then, under that step's `outputs:`, replace the two lines
+          - reason: "Human-readable stop reason"
+          - stop_blocked: "Boolean marker set when graph convergence vetoes an inline STOP candidate"
+with these four lines:
+          - reason: "stop_decision.stopReason when set, else stop_decision.reasonDetail"
+          - reason_detail: "stop_decision.reasonDetail, the fine cause behind the decision"
+          - weighted_stop_score: "stop_decision.weightedStopScore, for diagnostics only"
+          - stop_blocked: "Boolean true when stop_decision.decision == BLOCKED"
+Leave every other `outputs:` line as it is.
+
+EDIT 4. In `step_handle_convergence`, replace the line
+          branch_on: "convergence_mode == 'divergent' AND reason is in ['composite_converged', 'all_questions_answered']"
+with
+          branch_on: "convergence_mode == 'divergent' AND stop_decision.reasonDetail is in ['composite_converged', 'all_questions_answered']"
+
+VERIFY (run from the repository root and print the output):
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/stop-decision-yaml-contract.vitest.ts -t "deep-research")
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/deep-research-convergence-floor.vitest.ts)
+  grep -c "checkQualityGuards\|graph_decision is absent\|MAD(" .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml
+  git diff --stat
+
+EXPECTED: the first command reports 8 passed and 0 failed (the 10 review tests are
+skipped by the filter). The second reports 0 failed. The grep prints 0 for both files.
+`git diff --stat` lists only the two allowed files.
+
+RETURN: the four command outputs. If a test still fails, report its name and the assertion
+message, and do NOT edit the test.

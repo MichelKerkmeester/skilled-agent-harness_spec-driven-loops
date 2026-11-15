@@ -28,12 +28,10 @@ import {
   CounterfactualKinds,
   JudgmentOutcomes,
   REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND,
-  adaptCouncilVerdict,
   adaptDeepReviewVerdict,
   adjudicationPairId,
   createAdjudicationEventPayload,
   createAdjudicationEventRegistry,
-  createCouncilAdjudicationRequest,
   createDeepReviewAdjudicationRequest,
   deriveAdjudicationReplayFingerprint,
   digestCandidateContent,
@@ -182,7 +180,7 @@ function request(
 ): AdjudicationRequest {
   return validateAdjudicationRequest({
     requestVersion: ADJUDICATION_REQUEST_VERSION,
-    decisionKind: AdjudicationDecisionKinds.DEEP_AI_COUNCIL,
+    decisionKind: AdjudicationDecisionKinds.DEEP_REVIEW,
     candidateDigests: candidates.map((entry) => entry.candidateDigest),
     rubricDigest: digest('rubric'),
     referenceDigest: digest('reference'),
@@ -191,7 +189,7 @@ function request(
     counterfactualPolicyVersion: 'counterfactual-policy@1',
     reducerVersion: ADJUDICATION_REDUCER_VERSION,
     requiredCounterfactuals: [
-      ...REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND[AdjudicationDecisionKinds.DEEP_AI_COUNCIL],
+      ...REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND[AdjudicationDecisionKinds.DEEP_REVIEW],
     ],
     quorum: 1,
     minimumEffectiveIndependence: 1,
@@ -621,8 +619,8 @@ describe('judging, reduction, and replay', () => {
       legacyAuthority: 'canonical',
       serviceAuthority: 'shadow-only',
     });
-    expect(verdict.rawScoreEvidenceIds).toHaveLength(7);
-    expect(verdict.counterfactualEvidenceIds).toHaveLength(5);
+    expect(verdict.rawScoreEvidenceIds).toHaveLength(6);
+    expect(verdict.counterfactualEvidenceIds).toHaveLength(4);
     expect(verdict.pairwiseGraph).toHaveLength(1);
     await expect(verifyAdjudicationVerdictReplay(
       harness.service.ledger,
@@ -636,7 +634,7 @@ describe('judging, reduction, and replay', () => {
       harness.service.eventRegistry,
       'adjudication-replay-run',
     );
-    expect(fingerprint.descriptor.event_count).toBe(22);
+    expect(fingerprint.descriptor.event_count).toBe(19);
     expect(fingerprint.descriptor.final_digest).toMatch(/^[a-f0-9]{64}$/);
   });
 
@@ -730,7 +728,7 @@ describe('judging, reduction, and replay', () => {
     });
   });
 
-  it('requires the complete council probe policy at admission and reduction', async () => {
+  it('requires the complete review probe policy at admission and reduction', async () => {
     const replay = createVerifiedReplay();
     const candidates = [candidate('A', 'producer-a', 1), candidate('B', 'producer-b', 2)];
     const completeRequest = request(replay, candidates);
@@ -739,7 +737,7 @@ describe('judging, reduction, and replay', () => {
       requiredCounterfactuals: [CounterfactualKinds.ORDER],
     })).toThrow();
 
-    const harness = await acceptedHarness('partial-council-probes');
+    const harness = await acceptedHarness('partial-probes');
     const assignments = await harness.service.planMirroredAssignments(
       'adjudication-one',
       [harness.judge],
@@ -1130,7 +1128,7 @@ describe('independence, adapters, and dark authority', () => {
     expect(reduction.reasons).toContain('insufficient-effective-independence');
   });
 
-  it('keeps both request adapters typed and preserves verdict status without re-reduction', async () => {
+  it('keeps the request adapter typed and preserves verdict status without re-reduction', async () => {
     const { harness, verdict } = await sharedStableFixture();
     const common = {
       candidateDigests: harness.request.candidateDigests,
@@ -1142,22 +1140,15 @@ describe('independence, adapters, and dark authority', () => {
       minimumEffectiveIndependence: 1,
       replayFingerprint: harness.request.replayFingerprint,
     };
-    expect([
-      createDeepReviewAdjudicationRequest(common).decisionKind,
-      createCouncilAdjudicationRequest(common).decisionKind,
-    ]).toEqual([
-      'deep-review',
-      'deep-ai-council',
-    ]);
-    const council = adaptCouncilVerdict(verdict);
-    expect(council).toMatchObject({
+    expect(createDeepReviewAdjudicationRequest(common).decisionKind).toBe('deep-review');
+    const review = adaptDeepReviewVerdict(verdict);
+    expect(review).toMatchObject({
       status: verdict.status,
       verdictEvidenceId: verdict.verdictEvidenceId,
       transitionAuthority: 'mode-owned',
       legacyAuthority: 'canonical',
     });
-    expect(council.pairwiseGraph).toEqual(verdict.pairwiseGraph);
-    expect(() => adaptDeepReviewVerdict(verdict)).toThrow();
+    expect(review.pairwiseGraph).toEqual(verdict.pairwiseGraph);
   });
 
   it('returns the exact legacy result after recording a non-authoritative shadow comparison', async () => {
@@ -1271,7 +1262,7 @@ describe('deblinding and invalidation controls', () => {
       invalidated_evidence_id: verdict.verdictEvidenceId,
     });
     expect(events.filter((event) => event.eventType === AdjudicationEventTypes.SCORE_RECORDED))
-      .toHaveLength(7);
+      .toHaveLength(6);
   });
 });
 

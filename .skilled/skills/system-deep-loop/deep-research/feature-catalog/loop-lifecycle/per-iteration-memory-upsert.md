@@ -7,7 +7,7 @@ trigger_phrases:
   - "lineage context prompt line"
   - "iteration evidence persistence"
   - "incremental research context"
-version: 1.14.0.14
+version: 1.14.1.0
 ---
 
 # Per-iteration lineage context refresh
@@ -22,7 +22,7 @@ Iteration evidence is already durable the moment the iteration file and its JSON
 
 ## 2. HOW IT WORKS
 
-The auto workflow runs `step_refresh_lineage_context` after iteration validation, reducer refresh, and graph upsert, and before result evaluation. `step_reduce_state` has just rewritten the dashboard, the findings registry and the strategy file, so the freshest view of the lineage is on disk when this step reads it.
+The workflow runs `step_refresh_lineage_context` after iteration validation, reducer refresh, and graph upsert, and before result evaluation. `step_reduce_state` has just rewritten the dashboard, the findings registry and the strategy file, so the freshest view of the lineage is on disk when this step reads it.
 
 If the read succeeds, its concise summary becomes the `lineage_context_prompt_line` for the next iteration; if a state file is missing or unreadable, the workflow keeps the previous context line and continues. No index, daemon or network call takes part, so there is no failure mode that can stall the loop from outside the lineage directory.
 
@@ -36,7 +36,7 @@ An earlier version of this step indexed each iteration through an MCP memory ups
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Declares the lineage context refresh step and the prompt line it feeds. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Declares the lineage context refresh step and the prompt line it feeds. |
 
 ### Validation And Tests
 

@@ -114,9 +114,9 @@ $ find .opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-sea
 target: deep-loop
 yaml: doctor-deep-loop.yaml
 setup_vars: [execution_mode, intent, scope]
-allowed_flags: ["--scope=research|review|council|both|all"]
+allowed_flags: ["--scope=research|review|both|all"]
 mutating: read-only
-gate3_location: "n/a (read-only diagnostic; reads coverage + council graphs and iteration folders + ai-council artifacts, never upserts)"
+gate3_location: "n/a (read-only diagnostic; reads coverage graph and iteration folders, never upserts)"
 mcp_tools: []
 script_invocations:
   - 'node .skilled/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
