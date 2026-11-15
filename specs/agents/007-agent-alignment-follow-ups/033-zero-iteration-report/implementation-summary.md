@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "A deep review that stops before any iteration now reports that it did not run, keeps the derived verdict, and names a rerun of /deep:review instead of /speckit:plan."
 trigger_phrases:
   - "zero iteration report implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,30 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "agents/007-agent-alignment-follow-ups/033-zero-iteration-report"
-    last_updated_at: "2026-11-15T20:25:14Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-11-15T21:15:49Z"
+    last_updated_by: "generate-context"
+    recent_action: "Built phase 033 zero-iteration report branch"
+    next_safe_action: "Commit 033, merge main, push, update changelog"
+    packet_purpose: "Purpose: Make a review that never ran say so, keep its verdict as the script derived it, and point the reader at a rerun instead of a plan."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/implementation-summary.md"
+      - ".skilled/commands/deep/assets/deep-review.yaml"
+      - ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml"
+      - ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md"
+      - ".skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:39617c9101f27f60ccdafa7f6463f45d769cd41d200f21ba007577130627a662"
       session_id: "scaffold-033-zero-iteration-report"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "a84f4eed-26f9-49ac-91eb-e2375c207e96"
+      workspace: "/Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups"
+      savedAt: "2026-11-15T21:15:49Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +45,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,62 +57,68 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A review that examined nothing no longer asks for a remediation plan. Phase 25's live run stopped on its wall-clock budget with 0 of 3 iterations dispatched and still asked for `/speckit:plan` and a remediation workstream.
 
 ### Phase 33: zero-iteration-report
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`step_compile_review_report` in `deep-review.yaml` opens with a zero-iteration branch: when the state log, or every lineage log on a fan-out root, holds no line with type `iteration`, the report starts with `Review did not run`, states the stop reason and 0 iterations dispatched, keeps the verdict the verdict step derived, says the counts mean not examined, and sets the Planning Packet to `triggered: false` and `reviewDidNotRun: true` with no workstreams. It names `/deep:review` with a larger budget or cap as the next step. A comment in `review-mode-contract.yaml` records the routing. Manual testing scenario DRV-069 covers it and is indexed in the playbook.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Modified | Zero-iteration branch in the report step |
+| `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml` | Modified | Comment on the zero-iteration route |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md` | Created | Scenario DRV-069 |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md` | Modified | Index entry and counts |
+| `.skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs` | Modified | Version constant matches the committed snapshot |
+| `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` | Regenerated | Source digests |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+DeepSeek V4.1 Flash at `--thinking max` through cli-pi built each task in its own dispatch, and the conductor read every diff and reran the checks. The conductor ran the scenario's verdict and iteration-count commands on phase 25's recorded state: the verdict script printed FAIL from `["coverage"]` and the state log held no iteration line. Two commands in the first draft of the scenario were wrong, a spaced JSON pattern and a bound-mode verdict call missing required flags, and were corrected. The snapshot check had failed since the phase 31 commit, because the commit hook raised the generated snapshot's version to 1.11.2.0 while the renderer still wrote 1.11.1.0; the renderer constant now matches.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Keep the verdict | The verdict script's FAIL from the failed coverage gate is correct; the report changes its routing, not its verdict |
+| Leave phase 25's report as written | It is the record of that run |
+| Branch on iteration rows, not the stop reason | Any stop can come before the first dispatch |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Contract drift | PASS: `OK commands=2` |
+| Snapshot check | PASS: up to date |
+| spec-kit `deep-review-contract-parity.vitest.ts` | PASS: 12 of 12 |
+| `check-documentation-drift.cjs` | PASS: no errors |
+| Scenario commands on phase 25's state | verdict FAIL, gate ids `["coverage"]`, zero iteration lines |
+| Runtime suite | PASS: 184 files, 3,092 passed, 9 skipped (unchanged; this phase adds no runtime code) |
+| `npm run typecheck` | PASS: no errors |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The branch is workflow guidance.** No test renders a report; DRV-069 is the manual check.
+2. **The commit hook and the snapshot renderer can drift again.** The doc-version gate raises the generated snapshot's version on any commit that changes it, while the renderer hard-codes the version. The next snapshot change will fail `--check` until the gate skips generated files or the renderer keeps the version on disk.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

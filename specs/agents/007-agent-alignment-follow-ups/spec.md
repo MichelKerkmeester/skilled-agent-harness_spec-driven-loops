@@ -157,7 +157,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 30 | 030-review-count-source/ | One count source for review verdict, report and closeout | Complete |
 | 31 | 031-search-debt-verdict/ | Open search debt makes the final review verdict CONDITIONAL | Complete |
 | 32 | 032-traceability-reserve-iteration/ | Reserve the last review iteration for unfinished core traceability | Complete |
-| 33 | 033-zero-iteration-report/ | A review report for a run that stopped before any iteration | Pending |
+| 33 | 033-zero-iteration-report/ | A review report for a run that stopped before any iteration | Complete |
 
 ### Phase Transition Rules
 

@@ -44,7 +44,7 @@ trigger_phrases:
   - "convergence gates"
 importance_tier: high
 contextType: implementation
-version: 1.11.1.0
+version: 1.11.2.0
 ---`;
 
 // ─────────────────────────────────────────────────────────────────────────────

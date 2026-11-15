@@ -18,7 +18,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
@@ -94,6 +94,7 @@ $ sed -n 28p specs/agents/007-agent-alignment-follow-ups/025-stop-path-live-proo
 | `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/zero-iteration-review-report.md` | Create | Scenario DRV-069 |
 | `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md` | Modify | Index entry |
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` | Modify | Recompiled |
+| `.skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs` | Modify | Version constant matches the committed snapshot |
 <!-- /ANCHOR:scope -->
 
 ---

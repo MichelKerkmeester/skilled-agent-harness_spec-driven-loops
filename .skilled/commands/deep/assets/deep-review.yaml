@@ -1996,6 +1996,12 @@ workflow:
         action: "Compile review/review-report.md with 9 core sections, a conditional Resource Map Coverage Gate section, and an embedded Planning Packet"
         dry_run_boundary: "state-mutation"
         instructions: |
+          **Zero-iteration stop:** When {state_paths.state_log} holds no line with type "iteration" (on a fan-out root, when none of the lineage state logs under {state_paths.packet_dir}/lineages/ holds one), the review did not run, and the report says so instead of reporting on work that never happened:
+             - Executive Summary: open with `Review did not run`, state the stop reason and `0 iterations dispatched`, keep the verdict and hasAdvisories bound by step_derive_verdict unchanged, and state that the P0/P1/P2 counts mean not examined rather than clean.
+             - Planning Trigger: state that `/speckit:plan` is not required, and set the Planning Packet to `triggered: false` and `reviewDidNotRun: true` with `remediationWorkstreams: []`, keeping every other required key from section 2 at an empty value.
+             - Next step: name `/deep:review` again with a duration budget or iteration cap that allows at least one pass.
+             - Sections 3 to 8: give each a single line saying the review did not run.
+
           Create review/review-report.md with the following sections:
 
           1. **Executive Summary**

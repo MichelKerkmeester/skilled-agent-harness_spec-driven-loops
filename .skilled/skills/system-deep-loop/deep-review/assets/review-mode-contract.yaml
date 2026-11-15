@@ -99,6 +99,7 @@ contract:
       requiresFileLineEvidence: true
 
   # Verdicts collapse PASS WITH NOTES into PASS + hasAdvisories metadata.
+  # A run that stops before any iteration fails coverage and so ends FAIL; its report routes to another /deep:review, not /speckit:plan.
   verdicts:
     - id: FAIL
       label: Fail
