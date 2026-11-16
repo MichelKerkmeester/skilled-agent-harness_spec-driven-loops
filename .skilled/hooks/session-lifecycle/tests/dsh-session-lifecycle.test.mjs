@@ -7,6 +7,8 @@
 // fail-open policy.
 
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
@@ -111,6 +113,39 @@ test('session-start advisories call the same scripts Pi runs, from this checkout
   assert.deepEqual(
     ADVISORY_CHECKS.map((check) => check.concern).sort(),
     ['dist-freshness', 'git-hooks-check', 'git-worktree-guard', 'hook-install', 'live-follow', 'primary-reconcile'],
+  );
+});
+
+// The default runner spawns the real script, so a stand-in installer in a temp checkout
+// decides what it prints and how it exits.
+async function runInstallerAdvisory(scriptBody) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'dsh-advisories-'));
+  try {
+    fs.mkdirSync(path.join(root, '.skilled', 'bin'), { recursive: true });
+    fs.writeFileSync(path.join(root, '.skilled', 'bin', 'install-codex-hooks.mjs'), scriptBody);
+    const { ctx, fire } = pluginHarness();
+    registerSessionStartAdvisories(ctx, {
+      isEnabled: (concern) => concern === 'session-lifecycle' || concern === 'hook-install',
+      isLeaf: interactive,
+      createNotice: plainNotice,
+      repoRoot: root,
+    });
+    const { agent, injected } = fakeAgent();
+    await fire('agent/created', { agent, source: 'startup' });
+    return injected.map(noticeText);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+}
+
+test('the codex hook check warns only when it fails, not on its OK line', async () => {
+  assert.deepEqual(
+    await runInstallerAdvisory("console.log('install-codex-hooks: OK /home/.codex/hooks.json');\n"),
+    [],
+  );
+  assert.deepEqual(
+    await runInstallerAdvisory("console.error('install-codex-hooks: DRIFT /home/.codex/hooks.json (duplicate=1)');\nprocess.exitCode = 1;\n"),
+    ['install-codex-hooks: install-codex-hooks: DRIFT /home/.codex/hooks.json (duplicate=1)'],
   );
 });
 

@@ -46,10 +46,10 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Kill-switch names and concern keys stay as they are, so operator config keeps working. |
-| D2 | No phase changes what a hook does when it fires. |
+| D2 | No phase changes what a hook does when it fires. Amended 2026-11-16 by the operator: phase 6 lets the Codex check run in a worktree, and Pi and DSH show it only on failure. |
 | D3 | Historical spec documents and changelogs keep the old paths they were written with. |
 | D4 | Phases run in order, and each passes `validate.sh` on its own before the next begins. |
-| D5 | The Pi legacy import fallbacks, their Vitest alias and mismatched OpenCode plugin prefixes are reported at close, not fixed. |
+| D5 | The Pi legacy import fallbacks, their Vitest alias and mismatched OpenCode plugin prefixes are reported at close, not fixed. Amended 2026-11-16 by the operator: phases 5 and 6 fix the first two, and the prefixes stay. |
 | D6 | Nothing is committed, merged or pushed until the operator asks. |
 
 <!-- /ANCHOR:directive -->
@@ -109,10 +109,12 @@ and findings belong here.
 | Four child phases | Pending | Each phase's own goal tracks its progress |
 | merge origin/main into the worktree branch | done | 1a8ee2e5087; node --test 1888/1888, 105 READMEs pass, recursive strict PASSED; T021 still waits on the operator |
 | operator fixed env-secret-guard README; packet closed | done | T021 closed, all four phases Complete, check-gate-inputs PASSED, README.md:1166 fixed |
+| phase 6 codex check and advisory fixes | done | installer 20/20, hook node 1892/1892, hook vitest 506/506, spec-kit 1485 and 4075 pass without the alias, recursive strict PASSED |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | No parent acceptance criteria | The phase parent holds only `spec.md`, so the criteria come from its Purpose, Scope, Handoff Criteria and Phase Documentation Map |
+| Phases 5 and 6 added after close | The operator chose each fix in a question on 2026-11-16. Neither phase has a child goal; each phase's `spec.md` carries its requirements |
 <!-- /ANCHOR:log -->

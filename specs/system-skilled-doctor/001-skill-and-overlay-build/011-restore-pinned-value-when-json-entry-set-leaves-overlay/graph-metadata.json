@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay",
+  "spec_folder": "system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay",
+  "parent_id": "system-skilled-doctor/001-skill-and-overlay-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "restore pinned value when json entry set leaves overlay",
+      "phase 11 restore pinned value when json entry",
+      "restore pinned value when json entry set leaves overlay plan",
+      "restore pinned value when json entry set leaves overlay tasks",
+      "restore pinned value when json entry set leaves overlay goal",
+      "011-restore-pinned-value-when-json-entry-set-leaves-overlay operator decisions",
+      "restore pinned value json entry set implementation summary"
+    ],
+    "key_topics": [
+      "restore",
+      "pinned",
+      "value",
+      "json",
+      "entry",
+      "set",
+      "leaves",
+      "overlay",
+      "phase",
+      "plan",
+      "tasks",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/repro-removed-set.cjs",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "repro-removed-set.cjs",
+        "kind": "file",
+        "path": "scratch/repro-removed-set.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlays.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Record",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A project that vendors Skilled changes one value in an upstream JSON file with a `set` operation in a `json-entry` overlay",
+    "created_at": "2026-11-16T09:33:04Z",
+    "last_save_at": "2026-11-16T10:24:52.049Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8cfc3b8093e31e8be43a2195595d1631532760861bbbd7e1f242b3c58d81569d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ac66039140a9a8a005cb77c8ac087d8057ba66a50977cb718b1978be348be29f",
+      "plan.md": "73de7ccaae19d12cd70bf38c744b4dc00b6559f0793c18496387424b9229a8f2",
+      "tasks.md": "e3d2378c05aea7a3ab7491a3b59d8d48edc68c4298aa7834d59a61a762edd57f",
+      "decision-record.md": "dfad397d1f0a2571823f5e6cec3b3aaa59fa949625bc342bd01a8ea0d04e40ae",
+      "implementation-summary.md": "6dd3c929ae4cce78917936fc99bb026d9f2da15a9c7946ad37850804f11efb83"
+    },
+    "last_active_at": null
+  }
+}

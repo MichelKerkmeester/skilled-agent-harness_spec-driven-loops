@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6851,
-    "ok": 19288,
+    "ok": 19329,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27766,
+  "documentsScanned": 27807,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "318c259accd32e88eb5e10fec0346fb66dfa85f22ae3c65efc96a004c2e897a6",
+  "manifestHash": "01bfb7ceb4ee4dea4d886da142983c45eb6183877f702b4273485ff86d70f2ee",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -35,7 +35,7 @@
       "folder-token-fallback": 47,
       "generic-workflow-word": 71,
       "numeric-only": 38,
-      "prose-sentence": 11,
+      "prose-sentence": 13,
       "single-token": 340,
       "stop-word-only": 9,
       "template-default": 22
@@ -45,8 +45,8 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44392,
-      "prose-sentence": 20,
+      "ok": 44442,
+      "prose-sentence": 22,
       "single-token": 150,
       "stop-word-only": 1,
       "template-default": 19
@@ -56015,6 +56015,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/scratch",
       "reason": "excluded directory"
     },
@@ -57920,6 +57924,10 @@
     },
     {
       "path": "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/scratch",
       "reason": "excluded directory"
     },
     {
@@ -60859,6 +60867,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/z_archive",
       "reason": "excluded directory"
     },
@@ -60991,11 +61003,23 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
       "reason": "excluded directory"
     },
     {
       "path": "specs/system-skilled-doctor/003-removed-folder-classification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
       "reason": "excluded directory"
     },
     {
@@ -64188,6 +64212,34 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/prompts",
       "reason": "excluded directory"
     },
     {

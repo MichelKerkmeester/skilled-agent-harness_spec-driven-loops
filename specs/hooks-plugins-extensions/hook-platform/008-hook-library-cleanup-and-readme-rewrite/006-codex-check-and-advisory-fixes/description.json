@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes",
+  "description": "Phase 6: codex-check-and-advisory-fixes",
+  "keywords": [
+    "phase",
+    "codex-check-and-advisory-fixes"
+  ],
+  "lastUpdated": "2026-11-16T09:52:16.327Z",
+  "specId": "006",
+  "folderSlug": "codex-check-and-advisory-fixes",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform",
+    "008-hook-library-cleanup-and-readme-rewrite"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_10-52__manual-context-save.md"
+  ]
+}

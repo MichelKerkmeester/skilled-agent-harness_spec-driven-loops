@@ -34,7 +34,7 @@ _memory:
 
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
-| Q001 | The operator fixes line 54 of .skilled/hooks/env-secret-guard/README.md by hand, changing 'every adapter,' to 'every adapter except Vibe,', and the session then rechecks and signs off T021. | Not stated. | None | T021, CHK-011, tasks.md |
+| Q001 | The operator fixes line 54 of the env-secret-guard README by hand, because the guard refuses an agent edit of its own folder. | Not stated. | None | T021, tasks.md; review-log.tsv by-hand row |
 <!-- /ANCHOR:operator-decisions -->
 
 ---

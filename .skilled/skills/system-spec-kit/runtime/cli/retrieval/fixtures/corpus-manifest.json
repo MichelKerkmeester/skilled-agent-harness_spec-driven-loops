@@ -1,5 +1,5 @@
 {
-  "corpusHash": "616de3819b233937aadd1809b6bf7798562a64e5f950239bb268a7bbefa69604",
+  "corpusHash": "bb902c5873c2c77984a79412fee7e0c8015ce0662b663a148670a57fd6b25e69",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27766,
+  "includedPathCount": 27807,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11803,6 +11803,11 @@
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/decision-record.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/tasks.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/goal.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/implementation-summary.md",
@@ -14412,6 +14417,12 @@
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/plan.md",
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/spec.md",
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/tasks.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/decision-record.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/goal.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/implementation-summary.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/plan.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/spec.md",
+    "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/tasks.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/acceptance-criteria.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/decision-record.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/goal.md",
@@ -19052,6 +19063,12 @@
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/tasks.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/implementation-summary.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/spec.md",
@@ -19185,6 +19202,19 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/decision-record.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/decision-record.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/handover-from-barter-022.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
     "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
@@ -19195,6 +19225,12 @@
     "specs/system-skilled-doctor/003-removed-folder-classification/plan.md",
     "specs/system-skilled-doctor/003-removed-folder-classification/spec.md",
     "specs/system-skilled-doctor/003-removed-folder-classification/tasks.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/decision-record.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/goal.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/implementation-summary.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/plan.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/spec.md",
+    "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/tasks.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -26789,6 +26825,11 @@
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/plan.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/spec.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/tasks.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/plan.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/research.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/spec.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/tasks.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/goal.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/research/research.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/spec.md",
@@ -27798,7 +27839,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "318c259accd32e88eb5e10fec0346fb66dfa85f22ae3c65efc96a004c2e897a6",
+  "manifestHash": "01bfb7ceb4ee4dea4d886da142983c45eb6183877f702b4273485ff86d70f2ee",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31273,6 +31314,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/scratch",
       "reason": "excluded directory"
     },
@@ -33178,6 +33223,10 @@
     },
     {
       "path": "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/scratch",
       "reason": "excluded directory"
     },
     {
@@ -36117,6 +36166,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/z_archive",
       "reason": "excluded directory"
     },
@@ -36249,11 +36302,23 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
       "reason": "excluded directory"
     },
     {
       "path": "specs/system-skilled-doctor/003-removed-folder-classification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
       "reason": "excluded directory"
     },
     {
@@ -39446,6 +39511,34 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/prompts",
       "reason": "excluded directory"
     },
     {

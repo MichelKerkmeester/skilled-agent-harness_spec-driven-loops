@@ -319,7 +319,9 @@ function main() {
   const args = parseArgs(process.argv.slice(2));
   const moduleDir = path.dirname(fileURLToPath(import.meta.url));
   const repoAbs = path.resolve(args.repo || path.join(moduleDir, '..', '..'));
-  assertSafeRepoAnchor(repoAbs, args.allowWorktree);
+  // The guard protects a write from anchoring at a worktree that may soon be removed.
+  // A check writes nothing, so it runs from any checkout.
+  assertSafeRepoAnchor(repoAbs, args.allowWorktree || args.check);
 
   const sourcePath = path.resolve(args.source || path.join(repoAbs, '.codex', 'hooks.json'));
   const targetPath = path.resolve(args.target || path.join(os.homedir(), '.codex', 'hooks.json'));

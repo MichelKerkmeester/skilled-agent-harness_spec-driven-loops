@@ -8,25 +8,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite"
-    last_updated_at: "2026-11-16T06:52:37Z"
+    last_updated_at: "2026-11-16T09:43:09Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed T021 after operator README fix"
-    next_safe_action: "Commit when the operator asks"
+    recent_action: "Recorded the operator's T021 decision"
+    next_safe_action: "None; phase 4 is complete and on main"
     packet_purpose: "Purpose: Every README under `.skilled/hooks/` describes real code and reads in one pass, and no README is left for a folder that holds only symlinks."
     blockers: []
     key_files:
       - ".skilled/hooks/env-secret-guard/README.md"
-      - ".github/workflows/spec-kit-check.yml"
-      - "README.md"
     session_dedup:
-      fingerprint: "sha256:35a4cdbf7b9f49f0751977ec7bf3400a05098bea71438996475a03247a4e3ef0"
+      fingerprint: "sha256:e4ac12162aad5884d56abbd2a72411c27018043c25c68b4421ecf226d75df121"
       session_id: "scaffold-004-hook-readme-fold-and-rewrite"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "a4c37e98-2c3a-4c20-a7bf-acbc32e31f29"
       workspace: "/Users/michelkerkmeester/worktrees/public/411-hook-library-cleanup"
-      savedAt: "2026-11-16T06:52:37Z"
+      savedAt: "2026-11-16T09:43:09Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
