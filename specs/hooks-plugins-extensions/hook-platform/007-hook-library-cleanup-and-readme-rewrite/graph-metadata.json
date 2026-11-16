@@ -105,12 +105,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -135,6 +129,12 @@
         "source": "derived"
       },
       {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -142,12 +142,6 @@
       },
       {
         "name": "The Pi",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Documentation Map",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -167,19 +161,19 @@
     ],
     "causal_summary": "A person who opens `.skilled/hooks/` to learn which hook does what meets four obstacles",
     "created_at": "2026-11-15T14:58:48Z",
-    "last_save_at": "2026-11-16T05:26:14.920Z",
+    "last_save_at": "2026-11-16T06:52:37.427Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:688e3a90ddc93fa9a2fba5ea744d16c5d4934b89705e69c0d75d82005c028304",
+    "source_fingerprint": "sha256:a608450c67914625d8ef1b5d08fb330e0b4db3a541635e023a3b581e1531f2df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "29d1f969d08baf796fcc60080be1b1f2f2da403d43fa4c5d0bbdae788a60d162"
+      "spec.md": "41ef0e23328685c5e5609edec43ebae7228ed88dc923f772336111520f675642"
     },
     "last_active_child_id": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite",
-    "last_active_at": "2026-11-16T05:26:14.920Z"
+    "last_active_at": "2026-11-16T06:52:37.427Z"
   }
 }

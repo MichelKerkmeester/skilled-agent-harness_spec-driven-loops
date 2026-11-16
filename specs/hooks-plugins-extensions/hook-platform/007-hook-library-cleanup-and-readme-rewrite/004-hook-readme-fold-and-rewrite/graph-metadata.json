@@ -3,6 +3,7 @@
   "packet_id": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite",
   "spec_folder": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite",
   "parent_id": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,7 +36,7 @@
       "operator"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -162,12 +163,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -175,6 +170,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -206,7 +207,7 @@
     ],
     "causal_summary": "A reader who opens a runtime folder such as `.skilled/hooks/git-live-follow/claude/` finds a README of about 300 words for one symlink",
     "created_at": "2026-11-15T14:58:52Z",
-    "last_save_at": "2026-11-16T05:26:14.880Z",
+    "last_save_at": "2026-11-16T06:52:37.397Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:933936eacd96c9d1d898fda7ad6f9d2152cbc7f0a051c19fa59dcce0e7c0fa52",
+    "source_fingerprint": "sha256:37c1ee6c8a894d322d89c95cd628192ed05c2cc3af78997d7d8949a32db8b627",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "57f7faa4277e7bcf340d072209db0b1dc6a1f4df3e5b4207008495ea7b750cb8",
+      "spec.md": "d09046f6fd7b76608159360769d905529efb63bc3906dda14b00c205be25ecdd",
       "plan.md": "64f461290de6cee6fb8408e9315a21a25997e11c80222fd3396cba38bcef6471",
-      "tasks.md": "ab9b6e03a41b91a02771a6c42604908b70b6cd9a218edb233ba1d8df703a030f",
+      "tasks.md": "2e36d028e6b2dc97977da4d181cce09c6b4a8f4c6791646dc0859023c6c6d6ed",
       "decision-record.md": "d40645e0540bc896abea710a5ffb2c7621ec156ba0e57a607e3981c8e6eda8aa",
-      "implementation-summary.md": "515711107693c90198b92ff20e6c86c19c349b62b96f62230498abae4b0cbc42"
+      "implementation-summary.md": "2bda3925fb478949be7effcb713b9977b97aad28ae5e867a29978225e754b8fd"
     },
     "last_active_at": null
   }

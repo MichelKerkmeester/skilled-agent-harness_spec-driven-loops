@@ -49,7 +49,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/411-hook-library-cleanup` |
 | **Parent Spec** | None |
@@ -121,7 +121,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 1 | 001-dead-hook-file-removal/ | Delete the legacy `git/` folder, `shared/hook-flags.ts` and the untracked strays. Repair every caller and test that names them. | Complete |
 | 2 | 002-codex-hook-check-merge/ | One folder, `codex-global-hooks-check/`, holds the OpenCode plugin link and the Claude, Cursor and Devin links to the Codex hooks check. | Complete |
 | 3 | 003-literal-hook-renames/ | Three folders and 16 files get names that state their feature. One rename at a time, each followed by the registry edit, both sync runs and the hand-written references. | Complete |
-| 4 | 004-hook-readme-fold-and-rewrite/ | Fold 81 symlink-only leaf READMEs, rewrite the rest to the skill-README voice, author two missing feature READMEs and split the session-handover README. | In Progress |
+| 4 | 004-hook-readme-fold-and-rewrite/ | Fold 81 symlink-only leaf READMEs, rewrite the rest to the skill-README voice, author two missing feature READMEs and split the session-handover README. | Complete |
 
 ### Phase Transition Rules
 

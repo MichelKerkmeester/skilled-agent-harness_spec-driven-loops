@@ -8,31 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite"
-    last_updated_at: "2026-11-16T05:26:14Z"
+    last_updated_at: "2026-11-16T06:52:37Z"
     last_updated_by: "generate-context"
-    recent_action: "Recorded the T021 decision and verified goal criteria 1 to 3"
-    next_safe_action: "Wait for the operator's line 54 edit, then rerun gates and close T021"
+    recent_action: "Closed T021 after operator README fix"
+    next_safe_action: "Commit when the operator asks"
     packet_purpose: "Purpose: Every README under `.skilled/hooks/` describes real code and reads in one pass, and no README is left for a folder that holds only symlinks."
-    blockers:
-      - "T021: env-secret-guard README diagram line needs an operator edit"
+    blockers: []
     key_files:
-      - "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/tasks.md"
-      - "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/implementation-summary.md"
-      - "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch/review-log.tsv"
       - ".skilled/hooks/env-secret-guard/README.md"
-      - ".skilled/hooks/README.md"
+      - ".github/workflows/spec-kit-check.yml"
+      - "README.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:35a4cdbf7b9f49f0751977ec7bf3400a05098bea71438996475a03247a4e3ef0"
       session_id: "scaffold-004-hook-readme-fold-and-rewrite"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "a4c37e98-2c3a-4c20-a7bf-acbc32e31f29"
       workspace: "/Users/michelkerkmeester/worktrees/public/411-hook-library-cleanup"
-      savedAt: "2026-11-16T05:26:14Z"
+      savedAt: "2026-11-16T06:52:37Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -51,7 +48,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-hook-readme-fold-and-rewrite |
-| **Completed** | Not yet. T021 waits on the operator for `env-secret-guard/README.md`. Every other task is done as of 2026-11-15 |
+| **Completed** | 2026-11-16. T021 closed after the operator's edit of `env-secret-guard/README.md` |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -73,7 +70,7 @@ The rewrites changed no code, no kill-switch name and no concern key. Seven line
 
 | File | Action | Purpose |
 |------|--------|---------|
-| 96 other READMEs under `.skilled/hooks/` | Modified | Rewritten into short sentences with each folded runtime row, by workers and reviewed per file. `env-secret-guard/README.md` is among them as an unsigned draft |
+| 96 other READMEs under `.skilled/hooks/` | Modified | Rewritten into short sentences with each folded runtime row, by workers and reviewed per file. `env-secret-guard/README.md` is among them, finished by the operator |
 | 4 symlinked READMEs under `.skilled/hooks/` | Unchanged | `git-message-gate/`, `git-preflight/`, `skill-advisor/` and `spec-gate/` link to skill-owned files, rewritten at their targets |
 | `.skilled/hooks/README.md` | Modified | Root rewrite with the concern-key table and the wrong-facts corrections from `plan.md` |
 | `.skilled/hooks/session-handover/README.md` | Modified | Cut from 14,422 to 2,785 words, links the five siblings |
@@ -125,7 +122,7 @@ Wave order was the pilot, the feature READMEs, the 80 deletions, the leaf rewrit
 | Shim mechanics and the matrix columns went to `runtime-behavior.md` | ADR-004 gave them no home. The deviation is recorded in ADR-004 in `plan.md`. |
 | The root README got its own brief, `briefs/root.md` | The feature template's sections and runtime step do not fit the root page. |
 | Kept the trigger phrase "hook relocation" | The plan lets only "git hooks" leave, and `TRIGGERS` gates on that. |
-| Left `env-secret-guard/README.md` for the operator | The guard refuses an agent edit of its own files. Only a person, or a session started with `SYSTEM_ENV_SECRET_GUARD_DISABLED=1`, may change it. |
+| Left `env-secret-guard/README.md` for the operator | The guard refuses an agent edit of any file in its folder, docs included. The operator ran the two-line fix from the prompt, which the guard allows. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -148,6 +145,8 @@ Wave order was the pilot, the feature READMEs, the 80 deletions, the leaf rewrit
 | Changed paths against `scratch/status-before.txt` (T083) | `diff` prints nothing, so no code file changed |
 | `@review` post-execution gate | APPROVED, advisory score 93. No P0 or P1. Of three P2 items, two were fixed: the root hooks README now names Vibe for `ask-surface` and `decision-capture`, and the closure statement of `acceptance-criteria.md` names T021. After the fix the root README passes G1 to G7, `runtime-refusal.test.mjs` prints `pass 6`, `TRIGGERS lost=0` and the trigger index still matches |
 | Baseline rerun (T084) | All 13 exit rows match the before run. Vitest 501/501, `node --test` 1838/1839 with the same known failure, plugin tests 591/591, Pi 120/120 and 81/81. README rows `pass=104 fail=0` for both scans. Sentinel 33/33 |
+| Merge of origin/main (`1a8ee2e5087`), baseline in `scratch/baseline-merge/` | All 13 exit rows 0. Vitest 503/503, `node --test` 1888/1888 with the known failure fixed on main, plugin tests 593/593, Pi 120/120 and 81/81, README rows `pass=105 fail=0` for both scans, history engine 146/146. Main's new Vibe links got rows in their feature READMEs, and its session-handover facts went into the split documents |
+| `check-gate-inputs.sh` after the merge | `RESULT: PASSED`, 0 failures. Main had added `.skilled/hooks/**` to two `spec-kit-check.yml` filters with no `.opencode/hooks/**` twin, and a clean origin/main failed on those two lines. The twins were added at the operator's request |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -156,10 +155,8 @@ Wave order was the pilot, the feature READMEs, the 80 deletions, the leaf rewrit
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **`env-secret-guard/README.md` is an unsigned draft.** The second worker draft is on disk. It passes G1 to G7 and has one defect: the diagram line `every adapter, after any call ──▶ lib/env-secret-watch.cjs  reviewToolResult()` includes Vibe, which runs no after-call watch. The guard refuses an agent edit of that file, so the fix is the operator's: edit the line by hand, or restart with `SYSTEM_ENV_SECRET_GUARD_DISABLED=1` and let an agent fix it. T021 stays open until then.
-2. **`skill-advisor/README.md` still fails G6.** Its sentence target is out of reach without cutting content the plan keeps. The plan records it as the one expected `FAIL`.
-3. **Root `README.md:1166` names the concern key `ask-surface` in a list of folders.** The folder is `ask-surface-guard/`. Phase 3 wrote that line, and this phase may edit only the session-handover lines of that file, so it stays for a later change.
-4. **Some pre-existing faults were seen, not fixed.** The `ai-council` case of `hook-stdin-deadline.test.mjs` still fails, and the playbooks still hold unresolved references they had before. Both are outside this phase.
+1. **`skill-advisor/README.md` still fails G6.** Its sentence target is out of reach without cutting content the plan keeps. The plan records it as the one expected `FAIL`.
+2. **Some pre-existing faults were seen, not fixed.** The playbooks still hold unresolved references they had before. That is outside this phase. The `ai-council` case of `hook-stdin-deadline.test.mjs` passes since the merge of origin/main, and root `README.md:1166` now names `ask-surface-guard`, fixed at the operator's request after the merge.
 <!-- /ANCHOR:limitations -->
 
 ---

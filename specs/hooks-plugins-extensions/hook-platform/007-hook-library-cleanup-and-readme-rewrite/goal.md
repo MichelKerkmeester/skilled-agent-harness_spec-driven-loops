@@ -107,6 +107,8 @@ and findings belong here.
 |------|-------|----------|
 | Parent goal authored | Done | `/create:goal` phase-parent run on 2026-11-15, four binding rows matched to four folders on disk by name |
 | Four child phases | Pending | Each phase's own goal tracks its progress |
+| merge origin/main into the worktree branch | done | 1a8ee2e5087; node --test 1888/1888, 105 READMEs pass, recursive strict PASSED; T021 still waits on the operator |
+| operator fixed env-secret-guard README; packet closed | done | T021 closed, all four phases Complete, check-gate-inputs PASSED, README.md:1166 fixed |
 
 ### Deviations and findings
 

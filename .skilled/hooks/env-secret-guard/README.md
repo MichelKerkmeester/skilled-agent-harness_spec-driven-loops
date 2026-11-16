@@ -51,7 +51,7 @@ Every adapter imports the core. The core imports nothing from the adapters and w
  Vibe ──────── .vibe/plugins/repo-guards/env-secret-guard.mjs ────┤      listKeys() validate() fingerprint()
  any shell ─── cli/env-secret.cjs keys|validate|fingerprint ──────┘
 
- every adapter, after any call ──▶ lib/env-secret-watch.cjs  reviewToolResult()
+ every adapter except Vibe, after any call ──▶ lib/env-secret-watch.cjs  reviewToolResult()
 ```
 
 The core judges a call by its text. A route the text does not show gets through, so the after-call watch judges the result instead. `lib/env-secret-watch.cjs` records every dotenv file before a shell call and compares them after it. It also scans the output for a value the project's dotenv files define.
@@ -112,7 +112,7 @@ These are not shipped in the checkout. A sandbox also blocks ordinary work, so i
 | OpenCode | `tool.execute.after, tool.execute.before` | `opencode/env-secret-guard.js` | `.opencode/plugins/env-secret-guard.js` | a thrown error, else the value replaced and a notice appended |
 | Pi | `tool_call`, `tool_result` | `pi/env-secret-guard.ts` | `.skilled/hooks/env-secret-guard/pi/env-secret-guard.ts` | `{ block: true, reason }`, else the value replaced and a notice appended |
 | DSH | `tools/pre-execute`, `tools/post-execute` | `dsh/env-secret-guard.mjs` | `.skilled/hooks/env-secret-guard/dsh/env-secret-guard.mjs` | `{ kind: 'deny', reason }`, else an additional context |
-| Vibe | `pre_tool` | None | `.vibe/plugins/repo-guards/env-secret-guard.mjs` | `{ decision: 'deny', reason }` on stdout, exit 0 |
+| Vibe | `pre_tool` | `vibe/env-secret-guard.mjs` | `.vibe/plugins/repo-guards/env-secret-guard.mjs` | `{ decision: 'deny', reason }` on stdout, exit 0 |
 
 Claude Code, Codex, Cursor and Devin are registered in `hook-registry.json`. The renderer writes `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json`. OpenCode loads the plugin from its own plugin folder. Pi loads a one-line entry file in `.pi/extensions/`. DSH registers the adapter in `.dsh/plugins/repo-guards/index.mjs`. Vibe registers the hook in `.vibe/hooks.toml` as a strict `pre_tool` hook matching `re:bash|process_start|read_file|write_file|edit`.
 

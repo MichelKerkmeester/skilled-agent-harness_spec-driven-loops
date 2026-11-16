@@ -82,6 +82,7 @@ and findings belong here.
 | Phase planning | Done | /speckit:plan run on 2026-11-15. spec.md, plan.md, tasks.md and acceptance-criteria.md hold no unfilled token |
 | Criteria amended at planning | Done | Six criteria. New criteria cover the fold check of REQ-004 and the sentence metrics of REQ-005, which names skill-advisor/README.md as the one file that may fail |
 | Phase 004 close-out | Blocked on T021 | T084-T086 done, 15/15 AC Met, review APPROVED, recursive strict PASSED; env-secret-guard README needs the operator |
+| Phase 004 close-out | done | T021 and CHK-011 closed after the operator's env-secret-guard README edit; G1-G7 pass, FOLD missing=0 |
 
 ### Deviations and findings
 

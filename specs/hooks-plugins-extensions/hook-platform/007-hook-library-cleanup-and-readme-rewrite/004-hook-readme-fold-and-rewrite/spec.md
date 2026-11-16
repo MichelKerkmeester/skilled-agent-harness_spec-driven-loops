@@ -31,7 +31,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/411-hook-library-cleanup` |
 | **Parent Spec** | ../spec.md |

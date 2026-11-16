@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite
 **Level:** 3
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-15
 <!-- /ANCHOR:metadata -->
 
@@ -92,5 +92,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-All 15 criteria are Met. The phase still cannot close, because T021 in `tasks.md` is `[B]`: `.skilled/hooks/env-secret-guard/README.md` holds an unsigned draft with one wrong diagram line, and only the operator can change that file.
+All 15 criteria are Met, and the phase is closed. T021 closed after the operator fixed the one wrong diagram line in `.skilled/hooks/env-secret-guard/README.md`, the file the guard keeps agents from editing.
 <!-- /ANCHOR:closure -->
