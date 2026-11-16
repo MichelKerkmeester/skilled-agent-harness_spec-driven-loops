@@ -448,6 +448,15 @@ function mergeTransitions(existingTransitions, incomingTransitions) {
   );
 }
 
+/**
+ * A self-check that disproves a claim writes the word `none` where a severity
+ * would go: the claim is withdrawn rather than reprioritised, so there is no
+ * tier to file it under and the finding is not one at all.
+ */
+function isFalsePositiveAdjudication(value) {
+  return typeof value === 'string' && value.trim().toLowerCase() === 'none';
+}
+
 function buildClaimAdjudicationByFinding(records) {
   const adjudicationByFinding = new Map();
 
@@ -457,8 +466,12 @@ function buildClaimAdjudicationByFinding(records) {
     }
 
     const findingId = normalizeText(getNestedField(record, 'findingId') || '');
-    const finalSeverity = normalizeSeverity(getNestedField(record, 'finalSeverity'));
-    if (!findingId || !finalSeverity) {
+    const adjudicatedSeverity = getNestedField(record, 'finalSeverity');
+    const falsePositive = isFalsePositiveAdjudication(adjudicatedSeverity);
+    // A false positive carries no severity on purpose: it must not fall through
+    // normalizeSeverity, whose contract is to drop what it cannot rank.
+    const finalSeverity = falsePositive ? null : normalizeSeverity(adjudicatedSeverity);
+    if (!findingId || (!falsePositive && !finalSeverity)) {
       continue;
     }
 
@@ -468,6 +481,7 @@ function buildClaimAdjudicationByFinding(records) {
     adjudicationByFinding.set(findingId, {
       findingId,
       finalSeverity,
+      falsePositive,
       transitions: normalizeTransitions(getNestedField(record, 'transitions'), run),
       reason: normalizeText(getNestedField(record, 'reason') || ''),
       run,
@@ -1140,11 +1154,21 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
   }
 
   const resolvedIdSet = new Set();
+  const falsePositiveIdSet = new Set();
   for (const record of mergedRecords) {
     if (Array.isArray(record.resolvedFindings)) {
       for (const id of record.resolvedFindings) {
         resolvedIdSet.add(id);
       }
+    }
+  }
+  // An adjudication that disproved the claim retires the finding the same way a
+  // resolvedFindings row does: a claim nobody can substantiate is not work left
+  // to do. The last row for an id wins, so a later severity puts it back.
+  for (const [findingId, adjudication] of claimAdjudicationByFinding) {
+    if (adjudication.falsePositive) {
+      resolvedIdSet.add(findingId);
+      falsePositiveIdSet.add(findingId);
     }
   }
 
@@ -1160,6 +1184,11 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
     const resolved = allIds.length > 0 && allIds.every((id) => resolvedIdSet.has(id));
     if (resolved) {
       finding.status = 'resolved';
+      // Name the reason a withdrawn finding closed, so a reader does not take a
+      // false positive for a finding someone repaired.
+      if (allIds.some((id) => falsePositiveIdSet.has(id))) {
+        finding.resolution = 'false_positive';
+      }
       resolvedFindings.push(finding);
     } else {
       openFindings.push(finding);

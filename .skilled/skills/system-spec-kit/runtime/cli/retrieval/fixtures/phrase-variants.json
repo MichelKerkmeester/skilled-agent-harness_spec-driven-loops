@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cdb073c5bf1a04ab5a86da80c328ef09cd88dbec2f9ed568d2d0a1fe4778459e",
+  "manifestHash": "1d93fd49b709621659413d02ae4af7c7164daab16b8905bc24b53b0babd1c105",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -83297,6 +83297,9 @@
     "phase 33 zero iteration report": [
       "phase 33 zero iteration report"
     ],
+    "phase 34 self check adjudication ledger": [
+      "phase 34 self check adjudication ledger"
+    ],
     "phase 35 v2 bridge plugin effects": [
       "phase 35 v2 bridge plugin effects"
     ],
@@ -103970,6 +103973,18 @@
     ],
     "self assigned tasks": [
       "self-assigned tasks"
+    ],
+    "self check adjudication ledger": [
+      "self check adjudication ledger"
+    ],
+    "self check adjudication ledger implementation summary": [
+      "self check adjudication ledger implementation summary"
+    ],
+    "self check adjudication ledger plan": [
+      "self check adjudication ledger plan"
+    ],
+    "self check adjudication ledger tasks": [
+      "self check adjudication ledger tasks"
     ],
     "self check template guidance": [
       "self-check template guidance"

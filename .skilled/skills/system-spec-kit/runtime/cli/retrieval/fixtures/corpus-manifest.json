@@ -1,5 +1,5 @@
 {
-  "corpusHash": "54a8849ed8e04bf553f83e3570aa8ef6634b4e2d308a6a66ea223cdcc4a0b370",
+  "corpusHash": "f3ec7ae3bb614de5ef8132413d7d0c50b5e1dd63d88f514ff712b625a832e820",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27773,
+  "includedPathCount": 27777,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9588,6 +9588,10 @@
     "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
@@ -27805,7 +27809,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cdb073c5bf1a04ab5a86da80c328ef09cd88dbec2f9ed568d2d0a1fe4778459e",
+  "manifestHash": "1d93fd49b709621659413d02ae4af7c7164daab16b8905bc24b53b0babd1c105",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29057,6 +29061,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/scratch",
       "reason": "excluded directory"
     },
     {

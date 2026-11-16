@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6847,
-    "ok": 19299,
+    "ok": 19303,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27773,
+  "documentsScanned": 27777,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "cdb073c5bf1a04ab5a86da80c328ef09cd88dbec2f9ed568d2d0a1fe4778459e",
+  "manifestHash": "1d93fd49b709621659413d02ae4af7c7164daab16b8905bc24b53b0babd1c105",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44272,
+      "ok": 44277,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -53768,6 +53768,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/scratch",
       "reason": "excluded directory"
     },
     {

@@ -158,6 +158,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 31 | 031-search-debt-verdict/ | Open search debt makes the final review verdict CONDITIONAL | Complete |
 | 32 | 032-traceability-reserve-iteration/ | Reserve the last review iteration for unfinished core traceability | Complete |
 | 33 | 033-zero-iteration-report/ | A review report for a run that stopped before any iteration | Complete |
+| 34 | 034-self-check-adjudication-ledger/ | Self-check results reach the review registry | Complete |
 
 ### Phase Transition Rules
 
@@ -202,6 +203,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 030-review-count-source | 031-search-debt-verdict | Report and closeout use the verdict counts | The closeout count tests pass |
 | 031-search-debt-verdict | 032-traceability-reserve-iteration | Debt gives CONDITIONAL on every verdict path | The verdict, merge and reducer tests pass |
 | 032-traceability-reserve-iteration | 033-zero-iteration-report | The last iteration goes to unfinished core protocols | The stop-path replay test passes |
+| 033-zero-iteration-report | 034-self-check-adjudication-ledger | A review that never ran says so | The scenario commands hold on recorded state |
 <!-- /ANCHOR:phase-map -->
 
 ---
