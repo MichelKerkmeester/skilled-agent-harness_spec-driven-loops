@@ -81,7 +81,7 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 - `scripts/ceiling-report.sh [<file>...]` lists the `ceiling:` and `intentional-limit:` comment markers and tags the ones with no trigger or no measurable signal.
   Run it for a debt pass, before a release or when a reviewer asks what limits the code knowingly accepts.
   It reads every tracked code file, or only the files named, prints one `path:line  text  [tags]` line per marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate.
-- `scripts/hooks/claude-posttooluse.sh` is the legacy write-time hook, kept for direct tests and registered in no runtime. The live write-time warning is `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`.
+- `scripts/hooks/claude-posttooluse.sh` is the legacy write-time hook, kept for direct tests and registered in no runtime. The live write-time warning is `.skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs`.
 - `../shared/references/universal/code-quality-standards.md` is the cross-mode severity standard this packet consumes, and `references/code-style-guide.md` is this packet's own style and comment-hygiene guide.
 
 ### Resource Loading Levels
@@ -128,7 +128,7 @@ This mode owns the author-side check and knows the three independent enforcement
 
 | Gate | Where | Effect |
 | --- | --- | --- |
-| Write-time warning | `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`, wired as the Claude `PostToolUse` hook for `Write` and `Edit` in `.claude/settings.json` | Warns during authoring when a comment carries ephemeral artifact labels. |
+| Write-time warning | `.skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs`, wired as the Claude `PostToolUse` hook for `Write` and `Edit` in `.claude/settings.json` | Warns during authoring when a comment carries ephemeral artifact labels. |
 | Pre-commit block | `.skilled/scripts/git-hooks/pre-commit`, installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh` | Blocks commits with forbidden comment patterns across runtimes. |
 | CI block | `.github/workflows/comment-hygiene.yml` | Blocks pull requests with forbidden comment patterns. |
 
@@ -141,7 +141,7 @@ The write-time warning still applies every core rule, and it never blocks.
 The write-time warning is one adapter of the shared router in `.skilled/hooks/post-edit-quality/`, which runs after every edit through one adapter per runtime (Claude Code, Codex, Devin, Cursor, Pi and OpenCode) and reports findings before the model's next turn.
 The pre-commit block can be bypassed for one commit with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`, and the CI block re-checks every PR to main, which `--no-verify` cannot skip.
 The live `.skilled/scripts/git-hooks/pre-commit` also runs the agent-mirror-sync gate and other repository gates, independent of comment hygiene, documented in `.skilled/scripts/git-hooks/README.md`.
-The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are compatibility helpers kept for direct tests. Neither is an installed hook.
+The older `scripts/hooks/claude-posttooluse.sh` is a compatibility helper kept for direct tests. It is not an installed hook.
 
 Run `node scripts/quality-gate.cjs`, which calls `scripts/check-comment-hygiene.sh` once over every modified file that can contain comments.
 A finding blocks when it is P0, exact and on a changed line.

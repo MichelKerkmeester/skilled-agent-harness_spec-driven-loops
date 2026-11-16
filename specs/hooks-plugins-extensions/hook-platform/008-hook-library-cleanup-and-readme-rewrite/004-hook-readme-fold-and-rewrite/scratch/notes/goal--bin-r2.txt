@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: `packet-log` writes, it does not read, and the workspace fact was dropped. Replace the sentence about `packet` and `packet-log` with: "`packet` reads a packet file and `packet-log` appends a log row to one. Neither needs a session, and the workspace defaults to the current directory when `--workspace` is absent."

@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal",
+  "description": "A reader of `.skilled/hooks/` cannot tell which files are live",
+  "keywords": [
+    "reader",
+    "skilled",
+    "hooks",
+    "cannot",
+    "tell",
+    "files",
+    "live"
+  ],
+  "lastUpdated": "2026-11-16T07:03:33.270Z",
+  "specId": "001",
+  "folderSlug": "dead-hook-file-removal",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform",
+    "008-hook-library-cleanup-and-readme-rewrite"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "15-11-26_16-18__planned-phase-1-of-the-hook-library-cleanup.md",
+    "15-11-26_17-34__closed-phase-1-of-the-hook-library-cleanup-three.md"
+  ]
+}

@@ -1,0 +1,8 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape, the H1 and every other line, and fix only the defects below.
+   - Defect 1: the text says the preflight reads the repository before the command runs. DSH registers `tools/post-execute` and reads after the tool runs. Write: "The shared hook, OpenCode and Pi read the repository before the command runs. DSH runs after it and reads the state the command left." Fix each place that says otherwise.
+   - Defect 2, Cursor: the gate writes the deny and exits 2, but the `.cursor/hooks.json` registration's `||` fallback then appends an allow envelope, so the hook exits 0. State that as what happens today.
+   - Defect 3: the contract lookup uses `skgit.contractDir` from a git config file first, then `.sk-git/`, then the two asset folders. A configured folder that does not exist raises a `ContractError`, and a `git -c` setting is ignored (`.skilled/skills/sk-git/scripts/lib/message-contract.mjs`).
+   - Defect 4: the OpenCode and Pi rows must say a rules block that cannot be read is refused. The Vibe hook refuses a `ContractError` and allows any other error, with a line on stderr.
+   - Defect 5: the shared gate exits 0 on stdin it cannot read, on a tool name outside the three, or on a crash. Codex sends `exec` before 0.160 and `Bash` from 0.160, which is why its matcher names both.
+   - Defect 6: add one sentence each: a malformed sidecar gives an empty rule set. Pi also swallows errors while delivering the advisory. OpenCode drops the oldest event when its buffer is full. Both DSH adapters declare `ERROR_POLICY = 'fail-open'`.
+   - Defect 7: Cursor carries browsability-only mirrors of both hooks under `.cursor/hooks/`, not only the preflight.

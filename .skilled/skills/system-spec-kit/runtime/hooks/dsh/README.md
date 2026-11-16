@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`hooks/dsh/` holds the real files behind this skill's links in `.dsh/plugins/repo-guards/adapters/`. The `repo-guards` bundle imports each adapter through its link. Node resolves a link to its real path before it resolves the file's own imports, so every relative import here is written for this folder, not for the bundle. The index links in `.skilled/hooks/spec-gate/dsh/`, `.skilled/hooks/completion/dsh/` and `.skilled/hooks/session-lifecycle/dsh/` point back at these files.
+`hooks/dsh/` holds the real files behind this skill's links in `.dsh/plugins/repo-guards/adapters/`. The `repo-guards` bundle imports each adapter through its link. Node resolves a link to its real path before it resolves the file's own imports, so every relative import here is written for this folder, not for the bundle. The index links in `.skilled/hooks/spec-gate/dsh/`, `.skilled/hooks/completion-evidence/dsh/` and `.skilled/hooks/session-lifecycle/dsh/` point back at these files.
 
 ---
 

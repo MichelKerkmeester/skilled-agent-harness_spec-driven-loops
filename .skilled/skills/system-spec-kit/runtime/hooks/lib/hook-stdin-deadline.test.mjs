@@ -163,7 +163,7 @@ function tempDir(t, prefix) {
 
 test('the Cursor post-tool-use hook still routes a Write payload to its chained hook', async (t) => {
   const workspace = tempDir(t, 'cursor-post-tool-use-');
-  const chained = path.join(workspace, '.skilled', 'hooks', 'post-edit-quality', 'claude', 'claude-posttooluse.cjs');
+  const chained = path.join(workspace, '.skilled', 'hooks', 'post-edit-quality', 'claude', 'post-edit-quality.cjs');
   fs.mkdirSync(path.dirname(chained), { recursive: true });
   fs.writeFileSync(chained, "process.stdout.write('chained-hook-ran');\n");
   const result = await runHook('hooks/cursor/post-tool-use.mjs', {

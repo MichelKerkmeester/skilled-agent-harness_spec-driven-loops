@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6850,
-    "ok": 19308,
+    "missing-frontmatter": 6849,
+    "ok": 19261,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27785,
+  "documentsScanned": 27737,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2650b7faca1890a3a9fe5f5ca416aedcee6fdcfde0cbc93f393126d741b873f2",
+  "manifestHash": "509760cf6428679049f5520ef72743ab18976cff927ea6da8c82b7d541eb72f4",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44283,
+      "ok": 44351,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -34493,12 +34493,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/system-spec-kit/runtime/tests/adversarial/README.md",
       "reason": "no opening frontmatter delimiter"
@@ -52561,43 +52555,67 @@
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/codex-watchdog/opencode/codex-hooks-watchdog.js",
+      "path": ".skilled/hooks/cli-dispatch/cursor/post-tool-use.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/claude/completion-evidence-stop.cjs",
+      "path": ".skilled/hooks/cli-dispatch/opencode/cli-dispatch-audit.js",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/codex/completion-evidence-stop.cjs",
+      "path": ".skilled/hooks/cli-dispatch/vibe/dispatch-preflight.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/cursor/completion-evidence-response.mjs",
+      "path": ".skilled/hooks/codex-global-hooks-check/claude/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/devin/completion-evidence-stop.cjs",
+      "path": ".skilled/hooks/codex-global-hooks-check/cursor/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/dsh/completion-evidence.mjs",
+      "path": ".skilled/hooks/codex-global-hooks-check/devin/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/opencode/system-completion-sentinel.js",
+      "path": ".skilled/hooks/codex-global-hooks-check/opencode/codex-hooks-watchdog.js",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/opencode/system-speckit-completion.js",
+      "path": ".skilled/hooks/completion-evidence/claude/completion-evidence-stop.cjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/pi/completion-evidence.ts",
+      "path": ".skilled/hooks/completion-evidence/codex/completion-evidence-stop.cjs",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/completion/vibe/completion-evidence-post-agent.cjs",
+      "path": ".skilled/hooks/completion-evidence/cursor/completion-evidence-response.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/devin/completion-evidence-stop.cjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/dsh/completion-evidence.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/opencode/system-completion-sentinel.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/opencode/system-speckit-completion.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/pi/completion-evidence.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion-evidence/vibe/completion-evidence-post-agent.cjs",
       "reason": "symlink not followed"
     },
     {
@@ -52622,18 +52640,6 @@
     },
     {
       "path": ".skilled/hooks/directive-lifecycle/claude/speckit-directive-lifecycle-boundary.ts",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/cursor/post-tool-use.mjs",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/opencode/cli-dispatch-audit.js",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/vibe/dispatch-preflight.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -52794,18 +52800,6 @@
     },
     {
       "path": ".skilled/hooks/goal/opencode/opencode-goal.js",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/hook-install/claude/install-codex-hooks.mjs",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/hook-install/cursor/install-codex-hooks.mjs",
-      "reason": "symlink not followed"
-    },
-    {
-      "path": ".skilled/hooks/hook-install/devin/install-codex-hooks.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -53129,11 +53123,11 @@
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/task-dispatch/opencode/system-deep-loop-guard.js",
+      "path": ".skilled/hooks/subagent-dispatch-guard/opencode/system-deep-loop-guard.js",
       "reason": "symlink not followed"
     },
     {
-      "path": ".skilled/hooks/task-dispatch/vibe/deep-loop-guard.mjs",
+      "path": ".skilled/hooks/subagent-dispatch-guard/vibe/deep-loop-guard.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -55705,6 +55699,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/cli-dispatch/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build/scratch",
       "reason": "excluded directory"
     },
@@ -55830,14 +55832,6 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/directive-lifecycle/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/dispatch/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -55982,6 +55976,26 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/scratch",
       "reason": "excluded directory"
     },
     {

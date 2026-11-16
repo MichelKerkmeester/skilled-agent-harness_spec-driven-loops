@@ -1,0 +1,4 @@
+   - The old Pi row says not applicable. That is wrong. Pi runs `.skilled/bin/check-git-hooks.sh` at `session_start` from `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts`, and DSH runs it at `agent/created` from `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs`, both under the concern `git-hooks-check`. Give each a row with entry None.
+   - OpenCode runs the script from `.opencode/plugins/session-cleanup.js` on `session.created`. Vibe does not run it, so Vibe gets a row that says so.
+   - The registry id is `check-git-hooks`: Claude, Codex and Devin give it 3 seconds and Cursor gives it 10.
+   - The old sections WHAT IT DOES and BOUNDARIES AND FLOW become HOW IT WORKS. PER-RUNTIME DELIVERY becomes RUNTIME COVERAGE.

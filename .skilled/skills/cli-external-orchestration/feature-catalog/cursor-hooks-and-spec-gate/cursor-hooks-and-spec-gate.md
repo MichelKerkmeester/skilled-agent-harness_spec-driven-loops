@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-cursor hook adapters"
   - "Cursor preToolUse spec gate"
   - "Cursor hooks.json shared configuration"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Cursor CLI Hooks And Spec-Gate Integration (cli-cursor)
@@ -52,7 +52,7 @@ Cursor CLI and the Cursor desktop editor consume the same `.cursor/hooks.json`. 
 | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` | Script | Enforces Gate-3 policy on confirmed `preToolUse` delivery. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs` | Script | Registered classifier whose `beforeSubmitPrompt` delivery is unconfirmed under the CLI, so it does not run and opens nothing. State comes from `spec-gate-prebind.mjs` at session start instead: a valid `SYSTEM_SPEC_FOLDER` satisfies the gate, and `SYSTEM_SPEC_GATE_ENFORCE=1` opens it so the first denied write carries the question. With neither, a Cursor session is a no-op for Gate-3 delivery, because its unusable prompt event means an answer could never arrive. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs` | Script | Runs post-edit, code-graph freshness, and dispatch-audit checks on confirmed `postToolUse` delivery. |
-| `.skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` | Script | Applies the task-dispatch guard on a matched `preToolUse` entry. |
+| `.skilled/hooks/subagent-dispatch-guard/cursor/task-dispatch-guard.mjs` | Script | Applies the task-dispatch guard on a matched `preToolUse` entry. |
 | `.skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs` | Script | Refuses a dotenv read or write on every `preToolUse` call. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts` | Handler | Registered `beforeSubmitPrompt` proxy with unconfirmed delivery. Directive delivery is lifecycle-deduped via the shared compiled shim (full on first message + lifecycle boundaries, route-only on repeats; `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full). |
 | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/precompact.ts` | Handler | Registered `preCompact` proxy with unconfirmed delivery. |

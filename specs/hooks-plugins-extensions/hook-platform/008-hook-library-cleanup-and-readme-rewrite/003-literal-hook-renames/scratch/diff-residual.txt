@@ -1,0 +1,13 @@
+== removed by this phase: 3
+  x1 ### `task-dispatch`: folder on **all but codex**
+  x1 - [`README.md`](./README.md): why the real cores of `dispatch`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `post-edit-quality`, `task-dispatch`, `classifier-injection-screen`, `goal`, `decision-capture` and `session-h
+  x1 Only concerns whose coverage or wiring needs explaining appear. The six covered everywhere (`completion`, `dispatch`, `mcp-route-guard`, `post-edit-quality`, `skill-advisor`, `spec-gate`) need no explanation. The sections below co
+== added by this phase: 4
+  x1 ### `subagent-dispatch-guard`: folder on **all but codex**
+  x1 - [`README.md`](./README.md): why the real cores of `cli-dispatch`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `post-edit-quality`, `subagent-dispatch-guard`, `classifier-injection-screen`, `goal`, `decision-capture` 
+  x1 Only concerns whose coverage or wiring needs explaining appear. The six covered everywhere (`completion-evidence`, `cli-dispatch`, `mcp-route-guard`, `post-edit-quality`, `skill-advisor`, `spec-gate`) need no explanation. The sect
+  x1 The cores are `goal`, `cli-dispatch`, `decision-capture`, `spec-gate`, `completion-evidence`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen` and `ask
+== removal undone by this phase: 0
+== addition undone by this phase: 1
+  x1 The cores are `goal`, `dispatch`, `decision-capture`, `spec-gate`, `completion`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen` and `ask-surface`. Th
+RESIDUAL_LINES=8

@@ -1,1 +1,1 @@
-../../.skilled/hooks/task-dispatch/claude/task-dispatch-guard.cjs
+../../.skilled/hooks/subagent-dispatch-guard/claude/task-dispatch-guard.cjs

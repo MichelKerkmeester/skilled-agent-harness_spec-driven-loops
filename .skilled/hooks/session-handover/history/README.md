@@ -42,12 +42,23 @@ The core is read-only. It performs no file, database or network write. It reads 
 
 The source sits in `lib/`, and the build writes `dist/` beside it at the same depth. That is deliberate: the CLI imports the spec-kit runtime's compiled hook state and the shared session readers by relative path, and the same path then resolves from the source under vitest and from the build at run time.
 
+```text
+history/
++-- README.md
++-- package.json
++-- tsconfig.json
++-- vitest.config.ts
++-- lib/        TypeScript source: cli.ts, core.ts, history.ts and their helpers
++-- dist/       the build, gitignored
+`-- tests/      vitest suites, with shared fixtures in _support/
+```
+
 | File | Responsibility |
 |---|---|
 | `package.json` | The package's build, typecheck and test scripts. It has no dependencies of its own. |
 | `tsconfig.json` | A composite project rooted at `lib/`. It references the spec-kit runtime, which builds first. |
 | `vitest.config.ts` | Collects `tests/**/*.vitest.ts` inside this package. |
-| `tests/` | The nine vitest suites and their shared fixtures in `tests/_support/`. |
+| `tests/` | The vitest suites and their shared fixtures in `tests/_support/`. |
 | `README.md` | This orientation page. |
 
 Every file in `lib/`:
@@ -98,7 +109,7 @@ Every file in `lib/`:
 
 The core projects every entry before a caller can see it:
 
-- Secret-shaped values are redacted first, in text, thinking and tool-call arguments. Vendor keys, tokens, JWTs, bearer values, private keys and `key=value` credentials go through the spec-kit shared secret scrubber. The core adds a URL password, a non-bearer `Authorization` value and an argument stored under a credential name such as `password`. Each becomes a typed marker such as `[REDACTED:github-token]`. Search cannot match a secret, and every bound and page offset is measured on the redacted text. The stored transcript is never changed.
+- Secret-shaped values are redacted first, in text, thinking and tool-call arguments. Vendor keys, tokens, JWTs, bearer values, private keys and `key=value` credentials go through the spec-kit shared secret scrubber. The core adds a URL password, a non-bearer `Authorization` value and an argument stored under a credential name such as `password`. The name is matched on its last words, so `x-api-key`, `xAuthToken` and `api_keys` count, and each item of an array stored under such a name is redacted too. Each becomes a typed marker such as `[REDACTED:github-token]`. Search cannot match a secret, and every bound and page offset is measured on the redacted text. The stored transcript is never changed.
 - Assistant thinking, provider signatures and redacted payloads become `null`.
 - Paging tool calls (`search_history`, `browse_history`, `load_history`, `read_context_output`) and their results are removed.
 - A paging-only turn disappears entirely. A mixed turn keeps its ordinary text and tool work.
@@ -116,7 +127,7 @@ No route can reach the raw entry list after `createHistoryLookup` returns.
 - 128 characters cap a history id, and 512 characters cap a part pointer.
 - 66 characters cap a locator session id after shell quoting, so the full lookup command fits the 600-character offer section. A plain id may run to 64 characters, which covers the 44-character ids DSH issues. The runtime's locator schema keeps its own copy of this bound, because the runtime builds before this package and cannot import it. `history-locator.vitest.ts` fails if the two copies disagree.
 - References and continuation handles are reserved before content spends the same budget.
-- A reference lists at most 6 tools and 12 files, and counts the rest in `omittedTools` and `omittedFiles`. `load` returns the full lists.
+- A reference lists at most 6 tool names and 12 paths, and counts the rest in `omittedTools` and `omittedFiles`. `load` returns the full lists.
 - Oversized reference metadata collapses to `{ historyId, detailsDeferred: true }`.
 - Items load smallest-first, then the emitted `items` array is rebuilt in the caller's requested order.
 

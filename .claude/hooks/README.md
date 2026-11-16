@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Claude hook scripts; 
 
 ## 1. OVERVIEW
 
-`.claude/hooks/` contains 32 symlinks to hook scripts owned under `.skilled/`. Ten target their owning skill under `.skilled/skills/`. Sixteen cores target `.skilled/hooks/`: `ask-capture-posttooluse.mjs`, `ask-surface-stop.cjs`, `classifier-injection-screen-posttooluse.mjs`, `claude-posttooluse.cjs`, `compact-pointer.mjs`, `context-nudge.mjs`, `dispatch-audit-posttooluse.mjs`, `dispatch-preflight-lint.mjs`, `env-secret-guard-after.cjs`, `env-secret-guard.cjs`, `fable-subagent-guard.mjs`, `mcp-route-guard.cjs`, `overlay-guard.cjs`, `stop-arm.mjs`, `subagent-guard.mjs`, `task-dispatch-guard.cjs`. The other six target `.skilled/bin/` or `.skilled/scripts/`. See [`hooks/README.md`](../../.skilled/hooks/README.md) for ownership details. The mirror gives maintainers one place to inspect the Claude inventory. Claude executes the real paths declared in `.claude/settings.json`, not these links.
+`.claude/hooks/` contains 32 symlinks to hook scripts owned under `.skilled/`. Ten target their owning skill under `.skilled/skills/`. Sixteen cores target `.skilled/hooks/`: `decision-capture-posttooluse.mjs`, `ask-surface-stop.cjs`, `classifier-injection-screen-posttooluse.mjs`, `post-edit-quality.cjs`, `handover-compact-pointer.mjs`, `handover-context-nudge.mjs`, `dispatch-audit-posttooluse.mjs`, `dispatch-preflight-lint.mjs`, `env-secret-guard-after.cjs`, `env-secret-guard.cjs`, `fable-subagent-guard.mjs`, `mcp-route-guard.cjs`, `overlay-guard.cjs`, `handover-stop-arm.mjs`, `handover-subagent-guard.mjs`, `task-dispatch-guard.cjs`. The other six target `.skilled/bin/` or `.skilled/scripts/`. See [`hooks/README.md`](../../.skilled/hooks/README.md) for ownership details. The mirror gives maintainers one place to inspect the Claude inventory. Claude executes the real paths declared in `.claude/settings.json`, not these links.
 
 Two compiled ESM entrypoints do not execute correctly through their symlink because their direct-entry guards compare the invocation path with the resolved module URL. Keep all runtime commands pointed at the real files.
 
@@ -37,12 +37,12 @@ allow-count 26 scripts | the 28 links in the overview minus the two scripts name
 | Session lifecycle | `session-prime.js`, `session-stop.js`, `session-cleanup.sh`, `compact-inject.js`, `user-prompt-submit.js` |
 | Spec and completion gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `completion-evidence-stop.cjs` |
 | Dispatch and MCP guards | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `task-dispatch-guard.cjs`, `fable-subagent-guard.mjs`, `mcp-route-guard.cjs` |
-| Edit quality | `claude-posttooluse.cjs` |
+| Edit quality | `post-edit-quality.cjs` |
 | File guards | `overlay-guard.cjs`, `env-secret-guard.cjs`, `env-secret-guard-after.cjs` |
 | Ask surface | `ask-surface-stop.cjs` |
 | Injection screen | `classifier-injection-screen-posttooluse.mjs` |
-| Decision capture | `ask-capture-posttooluse.mjs` |
-| Session handover | `compact-pointer.mjs`, `context-nudge.mjs`, `stop-arm.mjs`, `subagent-guard.mjs` |
+| Decision capture | `decision-capture-posttooluse.mjs` |
+| Session handover | `handover-compact-pointer.mjs`, `handover-context-nudge.mjs`, `handover-stop-arm.mjs`, `handover-subagent-guard.mjs` |
 | Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs`, `git-live-follow.sh`, `git-preflight-advisory.mjs`, `git-primary-reconcile.sh`, `git-message-gate.mjs` |
 
 ---

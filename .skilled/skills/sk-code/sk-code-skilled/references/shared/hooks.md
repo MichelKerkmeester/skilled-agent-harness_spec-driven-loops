@@ -8,7 +8,7 @@ trigger_phrases:
   - "claude cursor opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
@@ -80,7 +80,7 @@ Claude Code hook wiring is checked in at `.claude/settings.json`. Use that file 
 
 | Event | Matcher | Command | Timeout | Purpose |
 |---|---|---|---:|---|
-| `PreToolUse` | `Bash` | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs'` | 5 | Evaluates the CLI dispatch hard rules in `hard-rules.json` before `opencode run` / `claude -p` commands proceed. |
+| `PreToolUse` | `Bash` | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .skilled/hooks/cli-dispatch/claude/dispatch-preflight-lint.mjs'` | 5 | Evaluates the CLI dispatch hard rules in `hard-rules.json` before `opencode run` / `claude -p` commands proceed. |
 | `UserPromptSubmit` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js'` | 3 | Prompt-time Spec Kit advisor/context injection. |
 | `PreCompact` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js'` | 3 | Compaction payload preparation. |
 | `SessionStart` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js'` | 3 | Startup context priming. |
@@ -126,7 +126,7 @@ Cursor CLI hook wiring is checked in at `.cursor/hooks.json` (project scope). Un
 | `sessionEnd` | none | `node .skilled/skills/system-spec-kit/runtime/dist/hooks/cursor/session-end.js` | 10 | Session-stop accounting (proxies to `session-stop.js`; Cursor's `stop` event never fires under the CLI, so `sessionEnd` is the confirmed substitute). |
 | `sessionEnd` | none | `bash .skilled/scripts/session-cleanup.sh` | 10 | Session-scoped MCP-helper cleanup. |
 | `preToolUse` | none | `node .skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` | 10 | Evaluates the shared spec-gate mutation policy before every tool call (`Shell`/`Write`). |
-| `preToolUse` | `Task` | `node .skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` | 10 | Deep-loop dispatch policy for a delegated subagent (`Task`) tool call; fires alongside the unmatched entry above, not instead of it. |
+| `preToolUse` | `Task` | `node .skilled/hooks/subagent-dispatch-guard/cursor/task-dispatch-guard.mjs` | 10 | Deep-loop dispatch policy for a delegated subagent (`Task`) tool call; fires alongside the unmatched entry above, not instead of it. |
 | `postToolUse` | none | `node .skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs` | 10 | Chains `Write`/`Shell` tool calls into the Claude post-edit-quality, code-graph-freshness, and CLI-dispatch-audit hooks. |
 | `beforeSubmitPrompt` | none | `node .skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs` | 10 | Advisory Gate-3 classification. Registered for parity; confirmed dormant under the installed CLI build (event never fires). |
 | `beforeSubmitPrompt` | none | `node .skilled/skills/system-spec-kit/runtime/dist/hooks/cursor/user-prompt-submit.js` | 10 | Prompt-time skill-advisor brief. Registered for parity; confirmed dormant alongside the classify hook above. |
@@ -145,7 +145,7 @@ Helper module (statically imported by every entrypoint, NOT directly wired): `sh
     "timeout": 10
   },
   {
-    "command": "node .skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs",
+    "command": "node .skilled/hooks/subagent-dispatch-guard/cursor/task-dispatch-guard.mjs",
     "type": "command",
     "matcher": "Task",
     "timeout": 10

@@ -1,7 +1,7 @@
 ---
 title: "DV-009 -- PreToolUse still fires under bypass"
 description: "Prove in an isolated workspace that PreToolUse remains active when Devin runs with the repository's bypass permission alias."
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # DV-009 -- PreToolUse still fires under bypass
@@ -80,7 +80,7 @@ Captured output files from every command in §3, the table's Expected Signal cel
 |---|---|
 | `specs/cli-external-orchestration/z_archive/029-cli-devin-revival/013-devin-permission-request-handler/implementation-summary.md` | Explicit statement that PreToolUse remains active under bypass |
 | `../../../../skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs` | Guard adapter under test |
-| `../../../../../hooks/task-dispatch/claude/task-dispatch-guard.cjs` | Shared dispatch-guard core |
+| `../../../../../hooks/subagent-dispatch-guard/claude/task-dispatch-guard.cjs` | Shared dispatch-guard core |
 
 ---
 

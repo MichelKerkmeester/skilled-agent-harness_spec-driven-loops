@@ -5,7 +5,7 @@
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import * as dispatchRules from '../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
+import * as dispatchRules from '../../../../../hooks/cli-dispatch/lib/dispatch-rule-checks.mjs';
 import { isHookEnabled } from '../../../../../hooks/shared/hook-flags.mjs';
 import { createGitContext } from '../../lib/git-context.mjs';
 import { GIT_CHECKS, GIT_SHAPE } from '../../lib/git-rule-checks.mjs';

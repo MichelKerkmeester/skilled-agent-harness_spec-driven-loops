@@ -11,7 +11,7 @@ stage: routing
 expected_intent: UNKNOWN
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # Codex Hook/Plugin Parity
@@ -20,7 +20,7 @@ version: 1.4.0.15
 
 ## 1. OVERVIEW
 
-Claude runs ~14 guard hooks across eight events and OpenCode mirrors them as plugins. Codex CLI (checked on 0.157.1) reads the user-global `~/.codex/hooks.json`. It also loads the checkout's own `.codex/hooks.json` when `~/.codex/config.toml` marks the checkout `trust_level = "trusted"`. A global copy of the repo entries therefore registers each hook a second time. The repo `.codex/hooks.json` holds 18 entries across six events. Seven of them are the thin guard adapters this scenario validates. They live in `system-spec-kit/runtime/hooks/codex/` and in `.skilled/hooks/dispatch/codex/`, `.skilled/hooks/post-edit-quality/codex/` and `.skilled/hooks/mcp-route-guard/codex/`. Each is a third consumer of the same runtime-neutral core the Claude hook and OpenCode plugin already share. The other 11 entries are the compiled session adapters in `system-spec-kit/runtime/dist/hooks/codex/`, the neutral session scripts wired into Codex lifecycle events and the shared `sk-git/scripts/hooks/git-preflight-advisory.mjs`. This scenario does not test those 11.
+Claude runs ~14 guard hooks across eight events and OpenCode mirrors them as plugins. Codex CLI (checked on 0.157.1) reads the user-global `~/.codex/hooks.json`. It also loads the checkout's own `.codex/hooks.json` when `~/.codex/config.toml` marks the checkout `trust_level = "trusted"`. A global copy of the repo entries therefore registers each hook a second time. The repo `.codex/hooks.json` holds 18 entries across six events. Seven of them are the thin guard adapters this scenario validates. They live in `system-spec-kit/runtime/hooks/codex/` and in `.skilled/hooks/cli-dispatch/codex/`, `.skilled/hooks/post-edit-quality/codex/` and `.skilled/hooks/mcp-route-guard/codex/`. Each is a third consumer of the same runtime-neutral core the Claude hook and OpenCode plugin already share. The other 11 entries are the compiled session adapters in `system-spec-kit/runtime/dist/hooks/codex/`, the neutral session scripts wired into Codex lifecycle events and the shared `sk-git/scripts/hooks/git-preflight-advisory.mjs`. This scenario does not test those 11.
 
 Each adapter reads the Codex snake_case stdin payload (`tool_name`, `tool_input`, `cwd`, `session_id`, `prompt`), normalizes the Codex tool vocabulary (`exec`→bash, `apply_patch`→write, `edit`→edit) to what its core expects, calls the neutral core unchanged, emits the Codex response envelope (`hookSpecificOutput.additionalContext`, or an inline `permissionDecision:"deny"` for the two deny-capable guards), and fails open — empty/malformed stdin or any internal error exits 0 with no emit, so a broken adapter never blocks or degrades a Codex session.
 
@@ -31,8 +31,8 @@ The seven adapters under test:
 | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | PreToolUse | `spec-gate-core.mjs` · `evaluateMutation` | deny-capable |
 | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | UserPromptSubmit | `spec-gate-core.mjs` · `classifyIntent` | state-only (no emit) |
 | `hooks/post-edit-quality/codex/post-edit-quality.cjs` | PostToolUse | `post-edit-router.cjs` · `resolveDispatch`/`runChecks` | advisory |
-| `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs` | PreToolUse(exec) | `dispatch-rule-checks.mjs` · `evaluate` | deny-capable |
-| `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` | PostToolUse(exec) | `dispatch-audit.mjs` primitives | observe |
+| `.skilled/hooks/cli-dispatch/codex/dispatch-preflight-lint.mjs` | PreToolUse(exec) | `dispatch-rule-checks.mjs` · `evaluate` | deny-capable |
+| `.skilled/hooks/cli-dispatch/codex/dispatch-audit-posttooluse.mjs` | PostToolUse(exec) | `dispatch-audit.mjs` primitives | observe |
 | `system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` | Stop | `completion-evidence-sentinel.cjs` · `evaluateCompletionEvidence` | advisory |
 | `hooks/mcp-route-guard/codex/mcp-route-guard.cjs` | PreToolUse(`mcp__.*`) | `mcp-route-guard.cjs` · `evaluateNativeMcpCall` | advisory (dormant) |
 
@@ -81,7 +81,7 @@ printf '%s' '{"prompt":"implement a new parser function and fix the failing test
 ```bash
 PROJ="$HOME/.codex-hook-fixtures/proj"
 printf '%s' "{\"tool_name\":\"exec\",\"tool_input\":{\"command\":\"codex exec -p orchestrate 'do x'\"},\"cwd\":\"$PROJ\",\"session_id\":\"aud-1\",\"tool_response\":{\"stdout\":\"ok\"}}" \
-  | node .skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs
+  | node .skilled/hooks/cli-dispatch/codex/dispatch-audit-posttooluse.mjs
 tail -1 "$PROJ/.skilled/logs/cli-dispatch-audit.log"
 ```
 
@@ -224,8 +224,8 @@ Stop chain (resolved): an earlier run showed one `Stop Failed` while the other t
   - `.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs`
   - `.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs`
   - `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs`
-  - `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs`
-  - `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs`
+  - `.skilled/hooks/cli-dispatch/codex/dispatch-preflight-lint.mjs`
+  - `.skilled/hooks/cli-dispatch/codex/dispatch-audit-posttooluse.mjs`
   - `.skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs`
   - `.skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs`
 - Repo hook registration (versioned source of truth, 18 entries across six events): `.codex/hooks.json`

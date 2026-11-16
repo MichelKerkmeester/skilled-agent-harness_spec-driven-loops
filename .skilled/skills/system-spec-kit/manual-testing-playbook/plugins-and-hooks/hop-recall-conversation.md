@@ -148,7 +148,7 @@ Pi, OpenCode and Codex are optional follow-ups after Claude Code. They need `SYS
 |---|---|
 | `specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/hop-recall.sh` | Runs one arm: generates the codes, starts the sender, waits for the claim, asks the question, prints the observed line |
 | `specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/scratch/harness/analyze.py` | Scores one run from the Claude transcripts and the handoff note |
-| `.skilled/hooks/session-handover/README.md` | The handoff protocol, the claim seed and the four note sections |
+| `.skilled/hooks/session-handover/handoff-protocol.md` | The handoff protocol, the claim seed and the four note sections |
 | `.skilled/hooks/session-handover/history/README.md` | The lookup CLI, its locator and its refusal codes |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md` | The runner's turn actions, which exclude a hop |
 

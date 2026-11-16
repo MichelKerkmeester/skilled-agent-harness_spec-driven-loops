@@ -8,7 +8,7 @@ trigger_phrases:
   - "codex advisor brief"
 importance_tier: important
 contextType: implementation
-version: 1.9.2.0
+version: 1.9.3.0
 ---
 
 # Codex CLI Hook Contract
@@ -113,9 +113,9 @@ emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
 |---|---|---|
 | PreToolUse · `exec\|Bash\|apply_patch\|edit` | spec-gate enforce (deny-capable) | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` |
 | UserPromptSubmit | spec-gate classify (state only, no emit) | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` |
-| PreToolUse · `exec\|Bash` | dispatch preflight lint (deny-capable) | `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs` |
+| PreToolUse · `exec\|Bash` | dispatch preflight lint (deny-capable) | `.skilled/hooks/cli-dispatch/codex/dispatch-preflight-lint.mjs` |
 | PostToolUse · `apply_patch\|edit` | post-edit quality | `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs` |
-| PostToolUse · `exec\|Bash` | dispatch audit (observe) | `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` |
+| PostToolUse · `exec\|Bash` | dispatch audit (observe) | `.skilled/hooks/cli-dispatch/codex/dispatch-audit-posttooluse.mjs` |
 | Stop | completion-evidence sentinel (advisory) | `system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` |
 | PreToolUse · `mcp__.*` | mcp route guard (dormant until an external MCP family registers) | `.skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs` |
 

@@ -14,20 +14,24 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds the real Pi extension for the MCP route guard. Pi discovers it through the one-line entry file `.pi/extensions/mcp-route-guard.ts`, which re-exports it, so it loads from this folder and the file imports `hook-flags.mjs` through `../../shared/`. The extension filters on the `mcp_` prefix, dynamic-imports `../lib/mcp-route-guard.cjs`, and returns the core's warnings as the `tool_call` reason.
+`pi/` holds the Pi extension for the MCP route guard. Pi discovers it through the one-line entry file `.pi/extensions/mcp-route-guard.ts`, which re-exports it. The extension registers one `tool_call` handler and imports `hook-flags.mjs` through `../../shared/`.
+
+The handler ignores a tool name that is not a string or does not start with `mcp_`. It then checks `isHookEnabled('mcp-route-guard')` and stops when that switch is off. A live switch dynamic-imports `../lib/mcp-route-guard.cjs` and calls `evaluateNativeMcpCall()` with `ctx.cwd`.
+
+A non-empty warning list becomes `{reason}`, with the warnings joined by a newline. An empty warning list returns `undefined`, so the tool call proceeds. A failed dynamic import or a core error returns `undefined` too, so the call still runs.
 
 ---
 
-## 2. WHAT EACH FILE DOES
+## 2. FILES
 
-| File | Event or role | What it does | On error |
-|---|---|---|---|
-| [`mcp-route-guard.ts`](./mcp-route-guard.ts) | `tool_call` | Ignores a non-string or non-`mcp_` tool name, checks `isHookEnabled('mcp-route-guard')`, and calls `evaluateNativeMcpCall()` with `ctx.cwd`. A warning becomes `{reason}`. | Fails open. A dynamic import or core error returns `undefined`, so the call proceeds. |
+| File | Responsibility |
+|---|---|
+| `mcp-route-guard.ts` | The Pi extension. It registers the `tool_call` handler and returns the core's warnings as the reason. |
 
 ---
 
 ## 3. RELATED
 
 - [`../README.md`](../README.md): the concern README with the policy table and the per-runtime matrix.
-- [`../lib/mcp-route-guard.cjs`](../lib/mcp-route-guard.cjs): the shared core this extension imports.
-- [`../../../../.pi/extensions/mcp-route-guard.ts`](../../../../.pi/extensions/mcp-route-guard.ts): the one-line entry file Pi discovers.
+- [`../lib/mcp-route-guard.cjs`](../lib/mcp-route-guard.cjs): the shared policy core that this extension imports at call time.
+- [`../../../../.pi/extensions/mcp-route-guard.ts`](../../../../.pi/extensions/mcp-route-guard.ts): the one-line entry file that Pi discovers and loads.

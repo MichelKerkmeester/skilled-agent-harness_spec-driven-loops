@@ -1,0 +1,7 @@
+./.opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:32:  'hooks',
+./.opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:33:  'task-dispatch',
+./.opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:42:  'hooks',
+./.opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:43:  'task-dispatch',
+./.opencode/plugins/tests/claude-fable-subagent-guard.test.cjs:28:  __dirname, '..', '..', 'hooks', 'task-dispatch', 'claude', 'fable-subagent-guard.mjs',
+./.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs:24:  'hooks', 'dispatch', 'lib', 'opencode-version-corpus.json',
+./.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:86:  'hooks', 'dispatch', 'lib', 'opencode-version-corpus.json',

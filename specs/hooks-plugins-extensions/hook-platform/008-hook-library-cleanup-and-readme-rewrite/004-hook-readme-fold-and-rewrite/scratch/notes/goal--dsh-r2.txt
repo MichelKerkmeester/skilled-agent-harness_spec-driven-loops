@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: only the command and the tool shell to the CLI. Replace the "Every call shells" sentence with: "Every command and tool call shells to `.skilled/hooks/goal/bin/goal.cjs` with `--runtime dsh`, the native session id and the resolved workspace. The per-turn brief and the turn-stopping verify, including its turn record, call the core in process."

@@ -1,0 +1,15 @@
+.skilled/hooks/completion/claude/README.md
+.skilled/hooks/completion/codex/README.md
+.skilled/hooks/completion/cursor/README.md
+.skilled/hooks/completion/devin/README.md
+.skilled/hooks/completion/dsh/README.md
+.skilled/hooks/completion/opencode/README.md
+.skilled/hooks/completion/pi/README.md
+.skilled/hooks/completion/tests/README.md
+.skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json
+.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
+.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+.skilled/skills/system-spec-kit/runtime/hooks/dsh/README.md
+.skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts

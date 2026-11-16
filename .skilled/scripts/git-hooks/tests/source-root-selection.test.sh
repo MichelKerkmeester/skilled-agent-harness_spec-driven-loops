@@ -17,9 +17,9 @@ SOURCE="$(cd "$HERE/../../.." && pwd)"
 # build a path, relative to the source root.
 SELECTING="scripts/git-hooks/pre-commit scripts/git-hooks/pre-push scripts/git-hooks/prepare-commit-msg
 scripts/git-hooks/post-commit scripts/git-hooks/post-merge scripts/git-hooks/post-rewrite
-hooks/git/pre-commit bin/check-git-hooks.sh scripts/install-git-hooks.sh"
+bin/check-git-hooks.sh scripts/install-git-hooks.sh"
 SCANNED="$SELECTING scripts/git-hooks/commit-msg scripts/git-hooks/lib/autostash-orphan-guard.sh
-scripts/git-hooks/lib/mass-deletion-guard.sh hooks/git/install-hooks.sh"
+scripts/git-hooks/lib/mass-deletion-guard.sh"
 
 BEGIN_MARK='# >>> source-root selection'
 END_MARK='# <<< source-root selection'

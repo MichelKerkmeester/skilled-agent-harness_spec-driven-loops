@@ -6,7 +6,7 @@ trigger_phrases:
   - "opencode dual-version dispatch"
   - "resolveOpencodeBinary version probe"
   - "OpenCode 1 and OpenCode 2 lineage argv"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # OpenCode Dual-Version Dispatch (cli-opencode)
@@ -39,7 +39,7 @@ The native lineage adapter is version-aware in the same way. It resolves the sam
 
 The family is never inferred from the executable name, and the resolver does not fall back from one candidate to the other once a binary has been chosen. A probe failure is therefore a refusal, not a silent switch to the other generation, and the refusal message names both `opencode2` and `opencode` so the operator can see which candidates were considered.
 
-The hook-side resolver at `.skilled/hooks/dispatch/lib/opencode-version.mjs` applies the same parse rule to the binary named by a dispatch command, and the dispatch rule checks use it to select the version-scoped rules for that command. The two surfaces share the version rule rather than each defining their own.
+The hook-side resolver at `.skilled/hooks/cli-dispatch/lib/opencode-version.mjs` applies the same parse rule to the binary named by a dispatch command, and the dispatch rule checks use it to select the version-scoped rules for that command. The two surfaces share the version rule rather than each defining their own.
 
 ---
 

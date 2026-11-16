@@ -72,7 +72,7 @@ source_inspection:
       reader: "the Bash process environment inherited by the command"
     - id: hook_flags
       path: ".skilled/hooks/hook-flags.env"
-      reader: ".skilled/hooks/shared/hook-flags.{cjs,mjs,ts,sh} and validation readers"
+      reader: ".skilled/hooks/shared/hook-flags.{cjs,mjs,sh} and validation readers"
     - id: dotenv
       path: ".env"
       reader: "Code Mode only; other readers see it only when the shell/runtime exports the variable"

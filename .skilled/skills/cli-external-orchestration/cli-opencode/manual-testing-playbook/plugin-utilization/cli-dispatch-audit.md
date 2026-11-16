@@ -1,7 +1,7 @@
 ---
 title: "CO-041 -- cli-dispatch-audit live utilization on OpenCode 1 and 2"
 description: "This scenario validates cli-dispatch-audit for `CO-041`. It focuses on confirming that a blocked CLI dispatch is refused before it runs and that every allowed dispatch appends one audit record on both OpenCode versions."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # CO-041 -- cli-dispatch-audit live utilization on OpenCode 1 and 2
@@ -84,8 +84,8 @@ cat "$EVIDENCE_DIR"/dispatch-*.v*.exit
 |---|---|
 | `.opencode/plugins/cli-dispatch-audit.js` | Plugin entry for `tool.execute.before` and `tool.execute.after` |
 | `.opencode/skills/cli-external-orchestration/cli-opencode/hard-rules.json` | Block-severity hard rules the guard evaluates |
-| `.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs` | Rule engine used by the before leg |
-| `.opencode/hooks/dispatch/lib/dispatch-audit.mjs` | Redacted audit record writer used by the after leg |
+| `.opencode/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | Rule engine used by the before leg |
+| `.opencode/hooks/cli-dispatch/lib/dispatch-audit.mjs` | Redacted audit record writer used by the after leg |
 | `plugin-utilization/run-plugin-scenario.sh` | Runs one live session per version and writes the evidence files |
 | `plugin-utilization/capture-proxy.mjs` | Capture proxy that records each model request's system prompt |
 

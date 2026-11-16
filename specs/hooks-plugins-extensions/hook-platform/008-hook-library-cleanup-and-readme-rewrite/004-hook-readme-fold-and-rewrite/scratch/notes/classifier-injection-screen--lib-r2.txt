@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: "A section under 5 lines joins the next one" is wrong at the edges. Write: "A section under 5 lines joins the next one, the last short section joins the one before it, and a section over 60 lines is cut into pieces of at most 60 lines."
+   - Defect 2: "a fetch result always reaches the model unchanged" is wrong, because Pi appends an advisory block. Write: "The screen only advises, so the fetched text always reaches the model and is never blocked or rewritten."

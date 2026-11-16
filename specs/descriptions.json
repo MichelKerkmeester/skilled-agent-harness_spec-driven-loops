@@ -11035,7 +11035,7 @@
       "lastUpdated": "2026-11-13T10:04:40.849Z"
     },
     {
-      "specFolder": "hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair",
+      "specFolder": "hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair",
       "description": "The OpenCode dual-compat build recorded two dispatch adapter suites as failing before it began and still failing after:",
       "keywords": [
         "opencode",

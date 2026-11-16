@@ -9,7 +9,7 @@ trigger_phrases:
   - "deepseek harness providers"
 importance_tier: important
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # DeepSeek Harness - Providers and Models
@@ -121,5 +121,5 @@ These are not roster routes. They are listed so a reviewer knows what a missing 
 
 1. Amend the roster in the spec packet that owns this mode first.
 2. Write the route patch in the shape above and compose it with `--dump-config` from a disposable home and a temp cwd. Require exit 0, empty stderr and the new provider and model in `agent-default-model`.
-3. Update the roster table here, the `closed-roster` and `route-patch-required` messages in [../hard-rules.json](../hard-rules.json) and `DSH_ROUTE_PATCHES` in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` together. The preflight refuses a route file missing from that set.
+3. Update the roster table here, the `closed-roster` and `route-patch-required` messages in [../hard-rules.json](../hard-rules.json) and `DSH_ROUTE_PATCHES` in `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` together. The preflight refuses a route file missing from that set.
 4. Add a route to a default only after a keyed harmless task exits 0 with `final.reason.kind` `completed`. LLM Gateway meets that check, and OpenCode Go answered a keyed session on 2026-11-07. OpenCode Go stays non-default.

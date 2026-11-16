@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-handover-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.26.0
+version: 1.0.27.0
 id: session-handover-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -533,7 +533,7 @@ Pi 1.4.0 with `openai/gpt-6-luna` and OpenCode 2.1.4, live in tmux with a privat
 | `manual-testing-playbook.md` | Root index and execution verdict rules. |
 | `../../feature-catalog/context-preservation/session-handover-loop.md` | Shared handoff implementation and runtime coverage. |
 | `../../../cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-handover.md` | OpenCode runner scenario with the withdraw and extra-nudge steps. |
-| `../../../../hooks/session-handover/README.md` | Adapter matrix, launch syntax and known live-TUI limits. |
+| `../../../../hooks/session-handover/runtime-behavior.md` | Adapter matrix, launch syntax and known live-TUI limits. |
 | `../../../../../specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/scratch/contracts/interface-contract.md` | Section 11 contract for events and seed syntax. |
 | `../../../../../specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/002-pi-opencode-adapters/scratch/spike/SPIKE-REPORT.md` | Adapter spike verdicts and UNVERIFIED items. |
 | `../../../../../specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/scratch/run-ledger.md` | Recorded Pi smoke and pre-existing `--fast` conflict. |

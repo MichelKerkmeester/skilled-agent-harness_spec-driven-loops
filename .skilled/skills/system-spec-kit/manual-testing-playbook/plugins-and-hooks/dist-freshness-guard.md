@@ -6,7 +6,7 @@ trigger_phrases:
   - "dist freshness guard"
   - "session.created stale dist warning"
   - "stale compiled dist"
-version: 1.0.2.0
+version: 1.0.3.0
 id: plugins-and-hooks-dist-freshness-guard
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -43,7 +43,7 @@ Claude Code cannot load OpenCode plugins, so the same shared `dist-freshness.cjs
 into Claude Code through a parallel, non-plugin path: a `SessionStart` hook that runs
 `check-dist-staleness.sh --all` (checks every watched package once per session, mirroring the
 plugin's `session.created` trigger) and a `PostToolUse(Write|Edit)` hook
-(`claude-posttooluse.cjs`) that checks only the single edited file's owning package via
+(`post-edit-quality.cjs`) that checks only the single edited file's owning package via
 `router.runDistStalenessCheck`. This scenario validates the OpenCode plugin itself plus its
 Claude-side sibling, using the plugin's own unit-test suite and direct live invocations against
 the real repository state.
@@ -162,7 +162,7 @@ confirm the plugin (a) detects real stale/fresh dist state for every watched
    package, matching step 2's stale package names exactly; exits `0` regardless of findings.
 
 6. Kill-switch / enforce check (Claude PostToolUse path only, out of scope for the OpenCode
-   plugin which has no kill-switch flag): the sibling `claude-posttooluse.cjs` hook honors
+   plugin which has no kill-switch flag): the sibling `post-edit-quality.cjs` hook honors
    `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` as a full no-op for its comment-hygiene checks, but the
    legacy dist-staleness block in that same file runs unconditionally after the disabled
    early-return only when `DISABLED_ENV` is unset; setting it to `1` short-circuits the whole
@@ -198,7 +198,7 @@ Capture, for every step in the Commands sequence above:
 - Plugin unit test: `.opencode/plugins/tests/system-dist-freshness-guard.test.cjs`
 - Shared core: `.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs`
 - Claude `SessionStart` wrapper: `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`
-- Claude `PostToolUse(Write|Edit)` hook: `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
+- Claude `PostToolUse(Write|Edit)` hook: `.skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs`
 - Claude hook router: `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`
 - Hook wiring: `.claude/settings.json` (`SessionStart` and `PostToolUse` blocks)
 - Guard audit log (runtime artifact, not source): `.skilled/logs/dist-freshness-guard.log`

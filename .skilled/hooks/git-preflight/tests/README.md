@@ -14,21 +14,47 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`git-preflight/tests/` holds the DSH adapter test suite for the git preflight advisory. The file runs under `node --test` and drives the adapter through the shared DSH test support module at `.skilled/hooks/shared/tests/dsh-plugin-harness.mjs`. Every dependency the adapter would normally load is stubbed, so the tests stay offline and touch no repository.
+`.skilled/hooks/git-preflight/tests/` holds the DSH suite for the git preflight advisory. The suite imports the real adapter and the shared DSH test helpers. Those helpers live in `.skilled/hooks/shared/tests/dsh-plugin-harness.mjs`. The suite runs under `node --test`.
 
-Two behaviors are covered. The first is the shape of a successful advisory: the downstream result keeps `kind` equal to `accept` and gains one `additionalContexts` notice that names the rule. The second is the failure policy: a core that throws logs once and returns the original result with no advisory attached.
+Both cases replace the rule core and the switch with stubs. No test reads a repository or spawns a git process.
 
----
+The first case checks a successful advisory. The accepted result keeps `kind` equal to `accept` and gains one `additionalContexts` notice. That notice names the rule that fired.
 
-## 2. WHAT EACH FILE DOES
+The second case checks the failure policy. It asserts the exported `ERROR_POLICY` is `fail-open`. A core that throws then logs once and returns the result with no advisory attached.
 
-| File | Event | What it does | On error |
-|---|---|---|---|
-| `dsh-git-preflight-advisory.test.mjs` | `node --test` | Registers `registerGitPreflightAdvisory` on a stub context and fires `tools/post-execute`. It asserts the exported `ERROR_POLICY` is `fail-open`, that a finding lands in `additionalContexts` and that a thrown core leaves the result untouched with one log line. | A failed assertion fails the test process with a nonzero status. |
+DSH registers the adapter through the `repo-guards` bundle. `.dsh/plugins/repo-guards/index.mjs` imports `registerGitPreflightAdvisory` and calls it from `apply`. This suite is the only place that handler runs under test.
 
 ---
 
-## 3. RELATED
+## 2. FILES
 
-- [`../README.md`](../README.md): the concern index, with the per-runtime delivery matrix.
+| File | Responsibility |
+|---|---|
+| `dsh-git-preflight-advisory.test.mjs` | The `node --test` suite for the DSH adapter. |
+
+Both cases build a fake plugin context with `adapterHarness`. That helper keeps one handler per event and records every `logger.warn` line. Each case registers `registerGitPreflightAdvisory` on the context and fires `tools/post-execute`.
+
+The stub core supplies `GIT_SHAPE`, `GIT_CHECKS`, `readHardRules`, `createGitContext` and `evaluate`. Both cases pass `isEnabled: enabled` and an empty `env`. The command under test is a branch-creating `git checkout`.
+
+A failed assertion fails the test process with a nonzero status.
+
+---
+
+## 3. VALIDATION
+
+Run from the repository root.
+
+```bash
+node --test .skilled/hooks/git-preflight/tests/dsh-git-preflight-advisory.test.mjs
+```
+
+Expected result: both cases pass and the run reports no failures.
+
+---
+
+## 4. RELATED
+
+- [`../README.md`](../README.md): the git preflight advisory, its switches and its runtime coverage.
 - [`../dsh/git-preflight-advisory.mjs`](../dsh/git-preflight-advisory.mjs): the adapter under test.
+- [`../../shared/tests/`](../../shared/tests/): the shared DSH plugin test helpers.
+- [`../../../../.dsh/plugins/repo-guards/index.mjs`](../../../../.dsh/plugins/repo-guards/index.mjs): the bundle that registers the adapter.

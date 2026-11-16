@@ -1,0 +1,4 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the checkers run on every such result; only the notice needs `accept`. Write: "It then checks `write`, `edit` and `apply_patch` results, and attaches the notice only to a result that comes back as `accept`."
+   - Defect 2: the staleness call has its own timeout. Write: "A separate `runDistStalenessCheck()` call then runs with its own 8000 ms timeout and no check on the budget left."
+   - Defect 3: write: "Each finding is formatted as its `[label]` line followed by the checker output, and findings are separated by a blank line."

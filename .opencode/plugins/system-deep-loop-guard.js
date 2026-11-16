@@ -27,7 +27,7 @@ import { createRequire } from 'node:module';
 // The guard policy lives outside .opencode/plugins/ so this file can remain a
 // thin, default-export-only OpenCode plugin while the Claude hook consumes the
 // same core. A .cjs core is imported here as the ESM default export.
-import guardCore from '../hooks/task-dispatch/lib/dispatch-guard.cjs';
+import guardCore from '../hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs';
 import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);

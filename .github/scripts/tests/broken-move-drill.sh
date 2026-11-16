@@ -54,7 +54,6 @@ for hook in pre-commit pre-push prepare-commit-msg post-commit; do
   git -C "$SRC" show "$FIRST_RULE^:.opencode/scripts/git-hooks/$hook" > "$PRE_HOOKS/$hook" || exit 2
 done
 git -C "$SRC" show "$FIRST_RULE^:.opencode/bin/check-git-hooks.sh" > "$PRE_HOOKS/check-git-hooks.sh" || exit 2
-git -C "$SRC" show "$FIRST_RULE^:.opencode/hooks/git/pre-commit" > "$PRE_HOOKS/legacy-pre-commit" || exit 2
 
 say "setup: clone and reach the moved tree"
 git clone --local -q "$SRC" "$CLONE" || exit 2
@@ -140,8 +139,6 @@ check_names "a missing comment checker" ".opencode/skills/sk-code/sk-code-qualit
 stage AGENTS.md
 run_pre_commit "$H/pre-commit" "$SKIP_ALL SPECKIT_SKIP_COMMENT_HYGIENE=0"; RC=$?
 expect "pre-commit blocks on a missing comment checker" 1 "$RC" present "BLOCKED [gate:comment-hygiene]"
-run_plain "$CLONE/.opencode/hooks/git/pre-commit"; RC=$?
-expect "the legacy helper blocks on a missing comment checker" 1 "$RC" present "comment hygiene checker is missing"
 unstage_all; restore_input
 
 break_input bin/check-agent-mirror-sync.cjs
@@ -329,7 +326,6 @@ compare_foreign "pre-commit adds nothing for another repository" "$H/pre-commit"
 compare_foreign "prepare-commit-msg adds nothing for another repository" "$H/prepare-commit-msg" "$PRE_HOOKS/prepare-commit-msg" message
 compare_foreign "post-commit adds nothing for another repository" "$H/post-commit" "$PRE_HOOKS/post-commit" plain
 compare_foreign "the SessionStart check adds nothing for another repository" "$CLONE/.opencode/bin/check-git-hooks.sh" "$PRE_HOOKS/check-git-hooks.sh" plain
-compare_foreign "the legacy helper adds nothing for another repository" "$CLONE/.opencode/hooks/git/pre-commit" "$PRE_HOOKS/legacy-pre-commit" plain
 
 echo ""
 echo "broken-move drill: $PASS passed, $FAIL failed"

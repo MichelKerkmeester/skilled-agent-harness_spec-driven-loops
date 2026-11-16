@@ -1,1 +1,0 @@
-../../.skilled/hooks/session-handover/claude/stop-arm.mjs

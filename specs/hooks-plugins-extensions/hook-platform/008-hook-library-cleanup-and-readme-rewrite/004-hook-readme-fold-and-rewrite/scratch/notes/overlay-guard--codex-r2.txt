@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: several owned paths give several refusals joined by newlines. Write: "`permissionDecisionReason` set to the engine's `refuse:` lines, one for each owned path."

@@ -26,7 +26,7 @@ import path from 'node:path';
 import {
   evaluate,
   readHardRules,
-} from '../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
+} from '../../../../hooks/cli-dispatch/lib/dispatch-rule-checks.mjs';
 import { GIT_CHECKS } from './git-rule-checks.mjs';
 import { createGitContext } from './git-context.mjs';
 

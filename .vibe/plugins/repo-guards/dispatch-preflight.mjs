@@ -11,7 +11,7 @@
 
 import { join } from 'node:path';
 
-import { evaluateDispatch } from '../../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs';
+import { evaluateDispatch } from '../../../.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs';
 import { isHookEnabled } from '../../../.skilled/hooks/shared/hook-flags.mjs';
 import { allow, deny, readPayload, runGuard, toCoreCall, REPO_ROOT } from './lib/hook-io.mjs';
 

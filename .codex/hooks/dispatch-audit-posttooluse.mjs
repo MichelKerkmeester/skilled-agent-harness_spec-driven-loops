@@ -1,1 +1,1 @@
-../../.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs
+../../.skilled/hooks/cli-dispatch/codex/dispatch-audit-posttooluse.mjs

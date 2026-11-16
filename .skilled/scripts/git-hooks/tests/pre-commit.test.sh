@@ -526,62 +526,6 @@ SPECKIT_SKIP_COMMENT_HYGIENE=0 SPECKIT_SKIP_MIRROR_PARITY=0 SPECKIT_SKIP_CARD_SY
 check "a repository without the toolchain stays committable" 0 "$RC"
 grep -q 'BLOCKED' "$TMP/out.log" && { echo "FAIL  a gate blocked a repository without the toolchain"; FAIL=$((FAIL + 1)); }
 
-# ══ legacy hygiene helper ═══════════════════════════════════════════════════
-# The compatibility helper applies the same rules to its two gates. It has no bypass
-# flags, so a case that exercises its agent gate plants a comment checker that passes.
-LEGACY="$REPO_ROOT/.opencode/hooks/git/pre-commit"
-run_legacy() { ( cd "$TMP" && bash "$LEGACY" >"$TMP/out.log" 2>&1 ); }
-plant_comment_checker() {
-  mkdir -p "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts"
-  printf '#!/usr/bin/env bash\nexit 0\n' > "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
-  chmod +x "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
-}
-
-# ── 36. a staged .skilled agent reaches the helper's mirror checker ──
-setup_gate_fixture
-plant_comment_checker
-mkdir -p "$TMP/.opencode/bin"
-cat > "$TMP/.opencode/bin/check-agent-mirror-sync.cjs" <<'CHECKER'
-require('fs').appendFileSync('checker-calls.log', process.argv.slice(2).join('\n') + '\n');
-CHECKER
-stage_new ".skilled/agents/probe.md" "agent"
-run_legacy; RC=$?
-check "the helper passes a .skilled agent" 0 "$RC"
-if grep -qxF '.skilled/agents/probe.md' "$TMP/checker-calls.log" 2>/dev/null; then
-  echo "PASS  the helper handed the .skilled agent to its checker"; PASS=$((PASS + 1))
-else
-  echo "FAIL  the helper's checker never saw .skilled/agents/probe.md"; FAIL=$((FAIL + 1))
-fi
-
-# ── 37. the helper blocks on a missing comment checker where the toolchain ships ──
-setup_gate_fixture toolchain
-stage_new "notes.md" "note"
-run_legacy; RC=$?
-check "the helper blocks on a missing comment checker" 1 "$RC" "comment hygiene checker is missing"
-
-# ── 38. the helper blocks on a missing agent checker where the toolchain ships ──
-setup_gate_fixture toolchain
-plant_comment_checker
-stage_new ".opencode/agents/probe.md" "agent"
-run_legacy; RC=$?
-check "the helper blocks on a missing agent checker" 1 "$RC" "agent mirror-sync checker is missing"
-
-# ── 39. the helper never blocks a repository that does not ship the toolchain ──
-setup_gate_fixture
-stage_new ".opencode/agents/probe.md" "agent"
-run_legacy; RC=$?
-check "the helper leaves a repository without the toolchain committable" 0 "$RC"
-
-# ── 39b. the helper checks the staged blob, not the working tree ──
-setup_gate_fixture
-mkdir -p "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts"
-ln -s "$REPO_ROOT/.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh" \
-  "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
-stage_new "a.js" "// see ADR-12"
-printf '%s\n' "// the durable reason" > "$TMP/a.js"
-run_legacy; RC=$?
-check "the helper blocks a violation fixed only in the working tree" 1 "$RC" "a.js:1:"
-
 # ══ block messages name their bypass ════════════════════════════════════════
 # A caller with no one at the keyboard can only escape a block the message
 # explains. The agent mirror gate has no switch of its own, so its message names
@@ -660,11 +604,6 @@ plant_real_comment_checker
 stage_new "--notes.js" "// see ADR-12"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a staged name that starts with -- is checked" 1 "$RC" "notes.js:1: // see ADR-12"
-setup_gate_fixture
-plant_real_comment_checker
-stage_new "--notes.js" "// see ADR-12"
-run_legacy; RC=$?
-check "the helper checks a staged name that starts with --" 1 "$RC" "staged files contain ephemeral-artifact pointers"
 
 # ── 44b. the repository quality config's disabled hygiene rules hold at commit ──
 # A foreign repository's own tracker ids block until its quality config switches the
@@ -687,8 +626,6 @@ mkdir -p "$(dirname "$QUALITY_CONFIG")"
 printf '%s\n' '{"schemaVersion": 1, "commentHygiene": {"disableRules": ["issue", "adr", "task"]}}' > "$QUALITY_CONFIG"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "the rules the quality config disables do not block the commit" 0 "$RC"
-run_legacy; RC=$?
-check "the helper honors the rules the quality config disables" 0 "$RC"
 printf '%s\n' '{"schemaVersion": 1, "commentHygiene": {"disableRules": ["tsak"]}}' > "$QUALITY_CONFIG"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a quality config that does not validate keeps every core rule" 1 "$RC" "did not validate, so every core rule applies"
@@ -738,13 +675,6 @@ if grep -qF "mirror-sync checker unavailable" "$TMP/out.log"; then
 else
   echo "PASS  the agent mirror warning stays silent outside the toolchain"; PASS=$((PASS + 1))
 fi
-
-# ── 47. the helper blocks when its comment checker crashes ──
-setup_gate_fixture
-plant_failing_comment_checker 3
-stage_new "notes.md" "note"
-run_legacy; RC=$?
-check "the helper blocks a crashed comment checker" 1 "$RC" "comment hygiene checker failed (exit 3)"
 
 # ── 48. the authored manifest follows the layout module, not a path in the hook ──
 setup_fixture
@@ -987,19 +917,6 @@ CHECKER
 stage_new ".opencode/agents/probe.md" "agent"
 run_hook; RC=$?
 check "a drifted mirror still blocks the commit" 1 "$RC" "staged agent files desync"
-
-# ── 66. the helper also warns and skips when its mirror checker cannot check ──
-setup_gate_fixture
-plant_comment_checker
-mkdir -p "$TMP/.opencode/bin"
-cat > "$TMP/.opencode/bin/check-agent-mirror-sync.cjs" <<'CHECKER'
-console.log('NOT CHECKABLE: the built frontmatter parser is missing');
-process.exit(3);
-CHECKER
-stage_new ".opencode/agents/probe.md" "agent"
-run_legacy; RC=$?
-check "the helper warns and skips a not-checkable mirror checker" 0 "$RC" "agent mirror-sync is not checkable"
-check "the helper's warning names the build" 0 "$RC" "npm --prefix .skilled/skills/system-spec-kit run build"
 
 # ── 67-73. doc-version bump: a staged skill doc whose body changed gets its version raised ──
 # The real engine is linked into the fixture, so these cases exercise the gate and the

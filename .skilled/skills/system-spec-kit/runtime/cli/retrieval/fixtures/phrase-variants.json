@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2650b7faca1890a3a9fe5f5ca416aedcee6fdcfde0cbc93f393126d741b873f2",
+  "manifestHash": "509760cf6428679049f5520ef72743ab18976cff927ea6da8c82b7d541eb72f4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -100,6 +100,9 @@
     ],
     "001 continuity memory runtime rollup": [
       "001-continuity-memory-runtime rollup"
+    ],
+    "001 dead hook file removal operator decisions": [
+      "001-dead-hook-file-removal operator decisions"
     ],
     "001 deep research operator decisions": [
       "001-deep-research operator decisions"
@@ -1116,6 +1119,9 @@
     ],
     "004 history preview readability operator decisions": [
       "004-history-preview-readability operator decisions"
+    ],
+    "004 hook readme fold and rewrite operator decisions": [
+      "004-hook-readme-fold-and-rewrite operator decisions"
     ],
     "004 implementation summary": [
       "004 implementation summary"
@@ -12020,6 +12026,9 @@
     "annotation sketchy terminal icons": [
       "annotation sketchy terminal icons"
     ],
+    "answer queue for the next save": [
+      "answer queue for the next save"
+    ],
     "answer the actual request": [
       "answer the actual request"
     ],
@@ -13153,6 +13162,9 @@
     "ask question tool": [
       "ask question tool"
     ],
+    "ask surface concern": [
+      "ask-surface concern"
+    ],
     "ask surface disabled live test": [
       "ask surface disabled live test"
     ],
@@ -13188,6 +13200,9 @@
     ],
     "ask surface guard menu detector": [
       "ask surface guard menu detector"
+    ],
+    "ask user question hook": [
+      "ask user question hook"
     ],
     "askuserquestion capture": [
       "askuserquestion capture"
@@ -20802,6 +20817,9 @@
     "claude prompting best practices": [
       "claude prompting best practices"
     ],
+    "claude receiver goal": [
+      "Claude receiver goal"
+    ],
     "claude receiver starts on packet goal": [
       "claude receiver starts on packet goal"
     ],
@@ -27399,6 +27417,9 @@
     "codex git hooks check": [
       "codex git hooks check"
     ],
+    "codex global hooks check": [
+      "codex global hooks check"
+    ],
     "codex goal nesting": [
       "codex goal nesting"
     ],
@@ -27423,6 +27444,24 @@
     "codex hook approval operator list": [
       "codex hook approval operator list"
     ],
+    "codex hook check merge": [
+      "codex hook check merge"
+    ],
+    "codex hook check merge acceptance criteria": [
+      "codex hook check merge acceptance criteria"
+    ],
+    "codex hook check merge goal": [
+      "codex hook check merge goal"
+    ],
+    "codex hook check merge implementation summary": [
+      "codex hook check merge implementation summary"
+    ],
+    "codex hook check merge plan": [
+      "codex hook check merge plan"
+    ],
+    "codex hook check merge tasks": [
+      "codex hook check merge tasks"
+    ],
     "codex hook cleanup": [
       "codex hook cleanup"
     ],
@@ -27437,6 +27476,9 @@
     ],
     "codex hook contract": [
       "codex hook contract"
+    ],
+    "codex hook drift": [
+      "codex hook drift"
     ],
     "codex hook drift check": [
       "codex hook drift check"
@@ -27636,6 +27678,9 @@
     "codex session handover": [
       "Codex session handover",
       "codex session handover"
+    ],
+    "codex session handover hooks": [
+      "codex session handover hooks"
     ],
     "codex session lifecycle": [
       "codex session lifecycle"
@@ -28150,6 +28195,9 @@
     ],
     "command mirror sync": [
       "command mirror sync"
+    ],
+    "command only handoff cursor devin": [
+      "command-only handoff cursor devin"
     ],
     "command parity chart diagram": [
       "command parity chart diagram"
@@ -30505,6 +30553,9 @@
     ],
     "context markdown design fixes tasks": [
       "context markdown design fixes tasks"
+    ],
+    "context nudge": [
+      "context nudge"
     ],
     "context preservation": [
       "context preservation"
@@ -34312,6 +34363,24 @@
     ],
     "dead hash file deletion guard": [
       "dead hash file deletion guard"
+    ],
+    "dead hook file removal": [
+      "dead hook file removal"
+    ],
+    "dead hook file removal acceptance criteria": [
+      "dead hook file removal acceptance criteria"
+    ],
+    "dead hook file removal goal": [
+      "dead hook file removal goal"
+    ],
+    "dead hook file removal implementation summary": [
+      "dead hook file removal implementation summary"
+    ],
+    "dead hook file removal plan": [
+      "dead hook file removal plan"
+    ],
+    "dead hook file removal tasks": [
+      "dead hook file removal tasks"
     ],
     "dead man switch ioc scan": [
       "dead-man switch IOC scan"
@@ -54844,9 +54913,6 @@
     "git hook verification": [
       "git hook verification"
     ],
-    "git hooks": [
-      "git hooks"
-    ],
     "git hooks presence guard": [
       "git hooks presence guard"
     ],
@@ -55275,6 +55341,9 @@
     ],
     "goal carried across a hop": [
       "goal carried across a hop"
+    ],
+    "goal carry over": [
+      "goal carry-over"
     ],
     "goal chat send rule": [
       "goal chat send rule"
@@ -55942,6 +56011,9 @@
     "goal non utf8 refusal": [
       "goal non-utf8 refusal"
     ],
+    "goal not carried": [
+      "goal not carried"
+    ],
     "goal objective check": [
       "goal objective check"
     ],
@@ -55995,6 +56067,9 @@
     ],
     "goal packet field ownership": [
       "goal packet field ownership"
+    ],
+    "goal packet hand over": [
+      "goal packet hand-over"
     ],
     "goal packet handoff note field": [
       "goal_packet handoff note field"
@@ -57642,8 +57717,20 @@
     "handoff history lookup": [
       "handoff history lookup"
     ],
+    "handoff note": [
+      "handoff note"
+    ],
+    "handoff note not claimed": [
+      "handoff note not claimed"
+    ],
     "handoff note purpose line": [
       "handoff note purpose line"
+    ],
+    "handoff note status": [
+      "handoff note status"
+    ],
+    "handoff protocol": [
+      "handoff protocol"
     ],
     "handoff recall baseline": [
       "handoff recall baseline"
@@ -58738,6 +58825,9 @@
     "history core relocation tasks": [
       "history core relocation tasks"
     ],
+    "history lookup": [
+      "history lookup"
+    ],
     "history lookup after compaction": [
       "history lookup after compaction"
     ],
@@ -59117,6 +59207,12 @@
     "hook level lifecycle flags plan": [
       "hook-level lifecycle flags plan"
     ],
+    "hook library cleanup and readme rewrite": [
+      "hook library cleanup and readme rewrite"
+    ],
+    "hook library cleanup phase parent spec": [
+      "hook library cleanup phase parent spec"
+    ],
     "hook library rename": [
       "hook library rename"
     ],
@@ -59185,6 +59281,27 @@
     ],
     "hook paths from repository root": [
       "hook paths from repository root"
+    ],
+    "hook readme fold and rewrite": [
+      "hook readme fold and rewrite"
+    ],
+    "hook readme fold and rewrite acceptance criteria": [
+      "hook readme fold and rewrite acceptance criteria"
+    ],
+    "hook readme fold and rewrite goal": [
+      "hook readme fold and rewrite goal"
+    ],
+    "hook readme fold and rewrite implementation summary": [
+      "hook readme fold and rewrite implementation summary"
+    ],
+    "hook readme fold and rewrite plan": [
+      "hook readme fold and rewrite plan"
+    ],
+    "hook readme fold and rewrite tasks": [
+      "hook readme fold and rewrite tasks"
+    ],
+    "hook readme rewrite": [
+      "hook readme rewrite"
     ],
     "hook references as routed leaves": [
       "hook references as routed leaves"
@@ -59416,6 +59533,9 @@
     ],
     "hop keeps model": [
       "hop keeps model"
+    ],
+    "hop limit reached": [
+      "hop limit reached"
     ],
     "hop notice": [
       "hop notice"
@@ -61391,17 +61511,11 @@
     "install bdg": [
       "install bdg"
     ],
-    "install codex hooks": [
-      "install codex hooks"
-    ],
     "install codex hooks check": [
       "install codex hooks check"
     ],
     "install cupt": [
       "install cupt"
-    ],
-    "install git hooks": [
-      "install git hooks"
     ],
     "install guidance and setup helper": [
       "install guidance and setup helper"
@@ -62978,6 +63092,15 @@
     "killer grace period test flaky": [
       "killer grace period test flaky"
     ],
+    "killer lock": [
+      "killer lock"
+    ],
+    "killer lock held": [
+      "killer-lock-held"
+    ],
+    "killer lock takeover": [
+      "killer lock takeover"
+    ],
     "killer notice subtitle": [
       "killer notice subtitle"
     ],
@@ -63016,6 +63139,10 @@
     ],
     "killer test spawn race tasks": [
       "killer test spawn race tasks"
+    ],
+    "killer timeout": [
+      "killer timeout",
+      "killer-timeout"
     ],
     "killer timeoutms 450": [
       "killer timeoutMs 450"
@@ -64461,6 +64588,12 @@
     "legacy file cleanup audit": [
       "legacy file cleanup audit"
     ],
+    "legacy git pre commit removal": [
+      "legacy git pre-commit removal"
+    ],
+    "legacy git pre commit removal plan": [
+      "legacy git pre-commit removal plan"
+    ],
     "legacy goal migration": [
       "legacy goal migration"
     ],
@@ -65355,6 +65488,27 @@
     ],
     "litellm ollama routing plan": [
       "litellm ollama routing plan"
+    ],
+    "literal hook folder names": [
+      "literal hook folder names"
+    ],
+    "literal hook renames": [
+      "literal hook renames"
+    ],
+    "literal hook renames acceptance criteria": [
+      "literal hook renames acceptance criteria"
+    ],
+    "literal hook renames goal": [
+      "literal hook renames goal"
+    ],
+    "literal hook renames implementation summary": [
+      "literal hook renames implementation summary"
+    ],
+    "literal hook renames plan": [
+      "literal hook renames plan"
+    ],
+    "literal hook renames tasks": [
+      "literal hook renames tasks"
     ],
     "literal naming": [
       "literal naming"
@@ -73433,6 +73587,9 @@
     ],
     "mode write set conflict graph": [
       "mode write-set conflict graph"
+    ],
+    "model and effort across a hop": [
+      "model and effort across a hop"
     ],
     "model benchmark 67 stem registry": [
       "model benchmark 67 stem registry"
@@ -81689,6 +81846,9 @@
     "phase 1 create track fixes": [
       "phase 1 create track fixes"
     ],
+    "phase 1 dead hook file removal": [
+      "phase 1 dead hook file removal"
+    ],
     "phase 1 deep research": [
       "phase 1 deep research"
     ],
@@ -82580,6 +82740,9 @@
     "phase 2 closure gate": [
       "phase 2 closure gate"
     ],
+    "phase 2 codex hook check merge": [
+      "phase 2 codex hook check merge"
+    ],
     "phase 2 command inventory and risk metadata": [
       "phase 2 command inventory and risk metadata"
     ],
@@ -83165,6 +83328,9 @@
     "phase 3 lifecycle lock and limits": [
       "phase 3 lifecycle lock and limits"
     ],
+    "phase 3 literal hook renames": [
+      "phase 3 literal hook renames"
+    ],
     "phase 3 manual claim live settings": [
       "phase 3 manual claim live settings"
     ],
@@ -83446,6 +83612,9 @@
     ],
     "phase 4 guard hook": [
       "phase 4 guard hook"
+    ],
+    "phase 4 hook readme fold and rewrite": [
+      "phase 4 hook readme fold and rewrite"
     ],
     "phase 4 hook stdin deadline": [
       "phase 4 hook stdin deadline"
@@ -87940,9 +88109,6 @@
     "pre commit auto remint": [
       "pre-commit auto remint"
     ],
-    "pre commit hook": [
-      "pre-commit hook"
-    ],
     "pre commit mirror gate": [
       "pre-commit mirror gate"
     ],
@@ -88278,6 +88444,9 @@
     ],
     "prepare commit msg stamper": [
       "prepare-commit-msg stamper"
+    ],
+    "prepare exit code 2": [
+      "prepare exit code 2"
     ],
     "prepared authorization matcher relocated": [
       "prepared authorization matcher relocated"
@@ -89321,6 +89490,12 @@
     ],
     "prose lines and bullet lists": [
       "prose lines and bullet lists"
+    ],
+    "prose menu detector": [
+      "prose menu detector"
+    ],
+    "prose option menu": [
+      "prose option menu"
     ],
     "prose option menu guard": [
       "prose option menu guard"
@@ -90468,6 +90643,9 @@
     ],
     "questions anchor un nesting": [
       "questions anchor un-nesting"
+    ],
+    "queued operator answers": [
+      "queued operator answers"
     ],
     "quick check failure unreachable repair": [
       "quick_check failure unreachable repair"
@@ -93384,6 +93562,9 @@
     "relaunch live proof run set": [
       "relaunch live proof run set"
     ],
+    "relaunch log": [
+      "relaunch.log"
+    ],
     "relaunch loop after phase 009": [
       "relaunch loop after phase 009"
     ],
@@ -93422,6 +93603,9 @@
     ],
     "relaunch prepare claim": [
       "relaunch prepare claim"
+    ],
+    "relaunch record": [
+      "relaunch record"
     ],
     "relaunch record no handoff field": [
       "relaunch record no handoff field"
@@ -104526,6 +104710,9 @@
     "session handover fixtures": [
       "session handover fixtures"
     ],
+    "session handover goal packet": [
+      "SESSION_HANDOVER_GOAL_PACKET"
+    ],
     "session handover hook": [
       "session handover hook"
     ],
@@ -104539,6 +104726,9 @@
     "session handover pi opencode codex": [
       "session handover pi opencode codex"
     ],
+    "session handover prepare": [
+      "session-handover prepare"
+    ],
     "session handover rename": [
       "session handover rename"
     ],
@@ -104551,8 +104741,17 @@
     "session handover rename tasks": [
       "session handover rename tasks"
     ],
+    "session handover runtime matrix": [
+      "session handover runtime matrix"
+    ],
+    "session handover state files": [
+      "session handover state files"
+    ],
     "session handover tests": [
       "session handover tests"
+    ],
+    "session handover troubleshooting": [
+      "session handover troubleshooting"
     ],
     "session handover vibe": [
       "session-handover-vibe"
@@ -120328,6 +120527,9 @@
     "stop hook metadata patch": [
       "stop-hook metadata patch"
     ],
+    "stop hook option menu": [
+      "stop hook option menu"
+    ],
     "stop hook producer metadata": [
       "stop hook producer metadata"
     ],
@@ -128067,6 +128269,9 @@
     ],
     "typescript formatting standards": [
       "typescript formatting standards"
+    ],
+    "typescript hook flags facade removal": [
+      "typescript hook flags facade removal"
     ],
     "typescript import ordering": [
       "typescript import ordering"

@@ -1,0 +1,1 @@
+the Cursor preflight, MCP route and Task guards still answer a normal payload

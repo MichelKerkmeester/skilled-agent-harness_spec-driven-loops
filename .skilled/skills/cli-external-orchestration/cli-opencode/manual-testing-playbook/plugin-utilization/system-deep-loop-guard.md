@@ -1,7 +1,7 @@
 ---
 title: "CO-052 -- system-deep-loop-guard live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-deep-loop-guard plugin for CO-052. It focuses on the task-dispatch guard that refuses a deep-loop dispatch whose declared mode the target agent does not have."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # CO-052 -- system-deep-loop-guard live utilization on OpenCode 1 and 2
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CO-052` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Setup: confirm the plugin at `.opencode/plugins/system-deep-loop-guard.js`, its core at `.opencode/hooks/task-dispatch/lib/dispatch-guard.cjs`, and the registry at `.opencode/skills/system-deep-loop/mode-registry.json` exist. Export `AI_SESSION_CHILD=1` and `SYSTEM_DEEP_LOOP_GUARD_REJECT=1`.
+1. Setup: confirm the plugin at `.opencode/plugins/system-deep-loop-guard.js`, its core at `.opencode/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs`, and the registry at `.opencode/skills/system-deep-loop/mode-registry.json` exist. Export `AI_SESSION_CHILD=1` and `SYSTEM_DEEP_LOOP_GUARD_REJECT=1`.
 2. v1 run: run the runner with `v1`, the name `deep-loop-guard`, and the v1 prompt naming `task`.
 3. v1 check: read the tool call from the events file and confirm the error text.
 4. v2 run: run the runner with `v2`, the same name, and the v2 prompt naming `subagent`.
@@ -84,7 +84,7 @@ jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state
 | File | Role |
 |---|---|
 | `.opencode/plugins/system-deep-loop-guard.js` | The plugin under test: `tool.execute.before` guard for deep-loop dispatches |
-| `.opencode/hooks/task-dispatch/lib/dispatch-guard.cjs` | Core dispatch guard and mode-mismatch decision |
+| `.opencode/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs` | Core dispatch guard and mode-mismatch decision |
 | `.opencode/skills/system-deep-loop/mode-registry.json` | Registry that maps each target agent to its declared modes |
 
 ---

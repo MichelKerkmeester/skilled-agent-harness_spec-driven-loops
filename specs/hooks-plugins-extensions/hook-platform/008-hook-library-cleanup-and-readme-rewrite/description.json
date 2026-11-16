@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite",
+  "description": "A person who opens `.skilled/hooks/` to learn which hook does what meets four obstacles",
+  "keywords": [
+    "person",
+    "opens",
+    "skilled",
+    "hooks",
+    "learn",
+    "hook",
+    "meets",
+    "four",
+    "obstacles"
+  ],
+  "lastUpdated": "2026-11-16T07:03:33.326Z",
+  "specId": "008",
+  "folderSlug": "hook-library-cleanup-and-readme-rewrite",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

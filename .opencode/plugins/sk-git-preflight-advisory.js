@@ -16,7 +16,7 @@ import { join } from 'node:path';
 import {
   evaluate,
   readHardRules,
-} from '../hooks/dispatch/lib/dispatch-rule-checks.mjs';
+} from '../hooks/cli-dispatch/lib/dispatch-rule-checks.mjs';
 import { createGitContext } from '../skills/sk-git/scripts/lib/git-context.mjs';
 import { GIT_CHECKS, GIT_SHAPE } from '../skills/sk-git/scripts/lib/git-rule-checks.mjs';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';

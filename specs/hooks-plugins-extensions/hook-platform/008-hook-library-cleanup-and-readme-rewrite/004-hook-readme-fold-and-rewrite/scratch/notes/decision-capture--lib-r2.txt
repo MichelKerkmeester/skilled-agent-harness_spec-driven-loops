@@ -1,0 +1,4 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: write: "The queue sits under `.skilled/skills/.state/decision-capture` at the nearest Git root, in a folder named by a hash of that root."
+   - Defect 2: restore the error path. Write: "`appendRecords` returns counts for a repeated key instead of throwing. Any other queue or lock failure throws to the calling adapter."
+   - Defect 3: drop the word "older". Write: "`readQueue` reads the project's hashed folder and the `decision-capture` folder above it, then drops a duplicate key."

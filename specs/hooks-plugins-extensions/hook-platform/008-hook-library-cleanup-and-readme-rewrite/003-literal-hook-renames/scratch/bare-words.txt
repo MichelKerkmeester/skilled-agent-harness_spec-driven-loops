@@ -1,0 +1,23 @@
+# Bare-word verdicts (T034). One line per mention read. "folder" lines were renamed, "concern key" and "prose" lines stay.
+README.md:1166 `dispatch`, `completion`, `task-dispatch` | folder | the core list names the folders under .skilled/hooks/ (it already says codex-global-hooks-check) | renamed to cli-dispatch, completion-evidence, subagent-dispatch-guard
+README.md:1166 `ask-surface` | folder named wrongly before this phase (the folder is ask-surface-guard) | out of scope, reported at close
+README.md:1141 "completion-evidence nudge" | prose, present at HEAD | unchanged
+.skilled/hooks/coverage-rationale.md:47 `completion`, `dispatch` | folder | the list names the same things the section headings do, and the headings read "folder on" | renamed
+.skilled/hooks/coverage-rationale.md:77 heading `task-dispatch` | folder | "folder on all but codex" | renamed to subagent-dispatch-guard
+.skilled/hooks/injection-contract.md:321 `dispatch`, `task-dispatch` | folder | the list names cores by folder (classifier-injection-screen, not injection-screen) | renamed
+.skilled/hooks/README.md:46,52,55 `completion`, `dispatch`, `task-dispatch` | concern key | kill-switch table, column "Concern" | unchanged
+.skilled/hooks/README.md:96,100 `dispatch`, `task-dispatch` | concern key | column "Concern", same table uses ask-surface | unchanged
+.skilled/hooks/README.md:227,233 `dispatch`, `task-dispatch` | concern key | column "Concern" | unchanged
+.skilled/hooks/README.md:323,326,341 `completion`, `dispatch`, `task-dispatch` | concern key | coverage matrix, column "Concern" | unchanged
+.skilled/hooks/README.md:265,268 "dispatch-audit", "dispatch adapter suites" | prose in a command comment | unchanged
+.skilled/hooks/shared/README.md:23,49,107 `completion`, `dispatch`, `task-dispatch` | concern key | the resolver's concern list and flag table | unchanged
+.skilled/hooks/cli-dispatch/README.md:161 "the `dispatch` concern" | concern key | unchanged
+.skilled/hooks/completion-evidence/README.md:120 "the `completion` concern" | concern key | unchanged
+.skilled/hooks/subagent-dispatch-guard/README.md:109 isHookEnabled('task-dispatch') | concern key | unchanged
+.opencode/plugins/README.md:58 `task-dispatch` | concern key | plugin table column names the concern | unchanged
+isHookEnabled('task-dispatch') / isEnabled('task-dispatch') in .vibe/plugins/repo-guards/deep-loop-guard.mjs:96, .opencode/plugins/system-deep-loop-guard.js:76 and six adapters under subagent-dispatch-guard/ | concern key | unchanged
+.skilled/hooks/shared/hook-flags.cjs:95 "task-dispatch" | concern key | unchanged
+.env.example:302, ENV-REFERENCE.md:83 "task-dispatch warnings and denials" | prose describing the switch | unchanged
+.pi/README.md:43, cli-codex hook-contract.md:132, system-spec-kit runtime/hooks/cursor/README.md:57, feature-catalog.md:76 "task-dispatch guard" | prose | unchanged
+system-deep-loop behavior-benchmark scenarios and framework.md "task-dispatch evidence", "task-dispatch line" | prose about a benchmark signal, not this hook | unchanged
+Three `dispatch/spawn` comment lines in post-edit-quality/{claude,codex,devin}/post-edit-quality.cjs | prose in a comment | unchanged

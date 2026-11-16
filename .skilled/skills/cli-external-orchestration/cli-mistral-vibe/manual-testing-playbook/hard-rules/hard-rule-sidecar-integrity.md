@@ -1,7 +1,7 @@
 ---
 title: "VIB-HR-002 -- Hard-rule sidecar integrity"
 description: "This scenario validates that the Vibe hard-rule sidecar parses and still carries the seven fail-closed rule ids at error severity."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # VIB-HR-002 -- Hard-rule sidecar integrity
@@ -85,7 +85,7 @@ node -e 'const r=require("./.skilled/skills/cli-external-orchestration/cli-mistr
 | File | Role |
 |---|---|
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json` | The sidecar under test |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | The evaluator that reads the sidecar and implements each check |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | The evaluator that reads the sidecar and implements each check |
 
 ---
 

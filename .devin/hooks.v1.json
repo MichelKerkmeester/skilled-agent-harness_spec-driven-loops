@@ -74,7 +74,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/cli-dispatch/devin/dispatch-preflight-lint.mjs'",
           "timeout": 5
         },
         {
@@ -114,7 +114,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/task-dispatch/devin/task-dispatch-guard.cjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/subagent-dispatch-guard/devin/task-dispatch-guard.cjs'",
           "timeout": 5
         }
       ]
@@ -156,7 +156,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/cli-dispatch/devin/dispatch-audit-posttooluse.mjs'",
           "timeout": 5
         }
       ]
@@ -176,7 +176,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/decision-capture/devin/decision-capture-posttooluse.mjs'",
           "timeout": 5
         }
       ]

@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-handover-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.29.0
+version: 1.0.30.0
 id: session-handover-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -193,12 +193,12 @@ try {
   });
   const context = childProcess.spawnSync(
     process.execPath,
-    ['.skilled/hooks/session-handover/claude/context-nudge.mjs'],
+    ['.skilled/hooks/session-handover/claude/handover-context-nudge.mjs'],
     { cwd: repo, env, input: payload, encoding: 'utf8' }
   );
   const stop = childProcess.spawnSync(
     process.execPath,
-    ['.skilled/hooks/session-handover/claude/stop-arm.mjs'],
+    ['.skilled/hooks/session-handover/claude/handover-stop-arm.mjs'],
     { cwd: repo, env, input: payload, encoding: 'utf8' }
   );
   assert.equal(context.status, 0);
@@ -659,7 +659,7 @@ note="$SESSION_HANDOVER_REPO_ROOT/.skilled/skills/.state/session-handover/handof
 printf -- '---\nstatus: open\nsession_id: %s\nloop_id: %s\nruntime: claude\ncwd: %s\nspec_folder: \ncreated_at: 2026-01-01T00:00:00Z\n---\n## Goal\nProbe the withdraw path\n## Done\nNothing.\n## Remaining work\nNothing.\n## In-flight state\nNothing.\n' "$sid" "$SKILLED_LOOP_ID" "$sandbox" > "$note"
 
 check() { if eval "$2"; then echo "PASS: $1"; else echo "FAIL: $1"; exit 1; fi; }
-prompt() { printf '{"hook_event_name":"UserPromptSubmit","session_id":"%s","cwd":"%s","prompt":"%s"}' "$sid" "$sandbox" "$1" | node "$hooks/claude/context-nudge.mjs"; }
+prompt() { printf '{"hook_event_name":"UserPromptSubmit","session_id":"%s","cwd":"%s","prompt":"%s"}' "$sid" "$sandbox" "$1" | node "$hooks/claude/handover-context-nudge.mjs"; }
 arm() { node -e "require('$hooks/lib/relaunch-core.cjs').arm({loopId: process.env.SKILLED_LOOP_ID, cwd: '$sandbox'})"; }
 
 cli prepare --handoff "$note" --session "$sid" --runtime claude > /dev/null
@@ -1002,9 +1002,9 @@ Capture each command exit code. Save the tmux pane, handoff note path and status
 
 | File | Role |
 |---|---|
-| .skilled/hooks/session-handover/claude/context-nudge.mjs | Reads context usage, emits the threshold and claim-seed context and withdraws a deferred or armed hand-over on an operator prompt. |
-| .skilled/hooks/session-handover/claude/stop-arm.mjs | Arms a matching pending record on Stop. |
-| .skilled/hooks/session-handover/claude/compact-pointer.mjs | After a compaction, resets the nudge level and points the session at its open note. |
+| .skilled/hooks/session-handover/claude/handover-context-nudge.mjs | Reads context usage, emits the threshold and claim-seed context and withdraws a deferred or armed hand-over on an operator prompt. |
+| .skilled/hooks/session-handover/claude/handover-stop-arm.mjs | Arms a matching pending record on Stop. |
+| .skilled/hooks/session-handover/claude/handover-compact-pointer.mjs | After a compaction, resets the nudge level and points the session at its open note. |
 | .skilled/hooks/session-handover/lib/killer.cjs | Waits for idle or timeout and signals the Claude process. |
 | .skilled/hooks/session-handover/bin/session-handover.cjs | Prepares and updates handoff state, and prints the hop history. |
 | .skilled/hooks/session-handover/lib/hop-history.cjs | Records each hop event and sends the opt-in hand-over notice. |

@@ -1,1 +1,1 @@
-../../.skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs
+../../.skilled/hooks/subagent-dispatch-guard/claude/fable-subagent-guard.mjs

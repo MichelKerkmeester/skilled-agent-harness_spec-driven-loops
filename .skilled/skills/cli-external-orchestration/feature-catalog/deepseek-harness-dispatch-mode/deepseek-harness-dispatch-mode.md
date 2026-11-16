@@ -7,7 +7,7 @@ trigger_phrases:
   - "dsh headless"
   - "delegate to dsh"
   - "cli-deepseek-harness"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # DeepSeek Harness Dispatch Mode (dsh)
@@ -50,15 +50,15 @@ The LLM Gateway route answered a keyed run on 2026-11-06 with exit 0 and a `comp
 | `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json` | Shared | The thirteen blocking dsh dispatch rules the rule engine evaluates. |
 | `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/cli-reference.md` | Shared | The version pin, the headless option set, the launcher flags and the exit contract. |
 | `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md` | Shared | The closed two-route roster, the route patch shape and what stays unconfirmed. |
-| `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` | Shared | Classifies the dsh headless forms as `direct cli-deepseek-harness`. |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared | Implements one check per dsh hard rule. |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs` | Shared | Classifies the dsh headless forms as `direct cli-deepseek-harness`. |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | Shared | Implements one check per dsh hard rule. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | The dsh headless forms resolve to the packet, and management, help, version and config-dump commands do not. |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Node test | A complete isolated dispatch passes every dsh rule, and each rule refuses its own violating command. |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs` | Automated test | The dsh headless forms resolve to the packet, and management, help, version and config-dump commands do not. |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` | Node test | A complete isolated dispatch passes every dsh rule, and each rule refuses its own violating command. |
 
 ---
 

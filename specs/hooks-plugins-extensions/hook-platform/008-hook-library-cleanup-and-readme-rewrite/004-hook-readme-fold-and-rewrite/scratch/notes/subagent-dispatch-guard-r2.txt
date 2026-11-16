@@ -1,0 +1,8 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1, the DIRECTORY TREE: the `opencode/` link target is `../../../../.opencode/plugins/system-deep-loop-guard.js`, with four `../`. Fix the arrow. Also show a `README.md` under `claude/`, `cursor/`, `devin/`, `dsh/`, `lib/`, `pi/` and `tests/`, which keep theirs. `opencode/` holds only a link and loses its README, so show none there.
+   - Defect 2: "Loop-repeat counters and warning logs ... Adapters write them, never the core" is wrong. The core writes the loop-repeat counters through `recordLoopDispatch` and `writeLoopStateAtomic`. Write: "The core writes the loop-repeat counters, and the adapters append the warning log, so all runtimes share one bounded log."
+   - Defect 3: "A switch is on when its value is `1`, `true`, `yes` or `on`, in any case." Write: "A disable switch is on when its value is `1`, `true`, `yes` or `on`, in any case. The two reject switches act only on exactly `1`."
+   - Defect 4: "`MK_TASK_DISPATCH_DISABLED` is an older name for the same concern switch." is rename history. Write: "The resolver also accepts `MK_TASK_DISPATCH_DISABLED` as an alias for this switch."
+   - Defect 5: restore that OpenCode is the only runtime that runs the state-directory sweep, on `session.created` (`sweepStaleLoopGuardStates`).
+   - Defect 6, Cursor: "It forwards its payload unchanged" is wrong. Write: "It forwards `tool_input` unchanged, with `cwd` taken from `workspace_roots[0]`, and runs the Claude adapter with a 5-second timeout."
+   - Defect 7, Pi: restore that it loads the core from `../lib/`, and that the longer fallback path resolves only through the test alias.
