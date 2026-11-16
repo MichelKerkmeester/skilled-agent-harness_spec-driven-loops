@@ -177,3 +177,48 @@ describe('install-codex-hooks leaves a user-global file without repo-owned entri
     }
   });
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. A LINKED WORKTREE
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The fixture's git commands run with no hooks, so the operator's own global hooks
+// never fire inside the temp repository.
+function addLinkedWorktree(fixture) {
+  const git = (...args) => execFileSync(
+    'git',
+    ['-c', 'core.hooksPath=/dev/null', '-c', 'user.name=fixture', '-c', 'user.email=fixture@example.invalid', ...args],
+    { stdio: 'ignore', env: GIT_FREE_ENV },
+  );
+  git('-C', fixture.repo, 'commit', '-q', '--allow-empty', '-m', 'init');
+  const worktree = path.join(fixture.root, 'linked');
+  git('-C', fixture.repo, 'worktree', 'add', '-q', '--detach', worktree);
+  return { ...fixture, repo: worktree };
+}
+
+// The anchor guard keeps an install from rewriting the user-global file against a
+// worktree that may soon be removed. A check writes nothing, so it runs from a
+// worktree and reports the same drift it would report from the primary checkout.
+describe('install-codex-hooks from a linked worktree', () => {
+  test('a check runs and reports drift, and an install still refuses', () => {
+    const fixture = addLinkedWorktree(buildFixture(LAYOUTS[1], '.skilled', '.skilled'));
+    try {
+      const drift = runInstaller(fixture, ['--check']);
+      assert.equal(drift.status, 1, drift.stdout);
+      assert.match(drift.stderr, /install-codex-hooks: DRIFT .*\(duplicate=1\)/);
+
+      writeHooks(fixture.targetPath, [{ hooks: [{ type: 'command', command: THIRD_PARTY_COMMAND, timeout: 3 }] }]);
+      const before = fs.readFileSync(fixture.targetPath, 'utf8');
+      const clean = runInstaller(fixture, ['--check']);
+      assert.equal(clean.status, 0, clean.stderr);
+      assert.match(clean.stdout, /install-codex-hooks: OK/);
+
+      const install = runInstaller(fixture, []);
+      assert.equal(install.status, 1, install.stdout);
+      assert.match(install.stderr, /Refusing to anchor hooks at linked worktree/);
+      assert.equal(fs.readFileSync(fixture.targetPath, 'utf8'), before);
+    } finally {
+      fs.rmSync(fixture.root, { recursive: true, force: true });
+    }
+  });
+});

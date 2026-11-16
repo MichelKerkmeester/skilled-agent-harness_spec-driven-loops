@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes",
+  "parent_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "codex check and advisory fixes",
+      "phase 6 codex check and advisory fixes",
+      "codex hook check worktree",
+      "session start advisory ok line",
+      "codex check and advisory fixes plan",
+      "codex check and advisory fixes tasks",
+      "006-codex-check-and-advisory-fixes operator decisions",
+      "codex check and advisory fixes implementation summary"
+    ],
+    "key_topics": [
+      "codex",
+      "check",
+      "advisory",
+      "phase",
+      "hook",
+      "worktree",
+      "session",
+      "start",
+      "line",
+      "plan",
+      "tasks",
+      "006-codex-check-and-advisory-fixes"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/bin/install-codex-hooks.mjs",
+      ".skilled/bin/tests/install-codex-hooks-source-root.test.cjs",
+      ".skilled/hooks/session-lifecycle/tests/dsh-session-lifecycle.test.mjs",
+      ".skilled/hooks/session-lifecycle/tests/pi-session-start-advisories.test.ts",
+      ".opencode/plugins/codex-hooks-watchdog.js",
+      ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      ".skilled/skills/system-spec-kit/runtime/vitest.config.ts",
+      ".skilled/hooks/codex-global-hooks-check/README.md",
+      ".skilled/hooks/session-lifecycle/README.md",
+      ".skilled/hooks/session-lifecycle/tests/README.md",
+      "runtime/vitest.config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks.mjs",
+        "kind": "file",
+        "path": ".skilled/bin/install-codex-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks-source-root.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/install-codex-hooks-source-root.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-session-lifecycle.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/tests/dsh-session-lifecycle.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "pi-session-start-advisories.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/session-lifecycle/tests/pi-session-start-advisories.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "codex-hooks-watchdog.js",
+        "kind": "code",
+        "path": ".opencode/plugins/codex-hooks-watchdog.js",
+        "source": "derived"
+      },
+      {
+        "name": "session-start-advisories.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-start-advisories.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/codex-global-hooks-check/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`install-codex-hooks.mjs --check` refuses to run in a linked worktree and exits 1, so Claude, Cursor, Devin, OpenCode, Pi and DSH report Codex hook drift at the start of every worktree session while the target file is clean",
+    "created_at": "2026-11-16T09:16:21Z",
+    "last_save_at": "2026-11-16T09:52:16.327Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:62e8f3931a7e050fe71ab04134d7c95a6d0fff141b40d5fec4f0884da02f0f96",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7ab7be701ce5d47203a004c38a6dde7b2a63f4413ffc9ee35f51835463245d2e",
+      "plan.md": "4251bd0bd47110d68510c4325a062fa223ac36328edff793e95f68482c169f1e",
+      "tasks.md": "ed64358bea76cc0191b05aadb2f5d13ba8d4fa628b93c8adf8f620e6a8c2b302",
+      "decision-record.md": "ea2020782858771389cf7303bd1ca0f6b65c5fb38ed6897b85c22166b2287941",
+      "implementation-summary.md": "a60c80206891b0e1d8e25fb8a35798826add614c517c146674ec0f77dbf5abba"
+    },
+    "last_active_at": null
+  }
+}

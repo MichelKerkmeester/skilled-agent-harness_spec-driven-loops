@@ -51,7 +51,8 @@
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/045-vibe-automatic-handover",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/046-vibe-history-locator",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/047-vibe-handover-hardening",
-    "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes"
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -254,7 +255,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-15T21:25:54.143Z",
+    "last_save_at": "2026-11-16T09:25:41.528Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -262,13 +263,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3cfbb3aeabded66ba9f70a819ea657f9ecec7e17f22fe3ae6ecc82ffa32ab8a0",
+    "source_fingerprint": "sha256:24aca1d38915649658aad856c1c34c9a85cd5ea6718d201e0e9be7e6bf4c84c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bcf278e6775ae9bcbff892afbf2665d2eb283fcf5a92c3b014b946d4bcd9b38c",
+      "spec.md": "71ae97dcd8fcddc7ae5b52c1a2096d90aec94b4fb82750659472d000325808d5",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
-    "last_active_at": "2026-11-15T21:25:54.143Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment",
+    "last_active_at": "2026-11-16T09:23:10.406Z"
   }
 }

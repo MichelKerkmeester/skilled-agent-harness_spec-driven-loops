@@ -16,7 +16,10 @@ import { afterAll, describe, expect, it } from 'vitest';
 const SCRIPT = path.resolve(__dirname, '..', 'runtime-mirrors', 'sync-hook-registrations.cjs');
 const REGISTRY = path.resolve(__dirname, '..', 'runtime-mirrors', 'hook-registry.json');
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
-const { renderCursorCommand } = createRequire(__filename)(SCRIPT) as { renderCursorCommand: (config: { defaultMessage: string }, binding: Record<string, unknown>) => string };
+const { renderCursorCommand, renderProjectDirCommand } = createRequire(__filename)(SCRIPT) as {
+  renderCursorCommand: (config: { defaultMessage: string }, binding: Record<string, unknown>) => string;
+  renderProjectDirCommand: (runtime: string, config: Record<string, unknown>, binding: Record<string, unknown>) => string;
+};
 const FILES = ['.claude/settings.json', '.codex/hooks.json', '.cursor/hooks.json', '.devin/hooks.v1.json'];
 
 function run(root: string, ...args: string[]): { status: number | null; stdout: string; stderr: string } {
@@ -125,7 +128,32 @@ describe('sync-hook-registrations.cjs', () => {
       expect(enforce!.bindings[runtime]?.length, runtime).toBeGreaterThan(0);
     }
     const bindingCount = registry.hooks.reduce((total, hook) => total + Object.values(hook.bindings).reduce((sum, list) => sum + list.length, 0), 0);
-    expect(bindingCount).toBe(118);
+    expect(bindingCount).toBe(119);
+  });
+
+  it('guards a runtime that names a required tree, so its user-level copy is quiet elsewhere', () => {
+    const registry = JSON.parse(fs.readFileSync(REGISTRY, 'utf8')) as { runtimes: Record<string, Record<string, unknown>> };
+    expect(registry.runtimes.claude.requireTree).toBe('.skilled');
+    expect(registry.runtimes.codex.requireTree).toBeUndefined();
+
+    const binding = { event: 'PreToolUse', runner: 'node', script: '.skilled/hooks/missing/claude/guard.mjs', fallback: 'envelope' };
+    const guarded = renderProjectDirCommand('claude', registry.runtimes.claude, binding);
+    const unguarded = renderProjectDirCommand('codex', registry.runtimes.codex, binding);
+    expect(guarded).toContain('{ [ -e .skilled ] || exit 0; } && node .skilled/hooks/missing/claude/guard.mjs');
+    expect(unguarded).not.toContain('[ -e .skilled ]');
+
+    const empty = fs.mkdtempSync(path.join(tmpdir(), 'hook-guard-'));
+    try {
+      const quiet = spawnSync('/bin/sh', ['-c', guarded], { encoding: 'utf8', env: { ...process.env, CLAUDE_PROJECT_DIR: empty } });
+      expect(quiet.status).toBe(0);
+      expect(quiet.stdout + quiet.stderr).toBe('');
+
+      fs.mkdirSync(path.join(empty, '.skilled'));
+      const drift = spawnSync('/bin/sh', ['-c', guarded], { encoding: 'utf8', env: { ...process.env, CLAUDE_PROJECT_DIR: empty } });
+      expect(drift.stdout).toContain('mkHookDrift');
+    } finally {
+      fs.rmSync(empty, { recursive: true, force: true });
+    }
   });
 
   it('detaches a background binding on Cursor the way the project-dir runtimes do', () => {

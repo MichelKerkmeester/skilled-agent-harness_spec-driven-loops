@@ -1,0 +1,63 @@
+TASK: let a re-pin replace an unowned link with the folder the new pin ships at that path.
+Two files change. Do the three steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 3. File: R/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+Append the block below at the END of the file, after one blank line. Change nothing else in the file.
+
+BLOCK TO APPEND:
+test('a re-pin replaces an unowned link with the folder the new pin ships there', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: {
+      '.skilled/changelog/target/v1.md': 'target v1\n',
+      '.skilled/changelog/alias': { link: 'target' },
+    },
+    newEntries: {
+      '.skilled/changelog/alias': null,
+      '.skilled/changelog/alias/v1.md': 'alias v1\n',
+      '.skilled/changelog/alias/v2.md': 'alias v2\n',
+    },
+  });
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  assert.match(result.output, /^RESULT: PASSED$/m);
+  assert.equal(fs.lstatSync(path.join(fixture.tree, '.skilled/changelog/alias')).isDirectory(), true);
+  assert.equal(read(fixture.tree, '.skilled/changelog/alias/v1.md'), 'alias v1\n');
+  assert.equal(read(fixture.tree, '.skilled/changelog/alias/v2.md'), 'alias v2\n');
+  // The link's old target is not the re-pin's to touch.
+  assert.equal(read(fixture.tree, '.skilled/changelog/target/v1.md'), 'target v1\n');
+});
+
+test('a re-pin still refuses a new upstream file that a project link already reaches', (t) => {
+  const fixture = createRepinFixture(t, {
+    newEntries: { '.skilled/changelog/alias/v1.md': 'alias v1\n' },
+  });
+  writeFile(fixture.tree, '.skilled/changelog/target/v1.md', 'project v1\n');
+  fs.symlinkSync('target', path.join(fixture.tree, '.skilled/changelog/alias'));
+  const before = treeDigest(fixture.tree);
+
+  const result = fixture.repin();
+  assert.equal(result.code, 2, result.output);
+  assert.match(result.output, /unowned \.skilled\/changelog\/alias\/v1\.md is not in the old pin, and the tree holds its own copy there/);
+  assert.equal(treeDigest(fixture.tree), before);
+});
+
+STEP 2 of 3. Run this now, before the engine changes, and report what it printed:
+cd R && node --test --test-name-pattern='re-pin (replaces an unowned link|still refuses a new upstream file)' .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+Expected now: "pass 1" and "fail 1", and the failure output contains "holds its own copy".
+Whatever it prints, continue to STEP 3 and include the counts in your handback.
+
+STEP 3 of 3. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs, inside function unownedDrift.
+OLD (one line, it appears once in the file):
+    if (!pathExists(filePath)) continue;
+NEW (replace that one line with these four lines, same indentation):
+    // The copy deletes a link before it writes below it, so what the tree shows
+    // through that link is the link target's file, never a copy at this path.
+    if (isUnderAny(relativePath, touched.delete)) continue;
+    if (!pathExists(filePath)) continue;
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs
+Expected: the summary shows "fail 0". Report the pass and fail counts.

@@ -100,7 +100,12 @@ function renderProjectDirCommand(runtime, runtimeConfig, binding) {
       break;
     default: throw new Error(`unknown fallback "${binding.fallback}" on ${runtime} ${binding.script}`);
   }
-  return `bash -c 'cd "\${${runtimeConfig.projectDirEnv}:-$PWD}" && ${inner}'`;
+  // A runtime whose hooks may also be copied into its user-level settings names
+  // the tree they need. The copy then exits quietly in a project without that
+  // tree, and because the project file carries the same guard, the two strings
+  // stay identical and the host still runs each hook once.
+  const guard = runtimeConfig.requireTree ? `{ [ -e ${runtimeConfig.requireTree} ] || exit 0; } && ` : '';
+  return `bash -c 'cd "\${${runtimeConfig.projectDirEnv}:-$PWD}" && ${guard}${inner}'`;
 }
 
 /** Cursor runs the command without a project-dir wrapper and answers with its own permission envelope. */

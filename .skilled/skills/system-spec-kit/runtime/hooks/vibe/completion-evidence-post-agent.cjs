@@ -105,7 +105,10 @@ async function buildCompletionPart(payload, {
 } = {}) {
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return null;
   if (payload.hook_event_name !== 'post_agent') return null;
-  if (enabled(CONCERN, env) === false) return null;
+  // The flag reader skips the hook-flags.env file whenever it is handed an
+  // environment, so only an injected one is passed: a test then decides the
+  // switch alone, and a live session still honours a switch saved to the file.
+  if (enabled(CONCERN, env === process.env ? undefined : env) === false) return null;
 
   const specFolder = typeof env[SPEC_FOLDER_ENV] === 'string' ? env[SPEC_FOLDER_ENV].trim() : '';
   if (!specFolder) return null;

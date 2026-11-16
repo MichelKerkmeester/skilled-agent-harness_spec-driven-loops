@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget",
+  "description": "Phase 13: devin-compaction-fallback-budget",
+  "keywords": [
+    "phase",
+    "devin-compaction-fallback-budget"
+  ],
+  "lastUpdated": "2026-11-16T10:23:25.570Z",
+  "specId": "013",
+  "folderSlug": "devin-compaction-fallback-budget",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_11-23__fixed-the-red-spec-kit-check-runtime-case-the.md"
+  ]
+}

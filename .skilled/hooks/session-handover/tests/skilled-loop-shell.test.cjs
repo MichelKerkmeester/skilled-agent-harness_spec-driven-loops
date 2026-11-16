@@ -31,6 +31,7 @@ const INTERACTIVE = {
   codex: [[], ['-m', 'o3', 'explain this repo'], ['resume', '--last'], ['-p', 'work-profile']],
   devin: [[], ['--model', 'opus'], ['--', 'fix the bug']],
   cursor: [[], ['agent', 'hello'], ['--model', 'gpt-5', 'hello'], ['resume']],
+  vibe: [[], ['fix the failing test'], ['-c'], ['--resume'], ['--agent', 'accept-edits']],
 };
 
 const PASSTHROUGH = {
@@ -43,6 +44,7 @@ const PASSTHROUGH = {
   codex: [['exec', 'hi'], ['e', 'hi'], ['review'], ['login'], ['--version'], ['-V'], ['--help']],
   devin: [['-p', 'hi'], ['--print'], ['doctor'], ['some/path'], ['-V'], ['--cloud']],
   cursor: [['-p', 'hi'], ['--print'], ['login'], ['status'], ['--list-models'], ['-v']],
+  vibe: [['-p', 'hi'], ['--prompt-file', 'task.txt'], ['--version'], ['-h'], ['mcp', 'list'], ['config'], ['update'], ['--setup']],
 };
 
 function sandbox(t) {

@@ -123,6 +123,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 3 | 003-literal-hook-renames/ | Three folders and 16 files get names that state their feature. One rename at a time, each followed by the registry edit, both sync runs and the hand-written references. | Complete |
 | 4 | 004-hook-readme-fold-and-rewrite/ | Fold 81 symlink-only leaf READMEs, rewrite the rest to the skill-README voice, author two missing feature READMEs and split the session-handover README. | Complete |
 | 5 | 005-closeout-follow-up-fixes/ | Fix the no-behavior-change findings reported at the phase 4 close: the actionlint path filter, stale citations and comments, doc-checker markers and the dead Pi import fallbacks. | Complete |
+| 6 | 006-codex-check-and-advisory-fixes/ | Let the Codex hook check run in a linked worktree, make Pi and DSH show it only when it fails, and remove the spec-kit Vitest alias if the suites prove it unused. | Complete |
 
 ### Phase Transition Rules
 
@@ -139,6 +140,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 002-codex-hook-check-merge | 003-literal-hook-renames | `codex-global-hooks-check/` holds both checks, the two old folders are gone and both concern keys still resolve. | `sync-hook-registrations.cjs --check` and `sync-runtime-mirrors.cjs --check` print PASS. |
 | 003-literal-hook-renames | 004-hook-readme-fold-and-rewrite | No old folder or file name remains outside `specs/`, changelogs and the relocation ledger, and the pinned README lists are rebased. | The old-name search prints nothing, both sync checks print PASS and the README parity and manifest tests pass. |
 | 004-hook-readme-fold-and-rewrite | 005-closeout-follow-up-fixes | Phase 4 is Complete and on main, and its close-out lists the findings. | `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED`. |
+| 005-closeout-follow-up-fixes | 006-codex-check-and-advisory-fixes | Phase 5 is Complete and on main, and the operator chose the phase 6 fixes. | `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED`. |
 <!-- /ANCHOR:phase-map -->
 
 ---

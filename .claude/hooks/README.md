@@ -20,7 +20,7 @@ Two compiled ESM entrypoints do not execute correctly through their symlink beca
 | ---------------------------| ----------------------------| --------------------------------|
 | `session-prime.js`        | No output                  | Full session context brief     |
 | `install-codex-hooks.mjs` | Different root resolution  | Authoritative check behavior   |
-| Other 26 scripts          | Matches real-path behavior | Authoritative runtime behavior |
+| Other 31 scripts          | Matches real-path behavior | Authoritative runtime behavior |
 
 Empty output can be a normal allow decision. Compare a mirror invocation with its real target before treating silence as failure.
 
@@ -43,7 +43,7 @@ allow-count 26 scripts | the 28 links in the overview minus the two scripts name
 | Injection screen | `classifier-injection-screen-posttooluse.mjs` |
 | Decision capture | `decision-capture-posttooluse.mjs` |
 | Session handover | `handover-compact-pointer.mjs`, `handover-context-nudge.mjs`, `handover-stop-arm.mjs`, `handover-subagent-guard.mjs` |
-| Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs`, `git-live-follow.sh`, `git-preflight-advisory.mjs`, `git-primary-reconcile.sh`, `git-message-gate.mjs` |
+| Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs`, `sync-claude-user-hooks.mjs`, `git-live-follow.sh`, `git-preflight-advisory.mjs`, `git-primary-reconcile.sh`, `git-message-gate.mjs` |
 
 ---
 

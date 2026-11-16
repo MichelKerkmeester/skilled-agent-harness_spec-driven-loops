@@ -88,7 +88,7 @@ async function MkCodexHooksWatchdogPlugin(ctx) {
           );
         } catch (_) {
           // Non-zero exit means the user-global Codex file holds a duplicate or
-          // orphaned repo entry, or the installer refused or could not run.
+          // orphaned repo entry, or the installer could not run.
           // Record the remediation, never throw.
           appendWatchdogLog(
             projectDir,

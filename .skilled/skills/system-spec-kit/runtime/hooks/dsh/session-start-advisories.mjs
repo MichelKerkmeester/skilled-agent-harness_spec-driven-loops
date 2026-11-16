@@ -33,7 +33,8 @@ export const ADVISORY_CHECKS = Object.freeze([
     script: '.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh',
     args: ['--all'],
   },
-  { label: 'install-codex-hooks', concern: 'hook-install', command: 'node', script: '.skilled/bin/install-codex-hooks.mjs', args: ['--check'] },
+  // The installer check prints an OK line when it passes, so only a failing exit is a warning.
+  { label: 'install-codex-hooks', concern: 'hook-install', command: 'node', script: '.skilled/bin/install-codex-hooks.mjs', args: ['--check'], quietOnSuccess: true },
 ]);
 
 /**
@@ -61,6 +62,10 @@ function runAdvisoryCheck({ check, repoRoot = REPO_ROOT }) {
   }
   return new Promise((resolve) => {
     execFile(command, args, { cwd: repoRoot, encoding: 'utf8', timeout: TIMEOUT_MS, maxBuffer: MAX_BUFFER_BYTES }, (error, stdout, stderr) => {
+      if (check.quietOnSuccess === true && !error) {
+        resolve('');
+        return;
+      }
       // The scripts exit 0 by contract; a nonzero exit still carries its own warning text.
       resolve(String(stderr || stdout || error?.stderr || '').trim());
     });

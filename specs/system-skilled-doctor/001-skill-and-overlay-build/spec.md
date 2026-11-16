@@ -107,6 +107,9 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 7 | 007-doctor-ux-research/ | [Phase 7 scope] | Pending |
 | 8 | 008-overlay-first-write-checks/ | Opt-in write checks for a vendoring project: a strict `--guard` behind the manifest's `strictWrites`, `apply --adopt`, a `generated` list, a `pre-commit` check and a `root-file` line in the re-pin report | Complete |
 | 9 | 009-overlay-write-checks-follow-up/ | Follow-up from a vendoring project and a fresh review: lock takeover, link and item records, `apply --relayout`, `status --audit`, the stale root-file line, an OpenCode guard adapter and four strict-write corrections | Complete |
+| 10 | 010-fix-barter-repin-handover-items-for-overlay-engine/ | Six items from a vendoring project's re-pin: a link that became a folder, a rebased folder overlay, the stage result, a `set` on a key the new pin adds, generator-written files, the `vocabularyMirrors` host question and the history lookup package's build step | Complete |
+| 11 | 011-restore-pinned-value-when-json-entry-set-leaves-overlay/ | One item from the same vendoring project's second handover: a `set` operation removed from a `json-entry` overlay source leaves its value in the live file. Planned, not built | Pending |
+| 12 | 012-fix-barter-022-handover-items-for-doctor-scripts/ | Three items still open from the same vendoring project's first handover: a host hook form in the git setup check, `apply --adopt` under `repin.exclude` and a regenerate step named when it rewrites an owned file. Planned, not built | Pending |
 
 ### Phase Transition Rules
 
@@ -127,6 +130,9 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 006-setup-guide | 007-doctor-ux-research | [Criteria TBD] | [Verification TBD] |
 | 007-doctor-ux-research | 008-overlay-first-write-checks | None. Phase 8 builds on phases 2 to 4 and does not wait on the research | `node --test` on the overlay engine tests |
 | 008-overlay-first-write-checks | 009-overlay-write-checks-follow-up | Phase 8 is released and a vendoring project has reported on it | `node --test` on the overlay engine tests |
+| 009-overlay-write-checks-follow-up | 010-fix-barter-repin-handover-items-for-overlay-engine | A vendoring project has re-pinned past phase 9 and reported on it | `node --test` on the overlay engine tests |
+| 010-fix-barter-repin-handover-items-for-overlay-engine | 011-restore-pinned-value-when-json-entry-set-leaves-overlay | Phase 10 is released and the vendoring project has sent a second handover | `node --test` on the overlay engine tests |
+| 011-restore-pinned-value-when-json-entry-set-leaves-overlay | 012-fix-barter-022-handover-items-for-doctor-scripts | None. Phase 12 does not wait on phase 11 | `node --test` on the doctor script tests |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -601,3 +601,38 @@ test('a misused command line prints the usage and exits 2', (t) => {
     assert.match(result.output, /^usage: node overlay-engine\.cjs status/, args.join(' '));
   }
 });
+
+test('a json-entry set adds a key the document does not hold yet, and still refuses a missing parent', (t) => {
+  const fixture = createFixture(t);
+  const routerPath = path.join(fixture.tree, 'router.json');
+  const routerSeed = '{\n  "classes": {\n    "base": {\n      "keywords": ["one"]\n    }\n  }\n}\n';
+  const editEntrySet = (operationPath) => writeFile(fixture.overlayDir, 'json/router.json', JSON.stringify({
+    target: 'router.json',
+    style: { indent: 2, primitiveArrays: 'inline' },
+    operations: [{ op: 'set', path: operationPath, value: ['alpha'] }],
+  }, null, 2) + '\n');
+
+  writeFile(fixture.tree, 'router.json', routerSeed);
+  editEntrySet(['mirrors']);
+  fixture.manifest.overlays.push({
+    id: 'router-set',
+    scope: 'json-entry',
+    source: 'json/router.json',
+    destination: 'router.json',
+    pinnedSha256: sha256(Buffer.from(routerSeed)),
+  });
+  writeManifest(fixture);
+  seedState(fixture);
+  assert.deepEqual(readJson(routerPath), { classes: { base: { keywords: ['one'] } }, mirrors: ['alpha'] });
+  assert.equal(
+    fs.readFileSync(routerPath, 'utf8'),
+    '{\n  "classes": {\n    "base": {\n      "keywords": ["one"]\n    }\n  },\n  "mirrors": ["alpha"]\n}\n',
+  );
+  assert.equal(fixture.run(['apply']).output.trim(), '0 changed');
+
+  // Only the last key is added. A path through an object that is not there is a mistake.
+  editEntrySet(['absent', 'mirrors']);
+  const refused = fixture.run(['status']);
+  assert.notEqual(refused.code, 0, refused.output);
+  assert.match(refused.output, /missing key "absent"/);
+});

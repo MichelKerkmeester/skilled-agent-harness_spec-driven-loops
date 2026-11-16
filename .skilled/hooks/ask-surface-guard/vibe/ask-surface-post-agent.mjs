@@ -84,7 +84,10 @@ export function buildAskSurfacePart(payload, {
 } = {}) {
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return null;
   if (payload.hook_event_name !== 'post_agent') return null;
-  if (enabled(askCore.CONCERN, env) === false) return null;
+  // The flag reader skips the hook-flags.env file whenever it is handed an
+  // environment, so only an injected one is passed: a test then decides the
+  // switch alone, and a live session still honours a switch saved to the file.
+  if (enabled(askCore.CONCERN, env === process.env ? undefined : env) === false) return null;
 
   const session = load({
     transcriptPath: payload.transcript_path,

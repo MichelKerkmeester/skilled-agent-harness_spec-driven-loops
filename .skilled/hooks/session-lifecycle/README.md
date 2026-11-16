@@ -198,7 +198,8 @@ session-lifecycle/
               session-start-context.mjs, session-stop-context.mjs
 +-- pi/        session-compact-context.ts, session-start-advisories.ts,
               session-start-context.ts, session-stop-context.ts
-+-- tests/     README.md, dsh-session-lifecycle.test.mjs
++-- tests/     README.md, dsh-session-lifecycle.test.mjs,
+              pi-session-start-advisories.test.ts
 `-- vibe/      README.md, compaction-context.mjs, compaction-context.test.mjs,
               compaction-post-tool.mjs, compaction-post-tool.test.mjs,
               session-start.mjs, turn-end.mjs, turn-end.test.mjs,
@@ -229,6 +230,7 @@ The real code lives in `.skilled/skills/system-spec-kit/runtime/hooks/<runtime>/
 | `vibe/compaction-context.mjs` | The compaction detector. Reads the journal after a per-session watermark, writes the watermark and returns the goal slice and the open handoff pointer. |
 | `shared/hook-flags.cjs` / `shared/hook-flags.mjs` | The kill-switch resolver the adapters call through `isHookEnabled('session-lifecycle')`. |
 | `tests/dsh-session-lifecycle.test.mjs` | The DSH adapter tests. Covers the start context, the advisories, the post-compaction re-prime and the stop autosave. |
+| `tests/pi-session-start-advisories.test.ts` | The Pi advisory tests. A passing Codex hook check shows nothing, a failing one warns, and other guards still warn on a clean exit. |
 
 ---
 
@@ -275,9 +277,10 @@ Expected result: `ok`, with no module-resolution error. Repeat for `session-stop
 
 ```bash
 node --test .skilled/hooks/session-lifecycle/tests/dsh-session-lifecycle.test.mjs
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-lifecycle/tests/pi-session-start-advisories.test.ts
 ```
 
-Expected result: every test passes.
+Expected result: every test passes in both runs.
 
 ```bash
 pi --offline --approve -p "list your available tools" </dev/null

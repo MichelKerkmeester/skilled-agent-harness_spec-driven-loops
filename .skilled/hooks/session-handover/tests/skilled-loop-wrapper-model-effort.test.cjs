@@ -142,6 +142,80 @@ test('opencode 2 relaunch drops -m because its root command has no model flag', 
   assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`]);
 });
 
+test('opencode 2 relaunch carries the sender model through OPENCODE_CONFIG_CONTENT', (t) => {
+  const sandbox = createSandbox(t);
+  const model = 'llmgateway/deepseek-v4.1-flash';
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    STUB_HELP: OPENCODE_2_HELP,
+    RECORD_MODEL: model,
+  });
+  const result = runWrapper(sandbox, ['opencode', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records[0].env.OPENCODE_CONFIG_CONTENT, null);
+  assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`]);
+  assert.deepEqual(JSON.parse(records[1].env.OPENCODE_CONFIG_CONTENT), {
+    model,
+    agent: { build: { model }, plan: { model } },
+  });
+});
+
+test('opencode 2 model carry keeps the operator config text it merges into', (t) => {
+  const sandbox = createSandbox(t);
+  const base = '{"theme":"tokyonight","agent":{"build":{"temperature":0.2}}}';
+  const { recordPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    STUB_HELP: OPENCODE_2_HELP,
+    RECORD_MODEL: 'llmgateway/deepseek-v4.1-flash',
+    OPENCODE_CONFIG_CONTENT: base,
+  });
+  const result = runWrapper(sandbox, ['opencode', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records[0].env.OPENCODE_CONFIG_CONTENT, base);
+  const carried = JSON.parse(records[1].env.OPENCODE_CONFIG_CONTENT);
+  assert.equal(carried.theme, 'tokyonight');
+  assert.equal(carried.agent.build.temperature, 0.2);
+  assert.equal(carried.agent.build.model, 'llmgateway/deepseek-v4.1-flash');
+});
+
+test('opencode 2 model carry leaves config text it cannot parse untouched', (t) => {
+  const sandbox = createSandbox(t);
+  const base = '{ // the operator writes JSONC\n "theme": "tokyonight" }';
+  const { recordPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    STUB_HELP: OPENCODE_2_HELP,
+    RECORD_MODEL: 'llmgateway/deepseek-v4.1-flash',
+    OPENCODE_CONFIG_CONTENT: base,
+  });
+  const result = runWrapper(sandbox, ['opencode', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath)[1].env.OPENCODE_CONFIG_CONTENT, base);
+});
+
+test('opencode settings read the latest assistant model from the session store', (t) => {
+  const sandbox = createSandbox(t);
+  const { DatabaseSync } = require('node:sqlite');
+  const dbPath = path.join(sandbox.home, 'opencode-test.db');
+  const database = new DatabaseSync(dbPath);
+  database.exec('CREATE TABLE session_message (id TEXT, session_id TEXT, type TEXT, seq INTEGER, data TEXT)');
+  const insert = database.prepare('INSERT INTO session_message VALUES (?, ?, ?, ?, ?)');
+  const row = (providerID, id) => JSON.stringify({ model: { providerID, id, variant: 'max' } });
+  insert.run('m1', 'ses_one', 'assistant', 1, row('llmgateway', 'deepseek-v4.1-flash-1017'));
+  insert.run('m2', 'ses_one', 'assistant', 2, row('opencode-go', 'deepseek-v4-flash'));
+  insert.run('m3', 'ses_one', 'user', 3, row('ignored', 'user-row'));
+  database.close();
+  const env = { OPENCODE_DB: dbPath };
+
+  assert.equal(resolveSessionSettings({ runtime: 'opencode', sessionId: 'ses_one', env }).model,
+    'opencode-go/deepseek-v4-flash');
+  assert.equal(resolveSessionSettings({ runtime: 'opencode', sessionId: 'ses_other', env }).model, '');
+});
+
 test('opencode 2 on --server leaves the launch alone and warns the loop cannot arm', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath } = installRuntimeStub(sandbox, { STUB_HELP: OPENCODE_2_HELP });

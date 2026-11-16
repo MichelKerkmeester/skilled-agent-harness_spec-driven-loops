@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-007 -- A mid-turn compaction re-injects at the next tool call"
 description: "This scenario validates that the Vibe compaction-post-tool binding re-injects the compaction context at the tool call that follows an automatic compaction inside one turn, judged from the session journal."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # VIB-HK-007 -- A mid-turn compaction re-injects at the next tool call
@@ -16,7 +16,7 @@ This scenario pins a small-window model in the session's Vibe home, then asks a 
 
 ### Why This Matters
 
-A headless turn can compact in the middle of its work, and Vibe has no compaction event, so the goal slice, the history offer and the open handoff pointer are gone unless the binding notices the compaction at the next tool call. Only the journal shows whether the binding judged a real compaction, because the injected block rides a tool result rather than a visible message.
+A headless turn can compact in the middle of its work, and Vibe has no compaction event, so the goal slice and the open handoff pointer are gone unless the binding notices the compaction at the next tool call. Only the journal shows whether the binding judged a real compaction, because the injected block rides a tool result rather than a visible message.
 
 ---
 
@@ -27,7 +27,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Objective: verify that `compaction-post-tool` re-injects the compaction context at the first tool call after an automatic compaction inside one turn.
 - Real user request: `Read big.txt with your file read tool, then read small.txt the same way. Only after both reads, write small.txt's only line into a new file named answer.txt with your file write tool, then reply with that line.`
 - Prompt: `Read big.txt with your file read tool, then read small.txt the same way. Only after both reads, write small.txt's only line into a new file named answer.txt with your file write tool, then reply with that line.`
-- Expected execution process: the runner creates a scratch project that is a Git root holding the printed lookup command's file, renders the repository hooks into a fresh `VIBE_HOME`, and its `launch_setup` pins the `compaction-probe` model row from `.vibe/plugins/repo-guards/fixtures/compaction/config.toml` with its window raised to 30,000 tokens, which puts Vibe's default compaction threshold at 15,000. The packet is bound through `VIBE_SPEC_FOLDER`. The subject reads `big.txt`, which crosses the automatic compaction threshold while the turn is still running, then reads `small.txt`. The write depends on what it read, so it cannot run before the reads finish, and it is the tool call after the compaction that the binding answers.
+- Expected execution process: the runner creates a scratch project that is a Git root, renders the repository hooks into a fresh `VIBE_HOME`, and its `launch_setup` pins the `compaction-probe` model row from `.vibe/plugins/repo-guards/fixtures/compaction/config.toml` with its window raised to 30,000 tokens, which puts Vibe's default compaction threshold at 15,000. The packet is bound through `VIBE_SPEC_FOLDER`. The subject reads `big.txt`, which crosses the automatic compaction threshold while the turn is still running, then reads `small.txt`. The write depends on what it read, so it cannot run before the reads finish, and it is the tool call after the compaction that the binding answers.
 - Expected signals: the session config pins `compaction-probe`; a `compaction` checkpoint in the session journal; a `post_tool_call` result with a later sequence whose output carries `Context restored after a compaction.`; and `answer.txt` holding `compaction-proof-ok` at the end of the turn.
 - Desired user-visible outcome: the session writes `compaction-proof-ok` to `answer.txt`, replies with it, and no error appears.
 - Pass/fail: PASS when all three turn checks pass. FAIL when the probe model is not active, when no compaction is recorded, when no `post_tool_call` after the compaction carries the re-injection, or when the turn leaves no `answer.txt` holding the line.
@@ -53,8 +53,6 @@ Operators run the conversation script through the shared runner with the `vibe` 
   ],
   "setup": [
     "git init -q",
-    "mkdir -p .skilled/hooks/session-handover/history/dist",
-    "printf '// the printed lookup command\\n' > .skilled/hooks/session-handover/history/dist/cli.js",
     "seq 1 2000 | sed 's/^/padding line /' > big.txt",
     "printf 'compaction-proof-ok\\n' > small.txt"
   ],
@@ -94,7 +92,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 }
 ```
 
-The composite `pre_agent` part and the `compaction-post-tool` entry share one detector, so the packet arrives through `VIBE_SPEC_FOLDER` and the history offer needs the scratch project to be a checkout root that holds the printed lookup command's file. The automatic compaction is a property of the model's context window, so `launch_setup` replaces the runner's `deepseek-flash` pin with `active_model = "compaction-probe"` at the top of the home config and appends the fixture's probe row, after the runner has written that config and before Vibe starts. It drops the runner's pin line first, because a TOML file may hold the key only once. The row's window is raised from the fixture's 20,000 to 30,000 tokens: Vibe's default threshold is half the window with a 10,000 floor, and an interactive session's own instructions and tools already fill about 10,000 tokens, so the fixture's window compacts on every request and never settles. At 30,000 the threshold is 15,000, which the 2,000-line `big.txt` crosses and the compacted history falls well below. The checks read the journal through `.vibe/plugins/repo-guards/fixtures/journal-check.cjs`, which orders the records by sequence, so the re-injection must sit in a `post_tool_call` result after the compaction rather than anywhere in the log. The write to `answer.txt` is in the same turn on purpose: a model may batch both reads before the compaction, and a write asked for in a later turn would let the turn-start part consume the compaction first, leaving the binding nothing to answer.
+The composite `pre_agent` part and the `compaction-post-tool` entry share one detector, so the packet arrives through `VIBE_SPEC_FOLDER` and the binding rebuilds the goal slice from that packet and the open handoff pointer from the note state once the journal shows a compaction. The automatic compaction is a property of the model's context window, so `launch_setup` replaces the runner's `deepseek-flash` pin with `active_model = "compaction-probe"` at the top of the home config and appends the fixture's probe row, after the runner has written that config and before Vibe starts. It drops the runner's pin line first, because a TOML file may hold the key only once. The row's window is raised from the fixture's 20,000 to 30,000 tokens: Vibe's default threshold is half the window with a 10,000 floor, and an interactive session's own instructions and tools already fill about 10,000 tokens, so the fixture's window compacts on every request and never settles. At 30,000 the threshold is 15,000, which the 2,000-line `big.txt` crosses and the compacted history falls well below. The checks read the journal through `.vibe/plugins/repo-guards/fixtures/journal-check.cjs`, which orders the records by sequence, so the re-injection must sit in a `post_tool_call` result after the compaction rather than anywhere in the log. The write to `answer.txt` is in the same turn on purpose: a model may batch both reads before the compaction, and a write asked for in a later turn would let the turn-start part consume the compaction first, leaving the binding nothing to answer.
 
 ### Expected
 

@@ -28,6 +28,7 @@ interface AdvisoryCheck {
   readonly concern: string;
   readonly command: string;
   readonly args: string[];
+  readonly quietOnSuccess?: boolean;
 }
 
 const CHECKS: AdvisoryCheck[] = [
@@ -42,7 +43,8 @@ const CHECKS: AdvisoryCheck[] = [
     command: "python3",
     args: [".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh", "--all"],
   },
-  { label: "install-codex-hooks", concern: "hook-install", command: "node", args: [".skilled/bin/install-codex-hooks.mjs", "--check"] },
+  // The installer check prints an OK line when it passes, so only a failing exit is a warning.
+  { label: "install-codex-hooks", concern: "hook-install", command: "node", args: [".skilled/bin/install-codex-hooks.mjs", "--check"], quietOnSuccess: true },
 ];
 
 /** Runs the same warn-only, always-exit-0 SessionStart advisory scripts cursor/devin wire into their SessionStart chain, surfacing any warning text via a Pi notification. */
@@ -54,6 +56,7 @@ export default function sessionStartAdvisories(pi: ExtensionAPI): void {
       if (!advisoryConcernEnabled(check.concern)) continue;
       try {
         const result = await ctx.exec(check.command, check.args, { cwd: ctx.cwd, timeout: 5_000 });
+        if (check.quietOnSuccess && result.code === 0) continue;
         const warning = (result.stderr || result.stdout || "").trim();
         if (warning) ctx.ui.notify(warning, "warning");
       } catch {

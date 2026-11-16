@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-027 -- The automatic relaunch tier nudges, ends and relaunches a Vibe session"
 description: "This scenario validates the Vibe automatic relaunch tier: a session past its measured threshold writes a handoff note, the turn end arms the record, the killer ends Vibe and the wrapper relaunches it on the claim seed."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # VIB-HK-027 -- The automatic relaunch tier nudges, ends and relaunches a Vibe session
@@ -16,7 +16,7 @@ This scenario covers the automatic relaunch tier Vibe shares with Claude Code, P
 
 ### Why This Matters
 
-A hop is invisible in a reply. The nudge, the arm and the relaunch are hook events, so a session that armed and hopped looks the same as one that kept working. The relaunch log is the only record that separates them. An operator reads `prepare`, `killer-signal` and `relaunch reason=ready` there, then reads the note's own status to prove the receiver finished. An operator prompt typed after the arm withdraws the hop, and a hand-typed `/speckit-handoff` prepares a record under an id the session never reports, so that route stays on the manual tier.
+A hop is invisible in a reply. The nudge, the arm and the relaunch are hook events, so a session that armed and hopped looks the same as one that kept working. The relaunch log is the only record that separates them. An operator reads `prepare`, `killer-signal` and `relaunch reason=ready` there, then reads the note's own status to prove the receiver finished. An operator prompt typed after the arm withdraws the hop, and a hand-typed `/speckit-handoff` arms and hops too, because the turn-start part records the payload's session id and `prepare` uses it.
 
 ---
 

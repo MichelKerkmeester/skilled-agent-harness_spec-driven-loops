@@ -7,7 +7,7 @@ trigger_phrases:
   - "skilled-loop vibe handover"
   - "Vibe automatic relaunch tier"
   - "Vibe handover withdraw"
-version: 1.0.2.0
+version: 1.0.4.0
 id: session-handover-vibe
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -31,12 +31,12 @@ Vibe writes its context usage to a numbered journal segment and keeps its own `c
 
 This scenario defines one automatable check and three live checks. A live check that was not run is marked SKIP with its named blocker.
 
-- Objective: Verify that the automatic tier nudges past the measured threshold, arms the record at the turn end, ends Vibe and relaunches on the claim seed, verify that an operator prompt typed after the arm withdraws the hop, and verify that the switch off leaves the turn alone while a hand-typed request still prints the claim command.
+- Objective: Verify that the automatic tier nudges past the measured threshold, arms the record at the turn end, ends Vibe and relaunches on the claim seed, verify that an operator prompt typed after the arm withdraws the hop, verify that a hand-typed request inside the loop arms and hops from the session id the turn start recorded, and verify that the switch off leaves the turn alone.
 - Real user request: Carry a short task through a context handoff, then finish it in the new session.
 - Prompt: `Carry this short task through a context handoff, then finish it in the new session. Start by reading README.md and reporting its first heading. Gate 3: D) Skip, no spec folder.`
 - Precondition: The session-handover concern ships off for Vibe. Every check that expects a nudge, an arm or a hop runs with `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1` in its environment. The fill is the journal's measured `input_tokens` against `SESSION_HANDOVER_WINDOW_TOKENS` when it holds a value, and against the session's own `compaction_threshold` when it does not. `SESSION_HANDOVER_THRESHOLD` sets the nudge level, and its default is `0.80`.
 - Expected execution process: Run the adapter suite. Start the wrapper with the low threshold and window overrides, submit the prompt, let the turn-start or post-tool nudge arrive, follow its prepare command, and watch the turn end, the killer and the relaunch. Repeat with an operator prompt after the arm and with the switch off.
-- Expected signals: The suite exits 0. The relaunch log holds `prepare loopId=<id> status=pending`, `killer-signal targetPid=<pid> signal=SIGTERM` and `relaunch loopId=<id> reason=ready`. The note ends at `status: done`, and the hop history holds `handed-over`, `claimed` and `done`. The withdraw leaves `withdrawn loopId=<id> sessionId=<id> reason=user-message` with no `killer-signal`. The switch-off run holds no `prepare` line and no `killer-signal`, and a hand-typed request under the switch prints the claim command.
+- Expected signals: The suite exits 0. The relaunch log holds `prepare loopId=<id> status=pending`, `killer-signal targetPid=<pid> signal=SIGTERM` and `relaunch loopId=<id> reason=ready`. The note ends at `status: done`, and the hop history holds `handed-over`, `claimed` and `done`. The withdraw leaves `withdrawn loopId=<id> sessionId=<id> reason=user-message` with no `killer-signal`. The switch-off run holds no `prepare` line and no `killer-signal`, and the hand-typed request in part B holds `prepare`, `killer-signal` and `relaunch reason=ready` with no claim command.
 - Desired user-visible outcome: The receiving session claims the note and finishes the remaining step in the same terminal.
 - Pass/fail: PASS when the suite exits 0 and each live check that was run meets its signals. Record an operator-directed SKIP with the named blocker for a live check that was not run. FAIL when the suite fails, the record stays pending with the switch on, an operator prompt leaves an armed record in place, or a switch-off run writes a record.
 
@@ -58,7 +58,7 @@ This scenario defines one automatable check and three live checks. A live check 
 node --test .skilled/hooks/session-handover/tests/vibe-adapters.test.cjs
 ~~~
 
-Evidence: the suite covers the once-at-threshold nudge on `pre_agent` and the silence below it, the `post_tool` nudge that leaves an armed record alone, the claim seed that expands at `pre_agent` and beats a nudge, the withdraw of an armed record with the notice alone, the re-arm floor the withdraw prompt records, the turn-end arm with the killer on the newest numbered journal segment, the lock file the journal reader ignores, the subagent payload that neither nudges nor arms, and the switch that silences both parts. PASS when every case passes.
+Evidence: the suite covers the once-at-threshold nudge on `pre_agent` and the silence below it, the `post_tool` nudge that leaves an armed record alone, the claim seed that expands at `pre_agent` and beats a nudge, the withdraw of an armed record with the notice alone, the re-arm floor the withdraw prompt records, the turn-end arm with the killer on the journal folder, the lock file the journal reader ignores, the subagent payload that neither nudges nor arms, and the switch that silences both parts. PASS when every case passes.
 
 ### Live Checks
 
@@ -146,7 +146,7 @@ Expected: one warning line that carries `the prepared hand-over was withdrawn in
 
 Evidence: the record fields, the log lines, the history line, the pane text and the wrapper line. PASS when the record is disarmed with `user-message`, the log holds `withdrawn` and no `killer-signal`, the session keeps running, and the wrapper prints the single warning. FAIL when the record stays armed, the log shows `killer-signal`, a second Vibe starts with a seed, or the wrapper prints a claim command. Triage: if the pane shows a relaunch already, the prompt landed after the idle wait, so rerun. If the poll never prints a record, read the log for `stop-arm-error` and `missing-transcript-path`.
 
-#### VB-3 The switch off leaves the turn alone and the hand-typed request prints the claim command (Live, switch off)
+#### VB-3 The switch off leaves the turn alone and the typed hand-over arms inside the loop (Live)
 
 Part A starts the wrapper with the switch off for the whole session. Every hand-over part returns before it reads the journal, so no nudge arrives, no record is written and no signal is sent:
 
@@ -167,7 +167,7 @@ tail -n "+$((log_start + 1))" "$state/relaunch.log" | grep -E ' (prepare|killer-
 screen | tail -25
 ~~~
 
-Expected: the filtered log prints `no-handover-lines`. The pane holds no nudge. The `/speckit-handoff` reply names `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED` as the switch that turned the concern off, and no record file and no note are written. Then exit the session and read the wrapper:
+Expected: the filtered log prints `no-handover-lines`. The pane holds no nudge. The `/speckit-handoff` reply names `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED` as the switch that turned the concern off. The handoff command wrote the note before `prepare` ran, and `prepare` refuses before it validates the note, so the note stays on disk `open` and no record file is written. Then exit the session and read the wrapper:
 
 ~~~bash
 say "/exit"
@@ -178,7 +178,7 @@ tmux kill-session -t "$session_name"
 
 Expected: `0` claim command lines.
 
-Part B starts a fresh loop with the switch on and types the same request by hand. The command prepares the record under a generated id, the turn end matches only the hook payload's session id, so the record stays pending and the wrapper prints the claim command:
+Part B starts a fresh loop with the switch on and types the same request by hand. The turn-start part records the hook payload's session id for the loop, and `prepare` uses that id when `--session` is omitted, so the turn end accepts the record with the same id and the typed route arms and hops:
 
 ~~~bash
 session_name="relaunch-vibe-manual-$$"
@@ -189,7 +189,11 @@ tmux set-option -w -t "$session_name" remain-on-exit on
 say "Carry this short task through a context handoff, then finish it in the new session. Start by reading README.md and reporting its first heading. Gate 3: D) Skip, no spec folder."
 sleep 20
 say "/speckit-handoff"
-sleep 60
+for i in $(seq 1 60); do
+  note=$(ls -t .skilled/skills/.state/session-handover/handoffs/*.md 2>/dev/null | head -1)
+  [ -n "$note" ] && grep -q '^status: claimed' "$note" && break
+  sleep 3
+done
 say "/exit" 2>/dev/null || true
 sleep 8
 grep -E ' (prepare|killer-signal|relaunch) ' "$state/relaunch.log" | tail -4
@@ -198,9 +202,9 @@ ls -t .skilled/skills/.state/session-handover/handoffs/*.md | head -1 | xargs gr
 tmux kill-session -t "$session_name" 2>/dev/null || true
 ~~~
 
-Expected: one `claim and continue handoff <note path>` line, no `killer-signal` line, and the note still `open`. The printed command is the manual tier that the Vibe package scenario `VIB-HK-026` records in full.
+Expected: one `prepare loopId=<id> status=pending sessionId=<session id>` line, one `killer-signal` line and one `relaunch reason=ready` line, no `claim and continue handoff` line, and a note the receiver claims. The typed route is the same automatic tier as the nudged one, and the manual tier that the Vibe package scenario `VIB-HK-026` records in full applies to a Vibe session outside the loop.
 
-Evidence: the filtered log, the pane text, the wrapper line and the note status. PASS when part A writes no hand-over line and prints no claim command, and part B prints the claim command with no signal. FAIL when a switch-off run writes a record or a claim command, or a hand-typed request arms the record. Triage: a switch-off run that logs `prepare` means the switch was set in the environment of an already running session, so restart the wrapper. A hand-typed request that logs `killer-signal` and relaunches means the record carried the hook payload's session id, which the manual route does not do.
+Evidence: the filtered log, the pane text, the wrapper line and the note status. PASS when part A writes no hand-over line and prints no claim command, and part B logs the three hop lines with no claim command. FAIL when a switch-off run writes a record or a claim command, or a hand-typed request stays pending or prints a claim command. Triage: a switch-off run that logs `prepare` means the switch was set in the environment of an already running session, so restart the wrapper. A hand-typed request that stays pending means the turn start never recorded the payload's session id, so read the log for `context-nudge-error` with `stage=session-id`.
 
 ---
 
