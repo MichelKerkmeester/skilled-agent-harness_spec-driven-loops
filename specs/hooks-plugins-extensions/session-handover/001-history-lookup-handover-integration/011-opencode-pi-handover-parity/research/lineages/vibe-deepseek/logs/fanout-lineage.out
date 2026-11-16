@@ -1,0 +1,15 @@
+The lineage is complete and verified.
+
+**What ran.** Ten inline research iterations, each recorded through the append gateway and followed by the reducer, then synthesis. The state projection holds 12 records: the run-initialized config row, ten iteration records, and the terminal `synthesis_complete` event. Reducer reports `iterationsCompleted: 10`, `corruptionCount: 0`. Convergence returned `STOP` / `maxIterationsReached`.
+
+**What the research found.** The Pi 4/5 is not a recall failure and not a relaunch failure — the relaunch log shows `ready` 0.2 s after the signal, and the missing step is `noteClosed`. Three root causes explain ten failure modes:
+
+1. **The note is treated as the only channel.** The prepare text never names the History Lookup, so a sender told to withhold a detail writes "a fresh session cannot recover it" instead of a pointer. The claim text then prints the offer after the note body with a weaker directive, and a withheld offer is silent because the mint returns null inside a bare `catch {}`.
+2. **The readers and the scorecard disagree about what a session is.** The OpenCode reader skips the project proof without a `directory` column; the 160-char preview hides a detail at char 295; and the Pi pane has no `[session-handover]` marker, so `sideWordStated: true` is the sender's own prompt echo at char 12,812 of 30,172.
+3. **No per-runtime settings contract.** OpenCode reads and writes neither model nor effort, and its root command has no model flag, so the fix must be a config or per-session write.
+
+**The finding that matters most for the packet.** Three of the five completion criteria cannot be proven by the current harness. The Pi recall metric passes on a false positive, the redaction criterion has no token plant and no scorecard field, and the two suite criteria are outside a research lineage's scope. I also ran the compiled scrubber against seventeen candidate strings: a generic `FAKE_TOKEN_abc123` plant is not a secret shape and passes through unchanged, so the redaction criterion needs a vendor-shaped token to be meaningful.
+
+**Deviations, recorded in `research.md` §17.** The graph upsert was skipped because it writes a sqlite database and writer lock outside the lineage write authority; the consequence is that convergence ran to the iteration cap rather than a graph-settled stop. Fan-out merge, resource map and `spec.md` write-back are parent-owned or out of scope. No out-of-scope writes occurred — `git status` shows only the two pre-existing modifications (mtime 06:25, before session start) and the untracked packet tree.
+
+FANOUT_LINEAGE_COMPLETE:vibe-deepseek

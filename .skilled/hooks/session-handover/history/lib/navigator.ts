@@ -262,9 +262,13 @@ function itemText(item: RecoveryHistoryItem): string {
   ].join(' ');
 }
 
+// A cut preview ends with an ellipsis, as a search excerpt does, so a receiver whose detail is
+// not on screen knows the turn goes on and loads it instead of deciding it is not there.
 function previewFor(item: RecoveryHistoryItem): string {
   const text = item.kind === 'user' ? contentText(item.userMessage.content) : turnText(item);
-  return text.replace(/\s+/g, ' ').trim().slice(0, 160).replace(/[\uD800-\uDBFF]$/u, '');
+  const compact = text.replace(/\s+/g, ' ').trim();
+  if (compact.length <= 160) return compact;
+  return `${compact.slice(0, 159).replace(/[\uD800-\uDBFF]$/u, '')}…`;
 }
 
 function excerptAround(text: string, matchStart: number, matchEnd: number): string {

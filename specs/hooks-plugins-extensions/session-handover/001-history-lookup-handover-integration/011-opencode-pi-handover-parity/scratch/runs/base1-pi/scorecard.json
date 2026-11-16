@@ -1,0 +1,41 @@
+{
+  "runtime": "pi",
+  "label": "base1",
+  "trustDialogs": 0,
+  "steps": {
+    "notePrepared": true,
+    "signalled": true,
+    "relaunched": true,
+    "noteClosed": false,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "recall": {
+    "source": "receiver-transcript",
+    "sideWordStated": false,
+    "sideWordInNote": false,
+    "lookupCalls": 0
+  },
+  "secret": null,
+  "noteStatus": "claimed",
+  "carry": {
+    "model": "unobservable",
+    "effort": "unobservable",
+    "name": "unobservable",
+    "provider": "unobservable"
+  },
+  "seconds": {
+    "startToPrepare": 38.4,
+    "prepareToSignal": 8.7,
+    "signalToRelaunch": 0.2,
+    "startToClosed": null
+  },
+  "problems": [],
+  "firstLaunch": "pi",
+  "relaunchArgs": null,
+  "score": "4/5"
+}
