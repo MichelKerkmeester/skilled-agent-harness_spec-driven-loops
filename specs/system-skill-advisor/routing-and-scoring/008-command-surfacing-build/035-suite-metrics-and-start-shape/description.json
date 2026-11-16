@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape",
+  "description": "Phase 35: suite-metrics-and-start-shape",
+  "keywords": [
+    "phase",
+    "suite-metrics-and-start-shape"
+  ],
+  "lastUpdated": "2026-11-16T06:14:42.191Z",
+  "specId": "035",
+  "folderSlug": "suite-metrics-and-start-shape",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_07-14__planned-phase-035-per-run-tmpdir-in-the-advisor.md"
+  ]
+}

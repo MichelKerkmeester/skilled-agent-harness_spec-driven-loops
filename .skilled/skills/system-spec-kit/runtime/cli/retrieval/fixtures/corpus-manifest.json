@@ -1,5 +1,5 @@
 {
-  "corpusHash": "71217e912e557f8092b7c108f4baeed7398fc486181aff03a5dd9d8c7936e52b",
+  "corpusHash": "46fb9d847cbd6ceb397371f20c3189a52fdfd276f9fca43c762e1ce975c5344b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27905,
+  "includedPathCount": 27910,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19181,6 +19181,11 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/fanout-attribution-pass-1.md",
@@ -27937,7 +27942,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "02c9927ed8e0f7ca37b016f51f31e28bb839dd8d1ad131c30844f4c2e16548bc",
+  "manifestHash": "1ef9d542ad570a5e3755ffdd1697170184e12581e851ffe2671d8d50303390f9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36265,6 +36270,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/scratch",
       "reason": "excluded directory"
     },
     {

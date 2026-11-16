@@ -342,6 +342,7 @@ and findings belong here.
 | Phase 034 scorer heredoc redirect fix | Complete | 4bb83364145 strips heredoc bodies in redirectTargets, 2199af49c56 lets the shared pattern end an empty body and match a backslash end word (gate review P2s). Suite 2319/0, floors 24/44 0/35 2/44, eval [160,49,21,5] unchanged, rescore byte-identical across both fixes, strict PASSED |
 | Segment five dispositions | Decided (D1) | 15 ranked: ranks 1-4 build in one measurement phase (turn duration and cap flag, OpenCode delivery receipt, suite metrics folder kept out of the shared one, start shape printed), ranks 5-15 declined with reasons and reopen conditions (rank 5 longer cap: no further arm planned). Research recorded as converged on coverage, 0.05 never reached. research-segment-5.md |
 | Correction to the segment five dispositions row | Revised (D1) | ranks 3 (suite records out of the shared metrics folder) and 4 (start shape printed) build in one phase. Ranks 1 (turn duration and cap flag) and 2 (OpenCode delivery receipt) join rank 5 as declined: each serves only a future arm, rank 1 cannot correct 033's lines, rank 2 needs a new file write in the shared OpenCode plugin. Reopen all three when a full arm is designed |
+| Phase 035 suite metrics and start shape | Planned | Level 2: per-run TMPDIR from vitest.config.ts so the suite stops writing into the shared metrics folder (one test file run adds 5 files today), and startShapes printed beside each start rate, checked against the 034 rescore. 9 tasks, strict PASSED |
 
 ### Deviations and findings
 

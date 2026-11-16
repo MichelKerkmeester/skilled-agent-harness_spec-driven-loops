@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6859,
-    "ok": 19419,
+    "ok": 19424,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27905,
+  "documentsScanned": 27910,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "02c9927ed8e0f7ca37b016f51f31e28bb839dd8d1ad131c30844f4c2e16548bc",
+  "manifestHash": "1ef9d542ad570a5e3755ffdd1697170184e12581e851ffe2671d8d50303390f9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44463,
+      "ok": 44471,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -60916,6 +60916,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/scratch",
       "reason": "excluded directory"
     },
     {

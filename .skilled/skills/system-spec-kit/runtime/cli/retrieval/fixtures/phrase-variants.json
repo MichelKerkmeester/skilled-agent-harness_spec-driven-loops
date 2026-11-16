@@ -1,5 +1,5 @@
 {
-  "manifestHash": "02c9927ed8e0f7ca37b016f51f31e28bb839dd8d1ad131c30844f4c2e16548bc",
+  "manifestHash": "1ef9d542ad570a5e3755ffdd1697170184e12581e851ffe2671d8d50303390f9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9811,6 +9811,9 @@
     ],
     "advisor suite restore tasks": [
       "advisor suite restore tasks"
+    ],
+    "advisor suite shared metrics folder": [
+      "advisor suite shared metrics folder"
     ],
     "advisor suite teardown hang": [
       "advisor suite teardown hang"
@@ -83600,6 +83603,9 @@
     "phase 34 scorer heredoc redirect fix": [
       "phase 34 scorer heredoc redirect fix"
     ],
+    "phase 35 suite metrics and start shape": [
+      "phase 35 suite metrics and start shape"
+    ],
     "phase 35 v2 bridge plugin effects": [
       "phase 35 v2 bridge plugin effects"
     ],
@@ -120279,6 +120285,9 @@
     "start sh reaper allowlist": [
       "start.sh reaper allowlist"
     ],
+    "start shape split per runtime": [
+      "start shape split per runtime"
+    ],
     "start the skill advisor on the node": [
       "start the skill advisor on the node"
     ],
@@ -121663,6 +121672,21 @@
     ],
     "suite failure task breakdown": [
       "suite failure task breakdown"
+    ],
+    "suite metrics and start shape": [
+      "suite metrics and start shape"
+    ],
+    "suite metrics and start shape acceptance criteria": [
+      "suite metrics and start shape acceptance criteria"
+    ],
+    "suite metrics and start shape implementation summary": [
+      "suite metrics and start shape implementation summary"
+    ],
+    "suite metrics and start shape plan": [
+      "suite metrics and start shape plan"
+    ],
+    "suite metrics and start shape tasks": [
+      "suite metrics and start shape tasks"
     ],
     "suite path proof objective": [
       "suite path proof objective"

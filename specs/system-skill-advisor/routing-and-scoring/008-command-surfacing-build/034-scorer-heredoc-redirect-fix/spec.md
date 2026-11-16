@@ -28,7 +28,7 @@ contextType: "general"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 34 of 34 |
 | **Predecessor** | 033-untuned-arm-arena-run |
-| **Successor** | None |
+| **Successor** | 035-suite-metrics-and-start-shape |
 | **Handoff Criteria** | The parent goal log holds a rescored arm verdict row and a B-5 trigger row, each from a printed line of the fixed scorer |
 <!-- /ANCHOR:metadata -->
 

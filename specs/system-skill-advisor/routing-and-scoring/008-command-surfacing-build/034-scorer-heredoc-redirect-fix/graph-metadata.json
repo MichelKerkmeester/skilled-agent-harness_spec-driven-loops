@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`redirectTargets` in the transcript scorer scans a whole shell command for `>`, heredoc bodies included, while `shellReadTargets` and `shellWriteTargets` strip those bodies first",
     "created_at": "2026-11-16T05:23:43Z",
-    "last_save_at": "2026-11-16T06:00:39.104Z",
+    "last_save_at": "2026-11-16T06:12:56.547Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a1ba7fe44e3a628ea947e98c3e9559211a548437e4340e34c15a248f8cabe60d",
+    "source_fingerprint": "sha256:e3e530c586675331012889fdc63d86265b7cdd9afc19625155bbaf5225ef4522",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "25a33b38e5bab2ac5aee5e6693aa69c80ea9d71007daef2ceda3e1212dc8123d",
+      "spec.md": "e9cbefb2e8bd43cd4ce91e7b74b637b8ac3ae16677a05c02f93eb6a3f4054697",
       "plan.md": "c2d0e98840f5723c0c2a295041fbae9dd16e74e55922acb5d36b6de2eed1fd84",
       "tasks.md": "5bac1ea4b8ad91741ed4d2dd826e8ebfd0f2f1761424fab092b0f4d85d80ef09",
       "implementation-summary.md": "e44f223c8fa81f5f6b254bc85613c63d5db4180f1be0e858d472bd42cecc3499"
