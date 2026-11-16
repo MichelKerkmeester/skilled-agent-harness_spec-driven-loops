@@ -33,7 +33,7 @@
       "deepseek"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "On a live Pi hop with DeepSeek V4.1 Flash at max thinking, the sender kept the side word out of its note as told and then wrote that a fresh session could not recover it",
     "created_at": "2026-11-16T05:25:19Z",
-    "last_save_at": "2026-11-16T06:31:00.812Z",
+    "last_save_at": "2026-11-16T11:15:10.324Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0bc32983e54ce035a579408f93b2e09abce3de9a513957d6451cb98d403abbfa",
+    "source_fingerprint": "sha256:d0761d6fcb4f668007135ce583ce9a06af747db2e184d8c7cffd0453ed7aaf9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eba2bf0a3ef62e6f7dd021fc8066bdc8e42d90a5375b2f4c97807e2d3b30aac9",
+      "spec.md": "ec4590bb34ce00d0810f9c300cff99ac28c0f4ceae2407f301a9e1147ceefb4a",
       "plan.md": "00015637387945032200e440a8d705ce896ee9932d95266adf06a04e5a567c99",
       "tasks.md": "42de5744581baa029fb013fa1560bdb78fca32ff36f33d07cf99039d88d2fa1d",
-      "implementation-summary.md": "b62e371323545a1fb0a80cea1829ca6fc4e028fc1149c6e9564d8d06b3b0432a",
+      "implementation-summary.md": "eaa38b560dbc29b29adb9d3460a2328d0e7c438c997026260153656d9d46b208",
       "research/research.md": "9a05ede1e3c3dde4b1ea0d117e315959d801111940c26d37831deeb2bf2248ec"
     },
     "last_active_at": null

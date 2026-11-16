@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "An OpenCode 2 hand-over hop now starts the next session on the model the sender was using instead of the model the project config pins."
 trigger_phrases:
   - "opencode model carry implementation summary"
 importance_tier: "normal"

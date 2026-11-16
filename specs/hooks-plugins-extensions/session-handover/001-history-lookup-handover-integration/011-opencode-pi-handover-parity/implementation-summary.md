@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "A hand-over hop on Pi or OpenCode now recovers a detail the note left out: the sender may no longer write a detail off as lost, and the receiver runs the lookup before it asks the operator."
 trigger_phrases:
   - "opencode pi handover parity implementation summary"
 importance_tier: "normal"

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The printed history lookup command now runs an entry the session handover owns, with replies unchanged, and the offer is held back unless that entry and its compiled core both exist."
 trigger_phrases:
   - "history core relocation implementation summary"
 importance_tier: "normal"
