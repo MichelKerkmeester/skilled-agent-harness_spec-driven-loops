@@ -385,6 +385,8 @@ and findings belong here.
 | Pre-existing: S5 derived counts | Not branch-caused | README seven project config files and spec-kit references count fail on a clean origin/main checkout with the same lines |
 | Operator item: surface-map platform tokens | Waiting | add TEMP and TMP to env_check.platform_tokens in the operator-local surface map; they are platform temp variables written by vitest.config.ts |
 | Env docs: SKILL_ADVISOR_FRESH_PROMPTS_PATH | Fixed | listed in .env.example as a test-only path |
+| Deviation: corpus read in-process for lead diagnosis | Recorded | 038/scratch/lead-diag.mjs parsed command-prompts.jsonl rows sv-06 and sv-08 in-process to print lead indices only; no prompt text was printed or read, but the jq del(.prompt)-only rule was not kept to the letter; the script is committed so the numbers come from a committed script |
+| Open P2 from the final alignment run | Recorded for follow-up | B6, B7, C-02, F3 and D-03 (playbook cross-links and a Workflow Measure scenario, the doctor changelog Vibe line, the inert OpenCode status field and the retired-name map in the transcript scorer); detail in 038/scratch/alignment-final-dispositions.md |
 
 ### Deviations and findings
 
