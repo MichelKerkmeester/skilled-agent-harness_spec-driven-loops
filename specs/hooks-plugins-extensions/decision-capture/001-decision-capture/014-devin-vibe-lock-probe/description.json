@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/014-devin-vibe-lock-probe",
+  "description": "Phase 14: devin-vibe-lock-probe",
+  "keywords": [
+    "phase",
+    "devin-vibe-lock-probe"
+  ],
+  "lastUpdated": "2026-11-16T18:43:00.728Z",
+  "specId": "014",
+  "folderSlug": "devin-vibe-lock-probe",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-11-26_19-42__manual-context-save.md",
+    "16-11-26_19-43__manual-context-save.md"
+  ]
+}

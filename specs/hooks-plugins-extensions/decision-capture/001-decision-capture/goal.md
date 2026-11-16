@@ -117,6 +117,7 @@ and findings belong here.
 | 011 LEVEL_MATCH writer-only record fix; D1 exception added at operator answer | done | extended 87/87, upgrade-level 16/16, session-handover 001 LEVEL_MATCH warnings 4 to 0 |
 | 012 session-scoped sweep and shared worktree state | done | probe: own session from both checkouts, one root, pending 1 to 0; hook suites 135/135 |
 | 013 session-signal sweeps | done | live probes: Codex, OpenCode, Pi read session A, DSH signal maps; suites 140/140 |
+| 014 Devin and Vibe lock-based session choice | done | probes: caller lock unique in ancestry; Vibe old B new A; Devin queue printed without transcript; suites 143/143 |
 
 ### Deviations and findings
 

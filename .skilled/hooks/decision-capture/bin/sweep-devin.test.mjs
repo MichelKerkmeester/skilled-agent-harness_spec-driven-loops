@@ -193,6 +193,58 @@ test('the CLI resolves the newest session for the working directory', () => {
   });
 });
 
+function withDevinData(projectDir, rows, run) {
+  const dataHome = mkdtempSync(join(tmpdir(), 'devin-data-'));
+  try {
+    const cliDir = join(dataHome, 'devin', 'cli');
+    mkdirSync(join(cliDir, 'transcripts'), { recursive: true });
+    mkdirSync(join(cliDir, 'session_locks'), { recursive: true });
+    const database = new DatabaseSync(join(cliDir, 'sessions.db'));
+    try {
+      database.exec('CREATE TABLE sessions (id TEXT, working_directory TEXT, last_activity_at INTEGER)');
+      const insert = database.prepare('INSERT INTO sessions (id, working_directory, last_activity_at) VALUES (?, ?, ?)');
+      for (const [id, activity] of rows) insert.run(id, realpathSync(projectDir), activity);
+    } finally {
+      database.close();
+    }
+    return run(cliDir, () => spawnSync(process.execPath, [SCRIPT], {
+      cwd: projectDir,
+      encoding: 'utf8',
+      env: { ...process.env, XDG_DATA_HOME: dataHome },
+      timeout: 20000,
+    }));
+  } finally {
+    rmSync(dataHome, { recursive: true, force: true });
+  }
+}
+
+test('the session whose lock a calling process holds wins over a newer one', () => {
+  withProject((projectDir) => {
+    withDevinData(projectDir, [[SESSION, 1000], ['newer-session', 2000]], (cliDir, sweep) => {
+      copyFileSync(FIXTURE, join(cliDir, 'transcripts', `${SESSION}.json`));
+      copyFileSync(FIXTURE, join(cliDir, 'transcripts', 'newer-session.json'));
+      writeFileSync(join(cliDir, 'session_locks', `${SESSION}.lock`), String(process.pid));
+      const run = sweep();
+      assert.equal(run.status, 0, run.stderr);
+      assert.equal(JSON.parse(run.stdout).transcript, join(cliDir, 'transcripts', `${SESSION}.json`));
+    });
+  });
+});
+
+test('a session with no transcript still prints the answers the hook queued', () => {
+  withProject((projectDir) => {
+    sweepDevinTranscript({ projectDir, transcriptPath: FIXTURE, now: NOW });
+    withDevinData(projectDir, [[SESSION, 1000]], (_cliDir, sweep) => {
+      const run = sweep();
+      assert.equal(run.status, 0, run.stderr);
+      const result = JSON.parse(run.stdout);
+      assert.equal(result.transcript_missing, true);
+      assert.equal(result.session_id, SESSION);
+      assert.equal(result.pending.length, 2);
+    });
+  });
+});
+
 // ───────────────────────────────────────────────────────────────────
 // CHAT CANDIDATES
 // ───────────────────────────────────────────────────────────────────

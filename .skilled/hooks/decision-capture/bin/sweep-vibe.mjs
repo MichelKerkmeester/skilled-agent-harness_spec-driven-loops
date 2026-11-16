@@ -12,9 +12,10 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { execFileSync } from 'node:child_process';
 import { readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { homedir } from 'node:os';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
@@ -239,6 +240,52 @@ function sessionCwd(directory) {
   }
 }
 
+// The ids of this process and every process above it. A runtime that holds a
+// session's lock is an ancestor of the shell it runs the save in.
+function ancestorPids() {
+  const parents = new Map();
+  try {
+    const table = execFileSync('ps', ['-A', '-o', 'pid=,ppid='], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: 5000,
+    });
+    for (const line of table.split('\n')) {
+      const [pid, ppid] = line.trim().split(/\s+/).map(Number);
+      if (pid) parents.set(pid, ppid);
+    }
+  } catch {
+    return new Set();
+  }
+  const ancestors = new Set();
+  for (let pid = process.pid; pid > 1 && !ancestors.has(pid); pid = parents.get(pid)) ancestors.add(pid);
+  return ancestors;
+}
+
+// Vibe leases each live session in `active/<id>.lock.json` with the holder's
+// process id. A lease whose process this command descends from names the caller.
+function callerSessionIds() {
+  const ancestors = ancestorPids();
+  const leaseDir = join(sessionRoot(), 'active');
+  const ids = new Set();
+  let fileNames;
+  try {
+    fileNames = readdirSync(leaseDir);
+  } catch {
+    return ids;
+  }
+  for (const fileName of fileNames) {
+    if (!fileName.endsWith('.lock.json')) continue;
+    try {
+      const lease = JSON.parse(readFileSync(join(leaseDir, fileName), 'utf8'));
+      if (typeof lease?.session_id === 'string' && ancestors.has(lease.process_id)) ids.add(lease.session_id);
+    } catch {
+      // A lease being written can read torn, and names no session yet.
+    }
+  }
+  return ids;
+}
+
 // A session belongs to the directory it ran in, and the journal's mtime orders
 // sessions without parsing every metadata file. Vibe 3 keeps sessions under
 // `unified/`, and older releases kept them at the root, so both are read.
@@ -263,7 +310,14 @@ function latestSession(projectDir) {
   }
 
   candidates.sort((left, right) => right.mtime - left.mtime);
-  for (const { directory } of candidates) {
+  // The caller's own session is tried first. It must still have run in this
+  // project, so without one the newest session stands.
+  const callerIds = callerSessionIds();
+  const ordered = [
+    ...candidates.filter(({ directory }) => callerIds.has(basename(directory))),
+    ...candidates,
+  ];
+  for (const { directory } of ordered) {
     const cwd = sessionCwd(directory);
     if (cwd && samePath(cwd, projectDir)) return directory;
   }
