@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/012-opencode-model-carry",
+  "description": "Phase 12: opencode-model-carry",
+  "keywords": [
+    "phase",
+    "opencode-model-carry"
+  ],
+  "lastUpdated": "2026-11-16T08:25:07.286Z",
+  "specId": "012",
+  "folderSlug": "opencode-model-carry",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-11-26_09-23__an-opencode-2-hand-over-hop-now-starts-the.md",
+    "16-11-26_09-25__opencode-2-model-carry-proven-three-live-hops.md"
+  ]
+}

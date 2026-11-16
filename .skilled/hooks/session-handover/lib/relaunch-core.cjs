@@ -794,6 +794,19 @@ function claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env
   return { ...none, reason };
 }
 
+// OpenCode reads `OPENCODE_DB` the same way: a relative name sits in its data folder and an
+// absolute path is used as given. A launcher that keeps two majors apart sets it, and the
+// shell that runs prepare inherits it, so this opens the store that session wrote.
+function openCodeDatabasePath(env) {
+  const dataHome = env?.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share');
+  const root = path.join(dataHome, 'opencode');
+  const named = env?.OPENCODE_DB;
+  if (typeof named === 'string' && named.trim() !== '') {
+    return path.isAbsolute(named) ? named : path.join(root, named);
+  }
+  return path.join(root, 'opencode.db');
+}
+
 // Codex names a rollout for its thread, under a folder per day, so the thread's own file is
 // found by that suffix.
 function codexRolloutPath(sessionId, env) {
@@ -1105,7 +1118,8 @@ function handoverLookupSection({ frontmatter, cwd = process.cwd(), now } = {}) {
  * Find the model and effort the sending session is using now, so the relaunched session can
  * start on them. Claude is read from the last main-chain assistant entry, Codex from the last
  * turn context, and Cursor from a CLI config change made during this hop, whose effort rides
- * inside the model. Pi hands its values over when it arms. Every reader fails
+ * inside the model. OpenCode 2 is read from the last assistant message in its session store,
+ * model only. Pi hands its values over when it arms. Every reader fails
  * closed, since a hand-over never fails for want of a setting, and an empty string means the
  * value is not proven.
  *
@@ -1131,6 +1145,8 @@ function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) 
       found = rolloutPath === null ? null : usage.readCodexSettings(rolloutPath);
     } else if (runtime === 'cursor') {
       found = { model: cursorSelectedModel(env), effort: '' };
+    } else if (runtime === 'opencode') {
+      found = usage.readOpenCodeSettings(openCodeDatabasePath(env), sessionId);
     }
     if (found === null) return none;
     return {

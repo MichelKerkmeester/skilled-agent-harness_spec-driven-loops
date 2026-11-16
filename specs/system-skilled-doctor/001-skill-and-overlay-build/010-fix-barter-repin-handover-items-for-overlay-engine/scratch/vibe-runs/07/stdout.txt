@@ -1,0 +1,71 @@
+All three edits landed and all three checks pass.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/sk-code/README.md`
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/INSTALL-SKILLED.md`
+
+## 2. COMMANDS
+
+**Anchor reads (all exit 0)**
+
+```
+$ sed -n '1,20p' .skilled/skills/sk-code/README.md          # exit 0
+version: 2.2.46.0
+---
+
+$ rg -n 'hub-router.json' .skilled/skills/sk-code/README.md  # exit 0
+97:...`hub-router.json` preserves the vocabulary...
+137:...In `.skilled/skills/sk-code/hub-router.json`, delete it from...
+216:| [`hub-router.json`](./hub-router.json) | Hub-local routing vocabulary ... the packet's own rows |
+
+$ rg -n 'list-tools --format json' INSTALL-SKILLED.md        # exit 0
+52:node .skilled/bin/skill-advisor.cjs list-tools --format json
+
+$ sed -n '40,70p' INSTALL-SKILLED.md                         # exit 0
+...node .skilled/bin/skill-advisor.cjs list-tools --format json
+```
+
+$ sed -n '214,218p' .skilled/skills/sk-code/README.md        # exit 0
+| [`hub-router.json`](./hub-router.json) | ... the packet's own rows |
+```
+
+**CHECK 1 — `rg -n 'session-handover/history' INSTALL-SKILLED.md` — exit 0**
+
+```
+58:npm --prefix .skilled/hooks/session-handover/history run build
+```
+
+**CHECK 2 — `rg -c 'removes that surface from the list' .skilled/skills/sk-code/README.md` — exit 0**
+
+```
+1
+```
+
+**CHECK 3 — `git diff --stat -- INSTALL-SKILLED.md .skilled/skills/sk-code/README.md` — exit 0**
+
+```
+ .skilled/skills/sk-code/README.md | 4 ++--
+ INSTALL-SKILLED.md                | 6 ++++++
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+```
+
+**Full diff review — `git diff -- INSTALL-SKILLED.md .skilled/skills/sk-code/README.md` — exit 0**
+
+```
+-version: 2.2.46.0
++version: 2.2.47.0
+...
+-| [`hub-router.json`](./hub-router.json) | ... the packet's own rows |
++| [`hub-router.json`](./hub-router.json) | ... the packet's own rows. A host hub that keeps its own packet for a surface, with its own keyword set, removes that surface from the list, and the check then compares nothing for it |
+...
++Last, build the history lookup behind the session handover. It also uses the Spec Kit's TypeScript compiler and needs no install of its own. Without its output a handover prints no lookup section.
++
++```bash
++npm --prefix .skilled/hooks/session-handover/history run build
++```
+```
+
+## 3. OPEN QUESTIONS
+
+None. All three anchors matched on first read, each edit changed exactly one line (README) or inserted six lines (INSTALL-SKILLED), and the diff confirms no other line moved. I did not run the `npm --prefix .skilled/hooks/session-handover/history run build` command — the brief scoped it as documentation text to add, not a command to execute, and the three named checks are the verification gate.

@@ -172,7 +172,10 @@ export async function buildAdvisorPart(payload, {
 
     const prompt = typeof payload.prompt === 'string' ? payload.prompt : '';
     if (!prompt.trim()) return '';
-    if (isEnabled('skill-advisor') === false) return '';
+    // The flag reader skips the hook-flags.env file whenever it is handed an
+    // environment, so only an injected one is passed: a test then decides the
+    // switch alone, and a live session still honours a switch saved to the file.
+    if (isEnabled('skill-advisor', env === process.env ? undefined : env) === false) return '';
 
     const sessionId = typeof payload.session_id === 'string' ? payload.session_id : '';
     const transcriptPath = typeof payload.transcript_path === 'string' && payload.transcript_path
