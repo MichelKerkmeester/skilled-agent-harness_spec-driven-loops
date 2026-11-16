@@ -1,5 +1,5 @@
 {
-  "manifestHash": "03f97a7d2c682365866d73db306eadd4dc4535f859a7d91037a70ca3167a20d7",
+  "manifestHash": "7730a4ebdae4e8d8ea198445b2ecf76e421c282b5c01db0edb0f817da13ca952",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7225,6 +7225,9 @@
     ],
     "052 deep review remediation": [
       "052 deep-review remediation"
+    ],
+    "052 duplicate hop title numbers operator decisions": [
+      "052-duplicate-hop-title-numbers operator decisions"
     ],
     "052 findings resolved": [
       "052 findings resolved"
@@ -45752,6 +45755,18 @@
     "duplicate hash collapse": [
       "duplicate hash collapse"
     ],
+    "duplicate hop title numbers": [
+      "duplicate hop title numbers"
+    ],
+    "duplicate hop title numbers implementation summary": [
+      "duplicate hop title numbers implementation summary"
+    ],
+    "duplicate hop title numbers plan": [
+      "duplicate hop title numbers plan"
+    ],
+    "duplicate hop title numbers tasks": [
+      "duplicate hop title numbers tasks"
+    ],
     "duplicate nudge race": [
       "duplicate nudge race"
     ],
@@ -74860,6 +74875,9 @@
     "name file in plan phase lines tasks": [
       "name file in plan phase lines tasks"
     ],
+    "name stem hop suffix": [
+      "name_stem hop suffix"
+    ],
     "named colour tokens": [
       "named colour tokens"
     ],
@@ -84482,6 +84500,9 @@
     ],
     "phase 51 handover doc alignment 3": [
       "phase 51 handover doc alignment 3"
+    ],
+    "phase 52 duplicate hop title numbers": [
+      "phase 52 duplicate hop title numbers"
     ],
     "phase 52 v1 default llmgateway": [
       "phase 52 v1 default llmgateway"
@@ -120172,6 +120193,9 @@
     ],
     "stacked filters": [
       "stacked filters"
+    ],
+    "stacked hop number in session name": [
+      "stacked hop number in session name"
     ],
     "stage 0 decision": [
       "stage 0 decision"
