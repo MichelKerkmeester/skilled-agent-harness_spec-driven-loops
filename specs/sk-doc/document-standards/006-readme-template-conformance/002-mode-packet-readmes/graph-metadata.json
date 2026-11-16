@@ -39,7 +39,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/README.md",
       ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
       ".skilled/skills/cli-classifier/cli-jev/README.md",
       ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
@@ -93,15 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "skill-readme-template.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/README.md",
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "skill-readme-template.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-classifier/cli-jev/README.md",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
         "source": "derived"
       },
       {
@@ -203,7 +204,7 @@
     ],
     "causal_summary": "A mode packet README is what a reader opens after the hub routes them to one mode, such as `cli-codex` or `sk-create-readme`",
     "created_at": "2026-11-16T15:20:13Z",
-    "last_save_at": "2026-11-16T19:27:03.349Z",
+    "last_save_at": "2026-11-16T21:48:21.856Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8007d4019a7ca33eeff31fc05d69b6b58ef2a595d90707f0939603109bb27db8",
+    "source_fingerprint": "sha256:6face6ac3cb939897a8b23e83fffc5378db83a8354ab3a91773a9391567a358b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "edeb0d86fc1587d0294bed135c2b6cd439022096352542157a861623cf682cc9",
-      "plan.md": "649c5d4d60cda7f603e86df93008b016b8e958e271d4422f9d4e9a488b446857",
-      "tasks.md": "96330954487c817878bb8969867547fc5d0b4e774eb24f64eba8ce95285f8072",
-      "implementation-summary.md": "6758b8cd50d6ab484a5a4505322e094ab68b8c6d5d5917674530c294990331f1"
+      "spec.md": "3a84ec935e1abe49931db2324ca9fe5102853a38e8c048946e78c4c646fc3b73",
+      "plan.md": "e065e48da7283358311208a14a6e99979d35aa5097633fc2a9a2deadfd442c95",
+      "tasks.md": "8c6c46b5a061445aba8f1c4faa236724c1a0d56c22be70b10e4de522d919eea8",
+      "implementation-summary.md": "09c4408fa25b05131e28c5c4a1ab9f5802149db997992b40fecde7b79a6c34e2"
     },
     "last_active_at": null
   }

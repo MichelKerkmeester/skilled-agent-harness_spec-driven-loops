@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 | D1 | Each file follows its template's section model, keeps `---` before every numbered H2 and carries no emoji in a heading. |
 | D2 | A session that did not write a README checks every path, command and count in it against the code before it is committed. |
 | D3 | Out of scope: the root README and root guides, `local-webflow`, code-folder READMEs outside `.skilled/hooks/`, and any change to the templates, the validator or the voice scanner. README versions and changelogs are never edited by hand. |
-| D4 | Writers and reviewers run as DeepSeek V4.1 Flash at max through cli-opencode, one README per session. The main session reruns every check itself before it trusts a result. |
+| D4 | Writers and reviewers run one README per session: DeepSeek V4.1 Flash at max through cli-opencode until its daily cap ran out in phase 002, then GPT-6 Luna at max on the fast tier through cli-codex. The main session reruns every check itself before it trusts a result. |
 | D5 | Phases run in order. Each phase is committed, merged with origin/main and pushed under sk-git before the next one starts, and the operator's own uncommitted files are never staged. |
 
 <!-- /ANCHOR:directive -->
@@ -114,6 +114,6 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Writer model | The 001 plan named Opus writers. The operator chose DeepSeek V4.1 Flash at max, recorded as D4. |
+| Writer model | The 001 plan named Opus writers. The operator chose DeepSeek V4.1 Flash at max, recorded as D4. When the DevPass daily cap ran out at the end of phase 002, the operator chose GPT-6 Luna at max on the fast tier through cli-codex, and D4 was amended. |
 | Binding rows | Phases 002 to 007 are unplanned scaffolds with placeholder acceptance criteria, so no child goal can be derived yet. `check-goal.cjs` needs every row and strict validation rejects a row whose target is missing, so this file passes both only after all seven child goals exist. Phases 002 to 007 are planned first, their child goals are written, and then this goal is committed and sent. |
 <!-- /ANCHOR:log -->

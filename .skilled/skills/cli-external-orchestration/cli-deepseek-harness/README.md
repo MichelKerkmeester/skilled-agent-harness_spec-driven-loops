@@ -6,7 +6,7 @@ trigger_phrases:
   - "dsh headless"
   - "delegate to dsh"
   - "deepseek harness cli"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # cli-deepseek-harness
@@ -219,8 +219,7 @@ Headless reads keys from the environment, then `<cwd>/.env`, then `$DSH_HOME/.en
 | Packet docs | The README validator reports zero issues |
 
 ```bash
-cd .skilled/skills/cli-external-orchestration/cli-deepseek-harness
-node -e 'const r=require("./hard-rules.json"); console.log(r.length, r.every((x) => x.severity === "error"))'
+node -e 'const r=require("./.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json"); console.log(r.length, r.every((x) => x.severity === "error"))'
 ```
 
 Expected: `13 true`.

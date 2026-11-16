@@ -36,17 +36,17 @@ The phase changes the 41 mode packet READMEs registered in the seven hub `mode-r
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The file list is rebuilt from disk with the enumeration command below and still holds 41 files
-- [ ] The baseline for all 41 files is recorded in `$S/baseline-002-before.tsv`
-- [ ] The link checker and every consumer test in the affected surfaces table pass before any edit
-- [ ] The writer and reviewer briefs are rendered from this plan's constraints
+- [x] The file list is rebuilt from disk with the enumeration command below and still holds 41 files
+- [x] The baseline for all 41 files is recorded in `$S/baseline-002-before.tsv`
+- [x] The link checker and every consumer test in the affected surfaces table pass before any edit
+- [x] The writer and reviewer briefs are rendered from this plan's constraints
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `bash $S/tools/baseline.sh` prints `✅ VALID`, `hard=0` and `emojiH=0` for all 41 files, and `readme_links.py` prints `0 problems`
-- [ ] `h2model.py` prints EXACT or SUBSET for every file against its template's section list
-- [ ] Every consumer test in the affected surfaces table passes
-- [ ] Docs updated (spec/plan/tasks), and `validate.sh --strict` prints `RESULT: PASSED`
+- [x] All acceptance criteria met
+- [x] `bash $S/tools/baseline.sh` prints `✅ VALID`, `hard=0` and `emojiH=0` for all 41 files, and `readme_links.py` prints `0 problems`
+- [x] `h2model.py` prints EXACT or SUBSET for every file against its template's section list
+- [x] Every consumer test in the affected surfaces table passes
+- [x] Docs updated (spec/plan/tasks), and `validate.sh --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
 
 ---
