@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fb8d83c29edbcb8d10376da8884257212e81ac45095e67cd7e53ec751f059f13",
+  "manifestHash": "db3fb2da5a20ad4ab15097b8c57d6b304bd87ed323a96c0f5d2d6c321e4ca56c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -32137,17 +32137,11 @@
     "crawlable commit research": [
       "crawlable commit research"
     ],
-    "create a chart": [
-      "create a chart"
-    ],
     "create a comment": [
       "Create a comment"
     ],
     "create a data source": [
       "Create a data source"
-    ],
-    "create a diagram": [
-      "create a diagram"
     ],
     "create a git worktree": [
       "create a git worktree"
@@ -40528,6 +40522,9 @@
     ],
     "design is the product": [
       "design is the product"
+    ],
+    "design md": [
+      "design.md"
     ],
     "design md anti patterns": [
       "design.md anti-patterns"
@@ -60934,9 +60931,6 @@
     ],
     "hybrid rrf reranker integration": [
       "hybrid RRF reranker integration"
-    ],
-    "hybrid search": [
-      "hybrid search"
     ],
     "hybrid search bm25 fusion": [
       "hybrid search bm25 fusion"
@@ -122322,6 +122316,9 @@
     "style guide tokens": [
       "style guide tokens"
     ],
+    "style reference": [
+      "style reference"
+    ],
     "style reference bundle": [
       "style reference bundle"
     ],
@@ -129457,6 +129454,9 @@
     ],
     "typed jev judgments": [
       "typed jev judgments"
+    ],
+    "typed judgment hub": [
+      "typed judgment hub"
     ],
     "typed judgment routing": [
       "typed judgment routing"

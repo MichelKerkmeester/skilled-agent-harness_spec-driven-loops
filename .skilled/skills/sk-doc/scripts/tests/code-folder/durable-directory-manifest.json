@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 846,
+  "derived_count": 847,
   "directories": [
     ".",
     ".claude",
@@ -25,6 +25,7 @@
     ".pi/extensions/pi-fast-mode-w-subagent-support/benchmark/reports/2026-08-17--manual-testing-playbook--fast-mode-usage",
     ".pi/extensions/pi-fast-mode-w-subagent-support/src",
     ".pi/extensions/pi-fast-mode-w-subagent-support/tests",
+    ".pi/types",
     ".skilled/bin",
     ".skilled/bin/lib",
     ".skilled/bin/tests",

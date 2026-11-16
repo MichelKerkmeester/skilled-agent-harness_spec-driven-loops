@@ -20,12 +20,12 @@ trigger_phrases:
   - "delegate to vibe"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.8.6.0
+version: 1.8.7.0
 ---
 
 # cli-external-orchestration
 
-> Cross-AI work means more than one external CLI runtime on your machine. This hub routes each coding, review, research or delegation request to the CLI that fits it best, dispatched as a nested workflow packet under one advisor identity.
+> Send a coding or review task to the external CLI that fits it, with every write landing in this repository's workspace.
 
 ---
 
@@ -35,114 +35,147 @@ version: 1.8.6.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Cross-AI CLI dispatch: coding, review, research, delegation and second opinions through eight external CLI runtimes |
-| **Invoke with** | Gate 2 keyword routing such as "cli dispatch" or "delegate to codex". No mode has a bound slash command (`command: null`) |
-| **Routes to** | `cli-opencode/`, `cli-claude-code/`, `cli-codex/`, `cli-cursor/`, `cli-devin/`, `cli-pi/`, `cli-deepseek-harness/` or `cli-mistral-vibe/` via `mode-registry.json` (all mutating packets, `mutatesWorkspace: true`) |
-| **Produces** | A dispatched OpenCode, Claude Code, Codex, Cursor, Devin, Pi, DeepSeek Harness or Mistral Vibe session whose writes land in this repo's workspace. Most modes' guards block a runtime from dispatching itself, and `cli-pi` is the deliberate exception |
-
-### Purpose
-
-Your machine runs more than one external AI runtime, each with its own CLI and its own failure modes. Picking one by habit is guesswork: the session runs, but it may not fit the task. The hub makes the choice deliberate. One advisor identity reads the request and picks the external CLI that fits it best. Then it dispatches the matching workflow packet.
-
-### When to Use
-
-Use the hub when a request belongs to an external CLI runtime: full-runtime OpenCode work, an Anthropic-backed second opinion, an OpenAI-backed review and research pass, Composer's view on a diff, Cognition-backed cloud coding, a guarded headless Pi run, a pinned one-task DeepSeek Harness run or a pinned one-task Mistral Vibe print-mode run. If the request is about code inside this repo, the hub dispatches the session and `sk-code` owns the work inside it. If the request is about documentation, `sk-doc` handles it directly and this hub does not write docs.
+| **Use it for** | Cross-AI dispatch of a coding pass, a review, a research question or a second opinion to one of eight external CLI runtimes |
+| **Invoke with** | A trigger phrase that names an executor, such as `delegate to codex` or `mistral vibe`. No mode has a bound slash command |
+| **Works on** | Requests that carry executor vocabulary and the repository workspace the dispatched session writes to |
+| **Produces** | One dispatched CLI session whose writes land in this repository or a request for disambiguation |
 
 ### What It Does
 
-The hub holds no packet-local logic. Every request routes to exactly one of eight nested workflow packets through `hub-router.json` and `mode-registry.json`. The hub itself keeps just its `SKILL.md`, `ROUTER.md` and the registry files. Each mode packet keeps its own contract, references, playbook and changelog.
+The hub is the front door for external CLI dispatch. It reads the request and hands the task to one of eight workflow packets. The hub carries no per-mode logic, so each packet keeps its own dispatch contract and references.
+
+Start with `node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<task>"` when you want the decision before a dispatch. The reply names the mode the hub picked.
+
+Work with no cross-AI handoff belongs to the skill that owns it. Application-code implementation and review with no dispatch need go to `sk-code`. The hub exists for the task that has to leave this runtime.
 
 ### The Mode Roster
 
+Eight packets sit under the hub. Each one is a `workflow` packet with `mutatesWorkspace: true`, and each runs one CLI binary.
+
 | Mode | What the packet dispatches |
 |---|---|
-| **`cli-opencode`** ([README](./cli-opencode/README.md), [SKILL.md](./cli-opencode/SKILL.md)) | OpenCode CLI dispatch: full-runtime and parallel sessions, detached sessions, the plugin, skill, MCP and Spec-Kit-Memory runtime plus small-model dispatch for DeepSeek, Kimi, MiniMax and GLM. |
-| **`cli-claude-code`** ([README](./cli-claude-code/README.md), [SKILL.md](./cli-claude-code/SKILL.md)) | Claude Code CLI dispatch: Anthropic-backed extended thinking, surgical code edits, structured JSON-schema output, agent delegation and cross-AI second opinions |
-| **`cli-codex`** ([README](./cli-codex/README.md), [SKILL.md](./cli-codex/SKILL.md)) | Codex CLI dispatch: OpenAI-backed coding, repo analysis, PR review, web research and cross-model validation. Fails closed when the `codex` binary is absent |
-| **`cli-cursor`** ([README](./cli-cursor/README.md), [SKILL.md](./cli-cursor/SKILL.md)) | Cursor CLI dispatch: Composer-model dispatch, read-only `--mode plan` and `--mode ask` exploration, native git worktree isolation, a cloud `worker` and a shared `.cursor/` hooks, MCP and rules config surface with the Cursor editor |
-| **`cli-devin`** ([README](./cli-devin/README.md), [SKILL.md](./cli-devin/SKILL.md)) | Devin CLI dispatch: Cognition-backed cloud coding via `devin -p`, subagent delegation via `run_subagent`, cloud handoff via `/handoff`, MCP host integration and multi-model dispatch. Availability-gated on `command -v devin` |
-| **`cli-pi`** ([README](./cli-pi/README.md), [SKILL.md](./cli-pi/SKILL.md)) | Pi CLI dispatch: guarded headless print, JSON-event and RPC dispatch, native skills and extensions plus community packages. Availability-gated on `command -v pi`, with failure exit codes that are unreliable so callers inspect output |
-| **`cli-deepseek-harness`** ([README](./cli-deepseek-harness/README.md), [SKILL.md](./cli-deepseek-harness/SKILL.md)) | DeepSeek Harness dispatch: pinned `dsh --profile headless` one-task runs with the prompt on stdin, a closed two-route DeepSeek V4.1 Flash roster chosen by route patch, a scratch cwd with a disposable `DSH_HOME` and a JSON event stream judged by exit code and final event. Experimental: LLM Gateway is verified and the default. OpenCode Go was proven by a keyed run on 2026-11-07 and runs only when named. Availability-gated on `command -v dsh` plus the pinned version |
-| **`cli-mistral-vibe`** ([README](./cli-mistral-vibe/README.md), [SKILL.md](./cli-mistral-vibe/SKILL.md)) | Mistral Vibe dispatch: pinned `vibe -p` one-task print-mode runs from a scratch cwd with a disposable `VIBE_HOME`, a closed two-alias `deepseek-flash` / `glm-flash` roster, and an `export.json` outcome record in the `--output-dir` folder, judged by `exit_code` 0 plus `outcome` `finished`. Experimental: the pin is `vibe 3.1.2` and ACP (`vibe-acp`) is deferred. Availability-gated on `command -v vibe`, the pinned version and an exported `MISTRAL_API_KEY` |
+| [cli-opencode](./cli-opencode/SKILL.md) | `opencode run` sessions, including parallel detached workers and the full runtime with its plugins and MCP tools |
+| [cli-claude-code](./cli-claude-code/SKILL.md) | `claude -p` runs for reasoning passes and structured JSON output |
+| [cli-codex](./cli-codex/SKILL.md) | `codex exec` runs for coding, repo analysis, review and web research |
+| [cli-cursor](./cli-cursor/SKILL.md) | `cursor-agent` runs, including read-only plan mode and a worktree-isolated worker |
+| [cli-devin](./cli-devin/SKILL.md) | `devin -p` runs, including subagent delegation and a cloud handoff |
+| [cli-pi](./cli-pi/SKILL.md) | `pi` headless runs, including print mode and JSON-event output |
+| [cli-deepseek-harness](./cli-deepseek-harness/SKILL.md) | `dsh --profile headless` one-task runs over a closed two-route set. Experimental |
+| [cli-mistral-vibe](./cli-mistral-vibe/SKILL.md) | `vibe -p` one-task runs over a closed two-alias roster. Experimental |
+
+### Guards Stay Inside The Packets
+
+Each packet owns its guard. Most packets refuse to load when the caller already runs inside their own CLI. `cli-opencode` allows an explicit parallel detached request, which must start a separate session with its own state directory. `cli-pi` is exempt from the two layers that mean the caller sits inside Pi. Every packet still refuses a dispatch from inside a fan-out lineage or a repeat in the dispatch stack.
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Invoke it.** Gate 2 keyword routing matches trigger phrases such as "cli dispatch" or "delegate to codex". No slash command exists for any of the eight modes (`command: null`).
+**Step 1: Resolve the mode.**
 
-**Step 2: Dispatch the mode that fits the request.**
+```bash
+node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "delegate to codex for a diff review"
+```
 
-When a request names several modes at once, the `tieBreak` order runs them as an `orderedBundle`.
+The reply is one JSON line. `action` reads `route` and `targets[0].workflowMode` reads `cli-codex`:
 
-| Mode | Example prompt |
-|---|---|
-| `cli-opencode` | `Run this task through opencode run with the deepseek provider.` |
-| `cli-claude-code` | `Use cli-claude-code to get an Anthropic-backed second opinion.` |
-| `cli-codex` | `Use cli-codex for an OpenAI-backed code review and web-research pass.` |
-| `cli-cursor` | `Use cli-cursor to get Composer's opinion on this diff.` |
-| `cli-devin` | `Use cli-devin for a Cognition-backed multi-model code review.` |
-| `cli-pi` | `Use cli-pi for a guarded headless JSON-event review.` |
-| `cli-deepseek-harness` | `Delegate to dsh for a read-only headless review of this diff.` |
-| `cli-mistral-vibe` | `Delegate to vibe for a print-mode second opinion on this diff.` |
+```json
+{"hubId":"cli-external-orchestration","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-codex","packetKind":"workflow","skillId":"cli-external-orchestration","workflowMode":"cli-codex"}],"effectivePolicyHash":"…","generation":…}
+```
 
-**Step 3: Confirm the dispatch.** The session runs under the target CLI and its writes land in this repo's workspace. Read the mode's `SKILL.md` for its exact dispatch contract before relying on the result.
+The `effectivePolicyHash` and `generation` values change whenever the routing files are re-minted, so compare `action` and `targets` only.
+
+An `action` of `defer` or `clarify` means the prompt named no clear executor. Name one of the eight modes and run the command again.
+
+**Step 2: Read the packet contract.** Open the mode's `SKILL.md` before you compose the prompt. Every packet requires that read, and the router's answer does not replace it.
+
+**Step 3: Check the hub before you rely on it.**
+
+```bash
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-external-orchestration
+```
+
+The run prints `PASS` and `INFO` lines and ends with `OK: parent-skill-check`. It exits 0.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### The Routing Chain
+Routing runs in two stages. The hub scores the request against the vocabulary in `hub-router.json` and picks a workflow mode. `ROUTER.md` then maps that mode's intent to the leaf files the packet loads. The hub never emits a leaf path, and the surface router never picks a mode.
 
-1. Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity and tool surface.
-2. The registry also carries the advisor routing fields.
-3. The hub's root `ROUTER.md` then maps the request's dispatch intent to the exact leaf resources the selected mode loads (stage two); the hub never emits leaf paths and the surface router never re-decides the mode.
-4. When a request names several modes at once, `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe` as an `orderedBundle`.
-5. `defaultMode` is `null`: genuinely unclear or contradictory intent defers to disambiguation instead of defaulting silently.
-6. A DeepSeek model named with another runtime routes to that runtime. "Use cli-opencode with deepseek-v4.1-flash" is `cli-opencode`. Only harness vocabulary such as `dsh`, `dsh headless`, `deepseek harness` or `delegate to dsh` selects `cli-deepseek-harness`.
+```mermaid
+flowchart TD
+  Request["Request"] --> Hub["hub-router.json<br/>scores the vocabulary"]
+  Hub --> Registry["mode-registry.json<br/>names the packet"]
+  Registry --> Surface["ROUTER.md<br/>maps the mode's leaves"]
+  Surface --> Packet["Selected packet<br/>runs the CLI session"]
+```
 
-### The Guard Rails
+### The Outcomes
 
-Four behaviors keep dispatch honest:
+`hub-router.json` declares three outcomes.
 
-- `cli-codex` fails closed when the binary is absent. `cli-devin`, `cli-pi`, `cli-deepseek-harness` and `cli-mistral-vibe` gate routing on `command -v`, `cli-deepseek-harness` also refuses any `dsh --version` other than its pin, and `cli-mistral-vibe` also refuses any `vibe --version` other than its pin or a missing `MISTRAL_API_KEY`.
-- A runtime is blocked from dispatching itself, except `cli-pi`, which a Pi session may dispatch because Pi has no in-process delegation left. Every mode is still refused from inside a fan-out lineage or a repeated dispatch stack.
-- One `graph-metadata.json` carries the single advisor identity for all eight modes, unioning their intent signals, trigger phrases, domains and outward edges.
-- Each mode keeps its own `SKILL.md`, `README.md`, `references/`, `assets/`, `manual-testing-playbook/` and `changelog/`. Its `references/providers-and-models.md` is the single source for that mode's providers, model ids, effort tiers and dispatch shapes.
+| Outcome | What happens |
+|---|---|
+| `single` | One dominant executor signal routes to one mode |
+| `orderedBundle` | Several explicitly requested executors run in `tieBreak` order |
+| `defer` | Unclear or contradictory intent asks for disambiguation |
+
+`defaultMode` is `null`, so the router never picks a fallback for you. A prompt that names no executor takes the `defer` outcome. A DeepSeek model name alone does not choose a mode either, because the runtime named in the request decides that. `composer` is the exception. It names Cursor's own model, so it routes to `cli-cursor`.
+
+### Compiled Routing
+
+Compiled routing runs first. `node .skilled/bin/compiled-route.cjs` returns a decision, and a `route` decision carries the targets to load. On a legacy sentinel or an error the hub falls back to `hub-router.json`. Set `SPECKIT_COMPILED_ROUTING=0` to force the registry path.
 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
 
+### When To Use This Skill
+
+Reach for the hub when the work should run in another CLI. That covers a second opinion on a diff, a review from another runtime, a research pass with web access or a full-runtime session against this repository. Reach for `sk-code` when the code work stays here. A quick in-process task with no handoff does not need a dispatch.
+
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-prompt` | Owns the canonical CLI prompt-quality card every executor's local card delegates to (enhances edge, weight 0.5) |
-| `system-spec-kit` | Manual dependency. A full-runtime `cli-opencode` dispatch carries the Spec-Kit-Memory runtime |
-| `sk-code` | Owns code implementation, review and debugging inside the dispatched session |
-| `system-deep-loop` | Related. Ablation-suite and worker-farm patterns dispatch parallel `cli-opencode` sessions |
-| `mcp-code-mode` | Related. The MCP execution substrate a dispatched session can reach once running |
-| `sk-doc` | Sibling parent hub whose structure this hub mirrors |
+| `sk-code` | Owns application-code implementation and review, so a task with no CLI handoff stays there |
+| `sk-prompt` | Holds the canonical CLI prompt-quality card and its persona-injection contract |
+| `system-spec-kit` | Provides the spec folder and continuity contract a full-runtime `cli-opencode` session carries |
+| `system-skill-advisor` | Resolves an executor prompt to this hub and reads its registry for the executor-delegation scorer |
 
 ---
 
-## 5. VERIFICATION
+## 5. TROUBLESHOOTING
 
-| Check | How to run it |
+| What you see | Why | Fix |
+|---|---|---|
+| `action` reads `defer` or `clarify` | The prompt named no executor, or named several with no clear winner | Name one of the eight modes and run the router again |
+| A packet refuses to load | The caller runs inside that packet's own CLI | Dispatch from another runtime. `cli-pi` is the one packet a Pi session may call |
+| The compiled router returns a legacy sentinel or an error | The compiled path cannot serve the request | Follow `hub-router.json` or set `SPECKIT_COMPILED_ROUTING=0` to force the registry path |
+
+---
+
+## 6. VERIFICATION
+
+| Check | Command and pass criterion |
 |---|---|
-| Hub structure | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-external-orchestration` exits 0 with 0 invariant failures and 0 warnings |
-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/README.md --type readme` exits 0 and reports zero issues |
+| Hub invariants | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-external-orchestration` prints `OK: parent-skill-check` and exits 0 |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/README.md` prints `Total issues: 0` and exits 0 |
+| Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/cli-external-orchestration/README.md` prints `hard blockers: 0` and exits 0 |
 
 ---
 
-## 6. RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Hub runtime instructions and routing logic |
-| [`mode-registry.json`](./mode-registry.json) | Packet identity, tool surface and advisor routing for the eight modes |
-| [`hub-router.json`](./hub-router.json) | Signal and vocabulary routing that precedes the registry |
-| [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: dispatch intent to the exact leaf resources the selected mode loads |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of hub dispatch capabilities |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate hub routing |
+| [`SKILL.md`](./SKILL.md) | Hub runtime: when to use it, the mode table and the hub rules |
+| [`ROUTER.md`](./ROUTER.md) | Stage-two router: dispatch intent to the leaf files a mode loads |
+| [`mode-registry.json`](./mode-registry.json) | Mode identity, packet folder, aliases and tool surface |
+| [`hub-router.json`](./hub-router.json) | Routing policy, signals and vocabulary classes |
+| [`leaf-manifest.json`](./leaf-manifest.json) | The registered leaf resources and their typed pairs |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of the hub surface |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator scenarios that test routing against the live hub |
+| [`shared/references/child-dispatch-preamble.md`](./shared/references/child-dispatch-preamble.md) | The preamble every non-interactive dispatch prompt carries |
+| [`changelog/`](./changelog/) | Per-release entries, one file per version |

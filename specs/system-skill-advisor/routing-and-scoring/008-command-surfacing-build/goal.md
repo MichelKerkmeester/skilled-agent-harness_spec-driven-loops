@@ -400,6 +400,7 @@ and findings belong here.
 | Review pass eleven | CONDITIONAL, both P1 fixed | routing-11 converged with 5 P2, fixes-11 stopped on maxIterationsReached with 2 P1 and 5 P2; closing single quote and retired name fixed in 039 T013, wrapper invariance test T014 fails 3 cases on the two earlier versions; 5 P2 fixed, 5 recorded; pass twelve follows |
 | Criterion 2 recheck after phase 039 | Met | after-pass-eleven-invariance.txt: suite 2363 passed 0 failed with AI_SESSION_CHILD unset and set, FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5], stored sets unchanged |
 | Merge origin/main 35d49e8f638 | Done | 11 commits; ROUTER and SKILL conflicts kept 039's narrowings and main's install-guide removal; manifests, graph and trigger index regenerated, all fresh; doctor 1273/0, bin 198/0, FLOOR and EVAL unchanged; python-compat failed only on stale local advisor state and passes 3/3 after advisor_rebuild (after-merge-2.txt); operator chose finish capped: one narrow review pass, one alignment run, a rep... |
+| Merge origin/main 640cd0a2499 | Done | main's skill README rewrite taken for sk-doc and the advisor (it drops the branch's edited lines), advisor README version kept monotonic at 0.12.22.0, trigger index regenerated and checked; README validate 0 issues both, verdict parity PASS, advisor suite 2363 passed 0 failed |
 
 ### Deviations and findings
 

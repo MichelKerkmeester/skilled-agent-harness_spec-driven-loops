@@ -1,21 +1,18 @@
 ---
 title: sk-doc
-description: "Markdown and OpenCode component specialist: structure-first document quality (DQI, HVR voice), scaffolding and packaging, diagrams, charts, feature catalogs, testing playbooks, before/after diffs, repo rules, packet goals and frontmatter contracts."
+description: "Documentation quality and component authoring in one hub: fifteen workflow modes behind one routing identity, a deterministic score and a validator before anything ships."
 trigger_phrases:
   - "documentation"
   - "readme"
   - "create skill"
   - "validate doc"
   - "changelog"
-  - "flowchart"
   - "playbook"
   - "feature catalog"
   - "conformance benchmark"
   - "peer adapter benchmark"
   - "human voice rules"
   - "make this sound human"
-  - "create a chart"
-  - "create a diagram"
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
@@ -24,7 +21,7 @@ version: 2.3.13.0
 
 # sk-doc
 
-> Document quality starts with structure. A deterministic script extracts and scores a document before a human or an AI judges it, so every document of a given type ships in the same shape and clears the same bar.
+> Write documentation, a skill, an agent or a slash command in the shape this repository expects, then prove it cleared the gate before it ships.
 
 ---
 
@@ -34,133 +31,125 @@ version: 2.3.13.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Markdown quality enforcement, human-voice passes, component scaffolding and packaging, benchmark authoring, diagrams, charts, flowcharts, feature catalogs, testing playbooks, changelogs, repo rules, frontmatter contracts and local before/after document diffs |
-| **Invoke with** | "create a skill", "validate doc", "conformance benchmark", "readme", "documentation", "flowchart", "create a chart", "create a diagram", "repo rule", "frontmatter contract", "apply human voice", "changelog" or Gate 2 auto-routing on documentation keywords |
-| **Works on** | Markdown files, OpenCode components (skills, agents, commands), standalone HTML diagrams/charts and ASCII flowcharts |
-| **Produces** | DQI scores, validated documents, packaged skill zips, templated component directories, standalone HTML diagrams/charts and self-contained HTML diff reports |
-
-### Why This Skill Exists
-
-Documentation drifts without a standard. Section order wanders. Frontmatter goes missing. Voice slides into filler and one author's README reads nothing like the next. A reader re-learns the layout every time. An AI assistant cannot parse the structure reliably. Hand-checking every document against a style guide does not scale and misses things.
-
-sk-doc makes structure the first gate so these problems never reach production. The script catches what is wrong before the AI touches a line. A reader opens any changelog, any skill README or any flowchart and knows exactly where to look and what to expect. An AI assistant loads a document and finds the same landmarks every time.
+| **Use it for** | Document quality, plus authoring for skills, agents, commands, READMEs, catalogs, playbooks, benchmarks, changelogs, diffs, repo rules, frontmatter, goals and voice passes |
+| **Invoke with** | A `/create:*` command or auto-routing on a documentation keyword |
+| **Works on** | Markdown documents, skill and agent packages, slash commands, packet goals and the prose inside any of them |
+| **Produces** | A DQI score, a validated document, a scaffolded component or a rewritten passage that passed its checks |
 
 ### What It Does
 
-sk-doc is the single specialist for documentation and OpenCode components. It covers these surfaces:
+sk-doc is the front door for documentation and OpenCode component work. It resolves your request to one of fifteen workflow modes and loads that mode's packet. The authoring contract stays inside the packet, so a README task and a changelog task read only the rules they need.
 
-- **Document quality.** Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist, a list of violations and the evaluation questions the AI answers, all computed before the AI judges the content.
-- **Scaffolding and packaging.** It scaffolds and packages skills, agents, commands and other OpenCode components, with validation as the gate before any package ships.
-- **Render checks.** Its validator runs sixteen render checks for a doc that Markdown would show differently from how it reads or that opens in the wrong order, and strict packaging fails a skill on any of them. The render ledger records the docs code depends on, and `shared/scripts/doc-rewrite-guard.py` proves a form-only rewrite kept every claim.
-- **Benchmarks.** It authors benchmark packages with deterministic conformance inputs for peer adapters.
-- **Diagrams and inventories.** It builds ASCII flowcharts, feature catalogs that inventory current behavior and manual testing playbooks that prove it.
-- **Document diff.** Its `sk-create-diff` packet compares two versions of a document (text, Markdown, HTML, DOCX or text-PDF) without Git and renders the changes as a self-contained, zero-JavaScript HTML report with section-aware navigation.
-- **Human voice.** Its `sk-create-with-human-voice` packet applies the Human Voice Rules to prose: a scope gate that names what a voice edit may not touch, a scanner that parses the standard at run time rather than carrying a copy, a judgment pass no scanner can perform, and a re-scan that proves the rewrite landed.
-- **Goal authoring.** Its `sk-create-goal` packet authors a spec packet's `goal.md` from a template for its kind and checks the result against the goal contract before handing over the chat slice.
+The hub routes and the packets author. `mode-registry.json` names the packet, aliases and command for each mode. `hub-router.json` holds the vocabulary that picks one. The hub itself carries no per-packet logic.
 
-It does not own code or spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns the spec-folder lifecycle together with memory and continuity. The two skills touch markdown but do not overlap: sk-doc judges document quality and system-spec-kit enforces the spec-packet contract.
+A packet hands its work to a check. `validate_document.py` reads the file path and its content shape, picks the enforcement level for that document class and reports what blocks delivery. `extract_structure.py` adds a score from 0 to 100 and the list of checks that failed. A voice pass scores prose against the Human Voice Rules before the rewrite and again after it.
 
-### When To Use This Skill
+Start with a `/create:*` command when you know the artifact. Reach for a plain description when you are unsure.
 
-Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, an agent, a command or another OpenCode component and when you need a quality gate before publishing. Use it when you build a feature catalog, a testing playbook, a flowchart, a changelog, a spec packet goal or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
+### Why This Skill Exists
 
-You reach it through thirteen `/create:*` commands: `/create:agent`, `/create:sk-skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:readme`, `/create:changelog`, `/create:diff`, `/create:repo-rule`, `/create:with-human-voice` and `/create:goal`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
+Documentation drifts. One README numbers its sections, the next does not, frontmatter goes missing and a reviewer checks a different list each time. A skill package picks up a shape of its own, so a reader re-learns the layout at every stop.
 
-Skip sk-doc when the task belongs to a neighbor:
+sk-doc makes structure the first gate, so a document of a given type carries the same landmarks wherever it lives.
 
-- Code changes route to `sk-code`.
-- Spec-folder lifecycle operations route to `system-spec-kit`.
-- Git workflow orchestration routes to `sk-git`.
+### The Type-Aware Gate
 
-### The Type-Aware Enforcement Layer
+One validator serves every document class and the class sets the bar. `shared/references/validation.md` lists the gate for each class. The validator applies that level unless you pass `--type` to override it.
 
-The validator reads the file path and content shape, then applies the matching enforcement level automatically. The detected type decides the strictness.
-
-| Document class | Enforcement level |
+| Document class | What the gate allows |
 |---|---|
-| SKILL and command docs | Strict, with blocking violations that stop the gate |
-| README docs | Usability-focused, with safe auto-fixes only and no blocking rules beyond the essential sections |
-| Knowledge docs | Moderately strict |
-| Active spec docs | Loose unless the task explicitly asks for enforcement |
+| SKILL.md and command docs | Strict, with no checklist failure allowed |
+| README docs | Flexible, with minor issues accepted |
+| Reference and template docs | Moderate, with no critical failure allowed |
+| Active spec docs | Loose, as a working document |
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Invoke it.** Gate 2 auto-routing fires on documentation keywords. Otherwise read the skill directly.
+**Step 1: Resolve the mode.**
 
 ```bash
-python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "validate my README" --threshold 0.8
+node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt "create a skill readme for my new skill"
 ```
 
-The advisor prints a routing recommendation with a score. A score above the 0.8 threshold names sk-doc as the skill to load.
+The reply is JSON. `"action":"route"` with a target that names `sk-create-readme` means the hub picked a mode. `"action":"defer"` means no mode matched the prompt, so name the artifact or call its `/create:*` command. `"action":"clarify"` means two modes matched and the hub needs you to pick one.
 
-**Step 2: Score a document.** `extract_structure.py` returns the DQI, the checklist results, every violation and the evaluation questions in JSON.
+**Step 2: Score a document.**
 
 ```bash
-python3 .skilled/skills/sk-doc/scripts/extract_structure.py <path/to/document.md>
+python3 .skilled/skills/sk-doc/scripts/extract_structure.py .skilled/skills/sk-doc/README.md
 ```
 
-Success looks like a JSON object with `dqi.total`, `dqi.band` and `checklist.passed`. A band of "excellent" or "good" means the document is ready. A band of "needs_work" means the checklist output tells you exactly what to fix and in what order.
+The output is JSON. Read `dqi.total` and `dqi.band` for the score, `checklist.failed` for how many checks did not pass, `checklist.results` for each check and `evaluation_questions` for the judgements the script leaves to you.
 
-**Step 3: Validate a README before delivery.** `validate_document.py` is the fast gate. It checks required sections, heading format and frontmatter.
+**Step 3: Validate before delivery.**
 
 ```bash
-python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-doc/README.md
 ```
 
-Exit 0 means the document is valid and ready to ship. Exit 1 means a blocking format error, so fix the reported violations and re-run. Exit 2 means the file could not be read, so check the path.
+```
+✅ VALID: .skilled/skills/sk-doc/README.md
+Document type: readme
+Total issues: 0
+```
+
+Exit 0 means the file passed. Exit 1 means a blocking format error, so fix what the report names and run it again. Exit 2 means the file could not be read, so check the path.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### The Structure-First Pipeline
+Routing runs in two stages. The first picks a mode. `hub-router.json` holds the routing vocabulary and `mode-registry.json` maps the winning mode to its packet. A request that matches no mode returns `defer` rather than a default, because `routerPolicy.defaultMode` is `null`.
 
-Every document passes through the same sequence. The script parses the markdown, extracts the heading tree along with the frontmatter and the code blocks, runs the checklist for the detected document type and computes the three-component DQI. It outputs flat JSON. The AI reads that JSON and answers the evaluation questions the script poses, then produces ranked recommendations. No document gets a quality pass without the script running first.
+The second stage picks files inside the mode. `ROUTER.md` maps the authoring intent to the references and assets that mode loads, in its packet or in the shared backbone. The hub never emits a leaf path. The surface router never re-decides the mode.
+
+```mermaid
+flowchart LR
+  Request["Request"] --> Hub["hub-router.json<br/>picks a mode"]
+  Hub --> Registry["mode-registry.json<br/>names the packet"]
+  Registry --> Router["ROUTER.md<br/>loads the leaves"]
+  Router --> Packet["Packet<br/>authors the artifact"]
+  Packet --> Gate["validate_document.py<br/>validates format"]
+```
+
+### What The Scripts Measure
+
+The scripts own what a machine can settle. `extract_structure.py` parses a document and computes the DQI. `validate_document.py` gates format at the exit-code level and runs the render checks, which catch a document that Markdown would show differently from how it reads. `quick_validate.py` checks a skill name, its frontmatter and its description budget. `package_skill.py` validates a skill and bundles it to a zip. `audit_readmes.py` runs the template check across every README in scope.
+
+Judgement stays with the reader. A script can report a failed checklist. It cannot decide that the section under it carries enough depth, that the example is clear or that the prose holds the voice.
 
 ### The DQI
 
-The Documentation Quality Index scores a document from 0 to 100 across three components:
+`extract_structure.py` computes a Documentation Quality Index from 0 to 100 across three parts.
 
-| Component | Points | What it covers |
+| Component | Points | What it measures |
 |---|---|---|
-| Structure | 40 | checklist pass rate, heading hierarchy and section completeness |
-| Content | 30 | word count in the right range, heading density, code examples, links and tables |
-| Style | 30 | H2 format, section dividers, intro paragraph and HVR compliance |
+| Structure | 40 | Checklist pass rate for the detected document type |
+| Content | 30 | Word count, heading density, code examples, tables, links |
+| Style | 30 | H2 format, section dividers, style issues, intro paragraph |
 
-The four bands tell you where you stand:
-
-| Band | Score | What it means |
-|---|---|---|
-| Excellent | 90 to 100 | Production-ready, nothing to fix |
-| Good | 75 to 89 | Shareable, minor improvements recommended |
-| Acceptable | 60 to 74 | Functional but several areas need attention |
-| Needs Work | Below 60 | Not ready, fix in priority order |
-
-### Scripts Versus AI
-
-The scripts own the deterministic work:
-
-- `extract_structure.py` parses, measures, checks and reports.
-- `validate_document.py` gates format at the exit-code level.
-- `init_skill.py` scaffolds a directory.
-- `package_skill.py` validates and bundles.
-- `quick_validate.py` runs fast naming and frontmatter checks.
-
-The AI owns the quality judgment: it reads the JSON, evaluates content depth and clarity, scores style against the Human Voice Rules and writes the recommendations. The split keeps the metrics repeatable and the judgment human-sounding. The Node scripts get their one dependency, `@spec-kit/shared`, from the `package.json` at the skill root, which sits there rather than under `scripts/` so that both `scripts/` and `shared/scripts/` can resolve it.
+The total lands in a band. 90 and above is Excellent, 75 to 89 is Good, 60 to 74 is Acceptable and below 60 is Needs Work, which means the document is not ready to ship.
 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
 
+### When To Use This Skill
+
+Reach for sk-doc when you write or edit a markdown document. Reach for it when you scaffold a skill, an agent, a slash command or a README. The packets also cover a feature catalog, a manual testing playbook, a benchmark package, a changelog entry and a before/after document review.
+
+Thirteen `/create:*` commands front those modes. `sk-create-frontmatter` and `sk-create-quality-control` route by alias instead and carry no command of their own.
+
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-code` | Owns code standards and tests. sk-doc documents the skill and validates its README. |
-| `system-spec-kit` | Owns spec folders, memory and continuity. sk-doc judges quality. The two do not overlap. |
-| `sk-git` | Owns git workflow. sk-doc produces the commit and PR text quality. |
+| `sk-code` | Owns code standards and the test run. sk-doc scores the docs around the code. |
+| `system-spec-kit` | Owns the spec folder, memory and continuity. sk-doc judges a document's quality, spec docs included, without owning the packet contract. |
+| `sk-git` | Owns worktrees, commits and pull requests. |
+| `sk-design` | Owns diagram and chart authoring through `sk-design-diagram` and `sk-design-chart`, so `/design:diagram` and `/design:chart` route to that hub instead. |
 
 ---
 
@@ -168,80 +157,39 @@ The AI owns the quality judgment: it reads the JSON, evaluates content depth and
 
 | What you see | Why | Fix |
 |---|---|---|
-| DQI below 60 ("needs_work") | Missing sections, no frontmatter on a strict file or multiple HVR violations | Fix in priority order: structure and section order first, then missing sections, then content density, then style. Re-run after each batch. |
-| `validate_document.py` exits 1 | A blocking format issue: missing required H2, non-sequential numbering or malformed frontmatter | Read the error message line by line. Fix each reported violation and re-run. |
-| `package_skill.py` fails | SKILL.md is over the 5000-word ceiling, a required section is missing or a subdirectory was not scaffolded | Run `extract_structure.py` on SKILL.md first. Move deep detail into `references/` files if the word count is too high. |
-| Wrong document type detected | The file path or content shape misled the detector, or no type rule matched and README rules were applied, which prints a `document_type_fallback` warning | Check the detected type in the JSON output. Override with `--type` on `validate_document.py`. |
+| `"action":"defer"` from the router | No mode matched the prompt | Name the artifact you need or call its `/create:*` command |
+| A DQI band of Needs Work | Checklist failures, thin content or style findings | Fix the checklist failures first, then content, then style |
+| `validate_document.py` exits 1 | A blocking format error, such as a missing H2 or malformed frontmatter | Read each reported line, fix it and run the validator again |
+| A `cite-drift advisory` line appears | A Jev credential is stored, so the citation check ran on the document | Treat it as advice because it never changes the exit code. Set `JEV_FEATURE_CITE_DRIFT=0` to skip the check |
 
 ---
 
-## 6. FAQ
+## 6. VERIFICATION
 
-**Q: When do I use sk-doc instead of system-spec-kit? Both touch markdown.**
-
-A: sk-doc judges document quality and creates components. system-spec-kit owns the spec-packet contract: Level 1 requires `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md`. Level 2 adds `acceptance-criteria.md` as the closure gate. Packet metadata also includes `description.json` and `graph-metadata.json` for phase parents and save/resume state. The two do not overlap. Use sk-doc for a README, a skill scaffold, a changelog or any markdown component. Use system-spec-kit when you start a spec-folder-tracked change.
-
-**Q: `validate_document.py` and `extract_structure.py`: which one do I run?**
-
-A: Run `validate_document.py` as the fast delivery gate for README files. It exits 0 or 1 and checks only the formatting rules that block publishing. Run `extract_structure.py` when you want the full picture: the DQI score, the checklist pass rate, the violations and the evaluation questions. It works on any markdown document type. Use both in sequence.
-
-**Q: What is the difference between a feature catalog and a manual testing playbook?**
-
-A: A feature catalog documents current behavior. It inventories what a skill or system can do, organized by numbered categories, with source-file anchors and stable slugs. A testing playbook defines how to test that behavior manually, with deterministic prompts, expected signals, evidence requirements and a cross-reference back to the catalog. The catalog is the stable capability reference. The playbook links back to it through a cross-reference index. A playbook scenario is either a single prompt an operator runs and judges, or a scripted conversation the shared runner plays into live runtimes when the result depends on a later answer, turn or restart. Build the catalog first.
-
-**Q: Which `/create:*` command do I use?**
-
-A: `/create:sk-skill` for a new skill under `.skilled/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.skilled/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring. `/design:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/design:chart` for a standalone HTML chart drawn from the catalog of chart forms. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review. `/create:repo-rule` for a repo-local rule wired into `REPO RULES.md`. `/create:with-human-voice` to apply or score the Human Voice Rules over prose. `/create:goal` for a spec packet's `goal.md`.
-
----
-
-## 7. VERIFICATION
-
-The skill ships the checks that prove a document is ready.
-
-| Check | How to run it |
+| Check | Command and pass criterion |
 |---|---|
-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme` reports zero issues and exits 0 |
-| Full quality | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py <document.md>` returns the DQI, the checklist and the violations in JSON |
-| Flowchart shape | `bash .skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh` checks box alignment and label consistency |
-| Package gate | `python3 .skilled/skills/sk-doc/scripts/package_skill.py` validates a skill and bundles it to a zip |
-| Citation drift scan | `node .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` prints per-skill and total citation counts with zero model calls by default, and `--jev` needs `--out <dir>` to run the measurement arm in `shared/scripts/classifier-cite-drift-scan.mjs`. `validate_document.py` runs that module's advisory on the document it validates when a Jev credential is stored, and `JEV_FEATURE_CITE_DRIFT=0` (older name: `SKDOC_CITE_DRIFT_CHECK=0`) skips that |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-doc/README.md` prints `Total issues: 0` and exits 0 |
+| Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/sk-doc/README.md` reports `hard blockers: 0` |
+| Skill metadata | `python3 .skilled/skills/sk-doc/scripts/quick_validate.py .skilled/skills/sk-doc` prints `✅ Skill is valid!` and exits 0 |
+| Full score | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py <document.md>` prints JSON keyed by `dqi`, `checklist` and `evaluation_questions` |
 
 ---
 
-## 8. RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions and the mode rules |
-| [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: authoring intent to the exact leaf resources the selected mode loads |
-| [`shared/references/quick-reference.md`](shared/references/quick-reference.md) | One-page command and gate cheat sheet |
-| [`sk-create-with-human-voice/references/hvr-rules.md`](sk-create-with-human-voice/references/hvr-rules.md) | Human Voice Rules, the writing standard all output must pass |
-| [`shared/references/validation.md`](shared/references/validation.md) | DQI scoring criteria, quality gates and assessment interpretation |
-| [`shared/references/core-standards.md`](shared/references/core-standards.md) | Filename conventions, heading rules and document-type requirements |
-| [`sk-create-with-human-voice/SKILL.md`](sk-create-with-human-voice/SKILL.md) | Applying the Human Voice Rules to prose: scope gate, mechanical pass, judgment pass, re-scan |
-| [`sk-create-quality-control/references/workflows.md`](sk-create-quality-control/references/workflows.md) | Execution workflows by mode and task type |
-| [`sk-create-quality-control/references/optimization.md`](sk-create-quality-control/references/optimization.md) | AI-friendly content transforms and the llms.txt format |
-| [`shared/references/evergreen-packet-id-rule.md`](shared/references/evergreen-packet-id-rule.md) | Why runtime-state docs must not cite mutable spec-packet numbers |
-| [`sk-create-skill/references/README.md`](sk-create-skill/references/README.md) | The skill-creation workflow: understanding through packaging |
-| [`sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`](sk-create-skill/references/parent-skill/parent-skills-nested-packets.md) | The parent-hub method behind `sk-create-skill-parent`: one advisor identity, a single modes registry and the surfaces a new mode must land on |
-| [`sk-create-agent/references/README.md`](sk-create-agent/references/README.md) | Agent authority, permissions and the template-first workflow |
-| [`sk-create-readme/references/README.md`](sk-create-readme/references/README.md) | README creation workflow and standards |
-| [`sk-create-manual-testing-playbook/references/README.md`](sk-create-manual-testing-playbook/references/README.md) | Playbook package structure, scenario tables and cross-reference index |
-| [`sk-create-feature-catalog/references/README.md`](sk-create-feature-catalog/references/README.md) | Feature catalog inventory standards and per-feature file structure |
-| [`sk-create-benchmark/README.md`](sk-create-benchmark/README.md) | Benchmark family registry, including conformance authoring triggers and package boundaries |
-| [`sk-create-diff/README.md`](sk-create-diff/README.md) | Git-free before/after document diff: snapshot lifecycle, comparison engine and the self-contained HTML report |
-| [`sk-create-diff/references/workflow.md`](sk-create-diff/references/workflow.md) | The sk-create-diff capture/compare workflow and CLI reference |
-| [`sk-design-chart/README.md`](../sk-design/sk-design-chart/README.md) | Standalone HTML data charts: twenty-nine forms across six families, the colour system and the corpus validator |
-| [`sk-create-frontmatter/README.md`](sk-create-frontmatter/README.md) | Frontmatter field contracts by document class, the description budget and the 4-part version standard |
-| [`sk-create-repo-rule/README.md`](sk-create-repo-rule/README.md) | Creating, revising and retiring a repository rule, and the router that indexes them |
-| [`sk-create-changelog/README.md`](sk-create-changelog/README.md) | Changelog entries and the version story a skill tells about itself |
-| [`sk-create-command/README.md`](sk-create-command/README.md) | Slash-command authoring: the command document, its router and its presentation asset |
-| [`sk-create-goal/README.md`](sk-create-goal/README.md) | Spec packet goals: the per-kind templates, the conformance checker and the chat-slice handoff |
-| [`scripts/validate_document.py`](./scripts/validate_document.py) | Fast format validator, exit 0/1/2, supports `--json` and `--fix` |
-| [`scripts/extract_structure.py`](./scripts/extract_structure.py) | Full DQI analysis with type-specific checklists and JSON output |
-| [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |
-| [`scripts/package_skill.py`](./scripts/package_skill.py) | Validate and package a skill to a zip file |
-| [`sk-create-skill/assets/skill/`](./sk-create-skill/assets/skill/) | SKILL.md, README, reference and asset templates for skill creation |
-| [`sk-design-diagram/assets/ascii-patterns/`](../sk-design/sk-design-diagram/assets/ascii-patterns/) | Reusable ASCII flowchart patterns for workflows and decision trees |
+| [`SKILL.md`](./SKILL.md) | The hub: when to use it, the mode table and the hub rules |
+| [`ROUTER.md`](./ROUTER.md) | Stage-two surface router, intent to the leaf files a mode loads |
+| [`mode-registry.json`](./mode-registry.json) | The fifteen modes, with the packet and the command where one exists |
+| [`shared/references/quick-reference.md`](./shared/references/quick-reference.md) | Commands, quality gates and DQI bands on one page |
+| [`shared/references/validation.md`](./shared/references/validation.md) | DQI components, bands and the gate for each document class |
+| [`shared/references/core-standards.md`](./shared/references/core-standards.md) | Filename, type detection and heading rules the validator enforces |
+| [`sk-create-readme/assets/skill-readme-template.md`](./sk-create-readme/assets/skill-readme-template.md) | The skill README template this file follows |
+| [`sk-create-readme/references/README.md`](./sk-create-readme/references/README.md) | README type, voice and quality references |
+| [`sk-create-with-human-voice/references/hvr-rules.md`](./sk-create-with-human-voice/references/hvr-rules.md) | The Human Voice Rules, the standard every passage here has to meet |
+| [`sk-create-with-human-voice/SKILL.md`](./sk-create-with-human-voice/SKILL.md) | The voice pass: scope gate, scoring and the re-scan |
+| [`sk-create-quality-control/references/workflows.md`](./sk-create-quality-control/references/workflows.md) | The four execution modes of a document audit |
+| [`shared/scripts/doc-rewrite-guard.py`](./shared/scripts/doc-rewrite-guard.py) | Compares a rewritten doc with its base and reports a lost claim |
+| [`shared/scripts/cite-drift-scan.mjs`](./shared/scripts/cite-drift-scan.mjs) | Counts the citations in skill docs and checks they still point at the code |
 | [`changelog/`](./changelog/) | Per-release entries, one file per version |

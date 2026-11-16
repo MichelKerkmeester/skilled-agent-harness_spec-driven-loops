@@ -7,12 +7,12 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.22.0
+version: 0.12.23.0
 ---
 
 # system-skill-advisor
 
-> Pick the right skill for any non-trivial prompt with a calibrated score and an explicit trust state, safe to call from hooks and safe to log.
+> Tells a runtime which skill should handle a non-trivial prompt, with a score you can check and a trust state you can act on.
 
 ---
 
@@ -20,38 +20,32 @@ version: 0.12.22.0
 
 ### At a Glance
 
-| Aspect | What you get |
+| Aspect | What it gives you |
 |---|---|
-| **Use it for** | Deciding which skill should handle a non-trivial prompt with calibrated confidence |
-| **Invoke with** | "which skill should handle this", "route this request", "advisor_recommend", automatic Gate 2 routing |
-| **Works on** | Non-trivial prompts, scored against indexed skill metadata and a SQLite skill graph |
-| **Produces** | Ranked skill recommendations with per-lane attribution, a trust state and prompt-safe output |
-
-### Purpose
-
-When a runtime meets an ambiguous prompt, guessing which skill to dispatch silently misroutes work. Guessing also hides the reason, so a bad route cannot be explained or repaired. And hook code that echoes the user prompt into logs creates a privacy problem that scales with every invocation.
-
-The advisor answers the "which skill" question with a calibrated score and an explicit trust state. It redacts raw prompt content from every response, so callers can log routing telemetry without logging what the user asked.
-
-### When to Use
-
-Reach for the advisor when a runtime needs to pick a skill for a non-trivial prompt and guessing is not safe. The advisor answers the question and gets out of the way. It does not own the work the target skill performs.
+| **Use it for** | Choosing the skill that should handle a non-trivial prompt, with a score and a trust state attached |
+| **Invoke with** | `advisor_recommend` through the CLI or automatic Gate 2 routing from a prompt hook |
+| **Works on** | Prompts, skill metadata under `.skilled/skills/` and the package-local SQLite skill graph |
+| **Produces** | Ranked recommendations with a score and a trust state |
 
 ### What It Does
 
-system-skill-advisor is the standalone Gate 2 routing surface for Spec Kit. It runs as a resident daemon behind one CLI front door, so routing can be tuned and rolled back without touching memory or code-graph systems. It fuses five scoring lanes into one calibrated recommendation, returns per-lane attribution without leaking prompt content and surfaces a trust state on every response so the caller knows whether to use the result or treat it as degraded.
+system-skill-advisor is the routing skill for Gate 2. It scores a prompt against the metadata of every installed skill and returns the candidates in rank order through `advisor_recommend`, one of nine CLI commands behind `node .skilled/bin/skill-advisor.cjs`.
 
-The single front door is the daemon-backed CLI at `.skilled/bin/skill-advisor.cjs`, which speaks the advisor's own newline-delimited protocol over a unix socket. When the daemon is unreachable, the CLI answers from the Python scorer at `runtime/scripts/skill_advisor.py` and marks the response degraded, so the prompt-time brief reports `Advisor: stale` rather than claiming live. The skill also owns the documentation for the OpenCode plugin surface and the `/goal` plugin.
+The skill runs as a resident daemon behind that one CLI. Routing state lives in this package and memory lives in `system-spec-kit`, so the advisor can be restarted or retuned on its own. The responses that read the index, such as status and recommend, carry a trust state. `includeAttribution` also adds a per-lane breakdown with no raw prompt text. The skill stops at the recommendation, because `sk-code`, `sk-doc`, `sk-git`, `mcp-code-mode` or another target owns the work once routing lands.
 
-### The Five-Lane Scorer
+### The Scoring Lanes
 
-| Lane | Live Weight | What the skill knows how to operate |
+Five lanes score every prompt. `runtime/lib/scorer/lane-registry.ts` holds the live weights that set how much each lane adds to the final score.
+
+| Lane | Live weight | What it reads |
 |---|---|---|
-| `explicit_author` | 0.42 | Author-declared skill ids and trigger metadata |
-| `lexical` | 0.28 | Text overlap and lexical evidence |
-| `graph_causal` | 0.13 | Skill graph relationships, including `depends_on` and `enhances` edges |
-| `derived_generated` | 0.12 | Sanitized derived metadata from prior runs |
-| `semantic_shadow` | 0.05 | Semantic embedding evidence, lowest fusion weight |
+| `explicit_author` | 0.42 | Hand-tuned token and phrase matches for high-confidence routing |
+| `lexical` | 0.28 | Token overlap with skill name, description, domains, keywords and intent signals |
+| `graph_causal` | 0.13 | Typed edges in the skill graph, such as `depends_on` and `enhances` |
+| `derived_generated` | 0.12 | Derived trigger metadata from prior extraction runs |
+| `semantic_shadow` | 0.05 | Embedding cosine similarity, the lowest fusion weight |
+
+Attribution names the lane that dominated each result, so a surprising score can be traced without printing the prompt.
 
 ---
 
@@ -63,7 +57,7 @@ The single front door is the daemon-backed CLI at `.skilled/bin/skill-advisor.cj
 node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
 ```
 
-Expected result: a payload with `freshness`, `generation`, `trustState`, lane weights and `skillCount`. A `trustState` of `live` means the index is fresh and you can trust the next recommendation.
+Expected output: a `status: ok` envelope with `trustState.state`, `skillCount` and `laneWeights`. A `live` state means the index matches the skill files on disk.
 
 **Step 2: Ask for a recommendation.**
 
@@ -71,138 +65,72 @@ Expected result: a payload with `freshness`, `generation`, `trustState`, lane we
 node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"create a new agent"}' --format json
 ```
 
-Expected result: a `recommendations[]` array of skill candidates ranked by score, with `freshness`, `trustState`, prompt-safe attribution metadata. Public responses never echo raw prompt content.
+Expected output: `data.recommendations[]` in rank order, each with `skillId`, `score`, `confidence` and `uncertainty`, plus `effectiveThresholds` for the call. The prompt text does not appear in the response.
 
-**Step 3: Rebuild when status reports a non-live state.**
+**Step 3: Rebuild when the index is not live.**
 
 ```bash
 node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json
 ```
 
-Expected result: `rebuilt: true`, generation deltas, refreshed `skillCount`, diagnostics. Run when `advisor_status` reports a non-live or unavailable index.
+Expected output: freshness and generation values from before and after the rebuild, the skill count, an indexing summary and any warnings. A live index is skipped unless `--force true` is present.
 
-### Gate 2 Caller Guidance
-
-Use the CLI as the Gate 2 path when no hook brief is present, when scripting a check, or when diagnosing hook behavior. The automatic brief and the CLI read the same daemon, so a manual check and the automatic route agree. `list-tools` enumerates all nine commands offline. Exit taxonomy: `0` success, `1` runtime error, `64` usage or schema error, `69` protocol or dist mismatch, `75` retryable daemon error.
-
-Two guardrails apply. First, callers bound the CLI call with their own timeout and fail open on expiry or exit `75`. The CLI starts the daemon when the socket is cold and answers from the local scorer when the daemon stays unreachable. A degraded answer is stale, not missing. Second, CLI calls are sent untrusted by default: the mutation commands `advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances` require `--trusted` (or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`), which is the maintainer path. There is no MCP transport to fall back to.
-
-```bash
-node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
-node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
-```
-
-### Runtime Environment Ownership
-
-`SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` is owned by this hub because its live consumers are `runtime/lib/subprocess.ts` and `runtime/scripts/skill_advisor.py`. Its default is `3000` ms. A timeout yields prompt-safe degraded context with a timeout marker. The system-spec-kit environment reference points here rather than defining a second contract.
-
-### OpenCode Plugin Note
-
-The Skill Advisor bridge plugin injects routing advice at prompt time.
-
-- Constant advisor policy is delivered in full on the first proven message and after registered lifecycle boundaries.
-- Route-only repeats require confirmed primitive identity, valid transcript evidence, matching versioned state, stable generation/epoch clocks and an atomically advanced high-water mark.
-- When there is no brief, the plugin and the hooks emit a fallback that opens with one status line (`Advisor: outage (...)`, `Advisor: no skill matched.` or `Advisor: prompt skipped.`).
-- For setup-shaped prompts, no-match and outage fallbacks also name `/doctor:setup`.
-- A repeat in a confirmed session keeps that line and drops the directives.
-- With the opt-in `deduplicateTransforms` on, the plugin decides same-message transform dedup on the full block before lifecycle reduction, so a repeated transform for the same message is suppressed.
-- Full-delivery receipts commit after stdout handoff. A boundary failure poisons older receipts, and unsafe or unavailable durable state stays full.
-- `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery.
-
-The separate `/goal` plugin:
-
-- Persists a session objective, injects a bounded active-goal block and exposes `opencode_goal` and `opencode_goal_status`.
-- Its command router delegates all state reads and writes to `opencode_goal` and `opencode_goal_status`.
-- Active continuation remains opt-in through `OPENCODE_GOAL_AUTONOMY`.
-- Live OpenCode-run tool invocation is verified: an `opencode serve` run lists `opencode_goal` and `opencode_goal_status` in the session tool set. A live model turn persists per-session state.
-
-### Doctor Command Routing
-
-When no skill answers a setup or health prompt, the fallback names the runnable `/doctor:setup` line. When a skill and doctor bridge both pass without a typed `/doctor:` command, the skill stays first and the brief adds `Also: /doctor:<command> <target> (<policy>)` as its second line, where the policy is run, start or ask, or `parent-named only` in a child session for a command the child must not start on its own, and leaves the line out when the head already names that command.
+Mutating commands require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. Read commands never need either.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### The Fusion and the Options
+A prompt reaches the advisor by one of two routes. A prompt hook calls the CLI before the agent starts. A caller can also run the CLI by hand. Both go through the same CLI and daemon, so a manual check reads the same index that a hook reads.
 
-The advisor scores every prompt against the five lanes from Section 1, each producing its own evidence, then fuses them into one calibrated ranking. Public responses include per-lane contribution labels so hook telemetry stays safe to log without revealing the user's prompt text.
+The CLI resolves the built server, checks that the build is current and reaches the daemon over a unix socket. It starts the daemon when the socket is cold. The daemon holds the scorer, the embedder, the command handlers and the SQLite skill graph.
 
-The lane weights live in `runtime/lib/scorer/lane-registry.ts`. The scorer reads `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`. The launcher allowlist passes it through to the daemon child. An env change needs a daemon restart to apply. Use the env variable for experiments. Durable tuning is editing `lane-registry.ts` with measured evidence. Run `advisor_validate` before and after the change. Ship the diff with doc updates across the feature catalog and the advisor scorer reference.
+The daemon watches every `SKILL.md`, `ROUTER.md` and `graph-metadata.json` under `.skilled/skills/`. A source change moves the trust state from `live` to `stale`. A new generation clears the recommendation cache. `advisor_rebuild` returns the state to `live`.
 
-Deep-loop routing modes are projected from `mode-registry.json` into generated constants in `runtime/lib/scorer/aliases.ts` and the Python compatibility script. A SHA-256 projection hash is folded into the recommend cache signature and checked by the routing-registry drift guard. When a generated deep-loop alias resolves to the merged workflow skill, `advisor_recommend` publishes an optional `workflowMode` field for downstream routing.
+When the daemon cannot be reached, the CLI calls the Python scorer at `runtime/scripts/skill_advisor.py`, marks the answer degraded and returns it. A degraded answer is stale, not missing. The prompt still proceeds.
 
-`advisor_recommend` accepts eight options: `topK` sets how many candidates to return (1 to 10), `includeAttribution` adds per-lane score breakdowns, `includeAbstainReasons` surfaces why lower-ranked candidates were not selected, `confidenceThreshold` overrides the minimum surfaced confidence, `uncertaintyThreshold` overrides the maximum surfaced uncertainty and `includeCompiledRoute` is an optional boolean that defaults to true. Passing `false` skips the compiled-route enrichment so no compiled-route subprocess starts. The prompt hooks send `true`, because a recommendation's `command` comes from its compiled route. `compiledRouteTopOnly` is an optional boolean that defaults to false. Passing `true` looks up the compiled route for the first recommendation only, which saves one subprocess for each further hub. The prompt hooks send it as `true`, so only the top pick can carry a `command`. `surfaceHint` forwards a code surface the caller already knows, such as `SKILLED` (1 to 64 characters), to the compiled-route front door, which ignores an unknown one. `advisor_validate` requires `confirmHeavyRun: true` because it executes the full validation bundle (corpus, holdout, parity, safety, latency).
+```mermaid
+flowchart TD
+  Prompt["Prompt from a hook or a caller"] --> CLI["skill-advisor.cjs"]
+  CLI --> Daemon["Advisor daemon"]
+  CLI --> Local["Python scorer"]
+  Daemon --> Score["Five-lane score"]
+  Score --> Result["Ranked recommendations and trust state"]
+  Local --> Result
+```
 
-### Prompt-Safe Attribution
+### Trust States
 
-Every public response strips raw prompt content. Attribution is per-lane only. The same safety contract applies to all runtime hooks and to the Python compatibility shim, so hook telemetry and script output stay safe to log at any scale.
+The responses that read the index, such as status and recommend, report one of four states. The degraded local fallback marks itself `degraded` and carries none.
 
-Shadow-delta JSONL recording is opt-in. `advisor_recommend` includes the prompt-safe `_shadow` comparison payload in its response, but it writes no durable shadow delta file unless `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` is set or `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1` or `true` enables the default sink. Both env names are forwarded by the advisor launcher allowlist.
-
-### Freshness and the Trust Contract
-
-A daemon watches every `SKILL.md`, `ROUTER.md` and `graph-metadata.json` under `.skilled/skills/`. When a watched source changes, the daemon schedules an incremental reindex, publishes a fresh generation after the rebuild and invalidates the recommendation cache. It holds a single-writer lease. Explicit trusted mutation paths are `advisor_rebuild`, `skill_graph_scan` and real `skill_graph_propagate_enhances` apply writes (`mode: apply` with `dryRun !== true`). Corrupt-database recovery may also move aside and recreate the database during lazy initialization.
-
-Every response carries a trust state so the caller knows what to do next.
-
-| Trust State | Meaning | Caller Action |
+| State | Meaning | What a caller does |
 |---|---|---|
-| `live` | Index is fresh and queryable | Use the recommendation directly |
-| `stale` | Index is queryable but a source changed since the last build | Use scored recommendations with a caveat, then call `advisor_rebuild` |
-| `absent` | The SQLite database is missing | Call `advisor_rebuild`. Do not act on an empty result |
-| `unavailable` | The subsystem cannot be reached | The CLI answers from the local scorer and marks the result degraded. Treat it as stale, then rebuild |
+| `live` | The index is fresh | Use the recommendation |
+| `stale` | Source files changed since the last build | Use the result with a caveat, then rebuild |
+| `absent` | The database file is missing | Rebuild before acting on a result |
+| `unavailable` | The daemon cannot be reached | The CLI answers from the local scorer. Treat that answer as stale |
 
-### The SQLite Skill Graph
+### The Skill Graph
 
-The advisor ships a package-local SQLite database that stores cross-skill edges extracted from every skill's `graph-metadata.json`. The graph supports ten query types through `skill_graph_query`: `depends_on`, `dependents`, `enhances`, `enhanced_by`, `family_members`, `conflicts`, `transitive_path`, `hub_skills`, `orphans`, `subgraph`. `skill_graph_propagate_enhances` detects, proposes or applies missing inbound `enhances` declarations across skills. Report, propose, dry-run apply are read-safe. Real apply writes require trusted caller context.
-
-### Doc-Frontmatter Trigger Harvest
-
-With `SPECKIT_ADVISOR_DOC_TRIGGERS=true`, `skill_graph_scan` also harvests frontmatter (`title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`) from every markdown file under each skill's `references/` and `assets/` (READMEs excluded) into a `skill_docs` table. The watcher registers those docs so edits re-index the owning skill. Doc phrases score inside the `derived_generated` lane: top-3 docs per skill, tier-weighted, contribution capped at 0.45, so they assist ranking but cannot hard-route alone. Matching recommendations carry an optional `matchedDocs` field (max 3 sanitized skill-relative paths) pointing at the exact doc to open.
-
-Flag unset (the default) changes nothing: no harvest, no watch targets, identical scoring. Deployment note: the launcher forwards only allowlisted env to the daemon child, so the flag works because it sits in `CHILD_ENV_ALLOWLIST` in `system-skill-advisor-launcher.cjs`. Any future advisor env flag needs the same entry.
-
-### Private Local Skills
-
-A skill whose folder name starts with `local-` belongs to one checkout. It is usually a gitignored symlink under `.skilled/skills/` that points at a folder in another repository. The local advisor scans include it, so it can route, and every tracked-output writer skips it by name before its first probe, so it never reaches the fallback graph, a CI gate or a doctor finding.
-
-A scan follows a top-level `local-*` link only when the link's real path resolves to a directory inside the skills root or inside a root named in `SPECKIT_PRIVATE_SKILL_ROOTS`. That variable holds absolute paths joined by the platform path delimiter, which is `:` on macOS and Linux. A link to any other place is skipped. `runtime/lib/private-skill-target.cjs` holds this containment rule, `runtime/lib/private-skill-target.ts` wraps it with types, and `runtime/scripts/skill_advisor_runtime.py` holds its Python mirror. The variable sits in `CHILD_ENV_ALLOWLIST`, so the launcher forwards it to the daemon child. Every advisor process needs it for such a link, so a daemon started without it skips every private skill whose link points outside the skills root.
-
-### The Embedder
-
-The `semantic_shadow` lane runs against the pluggable embedder layer in `@spec-kit/shared/embeddings/`, which the advisor owns. The registry holds text-tuned embedding models and defaults through a local-first cascade to a local model when no embedder is explicitly set. For the full model registry, the cascade tier table and the swap workflow, see `INSTALL-GUIDE.md` §12.
-
-Command rows use the same embedder. The bridge deriver writes an `embeddingText` for each of the 47 command rows the TypeScript scorer serves, and `skill_graph_scan` embeds it into its own `vec_cmd_<dim>` table beside the skill vectors. The scan skips a row whose text has not changed and prunes a row that is no longer generated. A command row normally passes only on one of its own phrases or its slash string. It can also pass on meaning: the prompt's real embedding has to reach a cosine of 0.72 against the row and lead the next command row by 0.02. A command that passed this way ranks first only when it leads the top passing skill by the same 0.02. A prompt that asks for no change, such as "no edits" or "just list", rules out every command on meaning. A read-only question lets only a command whose route only reads pass on meaning. Without the local embedder (Ollama serving `nomic-embed-text`) no cosine exists, so command rows pass on their phrases alone.
-
-### The Nine Commands
-
-The CLI exposes nine commands, each accepting snake case, kebab case and camel case spellings. `list-tools` enumerates all nine. `skill_graph_propagate_enhances` is only trust-gated for the mutating apply path. Report, propose, dry-run apply stay read-safe. You have already met the first three in Quick Start.
-
-| Command | Purpose |
-|---|---|
-| `advisor_recommend` | Recommend skills for a prompt (`topK`, `includeAttribution`, `includeAbstainReasons`, `confidenceThreshold`, `uncertaintyThreshold`, `includeCompiledRoute`, `compiledRouteTopOnly`, `surfaceHint`) |
-| `advisor_rebuild` | Rebuild the advisor index from checked-in metadata |
-| `advisor_status` | Report freshness, generation, lane weights, skill count, scan times and a trust state that reads `unavailable` when the daemon is down |
-| `advisor_validate` | Run the corpus, holdout, parity, safety and latency bundle (`confirmHeavyRun: true` required) |
-| `skill_graph_scan` | Index every `graph-metadata.json` into the SQLite skill graph |
-| `skill_graph_query` | Traverse the skill graph (the ten query types above) |
-| `skill_graph_status` | Report graph health, counts and staleness |
-| `skill_graph_validate` | Validate schema drift, broken edges, dependency cycles, weight bands, reciprocal symmetry, orphan skills and derived-freshness warnings |
-| `skill_graph_propagate_enhances` | Propose or apply missing inbound `enhances` edges. Apply writes are trusted-only |
+The graph is a package-local SQLite file at `runtime/database/skill-graph.sqlite`. `skill_graph_scan` fills it from every skill's `graph-metadata.json`. `skill_graph_query` traverses it through ten query types that answer dependency, enhance, family, conflict, path, hub, orphan and subgraph questions. `skill_graph_validate` checks schema drift, broken edges, weight bands, reciprocal symmetry, dependency cycles and derived-freshness warnings.
 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
 
+### When To Use This Skill
+
+- A runtime needs a skill chosen for a prompt that names no skill.
+- A prompt hook wants a routing brief before the agent starts work.
+- You need to inspect or repair graph freshness, lane weights, command behavior or hook output.
+- You are changing advisor code and need the command contract first.
+
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `system-spec-kit` | Owns memory, spec folders and continuity. The advisor depends on it for the shared embeddings stack and the IPC bridge. All other code is isolated |
-| `sk-code`, `sk-doc`, `sk-git`, `mcp-code-mode` | Target skills the advisor recommends. Once the advisor points at one, that skill owns the work |
-
-Skill-root metadata ownership follows the [canonical contract](../sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md). The advisor identity input is `graph-metadata.json`, not `description.json`.
+| `system-spec-kit` | Owns memory, spec folders and continuity. The advisor uses its shared embeddings stack and IPC bridge |
+| `sk-code`, `sk-doc`, `sk-git`, `mcp-code-mode` | Target skills the advisor recommends. Each one owns the work after routing |
 
 ---
 
@@ -210,71 +138,43 @@ Skill-root metadata ownership follows the [canonical contract](../sk-doc/sk-crea
 
 | What you see | Why | Fix |
 |---|---|---|
-| `trustState: "absent"` | The advisor SQLite database is missing or empty | Call `advisor_rebuild`. If that fails, check `SYSTEM_SKILL_ADVISOR_DB_DIR` and disk permissions |
-| `trustState: "unavailable"` | The daemon cannot be reached | The CLI already answers from the local scorer and marks the result degraded. Rebuild with `advisor_rebuild` when the daemon is back |
-| Top-2 candidates within 0.1 of each other | Ambiguous prompt. Two skills are equally plausible | Surface both candidates instead of routing silently |
-| `advisor_validate` reports outside the dated bounded-delta gate | Scorer behavior changed or fixtures drifted | Inspect `perSkill[]`, `slices.corpus`, [`validation-baselines.md`](./references/scoring/validation-baselines.md) |
-| Recommendations omit a newly-added skill | The daemon has not observed the new file yet | Call `advisor_rebuild` or wait for the watcher to fire |
-| CLI reports a mutation `requires --trusted` (exit 64) | The trusted-mutation gate fails closed on untrusted calls | Re-run with `--trusted` or set `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` if you are the maintainer |
-| CLI exits 69 with a stale-build message | The dist build is older than the sources | Rebuild with `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`, then rerun |
-| Routing feels off, or you are not sure the graph is current | Lane weights, graph freshness, router reach, skill budgets or a parent hub may have drifted | Run `/doctor:skill-advisor`. `tune` re-tunes the scoring lanes, `rebuild` rebuilds `skill-graph.sqlite` with a backup, and `skill-graph-freshness`, `router-reach`, `skill-budget` and `parent-skill` are read-only audits |
+| `trustState` reads `absent` | The SQLite database file is missing | Run `advisor_rebuild --trusted`. If that fails, delete the `skill-graph.sqlite` database and its two sidecar files under `runtime/database/`, then rebuild with `--trusted --force` |
+| The CLI exits 64 on a mutation | The trusted gate fails closed | Add `--trusted` or set `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` |
+| The CLI exits 69 with a stale-build message | The `dist` build is older than its source | Run `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`, then retry |
+| A skill you just added never appears | The daemon has not seen the new file yet | Run `advisor_rebuild --trusted` or wait for the watcher |
+| The top two candidates sit within 0.05 on score or confidence | The prompt fits two skills | Show both candidates instead of routing silently |
+| `advisor_validate` moves outside the dated gate | Scorer behavior or fixtures changed | Compare `perSkill[]` and `slices.corpus` against the [validation baselines](./references/scoring/validation-baselines.md) |
 
 ---
 
-## 6. FAQ
+## 6. VERIFICATION
 
-**Q: Why is the advisor a separate daemon?**
-
-A: Routing is operationally distinct from memory. You can roll back, restart or tune the advisor without touching memory state. One daemon with one CLI front door keeps that boundary safe.
-
-**Q: Can I change the lane weights?**
-
-A: Yes, with measured evidence. `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` is allowlisted through the launcher for experiments (daemon restart required). The durable path is a source edit in `runtime/lib/scorer/lane-registry.ts`: run `advisor_validate` to capture a baseline, change the weights, re-run validate, ship the diff with doc updates in `references/scoring/advisor-scorer.md` and the feature catalog.
-
-**Q: How does the advisor stay safe to call from hooks?**
-
-A: Responses redact raw prompt content. Attribution is per-lane only. Every runtime hook and the Python compatibility shim follow the same redaction contract, so telemetry stays safe at any call volume.
-
-**Q: What is the relationship to system-spec-kit?**
-
-A: Memory, spec folders and continuity stay in `system-spec-kit`. The advisor depends on it for the shared embeddings stack and the IPC bridge. All other code is isolated.
-
-**Q: Where are the runtime hooks documented?**
-
-A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across every runtime (Claude, Codex, Cursor, Devin, Pi, DSH) and the OpenCode plugin. The advisor's own handler, the Pi extension, the DSH adapter and the CLI fallback live under `hooks/`. Claude, Codex, Cursor and Devin enter through thin shims in `system-spec-kit/runtime/hooks/<runtime>/`, and the OpenCode plugin is `.opencode/plugins/system-skill-advisor.js`.
+| Check | Command | A pass looks like |
+|---|---|---|
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/README.md --type readme` | `VALID` and zero issues |
+| TypeScript build | `npm --prefix .skilled/skills/system-skill-advisor/runtime run build` | Exit 0 and a fresh `dist` |
+| Typecheck | `npm --prefix .skilled/skills/system-skill-advisor/runtime run typecheck` | Exit 0 |
+| Validation battery | `node .skilled/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json` | Accuracy slices inside the dated bounded-delta gate |
+| Operator scenarios | The scenarios under `manual-testing-playbook/` | Each scenario passes in a live session |
 
 ---
 
-## 7. VERIFICATION
-
-| Check | How to run it |
-|---|---|
-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/README.md --type readme` reports zero issues |
-| TypeScript build | `npm --prefix .skilled/skills/system-skill-advisor/runtime run typecheck && npm --prefix .skilled/skills/system-skill-advisor/runtime run build` exits 0 |
-| Playbook | Run the manual testing playbook scenarios under `manual-testing-playbook/` in a live session |
-| Validation battery | `node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true}' --format json` reports within the dated bounded-delta gate in [`validation-baselines.md`](./references/scoring/validation-baselines.md) |
-
----
-
-## 8. RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime routing instructions and invariants |
-| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
-| [`ARCHITECTURE.md`](./ARCHITECTURE.md) | System design, CLI front door, data flow and database layout |
-| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Setup, runtime hooks, rollback and embedder selection |
-| [`references/runtime/tool-ids-reference.md`](./references/runtime/tool-ids-reference.md) | All nine tool ids with inputs and output shapes |
-| [`references/scoring/advisor-scorer.md`](./references/scoring/advisor-scorer.md) | Lane attribution model and fusion rules |
-| [`references/scoring/lane-weight-tuning.md`](./references/scoring/lane-weight-tuning.md) | Evidence requirements for lane weight changes |
-| [`references/scoring/validation-baselines.md`](./references/scoring/validation-baselines.md) | Validation baselines and troubleshooting |
-| [`references/runtime/freshness-contract.md`](./references/runtime/freshness-contract.md) | Trust-state vocabulary and caller obligations |
-| [`references/runtime/daemon-lease-contract.md`](./references/runtime/daemon-lease-contract.md) | Single-writer daemon lease semantics |
-| [`references/runtime/standalone-mcp-shape.md`](./references/runtime/standalone-mcp-shape.md) | ADR-001 standalone topology record (historical) |
-| [`references/graph/skill-graph-query-cookbook.md`](./references/graph/skill-graph-query-cookbook.md) | Worked examples for all query types |
-| [`references/graph/skill-graph-drift.md`](./references/graph/skill-graph-drift.md) | Detect and reconcile SQLite drift from source files |
-| [`hooks/skill-advisor-hook.md`](./hooks/skill-advisor-hook.md) | Prompt-time hook contract across runtimes |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current feature inventory |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual validation scenario index |
-| [`feature-catalog/hooks-and-plugin/goal-opencode-plugin.md`](./feature-catalog/hooks-and-plugin/goal-opencode-plugin.md) | `/goal` OpenCode plugin reference |
-| [`changelog/`](./changelog/) | Versioned changelogs |
+| [Runtime instructions](./SKILL.md) | The `SKILL.md` routing surface and its invariants |
+| [Machine router](./ROUTER.md) | Intent map, resource map and loading levels |
+| [Architecture](./ARCHITECTURE.md) | Package topology, data flow and subsystem boundaries |
+| [Install guide](./INSTALL-GUIDE.md) | Install, build, hook setup and rollback |
+| [CLI front-door contract](./references/runtime/cli-front-door-contract.md) | Command ids, output envelope and exit codes |
+| [Advisor scorer](./references/scoring/advisor-scorer.md) | Lane model, fusion and confidence calibration |
+| [Lane weight tuning](./references/scoring/lane-weight-tuning.md) | The measured workflow for a weight change |
+| [Validation baselines](./references/scoring/validation-baselines.md) | Baseline metrics and slice troubleshooting |
+| [Freshness contract](./references/runtime/freshness-contract.md) | Trust states and caller obligations |
+| [Hook reference](./hooks/skill-advisor-hook.md) | Prompt-time adapters across runtimes |
+| [Skill graph query cookbook](./references/graph/skill-graph-query-cookbook.md) | Worked examples for all ten query types |
+| [Goal plugin reference](./feature-catalog/hooks-and-plugin/goal-opencode-plugin.md) | The `/goal` plugin on the same OpenCode surface |
+| [Feature catalog](./feature-catalog/feature-catalog.md) | Current feature inventory |
+| [Manual testing playbook](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios |
+| [Release changelogs](./changelog/) | Versioned release entries |

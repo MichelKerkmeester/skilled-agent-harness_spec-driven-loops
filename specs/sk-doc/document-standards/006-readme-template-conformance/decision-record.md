@@ -36,6 +36,7 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | Hook code folder READMEs join as phase 007 and phase 006 writes a new .vibe/README.md. | Not stated. | None | ../spec.md Files to Change |
 | Q002 | Phase 007 also rewrites the hooks library README at .skilled/hooks/README.md, last. | Not stated. | None | ../007-hook-code-folder-readmes/spec.md |
+| Q003 | README writers and reviewers run as DeepSeek V4.1 Flash at max through cli-opencode instead of Opus agents. | Not stated. | None | plan.md Key Components, implementation-summary.md Key Decisions, ../goal.md D4 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -81,6 +82,25 @@ Leave it out
 Answer:
 ```text
 Include it (Recommended)
+```
+
+### Q003
+<!-- source: claude:f7735347-b0b1-4b4f-a0cd-c44e70a362ab:toolu_014pYMtgckDpEUbqizwCjbx8:1 -->
+
+Question:
+```text
+The plan asks for five parallel Opus writer batches. Under :auto the implement workflow falls back to direct work, and its @markdown agent runs on Haiku. How should phase 001 dispatch the writing?
+```
+
+Options:
+```text
+Opus-high writers (Recommended)
+Follow the YAML as written
+```
+
+Answer:
+```text
+use deepseek flash max agents
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

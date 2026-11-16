@@ -1,5 +1,5 @@
 {
-  "corpusHash": "bbdb818fa9713e6a717defaaa7074cfc38df5b2a8445be96bb44967146ba29e0",
+  "corpusHash": "bda3c0ce818c16c8db548a96e7a1879a5d60e66d3ce931dfef1deb6fd5d0fa3d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28099,
+  "includedPathCount": 28101,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3508,6 +3508,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md",
     ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md",
     ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+    ".skilled/skills/sk-design/README.md",
     ".skilled/skills/sk-design/ROUTER.md",
     ".skilled/skills/sk-design/SKILL.md",
     ".skilled/skills/sk-design/benchmark/README.md",
@@ -16252,6 +16253,7 @@
     "specs/sk-doc/document-standards/005-root-readme-section-spacing/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/acceptance-criteria.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/decision-record.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/implementation-summary.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/001-skill-readmes/spec.md",
@@ -28131,7 +28133,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fb8d83c29edbcb8d10376da8884257212e81ac45095e67cd7e53ec751f059f13",
+  "manifestHash": "db3fb2da5a20ad4ab15097b8c57d6b304bd87ed323a96c0f5d2d6c321e4ca56c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
