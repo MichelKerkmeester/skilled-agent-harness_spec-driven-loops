@@ -8,27 +8,31 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run"
-    last_updated_at: "2026-11-15T23:24:39Z"
+    last_updated_at: "2026-11-16T02:30:19Z"
     last_updated_by: "generate-context"
-    recent_action: "Planned phase 033 with /speckit:plan :auto, strict validation 0 errors"
-    next_safe_action: "Run T001: set the stopped arm lines aside in 026 runs/discarded"
+    recent_action: "T001-T004 done; T005 in flight: claude+pi complete, devin/dsh/opencode mid on-1"
+    next_safe_action: "Resume on-1 for devin (16/36), dsh (23/36) and opencode (17/36); then T006"
     packet_purpose: "Purpose: One scored untuned arm on five runtimes, with a verdict against the target phase 026 fixed before its first session."
-    blockers: []
+    blockers:
+      - "devin fresh-skill-04 unmeasurable; rerun cap spent"
     key_files:
-      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/spec.md"
       - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/tasks.md"
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/arenas.txt"
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/reruns.txt"
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run/scratch/runs/devin.jsonl"
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-033-untuned-arm-arena-run"
       parent_session_id: null
     session_ref:
-      runtime: "claude"
-      sessionId: "77af2d6d-58e8-4180-b6da-697f12833f71"
+      runtime: "devin"
+      sessionId: "session_01RCAMP6EHz5ov69oRAn3LFh"
       workspace: "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research"
-      savedAt: "2026-11-15T23:24:39Z"
-      locatorKind: "transcript_path"
+      savedAt: "2026-11-16T02:30:19Z"
+      locatorKind: "transcript_file"
       version: 1
-    completion_pct: 10
+    completion_pct: 40
     open_questions: []
     answered_questions: []
 ---

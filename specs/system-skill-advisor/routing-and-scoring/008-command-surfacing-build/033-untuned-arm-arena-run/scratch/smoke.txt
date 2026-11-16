@@ -1,0 +1,11 @@
+smoke claude off run 1 briefDelivered false restored true exit 0
+smoke claude on run 1 briefDelivered true restored true exit 0
+smoke devin off run 1 briefDelivered false restored true exit 0
+smoke devin on run 1 briefDelivered true restored true exit 0
+smoke dsh off run 1 briefDelivered false restored true exit 0
+smoke dsh on run 1 briefDelivered true restored true exit 0
+smoke opencode off run 1 briefDelivered unknown restored true exit 0
+smoke opencode on run 1 briefDelivered unknown restored true exit 0
+smoke pi off run 1 briefDelivered false restored true exit 0
+smoke pi on run 1 briefDelivered true restored true exit 0
+mismatch 0, summary exit 0, every runtime and arm 1 run 1 scored 0 unscored, arenas 0 remotes 0 status after

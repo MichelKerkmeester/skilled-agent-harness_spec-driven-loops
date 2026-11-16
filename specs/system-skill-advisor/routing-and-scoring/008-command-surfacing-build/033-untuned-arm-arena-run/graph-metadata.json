@@ -41,7 +41,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/arm-evidence.txt",
+      "scratch/arenas.txt",
+      "scratch/smoke.txt",
+      "scratch/runs/smoke.jsonl"
     ],
     "entities": [
       {
@@ -72,6 +76,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "arm-evidence.txt",
+        "kind": "file",
+        "path": "scratch/arm-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "arenas.txt",
+        "kind": "file",
+        "path": "scratch/arenas.txt",
+        "source": "derived"
+      },
+      {
+        "name": "smoke.txt",
+        "kind": "file",
+        "path": "scratch/smoke.txt",
+        "source": "derived"
+      },
+      {
+        "name": "smoke.jsonl",
+        "kind": "file",
+        "path": "scratch/runs/smoke.jsonl",
         "source": "derived"
       },
       {
@@ -163,35 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Arm Design",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The behaviour summary over the tuned 007 rows prints a before and an after start rate on six runtimes, but those rows were tuned while the advisor was built, so they cannot show that the brief helps on prompts nobody saw",
     "created_at": "2026-11-15T23:21:04Z",
-    "last_save_at": "2026-11-15T23:29:21.711Z",
+    "last_save_at": "2026-11-16T03:53:17.076Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34035c72a767410469b336060feca9cbc73e845cf9f2a27442c82bf2b4be015a",
+    "source_fingerprint": "sha256:f58cafc145646bfca44a565abf826d5e04426d33596a601e6e8233c2d1bef441",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "30eeda9120e55973ac261f4363161c9974c783ba56a13c8033ec4d995fb33b19",
       "plan.md": "2a08b66c40eee38fa07397fb389a4a58badf0680d14d6fa195127b1bdc3b3a50",
-      "tasks.md": "f858f796dd4a924113ee001a0cb60fa960a27cdceff4d299273f79f968c16367",
-      "implementation-summary.md": "bfa43dd872205b8c933faa69ee7a3954cc9321ca0ef0dd597e5466be91c0314b"
+      "tasks.md": "436981812293eabf6cc71149423cdf0a3dd3d167daacaa802eda97ce588f0892",
+      "implementation-summary.md": "27f72dc4ed4c6fb8d2b9762c495186767180082d1fcef648a876fe07401fbad4"
     },
     "last_active_at": null
   }

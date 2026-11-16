@@ -1,0 +1,49 @@
+## devin arena after fresh-skill-04 off run 1
+head fa1c7c776fd
+## reflog
+fa1c7c776fd rebase (continue): fix(system-skill-advisor): close review pass four on refusals, offers and shell starts
+d2a3d7f6d64 rebase (continue): docs(specs): plan the review pass four remediation before the untuned arm
+abcd47432f9 rebase (continue): docs(specs): plan the untuned behaviour arm and record review pass four
+e298fd484e9 rebase (continue): docs(agents): make the command clause conditional so the policy words read as its options
+6b7a0ae6013 rebase (continue): feat(system-skill-advisor): read Codex shell steps and refusals the review found
+e44f91f6b72 rebase (continue): feat(system-skill-advisor): measure the outcome on rows nobody tuned
+363bb8e5031 rebase (continue): feat(system-skill-advisor): count every way a run opens its workflow
+fb3958a0679 rebase (continue): feat(system-skill-advisor): show the same brief head on every runtime
+2d49d97f844 rebase (continue): feat(system-skill-advisor): withhold a command where none fits the request
+81fe04f05e2 rebase (pick): docs(specs): correct three task lines in the later remediation phases
+70240a3bac1 rebase (continue): docs(specs): plan four remediation phases from the alignment reviews
+f1bd8c29e82 rebase (pick): feat(system-skill-advisor): score whether a run loaded a real workflow before it acted
+fef69c07c40 rebase (continue): docs(specs): save continuity and tick the phase 019 setup and test tasks
+b878fa3a0a8 rebase (continue): docs(specs): close the hub vocabulary drift packet on the merged branch
+aaff07c4bae rebase (pick): docs(system-skill-advisor): note the weak-cue doctor hand-off in v1.1.0.0
+## branches
+(no branch, rebasing worktrees/352-command-surfacing-research) fa1c7c776fd
+backup/pre-rebase-352-20261116 b765c7a14c5
+main 695f4191d36
+worktrees/352-command-surfacing-research b765c7a14c5
+## status count 91
+## rebase dir
+ls: .git/rebase-apply: No such file or directory
+.git/rebase-merge
+## remotes 0
+## marker
+present
+
+## devin arena after the fresh-skill-04 rerun
+head 695f4191d36
+695f4191d36 rebase (start): checkout main
+b765c7a14c5 checkout: moving from b765c7a14c5c7b29218ebcab912bb9cf489b0065 to worktrees/352-command-surfacing-research
+b765c7a14c5 checkout: moving from worktrees/352-command-surfacing-research to b765c7a14c5c7b29218ebcab912bb9cf489b0065
+b765c7a14c5 rebase (abort): returning to refs/heads/worktrees/352-command-surfacing-research
+fa1c7c776fd rebase (continue): fix(system-skill-advisor): close review pass four on refusals, offers and shell starts
+d2a3d7f6d64 rebase (continue): docs(specs): plan the review pass four remediation before the untuned arm
+abcd47432f9 rebase (continue): docs(specs): plan the untuned behaviour arm and record review pass four
+e298fd484e9 rebase (continue): docs(agents): make the command clause conditional so the policy words read as its options
+(no branch, rebasing worktrees/352-command-surfacing-research) 695f4191d36
+main 695f4191d36
+worktrees/352-command-surfacing-research b765c7a14c5
+status count 273
+0
+ls: .git/MERGE_HEAD: No such file or directory
+.git/rebase-merge
+remotes 0
