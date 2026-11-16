@@ -8,16 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts"
-    last_updated_at: "2026-11-16T10:06:48Z"
-    last_updated_by: "claude-code"
-    recent_action: "Wrote spec, plan and tasks from a code check of the reported items"
-    next_safe_action: "Read plan.md, answer the two open questions in spec.md, then start T001"
+    last_updated_at: "2026-11-16T10:24:58Z"
+    last_updated_by: "generate-context"
+    recent_action: "Planned three doctor script limits and recorded the operator's decisions"
+    next_safe_action: "Start T001 once the operator says to build this phase"
+    packet_purpose: "Purpose: A host hook has an accepted form in the git setup check, `apply --adopt` writes the manifest entry for an excluded path that has an overlay source, and a file a regenerate step rewrote is reported with the step's name."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/spec.md"
+      - "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/plan.md"
+      - "specs/system-skilled-doctor/001-skill-and-overlay-build/012-fix-barter-022-handover-items-for-doctor-scripts/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-012-fix-barter-022-handover-items-for-doctor-scripts"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "61dcb86a-8ff7-4f18-89e0-e1605b16630d"
+      workspace: "/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake"
+      savedAt: "2026-11-16T10:24:58Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 0
     open_questions: []
     answered_questions: []

@@ -8,17 +8,24 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay"
-    last_updated_at: "2026-11-16T09:33:06Z"
-    last_updated_by: "claude-code"
-    recent_action: "Wrote spec, plan and tasks from a code check of the reported items"
-    next_safe_action: "Read plan.md, answer the two open questions in spec.md, then start T001"
+    last_updated_at: "2026-11-16T10:24:52Z"
+    last_updated_by: "generate-context"
+    recent_action: "Planned the removed set restore and recorded the operator's decisions"
+    next_safe_action: "Start T001 and T002 through DeepSeek on the Vibe CLI"
+    packet_purpose: "Purpose: After a `set` operation leaves an overlay source, `apply` returns the live value to the pin's value, and removes a key the engine added that the pin does not hold."
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-011-restore-pinned-value-when-json-entry-set-leaves-overlay"
-      parent_session_id: null
-    completion_pct: 0
+    key_files:
+      - "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/spec.md"
+      - "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/plan.md"
+      - "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/tasks.md"
+    session_ref:
+      runtime: "claude"
+      sessionId: "61dcb86a-8ff7-4f18-89e0-e1605b16630d"
+      workspace: "/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake"
+      savedAt: "2026-11-16T10:24:52Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 5
     open_questions: []
     answered_questions: []
 ---

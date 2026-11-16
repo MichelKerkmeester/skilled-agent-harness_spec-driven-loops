@@ -8,16 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan"
-    last_updated_at: "2026-11-16T09:33:10Z"
-    last_updated_by: "claude-code"
-    recent_action: "Wrote spec, plan and tasks from a code check of the reported items"
-    next_safe_action: "Read plan.md, then start T001, the reproduction script"
+    last_updated_at: "2026-11-16T10:25:10Z"
+    last_updated_by: "generate-context"
+    recent_action: "Planned the stale capture reproduction and the host capture file"
+    next_safe_action: "Start T001, the reproduction script, once the operator says to build this packet"
+    packet_purpose: "Purpose: A host has a supported way to hold its own captured values."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/spec.md"
+      - "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/plan.md"
+      - "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-010-baseline-capture-after-graph-scan"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "61dcb86a-8ff7-4f18-89e0-e1605b16630d"
+      workspace: "/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake"
+      savedAt: "2026-11-16T10:25:10Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 0
     open_questions: []
     answered_questions: []

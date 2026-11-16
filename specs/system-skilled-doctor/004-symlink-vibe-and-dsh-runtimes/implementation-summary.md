@@ -8,16 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes"
-    last_updated_at: "2026-11-16T10:15:56Z"
-    last_updated_by: "claude-code"
-    recent_action: "Wrote spec, plan and tasks from a code check of the reported items"
-    next_safe_action: "Start T001 once the operator says to build"
+    last_updated_at: "2026-11-16T10:25:16Z"
+    last_updated_by: "generate-context"
+    recent_action: "Planned the vibe and dsh link runtimes"
+    next_safe_action: "Start T001 once the operator says to build this packet"
+    packet_purpose: "Purpose: `/doctor:symlink` links `.vibe` and `.dsh` like every other runtime folder, and every runtime list in the doctor commands names them."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/spec.md"
+      - "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/plan.md"
+      - "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-004-symlink-vibe-and-dsh-runtimes"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "61dcb86a-8ff7-4f18-89e0-e1605b16630d"
+      workspace: "/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake"
+      savedAt: "2026-11-16T10:25:16Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 0
     open_questions: []
     answered_questions: []

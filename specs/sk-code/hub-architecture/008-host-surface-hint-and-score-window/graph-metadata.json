@@ -16,6 +16,7 @@
       "host surface hint and score window plan",
       "host surface hint and score window tasks",
       "host surface hint and score window goal",
+      "008-host-surface-hint-and-score-window operator decisions",
       "host surface hint and score window implementation summary"
     ],
     "key_topics": [
@@ -39,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "scratch/probe-routes.cjs",
       "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md",
@@ -73,6 +75,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -188,33 +196,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A vendoring project reported two limits of the sk-code hub router as items 8 and 9 of its second handover, copied as `specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md`",
     "created_at": "2026-11-16T09:33:08Z",
-    "last_save_at": "2026-11-16T10:13:46.385Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-16T10:25:04.345Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c1829b04b83f5bf8c9e52abf68b84d0a4b6c2aa21e4ac1ff4a416c9d8edf2d6",
+    "source_fingerprint": "sha256:738bda5a8a18928087cb93ec0479fe658f41fbe89db8ae428b7ac141420ec6e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "538f1b853f774df6d1118652433259cb0041e5e67acee2f1449aee8d35381a4d",
       "plan.md": "84ad6829eeec45c3ddd179ad5d1243760c3260732ad891b13774cd04e8823711",
       "tasks.md": "1d14af4290ea38831d349f7964d832e5e179d6752c5cecd5759cda2364f4d45d",
-      "implementation-summary.md": "e6e3bccaef619bd2a27b6b1f085efd3a6c427cbc4583454ed7e7d78da8c1e5c6"
+      "decision-record.md": "95e0bee4f19eda696ef3ab3747579fa813124cbd9e01ee4572dc46187c5e0ddd",
+      "implementation-summary.md": "00103cfe624976a615883cf39424aab85ed5abe64d3c41667d864040ca2473af"
     },
     "last_active_at": null
   }

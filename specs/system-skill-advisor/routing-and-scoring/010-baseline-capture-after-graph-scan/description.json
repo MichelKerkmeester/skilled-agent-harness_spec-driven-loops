@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan",
   "description": "Find why a command routing baseline capture run straight after a skill graph scan reads the state from before the scan",
   "keywords": [
@@ -15,14 +16,15 @@
     "reads",
     "state"
   ],
-  "lastUpdated": "2026-11-16T09:33:10.446Z",
+  "lastUpdated": "2026-11-16T10:25:10.712Z",
   "specId": "010",
   "folderSlug": "baseline-capture-after-graph-scan",
   "parentChain": [
     "system-skill-advisor",
     "routing-and-scoring"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_11-25__planned-the-stale-capture-reproduction-and-the.md"
+  ]
 }

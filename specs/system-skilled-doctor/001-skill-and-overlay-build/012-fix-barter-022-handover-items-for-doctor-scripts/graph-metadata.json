@@ -16,6 +16,7 @@
       "fix barter 022 handover items for doctor scripts plan",
       "fix barter 022 handover items for doctor scripts tasks",
       "fix barter 022 handover items for doctor scripts goal",
+      "012-fix-barter-022-handover-items-for-doctor-scripts operator decisions",
       "fix barter 022 handover items for doctor scripts implementation summary"
     ],
     "key_topics": [
@@ -28,9 +29,9 @@
       "plan",
       "tasks",
       "goal",
-      "implementation",
-      "summary",
-      "project"
+      "012-fix-barter-022-handover-items-for-doctor-scripts",
+      "operator",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/git-setup-check.cjs",
       ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
@@ -70,6 +72,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -185,33 +193,29 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A project that vendors Skilled met three limits that it still works around by hand",
     "created_at": "2026-11-16T10:06:47Z",
-    "last_save_at": "2026-11-16T10:13:38.047Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-16T10:24:58.608Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5cd3c089b17e2186e18e334484d72e5be88e135cdaec2399d977cb2735596e76",
+    "source_fingerprint": "sha256:4b8c1109b389ede16d8b8ddb46231c93ed8398afc1d953ca04ef0523af1aa936",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c65d8c636eb4bcf8f8b95f49a6919b6a86ef06bb68682df06e18c3f944856f0",
       "plan.md": "350d0d5e72d00381fdc0d0b3673891bcb50645242f7b9bd2bcaa4d1fdd69d040",
       "tasks.md": "d9a948115a2f279292b54d2fb1a717b4234f3707bcc5eac4f2dd6395c2155960",
-      "implementation-summary.md": "93d80c01575a1be17d1e49a5bdb1fd75280552189326e3d10f8ef7ddf1f0d350"
+      "decision-record.md": "406db68a0395277bfe1f9d551f2df057170030d726955889c02e1eb399dae7f3",
+      "implementation-summary.md": "473cbf22458577ac265d6f3f27bb3ae81444f84ad102493e321f2945e29f94d0"
     },
     "last_active_at": null
   }

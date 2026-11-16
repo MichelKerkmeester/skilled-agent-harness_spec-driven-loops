@@ -8,16 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/hub-architecture/008-host-surface-hint-and-score-window"
-    last_updated_at: "2026-11-16T09:33:08Z"
-    last_updated_by: "claude-code"
-    recent_action: "Wrote spec, plan and tasks from a code check of the reported items"
-    next_safe_action: "Read plan.md, answer open questions 1 and 2 in spec.md, then start T001"
+    last_updated_at: "2026-11-16T10:25:04Z"
+    last_updated_by: "generate-context"
+    recent_action: "Planned the surface hint join and the surface score and recorded the operator's decisions"
+    next_safe_action: "Start T001 once the operator says to build this packet"
+    packet_purpose: "Purpose: A session's surface hint adds its surface to a scored route, and a request that names a workflow mode keeps that mode however many phrases a surface matches."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/spec.md"
+      - "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/plan.md"
+      - "specs/sk-code/hub-architecture/008-host-surface-hint-and-score-window/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-008-host-surface-hint-and-score-window"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "61dcb86a-8ff7-4f18-89e0-e1605b16630d"
+      workspace: "/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake"
+      savedAt: "2026-11-16T10:25:04Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 0
     open_questions: []
     answered_questions: []
