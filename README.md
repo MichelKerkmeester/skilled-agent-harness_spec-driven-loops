@@ -6,30 +6,27 @@
 
 > Like it? [buymeacoffee.com/michelkerkmeester](https://buymeacoffee.com/michelkerkmeester)
 
+**[Quick Start](#2--quick-start)** · [Overview](#overview) · [How It Works](#4--how-it-works) · [Workflows](#5--everyday-workflows) · [Skills](#6--skills) · [Hooks](#7--hooks-plugins-and-extensions) · [Agents](#8--agents) · [Commands](#9--commands) · [Runtimes](#10--runtimes-and-cli-bridges) · [Doctor](#11--doctor-commands) · [FAQ](#16--faq)
+
 &nbsp;
 
-## 1. 📝 OVERVIEW
+&nbsp;
 
-Skilled gives your AI coding agent a memory, a paper trail and a team of specialists. All of it lives inside your own repository, as files you can read and diff.
+## 1. 📝 SUMMARY
+An assistant framework that gives your AI coding agent a memory, a paper trail and a team of specialists.
 
-Every change starts with a spec folder. The folder records what changed, why and how. The agent saves its progress there too, so the next session picks up where the last one stopped. A crash or a full context window no longer loses the thread.
+All of it lives inside your own repository, as files you can read and diff.
 
-Before the agent acts, a set of gates checks the request. One gate asks which spec folder the work belongs to. Another loads the skill that matches the task. After the work, the agent has to show fresh proof before it may call anything done.
+Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor CLI, DeepSeek Harness and Mistral Vibe
 
-Skilled ships 14 skills, 11 agents and 44 commands. A shared hook library enforces its rules through a thin adapter in each runtime. It runs in eight AI runtimes:
+**What's inside**
 
-| Runtime | Folder | Commands look like | Hooks load from |
-| --- | --- | --- | --- |
-| Claude Code | `.claude/` | `/speckit:complete` | `.claude/settings.json` |
-| Codex | `.codex/` | `/speckit-complete` | `.codex/hooks.json` |
-| Cursor | `.cursor/` | `/speckit-complete` | `.cursor/hooks.json` |
-| Devin | `.devin/` | skills as slash commands, such as `/system-spec-kit` | `.devin/hooks.v1.json` |
-| OpenCode | `.opencode/` | `/speckit:complete` | `.opencode/plugins/` |
-| Pi | `.pi/` | `/speckit-complete` | `.pi/extensions/` |
-| DeepSeek Harness (DSH) | `.dsh/` | `/speckit-complete` | `.dsh/plugins/repo-guards/` |
-| Mistral Vibe | `.vibe/` | `/speckit-complete` | `.vibe/hooks.toml` |
-
-Each runtime folder is mostly generated from `.skilled/`, the one source of truth. Its README says which files are generated and which are authored there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [Cursor](.cursor/README.md), [Devin](.devin/README.md), [OpenCode](.opencode/README.md), [Pi](.pi/README.md) and [DeepSeek Harness](.dsh/README.md). Mistral Vibe keeps the same notes in [`.vibe/SYNC.md`](.vibe/SYNC.md).
+- **Spec Kit Framework** - structured plans, task tracking, validation gates and handover docs
+- **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
+- **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
+- **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
+- **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
+- **14 On-Demand Skills** - deep capabilities for code, design, docs, multi-CLI dispatch and installing Skilled in your own projects
 
 &nbsp;
 
@@ -103,7 +100,79 @@ The session-start check installs any missing hook link in the main checkout whil
 
 &nbsp;
 
-## 3. 🗺️ HOW IT WORKS
+<a id="overview"></a>
+
+## 3. 🗺️ OVERVIEW
+
+Three building blocks carry the whole system:
+
+1. **Structured documentation** 
+
+   Every file change gets a spec folder recording what changed, why and how. Like a lab notebook for software.
+
+2. **Spec memory and search**
+
+   Session context written into the spec folder it belongs to, then found again through a committed trigger index and ripgrep recipes over the same files.
+
+3. **Coordinated agents and skills**
+
+   11 specialized agents routed by a gate system that loads the right skills at the right time.
+
+From request to documented result:
+
+```
+                         YOUR REQUEST
+                              │
+                              ▼
+         ┌──────────────────────────────────────────┐
+         │       GATE SYSTEM (6 mandatory gates)    │
+         │                                          │
+         │  Gate 1: Context     Gate 2: Skills      │
+         │  Surface relevant    Auto-load the right │
+         │  prior context       domain expertise    │
+         │                                          │
+         │  Gate 3: Spec Folder (HARD BLOCK)        │
+         │  Every file change needs documentation    │
+         │                                          │
+         │  Gate 4: Workflow tiebreakers             │
+         │  Gate 5: Repo rules load (HARD BLOCK)    │
+         │  Gate 6: Reply rules load (HARD BLOCK)   │
+         └──────────────────────┬───────────────────┘
+                                │
+                 ┌──────────────┴──────────────┐
+                 ▼                             ▼
+         ┌───────────────┐          ┌──────────────────┐
+         │ AGENT NETWORK │          │  SKILLS LIBRARY  │
+         │ 11 specialized│          │ 14 domain skills │
+         │ agents with   │◄────────►│ auto-loaded by   │
+         │ routing logic │          │ task keywords    │
+         └───────┬───────┘          └────────┬─────────┘
+                 │                           │
+                 ▼                           ▼
+         ┌──────────────────────────────────────────┐
+         │       ROUTING + MCP TOPOLOGY             │
+         │  code_mode MCP server, plus the advisor  │
+         │  daemon on its own socket protocol       │
+         │                                          │
+         │  skill-advisor.cjs    skill routing      │
+         │  code_mode            external tools     │
+         │                                          │
+         │  Shared contract: startup payload via    │
+         │  runtime hooks                           │
+         └──────────────────────┬───────────────────┘
+                                │
+                                ▼
+         ┌──────────────────────────────────────────┐
+         │     SPEC KIT (documentation framework)   │
+         │  specs/<track>/###-feature/ - scratch/   │
+         │  4 levels - template set - 42 rules      │
+         │  trigger index │ ripgrep retrieval       │
+         └──────────────────────────────────────────┘
+```
+
+&nbsp;
+
+## 4. 🧭 HOW IT WORKS
 
 ### Gates
 
@@ -160,11 +229,11 @@ After a compaction, a session can read back its own earlier turns with one read-
 
 A long session can hand its work to a fresh one before the context window fills. Near the limit, the session writes a handoff note and saves its spec folder. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note. The running command, the goal, the model and the session name all carry over.
 
-Handover is on by default for Claude Code and off elsewhere until you turn it on. The [session-handover hook](#session-handover) below has the runtimes and switches.
+Handover is on by default for Claude Code and off elsewhere until you turn it on. The [Session Handover](#session-handover) hook below has the runtimes and switches.
 
 &nbsp;
 
-## 4. 🔄 EVERYDAY WORKFLOWS
+## 5. 🔄 EVERYDAY WORKFLOWS
 
 ### Spec Kit Commands
 
@@ -190,7 +259,7 @@ A loop can also spread across several AI CLIs at once. Each executor runs its ow
 
 &nbsp;
 
-## 5. 🧰 SKILLS
+## 6. 🧰 SKILLS
 
 Fourteen skills ship in `.skilled/skills/`. Gate 2 loads one when the advisor matches it to a task. Seven of them are hubs that route a request to one of 42 modes between them. The other seven work on their own.
 
@@ -215,7 +284,7 @@ Only `sk-code` carries stack-specific patterns, so start there when you adapt Sk
 
 &nbsp;
 
-## 6. 🧩 HOOKS, PLUGINS AND EXTENSIONS
+## 7. 🧩 HOOKS, PLUGINS AND EXTENSIONS
 
 Skilled enforces its rules through hooks that each runtime calls at fixed moments: at session start, on each prompt, around each tool call and at session end. Every hook has one home folder in `.skilled/hooks/<name>/`, with the shared policy and a README. Each runtime reaches it through a thin adapter in its own place: `.claude/hooks/`, `.codex/hooks/`, `.cursor/hooks/`, `.devin/hooks/`, `.dsh/plugins/`, `.opencode/plugins/`, `.pi/extensions/` and `.vibe/hooks.toml`.
 
@@ -225,133 +294,93 @@ Runtime support is uneven on purpose, because each runtime exposes different eve
 
 &nbsp;
 
-### `ask-surface-guard`
+The hooks below are grouped by purpose. Each entry says what the hook does, which runtimes run it and where its code lives.
 
-A turn that ends in a typed menu of options gets sent back once. The agent then asks the same question through the runtime's question tool, where you can pick an answer. On Codex and Devin it warns instead of sending the turn back.
+&nbsp;
 
-**Runtimes:** Claude Code, Codex, Devin, OpenCode, Pi, DSH and Mistral Vibe. **Source:** [`.skilled/hooks/ask-surface-guard/`](.skilled/hooks/ask-surface-guard/README.md)
+### Safety And Secrets
 
-### `classifier-injection-screen`
+These hooks keep secrets, vendored files and untrusted web text in check.
 
-After the agent fetches a web page, this hook asks the Jev classifier whether the text holds instructions aimed at an AI agent. When a section does, it adds one advisory line. It runs only once a Jev key is stored, and it never blocks.
-
-**Runtimes:** Claude Code, Devin, OpenCode, Pi, DSH and Mistral Vibe. **Source:** [`.skilled/hooks/classifier-injection-screen/`](.skilled/hooks/classifier-injection-screen/README.md)
-
-### `cli-dispatch`
-
-Before the agent runs a composed CLI dispatch, a preflight lint checks it against the bridge's hard rules. A broken rule stops the call. After the call, an audit trail records it as one JSON line.
-
-**Runtimes:** the preflight runs on all eight. The audit trail runs on every runtime except Mistral Vibe. **Source:** [`.skilled/hooks/cli-dispatch/`](.skilled/hooks/cli-dispatch/README.md)
-
-### `codex-global-hooks-check`
-
-At session start, this check confirms that Codex's user-global hook file holds no copy of this repository's hooks. A stale copy there would run the hooks twice in every Codex session.
-
-**Runtimes:** Claude Code, Cursor, Devin, Pi and DSH at session start, plus an OpenCode watchdog plugin. Codex owns the file and does not run it. **Source:** [`.skilled/hooks/codex-global-hooks-check/`](.skilled/hooks/codex-global-hooks-check/README.md)
-
-### `completion-evidence`
-
-This hook fires when the agent claims a task is done. It looks for the proof behind the claim and names what is missing. It advises and never blocks.
-
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/completion-evidence/`](.skilled/hooks/completion-evidence/README.md)
-
-### `decision-capture`
-
-Each answer you give to the agent's question tool is queued as you give it. The next full-auto `/speckit:save` writes it into the packet's `decision-record.md`, with the question, the options and your answer word for word. Questions about process, such as which spec folder to use, are left out.
-
-**Runtimes:** Claude Code, Devin, OpenCode, Pi, DSH and Mistral Vibe live. Codex is covered at save time, when the save reads the stored conversation. **Source:** [`.skilled/hooks/decision-capture/`](.skilled/hooks/decision-capture/README.md)
-
-### `directive-lifecycle`
-
-The skill advisor repeats a few fixed directives. This hook tracks which ones a session already received, so they appear once per startup or compaction instead of on every turn.
-
-**Runtimes:** all eight, built into each runtime's skill advisor adapter. **Source:** [`.skilled/hooks/directive-lifecycle/`](.skilled/hooks/directive-lifecycle/README.md)
-
-### `dist-freshness`
-
-Several hooks run compiled scripts from a `dist` build. This hook detects a build that is older than its TypeScript sources and rebuilds it, so a hook never runs stale code.
-
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/dist-freshness/`](.skilled/hooks/dist-freshness/README.md)
-
-### `env-secret-guard`
+#### Env Secret Guard
 
 The agent may not read or write a `.env` file, because that would send every secret in it to the model. The guard refuses the call, undoes a dotenv write a shell command made anyway and watches command output for a dotenv value. In place of the file, it lists key names, reports parse errors and fingerprints a value.
 
 **Runtimes:** all eight. **Source:** [`.skilled/hooks/env-secret-guard/`](.skilled/hooks/env-secret-guard/README.md)
 
-### `git-hooks-check`
-
-At session start, this check confirms that the repository's versioned git hooks are installed and current. In the main checkout with live sync on, it installs a missing hook link itself. It prints a warning and never blocks a session.
-
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-hooks-check/`](.skilled/hooks/git-hooks-check/README.md)
-
-### `git-live-follow`
-
-At session start, this hook starts a follower that fast-forwards your main checkout to the shared live branch as new commits land. Your editor then shows the combined work of every session. It is one half of [live sync](#12--git-worktrees-and-live-sync).
-
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-live-follow/`](.skilled/hooks/git-live-follow/README.md)
-
-### `git-primary-reconcile`
-
-At session start, this hook brings the main checkout back onto its live branch. It fast-forwards when the checkout is behind and publishes local commits when it is ahead. It is the other half of live sync.
-
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-primary-reconcile/`](.skilled/hooks/git-primary-reconcile/README.md)
-
-### `git-worktree-guard`
-
-At session start, this guard warns when a top-level session runs on the shared checkout instead of its own worktree. Parallel sessions on one checkout step on each other's changes.
-
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-worktree-guard/`](.skilled/hooks/git-worktree-guard/README.md)
-
-### `git-message-gate`
-
-Before a commit, a pull request or a new branch, this gate checks the message, description or branch name against the sk-git templates. It refuses one that breaks them. It has no off switch, because the rules carry no bypass. Change a rule with `/doctor:git standards` instead.
-
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-message-gate/`](.skilled/hooks/git-message-gate/README.md)
-
-### `git-preflight`
-
-Before a git command runs, this hook checks it against the sk-git hard rules and prints one line about any behavior that tends to surprise. It never blocks.
-
-**Runtimes:** every runtime except Mistral Vibe. **Source:** [`.skilled/hooks/git-preflight/`](.skilled/hooks/git-preflight/README.md)
-
-### `goal`
-
-A spec folder can hold a `goal.md` with the directive and the criteria that decide when the work is done. This hook binds a session to that file and injects a short slice of it, so the goal survives context resets. `/create:goal` writes the file. Claude Code and Codex use their own `/goal` command instead, and the spec workflows hand you the slice to paste. OpenCode manages the goal with `/goal-opencode`, Pi with `/goal-pi` and DSH with `/goal-dsh`.
-
-**Runtimes:** Cursor, Devin, OpenCode, Pi, DSH and Mistral Vibe. **Source:** [`.skilled/hooks/goal/`](.skilled/hooks/goal/README.md)
-
-### `mcp-route-guard`
-
-When the agent calls an external MCP tool directly, this hook adds an advisory that the call should go through Code Mode instead.
-
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/mcp-route-guard/`](.skilled/hooks/mcp-route-guard/README.md)
-
-### `overlay-guard`
+#### Overlay Guard
 
 A project that commits a copy of Skilled keeps its own changes in overlay files. This guard refuses an edit to a file an overlay owns and names the overlay file to edit instead, so the next update does not wipe the change.
 
 **Runtimes:** all eight. **Source:** [`.skilled/hooks/overlay-guard/`](.skilled/hooks/overlay-guard/README.md)
 
-### `permission-policy`
+#### Permission Policy
 
 Devin asks for permission before some tool calls. This hook answers that request with allow or deny, from the same spec-gate and dispatch rules the other hooks use. Anything it cannot classify is denied. The Devin adapter file is `permission-request-policy.mjs`.
 
 **Runtimes:** Devin only. **Source:** [`.skilled/hooks/permission-policy/`](.skilled/hooks/permission-policy/README.md)
 
-### `post-edit-quality`
+#### Classifier Injection Screen
 
-After every write or edit, this hook runs the comment-hygiene check, the dist-staleness check and related checks on the changed file. It reports what it finds next to the edit.
+After the agent fetches a web page, this hook asks the Jev classifier whether the text holds instructions aimed at an AI agent. When a section does, it adds one advisory line. It runs only once a Jev key is stored, and it never blocks.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/post-edit-quality/`](.skilled/hooks/post-edit-quality/README.md)
+**Runtimes:** Claude Code, Devin, OpenCode, Pi, DSH and Mistral Vibe. **Source:** [`.skilled/hooks/classifier-injection-screen/`](.skilled/hooks/classifier-injection-screen/README.md)
 
-### `session-cleanup`
+&nbsp;
 
-This hook runs bounded checks at startup and cleans up at teardown. It stops only MCP helper processes it can prove the session started.
+### Git
 
-**Runtimes:** Claude Code, Codex, Cursor, Devin, OpenCode and Mistral Vibe. **Source:** [`.skilled/hooks/session-cleanup/`](.skilled/hooks/session-cleanup/README.md)
+These hooks keep the git history clean and the main checkout current. Four of them run at session start.
 
-### `session-handover`
+#### Git Hooks Check
+
+At session start, this check confirms that the repository's versioned git hooks are installed and current. In the main checkout with live sync on, it installs a missing hook link itself. It prints a warning and never blocks a session.
+
+**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-hooks-check/`](.skilled/hooks/git-hooks-check/README.md)
+
+#### Git Live Follow
+
+At session start, this hook starts a follower that fast-forwards your main checkout to the shared live branch as new commits land. Your editor then shows the combined work of every session. It is one half of [live sync](#13--git-worktrees-and-live-sync).
+
+**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-live-follow/`](.skilled/hooks/git-live-follow/README.md)
+
+#### Git Primary Reconcile
+
+At session start, this hook brings the main checkout back onto its live branch. It fast-forwards when the checkout is behind and publishes local commits when it is ahead. It is the other half of live sync.
+
+**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-primary-reconcile/`](.skilled/hooks/git-primary-reconcile/README.md)
+
+#### Git Worktree Guard
+
+At session start, this guard warns when a top-level session runs on the shared checkout instead of its own worktree. Parallel sessions on one checkout step on each other's changes.
+
+**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-worktree-guard/`](.skilled/hooks/git-worktree-guard/README.md)
+
+#### Git Message Gate
+
+Before a commit, a pull request or a new branch, this gate checks the message, description or branch name against the sk-git templates. It refuses one that breaks them. It has no off switch, because the rules carry no bypass. Change a rule with `/doctor:git standards` instead.
+
+**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-message-gate/`](.skilled/hooks/git-message-gate/README.md)
+
+#### Git Preflight
+
+Before a git command runs, this hook checks it against the sk-git hard rules and prints one line about any behavior that tends to surprise. It never blocks.
+
+**Runtimes:** every runtime except Mistral Vibe. **Source:** [`.skilled/hooks/git-preflight/`](.skilled/hooks/git-preflight/README.md)
+
+&nbsp;
+
+### Sessions And Continuity
+
+These hooks carry context, goals and decisions from one session to the next.
+
+#### Session Lifecycle
+
+At session start, this hook primes the session with the continuity of its spec folder. At stop it saves a checkpoint, and after a compaction it restores the context the summary dropped.
+
+**Runtimes:** Claude Code, Codex, Cursor, Devin, Pi, DSH and Mistral Vibe. OpenCode runs the same steps inside its own plugins. **Source:** [`.skilled/hooks/session-lifecycle/`](.skilled/hooks/session-lifecycle/README.md)
+
+#### Session Handover
 
 Near the context limit, this hook asks the session to write a handoff note and arms a record for the next one. The `skilled-loop` wrapper then starts a fresh session in the same terminal, and that session claims the note. Started without the wrapper, Claude Code keeps the note and returns to it after its own auto-compaction.
 
@@ -367,87 +396,169 @@ Handover is on by default for Claude Code only. `SYSTEM_SESSION_HANDOVER_ENABLED
 
 **Runtimes:** automatic hops on Claude Code, Codex, OpenCode, Pi and Mistral Vibe. Cursor, Devin and DSH hand over only when you run `/speckit:handoff`. **Source:** [`.skilled/hooks/session-handover/`](.skilled/hooks/session-handover/README.md)
 
-### `session-lifecycle`
+#### Session Cleanup
 
-At session start, this hook primes the session with the continuity of its spec folder. At stop it saves a checkpoint, and after a compaction it restores the context the summary dropped.
+This hook runs bounded checks at startup and cleans up at teardown. It stops only MCP helper processes it can prove the session started.
 
-**Runtimes:** Claude Code, Codex, Cursor, Devin, Pi, DSH and Mistral Vibe. OpenCode runs the same steps inside its own plugins. **Source:** [`.skilled/hooks/session-lifecycle/`](.skilled/hooks/session-lifecycle/README.md)
+**Runtimes:** Claude Code, Codex, Cursor, Devin, OpenCode and Mistral Vibe. **Source:** [`.skilled/hooks/session-cleanup/`](.skilled/hooks/session-cleanup/README.md)
 
-### `skill-advisor`
+#### Goal
+
+A spec folder can hold a `goal.md` with the directive and the criteria that decide when the work is done. This hook binds a session to that file and injects a short slice of it, so the goal survives context resets. `/create:goal` writes the file. Claude Code and Codex use their own `/goal` command instead, and the spec workflows hand you the slice to paste. OpenCode manages the goal with `/goal-opencode`, Pi with `/goal-pi` and DSH with `/goal-dsh`.
+
+**Runtimes:** Cursor, Devin, OpenCode, Pi, DSH and Mistral Vibe. **Source:** [`.skilled/hooks/goal/`](.skilled/hooks/goal/README.md)
+
+#### Decision Capture
+
+Each answer you give to the agent's question tool is queued as you give it. The next full-auto `/speckit:save` writes it into the packet's `decision-record.md`, with the question, the options and your answer word for word. Questions about process, such as which spec folder to use, are left out.
+
+**Runtimes:** Claude Code, Devin, OpenCode, Pi, DSH and Mistral Vibe live. Codex is covered at save time, when the save reads the stored conversation. **Source:** [`.skilled/hooks/decision-capture/`](.skilled/hooks/decision-capture/README.md)
+
+&nbsp;
+
+### Routing And Dispatch
+
+These hooks send each request, tool call and question down the right path.
+
+#### Skill Advisor
 
 On each prompt, this hook puts the skill advisor's one-line routing brief in front of the agent. It advises only. When the advisor cannot answer, the brief says why in one line and the prompt goes through.
 
 **Runtimes:** all eight. **Source:** [`.skilled/hooks/skill-advisor/`](.skilled/hooks/skill-advisor/README.md)
 
-### `spec-gate`
+#### Directive Lifecycle
 
-Before the first file change of a session, this hook asks which spec folder the work belongs to and remembers the answer. It advises by default. `SYSTEM_SPEC_GATE_ENFORCE` turns the question into a hard stop. Mistral Vibe always enforces it.
+The skill advisor repeats a few fixed directives. This hook tracks which ones a session already received, so they appear once per startup or compaction instead of on every turn.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/spec-gate/`](.skilled/hooks/spec-gate/README.md)
+**Runtimes:** all eight, built into each runtime's skill advisor adapter. **Source:** [`.skilled/hooks/directive-lifecycle/`](.skilled/hooks/directive-lifecycle/README.md)
 
-### `subagent-dispatch-guard`
+#### MCP Route Guard
+
+When the agent calls an external MCP tool directly, this hook adds an advisory that the call should go through Code Mode instead.
+
+**Runtimes:** all eight. **Source:** [`.skilled/hooks/mcp-route-guard/`](.skilled/hooks/mcp-route-guard/README.md)
+
+#### CLI Dispatch
+
+Before the agent runs a composed CLI dispatch, a preflight lint checks it against the bridge's hard rules. A broken rule stops the call. After the call, an audit trail records it as one JSON line.
+
+**Runtimes:** the preflight runs on all eight. The audit trail runs on every runtime except Mistral Vibe. **Source:** [`.skilled/hooks/cli-dispatch/`](.skilled/hooks/cli-dispatch/README.md)
+
+#### Subagent Dispatch Guard
 
 Before the agent hands a task to a subagent, this guard checks for a deep loop that repeats itself. On Claude Code it also applies the model policy for subagents.
 
 **Runtimes:** every runtime except Codex. Pi covers direct subagent calls only, and DSH logs subagent calls without blocking them. **Source:** [`.skilled/hooks/subagent-dispatch-guard/`](.skilled/hooks/subagent-dispatch-guard/README.md)
 
+#### Ask Surface Guard
+
+A turn that ends in a typed menu of options gets sent back once. The agent then asks the same question through the runtime's question tool, where you can pick an answer. On Codex and Devin it warns instead of sending the turn back.
+
+**Runtimes:** Claude Code, Codex, Devin, OpenCode, Pi, DSH and Mistral Vibe. **Source:** [`.skilled/hooks/ask-surface-guard/`](.skilled/hooks/ask-surface-guard/README.md)
+
 &nbsp;
 
-### Claude Code: `fable-subagent-guard`
+### Quality And Evidence
+
+These hooks ask for a spec folder, check each edit and hold the agent to its proof.
+
+#### Spec Gate
+
+Before the first file change of a session, this hook asks which spec folder the work belongs to and remembers the answer. It advises by default. `SYSTEM_SPEC_GATE_ENFORCE` turns the question into a hard stop. Mistral Vibe always enforces it.
+
+**Runtimes:** all eight. **Source:** [`.skilled/hooks/spec-gate/`](.skilled/hooks/spec-gate/README.md)
+
+#### Completion Evidence
+
+This hook fires when the agent claims a task is done. It looks for the proof behind the claim and names what is missing. It advises and never blocks.
+
+**Runtimes:** all eight. **Source:** [`.skilled/hooks/completion-evidence/`](.skilled/hooks/completion-evidence/README.md)
+
+#### Post-Edit Quality
+
+After every write or edit, this hook runs the comment-hygiene check, the dist-staleness check and related checks on the changed file. It reports what it finds next to the edit.
+
+**Runtimes:** all eight. **Source:** [`.skilled/hooks/post-edit-quality/`](.skilled/hooks/post-edit-quality/README.md)
+
+#### Dist Freshness
+
+Several hooks run compiled scripts from a `dist` build. This hook detects a build that is older than its TypeScript sources and rebuilds it, so a hook never runs stale code.
+
+**Runtimes:** all eight. **Source:** [`.skilled/hooks/dist-freshness/`](.skilled/hooks/dist-freshness/README.md)
+
+#### Codex Global Hooks Check
+
+At session start, this check confirms that Codex's user-global hook file holds no copy of this repository's hooks. A stale copy there would run the hooks twice in every Codex session.
+
+**Runtimes:** Claude Code, Cursor, Devin, Pi and DSH at session start, plus an OpenCode watchdog plugin. Codex owns the file and does not run it. **Source:** [`.skilled/hooks/codex-global-hooks-check/`](.skilled/hooks/codex-global-hooks-check/README.md)
+
+&nbsp;
+
+### Runtime-Only Hooks
+
+A few hooks exist for one runtime only, because they answer an event the others lack.
+
+#### Fable Subagent Guard (Claude Code)
 
 When the main Claude Code session runs on a Fable model, this guard denies a subagent dispatch that would inherit that model. Only an explicit Opus or Sonnet override passes. It belongs to the subagent dispatch guard above.
 
 **Runtime:** Claude Code only. **Source:** `.claude/hooks/fable-subagent-guard.mjs`, from `.skilled/hooks/subagent-dispatch-guard/claude/`
 
-### Claude Code: `session-prime`
+#### Session Prime (Claude Code)
 
 At session start, this script injects the continuity of the active spec folder into a Claude Code session. Mistral Vibe's session-start hook reuses it.
 
 **Runtime:** Claude Code. **Source:** `.claude/hooks/session-prime.js`, built from `system-spec-kit`
 
-### Claude Code: `handover-subagent-guard`
+#### Handover Subagent Guard (Claude Code)
 
 A subagent shares its parent's session id, so a handover command run inside one would act on the parent's handoff note. This guard refuses that command and leaves the note to the parent.
 
 **Runtime:** Claude Code only. **Source:** `.claude/hooks/handover-subagent-guard.mjs`, from `.skilled/hooks/session-handover/claude/`
 
-### Codex: `handover-prompt-seed`
+#### Handover Prompt Seed (Codex)
 
 On each Codex prompt, this hook adds the claim instructions to a handover seed prompt, or the context nudge as the session nears its limit.
 
 **Runtime:** Codex only. **Source:** `.codex/hooks/handover-prompt-seed.mjs`, from `.skilled/hooks/session-handover/codex/`
 
-### Cursor: `spec-gate-prebind`
+#### Spec Gate Prebind (Cursor)
 
 Cursor's CLI delivers no prompt-classification event, so this hook sets up the spec gate's state at session start. When `SYSTEM_SPEC_FOLDER` names a valid spec folder, that counts as the Gate 3 answer.
 
 **Runtime:** Cursor only. **Source:** `.cursor/hooks/spec-gate-prebind.mjs`, from `system-spec-kit`
 
-### Devin: `post-compaction`
+#### Post-Compaction Recovery (Devin)
 
 Devin fires its compaction event after the summary is written, with no transcript. This hook keeps the summary and restores the spec folder's continuity from disk. Devin's other runtime-only hook, `permission-request-policy`, is the [permission policy](#permission-policy) above.
 
 **Runtime:** Devin only. **Source:** `.devin/hooks/post-compaction.cjs`, from `system-spec-kit`
 
-### Pi: `pi-cache-optimizer`
+&nbsp;
+
+### Pi Extension Packages
+
+Pi loads two extension packages from this repository and eight from outside it. They add features, not policy.
+
+#### Pi Cache Optimizer
 
 A Pi extension package that raises provider prompt-cache hit rates. It moves stable prompt content ahead of the parts that change, adds a careful cache-key fallback for OpenAI-compatible providers and shows cache statistics in the footer. It also stops a paid retry loop when a whole batch of tool calls keeps failing. It is a fork of `jiangge/pi-cache-optimizer` under the MIT license, and the vendored copy is the live source.
 
 **Runtime:** Pi. **Source:** [`.pi/extensions/pi-cache-optimizer/`](.pi/extensions/pi-cache-optimizer/README.md)
 
-### Pi: `pi-fast-mode-w-subagent-support`
+#### Fast Mode With Subagent Support
 
 A Pi extension package that adds a Fast Mode toggle for OpenAI GPT-5.4 through GPT-6 models. It sends OpenAI's priority service tier on matching requests and passes the setting on to subagents. `/fast` switches it, and `--fast` turns it on at startup.
 
 **Runtime:** Pi. **Source:** [`.pi/extensions/pi-fast-mode-w-subagent-support/`](.pi/extensions/pi-fast-mode-w-subagent-support/README.md)
 
-### Pi: Community Packages
+#### Community Packages
 
 Pi also loads eight community packages that `.pi/settings.json` lists: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build` and `pi-claude-code-ui`. They come from npm or GitHub, not from this repository. The [Pi extensions README](.pi/extensions/README.md) maps every Skilled hook entry to its real file.
 
 &nbsp;
 
-## 7. 🤖 AGENTS
+## 8. 🤖 AGENTS
 
 Eleven agents own focused roles. Their source is `.skilled/agents/`, which OpenCode links to. Codex, Pi, DSH and Mistral Vibe carry copies generated from it. Claude Code keeps a hand-carried copy in `.claude/agents/`, and Cursor and Devin link to that copy.
 
@@ -465,11 +576,11 @@ Eleven agents own focused roles. Their source is `.skilled/agents/`, which OpenC
 
 &nbsp;
 
-## 8. ⌨️ COMMANDS
+## 9. 💻 COMMANDS
 
 Forty-four commands ship in six groups under [`.skilled/commands/`](.skilled/commands/). Each one is a Markdown file, and most hand their steps to a YAML workflow beside it.
 
-**Spec Kit (8).** `/speckit:complete`, `/speckit:plan`, `/speckit:implement`, `/speckit:resume`, `/speckit:save`, `/speckit:search`, `/speckit:handoff` and `/speckit:ai-council`. These run the spec workflow and its continuity, as [Everyday Workflows](#4--everyday-workflows) describes.
+**Spec Kit (8).** `/speckit:complete`, `/speckit:plan`, `/speckit:implement`, `/speckit:resume`, `/speckit:save`, `/speckit:search`, `/speckit:handoff` and `/speckit:ai-council`. These run the spec workflow and its continuity, as [Everyday Workflows](#5--everyday-workflows) describes.
 
 **Create (13).** `/create:skill`, `/create:skill-parent`, `/create:agent`, `/create:command`, `/create:readme`, `/create:changelog`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:goal`, `/create:benchmark`, `/create:diff`, `/create:repo-rule` and `/create:with-human-voice`. These scaffold or revise one kind of artifact to the `sk-doc` standards.
 
@@ -479,13 +590,30 @@ Forty-four commands ship in six groups under [`.skilled/commands/`](.skilled/com
 
 **Prompt (1).** `/prompt:improve` turns a rough prompt into a structured one.
 
-**Doctor (17).** Health checks and repairs, listed under [Doctor Commands](#10--doctor-commands).
+**Doctor (17).** Health checks and repairs, listed under [Doctor Commands](#11--doctor-commands).
 
 Some runtimes add a goal command of their own: `/goal-opencode` in `.opencode/commands/`, `/goal-cursor` in `.cursor/commands/` and `/goal-pi` in `.pi/prompts/`. DSH registers `/goal-dsh` from its plugin.
 
 &nbsp;
 
-## 9. 🔌 RUNTIMES AND CLI BRIDGES
+## 10. 🔌 RUNTIMES AND CLI BRIDGES
+
+Skilled runs in eight AI runtimes. Each one keeps its own folder and loads the hooks its own way:
+
+| Runtime | Folder | Commands look like | Hooks load from |
+| --- | --- | --- | --- |
+| Claude Code | `.claude/` | `/speckit:complete` | `.claude/settings.json` |
+| Codex | `.codex/` | `/speckit-complete` | `.codex/hooks.json` |
+| Cursor | `.cursor/` | `/speckit-complete` | `.cursor/hooks.json` |
+| Devin | `.devin/` | skills as slash commands, such as `/system-spec-kit` | `.devin/hooks.v1.json` |
+| OpenCode | `.opencode/` | `/speckit:complete` | `.opencode/plugins/` |
+| Pi | `.pi/` | `/speckit-complete` | `.pi/extensions/` |
+| DeepSeek Harness (DSH) | `.dsh/` | `/speckit-complete` | `.dsh/plugins/repo-guards/` |
+| Mistral Vibe | `.vibe/` | `/speckit-complete` | `.vibe/hooks.toml` |
+
+Each runtime folder is mostly generated from `.skilled/`, the one source of truth. Its README says which files are generated and which are authored there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [Cursor](.cursor/README.md), [Devin](.devin/README.md), [OpenCode](.opencode/README.md), [Pi](.pi/README.md) and [DeepSeek Harness](.dsh/README.md). Mistral Vibe keeps the same notes in [`.vibe/SYNC.md`](.vibe/SYNC.md).
+
+Each runtime folder is mostly generated from `.skilled/`, the one source of truth. Its README says which files are generated and which are authored there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [Cursor](.cursor/README.md), [Devin](.devin/README.md), [OpenCode](.opencode/README.md), [Pi](.pi/README.md) and [DeepSeek Harness](.dsh/README.md). Mistral Vibe keeps the same notes in [`.vibe/SYNC.md`](.vibe/SYNC.md).
 
 The eight runtimes share one source tree. Skills, agents, commands and hooks live in `.skilled/`, and a generator writes each runtime's copy. `/doctor:runtime-mirrors` checks that every copy still matches. Claude Code and OpenCode spell commands with a colon, as in `/speckit:complete`. Codex, Cursor, Pi, DSH and Mistral Vibe use a hyphen, as in `/speckit-complete`. Devin shows each skill as a slash command, so it reaches the spec workflow through `/system-spec-kit`.
 
@@ -497,7 +625,7 @@ Six bridges refuse to dispatch the runtime they run in. `cli-pi` and `cli-deepse
 
 &nbsp;
 
-## 10. 🩺 DOCTOR COMMANDS
+## 11. 🩺 DOCTOR COMMANDS
 
 Seventeen doctor commands check and repair the setup, one area each. Every target that writes shows its plan and waits for your yes. `/doctor:helper` names the command that fits a problem you describe. The [system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md) has the details.
 
@@ -523,7 +651,7 @@ Seventeen doctor commands check and repair the setup, one area each. Every targe
 
 &nbsp;
 
-## 11. 🔗 CODE MODE MCP
+## 12. 🔗 CODE MODE MCP
 
 Code Mode lets the agent call external tools, such as Figma, GitHub, Chrome DevTools, ClickUp and Webflow, through one TypeScript interface. Tool definitions load when a call needs them, not up front, so they cost no context until then.
 
@@ -541,7 +669,7 @@ The [Code Mode README](.skilled/skills/mcp-code-mode/README.md) covers the call 
 
 &nbsp;
 
-## 12. 🌿 GIT WORKTREES AND LIVE SYNC
+## 13. 🌿 GIT WORKTREES AND LIVE SYNC
 
 Each session can work in its own git worktree, so parallel sessions never edit the same files. `sk-git` creates numbered worktrees and provisions them, so dependencies install and the Spec Kit builds before the first task.
 
@@ -551,7 +679,7 @@ Live sync is on by default in the main checkout. `SYSTEM_LIVE_SYNC_DISABLED=1` t
 
 &nbsp;
 
-## 13. ⚙️ CONFIGURATION AND PRIVACY
+## 14. 🔧 CONFIGURATION AND PRIVACY
 
 ### Core Files
 
@@ -594,7 +722,7 @@ That guarantee covers continuity, not every feature. Your AI runtime sends your 
 
 &nbsp;
 
-## 14. 🆕 WHAT'S NEW SINCE v4.0.0.0
+## 15. 🆕 WHAT'S NEW SINCE v4.0.0.0
 
 ### v4.0.1.0: Every Skill Routes From Its Own File
 
@@ -626,51 +754,51 @@ The AI Council moved out of Deep Loop. Run `/speckit:ai-council`, because `/deep
 
 &nbsp;
 
-## 15. ❓ FAQ
+## 16. ❓ FAQ
 
-**Q: Must all 14 skills be installed?**
+### Must all 14 skills be installed?
 
 No. Gate 2 loads a skill only when a task needs it. The MCP and CLI skills need their own tools or keys before they can run.
 
 &nbsp;
 
-**Q: What happens if I skip the spec folder?**
+### What happens if I skip the spec folder?
 
 Gate 3 waits for an answer before the first file change. Option D skips it, but that work leaves no record for `/speckit:resume` or `/speckit:search` to find. A fix of a few characters in one file does not trigger the gate.
 
 &nbsp;
 
-**Q: What happens when a session runs out of context?**
+### What happens when a session runs out of context?
 
 On Claude Code, the session hands over to a fresh one under the `skilled-loop` wrapper. Without the wrapper, it keeps a handoff note it returns to after auto-compaction. Other runtimes fall back to their own compaction until you turn handover on.
 
 &nbsp;
 
-**Q: Can I use Skilled without the continuity features?**
+### Can I use Skilled without the continuity features?
 
 Yes. Spec folders, the gates, the agents and the skills all work without `/speckit:save`. You lose cross-session recovery.
 
 &nbsp;
 
-**Q: How can I add a skill or an agent?**
+### How can I add a skill or an agent?
 
 Run `/create:skill` for a skill. The advisor finds it from its `SKILL.md` and `graph-metadata.json`, with no registration step. Run `/create:agent` for an agent, which writes the source file in `.skilled/agents/` and the Claude Code copy.
 
 &nbsp;
 
-**Q: How do I keep Skilled current after a new release?**
+### How can I keep Skilled current after a new release?
 
 Run `/doctor:update check` to see what a release changes, then `/doctor:update apply` to bring it in after your yes. It can roll the update back. Afterwards, `/doctor:runtime-mirrors` checks that every runtime folder still matches `.skilled/`, and `/doctor:setup` runs the full health check.
 
 &nbsp;
 
-**Q: Why is the skill advisor not an MCP server?**
+### Why is the skill advisor not an MCP server?
 
 It runs as a resident daemon behind one CLI, so every runtime can call it the same way from a hook. `code_mode` is the only MCP server Skilled registers.
 
 &nbsp;
 
-## 16. 📚 RELATED DOCUMENTS
+## 17. 📚 RELATED DOCUMENTS
 
 **Start here**
 
