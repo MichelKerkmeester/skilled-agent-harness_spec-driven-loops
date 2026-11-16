@@ -18,7 +18,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.33.0
+version: 1.0.34.0
 ---
 
 # Session handover loop (skilled-loop)
@@ -71,7 +71,7 @@ Before it relaunches, the wrapper consumes the record and reads the note's state
 
 ### Shell Shim And Symlinked Repositories
 
-`.skilled/bin/skilled-loop-shell.sh` is sourced from `~/.zshrc` or `~/.bashrc` and reads the same in bash 3.2 and zsh. It defines `claude`, `pi`, `opencode`, `codex`, `devin` and `cursor-agent` as shell functions. A function runs `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when `SKILLED_LOOP_ID` is unset, stdin and stdout are a terminal, the arguments open an interactive session and a wrapper exists at or above the current directory. A `.skilled` that is a symlink counts, so a repository that links this checkout's `.skilled` starts under the loop too. Its automatic hop also needs the runtime folders `.claude`, `.codex`, `.opencode` and `.pi` linked or registered, because each runtime reads its hooks from the project it starts in. Subcommands, print and one-shot modes, version and help run the binary directly. Each runtime's list comes from its own `--help`. Codex `resume` and `fork`, and Cursor `agent`, `ls` and `resume` stay wrapped because they open a session. `cursor-agent` maps to the wrapper's `cursor` arm. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing, without the terminal check.
+`.skilled/bin/skilled-loop-shell.sh` is sourced from `~/.zshrc` or `~/.bashrc` and reads the same in bash 3.2 and zsh. It defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent` and `vibe` as shell functions. A function runs `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when `SKILLED_LOOP_ID` is unset, stdin and stdout are a terminal, the arguments open an interactive session and a wrapper exists at or above the current directory. A `.skilled` that is a symlink counts, so a repository that links this checkout's `.skilled` starts under the loop too. Its automatic hop also needs the runtime folders `.claude`, `.codex`, `.opencode` and `.pi` linked or registered, because each runtime reads its hooks from the project it starts in. Subcommands, print and one-shot modes, version and help run the binary directly. Each runtime's list comes from its own `--help`. Codex `resume` and `fork`, and Cursor `agent`, `ls` and `resume` stay wrapped because they open a session. `cursor-agent` maps to the wrapper's `cursor` arm. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing, without the terminal check.
 
 ### Pi And OpenCode Adapters
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "skilled-loop vibe handover"
   - "Vibe automatic relaunch tier"
   - "Vibe handover withdraw"
-version: 1.0.3.0
+version: 1.0.4.0
 id: session-handover-vibe
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -189,7 +189,11 @@ tmux set-option -w -t "$session_name" remain-on-exit on
 say "Carry this short task through a context handoff, then finish it in the new session. Start by reading README.md and reporting its first heading. Gate 3: D) Skip, no spec folder."
 sleep 20
 say "/speckit-handoff"
-sleep 60
+for i in $(seq 1 60); do
+  note=$(ls -t .skilled/skills/.state/session-handover/handoffs/*.md 2>/dev/null | head -1)
+  [ -n "$note" ] && grep -q '^status: claimed' "$note" && break
+  sleep 3
+done
 say "/exit" 2>/dev/null || true
 sleep 8
 grep -E ' (prepare|killer-signal|relaunch) ' "$state/relaunch.log" | tail -4
