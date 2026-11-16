@@ -349,6 +349,9 @@ and findings belong here.
 | Correction to the Suite metrics isolation row | Met, evidence replaced | committed check 035 scratch/isolation-check.sh at 267c27fc5df: COUNT 739 files 26383 lines before and after a full run (2325/0), no shared file changed, one per-run folder seen and gone (test -e exit 1). Replaces after.txt, whose COUNT moved with other sessions' writes; 035 scratch/isolation.txt |
 | Phase 035 suite metrics and start shape | Complete | 267c27fc5df: per-run TMPDIR, startShapes printed. Isolation 739 files and 26383 lines before and after a full run (2325/0), rescore rates equal to 034. Second gate review APPROVED 96/100, strict PASSED |
 | Phase 036 start rate fixed rule | Planned (Q080) | operator: do what you would recommend. The printed start rate will follow the fixed arm start rule, a read alone printed as a lookup beside it, and the 007 and 033 start rates restated. 9 tasks, strict PASSED |
+| Start rates, fixed rule, 007 set | Restated (Q080) | pre to post, a read alone now a lookup: claude 3/12 to 3/12, codex 0/12 to 0/12, pi 0/11 to 1/10, devin 0/8 to 2/9, opencode 0/7 to 1/5, dsh 1/12 to 3/12. Was 4,1,3,1,2,6 to 4,1,2,3,2,9. Started of offered, post: claude 0, pi 1, devin 0, dsh 0 (dsh was 3). 036 scratch/restate.txt |
+| Start rates, fixed rule, 033 arm | Restated (Q080) | off to on: claude 0/15 to 0/15, opencode 0/7 to 1/10, pi 1/14 to 1/15, devin 1/11 to 2/12, dsh 1/15 to 6/15. Decline 0 of 80 and skill-only 0 of 40 per arm unchanged, verdict unchanged. 036 scratch/restate.txt |
+| Correction to the Start rates, fixed rule, 033 arm row | Restated (Q080) | decline starts are 0 of 40 off and 0 of 80 on, skill-only 0 of 40 in each arm, all unchanged; the row said 0 of 80 per arm. The paired block is unchanged (036 scratch/fields-check.txt) |
 
 ### Deviations and findings
 

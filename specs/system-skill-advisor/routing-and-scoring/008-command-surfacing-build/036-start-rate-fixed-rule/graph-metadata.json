@@ -45,7 +45,9 @@
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
       ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
-      "scratch/start-007-before.json"
+      "scratch/start-007-before.json",
+      "scratch/restate.txt",
+      "scratch/after.txt"
     ],
     "entities": [
       {
@@ -100,6 +102,18 @@
         "name": "start-007-before.json",
         "kind": "config",
         "path": "scratch/start-007-before.json",
+        "source": "derived"
+      },
+      {
+        "name": "restate.txt",
+        "kind": "file",
+        "path": "scratch/restate.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The goal fixed the arm start rule before the first session: a run starts a command by a skill call naming it, a `COMMAND:` started line, a host expansion, or a read of its document plus a write in the checkout, and a read alone is a lookup",
     "created_at": "2026-11-16T06:57:21Z",
-    "last_save_at": "2026-11-16T07:14:44.895Z",
+    "last_save_at": "2026-11-16T07:27:23.941Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +207,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ac802e30fc55765d2e1e0d0cdc4657814bcc5ef185b5b179e50fccc30c8bb9b",
+    "source_fingerprint": "sha256:1c227520a8d48bb4c3b376dc1e7940fc7f06229c9f127b5167d88a184d35a321",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2f291dd23fc3ebfb027b80cacae8d63b797b57b667d895ccd71ee33e4838cc01",
       "plan.md": "1a9a7e959589e9a01d85460fc11cd4e4440c165e15baff78e6388fd43f5caa63",
-      "tasks.md": "f826e06a0e6bed0891272b44ec8f56d99530c506160a27b482de56596c196f06",
+      "tasks.md": "4f06932eddc04efa40186b09d18126991345143c95182aca52d11c8f056e4787",
       "implementation-summary.md": "a6f9f334ba1fabc272e0d0a2d05f29632cf07235cd27274ee7f4bc7edf5e8d97"
     },
     "last_active_at": null

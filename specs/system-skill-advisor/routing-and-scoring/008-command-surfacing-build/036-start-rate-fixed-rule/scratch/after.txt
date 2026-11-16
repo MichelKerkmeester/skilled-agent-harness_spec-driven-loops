@@ -1,0 +1,11 @@
+## after, working tree on c3477fdcc85
+$ SUITE
+ Test Files  185 passed (185)
+      Tests  2325 passed | 6 skipped (2331)
+exit 0
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+$ EVAL
+[160,49,21,5]

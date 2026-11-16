@@ -1,0 +1,6 @@
+$ F='walk(if type=="object" then del(.startRate, .startedOfOffered, .started) else . end)'
+$ diff <(jq -S "$F" start-007-before.json) <(jq -S "$F" start-007-after.json)   -> exit 0, no lines
+$ diff <(jq -S "$F" arm-033-before.json) <(jq -S "$F" arm-033-after.json)       -> exit 0, no lines
+$ diff <(jq -S . start-007-before.json) <(jq -S . start-007-after.json) | grep -c '^>'   -> 35
+Only startRate, startedOfOffered and the byPolicy started counts moved.
+007 startedOfOffered before -> after: claude post 1 -> 0, pi post 1 -> 1, devin post 1 -> 0, dsh post 3 -> 0, others 0 -> 0

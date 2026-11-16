@@ -39,7 +39,7 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [C] Record the before state (`$SP/before.txt`, `$SP/start-007-before.json`, `$SP/arm-033-before.json`). Run `SUITE`, `FLOOR` and `EVAL` into `before.txt`, and `S007` and `S033` into the two JSON files. Verify: 0 failed, and `start-007-before.json` equals the copy taken at `267c27fc5df`.
+- [x] T001 [C] Record the before state (`$SP/before.txt`, `$SP/start-007-before.json`, `$SP/arm-033-before.json`). Run `SUITE`, `FLOOR` and `EVAL` into `before.txt`, and `S007` and `S033` into the two JSON files. Verify: 0 failed, and `start-007-before.json` equals the copy taken at `267c27fc5df`. Evidence: before.txt at c3477fdcc85: 2325 passed 0 failed exit 0, FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5]; start-007-before.json cmp equal to the 267c27fc5df copy (exit 0)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -47,10 +47,10 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Make `started` follow the fixed rule and keep the shape of a read alone as `readOnly` (`$S`). After T001. Verify: `node --check $S` exits 0.
-- [ ] T003 Count shapes for every judged row that started or looked up, and `started` for the four starting shapes only (`$S`). After T002. Verify: `S033 > /dev/null` exits 0.
-- [ ] T004 Update the cases that expected a read alone to start, and add a read-alone lookup case (`$ADV/tests/command-transcript-score.vitest.ts`). After T003. Verify: `(cd $ADV && env -u AI_SESSION_CHILD npx vitest run tests/command-transcript-score.vitest.ts)` passes, and each changed expectation is listed in `implementation-summary.md`.
-- [ ] T005 State the rule for `startRate` and list `startShapes` in the scorer row (`$RAD/README.md`). After T004. Verify: `rg -c 'startShapes' $RAD/README.md` prints at least 1.
+- [x] T002 Make `started` follow the fixed rule and keep the shape of a read alone as `readOnly` (`$S`). After T001. Verify: `node --check $S` exits 0. Evidence: startState: started = touched && shape !== 'readOnly', shape kept for a read alone; node --check exit 0
+- [x] T003 Count shapes for every judged row that started or looked up, and `started` for the four starting shapes only (`$S`). After T002. Verify: `S033 > /dev/null` exits 0. Evidence: tally counts startShapes for any shape and started for the four starting shapes; S033 exit 0
+- [x] T004 Update the cases that expected a read alone to start, and add a read-alone lookup case (`$ADV/tests/command-transcript-score.vitest.ts`). After T003. Verify: `(cd $ADV && env -u AI_SESSION_CHILD npx vitest run tests/command-transcript-score.vitest.ts)` passes, and each changed expectation is listed in `implementation-summary.md`. Evidence: 4 expectations changed: the three it.each policy cases now expect started == wrote, the read-alone shape case moved to its own case expecting started false; the outside-checkout case also asserts started false. 342 passed, tsc 0 errors on the file
+- [x] T005 State the rule for `startRate` and list `startShapes` in the scorer row (`$RAD/README.md`). After T004. Verify: `rg -c 'startShapes' $RAD/README.md` prints at least 1. Evidence: README scorer row lists startShapes and states the rule for startRate, line 115 states it for startRate and startedOfOffered; rg -c startShapes prints 2
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,9 +58,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 [C] Rerun the gates (`$SP/after.txt`). After T005. Run `SUITE`, `FLOOR` and `EVAL`. Verify: 0 failed, `FLOOR` and `EVAL` equal to `before.txt`.
-- [ ] T007 [C] Restate the rates (`$SP/start-007-after.json`, `$SP/arm-033-after.json`, `$SP/restate.txt`). After T006. Run `S007` and `S033` into the after files, then `RESTATE > $SP/restate.txt`. Verify: 22 lines read `numerator moved by readOnly, denominator equal`, and the 033 decline and skill-only counts equal 034's.
-- [ ] T008 [C] Log the restated rates (`../goal.md`). After T007. `PLOG` a `Start rates, fixed rule, 007 set` row and a `Start rates, fixed rule, 033 arm` row from `restate.txt`. Verify: `rg -c '^\| Start rates, fixed rule' $PK/goal.md` prints 2 and `packet_budget=ok`.
+- [x] T006 [C] Rerun the gates (`$SP/after.txt`). After T005. Run `SUITE`, `FLOOR` and `EVAL`. Verify: 0 failed, `FLOOR` and `EVAL` equal to `before.txt`. Evidence: after.txt: 2325 passed 0 failed exit 0, FLOOR and EVAL equal to before.txt
+- [x] T007 [C] Restate the rates (`$SP/start-007-after.json`, `$SP/arm-033-after.json`, `$SP/restate.txt`). After T006. Run `S007` and `S033` into the after files, then `RESTATE > $SP/restate.txt`. Verify: 22 lines read `numerator moved by readOnly, denominator equal`, and the 033 decline and skill-only counts equal 034's. Evidence: restate.txt: 22 lines 'numerator moved by readOnly, denominator equal', 0 DIFF, 033 decline and skill-only equal; fields-check.txt: no other field moved
+- [x] T008 [C] Log the restated rates (`../goal.md`). After T007. `PLOG` a `Start rates, fixed rule, 007 set` row and a `Start rates, fixed rule, 033 arm` row from `restate.txt`. Verify: `rg -c '^\| Start rates, fixed rule' $PK/goal.md` prints 2 and `packet_budget=ok`. Evidence: goal rows Start rates, fixed rule, 007 set and 033 arm plus a correction row for the decline totals; rg -c prints 2, packet_budget=ok
 - [ ] T009 [C] Close the phase (`implementation-summary.md`). After T008. Fill the summary, tick the checklist and validate. Verify: `validate.sh $PK/036-start-rate-fixed-rule --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
