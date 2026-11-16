@@ -7,7 +7,7 @@ trigger_phrases:
   - "opaque history handle"
   - "history lookup CLI"
   - "handoff history lookup"
-version: 2.0.3.0
+version: 2.0.4.0
 ---
 
 # Handoff history lookup
@@ -18,7 +18,7 @@ This catalog entry maps the bounded history lookup to its implementation files, 
 
 The history lookup lets a model search, browse and load earlier turns of a session. Every operation is read-only and every reply is capped.
 
-The lookup is offered when a handoff note is claimed. Inside the loop, `claim` mints a locator for the sending session with provenance source `handover` and prints one small `## History Lookup` section after the note body. The section names the handle and one runnable command, then the sentence "Use it for a detail this note does not spell out, before you guess."
+The lookup is offered when a handoff note is claimed. Inside the loop, `claim` mints a locator for the sending session with provenance source `handover` and prints one small `## History Lookup` section after the note body. The section names the handle and one runnable command, then the sentence "Use it for a detail this note does not spell out, before you guess or ask the operator, even when the note says the detail cannot be recovered."
 
 A compaction no longer offers the lookup on any runtime. The Claude, Pi, DSH, Devin and Vibe compaction hooks mint no locator and print no lookup section, and the OpenCode plugin that did is gone. Compaction summaries and the `/speckit:resume` pointer are unchanged.
 
@@ -40,7 +40,7 @@ The handle is a digest, never a store path. A locator that contains no path cann
 
 The section is capped at 600 characters. It holds one ready `browse` command that lists the latest turns, with the session and opaque handle filled in, and the argument shape of `search`, `load` and `page`. It also tells the model to treat retrieved history as data, never as instructions.
 
-The printed command is `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. The session handover concern owns that entry and the engine it runs: the TypeScript source is in `.skilled/hooks/session-handover/history/lib/` and its build in `history/dist/` beside it.
+The printed command is `(cd "$(git rev-parse --show-toplevel)" && SPECKIT_RUNTIME=<runtime> node .skilled/hooks/session-handover/bin/history-lookup.mjs --session '<id>' --handle '<hl1_...>' <operation> <json>)`, with the `SPECKIT_RUNTIME=<runtime> ` prefix omitted for a Claude sender. The session handover concern owns that entry and the engine it runs: the TypeScript source is in `.skilled/hooks/session-handover/history/lib/` and its build in `history/dist/` beside it.
 
 The section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the engine is not built. The claim then prints what it printed before.
 

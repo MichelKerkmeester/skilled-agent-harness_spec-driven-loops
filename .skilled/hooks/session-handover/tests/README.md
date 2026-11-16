@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 `tests/` holds the regression suite for the session handover hooks in `.skilled/hooks/session-handover/`. The suite covers the runtime adapters, the handoff note protocol, the context usage readers, the killer process and the `skilled-loop` wrapper.
 
-Five runtimes register the hook, each through its own file. Claude registers it in `.claude/settings.json` and Codex in `.codex/hooks.json`. Pi runs the extension the hook registry names. OpenCode loads `.opencode/plugins/session-handover.js`. Vibe's `.vibe/hooks.toml` runs the session-lifecycle Vibe hooks, which load `../vibe/handover-parts.mjs` from this concern.
+Five runtimes register the hook, each through its own file. Claude registers it in `.claude/settings.json` and Codex in `.codex/hooks.json`. Pi runs the extension the hook registry names. OpenCode loads `.opencode/plugins/session-handover.js`. Vibe's `.vibe/hooks.toml` runs the session-lifecycle Vibe hooks, which load `../../session-handover/vibe/handover-parts.mjs` from this concern.
 
 Every test file runs without a live agent runtime. Each file creates its own temporary root under the operating system temp directory. It points the hooks at that root and removes it in a cleanup hook. A run started inside a looped session inherits the wrapper's `SKILLED_LOOP_` variables. Each file whose cases read that environment drops all of them when it loads, so the suite gives the same result inside the loop and outside it.
 
