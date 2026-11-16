@@ -39,25 +39,26 @@ Start each runtime from the repository root:
 ```bash
 bash .skilled/bin/skilled-loop claude "Work on the task and preserve unfinished work for the next session."
 bash .skilled/bin/skilled-loop pi --provider openai --model gpt-6-luna -ne -e .pi/extensions/session-handover.ts
-bash .skilled/bin/skilled-loop opencode -m openai/gpt-6-luna
+bash .skilled/bin/skilled-loop opencode
 bash .skilled/bin/skilled-loop codex -m gpt-6-luna
 bash .skilled/bin/skilled-loop cursor
 bash .skilled/bin/skilled-loop devin
 bash .skilled/bin/skilled-loop vibe
 ```
 
-The wrapper accepts `skilled-loop [claude|pi|opencode|codex|cursor|devin|vibe] [args...]` and defaults to `claude`. Vibe's `--model` is headless-only, so a hop never replays it. The interactive relaunch keeps the configured `active_model`. The `cursor` arm launches the `cursor-agent` binary.
+The wrapper accepts `skilled-loop [claude|pi|opencode|codex|cursor|devin|vibe] [args...]` and defaults to `claude`. Vibe's `--model` is headless-only, so a hop never replays it. The interactive relaunch keeps the configured `active_model`. OpenCode 2's root command has no model flag, so that command takes no `-m`; the wrapper starts it with `--standalone` and carries a hop's model through `OPENCODE_CONFIG_CONTENT`. On OpenCode 1, add `-m openai/gpt-6-luna`. The `cursor` arm launches the `cursor-agent` binary.
 
-A hop replays the first launch's options in their original order. It replaces the start prompt with the claim seed. Model, effort and name come from the relaunch record when it carries a usable value. The launch line supplies the rest.
+A hop rebuilds the launch in a fixed order rather than the first launch's order. It replaces the start prompt with the claim seed. Model, effort and name come from the relaunch record when it carries a usable value. The launch line supplies the rest.
 
-Flags that select or continue a session are in the deny list and are not repeated:
+The deny list holds the flags that select or continue a session and the flags a hop must not replay. They are not repeated:
 
-- Claude `-c`, `--resume`, `--session-id` and `--cloud`.
-- Pi `--session` and `--fork`.
-- OpenCode `--session` and `--prompt`.
-- Codex `--image`, `--worktree` and `--last`.
-- Devin `--resume`, `--prompt-file` and `--print`.
-- Cursor `--worktree` and `--worktree-base`.
+- Claude `-c`, `--continue`, `-r`, `--resume`, `--fork-session`, `--from-pr`, `--session-id`, `--teleport`, `--cloud`, `-w`, `--worktree` and `--tmux`.
+- Pi `-c`, `--continue`, `-r`, `--resume`, `--session`, `--session-id` and `--fork`.
+- OpenCode `-c`, `--continue`, `-s`, `--session` and `--prompt`.
+- Codex `-i`, `--image`, `--worktree`, `--last`, `--all` and `--include-non-interactive`.
+- Devin `-c`, `--continue`, `-p`, `--print`, `-r`, `--resume` and `--prompt-file`.
+- Cursor `--resume`, `--continue`, `-w`, `--worktree`, `--worktree-base` and `--skip-worktree-setup`.
+- Vibe `-c`, `--continue`, `--resume`, `-p`, `--prompt`, `--prompt-file`, `--worktree` and `--model`.
 
 Options documented by each runtime's help are replayed with their values. An unknown option followed by a bare word makes the wrapper warn and decline the hop. Relative Pi extension paths resolve against the starting directory before a hop changes directories.
 
@@ -213,7 +214,7 @@ Inside the loop no adapter nudges at the hop cap. `prepare` at that count prints
 
 The wrapper accepts `-n` or `--name` with a value and `--name=value`. The first launch keeps the original name argument. The wrapper copies the name to later hops. A `--` argument ends the name scan, so later values are passed through as Claude arguments.
 
-The killer CLI requires `--loop-id` and `--target-pid`. `--transcript` is optional. The Claude and Codex Stop hooks and the Pi arm pass it, and Pi passes its session file when the path resolves. The OpenCode plugin does not. Without it, idle means the configured idle time has elapsed since the killer started.
+The killer CLI requires `--loop-id` and `--target-pid`. `--transcript` is optional. The Claude and Codex Stop hooks and the Pi and Vibe arms pass it, and Pi passes its session file when the path resolves while Vibe passes its journal folder. The OpenCode plugin does not. Without it, idle means the configured idle time has elapsed since the killer started.
 
 The loop id must be greater than 1 and match `SKILLED_LOOP_ID`. The defaults are `--idle-ms 3000` and `--timeout-ms 30000`. The killer polls every 100 ms. `--no-notify` defaults to off, so a timeout attempts a notification. The Stop hook starts the killer without `--no-notify`.
 

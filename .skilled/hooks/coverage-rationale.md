@@ -109,7 +109,7 @@ Claude, Codex, Cursor and Devin run `git-message-gate/shared/git-message-gate.mj
 Claude, Codex, Cursor and Devin each hold a relative symlink per script and wire it at SessionStart (`git-live-follow.sh --start`, with `git-primary-reconcile.sh` detached in the background). Pi runs both inside `session-start-advisories.ts` via `ctx.exec()`. OpenCode launches both from its `session-cleanup` plugin. DSH runs both inside `session-start-advisories.mjs`, primary reconcile detached, and only in an interactive session: a fan-out leaf must not start background git work in the operator's checkout. Not a coverage gap, a factoring artifact. The two scripts are the follow and converge legs of the same live-sync loop, so they share this rationale.
 
 ### `session-handover` on **dsh**: command trigger only
-**DSH gets the `/speckit:handoff` prompt but no automatic hop, because `skilled-loop` launches no DSH session.**
+**DSH gets the `/speckit-handoff` prompt but no automatic hop, because `skilled-loop` launches no DSH session.**
 The wrapper's runtime list in `.skilled/bin/skilled-loop` names Claude, Pi, OpenCode, Codex, Devin, Cursor and Vibe, and the per-runtime enable switch list in `shared/hook-flags.cjs` has no DSH entry, so no relaunch could be armed. The handoff command reaches DSH as `.dsh/prompts/speckit-handoff.md`. A fan-out leaf is one-shot, and the outer deep-loop runner owns its restarts.
 
 ---
