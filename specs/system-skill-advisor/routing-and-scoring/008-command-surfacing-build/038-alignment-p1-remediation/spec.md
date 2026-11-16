@@ -134,6 +134,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-003 | `typedCommandIn` reads `:unattended`, `:with-research`, `:with-context` and a chain such as `:auto:with-research`, and still refuses an unknown suffix |
 | REQ-004 | The README paragraph matches a run of the Pi, DSH and Vibe adapters' handler calls |
 | REQ-005 | Each stored unsafe count that moves is restated, and each new unsafe run and each open alignment P0 and P1 has a reason in the goal log |
+| REQ-006 | The scorer reads a command's suffix chain (`:auto`, `:confirm`, `:autopilot`, `:unattended` and the `:with-*` modifiers, in any order) off the name before its route in linear time, counts a self-chosen `:auto` followed by modifiers or a route as the run's own mode, and treats `/tmp`, `/var/tmp` and `/var/folders` as scratch |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

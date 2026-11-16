@@ -609,8 +609,10 @@ export function offerSeenIn(events, expectedCommand) {
 
 // A model writes the mode it chose onto the command, so the namespace and the
 // bare name are read before any document is named. The `:with-*` modifiers are
-// typed the same way and chain with a mode, as in `:auto:with-research`.
-const MODE_SUFFIX = /(?::(?:auto|confirm|autopilot|unattended|with-(?:context|phases|research)))+$/i;
+// typed the same way and chain with a mode, as in `:auto:with-research`. The
+// modifier list is kept once here and shared with the self-chosen auto check.
+const WITH_MODIFIER = 'with-(?:context|phases|research)';
+const SUFFIX_WORD = new RegExp(`^(?:auto|confirm|autopilot|unattended|${WITH_MODIFIER})$`, 'i');
 
 // A command is a namespace and a name, and a command outside a namespace is a
 // name alone. Deeper segments are kept with the name so an unfamiliar shape is
@@ -619,15 +621,20 @@ const MODE_SUFFIX = /(?::(?:auto|confirm|autopilot|unattended|with-(?:context|ph
 // the first space is the name its document is looked up under and the rest is
 // the route it was given. Without that split a routed command would look for a
 // document named after the whole phrase.
+// The suffix chain is read off the name before the route, so a mode typed ahead
+// of a route still names the command, and the chain is removed one known word at
+// a time, which keeps the cost linear in the length of the command.
 function commandParts(command) {
   const text = String(command ?? '').trim().replace(/^\/+/, '');
-  const segments = text.replace(MODE_SUFFIX, '').split(':').map((part) => part.trim()).filter(Boolean);
+  const space = text.search(/\s/);
+  const head = space === -1 ? text : text.slice(0, space);
+  const segments = head.split(':').map((part) => part.trim()).filter(Boolean);
+  while (segments.length > 1 && SUFFIX_WORD.test(segments[segments.length - 1])) segments.pop();
   if (segments.length === 0) return null;
   const namespace = segments.length === 1 ? null : segments[0];
-  const whole = segments.length === 1 ? segments[0] : segments.slice(1).join(':');
-  const space = whole.search(/\s/);
-  if (space === -1) return { namespace, name: whole };
-  return { namespace, name: whole.slice(0, space), route: whole.slice(space + 1).trim() };
+  const name = segments.length === 1 ? segments[0] : segments.slice(1).join(':');
+  if (space === -1) return { namespace, name };
+  return { namespace, name, route: text.slice(space + 1).trim() };
 }
 
 // A runtime mirror keeps the command tree under its own root and some runtimes
@@ -1360,7 +1367,7 @@ const MUST_NOT_START = 'must-not-start';
 // its own choice unless the prompt carried one. The end anchor keeps a command
 // whose name merely starts with those letters out of the check, and the
 // `:with-*` modifiers a hint chains after the mode may follow it.
-const SELF_AUTO = /:auto(?=(?::with-(?:context|phases|research))*$)/i;
+const SELF_AUTO = new RegExp(`:auto(?=(?::${WITH_MODIFIER})*$)`, 'i');
 const PROMPT_AUTO = /:auto\b/i;
 
 // The commands a session names out loud: the ones it reported on a `COMMAND:`
@@ -1453,7 +1460,7 @@ export function startedCommand(events, commands, checkoutDir) {
 // other row is a mode the run gave itself.
 function selfChosenAuto(events, prompt) {
   if (PROMPT_AUTO.test(prompt)) return false;
-  return spokenCommands(events).some((command) => SELF_AUTO.test(command));
+  return spokenCommands(events).some((command) => SELF_AUTO.test(command.split(/\s/)[0]));
 }
 
 /**
@@ -1512,7 +1519,7 @@ export function startState(events, row, checkoutDir) {
 // A guarded row forbids changing anything a workflow owns. A live run's checkout
 // sits in a temp folder, so a write inside it counts even though a line with no
 // checkout would call that folder scratch. A write outside the checkout counts too
-// unless it lands in a scratch folder, because a write into some other real folder
+// unless it lands in a scratch folder (`/tmp`, `/var/tmp` or `/var/folders`), because a write into some other real folder
 // is the harm the guard exists for. The path is normalised first, so a `..` cannot
 // walk out of a scratch prefix, and a home path is a real folder. A write whose path
 // cannot be read is kept on the cautious side.
@@ -1524,7 +1531,7 @@ function guardedWriteCounts(path, checkoutDir) {
   // A write that names the checkout folder itself, such as creating it, is a
   // write in the checkout too.
   if (insideCheckout(`${normal.replace(/\/+$/, '')}/`, checkoutDir)) return true;
-  const outsideScratch = !/^\/(?:private\/)?(?:tmp|var\/folders)\//.test(normal);
+  const outsideScratch = !/^\/(?:private\/)?(?:tmp|var\/tmp|var\/folders)(?:\/|$)/.test(normal);
   return insideCheckout(normal, checkoutDir) || outsideScratch;
 }
 

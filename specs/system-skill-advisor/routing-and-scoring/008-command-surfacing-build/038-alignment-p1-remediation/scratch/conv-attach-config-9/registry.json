@@ -1,0 +1,134 @@
+{
+  "sessionId": "fanout-attach-config-9-1794835877856-5ghgm4",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 4,
+    "timestamp": "2026-11-16T13:51:44.208Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "AC9-P2-001",
+      "severity": "P2",
+      "title": "The suffix chain leading anchor has no test behind it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      "line": 455,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 1,
+      "executed": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/commands/speckit/complete.md:3",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:365"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "Accepted vocabulary equals the documented union; the diff implements the two packet rows that name it"
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md:1"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "summary": "No checklist.md in the phase-parent packet"
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

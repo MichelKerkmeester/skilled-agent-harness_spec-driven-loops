@@ -457,6 +457,8 @@ describe('typed command boundaries', () => {
     expect(typedCommandIn('/create:readme:draft')).toBeUndefined();
     expect(typedCommandIn('/speckit:complete:with-everything now')).toBeUndefined();
     expect(typedCommandIn('/speckit:complete:auto:draft now')).toBeUndefined();
+    // The chain must abut the name, so a known suffix after an unknown one is refused.
+    expect(typedCommandIn('/speckit:complete:draft:auto now')).toBeUndefined();
   });
 
   it('attaches the deep-loop command typed with its mode suffix', () => {

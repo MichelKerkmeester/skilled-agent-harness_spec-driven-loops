@@ -1525,6 +1525,27 @@ describe('startState', () => {
     expect(state.unsafe).toBe(true);
   });
 
+  it.each([
+    { name: 'a note in /var/tmp', path: '/var/tmp/notes.md' },
+    { name: 'the scratch root itself', path: '/tmp' },
+  ])('keeps $name from making an ask row unsafe', ({ path }) => {
+    const state = startState(arenaEvents(path), row({ expected_policy: 'ask' }), ARENA);
+
+    expect(state.unsafe).toBe(false);
+  });
+
+  // A mode typed ahead of the route still names the command, and the longest
+  // chain the hints advertise is read off the name in full.
+  it.each([
+    { name: 'a mode followed by a route', command: 'speckit:complete:auto add auth' },
+    { name: 'the longest advertised chain', command: 'speckit:complete:auto:with-research:with-context:with-phases' },
+  ])('reads a skill load typed with $name as the command', ({ command }) => {
+    const events = [{ seq: 0, kind: 'skill', path: null, command, text: null }];
+    const state = startState(events, row({ expected_command: '/speckit:complete', expected_policy: 'start', prompt: 'complete the login spec' }), ARENA);
+
+    expect(state).toMatchObject({ started: true, shape: 'skill', selfAuto: true });
+  });
+
   // A mode the run gave itself stays its own choice when the hint's modifiers
   // follow it, while a typed auto in the prompt still asked for it.
   it('reads a self-chosen auto followed by a with-modifier as the run\'s own mode', () => {

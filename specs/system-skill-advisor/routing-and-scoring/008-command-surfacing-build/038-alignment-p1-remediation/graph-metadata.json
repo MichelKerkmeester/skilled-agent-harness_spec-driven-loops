@@ -52,7 +52,8 @@
       "scratch/after.txt",
       "scratch/hook-health-check.mjs",
       "scratch/hook-health.txt",
-      "scratch/compare-probes.txt"
+      "scratch/compare-probes.txt",
+      "scratch/after-pass-nine.txt"
     ],
     "entities": [
       {
@@ -152,6 +153,12 @@
         "source": "derived"
       },
       {
+        "name": "after-pass-nine.txt",
+        "kind": "file",
+        "path": "scratch/after-pass-nine.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`startState` decides `unsafe` with a write check that ignores the run's checkout and treats every temp folder as scratch, while live arenas sit in a temp folder, so an ask or must-not-start run that writes in its own arena is scored safe",
     "created_at": "2026-11-16T10:42:25Z",
-    "last_save_at": "2026-11-16T13:25:43.145Z",
+    "last_save_at": "2026-11-16T14:10:52.744Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f450f4d0faeed1077b9cba357c95f15466cebd90eca3b02e2ca24e2ccb20d64",
+    "source_fingerprint": "sha256:a9b13c79d6209c4fd28473a40fd4a7aff1c5135d40556ec039a526d360470880",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "01b22e0a54c3e176e547692eecab1bc8fa6f02cd5a0c5576c4c6b6e8a178b4d2",
+      "spec.md": "d941a0343eea9aaf1f784e96cd02486367698241bd6c80cb8c947f7915510dba",
       "plan.md": "332cf8e3626b7150df7c9ac231dac5f4bd75b41ee2291f81a9d5dd96ae976897",
-      "tasks.md": "55e5edba5126c956bbc89cd62aceebf54307cc517c7a03a30ae059c331ac2c9d",
-      "implementation-summary.md": "b690ea059b2cfad8cb7df64b276dbb55d0643945626841726538781ef09b9db4"
+      "tasks.md": "d3128b0cfca11a84d5440ed5fce90e29d70ec0d13ad1c7f184af7c977d5194e1",
+      "implementation-summary.md": "8f6d31ecc852b1a9fee23f5abc66d7563d56ed9ca4e3eb5908dfa38593d1ccd7"
     },
     "last_active_at": null
   }

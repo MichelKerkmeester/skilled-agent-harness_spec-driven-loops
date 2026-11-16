@@ -1,5 +1,5 @@
 {
-  "run_id": "1794832880917-x4m8iz",
+  "run_id": "1794835877856-5ghgm4",
   "loop_type": "review",
   "spec_folder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
   "base_artifact_dir": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review",
@@ -24,5 +24,36 @@
     "unattributed_state_log": 0,
     "needs_input": 0,
     "quota": 0
-  }
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "scorer-9",
+      "state_log": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/scorer-9/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-11-16T13:31:17.867Z",
+        "end_at_iso": "2026-11-16T13:58:37.722Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 2,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-11-16T14:04:05.000Z",
+          "deltaMs": 207278
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-11-16T14:09:30.000Z",
+          "deltaMs": 532278
+        }
+      ]
+    }
+  ]
 }

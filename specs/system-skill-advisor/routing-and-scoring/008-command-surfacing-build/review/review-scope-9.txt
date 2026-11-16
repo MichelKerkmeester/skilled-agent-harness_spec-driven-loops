@@ -1,0 +1,8 @@
+# review pass nine: diff each path with git -c core.fsmonitor=false diff 85550ee946e 05f776202e0 -- <path>, then read the whole file at 05f776202e0
+scorer	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+scorer	.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+scorer	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+attach-config	.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+attach-config	.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+attach-config	.skilled/skills/system-skill-advisor/runtime/vitest.config.ts
+attach-config	.skilled/skills/system-skill-advisor/runtime/tests/doctor-brief-render.vitest.ts
