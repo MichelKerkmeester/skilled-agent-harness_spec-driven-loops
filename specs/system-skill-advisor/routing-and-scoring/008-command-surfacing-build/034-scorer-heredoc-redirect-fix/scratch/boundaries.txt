@@ -1,0 +1,19 @@
+$ git diff --quiet HEAD -- 033 scratch
+exit 0
+$ git diff --stat 3d794f1df74 4bb83364145
+ .../routing-accuracy/score-command-transcripts.mjs |  7 +++--
+ .../tests/command-transcript-score.vitest.ts       | 33 ++++++++++++++++++++++
+ 2 files changed, 38 insertions(+), 2 deletions(-)
+$ git status --short
+ M specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/tasks.md
+ M specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/scratch/after.txt
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/scratch/before.txt
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/scratch/boundaries.txt
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/scratch/rescore-diff.txt
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/scratch/rescore-evidence.txt
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/scratch/rescore.py
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/scratch/summary-before.json
+?? specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix/scratch/summary-rescore.json
+$ test -e .skilled/hooks/hook-flags.env
+exit 1

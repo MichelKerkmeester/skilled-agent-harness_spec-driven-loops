@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `034-scorer-heredoc-redirect-fix`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-16
 <!-- /ANCHOR:metadata -->
 
@@ -53,11 +53,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a document read then a heredoc whose body holds `len(x)>0`, When the fixed scorer normalizes it, Then no write is named and `startedCommand` returns null, while `cat <<'EOF' > notes.txt` still names `notes.txt` | `PROBE` output in `scratch/after.txt` and the three new vitest cases | Unmet | - |
-| AC-002 | REQ-002 | Given the fix, When `SUITE`, `FLOOR` and `EVAL` run, Then the suite reads 0 failed and `FLOOR` and `EVAL` print the lines in `scratch/before.txt` | `scratch/after.txt` against `scratch/before.txt` | Unmet | - |
-| AC-003 | REQ-003 | Given the rescore, When its files are written, Then none holds prompt or session text and each number comes from the scorer or a 026 filter | `scratch/rescore-evidence.txt` and the scripts named in `tasks.md` | Unmet | - |
-| AC-004 | REQ-004 | Given the unfixed scorer reproduces 033 byte for byte, When the fixed scorer rescores the same lines, Then `rescore-evidence.txt` holds 033's line kinds and `rescore-diff.txt` lists every changed line | T002 `cmp` exit 0, T006 line counts, `scratch/rescore-diff.txt` | Unmet | - |
-| AC-005 | REQ-005 | Given `rescore-evidence.txt`, When the arm target and the B-5 rule are applied, Then the goal log holds one `Arm verdict, rescored` row and one `B-5 trigger, rescored` row with the printed numbers | `rg -c` on `../goal.md` prints 2 | Unmet | - |
+| AC-001 | REQ-001 | Given a document read then a heredoc whose body holds `len(x)>0`, When the fixed scorer normalizes it, Then no write is named and `startedCommand` returns null, while `cat <<'EOF' > notes.txt` still names `notes.txt` | `scratch/after.txt` PROBE: `body [] started null`, `opening ["notes.txt"] started /create:sk-skill`. Vitest cases at `command-transcript-score.vitest.ts` pass, the first three fail at `3d794f1df74` | Met | - |
+| AC-002 | REQ-002 | Given the fix, When `SUITE`, `FLOOR` and `EVAL` run, Then the suite reads 0 failed and `FLOOR` and `EVAL` print the lines in `scratch/before.txt` | `scratch/after.txt`: 2319 passed, 0 failed, exit 0. FLOOR `24/44`, `0/35`, `2/44` and EVAL `[160,49,21,5]` equal `scratch/before.txt` | Met | - |
+| AC-003 | REQ-003 | Given the rescore, When its files are written, Then none holds prompt or session text and each number comes from the scorer or a 026 filter | `scratch/rescore-evidence.txt` holds scorer and filter lines only. `rescore.py` reads the filters from `026-untuned-behaviour-arm/tasks.md`. The probes print counts, row ids and target names | Met | - |
+| AC-004 | REQ-004 | Given the unfixed scorer reproduces 033 byte for byte, When the fixed scorer rescores the same lines, Then `rescore-evidence.txt` holds 033's line kinds and `rescore-diff.txt` lists every changed line | T002 `cmp` exit 0. `rescore-evidence.txt` 10 followed, 5 paired, 1 pooled, 10 starts, 10 delivery, 1 mismatch, 2 floor, 6 limit. `scratch/rescore-diff.txt` lists the 2 changed lines | Met | - |
+| AC-005 | REQ-005 | Given `rescore-evidence.txt`, When the arm target and the B-5 rule are applied, Then the goal log holds one `Arm verdict, rescored` row and one `B-5 trigger, rescored` row with the printed numbers | `rg -c` on `../goal.md` prints 2: `Arm verdict, rescored` Not shown and `B-5 trigger, rescored` Not fired | Met | - |
 
 ### Status values
 
@@ -83,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-The fix and the rescore have not run yet, so every row is unmet.
+Every row is Met with the evidence it names.
 <!-- /ANCHOR:closure -->

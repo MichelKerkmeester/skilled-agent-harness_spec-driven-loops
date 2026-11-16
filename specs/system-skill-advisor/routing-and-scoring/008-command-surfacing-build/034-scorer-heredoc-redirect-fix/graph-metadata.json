@@ -35,7 +35,7 @@
       "trigger"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,7 +43,17 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
-      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts"
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      "scratch/heredoc-probe.mjs",
+      "scratch/heredoc-reach.mjs",
+      "scratch/rescore.py",
+      "scratch/before.txt",
+      "scratch/after.txt",
+      "scratch/boundaries.txt",
+      "scratch/summary-before.json",
+      "scratch/summary-rescore.json",
+      "scratch/rescore-evidence.txt",
+      "scratch/rescore-diff.txt"
     ],
     "entities": [
       {
@@ -89,6 +99,66 @@
         "source": "derived"
       },
       {
+        "name": "heredoc-probe.mjs",
+        "kind": "file",
+        "path": "scratch/heredoc-probe.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "heredoc-reach.mjs",
+        "kind": "file",
+        "path": "scratch/heredoc-reach.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rescore.py",
+        "kind": "file",
+        "path": "scratch/rescore.py",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "boundaries.txt",
+        "kind": "file",
+        "path": "scratch/boundaries.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary-before.json",
+        "kind": "config",
+        "path": "scratch/summary-before.json",
+        "source": "derived"
+      },
+      {
+        "name": "summary-rescore.json",
+        "kind": "config",
+        "path": "scratch/summary-rescore.json",
+        "source": "derived"
+      },
+      {
+        "name": "rescore-evidence.txt",
+        "kind": "file",
+        "path": "scratch/rescore-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rescore-diff.txt",
+        "kind": "file",
+        "path": "scratch/rescore-diff.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -129,71 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Fix",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`redirectTargets` in the transcript scorer scans a whole shell command for `>`, heredoc bodies included, while `shellReadTargets` and `shellWriteTargets` strip those bodies first",
     "created_at": "2026-11-16T05:23:43Z",
-    "last_save_at": "2026-11-16T05:30:30.085Z",
+    "last_save_at": "2026-11-16T06:00:39.104Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:63ca6849d3d70449f5910b32a2d7d76c21add68cf766c86dbe853c3ce23fcb15",
+    "source_fingerprint": "sha256:a1ba7fe44e3a628ea947e98c3e9559211a548437e4340e34c15a248f8cabe60d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4b24f2eb09e32646e513ed1ea0898b6cfa4d698a1b9c0f8930f6e99b37ecdda5",
+      "spec.md": "25a33b38e5bab2ac5aee5e6693aa69c80ea9d71007daef2ceda3e1212dc8123d",
       "plan.md": "c2d0e98840f5723c0c2a295041fbae9dd16e74e55922acb5d36b6de2eed1fd84",
-      "tasks.md": "f9a2256a337ac3a5f9de0679dac122ce9665162f2b9e338b956e8fc3feee776d",
-      "implementation-summary.md": "5d41fe631af3458b0c86ea448993147f274b83a7c74178f7341e1cfabee2907c"
+      "tasks.md": "5bac1ea4b8ad91741ed4d2dd826e8ebfd0f2f1761424fab092b0f4d85d80ef09",
+      "implementation-summary.md": "e44f223c8fa81f5f6b254bc85613c63d5db4180f1be0e858d472bd42cecc3499"
     },
     "last_active_at": null
   }

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 const W = '/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research';
 const { normalize, insideCheckout } = await import(`${W}/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`);
 const { loadSession } = await import(`${W}/.skilled/hooks/shared/session-readers/index.mjs`);
-const HEREDOC_BODY = /(<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_.-]*)\2[^\n]*)\n[\s\S]*?\n[ \t]*\3[ \t]*(?=\n|$)/g;
+const HEREDOC_BODY = /(<<-?\s*\\?(['"]?)([A-Za-z_][A-Za-z0-9_.-]*)\2[^\n]*)\n(?:[\s\S]*?\n)??[ \t]*\3[ \t]*(?=\n|$)/g;
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const out = {};
 for (const rt of ['claude', 'opencode', 'pi', 'devin', 'dsh']) {
