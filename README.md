@@ -6,13 +6,14 @@
 
 > Like it? [buymeacoffee.com/michelkerkmeester](https://buymeacoffee.com/michelkerkmeester)
 
-**[Quick Start](#2--quick-start)** · [Overview](#overview) · [How It Works](#4--how-it-works) · [Workflows](#5--everyday-workflows) · [Skills](#6--skills) · [Hooks](#7--hooks-plugins-and-extensions) · [Agents](#8--agents) · [Commands](#9--commands) · [Runtimes](#10--runtimes-and-cli-bridges) · [Doctor](#11--doctor-commands) · [FAQ](#16--faq)
-
-&nbsp;
-
 &nbsp;
 
 ## 1. 📝 SUMMARY
+
+**[Quick Start](#2--quick-start)** · [Overview](#overview) · [How It Works](#4--how-it-works) · [Workflows](#5--everyday-workflows) · [Skills](#6--skills) · [Hooks](#7--hooks-plugins-and-extensions) · [Agents](#8--agents) · [Commands](#9--commands) · [Runtimes](#10--runtimes-and-cli-bridges) · [Doctor](#11--doctor-commands) · [FAQ](#16--faq)
+
+---
+
 An assistant framework that gives your AI coding agent a memory, a paper trail and a team of specialists.
 
 All of it lives inside your own repository, as files you can read and diff.
@@ -132,11 +133,21 @@ From request to documented result:
          │  prior context       domain expertise    │
          │                                          │
          │  Gate 3: Spec Folder (HARD BLOCK)        │
-         │  Every file change needs documentation    │
+         │  Every file change needs documentation   │
          │                                          │
-         │  Gate 4: Workflow tiebreakers             │
+         │  Gate 4: Workflow tiebreakers            │
          │  Gate 5: Repo rules load (HARD BLOCK)    │
          │  Gate 6: Reply rules load (HARD BLOCK)   │
+         └──────────────────────┬───────────────────┘
+                                │
+                                ▼
+         ┌──────────────────────────────────────────┐
+         │    HOOKS, PLUGINS + EXTENSIONS           │
+         │  26 shared hooks, one thin adapter in    │
+         │  each of the 8 runtimes                  │
+         │                                          │
+         │  Enforce the gates, guard secrets and    │
+         │  git, carry the session across resets    │
          └──────────────────────┬───────────────────┘
                                 │
                  ┌──────────────┴──────────────┐
@@ -211,7 +222,24 @@ specs/<track>/<###-feature-name>/
 └── scratch/                     # Temporary working files
 ```
 
-`validate.sh` runs 42 rules against a folder and reports what fails. A large feature splits into a parent folder with one child folder per phase. The [Spec Kit README](.skilled/skills/system-spec-kit/README.md) covers the templates, the scripts and the validator.
+`validate.sh` runs 42 rules against a folder and reports what fails.
+
+Folders nest in a fixed way. A track is the top folder, usually named after the skill or system the work touches. As a track grows, it can hold one level of named sub-tracks that group its packets by theme. Each sub-track numbers its own packets from `001` and keeps its own `z_archive/` for finished work. A sub-track is always a proposal the operator approves. `suggest-subtracks.mjs` suggests a grouping once a flat track reaches eight live packets, and `relocate.mjs` moves the packets and rewrites every stored path.
+
+A large feature becomes a phase parent instead. The parent keeps only `spec.md`, `description.json` and `graph-metadata.json`, and its `spec.md` maps the phases. Each phase is a numbered child folder with its own plan, tasks and summary. A series parent works the same way for separate small changes to one artifact, such as one script or one command. It starts at the second change, so the history of that artifact stays in one place.
+
+```text
+specs/<track>/
+├── <sub-track>/                 # Optional theme group, numbered from 001
+│   ├── 001-<feature>/           # A standard packet
+│   └── 002-<phase-parent>/      # A large feature split into phases
+│       ├── spec.md              # Holds the phase map
+│       ├── 001-<phase>/
+│       └── 002-<phase>/
+└── z_archive/                   # Finished packets
+```
+
+The [Spec Kit README](.skilled/skills/system-spec-kit/README.md) covers the templates, the scripts and the validator.
 
 &nbsp;
 
@@ -234,6 +262,16 @@ Handover is on by default for Claude Code and off elsewhere until you turn it on
 &nbsp;
 
 ## 5. 🔄 EVERYDAY WORKFLOWS
+
+### You Just Ask
+
+You do not need to remember any command. Describe the task in plain words and the session does the rest. On every prompt, the [skill advisor](#skill-advisor) reads the request and tells the agent which skill fits. When a workflow fits too, the brief names its command and how to take it: start it now, start it with its setup questions or offer it to you first.
+
+The session automation covers the rest of the path. The [spec gate](#spec-gate) asks once which spec folder the work belongs to. The [session lifecycle](#session-lifecycle) hooks prime the context at start and save continuity at stop and compaction. Near the context limit, [session handover](#session-handover) carries the work into a fresh session.
+
+The commands below are what runs underneath. Type one yourself only when you want a specific workflow or mode.
+
+&nbsp;
 
 ### Spec Kit Commands
 
@@ -261,24 +299,41 @@ A loop can also spread across several AI CLIs at once. Each executor runs its ow
 
 ## 6. 🧰 SKILLS
 
-Fourteen skills ship in `.skilled/skills/`. Gate 2 loads one when the advisor matches it to a task. Seven of them are hubs that route a request to one of 42 modes between them. The other seven work on their own.
+Fourteen skills ship in `.skilled/skills/`. Gate 2 loads one when the advisor matches it to a task. Seven of them are parent hubs. A hub holds several modes and routes each request to the mode that fits, 42 modes in all. The other seven skills work on their own.
 
-| Skill | What it does |
-| --- | --- |
-| [`system-spec-kit`](.skilled/skills/system-spec-kit/README.md) | Spec folders, levels, the validator, continuity and lexical search. Required for every file change |
-| [`system-skill-advisor`](.skilled/skills/system-skill-advisor/README.md) | Routes each prompt to the skill that fits, through a daemon-backed CLI |
-| [`system-skilled-doctor`](.skilled/skills/system-skilled-doctor/README.md) | Doctor commands that install Skilled in a project and keep it current, overlays included |
-| [`system-deep-loop`](.skilled/skills/system-deep-loop/README.md) | Hub for the deep research and deep review loops over one shared runtime |
-| [`sk-code`](.skilled/skills/sk-code/README.md) | Hub for writing, reviewing and verifying code in the stack you are in |
-| [`sk-git`](.skilled/skills/sk-git/README.md) | Worktrees, conventional commits, pull requests and finishing a branch |
-| [`sk-doc`](.skilled/skills/sk-doc/README.md) | Hub for documentation and component authoring: skills, agents, commands, READMEs and more |
-| [`sk-prompt`](.skilled/skills/sk-prompt/README.md) | Turns a rough request into a structured, checked prompt |
-| [`sk-design`](.skilled/skills/sk-design/SKILL.md) | Hub for measured style references from live sites, charts and diagrams |
-| [`cli-external-orchestration`](.skilled/skills/cli-external-orchestration/README.md) | Hub for eight CLI bridges that dispatch work to another AI CLI |
-| [`cli-classifier`](.skilled/skills/cli-classifier/README.md) | Hub for typed judgments from the hosted Jev classifier |
-| [`cli-orca`](.skilled/skills/cli-orca/README.md) | Drives the Orca app's worktrees, terminals, browser and automations |
-| [`mcp-code-mode`](.skilled/skills/mcp-code-mode/README.md) | Calls external MCP tools through one TypeScript interface |
-| [`mcp-tooling`](.skilled/skills/mcp-tooling/README.md) | Hub for eight MCP tool bridges, such as Chrome DevTools, ClickUp, Notion and Figma |
+### Parent Hubs
+
+**[sk-code](.skilled/skills/sk-code/README.md)** writes, reviews and verifies code in the stack you are in. Its five modes are quality, for the checks after implementation, and review, for findings-first code review. CI covers GitHub Actions workflows and frontend covers CSS, HTML and browser work. The skilled mode holds the standards for this repository's own TypeScript, Python, shell and config code.
+
+**[sk-doc](.skilled/skills/sk-doc/README.md)** authors documentation and components. Its fifteen modes create skills, parent hubs, READMEs, agents, commands, feature catalogs, manual testing playbooks, benchmarks, changelogs, diffs, frontmatter, repo rules and goals. Two more run quality control and apply the human voice rules.
+
+**[sk-design](.skilled/skills/sk-design/SKILL.md)** turns one design identity into an artifact. Its three modes extract a measured style reference from a live site, draw a diagram and build a chart.
+
+**[system-deep-loop](.skilled/skills/system-deep-loop/README.md)** runs the autonomous loops over one shared runtime. Its two modes are deep research and deep review.
+
+**[cli-external-orchestration](.skilled/skills/cli-external-orchestration/README.md)** hands work to another AI CLI. Its eight modes are bridges to OpenCode, Claude Code, Codex, Cursor, Devin, Pi, DeepSeek Harness and Mistral Vibe.
+
+**[cli-classifier](.skilled/skills/cli-classifier/README.md)** asks a hosted classifier for typed judgments. It has one mode today, the Jev transport, and future classifiers join as new modes.
+
+**[mcp-tooling](.skilled/skills/mcp-tooling/README.md)** bridges outside tools through Code Mode. Its eight modes cover Chrome DevTools, ClickUp, the Aside browser, Notion and Obsidian. Three more are read-only design sources: Figma, Refero and Mobbin.
+
+&nbsp;
+
+### Standalone Skills
+
+**[system-spec-kit](.skilled/skills/system-spec-kit/README.md)** owns spec folders, documentation levels, the validator, continuity and lexical search. Every file change goes through it.
+
+**[system-skill-advisor](.skilled/skills/system-skill-advisor/README.md)** routes each prompt to the skill that fits, through a daemon-backed CLI.
+
+**[system-skilled-doctor](.skilled/skills/system-skilled-doctor/README.md)** holds the doctor commands that install Skilled in a project and keep it current, overlays included.
+
+**[sk-git](.skilled/skills/sk-git/README.md)** handles worktrees, conventional commits, pull requests and finishing a branch.
+
+**[sk-prompt](.skilled/skills/sk-prompt/README.md)** turns a rough request into a structured, checked prompt.
+
+**[cli-orca](.skilled/skills/cli-orca/README.md)** drives the Orca app's worktrees, terminals, browser and automations.
+
+**[mcp-code-mode](.skilled/skills/mcp-code-mode/README.md)** calls external MCP tools through one TypeScript interface.
 
 Only `sk-code` carries stack-specific patterns, so start there when you adapt Skilled to your own stack. The [sk-code README](.skilled/skills/sk-code/README.md#4-adapting-to-your-stack) walks through it, and `/doctor:sk-code setup` checks the result. Add a skill of your own with `/create:skill`, and the advisor finds it from its metadata.
 
@@ -306,25 +361,25 @@ These hooks keep secrets, vendored files and untrusted web text in check.
 
 The agent may not read or write a `.env` file, because that would send every secret in it to the model. The guard refuses the call, undoes a dotenv write a shell command made anyway and watches command output for a dotenv value. In place of the file, it lists key names, reports parse errors and fingerprints a value.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/env-secret-guard/`](.skilled/hooks/env-secret-guard/README.md)
+**Source:** [`.skilled/hooks/env-secret-guard/`](.skilled/hooks/env-secret-guard/README.md)
 
 #### Overlay Guard
 
 A project that commits a copy of Skilled keeps its own changes in overlay files. This guard refuses an edit to a file an overlay owns and names the overlay file to edit instead, so the next update does not wipe the change.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/overlay-guard/`](.skilled/hooks/overlay-guard/README.md)
+**Source:** [`.skilled/hooks/overlay-guard/`](.skilled/hooks/overlay-guard/README.md)
 
 #### Permission Policy
 
 Devin asks for permission before some tool calls. This hook answers that request with allow or deny, from the same spec-gate and dispatch rules the other hooks use. Anything it cannot classify is denied. The Devin adapter file is `permission-request-policy.mjs`.
 
-**Runtimes:** Devin only. **Source:** [`.skilled/hooks/permission-policy/`](.skilled/hooks/permission-policy/README.md)
+**Source:** [`.skilled/hooks/permission-policy/`](.skilled/hooks/permission-policy/README.md)
 
 #### Classifier Injection Screen
 
 After the agent fetches a web page, this hook asks the Jev classifier whether the text holds instructions aimed at an AI agent. When a section does, it adds one advisory line. It runs only once a Jev key is stored, and it never blocks.
 
-**Runtimes:** Claude Code, Devin, OpenCode, Pi, DSH and Mistral Vibe. **Source:** [`.skilled/hooks/classifier-injection-screen/`](.skilled/hooks/classifier-injection-screen/README.md)
+**Source:** [`.skilled/hooks/classifier-injection-screen/`](.skilled/hooks/classifier-injection-screen/README.md)
 
 &nbsp;
 
@@ -336,37 +391,37 @@ These hooks keep the git history clean and the main checkout current. Four of th
 
 At session start, this check confirms that the repository's versioned git hooks are installed and current. In the main checkout with live sync on, it installs a missing hook link itself. It prints a warning and never blocks a session.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-hooks-check/`](.skilled/hooks/git-hooks-check/README.md)
+**Source:** [`.skilled/hooks/git-hooks-check/`](.skilled/hooks/git-hooks-check/README.md)
 
 #### Git Live Follow
 
 At session start, this hook starts a follower that fast-forwards your main checkout to the shared live branch as new commits land. Your editor then shows the combined work of every session. It is one half of [live sync](#13--git-worktrees-and-live-sync).
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-live-follow/`](.skilled/hooks/git-live-follow/README.md)
+**Source:** [`.skilled/hooks/git-live-follow/`](.skilled/hooks/git-live-follow/README.md)
 
 #### Git Primary Reconcile
 
 At session start, this hook brings the main checkout back onto its live branch. It fast-forwards when the checkout is behind and publishes local commits when it is ahead. It is the other half of live sync.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-primary-reconcile/`](.skilled/hooks/git-primary-reconcile/README.md)
+**Source:** [`.skilled/hooks/git-primary-reconcile/`](.skilled/hooks/git-primary-reconcile/README.md)
 
 #### Git Worktree Guard
 
 At session start, this guard warns when a top-level session runs on the shared checkout instead of its own worktree. Parallel sessions on one checkout step on each other's changes.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-worktree-guard/`](.skilled/hooks/git-worktree-guard/README.md)
+**Source:** [`.skilled/hooks/git-worktree-guard/`](.skilled/hooks/git-worktree-guard/README.md)
 
 #### Git Message Gate
 
 Before a commit, a pull request or a new branch, this gate checks the message, description or branch name against the sk-git templates. It refuses one that breaks them. It has no off switch, because the rules carry no bypass. Change a rule with `/doctor:git standards` instead.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/git-message-gate/`](.skilled/hooks/git-message-gate/README.md)
+**Source:** [`.skilled/hooks/git-message-gate/`](.skilled/hooks/git-message-gate/README.md)
 
 #### Git Preflight
 
 Before a git command runs, this hook checks it against the sk-git hard rules and prints one line about any behavior that tends to surprise. It never blocks.
 
-**Runtimes:** every runtime except Mistral Vibe. **Source:** [`.skilled/hooks/git-preflight/`](.skilled/hooks/git-preflight/README.md)
+**Source:** [`.skilled/hooks/git-preflight/`](.skilled/hooks/git-preflight/README.md)
 
 &nbsp;
 
@@ -378,7 +433,7 @@ These hooks carry context, goals and decisions from one session to the next.
 
 At session start, this hook primes the session with the continuity of its spec folder. At stop it saves a checkpoint, and after a compaction it restores the context the summary dropped.
 
-**Runtimes:** Claude Code, Codex, Cursor, Devin, Pi, DSH and Mistral Vibe. OpenCode runs the same steps inside its own plugins. **Source:** [`.skilled/hooks/session-lifecycle/`](.skilled/hooks/session-lifecycle/README.md)
+**Source:** [`.skilled/hooks/session-lifecycle/`](.skilled/hooks/session-lifecycle/README.md)
 
 #### Session Handover
 
@@ -394,25 +449,25 @@ The note carries what the next session needs. It holds the goal and what is left
 
 Handover is on by default for Claude Code only. `SYSTEM_SESSION_HANDOVER_ENABLED=1` turns it on everywhere. `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED` sets one runtime, with `<RUNTIME>` one of `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR`, `DEVIN` or `VIBE`. A runtime's own flag wins over the global one. `SYSTEM_SESSION_HANDOVER_DISABLED=1` beats every enable flag. While handover is off for a runtime, `/speckit:handoff` refuses there and the runtime's own compaction handles a full window.
 
-**Runtimes:** automatic hops on Claude Code, Codex, OpenCode, Pi and Mistral Vibe. Cursor, Devin and DSH hand over only when you run `/speckit:handoff`. **Source:** [`.skilled/hooks/session-handover/`](.skilled/hooks/session-handover/README.md)
+**Source:** [`.skilled/hooks/session-handover/`](.skilled/hooks/session-handover/README.md)
 
 #### Session Cleanup
 
 This hook runs bounded checks at startup and cleans up at teardown. It stops only MCP helper processes it can prove the session started.
 
-**Runtimes:** Claude Code, Codex, Cursor, Devin, OpenCode and Mistral Vibe. **Source:** [`.skilled/hooks/session-cleanup/`](.skilled/hooks/session-cleanup/README.md)
+**Source:** [`.skilled/hooks/session-cleanup/`](.skilled/hooks/session-cleanup/README.md)
 
 #### Goal
 
 A spec folder can hold a `goal.md` with the directive and the criteria that decide when the work is done. This hook binds a session to that file and injects a short slice of it, so the goal survives context resets. `/create:goal` writes the file. Claude Code and Codex use their own `/goal` command instead, and the spec workflows hand you the slice to paste. OpenCode manages the goal with `/goal-opencode`, Pi with `/goal-pi` and DSH with `/goal-dsh`.
 
-**Runtimes:** Cursor, Devin, OpenCode, Pi, DSH and Mistral Vibe. **Source:** [`.skilled/hooks/goal/`](.skilled/hooks/goal/README.md)
+**Source:** [`.skilled/hooks/goal/`](.skilled/hooks/goal/README.md)
 
 #### Decision Capture
 
 Each answer you give to the agent's question tool is queued as you give it. The next full-auto `/speckit:save` writes it into the packet's `decision-record.md`, with the question, the options and your answer word for word. Questions about process, such as which spec folder to use, are left out.
 
-**Runtimes:** Claude Code, Devin, OpenCode, Pi, DSH and Mistral Vibe live. Codex is covered at save time, when the save reads the stored conversation. **Source:** [`.skilled/hooks/decision-capture/`](.skilled/hooks/decision-capture/README.md)
+**Source:** [`.skilled/hooks/decision-capture/`](.skilled/hooks/decision-capture/README.md)
 
 &nbsp;
 
@@ -424,37 +479,37 @@ These hooks send each request, tool call and question down the right path.
 
 On each prompt, this hook puts the skill advisor's one-line routing brief in front of the agent. It advises only. When the advisor cannot answer, the brief says why in one line and the prompt goes through.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/skill-advisor/`](.skilled/hooks/skill-advisor/README.md)
+**Source:** [`.skilled/hooks/skill-advisor/`](.skilled/hooks/skill-advisor/README.md)
 
 #### Directive Lifecycle
 
 The skill advisor repeats a few fixed directives. This hook tracks which ones a session already received, so they appear once per startup or compaction instead of on every turn.
 
-**Runtimes:** all eight, built into each runtime's skill advisor adapter. **Source:** [`.skilled/hooks/directive-lifecycle/`](.skilled/hooks/directive-lifecycle/README.md)
+**Source:** [`.skilled/hooks/directive-lifecycle/`](.skilled/hooks/directive-lifecycle/README.md)
 
 #### MCP Route Guard
 
 When the agent calls an external MCP tool directly, this hook adds an advisory that the call should go through Code Mode instead.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/mcp-route-guard/`](.skilled/hooks/mcp-route-guard/README.md)
+**Source:** [`.skilled/hooks/mcp-route-guard/`](.skilled/hooks/mcp-route-guard/README.md)
 
 #### CLI Dispatch
 
 Before the agent runs a composed CLI dispatch, a preflight lint checks it against the bridge's hard rules. A broken rule stops the call. After the call, an audit trail records it as one JSON line.
 
-**Runtimes:** the preflight runs on all eight. The audit trail runs on every runtime except Mistral Vibe. **Source:** [`.skilled/hooks/cli-dispatch/`](.skilled/hooks/cli-dispatch/README.md)
+**Source:** [`.skilled/hooks/cli-dispatch/`](.skilled/hooks/cli-dispatch/README.md)
 
 #### Subagent Dispatch Guard
 
 Before the agent hands a task to a subagent, this guard checks for a deep loop that repeats itself. On Claude Code it also applies the model policy for subagents.
 
-**Runtimes:** every runtime except Codex. Pi covers direct subagent calls only, and DSH logs subagent calls without blocking them. **Source:** [`.skilled/hooks/subagent-dispatch-guard/`](.skilled/hooks/subagent-dispatch-guard/README.md)
+**Source:** [`.skilled/hooks/subagent-dispatch-guard/`](.skilled/hooks/subagent-dispatch-guard/README.md)
 
 #### Ask Surface Guard
 
 A turn that ends in a typed menu of options gets sent back once. The agent then asks the same question through the runtime's question tool, where you can pick an answer. On Codex and Devin it warns instead of sending the turn back.
 
-**Runtimes:** Claude Code, Codex, Devin, OpenCode, Pi, DSH and Mistral Vibe. **Source:** [`.skilled/hooks/ask-surface-guard/`](.skilled/hooks/ask-surface-guard/README.md)
+**Source:** [`.skilled/hooks/ask-surface-guard/`](.skilled/hooks/ask-surface-guard/README.md)
 
 &nbsp;
 
@@ -466,31 +521,31 @@ These hooks ask for a spec folder, check each edit and hold the agent to its pro
 
 Before the first file change of a session, this hook asks which spec folder the work belongs to and remembers the answer. It advises by default. `SYSTEM_SPEC_GATE_ENFORCE` turns the question into a hard stop. Mistral Vibe always enforces it.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/spec-gate/`](.skilled/hooks/spec-gate/README.md)
+**Source:** [`.skilled/hooks/spec-gate/`](.skilled/hooks/spec-gate/README.md)
 
 #### Completion Evidence
 
 This hook fires when the agent claims a task is done. It looks for the proof behind the claim and names what is missing. It advises and never blocks.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/completion-evidence/`](.skilled/hooks/completion-evidence/README.md)
+**Source:** [`.skilled/hooks/completion-evidence/`](.skilled/hooks/completion-evidence/README.md)
 
 #### Post-Edit Quality
 
 After every write or edit, this hook runs the comment-hygiene check, the dist-staleness check and related checks on the changed file. It reports what it finds next to the edit.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/post-edit-quality/`](.skilled/hooks/post-edit-quality/README.md)
+**Source:** [`.skilled/hooks/post-edit-quality/`](.skilled/hooks/post-edit-quality/README.md)
 
 #### Dist Freshness
 
 Several hooks run compiled scripts from a `dist` build. This hook detects a build that is older than its TypeScript sources and rebuilds it, so a hook never runs stale code.
 
-**Runtimes:** all eight. **Source:** [`.skilled/hooks/dist-freshness/`](.skilled/hooks/dist-freshness/README.md)
+**Source:** [`.skilled/hooks/dist-freshness/`](.skilled/hooks/dist-freshness/README.md)
 
 #### Codex Global Hooks Check
 
 At session start, this check confirms that Codex's user-global hook file holds no copy of this repository's hooks. A stale copy there would run the hooks twice in every Codex session.
 
-**Runtimes:** Claude Code, Cursor, Devin, Pi and DSH at session start, plus an OpenCode watchdog plugin. Codex owns the file and does not run it. **Source:** [`.skilled/hooks/codex-global-hooks-check/`](.skilled/hooks/codex-global-hooks-check/README.md)
+**Source:** [`.skilled/hooks/codex-global-hooks-check/`](.skilled/hooks/codex-global-hooks-check/README.md)
 
 &nbsp;
 
@@ -502,37 +557,37 @@ A few hooks exist for one runtime only, because they answer an event the others 
 
 When the main Claude Code session runs on a Fable model, this guard denies a subagent dispatch that would inherit that model. Only an explicit Opus or Sonnet override passes. It belongs to the subagent dispatch guard above.
 
-**Runtime:** Claude Code only. **Source:** `.claude/hooks/fable-subagent-guard.mjs`, from `.skilled/hooks/subagent-dispatch-guard/claude/`
+**Source:** `.claude/hooks/fable-subagent-guard.mjs`, from `.skilled/hooks/subagent-dispatch-guard/claude/`
 
 #### Session Prime (Claude Code)
 
 At session start, this script injects the continuity of the active spec folder into a Claude Code session. Mistral Vibe's session-start hook reuses it.
 
-**Runtime:** Claude Code. **Source:** `.claude/hooks/session-prime.js`, built from `system-spec-kit`
+**Source:** `.claude/hooks/session-prime.js`, built from `system-spec-kit`
 
 #### Handover Subagent Guard (Claude Code)
 
 A subagent shares its parent's session id, so a handover command run inside one would act on the parent's handoff note. This guard refuses that command and leaves the note to the parent.
 
-**Runtime:** Claude Code only. **Source:** `.claude/hooks/handover-subagent-guard.mjs`, from `.skilled/hooks/session-handover/claude/`
+**Source:** `.claude/hooks/handover-subagent-guard.mjs`, from `.skilled/hooks/session-handover/claude/`
 
 #### Handover Prompt Seed (Codex)
 
 On each Codex prompt, this hook adds the claim instructions to a handover seed prompt, or the context nudge as the session nears its limit.
 
-**Runtime:** Codex only. **Source:** `.codex/hooks/handover-prompt-seed.mjs`, from `.skilled/hooks/session-handover/codex/`
+**Source:** `.codex/hooks/handover-prompt-seed.mjs`, from `.skilled/hooks/session-handover/codex/`
 
 #### Spec Gate Prebind (Cursor)
 
 Cursor's CLI delivers no prompt-classification event, so this hook sets up the spec gate's state at session start. When `SYSTEM_SPEC_FOLDER` names a valid spec folder, that counts as the Gate 3 answer.
 
-**Runtime:** Cursor only. **Source:** `.cursor/hooks/spec-gate-prebind.mjs`, from `system-spec-kit`
+**Source:** `.cursor/hooks/spec-gate-prebind.mjs`, from `system-spec-kit`
 
 #### Post-Compaction Recovery (Devin)
 
 Devin fires its compaction event after the summary is written, with no transcript. This hook keeps the summary and restores the spec folder's continuity from disk. Devin's other runtime-only hook, `permission-request-policy`, is the [permission policy](#permission-policy) above.
 
-**Runtime:** Devin only. **Source:** `.devin/hooks/post-compaction.cjs`, from `system-spec-kit`
+**Source:** `.devin/hooks/post-compaction.cjs`, from `system-spec-kit`
 
 &nbsp;
 
@@ -544,13 +599,13 @@ Pi loads two extension packages from this repository and eight from outside it. 
 
 A Pi extension package that raises provider prompt-cache hit rates. It moves stable prompt content ahead of the parts that change, adds a careful cache-key fallback for OpenAI-compatible providers and shows cache statistics in the footer. It also stops a paid retry loop when a whole batch of tool calls keeps failing. It is a fork of `jiangge/pi-cache-optimizer` under the MIT license, and the vendored copy is the live source.
 
-**Runtime:** Pi. **Source:** [`.pi/extensions/pi-cache-optimizer/`](.pi/extensions/pi-cache-optimizer/README.md)
+**Source:** [`.pi/extensions/pi-cache-optimizer/`](.pi/extensions/pi-cache-optimizer/README.md)
 
 #### Fast Mode With Subagent Support
 
 A Pi extension package that adds a Fast Mode toggle for OpenAI GPT-5.4 through GPT-6 models. It sends OpenAI's priority service tier on matching requests and passes the setting on to subagents. `/fast` switches it, and `--fast` turns it on at startup.
 
-**Runtime:** Pi. **Source:** [`.pi/extensions/pi-fast-mode-w-subagent-support/`](.pi/extensions/pi-fast-mode-w-subagent-support/README.md)
+**Source:** [`.pi/extensions/pi-fast-mode-w-subagent-support/`](.pi/extensions/pi-fast-mode-w-subagent-support/README.md)
 
 #### Community Packages
 
