@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0a8e46d212ea049e3960b7a61d17a7ddf119b2a25a694e14b4d77a372736b93c",
+  "manifestHash": "385f3ca6abf5c00c521304914f62c1a10ffa4dd97d01f659d9f57f88dbf138cd",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -61234,10 +61234,6 @@
     },
     {
       "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/lineages",
       "reason": "excluded directory"
     },
     {

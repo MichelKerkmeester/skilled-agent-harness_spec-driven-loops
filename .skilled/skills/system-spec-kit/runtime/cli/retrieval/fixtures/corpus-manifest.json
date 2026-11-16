@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6250eaaa1843402bb587a4c014dbece7540fd21400d714efe23ff91489273cfd",
+  "corpusHash": "46d7c35f93ee90a6e3972af1538c802d9e500bd7c9f0621aed5092813e129681",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27986,7 +27986,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0a8e46d212ea049e3960b7a61d17a7ddf119b2a25a694e14b4d77a372736b93c",
+  "manifestHash": "385f3ca6abf5c00c521304914f62c1a10ffa4dd97d01f659d9f57f88dbf138cd",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36542,10 +36542,6 @@
     },
     {
       "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/lineages",
       "reason": "excluded directory"
     },
     {
