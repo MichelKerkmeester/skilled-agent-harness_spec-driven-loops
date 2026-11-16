@@ -54,7 +54,7 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `user-prompt-submit.ts` | Prompt-submit adapter, registered for parity against the undelivered `beforeSubmitPrompt` event. |
 | `completion-evidence-response.mjs` | Advisory completion-evidence check. Delegates policy to `../lib/completion-evidence-sentinel.cjs` and never blocks. |
 
-The Cursor task-dispatch and MCP-route guards are not part of this package. They live in the repository hooks tree at `.skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` and `.skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs`, and `.cursor/hooks.json` registers them from there.
+The Cursor task-dispatch and MCP-route guards are not part of this package. They live in the repository hooks tree at `.skilled/hooks/subagent-dispatch-guard/cursor/task-dispatch-guard.mjs` and `.skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs`, and `.cursor/hooks.json` registers them from there.
 
 ---
 

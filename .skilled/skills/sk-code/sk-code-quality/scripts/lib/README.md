@@ -1,7 +1,7 @@
 ---
 title: "Lib: the quality runner's modules"
 description: "The modules the quality entry points require: the spawner and workspace guard run-check.cjs, the bounded parallel node --check helper, the gate modules quality-gate.cjs runs, the config reader quality-config.cjs with the four modules behind it, and the comment_hygiene Python package."
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # Lib
@@ -97,7 +97,7 @@ The post-edit dispatch table, `post-edit-router.cjs`, is at `.skilled/hooks/post
 - `.skilled/commands/doctor/scripts/sk-code-quality-config.cjs` requires `quality-config.cjs`, the `runGit()` and `findTool()` helpers and the runner's `CHECK_IDS` and `probeLayers()` exports, and starts the runner with `--explain` through `spawnArgv()` for the applied-rules block of `/doctor:sk-code quality`.
 - `../tests/quality-gate-runner-units.test.cjs`, `../tests/quality-gate-hygiene.test.cjs`, `../tests/quality-gate-surfaces.test.cjs`, `../tests/quality-gate-layers-and-generated.test.cjs`, `../tests/quality-gate-explain-and-overrides.test.cjs`, `../tests/quality-gate-outside-skills.test.cjs`, `../tests/quality-gate-node-pool.test.cjs` and `../tests/quality-gate-dist.test.cjs` cover the gate modules, `../tests/configured-checks-execution.test.cjs`, `../tests/configured-checks-outcomes.test.cjs` and `../tests/configured-checks-trust.test.cjs` cover the configured checks, and `../tests/quality-config-discovery.test.cjs`, `../tests/quality-config-help.test.cjs`, `../tests/quality-config-hygiene.test.cjs` and `../tests/quality-config-validation.test.cjs` cover the config reader.
 - `../tests/parallel-node-check.test.cjs` tests the helper.
-- `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` and `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs` call the dispatch table at `.skilled/hooks/post-edit-quality/lib/`.
+- `.skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs` and `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs` call the dispatch table at `.skilled/hooks/post-edit-quality/lib/`.
 
 ---
 

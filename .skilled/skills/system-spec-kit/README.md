@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.43.0
+version: 2.7.44.0
 ---
 
 # System Spec Kit
@@ -91,7 +91,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 - Inside the loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction.
 - Sourcing `.skilled/bin/skilled-loop-shell.sh` from the shell profile starts every interactive runtime under the wrapper, also in a repository that links `.skilled`. The shim runs only a wrapper inside the sourced checkout, a linked worktree registered to it or a checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS`.
 - Every hop also adds a line to a gitignored hop history that `session-handover.cjs history` and `/doctor:setup` show.
-- Its handoff note is gitignored runtime state for the next session, not the packet's `handover.md` ([`/speckit:handoff`](../../commands/speckit/handoff.md), [session-handover](../../hooks/session-handover/README.md)).
+- Its handoff note is gitignored runtime state for the next session, not the packet's `handover.md` ([`/speckit:handoff`](../../commands/speckit/handoff.md), [session-handover state files](../../hooks/session-handover/state-files.md)).
 
 **Decision capture**
 

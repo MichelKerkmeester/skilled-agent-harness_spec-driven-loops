@@ -155,7 +155,7 @@ Dispatch blocked by cli-opencode hard-rule(s):
 ```
 
 - **Trigger:** a bash tool call matching a known CLI-dispatch shape (`opencode run`, `claude -p`, etc.).
-- **Owning module:** `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`, relocated from `cli-external-orchestration/cli-opencode/scripts/lib/` since it has no real dependency on `cli-opencode`'s other content.
+- **Owning module:** `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs`, relocated from `cli-external-orchestration/cli-opencode/scripts/lib/` since it has no real dependency on `cli-opencode`'s other content.
 - **Channel:** the block path is `[BLOCK]`. The warn-only path is `[SYS]` (`additionalContext`) on Claude/Cursor/Devin/Codex/Pi, or a bounded system-transform append on OpenCode. DSH's `dispatch-preflight-lint` returns a `deny` at `tools/pre-execute` for a blocking rule.
 
 ### MCP Route Guard
@@ -177,7 +177,7 @@ Dispatch blocked by cli-opencode hard-rule(s):
 **Injects:** an allow/deny decision (with reason on deny) for a subagent/sub-task dispatch.
 
 - **Trigger:** a `run_subagent`/Task-tool/`subagent` dispatch.
-- **Owning module:** `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs`, relocated from `system-deep-loop/runtime/lib/deep-loop/`.
+- **Owning module:** `.skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs`, relocated from `system-deep-loop/runtime/lib/deep-loop/`.
 - **Channel:** `[BLOCK]` on deny (same envelope shape as spec-gate enforcement). Pi's `.pi/extensions/task-dispatch-guard.ts` is wired on the native `subagent` tool and returns the guard's text as an advisory reason, never a block (`~ partial`: direct `subagent` calls only. Workflow-nested `runs.run` dispatches are not covered). DSH's `task-dispatch-guard` is `[LOG]` only: it writes warnings and audits to the guard's state folder and always calls `next()`, so it never denies.
 
 ### Injection Screen
@@ -203,7 +203,7 @@ Violations in src/foo.ts:
 
 - **Trigger:** a completed `edit`/`write` tool call.
 - **Owning module:** `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`, relocated from `sk-code/sk-code-quality/scripts/lib/`.
-- **Channel:** `[SYS]` on Claude and Devin: `claude-posttooluse.cjs` and `devin/post-edit-quality.cjs` return the findings in a `PostToolUse` envelope as `hookSpecificOutput.additionalContext`, and a clean edit stays silent. Pi's `post-edit-quality.ts` appends them to the tool result (`ToolResultEventResult.content`) and OpenCode's `sk-code-post-edit-quality.js` drains them on the next `experimental.chat.system.transform`. Cursor's `post-tool-use.mjs` proxies the Claude check for `Write`, and DSH returns `additionalContexts` at `tools/post-execute`. Codex's `post-edit-quality.cjs` still writes plain stdout, and its `PostToolUse` stdout handling is not independently verified in this repo. Every other adapter's findings are confirmed to reach the assistant.
+- **Channel:** `[SYS]` on Claude and Devin: `post-edit-quality.cjs` and `devin/post-edit-quality.cjs` return the findings in a `PostToolUse` envelope as `hookSpecificOutput.additionalContext`, and a clean edit stays silent. Pi's `post-edit-quality.ts` appends them to the tool result (`ToolResultEventResult.content`) and OpenCode's `sk-code-post-edit-quality.js` drains them on the next `experimental.chat.system.transform`. Cursor's `post-tool-use.mjs` proxies the Claude check for `Write`, and DSH returns `additionalContexts` at `tools/post-execute`. Codex's `post-edit-quality.cjs` still writes plain stdout, and its `PostToolUse` stdout handling is not independently verified in this repo. Every other adapter's findings are confirmed to reach the assistant.
 
 ---
 
@@ -318,4 +318,4 @@ The bundle README, [`../../.dsh/plugins/repo-guards/README.md`](../../.dsh/plugi
 - [`../../.opencode/plugins/README.md`](../../.opencode/plugins/README.md): full OpenCode plugin inventory and hook-event model this doc's OpenCode column cites.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): Pi's own extension inventory, including the `session_compact`-untraced caveat this doc's §4 repeats.
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors this doc cross-links from.
-- [`README.md`](./README.md): why the real cores of `dispatch`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `post-edit-quality`, `task-dispatch`, `classifier-injection-screen`, `goal`, `decision-capture` and `session-handover` live under `.skilled/hooks/` instead of `.skilled/skills/`, while every skill-owned hook in this doc stays inside its owning skill.
+- [`README.md`](./README.md): why the real cores of `cli-dispatch`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `post-edit-quality`, `subagent-dispatch-guard`, `classifier-injection-screen`, `goal`, `decision-capture` and `session-handover` live under `.skilled/hooks/` instead of `.skilled/skills/`, while every skill-owned hook in this doc stays inside its owning skill.

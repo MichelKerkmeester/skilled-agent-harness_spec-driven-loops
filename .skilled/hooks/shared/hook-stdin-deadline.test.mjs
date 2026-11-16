@@ -36,20 +36,20 @@ const ALLOW = '{"permission":"allow"}';
 const HOOKS = [
   { id: 'classifier-injection-screen/claude', file: 'classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs', failOpen: '' },
   { id: 'classifier-injection-screen/devin', file: 'classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs', failOpen: '' },
-  { id: 'decision-capture/claude', file: 'decision-capture/claude/ask-capture-posttooluse.mjs', failOpen: '' },
-  { id: 'decision-capture/devin', file: 'decision-capture/devin/ask-capture-posttooluse.mjs', failOpen: '' },
-  { id: 'dispatch/claude preflight', file: 'dispatch/claude/dispatch-preflight-lint.mjs', failOpen: '' },
-  { id: 'dispatch/codex preflight', file: 'dispatch/codex/dispatch-preflight-lint.mjs', failOpen: '' },
-  { id: 'dispatch/cursor preflight', file: 'dispatch/cursor/dispatch-preflight-lint.mjs', failOpen: ALLOW },
-  { id: 'dispatch/devin preflight', file: 'dispatch/devin/dispatch-preflight-lint.mjs', failOpen: '' },
-  { id: 'dispatch/claude audit', file: 'dispatch/claude/dispatch-audit-posttooluse.mjs', failOpen: '' },
-  { id: 'dispatch/codex audit', file: 'dispatch/codex/dispatch-audit-posttooluse.mjs', failOpen: '' },
-  { id: 'dispatch/devin audit', file: 'dispatch/devin/dispatch-audit-posttooluse.mjs', failOpen: '' },
+  { id: 'decision-capture/claude', file: 'decision-capture/claude/decision-capture-posttooluse.mjs', failOpen: '' },
+  { id: 'decision-capture/devin', file: 'decision-capture/devin/decision-capture-posttooluse.mjs', failOpen: '' },
+  { id: 'cli-dispatch/claude preflight', file: 'cli-dispatch/claude/dispatch-preflight-lint.mjs', failOpen: '' },
+  { id: 'cli-dispatch/codex preflight', file: 'cli-dispatch/codex/dispatch-preflight-lint.mjs', failOpen: '' },
+  { id: 'cli-dispatch/cursor preflight', file: 'cli-dispatch/cursor/dispatch-preflight-lint.mjs', failOpen: ALLOW },
+  { id: 'cli-dispatch/devin preflight', file: 'cli-dispatch/devin/dispatch-preflight-lint.mjs', failOpen: '' },
+  { id: 'cli-dispatch/claude audit', file: 'cli-dispatch/claude/dispatch-audit-posttooluse.mjs', failOpen: '' },
+  { id: 'cli-dispatch/codex audit', file: 'cli-dispatch/codex/dispatch-audit-posttooluse.mjs', failOpen: '' },
+  { id: 'cli-dispatch/devin audit', file: 'cli-dispatch/devin/dispatch-audit-posttooluse.mjs', failOpen: '' },
   { id: 'goal/cursor', file: 'goal/cursor/goal-inject.mjs', failOpen: ALLOW },
   { id: 'goal/devin', file: 'goal/devin/goal-inject.mjs', failOpen: '{}' },
   { id: 'mcp-route-guard/cursor', file: 'mcp-route-guard/cursor/mcp-route-guard.mjs', failOpen: ALLOW },
-  { id: 'task-dispatch/cursor', file: 'task-dispatch/cursor/task-dispatch-guard.mjs', failOpen: ALLOW },
-  { id: 'task-dispatch/claude fable', file: 'task-dispatch/claude/fable-subagent-guard.mjs', failOpen: '' },
+  { id: 'subagent-dispatch-guard/cursor', file: 'subagent-dispatch-guard/cursor/task-dispatch-guard.mjs', failOpen: ALLOW },
+  { id: 'subagent-dispatch-guard/claude fable', file: 'subagent-dispatch-guard/claude/fable-subagent-guard.mjs', failOpen: '' },
   { id: 'git-preflight/shared', file: 'git-preflight/shared/git-preflight-advisory.mjs', failOpen: '' },
   { id: 'git-message-gate/shared', file: 'git-message-gate/shared/git-message-gate.mjs', failOpen: '' },
 ];
@@ -131,7 +131,7 @@ function recordedAuditLine(projectDir) {
 
 test('the Claude and Devin preflight lints still flag a dispatch sent on a normal payload', (t) => {
   const claude = runWithPayload(
-    'dispatch/claude/dispatch-preflight-lint.mjs',
+    'cli-dispatch/claude/dispatch-preflight-lint.mjs',
     { tool_name: 'Bash', cwd: REPO_ROOT, tool_input: { command: FLAGGED_DISPATCH } },
     pinnedV1Env(t, { CLAUDE_PROJECT_DIR: REPO_ROOT }),
   );
@@ -140,7 +140,7 @@ test('the Claude and Devin preflight lints still flag a dispatch sent on a norma
   assert.ok(claude.stdout.includes(RULE_ID));
 
   const devin = runWithPayload(
-    'dispatch/devin/dispatch-preflight-lint.mjs',
+    'cli-dispatch/devin/dispatch-preflight-lint.mjs',
     { tool_name: 'exec', cwd: REPO_ROOT, tool_input: { command: FLAGGED_DISPATCH } },
     pinnedV1Env(t),
   );
@@ -151,8 +151,8 @@ test('the Claude and Devin preflight lints still flag a dispatch sent on a norma
 
 test('the Claude and Devin dispatch audits still record a dispatch sent on a normal payload', (t) => {
   for (const { file, tool, runtime } of [
-    { file: 'dispatch/claude/dispatch-audit-posttooluse.mjs', tool: 'Bash', runtime: 'claude' },
-    { file: 'dispatch/devin/dispatch-audit-posttooluse.mjs', tool: 'exec', runtime: 'devin' },
+    { file: 'cli-dispatch/claude/dispatch-audit-posttooluse.mjs', tool: 'Bash', runtime: 'claude' },
+    { file: 'cli-dispatch/devin/dispatch-audit-posttooluse.mjs', tool: 'exec', runtime: 'devin' },
   ]) {
     const projectDir = fs.mkdtempSync(path.join(os.tmpdir(), `${runtime}-dispatch-audit-`));
     t.after(() => fs.rmSync(projectDir, { recursive: true, force: true }));
@@ -170,7 +170,7 @@ test('the Claude and Devin dispatch audits still record a dispatch sent on a nor
 });
 
 test('the Cursor preflight, MCP route and Task guards still answer a normal payload', (t) => {
-  const lint = runWithPayload('dispatch/cursor/dispatch-preflight-lint.mjs', {
+  const lint = runWithPayload('cli-dispatch/cursor/dispatch-preflight-lint.mjs', {
     tool_name: 'Shell',
     workspace_roots: [REPO_ROOT],
     tool_input: { command: FLAGGED_DISPATCH },
@@ -189,7 +189,7 @@ test('the Cursor preflight, MCP route and Task guards still answer a normal payl
   assert.ok(JSON.parse(mcp.stdout).agent_message.includes('native call to "external-example"'));
 
   const task = runWithPayload(
-    'task-dispatch/cursor/task-dispatch-guard.mjs',
+    'subagent-dispatch-guard/cursor/task-dispatch-guard.mjs',
     {
       tool_name: 'Task',
       workspace_roots: [REPO_ROOT],

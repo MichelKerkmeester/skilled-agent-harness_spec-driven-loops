@@ -1080,7 +1080,7 @@ Each runtime also has its own flag, `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED`,
 
 `SYSTEM_SESSION_HANDOVER_DISABLED=1` and `SYSTEM_HOOKS_DISABLED=1` beat every enable flag. While handover is off for a runtime, `/speckit:handoff` refuses there and the runtime's own auto-compaction handles a full context window.
 
-The [session-handover README](.skilled/hooks/session-handover/README.md) covers the per-runtime adapters, hop history, safety limits and troubleshooting.
+The [session-handover README](.skilled/hooks/session-handover/README.md) covers the per-runtime adapters. Hop history is in [`state-files.md`](.skilled/hooks/session-handover/state-files.md), the safety limits in [`runtime-behavior.md`](.skilled/hooks/session-handover/runtime-behavior.md) and the fixes in [`troubleshooting.md`](.skilled/hooks/session-handover/troubleshooting.md).
 
 &nbsp;
 
@@ -1163,7 +1163,7 @@ The hooks load only in a trusted checkout. A dispatch from a scratch folder gets
 
 `.skilled/hooks/` carries the runtime-agnostic cores the plugin adapters call into.
 
-The cores are `goal`, `dispatch`, `decision-capture`, `spec-gate`, `completion`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen` and `ask-surface`. The git cores are `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard` and `hook-install`. The rest are `session-cleanup`, `session-lifecycle`, `session-handover`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness` and `codex-watchdog`, plus `shared` for the helpers they all use.
+The cores are `goal`, `cli-dispatch`, `decision-capture`, `spec-gate`, `completion-evidence`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen` and `ask-surface`. The git cores are `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile` and `git-worktree-guard`. The rest are `session-cleanup`, `session-lifecycle`, `session-handover`, `skill-advisor`, `subagent-dispatch-guard`, `directive-lifecycle`, `dist-freshness` and `codex-global-hooks-check`, plus `shared` for the helpers they all use.
 
 The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which runtime runs each hook, and why a runtime that skips one cannot carry it. Codex runs a repository hook only after you approve that entry. Open `/hooks` after an update and approve every entry it lists as needing review. Its shell matchers name both `exec` and `Bash`, the tool's name from Codex 0.160 on.
 

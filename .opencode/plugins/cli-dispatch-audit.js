@@ -26,10 +26,10 @@ import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/
 
 // The audit core lives outside .opencode/plugins/ so this file can remain a thin,
 // default-export-only OpenCode plugin while the Claude hook consumes the same logic.
-import * as dispatchAuditCore from '../hooks/dispatch/lib/dispatch-audit.mjs';
+import * as dispatchAuditCore from '../hooks/cli-dispatch/lib/dispatch-audit.mjs';
 // The same engine the Claude PreToolUse adapter runs, so a rule enforced there is enforced
 // here without a second copy of the severity model or the rule parser.
-import { evaluateDispatch } from '../hooks/dispatch/lib/dispatch-rule-checks.mjs';
+import { evaluateDispatch } from '../hooks/cli-dispatch/lib/dispatch-rule-checks.mjs';
 import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);

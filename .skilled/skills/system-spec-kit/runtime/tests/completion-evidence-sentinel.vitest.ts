@@ -147,7 +147,7 @@ describe('completion-evidence-sentinel core', () => {
   });
 
   it('documents Pi advisory delivery as model-visible on the next turn', () => {
-    const readme = readFileSync(new URL('../../../../hooks/completion/README.md', import.meta.url), 'utf8');
+    const readme = readFileSync(new URL('../../../../hooks/completion-evidence/README.md', import.meta.url), 'utf8');
     const injectionContract = readFileSync(new URL('../../../../hooks/injection-contract.md', import.meta.url), 'utf8');
     const piAdapter = readFileSync(new URL('../hooks/pi/completion-evidence.ts', import.meta.url), 'utf8');
 

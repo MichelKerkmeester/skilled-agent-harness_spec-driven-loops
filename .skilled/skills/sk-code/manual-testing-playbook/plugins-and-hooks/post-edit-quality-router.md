@@ -7,7 +7,7 @@ trigger_phrases:
   - "post edit quality router"
   - "sk-code-post-edit-quality"
   - "posttooluse quality hook"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Post-Edit Quality Router
@@ -45,7 +45,7 @@ call in OpenCode; the exact adapter invocations exercised are the live commands 
 
 - Preconditions:
   - `.opencode/plugins/sk-code-post-edit-quality.js` exists (OpenCode plugin adapter).
-  - `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` exists (Claude adapter).
+  - `.skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs` exists (Claude adapter).
   - `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` exists (shared core).
   - `.claude/settings.json` wires `PostToolUse` matcher `Write|Edit` to the Claude adapter above.
   - `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs` (51 tests) is present.
@@ -105,7 +105,7 @@ cat > "$TMPDIR_LIVE/edited.ts" <<'EOF'
 export const liveSample = 1;
 EOF
 printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"$PWD/$TMPDIR_LIVE/edited.ts\"},\"cwd\":\"$PWD\"}" \
-  | node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs
+  | node .skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs
 echo "EXIT_CODE=$?"
 rm -rf "$TMPDIR_LIVE"
 ```
@@ -126,7 +126,7 @@ cat > "$TMPDIR_KILL/edited.ts" <<'EOF'
 export const liveSample = 1;
 EOF
 printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"$PWD/$TMPDIR_KILL/edited.ts\"},\"cwd\":\"$PWD\"}" \
-  | SK_CODE_POST_EDIT_QUALITY_DISABLED=1 node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs
+  | SK_CODE_POST_EDIT_QUALITY_DISABLED=1 node .skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs
 echo "EXIT_CODE=$?"
 rm -rf "$TMPDIR_KILL"
 ```
@@ -176,7 +176,7 @@ Expected: JSON output with one `system` entry containing
    edit under a scratchpad dir outside the repo never surfaces a finding, matching the unit test
    `resolveDispatch: adversarial -- a path outside the project root resolves to no match`). The
    fixture file must exist on disk first -- the Claude adapter's own `fs.existsSync(filePath)` guard
-   (`claude-posttooluse.cjs`) returns early for a nonexistent path before `resolveDispatch` is ever
+   (`post-edit-quality.cjs`) returns early for a nonexistent path before `resolveDispatch` is ever
    called, so a command that skips file creation would produce the same empty output for the wrong
    reason and would not actually exercise the outside-root dispatch logic:
 
@@ -187,7 +187,7 @@ cat > /private/tmp/sk-code-post-edit-quality-outside-root-check/outside-root.ts 
 export const liveSample = 1;
 EOF
 printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"/private/tmp/sk-code-post-edit-quality-outside-root-check/outside-root.ts\"},\"cwd\":\"$PWD\"}" \
-  | node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs
+  | node .skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs
 echo "EXIT_CODE=$?"
 rm -rf /private/tmp/sk-code-post-edit-quality-outside-root-check
 ```
@@ -212,7 +212,7 @@ check, and `.claude/settings.json` wiring).
 
 1. If the unit-test suite is not fully green, re-run `node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs` and inspect the first failing assertion before touching any live invocation.
 2. If the live Claude adapter invocation (Command 2) produces no `COMMENT HYGIENE WARNING` banner, confirm the fixture file's comment still carries an `ADR-<n>`-style pointer and that `check-comment-hygiene.sh` is executable.
-3. If the kill-switch invocation (Command 3) is not empty, verify `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` is exported into the same process that invokes `claude-posttooluse.cjs`, and that the adapter reads it before dispatch.
+3. If the kill-switch invocation (Command 3) is not empty, verify `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` is exported into the same process that invokes `post-edit-quality.cjs`, and that the adapter reads it before dispatch.
 4. If the OpenCode plugin invocation (Command 4) does not surface the buffered finding, confirm the fixture `check-comment-hygiene.sh` under the throwaway `.skilled/skills/sk-code/sk-code-quality/scripts/` path is executable and that `tool.execute.before` ran before `tool.execute.after`.
 5. If the outside-root invocation (Command 5) unexpectedly produces a finding, inspect `relativeSegments()` in `post-edit-router.cjs` for a containment regression.
 6. SKIP applies only to the real end-to-end OpenCode TUI session path (a live OpenCode runtime session is unavailable in this sandboxed evidence pass) — see §6 EVIDENCE for the named blocker and its unit-test/direct-import fallback evidence; every other path in this scenario is exercised live, not skipped.
@@ -223,7 +223,7 @@ check, and `.claude/settings.json` wiring).
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - OpenCode plugin adapter: `.opencode/plugins/sk-code-post-edit-quality.js`
-- Claude PostToolUse adapter: `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
+- Claude PostToolUse adapter: `.skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs`
 - Shared runtime-neutral core: `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`
 - Unit-test suite (51 tests): `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs`
 - Hook wiring: `.claude/settings.json` (`PostToolUse` -> matcher `Write|Edit`)
@@ -316,7 +316,7 @@ cat > /private/tmp/.../scratchpad/live-edit-sample.ts <<'EOF'
 export const liveSample = 1;
 EOF
 printf '%s' '{"tool_name":"Write","tool_input":{"file_path":".../scratchpad/live-edit-sample.ts"},"cwd":"'"$PWD"'"}' \
-  | node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs
+  | node .skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs
 echo "EXIT_CODE=$?"
 ```
 
@@ -347,7 +347,7 @@ OK  .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
   "hooks": [
     {
       "type": "command",
-      "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs'",
+      "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs'",
       "timeout": 10
     },
     {

@@ -12,8 +12,8 @@
 # of them to run.
 #
 # Rules:
-#   gate-files       every hook, hook library, the legacy helper and the SessionStart
-#                    check exists under .opencode/ or .skilled/
+#   gate-files       every hook, hook library and the SessionStart check exists
+#                    under .opencode/ or .skilled/
 #   hook-inputs      every literal $REPO_ROOT/<root>/<path> and $SOURCE_ROOT/<path> a hook
 #                    command uses, every variable assigned a literal <root>/<path> and every
 #                    quoted literal <root>/<path> handed to a command other than git
@@ -62,7 +62,7 @@ SRC="$ROOT/.skilled"
 GATE_FILES="scripts/git-hooks/pre-commit scripts/git-hooks/pre-push scripts/git-hooks/prepare-commit-msg
 scripts/git-hooks/commit-msg scripts/git-hooks/post-commit scripts/git-hooks/post-merge
 scripts/git-hooks/post-rewrite scripts/git-hooks/lib/autostash-orphan-guard.sh
-scripts/git-hooks/lib/mass-deletion-guard.sh hooks/git/pre-commit bin/check-git-hooks.sh"
+scripts/git-hooks/lib/mass-deletion-guard.sh bin/check-git-hooks.sh"
 
 FILES=0; RESOLVED=0; DYNAMIC=0; TWINS=0; FAILS=0
 

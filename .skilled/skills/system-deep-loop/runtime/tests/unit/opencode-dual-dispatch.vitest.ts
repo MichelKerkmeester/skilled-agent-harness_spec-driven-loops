@@ -121,7 +121,7 @@ const VERSION_OUTPUTS: readonly string[] = [
   JOINED_VERSION_OUTPUT,
 ];
 const VERSION_CORPUS = JSON.parse(readFileSync(
-  resolve(projectRoot, '.skilled/hooks/dispatch/lib/opencode-version-corpus.json'),
+  resolve(projectRoot, '.skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json'),
   'utf8',
 )) as VersionCorpusEntry[];
 
@@ -666,7 +666,7 @@ describe('OpenCode resolver adversarial cases', () => {
 
   it('keeps CJS parsing in parity with the ESM parser for every fixture', async () => {
     const esmParser = await import(pathToFileURL(
-      resolve(projectRoot, '.skilled/hooks/dispatch/lib/opencode-version.mjs'),
+      resolve(projectRoot, '.skilled/hooks/cli-dispatch/lib/opencode-version.mjs'),
     ).href) as { parseOpencodeVersion: (text: string) => OpencodeVersion };
 
     for (const output of VERSION_OUTPUTS) {

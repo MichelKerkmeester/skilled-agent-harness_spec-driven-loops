@@ -7,7 +7,7 @@ trigger_phrases:
   - "operator decisions"
   - "capture askuserquestion answers"
   - "verbatim operator answers"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Operator decision capture
@@ -55,12 +55,12 @@ The Claude Stop hook counts the answers still waiting for a record and reports a
 | File | Layer | Role |
 |------|-------|------|
 | `.skilled/hooks/decision-capture/lib/capture-core.mjs` | Hook core | Normalizes answers, filters process questions, appends to the locked queue and computes the Stop-hook count. |
-| `.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs` | Claude adapter | PostToolUse entry point for `AskUserQuestion`. |
+| `.skilled/hooks/decision-capture/claude/decision-capture-posttooluse.mjs` | Claude adapter | PostToolUse entry point for `AskUserQuestion`. |
 | `.skilled/hooks/decision-capture/pi/decision-capture.ts` | Pi extension | `tool_result` entry point for `ask_user_question` and `question`, re-exported by a one-line entry file in `.pi/extensions/`. |
 | `.opencode/plugins/decision-capture.js` | OpenCode plugin | `tool.execute.after` capture and the pending-answer system line. |
-| `.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs` | Devin adapter | PostToolUse entry point for `ask_user_question`. |
+| `.skilled/hooks/decision-capture/devin/decision-capture-posttooluse.mjs` | Devin adapter | PostToolUse entry point for `ask_user_question`. |
 | `.skilled/hooks/decision-capture/dsh/decision-capture.mjs` | DSH adapter | `tools/result`, late-reply and idle-nudge entry points, linked from `.dsh/plugins/repo-guards/adapters/`. |
-| `.skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs` | Vibe adapter | `post_tool` entry point for `ask_user_question`, silent and fail-open. |
+| `.skilled/hooks/decision-capture/vibe/decision-capture-post-tool.mjs` | Vibe adapter | `post_tool` entry point for `ask_user_question`, silent and fail-open. |
 | `.skilled/hooks/decision-capture/bin/sweep-transcript.mjs` | Save-time sweep | Claude transcript reader. |
 | `.skilled/hooks/decision-capture/lib/chat-questions.mjs` | Shared detector | Chat-candidate pairing from ordered turns and each candidate's evidence object, used by every sweep. |
 | `.skilled/hooks/decision-capture/bin/sweep-opencode.mjs` | Save-time sweep | OpenCode SQLite store reader. |
@@ -83,7 +83,7 @@ The Claude Stop hook counts the answers still waiting for a record and reports a
 | File | Type | Role |
 |---|---|---|
 | `.skilled/hooks/decision-capture/lib/capture-core.test.mjs` | Automated test | Capture, filter, deduplication, locking, adapter and nudge. |
-| `.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.test.mjs` | Automated test | Claude adapter project-directory fallback. |
+| `.skilled/hooks/decision-capture/claude/decision-capture-posttooluse.test.mjs` | Automated test | Claude adapter project-directory fallback. |
 | `.skilled/hooks/decision-capture/lib/chat-questions.test.mjs` | Automated test | Chat-candidate pairing shared by every sweep. |
 | `.skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs` | Automated test | The hooks README coverage row gives every runtime a covered cell or a stated reason. |
 | `.skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs` | Automated test | Transcript recovery and chat candidates. |
@@ -95,7 +95,7 @@ The Claude Stop hook counts the answers still waiting for a record and reports a
 | `.skilled/hooks/decision-capture/tests/dsh-decision-capture.test.mjs` | Automated test | DSH adapter capture, late reply, nudge and kill switch. |
 | `.skilled/hooks/decision-capture/pi/decision-capture.test.ts` | Automated test | Pi extension, kill switch and same-key dedup with the sweep. |
 | `.opencode/plugins/tests/decision-capture.test.cjs` | Automated test | OpenCode plugin capture, kill switch, dedup with the sweep and the nudge line. |
-| `.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.test.mjs` | Automated test | Devin adapter on a redacted live payload, both producer orders, kill switch and refusals. |
+| `.skilled/hooks/decision-capture/devin/decision-capture-posttooluse.test.mjs` | Automated test | Devin adapter on a redacted live payload, both producer orders, kill switch and refusals. |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts` | Automated test | Upsert, idempotence, hand-written rows, appendix round trip, level guard and consumed log. |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts` | Automated test | Plan-only and full-auto saves, routing and consumption. |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/decision-table-matcher.vitest.ts` | Automated test | Table parse, scoring threshold, ties and refusals. |

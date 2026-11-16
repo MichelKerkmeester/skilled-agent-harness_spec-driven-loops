@@ -1,7 +1,7 @@
 ---
 title: "457 -- Cross-runtime directive-lifecycle dedup"
 description: "Validate lifecycle-scoped directive delivery through the canonical decision, registered runtime adapters, plugin and Pi seams, and separately classified native-host receipts."
-version: 1.7.5.0
+version: 1.7.6.0
 id: ux-hooks-directive-lifecycle-dedup
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:
@@ -90,7 +90,7 @@ npx vitest run \
 
 ```bash
 cd .skilled
-npx --no-install vitest run --config hooks/vitest.config.ts --dir hooks/dispatch/pi
+npx --no-install vitest run --config hooks/vitest.config.ts --dir hooks/cli-dispatch/pi
 ```
 
 5. From the repository root, create a new durable registered-adapter evidence directory. The harness refuses to overwrite an existing directory:

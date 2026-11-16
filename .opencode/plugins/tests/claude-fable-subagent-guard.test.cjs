@@ -25,7 +25,7 @@ const test = require('node:test');
 const { spawnSync } = require('node:child_process');
 
 const HOOK_PATH = path.join(
-  __dirname, '..', '..', 'hooks', 'task-dispatch', 'claude', 'fable-subagent-guard.mjs',
+  __dirname, '..', '..', 'hooks', 'subagent-dispatch-guard', 'claude', 'fable-subagent-guard.mjs',
 );
 
 let tmpDir;

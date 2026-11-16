@@ -257,6 +257,21 @@
           "to": "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports"
         }
       ]
+    },
+    {
+      "applied_at": "2026-11-15T18:05:11.384Z",
+      "base_commit": "a03f07436cff24818945d08ec1e9a848fe072630",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair",
+          "to": "hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair"
+        }
+      ]
     }
   ]
 }

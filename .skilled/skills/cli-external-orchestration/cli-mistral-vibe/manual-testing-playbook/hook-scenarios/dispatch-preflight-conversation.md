@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-011 -- Dispatch preflight refuses a dispatch that breaks a hard rule"
 description: "This scenario validates that the Vibe dispatch-preflight pre_tool hook refuses a shell dispatch whose command text breaks a cli-mistral-vibe hard rule, judged from the session journal."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # VIB-HK-011 -- Dispatch preflight refuses a dispatch that breaks a hard rule
@@ -129,7 +129,7 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 | File | Role |
 |---|---|
 | `.vibe/plugins/repo-guards/dispatch-preflight.mjs` | The hook under test |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | The hard-rule engine that evaluates the command text |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | The hard-rule engine that evaluates the command text |
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json` | The blocking rules the engine reads |
 | `.vibe/hooks.toml` | The hook binding |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` | The runner and its `vibe` adapter |

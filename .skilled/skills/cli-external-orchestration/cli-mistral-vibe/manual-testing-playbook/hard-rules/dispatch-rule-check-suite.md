@@ -1,7 +1,7 @@
 ---
 title: "VIB-HR-001 -- Dispatch rule-check suite"
 description: "This scenario validates that the dispatch rule-check suite passes and that every Vibe hard rule refuses its own violation through the shared evaluator."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # VIB-HR-001 -- Dispatch rule-check suite
@@ -45,7 +45,7 @@ The hard rules are the gate a caller relies on before spending a keyed run. A ru
 ### Commands
 
 ```bash
-node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs
 ```
 
 ### Recorded Result
@@ -59,7 +59,7 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VIB-HR-001 | Dispatch rule-check suite | Prove the suite passes and each Vibe rule refuses its violation | `Run the dispatch rule-check suite and report the pass and fail counts. Name the Vibe cases it covers, and stop if any Vibe rule no longer refuses its own violation.` | 1. `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` -> 2. read the Vibe test lines -> 3. read the summary counts and the exit code | Step 1: exit `0`, `tests 64`, `pass 64`, `fail 0`. Step 2: the five Vibe rule cases, the stdin case, the documented-line case and the enforcement guard all pass | The command transcript with the per-test lines, the summary counts and the exit code | PASS if the suite exits `0` with `fail 0` and every Vibe case passes. FAIL if a case fails or is missing | 1. Read the failing test name and the rule it exercises. 2. Confirm the sidecar still carries that rule id. 3. Confirm the check is registered in the shared evaluator and is not borrowed from another runtime |
+| VIB-HR-001 | Dispatch rule-check suite | Prove the suite passes and each Vibe rule refuses its violation | `Run the dispatch rule-check suite and report the pass and fail counts. Name the Vibe cases it covers, and stop if any Vibe rule no longer refuses its own violation.` | 1. `node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` -> 2. read the Vibe test lines -> 3. read the summary counts and the exit code | Step 1: exit `0`, `tests 64`, `pass 64`, `fail 0`. Step 2: the five Vibe rule cases, the stdin case, the documented-line case and the enforcement guard all pass | The command transcript with the per-test lines, the summary counts and the exit code | PASS if the suite exits `0` with `fail 0` and every Vibe case passes. FAIL if a case fails or is missing | 1. Read the failing test name and the rule it exercises. 2. Confirm the sidecar still carries that rule id. 3. Confirm the check is registered in the shared evaluator and is not borrowed from another runtime |
 
 ### Failure Triage
 
@@ -85,8 +85,8 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
 
 | File | Role |
 |---|---|
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | The suite this scenario runs |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | The shared evaluator and the per-runtime rule checks, including the Vibe set |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` | The suite this scenario runs |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | The shared evaluator and the per-runtime rule checks, including the Vibe set |
 
 ---
 

@@ -170,7 +170,7 @@ bash .skilled/scripts/install-git-hooks.sh --uninstall
 | Mass-deletion ceiling | `pre-push` blocks a push that deletes more than 100 tracked files. `SPECKIT_MASS_DELETION_THRESHOLD` raises the ceiling for one command and `SPECKIT_ALLOW_MASS_DELETION=1` skips the check for one | `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh` |
 | Push permission gate | `pre-push` needs your approval for a push to any branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist | `.skilled/scripts/git-hooks/pre-push` |
 | Message contract | `commit-msg` blocks a message that breaks the sk-git commit rules. There is no bypass, and `pre-push` re-checks every pushed commit, so `--no-verify` does not let one through | `.skilled/scripts/git-hooks/commit-msg` |
-| Dispatch preflight | Reads the `hard-rules.json` file beside each CLI skill's `SKILL.md` and denies a dispatch that breaks a blocking rule, such as an `opencode run` that leaves stdin open | `.skilled/hooks/dispatch/` |
+| Dispatch preflight | Reads the `hard-rules.json` file beside each CLI skill's `SKILL.md` and denies a dispatch that breaks a blocking rule, such as an `opencode run` that leaves stdin open | `.skilled/hooks/cli-dispatch/` |
 | Git preflight advisory | Warns before a git command with a surprising result, such as `reset --hard` over uncommitted changes or a force push without a lease | `.skilled/skills/sk-git/hard-rules.json` |
 | dsh git preflight advisory | Evaluates dsh git commands against the shared sk-git hard rules and warns after a risky one has run | `.dsh/plugins/repo-guards/` |
 | Devin permission policy | Answers each Devin permission request and denies on malformed input, a missing field, an unknown tool or any internal error | `.skilled/hooks/permission-policy/` |
@@ -190,7 +190,7 @@ bash .skilled/scripts/install-git-hooks.sh --uninstall
 - **[Hooks README](.skilled/hooks/README.md)** - the full hook index with its kill switches and per-runtime coverage
 - **[Git hooks README](.skilled/scripts/git-hooks/README.md)** - each git hook gate and its bypass
 - **[Permission policy](.skilled/hooks/permission-policy/README.md)** - the fail-closed Devin permission decision
-- **[Dispatch hooks](.skilled/hooks/dispatch/README.md)** - the preflight lint and the audit log redaction
+- **[Dispatch hooks](.skilled/hooks/cli-dispatch/README.md)** - the preflight lint and the audit log redaction
 - **[Destructive scope violations](.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md)** - the recorded deletion incident and the four-layer mitigation
 - **[Code Mode install guide](.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md)** - `.env` setup and prefixed variable names
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - how to contribute a fix

@@ -30,7 +30,7 @@ const HOOK_PATH = path.join(
   '..',
   '..',
   'hooks',
-  'task-dispatch',
+  'subagent-dispatch-guard',
   'claude',
   'task-dispatch-guard.cjs',
 );
@@ -40,9 +40,9 @@ const GUARD_CORE_PATH = path.join(
   '..',
   '..',
   'hooks',
-  'task-dispatch',
+  'subagent-dispatch-guard',
   'lib',
-  'dispatch-guard.cjs',
+  'subagent-dispatch-guard.cjs',
 );
 const guardCore = require(GUARD_CORE_PATH);
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "vibe print mode"
   - "delegate to vibe"
   - "cli-mistral-vibe"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Mistral Vibe Dispatch Mode (vibe)
@@ -56,15 +56,15 @@ ACP (`vibe-acp`) is a stdio JSON-RPC agent that writes no `export.json` and has 
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/providers-and-models.md` | Shared | The `mistral` provider row, the two roster aliases, the `allowed_models` close, the catalog result, the default route and the billing question. |
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/runtime-folder-and-sync.md` | Shared | The `.vibe/` folder, the trust gate, the three generators and `VIBE_HOME` isolation. |
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/references/guards-and-hooks.md` | Shared | The seven hook types, the plugin port table and the captured wire format. |
-| `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` | Shared | Classifies the Vibe print forms as `direct cli-mistral-vibe`. |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared | Implements one check per Vibe hard rule. |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs` | Shared | Classifies the Vibe print forms as `direct cli-mistral-vibe`. |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | Shared | Implements one check per Vibe hard rule. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | The Vibe print forms resolve to the packet, and version, help and config commands do not. |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Node test | A complete isolated dispatch passes every Vibe rule, and each rule refuses its own violating command. |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs` | Automated test | The Vibe print forms resolve to the packet, and version, help and config commands do not. |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` | Node test | A complete isolated dispatch passes every Vibe rule, and each rule refuses its own violating command. |
 | `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts` | Vitest | The fan-out adapter's command build, `VIBE_HOME` handling and `export.json` scoring against a shimmed binary. |
 
 ---

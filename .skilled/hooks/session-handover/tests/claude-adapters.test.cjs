@@ -11,8 +11,8 @@ const os = require('node:os');
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 
-const CONTEXT_NUDGE_PATH = path.resolve(__dirname, '../claude/context-nudge.mjs');
-const STOP_ARM_PATH = path.resolve(__dirname, '../claude/stop-arm.mjs');
+const CONTEXT_NUDGE_PATH = path.resolve(__dirname, '../claude/handover-context-nudge.mjs');
+const STOP_ARM_PATH = path.resolve(__dirname, '../claude/handover-stop-arm.mjs');
 const POST_TOOL_USE = require('./fixtures/payload-post-tool-use.json');
 const USER_PROMPT_SUBMIT = require('./fixtures/payload-user-prompt-submit.json');
 const STOP_PAYLOAD = require('./fixtures/payload-stop.json');
@@ -1476,7 +1476,7 @@ test('context-nudge writes SYSTEM_SPEC_FOLDER into the note when the payload car
   assert.match(context, /^ +spec_folder: specs\/hooks\/001-session-relaunch$/m);
 });
 
-const COMPACT_POINTER = path.resolve(__dirname, '../claude/compact-pointer.mjs');
+const COMPACT_POINTER = path.resolve(__dirname, '../claude/handover-compact-pointer.mjs');
 const NOTE_CREATED_AT = '2026-10-25T10:00:00Z';
 
 function writeOpenNote(sandbox, sessionId = SESSION_ID) {

@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-015 -- Deep-loop guard refuses a dispatch whose mode disagrees with the registry"
 description: "This scenario validates that the Vibe deep-loop-guard pre_tool hook refuses an agents_spawn whose prompt declares a workflow mode the mode registry does not give the target agent, judged from the session journal."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # VIB-HK-015 -- Deep-loop guard refuses a dispatch whose mode disagrees with the registry
@@ -143,7 +143,7 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 |---|---|
 | `.vibe/plugins/repo-guards/deep-loop-guard.mjs` | The hook under test |
 | `.vibe/hooks.toml` | The hook binding |
-| `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs` | The runtime-neutral core that indexes the registry and decides the mismatch |
+| `.skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs` | The runtime-neutral core that indexes the registry and decides the mismatch |
 | `.skilled/skills/system-deep-loop/mode-registry.json` | The registry that gives `deep-research` the `research` mode only |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` | The runner and its `vibe` adapter |
 

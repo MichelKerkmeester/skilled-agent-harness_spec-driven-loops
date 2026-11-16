@@ -36,7 +36,7 @@ import {
   type SpawnCjsResult,
 } from '../helpers/spawn-cjs';
 import { detectSameKindFromStack } from '../../lib/deep-loop/executor-audit.js';
-import { VIBE_ROSTER_ALIASES } from '../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
+import { VIBE_ROSTER_ALIASES } from '../../../../../hooks/cli-dispatch/lib/dispatch-rule-checks.mjs';
 import { gatewayAppendShell } from '../helpers/gateway-backed-lineage';
 import {
   CURSOR_DEFAULT_MODEL as TS_CURSOR_DEFAULT_MODEL,

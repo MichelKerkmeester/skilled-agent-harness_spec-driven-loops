@@ -58,12 +58,12 @@ upstream_assets:
 # `file_exists` failure on any row below is reported as a degraded hook adapter,
 # not a mirror-structure drift.
 hook_adapter_fallback_health_checks:
-  - { host: claude, event: PreToolUse, path: ".skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs", type: file_exists }
+  - { host: claude, event: PreToolUse, path: ".skilled/hooks/cli-dispatch/claude/dispatch-preflight-lint.mjs", type: file_exists }
   - { host: claude, event: PreToolUse, path: ".skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs", type: file_exists }
   - { host: claude, event: PreToolUse, path: ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs", type: file_exists }
   - { host: claude, event: PreToolUse, path: ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs", type: file_exists }
-  - { host: claude, event: PreToolUse, path: ".skilled/hooks/task-dispatch/claude/task-dispatch-guard.cjs", type: file_exists }
-  - { host: claude, event: PreToolUse, path: ".skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs", type: file_exists }
+  - { host: claude, event: PreToolUse, path: ".skilled/hooks/subagent-dispatch-guard/claude/task-dispatch-guard.cjs", type: file_exists }
+  - { host: claude, event: PreToolUse, path: ".skilled/hooks/subagent-dispatch-guard/claude/fable-subagent-guard.mjs", type: file_exists }
   - { host: claude, event: PreToolUse, path: ".skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs", type: file_exists }
   - { host: claude, event: PreToolUse, path: ".skilled/hooks/overlay-guard/claude/overlay-guard.cjs", type: file_exists }
   - { host: claude, event: PreToolUse, path: ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs", type: file_exists }
@@ -79,8 +79,8 @@ hook_adapter_fallback_health_checks:
   - { host: claude, event: Stop, path: ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js", type: file_exists }
   - { host: claude, event: Stop, path: ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs", type: file_exists }
   - { host: claude, event: SessionEnd, path: ".skilled/scripts/session-cleanup.sh", type: file_exists }
-  - { host: claude, event: PostToolUse, path: ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs", type: file_exists }
-  - { host: claude, event: PostToolUse, path: ".skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs", type: file_exists }
+  - { host: claude, event: PostToolUse, path: ".skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs", type: file_exists }
+  - { host: claude, event: PostToolUse, path: ".skilled/hooks/cli-dispatch/claude/dispatch-audit-posttooluse.mjs", type: file_exists }
   - { host: claude, event: PreCompact, path: ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js", type: file_exists }
   - { host: cursor, event: sessionStart, path: ".skilled/skills/system-spec-kit/runtime/dist/hooks/cursor/session-start.js", type: file_exists }
   - { host: cursor, event: sessionStart, path: ".skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs", type: file_exists }
@@ -92,7 +92,7 @@ hook_adapter_fallback_health_checks:
   - { host: cursor, event: sessionEnd, path: ".skilled/skills/system-spec-kit/runtime/dist/hooks/cursor/session-end.js", type: file_exists }
   - { host: cursor, event: sessionEnd, path: ".skilled/scripts/session-cleanup.sh", type: file_exists }
   - { host: cursor, event: preToolUse, path: ".skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs", type: file_exists }
-  - { host: cursor, event: preToolUse, path: ".skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs", type: file_exists }
+  - { host: cursor, event: preToolUse, path: ".skilled/hooks/subagent-dispatch-guard/cursor/task-dispatch-guard.mjs", type: file_exists }
   - { host: cursor, event: preToolUse, path: ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs", type: file_exists }
   - { host: cursor, event: preToolUse, path: ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs", type: file_exists }
   - { host: cursor, event: postToolUse, path: ".skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs", type: file_exists }
@@ -107,7 +107,7 @@ hook_adapter_fallback_health_checks:
   - { host: codex, event: SessionStart, path: ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh", type: file_exists }
   - { host: codex, event: UserPromptSubmit, path: ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js", type: file_exists }
   - { host: codex, event: UserPromptSubmit, path: ".skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs", type: file_exists }
-  - { host: codex, event: PreToolUse, path: ".skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs", type: file_exists }
+  - { host: codex, event: PreToolUse, path: ".skilled/hooks/cli-dispatch/codex/dispatch-preflight-lint.mjs", type: file_exists }
   - { host: codex, event: PreToolUse, path: ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs", type: file_exists }
   - { host: codex, event: PreToolUse, path: ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs", type: file_exists }
   - { host: codex, event: PreToolUse, path: ".skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs", type: file_exists }
@@ -116,7 +116,7 @@ hook_adapter_fallback_health_checks:
   - { host: codex, event: PreToolUse, path: ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs", type: file_exists }
   - { host: codex, event: PostToolUse, path: ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard-after.cjs", type: file_exists }
   - { host: codex, event: PostToolUse, path: ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs", type: file_exists }
-  - { host: codex, event: PostToolUse, path: ".skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs", type: file_exists }
+  - { host: codex, event: PostToolUse, path: ".skilled/hooks/cli-dispatch/codex/dispatch-audit-posttooluse.mjs", type: file_exists }
   - { host: codex, event: Stop, path: ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/session-stop.js", type: file_exists }
   - { host: codex, event: Stop, path: ".skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs", type: file_exists }
   - { host: codex, event: Stop, path: ".skilled/scripts/session-cleanup.sh", type: file_exists }

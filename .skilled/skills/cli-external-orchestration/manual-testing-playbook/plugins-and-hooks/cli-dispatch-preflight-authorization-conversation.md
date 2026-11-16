@@ -6,7 +6,7 @@ trigger_phrases:
   - "Pi dispatch authorization follow-up"
   - "CE-P05"
 id: CE-P05
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CE-P05 -- CLI Dispatch Preflight Authorization Conversation
@@ -51,7 +51,7 @@ Operators run the exact conversation and runner command for `CE-P05` and confirm
 {
   "runtimes": ["pi"],
   "setup": [
-    "if [ ! -f \"$CONVERSATION_REPO_ROOT/.pi/extensions/dispatch-preflight-lint.ts\" ] || [ ! -f \"$CONVERSATION_REPO_ROOT/.pi/extensions/dispatch-audit.ts\" ] || [ ! -f \"$CONVERSATION_REPO_ROOT/.skilled/hooks/dispatch/lib/dispatch-audit.mjs\" ]; then printf 'Pi dispatch fixtures are unavailable\\n'; exit 77; fi",
+    "if [ ! -f \"$CONVERSATION_REPO_ROOT/.pi/extensions/dispatch-preflight-lint.ts\" ] || [ ! -f \"$CONVERSATION_REPO_ROOT/.pi/extensions/dispatch-audit.ts\" ] || [ ! -f \"$CONVERSATION_REPO_ROOT/.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs\" ]; then printf 'Pi dispatch fixtures are unavailable\\n'; exit 77; fi",
     "if ! command -v codex >/dev/null 2>&1; then printf 'codex CLI is unavailable\\n'; exit 77; fi",
     "CODEX_AUTH=$(codex login status 2>&1 || true); if ! printf '%s\\n' \"$CODEX_AUTH\" | grep -Eiq '(^logged in|chatgpt-oauth)'; then printf 'Codex ChatGPT OAuth is unavailable\\n'; exit 77; fi",
     "if ! command -v curl >/dev/null 2>&1 || ! curl -sS -o /dev/null -I --max-time 10 https://api.openai.com/; then printf 'Codex network access is unavailable\\n'; exit 77; fi",
@@ -143,8 +143,8 @@ This plugin and hook scenario has no dedicated feature-catalog entry.
 |---|---|
 | `.pi/extensions/dispatch-preflight-lint.ts` | Pi authorization gate |
 | `.pi/extensions/dispatch-audit.ts` | Pi audit extension |
-| `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` | Shared Pi preflight decision logic |
-| `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` | Runtime-neutral audit record writer |
+| `.skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.ts` | Shared Pi preflight decision logic |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs` | Runtime-neutral audit record writer |
 
 ---
 

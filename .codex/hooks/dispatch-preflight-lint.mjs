@@ -1,1 +1,1 @@
-../../.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs
+../../.skilled/hooks/cli-dispatch/codex/dispatch-preflight-lint.mjs

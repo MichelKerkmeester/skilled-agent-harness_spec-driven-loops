@@ -183,13 +183,13 @@ const ADAPTERS = {
   claude: {
     runtime: 'claude',
     seed: async ({ env, root }, prompt) => hookContext(await runHook(
-      path.join(HOOK_ROOT, 'claude', 'context-nudge.mjs'),
+      path.join(HOOK_ROOT, 'claude', 'handover-context-nudge.mjs'),
       env,
       { hook_event_name: 'UserPromptSubmit', session_id: SESSION_ID, cwd: root, prompt },
       root,
     )),
     nudge: async ({ env, root }) => hookContext(await runHook(
-      path.join(HOOK_ROOT, 'claude', 'context-nudge.mjs'),
+      path.join(HOOK_ROOT, 'claude', 'handover-context-nudge.mjs'),
       env,
       {
         hook_event_name: 'PostToolUse',
@@ -203,7 +203,7 @@ const ADAPTERS = {
     stampsDeferred: true,
     arm: async ({ env, root }, { cwd, processTable }) => {
       const spawns = [];
-      const { armPendingRecord } = await importAdapter('claude', 'stop-arm.mjs');
+      const { armPendingRecord } = await importAdapter('claude', 'handover-stop-arm.mjs');
       await armPendingRecord(
         {
           hook_event_name: 'Stop',
@@ -220,13 +220,13 @@ const ADAPTERS = {
   codex: {
     runtime: 'codex',
     seed: async ({ env, root }, prompt) => hookContext(await runHook(
-      path.join(HOOK_ROOT, 'codex', 'prompt-seed.mjs'),
+      path.join(HOOK_ROOT, 'codex', 'handover-prompt-seed.mjs'),
       env,
       { hook_event_name: 'UserPromptSubmit', session_id: SESSION_ID, cwd: root, prompt },
       root,
     )),
     nudge: async ({ env, root }) => hookContext(await runHook(
-      path.join(HOOK_ROOT, 'codex', 'context-nudge.mjs'),
+      path.join(HOOK_ROOT, 'codex', 'handover-context-nudge.mjs'),
       env,
       {
         hook_event_name: 'PostToolUse',
@@ -239,7 +239,7 @@ const ADAPTERS = {
     killerTarget: '60',
     arm: async ({ env, root }, { cwd, processTable }) => {
       const spawns = [];
-      const { armPendingRecord } = await importAdapter('codex', 'stop-arm.mjs');
+      const { armPendingRecord } = await importAdapter('codex', 'handover-stop-arm.mjs');
       await armPendingRecord(
         {
           hook_event_name: 'Stop',
@@ -515,11 +515,11 @@ for (const [name, adapter] of Object.entries(ADAPTERS)) {
 // A hook entrypoint acts only when started as a script, so a test or another module can
 // import it, and reach its exports, without the import reading stdin or ending the process.
 const ENTRYPOINTS = [
-  ['claude', 'context-nudge.mjs'],
-  ['claude', 'stop-arm.mjs'],
-  ['codex', 'context-nudge.mjs'],
-  ['codex', 'prompt-seed.mjs'],
-  ['codex', 'stop-arm.mjs'],
+  ['claude', 'handover-context-nudge.mjs'],
+  ['claude', 'handover-stop-arm.mjs'],
+  ['codex', 'handover-context-nudge.mjs'],
+  ['codex', 'handover-prompt-seed.mjs'],
+  ['codex', 'handover-stop-arm.mjs'],
 ];
 
 for (const segments of ENTRYPOINTS) {

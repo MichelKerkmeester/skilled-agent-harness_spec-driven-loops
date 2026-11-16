@@ -14,22 +14,40 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`goal/pi/` holds the real Pi goal extension. `goal-context.ts` is discovered through `.pi/extensions/goal-context.ts`, a one-line entry file that re-exports the adapter. It registers `/goal-pi` and three lifecycle handlers that all load `../lib/goal-core.cjs` at call time, so the extension works from this folder. The long path in `DISCOVERY_CORE_PATH` is left from the link-based layout and does not resolve from this folder.
+`.skilled/hooks/goal/pi/` holds the real Pi goal extension, which Pi discovers through `.pi/extensions/goal-context.ts`. The entry file is a single line that re-exports the adapter. `goal-context.ts` registers the `/goal-pi` command and the three lifecycle handlers Pi fires. Each handler loads `../lib/goal-core.cjs` at call time, so the extension runs from this folder. The fallback path in `DISCOVERY_CORE_PATH` does not resolve from this folder.
 
-`input` binds a hand-over packet, reads the active record and returns `{ action: 'transform', text }` with the brief and any resend reminder appended to the operator's prompt. `session_start` restores the same brief with `pi.sendMessage` and `triggerTurn: false`. `turn_end` runs the heuristic verifier, records the turn and sends a `[goal_verify]` note with `deliverAs: 'nextTurn'` when the verdict is not met. That note never restarts a turn. Management shells to `bin/goal.cjs` with the native session id.
+`input` binds a hand-over packet, reads the active record and returns `{ action: 'transform', text }`. The text is the operator's prompt with the brief and any resend reminder appended. At `session_start` the handler restores the same brief through `pi.sendMessage` with `triggerTurn: false`.
 
----
+`turn_end` runs the heuristic verifier, records the turn and sends a `[goal_verify]` note with `deliverAs: 'nextTurn'` when the verdict is not met. That note never restarts a turn or steers the running one. Management shells to `.skilled/hooks/goal/bin/goal.cjs` with the native session id and workspace.
 
-## 2. WHAT EACH FILE DOES
-
-| File | Event | What it does | On error |
-|---|---|---|---|
-| `goal-context.ts` | `input`, `session_start`, `turn_end` and the `/goal-pi` command | Renders the bound goal brief, appends the resend reminder, restores it at session start, verifies at turn end and routes management through the shared CLI. | Every handler catches and fails open. `input` returns `{ action: 'continue' }`, `session_start` returns `undefined`, `turn_end` skips the nudge and the command notifies a `STATUS=FAIL` line. |
-| `goal-pi.test.mjs` | `node --test` | Covers the factory export, the registered handlers and command, per-session isolation, the verify nudge, the tool-heavy turn tail, missing identity, legacy-only state, native management and the hand-over bind. | A failed assertion fails the test process with a nonzero status. |
+Each lifecycle handler catches its own error and fails open. On a failure `input` returns `{ action: 'continue' }` and `session_start` returns `undefined`. A failed `turn_end` returns `undefined`, which skips the nudge for that turn. The command notifies a `STATUS=FAIL` line when the CLI prints nothing or cannot run.
 
 ---
 
-## 3. RELATED
+## 2. FILES
+
+| File | Responsibility |
+|---|---|
+| `goal-context.ts` | The Pi extension. It registers `/goal-pi` and the `input`, `session_start` and `turn_end` handlers. |
+| `goal-pi.test.mjs` | The `node --test` suite. It imports the real extension and drives it through a fake Pi API. |
+
+`goal-pi.test.mjs` covers the factory export, the registered handlers and command, per-session isolation and the verify nudge. It also covers the tool-heavy turn tail, missing identity, legacy-only state, native management and the hand-over bind. A failed assertion fails the test process with a nonzero status.
+
+---
+
+## 3. VALIDATION
+
+Run from the repository root.
+
+```bash
+node --test .skilled/hooks/goal/pi/goal-pi.test.mjs
+```
+
+Expected result: every test passes.
+
+---
+
+## 4. RELATED
 
 - [`../README.md`](../README.md): the concern index, with the per-runtime capability matrix and the state layout.
 - [`./goal-context.ts`](./goal-context.ts): the extension itself.

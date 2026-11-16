@@ -1,78 +1,166 @@
 ---
-title: "Spec Gate: runtime-neutral Gate-3 policy core"
-description: "Shared classify and enforce logic that turns the spec-folder-before-mutation rule into session-scoped state readable by every runtime hook (Claude, Codex, Cursor, Devin, Pi, OpenCode). The question is delivered at the first mutation, once per session; the menu is never appended to a write-intent turn. Advisory by default; deny is opt-in via SYSTEM_SPEC_GATE_ENFORCE."
+title: "Spec Gate: Gate-3 Policy Core and Runtime Adapters"
+description: "Asks for a spec folder before the first file mutation of a session, then remembers the answer. One policy core serves Claude, Codex, Cursor, Devin, DSH, OpenCode, Pi and Vibe, and each adapter picks its own channel for the question and the decision. Advisory by default. Deny is opt-in via SYSTEM_SPEC_GATE_ENFORCE, except on Vibe, whose pre_tool hook supplies the opt-in itself."
+trigger_phrases:
+  - "spec gate"
+  - "spec gate claude hook"
+  - "claude gate 3 classifier"
+  - "claude spec gate enforce"
+  - "spec gate codex hook"
+  - "codex gate 3 classifier"
+  - "codex spec gate enforce"
+  - "spec gate cursor hook"
+  - "cursor gate 3 prebind"
+  - "cursor spec gate enforce"
+  - "spec gate devin hook"
+  - "devin gate 3 classifier"
+  - "devin spec gate enforce"
+  - "spec gate dsh hook"
+  - "dsh gate 3 classifier"
+  - "dsh spec gate enforce"
+  - "spec gate opencode plugin"
+  - "opencode gate 3 transform"
+  - "opencode spec gate enforce"
+  - "spec gate pi hook"
+  - "pi gate 3 classifier"
+  - "pi spec gate dialog"
+importance_tier: "normal"
+contextType: "reference"
 ---
 
-# Spec Gate
+# Spec Gate: Gate-3 Policy Core and Runtime Adapters
 
 ---
 
 ## 1. OVERVIEW
 
-`lib/spec-gate/` is the single runtime-neutral implementation of the Gate-3 policy: ask for a spec folder before the first file mutation of a session, then remember the answer. `classifyIntent()` reads a user turn and either opens the gate or parses an answer to an already-open gate; the menu itself is **never appended to a model turn**, so a write-intent turn proceeds instead of stalling on a question. `evaluateMutation()` reads the cached gate state for a Write, Edit, or Bash call and returns `allow`, `advise`, or `deny`, reporting `gateOpenUndelivered` when an interactive runtime can still ask at that first mutation. A dispatched child (`AI_SESSION_CHILD=1`) short-circuits both entrypoints as a complete no-op before any gate-state read or write, question, denial, or telemetry.
+`spec-gate-core.mjs` is the one runtime-neutral implementation of the Gate-3 policy. It asks for a spec folder before the first file mutation of a session, then remembers the answer. `classifyIntent()` reads a user turn and either opens the gate or parses an answer to an already-open gate. `evaluateMutation()` reads the cached gate state for a write, edit or shell call and returns `allow`, `advise` or `deny`.
 
-The module owns atomic session-state persistence, an appendable warning log, and a throttled stale-state sweep, but it **never writes to stdout or stderr itself**: every runtime adapter wraps it and chooses its own emission channel. Every entrypoint **fails open**: an unreadable state file, a classifier throw, an unresolvable project root, or an unexpected argument shape all resolve to `allow` with no side effects.
+The menu is never appended to a model turn, so a write-intent turn proceeds instead of stalling on a question. A first, still-undelivered write reports `gateOpenUndelivered`, which lets an interactive runtime ask at that moment. A dispatched child (`AI_SESSION_CHILD=1`) short-circuits both entrypoints as a complete no-op.
 
-Deny is **opt-in** via `SYSTEM_SPEC_GATE_ENFORCE`. Without it, an open-gate mutation surfaces as `advise` (a warning the operator can ignore) rather than `deny`. This keeps the gate safe to ship by default and lets an operator turn on enforcement once they trust the classifier.
+Deny is opt-in via `SYSTEM_SPEC_GATE_ENFORCE`. Without it, an open-gate mutation surfaces as `advise`, a warning the operator can ignore. Vibe is the exception. Its `pre_tool` hook sets the opt-in when the operator has not, and an explicit `0` keeps it advisory. A payload `parent_session_id` marks a child session on Vibe.
 
----
-
-## 2. WHAT IT DOES
-
-The core exposes two main entrypoints plus state-management helpers:
-
-**`classifyIntent({ prompt, sessionID, projectDir, env })`**: runs the compiled Gate-3 classifier (`shared/dist/gate-3-classifier.js`) against the prompt. If the turn triggers file-mutation intent and the session gate is not yet answered, it opens the gate and returns the bounded Gate-3 question **for the runtime adapter to deliver at the first mutation** — adapters never put it on the turn itself. If the gate is already open, it parses the prompt as an answer and resolves the gate (recording the spec folder); a resume trigger or an unbound answer attempt also re-arms the one-time delivery marker. A dispatched child (`AI_SESSION_CHILD=1`) returns a complete no-op before any state read. Returns `{ question?, ... }`.
-
-**`evaluateMutation({ tool, filePath, sessionID, projectDir, env })`**, reads the cached gate state for a Write/Edit/Bash call. Returns `allow` (gate closed or target exempt), `advise` (gate open, mutation not yet scoped, warn only), or `deny` (gate open, mutation not scoped, `SYSTEM_SPEC_GATE_ENFORCE=1`). The `wouldDeny` flag distinguishes "would deny under enforcement" from "actually denied", so the warning log records both even when enforcement is off. A first, still-undelivered Write/Edit additionally reports `gateOpenUndelivered: true` so an interactive adapter can ask at that moment; its `advise` detail is `GATE_3_MUTATION_NOTICE` on the first delivery and `null` afterwards (a silent allow whose `wouldDeny` is still true), while `deny` keeps carrying `GATE_3_DENY_DETAIL` on every blocked call. A dispatched child short-circuits to `allow`.
-
-**Exempt targets** (`isExemptTargetPath`): a Write or Edit to one of these is always `allow`, decided on the real path after symlinks and `..` are resolved. They are the spec tree, `.git`, `node_modules`, `dist` output, anything outside the repo, and gitignored runtime state under `.skilled/skills/.state/`, such as a session-handover handoff note. The one tracked doc in a state dir, its `<concern>/README.md`, stays gated.
-
-**State & telemetry helpers:** `resolveGuardPaths(projectDir)`, `readGateState`/`writeGateStateAtomic`/`evictGateState`, `appendWarningLog(stateDir, detail)`, `formatSpecGateEvent({...})`, `sweepStaleGateStates(stateDir, runtimeState)` (throttled), `isChildSession(env)`.
-
-**Shadow-delivery observation (telemetry):** `observeGate3QuestionDelivery(request)` records that the Gate-3 question was actually emitted; `shouldSuppressGate3Delivery(request)` decides whether a repeated question may be suppressed. A question is confirmable only by an observed receipt whose `lifecycleEpoch >= 1` matches the question hash: epoch 0 (no lifecycle boundary yet) never confirms. This in-memory epoch/receipt machinery is no longer the emission gate — repeated-delivery suppression is decided by the persisted per-session marker below, and the receipts stay as telemetry. Receipt/epoch helpers: `buildGate3ObservedReceipt`, `currentGate3LifecycleEpoch`, `advanceGate3LifecycleEpoch`, `clearGate3SessionDelivery`.
-
-**Mutation-time delivery:** the session state file carries a delivery marker (`questionDeliveredAtMs`, `questionDeliveredChannel`, `questionDeliveredCount`), so suppression survives runtimes that lose process memory between events. `recordGate3NoticeDelivered({ sessionID, projectDir, channel })` writes it once the notice is actually on the wire (channels in use: `mutation`, `dialog`, `dialog-cancelled`, `system-deferral`, `classify-deferral`); `shouldDeliverGate3Deferral({ sessionID, projectDir, env })` reports whether the no-dialog deferral instruction still has to be relayed; `bindGate3Answer({ answer, sessionID, projectDir, env })` binds a programmatically chosen answer (the interactive dialog path) with the same acceptance rules as a conversational answer; `rearmGate3NoticeDelivery({ sessionID, projectDir, env })` clears the marker for a resume event that carries no prompt. Suppression is on by default once delivered; only `SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION=0` forces every in-gate mutation to ask again, and anything unreadable delivers (fail-open).
-
-**Prompt sanitization (Pi):** `sanitizePromptForClassify` strips sibling injections (the advisor's directives capsule) and the harness's embedded conversation history from a prompt before classification, so only the user's own latest words classify. Input transforms chain across Pi handlers, so the hook sees injected prose containing literal trigger words ("write", "move") and history text that would re-open the gate on read-only turns without the sanitizer.
-
-**Session keying:** `resolveSessionKey({ sessionId, sessionFile })`: the session file stays stable across invocations of one conversation while the session id is fresh per process; both classify and enforce must key state identically or classify's answer never reaches enforce's lookup.
+The core owns atomic session-state persistence, an appendable warning log and a throttled stale-state sweep. It never writes to stdout or stderr itself, because every adapter chooses its own emission channel.
 
 ---
 
-## 3. PER-RUNTIME DELIVERY
+## 2. HOW IT WORKS
 
-Every runtime adapter imports the **same** `spec-gate-core.mjs` and calls `classifyIntent` / `evaluateMutation`. What differs is the event each runtime fires, the payload shape, and the channel the question/decision is handed back through.
+Every adapter calls the same core. The core holds the policy, and an adapter holds only payload parsing plus the envelope its runtime reads.
 
-| Runtime | Adapters | Event / wiring | Payload difference it handles | Delivery |
+### Classify
+
+`classifyIntent({ prompt, sessionID, projectDir, env })` runs the compiled classifier at `shared/dist/gate-3-classifier.js`. A write-intent turn opens the gate and returns `{ question?, ... }`. The adapter delivers that question at the first mutation, never on the turn itself. When the gate is already open, the prompt is parsed as an answer and the gate resolves with the recorded spec folder. A resume trigger or an unbound answer attempt re-arms the one-time delivery marker.
+
+### Enforce
+
+`evaluateMutation({ tool, filePath, sessionID, projectDir, env })` reads the cached gate state for a write, edit or shell call. It returns one of three decisions.
+
+| Decision | When |
+|---|---|
+| `allow` | The gate is closed, the target is exempt or the session is a child. |
+| `advise` | The gate is open and the mutation is not yet scoped. The operator sees a warning. |
+| `deny` | The gate is open, the mutation is not scoped and `SYSTEM_SPEC_GATE_ENFORCE=1` is set. |
+
+The `wouldDeny` flag separates a would-deny from an actual deny, so the warning log records both. A first, still-undelivered write or edit also reports `gateOpenUndelivered: true`. Its `advise` detail is `GATE_3_MUTATION_NOTICE` on the first delivery and `null` afterwards. A silent allow still carries `wouldDeny` true. A `deny` keeps carrying `GATE_3_DENY_DETAIL` on every blocked call.
+
+### Exempt Targets
+
+`isExemptTargetPath` decides on the real path, after symlinks and `..` are resolved. A write or edit to an exempt target is always `allow`. The exempt classes are the spec tree, `.git`, `node_modules`, `dist` output and anything outside the repo. Gitignored runtime state under `.skilled/skills/.state/` is exempt too. The one tracked doc in a state dir, its `<concern>/README.md`, stays gated.
+
+### State And Telemetry
+
+`resolveGuardPaths(projectDir)` anchors the state dir at the repository root. `readGateState`, `writeGateStateAtomic` and `evictGateState` own a JSON file per session. `appendWarningLog(stateDir, detail)` appends one line to a bounded, rotated log. `formatSpecGateEvent({...})` composes that line and scrubs secrets from the path.
+
+The core logs one line whenever the decision is not `allow`. Once the notice is delivered, an unenforced mutation resolves to a silent allow, so the core writes no further line. OpenCode still logs a would-deny on that allow. `sweepStaleGateStates(stateDir, runtimeState)` archives stale files and is throttled. `isChildSession(env)` reads the child flag.
+
+### Shadow Delivery
+
+`observeGate3QuestionDelivery(request)` records that the question was actually emitted. `shouldSuppressGate3Delivery(request)` decides whether a repeat may be suppressed. A question is confirmable only by an observed receipt whose `lifecycleEpoch >= 1` matches the question hash. Epoch 0 never confirms. This in-memory machinery is telemetry now, not the emission gate. The receipt and epoch helpers are `buildGate3ObservedReceipt`, `currentGate3LifecycleEpoch`, `advanceGate3LifecycleEpoch` and `clearGate3SessionDelivery`.
+
+### Delivery Marker
+
+The session state file carries a delivery marker: `questionDeliveredAtMs`, `questionDeliveredChannel` and `questionDeliveredCount`. Suppression therefore survives a runtime that loses process memory between events. `recordGate3NoticeDelivered({ sessionID, projectDir, channel })` writes the marker once the notice is on the wire. The channels in use are `mutation`, `dialog`, `dialog-cancelled`, `system-deferral` and `classify-deferral`.
+
+`shouldDeliverGate3Deferral({ sessionID, projectDir, env })` reports whether the no-dialog deferral still has to be relayed. `bindGate3Answer({ answer, sessionID, projectDir, env })` binds a programmatic answer under the same rules as a conversational one. `rearmGate3NoticeDelivery({ sessionID, projectDir, env })` clears the marker for a resume event that carries no prompt.
+
+Suppression is on by default once delivered. `SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION=0` forces every in-gate mutation to ask again, and so do `false`, `no` and `off`. Anything unreadable delivers, so the fail-open direction is to ask.
+
+### Prompt Sanitization
+
+`sanitizePromptForClassify` strips sibling injections and the embedded conversation history from a prompt before classification. Only the user's own latest words classify. Input transforms chain across Pi handlers, so the hook sees injected prose with literal trigger words. History text would re-open the gate on read-only turns without the sanitizer.
+
+### Session Keying
+
+`resolveSessionKey({ sessionId, sessionFile })` keeps the session file stable across invocations of one conversation. The session id is fresh per process. Classify and enforce must key state identically, or classify's answer never reaches enforce's lookup.
+
+### Shell Writes
+
+A shell command that writes a file is never refused. `DENY_CAPABLE_TOOLS` holds `write` and `edit` only, so `bash` is never deny-capable. The core also skips target-path evaluation for `bash`, so a shell call carries no path for the gate to check. A shell call can still be advised and logged. The operator kept this as a known limit rather than parse shell redirects.
+
+---
+
+## 3. RUNTIME COVERAGE
+
+Each entry below is relative to `.skilled/hooks/spec-gate/`. That folder links this file as its README, and its runtime folders hold links only.
+
+| Runtime | Event | Entry in this folder | Real file | What the runtime shows |
 |---|---|---|---|---|
-| **Claude** | `claude/spec-gate-classify.mjs`, `claude/spec-gate-enforce.mjs` | `UserPromptSubmit` (classify, matcher `""`) + `PreToolUse` (enforce, matchers `Bash` and `Write\|Edit`) in `.claude/settings.json`; timeout 5s | Reads `prompt` + `cwd` + `session_id` (classify); `tool_name` + `tool_input.file_path` + `cwd` (enforce); falls back to `CLAUDE_PROJECT_DIR` then `process.cwd()` | Classify: silent — opens the gate, writes nothing. Enforce: `permissionDecision: deny` JSON on deny; `additionalContext` carrying the once-per-session notice on the first in-gate Write/Edit; exit 0 otherwise |
-| **Codex** | `codex/spec-gate-classify.mjs`, `codex/spec-gate-enforce.mjs` | `UserPromptSubmit` (classify) + `PreToolUse` (enforce, matcher `exec\|apply_patch\|edit`) in `.codex/hooks.json`; timeout 5s | Same shape as Claude over Codex's `exec`/`apply_patch`/`edit` tools; `cd "${CODEX_PROJECT_DIR:-$PWD}"`; fallback `printf` envelope on resolution failure | Same silent classify, once-per-session advise notice, and deny JSON |
-| **Cursor** | `cursor/spec-gate-prebind.mjs`, `cursor/spec-gate-classify.mjs`, `cursor/spec-gate-enforce.mjs` | `sessionStart` (prebind) + `beforeSubmitPrompt` (classify) + `preToolUse` (enforce) in `.cursor/hooks.json`; timeout 10s | Cursor does not deliver its prompt-classification event reliably under the CLI, so `sessionStart` is the confirmed place to establish state: `prebind` satisfies the gate immediately when `SYSTEM_SPEC_FOLDER` names a valid spec folder (source `flags`, never `prior_answer`), or opens it when `SYSTEM_SPEC_GATE_ENFORCE=1`. `classify` runs the shared classifier when the prompt event does fire. `enforce` evaluates mutations | Prebind: `permission: allow` JSON. Classify: silent. Enforce: `agent_message` carries the once-per-session notice on advise; deny/allow as elsewhere |
-| **Devin** | `devin/spec-gate-classify.mjs`, `devin/spec-gate-enforce.mjs` | `UserPromptSubmit` (classify, matcher `""`) + `PreToolUse` (enforce, matchers `^exec$` and `^(edit\|write)$`) in `.devin/hooks.v1.json`; timeout 5-10s | Same shape as Claude over Devin's `exec`/`edit`/`write` tools; `cd "${DEVIN_PROJECT_DIR:-$PWD}"` | Same silent classify, once-per-session advise notice, and deny JSON |
-| **Pi** | `pi/spec-gate-classify.ts`, `pi/spec-gate-enforce.ts` (real files; one-line `.pi/extensions/` entries re-export them) | `input` (classify) + `tool_call` (enforce, tools `bash`/`write`/`edit`) via `.pi/extensions/` | Imports the core in-process. Classify sanitizes the prompt (`sanitizePromptForClassify`) and keys state via `resolveSessionKey({ sessionId, sessionFile })`. Enforce keys state identically so classify's answer reaches enforce's lookup | Classify: leaves the turn untouched when `ctx.hasUI`; appends the one-shot deferral instruction only when it is false. Enforce: at the first in-gate Write/Edit opens an interactive `ctx.ui.select` + path-input dialog, binds the answer programmatically, and blocks that single call with a retry reason; `block: true` + `reason` on deny |
-| **OpenCode** | `.opencode/plugins/system-spec-gate.js` (mirrored at `opencode/` via browsability symlink) | Plugin. `experimental.chat.system.transform` (classify), `tool.execute.before` for mutating tools + `bash` (enforce), `event` for session lifecycle | `experimental.chat.system.transform`'s typed input carries no `prompt` field, so the adapter best-effort fetches the session's last user message via `ctx.client` (guarded, fail-open) when `extractPrompt(input)` comes up empty. Enforce throws `system-spec-gate: <detail>` on deny (OpenCode's deny signal); the plugin's catch re-throws only that message and swallows everything else | Classify: one-shot deferral instruction appended to `output.system` (never the menu). Enforce: throw on deny (blocks the tool call); advise and would-deny telemetry logged to the state dir, never stdout/stderr. `event`: sweeps stale state on `session.created`, advances the lifecycle epoch and re-arms the delivery marker on `session.resumed`/`compacted`/`compact`, evicts on `session.deleted` |
+| Claude | `UserPromptSubmit` | `claude/spec-gate-classify.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs` | Nothing. The gate opens and the hook exits 0. |
+| Claude | `PreToolUse` | `claude/spec-gate-enforce.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs` | A `permissionDecision: deny` JSON on deny. An `additionalContext` notice on the first in-gate write or edit. |
+| Codex | `UserPromptSubmit` | `codex/spec-gate-classify.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | Nothing. The gate opens and the hook exits 0. |
+| Codex | `PreToolUse` | `codex/spec-gate-enforce.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | The same deny JSON and the same `additionalContext` notice as Claude. |
+| Cursor | `beforeSubmitPrompt` | `cursor/spec-gate-classify.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs` | `{"permission":"allow"}` and nothing else. |
+| Cursor | `preToolUse` | `cursor/spec-gate-enforce.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` | `permission: deny` with `user_message` and `agent_message` on deny, exit 2. `permission: allow` with an `agent_message` notice on advise. |
+| Cursor | `sessionStart` | `cursor/spec-gate-prebind.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs` | `permission: allow`. The hook writes gate state and says nothing else. |
+| Devin | `UserPromptSubmit` | `devin/spec-gate-classify.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs` | Nothing. The gate opens and the hook exits 0. |
+| Devin | `PreToolUse` | `devin/spec-gate-enforce.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs` | The same deny JSON and the same `additionalContext` notice as Claude. |
+| DSH | `agent/pre-step` | `dsh/spec-gate-classify.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/dsh/spec-gate-classify.mjs` | One extra user-role message carrying the deferral instruction, once per stretch of work. |
+| DSH | `tools/pre-execute` | `dsh/spec-gate-enforce.mjs` | `.skilled/skills/system-spec-kit/runtime/hooks/dsh/spec-gate-enforce.mjs` | A `deny` verdict with a reason. An `ask` verdict with a reason at the first undelivered write or edit. |
+| OpenCode | `experimental.chat.system.transform`, `tool.execute.before`, `event` (`session.created`, `session.resumed`, `session.compacted`, `session.compact`, `session.deleted`) | `opencode/system-spec-gate.js` | `.opencode/plugins/system-spec-gate.js` | The deferral instruction appended to `output.system`. A thrown `system-spec-gate: <detail>` on deny. One log line for an advise or a would-deny. |
+| Pi | `input` | `pi/spec-gate-classify.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts` | The turn untouched when `ctx.hasUI` is true. The deferral instruction appended when it is false. |
+| Pi | `tool_call` | `pi/spec-gate-enforce.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts` | An interactive `ctx.ui.select` dialog and a path input at the first undelivered write or edit. `block: true` with a reason on deny. |
+| Vibe | `pre_agent` | None | `.vibe/plugins/repo-guards/spec-gate-classify.mjs` | `hook_specific_output.additional_context` carrying the deferral instruction, once per stretch of work. |
+| Vibe | `pre_tool` | None | `.vibe/plugins/repo-guards/spec-gate.mjs` | A `decision: deny` object with a reason on deny. A `system_message` note to the operator on advise. |
 
-OpenCode discovers plugins solely from `.opencode/plugins/`, so `system-spec-gate.js` must live there; `opencode/system-spec-gate.js` is a relative symlink back into that folder for browsability: nothing loads through it. Pi loads in the other direction: the real `pi/spec-gate-*.ts` files live here, and `.pi/extensions/spec-gate-*.ts` are the one-line entry files Pi discovers.
+Claude, Codex, Cursor and Devin register their adapters in `hook-registry.json`. The Claude entries land in `.claude/settings.json` and the Codex entries in `.codex/hooks.json`. The Cursor entries land in `.cursor/hooks.json` and the Devin entries in `.devin/hooks.v1.json`. Claude gives classify 3 seconds and enforce 5. Codex gives classify 3 and enforce 5. Cursor gives every entry 10 seconds. Devin gives classify 10 and enforce 5.
+
+Claude matches `""` for classify. It matches `Bash` and `Write\|Edit` for enforce. The Codex matcher is `exec\|Bash\|apply_patch\|edit`. Codex maps `exec` and `bash` to shell, `apply_patch` to write and `edit` to edit, and reads paths from the patch text. The Devin matchers are `^exec$` and `^(edit\|write)$`. Cursor registers no matcher and gates only `Shell` and `Write`. Devin exits 0 on a blank session id. DSH guards `write`, `edit`, `apply_patch` and `bash`.
+
+Claude reads `prompt`, `cwd` and `session_id` for classify. It reads `tool_name`, `tool_input.file_path` and `cwd` for enforce. Claude falls back to `CLAUDE_PROJECT_DIR` and then `process.cwd()`. Codex runs `cd "${CODEX_PROJECT_DIR:-$PWD}"` and prints a `printf` envelope when resolution fails. Devin runs `cd "${DEVIN_PROJECT_DIR:-$PWD}"`.
+
+Cursor does not deliver its prompt event reliably under the CLI. `sessionStart` is the confirmed place to establish state, so `prebind` satisfies the gate when `SYSTEM_SPEC_FOLDER` names a valid spec folder. It records the source as `flags`, never `prior_answer`. Without a valid declaration it opens the gate when `SYSTEM_SPEC_GATE_ENFORCE=1`. `classify` runs the shared classifier when the prompt event does fire. `enforce` judges mutations.
+
+Pi loads the real files from `.skilled/skills/system-spec-kit/runtime/hooks/pi/`. `.pi/extensions/spec-gate-*.ts` are one-line entries that re-export them. Once the dialog binds an answer, enforce blocks that one call and asks for a retry.
+
+DSH registers both adapters in `.dsh/plugins/repo-guards/index.mjs`. Its classify handler reads only a message the operator typed, so a guard notice or a context snapshot never classifies.
+
+OpenCode discovers plugins only from `.opencode/plugins/`, so `system-spec-gate.js` must live there. A relative link in the `opencode/` folder points back at that file for browsing, and nothing loads through it. The transform input carries no prompt field, so the adapter fetches the session's last user message through `ctx.client` when `extractPrompt(input)` comes up empty. The `event` handler sweeps on `session.created`. It advances the epoch and re-arms the marker on `session.resumed`, `session.compacted` and `session.compact`. It evicts on `session.deleted`.
+
+Vibe registers both hooks in `.vibe/hooks.toml`. `spec-gate-classify` is a `pre_agent` hook. `spec-gate` is a strict `pre_tool` hook matching `bash`, `process_start`, `write_file` and `edit`. Its `pre_tool` hook sets `SYSTEM_SPEC_GATE_ENFORCE=1` when the operator has not set a value, and an explicit `0` keeps the core advisory. A payload `parent_session_id` marks a child session. Vibe has no entry in this folder.
+
+Each adapter has its own error path. On an internal error `evaluateMutation` returns `allow`, and `classifyIntent` evicts the session state and returns closed. The Claude, Codex, Cursor and Devin adapters end in `main().catch(() => approve())`. Each of those catches writes a stderr line before it exits 0. The Cursor prebind adapter catches into `allow()` instead. Cursor's approve prints `permission: allow`. Its classify emits `{"permission":"allow"}`.
+
+Pi returns `{ action: "continue" }` from classify and `undefined` from enforce. OpenCode swallows every error except its own `system-spec-gate:` throw. DSH classify logs a warning and returns the step unchanged. DSH enforce fails closed and returns a `deny` verdict. Vibe reports on stderr and exits 0.
 
 ---
 
 ## 4. DIRECTORY TREE
 
 ```text
-lib/spec-gate/
-+-- README.md              # this reference (symlinked from .skilled/hooks/spec-gate/README.md)
-`-- spec-gate-core.mjs     # the policy core
-
-<runtime>/spec-gate-classify.mjs   # claude, codex, cursor, devin
-<runtime>/spec-gate-enforce.mjs    # claude, codex, cursor, devin
-cursor/spec-gate-prebind.mjs       # Cursor-only sessionStart state prebind
-pi/spec-gate-classify.ts           # real Pi extension (.pi/extensions/ re-exports it)
-pi/spec-gate-enforce.ts            # real Pi extension
-runtime/tests/spec-gate-pi-extension.vitest.ts  # fake-ExtensionAPI suite for both Pi extensions
-.opencode/plugins/system-spec-gate.js  # OpenCode plugin
+.skilled/hooks/spec-gate/
++-- README.md -> ../../skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md
++-- claude/    spec-gate-classify.mjs, spec-gate-enforce.mjs
++-- codex/     spec-gate-classify.mjs, spec-gate-enforce.mjs
++-- cursor/    spec-gate-classify.mjs, spec-gate-enforce.mjs, spec-gate-prebind.mjs
++-- devin/     spec-gate-classify.mjs, spec-gate-enforce.mjs
++-- dsh/       spec-gate-classify.mjs, spec-gate-enforce.mjs
++-- opencode/  system-spec-gate.js
++-- pi/        spec-gate-classify.ts, spec-gate-enforce.ts
+`-- tests/     dsh-spec-gate.test.mjs
 ```
 
-The hooks-tree index at `.skilled/hooks/spec-gate/` mirrors these per runtime via relative symlinks; this README is the symlink target.
+The hooks tree indexes this feature per runtime. Every runtime folder holds links only, so the table above is the whole index. `tests/` holds real code and keeps its own README.
 
 ---
 
@@ -80,60 +168,48 @@ The hooks-tree index at `.skilled/hooks/spec-gate/` mirrors these per runtime vi
 
 | File | Responsibility |
 |---|---|
-| `spec-gate-core.mjs` | The policy core: `classifyIntent()`, `evaluateMutation()`, gate-state read/write/evict, the warning log, archive pruning, the throttled stale-state sweep, shadow-delivery observation, prompt sanitization, session-key resolution, and the persisted mutation-time delivery marker (`shouldDeliverGate3Deferral`, `recordGate3NoticeDelivered`, `bindGate3Answer`, `rearmGate3NoticeDelivery`). Never writes stdout/stderr. |
-| `../../../tests/hooks/spec-gate-core.test.mjs` | `node --test` corpus covering the golden classify/enforce loop, fail-open paths, `answerParse()`, the once-per-session delivery contract, and programmatic answer binding. Run with `--experimental-test-module-mocks` for the ESM-mock cases. |
-| `<runtime>/spec-gate-classify.mjs` | Thin stdin adapters that read the user-turn payload and call `classifyIntent` to open or resolve the gate. Classify emits **nothing**: the question belongs at the first mutation. Fail open to exit 0. |
-| `<runtime>/spec-gate-enforce.mjs` | Thin stdin adapters that read the tool-call payload, call `runEnforceGate`, emit deny/advise/allow, and record the delivery marker through `result.observe()` once the advise envelope is on the wire. Fail open to exit 0. |
-| `cursor/spec-gate-prebind.mjs` | Cursor-only `sessionStart` adapter. Satisfies the gate immediately when `SYSTEM_SPEC_FOLDER` names a valid spec folder (source `flags`), or opens it when `SYSTEM_SPEC_GATE_ENFORCE=1`. Disabled/child/malformed cases write no state. |
-| `pi/spec-gate-classify.ts`, `pi/spec-gate-enforce.ts` | Native Pi extensions importing the core in-process. Classify sanitizes the prompt and relays the one-shot deferral only when `ctx.hasUI` is false; enforce opens the interactive dialog at the first undelivered Write/Edit (`ctx.ui.select` + path input, then `bindGate3Answer`) and returns `block: true` on deny. |
-| `runtime/tests/spec-gate-pi-extension.vitest.ts` | Fake-`ExtensionAPI` suite driving both Pi extensions through their production event handlers: no turn-time menu, dialog at the first write, one-time block, repeat suppression, cancel fail-open. |
-| `.opencode/plugins/system-spec-gate.js` | OpenCode plugin. `experimental.chat.system.transform` classifies (best-effort fetches the last user message via `ctx.client`) and relays the one-shot deferral; `tool.execute.before` enforces (throws `system-spec-gate:` on deny) and logs would-deny telemetry; `event` sweeps, advances the epoch, re-arms the delivery marker, and evicts state. All policy and persistence live in the core; this file only maps OpenCode's transport onto it. |
+| `spec-gate-core.mjs` | The policy core. It owns `classifyIntent()`, `evaluateMutation()`, gate-state read, write and evict, the warning log, archive pruning, the throttled sweep, shadow-delivery observation, prompt sanitization, session-key resolution and the delivery marker (`shouldDeliverGate3Deferral`, `recordGate3NoticeDelivered`, `bindGate3Answer`, `rearmGate3NoticeDelivery`). It never writes stdout or stderr. |
+| `../../../tests/hooks/spec-gate-core.test.mjs` | The `node --test` corpus. It covers the golden classify and enforce loop, the fail-open paths, `answerParse()`, the once-per-session delivery contract and programmatic answer binding. Add `--experimental-test-module-mocks` for the ESM-mock cases. |
+| `<runtime>/spec-gate-classify.mjs` | Thin stdin adapters for Claude, Codex, Cursor and Devin. They read the user turn and call `classifyIntent`. They emit nothing, because the question belongs at the first mutation. |
+| `<runtime>/spec-gate-enforce.mjs` | Thin stdin adapters for the same four runtimes. They read the tool call, call `runEnforceGate`, emit the decision and call `result.observe()` once the notice is on the wire. |
+| `cursor/spec-gate-prebind.mjs` | The Cursor `sessionStart` adapter. It satisfies the gate when `SYSTEM_SPEC_FOLDER` names a valid spec folder, or opens it when `SYSTEM_SPEC_GATE_ENFORCE=1`. A disabled, child or malformed case writes no state. |
+| `pi/spec-gate-classify.ts`, `pi/spec-gate-enforce.ts` | Native Pi extensions that import the core in process. Classify sanitizes the prompt and relays the deferral only when `ctx.hasUI` is false. Enforce opens the dialog at the first undelivered write or edit and returns `block: true` on deny. |
+| `runtime/tests/spec-gate-pi-extension.vitest.ts` | A fake-`ExtensionAPI` suite that drives both Pi extensions through their production handlers. |
+| `.opencode/plugins/system-spec-gate.js` | The OpenCode plugin. It maps OpenCode's transport onto the core and keeps no policy of its own. |
 | `shared/dist/gate-3-classifier.js` | The compiled classifier the core imports from `shared/`. |
 
 ---
 
 ## 6. CONFIGURATION
 
-The gate is enabled by default. Truthy disable values are `1`, `true`, `yes`, and `on` (case-insensitive) for the shared resolver.
+The gate is on by default. A switch is on when its value is `1`, `true`, `yes` or `on`, in any case.
 
 | Variable | Effect |
 |---|---|
-| `SYSTEM_SPEC_GATE_DISABLED=1` | Canonical kill-switch. Every adapter checks `isHookEnabled('spec-gate')` and returns allow/exit 0 before any state work. |
-| `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
-| `SYSTEM_SPEC_GATE_ENFORCE=1` | Opt-in enforcement. Promotes an open-gate mutation from `advise` to `deny`. Without it, the gate is advisory-only. |
-| `AI_SESSION_CHILD=1` | Dispatched sub-session flag. Both `classifyIntent` and `evaluateMutation` short-circuit as a complete no-op before any state read/write, question, denial, or telemetry. |
-| `SYSTEM_SPEC_FOLDER` | Cursor prebind: names a valid spec folder to satisfy the gate immediately at session start (source `flags`, never `prior_answer`). |
-| `SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION=0` | Force every in-gate mutation to carry the notice. Suppression is on by default once a session has received the question; any other value (or unset) keeps the session quiet after delivery. Unknown or unobserved state always delivers. |
+| `SYSTEM_SPEC_GATE_DISABLED=1` | The canonical kill-switch. It returns allow or exit 0 before any state work. |
+| `SYSTEM_HOOKS_DISABLED=1` | The master switch. It turns off this concern along with every other repository hook. |
+| `SYSTEM_SPEC_GATE_ENFORCE=1` | Opt-in enforcement. It promotes an open-gate mutation from `advise` to `deny`. Vibe's `pre_tool` hook sets it when the operator has not, and an explicit `0` keeps the core advisory. |
+| `AI_SESSION_CHILD=1` | The dispatched sub-session flag. Both entrypoints short-circuit as a complete no-op. |
+| `SYSTEM_SPEC_FOLDER` | Cursor prebind. It names a valid spec folder to satisfy the gate at session start, with source `flags`. |
+| `SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION=0` | Forces every in-gate mutation to carry the notice. So do `false`, `no` and `off`. Any other value keeps the session quiet after delivery. |
 
-Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+The core, OpenCode and Vibe check `isHookEnabled('spec-gate')`. Cursor prebind checks only `SYSTEM_SPEC_GATE_DISABLED=1`, so `SYSTEM_HOOKS_DISABLED` does not stop it.
 
----
+Set a flag inline for one command, export it for a session or persist it in `.skilled/hooks/hook-flags.env`. That file is a gitignored copy of `hook-flags.env.example`. The environment always wins over the file.
 
-## 7. BOUNDARIES AND FLOW
-
-| Boundary | Rule |
-|---|---|
-| Advisory by default | Without `SYSTEM_SPEC_GATE_ENFORCE`, an open-gate mutation surfaces as `advise` (a warning the operator can ignore), never `deny`. |
-| Fail-open | An unreadable state file, a classifier throw, an unresolvable project root, or an unexpected argument shape all resolve to `allow` with no side effects. Every adapter's `main().catch(() => approve())` makes the fail-open path the exit-0 path. |
-| Child no-op | `AI_SESSION_CHILD=1` short-circuits both entrypoints before any state read/write, question, denial, or telemetry. |
-| Atomic state | The core owns atomic session-state persistence; adapters never write state directly. |
-| No stdout/stderr from core | The core never writes to stdout or stderr itself; every adapter chooses its own emission channel. OpenCode never writes stdout/stderr at all (advises via the state-dir log). |
-| Telemetry | One structured warning-log line for the first open-gate mutation event (advise or would-deny), written to a real file log: never depends on `additionalContext` landing anywhere observable. Once the notice is delivered, later mutations resolve to a silent allow and the core writes no further line (the OpenCode adapter keeps logging its would-deny row). `allow` on a never-open gate or an exempt target has nothing to measure. |
-| Shadow delivery | `observeGate3QuestionDelivery` is called strictly post-emission by each adapter; the epoch/receipt shadow stays telemetry. Repeated-delivery suppression is governed by the persisted per-session marker, default-on, fail-open. |
-| Once-per-session delivery | The marker (`questionDeliveredAtMs`/`Channel`/`Count`) in session state gates re-emission and survives stateless per-event runtimes. It re-arms only on a resume trigger, an unbound answer attempt, or a fresh gate open, and it never changes the gate decision itself: a delivered session still denies under enforcement. |
-| Shell writes | A shell command that writes a file is never refused: `DENY_CAPABLE_TOOLS` is `write` and `edit` only, so `bash` is never deny-capable, and the core skips target-path evaluation for `bash`, so a shell command carries no path for the gate to check. A shell call can still be advised and logged, but it cannot deny. This holds on every runtime whose shell tool the gate sees, because the decision turns on the tool name and the resolved path alone. The operator chose to keep it as a known limit rather than parse shell redirects. |
-| Session keying | Classify and enforce must key state identically (`resolveSessionKey`) or classify's answer never reaches enforce's lookup. |
-| Imports | The core imports the compiled `shared/dist/gate-3-classifier.js` and Node builtins. Adapters import the core and the shared `hook-flags` resolver. Nothing outside the repo. |
+The core reads `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SPEC_GATE_ENFORCE` and `AI_SESSION_CHILD` as an exact `1`. The shared `hook-flags` resolver accepts `1`, `true`, `yes` or `on`.
 
 ---
 
-## 8. VALIDATION
+## 7. VALIDATION
+
+Run from the repository root.
 
 ```bash
 node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs
 ```
 
-Expected result: all core tests pass (golden classify/enforce loop, fail-open paths, `answerParse()`, the once-per-session delivery contract, programmatic answer binding). Run with `--experimental-test-module-mocks` for the ESM-mock cases.
+Expected result: every core test passes. The corpus covers the golden classify and enforce loop, the fail-open paths, `answerParse()`, the once-per-session delivery contract and programmatic answer binding. Add `--experimental-test-module-mocks` for the ESM-mock cases.
 
 ```bash
 node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-claude.test.mjs
@@ -142,19 +218,19 @@ node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-devin.
 node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-prebind.test.mjs
 ```
 
-Expected result: all per-runtime adapter tests pass.
+Expected result: every per-runtime adapter test passes.
 
 ```bash
 env -u AI_SESSION_CHILD -u SYSTEM_SPEC_GATE_ENFORCE node .opencode/plugins/tests/system-spec-gate.test.cjs
 ```
 
-Expected result: 11 pass, 0 fail (OpenCode plugin, including the one-shot deferral relay and the session-key fallback).
+Expected result: every test passes. The suite covers the one-shot deferral relay and the session-key fallback.
 
 ```bash
 (cd .skilled/skills/system-spec-kit && npx vitest run --config vitest.config.ts --project root runtime/tests/spec-gate-pi-extension.vitest.ts)
 ```
 
-Expected result: the Pi extension suite passes (turn untouched, dialog at the first write, one-time block, repeat suppression, cancel fail-open).
+Expected result: the Pi extension suite passes. It covers the untouched turn, the dialog at the first write, the one-time block, repeat suppression and the cancel fail-open.
 
 ```bash
 node --check .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs
@@ -162,16 +238,16 @@ node --check .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enfo
 node --check .opencode/plugins/system-spec-gate.js
 ```
 
-Expected result: no syntax errors (repeat for the codex/cursor/devin siblings).
+Expected result: no syntax errors. Repeat for the codex, cursor and devin siblings.
 
 ---
 
-## 9. RELATED
+## 8. RELATED
 
 - [`../README.md`](../README.md): the owning `lib/` folder, including `hook-adapter-shared.mjs` and `workspace/`.
-- [`../../claude/README.md`](../../claude/README.md), [`../../codex/README.md`](../../codex/README.md), [`../../cursor/README.md`](../../cursor/README.md), [`../../devin/README.md`](../../devin/README.md): per-runtime hook folders that wire these adapters.
-- [`../../../../shared/gate-3-classifier.ts`](../../../../shared/gate-3-classifier.ts): the compiled classifier this core imports from `shared/dist/`.
+- [`../../claude/README.md`](../../claude/README.md), [`../../codex/README.md`](../../codex/README.md), [`../../cursor/README.md`](../../cursor/README.md), [`../../devin/README.md`](../../devin/README.md): the per-runtime hook folders that wire these adapters.
+- [`../../../../shared/gate-3-classifier.ts`](../../../../shared/gate-3-classifier.ts): the classifier source that compiles into `shared/dist/`.
 - [`../../../README.md`](../../../README.md): the owning skill's hook contract.
-- [`.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md`](../../../../../../skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md): the manual scenario validating this core end to end.
+- [`.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md`](../../../../../../skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md): the manual scenario that validates this core end to end.
 - [`.skilled/hooks/README.md`](../../../../../../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix.
 - [`.opencode/plugins/README.md`](../../../../../../../.opencode/plugins/README.md): the OpenCode plugins folder that loads `system-spec-gate.js`.

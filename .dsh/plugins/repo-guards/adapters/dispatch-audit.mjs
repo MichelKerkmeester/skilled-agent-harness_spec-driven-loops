@@ -1,1 +1,1 @@
-../../../../.skilled/hooks/dispatch/dsh/dispatch-audit.mjs
+../../../../.skilled/hooks/cli-dispatch/dsh/dispatch-audit.mjs

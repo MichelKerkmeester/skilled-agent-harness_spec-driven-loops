@@ -14,29 +14,42 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`goal/vibe/` holds the Vibe goal adapter. `goal-inject.mjs` exports `renderVibeGoalSlice`. It reads the packet path from `VIBE_SPEC_FOLDER` and returns exactly the `chat_slice` that `node .skilled/hooks/goal/bin/goal.cjs packet <folder>` prints. No variable means no goal text.
+`.skilled/hooks/goal/vibe/` holds the Vibe goal adapter for the packet slice. `goal-inject.mjs` exports `renderVibeGoalSlice`, which reads the packet path from `VIBE_SPEC_FOLDER`. It returns exactly the `chat_slice` that `node .skilled/hooks/goal/bin/goal.cjs packet <folder>` prints, and no variable means no goal text.
 
-The adapter has no hook entry of its own. `.skilled/hooks/session-lifecycle/vibe/session-start.mjs` imports it and puts the returned text in the one `session_start` reply, so the goal arrives in the first turn without a second registration.
+The adapter has no hook entry of its own in `.vibe/hooks.toml`. `.skilled/hooks/session-lifecycle/vibe/session-start.mjs` imports it and puts the returned text in the one `session_start` reply. The goal arrives in the first turn without a second registration. `session_start` fires for a main session, not a subagent.
 
-Vibe is injection-only. There is no goal object, no `/goal` command and no goal tool. Nothing refreshes the slice per turn, and nothing re-injects it after compaction, because Vibe has no idle or compaction event. `session_start` fires for a main session, not a subagent.
+Vibe is injection-only, with no goal object, no `/goal` command and no goal tool. Nothing refreshes the slice on every turn. The turn-start hook adds it back only after a compaction.
 
----
-
-## 2. WHAT EACH FILE DOES
-
-| File | Event | What it does | On error |
-|---|---|---|---|
-| `goal-inject.mjs` | `session_start`, through the session-start hook | Reads `VIBE_SPEC_FOLDER`, resolves the packet slice and returns the same `chat_slice` text `goal.cjs packet` prints. Returns no text when the variable is unset, empty or unusable. | Returns no goal text. The session-start hook still emits the rest of its context. |
-| `goal-vibe.test.mjs` | `node --test` | Covers a bound packet, no packet and malformed input. | A failed assertion fails the test process with a nonzero status. |
-
-Run the test with `node --test .skilled/hooks/goal/vibe/goal-vibe.test.mjs`.
+Vibe has no compaction hook, so the compaction detector reads the session journal to spot a compaction and then renders the slice again from the packet. `.skilled/hooks/session-lifecycle/vibe/compaction-context.mjs` imports the adapter too, and re-injects the slice once per compaction. It compares the journal's compaction entries with a per-session watermark. `turn-start.mjs` and `compaction-post-tool.mjs` run it at the next message or tool call.
 
 ---
 
-## 3. RELATED
+## 2. FILES
 
-- [`../README.md`](../README.md): the concern index, with the per-runtime capability matrix and the state layout.
-- [`./goal-inject.mjs`](./goal-inject.mjs): the slice renderer.
-- [`../bin/goal.cjs`](../bin/goal.cjs): the `packet` action whose `chat_slice` this adapter matches.
-- [`../../session-lifecycle/vibe/session-start.mjs`](../../session-lifecycle/vibe/session-start.mjs): the hook that imports the adapter.
-- [`../../../../.vibe/hooks.toml`](../../../../.vibe/hooks.toml): the one `session_start` entry.
+| File | Responsibility |
+|---|---|
+| `goal-inject.mjs` | Exports `renderVibeGoalSlice`. Reads `VIBE_SPEC_FOLDER`, resolves the packet through `../lib/goal-core.cjs` and returns its `chat_slice`. |
+| `goal-vibe.test.mjs` | Runs the `node --test` cases: a bound packet, no packet and malformed input. |
+
+`renderVibeGoalSlice` takes an optional environment, workspace and goal core, each with a default. The defaults are `process.env`, `process.cwd()` and the goal core at `../lib/goal-core.cjs`. A blank or non-string `VIBE_SPEC_FOLDER` returns an empty string, never an error. So does a packet whose `chat_slice` is missing, and so does any thrown error. The session-start hook skips a failing part and still emits the rest of its context.
+
+The test builds a fixture packet under `.skilled/skills/.state`, which is gitignored. It runs `goal.cjs packet` and compares the hook's `hook_specific_output.additional_context` with the core's `chatSlice`. The test sets `SYSTEM_SESSION_LIFECYCLE_DISABLED`, `SYSTEM_DIST_FRESHNESS_DISABLED` and `SYSTEM_SESSION_CLEANUP_DISABLED` to `1` for every run. Only the goal part contributes, so a stray warning cannot mask the slice.
+
+---
+
+## 3. VALIDATION
+
+Run the suite from the repository root with `node --test .skilled/hooks/goal/vibe/goal-vibe.test.mjs` and read the exit status.
+
+Expected result: every case passes and the exit status is `0`. A failed assertion fails the test process with a nonzero status.
+
+---
+
+## 4. RELATED
+
+- [`../README.md`](../README.md): the goal concern index, with the per-runtime capability matrix and the state layout.
+- [`./goal-inject.mjs`](./goal-inject.mjs): the slice renderer that the session-start and compaction hooks import.
+- [`../bin/goal.cjs`](../bin/goal.cjs): the `packet` action whose `chat_slice` this adapter reproduces exactly.
+- [`../../session-lifecycle/vibe/session-start.mjs`](../../session-lifecycle/vibe/session-start.mjs): the hook that imports the adapter and injects the slice.
+- [`../../session-lifecycle/vibe/compaction-context.mjs`](../../session-lifecycle/vibe/compaction-context.mjs): the detector that re-injects the slice after a compaction.
+- [`../../../../.vibe/hooks.toml`](../../../../.vibe/hooks.toml): the one `session_start` entry, which runs that hook at session start.

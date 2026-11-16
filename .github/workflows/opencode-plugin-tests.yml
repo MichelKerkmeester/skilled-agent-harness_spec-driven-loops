@@ -9,12 +9,11 @@ name: OpenCode Plugin Tests
 # files the goal checks read, or the root files that tell a project checkout from
 # this repository.
 #
-# The hook suites written for `node --test`, the Vibe repo-guards suite under
-# `.vibe/plugins/repo-guards/tests`, and the hook installer test ran in no workflow
-# either: vitest skips those files because they run on their own, and the dispatch
-# guard runs only its rule-check suite. They import the hook libraries and spawn the
-# hook scripts, and the installer test provisions throwaway repositories, so this job
-# provisions once and runs them beside the plugin suites.
+# The hook suites written for `node --test` and the Vibe repo-guards suite under
+# `.vibe/plugins/repo-guards/tests` ran in no workflow either: vitest skips those
+# files because they run on their own, and the dispatch guard runs only its
+# rule-check suite. They import the hook libraries and spawn the hook scripts, so
+# this job provisions once and runs them beside the plugin suites.
 on:
   pull_request:
     branches: [main, 'skilled/**']
@@ -110,7 +109,7 @@ jobs:
         with:
           cache: ${{ github.event_name != 'schedule' && inputs.cold != 'true' }}
 
-      # The installer test makes commits in temporary repositories, which need an author.
+      # Some hook suites make commits in temporary repositories, which need an author.
       - name: Set a git identity for the tests
         run: |
           set -euo pipefail
@@ -139,9 +138,6 @@ jobs:
           fi
           echo "Collected ${#files[@]} node:test hook and Vibe repo-guard files"
           node --test "${files[@]}"
-
-      - name: Run the hook installer test
-        run: bash .skilled/hooks/git/install-hooks.test.sh
 
       # Node 22 takes a glob here, not a directory.
       - name: Run the plugin suites

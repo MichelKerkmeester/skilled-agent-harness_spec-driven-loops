@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-005 -- Turn start raises the save nudge for a captured answer"
 description: "This scenario validates that the Vibe turn-start composer raises the decision-capture save nudge once, at the turn start after an operator answer is captured, judged from the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-005 -- Turn start raises the save nudge for a captured answer
@@ -124,7 +124,7 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 |---|---|
 | `.skilled/hooks/session-lifecycle/vibe/turn-start.mjs` | The hook under test |
 | `.skilled/hooks/decision-capture/lib/capture-core.mjs` | The queue and nudge counter the hook reads |
-| `.skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs` | The capture hook that fills the queue |
+| `.skilled/hooks/decision-capture/vibe/decision-capture-post-tool.mjs` | The capture hook that fills the queue |
 | `.vibe/hooks.toml` | The hook bindings |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` | The runner and its `vibe` adapter |
 

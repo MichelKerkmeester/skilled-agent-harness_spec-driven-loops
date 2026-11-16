@@ -12,7 +12,7 @@ trigger_phrases:
   - "DeepSeek Harness Dispatch Mode"
   - "Mistral Vibe Dispatch Mode"
 last_updated: "2026-11-14"
-version: 1.7.9.0
+version: 1.7.10.0
 ---
 
 # cli-external-orchestration: Feature Catalog
@@ -91,7 +91,7 @@ One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous`
 
 #### Current Reality
 
-A quoted command-position executor is normalized as a real dispatch: `"devin" -p x` classifies as `direct cli-devin` (identical to the unquoted form) and is audit-visible, while multi-word quoted prose and quoted arguments correctly stay `none`. Under Pi, a `direct` dispatch is denied unless the user's own request names the matching executor, an `ambiguous` command is denied, and `none` is a no-op. Run the shared inspector suite (`npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`) and the Pi preflight suite (`npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`). All cases are expected to pass.
+A quoted command-position executor is normalized as a real dispatch: `"devin" -p x` classifies as `direct cli-devin` (identical to the unquoted form) and is audit-visible, while multi-word quoted prose and quoted arguments correctly stay `none`. Under Pi, a `direct` dispatch is denied unless the user's own request names the matching executor, an `ambiguous` command is denied, and `none` is a no-op. Run the shared inspector suite (`npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs`) and the Pi preflight suite (`npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.test.ts`). All cases are expected to pass.
 
 #### Source Files
 
