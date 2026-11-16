@@ -115,7 +115,7 @@ DeepSeek V4.1 Flash at `--thinking max` through cli-pi built each task in its ow
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The self-check cannot lower a count.** Carrying its per-finding result into the registry needs a typed ledger field on `claim_adjudication`; the gateway refuses `findingId` and `finalSeverity` today. That is a follow-up, not built here.
+1. **The self-check could not lower a count when this phase shipped.** Phase 34 added `findingId` and `finalSeverity` to the `claim_adjudication` ledger row, so the self-check's calls now reach the registry before the verdict.
 2. **Recorded reviews keep their old counts.** Their reports and registries stay as written.
 <!-- /ANCHOR:limitations -->
 

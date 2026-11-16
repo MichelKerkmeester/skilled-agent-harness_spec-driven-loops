@@ -124,6 +124,19 @@ describe('browse', () => {
     }
   });
 
+  it('ends a cut browse preview with an ellipsis and leaves a short one whole', () => {
+    const long = `Start of the turn. ${'detail '.repeat(40)}the side word sits here`;
+    const entries: HistoryEntry[] = [
+      { id: 'long-user', role: 'user', sequence: 1, timestamp: '2026-11-16T00:00:00.000Z', content: [{ type: 'text', text: long }] },
+      { id: 'short-user', role: 'user', sequence: 2, timestamp: '2026-11-16T00:00:01.000Z', content: [{ type: 'text', text: 'short turn' }] },
+    ];
+    const references = new HistoryNavigator(projectHistoryEntries(entries)).browse({ direction: 'forward', count: 2 });
+    const cut = references.find((reference) => reference.historyId === 'long-user')?.preview ?? '';
+    expect(cut.endsWith('…')).toBe(true);
+    expect(cut.length).toBe(160);
+    expect(references.find((reference) => reference.historyId === 'short-user')?.preview).toBe('short turn');
+  });
+
   it('honours stride and returns nothing for an empty corpus without an anchor', () => {
     expect(ids(navigator().browse({ direction: 'forward', count: 3, stride: 2 }))).toEqual([
       'history-user-1',

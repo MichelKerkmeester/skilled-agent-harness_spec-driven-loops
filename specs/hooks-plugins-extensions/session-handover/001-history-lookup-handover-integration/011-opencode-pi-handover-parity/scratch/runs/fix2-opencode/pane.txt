@@ -1,0 +1,50 @@
+ • Session handoff README detail • Session handoff parity contin • README line count and heading • Session handoff parity contin • README line count and code wo • Session handoff parity contin +
+                                                                                                                                                           █
+  ┃                                                                                                                                                        █    Session handoff parity continuation
+  ┃  [session-handover] claim and continue handoff /Users/michelkerkmeester/worktrees/public/422-opencode-pi-handover-parity/.skilled/skills/.state/       █
+  ┃  session-handover/handoffs/20261116T062230Z-ses_e1cfa8f4bffe0wgMkQX3lnALNs.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session)    █    Context
+  ┃                                                                                                                                                        █    20,142 tokens
+                                                                                                                                                           █    2% used
+     I'll start by claiming the handoff note to see what work remains.                                                                                     █    $0.00 spent
+                                                                                                                                                           █
+     + 6 commands, 4 thoughts                                                                                                                              █    MCP
+                                                                                                                                                           █    • code_mode                     Error
+     Handoff claimed, work verified, note closed (status: done).                                                                                           █
+                                                                                                                                                           █
+     Report                                                                                                                                                █
+                                                                                                                                                           █
+     - README line count: 442                                                                                                                              █
+     - First heading: # Session Handover (line 9)                                                                                                          █
+     - Code word: ORCHID-29361                                                                                                                             █
+     - Side word: LAGOON-18097 — recovered via history-lookup.mjs search on the sender session, from its opening user turn (2026-11-16T06:22:27.156Z),     █
+       not inferred.                                                                                                                                       █
+                                                                                                                                                           █
+     The staging database URL stayed out of the transcript, as the note required.                                                                          █
+                                                                                                                                                           █
+     Nothing is yours to do; the note is closed and the loop is finished.                                                                                  █
+                                                                                                                                                           █
+     Build · DeepSeek V4.1 Flash 1017 · 13.7s · 2198.9 tok/s · 1.0s ttft                                                                                   █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  ~/worktrees/public/422-opencode-pi-handover-parity:worktrees/422-opencode-pi-handover-parity                           20.1K (2%) · $0.00  ctrl+p commands    …/422…/422-opencode-pi-handover-parity
+

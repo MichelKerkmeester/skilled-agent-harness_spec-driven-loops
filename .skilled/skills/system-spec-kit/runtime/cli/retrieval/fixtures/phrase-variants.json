@@ -1,5 +1,5 @@
 {
-  "manifestHash": "41af51675cb6e58f4f846d0f1a459057597af58ee10339ee2378e07535b6490e",
+  "manifestHash": "2650b7faca1890a3a9fe5f5ca416aedcee6fdcfde0cbc93f393126d741b873f2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -77436,6 +77436,21 @@
     "opencode persistent wrapper": [
       "opencode-persistent wrapper"
     ],
+    "opencode pi handover parity": [
+      "opencode pi handover parity"
+    ],
+    "opencode pi handover parity goal": [
+      "opencode pi handover parity goal"
+    ],
+    "opencode pi handover parity implementation summary": [
+      "opencode pi handover parity implementation summary"
+    ],
+    "opencode pi handover parity plan": [
+      "opencode pi handover parity plan"
+    ],
+    "opencode pi handover parity tasks": [
+      "opencode pi handover parity tasks"
+    ],
     "opencode plugin": [
       "opencode plugin"
     ],
@@ -81974,6 +81989,9 @@
     "phase 11 hub registration and routing": [
       "phase 11 hub registration and routing"
     ],
+    "phase 11 opencode pi handover parity": [
+      "phase 11 opencode pi handover parity"
+    ],
     "phase 11 permission mode carry": [
       "phase 11 permission mode carry"
     ],
@@ -83296,6 +83314,9 @@
     ],
     "phase 33 zero iteration report": [
       "phase 33 zero iteration report"
+    ],
+    "phase 34 self check adjudication ledger": [
+      "phase 34 self check adjudication ledger"
     ],
     "phase 35 v2 bridge plugin effects": [
       "phase 35 v2 bridge plugin effects"
@@ -103970,6 +103991,18 @@
     ],
     "self assigned tasks": [
       "self-assigned tasks"
+    ],
+    "self check adjudication ledger": [
+      "self check adjudication ledger"
+    ],
+    "self check adjudication ledger implementation summary": [
+      "self check adjudication ledger implementation summary"
+    ],
+    "self check adjudication ledger plan": [
+      "self check adjudication ledger plan"
+    ],
+    "self check adjudication ledger tasks": [
+      "self check adjudication ledger tasks"
     ],
     "self check template guidance": [
       "self-check template guidance"

@@ -206,6 +206,12 @@ function handoffText({
     '   Under ## Remaining work list only the task\'s own unfinished work. '
       + 'Never list these handoff steps (the note, the continuity save, prepare) '
       + 'there; this session does them now.',
+    // A sender that believes the note is the only channel writes a kept-out detail off as
+    // lost, and the receiver then asks the operator instead of reading this session's turns.
+    '   The next session can read this session\'s turns through the History Lookup its claim '
+      + 'prints, so a detail you keep out of the note is not lost. Never write that the next '
+      + 'session cannot recover a detail or must ask the operator for one; say where in this '
+      + 'session it appears instead.',
     SPEC_FOLDER_GUIDANCE,
     GOAL_GUIDANCE,
     '   Under ## In-flight state include an `Active command:` line with the command, mode and '
@@ -336,6 +342,14 @@ function seedText({
         + 'work before you trust it; work committed after the note was written is already done.');
     continueStep += 1;
   }
+  // The lookup offer prints after the note body, so without its own step a note that calls a
+  // detail lost outranks it.
+  lines.push(
+    `${continueStep}. When the claim output has a \`## History Lookup\` section, run it for any `
+      + 'detail the note leaves out before you ask the operator or call the detail lost, even '
+      + 'when the note says it cannot be recovered.',
+  );
+  continueStep += 1;
   lines.push(
     `${continueStep}. Continue the work under "Remaining work". Do not run prepare for this note; `
       + 'its handoff is already done. If Remaining work names only handoff steps, '

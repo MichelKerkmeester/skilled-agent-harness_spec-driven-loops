@@ -1857,6 +1857,120 @@ workflow:
           - last_3_summaries: "Summarize the latest 3 iteration records"
           - reason: "Use the latest stop reason if present: read stopReason from the last line of {state_paths.state_log} with type === 'event' and event === 'terminal_gates' when it is newer than the latest stop event, since a manual stop is stored only there; else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
 
+      # ─── APPROVAL GATE: Pre-Synthesis ───
+      gate_pre_synthesis:
+        applies_to: confirm
+        type: approval_gate
+        purpose: "Show all accumulated findings and get approval to synthesize"
+        present: |
+          ## Review Loop Complete
+
+          **Total Iterations**: {iteration_count}
+          **Stop Reason**: {reason}
+          **Cumulative Findings**: P0={p0_count} P1={p1_count} P2={p2_count}
+          **Dimension Coverage**: {dimensions_covered} ({dimension_coverage})
+          **Recent Iteration Summary**: {last_3_summaries}
+
+          Review the iteration files in `{state_paths.iteration_dir}/` if you want more detail before synthesis.
+
+          Options:
+          A) Proceed to synthesis (compile review/review-report.md)
+          B) Run more iterations (increase max or focus on specific dimension)
+          C) Cancel (keep iteration files)
+        wait_for: "User response"
+        after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+        on_A: { proceed_to: step_read_all_iterations }
+        on_B: { action: "Increase max_iterations or adjust focus, return to loop. When reason is maxDurationReached, raise maxDurationMinutes in the config too, or the duration check stops the loop again and writes another terminal record", proceed_to: phase_loop }
+        on_C: { action: "Cancel synthesis, keep artifacts", status: "PARTIAL" }
+
+      step_read_all_iterations:
+        action: "Read all iteration files and strategy"
+        read_pattern: "{state_paths.iteration_dir}/iteration-*.md"
+        read_also: "{state_paths.strategy}"
+
+      step_build_finding_registry:
+        action: "Build deduplicated finding registry from all iterations"
+        algorithm: |
+          1. Extract all findings from iteration JSONL delta files
+          2. Compute content_hash for each finding (emission requirement):
+             content_hash = sha256(file_path + "\u001f" + line_range + "\u001f" + finding_type + "\u001f" + normalized_description_80chars)
+             Normalized description = whitespace-collapsed, lowercased, first 80 chars of the finding description.
+          3. Two-tier dedup:
+             PRIMARY: group by content_hash field
+               - Same content_hash, multiple dimensions → single finding, merged `dimensions: [<all>]` array
+               - Keep highest severity on duplicates
+             FALLBACK (legacy records lacking content_hash): file:line + normalized_title
+               - Same file:line, multiple dimensions → single finding, multiple dimension tags
+               - Keep highest severity on duplicates
+          4. Track finding lifecycle:
+             - status: active | duplicate | upgraded | downgraded | contested | resolved_false_positive
+             - Record first_seen, upgraded_in, previous_severity for severity changes
+             - Record dimensions array reflecting all dimensions that emitted this finding
+          5. Resolve contradictions:
+             - Findings marked contested across iterations → referee pass
+             - Determine final severity and status
+          6. Count only 'active' findings for totals. These totals are narrative only: step_derive_verdict reads the registry file after the self-check refreshes it, and the report and the closeout state its counts as the counts the verdict used.
+        outputs:
+          - finding_registry: "Deduplicated list of all findings with metadata"
+
+      # Adjudication persistence: the Referee's call becomes a claim_adjudication row per
+      # finding, so the registry the verdict reads carries the final severity. A false
+      # positive is recorded as `none`, the scale value for a claim that is not a finding.
+      step_adversarial_selfcheck:
+        action: "Final adversarial self-check on all P0 and P1 findings"
+        dry_run_boundary: "state-mutation"
+        algorithm: |
+          For each active P0/P1 finding:
+            1. Hunter: Re-verify finding against source code (re-read file:line)
+            2. Skeptic: Challenge severity — is this really P0/P1? Could it be P2?
+            3. Referee: Final call — confirm, downgrade, or mark false_positive
+          Record one `<findingId> <finalSeverity>` pair for every call the Referee made
+          here: the severity it settled on, or `none` when it called the finding a false
+          positive. An empty list means the Referee changed nothing.
+          On a single-executor run, append one deep_review.claim_adjudication row per pair
+          through the gateway, then refresh the registry once. The verdict step that
+          follows reads the refreshed registry, so a downgrade or a false positive changes
+          the counts the verdict, the report and the closeout all use.
+          On a fan-out root, record the pairs for the report only: the root has no state
+          log before closeout, and the merged lineage counts are what that verdict reads.
+        extract:
+          - selfcheck_adjudications: "One `<findingId> <finalSeverity>` pair per line, using the findingId exactly as it appears in openFindings of {state_paths.findings_registry}, empty when the Referee changed nothing"
+          - adjudication_mode: "`mode` of the latest claim_adjudication gate row (the newest one without a findingId), else \"review\""
+          - adjudication_run: "`run` of that gate row, else {highest_run}"
+          - adjudication_passed: "`passed` of that gate row, else true"
+          - adjudication_active_p0_p1: "`activeP0P1` of that gate row, else {p0_count} plus {p1_count}"
+          - adjudication_missing_packets: "`missingPackets` of that gate row as a JSON array, else []"
+          - adjudication_reason: "`reason` of that gate row as a JSON value, else \"adversarial self-check\""
+        branch_on: "config.fanout"
+        if_present:
+          action: "Record the pairs in the Executive Summary for reference. Do not append: a fan-out root has no root state log before closeout, and each lineage already adjudicated its own findings, so the merged counts are the authority here."
+        if_absent:
+          # The row is staged for the append gateway: the state log is a projection of the
+          # ledger, so a row written beside it is dropped by the next refresh.
+          command: |
+            GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+            RUN_DIR="$(dirname "{state_paths.state_log}")"
+            while read -r FINDING_ID FINAL_SEVERITY; do
+            [ -n "$FINDING_ID" ] || continue
+            EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-claim-adjudication.XXXXXX")"
+            cat <<DEEP_LOOP_STATE_RECORD > "$EVENT_FILE"
+            {"stem":"deep_review.claim_adjudication","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"mode":"{adjudication_mode}","run":{adjudication_run},"passed":{adjudication_passed},"activeP0P1":{adjudication_active_p0_p1},"missingPackets":{adjudication_missing_packets},"reason":{adjudication_reason},"sessionId":"{session_id}","generation":{generation},"findingId":"$FINDING_ID","finalSeverity":"$FINAL_SEVERITY"}}
+            DEEP_LOOP_STATE_RECORD
+            node "$GATEWAY" --mode review --run-directory "$RUN_DIR" --event-json "$EVENT_FILE"
+            RECORD_STATUS=$?
+            rm -f "$EVENT_FILE"
+            [ "$RECORD_STATUS" -eq 0 ] || exit "$RECORD_STATUS"
+            done <<'DEEP_LOOP_SELFCHECK_ADJUDICATIONS'
+            {selfcheck_adjudications}
+            DEEP_LOOP_SELFCHECK_ADJUDICATIONS
+            node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors
+          on_fail:
+            action: "Halt with STATUS=FAIL through step_release_lock. An append the gateway rejected leaves the ledger and the registry disagreeing, so the verdict that follows would read a stale count."
+            halt: true
+            release_lock: step_release_lock
+          log: "Adversarial self-check adjudicated {selfcheck_adjudications}; the verdict reads the refreshed registry."
+
       # H-1 verdict derivation: parse findings JSONL, map highest severity to verdict
       # - PASS: no P0 or P1 findings (P2-only or clean)
       # - CONDITIONAL: any P1 finding or open search debt (no P0, no failed gate)
@@ -1910,71 +2024,6 @@ workflow:
           Every iteration-NNN.md must end with exactly: "Review verdict: PASS" (or CONDITIONAL or FAIL).
           Downstream automation parses this final line via exact string match — do not vary the format.
 
-      # ─── APPROVAL GATE: Pre-Synthesis ───
-      gate_pre_synthesis:
-        applies_to: confirm
-        type: approval_gate
-        purpose: "Show all accumulated findings and get approval to synthesize"
-        present: |
-          ## Review Loop Complete
-
-          **Total Iterations**: {iteration_count}
-          **Stop Reason**: {reason}
-          **Cumulative Findings**: P0={p0_count} P1={p1_count} P2={p2_count}
-          **Dimension Coverage**: {dimensions_covered} ({dimension_coverage})
-          **Recent Iteration Summary**: {last_3_summaries}
-
-          Review the iteration files in `{state_paths.iteration_dir}/` if you want more detail before synthesis.
-
-          Options:
-          A) Proceed to synthesis (compile review/review-report.md)
-          B) Run more iterations (increase max or focus on specific dimension)
-          C) Cancel (keep iteration files)
-        wait_for: "User response"
-        after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
-        on_A: { proceed_to: step_read_all_iterations }
-        on_B: { action: "Increase max_iterations or adjust focus, return to loop. When reason is maxDurationReached, raise maxDurationMinutes in the config too, or the duration check stops the loop again and writes another terminal record", proceed_to: phase_loop }
-        on_C: { action: "Cancel synthesis, keep artifacts", status: "PARTIAL" }
-
-      step_read_all_iterations:
-        action: "Read all iteration files and strategy"
-        read_pattern: "{state_paths.iteration_dir}/iteration-*.md"
-        read_also: "{state_paths.strategy}"
-
-      step_build_finding_registry:
-        action: "Build deduplicated finding registry from all iterations"
-        algorithm: |
-          1. Extract all findings from iteration JSONL delta files
-          2. Compute content_hash for each finding (emission requirement):
-             content_hash = sha256(file_path + "\u001f" + line_range + "\u001f" + finding_type + "\u001f" + normalized_description_80chars)
-             Normalized description = whitespace-collapsed, lowercased, first 80 chars of the finding description.
-          3. Two-tier dedup:
-             PRIMARY: group by content_hash field
-               - Same content_hash, multiple dimensions → single finding, merged `dimensions: [<all>]` array
-               - Keep highest severity on duplicates
-             FALLBACK (legacy records lacking content_hash): file:line + normalized_title
-               - Same file:line, multiple dimensions → single finding, multiple dimension tags
-               - Keep highest severity on duplicates
-          4. Track finding lifecycle:
-             - status: active | duplicate | upgraded | downgraded | contested | resolved_false_positive
-             - Record first_seen, upgraded_in, previous_severity for severity changes
-             - Record dimensions array reflecting all dimensions that emitted this finding
-          5. Resolve contradictions:
-             - Findings marked contested across iterations → referee pass
-             - Determine final severity and status
-          6. Count only 'active' findings for totals. These totals are narrative only; the counts the report and the closeout use come from step_derive_verdict.
-        outputs:
-          - finding_registry: "Deduplicated list of all findings with metadata"
-
-      step_adversarial_selfcheck:
-        action: "Final adversarial self-check on all P0 and P1 findings"
-        algorithm: |
-          For each active P0/P1 finding:
-            1. Hunter: Re-verify finding against source code (re-read file:line)
-            2. Skeptic: Challenge severity — is this really P0/P1? Could it be P2?
-            3. Referee: Final call — confirm, downgrade, or mark false_positive
-          Record each confirm, downgrade or false_positive call for the report; it does not change the counts or the verdict, which step_derive_verdict took from the registry.
-
       step_emit_resource_map:
         skip_when: "config.fanout is present"
         action: "Emit {state_paths.resource_map_output} from converged review deltas unless config.resource_map.emit is false"
@@ -2008,7 +2057,7 @@ workflow:
              - Overall verdict: PASS | CONDITIONAL | FAIL
              - hasAdvisories: true when PASS carries active P2 items
              - P0/P1/P2 counts: {active_p0}, {active_p1}, {active_p2}, the counts the verdict used, stated as such
-             - Self-check outcomes: each finding the adversarial self-check confirmed, downgraded or called a false positive, listed apart from the counts
+             - Self-check outcomes: each finding the adversarial self-check confirmed, downgraded or called a false positive. On a single-executor run the counts above already reflect them, so list them for reference
              - Review scope summary
              - Operator review focus: config.reviewFocus verbatim, or omit this line when it is null
 

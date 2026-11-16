@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f8a8dc11d412b185437b3dc3f2cccabb714212dd5385f230b50039c46f405eeb",
+  "corpusHash": "625bce78b2a64d3c4983a75f22fc3205774d319fdbee56a2d30b2687ed725158",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27775,
+  "includedPathCount": 27785,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9588,6 +9588,10 @@
     "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
@@ -12183,6 +12187,12 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/research.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/fanout-attribution.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-dashboard.md",
@@ -27807,7 +27817,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "41af51675cb6e58f4f846d0f1a459057597af58ee10339ee2378e07535b6490e",
+  "manifestHash": "2650b7faca1890a3a9fe5f5ca416aedcee6fdcfde0cbc93f393126d741b873f2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29059,6 +29069,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/033-zero-iteration-report/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger/scratch",
       "reason": "excluded directory"
     },
     {
@@ -31599,6 +31613,26 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch",
       "reason": "excluded directory"
     },
     {

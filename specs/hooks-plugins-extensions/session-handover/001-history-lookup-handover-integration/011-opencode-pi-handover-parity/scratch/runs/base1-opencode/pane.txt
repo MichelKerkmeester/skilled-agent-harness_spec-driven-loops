@@ -1,0 +1,50 @@
+ • Session handoff README detail • Session handoff parity contin +
+                                                                                                                                                           █
+  ┃                                                                                                                                                        █    Session handoff parity continuation
+  ┃  [session-handover] claim and continue handoff /Users/michelkerkmeester/worktrees/public/422-opencode-pi-handover-parity/.skilled/skills/.state/       █
+  ┃  session-handover/handoffs/20261116T052759Z-ses_e1d2c7c81ffeJTAeWEY1UQO3wn.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session)    █    Context
+  ┃                                                                                                                                                        █    31,992 tokens
+                                                                                                                                                           █    3% used
+     I'll start by claiming the handoff note.                                                                                                              █    $0.01 spent
+                                                                                                                                                           █
+     + 13 commands, 8 thoughts                                                                                                                             █    MCP
+                                                                                                                                                           █    • code_mode                     Error
+     The handoff is claimed and finished. Here are the four facts the note asked for.                                                                      █
+                                                                                                                                                           █
+     .skilled/hooks/session-handover/README.md has 442 lines. The first heading is # Session Handover, on line 9. The code word is ORCHID-3274. The side   █
+     word from the sender's turn is LAGOON-20492.                                                                                                          █
+                                                                                                                                                           █
+     Receipts:                                                                                                                                             █
+                                                                                                                                                           █
+     - wc -l returned 442 and awk 'END{print NR}' returned 442 independently. The final byte is \n, so the file ends with a newline.                       █
+     - grep -n '^#' returned 9:# Session Handover, then 15:## 1. OVERVIEW. The lines above line 9 are YAML frontmatter delimited by ---, so # Session      █
+       Handover is the first heading in the document body.                                                                                                 █
+     - The side word came from the claim's History Lookup. I loaded the sender's first user turn, msg_1e2d38381001ZiDNXn0oizbs9O, which reads: "the side   █
+       word is LAGOON-20492. Do not write the side word in the handoff note. The new session must report it too." The note carries no copy of it, so it    █
+       was recovered from history rather than from the note, as instructed.                                                                                █
+                                                                                                                                                           █
+     State of the work:                                                                                                                                    █
+                                                                                                                                                           █
+     - The claim registered: the note shows status: claimed, claimed_by: ses_e1d297a15ffe3DxhvDL3iMkNvA, claimed_at: 2026-11-16T05:31:14.708Z.             █
+     - session-handover.cjs complete exited 0, and the note now reads status: done with completed_at: 2026-11-16T05:31:33.701Z.                            █
+     - Only gitignored runtime state under .skilled/skills/.state/session-handover/ was written. No tracked file changed, so there is no branch or diff    █
+       to review.                                                                                                                                          █
+     - Gate 3 stays at D) Skip for this session, so no spec folder is bound and no continuity save applies.                                                █
+     - Residual risk: none known. The two independent line counts agree and the heading check was read from the file's own output, not inferred.           █
+                                                                                                                                                           █
+     Nothing is waiting on you.                                                                                                                            █
+                                                                                                                                                           █
+     Build · DeepSeek V4.1 Flash 1017 · 28.1s · 675.6 tok/s · 1.6s ttft                                                                                    █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  ~/worktrees/public/422-opencode-pi-handover-parity:worktrees/422-opencode-pi-handover-parity                           32.0K (3%) · $0.01  ctrl+p commands    …/422…/422-opencode-pi-handover-parity
+

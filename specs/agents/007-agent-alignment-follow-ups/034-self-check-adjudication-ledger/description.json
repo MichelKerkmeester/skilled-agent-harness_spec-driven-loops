@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger",
+  "description": "Phase 34: self-check-adjudication-ledger",
+  "keywords": [
+    "phase",
+    "self-check-adjudication-ledger"
+  ],
+  "lastUpdated": "2026-11-16T05:46:11.987Z",
+  "specId": "034",
+  "folderSlug": "self-check-adjudication-ledger",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_06-46__phase-034-built-claim-adjudication-ledger-rows.md"
+  ]
+}

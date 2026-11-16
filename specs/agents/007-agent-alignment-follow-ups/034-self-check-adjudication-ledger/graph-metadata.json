@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/034-self-check-adjudication-ledger",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "self check adjudication ledger",
+      "phase 34 self check adjudication ledger",
+      "self check adjudication ledger plan",
+      "self check adjudication ledger tasks",
+      "self check adjudication ledger implementation summary"
+    ],
+    "key_topics": [
+      "self",
+      "check",
+      "adjudication",
+      "ledger",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "deepreview",
+      "claimadjudication",
+      "skilled"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/self-check-adjudication.vitest.ts",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/adversarial-self-check.md",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-schema.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "self-check-adjudication.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/self-check-adjudication.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "adversarial-self-check.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/adversarial-self-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Schema",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Ledger",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Self",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deepreview.claimadjudication` in `.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts` is a closed shape with eight gate-summary fields",
+    "created_at": "2026-11-16T05:31:04Z",
+    "last_save_at": "2026-11-16T05:46:11.987Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aa7ec5eee38cd69379da7be0ec494d4f1572a3334670b8b595897db1e53aabf9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "428bc7f59347e6bb46ad4f3b5218c5b1eb8967a93f3a321ad1060dc3a52c5b11",
+      "plan.md": "f61906334c622dce881c0e48892cf96dd60154671127b368b9c9c610f766e503",
+      "tasks.md": "abff1186879ea645a7599728b21d6af40cbe9e70d52fcf9123cdb09100fa7ed0",
+      "implementation-summary.md": "4cc21beac17806946724696e57b73865b7bff996b58ba597eebed6ec6f60f1f6"
+    },
+    "last_active_at": null
+  }
+}
