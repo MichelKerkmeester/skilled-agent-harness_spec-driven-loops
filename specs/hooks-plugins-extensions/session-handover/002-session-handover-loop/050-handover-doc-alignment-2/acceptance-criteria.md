@@ -35,11 +35,10 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
+**Packet:** 050-handover-doc-alignment-2
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-11-16
 <!-- /ANCHOR:metadata -->
 
@@ -47,13 +46,15 @@ _memory:
 
 <!-- ANCHOR:criteria -->
 ## 2. CRITERIA
-<!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--keep 3` runs, Then `ls logs/archive | wc -l` prints 3. WEAK: The feature works. -->
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the 50 findings, When the fix briefs ran, Then each is fixed or shown gone by the code | G1 to G5 lanes `ok`, 24 docs changed; L6-1 to L6-5 already gone after main's README rewrite (`grep` prints 0 matches), confirmed by the Opus review, which found all 50 addressed | Met | - |
+| AC-002 | REQ-002 | Given the four P0 commands, When a reader runs them as written, Then they match the code | The reviewer ran the CL-6 and CX-4 probes in a sandbox, eleven `PASS:` lines each and no `FAIL:`; `opencode --help` 2.3.0 lists no `-m` and the quick start no longer passes one; the README build step is gone with its section | Met | - |
+| AC-003 | REQ-003 | Given the full change, When a fresh Opus medium agent reviewed it against the code, Then no P0 or P1 remains | Review found no P0 or P1 and 7 P2, all applied in `10ec30a0f97` with the text the review quoted | Met | - |
+| AC-004 | REQ-004 | Given the worktree diff against main, When it is listed, Then only scoped files change | `git diff --stat origin/main...HEAD` lists the hand-over docs and this packet, no code | Met | - |
 
 ### Status values
 
@@ -77,9 +78,8 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
-<!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Every criterion is Met with observed evidence.
 <!-- /ANCHOR:closure -->

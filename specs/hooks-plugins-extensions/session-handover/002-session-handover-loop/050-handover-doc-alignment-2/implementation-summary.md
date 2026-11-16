@@ -1,24 +1,35 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Every hand-over doc now states Pi's agent_settled arm, OpenCode 2's model carry and Vibe's arm and withdraw paths as the code runs them, and four broken reader commands work again."
 trigger_phrases:
   - "handover doc alignment 2 implementation summary"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2"
-    last_updated_at: "2026-11-16T11:35:33Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-16T12:10:31Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed the packet after the review fixes and gates"
+    next_safe_action: "Await operator approval to merge worktree 431 to main"
+    packet_purpose: "Purpose: Every finding is fixed in its doc or shown wrong by the code, and the hand-over docs describe Pi's `agent_settled` arm, OpenCode 2's model carry and Vibe's arm and withdraw paths as the code runs them."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/hooks/session-handover/runtime-behavior.md"
+      - ".skilled/hooks/session-handover/README.md"
+      - ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:9f26588683ce79c3fa21146a9dda5f7b0c2430c045ea62f5e14a6c837a062b35"
       session_id: "scaffold-050-handover-doc-alignment-2"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "b726ec67-1d85-4833-b219-c038e184d696"
+      workspace: "/Users/michelkerkmeester/worktrees/public/431-handover-doc-alignment-2"
+      savedAt: "2026-11-16T12:10:31Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +43,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,62 +55,64 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The four commands a reader could run and watch fail now work: the OpenCode 2 quick start drops the `-m` flag its root command lacks, and the CL-6 and CX-4 probe notes carry the `Running workers:` line `prepare` requires. The docs now say Pi arms at `agent_settled`, OpenCode 2 carries the model through its config on a hop, and Vibe arms, withdraws and starts the killer like the others.
 
-### Hand-over doc alignment, second pass: fix the 50 findings of the full 86-doc check
+### Second-pass hand-over doc alignment
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+A `/local-doc-alignment session-handover` run with six lanes finished all 86 docs this time, including the nine the first pass never reached. It found 50 findings. DeepSeek V4.1 Flash at max fixed 45 after reading the cited code, and the five root README findings were already gone after main's README rewrite. A fresh Opus medium review found no wrong behavior claim and seven stale details, which DeepSeek then fixed.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| Hand-over docs under `.skilled/hooks/session-handover/` | Modified | Quick start, deny lists, runtime behavior, protocol, troubleshooting, state files |
+| `.skilled/hooks/README.md`, `coverage-rationale.md`, runtime hook READMEs | Modified | Event lists, adapter inventory, command names |
+| `.skilled/bin/README.md`, `.skilled/commands/speckit/handoff.md` | Modified | Option order, manual command, exit codes |
+| System-spec-kit catalog, playbooks and README | Modified | Probe notes, Pi arm event, OpenCode 2 model carry, lookup command |
+| cli-pi, cli-deepseek-harness and cli-mistral-vibe docs | Modified | Guard claims, DSH prompt name, hop history |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Built in worktree `worktrees/431-handover-doc-alignment-2`. The check ran from a detached checkout of origin/main, because the primary checkout was behind, and its prompts now name the checkout to read. Five of six lanes hit the 30-minute limit on the first try while still reading, and finished with a 60-minute limit, which the operator then made the default for the `opencode-go` preset. Six DeepSeek briefs ran one at a time through the alignment lane runner, each limited to named files.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Fix in a new child packet 050 | The operator chose it over reopening 049 |
+| Raise the `opencode-go` lane and critic timeout to 60 minutes | The operator chose it after five lanes needed 22 to 37 minutes |
+| Leave the root README unchanged | Main's rewrite already removed every flagged sentence |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Hand-over suites (`node --test tests/*.test.cjs`, `AI_SESSION_CHILD` cleared) | PASS: 1045 of 1045 |
+| OpenCode plugin suite | PASS: 75 of 75 |
+| Drift guards, hook registrations | PASS: 4 of 4 guards, registrations in sync |
+| CL-6 and CX-4 probes (run by the reviewer) | PASS: eleven `PASS:` lines each, no `FAIL:` |
+| Opus medium review | No P0 or P1; 7 P2, all fixed |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The Codex, Pi and OpenCode test sandboxes still read `AI_SESSION_CHILD`.** The playbooks give the working command with the variable cleared. The sandboxes themselves are unchanged.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

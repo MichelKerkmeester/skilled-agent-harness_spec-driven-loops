@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9b9379e002d52cfa59b2277a781e40519e43ba1e6450c2e2fd95abfc32c06f22",
+  "manifestHash": "56afeb30f246835ac8be99235a61184436b8117082fdc282c81f8b9ff3e5516a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7174,6 +7174,9 @@
     ],
     "049 supersession": [
       "049 supersession"
+    ],
+    "050 handover doc alignment 2 operator decisions": [
+      "050-handover-doc-alignment-2 operator decisions"
     ],
     "050 review remediation": [
       "050 review remediation"
@@ -57798,6 +57801,9 @@
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
     ],
+    "hand over doc alignment 050": [
+      "hand-over doc alignment 050"
+    ],
     "hand over doc alignment fixes": [
       "hand-over doc alignment fixes"
     ],
@@ -57921,6 +57927,18 @@
     "handover doc alignment": [
       "handover doc alignment"
     ],
+    "handover doc alignment 2 acceptance criteria": [
+      "handover doc alignment 2 acceptance criteria"
+    ],
+    "handover doc alignment 2 implementation summary": [
+      "handover doc alignment 2 implementation summary"
+    ],
+    "handover doc alignment 2 plan": [
+      "handover doc alignment 2 plan"
+    ],
+    "handover doc alignment 2 tasks": [
+      "handover doc alignment 2 tasks"
+    ],
     "handover doc alignment acceptance criteria": [
       "handover doc alignment acceptance criteria"
     ],
@@ -57929,6 +57947,9 @@
     ],
     "handover doc alignment plan": [
       "handover doc alignment plan"
+    ],
+    "handover doc alignment second pass": [
+      "handover doc alignment second pass"
     ],
     "handover doc alignment tasks": [
       "handover doc alignment tasks"
