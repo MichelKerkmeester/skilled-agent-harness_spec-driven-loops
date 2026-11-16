@@ -8,7 +8,8 @@
     "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge",
     "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames",
     "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite",
-    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes"
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes",
+    "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -162,19 +163,19 @@
     ],
     "causal_summary": "A person who opens `.skilled/hooks/` to learn which hook does what meets four obstacles",
     "created_at": "2026-11-15T14:58:48Z",
-    "last_save_at": "2026-11-16T07:29:33.176Z",
+    "last_save_at": "2026-11-16T10:05:53.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8bb42b400e1faabcfc16c76fbae72ec2c62b09887d464e4cac66237efb9ae9b0",
+    "source_fingerprint": "sha256:b297a4450498ea863812457dcd0b2925f1fa2b13087994e7cc948ca1e429d2f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cec5a36bab3062ebcdc2d7478215f07126d00f5568df7c4fb626678b95b89278"
+      "spec.md": "88f55ac45458d798dd0e4802e300f9f093d0e925a7744dc1db7d40e25d4865f4"
     },
-    "last_active_child_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes",
-    "last_active_at": "2026-11-16T07:29:33.176Z"
+    "last_active_child_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes",
+    "last_active_at": "2026-11-16T09:52:16.360Z"
   }
 }

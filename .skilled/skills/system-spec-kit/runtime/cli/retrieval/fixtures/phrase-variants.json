@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ce053329349496c0273eb3d11537800ab8dc287f1bf448d78a41720334929867",
+  "manifestHash": "e5cfc90c895a12e56a9397bce4af3b332f316f951753176cccf003904e9c63de",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1605,6 +1605,9 @@
     ],
     "006 causal graph window metrics": [
       "006 causal graph window metrics"
+    ],
+    "006 codex check and advisory fixes operator decisions": [
+      "006-codex-check-and-advisory-fixes operator decisions"
     ],
     "006 commands implementation summary": [
       "006-commands implementation summary"
@@ -27300,6 +27303,18 @@
     "codex built in tools": [
       "codex built-in tools"
     ],
+    "codex check and advisory fixes": [
+      "codex check and advisory fixes"
+    ],
+    "codex check and advisory fixes implementation summary": [
+      "codex check and advisory fixes implementation summary"
+    ],
+    "codex check and advisory fixes plan": [
+      "codex check and advisory fixes plan"
+    ],
+    "codex check and advisory fixes tasks": [
+      "codex check and advisory fixes tasks"
+    ],
     "codex child envelope one shot dispatch": [
       "codex child envelope one-shot dispatch"
     ],
@@ -27476,6 +27491,9 @@
     ],
     "codex hook check merge tasks": [
       "codex hook check merge tasks"
+    ],
+    "codex hook check worktree": [
+      "codex hook check worktree"
     ],
     "codex hook cleanup": [
       "codex hook cleanup"
@@ -84072,6 +84090,9 @@
     "phase 6 closure gate": [
       "phase 6 closure gate"
     ],
+    "phase 6 codex check and advisory fixes": [
+      "phase 6 codex check and advisory fixes"
+    ],
     "phase 6 codex persona tool mapping": [
       "phase 6 codex persona tool mapping"
     ],
@@ -105016,6 +105037,9 @@
     ],
     "session start advisories": [
       "session start advisories"
+    ],
+    "session start advisory ok line": [
+      "session start advisory ok line"
     ],
     "session start artifact path": [
       "session-start artifact path"
