@@ -37,7 +37,7 @@ On Vibe under `skilled-loop`, a typed `/speckit-handoff` arms, because the sessi
 
 `skilled-loop` exports `SKILLED_LOOP_RUNTIME` with the selected runtime. It carries the first launch's model for every runtime except Vibe, whose `--model` is headless-only, and OpenCode 2, whose root command has no model flag. Pi also carries its provider. Claude and Pi carry their name. Pi carries its extension flags. Relative Pi extension paths resolve against the wrapper's starting directory.
 
-`prepare` and `claim` require `--session <id>`. Claude can omit it and use `CLAUDE_CODE_SESSION_ID`. Vibe under `skilled-loop` can omit it too.
+`prepare` and `claim` require `--session <id>`. Claude can omit it and use `CLAUDE_CODE_SESSION_ID`. Vibe under `skilled-loop` can omit it for `prepare` only. `claim` has no Vibe fallback, so a Vibe claim passes `--session`.
 
 Vibe gives its tools no session id, so the turn-start hook records the id it sees for the loop, and `session-id --runtime vibe` prints it. Other runtimes pass the id directly. Runtimes with no session-id variable, such as Devin, Cursor or Vibe outside the loop, run `uuidgen` once and reuse the value. `CLAUDE_PID` supplies Claude's process id for the shell-child check, and Stop keeps it as the killer target while it descends from the loop. `complete` requires only the note path.
 

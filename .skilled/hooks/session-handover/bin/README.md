@@ -35,7 +35,7 @@ A malformed invocation prints the syntax it missed to stderr and exits 2. An unk
 
 A malformed invocation prints the missing syntax to stderr and exits 2. A `prepare` outside a loop, or at the hop cap, prints the claim command and exits 3.
 
-`should-relaunch` exits 0 to relaunch and 1 to stay. `cancel` prints `no prepared hand-over to cancel` and exits 1 when no record is waiting. `history` prints the latest hops and takes `--last <count>` to set how many. `window` prints the configured Claude context window or the settings that configure it. `session-id` prints the id `prepare` and `claim` use when `--session` is omitted: the Claude Code session, or with `--runtime vibe` the Vibe session `skilled-loop` last saw.
+`should-relaunch` exits 0 to relaunch and 1 to stay. `cancel` prints `no prepared hand-over to cancel` and exits 1 when no record is waiting. `history` prints the latest hops and takes `--last <count>` to set how many. `window` prints the configured Claude context window or the settings that configure it. `session-id` prints the id used when `--session` is omitted: the Claude Code session for `prepare` and `claim`, or with `--runtime vibe` the Vibe session `skilled-loop` last saw, which only `prepare` falls back to.
 
 `prepare` refuses a note that leaves the `Running workers:` line unanswered. Inside a loop it also refuses while the runtime still has a live shell child. `prepare` refuses when the `session-handover` concern is off and names the switch that turned it off.
 

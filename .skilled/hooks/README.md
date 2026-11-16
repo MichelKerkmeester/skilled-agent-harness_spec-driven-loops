@@ -28,7 +28,7 @@ It keeps only the pointer, liveness and telemetry per session. Pi, Cursor, Devin
 
 See [`injection-contract.md`](./injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
 
-A session-handover concern, documented in [session-handover/](./session-handover/README.md), adds context nudges and runtime-specific arming for Claude, Pi, OpenCode, Codex and Vibe sessions started through skilled-loop. Cursor, Devin and DSH join the same loop on the `/speckit:handoff` command trigger only. Inside skilled-loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction.
+A session-handover concern, documented in [session-handover/](./session-handover/README.md), adds context nudges and runtime-specific arming for Claude, Pi, OpenCode, Codex and Vibe sessions started through skilled-loop. Cursor and Devin join the same loop on the `/speckit:handoff` command trigger only. DSH has no relaunch, because `skilled-loop` does not launch it. Inside skilled-loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction.
 
 The sourced `.skilled/bin/skilled-loop-shell.sh` shim starts every plain interactive runtime launch under a trusted wrapper, a symlinked `.skilled` included. Trusted means inside the sourced checkout, a linked worktree registered to it or a checkout in `SKILLED_LOOP_TRUSTED_CHECKOUTS`.
 
