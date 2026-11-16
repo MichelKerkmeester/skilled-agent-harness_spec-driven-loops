@@ -263,8 +263,11 @@ function patchPaths(text) {
 
 // A redirect is a write even when the tool is only a shell. The scan respects
 // quoting, because a `>` inside a quoted argument is text and not a redirect, and a
-// false write would move the first-write boundary the read measure turns on.
-function redirectTargets(command) {
+// false write would move the first-write boundary the read measure turns on. A
+// heredoc body is data handed to a program, so a comparison such as `len(x)>0` in it
+// is no redirect, while the opening line keeps any redirect the command made.
+function redirectTargets(text) {
+  const command = text.replace(HEREDOC_BODY, '$1');
   const targets = [];
   let quote = null;
 

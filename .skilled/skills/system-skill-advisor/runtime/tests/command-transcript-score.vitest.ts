@@ -250,6 +250,39 @@ describe('normalize', () => {
     expect(events[0].kind).toBe('shell');
   });
 
+  // A heredoc body is a program's input, so a comparison in it names no file, while
+  // a redirect on the opening line still lands one.
+  it('leaves a comparison inside a heredoc body as a shell step', () => {
+    const command = "python3 - <<'PY'\nimport sys\nif len(sys.argv)>0:\n    print(ord('a')>127)\nPY";
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events.map((event) => event.kind)).toEqual(['shell']);
+  });
+
+  it('counts a redirect on the opening line of a heredoc as a write', () => {
+    const events = normalize(
+      oneTurn(toolCall('Bash', { command: "cat <<'EOF' > notes.txt\nif a > b\nEOF" })),
+      'claude',
+    );
+
+    expect(events.map((event) => event.kind)).toEqual(['write']);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'notes.txt' });
+  });
+
+  // A document read with no write is a lookup, so a heredoc comparison after it must not
+  // turn the read into a start.
+  it('keeps a document read followed by a heredoc comparison a lookup', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: '/arena/.claude/commands/create/sk-skill.md' }),
+        toolCall('Bash', { command: "python3 - <<'PY'\nif len([1])>0:\n    print(1)\nPY" }),
+      ),
+      'claude',
+    );
+
+    expect(startedCommand(events, ['/create:sk-skill'], '/arena')).toBeNull();
+  });
+
   // Claude Code expands a typed command before the model sees it, and the stored
   // user turn keeps only this tag as evidence the command ran.
   it('records the command Claude Code expanded into the user turn', () => {
