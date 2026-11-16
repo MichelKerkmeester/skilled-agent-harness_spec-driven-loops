@@ -38,7 +38,8 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/032-review-pass-five-remediation",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/033-untuned-arm-arena-run",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/034-scorer-heredoc-redirect-fix",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/036-start-rate-fixed-rule"
   ],
   "manual": {
     "depends_on": [],
@@ -240,7 +241,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-16T06:16:03.836Z",
+    "last_save_at": "2026-11-16T07:13:53.752Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -248,13 +249,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:71556ee59c9bc5d6d8e3bef17943220b25bd40781d7b36f1f964969251b40f83",
+    "source_fingerprint": "sha256:3f8e69cf25abbf93efc8f9df04018d36bfaf67274ed0de066000482a109e94b8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2f5896e2b90d66f8f8c83ce4abf3ad83b95486688e1bceee4f102aea8f736388",
+      "spec.md": "486991aec088040d2d2216c390866db197da932fa31ee67a40911e4bf2247707",
       "decision-record.md": "24b0499462a108efec1a034417bab479620a54c915e1d1c4bcad4c8c637e80c0"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape",
-    "last_active_at": "2026-11-16T06:14:42.217Z"
+    "last_active_at": "2026-11-16T07:13:24.949Z"
   }
 }

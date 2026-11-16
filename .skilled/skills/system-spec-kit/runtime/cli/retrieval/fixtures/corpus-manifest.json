@@ -1,5 +1,5 @@
 {
-  "corpusHash": "46fb9d847cbd6ceb397371f20c3189a52fdfd276f9fca43c762e1ce975c5344b",
+  "corpusHash": "2d606653240ec4de461cec077ac968631d061c1d168df4b96d7929987b451669",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27910,
+  "includedPathCount": 27915,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19186,6 +19186,11 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/036-start-rate-fixed-rule/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/036-start-rate-fixed-rule/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/036-start-rate-fixed-rule/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/036-start-rate-fixed-rule/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/036-start-rate-fixed-rule/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/fanout-attribution-pass-1.md",
@@ -27942,7 +27947,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1ef9d542ad570a5e3755ffdd1697170184e12581e851ffe2671d8d50303390f9",
+  "manifestHash": "cc593f5a8ed2bfd07bc275ac3303610b8c86fb792ec295aa05a331307551680c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36274,6 +36279,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/035-suite-metrics-and-start-shape/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/036-start-rate-fixed-rule/scratch",
       "reason": "excluded directory"
     },
     {

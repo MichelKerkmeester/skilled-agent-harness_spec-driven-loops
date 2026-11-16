@@ -35,7 +35,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,7 +44,13 @@
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
-      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts"
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      "scratch/isolation-check.sh",
+      "scratch/isolation.txt",
+      "scratch/before.txt",
+      "scratch/after.txt",
+      "scratch/summary-shapes.json",
+      "scratch/shape-check.txt"
     ],
     "entities": [
       {
@@ -93,6 +99,42 @@
         "name": "command-transcript-score.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "isolation-check.sh",
+        "kind": "script",
+        "path": "scratch/isolation-check.sh",
+        "source": "derived"
+      },
+      {
+        "name": "isolation.txt",
+        "kind": "file",
+        "path": "scratch/isolation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary-shapes.json",
+        "kind": "config",
+        "path": "scratch/summary-shapes.json",
+        "source": "derived"
+      },
+      {
+        "name": "shape-check.txt",
+        "kind": "file",
+        "path": "scratch/shape-check.txt",
         "source": "derived"
       },
       {
@@ -154,47 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Config",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`lib/metrics.ts` keeps durable health records under `join(tmpdir(), 'speckit-skill-advisor-metrics')`, and the suite runs with the operator's own temp folder, so every suite run adds test records to the folder that the health readers and the research lanes read as real use",
     "created_at": "2026-11-16T06:10:58Z",
-    "last_save_at": "2026-11-16T06:14:42.191Z",
+    "last_save_at": "2026-11-16T07:13:53.585Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6175f026b13cc3eda367f51d95556b4ccce3ac8791c55046533faf8c9cf3798d",
+    "source_fingerprint": "sha256:8308a0f08abb8f2369bd507d597a370e62920471f319490d0f8786c46e065c04",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "497aa29247de36f6d18079521210b7843162d878027f430fa986cf9c6bffb2b2",
+      "spec.md": "b1fd0006dd05f676de97b9cc8d5c136aabf7759d0cb16b65cb9488782a22e986",
       "plan.md": "d0bccf949e56616fa890240001c687d4caa4aac1650d772d5e885f1a0a9922bd",
-      "tasks.md": "71c44a2d029406df522bf75e5ee841ac6311b760699197f31ec3aab5583860d0",
-      "implementation-summary.md": "274b6b219b91cd48d4397eb3a852f5c0c36a41568259154452ceb8ca54010947"
+      "tasks.md": "510429423cfbece0fd0287e8da001f5ebefad8feacce82c51e7de1223e88e275",
+      "implementation-summary.md": "311e9fa634365f4716dd26d81621d13714b4bd4313c235539b7677b427c0b6f8"
     },
     "last_active_at": null
   }

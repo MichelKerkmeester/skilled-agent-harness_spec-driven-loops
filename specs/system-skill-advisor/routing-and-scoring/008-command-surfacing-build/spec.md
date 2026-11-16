@@ -151,7 +151,8 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 32 | 032-review-pass-five-remediation/ | The fixes for review pass five: the transcript scorer reads an in-place shell edit as a write, the arena builder refuses a dirty source, a stale build and a link that leaves the source and records what it copied, and the runner checks for a remote before every live turn. It also fixes the kill-switch names in docs and tests, the Vibe part, the Claude hook switch, the doctor's Vibe match and eight docs, rescores the stored arms, and closes with an Opus review, a DeepSeek re-review of the fix diff and the pass-five synthesis. It runs after phase 031 | Complete |
 | 33 | 033-untuned-arm-arena-run/ | The untuned behaviour arm run live in five arenas at one commit, run 1 of both arms and run 2 of the decline rows, scored with the committed scorer, with its verdict, step reader and B-5 rows in the goal log | Complete |
 | 34 | 034-scorer-heredoc-redirect-fix/ | The transcript scorer stops reading a `>` inside a heredoc body as a redirect, and the phase 033 lines are rescored so the arm verdict and B-5 trigger are restated from the fixed scorer | Complete |
-| 35 | 035-suite-metrics-and-start-shape/ | The advisor suite writes its health records under its own temp folder, and the scorer prints the shape of every start beside the start rate | Pending |
+| 35 | 035-suite-metrics-and-start-shape/ | The advisor suite writes its health records under its own temp folder, and the scorer prints the shape of every start beside the start rate | Complete |
+| 36 | 036-start-rate-fixed-rule/ | The printed start rate follows the fixed arm start rule, a read alone counts as a lookup beside it, and the 007 and 033 start rates are restated | Pending |
 
 ### Phase Transition Rules
 
@@ -195,6 +196,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 032-review-pass-five-remediation | 033-untuned-arm-arena-run | Phase 032 is Complete and committed, because the arm runs on the pass-five runner and arena builder | Phase 033 builds its arenas at a commit that holds the 032 fixes |
 | 033-untuned-arm-arena-run | 034-scorer-heredoc-redirect-fix | Phase 033 is Complete and committed with its run lines and summary, because phase 034 rescores exactly those lines | Phase 034 task T002 shows the unfixed scorer reproduces `summary-arm.json` byte for byte |
 | 034-scorer-heredoc-redirect-fix | 035-suite-metrics-and-start-shape | Phase 034 is Complete and committed, because the start rates this phase must leave unchanged are its rescore | Phase 035 task T007 compares every rate with 034 `summary-rescore.json` |
+| 035-suite-metrics-and-start-shape | 036-start-rate-fixed-rule | Phase 035 is committed with `startShapes`, because this phase reads the shape to apply the rule | Phase 036 task T001 records both before summaries at the 035 commit |
 <!-- /ANCHOR:phase-map -->
 
 ---

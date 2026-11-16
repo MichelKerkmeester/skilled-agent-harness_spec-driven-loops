@@ -1,0 +1,13 @@
+## before at 3bfdd8aa09b, shared folder under the operator's TMPDIR
+COUNT files 729 lines 26001
+$ SUITE
+ Test Files  185 passed (185)
+      Tests  2319 passed | 6 skipped (2325)
+exit 0
+COUNT files 735 lines 26313
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+$ EVAL
+[160,49,21,5]

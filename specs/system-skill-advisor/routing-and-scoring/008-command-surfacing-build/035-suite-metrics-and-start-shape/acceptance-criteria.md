@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `035-suite-metrics-and-start-shape`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-16
 <!-- /ANCHOR:metadata -->
 
@@ -53,11 +53,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the config change, When `SUITE` runs, Then it reads 0 failed and `COUNT` prints the same file and line counts before and after | `scratch/after.txt` | Unmet | - |
-| AC-002 | REQ-002 | Given the committed 033 lines, When the changed scorer rescores them, Then every `startRate` equals 034's and every `startShapes` sums to its started count | `scratch/shape-check.txt`, 10 lines | Unmet | - |
-| AC-003 | REQ-003 | Given the change, When `FLOOR` and `EVAL` run, Then they print the lines of `before.txt`, and no scratch file holds prompt text | `scratch/before.txt`, `scratch/after.txt` | Unmet | - |
-| AC-004 | REQ-004 | Given one fixture per shape, When `startState` judges it, Then it returns that shape, and a read alone still counts in `started` | The new cases in `command-transcript-score.vitest.ts` | Unmet | - |
-| AC-005 | REQ-005 | Given a full suite run, When it exits, Then its per-run folder is gone | The `test -e` line in `scratch/after.txt` | Unmet | - |
+| AC-001 | REQ-001 | Given the config change, When `SUITE` runs, Then it reads 0 failed and `COUNT` prints the same file and line counts before and after | `scratch/isolation.txt` from `scratch/isolation-check.sh`, run against the code at `267c27fc5df`: SUITE 2325 passed, exit 0, COUNT 739 files 26383 lines before and after, changed shared files none | Met | - |
+| AC-002 | REQ-002 | Given the committed 033 lines, When the changed scorer rescores them, Then every `startRate` equals 034's and every `startShapes` sums to its started count | `scratch/shape-check.txt`: 10 lines `rate equal, shapes sum equal`, summary identical to 034 apart from `startShapes` | Met | - |
+| AC-003 | REQ-003 | Given the change, When `FLOOR` and `EVAL` run, Then they print the lines of `before.txt`, and no scratch file holds prompt text | FLOOR `24/44`, `0/35`, `2/44` and EVAL `[160,49,21,5]` in `scratch/before.txt` and `scratch/after.txt`. Scratch files hold counts, shape names and scorer lines only | Met | - |
+| AC-004 | REQ-004 | Given one fixture per shape, When `startState` judges it, Then it returns that shape, and a read alone still counts in `started` | Cases `names the $name start shape` (skill, reported, readWrite, readOnly), `names the host expansion shape and no shape...` and the outside-checkout case in `command-transcript-score.vitest.ts`, 342 passed | Met | - |
+| AC-005 | REQ-005 | Given a full suite run, When it exits, Then its per-run folder is gone | `scratch/isolation.txt`: `test -e .../sav-C5pSfL -> exit 1`, the one per-run folder seen during the run | Met | - |
 
 ### Status values
 
@@ -83,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-Nothing is built yet, so every row is unmet.
+Every row is Met with the evidence it names.
 <!-- /ANCHOR:closure -->

@@ -39,7 +39,7 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [C] Record the before state (`$SP/before.txt`). Run `COUNT`, `SUITE`, `COUNT` again, `FLOOR` and `EVAL`, and write each with its output. Verify: the suite reads 0 failed, and the second `COUNT` is higher than the first, which shows the leak this phase closes.
+- [x] T001 [C] Record the before state (`$SP/before.txt`). Run `COUNT`, `SUITE`, `COUNT` again, `FLOOR` and `EVAL`, and write each with its output. Verify: the suite reads 0 failed, and the second `COUNT` is higher than the first, which shows the leak this phase closes. Evidence: before.txt at 3bfdd8aa09b: COUNT 729 files 26001 lines, SUITE 2319 passed 0 failed exit 0, COUNT 735 files 26313 lines (leak shown), FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -47,10 +47,10 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Make a per-run temp folder, set `process.env.TMPDIR` to it and remove it on exit (`$ADV/vitest.config.ts`). After T001. Verify: `COUNT` before and after `SUITE` prints the same two numbers, and the folder path the config logs is gone after the run.
-- [ ] T003 Return the start's shape from `startState`, taking an optional checkout folder, and pass the line's `projectDir` from `scoreLine` (`$S`). After T001. Verify: `node --check $S` exits 0.
-- [ ] T004 Tally the shape of each counted start and print `startShapes` in `tallyBlock` and the text summary (`$S`). After T003. Verify: `node $S --summary $LOGS --pair off,on --json > $SP/summary-shapes.json` exits 0.
-- [ ] T005 Add a case per shape and a summary case whose split sums to its started count (`$ADV/tests/command-transcript-score.vitest.ts`). After T004. Verify: `(cd $ADV && env -u AI_SESSION_CHILD npx vitest run tests/command-transcript-score.vitest.ts)` passes.
+- [x] T002 Make a per-run temp folder, set `process.env.TMPDIR` to it and remove it on exit (`$ADV/vitest.config.ts`). After T001. Verify: `COUNT` before and after `SUITE` prints the same two numbers, and the folder path the config logs is gone after the run. Evidence: shared COUNT 735 files 26313 lines before and after a full SUITE, 0 sav- folders left after; 7 full runs: 6 at 2319 passed 0 failed, the first at 1 failed (test not captured, did not recur in 6 reruns)
+- [x] T003 Return the start's shape from `startState`, taking an optional checkout folder, and pass the line's `projectDir` from `scoreLine` (`$S`). After T001. Verify: `node --check $S` exits 0. Evidence: node --check exit 0; startState(events, row, checkoutDir) returns shape, scoreLine passes line.locator.projectDir
+- [x] T004 Tally the shape of each counted start and print `startShapes` in `tallyBlock` and the text summary (`$S`). After T003. Verify: `node $S --summary $LOGS --pair off,on --json > $SP/summary-shapes.json` exits 0. Evidence: summary-shapes.json score exit 0, startShapes in every runtime and arm block and in the text summary
+- [x] T005 Add a case per shape and a summary case whose split sums to its started count (`$ADV/tests/command-transcript-score.vitest.ts`). After T004. Verify: `(cd $ADV && env -u AI_SESSION_CHILD npx vitest run tests/command-transcript-score.vitest.ts)` passes. Evidence: command-transcript-score.vitest.ts 342 passed: four shape cases, expansion and no-start case, outside-checkout write case, capped summary split sums to 1; tsc on tsconfig.json 0 errors in the file, typecheck exit 0
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,10 +58,10 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 [C] Rerun the gates (`$SP/after.txt`). After T005. Run `COUNT`, `SUITE`, `COUNT`, `FLOOR` and `EVAL`. Verify: 0 failed, both `COUNT` runs equal, `FLOOR` and `EVAL` equal to `before.txt`.
-- [ ] T007 [C] Check the rescore (`$SP/shape-check.txt`). After T006. Run `CHECK > $SP/shape-check.txt` and append the `startShapes` of each runtime and arm. Verify: 10 lines read `rate equal, shapes sum equal`.
-- [ ] T008 [C] Log the result (`../goal.md`). After T007. `PLOG` a `Start shape split` row quoting the read-alone count per runtime and arm from `summary-shapes.json`, and a `Suite metrics isolation` row with the `COUNT` lines. Verify: `rg -c '^\| (Start shape split|Suite metrics isolation) \|' $PK/goal.md` prints 2 and `goal.cjs packet $PK` prints `packet_budget=ok`.
-- [ ] T009 [C] Close the phase (`implementation-summary.md`). After T008. Fill the summary, tick the checklist and validate. Verify: `validate.sh $PK/035-suite-metrics-and-start-shape --strict` prints `RESULT: PASSED`.
+- [x] T006 [C] Rerun the gates (`$SP/after.txt`). After T005. Run `COUNT`, `SUITE`, `COUNT`, `FLOOR` and `EVAL`. Verify: 0 failed, both `COUNT` runs equal, `FLOOR` and `EVAL` equal to `before.txt`. Evidence: after.txt: SUITE 2325 passed 0 failed exit 0, 0 sav- folders left, FLOOR and EVAL equal before.txt; the snapshot check shows no shared file changed across the trim test file and a full run (the first COUNT drift came from other sessions' OpenCode and Claude records)
+- [x] T007 [C] Check the rescore (`$SP/shape-check.txt`). After T006. Run `CHECK > $SP/shape-check.txt` and append the `startShapes` of each runtime and arm. Verify: 10 lines read `rate equal, shapes sum equal`. Evidence: shape-check.txt at 267c27fc5df: 10 lines rate equal, shapes sum equal; summary identical to 034 apart from startShapes
+- [x] T008 [C] Log the result (`../goal.md`). After T007. `PLOG` a `Start shape split` row quoting the read-alone count per runtime and arm from `summary-shapes.json`, and a `Suite metrics isolation` row with the `COUNT` lines. Verify: `rg -c '^\| (Start shape split|Suite metrics isolation) \|' $PK/goal.md` prints 2 and `goal.cjs packet $PK` prints `packet_budget=ok`. Evidence: goal rows Start shape split and Suite metrics isolation logged, rg -c prints 2, packet_budget=ok
+- [x] T009 [C] Close the phase (`implementation-summary.md`). After T008. Fill the summary, tick the checklist and validate. Verify: `validate.sh $PK/035-suite-metrics-and-start-shape --strict` prints `RESULT: PASSED`. Evidence: implementation-summary.md filled, AC 5 of 5 Met, CHK P0 12/12 P1 13/13, P2 deferred to 036, spec Complete, validate --strict RESULT: PASSED (errors=0 warnings=0)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -69,9 +69,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] `shape-check.txt` and the goal rows agree
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] `shape-check.txt` and the goal rows agree
 <!-- /ANCHOR:completion -->
 
 ---
@@ -106,9 +106,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Pre-Implementation
 <!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
 
-- [ ] CHK-001 [P0] The leak is measured before the fix (`before.txt` COUNT rises across `SUITE`)
-- [ ] CHK-002 [P0] 034's `summary-rescore.json` is the committed baseline
-- [ ] CHK-003 [P1] The 033 sessions still load (rescore exit 0 with 033's unscored counts)
+- [x] CHK-001 [P0] The leak is measured before the fix (`before.txt` COUNT rises across `SUITE`). Evidence: before.txt COUNT 729 to 735 files across SUITE
+- [x] CHK-002 [P0] 034's `summary-rescore.json` is the committed baseline. Evidence: 034 scratch/summary-rescore.json committed in e21e63ad395
+- [x] CHK-003 [P1] The 033 sessions still load (rescore exit 0 with 033's unscored counts). Evidence: summary-shapes.json score exit 0, shape-check.txt summary identical to 034 apart from startShapes
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -117,10 +117,10 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Code Quality
 <!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
 
-- [ ] CHK-010 [P0] `node --check $S` exits 0 and the config loads in `SUITE`
-- [ ] CHK-011 [P0] The change touches the config, the scorer and its test only (`G diff --stat`)
-- [ ] CHK-012 [P1] A folder that cannot be made throws at config load instead of falling back to the shared one
-- [ ] CHK-013 [P1] Comments state the why and carry no phase or finding id
+- [x] CHK-010 [P0] `node --check $S` exits 0 and the config loads in `SUITE`. Evidence: node --check exit 0, config loads in every SUITE run, typecheck exit 0
+- [x] CHK-011 [P0] The change touches the config, the scorer and its test only (`G diff --stat`). Evidence: git show --stat 267c27fc5df: vitest.config.ts, score-command-transcripts.mjs, command-transcript-score.vitest.ts
+- [x] CHK-012 [P1] A folder that cannot be made throws at config load instead of falling back to the shared one. Evidence: mkdtempSync runs at config load with no catch, so a failure throws before any worker
+- [x] CHK-013 [P1] Comments state the why and carry no phase or finding id. Evidence: the config and startShape comments state the why with no ids
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -129,10 +129,10 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Full suite 0 failed with the shared counts unchanged (`after.txt`)
-- [ ] CHK-022 [P1] Each of the five shapes has a passing case
-- [ ] CHK-023 [P1] A row with no expected command returns no shape
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: acceptance-criteria.md 5 of 5 Met
+- [x] CHK-021 [P0] Full suite 0 failed with the shared counts unchanged (`after.txt`). Evidence: isolation.txt 2325 passed exit 0, COUNT equal, no shared file changed
+- [x] CHK-022 [P1] Each of the five shapes has a passing case. Evidence: four shape cases plus the expansion case pass
+- [x] CHK-023 [P1] A row with no expected command returns no shape. Evidence: expected_command null returns shape null
 <!-- /ANCHOR:testing -->
 
 ---
@@ -141,13 +141,13 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## FIX ADDENDUM: FIX COMPLETENESS
 <!-- FILL: Write this section when the packet fixes a reported finding. Delete it otherwise. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
 
-- [ ] CHK-FIX-001 [P0] Classes: rank 3 is `test-isolation`, rank 4 is `matrix/evidence`
-- [ ] CHK-FIX-002 [P0] Every suite writer of the shared folder goes through `tmpdir()` (`rg -n 'speckit-skill-advisor-metrics' $ADV --glob '!node_modules'`)
-- [ ] CHK-FIX-003 [P0] `startState` has one caller, and `tallyBlock` feeds JSON and text output
-- [ ] CHK-FIX-004 [P0] N/A: no parser, path or redaction logic changes
-- [ ] CHK-FIX-005 [P1] Matrix axes listed in `plan.md`
-- [ ] CHK-FIX-006 [P1] The suite runs with the operator's own `TMPDIR` set, the hostile case for the leak
-- [ ] CHK-FIX-007 [P1] Evidence names the code commit
+- [x] CHK-FIX-001 [P0] Classes: rank 3 is `test-isolation`, rank 4 is `matrix/evidence`. Evidence: test-isolation and matrix/evidence
+- [x] CHK-FIX-002 [P0] Every suite writer of the shared folder goes through `tmpdir()` (`rg -n 'speckit-skill-advisor-metrics' $ADV --glob '!node_modules'`). Evidence: rg finds the folder name only in lib/metrics.ts, which resolves it under tmpdir()
+- [x] CHK-FIX-003 [P0] `startState` has one caller, and `tallyBlock` feeds JSON and text output. Evidence: one startState call in scoreLine, tallyBlock feeds --json and the text summary
+- [x] CHK-FIX-004 [P0] N/A: no parser, path or redaction logic changes. Evidence: no parser, path or redaction change
+- [x] CHK-FIX-005 [P1] Matrix axes listed in `plan.md`. Evidence: plan.md affected surfaces lists the axes
+- [x] CHK-FIX-006 [P1] The suite runs with the operator's own `TMPDIR` set, the hostile case for the leak. Evidence: every SUITE ran with the operator TMPDIR set
+- [x] CHK-FIX-007 [P1] Evidence names the code commit. Evidence: 267c27fc5df
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -156,9 +156,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Security
 <!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] `scripts/rotate-logs.sh` reads no credential. WEAK: Security is fine. -->
 
-- [ ] CHK-030 [P0] No prompt or session text in any scratch file
-- [ ] CHK-031 [P0] `.skilled/hooks/hook-flags.env` neither read nor created
-- [ ] CHK-032 [P1] The per-run folder is made with `mkdtempSync`, private to the user
+- [x] CHK-030 [P0] No prompt or session text in any scratch file. Evidence: scratch files hold counts, shape names, paths and scorer lines
+- [x] CHK-031 [P0] `.skilled/hooks/hook-flags.env` neither read nor created. Evidence: never opened, no test -e on it needed this phase
+- [x] CHK-032 [P1] The per-run folder is made with `mkdtempSync`, private to the user. Evidence: mkdtempSync creates the folder with mode 0700
 <!-- /ANCHOR:security -->
 
 ---
@@ -167,9 +167,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Documentation
 <!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
 
-- [ ] CHK-040 [P1] Spec, plan, tasks and goal rows state the same numbers
-- [ ] CHK-041 [P1] The config comment says why the suite needs its own folder
-- [ ] CHK-042 [P2] The summary field is named in the scorer's own header comment if it lists fields
+- [x] CHK-040 [P1] Spec, plan, tasks and goal rows state the same numbers. Evidence: goal rows Start shape split and Suite metrics isolation with their correction rows match shape-check.txt and isolation.txt
+- [x] CHK-041 [P1] The config comment says why the suite needs its own folder. Evidence: vitest.config.ts comment names the health readers and the fallback risk
+- [ ] CHK-042 [P2] The summary field is named in the scorer's own header comment if it lists fields. Deferred: phase 036, which states startShapes in the routing-accuracy README; the scorer header lists no fields
 <!-- /ANCHOR:docs -->
 
 ---
@@ -178,8 +178,8 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## File Organization
 <!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
-- [ ] CHK-050 [P1] Evidence lives in this phase's `scratch/` only
-- [ ] CHK-051 [P1] No per-run temp folder is left behind
+- [x] CHK-050 [P1] Evidence lives in this phase's `scratch/` only. Evidence: git status lists only this phase, goal.md and the parent metadata
+- [x] CHK-051 [P1] No per-run temp folder is left behind. Evidence: isolation.txt shows the per-run folder gone
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -190,9 +190,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 0/1, deferred to phase 036 |
 
 **Verification Date**: 2026-11-16
 <!-- /ANCHOR:summary -->

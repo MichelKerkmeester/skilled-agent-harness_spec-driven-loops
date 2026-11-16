@@ -1,0 +1,23 @@
+## after (change uncommitted on 3bfdd8aa09b), shared folder under the operator's TMPDIR
+sav- folders before 0
+COUNT files 737 lines 26356
+$ SUITE
+ Test Files  185 passed (185)
+      Tests  2325 passed | 6 skipped (2331)
+exit 0
+COUNT files 739 lines 26383
+sav- folders after 0
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":2,"attached":0,"combined":2,"total":44}
+$ EVAL
+[160,49,21,5]
+
+## attribution run, same uncommitted change
+The COUNT above moved 737 to 739 files and 26356 to 26383 lines during SUITE. The files that moved held OpenCode outcome records and two Claude diagnostics, which other sessions on this machine also write. A second check snapshotted every shared file's path and change time before and after each run:
+$ npx vitest run tests/handlers/advisor-status.vitest.ts   (5 shared files added before the change)
+Tests 32 passed (32); changed shared files: none
+$ npx vitest run   (07:50:15 to 07:53:45)
+Tests 2325 passed | 6 skipped (2331); changed shared files: none
+So the suite writes nothing to the shared folder, and the earlier movement came from other writers in the same window.

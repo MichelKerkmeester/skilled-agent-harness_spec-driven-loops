@@ -22,13 +22,13 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-16 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 35 of 35 |
 | **Predecessor** | 034-scorer-heredoc-redirect-fix |
-| **Successor** | None |
+| **Successor** | 036-start-rate-fixed-rule |
 | **Handoff Criteria** | A full suite run leaves the shared metrics folder unchanged, and the rescored 033 summary prints a start shape split that sums to every started count |
 <!-- /ANCHOR:metadata -->
 

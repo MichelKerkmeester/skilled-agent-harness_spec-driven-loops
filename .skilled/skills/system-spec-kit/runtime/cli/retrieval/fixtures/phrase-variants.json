@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1ef9d542ad570a5e3755ffdd1697170184e12581e851ffe2671d8d50303390f9",
+  "manifestHash": "cc593f5a8ed2bfd07bc275ac3303610b8c86fb792ec295aa05a331307551680c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -44244,6 +44244,9 @@
     "document quality workflows": [
       "document quality workflows"
     ],
+    "document read is a lookup not a start": [
+      "document read is a lookup not a start"
+    ],
     "document score": [
       "document score"
     ],
@@ -83612,6 +83615,9 @@
     "phase 36 cli opencode docs and vision test cleanup": [
       "phase 36 cli opencode docs and vision test cleanup"
     ],
+    "phase 36 start rate fixed rule": [
+      "phase 36 start rate fixed rule"
+    ],
     "phase 37 ci pi and provisioning follow ups": [
       "phase 37 ci pi and provisioning follow ups"
     ],
@@ -97643,6 +97649,9 @@
     ],
     "restart loop fix shipped": [
       "restart loop fix shipped"
+    ],
+    "restated start rates 007 and 033": [
+      "restated start rates 007 and 033"
     ],
     "restore and phase numbering": [
       "restore and phase numbering"
@@ -120278,6 +120287,21 @@
     ],
     "start new session killpg": [
       "start_new_session killpg"
+    ],
+    "start rate fixed rule": [
+      "start rate fixed rule"
+    ],
+    "start rate fixed rule acceptance criteria": [
+      "start rate fixed rule acceptance criteria"
+    ],
+    "start rate fixed rule implementation summary": [
+      "start rate fixed rule implementation summary"
+    ],
+    "start rate fixed rule plan": [
+      "start rate fixed rule plan"
+    ],
+    "start rate fixed rule tasks": [
+      "start rate fixed rule tasks"
     ],
     "start running timer": [
       "start running timer"
