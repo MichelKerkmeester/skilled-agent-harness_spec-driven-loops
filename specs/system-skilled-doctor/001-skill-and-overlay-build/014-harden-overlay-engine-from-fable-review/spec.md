@@ -152,7 +152,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Barter's manifest may give `pin.checkout` as a relative path | Med | The handover names the change, and the re-pin of Barter waits for it |
+| Dependency | A vendoring project that gives `pin.checkout` as a relative path | Low | Barter's path is absolute. The handover still names the change for any other project |
 | Risk | Reading `added` refuses keys an older engine wrote, which carry `added: false` | Med | Decide with the operator before building; the refusal names the fix |
 | Risk | The cross-check reports differences the records already handle, as noise | Low | Report only where the two results differ after the restore runs |
 <!-- /ANCHOR:risks -->
@@ -164,7 +164,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - Item 7: should keys an older engine wrote, which carry `added: false`, be refused once, or should the first apply on the new engine mark them?
 - Item 8: bump the state `schemaVersion` to 2 with a migration, or keep version 1 and print a note when a manifest holds json-entry sets the state has no key for?
-- Item 4: does Barter's manifest give `pin.checkout` as a relative path today?
+- Item 4: does Barter's manifest give `pin.checkout` as a relative path today? Answered 2026-11-16: no. `barter-overlays/overlay-manifest.json` gives the absolute path `/Users/michelkerkmeester/MEGA/Development/Skilled`, so resolving a relative path against the tree root does not change Barter's runs.
 <!-- /ANCHOR:questions -->
 
 ---
