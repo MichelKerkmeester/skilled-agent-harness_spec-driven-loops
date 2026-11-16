@@ -746,8 +746,10 @@ const SHELL_READERS = Object.freeze(['cat', 'head', 'tail', 'sed', 'less', 'more
 
 // The lines of a heredoc are data handed to a program and not commands, so the pattern
 // keeps the opening line and drops the body. An end word may hold a hyphen or a dot, as
-// `END-SCRIPT` does.
-const HEREDOC_BODY = /(<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_.-]*)\2[^\n]*)\n[\s\S]*?\n[ \t]*\3[ \t]*(?=\n|$)/g;
+// `END-SCRIPT` does, and a backslash before it quotes it as `\EOF`. A body may be
+// empty, and without that the pattern would run on to a later line that repeats the end
+// word and drop the commands between.
+const HEREDOC_BODY = /(<<-?\s*\\?(['"]?)([A-Za-z_][A-Za-z0-9_.-]*)\2[^\n]*)\n(?:[\s\S]*?\n)??[ \t]*\3[ \t]*(?=\n|$)/g;
 
 function shellReadTargets(command) {
   const text = (typeof command === 'string' ? command : '').replace(HEREDOC_BODY, '$1');

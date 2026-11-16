@@ -269,6 +269,18 @@ describe('normalize', () => {
     expect(events[0]).toMatchObject({ kind: 'write', path: 'notes.txt' });
   });
 
+  // An empty body ends at its own end line, so a later heredoc that reuses the word
+  // cannot swallow the commands between them.
+  it.each([
+    { command: "cat <<EOF > a.txt\nEOF\necho hi > b.txt\ncat <<EOF\nbody\nEOF", paths: ['a.txt', 'b.txt'] },
+    { command: "cat <<'EOF'\nx > y\nEOF\necho done > c.txt", paths: ['c.txt'] },
+    { command: 'python3 - <<\\PY\nif a>b: pass\nPY', paths: [] },
+  ])('names only real redirects around a heredoc in $command', ({ command, paths }) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(events.filter((event) => event.kind === 'write').map((event) => event.path)).toEqual(paths);
+  });
+
   // A document read with no write is a lookup, so a heredoc comparison after it must not
   // turn the read into a start.
   it('keeps a document read followed by a heredoc comparison a lookup', () => {
