@@ -175,12 +175,18 @@ describe('a command the prompt only mentions', () => {
     ['what does `/create:readme` do?', '/create:readme'],
     ['never use **/deep:review** here', '/deep:review'],
     ['do not run "/create:readme" yet', '/create:readme'],
+    ["do not run '/create:readme' yet", '/create:readme'],
+    ["what's '/create:readme' for?", '/create:readme'],
+    ['never use ‘/deep:review’ here', '/deep:review'],
+    ['do not run “/create:readme” yet', '/create:readme'],
   ])('reads the marked-up %s as a mention of %s', (prompt, command) => {
     expect(commandOnlyMentioned(prompt, command)).toBe(true);
   });
 
   it('still reads a marked-up request as a request', () => {
     expect(commandOnlyMentioned('run `/create:readme` for the advisor skill', '/create:readme')).toBe(false);
+    expect(commandOnlyMentioned("run '/create:readme' for the advisor skill", '/create:readme')).toBe(false);
+    expect(commandOnlyMentioned("don't skip '/create:readme', run it", '/create:readme')).toBe(false);
   });
 
   it.each([

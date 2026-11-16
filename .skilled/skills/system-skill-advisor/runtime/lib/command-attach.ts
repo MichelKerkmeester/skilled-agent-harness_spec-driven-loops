@@ -412,7 +412,9 @@ const COMMAND_ASKED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]) *(?:(?:and|then|so
 // hide the lead, while a line break survives as the sentence end it is. Inline
 // code, bold and quote marks around a name are dropped for the same reason, so a
 // refusal of a backticked command reads as the plain refusal does. An underscore
-// stays, because a command name may hold one. The
+// stays, because a command name may hold one. A single quote goes only where it
+// opens a command name, because the same mark is the apostrophe of a lead such
+// as "don't" or "what's". The
 // boundary before the lead keeps a command name from matching inside a word or a
 // path, and the boundary after it keeps a longer command name from reading as the
 // shorter one. Every occurrence has to carry a lead, because one led naming does
@@ -422,6 +424,7 @@ export function commandOnlyMentioned(prompt: string, command: string): boolean {
     .toLowerCase()
     .replace(/[`*"\u201c\u201d]/g, '')
     .replace(/[\u2018\u2019]/g, "'")
+    .replace(/(^|[^a-z0-9])'(?=\/[a-z])/g, '$1')
     .replace(/[^\S\n]+/g, ' ')
     .replace(/ *\n\s*/g, '\n');
   const name = escapePhrase(command.toLowerCase());

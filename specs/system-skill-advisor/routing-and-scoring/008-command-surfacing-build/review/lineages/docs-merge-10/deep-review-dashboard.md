@@ -17,7 +17,7 @@ Reducer-generated observability surface for the active review packet.
 ## 2. STATUS
 - Review Target: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build (spec-folder)
 - Started: 2026-11-16T16:57:46.000Z
-- Status: INITIALIZED
+- Status: COMPLETE
 - Iteration: 5 of 8
 - Provisional Verdict: CONDITIONAL
 - hasSearchDebt: false
@@ -27,6 +27,7 @@ Reducer-generated observability surface for the active review packet.
 - Lifecycle Mode: new
 - Generation: 1
 - continuedFromRun: none
+- stopReason: converged
 
 <!-- /ANCHOR:status -->
 <!-- ANCHOR:dimension-expansion -->
@@ -80,7 +81,7 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:blocked-stops -->
 <!-- ANCHOR:graph-convergence -->
 ## 7. GRAPH CONVERGENCE
-- graphConvergenceScore: 1.24
+- graphConvergenceScore: 1.80
 - graphDecision: STOP_ALLOWED
 - graphBlockers: none
 

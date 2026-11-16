@@ -4,8 +4,12 @@
   "generation": 1,
   "lineageMode": "new",
   "continuedFromRun": null,
-  "terminalStop": null,
-  "status": "INITIALIZED",
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 5,
+    "timestamp": "2026-11-16T17:21:36.166Z"
+  },
+  "status": "COMPLETE",
   "openFindings": [
     {
       "findingId": "F001",
@@ -160,7 +164,11 @@
   ],
   "resolvedFindings": [],
   "blockedStopHistory": [],
-  "terminalGates": null,
+  "terminalGates": {
+    "run": 5,
+    "stopReason": "converged",
+    "failedRequiredGateIds": []
+  },
   "persistentSameSeverity": [],
   "severityChanged": [],
   "repeatedFindings": [],
@@ -178,20 +186,20 @@
   "openFindingsCount": 5,
   "resolvedFindingsCount": 0,
   "convergenceScore": 1,
-  "graphConvergenceScore": 1.2375,
+  "graphConvergenceScore": 1.8,
   "graphDecision": "STOP_ALLOWED",
   "graphBlockers": [],
   "graphSignals": {
     "blockedBy": [],
-    "decision": "CONTINUE",
+    "decision": "STOP",
     "graphDecision": "STOP_ALLOWED",
-    "iterationCount": 4,
+    "iterationCount": 5,
     "missingDimensions": [],
-    "reasonDetail": "noStopCandidate",
+    "reasonDetail": "composite_converged",
     "rollingAverage": 0.5,
-    "stopReason": null,
-    "stuckCount": 0,
-    "weightedStopScore": 0.45
+    "stopReason": "converged",
+    "stuckCount": 1,
+    "weightedStopScore": 0.7
   },
   "candidateCoverage": {
     "covered": [],

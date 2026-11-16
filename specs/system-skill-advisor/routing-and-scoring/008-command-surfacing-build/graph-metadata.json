@@ -244,7 +244,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-16T17:19:56.127Z",
+    "last_save_at": "2026-11-16T17:51:46.663Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -252,10 +252,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:9acabe28746d4a4dc47075aa60d1145d2aca84cb40e92408082be80a4affa19d",
+    "source_fingerprint": "sha256:84964f7d2c5ccdaf0da0893a8012927eac0ba053fff5a9cc3d5e77940b12c5eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49ad698508b44d9faa64bf14d7af621468dd6d8ccec9b36819b713a956f756aa",
+      "spec.md": "a0165d50ee4e0094691ebef577d99fff846ea6d8ec47489f165195bccf198eac",
       "decision-record.md": "dd3ebcc862aa12f6052594907e5647d424cae4f528b725f6e0e589e6186c40e6"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/038-alignment-p1-remediation",

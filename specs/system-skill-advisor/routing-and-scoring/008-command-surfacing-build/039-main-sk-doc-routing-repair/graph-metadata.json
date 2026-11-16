@@ -35,7 +35,7 @@
       "graph"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,8 +47,12 @@
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       "scratch/try-variant.py",
       "scratch/try-variant.sh",
+      "scratch/after-pass-ten.txt",
       "scratch/readme-probes.txt",
       ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
       "scratch/after.txt"
     ],
     "entities": [
@@ -113,9 +117,33 @@
         "source": "derived"
       },
       {
+        "name": "after-pass-ten.txt",
+        "kind": "file",
+        "path": "scratch/after-pass-ten.txt",
+        "source": "derived"
+      },
+      {
         "name": "readme-probes.txt",
         "kind": "file",
         "path": "scratch/readme-probes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach-guards.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
         "source": "derived"
       },
       {
@@ -126,12 +154,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -161,6 +183,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Main",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -171,35 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Data",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Main's README intents gave sk-doc words that other skills own",
     "created_at": "2026-11-16T16:54:08Z",
-    "last_save_at": "2026-11-16T17:18:02.132Z",
+    "last_save_at": "2026-11-16T17:50:20.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7cb3b521c104232bda7c51fd224444c706bbea2784aee48c84190417bc9f454",
+    "source_fingerprint": "sha256:65b0c1e2a308579748811714bfda7c691b1b4c101bc8989c4747291ebfc126fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "410192b5817fbad337d8991061d31e09f02e179e593800c87b5499e00f85bf59",
+      "spec.md": "54a4deb9cfc5a4b4492c6e68702f430235402786be349c6a5644bfe322a85d22",
       "plan.md": "5a6f13606b0c9299ad3355d979b520ca1cf6f47dd2313a10eb34d0d33f5b21f4",
-      "tasks.md": "cefe2f9e068216eee11398b7ea64f7068f6051ddf680e1d4890a7dee2681a912",
-      "implementation-summary.md": "54b066e256ba7ce068ce6d141a268e8970b0200a0f6fedddb6e78e7d08da3f27"
+      "tasks.md": "b139ea59e840f9e3ab6c2f7d8e451e8aaeb68868ef9f02330eec4ca22d0fd850",
+      "implementation-summary.md": "3a99539b33181b58dbf2214ca8e33d58ccf9d63d549ccdfd7331b2e97cbc8dd6"
     },
     "last_active_at": null
   }

@@ -56,7 +56,10 @@ Every command runs from the repository root. Set the names once with `export ADV
 - [x] T006 [C] Probe README requests through the advisor CLI (`$SP/readme-probes.txt`). After T005. Verify: the session-handover hook, git-preflight hook and runtime folder README requests each top sk-doc. Evidence: readme-probes.txt: session-handover, git-preflight and spec-gate hook READMEs, runtime and plugins folder READMEs and SECURITY.md top sk-doc; git hooks, git rules, git standards top sk-git; runtime mirror drift tops command-doctor-runtime-mirrors
 - [x] T007 [C] Rebuild and rerun the gates both ways (`$SP/after.txt`). After T006. Verify: 0 failed with the flag unset and set, `FLOOR` unchanged, `EVAL` [160,49,21,5] or better, stored sets unchanged. Evidence: after.txt: stored sets unchanged, intent signals PASSED, graph freshness exit 0, build and typecheck exit 0, child run 2349 passed 0 failed, unset run 2348 passed 1 failed on the 60 ms native scorer latency p95 gate under review load, which passes 21/21 three times alone; FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5]
 - [x] T008 [C] Log the fix and the criterion 2 recheck (`../goal.md`). After T007. Verify: `packet_budget=ok`. Evidence: goal rows Phase 039, sk-doc routing repair and Criterion 2 recheck after phase 039; packet_budget=ok
-- [ ] T009 [C] Close the phase (`implementation-summary.md`). After T008. Verify: `validate.sh $PK/039-main-sk-doc-routing-repair --strict` prints `RESULT: PASSED`. Evidence:
+- [x] T009 [C] Close the phase (`implementation-summary.md`). After T008. Verify: `validate.sh $PK/039-main-sk-doc-routing-repair --strict` prints `RESULT: PASSED`. Evidence: implementation-summary filled, acceptance criteria all Met, spec Complete, validate --strict RESULT: PASSED
+- [x] T010 [C] Fix review pass ten's single-quoted command P1 (`$ADV/lib/command-attach.ts`, `$ADV/tests/command-attach-guards.vitest.ts`). Verify: the quote cases fail without the fix. Evidence: a single quote is dropped only where it opens a command name; three cases fail without it, 167 pass with it; contractions keep their apostrophe
+- [x] T011 [C] Fix review pass ten's doctor install P1 (`.skilled/commands/doctor/assets/doctor-install-presentation.txt`, `doctor-install.yaml`, `scripts/tests/doctor-install-contract.test.cjs`). Verify: the contract passes and fails with main's wording. Evidence: the presentation names claude, codex, cursor, devin, dsh, opencode, pi and vibe from the manifest; the stale DSH sentence is gone from the workflow; the test reads the manifest; 17/17, and 16/1 with main's text; doctor tests 1266/0
+- [x] T012 [C] Rerun the gates after the pass ten fixes (`$SP/after-pass-ten.txt`). Verify: 0 failed both ways. Evidence: 2353 passed 0 failed with the flag unset and set, FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5], stored sets unchanged; one doctor case failed only while the advisor dist rebuilt in parallel and passes 1266/0 on rerun
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,9 +67,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The goal log records the fix and the criterion 2 recheck
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The goal log records the fix and the criterion 2 recheck
 <!-- /ANCHOR:completion -->
 
 ---
@@ -97,8 +100,8 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The seven failures reproduced on the merged HEAD and clean origin/main (T001). Evidence:
-- [ ] CHK-002 [P1] The cause of each failure attributed to one of main's commits. Evidence:
+- [x] CHK-001 [P0] The seven failures reproduced on the merged HEAD and clean origin/main (T001). Evidence: before.txt and the clean origin/main run
+- [x] CHK-002 [P1] The cause of each failure attributed to one of main's commits. Evidence: bisect plus one-intent-at-a-time runs: fad83abd791 security policy, f6f242c1392 hook mirror, 3dc90eb8e01 git-* and spec-gate names
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -106,8 +109,8 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The change touches the router keyword lists and the two generated files only (`git diff --stat`). Evidence:
-- [ ] CHK-011 [P1] No test, baseline or ledger file changed. Evidence:
+- [x] CHK-010 [P0] The change touches the router keyword lists and the two generated files only (`git diff --stat`). Evidence: git diff --stat lists the router, the generated metadata and graph, and the pass-ten fix files
+- [x] CHK-011 [P1] No test, baseline or ledger file changed. Evidence: no test, baseline or ledger file changed for the routing repair; the doctor contract test changed only for the pass-ten P1
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -115,10 +118,10 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Evidence:
-- [ ] CHK-021 [P0] Full suite 0 failed with the flag unset and set (`after.txt`). Evidence:
-- [ ] CHK-022 [P1] README requests still reach sk-doc (`readme-probes.txt`). Evidence:
-- [ ] CHK-023 [P1] `FLOOR` unchanged and `EVAL` not lower. Evidence:
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: acceptance-criteria all Met
+- [x] CHK-021 [P0] Full suite 0 failed with the flag unset and set (`after.txt`). Evidence: after-pass-ten.txt 2353/0 both ways
+- [x] CHK-022 [P1] README requests still reach sk-doc (`readme-probes.txt`). Evidence: readme-probes.txt
+- [x] CHK-023 [P1] `FLOOR` unchanged and `EVAL` not lower. Evidence: FLOOR and EVAL equal before.txt
 <!-- /ANCHOR:testing -->
 
 ---
@@ -126,8 +129,8 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] Each fix names its class. Evidence:
-- [ ] CHK-FIX-002 [P0] Every README intent main added was checked for the same class. Evidence:
+- [x] CHK-FIX-001 [P0] Each fix names its class. Evidence: data fix at the producer for the routing; producer fix for the quote; merge drift for the doctor wording
+- [x] CHK-FIX-002 [P0] Every README intent main added was checked for the same class. Evidence: every README intent main added was measured in try-variant.sh
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -135,9 +138,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No holdout or command prompt text read or printed; rows named by id and expected skill only. Evidence:
-- [ ] CHK-031 [P0] `.skilled/hooks/hook-flags.env` neither read nor created. Evidence:
-- [ ] CHK-032 [P1] N/A: no credential or auth path is touched. Evidence:
+- [x] CHK-030 [P0] No holdout or command prompt text read or printed; rows named by id and expected skill only. Evidence: the holdout was measured by count only; rr-iter3-069 is a labeled row, not holdout
+- [x] CHK-031 [P0] `.skilled/hooks/hook-flags.env` neither read nor created. Evidence: never opened or created
+- [x] CHK-032 [P1] N/A: no credential or auth path is touched. Evidence: no auth path
 <!-- /ANCHOR:security -->
 
 ---
@@ -145,7 +148,7 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, tasks and the goal rows name the same narrowed intents. Evidence:
+- [x] CHK-040 [P1] Spec, tasks and the goal rows name the same narrowed intents. Evidence: spec, tasks, the router prose and the goal rows name the same intents
 <!-- /ANCHOR:docs -->
 
 ---
@@ -153,7 +156,7 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Evidence lives in this phase's `scratch/` only. Evidence:
+- [x] CHK-050 [P1] Evidence lives in this phase's `scratch/` only. Evidence: scratch holds before, after, probes and the variant scripts
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -163,8 +166,8 @@ Every command runs from the repository root. Set the names once with `export ADV
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 0/7 |
-| P1 Items | 7 | 0/7 |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 7 | 7/7 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-11-16

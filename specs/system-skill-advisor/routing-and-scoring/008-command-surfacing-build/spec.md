@@ -155,7 +155,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 36 | 036-start-rate-fixed-rule/ | The printed start rate follows the fixed arm start rule, a read alone counts as a lookup beside it, and the 007 and 033 start rates are restated | Complete |
 | 37 | 037-review-pass-six-remediation/ | Review pass six closed with 0 P0 and 0 P1. Six cheap P2 fixes land and the other five carry a reason | Complete |
 | 38 | 038-alignment-p1-remediation/ | The final alignment run traced four P1 to the branch. All four are fixed and every other open P0 and P1 carries a reason | Complete |
-| 39 | 039-main-sk-doc-routing-repair/ | Narrow the sk-doc README intents main added so git, mirror and holdout prompts route as before, and recompile the skill graph | In Progress |
+| 39 | 039-main-sk-doc-routing-repair/ | Narrow the sk-doc README intents main added so git, mirror and holdout prompts route as before, and recompile the skill graph | Complete |
 
 ### Phase Transition Rules
 

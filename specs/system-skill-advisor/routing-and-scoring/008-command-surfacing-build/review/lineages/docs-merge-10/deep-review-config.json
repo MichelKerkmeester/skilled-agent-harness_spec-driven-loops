@@ -21,7 +21,7 @@
   "progressiveSynthesis": false,
   "specFolder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
   "createdAt": "2026-11-16T16:57:46.000Z",
-  "status": "initialized",
+  "status": "complete",
   "releaseReadinessState": "in-progress",
   "executionMode": "auto",
   "executor": {

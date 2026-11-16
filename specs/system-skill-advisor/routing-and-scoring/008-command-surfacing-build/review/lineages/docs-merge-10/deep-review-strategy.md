@@ -78,6 +78,7 @@ Review of the docs area and the merge resolutions for command surfacing pass ten
 - A first read of the doctor presentation treated the `outside the nine` sentence as a simple wording change; the accepted-runtime count only became checkable after reading the symlink manifest and the engine's unknown-name branch (iteration 1).
 - The merge file `doctor-install-presentation.txt` has no `/create:` text, so the brief's "kept the /create:sk-skill name" test could not apply there; the merge question had to be reframed as a test/asset pair (iteration 1).
 - The sealed-row fixture count of 1 in the changelog could not be tied to one baseline field; `plain.holdout` reports own 2 and combined 2, so the sentence was left unverified rather than turned into a finding (iteration 2).
+- The iteration-3 convergence decision (`STUCK_RECOVERY`) was backfilled as a `graph_convergence_evaluated` row after synthesis, because the brief requires a decision row per iteration and the recovery event alone carried no decision or blockedBy. The row is scoped to `iteration-3`; it is a late provenance record, not a post-synthesis iteration.
 
 ---
 
@@ -210,22 +211,37 @@ Review of the docs area and the merge resolutions for command surfacing pass ten
 
 <!-- /ANCHOR:exhausted-approaches -->
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
-- Completed pivots: 0
+- Completed pivots: 2 (stuck recovery at iteration 3, converged at iteration 5)
 - Failed pivots: 0
 - Audited overrides: 0
-- Swept: none yet
-- Pivot lineage: none yet
-- Remaining frontier: none recorded
+- Swept: correctness, traceability, security, maintainability
+- Pivot lineage: docs claims -> merge resolutions -> token-level parser claims
+- Remaining frontier: none inside the nine scope files
 
 ## 11. RULED OUT DIRECTIONS
 
-[Populated per iteration]
+- **Dropped `/create:sk-skill` in the sk-doc merge:** all three ROUTER mentions and the SKILL row carry the new name (iteration 1).
+- **Dropped main change in the sk-doc merge:** the rewritten sk-create-readme row and the README-template removal are present (iteration 1).
+- **Stale `/create:skill` reachable from the docs:** no command file answers to the old name (iteration 1).
+- **Broken `hookHealth` or prompt leak:** the field is conditional and the record is prompt-free by schema (iterations 1-2).
+- **Wrong command-row count:** 47 scorer rows at HEAD (iteration 1).
+- **Wrong fresh-prompt default:** the env var and default path match the scorer (iteration 1).
+- **Vibe handler drift:** the adapter proxies the shared handler (iteration 2).
+- **Holdout outcome published:** the merged guard reads all four publication maps (iteration 2).
+- **Wrong query-type count, vector table or exit taxonomy:** all match their producers (iteration 3).
+- **Wrong no-edit list, small-edit set or weak-cue threshold:** all match the gates (iteration 5).
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: traceability - Focus area: the changelog's measurement claims against the committed baseline aggregates - Reason: the prose rules are now checked; the remaining unverified claims are the counts in "The Counts on Sealed Rows" and "Tests and Scenarios" - Rotation status: correctness, security, traceability and maintainability have at least one pass each - Required evidence: aggregate-only reads of the baseline; no prompt text - Recovery note: none Review verdict: CONDITIONAL
+- Dimension: none remaining
+- Focus area: synthesis of F001 (P1) and F002-F005 (P2)
+- Reason: the loop converged at iteration 5 with all four dimensions covered and no new direction left inside the nine scope files
+- Rotation status: complete
+- Required evidence: `review-report.md` and the terminal-gates record
+- Recovery note: the iteration-3 stuck decision was recovered by iteration 4 (F005); the loop then converged at iteration 5
+- Stop reason: converged (composite_converged)
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
@@ -260,15 +276,15 @@ Review of the docs area and the merge resolutions for command surfacing pass ten
 
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| `.skilled/skills/system-skill-advisor/README.md` | D1, D3 | 1 | 1 P2 | partial |
-| `.skilled/skills/system-skill-advisor/SKILL.md` | D1, D3 | 1 | 0 | partial |
-| `.skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md` | D1, D3 | 1 | 1 P2 | partial |
-| `.env.example` | D1, D3 | 1 | 0 | partial |
-| `.skilled/skills/sk-doc/SKILL.md` | D1, D3 | 1 | 0 | partial |
-| `.skilled/skills/sk-doc/sk-create-skill/ROUTER.md` | D1, D3 | 1 | 0 | partial |
-| `.skilled/commands/doctor/assets/doctor-install-presentation.txt` | D1, D3 | 1 | 1 P1, 1 P2 | partial |
-| `.skilled/changelog/skilled/v4.0.2.1.md` | D1, D3 | 1 | 0 | partial |
-| `.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts` | D1, D3 | 1 | 0 | partial |
+| `.skilled/skills/system-skill-advisor/README.md` | D1, D2, D3, D4 | 5 | 1 P2 | complete |
+| `.skilled/skills/system-skill-advisor/SKILL.md` | D1, D2, D3, D4 | 2 | 0 | complete |
+| `.skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md` | D1, D2, D3, D4 | 5 | 2 P2 | complete |
+| `.env.example` | D1, D2, D3, D4 | 2 | 0 | complete |
+| `.skilled/skills/sk-doc/SKILL.md` | D1, D2, D3, D4 | 3 | 0 | complete |
+| `.skilled/skills/sk-doc/sk-create-skill/ROUTER.md` | D1, D2, D3, D4 | 3 | 0 | complete |
+| `.skilled/commands/doctor/assets/doctor-install-presentation.txt` | D1, D2, D3, D4 | 3 | 1 P1, 1 P2 | complete |
+| `.skilled/changelog/skilled/v4.0.2.1.md` | D1, D2, D3, D4 | 2 | 0 | complete |
+| `.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts` | D1, D2, D3, D4 | 2 | 0 | complete |
 <!-- MACHINE-OWNED: END -->
 
 ---

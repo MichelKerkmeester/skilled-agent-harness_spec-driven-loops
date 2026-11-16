@@ -59,6 +59,8 @@ You can ask for "git hooks", "git rules" or "git standards" and reach sk-git aga
 | `.skilled/skills/sk-doc/graph-metadata.json` | Modified | Intent signals regenerated from the router |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Modified | Recompiled graph |
 | `scratch/try-variant.py`, `scratch/try-variant.sh` | Created | Measure one keyword variant against the failing tests |
+| `runtime/lib/command-attach.ts` and its guards test | Modified | A single quote that opens a command name is dropped before the lead reading, from review pass ten |
+| Doctor install presentation, workflow and contract test | Modified | Name the eight manifest runtimes and drop the stale DSH sentence, from review pass ten |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -89,8 +91,8 @@ Each candidate change was applied to a clean router, regenerated and measured ag
 | Check | Result |
 |-------|--------|
 | The seven inherited tests | PASS, 69 of 69 in the five files |
-| Full suite, `AI_SESSION_CHILD=1` | PASS, 2349 passed 0 failed |
-| Full suite, flag unset | 2348 passed, 1 failed: the 60 ms native scorer latency gate under review load; it passes 21 of 21 three times alone |
+| Full suite, flag unset and `AI_SESSION_CHILD=1` | PASS, 2353 passed 0 failed both ways (`scratch/after-pass-ten.txt`). An earlier unset run under review load failed only the 60 ms native scorer latency gate, which passes 21 of 21 alone |
+| Doctor script tests | PASS, 1266 passed 0 failed |
 | `FLOOR` and `EVAL` | PASS, 24/44, 0/35, 2/44 and [160,49,21,5] |
 | Intent signals and graph freshness | PASS, `--check` RESULT: PASSED and `--strict` exit 0 |
 | README probes | PASS, `scratch/readme-probes.txt` |

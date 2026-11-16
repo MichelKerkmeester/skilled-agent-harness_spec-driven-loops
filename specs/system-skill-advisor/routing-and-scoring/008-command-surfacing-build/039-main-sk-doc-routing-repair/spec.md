@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-16 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
@@ -89,6 +89,7 @@ bisect on origin/main: green before fad83abd791; fad83abd791 fails the holdout; 
 - Find, by row id and expected skill only, which new intent moved the holdout row and the ratchet row, and narrow it
 - Regenerate `intent_signals_generated`, recompile `skill-graph.json` and let the commit hook re-mint the sk-doc manifest
 - Record each step in the goal log
+- Fix review pass ten's two P1: single-quoted command names, and the doctor install wording the merge left out of step with its test
 
 ### Out of Scope
 - Any advisor scorer, weight or threshold change
@@ -104,6 +105,9 @@ bisect on origin/main: green before fad83abd791; fad83abd791 fails the holdout; 
 | `.skilled/skills/sk-doc/sk-create-readme/ROUTER.md` | Modify | The same where the mode router repeats them |
 | `.skilled/skills/sk-doc/graph-metadata.json` | Modify | Regenerated intent signals |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Modify | Recompiled graph |
+| `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` | Modify | Drop a single quote that opens a command name |
+| `.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts` | Modify | Quote cases |
+| `.skilled/commands/doctor/assets/doctor-install-presentation.txt`, `doctor-install.yaml`, `scripts/tests/doctor-install-contract.test.cjs` | Modify | Name the eight manifest runtimes and drop the stale DSH sentence |
 | `../goal.md` | Modify | Rows through the goal log command only |
 <!-- /ANCHOR:scope -->
 
@@ -127,6 +131,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-003 | A request for a named hook's README, such as "README for the session-handover hook", and one for a runtime folder's README still top sk-doc |
 | REQ-004 | The holdout returns to 49 of 63 or more and `rr-iter3-069` returns to its ledger top, both by narrowing a phrase main added |
 | REQ-005 | `skill-graph-freshness.cjs --strict` exits 0 and `generate-router-intent-signals.cjs --check` passes |
+| REQ-006 | Review pass ten's two P1 are fixed: a single-quoted command name reads like a plain one before its refusal or question lead, and the doctor install presentation, workflow and contract test agree on the runtimes the link manifest offers |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
