@@ -623,6 +623,31 @@ test('a hook whose decision predates another hook\'s nudge decides again under t
   assert.equal(calls, 2);
 });
 
+test('a throw while committing the nudge under the claim delivers nothing', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SESSION_HANDOVER_THRESHOLD = '0.80';
+  sandbox.env.SESSION_HANDOVER_WINDOW_TOKENS = String(WINDOW_TOKENS);
+  const sessionRoot = createVibeSession(t, sandbox);
+  writeVibeSegment(sessionRoot, '0000000000000001.jsonl', [vibeModelCall(820)]);
+  const { buildHandoverContextPart } = await loadParts();
+
+  const realCommit = nudge.commitNudge;
+  let commits = 0;
+  nudge.commitNudge = () => {
+    commits += 1;
+    throw new Error('state write failed under the claim');
+  };
+  t.after(() => { nudge.commitNudge = realCommit; });
+
+  const text = await buildHandoverContextPart(
+    payloadFor(sandbox, sessionRoot, 'post_tool'),
+    { env: sandbox.env },
+  );
+  assert.equal(commits, 1);
+  assert.equal(text, '');
+});
+
 test('a turn end with no transcript path marks the record deferred', async (t) => {
   const sandbox = createSandbox(t);
   sandbox.env.SKILLED_LOOP_ID = LOOP_ID;

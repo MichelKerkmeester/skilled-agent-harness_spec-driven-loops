@@ -26,6 +26,7 @@ import { isQuestionTool, vibeAnswerRecords } from '../bin/sweep-vibe.mjs';
 import { appendRecords } from '../lib/capture-core.mjs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
+import { sessionDirFor } from '../../shared/payload-dir.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -37,11 +38,11 @@ function done() {
 }
 
 // The payload names the directory the session ran in, which is the checkout the
-// queue belongs to; the hook's own cwd is the runtime's business.
+// queue belongs to; the hook's own cwd is the runtime's business. It resolves
+// the way the turn-start reminder that reads this queue resolves it, so a
+// relative or a missing cwd names the same folder on both sides.
 function projectDirFor(payload) {
-  const cwd = payload?.cwd;
-  if (typeof cwd === 'string' && cwd.trim()) return cwd;
-  return process.cwd();
+  return sessionDirFor(payload?.cwd);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

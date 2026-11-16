@@ -60,7 +60,7 @@ It checks the master switch and the default-shape `SYSTEM_<CONCERN>_DISABLED`. I
 
 `hook_flag_on <name>` checks one named switch with the same precedence. It refuses any name that is not a plain variable name before the resolver's `eval` sees it. Shell entrypoints load the file with `source` and then call `hook_enabled <concern>`. `.skilled/bin/worktree-guard.sh` sources it, as do the git hooks and `validate.sh`.
 
-**Boundaries.** Imports are Node builtins only. `hook-flags.cjs` imports `node:fs`, `node:path` and `./env-aliases.cjs`. `hook-adapter-shared.cjs` imports nothing. The ESM facade imports `node:module` only.
+**Boundaries.** Imports are Node builtins only. `hook-flags.cjs` imports `node:fs`, `node:path` and `./env-aliases.cjs`. `hook-adapter-shared.cjs` imports nothing. `payload-dir.mjs` imports `node:fs`, `node:path` and `node:url`. The ESM facade imports `node:module` only.
 
 Only helpers genuinely shared by multiple concerns belong here. A concern-specific helper goes in that concern's `lib/`.
 
@@ -82,6 +82,7 @@ shared/
 +-- hook-adapter-shared.cjs          # readStdin() + parseJsonFailOpen()
 +-- hook-adapter-shared.test.cjs     # node --test suite for the reader
 +-- hook-stdin-deadline.test.mjs     # node --test suite for the deadline
++-- payload-dir.mjs                  # where a payload cwd points, and whether a hook may write there
 +-- session-reader-declarations.mjs  # rebuilds or checks the .d.mts files
 +-- dsh/                             # DSH loader and fan-out leaf marker
 +-- session-readers/                 # one reader per runtime, plus identity, index and project
@@ -108,6 +109,7 @@ shared/
 | `hook-flags.test.cjs` | `node --test` suite. Covers default-on, the master switch, the per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence in both resolvers and trailing comments in all four readers of the file. |
 | `hook-adapter-shared.test.cjs` | `node --test` suite. A never-closed stdin resolves at the deadline and its process exits. Complete input comes back whole. |
 | `hook-stdin-deadline.test.mjs` | `node --test` suite. With stdin left open and never written, each ESM adapter in its list exits 0 at the deadline with its fail-open output. The adapters no other suite spawns still answer a normal payload. |
+| `payload-dir.mjs` | `sessionDirFor(cwd)` resolves a payload's relative cwd against the checkout and falls back to the checkout when none is given. `existingDirectory(path)` is true only for an absolute path that already exists as a directory, so a payload cannot make a hook create a tree wherever it names. The Vibe session-lifecycle, decision-capture and ask-surface adapters import it, and `.vibe/plugins/repo-guards/lib/hook-io.mjs` re-exports it for the Vibe guards. |
 | `session-readers/` | Read-only reader package. `readSession()` resolves one exact session id per runtime and projects it into the shared `HistoryEntry` list. It writes nothing. Claude, Codex, Pi, OpenCode, Devin, DSH and Vibe are `ready`. Cursor is `gated`. See [`session-readers/index.mjs`](./session-readers/index.mjs). |
 | `session-reader-declarations.mjs` | Rebuilds the committed `session-readers/*.d.mts` declarations that TypeScript callers read. With `--check` it reports any that no longer match their source. The compiler will not overwrite a declaration in place, so a plain build never refreshes them. It builds in a temporary copy and borrows the TypeScript compiler that the system-spec-kit skill installs. No hook loads it. |
 | `dsh/` | Loader and leaf marker for the DSH adapters. `dsh-llm.mjs` resolves the dsh packages from the running dsh binary. `session-role.mjs` marks a fan-out leaf. |

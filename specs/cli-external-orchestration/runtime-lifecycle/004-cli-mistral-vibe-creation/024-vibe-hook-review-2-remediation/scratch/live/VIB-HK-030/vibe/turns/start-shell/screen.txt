@@ -1,0 +1,51 @@
+
+  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Pro
+  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+
+Hello Michel, how can I help you?
+
+
+⚠ [turn-start] Added context for the model: "Advisor: stale; use sk-code 0.95/0.20 pass. Directives: - Comment hygiene [HARD…"
+                                                                                                                      
+                                                                                                                                                                                                        
+> Use your background process tool to start an interactive shell with the command bash -i, and tell me its process id.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⏵ Called 3 tools, thought
+
+  Started and confirmed live.
+
+  Process ID: process-ca72607c7800-c3afd0437dd762f80f1e1cb8 
+
+  Status is running, and it's sitting at a prompt (bash-3.2$), so the interactive shell is accepting input. Note it's bash 3.2 on macOS, which printed a one-time advisory that the default
+  interactive shell is now zsh — harmless, the session is bash as requested.
+
+  I can drive it with tools.process.write (send commands, control keys, or raw bytes) and read results back with tools.process.output from cursor 193.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                     
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── deepseek-flash[max] · auto approve ─
+>   
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.Dh6HuWPkY7/vibe                                                                                    usage ██▍    39% · ctx ▎      11.1k/256k
+

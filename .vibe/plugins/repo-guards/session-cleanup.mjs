@@ -13,13 +13,16 @@ import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 
 import { isHookEnabled } from '../../../.skilled/hooks/shared/hook-flags.mjs';
-import sessionCleanupPlugin from '../../../.opencode/plugins/session-cleanup.js';
 import { allow, readPayload, runGuard, REPO_ROOT } from './lib/hook-io.mjs';
 
 const PROCESS_SWEEP_SCRIPT = join(
   REPO_ROOT,
   '.skilled/skills/system-spec-kit/runtime/cli/dist/ops/process-sweep.js',
 );
+// The shared implementation is loaded inside main, so a module that fails to
+// load is reported on stderr and fails open like any other guard error,
+// instead of crashing the hook before the fail-open wrapper runs.
+const SESSION_CLEANUP_PLUGIN_URL = new URL('../../../.opencode/plugins/session-cleanup.js', import.meta.url).href;
 const PROCESS_TIMEOUT_MS = 8000;
 const MAX_CAPTURE_BYTES = 8192;
 
@@ -44,7 +47,7 @@ function runProcessSweep(projectDir) {
   }
 }
 
-async function runStartup(projectDir, sessionId) {
+async function runStartup(sessionCleanupPlugin, projectDir, sessionId) {
   const hooks = await sessionCleanupPlugin.server({ worktree: projectDir });
   await hooks.event({ event: { type: 'session.created', properties: { info: { id: sessionId } } } });
   const output = { system: [] };
@@ -53,7 +56,7 @@ async function runStartup(projectDir, sessionId) {
   if (text) addContext(text);
 }
 
-async function runEnd(projectDir) {
+async function runEnd(sessionCleanupPlugin, projectDir) {
   const hooks = await sessionCleanupPlugin.server({ worktree: projectDir });
   await hooks.dispose();
   runProcessSweep(projectDir);
@@ -69,10 +72,13 @@ async function main() {
     ? payload.session_id
     : 'vibe-session';
 
-  if (payload.hook_event_name === 'session_start') {
-    await runStartup(REPO_ROOT, sessionId);
-  } else if (payload.hook_event_name === 'session_end') {
-    await runEnd(REPO_ROOT);
+  const event = payload.hook_event_name;
+  if (event !== 'session_start' && event !== 'session_end') return allow();
+  const { default: sessionCleanupPlugin } = await import(SESSION_CLEANUP_PLUGIN_URL);
+  if (event === 'session_start') {
+    await runStartup(sessionCleanupPlugin, REPO_ROOT, sessionId);
+  } else {
+    await runEnd(sessionCleanupPlugin, REPO_ROOT);
   }
   return allow();
 }

@@ -10,7 +10,8 @@
         "{files}"
       ],
       "paths": [
-        ".github/workflows/**"
+        ".github/workflows/*.yml",
+        ".github/workflows/*.yaml"
       ],
       "requires": "actionlint",
       "severity": "P1",

@@ -48,7 +48,7 @@ The hand-over part arms a pending record and starts the killer, and it never den
 
 Vibe injects the deny reason as a retry user message. Malformed input, a missing journal and a throwing part all exit 0 with no output.
 
-Seven switches turn parts off. `SYSTEM_SESSION_LIFECYCLE_DISABLED` turns off the session-prime part and `SYSTEM_DIST_FRESHNESS_DISABLED` the dist part. `SYSTEM_SESSION_CLEANUP_DISABLED` turns off the startup guards. `SYSTEM_SKILL_ADVISOR_DISABLED` turns off the advisor part and `SYSTEM_COMPLETION_DISABLED` the pending completion advisory. `SYSTEM_ASK_SURFACE_DISABLED` turns off the turn-end reprompt. `SYSTEM_DECISION_CAPTURE_DISABLED` turns off the save reminder. The compaction parts have no switch of their own.
+Eight switches turn parts off. `OPENCODE_GOAL_DISABLED` turns off the session-start goal slice: the goal core refuses with `PLUGIN_DISABLED` and the part adds nothing. `SYSTEM_SESSION_LIFECYCLE_DISABLED` turns off the session-prime part and `SYSTEM_DIST_FRESHNESS_DISABLED` the dist part. `SYSTEM_SESSION_CLEANUP_DISABLED` turns off the startup guards. `SYSTEM_SKILL_ADVISOR_DISABLED` turns off the advisor part and `SYSTEM_COMPLETION_DISABLED` the pending completion advisory. `SYSTEM_ASK_SURFACE_DISABLED` turns off the turn-end reprompt. `SYSTEM_DECISION_CAPTURE_DISABLED` turns off the save reminder. The compaction parts have no switch of their own.
 
 The hand-over parts stay off for Vibe unless `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1` or the master switch `SYSTEM_SESSION_HANDOVER_ENABLED=1` is set.
 

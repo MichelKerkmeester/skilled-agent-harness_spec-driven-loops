@@ -26,7 +26,8 @@
     "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening",
     "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction",
     "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios",
-    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation"
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation",
+    "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/024-vibe-hook-review-2-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -65,7 +66,8 @@
       "001-deep-research/research-angles.md",
       "003-dsh-mistral-route/scratch/draft-route-mistral-deepseek.patch.yml",
       "001-deep-research/research/phase-plan.md",
-      "review-archive/2026-11-16T05-57-42Z/review-report.md"
+      "review-archive/2026-11-16T05-57-42Z/review-report.md",
+      "review/review-report.md"
     ],
     "entities": [
       {
@@ -179,17 +181,17 @@
     ],
     "causal_summary": "The operator subscribed to Mistral, whose plan serves DeepSeek V4.1 Flash 1017 and GLM-5.3-Flash beside Mistral's own models and its Vibe coding agent",
     "created_at": "2026-11-14T12:01:21Z",
-    "last_save_at": "2026-11-16T06:33:14.773Z",
+    "last_save_at": "2026-11-16T07:36:37.718Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d1709bdd8bacf43fba35ecd636522a785b112ea6d61f6de02a67002de3289276",
+    "source_fingerprint": "sha256:2c4f2f71c49f0b2bcce433fbb49ab23200df9ded4344663fe609f07e27abe500",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "100b3e27003925679ba185040bf4136e923e2c06f92a0d6cc9ede0381296c83d",
+      "spec.md": "2d1ad1e18f3d160c40a239ea23fbf32008f496ae066d289db38ef0191d020fec",
       "decision-record.md": "402d177ba91912474789bd8fe6dae7266c9b820726fdd90524d3d7ef7e83521d"
     },
     "last_active_child_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation",

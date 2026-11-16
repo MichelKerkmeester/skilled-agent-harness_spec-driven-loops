@@ -1,5 +1,5 @@
 {
-  "manifestHash": "509760cf6428679049f5520ef72743ab18976cff927ea6da8c82b7d541eb72f4",
+  "manifestHash": "f6083270c7b97ac8f327ec075d107d1a141f7b76909e2034e181e8d2f49e5b6f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7957,6 +7957,9 @@
     ],
     "action keyed rule nudge": [
       "action keyed rule nudge"
+    ],
+    "actionlint path filter": [
+      "actionlint path filter"
     ],
     "activate authorized ledger": [
       "activate authorized ledger"
@@ -25073,6 +25076,18 @@
     "closeout drift reconciliation tasks": [
       "closeout drift reconciliation tasks"
     ],
+    "closeout follow up fixes": [
+      "closeout follow up fixes"
+    ],
+    "closeout follow up fixes implementation summary": [
+      "closeout follow up fixes implementation summary"
+    ],
+    "closeout follow up fixes plan": [
+      "closeout follow up fixes plan"
+    ],
+    "closeout follow up fixes tasks": [
+      "closeout follow up fixes tasks"
+    ],
     "closeout goal": [
       "closeout goal"
     ],
@@ -34396,6 +34411,9 @@
     ],
     "dead path rows": [
       "dead path rows"
+    ],
+    "dead pi import fallbacks": [
+      "dead pi import fallbacks"
     ],
     "dead row disposal decision": [
       "dead row disposal decision"
@@ -83130,6 +83148,9 @@
     "phase 24 typed command ambiguity": [
       "phase 24 typed command ambiguity"
     ],
+    "phase 24 vibe hook review 2 remediation": [
+      "phase 24 vibe hook review 2 remediation"
+    ],
     "phase 25 alignment open findings": [
       "phase 25 alignment open findings"
     ],
@@ -83804,6 +83825,9 @@
     ],
     "phase 5 cli mistral vibe skill packet": [
       "phase 5 cli mistral vibe skill packet"
+    ],
+    "phase 5 closeout follow up fixes": [
+      "phase 5 closeout follow up fixes"
     ],
     "phase 5 command and skill doc alignment": [
       "phase 5 command and skill doc alignment"
@@ -131130,6 +131154,9 @@
     "vibe automatic relaunch tier": [
       "Vibe automatic relaunch tier"
     ],
+    "vibe background shell guard bypass": [
+      "vibe background shell guard bypass"
+    ],
     "vibe budget default": [
       "vibe budget default"
     ],
@@ -131376,6 +131403,21 @@
     "vibe hook playbook coverage": [
       "vibe hook playbook coverage"
     ],
+    "vibe hook review 2 remediation": [
+      "vibe hook review 2 remediation"
+    ],
+    "vibe hook review 2 remediation acceptance criteria": [
+      "vibe hook review 2 remediation acceptance criteria"
+    ],
+    "vibe hook review 2 remediation implementation summary": [
+      "vibe hook review 2 remediation implementation summary"
+    ],
+    "vibe hook review 2 remediation plan": [
+      "vibe hook review 2 remediation plan"
+    ],
+    "vibe hook review 2 remediation tasks": [
+      "vibe hook review 2 remediation tasks"
+    ],
     "vibe hooks": [
       "vibe hooks"
     ],
@@ -131462,6 +131504,9 @@
     ],
     "vibe print mode prompt": [
       "vibe print mode prompt"
+    ],
+    "vibe process start shell guard": [
+      "vibe process.start shell guard"
     ],
     "vibe prompt advisor": [
       "vibe prompt advisor"

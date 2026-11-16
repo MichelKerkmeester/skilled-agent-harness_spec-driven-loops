@@ -1,11 +1,11 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: codex-hooks-watchdog OpenCode Plugin                        ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Codex reads hooks only from user-global ~/.codex/hooks.json, a   ║
-// ║          file that can silently drift from the repo (stale checkout       ║
-// ║          anchor, missing adapter). Claude/OpenCode hooks are repo-local   ║
-// ║          and cannot drift, so on each OpenCode session start this runs    ║
-// ║          the installer's non-mutating --check and records drift for the   ║
+// ║ PURPOSE: Codex loads the project's .codex/hooks.json. A copy of those    ║
+// ║          entries, or a stale orphan, left in the user-global             ║
+// ║          ~/.codex/hooks.json makes hooks run twice or point at missing   ║
+// ║          adapters. On each OpenCode session start this runs the          ║
+// ║          installer's non-mutating --check and records drift for the      ║
 // ║          operator. Surfacing only; repair stays an explicit installer run.║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
@@ -87,8 +87,9 @@ async function MkCodexHooksWatchdogPlugin(ctx) {
             { cwd: projectDir, stdio: 'ignore', timeout: CHECK_TIMEOUT_MS },
           );
         } catch (_) {
-          // Non-zero exit means the user-global Codex hooks drifted from the repo
-          // (or the installer could not run). Record the remediation, never throw.
+          // Non-zero exit means the user-global Codex file holds a duplicate or
+          // orphaned repo entry, or the installer refused or could not run.
+          // Record the remediation, never throw.
           appendWatchdogLog(
             projectDir,
             `codex hook drift detected; run: node ${installer} --check`,

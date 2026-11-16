@@ -122,6 +122,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 2 | 002-codex-hook-check-merge/ | One folder, `codex-global-hooks-check/`, holds the OpenCode plugin link and the Claude, Cursor and Devin links to the Codex hooks check. | Complete |
 | 3 | 003-literal-hook-renames/ | Three folders and 16 files get names that state their feature. One rename at a time, each followed by the registry edit, both sync runs and the hand-written references. | Complete |
 | 4 | 004-hook-readme-fold-and-rewrite/ | Fold 81 symlink-only leaf READMEs, rewrite the rest to the skill-README voice, author two missing feature READMEs and split the session-handover README. | Complete |
+| 5 | 005-closeout-follow-up-fixes/ | Fix the no-behavior-change findings reported at the phase 4 close: the actionlint path filter, stale citations and comments, doc-checker markers and the dead Pi import fallbacks. | Complete |
 
 ### Phase Transition Rules
 
@@ -137,6 +138,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 001-dead-hook-file-removal | 002-codex-hook-check-merge | `git/` and `shared/hook-flags.ts` are gone, no file outside `specs/` and changelogs names them and the hook suites match the baseline. | `git ls-files .skilled/hooks/git .skilled/hooks/shared/hook-flags.ts` prints nothing, the caller search prints nothing and the suites listed in the phase 1 plan pass. |
 | 002-codex-hook-check-merge | 003-literal-hook-renames | `codex-global-hooks-check/` holds both checks, the two old folders are gone and both concern keys still resolve. | `sync-hook-registrations.cjs --check` and `sync-runtime-mirrors.cjs --check` print PASS. |
 | 003-literal-hook-renames | 004-hook-readme-fold-and-rewrite | No old folder or file name remains outside `specs/`, changelogs and the relocation ledger, and the pinned README lists are rebased. | The old-name search prints nothing, both sync checks print PASS and the README parity and manifest tests pass. |
+| 004-hook-readme-fold-and-rewrite | 005-closeout-follow-up-fixes | Phase 4 is Complete and on main, and its close-out lists the findings. | `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED`. |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -88,6 +88,12 @@ function existingDirectory(candidate) {
   }
 }
 
+// A subagent carries its parent's session id; a main session carries null.
+function isSubagent(payload) {
+  const parent = payload?.parent_session_id;
+  return parent !== undefined && parent !== null && String(parent).trim() !== '';
+}
+
 function stateKey(sessionId) {
   return createHash('sha256').update(sessionId).digest('hex').slice(0, 16);
 }
@@ -359,6 +365,10 @@ export function buildPostToolPart(payload, {
   try {
     if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return '';
     if (payload.hook_event_name !== 'post_tool') return '';
+    // The post_tool binding has no match, so it also runs inside a subagent. The
+    // session_start seam withholds the parent's goal slice and handoff pointer
+    // from a subagent by design, so a compaction there re-injects nothing.
+    if (isSubagent(payload)) return '';
     const sessionId = typeof payload.session_id === 'string' ? payload.session_id.trim() : '';
     const transcriptPath = typeof payload.transcript_path === 'string'
       ? payload.transcript_path.trim()

@@ -20,12 +20,14 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { readFileSync, unlinkSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { takeNudge } from '../../decision-capture/lib/capture-core.mjs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { buildAdvisorPart } from '../../../skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs';
+import { readStdin } from '../../shared/hook-adapter-shared.cjs';
+import { sessionDirFor } from '../../shared/payload-dir.mjs';
 import { buildCompactionPart } from './compaction-context.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -39,9 +41,9 @@ const IS_CLI_ENTRY = process.argv[1]
 // The completion part runs at turn end and leaves its advisory here; this
 // composer consumes it on the next turn. Both resolve the file from the
 // session's own project root, so a scratch run cannot deliver another
-// session's advisory.
+// session's advisory. A payload with no cwd falls back to the checkout on
+// both sides.
 const PENDING_ADVISORY_RELATIVE_PATH = '.skilled/skills/.state/completion-sentinel/vibe-pending-advisory.txt';
-const DEFAULT_PROJECT_DIR = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
 const HANDOVER_PART_URL = new URL(
   '../../session-handover/vibe/handover-parts.mjs',
   import.meta.url,
@@ -49,8 +51,7 @@ const HANDOVER_PART_URL = new URL(
 
 function pendingCompletionAdvisoryPart(payload) {
   if (isHookEnabled('completion') === false) return '';
-  const projectDir = typeof payload.cwd === 'string' && payload.cwd ? payload.cwd : DEFAULT_PROJECT_DIR;
-  const target = join(projectDir, PENDING_ADVISORY_RELATIVE_PATH);
+  const target = join(sessionDirFor(payload.cwd), PENDING_ADVISORY_RELATIVE_PATH);
 
   let detail;
   try {
@@ -77,8 +78,7 @@ export function buildSaveNudgePart(payload, { core = { takeNudge } } = {}) {
   const sessionId = typeof payload.session_id === 'string' ? payload.session_id.trim() : '';
   if (!sessionId) return '';
 
-  const projectDir = typeof payload.cwd === 'string' && payload.cwd ? payload.cwd : DEFAULT_PROJECT_DIR;
-  const count = core.takeNudge(projectDir, sessionId);
+  const count = core.takeNudge(sessionDirFor(payload.cwd), sessionId);
   if (!Number.isInteger(count) || count <= 0) return '';
   return `[decision-capture] ${count} operator answer(s) captured this session are not in a decision record yet. Run /speckit:save to record them.`;
 }
@@ -111,18 +111,7 @@ export const PARTS = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. HELPERS
-// ─────────────────────────────────────────────────────────────────────────────
-
-async function readStdin() {
-  process.stdin.setEncoding('utf8');
-  let text = '';
-  for await (const chunk of process.stdin) text += chunk;
-  return text;
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 4. MAIN
+// 3. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**

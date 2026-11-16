@@ -9,6 +9,7 @@
 // session whose catalog never offers the question tool have no operator to
 // ask, so they pass.
 
+import { existingDirectory } from '../../shared/payload-dir.mjs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import {
   lastAssistantText,
@@ -83,7 +84,7 @@ export function buildAskSurfacePart(payload, {
 } = {}) {
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return null;
   if (payload.hook_event_name !== 'post_agent') return null;
-  if (enabled(askCore.CONCERN) === false) return null;
+  if (enabled(askCore.CONCERN, env) === false) return null;
 
   const session = load({
     transcriptPath: payload.transcript_path,
@@ -105,6 +106,9 @@ export function buildAskSurfacePart(payload, {
   const projectDir = typeof payload.cwd === 'string' && payload.cwd ? payload.cwd : cwd;
   const sessionId = session.source?.sessionId || payload.session_id || 'session';
   if (!askCore.markTurn(projectDir, `vibe:${sessionId}:${turn}`, markerDir)) return null;
-  askCore.recordFire(projectDir, { runtime: 'vibe', mode: 'reprompt' });
+  // The fire log is written only under an existing absolute folder, so a payload
+  // cannot make this part create a directory tree anywhere it names. The deny
+  // still goes out: the turn marker lives under the temp folder, keyed by a hash.
+  if (existingDirectory(projectDir)) askCore.recordFire(projectDir, { runtime: 'vibe', mode: 'reprompt' });
   return { decision: 'deny', reason: askCore.repromptFor('vibe') };
 }
