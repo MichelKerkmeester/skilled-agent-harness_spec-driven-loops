@@ -1,5 +1,5 @@
 {
-  "manifestHash": "86c4b5467598e2b4605582751df0478908c4302d9d4dd357a88d0ea6ee4c4ec1",
+  "manifestHash": "4a4a4f84a90c240da12804c449161fd2f033314a7e28a222165bdaa38c57a181",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7207,6 +7207,9 @@
     ],
     "051 closeout reconciliation": [
       "051 closeout reconciliation"
+    ],
+    "051 handover doc alignment 3 operator decisions": [
+      "051-handover-doc-alignment-3 operator decisions"
     ],
     "052 deep review findings remediation": [
       "052 deep-review findings remediation"
@@ -57984,6 +57987,21 @@
     "handover doc alignment 2 tasks": [
       "handover doc alignment 2 tasks"
     ],
+    "handover doc alignment 3": [
+      "handover doc alignment 3"
+    ],
+    "handover doc alignment 3 acceptance criteria": [
+      "handover doc alignment 3 acceptance criteria"
+    ],
+    "handover doc alignment 3 implementation summary": [
+      "handover doc alignment 3 implementation summary"
+    ],
+    "handover doc alignment 3 plan": [
+      "handover doc alignment 3 plan"
+    ],
+    "handover doc alignment 3 tasks": [
+      "handover doc alignment 3 tasks"
+    ],
     "handover doc alignment acceptance criteria": [
       "handover doc alignment acceptance criteria"
     ],
@@ -57998,6 +58016,9 @@
     ],
     "handover doc alignment tasks": [
       "handover doc alignment tasks"
+    ],
+    "handover doc alignment third pass": [
+      "handover doc alignment third pass"
     ],
     "handover docs and harness": [
       "handover docs and harness"
@@ -84338,6 +84359,9 @@
     ],
     "phase 51 dispatch lint nested quote gap": [
       "phase 51 dispatch lint nested quote gap"
+    ],
+    "phase 51 handover doc alignment 3": [
+      "phase 51 handover doc alignment 3"
     ],
     "phase 52 v1 default llmgateway": [
       "phase 52 v1 default llmgateway"
