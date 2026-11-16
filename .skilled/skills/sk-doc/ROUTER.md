@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.4.11.0
+version: 2.4.12.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -211,7 +211,7 @@ INTENT_SIGNALS = {
     "INSTALL_GUIDE": {"weight": 4, "keywords": ["install guide"]},
     "CONTRIBUTING_GUIDE": {"weight": 4, "keywords": ["contributing guide", "contributing.md"]},
     "SECURITY_POLICY": {"weight": 4, "keywords": ["security policy", "security.md"]},
-    "HOOK_README": {"weight": 16, "keywords": ["readme for a new hook", "readme for a hook", "readme for the hook", "readme for this hook", "readme for my hook", "hook's readme"]},
+    "HOOK_README": {"weight": 16, "keywords": ["readme for a new hook", "readme for a hook", "readme for the hook", "readme for this hook", "readme for my hook", "hook's readme", "readme for the ask-surface-guard hook", "ask-surface-guard hook readme", "readme for the classifier-injection-screen hook", "classifier-injection-screen hook readme", "readme for the cli-dispatch hook", "cli-dispatch hook readme", "readme for the codex-global-hooks-check hook", "codex-global-hooks-check hook readme", "readme for the completion-evidence hook", "completion-evidence hook readme", "readme for the decision-capture hook", "decision-capture hook readme", "readme for the directive-lifecycle hook", "directive-lifecycle hook readme", "readme for the dist-freshness hook", "dist-freshness hook readme", "readme for the env-secret-guard hook", "env-secret-guard hook readme", "readme for the git-hooks-check hook", "git-hooks-check hook readme", "readme for the git-live-follow hook", "git-live-follow hook readme", "readme for the git-message-gate hook", "git-message-gate hook readme", "readme for the git-preflight hook", "git-preflight hook readme", "readme for the git-primary-reconcile hook", "git-primary-reconcile hook readme", "readme for the git-worktree-guard hook", "git-worktree-guard hook readme", "readme for the goal hook", "goal hook readme", "readme for the mcp-route-guard hook", "mcp-route-guard hook readme", "readme for the overlay-guard hook", "overlay-guard hook readme", "readme for the permission-policy hook", "permission-policy hook readme", "readme for the post-edit-quality hook", "post-edit-quality hook readme", "readme for the session-cleanup hook", "session-cleanup hook readme", "readme for the session-handover hook", "session-handover hook readme", "readme for the session-lifecycle hook", "session-lifecycle hook readme", "readme for the skill-advisor hook", "skill-advisor hook readme", "readme for the spec-gate hook", "spec-gate hook readme", "readme for the subagent-dispatch-guard hook", "subagent-dispatch-guard hook readme"]},
     "RUNTIME_PLUGIN_README": {"weight": 16, "keywords": ["plugins folder readme", "extensions folder readme", "readme for the plugins folder", "readme for the extensions folder", "readme for a plugin folder", "readme for an extension folder", "hook mirror readme"]},
     "RUNTIME_FOLDER": {"weight": 16, "keywords": ["runtime folder readme", "readme for a runtime folder", "readme for the runtime folder", "sync.md", "sync doc for the"]},
     "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version", "changelog entry", "nested changelog", "packet changelog", "packet-local changelog", "create changelog", "global changelog", "vx.y.z.b", "/create:changelog"]},
