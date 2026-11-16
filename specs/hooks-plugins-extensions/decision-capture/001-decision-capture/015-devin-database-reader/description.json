@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader",
+  "description": "Phase 15: devin-database-reader",
+  "keywords": [
+    "phase",
+    "devin-database-reader"
+  ],
+  "lastUpdated": "2026-11-16T21:18:16.517Z",
+  "specId": "015",
+  "folderSlug": "devin-database-reader",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "decision-capture",
+    "001-decision-capture"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_22-18__manual-context-save.md"
+  ]
+}

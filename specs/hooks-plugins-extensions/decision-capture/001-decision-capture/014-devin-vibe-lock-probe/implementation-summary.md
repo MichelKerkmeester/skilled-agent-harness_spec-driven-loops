@@ -113,7 +113,7 @@ A first probe ran sessions A and B at once in a scratch project for each runtime
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The Devin sweep recovers nothing the live hook missed.** Devin keeps messages in `sessions.db`, which the sweep does not read yet.
+1. **The Devin sweep recovers nothing the live hook missed.** Devin keeps messages in `sessions.db`, which the sweep does not read yet. Correction from child 015: Devin does write the transcript file, but only when an interactive session ends, so a save inside a live session still finds none.
 2. **The seeded Devin probe did not tell the lock choice from the newest-session choice.** Session A was also the most recently active, so both picked it. The first probe shows A's lock is the only one in A's ancestry, and the Devin test covers the choice.
 3. **Both probes ran headless.** Interactive Devin and Vibe were not probed. If one interactive process holds several sessions' locks, the newest matched session in the project wins.
 <!-- /ANCHOR:limitations -->
