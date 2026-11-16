@@ -22,12 +22,19 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor CLI, DeepSeek Ha
 
 **What's inside**
 
-- **Spec Kit Framework** - structured plans, task tracking, validation gates and handover docs
-- **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
-- **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
+- **Gate System** - six gates check every request before the agent acts: prior context, the right skill, a spec folder and the repository rules
+- **Spec Kit Framework** - spec folders with plans, tasks and a 42-rule validator, grouped into tracks, sub-tracks and phases
+- **Continuity & Search** - progress saved into each spec folder and found again through a trigger index and ripgrep search, surviving resets and compactions
+- **Session Handover** - near the context limit, the work moves to a fresh session with a handoff note
+- **Skill Advisor** - routes every prompt to the right skill and workflow using 5-lane fusion and a live skill graph, so you never need to remember a command
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
-- **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
-- **14 On-Demand Skills** - deep capabilities for code, design, docs, multi-CLI dispatch and installing Skilled in your own projects
+- **CLI Orchestration** - hand work to another AI CLI on its own subscription, with any provider and model you have set up
+- **14 On-Demand Skills** - seven parent hubs with 42 modes, plus standalone skills for specs, git, prompts and Orca
+- **26 Shared Hooks** - session handover, goals, routing, quality checks, git and secret guards, running in all eight runtimes through one thin adapter each
+- **11 Specialized Agents** - focused roles for implementation, review, research, docs, design and orchestration
+- **17 Doctor Commands** - install Skilled in your own project, check the setup and keep it current
+- **Code Mode MCP** - external MCP tools called through one TypeScript interface
+- **Git Worktrees & Live Sync** - each session in its own worktree, with the main checkout following along
 
 &nbsp;
 
@@ -69,9 +76,13 @@ Skilled does not have to live inside each project. You can bring it into a proje
 
 **Link it.** Keep one Skilled checkout and link it into each project. One `git pull` in the checkout then updates every linked project. Your own changes live in the project's files, next to the links. This is the simpler choice. See [Link It Into Your Project](INSTALL-SKILLED.md#3-link-it-into-your-project).
 
-**Copy it.** Commit a copy of Skilled into the project, so the whole team shares one pinned version. Your changes to the copy live in an overlay folder, and `/doctor:overlay` puts them back after each update. See [Copy It Into Your Project](INSTALL-SKILLED.md#4-copy-it-into-your-project).
+**Copy it.** Commit a copy of Skilled into the project, so the whole team shares one pinned version. See [Copy It Into Your Project](INSTALL-SKILLED.md#4-copy-it-into-your-project).
 
-`/doctor:install` prints the ordered steps for your project. Each step shows a plan before it writes, and each one prints how to undo it.
+A copy needs the overlay system. An update replaces the whole copy, so a change made straight in it would be lost. Instead, each of your changes lives in an overlay folder next to the copy, and the overlay engine applies it back after every update. The [overlay guard](#overlay-guard) refuses an edit to a file an overlay owns and names the overlay to edit instead.
+
+Three commands run the overlays. `/doctor:overlay status` shows every overlay that is out of sync and how to fix it. `/doctor:overlay apply` puts the overlays back after showing what will change. `/doctor:overlay repin` moves the copy to a newer Skilled commit, with a backup it can roll back. The [overlay guide](.skilled/skills/system-skilled-doctor/references/overlays.md) explains each state.
+
+The [system-skilled-doctor](#11--doctor-commands) skill runs all of this. Say "put Skilled into my project repo", or run `/doctor:install` for the ordered steps. Each step shows a plan before it writes and prints how to undo it.
 
 ### First Task
 
@@ -247,9 +258,9 @@ A loop can also spread across several AI CLIs at once. Each executor runs its ow
 
 Your main CLI does not have to do every task itself. The CLI orchestration hub hands a task to another AI CLI on the same machine and reads the result back. The agent you are talking to stays in charge. It writes the brief, waits for the answer and checks it before using it.
 
-This lets you mix subscriptions. You can stay in Claude Code or Codex on that plan and send research, reviews or bulk work to a cheaper model through another CLI. OpenCode and Pi reach DeepSeek V4.1 Flash through LLM Gateway or OpenCode Go. Mistral Vibe can run a DeepSeek Flash model too, and Devin offers DeepSeek V4.1 Flash Max. Each dispatch is billed to that CLI's own plan, not to your main one.
+This lets you mix subscriptions. You can stay in Claude Code or Codex on that plan and send research, reviews or bulk work to a cheaper model through another CLI. The bridges are provider agnostic. Each CLI runs whatever providers and models you have set up in it, so you match the bridge to the subscriptions you already pay for. That is why Skilled supports eight runtimes: whichever plans you have, one of them is your main CLI and the others take the work you hand off. Each dispatch is billed to that CLI's own plan, not to your main one.
 
-You ask for it in plain words, for example "use cli-opencode with DeepSeek Flash to review this diff". The advisor routes the request to the matching bridge. The bridge checks that its CLI is installed and that the dispatch passes its hard rules, then runs it. The deep loops use the same bridges, so one research or review run can spread its passes across several models. [Runtimes And CLI Bridges](#10--runtimes-and-cli-bridges) lists all eight.
+You ask for it in plain words, for example "use cli-opencode to review this diff". The advisor routes the request to the matching bridge. The bridge checks that its CLI is installed and that the dispatch passes its hard rules, then runs it. The deep loops use the same bridges, so one research or review run can spread its passes across several models. [Runtimes And CLI Bridges](#10--runtimes-and-cli-bridges) lists all eight.
 
 ### Create And Update Skills, Agents And Commands
 
@@ -287,7 +298,7 @@ Fourteen skills ship with Skilled. Gate 2 loads one when the advisor matches it 
 
 **[system-skill-advisor](.skilled/skills/system-skill-advisor/README.md)** routes each prompt to the skill that fits, through a daemon-backed CLI.
 
-**[system-skilled-doctor](.skilled/skills/system-skilled-doctor/README.md)** holds the doctor commands that install Skilled in a project and keep it current, overlays included.
+**[system-skilled-doctor](.skilled/skills/system-skilled-doctor/README.md)** gets Skilled into your own project and keeps it working there. It owns eleven doctor commands for installing, linking, updating and checking a project, including the overlays that carry a copied project's own changes through each update.
 
 **[sk-git](.skilled/skills/sk-git/README.md)** handles worktrees, conventional commits, pull requests and finishing a branch.
 
@@ -311,83 +322,9 @@ Runtime support is uneven on purpose, because each runtime exposes different eve
 
 The hooks below are grouped by purpose. Each entry says what the hook does and links the README that holds its runtimes, switches and code.
 
-### Safety And Secrets
-
-These hooks keep secrets, vendored files and untrusted web text in check.
-
-#### Env Secret Guard
-
-The agent may not read or write a dotenv file, because that would send every secret in it to the model. The guard refuses the call, undoes a dotenv write a shell command made anyway and watches command output for a dotenv value. In place of the file, it lists key names, reports parse errors and fingerprints a value.
-
-Read more in the [env secret guard README](.skilled/hooks/env-secret-guard/README.md).
-
-#### Overlay Guard
-
-A project that commits a copy of Skilled keeps its own changes in overlay files. This guard refuses an edit to a file an overlay owns and names the overlay file to edit instead, so the next update does not wipe the change.
-
-Read more in the [overlay guard README](.skilled/hooks/overlay-guard/README.md).
-
-#### Permission Policy
-
-Devin asks for permission before some tool calls. This hook answers that request with allow or deny, from the same spec-gate and dispatch rules the other hooks use. Anything it cannot classify is denied.
-
-Read more in the [permission policy README](.skilled/hooks/permission-policy/README.md).
-
-#### Classifier Injection Screen
-
-After the agent fetches a web page, this hook asks the Jev classifier whether the text holds instructions aimed at an AI agent. When a section does, it adds one advisory line. It runs only once a Jev key is stored, and it never blocks.
-
-Read more in the [classifier injection screen README](.skilled/hooks/classifier-injection-screen/README.md).
-
-### Git
-
-These hooks keep the git history clean and the main checkout current. Four of them run at session start.
-
-#### Git Hooks Check
-
-At session start, this check confirms that the repository's versioned git hooks are installed and current. In the main checkout with live sync on, it installs a missing hook link itself. It prints a warning and never blocks a session.
-
-Read more in the [git hooks check README](.skilled/hooks/git-hooks-check/README.md).
-
-#### Git Live Follow
-
-At session start, this hook starts a follower that fast-forwards your main checkout to the shared live branch as new commits land. Your editor then shows the combined work of every session. It is one half of [live sync](#13--git-worktrees-and-live-sync).
-
-Read more in the [git live follow README](.skilled/hooks/git-live-follow/README.md).
-
-#### Git Primary Reconcile
-
-At session start, this hook brings the main checkout back onto its live branch. It fast-forwards when the checkout is behind and publishes local commits when it is ahead. It is the other half of live sync.
-
-Read more in the [git primary reconcile README](.skilled/hooks/git-primary-reconcile/README.md).
-
-#### Git Worktree Guard
-
-At session start, this guard warns when a top-level session runs on the shared checkout instead of its own worktree. Parallel sessions on one checkout step on each other's changes.
-
-Read more in the [git worktree guard README](.skilled/hooks/git-worktree-guard/README.md).
-
-#### Git Message Gate
-
-Before a commit, a pull request or a new branch, this gate checks the message, description or branch name against the sk-git templates. It refuses one that breaks them. It has no off switch, because the rules carry no bypass. Change a rule with `/doctor:git standards` instead.
-
-Read more in the [git message gate README](.skilled/hooks/git-message-gate/README.md).
-
-#### Git Preflight
-
-Before a git command runs, this hook checks it against the sk-git hard rules and prints one line about any behavior that tends to surprise. It never blocks.
-
-Read more in the [git preflight README](.skilled/hooks/git-preflight/README.md).
-
 ### Sessions And Continuity
 
 These hooks carry context, goals and decisions from one session to the next.
-
-#### Session Lifecycle
-
-At session start, this hook primes the session with the continuity of its spec folder. At stop it saves a checkpoint, and after a compaction it restores the context the summary dropped.
-
-Read more in the [session lifecycle README](.skilled/hooks/session-lifecycle/README.md).
 
 #### Session Handover
 
@@ -401,23 +338,29 @@ Handover is on by default for Claude Code only. You can turn it on for every run
 
 Read more in the [session handover README](.skilled/hooks/session-handover/README.md).
 
-#### Session Cleanup
-
-This hook runs bounded checks at startup and cleans up at teardown. It stops only MCP helper processes it can prove the session started.
-
-Read more in the [session cleanup README](.skilled/hooks/session-cleanup/README.md).
-
 #### Goal
 
 A spec folder can hold a goal file with the directive and the criteria that decide when the work is done. This hook binds a session to that file and injects a short slice of it, so the goal survives context resets. `/create:goal` writes the file. Claude Code and Codex use their own `/goal` command instead, and the spec workflows hand you the slice to paste. OpenCode manages the goal with `/goal-opencode`, Pi with `/goal-pi` and DSH with `/goal-dsh`.
 
 Read more in the [goal hook README](.skilled/hooks/goal/README.md).
 
+#### Session Lifecycle
+
+At session start, this hook primes the session with the continuity of its spec folder. At stop it saves a checkpoint, and after a compaction it restores the context the summary dropped.
+
+Read more in the [session lifecycle README](.skilled/hooks/session-lifecycle/README.md).
+
 #### Decision Capture
 
 Each answer you give to the agent's question tool is queued as you give it. The next full-auto `/speckit:save` writes it into the packet's decision record, with the question, the options and your answer word for word. Questions about process, such as which spec folder to use, are left out.
 
 Read more in the [decision capture README](.skilled/hooks/decision-capture/README.md).
+
+#### Session Cleanup
+
+This hook runs bounded checks at startup and cleans up at teardown. It stops only MCP helper processes it can prove the session started.
+
+Read more in the [session cleanup README](.skilled/hooks/session-cleanup/README.md).
 
 ### Routing And Dispatch
 
@@ -429,23 +372,17 @@ On each prompt, this hook puts the skill advisor's one-line routing brief in fro
 
 Read more in the [skill advisor README](.skilled/hooks/skill-advisor/README.md).
 
-#### Directive Lifecycle
+#### CLI Dispatch
 
-The skill advisor repeats a few fixed directives. This hook tracks which ones a session already received, so they appear once per startup or compaction instead of on every turn.
+Before the agent runs a composed CLI dispatch, a preflight lint checks it against the bridge's hard rules. A broken rule stops the call. After the call, an audit trail records it as one JSON line.
 
-Read more in the [directive lifecycle README](.skilled/hooks/directive-lifecycle/README.md).
+Read more in the [CLI dispatch README](.skilled/hooks/cli-dispatch/README.md).
 
 #### MCP Route Guard
 
 When the agent calls an external MCP tool directly, this hook adds an advisory that the call should go through Code Mode instead.
 
 Read more in the [MCP route guard README](.skilled/hooks/mcp-route-guard/README.md).
-
-#### CLI Dispatch
-
-Before the agent runs a composed CLI dispatch, a preflight lint checks it against the bridge's hard rules. A broken rule stops the call. After the call, an audit trail records it as one JSON line.
-
-Read more in the [CLI dispatch README](.skilled/hooks/cli-dispatch/README.md).
 
 #### Subagent Dispatch Guard
 
@@ -458,6 +395,12 @@ Read more in the [subagent dispatch guard README](.skilled/hooks/subagent-dispat
 A turn that ends in a typed menu of options gets sent back once. The agent then asks the same question through the runtime's question tool, where you can pick an answer. On Codex and Devin it warns instead of sending the turn back.
 
 Read more in the [ask surface guard README](.skilled/hooks/ask-surface-guard/README.md).
+
+#### Directive Lifecycle
+
+The skill advisor repeats a few fixed directives. This hook tracks which ones a session already received, so they appear once per startup or compaction instead of on every turn.
+
+Read more in the [directive lifecycle README](.skilled/hooks/directive-lifecycle/README.md).
 
 ### Quality And Evidence
 
@@ -492,6 +435,74 @@ Read more in the [dist freshness README](.skilled/hooks/dist-freshness/README.md
 At session start, this check confirms that Codex's user-global hook file holds no copy of this repository's hooks. A stale copy there would run the hooks twice in every Codex session.
 
 Read more in the [Codex global hooks check README](.skilled/hooks/codex-global-hooks-check/README.md).
+
+### Git
+
+These hooks keep the git history clean and the main checkout current. Four of them run at session start.
+
+#### Git Live Follow
+
+At session start, this hook starts a follower that fast-forwards your main checkout to the shared live branch as new commits land. Your editor then shows the combined work of every session. It is one half of [live sync](#13--git-worktrees-and-live-sync).
+
+Read more in the [git live follow README](.skilled/hooks/git-live-follow/README.md).
+
+#### Git Primary Reconcile
+
+At session start, this hook brings the main checkout back onto its live branch. It fast-forwards when the checkout is behind and publishes local commits when it is ahead. It is the other half of live sync.
+
+Read more in the [git primary reconcile README](.skilled/hooks/git-primary-reconcile/README.md).
+
+#### Git Worktree Guard
+
+At session start, this guard warns when a top-level session runs on the shared checkout instead of its own worktree. Parallel sessions on one checkout step on each other's changes.
+
+Read more in the [git worktree guard README](.skilled/hooks/git-worktree-guard/README.md).
+
+#### Git Message Gate
+
+Before a commit, a pull request or a new branch, this gate checks the message, description or branch name against the sk-git templates. It refuses one that breaks them. It has no off switch, because the rules carry no bypass. Change a rule with `/doctor:git standards` instead.
+
+Read more in the [git message gate README](.skilled/hooks/git-message-gate/README.md).
+
+#### Git Preflight
+
+Before a git command runs, this hook checks it against the sk-git hard rules and prints one line about any behavior that tends to surprise. It never blocks.
+
+Read more in the [git preflight README](.skilled/hooks/git-preflight/README.md).
+
+#### Git Hooks Check
+
+At session start, this check confirms that the repository's versioned git hooks are installed and current. In the main checkout with live sync on, it installs a missing hook link itself. It prints a warning and never blocks a session.
+
+Read more in the [git hooks check README](.skilled/hooks/git-hooks-check/README.md).
+
+### Safety And Secrets
+
+These hooks keep secrets, vendored files and untrusted web text in check.
+
+#### Env Secret Guard
+
+The agent may not read or write a dotenv file, because that would send every secret in it to the model. The guard refuses the call, undoes a dotenv write a shell command made anyway and watches command output for a dotenv value. In place of the file, it lists key names, reports parse errors and fingerprints a value.
+
+Read more in the [env secret guard README](.skilled/hooks/env-secret-guard/README.md).
+
+#### Overlay Guard
+
+A project that commits a copy of Skilled keeps its own changes in overlay files. This guard refuses an edit to a file an overlay owns and names the overlay file to edit instead, so the next update does not wipe the change.
+
+Read more in the [overlay guard README](.skilled/hooks/overlay-guard/README.md).
+
+#### Classifier Injection Screen
+
+After the agent fetches a web page, this hook asks the Jev classifier whether the text holds instructions aimed at an AI agent. When a section does, it adds one advisory line. It runs only once a Jev key is stored, and it never blocks.
+
+Read more in the [classifier injection screen README](.skilled/hooks/classifier-injection-screen/README.md).
+
+#### Permission Policy
+
+Devin asks for permission before some tool calls. This hook answers that request with allow or deny, from the same spec-gate and dispatch rules the other hooks use. Anything it cannot classify is denied.
+
+Read more in the [permission policy README](.skilled/hooks/permission-policy/README.md).
 
 ### Runtime-Only Hooks
 
@@ -595,7 +606,7 @@ Some runtimes add a goal command of their own: `/goal-opencode`, `/goal-cursor` 
 
 ## 10. 🔌 RUNTIMES AND CLI BRIDGES
 
-Skilled runs in eight AI runtimes. Each one keeps its own folder and loads the hooks its own way:
+Skilled runs in eight AI runtimes, so you can work from the subscriptions you already have and hand work between them. Each one keeps its own folder and loads the hooks its own way:
 
 | Runtime | Folder | Commands look like | Hooks load through |
 | --- | --- | --- | --- |
@@ -622,7 +633,7 @@ Six bridges refuse to dispatch the runtime they run in. The Pi and DeepSeek Harn
 
 ## 11. 🩺 DOCTOR COMMANDS
 
-Seventeen doctor commands check and repair the setup, one area each. Every target that writes shows its plan and waits for your yes. `/doctor:helper` names the command that fits a problem you describe. The [system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md) has the details.
+Seventeen doctor commands check and repair the setup, one area each. Eleven belong to the `system-skilled-doctor` skill, which owns everything about Skilled inside a project. The rest sit with the skill they check, such as `/doctor:git` with sk-git. Every target that writes shows its plan and waits for your yes. `/doctor:helper` names the command that fits a problem you describe, and you can also just describe the problem in chat. The [system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md) has the details.
 
 | Command | What it does |
 | --- | --- |
@@ -753,7 +764,7 @@ Run `/create:skill` for a skill. The advisor finds it from its own metadata, wit
 
 ### How can I keep Skilled current after a new release?
 
-Run `/doctor:update check` to see what a release changes, then `/doctor:update apply` to bring it in after your yes. It can roll the update back. Afterwards, `/doctor:runtime-mirrors` checks that every runtime folder still matches the shared source, and `/doctor:setup` runs the full health check.
+Run `/doctor:update check` to see what a release changes, then `/doctor:update apply` to bring it in after your yes. It can roll the update back. A project that commits a copy of Skilled moves it with `/doctor:overlay repin` instead, which puts your overlays back on the new copy. Afterwards, `/doctor:runtime-mirrors` checks that every runtime folder still matches the shared source, and `/doctor:setup` runs the full health check.
 
 ### Why is the skill advisor not an MCP server?
 
