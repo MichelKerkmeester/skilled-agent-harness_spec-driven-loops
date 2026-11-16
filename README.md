@@ -18,15 +18,15 @@ An assistant framework that gives your AI coding agent a memory, a paper trail a
 
 All of it lives inside your own repository, as files you can read and diff.
 
-Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor CLI, DeepSeek Harness and Mistral Vibe
+Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor CLI, DeepSeek Harness and Mistral Vibe.
 
 **What's inside**
 
 - **Gate System** - six gates check every request before the agent acts: prior context, the right skill, a spec folder and the repository rules
+- **Skill Advisor** - routes every prompt to the right skill and workflow using 5-lane fusion and a live skill graph, so you never need to remember a command
 - **Spec Kit Framework** - spec folders with plans, tasks and a 42-rule validator, grouped into tracks, sub-tracks and phases
 - **Continuity & Search** - progress saved into each spec folder and found again through a trigger index and ripgrep search, surviving resets and compactions
 - **Session Handover** - near the context limit, the work moves to a fresh session with a handoff note
-- **Skill Advisor** - routes every prompt to the right skill and workflow using 5-lane fusion and a live skill graph, so you never need to remember a command
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
 - **CLI Orchestration** - hand work to another AI CLI on its own subscription, with any provider and model you have set up
 - **14 On-Demand Skills** - seven parent hubs with 42 modes, plus standalone skills for specs, git, prompts and Orca
@@ -42,7 +42,7 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor CLI, DeepSeek Ha
 
 ### Install
 
-You need Node.js, npm, git and a POSIX shell. Use a patched Node release. The floors are 22.23.4, 24.22.1 and 26.12.1. Any newer release on those lines works. Code Mode is stricter and needs Node 24.22.1 or a newer 24.x, so Node 24 is the one line every part accepts.
+You need Node.js, npm, git and a POSIX shell. Node 24.22.1 or a newer 24.x is the one line every part accepts. Code Mode runs only on Node 24. The rest also runs on 22.23.4 and 26.12.1 or newer releases on those lines.
 
 The [install guide](INSTALL-SKILLED.md#2-install-a-skilled-checkout) walks through every step. In short, clone the repository and build the Spec Kit and the Skill Advisor:
 
@@ -68,7 +68,7 @@ Open the repository in any of the eight runtimes and run:
 /doctor:setup
 ```
 
-It checks the install without changing anything. Each failing check names one repair command. Run `/doctor:mcp install` to build and register Code Mode, which builds on its own.
+It checks the install without changing anything. Each failing check names one repair command. Code Mode is not part of the build above. Run `/doctor:mcp install` to build and register it.
 
 ### Use It In Your Own Project
 
@@ -78,19 +78,21 @@ Skilled does not have to live inside each project. You can bring it into a proje
 
 **Copy it.** Commit a copy of Skilled into the project, so the whole team shares one pinned version. See [Copy It Into Your Project](INSTALL-SKILLED.md#4-copy-it-into-your-project).
 
-A copy needs the overlay system. An update replaces the whole copy, so a change made straight in it would be lost. Instead, each of your changes lives in an overlay folder next to the copy, and the overlay engine applies it back after every update. The [overlay guard](#overlay-guard) refuses an edit to a file an overlay owns and names the overlay to edit instead.
+A copy needs the overlay system. An update replaces the whole copy, so a change made straight in it would be lost. Instead, each of your changes lives in an overlay folder next to the copy, and the overlay engine applies it back after every update. The [overlay guard](#overlay-guard) keeps edits out of files an overlay owns.
 
 Three commands run the overlays. `/doctor:overlay status` shows every overlay that is out of sync and how to fix it. `/doctor:overlay apply` puts the overlays back after showing what will change. `/doctor:overlay repin` moves the copy to a newer Skilled commit, with a backup it can roll back. The [overlay guide](.skilled/skills/system-skilled-doctor/references/overlays.md) explains each state.
 
-The [system-skilled-doctor](#11--doctor-commands) skill runs all of this. Say "put Skilled into my project repo", or run `/doctor:install` for the ordered steps. Each step shows a plan before it writes and prints how to undo it.
+The [system-skilled-doctor](#11--doctor-commands) skill runs all of this. Say "add Skilled to my project repo", or run `/doctor:install` for the ordered steps. Each step shows a plan before it writes and prints how to undo it.
 
 ### First Task
+
+Describe the task in plain words, or start the full spec workflow yourself:
 
 ```
 /speckit:complete Build a user authentication system
 ```
 
-This creates a spec folder, plans the work, builds it and saves the session context as it goes. Add `:with-research` to research before planning. In a later session, `/speckit:resume` picks up where the last one stopped. On Codex, Cursor, Pi, DSH and Mistral Vibe, type `/speckit-complete` instead.
+This creates a spec folder, plans the work, builds it and saves the session context as it goes. Add `:with-research` to research before planning. In a later session, `/speckit:resume` picks up where the last one stopped. The [Runtimes](#10--runtimes-and-cli-bridges) table shows how each runtime spells the command.
 
 ### Git Hooks
 
@@ -100,7 +102,7 @@ The repository ships versioned git hooks that check every commit and push in thi
 - **commit-msg** holds each message to the [commit template](.skilled/skills/sk-git/assets/commit-message-template.md): a conventional subject line, a body and no co-author lines
 - **pre-push** blocks a push that deletes more than 100 tracked files, and asks before a push to a branch outside the sk-git allowlist
 
-The session-start check installs any missing hook link in the main checkout while live sync is on, which is the default. It never installs from a linked worktree. `/doctor:git setup` checks the hooks and the sk-git settings. `/doctor:git hooks` switches a gate on or off, and `/doctor:git standards` changes the commit rules. A clone other than the one that installed the hooks runs their checks only after you mark it as trusted. The [git hooks README](.skilled/scripts/git-hooks/README.md) describes each gate and shows the trust setting.
+A [session-start check](#git-hooks-check) installs a missing hook in the main checkout. `/doctor:git setup` checks the hooks and the sk-git settings. A clone other than the one that installed the hooks runs their checks only after you mark it as trusted. The [git hooks README](.skilled/scripts/git-hooks/README.md) describes each gate and shows the trust setting.
 
 &nbsp;
 
@@ -194,21 +196,21 @@ Six gates run before the agent acts. They are defined in [AGENTS.md](AGENTS.md),
 
 Gate 1 surfaces prior context for each new message from a committed trigger index. Gate 2 routes the request to a skill through the skill advisor. Gate 3 asks which spec folder the work belongs to, before the first file write. It is a hard block. Gate 4 settles ties between a skill route and a CLI executor. Gate 5 loads the repository rules before the first write. Gate 6 loads the reply rules before every substantive answer.
 
-Four more rules run after the work. The agent checks the final state, proves completion with fresh evidence, saves continuity through one writer and keeps the bound goal in view. Ten rule files hold those rules, and a router file at the repository root sends each action to the files it needs.
+Four more rules run after the work. The agent checks the final state, proves completion with fresh evidence, saves continuity through one writer and keeps the bound goal in view. Ten rule files expand these rules, and a router file at the repository root names the ones each action needs.
 
 ### Skill Routing
 
-You never need to remember a skill name. The skill advisor scores each prompt and puts a one-line routing brief in front of the agent. At a confidence of 0.8 or more, the agent must load that skill.
+The skill advisor scores each prompt and puts a one-line routing brief in front of the agent. At a confidence of 0.8 or more, the agent must load that skill.
 
-The advisor is a resident daemon behind one command-line front door. It is not an MCP server. When the daemon is down, a local scorer answers instead and marks its answer stale. When no skill matches, the brief says so in one line. A setup or health prompt with no match gets a pointer to `/doctor:setup`. A hub skill can also name the command to type, with a policy that says whether to run it, start it or ask first. The [Skill Advisor README](.skilled/skills/system-skill-advisor/README.md) has the scoring and the CLI.
+The advisor is a resident daemon behind one command-line front door. When the daemon is down, a local scorer answers instead and marks its answer stale. A setup or health prompt with no match gets a pointer to `/doctor:setup`. The [Skill Advisor README](.skilled/skills/system-skill-advisor/README.md) has the scoring and the CLI.
 
 ### Spec Folders
 
-Every conversation that changes files gets a numbered folder in the specs tree, grouped by track. The depth of its documents scales with the task. There are four documentation levels (1, 2, 3 and 3+). Level 1 holds a spec, a plan, a task list and an implementation summary. Level 2 adds acceptance criteria, the closure gate. Each of its rows must be Met before the packet can close. A row marked Waived or Superseded also passes when it cites a decision record. Level 3 adds architecture sections and a decision record. Level 3+ adds governance for complex work.
+Every conversation that changes files gets a numbered folder in the specs tree, grouped by track. The depth of its documents scales with the task. There are four documentation levels (1, 2, 3 and 3+). Level 1 holds a spec, a plan, a task list and an implementation summary. Level 2 adds acceptance criteria, and each row must be met, or settled in a decision record, before the packet can close. Level 3 adds architecture sections and a decision record. Level 3+ adds governance for complex work.
 
 Beside those documents, each folder keeps two small metadata files that the save step refreshes and a scratch folder for temporary work. The validator runs 42 rules against a folder and reports what fails.
 
-Folders nest in a fixed way. A track is the top folder, usually named after the skill or system the work touches. As a track grows, it can hold one level of named sub-tracks that group its packets by theme. Each sub-track numbers its own packets from 001 and keeps its own archive for finished work. A sub-track is always a proposal the operator approves. One script suggests a grouping once a flat track reaches eight live packets. Another moves the packets and rewrites every stored path.
+Folders nest in a fixed way. A track is the top folder, usually named after the skill or system the work touches. As a track grows, it can hold one level of named sub-tracks that group its packets by theme. Each sub-track numbers its own packets from 001 and keeps its own archive for finished work. A sub-track is always a proposal you approve.
 
 A large feature becomes a phase parent instead. The parent keeps only its spec and the two metadata files, and its spec maps the phases. Each phase is a numbered child folder with its own plan, tasks and summary. A series parent works the same way for separate small changes to one artifact, such as one script or one command. It starts at the second change, so the history of that artifact stays in one place.
 
@@ -226,7 +228,7 @@ After a compaction, a session can read back its own earlier turns with one read-
 
 A long session can hand its work to a fresh one before the context window fills. Near the limit, the session writes a handoff note and saves its spec folder. A small wrapper then starts the same runtime in the same terminal, and the new session claims the note. The running command, the goal, the model and the session name all carry over.
 
-Handover is on by default for Claude Code and off elsewhere until you turn it on. The [Session Handover](#session-handover) hook below explains how to turn it on.
+Handover is on by default for Claude Code. The [Session Handover](#session-handover) hook below shows how to turn it on for the others.
 
 &nbsp;
 
@@ -234,7 +236,7 @@ Handover is on by default for Claude Code and off elsewhere until you turn it on
 
 ### You Just Ask
 
-You do not need to remember any command. Describe the task in plain words and the session does the rest. On every prompt, the [skill advisor](#skill-advisor) reads the request and tells the agent which skill fits. When a workflow fits too, the brief names its command and how to take it: start it now, start it with its setup questions or offer it to you first.
+You never need to remember a command. Describe the task in plain words and the session handles the rest. On every prompt, the [skill advisor](#skill-advisor) reads the request and tells the agent which skill fits. When a workflow fits too, the brief names its command and how to run it: start it now, start it with its setup questions or offer it to you first.
 
 The session automation covers the rest of the path. The [spec gate](#spec-gate) asks once which spec folder the work belongs to. The [session lifecycle](#session-lifecycle) hooks prime the context at start and save continuity at stop and compaction. Near the context limit, [session handover](#session-handover) carries the work into a fresh session.
 
@@ -244,7 +246,7 @@ The commands below are what runs underneath. Type one yourself only when you wan
 
 `/speckit:complete` runs the whole path: intake, research, plan, build, verify and save. `/speckit:plan` stops after the plan, so someone can review it before any code is written. `/speckit:implement` builds from an existing plan. Each one accepts `:auto` to run without stopping or `:confirm` to pause at each step.
 
-`/speckit:save` plans a continuity save and writes it in full-auto mode. `/speckit:resume` restores it in a new session. `/speckit:search` runs the trigger index and the ripgrep recipes over spec docs and skill docs. `/speckit:handoff` hands the work to a fresh session now, instead of waiting for the context limit.
+`/speckit:save` and `/speckit:resume` carry the work across sessions, as [Continuity](#continuity) describes. `/speckit:search` runs the trigger index and the ripgrep recipes over spec docs and skill docs. `/speckit:handoff` hands the work to a fresh session now, instead of waiting for the context limit.
 
 ### Deep Research And Deep Review
 
@@ -256,9 +258,9 @@ A loop can also spread across several AI CLIs at once. Each executor runs its ow
 
 ### CLI Orchestration
 
-Your main CLI does not have to do every task itself. The CLI orchestration hub hands a task to another AI CLI on the same machine and reads the result back. The agent you are talking to stays in charge. It writes the brief, waits for the answer and checks it before using it.
+Your main CLI does not have to handle every task itself. The CLI orchestration hub hands a task to another AI CLI on the same machine and reads the result back. The agent you are talking to stays in charge. It writes the brief, waits for the answer and checks it before using it.
 
-This lets you mix subscriptions. You can stay in Claude Code or Codex on that plan and send research, reviews or bulk work to a cheaper model through another CLI. The bridges are provider agnostic. Each CLI runs whatever providers and models you have set up in it, so you match the bridge to the subscriptions you already pay for. That is why Skilled supports eight runtimes: whichever plans you have, one of them is your main CLI and the others take the work you hand off. Each dispatch is billed to that CLI's own plan, not to your main one.
+This lets you mix subscriptions. You can work in one CLI and send research, reviews or bulk work to another, billed to that CLI's own plan. The bridges are provider agnostic. Each CLI runs whatever providers and models you have set up in it. That is why Skilled supports eight runtimes: whichever plans you already pay for, one runtime is your main CLI and the others receive the work you hand off.
 
 You ask for it in plain words, for example "use cli-opencode to review this diff". The advisor routes the request to the matching bridge. The bridge checks that its CLI is installed and that the dispatch passes its hard rules, then runs it. The deep loops use the same bridges, so one research or review run can spread its passes across several models. [Runtimes And CLI Bridges](#10--runtimes-and-cli-bridges) lists all eight.
 
@@ -266,7 +268,7 @@ You ask for it in plain words, for example "use cli-opencode to review this diff
 
 Extending Skilled follows the same framework that built it. The [sk-doc](.skilled/skills/sk-doc/README.md) hub holds a template, a set of standards and a validator for each kind of component. Ask for a new skill, agent or command in plain words and the advisor loads the matching sk-doc mode, so the result matches the rest of the repository.
 
-Each kind also has a `/create` command for when you want the workflow directly. `/create:skill` creates or updates a skill, and `/create:skill-parent` scaffolds a parent hub with its modes. `/create:agent` and `/create:command` do the same for agents and slash commands. `/create:readme`, `/create:changelog`, `/create:goal` and `/create:repo-rule` cover the documents around them. Every one runs with `:auto` or with `:confirm` to pause at each step.
+Each kind also has a `/create` command for when you want the workflow directly. `/create:skill` creates or updates a skill, and `/create:skill-parent` scaffolds a parent hub with its modes. `/create:agent` and `/create:command` cover agents and slash commands. `/create:readme`, `/create:changelog`, `/create:goal` and `/create:repo-rule` cover the documents around them. Every one runs with `:auto` or with `:confirm` to pause at each step.
 
 Updating works the same way as creating. Name the component and the change, and the workflow edits it in place, checks it against its template and runs the sk-doc validator. A new skill needs no registration step, because the advisor finds it from its own metadata.
 
@@ -308,7 +310,7 @@ Fourteen skills ship with Skilled. Gate 2 loads one when the advisor matches it 
 
 **[mcp-code-mode](.skilled/skills/mcp-code-mode/README.md)** calls external MCP tools through one TypeScript interface.
 
-Only `sk-code` carries stack-specific patterns, so start there when you adapt Skilled to your own stack. The [sk-code README](.skilled/skills/sk-code/README.md#4-adapting-to-your-stack) walks through it, and `/doctor:sk-code setup` checks the result. Add a skill of your own with `/create:skill`, and the advisor finds it from its metadata.
+Only `sk-code` carries stack-specific patterns, so start there when you adapt Skilled to your own stack. The [sk-code README](.skilled/skills/sk-code/README.md#4-adapting-to-your-stack) walks through it, and `/doctor:sk-code setup` checks the result.
 
 &nbsp;
 
@@ -316,11 +318,9 @@ Only `sk-code` carries stack-specific patterns, so start there when you adapt Sk
 
 Skilled enforces its rules through hooks that each runtime calls at fixed moments: at session start, on each prompt, around each tool call and at session end. Every hook has one home folder in the shared hook library, with its policy and a README. Each runtime reaches it through a thin adapter in that runtime's own folder, and the [Runtimes](#10--runtimes-and-cli-bridges) table shows where each one loads them.
 
-A few hooks keep their code with the skill that owns the logic and link into that folder. The spec gate and the session-lifecycle adapters live in the Spec Kit skill. The git message gate and preflight live in sk-git. The session-start git checks are shared scripts. A shared helpers folder holds what every hook uses: the off-switch resolver, the input readers and the session readers.
+Runtime support is uneven on purpose, because each runtime exposes different events. The [hooks README](.skilled/hooks/README.md) holds the full coverage matrix. Each hook has its own off switch, and one master switch turns them all off except the git message gate. [Off Switches](#off-switches) names the few you are likely to set.
 
-Runtime support is uneven on purpose, because each runtime exposes different events. The [hooks README](.skilled/hooks/README.md) holds the full coverage matrix and every off switch. Each hook has its own off switch, and one master switch turns them all off except the git message gate. [Off Switches](#off-switches) names the few you are likely to set.
-
-The hooks below are grouped by purpose. Each entry says what the hook does and links the README that holds its runtimes, switches and code.
+The hooks below are grouped by purpose. Each entry links the README that holds its runtimes, switches and code.
 
 ### Sessions And Continuity
 
@@ -340,7 +340,7 @@ Read more in the [session handover README](.skilled/hooks/session-handover/READM
 
 #### Goal
 
-A spec folder can hold a goal file with the directive and the criteria that decide when the work is done. This hook binds a session to that file and injects a short slice of it, so the goal survives context resets. `/create:goal` writes the file. Claude Code and Codex use their own `/goal` command instead, and the spec workflows hand you the slice to paste. OpenCode manages the goal with `/goal-opencode`, Pi with `/goal-pi` and DSH with `/goal-dsh`.
+A spec folder can hold a goal file with the directive and the criteria that decide when the work is done. This hook binds a session to that file and injects a short slice of it, so the goal survives context resets. `/create:goal` writes the file. Claude Code and Codex use their own `/goal` command instead, and the spec workflows hand you the slice to paste. OpenCode manages the goal with `/goal-opencode`, Pi with `/goal-pi` and DSH with `/goal-dsh`. Cursor's `/goal-cursor` can only read a packet's goal.
 
 Read more in the [goal hook README](.skilled/hooks/goal/README.md).
 
@@ -612,7 +612,7 @@ Forty-four commands ship in six groups in the [commands folder](.skilled/command
 
 **Doctor (17).** Health checks and repairs, listed under [Doctor Commands](#11--doctor-commands).
 
-Some runtimes add a goal command of their own: `/goal-opencode`, `/goal-cursor` and `/goal-pi`. DSH registers `/goal-dsh` from its plugin.
+Four runtimes add a goal command of their own, listed under the [Goal](#goal) hook.
 
 &nbsp;
 
@@ -631,15 +631,11 @@ Skilled runs in eight AI runtimes, so you can work from the subscriptions you al
 | DeepSeek Harness (DSH) | `.dsh/` | `/speckit-complete` | one guard plugin bundle |
 | Mistral Vibe | `.vibe/` | `/speckit-complete` | its hooks file |
 
-Each runtime folder is mostly generated from one shared source. Its README says which files are generated and which are authored there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [Cursor](.cursor/README.md), [Devin](.devin/README.md), [OpenCode](.opencode/README.md), [Pi](.pi/README.md) and [DeepSeek Harness](.dsh/README.md). Mistral Vibe keeps the same notes in its [sync notes](.vibe/SYNC.md).
-
-The eight runtimes share one source tree. Skills, agents, commands and hooks live there once, and a generator writes each runtime's copy. `/doctor:runtime-mirrors` checks that every copy still matches. Claude Code and OpenCode spell commands with a colon, as in `/speckit:complete`. Codex, Cursor, Pi, DSH and Mistral Vibe use a hyphen, as in `/speckit-complete`. Devin shows each skill as a slash command, so it reaches the spec workflow through `/system-spec-kit`.
+The eight runtimes share one source tree. Skills, agents, commands and hooks live there once, and a generator writes each runtime's copy. `/doctor:runtime-mirrors` checks that every copy still matches. Each runtime's README says which files are generated and which are authored there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [Cursor](.cursor/README.md), [Devin](.devin/README.md), [OpenCode](.opencode/README.md), [Pi](.pi/README.md) and [DeepSeek Harness](.dsh/README.md). Mistral Vibe keeps the same notes in its [sync notes](.vibe/SYNC.md).
 
 A few runtimes need one step of their own. Codex runs a repository hook only after you approve that entry, so open `/hooks` after an update and approve each entry it lists. Mistral Vibe loads its hooks only in a trusted checkout. DSH loads plugins only from the patches a run names, and a guards patch loads the guard bundle. OpenCode loads the same plugins on OpenCode 2 and OpenCode 1.
 
-The CLI orchestration hub carries eight bridges, one each for OpenCode, Claude Code, Codex, Cursor, Devin, Pi, DeepSeek Harness and Mistral Vibe. A bridge lets one runtime hand a task to another AI CLI and read back the result. The calling agent stays in charge. Each bridge checks that its CLI is installed and checks the dispatch against its own hard rules before it runs.
-
-Six bridges refuse to dispatch the runtime they run in. The Pi and DeepSeek Harness bridges may call their own runtime, but neither dispatches from inside a fan-out lineage or a dispatch that already uses it. That bound keeps delegation from looping. The DeepSeek Harness and Mistral Vibe bridges are experimental. All eight also work as deep-loop executors, so one research or review run can bind several of them.
+Each runtime also has a bridge in the CLI orchestration hub, which [CLI Orchestration](#cli-orchestration) describes. Six bridges refuse to dispatch the runtime they run in. The Pi and DeepSeek Harness bridges may call their own runtime, but neither dispatches from inside a fan-out lineage or a dispatch that already uses it. That bound keeps delegation from looping. The DeepSeek Harness and Mistral Vibe bridges are experimental.
 
 &nbsp;
 
@@ -685,7 +681,7 @@ A call runs TypeScript against the registered tools, and one chain can call seve
 
 Each session can work in its own git worktree, so parallel sessions never edit the same files. sk-git creates numbered worktrees and provisions them, so dependencies install and the Spec Kit builds before the first task.
 
-Live sync keeps your main checkout current. A session started through the launch wrapper publishes each commit to a shared live branch. At session start, the [live-follow](#git-live-follow) and [primary-reconcile](#git-primary-reconcile) hooks keep the main checkout on that branch. Your editor then shows every session's committed work in one place.
+Live sync keeps your main checkout current. A session started through the launch wrapper publishes each commit to a shared live branch. At session start, the [live-follow](#git-live-follow) and [primary-reconcile](#git-primary-reconcile) hooks keep the main checkout on that branch.
 
 Live sync is on by default in the main checkout. One switch turns the whole loop off, and two more turn off one part each. [Off Switches](#off-switches) names the main one. The [continuous integration reference](.skilled/skills/sk-git/references/continuous-integration.md) describes the full model.
 
@@ -736,15 +732,11 @@ Gate 3 waits for an answer before the first file change. Option D skips it, but 
 
 ### What happens when a session runs out of context?
 
-On Claude Code, the session hands over to a fresh one under the skilled-loop wrapper. Without the wrapper, it keeps a handoff note it returns to after auto-compaction. Other runtimes fall back to their own compaction until you turn handover on.
+On Claude Code started under the wrapper, it hands over to a fresh session. Without the wrapper, it keeps a handoff note and returns to it after auto-compaction. [Session Handover](#session-handover) has the detail. Other runtimes fall back to their own compaction until you turn handover on.
 
 ### Can I use Skilled without the continuity features?
 
 Yes. Spec folders, the gates, the agents and the skills all work without `/speckit:save`. You lose cross-session recovery.
-
-### How can I add a skill or an agent?
-
-Run `/create:skill` for a skill. The advisor finds it from its own metadata, with no registration step. Run `/create:agent` for an agent, which writes the source file and the Claude Code copy.
 
 ### How can I keep Skilled current after a new release?
 
