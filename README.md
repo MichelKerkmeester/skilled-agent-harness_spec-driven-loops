@@ -28,7 +28,7 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor CLI, DeepSeek Ha
 - **Session Handover** - near the context limit, the work moves to a fresh session with a handoff note
 - **Skill Advisor** - routes every prompt to the right skill and workflow using 5-lane fusion and a live skill graph, so you never need to remember a command
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
-- **CLI Orchestration** - hand work to another AI CLI on its own subscription, such as DeepSeek Flash through OpenCode or Pi
+- **CLI Orchestration** - hand work to another AI CLI on its own subscription, with any provider and model you have set up
 - **14 On-Demand Skills** - seven parent hubs with 42 modes, plus standalone skills for specs, git, prompts and Orca
 - **26 Shared Hooks** - guards for secrets, git, sessions and quality, running in all eight runtimes through one thin adapter each
 - **11 Specialized Agents** - focused roles for implementation, review, research, docs, design and orchestration
@@ -258,9 +258,9 @@ A loop can also spread across several AI CLIs at once. Each executor runs its ow
 
 Your main CLI does not have to do every task itself. The CLI orchestration hub hands a task to another AI CLI on the same machine and reads the result back. The agent you are talking to stays in charge. It writes the brief, waits for the answer and checks it before using it.
 
-This lets you mix subscriptions. You can stay in Claude Code or Codex on that plan and send research, reviews or bulk work to a cheaper model through another CLI. OpenCode and Pi reach DeepSeek V4.1 Flash through LLM Gateway or OpenCode Go. Mistral Vibe can run a DeepSeek Flash model too, and Devin offers DeepSeek V4.1 Flash Max. Each dispatch is billed to that CLI's own plan, not to your main one.
+This lets you mix subscriptions. You can stay in Claude Code or Codex on that plan and send research, reviews or bulk work to a cheaper model through another CLI. The bridges are provider agnostic. Each CLI runs whatever providers and models you have set up in it, so you match the bridge to the subscriptions you already pay for. Each dispatch is billed to that CLI's own plan, not to your main one.
 
-You ask for it in plain words, for example "use cli-opencode with DeepSeek Flash to review this diff". The advisor routes the request to the matching bridge. The bridge checks that its CLI is installed and that the dispatch passes its hard rules, then runs it. The deep loops use the same bridges, so one research or review run can spread its passes across several models. [Runtimes And CLI Bridges](#10--runtimes-and-cli-bridges) lists all eight.
+You ask for it in plain words, for example "use cli-opencode to review this diff". The advisor routes the request to the matching bridge. The bridge checks that its CLI is installed and that the dispatch passes its hard rules, then runs it. The deep loops use the same bridges, so one research or review run can spread its passes across several models. [Runtimes And CLI Bridges](#10--runtimes-and-cli-bridges) lists all eight.
 
 ### Create And Update Skills, Agents And Commands
 
