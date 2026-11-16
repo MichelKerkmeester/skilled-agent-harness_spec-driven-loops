@@ -8,17 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair"
-    last_updated_at: "2026-11-16T16:54:09Z"
-    last_updated_by: "template-author"
-    recent_action: "Narrowed the sk-doc README intents and recompiled the skill graph"
-    next_safe_action: "Run the fresh alignment run on the new HEAD"
+    last_updated_at: "2026-11-16T19:23:36Z"
+    last_updated_by: "generate-context"
+    recent_action: "Merged main twice; review pass twelve started"
+    next_safe_action: "Run the full alignment after review pass twelve"
+    packet_purpose: "Purpose: README requests keep reaching sk-doc, the prompts that routed before main's change route as they did, and the compiled graph matches its sources."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/implementation-summary.md"
+      - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a6f1c021f572bd79405617ac42236a4652a254070e997543f5e2081cc19b00ba"
       session_id: "scaffold-039-main-sk-doc-routing-repair"
       parent_session_id: null
-    completion_pct: 100
+    session_ref:
+      runtime: "claude"
+      sessionId: "77af2d6d-58e8-4180-b6da-697f12833f71"
+      workspace: "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research"
+      savedAt: "2026-11-16T19:23:36Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -105,7 +115,8 @@ Each candidate change was applied to a clean router, regenerated and measured ag
 
 1. **A plain "security policy" request no longer loads the security policy template.** It has to name `SECURITY.md`. A future phrase needs to clear the holdout gate first.
 2. **A README request for a `git-*` or `spec-gate` hook or for a hook mirror folder loads the generic README template.** sk-doc still owns the request, but the hook and runtime plugin templates no longer load for those names. Asking for "a README for this hook" still loads the hook template.
-3. **This edits files main's README-template work owns.** The next merge from main may conflict in `sk-doc/ROUTER.md`, and the merge has to keep these narrowings.
+3. **A command wrapped in square brackets, `~~`, `<code>`, guillemets or primes still reads as offered after a refusal or question.** The mention check drops backticks, straight and curly quotes and bold, the wrappers chat produces most, and the invariance test pins those. Review pass twelve's F001 is kept as this limit by the operator's capped close (Q085).
+4. **This edits files main's README-template work owns.** The next merge from main may conflict in `sk-doc/ROUTER.md`, and the merge has to keep these narrowings.
 <!-- /ANCHOR:limitations -->
 
 ---

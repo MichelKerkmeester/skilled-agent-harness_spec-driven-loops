@@ -202,8 +202,8 @@
     ],
     "causal_summary": "Main's README intents gave sk-doc words that other skills own",
     "created_at": "2026-11-16T16:54:08Z",
-    "last_save_at": "2026-11-16T18:52:02.417Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-16T19:53:37.493Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -212,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba46992f9e52c52de131d9105195ac963e278d16ddb55ff82a602c05e5b2af76",
+    "source_fingerprint": "sha256:f6c8fadf6531953657d42c6254cc1362d042da5858e330f0faa0ac925365133a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "459cca3dc592596527111660b7607ea39a8fb69c6993c6000093e1aa8283f95c",
       "plan.md": "5a6f13606b0c9299ad3355d979b520ca1cf6f47dd2313a10eb34d0d33f5b21f4",
       "tasks.md": "a0b683f257828524b814c4d2917e1573779d57d9ea8923c3e8214013d0b98da8",
-      "implementation-summary.md": "9605ac2d6023efb0a9507b5469295a6e0f757a679efb9d244ade85c1743299c2"
+      "implementation-summary.md": "13d64876019c2f1f4a51ceba0c46130373cc042143dd9451a38f873f6acc0ee0"
     },
     "last_active_at": null
   }

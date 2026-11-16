@@ -1,0 +1,35 @@
+{
+  "traceabilityResults": [
+    {
+      "protocolId": "spec_code",
+      "status": "partial",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/spec.md:134"
+      ],
+      "summary": "REQ-005 passes; REQ-006 workflow leg still unenforced."
+    },
+    {
+      "protocolId": "checklist_evidence",
+      "status": "partial",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/tasks.md:65"
+      ],
+      "summary": "T015 describes more than the current assertion does."
+    }
+  ],
+  "delta": [
+    {
+      "type": "classification",
+      "detail": "Recovery severity review keeps MRG12-P2-001 at P2; all three doctor artifacts agree today, so the defect is guard coverage only."
+    },
+    {
+      "type": "ruled_out",
+      "direction": "P2 escalation to P1 or a stale derived timestamp",
+      "reason": "The workflow Ask list matches the manifest; regenerate-skill-derived.cjs stamps only a changed derived block."
+    }
+  ]
+}

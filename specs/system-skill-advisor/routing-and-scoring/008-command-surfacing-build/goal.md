@@ -401,6 +401,7 @@ and findings belong here.
 | Criterion 2 recheck after phase 039 | Met | after-pass-eleven-invariance.txt: suite 2363 passed 0 failed with AI_SESSION_CHILD unset and set, FLOOR 24/44 0/35 2/44, EVAL [160,49,21,5], stored sets unchanged |
 | Merge origin/main 35d49e8f638 | Done | 11 commits; ROUTER and SKILL conflicts kept 039's narrowings and main's install-guide removal; manifests, graph and trigger index regenerated, all fresh; doctor 1273/0, bin 198/0, FLOOR and EVAL unchanged; python-compat failed only on stale local advisor state and passes 3/3 after advisor_rebuild (after-merge-2.txt); operator chose finish capped: one narrow review pass, one alignment run, a rep... |
 | Merge origin/main 640cd0a2499 | Done | main's skill README rewrite taken for sk-doc and the advisor (it drops the branch's edited lines), advisor README version kept monotonic at 0.12.22.0, trigger index regenerated and checked; README validate 0 issues both, verdict parity PASS, advisor suite 2363 passed 0 failed |
+| Review pass twelve | Converged, one P1 accepted as a limit | both lineages stopped converged (mention-12 at 3, merged-12 at 6); P0 0, P1 1, P2 3; F001 unstripped wrappers such as brackets recorded as a known limit per the operator's capped close Q085, not patched; the merges match main except the branch's narrowings; operator answers Q081 to Q085 written to decision-record.md, 0 pending |
 
 ### Deviations and findings
 

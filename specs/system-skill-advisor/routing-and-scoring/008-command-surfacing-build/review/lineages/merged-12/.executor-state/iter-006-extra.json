@@ -1,0 +1,36 @@
+{
+  "traceabilityResults": [
+    {
+      "protocolId": "spec_code",
+      "status": "pass",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        ".skilled/commands/doctor/assets/symlink-manifest.json:5-13",
+        ".skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs:237-240"
+      ],
+      "summary": "Scope files are stable after the reviewed commit; REQ-005 and REQ-006 both hold."
+    },
+    {
+      "protocolId": "checklist_evidence",
+      "status": "pass",
+      "gateClass": "hard",
+      "applicable": true,
+      "evidence": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/tasks.md:65"
+      ],
+      "summary": "Both doctor checklist rows cite existing evidence; the T015 wording gap is the recorded P2."
+    }
+  ],
+  "delta": [
+    {
+      "type": "classification",
+      "detail": "Both origin/main merges verified; no post-commit change to the four scope paths; residual merge residue in sk-create-readme/ROUTER.md and hub-router.json recorded as an out-of-scope lead observation."
+    },
+    {
+      "type": "ruled_out",
+      "direction": "A third branch-local merge, a post-merge edit, or a second doctor-test finding",
+      "reason": "First-parent merges are exactly two; the reviewed-commit diff is empty; all 17 tests were re-read."
+    }
+  ]
+}

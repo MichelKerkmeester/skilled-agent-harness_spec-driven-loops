@@ -1,0 +1,137 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "run": 2,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "status": "complete",
+  "focus": "security and maintainability - untrusted-prompt surface and the two divergent command-name boundary rules",
+  "dimensions": ["security", "maintainability"],
+  "filesReviewed": [
+    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1-549",
+    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:196-264",
+    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:410-459",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:476-555",
+    ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:421-439",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1200-1260",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-brief-12.txt:1-10"
+  ],
+  "findingsCount": 3,
+  "findingsSummary": {"P0": 0, "P1": 1, "P2": 2},
+  "findingsNew": {"P0": 0, "P1": 0, "P2": 1},
+  "findingDetails": [
+    {
+      "id": "F003",
+      "severity": "P2",
+      "title": "The typed-command reader applies a narrower wrapper set than the mention reader",
+      "dimension": "maintainability",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:208",
+      "evidence": "COMMAND_START_BOUNDARY admits only whitespace, backtick, straight quotes and an open parenthesis, while commandOnlyMentioned also drops asterisks and curly double quotes at line 427. A bold- or curly-quoted typed command is not 'typed' for typedCommandIn, so attachCommand's deep-loop gate at line 527 and typedCommandForTop at line 256 withhold it. Verified: attachCommand('system-deep-loop', SINGLE('review'), '**/deep:review** the diff') is undefined while '/deep:review the diff' returns '/deep:review'; typedCommandForTop('sk-doc', 'run **/create:readme** for the advisor skill') is undefined while the plain form returns the row.",
+      "disposition": "active",
+      "findingClass": "cross-consumer",
+      "scopeProof": "Exercised the exported functions on bold, curly-quote, bracket and parenthesis forms; the parenthesis form already delivers, which isolates the missing characters to COMMAND_START_BOUNDARY. Both consumers (the deep-loop gate and the handler's attachTypedCommand) were run.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ],
+      "recommendation": "Share one boundary/normalization rule between typedCommandIn and commandOnlyMentioned, or add the missing mark characters to COMMAND_START_BOUNDARY and cover the typed path in the wrapper invariance test."
+    }
+  ],
+  "traceabilityChecks": {
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:183-188",
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:208"
+        ],
+        "summary": "The branch's mention fix is intact; F003 is a pre-existing asymmetry in the typed path that the pass-eleven wrapper test does not cover because it asserts commandOnlyMentioned parity only."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "gateClass": "hard",
+        "applicable": false,
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair/acceptance-criteria.md:60"
+        ],
+        "summary": "No packet checklist belongs to this review pass."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "gateClass": "overlay",
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1-13"
+        ],
+        "summary": "No agent definition is touched."
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "gateClass": "overlay",
+        "applicable": false,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:1-10"
+        ],
+        "summary": "No runtime mirror is touched."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "gateClass": "overlay",
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:208",
+          ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:427"
+        ],
+        "summary": "The wrapper contract is implemented twice with different character sets; F003 names the second implementation."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "overlay",
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:476-555"
+        ],
+        "summary": "No playbook scenario was executed; the exported functions were exercised directly."
+      }
+    ]
+  },
+  "newFindingsRatio": 0.14,
+  "noveltyJustification": "One first-time P2 (F003) against seven weighted findings accumulated: the weighted new value is 1 and the accumulated total is 7, giving 0.14. F003 comes from comparing the two command-name readers on the same wrapped prompt; it does not repeat F001 (mention normalization) or F002 (occurrence boundary).",
+  "sessionId": "fanout-mention-12-1794856957949-n58dw7",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-16T19:42:07Z",
+  "durationMs": 91000,
+  "graphEvents": [
+    {"type": "node", "id": "d-security", "kind": "DIMENSION", "label": "security"},
+    {"type": "node", "id": "d-maintainability", "kind": "DIMENSION", "label": "maintainability"},
+    {"type": "node", "id": "file-command-attach", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"},
+    {"type": "node", "id": "file-command-attach-guards", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts"},
+    {"type": "node", "id": "file-advisor-recommend", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"},
+    {"type": "node", "id": "file-fusion", "kind": "FILE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"},
+    {"type": "node", "id": "file-review-brief-12", "kind": "FILE", "label": "review/review-brief-12.txt"},
+    {"type": "node", "id": "f-003", "kind": "FINDING", "label": "Typed-command reader applies a narrower wrapper set than the mention reader"},
+    {"type": "node", "id": "ev-003", "kind": "EVIDENCE", "label": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:208"},
+    {"type": "edge", "id": "e2-cov-security-attach", "source": "d-security", "target": "file-command-attach", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-security-fusion", "source": "d-security", "target": "file-fusion", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-security-brief", "source": "d-security", "target": "file-review-brief-12", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-attach", "source": "d-maintainability", "target": "file-command-attach", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-guards", "source": "d-maintainability", "target": "file-command-attach-guards", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-handler", "source": "d-maintainability", "target": "file-advisor-recommend", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-cov-maint-brief", "source": "d-maintainability", "target": "file-review-brief-12", "relation": "COVERS"},
+    {"type": "edge", "id": "e2-in-dim-003", "source": "f-003", "target": "d-maintainability", "relation": "IN_DIMENSION"},
+    {"type": "edge", "id": "e2-in-file-003", "source": "f-003", "target": "file-command-attach", "relation": "IN_FILE"},
+    {"type": "edge", "id": "e2-evidence-003", "source": "ev-003", "target": "f-003", "relation": "EVIDENCE_FOR"}
+  ]
+}

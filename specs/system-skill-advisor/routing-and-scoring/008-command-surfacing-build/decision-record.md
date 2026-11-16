@@ -139,6 +139,11 @@ Q069 to Q073 above, as asked.
 | Q078 | Whether to stop each runtime after its first off and on run of the behaviour arm goes to a fresh Fable 5.2 medium session. | Not stated. Evidence: yes_no, option False, overlap 0, imperative True, shift False. | None | Q059, 026-untuned-behaviour-arm |
 | Q079 | Both open proposals are accepted: a small phase makes the direct call honour SYSTEM_SKILL_ADVISOR_DISABLED and the flags file, and phase 025 is built before the merge. | Not stated. Evidence: numbered_list, option not_applicable, overlap 0, imperative False, shift False. | None | phases 025 and the kill-switch phase of this packet |
 | Q080 | The printed start rate follows the goal's fixed arm start rule, so a document read with no checkout write is a lookup, counted beside the rate as startShapes.readOnly. | Not stated. The operator asked for the recommended option, which keeps one start rule across every printed number. Evidence: alternative, option false, overlap 0, imperative true, shift false. | None | 036-start-rate-fixed-rule REQ-001 to REQ-005, score-command-transcripts.mjs startState |
+| Q081 | Edit line 498 of the operator-local alignment surface map and keep a backup, so the alignment run stops raising a P0 from the local map. | Not stated. | None | goal criterion 6, 038-alignment-p1-remediation, scratchpad surface-map.yaml.bak |
+| Q082 | Fix main's sk-doc README routing regression on this branch, by narrowing the phrases main added. | Not stated. | None | 039-main-sk-doc-routing-repair REQ-001 to REQ-005 |
+| Q083 | Recompile and reindex the skill graph on this branch so the freshness check passes. | Not stated. | None | 039-main-sk-doc-routing-repair REQ-005, skill-graph.json |
+| Q084 | Add TEMP and TMP to the operator-local surface map's platform tokens. | Not stated. | None | goal criterion 6, local surface-map.yaml env_check.platform_tokens |
+| Q085 | Close capped: commit the merge, run one narrow review pass and one alignment run, and record a repeated P1 in the mention check as a known limit instead of patching again. | Not stated. | None | goal criteria 4 and 6, review/review-report.md, goal.md log |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1588,6 +1593,104 @@ Options: none
 Answer:
 ```text
 do what you would recommend
+```
+
+### Q081
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_01CcRB4JNCXEkcK9u456N1d7:0 -->
+
+Question:
+```text
+The /local-skilled-alignment goal criterion needs 0 P0. The only P0 left comes from your local, gitignored alignment config, not from this branch. Its file `.skilled/commands/assets/local-skilled-alignment/surface-map.yaml` (line 498, in your main checkout) still runs the dispatch-rules test from `.skilled/hooks/dispatch/lib/`. Main moved that test to `.skilled/hooks/cli-dispatch/lib/`, where it passes 64 of 64 and where CI runs it. AGENTS.md makes me ask before overwriting an untracked file. May I change that one path, keeping a backup copy so it can be undone?
+```
+
+Options:
+```text
+Edit it, keep a backup (Recommended)
+Leave it, I'll edit it
+```
+
+Answer:
+```text
+Edit it, keep a backup (Recommended)
+```
+
+### Q082
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_01Ax2v3HovmxYWripBDPWyxg:0 -->
+
+Question:
+```text
+Merging origin/main into the command-surfacing branch brought in 7 failing advisor routing tests. They fail the same way on a clean origin/main, so the branch adds none (it was 2347 passed, 0 failed before the merge). The cause is sk-doc trigger phrases added on main in fad83abd791 (root guide README templates) and 3dc90eb8e01 (hook README routing). For example, 'git hooks' no longer routes to sk-git. Criterion 2 (suite 0 failed) can't close until those are fixed. Where should the fix happen?
+```
+
+Options:
+```text
+Leave it to main (Recommended)
+Fix on this branch
+Separate fix branch
+Accept as inherited
+```
+
+Answer:
+```text
+Fix on this branch
+```
+
+### Q083
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_01Ax2v3HovmxYWripBDPWyxg:1 -->
+
+Question:
+```text
+The skill graph freshness check (a P0 battery row) fails because the compiled skill-graph.json no longer matches sk-doc's graph-metadata. Clean origin/main fails the same way, because main changed the sk-doc metadata without recompiling. The script says the canonical reindex is operator-gated. Should I run it on this branch?
+```
+
+Options:
+```text
+Reindex here (Recommended)
+Leave it to main
+```
+
+Answer:
+```text
+Reindex here (Recommended)
+```
+
+### Q084
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_01Ax2v3HovmxYWripBDPWyxg:2 -->
+
+Question:
+```text
+The alignment env-token check flags TEMP and TMP, which vitest.config.ts sets as platform temp variables. The fix is to add them to env_check.platform_tokens in your operator-local surface-map.yaml, a gitignored file you approved a one-line edit to earlier. May I add them?
+```
+
+Options:
+```text
+Add TEMP and TMP (Recommended)
+Leave the map alone
+```
+
+Answer:
+```text
+Add TEMP and TMP (Recommended)
+```
+
+### Q085
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:toolu_01EZoUcTp5PHPYUfKzL62HRW:0 -->
+
+Question:
+```text
+Two criteria are still open: a converged review and a fresh alignment run. The merge of main's 11 commits is staged but not committed. How should I close this out?
+```
+
+Options:
+```text
+Finish, capped (Recommended)
+Stop now and hand over
+Full rigor, no cap
+```
+
+Answer:
+```text
+Finish, capped (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
