@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/014-devin-vibe-lock-probe",
+  "spec_folder": "hooks-plugins-extensions/decision-capture/001-decision-capture/014-devin-vibe-lock-probe",
+  "parent_id": "hooks-plugins-extensions/decision-capture/001-decision-capture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin vibe lock probe",
+      "phase 14 devin vibe lock probe",
+      "devin transcript missing",
+      "sweep session lock ancestry",
+      "devin vibe lock probe plan",
+      "devin vibe lock probe tasks",
+      "014-devin-vibe-lock-probe operator decisions",
+      "devin vibe lock probe implementation summary"
+    ],
+    "key_topics": [
+      "devin",
+      "vibe",
+      "lock",
+      "probe",
+      "phase",
+      "transcript",
+      "missing",
+      "sweep",
+      "session",
+      "ancestry",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-vibe.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-vibe.test.mjs",
+      ".skilled/hooks/decision-capture/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-devin.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-vibe.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-vibe.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-devin.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-vibe.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-vibe.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/decision-capture/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement With",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Devin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Caller",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "With two Devin or two Vibe sessions open in one project, a save reads the newest one, which can be the other session",
+    "created_at": "2026-11-16T18:14:15Z",
+    "last_save_at": "2026-11-16T21:19:06.310Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:91f0765bd1f0b3ec916a6a07ab5f77fa38f586b351b43a1cd32b5519dd328148",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f0122fb39bf45eb0147417eddd2e10487c0d4505be0b881b7ba67e447e9b7bb9",
+      "plan.md": "48992b2ec7795d3dfa1b42564913cd475b749014a0b56fd86f07c1e96282e988",
+      "tasks.md": "a688e2839b9fb145d6cf23cb80ac8d8bf9cb5c5fcabde24a4ba3ce8d330e3c47",
+      "decision-record.md": "8328a936e8c5530b98ce0c5830393b5108e82d01fece3949c38e01528b524b76",
+      "implementation-summary.md": "50b06c86469ae4dd95969bbc82a8845958bb8025a3efcbbb8e179da26337cbee"
+    },
+    "last_active_at": null
+  }
+}

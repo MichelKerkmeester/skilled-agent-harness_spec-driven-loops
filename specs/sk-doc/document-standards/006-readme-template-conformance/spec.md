@@ -57,7 +57,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-16 |
 | **Branch** | `main` |
 | **Parent Spec** | None, this is a phase parent in the `sk-doc/document-standards` sub-track |
@@ -128,8 +128,8 @@ Per-phase file lists and their baselines live in each child's `plan.md`.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-skill-readmes/ | Rewrite the 13 skill READMEs to the skill README template and write one for `sk-design` | Planned |
-| 2 | 002-mode-packet-readmes/ | Rewrite the 41 mode packet READMEs to the skill README template | Pending |
+| 1 | 001-skill-readmes/ | Rewrite the 13 skill READMEs to the skill README template and write one for `sk-design` | Complete |
+| 2 | 002-mode-packet-readmes/ | Rewrite the 41 mode packet READMEs to the skill README template | Complete |
 | 3 | 003-hook-folder-readmes/ | Rewrite the 26 hook folder READMEs around the runtime coverage table | Pending |
 | 4 | 004-hook-runtime-readmes/ | Rewrite the 47 runtime adapter READMEs to the runtime folder scaffold | Pending |
 | 5 | 005-runtime-plugin-readmes/ | Rewrite the 8 plugin, extension and hook mirror READMEs | Pending |

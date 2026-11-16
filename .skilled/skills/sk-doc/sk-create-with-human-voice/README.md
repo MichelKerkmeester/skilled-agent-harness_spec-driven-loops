@@ -1,6 +1,6 @@
 ---
 title: "create-with-human-voice"
-description: "Applies the Human Voice Rules to prose and proves it landed: a scope gate, a scanner that reads the standard at run time, a judgment pass no scanner can do, and a re-scan after the rewrite."
+description: "Applies the Human Voice Rules to prose and proves it landed: a scope gate, a scanner that reads the standard at run time, a judgment pass no scanner can do and a re-scan after the rewrite."
 trigger_phrases:
   - "create with human voice"
   - "human voice mode"
@@ -10,12 +10,12 @@ trigger_phrases:
   - "voice pass workflow"
 importance_tier: normal
 contextType: general
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # create-with-human-voice
 
-> Turn a draft that reads like a machine wrote it into one that does not, and show the numbers that prove the pass happened.
+> Bring a draft up to the Human Voice Rules, or report how far off it is without changing a byte.
 
 ---
 
@@ -25,88 +25,67 @@ version: 1.1.2.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Applying the Human Voice Rules to prose, or scoring prose against them |
-| **Invoke with** | `@markdown /create:with-human-voice`, which the command requires and hard-blocks without, or "make this sound human", or a direct read of `SKILL.md` |
-| **Works on** | A file, a passage, a reply, or a draft you are part way through |
-| **Produces** | An edited target plus a before and after report, or a report alone |
-| **Owns** | The standard at `references/hvr-rules.md`, and the workflow that applies it |
-| **Does not own** | The document-level audit. Structure, the Document Quality Index and the validators belong to `sk-create-quality-control` |
+| **Use it for** | Applying the Human Voice Rules to prose, or scoring it without edits |
+| **Invoke with** | `@markdown /create:with-human-voice`, or a routed voice request |
+| **Works on** | A file, a passage, a reply or a template payload |
+| **Produces** | An edited target with both scan numbers, or a report alone |
 
-### Why This Mode Exists
+### What It Does
 
-The Human Voice Rules have been in this repository for a long time, and hundreds of files
-point at them. What was missing was anything that ran them.
-
-The standard describes what to aim for. Every consumer was left to eyeball 120 banned
-terms, 7 punctuation rules and a dozen structural patterns by reading, which is exactly
-the task attention is worst at. The nearest thing to enforcement was one step inside the
-document-quality audit that said "flag only issues that matter" and named no method.
-
-So this mode is the method. It answers what may be touched, what a machine can settle,
-what a reader has to settle, how the arithmetic works, and what proof the pass produces.
-
-### What It Does Not Do
-
-It does not restate the standard. Every rule, term and penalty stays in the one file at
-`references/hvr-rules.md`, which the scanner reads at run time. No document in this packet
-carries a second copy, and no consumer elsewhere does either. The one thing worse than an
-unenforced standard is two versions of it disagreeing.
-
-It also does not own the document-level audit. Structure, the Document Quality Index and
-the validators belong to `sk-create-quality-control`. That mode audits a file end to end
-and calls this one for the voice finding it reports.
+`create-with-human-voice` brings a draft up to the Human Voice Rules, or reports how far off it is without an edit.
+The command is `@markdown /create:with-human-voice <target>`, and its default operation is `score`.
+The standard lives at `references/hvr-rules.md`, and `scripts/hvr_scan.py` parses it on every run, so the packet holds no second copy of the term lists.
+Structure, the Document Quality Index, validators and naming checks belong to [the document quality audit](../sk-create-quality-control/SKILL.md).
+This mode owns the voice pass.
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Decide what the scanner may not touch.** Quotations, code, generated files and
-released changelog entries are out. `references/scope-and-exemptions.md` has the classes,
-and getting this wrong is how a voice pass breaks a working code sample.
+**Step 1: Invoke it.** `@markdown /create:with-human-voice <target>` starts the command. The default operation is `score`, which reports and never edits. Add `apply` to rewrite in place. The command hard-blocks without the `@markdown` agent.
 
 **Step 2: Scan before you read.**
 
 ```bash
-python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <file>
+python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>
 ```
 
-You get the hard blockers, the soft deductions, a count per term and a mechanical ceiling.
-It takes under a second and settles the part of the standard a reader is worst at.
+Expected output: a grouped finding list, the hard-blocker count, the mechanical deductions, a mechanical ceiling and the list of categories the scanner did not check.
+Exit 0 means no hard blocker, exit 1 means at least one and exit 2 means the run could not read the standard or the target.
 
-**Step 3: Read for what the scanner cannot see.** Three-item lists, triple headers, setup
-language, synonym cycling, fragmented headers, hedging. The scanner prints its own list on
-every run so a clean mechanical result is never mistaken for a clean document.
+**Step 3: Read the judgment list.** The scanner cannot settle three-item enumerations, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm or personality. It prints that list on every run, so a clean mechanical result stays visibly partial.
 
-**Step 4: After editing, scan again and report both numbers.** A rewrite that only reports
-its final score has proved nothing.
+**Step 4: Re-scan after an edit.** Run the same command on the rewritten text and report both numbers. A run that reports only its final number has proved nothing.
 
 ---
 
 ## 3. HOW IT WORKS
 
-The scanner parses its term lists out of the standard on every run. Section 6 gives the
-hard blocker words, section 7 the phrase blockers, section 8 the soft deductions and
-section 3 the punctuation bans. Nothing is hardcoded, so editing the standard changes the
-scan on the next invocation with no second file to update.
+The scope gate runs first. It asks whether the document's author chose these words and is free to choose different ones. A no on either count puts the span out of scope. The pass names every exempt span in its report, because an exemption nobody recorded reads as an oversight.
 
-It masks what the standard does not govern before it looks: frontmatter, fenced blocks and
-inline code spans, with the spans replaced by spaces so line and column numbers stay true.
-`--include-code` turns that off when you actually want to scan a sample.
+The scanner runs next. It parses the term lists out of the standard on every run: the hard words, the phrase blockers, the soft deductions and the punctuation bans. It masks frontmatter, fenced blocks, inline code spans and HTML entities before it looks, so a code sample does not produce findings. Findings are candidates, not verdicts, because the scanner matches spelling and a word's sense decides.
 
-Findings are collapsed under the standard's own precedence rule. One occurrence costs one
-penalty, the longest matching term wins, and a word listed as both an extended blocker and
-context-dependent is charged once rather than twice.
+A reader then settles the judgment pass: structure, sentence habits, content habits and voice. Nothing in that list can be checked by a pattern.
 
-### Key Concept: It Over-Reports On Purpose
+Scoring starts at 100. One occurrence costs one penalty and the first match wins. A longer phrase beats a shorter term inside it. A score of 85 or higher is publish-ready. A score from 70 to 84 needs a revision before it ships. Below 70 means a rewrite. For a document past roughly 400 lines, report the hard-blocker count and the deduction density instead of an absolute score.
 
-Scanning `sk-create-repo-rule/README.md`, a document written to this standard and reviewed
-before it shipped, finds two hard blockers. Both are the word `harness`, used as a noun
-meaning the AI runtime. That is the literal sense the standard permits, so the right
-outcome is two recorded exemptions and no edit at all.
+An `apply` run edits only in-scope spans, fixes hard blockers before soft deductions and leaves every exempt span untouched. It then re-runs the scanner on the new text and reports both numbers.
 
-A scanner that tried to tell those apart would need to read for meaning, and one that
-guessed would start hiding real findings. Over-reporting costs a reader a second per
-candidate. Under-reporting ships the tell.
+```mermaid
+flowchart TD
+  Request["Draft or target"] --> Scope["Scope gate"]
+  Scope --> Scan["Mechanical scan"]
+  Scan --> Judge["Judgment pass"]
+  Judge --> Op{"apply or score"}
+  Op -->|score| Report["Report only"]
+  Op -->|apply| Edit["Edit in-scope spans"]
+  Edit --> Rescan["Re-scan"]
+  Rescan --> Report
+```
+
+### A Finding Is a Candidate
+
+Scanning the [two-senses fixture](./scripts/tests/fixtures/voice-two-senses.md) finds two hard blockers. Both are the word `harness`, once as the noun for a test rig and once as the verb the standard bans. The noun is the literal sense the standard permits, so the right result is one recorded exemption and one edit. The scanner over-reports on purpose, because a missed hard blocker costs more than a candidate a reader dismisses in a second.
 
 ---
 
@@ -114,21 +93,17 @@ candidate. Under-reporting ships the tell.
 
 ### When To Use This Mode
 
-Reach for it when a draft reads as machine-written, when a document is about to ship and
-wants a voice pass, when someone asks how prose scores without wanting edits, or when you
-are about to write documentation and want the standard in force from the first sentence.
+Reach for it when a draft reads as machine-written, when a document is about to ship and needs a voice pass, when someone asks how a passage scores without wanting edits or when a new document should carry the standard from its first sentence.
 
-Skip it when the target needs a structural audit rather than a voice pass, when the
-artifact does not exist yet, or when the text is something you are carrying rather than
-writing.
+Skip it when the target needs a structural audit. Skip it when the artifact does not exist yet. Skip it too when the text is code, output, a quotation or a generated file. A request about brand tone belongs elsewhere too. Accuracy outranks the standard. A banned word that carries the claim stays, and the report records why.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-create-quality-control` | Owns the file-level audit: structure, DQI and validators. Calls this mode for its voice step |
-| `sk-create-readme` | Owns README structure. This mode passes over the prose those templates produce |
-| `sk-create-repo-rule` | Owns repo-local rules. A rule about writing style would route here instead |
+| `sk-create-quality-control` | Owns the file-level audit: structure, DQI, validators and naming checks. It links this packet's standard for its own voice review |
+| `sk-create-readme` | Owns README structure. Its template points the prose it shapes at this standard |
+| `sk-doc` | The parent hub that routes a voice request to this packet |
 
 ---
 
@@ -136,59 +111,45 @@ writing.
 
 | What you see | Why | Fix |
 |---|---|---|
-| A hard blocker on a word used literally | The scanner matches spelling, not sense. `harness` the noun, `landscape` in photography, `journey` when someone travelled | Record an exemption. Do not edit the sentence |
-| Dozens of `do`, `get`, `make`, `take` findings | The standard's vague-verb list is real and very common | Fix the ones where a specific verb is clearly better. Density matters here, not the raw count |
-| A negative score on a long reference | The 100-point scale assumes a piece, not a 900-line document | Report hard blockers and deductions per hundred lines, and say that is what you did |
-| `exit 2` and a "parsed too thin" message | The standard's section headings changed and the parser no longer finds a list | Fix the parser. The scanner refuses to report a clean scan it never performed |
-| A finding inside a code block | `--include-code` was passed, or the fence is malformed | Drop the flag, or repair the fence |
-| Findings on `hvr-rules.md` itself | It lists every banned term, so it fails against itself | Do not score documents about the standard |
+| A hard blocker on a word used in its literal sense | The scanner matches spelling, not meaning | Record an exemption and leave the sentence alone |
+| `exit 2` and a message about a thin parse | The standard's section headings moved and the parser found too few terms | Fix the parser before any scan can be trusted |
+| A finding inside a fenced block | `--include-code` was passed, or a template payload fence was read as prose | Drop the flag, or check whether the fence is the template's payload |
+| A negative score on a long reference | The 100-point scale assumes a piece, not a reference of several hundred lines | Report hard blockers and deduction density instead |
+| Findings on `hvr-rules.md` itself | The file lists every banned term | Report the target as self-referential and never quote a bare score |
 
 ---
 
 ## 6. FAQ
 
-**Q: Why does the standard sit in this packet rather than the hub's shared tier?**
+### Does a clean scan mean the document passes?
 
-A: Shared means every mode may reach it. Exactly one mode applies it, and one more reaches
-it through a declared alias, so the shared placement bought a hop and no reuse. The move
-repointed the live consumers, including the scanner, the hub router and the spec-kit
-templates. Frozen spec documents and released changelog entries kept the old path, because
-they record what was true when they were written.
+No. The scanner covers punctuation and the term lists. Structure, rhythm, synonym cycling, significance inflation and personality need a reader. Every run prints the categories it did not check.
 
-**Q: Does a clean scan mean the document passes?**
+### Why does the scanner flag a word I used correctly?
 
-A: No, and the scanner says so on every run. It covers the punctuation bans and the term
-lists. Structure, rhythm, synonym cycling, significance inflation and whether the writing
-has any personality all need a reader.
+It matches spelling, not sense. `harness` as a noun for the runtime and `landscape` in photography are the literal senses the standard allows. The finding is a candidate. You decide, and record an exemption when you keep the word.
 
-**Q: What happens when the standard and accuracy disagree?**
+### What happens when the standard and accuracy disagree?
 
-A: Accuracy wins and the exception gets recorded. A document that reads beautifully and
-says something false has failed at the only thing that mattered.
+Accuracy wins. When removing a banned word would change what the sentence claims, the sentence stays and the report records an accepted exception with the reason.
 
-**Q: Why does the scan run before the reading?**
+### Can I scan text that is not in a file?
 
-A: Because it is cheap and complete over its own subset. A reader who starts with rhythm
-spends their attention there while a hard blocker sits unfixed on line 8.
-
-**Q: Can I scan something that is not markdown?**
-
-A: Yes. Pass a path or pipe the text in on stdin. Frontmatter and fence masking simply
-find nothing to mask.
+Yes. Pass `-` as the target and pipe the text in on stdin. Frontmatter and fence masking run the same way.
 
 ---
 
 ## 7. VERIFICATION
 
+Run these from the repository root. Each control is read-only.
+
 | Check | How to run it | What a pass looks like |
 |---|---|---|
-| Dirty fixture | `python3 scripts/hvr_scan.py scripts/tests/fixtures/voice-dirty.md` | 6 hard blockers, exit 1, and nothing reported from the fenced block or the inline code span |
-| Clean fixture | `python3 scripts/hvr_scan.py scripts/tests/fixtures/voice-clean.md` | `no mechanical findings`, exit 0 |
-| Fails closed on a moved standard | `sed 's/^## 6\. HARD BLOCKER WORDS.*/## 6. RENAMED/' references/hvr-rules.md > /tmp/broken.md && python3 scripts/hvr_scan.py scripts/tests/fixtures/voice-dirty.md --rules /tmp/broken.md` | `parsed too thin`, exit 2 |
-| Survives renumbering | `sed 's/^## 6\. HARD BLOCKER/## 99. HARD BLOCKER/' references/hvr-rules.md > /tmp/renum.md && python3 scripts/hvr_scan.py scripts/tests/fixtures/voice-dirty.md --rules /tmp/renum.md` | 6 hard blockers, same as the real standard |
-| Packet contract | `python3 ../sk-create-skill/scripts/package_skill.py . --check --strict` | `Result: PASS` |
-
-Paths are relative to this packet directory.
+| Dirty fixture | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-dirty.md` | 6 hard blockers, -33 deductions, 67/100, exit 1 |
+| Clean fixture | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-clean.md` | `no mechanical findings`, 100/100, exit 0 |
+| Scanner tests | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_scan.py` | One `PASS` line per check, then `ALL PASS`, exit 0 |
+| Packet contract | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/sk-doc/sk-create-with-human-voice --check --strict` | `Result: PASS`, exit 0 |
+| Unreadable standard | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-clean.md --rules /nonexistent-rules.md` | `cannot read the standard`, exit 2 |
 
 ---
 
@@ -197,8 +158,12 @@ Paths are relative to this packet directory.
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the apply and score orderings, the always and never rules |
-| [`references/scope-and-exemptions.md`](./references/scope-and-exemptions.md) | Which spans the standard governs, and the classes that are never in scope |
-| [`references/scoring-and-verification.md`](./references/scoring-and-verification.md) | Pass order, precedence arithmetic, the bands, and the re-scan |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
+| [`references/README.md`](./references/README.md) | Which reference loads first, and what each one covers |
+| [`references/scope-and-exemptions.md`](./references/scope-and-exemptions.md) | Which spans the standard governs and the classes never in scope |
+| [`references/scoring-and-verification.md`](./references/scoring-and-verification.md) | Pass order, precedence arithmetic, the bands and the re-scan |
+| [`references/hvr-rules.md`](./references/hvr-rules.md) | The standard itself, parsed at run time by the scanner |
+| [`references/hvr-publish-supplement.md`](./references/hvr-publish-supplement.md) | Point values, precedence and the pre-publish checklist |
 | [`assets/voice-report-template.md`](./assets/voice-report-template.md) | The fixed shape of a voice-pass result |
 | [`scripts/hvr_scan.py`](./scripts/hvr_scan.py) | The mechanical pass |
-| [`references/hvr-rules.md`](references/hvr-rules.md) | The standard itself, owned here and parsed at run time by the scanner |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator scenarios across tell detection, the scope gate and scoring |

@@ -62,7 +62,7 @@ The deny list holds the flags that select or continue a session and the flags a 
 
 Options documented by each runtime's help are replayed with their values. An unknown option followed by a bare word makes the wrapper warn and decline the hop. Relative Pi extension paths resolve against the starting directory before a hop changes directories.
 
-The wrapper exports one loop id and starts `SKILLED_LOOP_HOPS` at 0. It relaunches only when a record is armed, fresh and below the hop limit.
+The wrapper exports one loop id and starts `SKILLED_LOOP_HOPS` at 0, even when the shell it starts from carries a count from another loop. It relaunches only when a record is armed, fresh and below the hop limit.
 
 The session-handover hooks ship on for Claude Code and off for every other runtime. Set `SYSTEM_SESSION_HANDOVER_ENABLED=1` in `.skilled/hooks/hook-flags.env` or the environment to turn them on everywhere. Turn one runtime on or off with its own `SYSTEM_SESSION_HANDOVER_<RUNTIME>_ENABLED`. Without an enable flag only Claude Code sessions are nudged. Auto-compaction stays the fallback on the others.
 

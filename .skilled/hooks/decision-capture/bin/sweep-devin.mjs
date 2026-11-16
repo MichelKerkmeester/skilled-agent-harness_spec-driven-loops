@@ -16,10 +16,11 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { readFileSync, realpathSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { existsSync, readFileSync, readdirSync, realpathSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { homedir } from 'node:os';
-import { basename, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
@@ -192,6 +193,55 @@ function chatTurnsOf(steps) {
 // 6. SWEEP
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Devin keeps a session's messages in `message_nodes`, one JSON message per row,
+// and writes the transcript file only when an interactive session ends. The rows
+// are rebuilt into the transcript's step shape so the answer and chat readers
+// serve both sources. A message can be stored twice with only its metadata
+// changed, so each message id is kept once.
+export function databaseTranscript(dbPath, sessionId) {
+  const database = openDatabase(dbPath);
+  try {
+    const rows = database
+      .prepare('SELECT node_id, chat_message FROM message_nodes WHERE session_id = ? ORDER BY row_id')
+      .all(sessionId);
+    const steps = [];
+    const seen = new Set();
+    for (const row of rows) {
+      let message;
+      try {
+        message = JSON.parse(row.chat_message);
+      } catch {
+        continue;
+      }
+      if (!message || typeof message !== 'object') continue;
+      if (typeof message.message_id === 'string') {
+        if (seen.has(message.message_id)) continue;
+        seen.add(message.message_id);
+      }
+      const text = typeof message.content === 'string' ? message.content : '';
+      if (message.role === 'tool') {
+        steps.push({
+          step_id: row.node_id,
+          source: 'tool',
+          observation: { results: [{ source_call_id: message.tool_call_id, content: text }] },
+        });
+      } else if (message.role === 'assistant') {
+        const toolCalls = (Array.isArray(message.tool_calls) ? message.tool_calls : []).map((call) => ({
+          tool_call_id: call?.id,
+          function_name: call?.name,
+          arguments: call?.arguments,
+        }));
+        steps.push({ step_id: row.node_id, source: 'agent', message: text, tool_calls: toolCalls });
+      } else if (message.role === 'user') {
+        steps.push({ step_id: row.node_id, source: 'user', message: text });
+      }
+    }
+    return { session_id: sessionId, steps };
+  } finally {
+    database.close();
+  }
+}
+
 // The file name carries the session id, so a transcript without a declared id
 // still gets a stable identity for its queue file.
 function sessionIdOf(transcript, transcriptPath) {
@@ -201,8 +251,8 @@ function sessionIdOf(transcript, transcriptPath) {
   return basename(transcriptPath).replace(/\.json$/, '');
 }
 
-export function sweepDevinTranscript({ projectDir, transcriptPath, now } = {}) {
-  const transcript = JSON.parse(readFileSync(transcriptPath, 'utf8'));
+export function sweepDevinTranscript({ projectDir, transcriptPath, transcript: loaded, now } = {}) {
+  const transcript = loaded ?? JSON.parse(readFileSync(transcriptPath, 'utf8'));
   const sessionId = sessionIdOf(transcript, transcriptPath);
   const capturedAt = now || new Date().toISOString();
   const steps = Array.isArray(transcript?.steps) ? transcript.steps : [];
@@ -238,6 +288,52 @@ function transcriptFromArgs(argv) {
     if (argv[index] === '--transcript' && argv[index + 1]) return argv[index + 1];
   }
   return null;
+}
+
+// The ids of this process and every process above it. A runtime that holds a
+// session's lock is an ancestor of the shell it runs the save in.
+function ancestorPids() {
+  const parents = new Map();
+  try {
+    const table = execFileSync('ps', ['-A', '-o', 'pid=,ppid='], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: 5000,
+    });
+    for (const line of table.split('\n')) {
+      const [pid, ppid] = line.trim().split(/\s+/).map(Number);
+      if (pid) parents.set(pid, ppid);
+    }
+  } catch {
+    return new Set();
+  }
+  const ancestors = new Set();
+  for (let pid = process.pid; pid > 1 && !ancestors.has(pid); pid = parents.get(pid)) ancestors.add(pid);
+  return ancestors;
+}
+
+// Devin writes each live session's process id into `session_locks/<id>.lock`. A
+// lock whose process this command descends from names the calling session.
+function callerSessionIds(dataDir) {
+  const ancestors = ancestorPids();
+  const lockDir = join(dataDir, 'session_locks');
+  let fileNames;
+  try {
+    fileNames = readdirSync(lockDir);
+  } catch {
+    return [];
+  }
+  const ids = [];
+  for (const fileName of fileNames) {
+    if (!fileName.endsWith('.lock')) continue;
+    try {
+      const pid = Number.parseInt(readFileSync(join(lockDir, fileName), 'utf8').trim(), 10);
+      if (ancestors.has(pid)) ids.push(fileName.slice(0, -'.lock'.length));
+    } catch {
+      // A lock removed mid-scan names no session.
+    }
+  }
+  return ids;
 }
 
 // Devin keys a session by the directory it ran in, and only the newest matching
@@ -279,7 +375,17 @@ function latestTranscript(projectDir) {
 
   try {
     const spellings = projectSpellings(projectDir);
-    const row = database
+    // A stale lock can carry a reused process id, so a caller's session must
+    // also have run in this project. Without one, the newest session stands.
+    const callerIds = callerSessionIds(dataDir);
+    const callerRow = callerIds.length > 0
+      ? database
+        .prepare(
+          `SELECT id FROM sessions WHERE id IN (${callerIds.map(() => '?').join(', ')}) AND working_directory IN (${spellings.map(() => '?').join(', ')}) ORDER BY last_activity_at DESC LIMIT 1`,
+        )
+        .get(...callerIds, ...spellings)
+      : undefined;
+    const row = callerRow ?? database
       .prepare(
         `SELECT id FROM sessions WHERE working_directory IN (${spellings.map(() => '?').join(', ')}) ORDER BY last_activity_at DESC LIMIT 1`,
       )
@@ -294,9 +400,11 @@ function latestTranscript(projectDir) {
 function main() {
   const projectDir = process.cwd();
 
+  let explicitPath;
   let transcriptPath;
   try {
-    transcriptPath = transcriptFromArgs(process.argv.slice(2)) || latestTranscript(projectDir);
+    explicitPath = transcriptFromArgs(process.argv.slice(2));
+    transcriptPath = explicitPath || latestTranscript(projectDir);
   } catch (error) {
     process.stdout.write(
       `${JSON.stringify({ error: error?.message || 'cannot read devin sessions' }, null, 2)}\n`,
@@ -309,6 +417,34 @@ function main() {
       `${JSON.stringify({ error: `no transcript found for ${projectDir}` }, null, 2)}\n`,
     );
     return 1;
+  }
+
+  // A live session has no transcript file yet, so the save reads its message
+  // store, or failing that still gets the answers the live hook queued.
+  if (!explicitPath && !existsSync(transcriptPath)) {
+    const sessionId = basename(transcriptPath, TRANSCRIPT_EXT);
+    const dbPath = join(dirname(dirname(transcriptPath)), 'sessions.db');
+    try {
+      const result = sweepDevinTranscript({
+        projectDir,
+        transcriptPath: dbPath,
+        transcript: databaseTranscript(dbPath, sessionId),
+      });
+      process.stdout.write(`${JSON.stringify({ ...result, transcript_missing: true }, null, 2)}\n`);
+      return 0;
+    } catch {
+      // A store without the message table still yields the answers the hook queued.
+    }
+    process.stdout.write(`${JSON.stringify({
+      transcript: null,
+      transcript_missing: true,
+      session_id: sessionId,
+      recovered: 0,
+      pending: pendingRecords(projectDir, sessionId),
+      chat_candidates: [],
+      chat_candidates_dropped: 0,
+    }, null, 2)}\n`);
+    return 0;
   }
 
   try {

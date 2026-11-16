@@ -829,20 +829,19 @@ test('a hop replays the sender\'s live name with the next number', (t) => {
 test('a second hop replaces the sender\'s number instead of stacking it', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
-    markers: '1',
-    SKILLED_LOOP_HOPS: '1',
+    markers: '1,2',
     RECORD_NAME: 'X (2)',
   });
   const result = runWrapper(sandbox, ['claude', 'initial prompt']);
   assert.equal(result.status, 0, result.stderr);
   const records = readRecords(recordPath);
-  assert.equal(records.length, 2);
-  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'X (3)']);
-  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'X');
-  assert.deepEqual(records.map((record) => record.env.SKILLED_LOOP_HOPS), ['1', '2']);
+  assert.equal(records.length, 3);
+  assert.deepEqual(records[2].args, [`${SEED} ${handoffPath}`, '--name', 'X (3)']);
+  assert.equal(records[2].env.SKILLED_LOOP_NAME, 'X');
+  assert.deepEqual(records.map((record) => record.env.SKILLED_LOOP_HOPS), ['0', '1', '2']);
 });
 
-test('a name that ends in another number keeps it', (t) => {
+test('a name that ends in a number gets the hop number in its place', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
     markers: '1',
@@ -852,8 +851,92 @@ test('a name that ends in another number keeps it', (t) => {
   assert.equal(result.status, 0, result.stderr);
   const records = readRecords(recordPath);
   assert.equal(records.length, 2);
-  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'Phase (7) (2)']);
-  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'Phase (7)');
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'Phase (2)']);
+  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'Phase');
+});
+
+// The sender's live name can show a number the hop count does not predict, for example a
+// title that still carries an earlier session's number. Every hop still gives one number.
+test('a hop replaces a number on the sender name that the hop count does not predict', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1,2,3',
+    RECORD_NAME: 'ENGINE LIMITS (2)',
+  });
+  const result = runWrapper(sandbox, ['claude', '-n', 'ENGINE LIMITS', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 4);
+  assert.deepEqual(records[3].args, [`${SEED} ${handoffPath}`, '--name', 'ENGINE LIMITS (4)']);
+  assert.equal(records[3].env.SKILLED_LOOP_NAME, 'ENGINE LIMITS');
+});
+
+test('a numbered launch name is numbered by the hop, never twice', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1,2' });
+  const result = runWrapper(sandbox, ['claude', '-n', 'ENGINE LIMITS (2)', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 3);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'ENGINE LIMITS (2)']);
+  assert.deepEqual(records[2].args, [`${SEED} ${handoffPath}`, '--name', 'ENGINE LIMITS (3)']);
+});
+
+test('a name already carrying two numbers gets one', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_NAME: 'ENGINE LIMITS (2) (4)',
+  });
+  const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'ENGINE LIMITS (2)']);
+});
+
+test('text in brackets that is not a number stays part of the name', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['claude', '-n', 'Fix (auth)', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'Fix (auth) (2)']);
+});
+
+// A wrapper started from a looped session's shell inherits that loop's hop count, which would
+// number its first receiver and trip the hop cap early.
+test('a fresh launch starts the hop count at 0 whatever its shell carries', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    SKILLED_LOOP_HOPS: '10',
+  });
+  const result = runWrapper(sandbox, ['claude', '-n', 'X', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records.map((record) => record.env.SKILLED_LOOP_HOPS), ['0', '1']);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'X (2)']);
+});
+
+test('the manual command drops a number on the sender name', (t) => {
+  const sandbox = createSandbox(t);
+  installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    RECORD_NAME: 'X (2)',
+    STUB_EXIT_CODES: '7',
+  });
+  const result = runWrapper(sandbox, ['claude', '-n', 'X', 'initial prompt']);
+  assert.equal(result.status, 7, result.stderr);
+  const manualCommand = result.stdout
+    .split('\n')
+    .find((line) => line.startsWith('skilled-loop '));
+  assert.ok(manualCommand, result.stderr);
+  assert.match(manualCommand, /'--name' 'X'/, manualCommand);
+  assert.equal(manualCommand.includes('(2)'), false, manualCommand);
 });
 
 test('a consumed name that fails the check falls back to the launch name', (t) => {

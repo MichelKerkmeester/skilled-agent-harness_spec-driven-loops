@@ -1,5 +1,5 @@
 {
-  "manifestHash": "be905b5126149e9169fa3fd31a2151a1f8c716bd1828ef8a11bf2c847ef3369a",
+  "manifestHash": "385f3ca6abf5c00c521304914f62c1a10ffa4dd97d01f659d9f57f88dbf138cd",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3302,6 +3302,9 @@
     "014 deep review 30 surfaces": [
       "014 deep review 30 surfaces"
     ],
+    "014 devin vibe lock probe operator decisions": [
+      "014-devin-vibe-lock-probe operator decisions"
+    ],
     "014 docs stress refresh rollup": [
       "014 docs stress refresh rollup"
     ],
@@ -3388,6 +3391,9 @@
     ],
     "015 deep research loop and phase 5": [
       "015 deep-research loop and phase 5"
+    ],
+    "015 devin database reader operator decisions": [
+      "015-devin-database-reader operator decisions"
     ],
     "015 docs drift review": [
       "015 docs drift review"
@@ -7222,6 +7228,9 @@
     ],
     "052 deep review remediation": [
       "052 deep-review remediation"
+    ],
+    "052 duplicate hop title numbers operator decisions": [
+      "052-duplicate-hop-title-numbers operator decisions"
     ],
     "052 findings resolved": [
       "052 findings resolved"
@@ -32014,17 +32023,11 @@
     "crawlable commit research": [
       "crawlable commit research"
     ],
-    "create a chart": [
-      "create a chart"
-    ],
     "create a comment": [
       "Create a comment"
     ],
     "create a data source": [
       "Create a data source"
-    ],
-    "create a diagram": [
-      "create a diagram"
     ],
     "create a git worktree": [
       "create a git worktree"
@@ -40403,6 +40406,9 @@
     "design is the product": [
       "design is the product"
     ],
+    "design md": [
+      "design.md"
+    ],
     "design md anti patterns": [
       "design.md anti-patterns"
     ],
@@ -40918,6 +40924,18 @@
     "devin dangerous mode approval": [
       "devin dangerous mode approval"
     ],
+    "devin database reader": [
+      "devin database reader"
+    ],
+    "devin database reader implementation summary": [
+      "devin database reader implementation summary"
+    ],
+    "devin database reader plan": [
+      "devin database reader plan"
+    ],
+    "devin database reader tasks": [
+      "devin database reader tasks"
+    ],
     "devin decision capture": [
       "devin decision capture"
     ],
@@ -41058,6 +41076,9 @@
     ],
     "devin mcp route guard": [
       "devin mcp route guard"
+    ],
+    "devin message nodes": [
+      "devin message nodes"
     ],
     "devin model alias reference": [
       "devin model alias reference"
@@ -41242,11 +41263,17 @@
     "devin swe default model": [
       "devin swe default model"
     ],
+    "devin sweep sessions db": [
+      "devin sweep sessions.db"
+    ],
     "devin task dispatch guard": [
       "devin task dispatch guard"
     ],
     "devin tool surface": [
       "devin tool surface"
+    ],
+    "devin transcript missing": [
+      "devin transcript missing"
     ],
     "devin transcript sweep": [
       "devin transcript sweep"
@@ -41256,6 +41283,18 @@
     ],
     "devin userpromptsubmit goal inject": [
       "devin userpromptsubmit goal inject"
+    ],
+    "devin vibe lock probe": [
+      "devin vibe lock probe"
+    ],
+    "devin vibe lock probe implementation summary": [
+      "devin vibe lock probe implementation summary"
+    ],
+    "devin vibe lock probe plan": [
+      "devin vibe lock probe plan"
+    ],
+    "devin vibe lock probe tasks": [
+      "devin vibe lock probe tasks"
     ],
     "devin vm offload": [
       "devin vm offload"
@@ -45736,6 +45775,18 @@
     ],
     "duplicate hash collapse": [
       "duplicate hash collapse"
+    ],
+    "duplicate hop title numbers": [
+      "duplicate hop title numbers"
+    ],
+    "duplicate hop title numbers implementation summary": [
+      "duplicate hop title numbers implementation summary"
+    ],
+    "duplicate hop title numbers plan": [
+      "duplicate hop title numbers plan"
+    ],
+    "duplicate hop title numbers tasks": [
+      "duplicate hop title numbers tasks"
     ],
     "duplicate nudge race": [
       "duplicate nudge race"
@@ -59315,6 +59366,9 @@
     "hook code folder readmes plan": [
       "hook code folder readmes plan"
     ],
+    "hook code folder readmes rewrite waves": [
+      "hook code folder readmes rewrite waves"
+    ],
     "hook code folder readmes tasks": [
       "hook code folder readmes tasks"
     ],
@@ -59452,6 +59506,9 @@
     ],
     "hook folder readmes plan": [
       "hook folder readmes plan"
+    ],
+    "hook folder readmes rewrite waves": [
+      "hook folder readmes rewrite waves"
     ],
     "hook folder readmes tasks": [
       "hook folder readmes tasks"
@@ -59627,6 +59684,9 @@
     "hook readme rewrite": [
       "hook readme rewrite"
     ],
+    "hook readme runtime coverage": [
+      "hook readme runtime coverage"
+    ],
     "hook readme template": [
       "hook readme template"
     ],
@@ -59689,6 +59749,9 @@
     ],
     "hook runtime readmes plan": [
       "hook runtime readmes plan"
+    ],
+    "hook runtime readmes rewrite waves": [
+      "hook runtime readmes rewrite waves"
     ],
     "hook runtime readmes tasks": [
       "hook runtime readmes tasks"
@@ -59788,6 +59851,9 @@
     ],
     "hooks lib": [
       "hooks lib"
+    ],
+    "hooks library readme": [
+      "hooks library readme"
     ],
     "hooks node test ci": [
       "hooks node test ci"
@@ -60676,9 +60742,6 @@
     ],
     "hybrid rrf reranker integration": [
       "hybrid RRF reranker integration"
-    ],
-    "hybrid search": [
-      "hybrid search"
     ],
     "hybrid search bm25 fusion": [
       "hybrid search bm25 fusion"
@@ -73918,6 +73981,9 @@
     "mode packet packetkind": [
       "mode packet packetKind"
     ],
+    "mode packet readme template conformance": [
+      "mode packet readme template conformance"
+    ],
     "mode packet readmes": [
       "mode packet readmes"
     ],
@@ -73929,6 +73995,9 @@
     ],
     "mode packet readmes plan": [
       "mode packet readmes plan"
+    ],
+    "mode packet readmes rewrite waves": [
+      "mode packet readmes rewrite waves"
     ],
     "mode packet readmes tasks": [
       "mode packet readmes tasks"
@@ -74826,6 +74895,9 @@
     ],
     "name file in plan phase lines tasks": [
       "name file in plan phase lines tasks"
+    ],
+    "name stem hop suffix": [
+      "name_stem hop suffix"
     ],
     "named colour tokens": [
       "named colour tokens"
@@ -82824,6 +82896,9 @@
     "phase 14 dead runner and step cleanup": [
       "phase 14 dead runner and step cleanup"
     ],
+    "phase 14 devin vibe lock probe": [
+      "phase 14 devin vibe lock probe"
+    ],
     "phase 14 doctor and ci gate honesty": [
       "phase 14 doctor and ci gate honesty"
     ],
@@ -82892,6 +82967,9 @@
     ],
     "phase 15 closure gate": [
       "phase 15 closure gate"
+    ],
+    "phase 15 devin database reader": [
+      "phase 15 devin database reader"
     ],
     "phase 15 dsh hook parity": [
       "phase 15 dsh hook parity"
@@ -84446,6 +84524,9 @@
     ],
     "phase 51 handover doc alignment 3": [
       "phase 51 handover doc alignment 3"
+    ],
+    "phase 52 duplicate hop title numbers": [
+      "phase 52 duplicate hop title numbers"
     ],
     "phase 52 v1 default llmgateway": [
       "phase 52 v1 default llmgateway"
@@ -87745,6 +87826,9 @@
     ],
     "plugin documentation removal": [
       "plugin documentation removal"
+    ],
+    "plugin extension readme": [
+      "plugin extension readme"
     ],
     "plugin folder readme template": [
       "plugin folder readme template"
@@ -100097,11 +100181,20 @@
     "rewrite every readme to its template": [
       "rewrite every readme to its template"
     ],
+    "rewrite hook folder readmes": [
+      "rewrite hook folder readmes"
+    ],
     "rewrite main skilled v4 0 0 0": [
       "rewrite main skilled v4 0 0 0"
     ],
+    "rewrite mode packet readmes": [
+      "rewrite mode packet readmes"
+    ],
     "rewrite references same commit": [
       "rewrite references same commit"
+    ],
+    "rewrite runtime adapter readmes": [
+      "rewrite runtime adapter readmes"
     ],
     "rewrite skill changelogs": [
       "rewrite skill changelogs"
@@ -101983,6 +102076,9 @@
     "runtime adapter goal tasks": [
       "runtime adapter goal tasks"
     ],
+    "runtime adapter readme": [
+      "runtime adapter readme"
+    ],
     "runtime agent directory": [
       "runtime agent directory"
     ],
@@ -102301,6 +102397,9 @@
     "runtime folder readmes plan": [
       "runtime folder readmes plan"
     ],
+    "runtime folder readmes rewrite waves": [
+      "runtime folder readmes rewrite waves"
+    ],
     "runtime folder readmes tasks": [
       "runtime folder readmes tasks"
     ],
@@ -102519,6 +102618,9 @@
     ],
     "runtime plugin readmes plan": [
       "runtime plugin readmes plan"
+    ],
+    "runtime plugin readmes rewrite waves": [
+      "runtime plugin readmes rewrite waves"
     ],
     "runtime plugin readmes tasks": [
       "runtime plugin readmes tasks"
@@ -120116,6 +120218,9 @@
     "stacked filters": [
       "stacked filters"
     ],
+    "stacked hop number in session name": [
+      "stacked hop number in session name"
+    ],
     "stage 0 decision": [
       "stage 0 decision"
     ],
@@ -121779,6 +121884,9 @@
     "style guide tokens": [
       "style guide tokens"
     ],
+    "style reference": [
+      "style reference"
+    ],
     "style reference bundle": [
       "style reference bundle"
     ],
@@ -122552,6 +122660,9 @@
     ],
     "sweep rrf sh sweep rrf py": [
       "sweep-rrf.sh sweep-rrf.py"
+    ],
+    "sweep session lock ancestry": [
+      "sweep session lock ancestry"
     ],
     "sweep stale mcp processes": [
       "sweep stale mcp processes"
@@ -128879,6 +128990,9 @@
     "typed jev judgments": [
       "typed jev judgments"
     ],
+    "typed judgment hub": [
+      "typed judgment hub"
+    ],
     "typed judgment routing": [
       "typed judgment routing"
     ],
@@ -132194,6 +132308,9 @@
     ],
     "vibe provider row": [
       "vibe provider row"
+    ],
+    "vibe readme": [
+      "vibe readme"
     ],
     "vibe relaunch command tier": [
       "vibe relaunch command tier"

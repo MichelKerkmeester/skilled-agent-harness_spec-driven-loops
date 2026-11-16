@@ -193,6 +193,106 @@ test('the CLI resolves the newest session for the working directory', () => {
   });
 });
 
+function withDevinData(projectDir, rows, run) {
+  const dataHome = mkdtempSync(join(tmpdir(), 'devin-data-'));
+  try {
+    const cliDir = join(dataHome, 'devin', 'cli');
+    mkdirSync(join(cliDir, 'transcripts'), { recursive: true });
+    mkdirSync(join(cliDir, 'session_locks'), { recursive: true });
+    const database = new DatabaseSync(join(cliDir, 'sessions.db'));
+    try {
+      database.exec('CREATE TABLE sessions (id TEXT, working_directory TEXT, last_activity_at INTEGER)');
+      const insert = database.prepare('INSERT INTO sessions (id, working_directory, last_activity_at) VALUES (?, ?, ?)');
+      for (const [id, activity] of rows) insert.run(id, realpathSync(projectDir), activity);
+    } finally {
+      database.close();
+    }
+    return run(cliDir, () => spawnSync(process.execPath, [SCRIPT], {
+      cwd: projectDir,
+      encoding: 'utf8',
+      env: { ...process.env, XDG_DATA_HOME: dataHome },
+      timeout: 20000,
+    }));
+  } finally {
+    rmSync(dataHome, { recursive: true, force: true });
+  }
+}
+
+test('the session whose lock a calling process holds wins over a newer one', () => {
+  withProject((projectDir) => {
+    withDevinData(projectDir, [[SESSION, 1000], ['newer-session', 2000]], (cliDir, sweep) => {
+      copyFileSync(FIXTURE, join(cliDir, 'transcripts', `${SESSION}.json`));
+      copyFileSync(FIXTURE, join(cliDir, 'transcripts', 'newer-session.json'));
+      writeFileSync(join(cliDir, 'session_locks', `${SESSION}.lock`), String(process.pid));
+      const run = sweep();
+      assert.equal(run.status, 0, run.stderr);
+      assert.equal(JSON.parse(run.stdout).transcript, join(cliDir, 'transcripts', `${SESSION}.json`));
+    });
+  });
+});
+
+test('a session with no transcript still prints the answers the hook queued', () => {
+  withProject((projectDir) => {
+    sweepDevinTranscript({ projectDir, transcriptPath: FIXTURE, now: NOW });
+    withDevinData(projectDir, [[SESSION, 1000]], (_cliDir, sweep) => {
+      const run = sweep();
+      assert.equal(run.status, 0, run.stderr);
+      const result = JSON.parse(run.stdout);
+      assert.equal(result.transcript_missing, true);
+      assert.equal(result.session_id, SESSION);
+      assert.equal(result.pending.length, 2);
+    });
+  });
+});
+
+test('a session with no transcript is read from the message store', () => {
+  withProject((projectDir) => {
+    withDevinData(projectDir, [[SESSION, 1000]], (cliDir, sweep) => {
+      const callId = 'ask_user_question:0#7f6b492fed214f47852ea113097b6cd3';
+      const question = 'Which colour should the demo badge use?';
+      const call = {
+        message_id: 'm2',
+        role: 'assistant',
+        content: '',
+        tool_calls: [{
+          id: callId,
+          name: 'ask_user_question',
+          arguments: { questions: [{ question, header: 'Badge', options: [{ label: 'Red' }, { label: 'Blue' }] }] },
+        }],
+      };
+      const database = new DatabaseSync(join(cliDir, 'sessions.db'));
+      try {
+        database.exec(
+          'CREATE TABLE message_nodes (row_id INTEGER PRIMARY KEY, session_id TEXT, node_id INTEGER, parent_node_id INTEGER, chat_message TEXT)',
+        );
+        const insert = database.prepare('INSERT INTO message_nodes (session_id, node_id, chat_message) VALUES (?, ?, ?)');
+        insert.run(SESSION, 0, JSON.stringify({ message_id: 'm0', role: 'system', content: 'rules' }));
+        insert.run(SESSION, 1, JSON.stringify({ message_id: 'm1', role: 'user', content: 'Ask me about the badge.' }));
+        insert.run(SESSION, 2, JSON.stringify(call));
+        insert.run(SESSION, 3, JSON.stringify({ ...call, metadata: { num_tokens: 1 } }));
+        insert.run(SESSION, 4, JSON.stringify({
+          message_id: 'm3',
+          role: 'tool',
+          tool_call_id: callId,
+          content: `User answered your questions:\n${JSON.stringify({ [question]: { selected: ['Blue'], skipped: false } })}`,
+        }));
+      } finally {
+        database.close();
+      }
+
+      const run = sweep();
+      assert.equal(run.status, 0, run.stderr);
+      const result = JSON.parse(run.stdout);
+      assert.equal(result.transcript_missing, true);
+      assert.equal(result.recovered, 1);
+      assert.equal(result.pending.length, 1);
+      assert.equal(result.pending[0].key, toolSourceKey('devin', SESSION, callId, 0));
+      assert.equal(result.pending[0].answer, 'Blue');
+      assert.equal(JSON.parse(sweep().stdout).recovered, 0);
+    });
+  });
+});
+
 // ───────────────────────────────────────────────────────────────────
 // CHAT CANDIDATES
 // ───────────────────────────────────────────────────────────────────

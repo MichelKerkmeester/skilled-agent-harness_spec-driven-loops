@@ -1,18 +1,18 @@
 ---
 title: sk-prompt
-description: "Prompt engineering engine that turns a vague request into a structured prompt in one pass: a ten-row checklist, one component skeleton with optional framework presets, and CLEAR screening."
+description: "Prompt engineering engine that turns a vague request into a structured prompt in one pass: a ten-row checklist, one component skeleton with optional framework presets and CLEAR screening."
 trigger_phrases:
   - "improve prompt"
   - "prompt engineering"
   - "framework"
   - "CLEAR scoring"
   - "/prompt:improve"
-version: 4.0.3.0
+version: 4.0.4.0
 ---
 
 # sk-prompt
 
-> Send a vague ask in and get back a prompt that clears a fixed quality bar, with a report of what changed and why.
+> Turn a rough request into a prompt that clears a fixed quality bar, with a short report of what changed and why.
 
 ---
 
@@ -22,51 +22,40 @@ version: 4.0.3.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Transforming a rough or under-specified request into a prompt that clears a fixed quality bar |
-| **Invoke with** | The `/prompt:improve` command, the `@prompt-improver` agent, keyword routing through Gate 2 or a framework name stated directly |
-| **Works on** | Any text task that benefits from structure: generation, review, research, editing and analysis |
-| **Produces** | An enhanced prompt with a transparency report naming the framework, the effort level, the checklist marks, the CLEAR breakdown, the change report and any flagged assumptions |
-
-### Why This Skill Exists
-
-A vague prompt gets a vague answer. People under-specify the role, skip the constraints, bury the real ask and leave the model to guess, then blame the output when it misses. Picking a structure by feel does not help, because different tasks want different shapes and nothing signals when a prompt is actually good enough to send. This skill checks the request once against ten components, writes the prompt from one skeleton or a named preset, records its assumptions and screens the result against a fixed rubric so a prompt ships only when it clears the bar.
+| **Use it for** | Turning an under-specified request into a structured prompt that passes a fixed screen |
+| **Invoke with** | `/prompt:improve` with a `$` mode prefix or the `@prompt-improver` agent |
+| **Works on** | A draft prompt or a raw task, across generation, review, research, editing and analysis |
+| **Produces** | The enhanced prompt first, then a transparency report with numbered open items and the change list |
 
 ### What It Does
 
-`sk-prompt` is the prompt-engineering engine. It works in one pass:
+`sk-prompt` improves a prompt in one pass. It reads the request against a ten-row checklist, writes from one component skeleton or an optional framework preset, then screens the draft with the CLEAR rubric. You reach it through the `/prompt:improve` command with a `$` mode prefix or through the `@prompt-improver` agent. It owns the prompt only, so `sk-code` takes code work and `sk-doc` takes documentation output.
 
-1. Route on the user's own words, with a pasted prompt set aside before routing.
-2. Check the request once against ten checklist rows, and exit early when the prompt already passes.
-3. Otherwise, write the prompt from one component skeleton or a named framework preset.
-4. Self-check the draft against its own success criteria.
-5. Screen it with the CLEAR rubric.
-6. Deliver the prompt first, followed by the numbered open items and a change report.
+### Why This Skill Exists
 
-You call it through the `/prompt:improve` command or the `@prompt-improver` agent. The skill sets the quality bar. The output tells you how it measured up.
-
-### When To Use This Skill
-
-Reach for `sk-prompt` when a prompt you are about to send feels vague or unstructured, when you need a framework you do not use every day, when you want a quality score before you dispatch and when you are building a reusable prompt template. Skip it for a one-line fact-check query where structure adds no value. For design-generation work, the skill constructs the brief from the framework library and CLEAR rubric in `references/patterns-evaluation.md`, plus a handoff note to `sk-code`; it ships no design-specific reference of its own. It owns the prompt only. `sk-design-md-generator` owns measured design-reference extraction.
+A vague prompt gets a vague answer. People leave out the audience and the constraints, then read the miss as a model failure. A fixed checklist and one score show the gap before the prompt is sent.
 
 ### The Framework Layer
 
-The skill operates a library of seven prompt frameworks, each one a proven shape for a task family.
+Every prompt starts from one default skeleton: task, context, constraints, output format, optional examples and success criteria. The seven presets below are optional shapes. Apply one when the caller names it or when the task clearly matches its row, then name it in the change report. Nothing is scored to pick a preset.
 
-| Framework | Elements | What it operates best |
+| Preset | Elements | Best for |
 |---|---|---|
-| **RCAF** | Role, Context, Action, Format | General tasks, 80% of prompts |
-| **COSTAR** | Context, Objective, Style, Tone, Audience, Response | Content creation, communication |
-| **RACE** | Role, Action, Context, Execute | Urgent tasks, quick iterations |
-| **CIDI** | Context, Instructions, Details, Input | Process documentation, tutorials |
-| **TIDD-EC** | Task, Instructions, Dos, Donts, Examples, Context | Quality-critical work, compliance |
-| **CRISPE** | Capacity, Insight, Statement, Personality, Experiment | Strategy, creative exploration |
-| **CRAFT** | Context, Role, Action, Format, Target | Complex projects, planning |
+| **RCAF** | Role, Context, Action, Format | General tasks and most prompts |
+| **COSTAR** | Context, Objective, Style, Tone, Audience, Response | Content where style and audience matter |
+| **RACE** | Role, Action, Context, Execute | Urgent tasks and quick iterations |
+| **CIDI** | Context, Instructions, Details, Input | Process documentation and tutorials |
+| **TIDD-EC** | Task, Instructions, Dos, Don'ts, Examples, Context | Quality-critical or compliance work |
+| **CRISPE** | Capacity, Insight, Statement, Personality, Experiment | Strategy and exploration |
+| **CRAFT** | Context, Role, Action, Format, Target | Complex projects and planning |
+
+The definitions live in the [framework library](references/patterns-evaluation.md).
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Invoke it.** Type `/prompt:improve` followed by a mode flag and your request.
+**Step 1: Invoke it.** Type `/prompt:improve` with a mode prefix and your prompt.
 
 **Step 2: Run the primary workflow.**
 
@@ -74,46 +63,43 @@ The skill operates a library of seven prompt frameworks, each one a proven shape
 /prompt:improve $text "Write a cold email for a SaaS CRM targeting mid-market sales leaders"
 ```
 
-The skill runs one pass over the prompt, checks it against the ten rows, writes it from the default skeleton or a named preset, screens it with CLEAR and delivers the enhanced prompt. Below it you get a transparency report:
+The reply opens with the enhanced prompt. Below it sits a transparency report that names the framework, the mode and effort, the dispatch target, the checklist counts, the quick test result and the five CLEAR scores. A status line closes the report with `STATUS=OK`, the score out of 50 and the framework name.
 
-```text
-FRAMEWORK: COSTAR
-EFFORT: standard
-CHECKLIST: 7 present, 2 added, 1 not needed
-CLEAR_SCORE: 43/50 (C:8 L:9 E:12 A:10 R:4)
-THRESHOLD: 40/50 (PASS)
-QUICK TEST: NOT RUN
-ASSUMPTIONS FLAGGED: audience title inferred from "mid-market sales leaders"
-CHANGES: Added audience and tone constraints; Changed the ask into a numbered task; Removed a duplicated length rule; Skipped examples (not needed)
-```
-
-**Step 3: Use a mode flag for speed.** Add `$short` for a quick checklist pass or `$raw` for a straight pass-through when you are certain the prompt is ready.
+**Step 3: Pick a faster mode when the task is light.** Add `$short` for the four core checklist rows or `$raw` when the prompt needs no pass at all.
 
 ```bash
-/prompt:improve $short "Rephrase this PR description for a non-technical reviewer: ..."
+/prompt:improve $short "Rephrase this PR description for a non-technical reviewer"
 ```
 
-The report shows `EFFORT: quick` for `$short`, and `$raw` runs no checklist at all.
+The report shows `Effort: quick`. The pass then checks the four core rows: task, context, constraints and output format. `$raw` returns the prompt as written, with no checklist and no CLEAR score.
 
-**Step 4: Verify before you rely on it.**
+**Step 4: Verify the router before you rely on it.**
 
 ```bash
-python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-prompt/README.md --type readme
+bash .skilled/skills/sk-prompt/benchmark/router/run-fixtures.sh
 ```
 
-Zero issues means the README matches the house template.
+It prints `PASSED 19/19 fixtures` and exits 0.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### Framework Selection
+A run moves through five stages. The first detects the mode from the command prefix or from your own words. It sets a pasted prompt aside so its text never picks the mode. The request is checked once against the ten rows. A prompt that already passes comes back unchanged or with the smallest edit you asked for. Otherwise the draft is written from the default skeleton or a named preset. The draft is checked once against its own success criteria, screened with CLEAR and delivered with the open items and the change report.
 
-Every prompt starts from one default skeleton, so the framework layer is a set of optional presets rather than a contest between seven candidates. Name a framework and the prompt is written from that preset. Leave it unnamed and the skeleton carries the structure, with a preset applied only when the task makes its fit plain, such as a compliance job that wants the dos and donts shape. Nothing is chosen by score. The definitions live in `references/patterns-evaluation.md`.
+```mermaid
+flowchart TD
+  Request["Your request"] --> Mode["Detect the mode and set a pasted prompt aside"]
+  Mode --> Check["Check the ten rows once"]
+  Check -->|Passes| Early["Return it unchanged or lightly edited"]
+  Check -->|Missing rows| Write["Write from the skeleton or a named preset"]
+  Write --> Screen["Self-check and CLEAR screen"]
+  Screen --> Deliver["Delivered prompt and change report"]
+```
 
 ### The One-Pass Checklist
 
-The checklist is a single reading of the prompt, not a gate that repeats until clean. Every row is marked present, absent or not needed with a one-line reason, and a row marked not needed is never added.
+The checklist is a single reading, not a gate that repeats until clean. Each row is marked present or absent. A row that does not apply is marked not needed with a one-line reason. A row marked not needed is never added.
 
 1. Task and requested outcome.
 2. Role or audience, only when it changes the response.
@@ -124,57 +110,60 @@ The checklist is a single reading of the prompt, not a gate that repeats until c
 7. Examples when they help: at least 1, about 3 typical, at most 5, in `<example>` tags with identical formatting.
 8. Success criteria, edge cases or a way to verify the answer.
 9. Contradictions, assumptions and missing information.
-10. Wording: plain instructions with the reason given; soften CRITICAL and MUST rather than banning capitals.
+10. Wording: plain instructions with the reason given. Soften CRITICAL and MUST rather than banning capitals.
 
-When every row is present or not needed, the prompt comes back unchanged or with the smallest edit the user asked for, and the answer says so.
-
-Effort decides how much of the list runs: quick checks the four core rows, standard checks all ten, thorough checks all ten and attempts the quick test, and `$raw` runs no pass at all.
+Effort decides how much of the list runs. Quick checks the four core rows: task, context, constraints and output format. Standard checks all ten. Thorough checks all ten and attempts the quick test. `$raw` runs no pass at all.
 
 ### The CLEAR Rubric
 
-CLEAR scores out of fifty points across five dimensions. The pass threshold is forty. Each dimension has a floor that blocks a pass even when the total clears forty.
+CLEAR scores out of fifty points across five dimensions. A total of forty passes. Each dimension also has a floor that blocks a pass on its own.
 
 | Dimension | Max | Floor | What it measures |
 |---|---|---|---|
 | Correctness | 10 | 7 | Facts, logic, no contradictions |
-| Logic | 10 | 7 | Coherent structure, clear reasoning |
+| Logic | 10 | 7 | Coherent structure and clear reasoning |
 | Expression | 15 | 10 | Clarity, conciseness, word choice |
-| Arrangement | 10 | 7 | Framework adherence, flow, organization |
-| Reusability | 5 | 3 | Adaptable to similar tasks, template-ready |
+| Arrangement | 10 | 7 | Structure, flow, organization |
+| Reusability | 5 | 3 | Fit for a similar task, template ready |
 
-Scores of forty and up pass. Scores from thirty to thirty-nine go back for revision. Scores below thirty are rejected. Repair is bounded at 3 cycles, then the best version ships with a note naming what stayed weak.
+Below forty, the weakest dimension is repaired, up to three cycles. If the score is still short, the best version ships with a note naming the weakest dimension. CLEAR is a structural screen, not proof the prompt works.
 
 ### The Operating Modes
 
-The mode is detected from the command prefix. An absent prefix defaults to the interactive mode.
+The mode comes from the command prefix. With no prefix, the run defaults to the interactive mode at standard effort.
 
-| Mode | Prefix | Effort | When to use it |
+| Mode | Command | Effort | Scoring |
 |---|---|---|---|
-| Interactive | (none) | standard | The skill asks one question before processing |
-| Text | `$text` | standard | Standard prompt enhancement after the one comprehensive pre-processing question |
-| Short | `$short` | quick | You need a quick refinement, not the full checklist |
-| Improve | `$improve` | standard | Standard enhancement, equivalent to the default |
-| Refine | `$refine` | thorough | Maximum optimization for a prompt that is close but not clearing |
-| JSON | `$json` | standard | The output must be JSON, ready for an API |
-| YAML | `$yaml` | standard | The output must be YAML, ready for config |
-| Raw | `$raw` | none | Skip the checklist. Passthrough with no scoring |
+| Interactive | none | standard | CLEAR |
+| Text | `$text` | standard | CLEAR |
+| Short | `$short` | quick | CLEAR |
+| Improve | `$improve` | standard | CLEAR |
+| Refine | `$refine` | thorough | CLEAR |
+| JSON | `$json` | standard | CLEAR |
+| YAML | `$yaml` | standard | CLEAR |
+| Raw | `$raw` | none | none |
 
-### The Agent Escalation Path
+The prefix is authoritative. Two prefixes that disagree, such as `$raw` with `$json`, become one question to you rather than a guess.
 
-The `@prompt-improver` agent is the fresh-context escalation surface. It loads the same references and applies the same rules. It returns a structured block (framework, CLEAR score, rationale, enhanced prompt and escalation notes) that a caller can inject into a CLI dispatch without loading the full skill.
+The `@prompt-improver` agent runs the same rules in a fresh context. It returns a structured block with the framework, the CLEAR score, a rationale, the prompt and the escalation notes. It is read-only and leaf-only, so it never writes files or dispatches another agent.
 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
 
+### When To Use This Skill
+
+Reach for `sk-prompt` when a prompt you are about to send feels vague, when you need a framework you rarely use, when you want a quality score before dispatch or when you are building a reusable prompt template. Skip it for a one-line fact lookup where structure adds nothing. A design-generation brief belongs here as well, because the brief is built from the framework library and the CLEAR rubric. The measured design-reference extraction stays with `sk-design-md-generator`. This skill does not own the run transport.
+
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `cli-claude-code` | Consumes the prompt quality card this skill produces and handles the executor mechanics. This skill does not own invocation flags or dispatch rules |
-| `cli-opencode` | Same boundary as cli-claude-code. Consumes the prompt card, owns the mechanics |
-| `system-skill-advisor` | Routes non-trivial tasks to this skill at Gate 2 when the prompt carries prompt-engineering keywords |
-| `sk-doc` | Owns the documentation output. This skill hands off when the final artifact is a spec doc or README |
+| `sk-code` | Takes the code work when a request is really about writing or debugging code |
+| `sk-doc` | Takes the documentation output when the result is a spec doc or a README |
+| `sk-design-md-generator` | Owns the measured design-reference extraction a design brief starts from |
+| `system-skill-advisor` | Routes prompt-engineering requests here at Gate 2 |
+| `cli-*` skills | Read the [CLI prompt quality card](assets/cli-prompt-quality-card.md) before dispatch and escalate here when a task crosses the fast-path threshold |
 
 ---
 
@@ -182,32 +171,27 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
 
 | What you see | Why | Fix |
 |---|---|---|
-| CLEAR score below forty after the full pass | The input lacked enough context or the framework did not fit the task | Add more context about your audience and constraints. Name a framework directly when you already know the right shape |
-| The preset did not fit the task | A preset was applied where the default skeleton would have carried the structure | Name the preset you want, or ask for the default skeleton |
-| JSON output arrived wrapped in Markdown | The `$json` prefix was not used, so the skill delivered in the default format | Use the `$json` prefix explicitly |
-| The checklist ran deeper than the task needed | The default effort is standard, which checks all ten rows | Use `$short` for the four core rows or `$raw` to pass the prompt through |
-| The skill's confidence dropped below fifty percent | The request did not carry enough prompt-engineering signals | The skill will ask a single comprehensive question before it processes anything |
-| A CLI dispatch card failed or was rejected | The prompt did not carry enough quality evidence for the executor to accept it | Run `$refine` for a full optimization pass, then re-dispatch with the transparency report attached |
+| The `:auto` run stops with `STATUS=FAIL` and `prompt_input required and not provided` | No prompt text reached the command | Rerun with the prompt inline |
+| Two mode commands trigger a question instead of a result | `$raw` and `$json` in one request disagree | Rerun with one prefix |
+| The CLEAR score stays below 40 after three repair cycles | The weak dimension did not clear its floor | Rework the weakest dimension, then run `$refine` |
+| The output is Markdown when you needed JSON | The `$json` prefix was absent, so the default format applied | Add `$json` |
+| The checklist checked more rows than the task needed | Standard effort checks all ten rows | Use `$short` for four core rows or `$raw` for no pass |
 
 ---
 
 ## 6. FAQ
 
-**Q: What is the difference between `$improve` and `$refine`?**
+### What is the difference between `$improve` and `$refine`?
 
-A: `$improve` is the standard path: all ten checklist rows at standard effort, the default skeleton or a named preset, CLEAR screening and a transparency report. `$refine` runs the same pass at thorough effort and targets maximum optimization. Reach for `$refine` when a prompt scored 35 to 39 and you need it to cross forty. It is also the right mode for a prompt heading to a high-stakes dispatch.
+Both run all ten checklist rows. `$improve` runs at standard effort. `$refine` runs at thorough effort and attempts the quick test. Use `$refine` for a prompt that is close but still below the bar or for one headed to a high-stakes dispatch.
 
-**Q: Can I name a framework directly instead of letting the skill pick one?**
+### Does the skill change the intent I supplied?
 
-A: Yes. State the framework name and the prompt is written from that preset, which the change report names. Nothing is scored in the background.
+No. It preserves your guidelines and examples as closely as it can. It lists every default and assumption as a numbered open item after the prompt. A gap that stays real appears as an open item rather than a silent rewrite.
 
-**Q: What happens when CLEAR cannot reach forty after three repair cycles?**
+### What happens when CLEAR cannot reach 40 after three repair cycles?
 
-A: The skill delivers the highest-scoring version with an explicit escalation note. It tells you why the score stalled, which dimensions blocked the pass, how to add context and how to switch frameworks to get across the line.
-
-**Q: Does the skill change my intent when it reworks a prompt?**
-
-A: No. The self-check reads the draft against the intent you stated before it is delivered. The skill keeps the goal, the audience, the constraints and the intended format you stated unless you explicitly ask it to broaden or narrow scope. Flagged assumptions appear in the transparency report so you can spot where inference filled a gap.
+The best version ships with a note naming the weakest dimension. The open items stay beside it, so the gap that blocked the pass remains visible. If the prompt still matters, add the missing context and run `$refine` again.
 
 ---
 
@@ -215,10 +199,10 @@ A: No. The self-check reads the draft against the intent you stated before it is
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-prompt/README.md --type readme` reports zero issues |
-| Router fixtures | `bash .skilled/skills/sk-prompt/benchmark/router/run-fixtures.sh` runs 19 routing fixtures |
-| Manual testing playbook | Scenarios under `manual-testing-playbook/` cover mode detection, smart routing, the checklist pass, CLEAR scoring, framework presets, escalation tiers and format modes |
-| Agent contract | The `@prompt-improver` output block contract lives in `SKILL.md` Section 7. Validate with the playbook scenarios under `manual-testing-playbook/escalation-tiers/` |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-prompt/README.md --type readme` prints `✅ VALID` and `Total issues: 0` |
+| Router fixtures | `bash .skilled/skills/sk-prompt/benchmark/router/run-fixtures.sh` prints `PASSED 19/19 fixtures` |
+| Manual testing playbook | 28 scenarios across 7 categories under `manual-testing-playbook/` cover mode detection, routing, the checklist pass, CLEAR scoring, framework selection, escalation and format modes |
+| Agent contract | The `@prompt-improver` output block is defined in [the runtime instructions](SKILL.md) Section 7 and exercised by the escalation scenarios |
 
 ---
 
@@ -226,13 +210,13 @@ A: No. The self-check reads the draft against the intent you stated before it is
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the mode table, the agent contract and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, the mode table and the agent contract |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
+| [`references/improvement-checklist.md`](./references/improvement-checklist.md) | The ten-row checklist, early exit, effort levels, quick test and change report |
 | [`references/patterns-evaluation.md`](./references/patterns-evaluation.md) | The default skeleton, the seven framework presets and the CLEAR rubric |
-| [`references/improvement-checklist.md`](./references/improvement-checklist.md) | The one-pass checklist, early exit, effort levels, quick test and change report |
-| [`assets/framework-registry.json`](./assets/framework-registry.json) | Machine-readable scaffold registry with code-oriented slot templates for a subset of five frameworks |
-| [`assets/cli-prompt-quality-card.md`](./assets/cli-prompt-quality-card.md) | The canonical CLI prompt-quality card that the `cli-*` cards delegate to before dispatch |
-| [`assets/format-guide-markdown.md`](./assets/format-guide-markdown.md) | Markdown delivery format deep-dive |
-| [`assets/format-guide-json.md`](./assets/format-guide-json.md) | JSON delivery format deep-dive |
-| [`assets/format-guide-yaml.md`](./assets/format-guide-yaml.md) | YAML delivery format deep-dive |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Scenario-based manual validation covering all modes, the checklist pass and the agent contract |
+| [`assets/framework-registry.json`](./assets/framework-registry.json) | Machine-readable registry with slot templates for five of the presets |
+| [`assets/cli-prompt-quality-card.md`](./assets/cli-prompt-quality-card.md) | The card a CLI orchestrator reads before dispatch |
+| [`assets/format-guide-markdown.md`](./assets/format-guide-markdown.md) | Markdown delivery format |
+| [`assets/format-guide-json.md`](./assets/format-guide-json.md) | JSON delivery format |
+| [`assets/format-guide-yaml.md`](./assets/format-guide-yaml.md) | YAML delivery format |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | 28 manual scenarios across seven categories |

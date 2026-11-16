@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes",
   "description": "Phase 2: mode-packet-readmes",
   "keywords": [
     "phase",
     "mode-packet-readmes"
   ],
-  "lastUpdated": "2026-11-16T15:20:14.134Z",
+  "lastUpdated": "2026-11-16T21:47:42.045Z",
   "specId": "002",
   "folderSlug": "mode-packet-readmes",
   "parentChain": [
@@ -13,7 +14,9 @@
     "document-standards",
     "006-readme-template-conformance"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-11-26_20-27__phase-planned.md",
+    "16-11-26_22-47__phase-002-closed.md"
+  ]
 }

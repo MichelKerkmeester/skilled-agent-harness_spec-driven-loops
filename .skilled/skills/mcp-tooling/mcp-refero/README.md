@@ -7,12 +7,12 @@ trigger_phrases:
   - "design reference"
   - "ui reference search"
   - "real app screens"
-version: 1.1.6.0
+version: 1.1.7.0
 ---
 
 # mcp-refero
 
-> Refero holds 150,000+ real shipped app screens. This skill makes that library searchable by your agent as read-only design-reference evidence, pairing with `sk-design-md-generator` for a measured Style Reference (extracted design tokens).
+> Find real shipped app screens, visual styles and user flows as cited design evidence, read-only from your agent.
 
 ---
 
@@ -22,63 +22,54 @@ version: 1.1.6.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Searching Refero for design references: visual styles for direction, real app screens for UI patterns, user flows for multi-step processes and verification of the Code Mode wiring and auth expectations |
-| **Invoke with** | "refero", "refero mcp", "design reference", "ui reference search", "real app screens" or auto-routing on Refero keywords |
-| **Works on** | The remote Refero MCP at `api.refero.design/mcp`, bridged by `npx mcp-remote` through the `refero` manual already registered in this repo's Code Mode. Needs a Refero Pro (or higher) plan and operator authentication. The Free plan has no MCP access |
-| **Produces** | Cited reference evidence: style records, full style references, screen metadata, screenshots and ordered flow steps, all returned to the requesting workflow, usually paired with `sk-design-md-generator` for a measured Style Reference |
-
-### Why This Skill Exists
-
-Refero indexes a large library of real shipped UI. Its official repository counts 150,000+ app screens and 6,000+ user flows, exposed through a paid, read-only MCP. Reaching that library from a coding agent without a contract is risky in specific, documented ways.
-
-- **Doubled callable names.** The callable names double their prefix inside Code Mode (`refero.refero_refero_<tool>`). Two independent research lineages got that detail wrong by derivation. Only live evidence settled it, so discovery confirmation is mandatory.
-- **Plan gating.** Access is plan-gated. The Free tier has no MCP at all.
-- **Authentication.** Unauthenticated calls return HTTP 401, so an agent that guesses burns a round trip and then misreports the failure.
-- **Stale surfaces.** Stale extractions of an older tool surface still circulate: four-tool lists, `_tool` names, numeric screen IDs and `limit`/`offset` paging. Calling them fails.
-
-The biggest risk is not technical. Search results look authoritative. An agent will happily treat a top-ranked reference as a design verdict. This packet wraps the wiring, the eight-tool contract, the funnel discipline and the hard boundary that this transport supplies evidence, never a taste verdict; a measured Style Reference (extracted design tokens) comes from `sk-design-md-generator`. The agent always knows what it can call, what it can claim and what it must hand off.
+| **Use it for** | Visual styles for a direction, real screens for a UI pattern, flows for a multi-step process and a wiring check |
+| **Invoke with** | "refero", "refero mcp", "design reference", "ui reference search", "real app screens" or hub routing on a Refero signal |
+| **Works on** | The hosted Refero MCP at `api.refero.design/mcp`, bridged from the registered `refero` manual on a Pro plan or higher |
+| **Produces** | Cited style records, screen metadata, screenshots and ordered flow steps, returned to the requesting workflow |
 
 ### What It Does
 
-The packet is a TRANSPORT under the `mcp-tooling` hub, with `packetKind: transport` and `mutatesWorkspace: false`. It verifies the existing `refero` Code Mode manual, discovers and confirms the live callables and runs the read-only research funnel: styles first for visual direction, screens for concrete UI patterns, flows for multi-step processes, with metadata-first ordering and images last. Every read happens against the external Refero service. Nothing in this repo changes. The allowed tool surface is Read, Bash, Grep, Glob and Code Mode calls only.
+The packet is a read-only transport in the `mcp-tooling` hub, declared `packetKind: transport` with `mutatesWorkspace: false`. It reaches the hosted Refero MCP through Code Mode and searches shipped UI in three layers. Styles answer visual direction. Screens answer a concrete pattern. Flows answer a multi-step process. Start with [the doctor script](./scripts/doctor.sh), confirm the callable with `tool_info` and run the search through `call_tool_chain`. Every read happens against the external service, so nothing in this repo changes.
 
-Whenever the retrieved evidence feeds a design decision, pair with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). This packet supplies IDs, metadata, images and source-backed facts. Its output can never satisfy a taste, accessibility, responsiveness or readiness gate by itself.
+It returns cited evidence, never a taste verdict. Any design-affecting use pairs `sk-design-md-generator` for a measured Style Reference taken from a live site's real CSS.
 
-This is the hub's second transport, a simpler peer of `mcp-figma`: MCP-only, read-only-only, no CLI machinery and no mutating or destructive gating taxonomy, because the provider surface itself is read-only.
+### Why This Skill Exists
 
-### The Refero Tool Surface
+Refero search results look authoritative, so an agent will treat a top-ranked reference as a design verdict unless the packet says otherwise. The wiring adds two traps. Code Mode doubles the callable prefix. Stale extractions of an older tool surface also circulate with `_tool` names, numeric screen IDs and `limit`/`offset` paging. This packet records the contract, the auth gate and the read-only boundary that stop an agent from guessing.
 
-| Layer | Tools | What the skill operates |
+### The Eight-Tool Surface
+
+| Layer | Tools | What you can operate |
 |---|---|---|
-| **Styles** | `refero_search_styles`, `refero_get_style` | visual direction for web marketing and product pages |
+| **Styles** | `refero_search_styles`, `refero_get_style` | visual direction from web marketing and product pages |
 | **Screens** | `refero_search_screens`, `refero_get_screen`, `refero_get_similar_screens`, `refero_get_screen_image` | concrete UI patterns for web and iOS |
-| **Flows** | `refero_search_flows`, `refero_get_flow` | multi-step interactions with ordered step goals, actions and system responses |
+| **Flows** | `refero_search_flows`, `refero_get_flow` | multi-step processes with ordered step goals, actions and system responses |
 
-Styles and screens use UUID strings. Flows use numeric IDs. The two typings are never interchangeable. "Apps" and "elements" are query facets inspected through `site` and `ui_elements` metadata, not tool families. The full contract lives in [`references/tool-surface.md`](./references/tool-surface.md).
+Styles and screens use UUID strings. Flows use numeric IDs. The two typings never mix. "Apps" and "elements" are query facets read through `site` and `ui_elements` metadata, not tool families. The full contract lives in [the tool-surface reference](./references/tool-surface.md).
 
 ---
 
 ## 2. QUICK START
 
-The callable names must be confirmed live with `tool_info` before use. Live calls need an authenticated Pro (or higher) account.
+The wiring check is read-only. Live calls need a Pro account and operator-completed OAuth.
 
-**Step 1: Verify the wiring (read-only).**
+**Step 1: Check the wiring.**
 
 ```bash
 bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh
 ```
 
-The script confirms node and npx, greps the `refero` manual in `.utcp_config.json` (never edits it) and prints the auth expectations. With `REFERO_DOCTOR_LIVE=1` it adds one unauthenticated endpoint probe. The healthy result is HTTP 401, because access requires auth.
+Expected output: exit 0 with `OK    'refero' manual registered in .utcp_config.json` and `OK    Bridge shape present: npx mcp-remote -> https://api.refero.design/mcp`. A Node runtime of 25 or newer adds a WARN line. The doctor is report-only, so read its WARN and ERR lines.
 
-**Step 2: Discover and confirm the callables (mandatory).**
+**Step 2: Confirm the callable.**
 
 ```typescript
 const info = await tool_info({ tool_name: "refero.refero_refero_search_styles" })
 ```
 
-Expect a live schema for the doubled-prefix callable. Fail closed when the eight documented tools are missing, renamed, expanded or otherwise drifted.
+Expected result: a schema for `refero.refero_refero_search_styles`. Discovery works before OAuth. Fail closed if the eight documented tools are missing, renamed, expanded or otherwise changed.
 
-**Step 3: Run the funnel, styles first, metadata first.**
+**Step 3: Run a search, metadata first.**
 
 ```typescript
 call_tool_chain({
@@ -94,41 +85,49 @@ call_tool_chain({
 })
 ```
 
-Expect the record count and the first style URL, then the full style record for citation. Style results come first for visual direction. Screens cover concrete UI patterns. Flows cover multi-step processes. Fetch an image only when metadata cannot answer the question.
+Expected result: `{ count, first, full }`, where `count` is the number of style records, `first` is the first style URL and `full` is the full style record. The call runs synchronously in the chain body, with no top-level `await`.
 
-**Step 4: Pair with the measured Style Reference.**
+**Step 4: Cite the evidence and pair when needed.**
 
-Any design-affecting use pairs with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). Cite styles by `record.url` and screens by `record.refero_url`.
+Cite styles by `record.url` and screens by `record.refero_url`. When the work also needs a measured Style Reference of extracted design tokens, pair `sk-design-md-generator`.
 
 ---
 
 ## 3. HOW IT WORKS
 
+A request arrives as a design-reference question. The agent reads the wiring state, confirms the callable in the live session and then searches one layer at a time. Metadata is compared before any detail is fetched. A screenshot is the last request. Every record used is cited by its source URL.
+
+```mermaid
+flowchart TD
+  Request["Design-reference request"] --> Doctor["doctor.sh reads the manual state"]
+  Doctor --> Confirm["tool_info confirms the callable"]
+  Confirm --> Funnel["styles, then screens, then flows"]
+  Funnel --> Cite["cited evidence by url or refero_url"]
+```
+
 ### The Research Funnel
 
-Every request runs the same read order. Styles come first because they carry visual direction. Screens follow for concrete UI patterns. Flows run last because they show the whole interaction. Metadata is read before images. A screenshot is fetched only when the metadata cannot answer the question. Sparse flow reconstructions are labeled inference. Unknown response fields are preserved rather than dropped.
+Styles come first because they carry visual direction. Search three to five semantic angles, compare the metadata and fetch `refero_get_style` only for shortlisted UUIDs. Full styles run about 10-15k characters each, so keep a batch to 3-4. Screens follow for a concrete pattern, with the required `platform` of `web` or `ios`. Flows come last for a multi-step process. `related_queries` widens a sparse result. When a flow is reconstructed from screens, the packet labels it inference.
+
+A screenshot is the last step. `thumbnail` comes before `full`. Unknown response fields are preserved because the provider says fields can grow.
 
 ### The Doubled-Prefix Callable
 
-Code Mode names calls `{manual}.{manual}_{tool}`. Every Refero tool is already named `refero_*`, so the callable form doubles the prefix: `refero.refero_refero_search_styles(...)`.
+Code Mode names a call `{manual}.{manual}_{tool}`. The manual is `refero` and every Refero tool is already named `refero_*`, so the callable doubles the prefix: `refero.refero_refero_search_styles(...)`. The dotted discovery name is `refero.refero.refero_<tool>`.
 
-- **Evidence.** Live discovery on 2026-07-16 (`references/discovery-fixture-2026-07-16.json`) settled the naming conflict in the research record. All eight tools list pre-auth under the dotted doubled registry names `refero.refero.refero_<tool>`, and the fixture's `Access as:` line confirms the doubled TypeScript callable.
-- **Rule.** The rule stays discovery-first: re-confirm the exact callable with `tool_info` per session and fail closed on drift.
-- **Call style.** Calls run synchronously inside the `call_tool_chain` body, with no top-level `await`.
+The 2026-07-16 discovery fixture records all eight tools under those dotted names, listed before OAuth. The fixture records the surface as it stood on that date, so discovery stays a per-session step. Confirm the exact callable with `tool_info` before first use and fail closed on catalog drift.
 
 ### Wiring And Authentication
 
-The `refero` manual is already registered in `.utcp_config.json` (`npx -y mcp-remote https://api.refero.design/mcp`, stdio, empty env). The packet verifies it read-only and never edits it. The `mcp-remote` bridge is HTTP-first, with SSE fallback only after a 404. It stays intentionally unpinned.
+The `refero` manual is already registered in `.utcp_config.json`. It launches `npx -y mcp-remote https://api.refero.design/mcp` over stdio with an empty `env`. Code Mode owns that process. Verify the entry read-only and never edit it. The bridge is HTTP-first with SSE fallback only after a 404. `mcp-remote` stays unpinned.
 
-Authentication is operator-only. The default is a browser OAuth flow whose state persists under `~/.mcp-auth`. A documented env-backed Bearer header exists as an alternative that never enters the base manual. An unauthenticated probe observes HTTP 401. End-to-end OAuth through this bridge is Inferred, not verified. The packet reports it that way.
+Authentication is operator-only. First use opens browser OAuth with a localhost callback on port 3334 by default and a 30-second timeout, then keeps the state under `~/.mcp-auth`. A documented Bearer header exists as an alternative in [the manual asset](./assets/utcp-refero-manual.md) and never enters the base manual. An unauthenticated call returns HTTP 401. End-to-end OAuth through this bridge is Inferred, so the packet reports it that way.
 
-Plan gating is hard. Free has no MCP access at all. Pro carries 8,000 tool calls per month. No finer-grained rate or retry contract is published, so the packet never invents one.
+Plan gating is hard. The Free plan has no MCP access. Pro carries 8,000 tool calls per month. No short-window limit or retry contract is published. Code Mode must run on Node 24. On Node 25 and newer the doctor warns that `call_tool_chain` is known to crash, because isolated-vm has no Node 25 build.
 
 ### The Judgment Boundary
 
-The transport allows breadth while researching. You can compare multiple styles, multiple screens, multiple flows and their metadata before narrowing. But design-affecting use pairs with `sk-design-md-generator` for a measured Style Reference (extracted design tokens); the transport shows no chooser, copies nothing, and never averages strong references into a generic middle.
-
-A transport response is untrusted reference evidence. Search rank is not taste. Similarity is not approval. No taste, accessibility, responsiveness or readiness verdict ever comes from this packet.
+Breadth is fine while you research. Compare several records and their metadata before you narrow. Design-affecting use is different. It pairs `sk-design-md-generator` for a measured Style Reference taken from a live site's real CSS, shows no chooser and copies nothing. Search rank is not taste and similarity is not approval. No taste, accessibility, responsiveness or readiness verdict comes from this packet.
 
 ---
 
@@ -136,74 +135,77 @@ A transport response is untrusted reference evidence. Search rank is not taste. 
 
 ### When To Use This Skill
 
-Reach for this packet when you want Refero evidence: visual styles for a direction, real app screens for a pattern or state, user flows for a multi-step process or company and domain research through screen and flow metadata. Also reach for it when the `refero` wiring or its auth expectations need verification.
+Reach for this packet when you want Refero evidence: a visual style for a direction, a real screen for a pattern or state, a flow for a multi-step process or company and domain research through screen and flow metadata. Reach for it too when the `refero` wiring or its auth state needs a read-only report.
 
-Skip it when the work is the design judgment itself; this packet stays the transport and only supplies reference evidence. Skip it for Mobbin-based app research (`mcp-mobbin`, the sibling Mobbin transport), for browser automation and previews (`mcp-chrome-devtools`), for Figma work (`mcp-figma`) and for generic app coding (`sk-code`). Never use it to change files. The allowed tool surface is Read, Bash, Grep, Glob and Code Mode calls only.
+Skip it when the work is the design judgment itself. Skip Mobbin research for `mcp-mobbin`, Figma work for `mcp-figma`, browser automation and previews for `mcp-chrome-devtools` and generic app coding for `sk-code`. Never use it to change files. The allowed surface is Read, Bash, Grep, Glob and the Code Mode call.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-design-md-generator` | The design pairing. Every design-affecting use pairs with it for a measured Style Reference: it extracts a live website's real CSS into named design tokens, a type scale, and components (a Style Reference DESIGN.md). This packet is the transport for shipped-UI evidence, that skill measures real tokens. |
-| `mcp-code-mode` | The substrate. Manuals, `{manual}.{manual}_{tool}` naming, prefixed env vars, discovery and error-envelope discipline all come from Code Mode. |
-| `mcp-figma` | The sibling Figma transport in this hub, CLI-primary with an optional MCP. No surface overlap with Refero. |
+| `sk-design-md-generator` | The measured-extraction companion. It turns a live website's real CSS into a Style Reference DESIGN.md of named design tokens. This packet retrieves cited shipped-UI evidence. |
+| `mcp-code-mode` | The substrate. Manuals, `{manual}.{manual}_{tool}` naming, discovery and the error envelope all come from Code Mode. |
+| `mcp-mobbin` | The sibling transport for Mobbin research, covering real app screens, flows and website sections. This packet covers web styles, plus screens and flows from web or iOS. |
+| `mcp-figma` | Figma Desktop work: component renders, token exports and explicit-path local exports. No surface overlap with Refero. |
 | `mcp-chrome-devtools` | Browser inspection and preview, never a design-reference search surface. |
-| `sk-code` | Owns adapting any resulting design decision into application code and verifying it. |
+| `sk-code` | Owns adapting a design decision into application code and verifying it. |
 
 ---
 
 ## 5. TROUBLESHOOTING
 
-> Full detail for each failure mode lives in [`references/troubleshooting.md`](./references/troubleshooting.md).
+> Full symptom, cause and fix detail lives in [the troubleshooting reference](./references/troubleshooting.md).
 
 | What you see | Why | Fix |
 |---|---|---|
-| HTTP 401 on any call | The endpoint requires authentication. The empty manual `env` is not anonymous access | Operator-only: complete browser OAuth on a Pro (or higher) account or wire the documented Bearer alternative. The agent surfaces the step and waits |
-| Access denied on a Free account | Free has no MCP access at all, a denial rather than a reduced tool set | Report the entitlement denial verbatim and stop |
-| `refero.*` tools do not resolve | Manual not loaded at Code Mode startup or OAuth incomplete | Reconnect Code Mode. Verify the manual with `scripts/doctor.sh`. Escalate auth to the operator |
-| `refero.refero_search_styles` not found | Single-prefix name. The convention doubles the prefix for tools already named `refero_*` | Use `refero.refero_refero_<tool>(...)` and confirm with `tool_info` first |
-| `-32000 Connection closed` on every call | Code Mode running on Node 25, which crashes isolated-vm with SIGSEGV | Operator-side: run Code Mode on Node 24 |
-| A large detail batch fails | Full styles run about 10-15k chars each | Retry with fewer IDs, 3-4 styles per batch |
+| HTTP 401 on every call | The endpoint requires authentication. The empty manual `env` is not anonymous access | Operator only: complete browser OAuth on a Pro (or higher) account or wire the documented Bearer alternative. The agent surfaces the step and waits |
+| Access denied on a Free account | The Free plan has no MCP access at all, so this is a denial rather than a smaller tool list | Report the entitlement denial verbatim and stop |
+| `refero.*` tools do not resolve | The manual was not loaded at Code Mode startup or OAuth is incomplete | Reconnect Code Mode in a fresh session, verify the manual with the doctor script and escalate auth to the operator |
+| `refero.refero_search_styles` not found | A single-prefix name was used. The convention doubles the prefix for tools already named `refero_*` | Use `refero.refero_refero_<tool>(...)` and confirm the exact callable with `tool_info` first |
+| `-32000 Connection closed` on every call | Code Mode runs on Node 25 or newer, where isolated-vm has no build and `call_tool_chain` crashes | Operator side: run Code Mode on Node 24 |
+| A `get_style` or `get_screen` batch fails | Full styles run about 10-15k characters each, so a large batch is too big | Retry with fewer IDs, 3-4 styles per batch |
+| `await is only valid in async functions` | The chain body contains a top-level `await` | Call synchronously inside the body, with no `await` |
 | 429 or quota exhaustion | Pro is 8,000 calls per month. No short-window limit is published | Relay the provider's message verbatim. Never invent a backoff schedule |
+| Discovery shows missing or extra tools | The provider surface drifted from the documented eight-tool contract | Fail closed, report the drift and stop. A changed surface needs a reviewed packet update |
 
 ---
 
 ## 6. FAQ
 
-**Q: Do I need a paid Refero account?**
+### Do I need a paid Refero account?
 
-A: Yes, for any live call. The Free plan has no MCP access at all, so the answer is a denial rather than a smaller tool list. Pro is the first tier with MCP and carries a published quota of 8,000 tool calls per month.
+Yes, for any live call. The Free plan has no MCP access at all, so the answer is a denial rather than a smaller tool list. Pro is the first tier with MCP and carries a published quota of 8,000 tool calls per month.
 
-**Q: Why is the callable prefix doubled?**
+### Why is the callable prefix doubled?
 
-A: Code Mode names calls `{manual}.{manual}_{tool}`. The manual is named `refero` and every Refero tool is already named `refero_*`, so the callable becomes `refero.refero_refero_<tool>`. Live registry evidence confirmed this on 2026-07-16 (`references/discovery-fixture-2026-07-16.json`): discovery lists the dotted `refero.refero.refero_<tool>` names. The doubled TypeScript callable is real. The packet still requires a per-session `tool_info` confirmation before first use because provider surfaces drift.
+Code Mode names a call `{manual}.{manual}_{tool}`. The manual is `refero` and every Refero tool already starts with `refero_`, so the callable is `refero.refero_refero_<tool>`. The dotted name `refero.refero.refero_<tool>` is what discovery returns. The 2026-07-16 fixture records all eight. Confirm the name with `tool_info` in each session, because provider surfaces drift.
 
-**Q: Does OAuth work end to end?**
+### Does OAuth work end to end?
 
-A: Unverified. An unauthenticated probe observed HTTP 401 with OAuth metadata. The bridge's OAuth machinery is documented upstream, but no operator has completed the flow in this repo's record, so the packet reports end-to-end OAuth as Inferred. Completing it is an operator-only step.
+End-to-end OAuth through this bridge is Inferred, not verified. The bridge documents its OAuth flow and an unauthenticated probe returned HTTP 401 with OAuth metadata. Completing that authorization is an operator-only step. The packet never handles the credentials.
 
-**Q: Can this packet change my files or the Refero config?**
+### Can this packet change my files or the manual?
 
-A: No. It is a transport with `mutatesWorkspace: false`. The allowed surface is Read, Bash, Grep, Glob and Code Mode calls only. The `refero` manual in `.utcp_config.json` is validated as-is and never edited. Auth state under `~/.mcp-auth` is operator-owned and never touched.
+No. It is a transport with `mutatesWorkspace: false`. It cannot write or edit files. It cannot dispatch a task. The `refero` manual in `.utcp_config.json` is verified as-is. Auth state under `~/.mcp-auth` is operator-owned and never touched.
 
-**Q: How does this relate to `sk-design-md-generator` and the official Refero Skill?**
+### How does this relate to `sk-design-md-generator`?
 
-A: `sk-design-md-generator` provides a measured Style Reference (extracted design tokens from a live site) and pairs with this packet for any design-affecting use. This packet only carries shipped-UI reference evidence. The official `referodesign/refero_skill` repository is a design methodology skill and a peer of `sk-design-md-generator`. This packet deliberately does not vendor or duplicate it.
+`sk-design-md-generator` extracts a live website's real CSS into a measured Style Reference of named design tokens. This packet carries shipped-UI reference evidence and hands any design decision to that measurement step. The official Refero skill repository is a design methodology peer of `sk-design-md-generator`. This packet does not vendor it.
 
 ---
 
 ## 7. VERIFICATION
 
-Live-call checks require an authenticated Pro (or higher) account and are operator-gated. SKIP with a documented blocker is a valid result for those.
+The live-call checks need a Pro account and operator OAuth. A SKIP with a documented blocker is a valid result for those.
 
 | Check | How to run it |
 |---|---|
-| Skill package | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-refero --check` reports zero errors |
-| SKILL.md frontmatter | `head -8 .skilled/skills/mcp-tooling/mcp-refero/SKILL.md` shows the `name`, `description`, `version` and `user-invocable` fields |
-| Install posture | `bash .skilled/skills/mcp-tooling/mcp-refero/scripts/install.sh` exits 0, verify-only with nothing installed or modified |
-| Wiring presence | `bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports the `refero` manual registered (read-only grep) |
-| Endpoint reachability | `REFERO_DOCTOR_LIVE=1 bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports HTTP 401, auth required as documented |
-| Callable confirmation | Inside Code Mode: `tool_info({ tool_name: "refero.refero_refero_search_styles" })` returns a schema, works pre-auth (confirmed 2026-07-16 in `references/discovery-fixture-2026-07-16.json`). Authenticated calls still need operator OAuth |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-refero/README.md` prints `✅ VALID` and `Total issues: 0` |
+| Skill package | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-refero --check` prints `Result: PASS` |
+| Runtime and manual | `bash .skilled/skills/mcp-tooling/mcp-refero/scripts/install.sh` exits 0 with `OK    Posture verified.` |
+| Wiring state | `bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` prints `OK    'refero' manual registered in .utcp_config.json` and the bridge shape. The doctor is report-only, so read its WARN and ERR lines |
+| Endpoint reachability | `REFERO_DOCTOR_LIVE=1 bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports HTTP 401 on a healthy unauthenticated network, the documented auth requirement |
+| Callable confirmation | In Code Mode, `tool_info({ tool_name: "refero.refero_refero_search_styles" })` returns a schema. Discovery works before OAuth |
 
 ---
 
@@ -214,13 +216,14 @@ Live-call checks require an authenticated Pro (or higher) account and are operat
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES and references |
 | [`ROUTER.md#3-machine-router`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Verify-only setup: the registered manual, the Pro-plan requirement and the operator-only OAuth step |
-| [`references/tool-surface.md`](./references/tool-surface.md) | The eight-tool contract, ID typing, the research funnel, plan gating and the deprecated legacy surface |
-| [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the mcp-remote bridge, OAuth/Bearer, the doubled-prefix rule and discovery |
+| [`references/tool-surface.md`](./references/tool-surface.md) | The eight-tool contract, ID typing, the research funnel and plan gating |
+| [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the `mcp-remote` bridge, OAuth and Bearer auth, naming and discovery |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Full failure-mode table |
+| [`references/discovery-fixture-2026-07-16.json`](./references/discovery-fixture-2026-07-16.json) | The dated pre-auth discovery fixture the callable baseline comes from |
 | [`assets/utcp-refero-manual.md`](./assets/utcp-refero-manual.md) | The verified manual snapshot and the Bearer alternative, verbatim |
 | [`examples/README.md`](./examples/README.md) | Worked Code Mode walkthroughs: the full funnel, a metadata-first lookup and a screen-image fetch |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory by layer (styles, screens, flows) with one per-tool leaf per documented tool |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios (read-only, SKIP-allowed for paid/OAuth steps) |
-| [`scripts/README.md`](./scripts/README.md) | What each helper script checks and the output it prints: verify-only posture and report-only diagnostics |
-| [`mcp-servers/refero-mcp/README.md`](./mcp-servers/refero-mcp/README.md) | The remote Refero MCP registration: the `mcp-remote` bridge, discovery, auth and plan posture |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory by layer, with one leaf per documented tool |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios, with SKIP allowed for paid or OAuth-gated steps |
+| [`scripts/README.md`](./scripts/README.md) | What each helper script checks and the output it prints |
+| [`mcp-servers/refero-mcp/README.md`](./mcp-servers/refero-mcp/README.md) | The remote server registration: the bridge, discovery, auth and plan posture |
 | [Skills Library](../../README.txt) | The skill catalog and routing front door |

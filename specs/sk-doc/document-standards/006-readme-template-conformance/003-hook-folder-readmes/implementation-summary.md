@@ -8,17 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes"
-    last_updated_at: "2026-11-16T15:20:15Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-16T19:27:04Z"
+    last_updated_by: "generate-context"
+    recent_action: "Planned the phase and wrote its goal"
+    next_safe_action: "Run /speckit:implement :auto on this phase after the previous phase is pushed"
+    packet_purpose: "Purpose: Each of the 26 hook folder READMEs follows the hook template's folder scaffold, passes the validator and the voice scan with zero hard blockers, and states only runtime rows, paths and switches the code confirms."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/plan.md"
+      - "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-hook-folder-readmes"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "256db329-443e-4697-8e43-b3b7f7c74ec6"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-16T19:27:04Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 10
     open_questions: []
     answered_questions: []
 ---

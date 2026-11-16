@@ -46,7 +46,7 @@ Frozen choices. Changing one is an amendment.
 | D3 | 006 runs on the shared conversation runner from `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` and builds no runner. |
 | D4 | Live tests run in a scratch project and never write this repository's packets or decision-capture state. |
 | D5 | A runtime adapter is registered only after a live probe shows the answers. A runtime with no answer surface is recorded with evidence, never skipped. |
-| D6 | Implementation workers run `gpt-6-luna` xhigh, tier fast, via cli-codex. On quota exhaustion they use `llmgateway/deepseek-v4.1-flash-1017` max via cli-pi. Luna never runs through a gateway. |
+| D6 | Implementation workers run `gpt-6-luna` xhigh, tier fast, via cli-codex. On quota exhaustion they use `deepseek-v4-flash-max` via cli-devin. Luna never runs through a gateway. |
 
 <!-- /ANCHOR:directive -->
 
@@ -117,6 +117,8 @@ and findings belong here.
 | 011 LEVEL_MATCH writer-only record fix; D1 exception added at operator answer | done | extended 87/87, upgrade-level 16/16, session-handover 001 LEVEL_MATCH warnings 4 to 0 |
 | 012 session-scoped sweep and shared worktree state | done | probe: own session from both checkouts, one root, pending 1 to 0; hook suites 135/135 |
 | 013 session-signal sweeps | done | live probes: Codex, OpenCode, Pi read session A, DSH signal maps; suites 140/140 |
+| 014 Devin and Vibe lock-based session choice | done | probes: caller lock unique in ancestry; Vibe old B new A; Devin queue printed without transcript; suites 143/143 |
+| 015 Devin message-store reader; D6 fallback amended to cli-devin | done | real session recovers Blue under hook key, 0 when hook queued; suites 144/144 |
 
 ### Deviations and findings
 

@@ -7,12 +7,12 @@ trigger_phrases:
   - "aside cli"
   - "aside mcp"
   - "browser agent task"
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # mcp-aside-devtools
 
-> Turn browser work into agent work with the Aside AI browser: natural-language tasks that finish goals and a deterministic JavaScript REPL for evidence, with an MCP path for Code Mode composition.
+> Turn browser work into agent work: describe the outcome and let the Aside browser finish it. Or run deterministic JavaScript steps that leave evidence you can verify.
 
 ---
 
@@ -20,102 +20,113 @@ version: 1.1.5.0
 
 ### At a Glance
 
-| Aspect | What you get |
+| Aspect | What it gives you |
 |---|---|
-| **Use it for** | Goal-driven browser-agent tasks and deterministic browser steps (tabs, snapshots, screenshots and PDFs), plus MCP-composed browser work from an agent |
-| **Invoke with** | "aside", "aside browser", "AI browser automation", "aside cli", "aside mcp" or auto-routing on browser-agent keywords |
-| **Works on** | macOS (Darwin) arm64/x64 only. The official installer rejects Linux and Windows |
-| **Produces** | Agent-task outcomes, REPL evaluation results, screenshots, PDFs and snapshots, plus discovered MCP tool fixtures |
-
-### Why This Skill Exists
-
-Browser work from an agent splits into two shapes. One is outcome-oriented: multi-step goals like `"sign in, compare, download"`. The other is deterministic evidence: `"open this tab, snapshot it, screenshot it"`. Aside serves both from one binary, a natural-language browser agent and a Playwright-compatible JavaScript REPL, plus a local MCP server for composition with other tools. Picking the wrong lane wastes tokens. Worse, it hands a deterministic proof job to a nondeterministic agent. This skill routes between the lanes and holds the safety lines Aside's identity and permission model requires.
+| **Use it for** | Browser goals an agent can finish and deterministic browser steps that leave checkable evidence |
+| **Invoke with** | "aside", "aside browser", "AI browser automation", "aside cli", "aside mcp" or the `mcp-tooling` hub's mode signal |
+| **Works on** | macOS arm64 and x64 only. The official installer rejects Linux and Windows |
+| **Produces** | Task answers, REPL results, screenshots, PDFs and snapshots, plus refreshed MCP inventory fixtures |
 
 ### What It Does
 
-The `aside` CLI is the primary surface. `aside "<prompt>"` and `aside exec` run agent tasks under a signed-in account with pause and resume approval gates. `aside repl "<JavaScript>"` runs deterministic Playwright-style steps in a persistent context. The Aside MCP server (`aside mcp`, local stdio) is the Code Mode fallback for chaining browser work with other MCP tools. Its live-probed inventory is exactly one `repl` tool on the pinned version, so the skill mandates runtime rediscovery instead of hardcoded tool names.
+This skill turns browser work into an agent-run goal or a deterministic step you can check. The `aside` CLI is the surface you run. `aside "<task>"` and `aside exec` hand a goal to the browser agent under a signed-in account. `aside repl "<JavaScript>"` runs Playwright steps in a persistent context. `aside mcp` starts a local stdio server that Code Mode reaches through the registered `aside` manual. On version `1.26.626.1517` that server exposed one `repl` tool with `title` and `code` inputs.
 
-The MCP transport belongs to `mcp-code-mode`. This skill consumes Code Mode as a provider. Chrome and Chromium CDP debugging stay with `mcp-chrome-devtools`. Aside has no CDP-domain parity. No dedicated console or network capture contract has been verified.
+The skill routes between these lanes and keeps the account and permission boundaries the product requires. The MCP transport belongs to `mcp-code-mode`. Chrome CDP debugging and HAR export stay with `mcp-chrome-devtools`. Application code that the browser only verifies belongs to `sk-code`.
+
+### Why This Skill Exists
+
+Browser work arrives in two shapes. A goal such as sign in and download wants an agent that decides the steps. A proof step such as open this tab and screenshot it wants a deterministic run you can repeat. Aside serves both from one binary and adds a local MCP server for chaining with other tools. Sending a proof job to the agent lane spends tokens on steps you already know.
 
 ### The Lane Capability Layer
 
 | Capability | What the skill knows how to operate |
 |---|---|
-| **Agent task lane** | multi-step browser goals under a signed-in account, with approval gates and human-only identity boundaries |
-| **Deterministic REPL lane** | Playwright-compatible JavaScript steps in a persistent context, with `openTab`, `snapshot` and `page.screenshot` helpers |
+| **Agent task lane** | multi-step goals under a signed-in account, with approval gates and human-only identity checks |
+| **Deterministic REPL lane** | Playwright JavaScript in a persistent context, with `openTab`, `snapshot`, `page.screenshot` and `page.pdf` helpers |
 | **MCP composition path** | one `repl` tool over local stdio for chaining browser work with other Code Mode tools |
-| **DevTools parity** | console and network events through the `page` API, with no native HAR export and no dedicated capture tools |
-
-### Safety Lines
-
-- One UTCP manual per account and profile, single writer. The parallel-manual strategy is an unresolved research question.
-- No implicit installs or updates.
-- Untrusted-content discipline on every page and tool result.
-- Artifacts verified independently. A screenshot is a non-empty PNG-magic file, not a successful tool response.
+| **DevTools parity** | console and network events through the `page` API, with no native HAR export and no dedicated capture tool |
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Install the CLI (macOS only, operator-invoked).**
+**Step 1: Install the CLI.** The installer is macOS only and operator-invoked.
 
 ```bash
 curl -fsSL https://releases.aside.com/install.sh | bash
 ```
 
-**Step 2: Verify the binary and sign-in state.**
+Expect the binary at `~/.local/bin/aside`. Add `~/.local/bin` to PATH if `command -v aside` finds nothing.
+
+**Step 2: Verify the binary and the account.**
 
 ```bash
 command -v aside
-# Expected: ~/.local/bin/aside (default shim location)
-
 aside --version 2>&1
-# Expected: a version string (e.g. 1.26.626.1517)
-
-aside account list 2>&1
 aside account status 2>&1
-# Expected: at least one account. Built-in models require active sign-in
 ```
 
-**Step 3: Run each lane.**
+Expect a binary path and a version string. The account command prints a signed-in account line that names its profiles. The CLI and MCP observations in this skill are pinned to version `1.26.626.1517`.
+
+**Step 3: Run a lane.**
 
 ```bash
-# Agent task (outcome-oriented)
 aside "Open https://example.com and summarize the page"
-
-# Deterministic REPL (evidence-oriented)
-aside repl "openTab('https://example.com')"
+aside repl "await openTab('https://example.com')"
 ```
+
+The task lane prints the agent's answer. The REPL lane returns without an error and opens a background tab in Aside.
 
 **Step 4: Use the MCP path with Code Mode.**
 
-The `aside` manual is registered in `.utcp_config.json` (dated 2026-07-16, snapshot in [`assets/utcp-aside-manual.md`](./assets/utcp-aside-manual.md)). Live discovery confirmed the callable the same day (fixture: [`references/discovery-fixture-2026-07-16.json`](./references/discovery-fixture-2026-07-16.json)). Discovery lists the registry name `aside.aside.repl` with dots. The TypeScript call inside `call_tool_chain` is `aside.aside_repl(args)`. Re-verify per session because `tools.listChanged` is true:
+Discovery lists the registry name `aside.aside.repl`. The TypeScript callable inside `call_tool_chain` is `aside.aside_repl(args)`. Rediscover per session because `tools.listChanged` is true.
 
 ```typescript
-call_tool_chain(`
+call_tool_chain({ code: `
   const result = await aside.aside_repl({
     title: "Open example.com",
     code: "await openTab('https://example.com'); console.log(await snapshot(page));"
   });
   return result;
-`)
+` })
 ```
+
+The call returns `{ success, result, logs }`. `result` holds the object your code returned and `logs` holds each `console.log` line. A discovered inventory that differs from one `repl` tool means version drift, so run discovery again before you rely on the call.
 
 ---
 
 ## 3. HOW IT WORKS
 
+Browser work enters through the `mcp-tooling` hub mode signal. A weighted intent scorer reads the request text, picks the lane, then loads only the reference files the router maps to that choice.
+
+```mermaid
+flowchart TD
+  Request["Browser request"] --> Route["Weighted intent scoring"]
+  Route --> Task["aside task lane"]
+  Route --> Repl["aside repl lane"]
+  Route --> Mcp["Aside MCP repl via Code Mode"]
+  Task --> Answer["Task answer"]
+  Repl --> Evidence["Screenshot, PDF or snapshot"]
+  Mcp --> Result["Chained tool result"]
+```
+
 ### The Routing Rule
 
-The skill prefers the CLI. Outcome-oriented requests route to the agent-task lane. Deterministic proof requests route to the REPL lane. Composition with other Code Mode tools routes to the MCP path. A weighted intent scorer reads the request text and loads only the reference files relevant to the chosen lane.
+The skill prefers the CLI. A goal with approvals or sign-in routes to the agent-task lane. A deterministic proof step routes to the REPL lane. Work that must chain with other Code Mode tools routes to the MCP path. The router maps five intent domains to reference files and suggests the CLI reference when nothing matches.
 
-### The CLI Paths
+### The CLI Lanes
 
-The agent-task lane (`aside "<task>"`, `aside exec`, `--session <id>` continuation, `--account <id>` selection) covers navigation, DOM inspection, screenshots, downloads, file use, approval requests and password-manager sign-in. MFA/CAPTCHA/vault boundaries stay human-only. The REPL lane (`aside repl`) keeps a persistent JavaScript context with Playwright APIs and helpers such as `openTab(url)`, `snapshot(page)`, `page.screenshot(options)` and `annotatedScreenshot`.
+The agent-task lane covers `aside "<task>"`, `aside exec`, `--session <id>` continuation and `--account <id>` selection. It handles navigation, DOM inspection, screenshots, downloads and password-manager sign-in. MFA, CAPTCHA, vault unlock and approvals stay human-only.
+
+The REPL lane keeps a persistent JavaScript context with Playwright APIs and helpers such as `openTab(url)`, `snapshot(page)`, `page.screenshot(options)` and `page.pdf(options)`. Discovery lists the helper surface but does not exercise the calls, so check each artifact on disk.
 
 ### The MCP Path
 
-`aside mcp` is a client-spawned local stdio process with no credential field. It inherits the logged-in CLI context. On the live-probed version (`1.26.626.1517`, protocol `2024-11-05`) the inventory is exactly one `repl` tool with `title` and `code` inputs and a 120-second timeout. `tools.listChanged: true` makes that inventory version-pinned evidence: rediscover at runtime, always. A fresh MCP process is browser-unbound until a task or profile binding exists. That error is a binding state, not an auth failure.
+`aside mcp` is a client-spawned local stdio process with no credential field. It inherits the signed-in CLI context. The live handshake on `1.26.626.1517` reported protocol `2024-11-05` with `tools.listChanged: true`. `tools/list` returned one `repl` tool with a 120-second call timeout. A fresh process is browser-unbound until a task or profile binding exists. That error is a binding state, not an auth failure.
+
+### Working Beside the User
+
+`openTab(url)` opens a background tab. The user's active tab stays where it was. The page inside the new tab still reports `document.visibilityState` as `visible` and `document.hasFocus()` as `true`, so `page.evaluate` and `page.keyboard.press` work there. Open your own tab for a mutating step and close it with `closeTab(tab)`.
 
 ---
 
@@ -123,15 +134,17 @@ The agent-task lane (`aside "<task>"`, `aside exec`, `--session <id>` continuati
 
 ### When To Use This Skill
 
-Reach for this skill when browser work should run through the Aside AI browser: agent-delegated multi-step goals, deterministic REPL evidence, MCP-composed browser work and Aside-account-backed sessions. Reach for `mcp-chrome-devtools` when the job is imperative CDP debugging or HAR export. Reach for Playwright/Puppeteer/Selenium for cross-browser test frameworks.
+Reach for this skill when a multi-step browser goal should run under a signed-in Aside account. Use it when a deterministic step must leave evidence you can check. Choose it as well when browser work must chain with other Code Mode tools.
+
+Reach for `mcp-chrome-devtools` for CDP debugging or HAR export. Reach for a cross-browser test framework such as Playwright or Selenium when the job is a suite rather than one browser session.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `mcp-code-mode` | Owns the MCP transport. Aside is registered as a Code Mode provider (the `aside` manual) and is called through `call_tool_chain()` after discovery confirmation. |
-| `mcp-chrome-devtools` | Sibling packet for Chrome CDP debugging (`bdg`). Routing discipline is shared. Command surfaces are not. |
-| `sk-code` | Owns application-code standards and tests for the code being verified in the browser. |
+| [`mcp-code-mode`](../../mcp-code-mode/README.md) | Owns the MCP transport. The `aside` manual is a registered provider, called through `call_tool_chain()` after discovery. |
+| [`mcp-chrome-devtools`](../mcp-chrome-devtools/README.md) | Sibling packet for Chrome CDP debugging (`bdg`). Routing discipline is shared. Command surfaces are not. |
+| [`sk-code`](../../sk-code/README.md) | Owns application-code standards and tests for the code the browser verifies. |
 
 ---
 
@@ -139,47 +152,44 @@ Reach for this skill when browser work should run through the Aside AI browser: 
 
 | What you see | Why | Fix |
 |---|---|---|
-| `command not found: aside` | CLI not installed or `~/.local/bin` not on PATH | Run the official curl installer (operator-invoked). Add `~/.local/bin` to PATH |
-| Installer refuses to run | Non-macOS host | macOS (Darwin) arm64/x64 only. No workaround exists |
-| `This task is not bound to a browser profile...` | Fresh MCP process without a task or profile binding | Not an auth error. Binding is undocumented (open question). Escalate with the verbatim error |
-| Built-in models fail after sign-out | The built-in tier fails closed when signed out | Run `aside account use <id>` or re-sign-in. BYO API-key providers keep working |
-| Task pauses mid-run | MFA, CAPTCHA, identity check, vault unlock or approval gate | Human-only boundary. Resume the task after the operator acts |
-| MCP `tools/list` differs from the documented one-tool inventory | Version drift (`listChanged: true`) | Re-run discovery, save a new fixture and re-evaluate the workflow |
+| `command not found: aside` | CLI absent or `~/.local/bin` not on PATH | Run the official installer as an operator. Add `~/.local/bin` to PATH |
+| The installer refuses to run | Host is not macOS | macOS arm64 or x64 only. No workaround |
+| `This task is not bound to a browser profile.` | Fresh MCP process with no task or profile binding | Not an auth error. The binding procedure is undocumented, so report the error verbatim and escalate |
+| Built-in models fail after sign-out | The built-in tier fails closed when signed out | Run `aside account use <id>` or sign in again. BYO API-key providers keep working |
+| A task pauses mid-run | MFA, CAPTCHA, identity check, vault unlock or an approval gate | Act in Aside, then resume the task |
+| `tools/list` differs from one `repl` tool | Version drift under `listChanged: true` | Run discovery again, save a new fixture and re-check the workflow |
 
 ---
 
 ## 6. FAQ
 
-**Q: When do I use the agent-task lane versus the REPL?**
+### When should I use the agent-task lane instead of the REPL?
 
-A: Use `aside "<prompt>"` when the outcome matters more than the steps, such as multi-site work, approvals, autofill sign-in and session continuation. Use `aside repl` when the steps themselves are the deliverable: deterministic, repeatable evidence.
+Use `aside "<prompt>"` when the outcome matters more than the steps, such as multi-site work, approvals, autofill sign-in or session continuation. Use `aside repl` when the steps are the deliverable: repeatable evidence you can check.
 
-**Q: Can I use the MCP path today?**
+### Is the MCP path usable today?
 
-A: Yes. The transport works (`aside mcp` over stdio). The `aside` UTCP manual is registered in `.utcp_config.json` (2026-07-16) and live discovery confirmed the surface the same day (fixture: `references/discovery-fixture-2026-07-16.json`). The registry name is `aside.aside.repl` and the TypeScript callable is `aside.aside_repl(args)`. The inventory is one `repl` tool only. Per-session rediscovery stays mandatory because `tools.listChanged` is true. Actual browser work still needs a profile binding.
+Yes. `aside mcp` speaks stdio and the `aside` manual is registered in `.utcp_config.json`. Discovery lists one tool, registry name `aside.aside.repl`, called in TypeScript as `aside.aside_repl(args)`. Rediscover per session because `tools.listChanged` is true. Browser work still needs a profile binding.
 
-**Q: Does Aside capture console logs or network traffic like `bdg`?**
+### Does Aside capture console logs or network traffic?
 
-A: Yes, through the Playwright `page` API in the repl. The discovery fixture confirms `page.on('console'|'request'|'response', ...)` is available (see the DevTools-parity feature family, `feature-catalog/devtools-parity/console-and-network-capture.md`, scenario ASD-018). Two honest limits: there is no dedicated console or network tool, so you register listeners and collect events yourself. There is also no native HAR export, so you assemble a HAR-equivalent from the events. Live capture needs a bound authorized session, so the scenario stays SKIP-valid until it runs against one.
+You can collect them yourself through the Playwright `page` API in the REPL. Register `page.on('console', ...)` or `page.on('request', ...)` and keep the events you need. There is no dedicated capture tool and no native HAR export. A live capture needs a bound authorized session, so treat the pattern as unconfirmed until it runs against one.
 
-**Q: Can I run parallel Aside sessions like `chrome_devtools_1`/`chrome_devtools_2`?**
+### Can I run parallel Aside sessions?
 
-A: Not under the current posture. Aside has no documented isolation flag. The single-vs-dual manual question is unresolved pending a controlled multi-client isolation test. One manual and one writer per account and profile.
-
-**Q: Which model flag do I pass: `-m provider/model` or `--model`/`--provider`?**
-
-A: Unresolved. Docs examples show `-m provider/model`. The installed help shows separate `--model` and `--provider` flags. Capture `aside --help` for your installed version and follow it.
+Not with any documented isolation. Aside has no isolation flag. Keep one manual and one writer per account and profile. The multi-client isolation test that would settle the question has not run.
 
 ---
 
 ## 7. VERIFICATION
 
-| Check | How to run it |
+| Check | Result |
 |---|---|
-| CLI health | `command -v aside && aside --version 2>&1 && aside account status 2>&1` all pass |
-| Doctor | `bash .skilled/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` exits 0 and reports binary, version, account, MCP handshake state and the registered `aside` manual. A missing manual is an error |
-| MCP handshake | `examples/mcp-handshake-probe.sh` reports the protocol version and the discovered tool list. Expect `repl` on the pinned version and rediscover on yours |
-| Skill package | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-aside-devtools --check` reports 0 errors |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-aside-devtools/README.md` reports `✅ VALID` with zero issues |
+| CLI health | `command -v aside && aside --version 2>&1 && aside account status 2>&1` prints a path, a version string and a signed-in account |
+| Doctor | `bash .skilled/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` prints a ✓, ! or ✗ line per check and exits 1 only when the `aside` manual is missing from `.utcp_config.json` |
+| MCP handshake | `bash .skilled/skills/mcp-tooling/mcp-aside-devtools/examples/mcp-handshake-probe.sh` prints the protocol version and the discovered tools, then prints `Fixture saved: <path>` and a reminder to rediscover |
+| Skill package | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-aside-devtools --check` reports `Result: PASS` and one warning for the JSON fixture under `references/` |
 
 ---
 
@@ -187,21 +197,21 @@ A: Unresolved. Docs examples show `-m provider/model`. The installed help shows 
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the lane-routing prose and the full rule set |
-| [`ROUTER.md#3-machine-router`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install: curl installer, sign-in, permission tiers, MCP posture |
-| [`references/aside-cli-reference.md`](./references/aside-cli-reference.md) | Verified command surface, options, boundary rules |
-| [`references/mcp-wiring.md`](./references/mcp-wiring.md) | MCP transport, handshake, discovery, UTCP registration posture |
-| [`references/session-management.md`](./references/session-management.md) | Three-layer session model, permissions, concurrency |
-| [`references/troubleshooting.md`](./references/troubleshooting.md) | Error taxonomy and recovery sequences |
-| [`references/aside-online-research-2026-07-17.md`](./references/aside-online-research-2026-07-17.md) | Dated online-research refresh: CLI/MCP/REPL corroboration, `mcp.json` wiring, permission model |
-| [`examples/README.md`](./examples/README.md) | Guide to the workflow example scripts |
-| [`scripts/install.sh`](./scripts/install.sh) | Non-interactive macOS installer wrapper with verification |
-| [`scripts/doctor.sh`](./scripts/doctor.sh) | Read-only diagnostics: binary, version, account, MCP handshake, registered manual |
-| [`scripts/README.md`](./scripts/README.md) | Script side-effect boundaries, directory tree and usage notes |
-| [`assets/utcp-aside-manual.md`](./assets/utcp-aside-manual.md) | The registered `aside` manual snapshot and post-registration checklist |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory: five intent domains over three lanes |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual test scenarios across the CLI, REPL, MCP and recovery lanes |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, rules and lane routing |
+| [`ROUTER.md`](./ROUTER.md) | Intent model, resource map and loading levels |
+| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Install, sign-in, permission tiers and MCP wiring |
+| [`references/aside-cli-reference.md`](./references/aside-cli-reference.md) | Command surface, options and boundary rules |
+| [`references/mcp-wiring.md`](./references/mcp-wiring.md) | Transport, handshake, discovery and registration |
+| [`references/session-management.md`](./references/session-management.md) | Session layers, permissions and concurrency |
+| [`references/troubleshooting.md`](./references/troubleshooting.md) | Error taxonomy and recovery |
+| [`references/discovery-fixture-2026-07-16.json`](./references/discovery-fixture-2026-07-16.json) | Recorded discovery output that pins the one-tool inventory |
+| [`assets/utcp-aside-manual.md`](./assets/utcp-aside-manual.md) | Registered `aside` manual snapshot |
+| [`examples/README.md`](./examples/README.md) | Runnable lane scripts and their exit codes |
+| [`scripts/doctor.sh`](./scripts/doctor.sh) | Read-only diagnostics |
+| [`scripts/install.sh`](./scripts/install.sh) | Operator-invoked install wrapper |
+| [`scripts/README.md`](./scripts/README.md) | Script side effects and usage |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory over the five intent domains |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios across the lanes |
+| [`mcp-servers/aside-cli/README.md`](./mcp-servers/aside-cli/README.md) | CLI install pointer |
+| [`mcp-servers/aside-mcp/README.md`](./mcp-servers/aside-mcp/README.md) | MCP registration pointer |
 | [`changelog/`](./changelog/) | Versioned release history |
-| [`mcp-servers/aside-cli/README.md`](./mcp-servers/aside-cli/README.md) | CLI install pointer package |
-| [`mcp-servers/aside-mcp/README.md`](./mcp-servers/aside-mcp/README.md) | MCP registration package (registered state) |

@@ -8,12 +8,12 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.18.0
+version: 1.8.19.0
 ---
 
 # sk-git
 
-> Move from a clean workspace to a merged pull request, with numbered worktrees and deterministic commit subjects at each step.
+> Go from a clean workspace to a merged pull request, where branch numbers and commit wording follow rules you never have to remember.
 
 ---
 
@@ -23,167 +23,90 @@ version: 1.8.18.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Git workflow from a clean workspace to a merged PR for AI sessions and operators sharing one repository: worktree setup, commit hygiene, completion and cleanup |
-| **Invoke with** | Git-workflow keywords ("commit", "worktree", "pull request", "finish work") through the skill advisor, plus a direct `SKILL.md` read path |
-| **Works on** | Any repository with numbered worktrees, staged changes ready to commit or finished work ready to integrate |
-| **Produces** | Numbered worktrees and branches, deterministic Conventional Commit subjects, merged or closed PRs with cleanup |
-| **Commit identity** | Every commit ends with a trailer paragraph carrying a packet `Spec:` line and a stamped seven-digit `Commit-Id:` ordinal |
-
-### Why This Skill Exists
-
-A shared repository with many AI sessions fails quietly unless the git workflow has rules. Branch names drift, numbers collide, commits become unreproducible and cleanup stalls. sk-git exists to hold those rules so a fleet of sessions can share one repository without stepping on each other.
+| **Use it for** | Git work in a shared repository, from setup to a merged or discarded branch |
+| **Invoke with** | Git keywords: worktree, commit, pull request, merge, finish |
+| **Works on** | A cloned repository, a staged change or finished work |
+| **Produces** | A numbered branch, a reproducible commit subject and a clean checkout |
 
 ### What It Does
 
-sk-git runs the git workflow in three phases, from workspace setup through commit hygiene to completion.
+sk-git holds the rules a repository needs when several sessions work in it at once. It asks which workspace you want before it creates anything. Then it names the branch from a locked counter, shapes the commit subject from the staged paths and closes the work with a merge, a pull request or a discard. You keep the decisions a script cannot own. The mechanical parts stop drifting.
 
-- Setup creates an isolated worktree or keeps the current branch.
-- Commit hygiene turns staged changes into deterministic Conventional Commit subjects with artifact filtering.
-- Completion opens a PR, merges or discards, then cleans up.
-- A smart router loads only the reference for the phase you are in, so the agent reads focused guidance instead of the whole library.
-
-What makes sk-git different from raw git is the rule set it holds:
-
-- Branch names carry their owner.
-- Numbers come from a clone-wide allocator under a lock, never a hand-count.
-- The skill asks before it touches your workspace.
-- Commits are byte-for-byte reproducible from the same diff.
-
-None of these are git defaults. Each rule exists to stop a specific quiet failure before it compounds.
+The runtime surface is `SKILL.md`. The router beside it decides which reference file loads for the request in front of you.
 
 ### What It Does Not Own
 
-sk-git does not write code or manage spec folders. `sk-code` owns the code that gets committed. `system-spec-kit` owns spec folders with their memory and continuity layers. sk-git commits and integrates that work without claiming it.
+sk-git does not write the change or file the paperwork around it. `sk-code` owns the code and its tests. `system-spec-kit` owns the spec folder and the continuity notes inside it. `sk-doc` owns documentation quality, PR wording and release notes.
 
-### The Git Workspace Safety Layer
+### The Numbered Workspace Contract
 
-| Feature | What the skill operates |
+Two flat namespaces replace a hand-picked branch name. `worktrees/` and `branches/` each count on their own and never reuse a number.
+
+| Capability | What the skill does |
 |---|---|
-| **Numbered worktree grammar** | Worktree-backed branches use `worktrees/NNN-slug` with the directory `.worktrees/NNN-slug`. Dedicated branches without a worktree use `branches/NNN-slug` |
-| **Per-namespace number allocator** | Reserves the next `NNN` under a lock per namespace (`worktrees/` and `branches/` each number independently), reading that namespace's high-water mark plus every matching worktree and ref |
-| **Ask-first workspace rule** | Never picks worktree vs current branch on its own. Holds your choice for the session |
-| **Launch-wrapper isolation** | An operator opt-in that places each top-level session in its own worktree and branch, with isolated MCP databases |
-| **Continuous-integration autosync** | Publishes each commit to one shared live branch so the operator's IDE stays current |
-| **Worktree reaper** | Auto-reaps qualifying wrapper worktrees and, with `--numbered`, finished numbered worktrees that are clean, merged, idle and hold nothing unrecoverable. Keeps and reports the rest, and signals no process other than the fsmonitor daemon of a worktree it removes |
-| **Deterministic commits** | The same diff and metadata always produce the same Conventional Commit subject |
-| **Safety refusals** | Blocks no-verify bypasses, secrets in a diff, amending published commits and force-pushing main |
-| **Preflight advisory** | Evaluates every git command against 17 state-gated rules across seven repository runtimes and the dsh run surface, then prints the matching rule before it runs. Advisory only, never blocking (see `scripts/hooks/README.md`) |
+| **Numbered names** | `worktrees/NNN-slug` for a branch with a worktree, `branches/NNN-slug` for one without |
+| **Locked allocator** | Takes a lock in the shared git directory and seeds the next number from the stored mark, every matching ref and every registered worktree |
+| **Ask-first workspace** | Puts the worktree or current-branch choice to you and holds your answer for the session |
+| **Launch wrapper** | Puts each opted-in top-level session in its own worktree, on its own branch, with its own MCP databases |
+| **Live branch sync** | Publishes each wrapper commit to one shared branch, so your editor follows at commit granularity |
+| **Commit contract** | Names the type and scope from the staged paths, then holds subject, body and trailer to the rules |
+| **Preflight advisory** | Prints the rule a risky git command would break, at command time and without blocking it |
+| **Refusals** | Blocks a hook bypass, a secret in the diff, an amend of published work and a force push to main |
 
 ---
 
 ## 2. QUICK START
 
-### Requirements
+**Step 1: Say what you want.** A request that names a worktree, a commit, a pull request, a merge, GitKraken or GitLens lands here. `references/quick-reference.md` loads first, then the phase reference for the winning intent.
 
-| Requirement | Minimum | Notes |
-|---|---|---|
-| git | 2.20 | Worktree, linked-worktree and `git-common-dir` support |
-| bash | 4 or 5 | The allocator uses arrays and `set -euo pipefail` under direct execution |
-| GitHub MCP | Optional | Structured PR, issue and CI data through Code Mode |
-| `gh` CLI | Optional | Simple PR creation and listing |
+**Step 2: Answer the workspace question.** The skill never picks a workspace for you. Choose an isolated worktree for parallel or long-running work. Stay on the current branch for a small fix. Your answer holds for the rest of the session.
 
-**Step 1: Invoke it.** Gate 2 routing fires on git keywords. You can also read the skill directly.
+**Step 3: Create the numbered workspace.**
 
 ```bash
-# Auto-routing through the skill advisor
-python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "commit my changes" --threshold 0.8
-
-# Or read the runtime instructions
-Read(".skilled/skills/sk-git/SKILL.md")
-```
-
-The advisor prints a routing recommendation. The Read call opens the runtime instructions.
-
-**Step 2: Pick your phase.** New work starts at setup. Staged changes go to commit. Finished work goes to integration.
-
-**Step 3: Confirm the workspace (setup only).** The skill asks before it creates anything. Choose an isolated worktree for parallel or long-running work. Stay on the current branch for a quick fix.
-
-```bash
-# Numbered worktree: the allocator reserves a collision-free number under a
-# per-namespace lock and creates the branch plus directory together.
 bash .skilled/skills/sk-git/scripts/worktree-naming.sh create add-oauth-login
-# -> branch worktrees/007-add-oauth-login, directory .worktrees/007-add-oauth-login
-
-# Dedicated branch with no worktree (branches/ numbers independently):
-bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-branch external-dep
-# -> branch branches/003-external-dep
 ```
 
-Expected result: an isolated directory on a numbered `worktrees/{NNN}-{slug}` branch (or a standalone `branches/{NNN}-{slug}` branch), ready to code.
+It prints the new branch and the directory it created, separated by a space, such as `worktrees/007-add-oauth-login /repo/.worktrees/007-add-oauth-login`. The number comes from the allocator, so never type one by hand.
+
+**Step 4: Check a name before you trust the grammar.**
+
+```bash
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh validate-branch branches/003-external-dep
+```
+
+It prints `ok` and exits 0. A name outside the grammar prints `invalid` and exits 1.
+
+**Step 5: Commit.** The `commit-msg` hook checks the subject, the body and the trailer. The `prepare-commit-msg` hook stamps the `Commit-Id:` line, so leave that line out of the message you write.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### Numbered Worktree Grammar
+A git task moves through three phases. Setup gives the work a numbered branch and a directory of its own. The work phase turns a staged diff into a message the contract accepts. Finish checks the tests, then merges, opens a pull request or throws the branch away. Cleanup removes what the branch left behind.
 
-Every managed name follows one grammar:
+Nothing past `references/quick-reference.md` loads until an intent selects a phase reference. A request whose keywords barely score loads the shared patterns and asks a short checklist instead of guessing.
 
-```text
-WORKTREE_BRANCH := "worktrees/" NNN "-" SLUG        (NNN 3-digit 001..999)
-WORKTREE_DIR    := BASE "/" NNN "-" SLUG             (BASE default ".worktrees")
-BASE            := ".worktrees" | <absolute path>    (override: speckit.worktreeBase)
-DEDICATED_BRANCH:= "branches/" NNN "-" SLUG          (a branch with NO worktree)
-RELEASE         := "skilled/v" A "." B "." C "." D
-BACKUP          := "backup/" ANYTHING                (safety refs; legal, not numbered)
-RESERVED        := "main"
-WRAPPER         := "work/" RUNTIME "/" SLUG          (launch-wrapper lane, exempt)
+```mermaid
+flowchart TD
+  Ask["Workspace question"] --> Name["Allocate NNN and create the branch"]
+  Name --> Stage["Stage the change"]
+  Stage --> Message["Type, scope and Commit-Id"]
+  Message --> Finish["Merge, PR or discard"]
+  Finish --> Clean["Remove worktree and branch"]
 ```
 
-Two flat spec-style namespaces, `worktrees/` and `branches/`, keep a Git-UI branch tree legible as a few clean folders instead of a per-skill pile, and they number **independently**: a `worktrees/003` and a `branches/003` may coexist. Strictly sequential, never skipped, never reused. Deleting a middle number never back-fills the gap. `backup/<anything>` safety refs and the launch wrapper's `work/{runtime}/{slug}` lane stay distinct legal-but-not-numbered namespaces.
+### The Number Allocator
 
-- `BASE` defaults to `.worktrees` inside the checkout. Set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout, so its file-watchers, `git status`/fsmonitor, Git GUIs, sync clients, stop scanning every worktree's `node_modules` on each pass.
-- The allocator, launch wrapper, and reaper all resolve this base.
-- `is_valid_pair` accepts both the configured base and the legacy `.worktrees` layout, so worktrees created before and after a relocation both validate.
-- Number allocation is location-independent: relocating the base can never reissue a live number.
+Git cannot hand out a sequential number on its own, so the allocator takes a lock in the shared common git directory. It reads the namespace's stored high-water mark first, then every matching local and remote ref. For `worktrees/` it also reads every registered worktree folder. A second session waits on the lock instead of reading the same maximum. That is why a partial scan cannot reissue a live number. A deleted middle number is never back-filled.
 
-### The Number Allocator And Its Lock
+Numbers run 001 to 999 per namespace. The two namespaces count separately. `allocate` reserves a number and `create-branch` reserves one with a branch to match. `create` adds the worktree around it. `next` previews a number without taking the lock.
 
-- Git cannot enforce sequential uniqueness itself, so each namespace's counter is allocated under a lock in the shared common Git dir.
-- The counter is seeded from that namespace's stored high-water mark first, then every matching local + remote ref and (for `worktrees/`) every registered worktree basename.
-- Because the lock serializes contenders and the scan reads the high-water mark first, a partial scan can never reissue a live number, even when several sessions allocate at the same moment.
-- Never hand-compute `NNN`. Call `worktree-naming.sh create`, `create-branch`, or `allocate` and let the lock do its job.
+### The Commit Contract
 
-The allocator exposes `create`, `create-branch`, `create-detached`, `allocate`, `next` and `scan-max`, plus validators (`is_valid_slug`, `is_valid_nnn`, `is_valid_branch`, `is_wrapper_branch`, `is_backup_branch`, `is_valid_pair`, `is_remote_push_allowlisted`).
+An authored subject follows `type(scope)[!]: imperative summary`. The type comes from a fixed order that starts with release, then docs, then fix, then feat. The scope comes from the owning path, so a file under `.skilled/skills/sk-git/` takes `sk-git`. The subject targets 80 characters and is refused past 100.
 
-### Workspace Choice Is Always Yours
-
-The skill never decides your branch strategy on its own. Every session that starts new work asks you to choose an isolated worktree or the current branch. The skill holds that choice for the rest of the session.
-
-New branches are created one way only, through `git worktree add -b ...`. The direct commands never create branches:
-
-- `git branch`
-- `git checkout -b`
-- `git switch -c`
-
-A branch never exists without a worktree set up for it.
-
-### Launch Wrapper And Continuous Integration
-
-The ask-first rule governs in-session decisions. It is separate from `.skilled/bin/worktree-session.sh`, a launch wrapper the operator opts into at the shell (for example `alias claude='bash /abs/.skilled/bin/worktree-session.sh claude'`). The wrapper runs before the AI starts and places each top-level session in its own worktree and branch, with isolated MCP databases. Orchestrated children exec in place. Because the operator aliased the launch, the choice was already made, so the wrapper does not violate the in-session rule.
-
-Worktree isolation keeps concurrent sessions safe, but it also hides each session's work from the operator's IDE, which is open on the primary checkout. Continuous integration resolves that without giving up isolation. Each session autosyncs every commit to one shared live branch. The IDE fast-forward-follows it. Visibility is at commit granularity only, never another session's uncommitted buffer. The `post-commit` hook publishes through `git-sync.sh`. The script fetches and fast-forwards the shared branch or aborts on conflict. It pushes without force.
-
-### Deterministic Commit Messages
-
-- The same diff and metadata always produce the same commit subject.
-- Type inference takes the first match in a fixed priority order: release, docs, fix, feat, perf, refactor, test, ci, build then style.
-- Scope inference maps file paths the same way, with the skill name taking priority over the agent or command directory, which beats the dominant top-level path.
-- The history reads consistently no matter which session or model produced it.
-- Every commit also ends with a contiguous trailer paragraph.
-- Packet work carries `Spec: <track>/<packet>[/<phase>...]`, and every commit carries `Commit-Id: NNNNNNN`, a seven-digit repository-wide ordinal minted once under a lock.
-- An amend keeps the id the commit already owns unless `-m` replaces the message, while a cherry-pick drops the copied id and mints a fresh one.
-- The stamper fails open: when the allocator cannot answer, the commit lands unstamped and the commit-msg hook still validates what is there.
-- Three queries read the trailer back with no extra tooling:
-  - `git log -E --grep='^Spec: your-track/your-packet'` lists a packet's commits
-  - `git log --fixed-strings --grep='Commit-Id: 0009113'` finds the commit that owns an ordinal
-  - `git log --format='%(trailers:key=Commit-Id,valueonly)'` lists every stamped id
-
-### Cleanup And Safety Refusals
-
-Finishing is not done when the PR merges. The completion flow removes the worktree directory and deletes the local feature branch. It drops the remote tracking branch too, so branches and worktrees do not accumulate. A test gate blocks the merge or PR while tests fail.
-
-The skill also refuses a fixed set of unsafe actions: a `--no-verify` bypass, a diff carrying secrets, amending a published commit and a force push to `main`. It never stashes or rebases a primary tree that is dirty or diverged. It also never resets a tree owned by a concurrent session, because forcing a sync there can orphan that session's work.
+Every authored commit carries a body. Packet work adds a `Spec:` trailer, which the packet query finds by anchoring on that line. The `Commit-Id:` ordinal is stamped, never typed. It survives an amend unless the message is replaced with `-m`. A cherry-pick mints a fresh one.
 
 ---
 
@@ -191,59 +114,22 @@ The skill also refuses a fixed set of unsafe actions: a `--no-verify` bypass, a 
 
 ### When To Use This Skill
 
-Reach for sk-git whenever a git task starts with a clean workspace and ends with integrated work:
+Reach for sk-git when the task touches a branch rather than the code inside it:
 
-- Worktree setup for new or parallel work
-- Commit hygiene for staged changes
-- Completion with cleanup after a merge or discard
+- Starting new work that needs an isolated workspace.
+- Turning a staged change into a commit that survives review.
+- Finishing through a merge, a pull request or a discard.
+- Recovering a checkout that is dirty, diverged or stuck.
 
-Use `gh` for simple PR creation and listing. Use the GitHub MCP when you need structured data back, such as PR reviews and issue fields, plus CI run details.
-
-### How This Compares
-
-| Capability | sk-git | Raw git |
-|---|---|---|
-| Branch naming | `worktrees/{NNN}-{slug}` or `branches/{NNN}-{slug}`, number from a per-namespace locked allocator | Freeform, chosen by hand |
-| Workspace choice | Asks worktree vs current branch, holds the answer | Whatever you type |
-| Commit subjects | Deterministic from diff and metadata | Freeform, drifts across authors |
-| Concurrent sessions | Isolated worktrees plus autosync to one live branch | Manual coordination |
-| Cleanup | Part of finishing: worktree, local branch, remote branch | Left to you |
+Use `gh` when you need simple PR creation or CI run status and logs. Use the GitHub MCP when you need structured PR reviews or issue fields. For a remote that is not GitHub, the GitKraken manual covers the same remote calls.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| [`system-spec-kit`](../system-spec-kit/SKILL.md) | Owns spec folders, memory and continuity. sk-git references the spec folder in the commit body and commits the work |
-| [`sk-code`](../sk-code/SKILL.md) | Owns code standards and tests. sk-git commits and integrates what sk-code produces |
-
-### Skill Layout
-
-```text
-sk-git/
-+-- SKILL.md                       # Runtime instructions and rules
-+-- ROUTER.md                      # Machine router in Section 3
-+-- README.md                      # This file
-+-- scripts/                       # Allocators, stampers and validators, plus tests
-+-- references/                    # Phase workflows loaded by the router
-+-- assets/                        # PR template, commit template, worktree checklist
-+-- feature-catalog/               # Capability catalog by category
-+-- manual-testing-playbook/       # manual scenarios across 9 categories
-`-- changelog/                     # Versioned change history
-```
-
-| Path | Purpose |
-|---|---|
-| `scripts/worktree-naming.sh` | Numbered-worktree allocator, worktree creators and grammar validators |
-| `scripts/commit-id-naming.sh` | Repository-wide commit ordinal allocator, high-water scanner and validator |
-| `scripts/stamp-branch.sh` | Stamps ordinals onto a rebased branch's unique commits |
-| `scripts/tests/commit-id-naming.test.sh` | Tests for the commit ordinal allocator |
-| `scripts/tests/stamp-branch.test.sh` | Tests for the branch ordinal stamper |
-| `references/worktree-workflows.md` | Workspace creation, directory and branch strategy |
-| `references/commit-workflows.md` | Commit flow with artifact filtering and scoped staging |
-| `references/finish-workflows.md` | Completion: PR, merge, cleanup and release notes |
-| `references/large-reorg-playbook.md` | Worktree-only renames with the toolchain run on main after merge |
-| `feature-catalog/feature-catalog.md` | Every capability and its entry point |
-| `manual-testing-playbook/manual-testing-playbook.md` | Manual validation scenarios |
+| `system-spec-kit` | Owns the spec folder and continuity. sk-git records the packet in the `Spec:` trailer. |
+| `sk-code` | Owns code and tests. sk-git commits and integrates the result. |
+| `sk-doc` | Owns documentation quality, PR wording and release notes. |
 
 ---
 
@@ -251,56 +137,51 @@ sk-git/
 
 | What you see | Why | Fix |
 |---|---|---|
-| Merge conflicts the AI will not resolve | Overlapping edits need a human call on which version wins | Escalate. The skill does not auto-resolve semantic conflicts |
-| GitHub MCP returns 401 or 403 | PAT expired or missing scopes | Regenerate the PAT, then expose it as `GITHUB_PERSONAL_ACCESS_TOKEN` in `.utcp_config.json` |
-| Worktree shows "already exists" or is locked | A previous worktree was not removed cleanly | Run `git worktree prune`, then retry |
-| Branch divergence over 50 commits from base | A long-running branch fell behind main | Merge or rebase the base in incrementally before opening a PR |
-| You want an optional hook gate off for good, or a different commit, PR or branch rule | The per-command `SPECKIT_SKIP_*` prefix covers one command, and the rules live in the templates | Run `/doctor:git hooks` to save a gate setting in git config (`speckit.hooks.<key>`), or `/doctor:git standards` to change a rule in the repository's `.sk-git/` template copies. `--dry-run` shows the plan and writes nothing. `/doctor:git setup` then checks which hooks, rules and settings are live, and writes nothing |
-| A bare worktree's strict-validate looks green on zero files | The worktree lacks gitignored deps so the run is a silent no-op | Re-run the toolchain on `main` after merge, per `references/large-reorg-playbook.md` |
+| `git worktree remove` refuses | A locked directory or a previous worktree left behind | Run `git worktree prune`, then retry |
+| A conflict will not resolve | The two sides disagree in a way a person must settle | Escalate. The skill does not settle a semantic conflict for you |
+| The GitHub MCP returns an authentication error | The token expired or lacks the scopes the call needs | Regenerate the token with the repo, issues and pull_requests scopes, then update `.utcp_config.json` |
+| A branch sits more than 50 commits behind its base | The branch fell behind the base branch | Merge or rebase the base in before you open a PR |
+| A bare worktree reports a clean run over zero files | The worktree has no gitignored dependencies, so the run did nothing | Run the toolchain on `main` after the merge |
+| A rule the hooks enforce is wrong | The rules live in the repository's own template copies | Run `/doctor:git standards` to change the rule. `/doctor:git hooks` switches a gate |
 
 ---
 
 ## 6. FAQ
 
-**Q: Why does it always ask before creating a branch?**
+### Why does it ask about the workspace every time?
 
-A: Workspace strategy has real consequences. An unnecessary worktree adds overhead. Staying in place when parallel work is planned causes conflicts. Context alone does not say which is right, so the skill asks every time.
+Workspace strategy has real consequences. An unnecessary worktree adds overhead. Staying in place when parallel work is coming causes conflicts. Context alone does not settle which is right, so the skill asks.
 
-**Q: Why can I not use `git checkout -b` or `git switch -c`?**
+### Why can I not create a branch by hand?
 
-A: Those create a branch with no worktree isolation. sk-git keeps branch creation and workspace setup atomic through `git worktree add -b ...`. For an in-place branch, choose the current-branch option and skip setup.
+A bare branch has no workspace behind it. A hand-typed branch skips the numbered allocator, so two sessions can claim the same number. Use `create` for a branch with a worktree. Use `create-branch` for a numbered branch without one. For an in-place branch, choose the current-branch option and skip setup.
 
-**Q: Why an allocator instead of just picking the next free number?**
+### Why an allocator instead of the next free number?
 
-A: Several sessions allocate at once. Picking a number by eye races: two sessions read the same maximum and both reserve it. The allocator takes a clone-wide lock and seeds from the high-water mark plus every worktree and ref, so a live number is never reissued.
+Several sessions allocate at the same moment. Picking a number by eye races: two sessions read the same maximum and both claim it. The allocator holds a clone-wide lock and seeds from the high-water mark plus every ref, so a live number is never reissued.
 
-**Q: When do I use the `gh` CLI versus the GitHub MCP?**
+### What happens when published work needs a fix?
 
-A: Use `gh` for simple PR creation and listing. Use the GitHub MCP when you need structured data back, such as PR reviews and issue fields, plus CI run details. It also handles bulk operations across many PRs or issues.
-
-**Q: A PR merged but the worktree was never cleaned up. Now what?**
-
-A: Run `git worktree list` to find the stale one, remove it with `git worktree remove .worktrees/{NNN}-{slug}`, delete the local branch with `git branch -d worktrees/{NNN}-{slug}` (or `branches/{NNN}-{slug}`) and the remote with `git push origin --delete worktrees/{NNN}-{slug}`, then `git worktree prune`. Remove the worktree before deleting its branch, because a branch checked out by a worktree cannot be deleted.
-
-**Q: How do I find the commits for a packet?**
-
-A: Grep the `Spec:` trailer with the packet query: `git log -E --grep='^Spec: your-track/your-packet'`. Substitute the track and packet you want. Every matching commit names that packet in its trailer paragraph, so the result needs no other index.
+Amend only what has not left your clone. Once a commit is pushed or merged, write a new commit or revert it, because a rewrite breaks other clones and any autosynced live branch.
 
 ---
 
 ## 7. VERIFICATION
 
-The skill ships a manual testing playbook with scenarios across 9 categories and a feature catalog covering worktree, commit, the template-driven message contract, finish, GitKraken and numbered worktree tooling.
+The skill ships a manual playbook with a folder per feature area, plus a test suite for the allocator and the message contract.
 
-| Check | How to run it |
-|---|---|
-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-git/README.md --type readme` reports zero issues |
-| Skill packaging and structure | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/sk-git --check` reports `PASS` (snake_case findings on `references/`/`assets/` are advisory ahead of the hyphen-naming program) |
-| Allocator behavior | `bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` ends in `FAIL=0` |
-| Commit message structure | `bash .skilled/scripts/git-hooks/tests/commit-msg.test.sh` reports `PASS=45 FAIL=0` |
-| Commit trailer stamping | `bash .skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh` reports `PASS=80 FAIL=0` |
-| Commit ordinal allocation | `bash .skilled/skills/sk-git/scripts/tests/commit-id-naming.test.sh` reports `PASS=39 FAIL=0` |
-| Live behavior | Run the playbook scenarios under `manual-testing-playbook/<topic>/` in a live session |
+```bash
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-git/README.md --type readme
+```
+
+It prints `✅ VALID` and `Total issues: 0`, then exits 0.
+
+| Check | How to run it | Pass signal |
+|---|---|---|
+| Allocator grammar | `bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | The last line reads `worktree-naming tests: PASS=<n> FAIL=0` |
+| Commit ordinals | `bash .skilled/skills/sk-git/scripts/tests/commit-id-naming.test.sh` | The last line reads `commit-id-naming tests: PASS=<n> FAIL=0` |
+| Message contract | `bash .skilled/scripts/git-hooks/tests/commit-msg.test.sh` | The last line reads `PASS=<n> FAIL=0` |
+| Live behavior | Scenario files under `manual-testing-playbook/` | Each run ends PASS, FAIL or SKIP with a reason |
 
 ---
 
@@ -308,19 +189,27 @@ The skill ships a manual testing playbook with scenarios across 9 categories and
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions and the full rule set |
-| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| [`scripts/README.md`](./scripts/README.md) | The allocator and validator surface |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Catalog of every capability and its entry point |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual validation scenarios across 9 categories |
-| [`references/worktree-workflows.md`](./references/worktree-workflows.md) | Workspace creation, directory and branch strategy |
-| [`references/commit-workflows.md`](./references/commit-workflows.md) | Commit flow with artifact filtering and scoped staging |
-| [`references/finish-workflows.md`](./references/finish-workflows.md) | Completion: PR, merge, cleanup and release-note handling |
-| [`references/large-reorg-playbook.md`](./references/large-reorg-playbook.md) | Worktree-only renames with the toolchain on main after merge |
-| [`references/shared-patterns.md`](./references/shared-patterns.md) | Error recovery, conflict resolution and merge verification |
-| [`references/github-mcp-integration.md`](./references/github-mcp-integration.md) | Remote PR, issue and CI operations through Code Mode |
-| [`references/gitkraken-mcp-integration.md`](./references/gitkraken-mcp-integration.md) | GitKraken MCP GitLens AI and cross-provider operations |
+| [`SKILL.md`](./SKILL.md) | Runtime rules and the full contract |
+| [`ROUTER.md`](./ROUTER.md) | Intent map, resource map and loading levels |
+| [`references/quick-reference.md`](./references/quick-reference.md) | Command cheat sheet that loads on every invocation |
+| [`references/worktree-workflows.md`](./references/worktree-workflows.md) | Workspace creation, directory choice and branch strategy |
+| [`references/commit-workflows.md`](./references/commit-workflows.md) | Artifact filtering, commit strategy and scoped staging |
+| [`references/finish-workflows.md`](./references/finish-workflows.md) | Test gate, merge, PR, cleanup and release notes |
+| [`references/continuous-integration.md`](./references/continuous-integration.md) | The shared live branch and its autosync loop |
+| [`references/remote-branch-policy.md`](./references/remote-branch-policy.md) | Push allowlist, approval forms and the autosync exemption |
+| [`references/shared-patterns.md`](./references/shared-patterns.md) | Commands and conventions shared by every workflow |
+| [`references/unstick-dirty-worktree.md`](./references/unstick-dirty-worktree.md) | Recovery for a jammed, dirty or behind checkout |
+| [`references/github-mcp-integration.md`](./references/github-mcp-integration.md) | Remote PR, issue and CI calls through Code Mode |
+| [`references/gitkraken-mcp-integration.md`](./references/gitkraken-mcp-integration.md) | GitLens AI and non-GitHub provider calls |
+| [`references/large-reorg-playbook.md`](./references/large-reorg-playbook.md) | Large renames in a worktree, with the toolchain on main |
+| [`assets/commit-message-template.md`](./assets/commit-message-template.md) | Subject, body and trailer shapes the hooks read |
 | [`assets/pr-template.md`](./assets/pr-template.md) | The structure every PR description follows |
+| [`assets/worktree-checklist.md`](./assets/worktree-checklist.md) | Step-by-step checklist for a safe worktree setup |
+| [`scripts/README.md`](./scripts/README.md) | Allocator and validator surface |
+| [`scripts/hooks/README.md`](./scripts/hooks/README.md) | How each runtime delivers the message gate and the preflight advisory, which Vibe does not run |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Every capability with its entry point |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Scenario index for live validation |
+| [`../../commands/doctor/git.md`](../../commands/doctor/git.md) | The `/doctor:git` command behind the repository settings |
 
 <!-- readme-check
 allow-ref worktrees/ | a git branch namespace, not a folder

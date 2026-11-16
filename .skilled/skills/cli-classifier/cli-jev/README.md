@@ -1,6 +1,6 @@
 ---
 title: cli-jev
-description: The packet of the cli-classifier hub's cli-jev transport mode - a TypeSafe Jev judgment bridge that returns a probability, a chosen key, an ordered score, or a batch of typed answers instead of prose.
+description: Turns a question about a piece of text into a probability, a category key, an ordered position or a batch of keyed answers. An exit code says whether a judgment was made.
 trigger_phrases:
   - "jev cli"
   - "jev judgment"
@@ -12,122 +12,214 @@ trigger_phrases:
   - "typed judgment transport"
 importance_tier: "important"
 contextType: "general"
-version: 0.1.4.0
+version: 0.1.5.0
 ---
 
 # cli-jev
 
-> The packet of mode `cli-jev` in the `cli-classifier` hub, a `packetKind: "transport"`. Jev reads
-> state, prints a typed judgment, and exits; it edits nothing and runs nothing. Pair it with a
-> workflow mode whenever the judgment feeds an action.
+> Turns one question about a piece of text into one typed value a script can branch on and an exit code that says when no judgment could be made.
 
 ---
 
 ## 1. OVERVIEW
 
-Mode `cli-jev` is the hub's hosted transport for typed judgments, documented here for readers deciding whether a
-question belongs to Jev or to a workflow mode.
+### At a Glance
 
-`cli-jev` bridges the `jev` CLI and the `jev-mcp` stdio server into the hub's routing layer. A
-request that needs a decision a script can consume — is this urgent, which queue owns it, how severe
-is it, several of those at once — resolves here, and the packet supplies the contract: the command
-shape, the four providers, the exit-code taxonomy, the question-shaping discipline, and the rule
-that a judgment is never itself an authorization.
+| Aspect | What you get |
+|---|---|
+| **Use it for** | A typed value that code branches on |
+| **Invoke with** | `jev noul`, `jev choice`, `jev score` or `jev run` |
+| **Works on** | One state and the questions it answers |
+| **Produces** | Typed answers on stdout and an exit code |
 
-The classification is deliberate. Jev classifies nothing about a codebase, chooses no provider for a
-task, and conducts no session. It answers one narrow question about the state it is handed. That is
-what `transport` means in this hub, and it is the reason the mode is registered with
-`mutatesWorkspace: false` and with `Write`, `Edit` and `Task` forbidden.
+### What It Does
+
+`cli-jev` is the packet of the `cli-jev` transport mode in the `cli-classifier` hub. It bridges the `jev` CLI and its judgment contract, so a request that needs a value instead of a paragraph has a defined route. Jev reads the state you pass, sends the question or questions you name to the selected provider and prints a typed answer for each. The run edits no file and spawns no child process, so a judgment is input to a decision and never the decision.
+
+Pair the packet with a workflow mode when the answer feeds an edit or a review. The workflow acts. This packet answers.
+
+### The Four Judgment Types
+
+Pick the question type before you write the words, because the type decides the shape of the value.
+
+| Subcommand | Answers with | Range |
+|---|---|---|
+| `jev noul` | A probability | `[0, 1]` |
+| `jev choice` | One submitted option key, verbatim | One of your keys |
+| `jev score` | An ordered position | Zero-based, may be fractional |
+| `jev run` | One typed answer per caller-named question | One per key |
+
+The [question-shaping card](./assets/question-shaping-card.md) turns this table into a checklist.
 
 ---
 
-## 2. THE FOUR PRIMITIVES
+## 2. QUICK START
 
-| Primitive | Answers with | Range | Use it when |
-|---|---|---|---|
-| `noul` | A probability | `[0, 1]` | You will compare against a threshold you own |
-| `choice` | One submitted option key | One of your keys, verbatim | You will branch on a category |
-| `score` | An ordered position | Zero-based, may be fractional | You will escalate or rank by degree |
-| `run` | Several typed answers | One per caller-named key | One state answers several questions |
+**Step 1: Check that the binary resolves.**
 
 ```bash
-jev noul   -q 'Does this message express urgency?' -s 'Please restore service today.' --value </dev/null
-jev choice -q 'Which queue owns this?' -s @request.txt -o billing='Payment or refund' -o technical='Bug or failure'
-jev score  -q 'How severe is this?' -s @incident.txt -l 'no impact' -l 'degraded' -l 'outage'
-jev run    @request.json --pretty
+command -v jev && jev --version
 ```
 
----
+The first line is the path to the binary and the second is `jev 0.6.2`, the version the contract is pinned against. If nothing prints, install it with `uv tool install jev-cli`.
 
-## 3. THE DISPATCH RULES
+**Step 2: Check that a credential resolves.**
 
-Eight hard rules are declared in `SKILL.md` and enforced before a command is spawned, each with an
-implemented check in the runtime-neutral dispatch engine:
+```bash
+jev auth status --provider official </dev/null
+```
 
-| Rule | Severity | Refuses |
-|---|---|---|
-| `jev-availability-required` | error | Dispatching when `jev` does not resolve on `PATH` |
-| `jev-stdin-bounded` | error | A stdin-reading judgment with nothing feeding or closing stdin |
-| `jev-choice-option-cardinality` | error | `choice` with fewer than two options |
-| `jev-score-level-cardinality` | error | `score` with fewer than two levels |
-| `jev-value-not-with-run` | error | `--value` combined with `run` |
-| `jev-custom-endpoint-required` | error | `--provider custom` without an endpoint |
-| `jev-no-inline-credential` | warn | An API key literal on the command line |
-| `jev-mcp-host-only` | warn | Running `jev-mcp` from a shell |
+One JSON line with `"ok": true` and `"stored": true`, then exit 0. A missing key exits 3 with `official API key is not stored` instead.
 
----
+**Step 3: Ask one question.**
 
-## 4. WHAT IT CANNOT DO
+```bash
+jev noul -q 'Does this message express urgency?' -s 'Please restore service today.' --value </dev/null
+```
 
-- **No workspace mutation.** No `Write`, no `Edit`, no `Task`; the mode is declared
-  `mutatesWorkspace: false`.
-- **No lineage.** Jev has no iteration model, no stop policy and no file tools, so it is not a
-  deep-loop `ExecutorKind` and cannot run a `/deep:research` or `/deep:review` fan-out.
-- **No prose.** Every answer is a value, and a caller that needs an explanation dispatches a
-  workflow mode instead.
-- **No MCP registration from this repo.** `jev-mcp` ships in the same package and is documented in
-  `references/mcp-server.md`; wiring it into a host is an operator step, and no repository MCP config
-  carries it.
+A number between 0 and 1 on stdout and exit 0. The value is a judgment about that text, so compare it against a threshold you own.
 
 ---
 
-## 5. LAYOUT
+## 3. HOW IT WORKS
+
+A dispatch has three phases. Availability comes first, where `command -v jev` decides whether the route exists and `jev auth status` decides whether a judgment is possible for the selected provider. The command then builds one System One request from the state and the question, plus any criteria the type needs. That request goes to the provider, the answer arrives on stdout and the outcome class arrives in the exit code.
+
+Read the exit code before the payload. A judgment error prints one JSON object on stderr as `{"ok": false, "error": "<message>"}` and leaves stdout empty. A malformed command prints usage text instead. Exit 0 is the only signal that a judgment exists.
+
+```mermaid
+flowchart TD
+  Request["One question and one state"] --> Preflight["command -v jev and jev auth status"]
+  Preflight --> Dispatch["jev noul, choice, score or run"]
+  Dispatch --> Provider["The selected provider scores the state"]
+  Provider --> Answer["A typed answer on stdout"]
+  Answer --> Exit["Exit 0 or an error class on stderr"]
+  Exit --> Caller["The caller branches under its own rules"]
+```
+
+### The Dispatch Rules
+
+Eight rules sit in [the hard rules file](./hard-rules.json) beside `SKILL.md`. The dispatch preflight reads that sidecar before the command runs. Six are errors that block the call: a missing binary, unbounded stdin, a `choice` with fewer than two options, a `score` with fewer than two levels, `--value` with `run` and `custom` without an endpoint. The other two warn about an inline key and a shell start of `jev-mcp`.
+
+The dispatch audit classifies `jev noul`, `jev choice`, `jev score`, `jev run` and `jev-mcp` as this packet. The rules therefore apply to a real dispatch and to nothing that merely mentions one.
+
+### The Packet Files
 
 ```text
 cli-jev/
-  SKILL.md                             # the contract: when to use, dispatch shape, eight hard rules
-  ROUTER.md                            # Machine router: intent map, resource map and loading levels
-  README.md                            # this file
-  hard-rules.json                      # the eight rules the dispatch engine enforces
-  references/                          # deep-dive docs loaded by intent
-    cli-reference.md                   # subcommands, flags, input forms, exit codes, output shapes
-    providers-and-models.md             # the four providers, key variables, endpoints, translation
-    integration-patterns.md            # gate, triage, branch and batch patterns
-    mcp-server.md                      # jev-mcp tools, host-only rule, operator step
+  SKILL.md                   # runtime surface: activation, dispatch shape, rules
+  ROUTER.md                  # intent map, resource map and loading levels
+  README.md                  # this page
+  hard-rules.json            # the eight rules the preflight enforces
+  references/
+    cli-reference.md         # subcommands, flags, state forms, exit codes
+    providers-and-models.md  # the four providers, their keys and endpoints
+    integration-patterns.md  # the gate, triage, branch and batch patterns
+    mcp-server.md            # the jev-mcp stdio server and its host-only rule
   assets/
-    question-shaping-card.md           # drafting the question so the value is usable
-  changelog/                           # versioned changelog entries, one file per release
-  benchmark/                           # benchmark reports for the packet
-  manual-testing-playbook/             # deterministic scenarios with expected observables
-  feature-catalog/                     # the capability index with source anchors
+    question-shaping-card.md # drafting a question that returns a usable value
+  changelog/                 # one entry per release
+  benchmark/                 # reports derived from playbook runs
+  manual-testing-playbook/   # 22 deterministic scenarios in five categories
+  feature-catalog/           # the capability index with source anchors
 ```
 
-| File | Role |
-|---|---|
-| `SKILL.md` | The routing contract: activation triggers, dispatch shape, eight hard rules |
-| `ROUTER.md` | Machine router: intent map, resource map and loading levels |
-| `README.md` | This front page: what the packet is, how it dispatches, what it cannot do |
-| `hard-rules.json` | The eight rules the dispatch engine enforces |
-| `references/cli-reference.md` | Every subcommand, flag, input form, exit code and output shape |
-| `references/providers-and-models.md` | The four providers, their key variables, endpoints and translation behavior |
-| `references/integration-patterns.md` | The shipped judgment patterns: gate, triage, branch and batch |
-| `references/mcp-server.md` | The `jev-mcp` stdio server, its tools and the host-only rule |
-| `assets/question-shaping-card.md` | Drafting the question so the returned value is usable |
+### The Output Contract
+
+Default output is compact JSON on stdout. `--pretty` indents it and `--value` prints the primary answer alone, so `noul` gives a probability and `choice` gives the selected key. A `score` call gives a zero-based position.
+
+| Exit | Meaning | Your move |
+|---|---|---|
+| 0 | A judgment was produced | Read the payload as evidence about your options |
+| 1 | An unexpected or unclassified response | Inspect the body before you retry |
+| 2 | A usage error such as a bad flag or unreadable state | Fix the command |
+| 3 | The credential is missing or rejected | Set the key for that provider, then re-run |
+| 4 | A retryable transport error: 429, 500, 502, 503, 504, a connection failure or a timeout | Back off. Never read it as a judgment |
+| 130 | Interrupted | The operator aborted the call |
+
+Three argument rules are easy to miss. `choice` needs at least two `-o` pairs and `score` needs at least two `-l` levels, even though the CLI itself accepts one. `--value` is refused with `run`. The refusal costs a billed call because the check runs on the parsed answer.
 
 ---
 
-## 6. CONTRACT BASIS
+## 4. INTEGRATION & NAVIGATION
 
-The contract is pinned against `jev-cli` 0.6.2, installed with `uv tool install jev-cli` (rollback: `uv tool uninstall jev-cli`). Every claim in the references is tagged **LIVE** (observed command, output and exit status) or **SOURCE** (read from the vendored tree at `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`). No authenticated call was made at pin time; [`references/providers-and-models.md`](./references/providers-and-models.md) section 8 records the authenticated `official` call made since, and the response bodies of the other providers remain unconfirmed and are tagged as such rather than asserted.
+### When To Use This Skill
 
-Source packet: `specs/cli-classifier/001-cli-jev-creation/`.
+Reach for it when a step needs a value to compare, such as a gate that must clear a threshold before it proceeds. Reach for it to triage a request into a known queue, to rank severity against fixed levels, to batch several questions about one state or to score a result another mode produced.
+
+Skip it when the repository can answer the question. A grep or a test run is evidence, while a judgment about it is a guess printed as JSON. Skip it when the state is a secret too, because the state travels verbatim to the provider. An edit or a review belongs to a workflow mode, which takes the judgment as an input.
+
+### Related Skills
+
+| Skill | Relationship |
+|---|---|
+| `cli-classifier` | The hub that registers this packet and routes a typed-judgment request to it |
+| The workflow modes in `cli-external-orchestration` | They perform the work. This packet scores the result they hand over |
+
+---
+
+## 5. TROUBLESHOOTING
+
+| What you see | Why | Fix |
+|---|---|---|
+| Exit 127 or `command not found` | `jev` is not on `PATH` for this shell | `uv tool list`, then `command -v jev` |
+| Exit 3 with a key exported | The key belongs to a different provider than `--provider` selects | `jev auth status --provider <name>` |
+| Exit 3 while `auth status` reports stored | The provider rejected the stored key with HTTP 401 or 403 | Run `jev auth test --provider <name>` and rotate the key if it fails |
+| Exit 4 on every call | Network egress is blocked or a `custom` endpoint is not listening | Re-probe against a known-refused port |
+| Exit 2 on a command that looks right | A flag conflict such as `--value` with `run` | Compare the command with the CLI reference |
+| Exit 2 with `state is required as an argument, @file, or stdin` | State defaulted to stdin and stdin is a terminal | Pass `-s` inline or feed the state on stdin |
+
+---
+
+## 6. FAQ
+
+### Why ask Jev instead of writing the question into a prompt?
+
+A prompt returns text that the caller must parse. Jev returns a value and an exit code, which a script or a hook can branch on.
+
+### Can a judgment authorize an action?
+
+No. A `choice` answer is evidence about the options you submitted, never permission to act on one. The consequence stays behind the caller's own authorization.
+
+### Should I use the CLI or `jev-mcp`?
+
+The CLI is this hub's dispatch surface. It supports the file and stdin state forms, along with the `--value` output. Use `jev-mcp` when a host already runs the server. Remember that `-` and `@path` are literal strings in its tools.
+
+### What happens if I pass one option or one level?
+
+The CLI sends the request anyway, so a caller can pay for an answer that carries no information. `jev-mcp` refuses one entry. This packet's rules refuse it before dispatch.
+
+### Which provider should I use?
+
+Use one whose key resolves on the machine. `jev auth status --provider <name>` answers that without printing the key. Each provider has its own key variable.
+
+---
+
+## 7. VERIFICATION
+
+| Check | How to run it |
+|---|---|
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-classifier/cli-jev/README.md --type readme` prints `VALID` with zero issues |
+| Contract pin | `jev --version` prints `jev 0.6.2` |
+| Flag surface | `jev noul --help </dev/null` lists `--provider`, `--model`, `--json-state`, `--pretty` and `--value`. It does not list the hidden `--endpoint` |
+| Rule count | `rg -c '"id": ' .skilled/skills/cli-classifier/cli-jev/hard-rules.json` prints `8` |
+| Playbook | 22 scenarios in `manual-testing-playbook/`, with the recorded runs under `benchmark/reports/` |
+
+---
+
+## 8. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | Runtime instructions |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
+| [`hard-rules.json`](./hard-rules.json) | The eight rules the dispatch preflight enforces |
+| [`references/cli-reference.md`](./references/cli-reference.md) | Every subcommand, flag, input form, exit code and output shape |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | The four providers, their key variables, endpoints and default models |
+| [`references/integration-patterns.md`](./references/integration-patterns.md) | The gate, triage, branch and batch patterns |
+| [`references/mcp-server.md`](./references/mcp-server.md) | The `jev-mcp` stdio server, its tools and the host-only rule |
+| [`assets/question-shaping-card.md`](./assets/question-shaping-card.md) | Drafting a question so the returned value is usable |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | 22 deterministic scenarios and the failure triage |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | The capability index with source anchors |
+| [`benchmark/README.md`](./benchmark/README.md) | The reports derived from playbook runs |
+| [`changelog/`](./changelog/) | One entry per release |

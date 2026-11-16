@@ -8,12 +8,12 @@ trigger_phrases:
   - "composer"
   - "delegate to cursor"
   - "second opinion"
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # cli-cursor
 
-> Cursor's own model can run the work while you stay in your current assistant. This skill makes that handoff safe and repeatable: sandboxed coding, Composer-model dispatch, read-only plan passes and read-only ask passes, all without leaving your runtime.
+> Hand a coding or analysis task to Cursor CLI from your own assistant, with the model, the approval mode and the account check settled before anything runs.
 
 ---
 
@@ -23,273 +23,229 @@ version: 1.4.6.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Sandboxed coding, Composer-model dispatch, read-only plan or ask exploration and cross-model validation through Cursor's `cursor-agent` CLI |
-| **Invoke with** | "cursor", "cursor agent", "composer", "second opinion" or auto-routing on Cursor keywords |
-| **Works on** | Any external runtime (Claude Code, Codex, raw shell) that needs to reach the `cursor-agent` binary |
-| **Produces** | Code edits in a workspace, text responses and read-only plan or ask analyses |
-
-### Why This Skill Exists
-
-A non-Cursor assistant has no built-in way to reach the `cursor-agent` binary. When a task wants Cursor's own Composer model, a read-only plan or ask pass or a second AI opinion, the caller either hand-builds fragile `cursor-agent -p` invocations and picks flags by trial or skips the capability.
-
-Two traps make naive dispatch dangerous:
-
-- **The zero exit code.** `cursor-agent -p` exits `0` even when the account is not authenticated, so an exit-code check reports success on a dispatch that never reached a model.
-- **The shared config surface.** The CLI also shares its config surface with the Cursor editor, so a dispatched session silently inherits editor-level hooks, MCP servers, rules and other configuration.
-
-If the calling assistant is itself running inside Cursor CLI, a circular self-dispatch burns tokens for no value.
-
-This skill standardizes the dispatch, runs a text-based auth pre-flight and guards against self-invocation so the caller never builds its own wrapper.
+| **Use it for** | Sending a coding or analysis task from your runtime to Cursor CLI |
+| **Invoke with** | "cursor", "cursor agent", "composer" or "second opinion" |
+| **Works on** | Any runtime outside Cursor that can reach `cursor-agent` |
+| **Produces** | Workspace edits and text answers returned to the caller |
 
 ### What It Does
 
-cli-cursor is the single routing point for external runtimes that need Cursor CLI. A smart router scores the task against intent signals such as code generation, review, Composer dispatch, read-only plan or ask exploration and agent delegation, then loads only the references that match. It fails closed when `command -v cursor-agent` cannot resolve the binary. A self-invocation guard built from live-confirmed `CURSOR_AGENT` and `CURSOR_CONVERSATION_ID` env signals plus process ancestry refuses to load when the caller is already inside Cursor CLI. Orchestrated execution delegates to the shipped deep-loop runtime, so this packet never builds a second adapter.
-
-It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders, memory and continuity. cli-cursor dispatches to Cursor and hands the result back to the caller.
+cli-cursor is the routing point for a runtime outside Cursor that needs `cursor-agent`. It picks an execution mode and a model from a fixed allowlist, confirms the binary is installed and the account is signed in, then hands the task over. It refuses to load when the caller already runs inside Cursor CLI. It does not own code standards or spec folders: `sk-code` governs what comes back, and `system-spec-kit` owns the spec folder and the memory handback that follows it.
 
 ### The Dispatch Guard Rails
 
-| Guard | What the skill knows how to operate |
+Five guards sit between a request and a `cursor-agent` process. Each one closes a failure that a hand-built command line tends to leave open.
+
+| Guard | What it does |
 |---|---|
-| **Smart router** | Score task intent across code generation, review, Composer dispatch, read-only plan or ask exploration and agent delegation, then load only the matching references |
-| **Model allowlist** | Enforce the exact 29 Cursor model ids across Composer, Gemini 3.8 Flash High, GLM 5.2, GPT-5.6 Luna Max and Grok (4.5, 4.6 and 4.7), rejecting `auto` and parameterized `model[effort=...]` brackets |
-| **Auth pre-flight** | Read `cursor-agent about` output text and halt on "Not logged in" before the first dispatch |
-| **Self-invocation guard** | Detect `CURSOR_AGENT` or `CURSOR_CONVERSATION_ID` plus `cursor-agent` process ancestry, then refuse to load |
-| **Memory handback** | Extract a live Cursor session's context in 7 steps and persist it through `generate-context.js` |
+| **Smart router** | Scores the request against intent signals, then loads only the references that match |
+| **Model allowlist** | Holds `--model` to 29 exact ids and rejects `auto` before a command is built |
+| **Auth pre-flight** | Reads `cursor-agent about` output text and stops on `Not logged in` |
+| **Self-invocation guard** | Reads the Cursor env markers and the process tree, then refuses to load |
+| **Memory handback** | Extracts a live session's context and saves it through `generate-context.js` |
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Verify the CLI is installed.**
+**Step 1: Confirm the binary resolves.**
 
 ```bash
 command -v cursor-agent
 ```
 
-If nothing prints, install it with `curl https://cursor.com/install -fsS | bash` and restart the terminal.
+The path prints, for example `/Users/you/.local/bin/cursor-agent`. An empty result means the CLI is missing, and `curl https://cursor.com/install -fsS | bash` installs it.
 
-**Step 2: Run the default dispatch.**
+**Step 2: Check the account.**
+
+```bash
+cursor-agent about
+```
+
+The output carries the CLI version and a `User Email` line. A real address means the session is signed in. `Not logged in` means every dispatch fails until `cursor-agent login` completes or `CURSOR_API_KEY` is set.
+
+**Step 3: Run the default dispatch.**
 
 ```bash
 cursor-agent -p "Add input validation to src/utils.ts" \
-  --output-format text \
   --model composer-2.5 \
   --auto-review \
   --sandbox enabled \
-  2>&1
-```
-
-The file is edited in place inside your workspace. For a read-only task such as exploration or Q&A, use `--mode plan` or `--mode ask` instead.
-
-**Step 3: Reach for Composer when the task wants Cursor's own model.**
-
-```bash
-cursor-agent -p "Review this diff for correctness" \
   --output-format text \
-  --model composer-2.5 \
-  --sandbox enabled \
-  2>&1
+  2>&1 </dev/null
 ```
 
-You get a response from Cursor's native model rather than a hosted frontier provider.
+Text mode prints the model's final answer, and the edit lands in the workspace. The process exits 0 whether or not the dispatch worked, so read the output text.
 
-**Step 4: Run a read-only exploration pass.**
+**Step 4: Run a read-only pass.**
 
 ```bash
 cursor-agent -p "Explain how the auth flow works in this repo" \
   --mode ask \
   --model composer-2.5 \
-  2>&1
+  2>&1 </dev/null
 ```
 
-You get an analysis with no file writes. `--mode ask` and `--mode plan` are read-only regardless of approval flags.
+An answer prints and no file changes. `--mode plan` and `--mode ask` stay read-only whatever approval flag you pass.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### The Dispatch Lifecycle
+A dispatch starts when the calling assistant decides a task belongs at Cursor. The skill scores the request and loads the references that match. It then confirms `cursor-agent` is on PATH before it builds a command. For a research or review lineage the shared runtime takes over: `fanout-run.cjs` runs with executor kind `cli-cursor` and owns process construction. A single build or doc dispatch uses the child envelope in the models reference instead.
 
-The calling AI composes a prompt with the right model and approval mode. The shared deep-loop runtime constructs and runs the `cursor-agent` process. Cursor returns the result and the caller validates and integrates it. The packet owns routing and availability checks. `../../system-deep-loop/runtime/scripts/fanout-run.cjs` owns execution.
+```mermaid
+flowchart TD
+  Request["Task in the calling runtime"] --> Route["Router picks the intent and its references"]
+  Route --> Probe["Availability probe, then the account check"]
+  Probe --> Guard["Self-invocation guard"]
+  Guard --> Dispatch["cursor-agent -p with a model and an approval mode"]
+  Dispatch --> Read["Caller reads the output text"]
+  Read --> Integrate["Caller validates and integrates the result"]
+```
 
 ### The Two Silent Traps
 
-Two Cursor CLI behaviors punish operators who do not know them. A reader who learns them here never hits them.
+Two `cursor-agent` behaviors punish a caller that assumes a normal CLI. Learn them here and a dispatch stops surprising you.
 
-**Trap 1: the always-zero exit code.** `cursor-agent -p` returns exit code `0` even when the account is not authenticated. It prints `Error: Authentication required...` to output instead of failing the process. A naive `if [ $? -eq 0 ]` check reports success on a dispatch that never reached a model. Always inspect output text for an authentication error. Never trust the exit code alone.
+**Trap 1: an authentication failure still exits 0.** A `cursor-agent -p` run that failed to authenticate still exits 0, and it prints the authentication error to the output instead of failing the process. A guard that checks `$?` reports success on a dispatch with no answer. Read the output text.
 
-**Trap 2: the shared editor config surface.** Unlike sibling CLIs with a tool-private config directory, Cursor CLI reads the exact same `.cursor/` and `~/.cursor/` files as the Cursor editor: `hooks.json`, `mcp.json`, `rules/` and any other file the editor keeps in that surface. A dispatched `cursor-agent` silently inherits the operator's editor-level hooks, MCP servers, rules and other configuration, which can surprise an orchestrator expecting a clean isolated session. See `references/shared-editor-config.md`.
+**Trap 2: the editor's config is the CLI's config.** Cursor CLI reads the same `.cursor/` and `~/.cursor/` files the editor reads, `hooks.json` and `mcp.json` among them. A dispatched session inherits whatever hooks and MCP servers the operator's editor already has, and the rule files in that surface apply too. The sibling CLIs each keep a tool-private config directory, and Cursor keeps none. The shared-config reference lists the flags that narrow what a run can see.
 
 ### The Self-Invocation Guard
 
-If the agent reading this skill is itself running inside Cursor CLI, the skill refuses to load. The guard checks three layers in order:
+A CLI skill that dispatches itself burns tokens and returns nothing the caller could not have produced alone. When the caller already runs inside Cursor CLI, cli-cursor refuses to load. It checks three layers in order.
 
-1. `CURSOR_AGENT=1`, which is set unconditionally whenever the current process runs under `cursor-agent` (confirmed live), plus `CURSOR_CONVERSATION_ID` as the confirmed session-id marker.
-2. Process ancestry, where a `cursor-agent` parent in the tree trips the guard. The match runs against the canonical binary name, never the `agent` alias.
-3. A best-effort session probe in place of a lock file, since no lock-file convention is documented for Cursor CLI. This layer is weaker than the sibling packets' third layer and is documented as such.
+1. The `CURSOR_AGENT` marker, which Cursor sets on every process under `cursor-agent`, and the `CURSOR_CONVERSATION_ID` session id.
+2. A `cursor-agent` process in the parent tree. The match uses the canonical binary name, never the bare `agent` alias, which could collide with an unrelated command.
+3. A best-effort probe of `~/.cursor` alongside `CURSOR_INVOKED_AS`. Cursor CLI documents no lock-file convention, so this layer is weaker than the sibling packets' third layer.
 
-When any layer matches, the skill returns a refusal and loads nothing. The cli-X family exists for cross-AI delegation. A running CLI skill never dispatches itself.
+When any layer matches, the skill returns a refusal and loads nothing. That is a routing rule, not a limitation: the cli-X family exists for cross-CLI delegation.
 
-### Model Selection And Execution Modes
+### Model Selection And Approval
 
-Dispatch is scoped to an enforced 29-id allowlist. Cursor's own `auto` router is deliberately excluded, since it can silently resolve outside the set.
+`--model` is scoped to 29 exact ids, and `auto` is excluded because it can resolve to an id outside the set. The ids are listed in the models reference. Effort lives in the id suffix: there is no `--reasoning-effort` flag, and the `model[effort=...]` bracket is rejected with `Cannot use this model`. Pick the id that carries the tier you want, such as `cursor-grok-4.6-high`.
 
-- **Composer** (`composer-2.5` and `composer-2.5-fast`) is Cursor's native model and the skill default. Those are Composer's only two tiers. It has no `-max` (1M-context "Max Mode") variant, so there is no Composer Max Mode to dispatch.
-- **Gemini 3.8 Flash High** (`gemini-3.8-flash-high`) is the first Gemini id in the curated scope.
-- **GLM 5.2** (`glm-5.2-high`, `glm-5.2-max`), **GPT-5.6 Luna Max** (`gpt-5.6-luna-max`, `gpt-5.6-luna-max-fast`), and **Grok** (4.5's 6 tiers `cursor-grok-4.5-{low,medium,high}[-fast]`, 4.6's 8 tiers `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]` and 4.7's 8 tiers `grok-4.7-{low,medium,high,xhigh}[-fast]`) round out the allowlist.
-- **Effort is part of the id.** Effort tiers are baked directly into a model id. There is no `--reasoning-effort` flag. The parameterized `model[effort=...]` bracket some sibling CLIs support is rejected outright by Cursor CLI.
+Approval and sandbox are separate switches. `--auto-review` runs safe tool calls and prompts for the rest. `--force` or `--yolo` never prompts. `--sandbox enabled` confines writes to the working directory. Pass neither approval flag and Cursor's own prompt-and-block default applies, which cannot proceed unattended.
 
-Three execution modes govern how a dispatch behaves:
+The deep-loop adapter maps that onto a lineage command. Either write mode runs with `--force`, because a leaf has no stdin to answer a Smart Auto prompt. A read-only leaf runs `--mode plan --trust` against a neutral empty workspace, which loads no repo hooks or MCP config, and re-adds the repository as a read root with `--add-dir`.
 
-- The default agent mode (reads and writes, gated by approval flags)
-- `--mode plan` (read-only planning)
-- `--mode ask` (read-only Q&A)
-
-Approval is a separate axis from the sandbox. `--auto-review` (Smart Auto) auto-runs safe actions and prompts for the rest. `--force` and `--yolo` (Run Everything) never prompt. Omitting both leaves Cursor's own default prompt-and-block behavior in place, which cannot proceed unattended.
-
-### Auth Pre-Flight And Memory Handback
-
-cli-cursor authenticates through Cursor account OAuth (`cursor-agent login`) or headless `CURSOR_API_KEY` and `CURSOR_AUTH_TOKEN` values. Before the first dispatch the skill checks `cursor-agent about` for "Not logged in" in the output text. If found, it surfaces `cursor-agent login` and waits rather than dispatching. When the caller needs to keep a Cursor session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js`. The full procedure lives in `../../system-spec-kit/references/cli/memory-handback.md`.
-
----
-
-## 4. STRUCTURE
+### The File Map
 
 ```text
 .skilled/skills/cli-external-orchestration/cli-cursor/
-+-- SKILL.md                    # Runtime instructions, hard rules and dispatch gotchas
-+-- ROUTER.md                   # Machine router in section 3: intent and resource maps, loading levels
++-- SKILL.md                    # Runtime rules and dispatch gotchas
++-- ROUTER.md                   # Intent map, resource map and guard pseudocode
 +-- README.md                   # This file
-+-- assets/                     # Prompt quality card and prompt templates
-|   +-- prompt-quality-card.md  # Fast-path prompt framework + CLEAR check (ALWAYS loaded)
-|   `-- prompt-templates.md     # Copy-paste ready prompt templates for common tasks
-+-- benchmark/                  # Derived validation reports for manual-testing-playbook runs
-+-- changelog/                  # Versioned packet changelog
-+-- manual-testing-playbook/    # CU-numbered scenarios, the canonical PASS/FAIL/SKIP validation gate
-`-- references/                 # CLI, providers, tools, patterns, delegation, hooks, shared config
-    +-- agent-delegation.md     # Cursor execution-mode roster (default/plan/ask) and delegation patterns
-    +-- cli-reference.md        # Complete CLI subcommands, flags, auth and troubleshooting reference
-    +-- cursor-tools.md         # Cursor-unique surfaces: worktree, cloud worker, plugin marketplace, MCP
-    +-- hook-contract.md        # Cursor's shared hooks.json contract
-    +-- integration-patterns.md # Cross-AI orchestration patterns and workflows
-    +-- providers-and-models.md # Single-source catalog of the Cursor provider and the enforced 29-id model allowlist
-    `-- shared-editor-config.md # The shared .cursor editor-config surface and dispatch-isolation implications
++-- hard-rules.json             # Two preflight checks: stdin redirect and availability
++-- assets/                     # Prompt mechanics and copy-paste prompts
++-- benchmark/                  # Stored validation reports
++-- changelog/                  # One entry per skill version
++-- manual-testing-playbook/    # 40 scenarios across 13 categories
+`-- references/                 # Seven deep-dive files, loaded by intent
 ```
 
-| File | Role |
-|---|---|
-| `SKILL.md` | The routing contract: hard rules and dispatch-critical gotchas |
-| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| `README.md` | This file: human-facing overview, quick start and troubleshooting |
-| `references/agent-delegation.md` | Cursor execution-mode roster (default/plan/ask) and delegation patterns |
-| `references/cli-reference.md` | Complete CLI subcommands, flags, auth and troubleshooting reference |
-| `references/cursor-tools.md` | Cursor-unique surfaces: native worktree, cloud worker, plugin marketplace, MCP |
-| `references/hook-contract.md` | Cursor's shared hooks.json contract |
-| `references/integration-patterns.md` | Cross-AI orchestration patterns and workflows |
-| `references/providers-and-models.md` | Single-source catalog of the Cursor provider and the enforced 29-id model allowlist |
-| `references/shared-editor-config.md` | The shared `.cursor` editor-config surface and dispatch-isolation implications |
-| `assets/prompt-quality-card.md` | Fast-path prompt framework + CLEAR check, ALWAYS loaded |
-| `assets/prompt-templates.md` | Copy-paste ready prompt templates for common tasks |
-| `hard-rules.json` | Machine-readable hard-rule checks read by the dispatch preflight |
+`references/cli-reference.md` and `assets/prompt-quality-card.md` load on every invocation. Every other path waits for an intent to select it.
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
-Reach for cli-cursor when a task benefits from Cursor's own Composer model, a read-only `--mode plan` or `--mode ask` pass or a second AI opinion on code quality. Skip it for simple tasks the caller can answer directly, for interactive terminal work where `cursor-agent` should run by hand and for deep extended-thinking analysis where a sibling CLI already covers that need better.
+Reach for cli-cursor when the task wants a second model's opinion on a change, or when a plan or an explanation should come back with no writes. It also fits a first pass on a well-scoped edit that the caller will review, and the opt-in worktree and cloud-worker surfaces when the operator asks for them. Skip it when the caller already holds the context, and skip it for a full-screen interactive session where `cursor-agent` runs by hand.
 
 ### Sibling Boundaries
 
-The cli-X skills each dispatch to a different provider and never overlap.
+The eight cli-X packets split by the CLI they drive. Most refuse to load when the caller already runs inside that same CLI, so a misroute fails closed rather than nesting two sessions. `cli-opencode` accepts an explicit parallel detached request, and `cli-pi` is exempt.
 
-| Skill | Provider | When to reach for it |
-|---|---|---|
-| `cli-cursor` | Cursor (Composer plus a hosted frontier roster) | Composer-model dispatch, read-only plan or ask exploration, native worktree and cloud-worker escape hatches |
-| `cli-codex` | OpenAI | Sandboxed coding, repo analysis, PR review, web research |
-| `cli-claude-code` | Anthropic | Deep reasoning, diff-based edits, `--json-schema` output, agent delegation |
-| `cli-opencode` | OpenCode | Full OpenCode runtime dispatch, in-OpenCode parallel sessions |
-| `cli-devin` | Cognition | Cloud coding via `devin -p`, subagent delegation, `/handoff` |
-| `cli-pi` | Pi | Guarded headless print and JSON-event dispatch |
-| `cli-deepseek-harness` | DeepSeek Harness | Pinned headless one-task dispatch over a closed DeepSeek V4.1 Flash roster, prompt on stdin. Experimental, no route proven live yet |
-| `cli-mistral-vibe` | Mistral | Pinned print-mode one-task dispatch over a closed DeepSeek and GLM roster, outcome read from `export.json`. Experimental, ACP deferred |
-
-If you are already inside one runtime, the matching cli-X skill refuses to load. Use a different runtime or exit first.
+| Skill | Reach for it when |
+|---|---|
+| `cli-cursor` | The task wants Cursor's own model, a read-only plan or ask pass, or Cursor's worktree and cloud surfaces |
+| `cli-codex` | The task wants sandboxed coding, repo analysis or live web research through Codex |
+| `cli-claude-code` | The task wants extended reasoning or `--json-schema` output |
+| `cli-opencode` | The caller needs a full OpenCode runtime session |
+| `cli-devin` | The task should run through Devin's print mode, or hand off to a cloud Devin session with `/handoff` |
+| `cli-pi` | The caller needs guarded headless print or JSON-event dispatch |
+| `cli-deepseek-harness` | The caller needs a pinned one-task headless dispatch with the prompt on stdin |
+| `cli-mistral-vibe` | The caller needs a print-mode one-task dispatch that reports through `export.json` |
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-code` | Owns code standards and verification. cli-cursor dispatches the work and sk-code governs the quality of what comes back. |
-| `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Cursor session back into the caller's spec folder. |
+| `sk-code` | Owns the code standards and verification that judge what comes back |
+| `system-spec-kit` | Owns spec folders, memory and continuity, including the handback procedure |
+| `sk-prompt` | Owns the prompt framework and the CLEAR check the prompt card delegates to |
+
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
-| `command not found: cursor-agent` | CLI not installed or PATH not updated | `curl https://cursor.com/install -fsS \| bash`, then restart the terminal |
-| Output contains `Error: Authentication required` (exit code still `0`) | Not logged in or headless auth env vars unset | Run `cursor-agent login` or set `CURSOR_API_KEY` and `CURSOR_AUTH_TOKEN` |
-| Task ran but no files changed | A read-only mode (`--mode plan` or `--mode ask`) was used or neither `--auto-review` nor `--force` was passed | Use the default agent mode with `--auto-review` or `--force` for edit tasks |
-| `Cannot use this model: <id>[effort=...]` | Parameterized model bracket syntax, not supported by Cursor CLI | Use an exact enumerated id from the allowlist (e.g. `cursor-grok-4.6-high`) |
-| `cli-cursor model '<id>' is not in the enforced allowlist` | The requested `--model` is outside the 29-id allowlist (SKILL.md §3) | Pick one of the 29 allowed ids or ask the operator to extend the allowlist |
-| `Self-invocation refused` | The caller is already inside Cursor CLI, with `CURSOR_AGENT` or `CURSOR_CONVERSATION_ID` set or `cursor-agent` ancestry present | Use a different runtime or exit the current Cursor session first |
-| Dispatch behaves differently than expected or an unexpected hook fires | Cursor CLI shares config with the editor (`hooks.json`, `mcp.json`, `rules/`) | Read `references/shared-editor-config.md` and consider a workspace-isolation flag |
-| `Workspace Trust Required` | Cursor CLI does not trust the target directory yet | Pass `--trust` (or `--force` or `--yolo`) for a directory you control |
+| `command not found: cursor-agent` | Not installed, or PATH not updated | `curl https://cursor.com/install -fsS \| bash`, then open a new terminal |
+| Output holds `Error: Authentication required` while the exit code is `0` | No signed-in session | `cursor-agent login`, or set `CURSOR_API_KEY` |
+| `cursor-agent status` says `Login successful` while `about` says `Not logged in` | `status` reads a stale cache | Trust the `User Email` line in `about` |
+| Task ran but no file changed | A read-only mode, or no approval flag | Default agent mode with `--auto-review` or `--force` |
+| `Cannot use this model: <id>[...]` | The bracket form is not supported | Use the exact id that carries the tier |
+| `cli-cursor model '<id>' is not in the enforced allowlist` | The id sits outside the 29 | Pick an allowed id, or ask the operator to widen the set |
+| `Self-invocation refused` | The caller already runs inside Cursor CLI | Use another runtime, or exit the Cursor session first |
+| An unexpected hook fires | The CLI reads the editor's `.cursor/hooks.json` | Read the shared-config reference before isolating the run |
+| `Workspace Trust Required` | The directory is not trusted yet | Pass `--trust` for a directory you control |
+| Skill-advisor answers come back `degraded: true` under `--sandbox enabled` | The sandbox cannot reach the advisor socket | Run with `--sandbox disabled` when the live answer matters |
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
-**Q: Why not just call `cursor-agent -p` directly from my shell?**
+### Why not call `cursor-agent -p` from a shell script?
 
-A: You can. This skill exists for when an external AI assistant (Claude Code, Codex) needs to dispatch to Cursor programmatically. It handles model selection, approval mapping, auth pre-flight and the self-invocation guard so the calling AI does not have to.
+You can. The skill is for a calling assistant rather than a person: it picks the model and the approval mode itself, and it reads the account state before the first dispatch.
 
-**Q: When do I pick Composer over Grok or GLM?**
+### The task ran and nothing changed. What happened?
 
-A: Pick `composer-2.5` or `composer-2.5-fast` (the default) when the task specifically wants Cursor's own house model or when no other model is named. Pick `cursor-grok-4.5-{low,medium,high}[-fast]`, `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]`, `grok-4.7-{low,medium,high,xhigh}[-fast]`, `gemini-3.8-flash-high`, `glm-5.2-{high,max}`, or `gpt-5.6-luna-{max,max-fast}` when the task or user explicitly names Grok, Gemini 3.8 Flash High, GLM, or GPT-5.6 Luna Max. Dispatch is enforced to exactly these 29 ids. Every other hosted GPT persona/tier, plus Claude, other Gemini and Kimi ids and `auto`, are all out of scope for this skill.
+One of two things. The run used `--mode plan` or `--mode ask`, which are read-only, or it passed neither `--auto-review` nor `--force`, so Cursor's prompt-and-block default applied and nothing answered the prompt.
 
-**Q: The task ran but nothing changed. What happened?**
+### Does Cursor CLI support a reasoning-effort flag?
 
-A: Either the dispatch used `--mode plan` or `--mode ask` (both read-only regardless of approval flags) or neither `--auto-review` nor `--force` was passed, leaving Cursor's own prompt-and-block default in place with nothing to answer the prompt unattended.
+No. Effort is part of the model id. `cursor-agent` rejects a `model[effort=...]` bracket with `Cannot use this model`, so pick the id that carries the tier you want.
 
-**Q: Does Cursor CLI use a `--reasoning-effort` flag like some sibling CLIs?**
+### Why is `--model` limited to 29 ids?
 
-A: No. Effort tiers are baked into the model id itself (`cursor-grok-4.6-high`, `glm-5.2-max`). The parameterized `model[effort=...]` bracket syntax is rejected outright by the CLI, confirmed live rather than assumed from documentation.
-
-**Q: When do I pick Cursor over Codex or Claude Code?**
-
-A: Reach for Cursor when the task specifically wants Composer, a read-only plan or ask pass or Cursor's unique worktree and cloud-worker surfaces. Reach for Codex for OpenAI-backed sandboxed coding and web research. Reach for Claude Code for deep extended thinking.
+Cursor's live roster carries more than 150 ids, and they drift between releases. Most of them carry no prompt guidance in this packet. A fixed set of 29 keeps a dispatch reproducible and stops a fallback from landing on a model nobody chose.
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
-The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, execution modes, approvals and sandbox, worktree isolation, MCP integration, hooks, session continuity, cloud worker and prompt templates.
+The packet ships a manual playbook of 40 scenarios across 13 categories, plus a hermetic stress matrix for the adapter. A scenario ends in PASS or FAIL, and a SKIP is allowed only with a named blocker.
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-cursor/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md` |
-| Default dispatch | `cursor-agent -p "Say hello" --model composer-2.5 --output-format text --sandbox enabled` returns a greeting |
-| Auth pre-flight | `cursor-agent about` output text does not contain "Not logged in" |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-cursor/README.md --type readme` prints `✅ VALID` and `Total issues: 0` |
+| Playbook structure | The same command with `--type playbook` on `manual-testing-playbook/manual-testing-playbook.md` prints `✅ VALID` |
+| Account pre-flight | `cursor-agent about` shows a `User Email` address rather than `Not logged in` |
+| Stress matrix | `cd .skilled/skills/system-deep-loop/runtime && ./node_modules/.bin/vitest run tests/stress/cli-adapter/cli-cursor.vitest.ts --no-coverage` reports one passed test file with no failures |
+| Manual playbook | Run the scenarios and record each verdict under `benchmark/reports/<run-label>/` |
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions and hard rules |
-| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, auth and troubleshooting reference |
-| [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of the Cursor provider and the enforced 29-id model allowlist |
-| [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns and workflows |
-| [`references/cursor-tools.md`](./references/cursor-tools.md) | Cursor-unique surfaces: native worktree, cloud worker, plugin marketplace, MCP |
-| [`references/hook-contract.md`](./references/hook-contract.md) | Cursor's shared hooks.json contract |
-| [`references/shared-editor-config.md`](./references/shared-editor-config.md) | The shared `.cursor` and `~/.cursor` editor-config surface |
-| [`references/agent-delegation.md`](./references/agent-delegation.md) | Execution-mode roster and delegation patterns |
-| [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Fast-path prompt discipline and the CLEAR check |
-| [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates for common tasks |
+| [`SKILL.md`](./SKILL.md) | Runtime rules and dispatch gotchas |
+| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Intent map, resource map and the guard pseudocode |
+| [`references/cli-reference.md`](./references/cli-reference.md) | Flags, auth, output handling and troubleshooting |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | The 29 model ids, defaults and the dispatch envelope |
+| [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI patterns and approval strategy |
+| [`references/agent-delegation.md`](./references/agent-delegation.md) | Execution-mode roster and session continuity |
+| [`references/cursor-tools.md`](./references/cursor-tools.md) | Worktree, cloud worker, plugin marketplace and MCP |
+| [`references/hook-contract.md`](./references/hook-contract.md) | The shared `hooks.json` schema and event delivery |
+| [`references/shared-editor-config.md`](./references/shared-editor-config.md) | The shared `.cursor/` surface and isolation flags |
+| [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Prompt mechanics for a Cursor dispatch |
+| [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompts by task |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The 40-scenario validation gate |
+| [`hard-rules.json`](./hard-rules.json) | Two preflight checks read by the dispatcher |
+| [`benchmark/README.md`](./benchmark/README.md) | Stored validation reports for the goal-hook scenario |

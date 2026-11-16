@@ -1,15 +1,17 @@
 ---
 title: "sk-design-diagram"
-description: "Draw a self-contained HTML/SVG technical diagram across 27 types against one skinnable editorial design system, or redraw an existing draw.io / Mermaid source, for anyone who needs a diagram that looks intentional instead of AI-generic."
+description: "Draw a self-contained HTML/SVG technical diagram across 27 types against one skinnable editorial design system or redraw an existing draw.io / Mermaid source, for anyone who needs a diagram that looks intentional instead of AI-generic."
 trigger_phrases:
   - "create diagram"
   - "architecture diagram"
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # sk-design-diagram
 
-> Draw a self-contained `.html` diagram, architecture, sequence, ER, Gantt, and 23 more types, against one shared editorial design system with a complexity budget and a taste gate, or redraw an existing draw.io / Mermaid source at the format, size, and detail level the destination needs.
+> Turn a system, process or data model into a diagram that looks designed on purpose, as one file you can open in a browser or as text inside a markdown document.
+
+A diagram request can carry more content than one page can hold. The first job is to decide what the reader should see first.
 
 ---
 
@@ -17,88 +19,116 @@ version: 1.2.3.0
 
 ### At a Glance
 
-| Aspect | What you get |
+| Aspect | What you receive |
 |---|---|
-| **Use it for** | A component diagram, decision flow, data model, timeline, or any of 27 technical/product diagram types that should look custom, not templated |
-| **Invoke with** | `/design:diagram` or the keywords "diagram", "architecture diagram", "sequence diagram", "draw.io", "mermaid" |
-| **Works on** | 27 diagram types (generate), `.drawio*` / `.mmd` / `.mermaid` sources (import), and PNG/SVG export of a generated diagram |
-| **Produces** | A single self-contained `.html` file: inline SVG, inlined CSS, no external images, no required JavaScript |
-
-### Why This Skill Exists
-
-A generic AI-drawn diagram is easy to spot: dark mode with a cyan glow, identical rounded boxes for every node, a legend floating inside the drawing area, diagonal connectors crossing at odd angles. It looks technical without a single real design decision behind it. `sk-design-diagram` exists so a diagram starts from a real editorial design system, one accent color, a 4px grid, mandatory orthogonal connectors, a complexity budget, instead of freehand SVG, and never ships without running the same taste gate that catches those failure modes before delivery.
+| **Use it for** | A structure a reader follows: an architecture, sequence, data model, state machine, timeline or process |
+| **Invoke with** | `/design:diagram <target.html> "<what to draw>"` or a plain diagram request that the `sk-design` hub routes here |
+| **Works on** | A structure from your description or an existing draw.io or Mermaid source to redraw |
+| **Produces** | One self-contained `.html` file with inline SVG, a text flowchart in markdown or a PNG/SVG export on request |
 
 ### What It Does
 
-`sk-design-diagram` picks the right one of 27 diagram types for what's being shown, loads that type's layout conventions and complexity budget, draws against the shared design system in `references/foundations/style-guide.md`, and runs the `SKILL.md` §6 SUCCESS CRITERIA gate before handoff. It also redraws an existing draw.io or Mermaid source, extracting the structural content only, never the source's coordinates, colors, or renderer layout, at a chosen format, size, detail level, and audience. It produces standalone `.html` diagrams for the `html-svg` format, or a plain markdown flowchart for the `ascii-markdown` format: the two formats live in this one packet; the earlier separate `sk-create-flowchart` skill has been fully deprecated and removed.
-
-### When To Use This Skill
-
-Reach for `sk-design-diagram` when a reader will learn more from a visual than from prose, a table, or a bulleted list. Pick `--output-format html-svg` for a standalone HTML/SVG artifact, or `--output-format ascii-markdown` when the deliverable is an ASCII flowchart embedded directly in a markdown document: both output formats live in this one packet. Skip it entirely when a short bullet list or a 3-column table already says the same thing.
+`sk-design-diagram` is the `sk-design` hub's diagram mode. It answers a generate or import request with one artifact, either a self-contained `.html` file with inline SVG or a text flowchart in markdown. It picks one of 27 types and loads that type's layout rules before it draws from a shared design system with a node budget and a set of connector rules. The entry point is `/design:diagram <target.html> "<what to draw>"`. When the request is a chart, where a reader compares values, `sk-design-chart` owns it.
 
 ### The 27 Diagram Types
 
+The type decides the layout grammar. Its reference may also set a tighter complexity ceiling. The [diagram catalog](./references/catalog.md) maps a reader question to one type and one canonical form. The corpus check reads the catalog in both directions.
+
 | Category | Types |
 |---|---|
-| **Components + connections** | Architecture, IT current-state, high-level, data flow, DP integration, DP security matrix |
-| **Behavior + flow** | Flowchart, sequence, state machine, process, swimlane |
-| **Data structure** | ER / data model, medallion |
-| **Structure + ranking** | Nested, tree, org chart, layer stack, pyramid / funnel, quadrant, venn, loop |
-| **Time + quantity** | Timeline, Gantt, bar, line, scatter, radar |
-
-Full selection guide with per-type reference links: `SKILL.md` §1.
+| **Components and connections** | Architecture, IT current-state, high-level |
+| **Behavior and flow** | Flowchart, sequence, state machine, process, data flow, swimlane |
+| **Data structure** | ER / data model, medallion, DP integration, DP security matrix |
+| **Structure and ranking** | Nested, tree, org chart, layer stack, pyramid / funnel, quadrant, venn, loop |
+| **Time and quantity** | Timeline, Gantt, bar, line, scatter, radar |
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Pick the right type for what you're showing.**
+**Step 1: Name the target and the picture.**
 
 ```text
-Draw an architecture diagram: frontend, backend, database, Redis cache.
+/design:diagram docs/request-path.html "Draw the request path from browser to Postgres, with Redis as cache" --type architecture
 ```
 
-That request maps to `references/types/type-architecture.md`.
+The run resolves `html-svg` and writes an architecture diagram at the target. It ends with `STATUS=OK PATH=docs/request-path.html`.
 
-**Step 2: Draw the diagram against the design system, then run the taste gate.**
+**Step 2: Ask for text in markdown.**
 
-The taste gate is the `SKILL.md` §6 SUCCESS CRITERIA checklist: self-applied, no external script: type fit, the remove test, signal (accent on ≤2 elements), the five mandatory connector rules, the accessible-SVG contract, and typography.
+```text
+/design:diagram docs/refund-flow.md "Draw the approval branch for a refund" --output-format ascii-markdown
+```
 
-**Step 3: When redrawing an existing draw.io or Mermaid file, extract first: never render.**
+The run writes the flowchart into the markdown file and ends with `STATUS=OK PATH=docs/refund-flow.md`. Validate it before delivery:
 
 ```bash
-python3 scripts/drawio_extract.py path/to/diagram.drawio
-python3 scripts/mermaid_extract.py path/to/diagram.mmd
+bash .skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh docs/refund-flow.md
 ```
 
-Each prints the same structural digest shape: nodes, edges, containers, hubs, and budget flags. Redraw from that digest, then report the fidelity ledger: what was merged, collapsed, or dropped.
+The run prints `Flowchart validation passed` and exits `0`. A warning does not block delivery. Exit `1` does.
+
+**Step 3: Check the packet itself.**
+
+```bash
+node .skilled/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs
+```
+
+The run ends with `Summary: errors: 0` and `RESULT: PASSED` over 38 files and 12 check families.
 
 ---
 
 ## 3. HOW IT WORKS
 
-Every build follows the same order. Detect the request shape, generate, import, or export.
+Every request resolves its output format first. `html-svg` is the default. `ascii-markdown` answers a plain-text flowchart. A flag or a `.md` target selects it. An ambiguous format returns `UNKNOWN_FALLBACK` rather than a guess.
 
-- **Generate:** run the style-guide gate on the first diagram in a new project, load the matching `references/types/type-<name>.md`, and draw against the shared design tokens and that type's complexity budget.
-- **Import:** route by source extension to `references/import-export/import-drawio.md` or `references/import-export/import-mermaid.md`, extract the structural IR with the matching script, set the four output dials (format, size, detail, audience), and redraw: never invent a component to fill a layout: never silently drop one.
-- **Export:** extract the `<svg>` node and emit PNG and/or SVG; export is always manual: never automatic.
+A new diagram takes the generate path. An existing source takes the import path. A finished diagram takes the export path. Generate loads `references/foundations/style-guide.md` and the matching `references/types/type-<name>.md`, then draws inside the node and arrow budget. Import reads a structural digest and redraws from it. Export reads a finished `.html` and writes a diagram-only SVG or PNG. Every path ends at the taste gate in `SKILL.md` section 6. The markdown path ends at `validate-flowchart.sh`.
 
-Every path ends at the same taste gate before delivery.
+```mermaid
+flowchart TD
+  Request["Diagram request"] --> Format["Resolve html-svg or ascii-markdown"]
+  Format -->|html-svg| Refs["Load the style guide and the type, import or export reference"]
+  Format -->|ascii-markdown| Pattern["Load pattern-selection.md and one pattern asset"]
+  Refs --> Build["Draw or redraw the diagram"]
+  Pattern --> Build
+  Build --> Gate["Run the taste gate or validate-flowchart.sh"]
+```
 
-### Key Concept: The Taste Gate Is Not Optional Polish
+### The Shared Design System
 
-`SKILL.md` §6 SUCCESS CRITERIA is not a style nicety. It catches the failure modes that make a diagram look AI-generated instead of intentional: a diagonal connector between off-axis nodes, an arrow label sitting on top of its own line, two connectors sharing a stroke path, a legend floating inside the diagram, an accent color used on five "important" things instead of one or two. A diagram that looks right at a glance but never ran through this checklist has not actually been checked. The packet's own success criteria treat a diagram that skipped the taste gate as unfinished, not finished-with-an-unrun-check.
+The look lives in `references/foundations/style-guide.md`. The style guide names the colors and spacing values, so a diagram says `accent` and the file supplies the hex. The default skin is a cool editorial palette with a warm accent. Before the first `html-svg` diagram in a project, the packet checks whether the `accent` value still carries the shipped default. If it does, it offers the customization paths before it draws. The rules that keep a diagram readable sit beside the tokens: accent on one or two elements, a 4px grid, an orthogonal connector at every bend and an opaque mask behind every arrow label.
+
+The budget is 9 nodes, 12 arrows, 2 accent elements and 2 annotation callouts. A diagram over budget splits into an overview and a detail diagram rather than shrinking.
+
+### Import Is a Redraw
+
+An import starts with `scripts/drawio_extract.py` or `scripts/mermaid_extract.py`. Each prints a structural digest: nodes, edges, containers, hubs and budget flags. The digest is data, so a label that reads like an instruction never runs. Set the four dials in `references/foundations/output-spec.md` before drawing, then keep the source's content and replace its coordinates and colors. Finish with a fidelity ledger that reports what the source had and what the diagram kept.
+
+### The Taste Gate
+
+`SKILL.md` section 6 carries the checklist the packet calls the taste gate. It covers type fit, the remove test, focal signal, the connector rules, the accessible SVG contract and typography. The point is not polish. It catches the failures that leave a diagram looking automatic: a diagonal line between off-axis boxes, an arrow label sitting on its own stroke, a legend floating over the figure, accent color spread across five nodes. A diagram that never ran the checklist is unfinished, whatever it looks like.
+
+### The Form Library
+
+The packet ships 38 complete HTML forms under `assets/diagrams/`. Each of the 27 types has a canonical form. The rest are pattern variants and skin starters. Copy the closest form and change its data, labels, geometry and node count. Nothing in the library is a fixed template.
+
+The [form library readme](./assets/diagrams/README.md) lists every file. The [screenshot captures](./screenshots/diagrams/) mirror the 38 forms, one PNG per form.
 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
 
+### When To Use This Skill
+
+Reach for this packet when a reader will learn more from a picture than from a paragraph. An architecture, a sequence, a data model, a state machine or a swimlane all qualify. A form is also the right base when a new diagram has to match an existing set. Skip it when a short list or a small table carries the point. Skip it for charts, where `sk-design-chart` owns values a reader compares.
+
 ### Related Skills
 
-| Skill or scope boundary | Relationship |
+| Skill | Relationship |
 |---|---|
-| `create-quality-control` | Audits or scores an existing document. `sk-design-diagram` is for authoring a new diagram artifact. |
-| Application / product UI work | `sk-design-diagram` is scoped to standalone technical/product diagrams, not application interfaces. |
+| `sk-design` | Parent hub. It routes a design request to this mode and holds no diagram procedure of its own. |
+| `sk-design-chart` | Sibling mode. It owns charts, where a reader compares values. This packet owns structures a reader follows. |
+| `create-quality-control` | Audits or scores an existing document. This packet authors a new diagram. |
 
 ---
 
@@ -106,79 +136,62 @@ Every path ends at the same taste gate before delivery.
 
 | What you see | Why | Fix |
 |---|---|---|
-| Diagram looks generic or "AI-drawn" | Dark mode + glow, identical boxes, no real accent decision | Re-run the §6 SUCCESS CRITERIA Signal checks; pick 1-2 genuinely focal elements |
-| Diagonal connector between two boxes | Off-axis nodes connected with a straight `<line>` instead of an orthogonal elbow | Route with a rounded right-angle connector (`r=8`); see `SKILL.md` RULES |
-| Arrow label unreadable or overlapping the line | Missing the mandatory 6-10px gap or opaque mask rect | Add the mask rect and the visible gap per the connector-rules checklist |
-| Import redraw looks nothing like the source | Wrong output dial (format/size/detail/audience) for the destination | Re-check the four dials in `references/foundations/output-spec.md` against where the diagram is going |
-| Fidelity ledger missing after an import | Redraw delivered without reporting what was merged, collapsed, or dropped | Every import must end with the fidelity ledger: see `references/import-export/import-drawio.md` / `import-mermaid.md` |
+| The diagram looks generic | Accent color sits on too many boxes, so nothing is focal | Run the Signal checks in `SKILL.md` section 6 and keep accent on one or two elements |
+| A connector runs diagonally between boxes | Off-axis boxes joined with a straight line | Route a rounded right-angle elbow with `r=8`. Keep a straight line only when the endpoints share an axis |
+| An arrow label touches its line | The opaque mask is missing or has no visible gap | Add the mask rect and a 6px to 10px gap. The corpus check fails below 4 units |
+| An import redraw misses the source | The four dials were never set, so the layout was drawn for the wrong destination | Set format, size, detail and audience from `references/foundations/output-spec.md` before drawing |
+| A fidelity ledger is missing | The redraw shipped without saying what changed | Report the merged and dropped content beside the file path |
+| A branded project gets the default skin | The first-run style-guide gate never ran | Check the `accent` value in `references/foundations/style-guide.md` and offer the five customization paths |
 
 ---
 
 ## 6. FAQ
 
-**Q: Why HTML/SVG instead of Mermaid or a design tool?**
+### Why HTML/SVG instead of Mermaid or a design tool?
 
-A: Self-contained HTML with inline SVG opens in any browser with no renderer, build step, or account. If the deliverable specifically needs an ASCII flowchart in markdown, pass `--output-format ascii-markdown`; if it needs pixel-level product UI, that is out of scope for sk-design-diagram.
+One `.html` file with inline SVG opens in a browser without a renderer or an account. When the destination needs text in markdown, `--output-format ascii-markdown` writes a fenced flowchart instead. Product UI work is outside this packet.
 
-**Q: What if my content doesn't fit any of the 27 types?**
+### What if the content fits none of the 27 types?
 
-A: Pick the closest one and adapt it: the type references are layout-convention guides, not rigid templates. If you're combining two types, pick the dominant axis rather than hybridizing grammars.
+Pick the closest type and adapt its layout. The type references describe conventions, not rigid templates. If the source has more content than the type allows, split it into an overview and a detail diagram.
 
-**Q: Can this skill fetch my website automatically to onboard my brand colors?**
+### Can this skill fetch my website to onboard brand colors?
 
-A: No: the packet has no network-fetch tool. Onboarding is agent-mediated: the calling AI session fetches the URL with its own tools and this skill maps the result to semantic tokens. See `references/foundations/onboarding.md`.
+No. The packet's scripts never reach the network and declare no network-fetch tool. The calling AI session fetches the URL with its own tools, then this mode maps the measured colors and fonts to the semantic roles in `references/foundations/style-guide.md`. The procedure is in [the onboarding reference](./references/foundations/onboarding.md).
+
+### Does it export PNG or SVG without being asked?
+
+No. Export is manual. The packet writes the `.html` first, then `references/import-export/export.md` extracts the SVG node or renders a PNG from that file. Neither format appears beside a diagram unless you ask for it.
 
 ---
 
 ## 7. VERIFICATION
 
-| Check | Result |
-|---|---|
-| Package structure | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/sk-design/sk-design-diagram --strict` exits 0 |
-| Connector rules | Every delivered diagram passes all five mandatory connector rules in `SKILL.md` RULES |
-| Accessible SVG | `role="img"`, `aria-labelledby`, first-child `<title>`, `<desc>`, and diagram/variant-prefixed IDs on every delivered SVG |
-| Import fidelity | Every import redraw reports a fidelity ledger, merged, collapsed, dropped |
-| Manual review | The diagram reflects real source content, stays within its type's complexity budget, and passes the full §6 SUCCESS CRITERIA taste gate |
-| Corpus check | `node scripts/check-diagram-corpus.cjs` from the packet root prints `RESULT: PASSED` |
-| Outside delivery | `node scripts/check-diagram-corpus.cjs --extra <dir>` prints `RESULT: PASSED` over a delivered `.html` written outside the packet |
+| Check | How to run it | What a pass looks like |
+|---|---|---|
+| Package shape | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/sk-design/sk-design-diagram --strict` | The run prints `package_skill.py --check --strict: PASS (exit 0)` and exits 0 |
+| Diagram corpus | `node .skilled/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs` | `Summary: errors: 0` and `RESULT: PASSED` over 38 files and 12 families |
+| Outside delivery | `node .skilled/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs --extra <dir>` | `RESULT: PASSED` over a delivered `.html` written outside the packet |
+| ASCII flowchart | `bash .skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh <target.md>` | The run prints `Flowchart validation passed` and exits 0. A warning does not fail it |
+| Mutation suite | `node --test .skilled/skills/sk-design/sk-design-diagram/scripts/tests/` | 21 tests pass and the run exits 0 |
+| Screenshot coverage | `node .skilled/skills/sk-design/shared/scripts/render-screenshots.cjs .skilled/skills/sk-design/sk-design-diagram/assets .skilled/skills/sk-design/sk-design-diagram/screenshots --check` | `sources 39, missing 0` and `RESULT: PASSED` |
+| Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/sk-design/sk-design-diagram/README.md` | `hard blockers: 0` |
 
 ---
 
-## 8. SCREENSHOTS
-
-Every form in this mode is rendered to a PNG under
-[`screenshots/`](./screenshots/), mirroring the source layout, so a form can be
-judged without opening a browser.
-
-Regenerate after changing any form:
-
-```bash
-node ../shared/scripts/render-screenshots.cjs \
-  ./assets ./screenshots --full-page   # each form at its own height
-node ../shared/scripts/render-screenshots.cjs \
-  ./assets ./screenshots --check   # every source covered
-```
-
-The captures sit beside `assets/` rather than inside it: a leaf is something a mode
-loads into context, and a picture for a human to read is not one.
-
-The colour scheme follows the host machine. Chrome ignores the scheme flags in
-headless capture, so a regenerated set matches whichever theme the operator's
-system is set to. Both themes are valid corpus output and each is validated on its
-own, so regenerate on the machine whose theme you want committed.
-
----
-
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Authoritative packet contract, design system and taste gate |
-| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
-| [`references/foundations/style-guide.md`](./references/foundations/style-guide.md) | Design tokens: the single source of truth for colors, typography, and spacing |
-| [`references/foundations/output-spec.md`](./references/foundations/output-spec.md) | The four import/export dials: format, size, detail, audience |
+| [`SKILL.md`](./SKILL.md) | Packet contract, workflow rules and the taste gate |
+| [`ROUTER.md`](./ROUTER.md) | Machine router with the intent model and resource loading levels |
+| [`references/catalog.md`](./references/catalog.md) | Question-to-type index with one canonical form per row |
+| [`references/foundations/style-guide.md`](./references/foundations/style-guide.md) | Semantic tokens for color, typography and spacing |
+| [`references/foundations/output-spec.md`](./references/foundations/output-spec.md) | The four output dials, size presets and fidelity ledger |
 | [`references/import-export/import-drawio.md`](./references/import-export/import-drawio.md) | draw.io redraw procedure |
 | [`references/import-export/import-mermaid.md`](./references/import-export/import-mermaid.md) | Mermaid redraw procedure |
-| [`references/import-export/export.md`](./references/import-export/export.md) | PNG/SVG export procedure |
-| [`references/types/type-architecture.md`](./references/types/type-architecture.md) | Example of a per-type layout-convention reference |
-
+| [`references/import-export/export.md`](./references/import-export/export.md) | Manual PNG and SVG export |
+| [`references/ascii-format/pattern-selection.md`](./references/ascii-format/pattern-selection.md) | Pattern choice for the markdown flowchart format |
+| [`assets/diagrams/README.md`](./assets/diagrams/README.md) | The 38-form library and what each file is for |
+| [`scripts/README.md`](./scripts/README.md) | Extractor and validator contract |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator scenarios for generation, import, export and capture review |

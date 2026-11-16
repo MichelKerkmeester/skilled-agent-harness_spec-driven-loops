@@ -37,9 +37,9 @@ _memory:
 ## 1. METADATA
 <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
+**Packet:** sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes
+**Level:** 2
+**Status:** Draft
 **Date:** 2026-11-16
 <!-- /ANCHOR:metadata -->
 
@@ -53,7 +53,15 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the 41 READMEs, When `h2model.py` and a read of the opening run on each, Then an H1 and a one-line blockquote pitch come first, the first H2 is `## 1. OVERVIEW` opening with a four-row At a Glance table, and every H2 is numbered, ALL CAPS, named by the template and preceded by `---` | Opening check on all 41: H1, blockquote pitch, `## 1. OVERVIEW` with an At a Glance table. `h2model.py` prints `EXACT` for all 41 | Met | - |
+| AC-002 | REQ-002 | Given the 41 files, When `validate_document.py` runs on each, Then each prints `VALID` | `baseline.sh` after run: 41 of 41 `✅ VALID issues=0` | Met | - |
+| AC-003 | REQ-003 | Given the 41 files, When `hvr_scan.py` runs on each, Then each reports `hard blockers: 0` | `baseline.sh` after run: 41 of 41 `hard=0` | Met | - |
+| AC-004 | REQ-004 | Given the 41 files, When the link checker runs over them, Then it reports 0 problems for outbound links and for anchored links into them from the rest of the repository | `readme_links.py` prints `0 problems` over 713 outbound links and 0 inbound anchored links | Met | - |
+| AC-005 | REQ-005 | Given a rewritten README, When a session that did not write it checks each path, command, count and list against the packet's files, Then every claim holds or was corrected | Fact checks row in `implementation-summary.md`: one line per README, 4,820 claims, 109 findings applied and 19 rejected with a reason | Met | - |
+| AC-006 | REQ-006 | Given the rewritten READMEs and the rebuilt verdict baseline, When deep-research-contract-parity.vitest.ts, deep-review-contract-parity.vitest.ts, parent-skill-check.cjs, check-rule-copies.test.sh, check-documentation-drift.cjs, the verdict parity test and the sk-doc suite run, Then all pass | Parity vitests `19 passed`, `parent-skill-check` OK on 7 hubs, rule canary passed, drift exit 0, `PARITY PASS`, sk-doc suite exit 0 | Met | - |
+| AC-007 | REQ-007 | Given a command block in a README, When a reader looks below it, Then the expected output or result is stated | Reviewers checked each command block for its expected output. Missing ones were added, such as the feature-catalog invocation | Met | - |
+| AC-008 | REQ-008 | Given the baseline ceilings, When the voice scan runs after the rewrite, Then no README's mechanical ceiling is lower than its baseline | Before and after ceilings in `implementation-summary.md`: none lower, lowest after 95 | Met | - |
+| AC-009 | REQ-009 | Given the phase is done, When `implementation-summary.md` is read, Then it holds the before and after validator, voice and link results for all 41 files | `implementation-summary.md` Verification section | Met | - |
 
 ### Status values
 
@@ -79,7 +87,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** No
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+The rewrite has not started, so every criterion is still unmet.
 <!-- /ANCHOR:closure -->

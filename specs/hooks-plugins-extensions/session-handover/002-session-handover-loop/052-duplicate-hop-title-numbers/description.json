@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers",
+  "description": "Phase 52: duplicate-hop-title-numbers",
+  "keywords": [
+    "phase",
+    "duplicate-hop-title-numbers"
+  ],
+  "lastUpdated": "2026-11-16T20:46:45.585Z",
+  "specId": "052",
+  "folderSlug": "duplicate-hop-title-numbers",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_21-46__manual-context-save.md"
+  ]
+}

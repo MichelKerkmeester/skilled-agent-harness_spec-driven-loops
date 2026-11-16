@@ -1,6 +1,6 @@
 ---
 title: "create-frontmatter"
-description: "Owns the YAML frontmatter contract: which fields each document class carries, what the description budget allows, and how the 4-part version field is derived."
+description: "Gives a document the frontmatter block its class requires, with a description inside the shared budget and a version that follows the standard."
 trigger_phrases:
   - "create frontmatter mode"
   - "frontmatter contract owner"
@@ -10,12 +10,14 @@ trigger_phrases:
   - "why was my frontmatter rejected"
 importance_tier: normal
 contextType: general
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # create-frontmatter
 
-> The block at the top of every document in this repository follows one contract. This is where that contract lives.
+> Give a document the frontmatter block its class requires, so discovery finds it and the version gate accepts it.
+
+Frontmatter is small and load-bearing. It decides whether a skill is found and whether a document's version passes the commit gate.
 
 ---
 
@@ -25,93 +27,88 @@ version: 1.0.7.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Authoring a frontmatter block, fixing a rejected one, or deriving a `version` |
-| **Invoke with** | "what frontmatter does this need", a validator rejection, or a direct read of `SKILL.md` |
-| **Works on** | Any document class in the repository, plus the files the version standard puts out of scope |
-| **Produces** | A correct block, a specific fix, or a derived 4-part version |
-| **Does not produce** | The document itself, or a change to a validator |
+| **Use it for** | Repairing a rejected block or working out the `version` it needs |
+| **Invoke with** | A frontmatter question through the hub router, or a direct read of `SKILL.md` |
+| **Works on** | The field set for every document class, including classes other skills own |
+| **Produces** | A class-correct block and the reason each field belongs |
+
+### What It Does
+
+create-frontmatter is the `sk-doc` mode that owns the frontmatter contract. It gives each document class one field set. It also sets what a description may contain and what a `version` may be, so the validators have one rule to enforce.
+
+It owns the rules, not the enforcement. The versioning engine and the validators stay in the hub's shared tier, because a post-edit hook outside this hub resolves one of them by literal path on every qualifying edit.
+
+You reach the mode with a frontmatter question. The hub router scores the request and selects `sk-create-frontmatter`, then loads `SKILL.md` first. Four sibling modes point their templates at the field reference in `assets/`: `sk-create-skill`, `sk-create-command`, `sk-create-agent` and `sk-create-feature-catalog`.
 
 ### Why This Skill Exists
 
-Frontmatter is small and it is load-bearing.
+Frontmatter can go wrong without a clear signal. Discovery drops a skill whose description pushes the project over its shared budget, and nothing reports the drop. A version that is present and wrong passes the corpus gate, because the gate checks presence and format only. A block that is right for one class and wrong for another looks correct when you read a single field.
 
-- The advisor routes on `trigger_phrases`.
-- Discovery drops a skill whose `description` pushes the project over a shared character budget, and it drops it silently.
-- A missing `version` fails a corpus gate.
+### What The Contract Covers
 
-None of that is visible in the document body, so a wrong block looks like a working document right up until something stops finding it.
+Four parts decide a block. The class picks the keys. The rest of the contract sets what a description may say and which enum values are legal.
 
-Six modes in this hub emit frontmatter and every one of their templates defers to the same specification. Until now that specification sat in the hub's shared tier, which is the right reach and the wrong ownership. Shared means anyone may read it. It also meant nobody was accountable for it, so it drifted from the validators that enforce it and no single mode could be asked to fix that.
-
-This mode is the answer to "who owns frontmatter."
-
-### What It Owns, And What It Does Not
-
-It owns the **rules**: which fields a class carries, what each field may contain, the description budget and its trim style, and the derivation of the 4-part `version`.
-
-It also owns the **value lists** for `contextType` and `importance_tier`, in `assets/frontmatter-values.json`. spec-kit's validator and save code, sk-doc's `validate_document.py` and the skill-advisor checker all read that one file, so a value added there is legal everywhere at once. The list of session context types a save payload uses is not frontmatter, and stays in spec-kit.
-
-It does not own the **enforcement**. Three scripts do that, and all three stay in the hub's shared tier: the versioning engine, the corpus gate that wraps it, and the fast validator that four command workflows call. They stay because a post-edit hook outside this hub resolves one of them by literal path on every qualifying edit. Moving them would break a runtime hook to gain a tidier diagram.
-
-The split is worth stating plainly, because it decides where to go with a question. **The mode owns the contract, the shared tier keeps the enforcement.** If you want to know what a validator is checking for, read here. If you want to change how it checks, that is a shared-tier change and the contract moves first.
-
-### Document Class Is The First Question
-
-Almost every rejected block is a field that one class requires and another forbids. Read in isolation the field looks right, which is why reading the field row before the class row wastes the most time.
-
-Skill manifests carry a name and an allowed-tools list. References and assets carry a five-field block the advisor harvests. Commands and agents carry frontmatter too and are deliberately outside the version standard. Spec documents use inline metadata instead of a block at all.
+| Part | What it settles |
+|---|---|
+| **Class field set** | Which keys a class carries, from a manifest's `name` and `allowed-tools` to a reference's five-field block |
+| **Description budget** | The per-skill soft target and the project ceiling, plus the trim rules that keep routing tokens |
+| **Version field** | The 4-part `X.Y.Z.W` format, the changelog anchor on `SKILL.md` and the own-edition rule for every other doc |
+| **Value lists** | The canonical `contextType` and `importance_tier` values plus their aliases in `assets/frontmatter-values.json` |
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Name the class.** Skill manifest, readme, reference, asset, feature catalog, testing playbook, command, agent or spec doc. Everything else follows from it.
+**Step 1: Name the document class.** Skill manifest, readme, reference, asset, feature catalog, testing playbook, command, agent or spec doc. The class decides the field set, and everything else follows from it.
 
-**Step 2: Read the contract.**
+**Step 2: Copy the class template.**
 
 ```bash
 cat .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md
 ```
 
-Section 4 holds a copy-paste template per class. Section 3 explains what each field is for, including the description budget. Section 6 lists the four common breakages and their fixes.
+The file prints in full. Section 4 holds one template per class, and section 6 lists the common fixes.
 
-**Step 3: Check the block you produced.**
+**Step 3: Check the block you wrote.**
 
 ```bash
-python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py <skill-dir>
+python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py .skilled/skills/sk-doc/sk-create-frontmatter
 ```
 
-It reports missing fields, a malformed `version`, and a description over its soft target. The budget constants are duplicated into that script deliberately, so the script is fast and the markdown stays the source of truth for the reasoning.
+The run prints `✅ Skill is valid!` and exits 0. It reads the `SKILL.md` in the directory you name, so a reference or asset block needs the packaging gate in VERIFICATION.
 
 ---
 
 ## 3. HOW IT WORKS
 
-Two documents carry everything.
+A request reaches the mode through the `sk-doc` hub. `hub-router.json` scores it and `mode-registry.json` maps the winning `workflowMode` to this folder. `SKILL.md` loads first. The field reference in `assets/` loads on every path, because every frontmatter question resolves against a class. The versioning standard loads only when the question is about a `version` or the gate that checks one.
 
-The field reference is eleven sections. It opens with what frontmatter is and which classes carry it, then when to add a block and when to remove one, then a field-by-field reference, then a template per class, then validation rules, common fixes, auto-generation guidance and a quick-reference table. The description budget lives in section 3 with a worked before-and-after trim.
+From there the work is a short sequence. Name the class, copy its template, fit the description to the budget and set the version last. Version goes in as the final key before the closing delimiter, so its position stays the same whatever else the block carries.
 
-The versioning standard is nine sections covering one algorithm. A skill's anchor is the higher of its own frontmatter version and its highest changelog filename version, compared as integer tuples rather than strings. Every child document inherits major and minor from that anchor, seeds patch to zero, and computes build from its own edit history.
+```mermaid
+flowchart TD
+  Request["Frontmatter question"] --> Class["Name the document class"]
+  Class --> Template["Copy the class template"]
+  Template --> Budget["Fit the description to the budget"]
+  Budget --> Version["Set the version last"]
+  Version --> Check["Validate the block"]
+```
 
-### Key Concept: The Numstat Gate
+Two kinds of version come out of this contract. A `SKILL.md` carries the skill edition, which is the higher of its own frontmatter version and the highest changelog filename version, compared as integer tuples. Every other doc carries its own edition. A valid 4-part value is kept. A missing one starts at `1.0.0.0`. A body change raises the third segment and resets the fourth.
 
-The build segment is the file's real edit count, and "real" is doing specific work.
+When the computed value and the value on disk disagree, the engine reports `skip-conflict` and leaves the human-set number alone. Pass `--update` to override it. A `SKILL.md` reconciles without the flag, because it is the anchor of record.
 
-Count commits with `git log --follow` alone and the number comes out too high. Two things inflate it. A historical repository-wide move rewrote every path, so a file can carry pre-move history as commits that changed zero of its lines. And bulk sweeps touch a file's siblings while listing the file as part of the commit.
+A rejected block is usually a class mismatch, not a bad value. Read the class row in section 4 of the field reference before the field row in section 3.
 
-Gating each commit on its own per-file added-plus-deleted line count removes both. Measured over all 1,214 in-scope docs of `sk-doc` and `system-spec-kit`, the ungated count runs 1.06-1.09x the gated one in aggregate and 2.25x at the worst file, and it differs at all on roughly a third of them. So the gate earns its place by changing the answer often, not by changing it enormously.
+### Key Concept: The Class Comes First
+
+`name` and `allowed-tools` belong on a skill manifest and are not part of the five-field block on a reference. Read either field on its own and both files look inconsistent. The class table settles it, which is why the mode's playbook runs class resolution as its first wave.
 
 ### Key Concept: A Silent Budget
 
-Descriptions share one project-wide allowance. Go over it and the longest entries are dropped from auto-discovery. Nothing errors and nothing warns at the point of failure. The skill simply stops being found.
+The description budget is shared across the project. The per-skill soft target is 130 characters and the project ceiling is 6,400 against Claude Code's default 8,000-character budget. Go over the total and Claude Code drops the longest descriptions from the available-skills list. The skills stay invocable by name, and nothing reports the drop.
 
-That is why the trim rules are specific rather than a suggestion to be brief.
-
-- Drop product and stack enumerations.
-- Drop marketing prose.
-- Keep the skill name, the primary verb, the domain noun and the mode suffixes, because those last ones are what the advisor matches on.
-
-A description trimmed by deleting the routing tokens is under budget and no longer routes.
+Trim by dropping product enumerations, stack lists, marketing prose and parenthetical jargon. Keep the skill name, the primary verb, the domain noun and the mode suffixes, because the advisor matches on them. A description trimmed by deleting those tokens is under budget and no longer routes.
 
 ---
 
@@ -119,21 +116,22 @@ A description trimmed by deleting the routing tokens is under budget and no long
 
 ### When To Use This Skill
 
-Reach for create-frontmatter when a document needs a block and you do not know its class, when a validator rejected a block and named a field rather than a fix, when a description is over budget, or when a `version` needs deriving or reconciling.
+Reach for create-frontmatter when a document needs a block and its class is unclear, or when a validator rejected a block and named a field rather than a fix. Reach for it too when a description is over budget, or when a `version` needs deriving or reconciling against a changelog entry.
 
-Skip it when the document body is what needs writing, when a validator needs changing rather than understanding, or when the question is which skill should handle the request at all.
+Skip it when the document body needs writing. Skip it when a validator needs changing rather than understanding, or when the question is which skill should handle the request at all.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-create-skill` | Emits SKILL.md, reference and asset blocks. Its templates cite this contract |
-| `sk-create-command` | Emits command blocks, which are outside the version standard by design |
-| `sk-create-agent` | Emits agent blocks, also outside the version standard |
-| `sk-create-changelog` | Owns the changelog whose highest filename version is half of the anchor calculation |
-| `sk-create-feature-catalog` | Emits catalog blocks, which are in scope for `version` |
-| `sk-create-manual-testing-playbook` | Emits playbook blocks, also in scope for `version` |
-| `sk-create-quality-control` | Scores documents whose frontmatter this contract defines |
+| `sk-create-skill` | Emits the manifest, reference and asset blocks. Its templates point at this contract. |
+| `sk-create-readme` | Owns README prose. This contract defines the block that sits beside a `SKILL.md`. |
+| `sk-create-command` | Commands carry frontmatter and sit outside the version standard. |
+| `sk-create-agent` | Agents carry frontmatter and no `version`, and the authority key depends on the directory. |
+| `sk-create-changelog` | Owns changelog entries. The highest changelog filename version is half of a `SKILL.md` anchor. |
+| `sk-create-feature-catalog` | Catalog blocks require `title`, `description`, `trigger_phrases` and `version`. |
+| `sk-create-manual-testing-playbook` | Playbook blocks require `title`, `description` and `version`. |
+| `sk-create-quality-control` | Blocks a document on required frontmatter during a quality pass. |
 
 ---
 
@@ -142,36 +140,37 @@ Skip it when the document body is what needs writing, when a validator needs cha
 | What you see | Why | Fix |
 |---|---|---|
 | A field is required in one file and rejected in another | The files are different document classes | Read the class row in section 4 of the field reference, not the field row in section 3 |
-| A skill stopped appearing in auto-discovery | The project description budget was exceeded and the longest entries were dropped | Trim descriptions to the budget. Nothing reports this at the point of failure |
-| A trimmed description no longer routes | The trim removed the tokens the advisor matches on | Keep the skill name, primary verb, domain noun and mode suffixes. Cut enumerations instead |
-| A computed version looks far too high | The edit count was not gated through per-file numstat | Gate each commit on its own added-plus-deleted count for that file |
-| A versioning pass corrupted `trigger_phrases` | A YAML re-serializer reflowed the multi-line block sequence | Edit line-wise. Never re-serialize a frontmatter block |
-| The corpus gate skips a file you expected it to fail | Files with no frontmatter block at all are skipped, not failed | That is intended. A versioning pass never synthesizes a block |
-| A `version` differs from the computed value and was not overwritten | Skip-on-differ protects a human-set version | Pass the explicit update flag, or reconcile by hand. A `SKILL.md` is the exception: it is the anchor of record |
+| A skill stopped appearing in auto-discovery | The project description budget was exceeded and the longest entries were dropped | Trim descriptions to the budget. Nothing reports the drop at the point of failure |
+| A trimmed description no longer routes | The trim removed the tokens the advisor matches | Keep the skill name, primary verb, domain noun and mode suffixes. Cut enumerations instead |
+| A `version` differs from the computed value and was not overwritten | `skip-conflict` protects a human-set version | Pass `--update`, or reconcile by hand. A `SKILL.md` reconciles without the flag |
+| A versioning pass corrupted `trigger_phrases` | A YAML re-serializer reflowed the block list | Edit line-wise. Never re-serialize a frontmatter block |
+| The corpus gate skips a file you expected it to fail | Files with no frontmatter block are skipped, not failed | That is intended. A versioning pass never synthesizes a block |
+| A description is over the soft target but the validator still passes | The soft target warns and only the 1,536 hard cap fails | Trim to the soft target. The hard cap is not the budget |
+| Nothing checks a README block | The advisor's doc-frontmatter checker exempts `README.md`, so the version gate is the only automated check | Check the block by hand against section 4 of the field reference |
 
 ---
 
 ## 6. FAQ
 
-**Q: Why does frontmatter get its own mode when it is four lines at the top of a file?**
+### Why does frontmatter need its own mode when it is four lines at the top of a file?
 
-A: Because six modes emit it and every one of their templates defers to the same specification. A contract that many producers share and no producer owns gets edited by whoever passes, and drifts from the validators enforcing it. This is the third time that shape has been corrected in this hub.
+Six sibling modes emit frontmatter, and four of them point their templates at one field reference. A contract with many producers and no owner drifts from the validators that enforce it. This mode writes the rules and the shared tier runs them.
 
-**Q: Why did the validators not move here too?**
+### Why are the validators still in the shared tier?
 
-A: One of them is resolved by literal path from a post-edit hook outside this hub, on every qualifying edit. Moving it would break a live hook to gain nothing. Enforcement is exactly the kind of many-consumer utility a shared tier is for, and the rules are exactly what it is not.
+One of them is resolved by literal path from a post-edit hook outside this hub, on every qualifying edit. Moving it would break a live hook. Enforcement serves many skills, which is what the shared tier is for. The rules are this mode's.
 
-**Q: Where do the budget numbers actually live?**
+### Where are the budget numbers kept?
 
-A: In `../shared/assets/skill-contract.json` under `descriptionBudget`. `quick_validate.py` reads them through `skill_contract.py` at import time and falls back to matching literals only if that import fails, so editing the Python literals changes nothing while the import works. Change a budget there, and nowhere else. The field reference in `assets/` repeats the same numbers with the reasoning, the worked trim example and the class table, which is a doc-side copy rather than a second input. The validator's own docstring still calls its literals the single source of truth for the Python validators. The code below it disagrees, and the code wins.
+The numbers live in [the shared skill contract](../shared/assets/skill-contract.json) under `descriptionBudget`. `quick_validate.py` reads them through `skill_contract.py` and falls back to hard-coded literals only when that import fails. A budget change goes in the JSON. The field reference repeats the numbers with the reasoning and a worked trim.
 
-**Q: Why is `version` four parts?**
+### What does each version segment mean?
 
-A: To keep the leading digit low while letting the magnitude live somewhere. A document reads `3.6.0.41`, never `41.x.x.x`. Major and minor are human-curated and inherited from the skill, and only the last segment is computed.
+A `SKILL.md` carries the skill edition, which equals the higher of its frontmatter version and its newest changelog filename. Every other doc carries its own edition. A new one starts at `1.0.0.0`. A body change raises the third segment and resets the fourth. A frontmatter-only change raises nothing.
 
-**Q: Are commands and agents really out of scope for `version`?**
+### Are commands and agents really out of scope for `version`?
 
-A: Yes, for now. They carry frontmatter and are governed separately. The version standard says so explicitly rather than leaving it to be inferred from the absence of a rule.
+Yes. They carry frontmatter and are governed separately. A command's `version` stays optional, and an agent carries none. The versioning standard states that rather than leaving it to be inferred.
 
 ---
 
@@ -179,11 +178,12 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-frontmatter/README.md --type readme` | `✅ VALID` and `Total issues: 0` |
 | Packaging gate | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/sk-doc/sk-create-frontmatter --check --strict` | `Result: PASS` |
-| Hub check | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` | Exit 0 |
+| Hub contract | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` | Exit 0, every hard invariant `PASS` and no warnings |
 | Link integrity | `python3 .skilled/skills/sk-doc/shared/scripts/resolve_skill_markdown_links.py --repo-root . --scope .skilled/skills/sk-doc/sk-create-frontmatter` | `failures=0` |
-| Corpus version gate | `bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh --skill sk-doc` | Exit 0 |
-| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook` | `PASS`, tier `FAIL_CLOSED`, `operator=11`, `violations=0`. Read the operator count, not the exit status: a package filtered out of the contract reports `SKIP` at exit zero |
+| Version gate | `bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh --skill sk-doc` | Exit 0. The summary counts `ok` files and `skip-no-frontmatter` files |
+| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook` | `PASS` with `violations=0` and `operator=11`. A package filtered out of the contract reports `SKIP` at exit 0 |
 
 ---
 
@@ -192,13 +192,10 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and the always-and-never rules |
-| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| [`references/README.md`](./references/README.md) | Router for this mode's reference set |
-| [`assets/frontmatter-templates.md`](./assets/frontmatter-templates.md) | The field reference and the per-class templates. Eleven sections, one per concern |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
+| [`references/README.md`](./references/README.md) | Router for the one conditional reference |
+| [`assets/frontmatter-templates.md`](./assets/frontmatter-templates.md) | The field reference and the per-class templates |
 | [`assets/frontmatter-values.json`](./assets/frontmatter-values.json) | The `contextType` and `importance_tier` values and aliases every checker reads |
-| [`references/frontmatter-versioning.md`](./references/frontmatter-versioning.md) | The 4-part version standard: scope, format, anchor derivation, the numstat gate and the insertion rule |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Eleven operator scenarios across field resolution, the description budget and version derivation |
-
-<!-- readme-check
-allow-count three scripts | the sentence names the three by role (the versioning engine frontmatter-version.mjs, the corpus gate check-frontmatter-versions.sh that wraps it, and the fast validator quick_validate.py), and the folder they share holds other scripts, so no folder count proves it
--->
+| [`assets/fixtures/README.md`](./assets/fixtures/README.md) | The two fixed inputs the description-budget scenarios read |
+| [`references/frontmatter-versioning.md`](./references/frontmatter-versioning.md) | The 4-part version standard: scope, format, anchor, bump rule and insertion rule |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator scenarios for class resolution, the description budget and version derivation |

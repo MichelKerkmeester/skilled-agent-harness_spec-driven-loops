@@ -16,7 +16,9 @@
     "hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary",
     "hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record",
     "hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume",
-    "hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps"
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps",
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/014-devin-vibe-lock-probe",
+    "hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader"
   ],
   "manual": {
     "depends_on": [],
@@ -224,7 +226,7 @@
     ],
     "causal_summary": "The artifact this series changes is the automatic operator decision capture pipeline: the capture core and runtime adapters under `.skilled/hooks/decision-capture/`, the save-time sweeps in its `bin/`, and the decision-record writer at `.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts` that a full-auto `/speckit:save` calls",
     "created_at": "2026-11-01T20:52:24Z",
-    "last_save_at": "2026-11-16T15:52:51.060Z",
+    "last_save_at": "2026-11-16T21:18:19.471Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -234,15 +236,15 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:c5f912780059b5171a0ed408abfdf909a4c45ba1cc7ca99184f488af56ca61f6",
+    "source_fingerprint": "sha256:1e6985391851efcc857109cc9929615ad9c47dd81f779e5c62471c057eb61f61",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "98c25bd7a7452fbab0c361454802ace0f89d6546a8aff97660198b149571fd76",
+      "spec.md": "d9fe77ac7888239460264fc589a6eaa100f66a7188eb9f62da09f7820633f688",
       "decision-record.md": "371ee92c629dd1fe1f86260ef393f52443474afa67d6efb9006b61c4956b628f",
       "research/research.md": "c789a080cd66aa0572f8fc6d3a9ddfea993c904562fd432b6e576b074e489dd1",
       "handover.md": "26ab0ee0b0275927533c3424cf7d473cafb15dbb41272e949f1e9eafa4338a93"
     },
-    "last_active_child_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/013-session-signal-sweeps",
-    "last_active_at": "2026-11-16T15:52:37.973Z"
+    "last_active_child_id": "hooks-plugins-extensions/decision-capture/001-decision-capture/015-devin-database-reader",
+    "last_active_at": "2026-11-16T21:18:16.594Z"
   }
 }
