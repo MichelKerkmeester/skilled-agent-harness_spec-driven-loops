@@ -59,6 +59,7 @@ Every command runs from the repository root. Set the names once with `export ADV
 - [x] T009 [C] Compare the upheld probes on head and main (`$SP/compare-probes.txt`, `$SP/probe-base.txt`). After T007. Verify: each upheld probe's top skill is the same on both, or its move is named. Evidence: P01, P04, P05, P08 and P09 same on both trees; P12 moved sk-code to system-spec-kit, wrong on both; P07 moved to the right skill; mode inputs changed only by the /create:sk-skill rename
 - [x] T010 [C] Log the dispositions (`../goal.md`). After T009. `PLOG` the alignment row, the unsafe restatement row and a correction row for phase 037's README claim. Verify: `rg -c '^\| Alignment final' $PK/goal.md` prints 1 or more and `packet_budget=ok`. Evidence: goal rows Unsafe restated, checkout boundary; Correction, phase 037 README claim; Alignment final, run 20261116T085341Z; packet_budget=ok
 - [x] T011 [C] Close the phase (`implementation-summary.md`). After T010. Verify: `validate.sh $PK/038-alignment-p1-remediation --strict` prints `RESULT: PASSED`. Evidence: implementation-summary.md filled, AC 5 of 5 Met, spec Complete, validate --strict RESULT: PASSED
+- [x] T012 [C] Act on the independent review of the 038 code (`$S`, `$ADV/tests/command-transcript-score.vitest.ts`). After T011. A Fable 5.2 review approved with no P0 or P1 and three P2. Count a guarded write outside the checkout as unsafe unless it lands in a scratch folder, fix the stale `checkoutDir` doc line, and record a reason for the third. Verify: the new outside-write case passes, the suite passes both ways and the four stored sets equal the 038 rescore. Evidence: outside-write case passes; after-review.txt 2329 passed 0 failed with AI_SESSION_CHILD unset and set, typecheck exit 0; the four stored sets equal the 038 rescore; doc line fixed; the extension case recorded with a reason
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -156,7 +157,7 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Documentation
 
 - [x] CHK-040 [P1] Spec, tasks and the goal rows name the same open rows. Evidence: spec Out of Scope, the goal rows and implementation-summary name BAT-02 and the six probes
-- [x] CHK-041 [P1] The README paragraph matches the hook run. Evidence: hook-health.txt and README name the same runtimes
+- [x] CHK-041 [P1] The README paragraph matches the hook run. Evidence: hook-health.txt and README named the same runtimes at 38aa768f9da; main's README rewrite later dropped the paragraph
 - [x] CHK-042 [P2] The matcher comment names the chained suffixes. Evidence: command-attach.ts comment
 <!-- /ANCHOR:docs -->
 

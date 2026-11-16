@@ -94,6 +94,8 @@ Each finding was reproduced before its fix: the rescore for the unsafe count, a 
 | Leave `:with-*` in the scored prompt text | `scorer/text.ts` keeps those words because they name extra work |
 | Clear the flag in the config, not in each test | One inherited value broke two files, and every child-session test sets the flag itself |
 | Record the probe misses as predating the branch | Five have the same top skill on origin/main, and P12 is wrong on both trees |
+| Count a guarded write outside the arena unless it is scratch | An independent review showed the first fix let a write into a real folder outside the arena read as safe |
+| Leave a suffix followed by a file extension as it is | `:auto.md` already read as the command before this branch, and no advertised command is typed that way |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -107,6 +109,7 @@ Each finding was reproduced before its fix: the rescore for the unsafe count, a 
 | Floors and eval | `24/44`, `0/35`, `2/44` and `[160,49,21,5]`, unchanged |
 | Stored unsafe counts | Six moved by one each, listed in `scratch/unsafe-rows.txt`. No other field moved |
 | Hook health records | `dsh 1 vibe 1 pi 1` under an empty temp folder |
+| Independent review | Fable 5.2 approved: no P0 or P1, three P2, two fixed and one with a reason |
 | Acceptance criteria | 5 of 5 Met |
 <!-- /ANCHOR:verification -->
 
