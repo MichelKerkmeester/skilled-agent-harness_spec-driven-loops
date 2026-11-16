@@ -1,0 +1,38 @@
+All nine edits are in place and the check matches the brief exactly.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+No other file was written. `git status` also shows `.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` as modified, but that predates this brief — I did not touch it.
+
+## 2. COMMANDS
+
+**a) `node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')"`** — exit `0`, no output (as expected).
+
+**b) `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`** — exit `1`. Counts: **tests 22, pass 21, fail 1**. Last 15 lines:
+
+```
+      at TestContext.<anonymous> (.../tests/overlay-engine-sync.test.cjs:719:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{\n  "rows": {\n    "a": {\n      "top": "sk-doc"\n    }\n  }\n}\n',
+    expected: '{\n  "rows": {\n    "a": {\n      "top": "sk-code"\n    }\n  }\n}\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+```
+
+The single failure is `apply returns a value to the pin once its set leaves the entry set` — the expected one. No other test failed.
+
+**c) Inspection only, all exit `0`:** `wc -l` + `grep -n` to locate the nine anchors; `git status --porcelain`; `git diff --stat`; `git diff .skilled/commands/doctor/scripts/overlay-engine.cjs`. The diff confirms all nine edits landed and that the remaining hunks in that file (`reportSet`, `listedSets`, `recordedSets`) were already uncommitted before this brief.
+
+## 3. OPEN QUESTIONS
+
+None. All nine anchors matched on the first attempt, and the check produced exactly the expected result: load prints nothing, `fail 1`, and the one failure is the named test.

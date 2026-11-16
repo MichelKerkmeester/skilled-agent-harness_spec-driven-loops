@@ -34,7 +34,7 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,10 +42,10 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      "scratch/repro-removed-set.cjs",
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
-      ".skilled/skills/system-skilled-doctor/references/overlays.md"
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      "scratch/repro-removed-set.cjs"
     ],
     "entities": [
       {
@@ -85,12 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "repro-removed-set.cjs",
-        "kind": "file",
-        "path": "scratch/repro-removed-set.cjs",
-        "source": "derived"
-      },
-      {
         "name": "overlay-engine.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
@@ -106,6 +100,12 @@
         "name": "overlays.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "repro-removed-set.cjs",
+        "kind": "file",
+        "path": "scratch/repro-removed-set.cjs",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A project that vendors Skilled changes one value in an upstream JSON file with a `set` operation in a `json-entry` overlay",
     "created_at": "2026-11-16T09:33:04Z",
-    "last_save_at": "2026-11-16T10:24:52.049Z",
+    "last_save_at": "2026-11-16T10:58:43.358Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8cfc3b8093e31e8be43a2195595d1631532760861bbbd7e1f242b3c58d81569d",
+    "source_fingerprint": "sha256:9cfba9e322bcec851a54ddfdd4e78e11646bfd136f987b30c18c4e01a16c5838",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ac66039140a9a8a005cb77c8ac087d8057ba66a50977cb718b1978be348be29f",
-      "plan.md": "73de7ccaae19d12cd70bf38c744b4dc00b6559f0793c18496387424b9229a8f2",
-      "tasks.md": "e3d2378c05aea7a3ab7491a3b59d8d48edc68c4298aa7834d59a61a762edd57f",
+      "spec.md": "6434d6482abcd829f4a2c88238712271dfcc9e9f4a839300146ed541eab38495",
+      "plan.md": "aa91cc0fe2be84cb8521f70a6b8f9e83de94562ed2c37c74db58de7dc1704e46",
+      "tasks.md": "fbee752eae84414b0d3d20fc78fc464c0dd50fe736927fa1f92e3d2a18bfd89f",
       "decision-record.md": "dfad397d1f0a2571823f5e6cec3b3aaa59fa949625bc342bd01a8ea0d04e40ae",
-      "implementation-summary.md": "6dd3c929ae4cce78917936fc99bb026d9f2da15a9c7946ad37850804f11efb83"
+      "implementation-summary.md": "96d6e93ef2c2887ac7128bea0f7fede1a7d3f450377e55c52021c53fb1fc5020"
     },
     "last_active_at": null
   }

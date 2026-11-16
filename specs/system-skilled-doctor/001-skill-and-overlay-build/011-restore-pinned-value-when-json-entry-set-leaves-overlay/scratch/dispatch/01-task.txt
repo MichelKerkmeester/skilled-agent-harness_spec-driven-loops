@@ -1,0 +1,118 @@
+TASK: add one failing test for a `set` operation that leaves a json-entry overlay.
+One file changes. Do the three steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 3. File: R/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+OLD (8 lines, this exact text appears once in the file):
+const path = require('node:path');
+const test = require('node:test');
+
+const {
+  createSyncFixture: createFixture,
+  readJson,
+  sha256,
+  writeFile,
+NEW (replace those lines with these 11 lines, same indentation):
+const path = require('node:path');
+const test = require('node:test');
+const { spawnSync } = require('node:child_process');
+
+const {
+  createSyncFixture: createFixture,
+  createWorkspace,
+  readJson,
+  runEngine,
+  sha256,
+  writeFile,
+
+STEP 2 of 3. Same file.
+Append the block below at the END of the file, after one blank line. Change nothing else in the file.
+
+BLOCK TO APPEND:
+// A `set` writes one value into an upstream file. Once the entry set stops
+// naming it, the value has to return to what the pin holds, which the engine
+// reads from the upstream checkout the manifest names.
+const GIT_CONFIG = [
+  '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
+  '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null', '-c', 'init.defaultBranch=main',
+  '-c', 'core.excludesFile=/dev/null',
+];
+
+function git(cwd, args) {
+  const result = spawnSync('git', [...GIT_CONFIG, '-C', cwd, ...args], { encoding: 'utf8' });
+  if (result.status !== 0) throw new Error('git ' + args.join(' ') + ': ' + result.stderr);
+  return result.stdout.trim();
+}
+
+/**
+ * Build a tree whose entry set writes into a file an upstream checkout holds at
+ * the pin.
+ * @param {object} t The node:test context.
+ * @param {object} pinned Document the pin and the live file both start with.
+ * @param {{checkout?: boolean}} [options] Whether the manifest names the checkout.
+ * @returns {object} Fixture paths, its manifest and helpers to rewrite the entry
+ *   set and read the recorded sets.
+ */
+function createPinnedSetFixture(t, pinned, { checkout = true } = {}) {
+  const fixture = createWorkspace(t, 'overlay-engine-sets-');
+  const seed = JSON.stringify(pinned, null, 2) + '\n';
+  const upstream = path.join(fixture.workspace, 'upstream');
+  fs.mkdirSync(upstream);
+  git(upstream, ['init', '-q']);
+  writeFile(upstream, 'baseline.json', seed);
+  git(upstream, ['add', '-A']);
+  git(upstream, ['commit', '-q', '-m', 'pinned copy']);
+  const commit = git(upstream, ['rev-parse', 'HEAD']);
+  writeFile(fixture.tree, 'baseline.json', seed);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: checkout ? { upstream: 'fixture', checkout: upstream, commit } : { upstream: 'fixture', commit },
+    layoutLinks: [],
+    overlays: [{
+      id: 'baseline-set',
+      scope: 'json-entry',
+      source: 'json/baseline.json',
+      destination: 'baseline.json',
+      pinnedSha256: sha256(Buffer.from(seed)),
+    }],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  fixture.seed = seed;
+  fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+  fixture.writeOperations = (operations) => writeFile(fixture.overlayDir, 'json/baseline.json', JSON.stringify({
+    target: 'baseline.json',
+    style: { indent: 2, primitiveArrays: 'inline' },
+    operations,
+  }, null, 2) + '\n');
+  fixture.livePath = path.join(fixture.tree, 'baseline.json');
+  fixture.readLive = () => fs.readFileSync(fixture.livePath, 'utf8');
+  fixture.recordedSets = () => (readJson(fixture.statePath).sets || {})['baseline.json'] || [];
+  return fixture;
+}
+
+const TOP_PATH = ['rows', 'a', 'top'];
+const PINNED_ROWS = { rows: { a: { top: 'sk-code' } } };
+
+test('apply returns a value to the pin once its set leaves the entry set', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-doc' }]);
+  seedState(fixture);
+  assert.equal(readJson(fixture.livePath).rows.a.top, 'sk-doc');
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+  assert.deepEqual(fixture.recordedSets(), []);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /RESULT: PASSED/);
+});
+
+STEP 3 of 3. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the summary shows "fail 1", and the failing test is "apply returns a value to the pin once its set leaves the entry set". That failure is wanted: the engine change comes in a later brief. Do not edit the engine and do not change the test to make it pass. Report the pass and fail counts and the first assertion message of the failing test. If any other test fails, report its name and output.
