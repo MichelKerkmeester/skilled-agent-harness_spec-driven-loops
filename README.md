@@ -362,6 +362,8 @@ This hook runs bounded checks at startup and cleans up at teardown. It stops onl
 
 Read more in the [session cleanup README](.skilled/hooks/session-cleanup/README.md).
 
+&nbsp;
+
 ### Routing And Dispatch
 
 These hooks send each request, tool call and question down the right path.
@@ -402,6 +404,8 @@ The skill advisor repeats a few fixed directives. This hook tracks which ones a 
 
 Read more in the [directive lifecycle README](.skilled/hooks/directive-lifecycle/README.md).
 
+&nbsp;
+
 ### Quality And Evidence
 
 These hooks ask for a spec folder, check each edit and hold the agent to its proof.
@@ -435,6 +439,8 @@ Read more in the [dist freshness README](.skilled/hooks/dist-freshness/README.md
 At session start, this check confirms that Codex's user-global hook file holds no copy of this repository's hooks. A stale copy there would run the hooks twice in every Codex session.
 
 Read more in the [Codex global hooks check README](.skilled/hooks/codex-global-hooks-check/README.md).
+
+&nbsp;
 
 ### Git
 
@@ -476,6 +482,8 @@ At session start, this check confirms that the repository's versioned git hooks 
 
 Read more in the [git hooks check README](.skilled/hooks/git-hooks-check/README.md).
 
+&nbsp;
+
 ### Safety And Secrets
 
 These hooks keep secrets, vendored files and untrusted web text in check.
@@ -503,6 +511,8 @@ Read more in the [classifier injection screen README](.skilled/hooks/classifier-
 Devin asks for permission before some tool calls. This hook answers that request with allow or deny, from the same spec-gate and dispatch rules the other hooks use. Anything it cannot classify is denied.
 
 Read more in the [permission policy README](.skilled/hooks/permission-policy/README.md).
+
+&nbsp;
 
 ### Runtime-Only Hooks
 
@@ -543,6 +553,8 @@ Built from [system-spec-kit](.skilled/skills/system-spec-kit/README.md).
 Devin fires its compaction event after the summary is written, with no transcript. This hook keeps the summary and restores the spec folder's continuity from disk. Devin's permission request hook is the [permission policy](#permission-policy) above.
 
 Built from [system-spec-kit](.skilled/skills/system-spec-kit/README.md).
+
+&nbsp;
 
 ### Pi Extension Packages
 
