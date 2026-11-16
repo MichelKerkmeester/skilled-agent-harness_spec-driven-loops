@@ -8,12 +8,12 @@ trigger_phrases:
   - "goal chat slice"
 importance_tier: normal
 contextType: general
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # sk-create-goal
 
-> Write the goal.md a spec packet is missing, from that packet's own documents, and leave session goal state alone.
+> Turn a packet's own spec and acceptance criteria into the `goal.md` its sessions run against, while session goal state stays with its owners.
 
 ---
 
@@ -21,91 +21,95 @@ version: 1.2.2.0
 
 ### At a Glance
 
-| Aspect | What you get |
+| Aspect | What it gives you |
 |---|---|
-| **Use it for** | Authoring or revising a packet `goal.md` through six operations: top-level, phase-parent, child, retrofit, phase-add and amend |
-| **Invoke with** | `/create:goal <packet path> [operation] [:auto|:confirm]`, or a plain request to author a packet goal |
-| **Works on** | An existing spec packet with its own `spec.md` and its own acceptance criteria where the level requires them |
-| **Produces** | One goal filled from the template for its kind and the packet's sources, plus the parent chat slice for the operator |
-| **Never touches** | Session objective state. A request to set, bind or resend a goal goes to the goal hooks |
+| **Use it for** | Authoring or revising a packet `goal.md`, from a first top-level goal through a parent amendment |
+| **Invoke with** | `/create:goal <packet path> [operation]` or a plain request to author a packet goal |
+| **Works on** | An existing spec packet with its own `spec.md` and acceptance criteria |
+| **Produces** | One `goal.md` filled from the template for its kind, plus a parent goal's `chat_slice` for the operator |
 
-### What The Mode Does
+### What It Does
 
-`sk-create-goal` turns a packet's own specifications into its `goal.md`. Every goal starts from one of three templates, for a top-level packet, a phase parent or a phase child, and is filled with one objective sentence, the frozen decisions later work must honor and three to seven completion criteria. Each criterion resolves to an exit code, a count or a named artifact. Each template is a checked copy of the system-spec-kit goal template, and a test fails when the two drift apart.
+`sk-create-goal` writes the goal a spec packet runs against. It reads that packet's own documents and fills one objective, the decisions later work must honor and three to seven completion criteria an operator can check without opening another file. Every goal starts from the template for its kind. A parity test holds each template to system-spec-kit's `goal.md.tmpl`. The mode authors files only. A request to set, bind, inject or resend a session objective leaves for the goal hooks.
 
-A phase parent also gets a binding table with exactly one row per direct phase-child folder. The table lives only in the phase-parent goal. Each row points at that child's `goal.md`, and the child goal is then authoritative for its own phase.
-
-### The File And Session Boundary
-
-The mode authors files. It never sets, binds, injects or resends a session objective, and it never tracks whether an operator has done so. After a parent goal changes, the mode prints the file-derived `chat_slice` from `goal.cjs` and stops. The operator holds that slice as the objective. The goal hooks, or the host's native goal command, own everything past the print.
-
-### Where The Content Comes From
-
-Goal content is derived from the packet's own documents, never from a remembered summary. A nested child goal uses only that child's own specification and acceptance criteria. A phase parent's objective and criteria come from the parent-level sources, and its binding table is compared with the phase folders on disk by name, not by count.
-
----
-
-## 2. WHEN TO USE
-
-### Use This Mode When
-
-- A top-level packet or phase parent needs a goal, or a revised one.
-- A nested phase child needs its own goal.
-- An existing packet has no `goal.md` at all and needs one added.
-- A new phase appears in the phase map and on disk and needs one binding row plus its child goal.
-- A parent goal runs over the 4,000-character durable budget and must be cut without losing a criterion.
-- You want a parent goal's chat slice printed for the operator.
-
-### When Not To Use
-
-- The target packet does not exist. Create it with system-spec-kit first.
-- The packet's phase structure is not settled. Plan the phases with system-spec-kit first.
-- The request is to set, bind, inject or resend a session objective. That is goal-hook work, or the host's native goal command. This mode redirects it and writes nothing.
-- The request changes runtime goal behavior or system-spec-kit template tooling. Those owners stay outside this mode.
-
----
-
-## 3. THE SIX OPERATIONS
+### The Six Operations
 
 | Operation | Use it when |
 |---|---|
-| `top-level` | The target is a top-level packet and its goal is being authored or revised |
-| `phase-parent` | The target has direct phase-child folders and its parent goal, binding table included, is being authored or revised |
-| `child` | A nested phase child needs a goal written from its own sources |
-| `retrofit` | An existing packet of any shape has no `goal.md` yet |
-| `phase-add` | A phase was added and needs exactly one parent binding row and its child goal |
-| `amend` | An existing goal must change, including a parent amendment driven by a child change |
+| `top-level` | The packet has no phase children and its goal is being authored or revised |
+| `phase-parent` | The packet has direct phase-child folders, so its goal also carries a binding table |
+| `child` | A nested phase child needs a goal from its own phase sources |
+| `retrofit` | A packet exists but has no `goal.md` |
+| `phase-add` | A new phase appears in the phase map and on disk. It needs one binding row and its child goal |
+| `amend` | An existing goal must change, including a parent change driven by a child |
 
-An operation that alters a parent decision or criterion amends the parent first, then updates the child. A child goal never overrides a parent decision.
-
----
-
-## 4. HOW IT WORKS
-
-1. **Read the sources.** The packet's own `spec.md` and `acceptance-criteria.md`. For a phase parent, the Phase Documentation Map and every direct phase-child directory. For a nested child, only that child's own documents.
-2. **Route.** File content or session state? What role does the packet play? Does `goal.md` exist? Does a child change force a parent amendment? A session-state request is redirected and nothing is written.
-3. **Start from the template.** Copy the block from [`goal-top-level-template.md`](./assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](./assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](./assets/goal-phase-child-template.md) into `goal.md`. A child that `create.sh --with-goal` scaffolded already has the structure, so fill that file.
-4. **Fill.** Load the authoring standards and the goal exemplars, then write the objective, the decision table and the criteria. Leave no template placeholder behind.
-5. **Bind.** For a phase parent, compare the map's folder names with the direct child folders and the binding rows. All three sets must agree before anything is written.
-6. **Measure.** `goal.cjs packet` reports `packet_durable_chars` and `packet_budget`. A goal the cap applies to stays at or under 4,000 characters. Section 2 of [`budget-and-handoff.md`](references/budget-and-handoff.md) says which goals those are.
-7. **Check.** Run the goal checker and resolve every finding. A finding left open for any reason stops the run before the hand-off, with `STATUS=FAIL` and no chat slice.
-8. **Hand off.** Print the `chat_slice` for the operator to set or resend, then stop.
-
-### Cutting An Over-Budget Parent
-
-Cut in the order section 3 of [`budget-and-handoff.md`](references/budget-and-handoff.md) gives, and rerun the packet report after the cuts. Never drop a criterion to fit the budget. If the parent still runs long, ask whether the packet scope should be split.
+An operation that changes a parent decision or criterion amends the parent first and then updates the child. A child goal never overrides a parent decision.
 
 ---
 
-## 5. THE CHECKER
+## 2. QUICK START
 
-[`check-goal.cjs`](./scripts/check-goal.cjs) is a read-only conformance check. Run it from the repository root:
+**Step 1: Invoke it.** Type `/create:goal <packet path>` and add an operation when you know it. The path is required. With no operation the workflow resolves it from the packet's own files. `:auto` runs without checkpoints. `:confirm` checkpoints after the operation is chosen, before any goal file is written and before the handoff.
+
+**Step 2: Check the goal before you hand it off.**
 
 ```bash
 node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>
 ```
 
-Five checks run on every packet it is given:
+A clean run prints these lines and exits 0:
+
+```text
+[check-goal] packet=<packet>
+[check-goal] 1/5 PASS missing-binding-row findings=0
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: PASSED (5/5 checks)
+```
+
+**Step 3: Print the chat slice.**
+
+```bash
+node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace "$PWD"
+```
+
+Expected output starts with `STATUS=OK ACTION=packet`, shows `packet_budget=ok` and ends with the quoted `chat_slice`. Hand that slice to the operator. It is not a session bind.
+
+---
+
+## 3. HOW IT WORKS
+
+The workflow reads first and writes second. It opens the packet's `spec.md` and `acceptance-criteria.md`. For a phase parent it also reads the Phase Documentation Map and lists every direct phase-child folder on disk. For a nested child it reads only that child's sources.
+
+Four pre-write decisions come next. The packet router holds them in full.
+
+- Is the request file work or session state?
+- Does the packet exist and what role does it play?
+- Does a `goal.md` already exist?
+- Does a child change alter a parent decision or criterion?
+
+The mode then copies the template for the goal's kind and fills it from those sources. It replaces every bracketed placeholder, writes the objective and the decision table, then adds three to seven criteria that name a result an operator can read. Where the goal contract asks for the criteria in the objective text, it repeats them word for word.
+
+A phase parent gets one more step. Its binding table needs exactly one row for each direct phase-child folder. Each target must be that child's `NNN-slug/goal.md` path. Read the map folder set and the folder set on disk, then check every binding row against both.
+
+Last, the checker runs and the packet report supplies the slice. A finding stops the run with `STATUS=FAIL` and no `chat_slice`.
+
+```mermaid
+flowchart TD
+  Request["Goal request"] --> Route["Four pre-write decisions"]
+  Route --> Template["Template for the goal kind"]
+  Template --> Fill["Objective, decisions, criteria"]
+  Fill --> Bind["Binding rows for a phase parent"]
+  Bind --> Check["check-goal.cjs"]
+  Check --> Slice["goal.cjs packet"]
+  Slice --> Handoff["chat_slice for the operator"]
+```
+
+### The Five Checks
+
+The goal checker is read-only. It reads the goal and its direct phase-child folders. It also reads the three asset templates.
 
 | Check | What it proves |
 |---|---|
@@ -113,77 +117,91 @@ Five checks run on every packet it is given:
 | `placeholder` | No template text remains in the objective, the decision table or the criteria |
 | `criteria-count` | The goal carries three to seven completion criteria |
 | `parent-budget` | A goal the cap applies to has a durable slice at or under 4,000 characters |
-| `frontmatter-fence` | No bare `---` line sits before the first heading, which would mean the frontmatter closed early |
+| `frontmatter-fence` | No bare `---` line sits before the first heading |
 
-A clean run prints `[check-goal] RESULT: PASSED (5/5 checks)` and exits 0. A finding names the check, the packet and the detail. The budget check skips only a phase child that is not itself a phase parent, the same line section 2 of [`budget-and-handoff.md`](references/budget-and-handoff.md) draws.
+The cap covers a top-level packet and any folder that is a phase parent, meaning it has phase children or its `spec.md` declares the phase level. Only a phase child that is neither is exempt. Its packet report reads `packet_budget=unknown`. When a parent runs over, cut in the order in section 3 of [the budget and handoff reference](./references/budget-and-handoff.md) and measure again. Never drop a criterion to fit the budget.
 
-### The Advisory Criteria Lint
+The advisory criteria lint checks the two criteria rules the checker leaves alone. It flags a criterion whose subject the line never names. It also flags one whose check needs another document. It is advisory. Plain findings leave the exit code at 0. A usage error exits 2.
 
-[`lint-goal-criteria.cjs`](./scripts/lint-goal-criteria.cjs) checks rules 4 and 5, which the checker leaves alone: each criterion is self-contained and checkable without opening another file. It is advisory. It makes no model call, always exits 0 and never blocks a handoff.
+### The Session Boundary
 
-```bash
-node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs <packet>
-node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs --all
-```
-
-Rule 4 flags a phrase such as "the report" whose subject the line never names. Rule 5 flags wording such as "as described in" whose check needs another document. `--all` skips `z_archive` and counts the goals under a `scratch` folder apart as `scratch_excluded=`. `--json` prints each criterion's `path:line` id, a 12-character hash of its text, its class and the flagged spans.
+The mode authors files. It never sets, binds, injects or resends a session objective. It never tracks whether an operator has done so. After a parent goal changes, it prints the `chat_slice` and stops. The operator holds that slice as the objective. The goal hooks or the host's native goal command own everything past the print.
 
 ---
 
-## 6. THE COMMAND
+## 4. INTEGRATION & NAVIGATION
 
-`/create:goal` is the entry point, routed through [`goal.md`](../../../commands/create/goal.md):
+### When To Use This Skill
 
-```text
-/create:goal <packet path> [top-level|phase-parent|child|retrofit|phase-add|amend] [:auto|:confirm]
-```
+Reach for this packet when a top-level packet needs a goal, when a phase parent needs one, when a nested child needs its own or when an existing packet has none. It also handles the phase-add case, where a new folder needs one binding row and its child goal.
 
-The packet path is required and never inferred from conversation history or open files. The operation token is optional. When it is missing, the workflow resolves the operation from the packet's own files and records it. `:auto` runs the workflow without checkpoints. `:confirm` checkpoints after the operation is chosen, before any goal file is written and before handoff. A request to set, bind or resend a session objective reaches no workflow at all: the router redirects it to the goal hooks and writes nothing.
+Stay away when the packet does not exist yet or its phase structure is unsettled. Create the packet and plan its phases with system-spec-kit first. A request to set, bind, inject or resend a session objective belongs to the goal hooks, not here.
 
----
+### Related Skills
 
-## 7. MANUAL TESTING PLAYBOOK
-
-[`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md) holds ten deterministic operator scenarios in one category, goal authoring. Each scenario builds a disposable scratch packet, drives the mode against it and removes the scratch root when it ends, so a run leaves the repository untouched.
-
-| Scenario file | Behavior under test |
+| Skill or surface | Relationship |
 |---|---|
-| `top-level-goal.md` | A top-level packet gets its goal |
-| `phase-parent-and-nested-child-goals.md` | A phase parent and its nested child goals |
-| `add-goal-to-packet-without-goal.md` | The retrofit operation on a packet with no goal |
-| `cut-over-budget-parent.md` | An over-budget parent is cut without losing a criterion |
-| `refuse-leftover-placeholder.md` | The checker fails a goal that keeps template text |
-| `refuse-leftover-placeholder-conversation.md` | An unresolved decision fails first and passes once the operator supplies it on a later turn |
-| `detect-unbound-phase.md` | The checker fails a parent missing a binding row |
-| `resend-parent-after-child-change.md` | A child change that amends the parent prints the updated slice |
-| `route-session-goal-away.md` | A session-goal request writes no goal file |
-| `lint-goal-criteria.md` | The advisory lint flags the criteria that break rules 4 and 5 and exits 0 |
-
-The boundary cases carry the weight. In `route-session-goal-away.md` a run that writes nothing is the passing outcome. In `refuse-leftover-placeholder.md` and `detect-unbound-phase.md` the passing outcome is a failed goal check with the named finding, because the check catching the defect is the behavior under test. Every scenario run records a verdict, a reason and an evidence path under the sk-doc benchmark report tree.
+| `system-spec-kit` | Owns `goal.md.tmpl` and `create.sh --with-goal`, which scaffolds a child goal. It also validates the packet around the goal |
+| Goal hooks and the host goal command | Own session binding and objective delivery. This mode writes the source file and prints its slice |
+| `sk-doc` hub | Routes goal-file authoring to this packet and leaves session-state work elsewhere |
+| `/create:goal` | The command entry point. It binds the packet path, operation and execution mode, then runs the workflow |
 
 ---
 
-## 8. VERIFICATION
+## 5. TROUBLESHOOTING
+
+| What you see | Why | Fix |
+|---|---|---|
+| `missing-binding-row` names a child folder | The phase-parent binding table has no target row for that folder | Add exactly one row that points at `NNN-slug/goal.md`. Never omit a folder because its goal is missing |
+| `placeholder` names the objective, a decision or a criterion | Template text survived the fill | Replace it with text from the packet's sources and leave no bracketed placeholder |
+| `criteria-count` reports a number outside 3 through 7 | The goal has too few or too many completion criteria | Merge or split criteria. Keep each one checkable without another file |
+| `parent-budget` reports a durable slice over the limit | The goal runs past the 4,000-character cap | Cut in the section 3 order in the budget and handoff reference, then run the packet report again |
+| `frontmatter-fence` appears | A bare `---` line sits above the first heading, so the frontmatter closed early | Keep exactly two fence lines, the opener and the closer, with no other `---` inside them |
+| `packet_budget=unknown` on a top-level goal or a phase parent | The budget manifest is missing or invalid | Fix the manifest before you judge the goal. An exempt phase child reports `unknown` by design |
+
+---
+
+## 6. FAQ
+
+**Why does this mode refuse to set the session objective?**
+
+Because that is a different job with a different owner. A packet goal is a file. A session objective is runtime state. The goal hooks or the host's native command own it. The mode prints the `chat_slice` so the operator can set it. It never binds the session itself.
+
+**Can I drop a criterion to fit the 4,000 characters?**
+
+No. Cutting a parent is allowed. Cutting a completion criterion is not. Section 3 of [the budget and handoff reference](./references/budget-and-handoff.md) gives the cut order. Every step keeps the same criteria count. If the parent still runs long, ask whether the packet scope should split.
+
+**What happens when the phase map and the folders on disk disagree?**
+
+The workflow stops. It reports the map rows and the disk entries that differ, then asks for the map to be reconciled first. It never guesses a folder name or adds a row for a folder that does not exist.
+
+**When does a parent goal need a resend?**
+
+When its objective, decisions, binding table or criteria change. A change inside one child's phase needs no parent amendment. Print the updated `chat_slice` after a parent change and hand it to the operator.
+
+---
+
+## 7. VERIFICATION
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
 | Goal conformance | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>` | `RESULT: PASSED (5/5 checks)`, exit 0 |
-| Budget and slices | `node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace "$PWD"` | `packet_budget=ok` and the `chat_slice` printed |
-| Checker, lint and template tests | `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` | `pass 32`, `fail 0`, including template parity with `goal.md.tmpl` |
-| Criteria lint | `node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs --all` | Per-rule counts and `scratch_excluded=`, exit 0 |
-| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook` | `PASS ... scenarios=10 ... violations=0` |
+| Budget and slice | `node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace "$PWD"` | `packet_budget=ok` and the quoted `chat_slice` |
+| Checker, lint and template parity | `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` | `pass 36` with `fail 0` |
+| Advisory criteria lint | `node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs --all` | `errors=0` and `scratch_excluded=`, exit 0 |
+| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook` | `PASS` with `scenarios=10` and `violations=0`, exit 0 |
 
 ---
 
-## 9. RELATED RESOURCES
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | The workflow contract, the rules and the ownership boundaries |
-| [`ROUTER.md`](./ROUTER.md) | The intent model, the pre-write routing decisions and the machine router |
+| [`ROUTER.md`](./ROUTER.md) | The intent model, the four pre-write routing decisions and the machine router |
 | [`references/parent-and-nested-goals.md`](./references/parent-and-nested-goals.md) | The top-level, phase-parent, child, retrofit, phase-add and amend workflows |
 | [`references/authoring-standards.md`](./references/authoring-standards.md) | Reader checks for objectives, decisions, criteria, logs, voice and frontmatter |
-| [`references/budget-and-handoff.md`](./references/budget-and-handoff.md) | Durable budget measurement, ordered cuts and the runtime handoff matrix |
+| [`references/budget-and-handoff.md`](./references/budget-and-handoff.md) | Durable budget measurement, the cut order and the runtime handoff matrix |
 | [`assets/goal-top-level-template.md`](./assets/goal-top-level-template.md) | The blank for a packet with no phases |
 | [`assets/goal-phase-parent-template.md`](./assets/goal-phase-parent-template.md) | The blank for a phase parent, with its binding table |
 | [`assets/goal-phase-child-template.md`](./assets/goal-phase-child-template.md) | The blank for a phase child |
@@ -194,4 +212,5 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 | [`goal.cjs`](../../../hooks/goal/bin/goal.cjs) | The session-free printer for a packet's goal slices |
 | [Goal hooks README](../../../hooks/goal/README.md) | The runtime goal ownership and session-state boundary |
 | [`/create:goal`](../../../commands/create/goal.md) | The command router with the auto and confirm workflows |
+| [Human Voice Rules](../sk-create-with-human-voice/references/hvr-rules.md) | The voice standard every authored goal and this README follow |
 | [`changelog/`](./changelog/) | Release notes for each version of this mode |

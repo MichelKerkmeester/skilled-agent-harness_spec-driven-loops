@@ -6,12 +6,12 @@ trigger_phrases:
   - "/create:manual-testing-playbook"
   - "deterministic scenario"
   - "release readiness"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # create-manual-testing-playbook
 
-> Turn a release checklist into a package of deterministic scenarios that a different operator can rerun and reach the same verdict.
+> Turn a release checklist into a package of deterministic scenarios that another operator can rerun and reach the same verdict.
 
 ---
 
@@ -21,103 +21,105 @@ version: 1.0.4.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Authoring `manual-testing-playbook/` packages: deterministic operator scenarios, evidence capture, pass/fail criteria |
-| **Invoke with** | `/create:manual-testing-playbook`, "manual testing playbook", "testing playbook", "release readiness" |
-| **Works on** | Skills and systems that need operator-facing manual validation ahead of a release |
-| **Produces** | One root `manual-testing-playbook.md` index plus one scenario file per feature ID; `scripts/run-conversation-scenario.cjs` plays conversation scenarios into live runtimes |
-
-### Why This Skill Exists
-
-When a skill ships, the only proof it works is a checklist row someone wrote at the last minute that nobody can rerun. Automated tests cover internals, not what an operator sees when they type a real prompt at a real CLI. A release decision depends on structured evidence, but a bullet list is often the only artifact, so two operators run "the same" test and reach two different verdicts. The prompt, the command and the pass bar were never pinned down. Writing fifteen near-identical scenario write-ups by hand also just doesn't happen, so testing scope quietly shrinks to whatever fits in a paragraph.
-
-The skill exists to replace that memory-based proof with a package a different operator or a different agent can rerun and reach the same verdict on.
-
-### When To Use This Skill
-
-Reach for this packet when five or more distinct features need manual validation, when a release decision depends on structured evidence rather than a memory of "it worked last time" or when multiple operators or agents need to run the same scenarios and get comparable results. Skip it when test steps fit cleanly in a spec-folder `checklist.md` row, the feature is one-off or experimental or automated tests already cover the only meaningful acceptance criteria.
+| **Use it for** | Authoring a `manual-testing-playbook/` package: deterministic operator scenarios with captured evidence and a binary verdict |
+| **Invoke with** | `/create:manual-testing-playbook`, "manual testing playbook", "deterministic scenario" |
+| **Works on** | Skills and systems that need operator-facing manual validation before a release |
+| **Produces** | One root `manual-testing-playbook.md` plus one kebab-case file per feature ID in a category folder |
 
 ### What It Does
 
-`create-manual-testing-playbook` authors a `manual-testing-playbook/` package: one root `manual-testing-playbook.md` that holds shared policy, review protocol and orchestration guidance, plus one file per feature scenario with the exact prompt, the exact command sequence, expected signals, evidence to capture and a binary pass or fail bar. Every scenario is deterministic enough that a different operator or a different agent reproduces the same result. The canonical entry point is `/create:manual-testing-playbook`. If the ask is a capability inventory instead of executable scenarios, that is `create-feature-catalog`. If the ask is to audit or score a playbook that already exists, that is `create-quality-control`.
+The mode authors a `manual-testing-playbook/` package for a skill or a system that needs repeatable manual validation. The root file `manual-testing-playbook/manual-testing-playbook.md` holds shared policy: the global preconditions, the evidence requirements, the review protocol and the release criteria. Each feature gets one file in a kebab-case category folder. That file is the only home of its execution truth, which covers the exact prompt, the exact command sequence, the expected signals, the evidence to capture and the pass or fail bar. A second operator can rerun the scenario from that file alone.
+
+The entry point is `/create:manual-testing-playbook`. A request for a capability inventory rather than executable scenarios belongs to `create-feature-catalog`. A request to audit or score a playbook that already exists belongs to `create-quality-control`.
+
+### Why This Skill Exists
+
+A release decision often rests on a checklist someone wrote the night before. Nobody can rerun it afterwards. Automated tests cover internals, not what an operator sees after typing a real prompt at a real CLI. Two operators then run "the same" test and reach two verdicts, because the prompt, the command, the expected output and the pass bar were never pinned down.
 
 ### The Scenario Contract
 
-The headline strength of this skill is the nine-field contract every per-feature file must fill. Each field pins down one thing an operator needs to reproduce the scenario without guessing.
+Each per-feature file fills the same nine display fields from the root template's 9-column scenario contract. When all nine are filled, a different operator reproduces the run without asking the author a question.
 
-| Contract field | What the skill pins down |
+| Contract field | What the field pins down |
 |---|---|
-| **Feature ID** | a stable `{PREFIX}-{NNN}` label that ties the scenario to one catalog entry or file |
-| **Feature Name** | the one-line name an operator can restate without reading further |
-| **Scenario Objective** | the outcome the scenario proves, in one sentence |
-| **Exact Prompt** | the verbatim prompt an operator or agent types, word for word |
-| **Exact Command Sequence** | the ordered commands with no step left to interpretation |
-| **Expected Signals** | the observable outputs that say the scenario is progressing |
-| **Evidence** | the files, captures or transcripts the operator records |
-| **Pass/Fail Criteria** | the binary bar that decides the verdict |
-| **Failure Triage** | the next step when the scenario fails |
+| **Feature ID** | a stable `{PREFIX}-{NNN}` label that ties the scenario to one feature file |
+| **Feature Name** | the short name a reader can restate |
+| **Scenario Name / Objective** | what the scenario proves, in one sentence |
+| **Exact Prompt** | the verbatim text an operator or agent sends |
+| **Exact Command Sequence** | the ordered commands, with `->` between steps |
+| **Expected Signals** | the observable output that shows the scenario progressing |
+| **Evidence** | the files, screens or transcripts the operator records |
+| **Pass/Fail Criteria** | the binary rule that decides the verdict |
+| **Failure Triage** | the ordered checks to run when the scenario fails |
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Invoke it.** Run `/create:manual-testing-playbook`. To read the full contract directly, open `SKILL.md`.
+**Step 1: Invoke it.** Run `/create:manual-testing-playbook`. The phrases "manual testing playbook" and "deterministic scenario" reach the same mode.
 
 **Step 2: Scaffold the root file.**
 
 ```bash
-mkdir -p manual-testing-playbook
-cp .skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md \
-   manual-testing-playbook/manual-testing-playbook.md
+mkdir -p <skill>/manual-testing-playbook
 ```
 
-You get a root playbook file with the scaffold sections ready for category folders and a feature index.
+Expected result: no output. Then copy the fenced root scaffold from section 5 of [the playbook template](./assets/manual-testing-playbook-template.md) into `<skill>/manual-testing-playbook/manual-testing-playbook.md`. The template's other sections are the standards to read, not text to copy. The scaffold holds the policy sections, the category sections and the feature index.
 
-**Step 3: Verify before you rely on it.**
+**Step 3: Validate the scaffold.**
 
 ```bash
 python3 .skilled/skills/sk-doc/scripts/validate_document.py \
-  manual-testing-playbook/manual-testing-playbook.md --type reference
+  <skill>/manual-testing-playbook/manual-testing-playbook.md --type playbook
 ```
 
-Expected: zero blocking issues once frontmatter, required sections and the feature index are filled in.
+Expected output starts with `✅ VALID`. The report also names `Document type: playbook`, reports `Total issues: 0` and exits 0.
 
 ---
 
 ## 3. HOW IT WORKS
 
-1. Confirm the target skill or system, its feature set and whether a feature catalog already exists.
-2. Decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else.
-3. Create the root file from `assets/manual-testing-playbook-template.md`.
-4. Create one per-feature file per ID, starting single-prompt files from `assets/manual-testing-playbook-snippet-template.md` and conversation files from `assets/manual-testing-playbook-conversation-snippet-template.md`.
-5. Write root package policy (review protocol, evidence rules, orchestration guidance) before scenario-specific exceptions.
-6. Fill each scenario contract with the nine required fields from The Scenario Contract.
-7. Link root category summaries to every per-feature file and to a matching feature-catalog entry when one exists.
-8. Note explicitly when no catalog entry exists.
-9. Isolate destructive scenarios behind clear preconditions and a recovery path.
-10. Validate the root document with the shared validator.
-11. Manually spot-check per-feature frontmatter, section order and feature ID counts before delivery.
+Authoring runs in a fixed order. Decide the category folders and the `{PREFIX}-{NNN}` feature IDs first, because every later file points at them. Copy the root scaffold. Write the package policy before any scenario exception: the global preconditions, the evidence rules, the review protocol and the release criteria. Write each feature file next, execution truth first. Leave the root summary prose until last, so the summaries describe scenarios that exist.
 
-The operator validator warns when a prompt copy disagrees.
+Per-feature files carry one of two styles. A single prompt sends the Exact Prompt once and the operator judges the answer against the Expected Signals. A conversation carries one `json conversation` block. The shared runner plays each turn into a live runtime session, answers the runtime's questions and runs a shell check after every turn. The ordered test for which style to use is in `SKILL.md` §6, Choosing the Scenario Style.
 
-### Key Concept: Prompt Synchronization
+Then run the operator-contract validator over the whole package. A run is not complete until its verdict, its reason and its evidence paths are recorded in the owning skill's `benchmark/reports/<dated-run-label>/` folder.
 
-A scenario's prompt lives in three places: the `SCENARIO CONTRACT`'s `Exact Prompt` field, the `Exact Prompt` column in the root's execution table and any root category summary that previews it. All three must read identically, word for word. For example, if a scenario's contract sets `Exact Prompt: "Use advisor_recommend for the flaky routing-threshold issue, capture the returned recommendation set and return a concise pass/fail verdict"`, that exact sentence has to appear unchanged in the root playbook's execution-table row for the same feature ID. Tighten the wording in one place and forget the other and the playbook now describes two different tests under one ID, so an operator reproducing the scenario from the root table alone gets a different result than the one who read the per-feature file.
+```mermaid
+flowchart TD
+  Request["A validation request"] --> Gate{"Reusable package needed?"}
+  Gate -- "no" --> Checklist["Keep the steps in a spec-folder checklist"]
+  Gate -- "yes" --> Root["Root playbook: shared policy and index"]
+  Root --> Files["One file per feature ID"]
+  Files --> Contract["Nine display fields filled"]
+  Contract --> Validator["validate-playbook-package.cjs"]
+  Validator -- "violation" --> Contract
+  Validator -- "clean" --> Run["Run the scenarios and record evidence"]
+```
+
+### Prompt Synchronization
+
+A scenario's prompt lives in up to four places: the prompt field in `SCENARIO CONTRACT`, the `Exact Prompt` column in the per-feature execution table, any root summary text that previews it and the first `send` of a conversation script. All copies must say the same words. Quotes, backticks, emphasis and spacing are ignored. Any difference in the words is reported as a `PROMPT_UNSYNCED` warning. That warning never fails a run, so an unsynced prompt can ship unless someone reads the report.
 
 ### Verdict Discipline
 
-Every scenario resolves to one of three states: `PASS`, `FAIL` or `SKIP` with a specific sandbox blocker named. There is no `UNAUTOMATABLE` state. A scenario that can't run in the current sandbox still gets a `SKIP` and a reason, so the gap is visible in the playbook instead of quietly vanishing from coverage.
+Every scenario ends as PASS, FAIL or SKIP. A `SKIP` row carries the sandbox or runtime blocker that stopped the run. `UNAUTOMATABLE` is not a verdict the package accepts, so a scenario that cannot run still holds its row and keeps the gap visible in the coverage.
 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
 
+### When To Use This Skill
+
+Reach for this mode when five or more distinct features need manual validation or when several operators or agents must rerun the same scenarios and reach comparable verdicts. Keep the steps in a spec-folder checklist when they fit one row. Leave the package for a validation surface large enough that captured evidence decides the release. A one-off or experimental feature also fits the checklist better.
+
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `create-feature-catalog` | Owns capability inventory, not executable scenarios. Link playbook scenarios to a catalog entry when one exists |
-| `create-quality-control` | Owns auditing, scoring or optimizing a playbook that already exists, without extending its scenario set |
-| `system-spec-kit` | Owns spec-folder `checklist.md` rows for validation that does not need a full deterministic package |
+| `create-feature-catalog` | Owns the capability inventory. A scenario links to its catalog entry when one exists. |
+| `create-quality-control` | Audits, scores or optimizes a playbook that already exists, without adding scenarios. |
+| `system-spec-kit` | Owns the spec folder and its checklist, which holds validation that does not need a full package. |
 
 ---
 
@@ -125,41 +127,56 @@ Every scenario resolves to one of three states: `PASS`, `FAIL` or `SKIP` with a 
 
 | What you see | Why | Fix |
 |---|---|---|
-| Validator flags a missing required section | The root playbook skipped part of the required contract, like evidence requirements | Compare against `assets/manual-testing-playbook-template.md` and restore the missing section |
-| Feature ID count in the root index doesn't match the per-feature files on disk | An ID was added or removed in one place but not the other | Reconcile feature ID counts between the root index and the category folders before delivery |
-| Two operators get different verdicts on "the same" scenario | The prompt drifted between the scenario contract and the execution table | Resync the `Exact Prompt` field so the wording is identical everywhere it appears |
-| A destructive scenario has no recovery path | Scenario design skipped safe-recovery isolation | Escalate instead of shipping it. Every destructive scenario needs isolated preconditions and a documented recovery path |
-| A scenario is marked `UNAUTOMATABLE` | The three-state verdict rule was skipped | Rewrite it as a `SKIP` with the specific sandbox blocker named. `UNAUTOMATABLE` is not a valid verdict |
+| `PROMPT_UNSYNCED` in the validator report | A prompt copy disagrees with the scenario contract | Rewrite every copy with the same words: the contract prompt, the table column, the root summary and the conversation's first `send` |
+| `CONVERSATION_SCRIPT_INVALID` | The `json conversation` block carries a key or a shape the parser rejects | The message names the field path. Fix the block against `references/conversation-scenarios.md` |
+| Exit status `2` from the operator validator | A usage or boundary error in the arguments | Recheck the `--package` argument and the package root it points at |
+| A feature ID in the root index has no file | The root index row points at a file that does not exist | Reconcile the IDs until the root index and the files on disk match one to one |
+| A conversation run fails as `REPO_CHANGED` | A file under `specs/` or a watched `.skilled/skills/.state/` subfolder changed during the run | Stop the other writer and rerun. Both repository snapshots stay in the runtime's evidence folder |
 
 ---
 
 ## 6. FAQ
 
-**Q: Why not just add rows to a spec-folder `checklist.md`?**
+### Why not add rows to an existing spec-folder checklist?
 
-A: Checklist rows work for small, Level 1 or 2 changes. A playbook exists for when the validation surface is big enough or release-critical enough that reproducibility and captured evidence matter more than a quick pass/fail line.
+A checklist row is the cheaper home when the validation is small or one-off. A package earns its cost when the validation surface is release-critical enough that reproducibility and captured evidence matter more than a quick pass line.
 
-**Q: Why doesn't this packet's validator also check per-feature files automatically?**
+### Why is prompt drift only a warning?
 
-A: The shared validator is root-document focused. It does not recurse into category folders. Cross-file markdown links are covered separately by the `check-markdown-links.cjs` CI guard, but per-feature structure, like frontmatter, still needs a manual spot-check. Prompt synchronization is covered by `validate-playbook-package.cjs`, which warns with `PROMPT_UNSYNCED` when a copy disagrees.
+The check is advisory on purpose. `PROMPT_UNSYNCED` reports each copy that disagrees with the scenario contract and never becomes a fail-closed violation. A clean run reports `warnings=0`.
 
-**Q: Can I skip a feature-catalog cross-reference?**
+### Can a scenario skip its feature-catalog link?
 
-A: Yes, when no stable catalog exists. Document that exception explicitly in the per-feature file rather than leaving the link silently absent.
+Yes, when no stable catalog exists for the target. The per-feature file states that exception instead of leaving a link silently absent.
 
-**Q: What if a scenario needs live production access or privileged credentials?**
+### What does a conversation scenario need that a single prompt does not?
 
-A: Escalate rather than design around it. This packet expects sandboxed, reproducible execution. A scenario that only works with external credentials or privileged tool execution needs an explicit decision before it ships.
+Four things:
+
+- a runtime the runner drives
+- tmux
+- that runtime installed and logged in
+- quota to spend
+
+The write sandbox also needs macOS. Elsewhere the run records `sandbox: unavailable` and the subject runs unsandboxed. When a piece is missing, write a single prompt instead. Otherwise keep the conversation and record `SKIP` with the missing piece as its blocker.
 
 ---
 
 ## 7. VERIFICATION
 
-| Check | How to run it |
-|---|---|
-| Root playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <path>/manual-testing-playbook.md --type reference` reports zero blocking issues |
-| Feature ID reconciliation | Manually diff the root index feature IDs against the per-feature filenames in each category folder. The counts must match |
-| Cross-file links | The `check-markdown-links.cjs` CI guard covers cross-file markdown links repo-wide. Per-feature structure still needs a manual review pass |
+| Check | How to run it | Pass looks like |
+|---|---|---|
+| Root playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <skill>/manual-testing-playbook/manual-testing-playbook.md --type playbook` | `✅ VALID` with `Total issues: 0` and exit 0 |
+| Operator contract | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package <skill>/manual-testing-playbook` | One `PASS package=...` line with `violations=0 warnings=0` and exit 0 |
+
+The mode's own package passes the second check:
+
+```bash
+node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs \
+  --package .skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook
+```
+
+Expected final line: `PASS package=sk-doc/sk-create-manual-testing-playbook tier=FAIL_CLOSED scenarios=8 categories=4 operator=8 routing_gold_excluded=0 violations=0 warnings=0`, with exit status 0.
 
 ---
 
@@ -167,16 +184,16 @@ A: Escalate rather than design around it. This packet expects sandboxed, reprodu
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Authoritative packet contract, activation rules and the full authoring workflow |
-| [`references/README.md`](./references/README.md) | Reference map routing to overflow detail |
-| [`references/prompt-voice.md`](./references/prompt-voice.md) | Natural-human vs RCAF voice decision table |
-| [`references/common-pitfalls.md`](./references/common-pitfalls.md) | Recurring package defects and correct fixes |
-| [`references/examples.md`](./references/examples.md) | Shipped reference playbooks and scaffold templates |
-| [`references/conversation-scenarios.md`](./references/conversation-scenarios.md) | The `json conversation` script format and the shared conversation runner |
+| [`SKILL.md`](./SKILL.md) | Authoring workflow, scenario design rules and the full validation contract |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent model, resource map and the fallback checklist |
+| [`references/README.md`](./references/README.md) | Reference map for the overflow detail |
+| [`references/prompt-voice.md`](./references/prompt-voice.md) | Natural-human and RCAF prompt voice decision table |
+| [`references/conversation-scenarios.md`](./references/conversation-scenarios.md) | `json conversation` block schema, turn outcomes and runner evidence |
+| [`references/common-pitfalls.md`](./references/common-pitfalls.md) | Recurring package defects and their fixes |
+| [`references/examples.md`](./references/examples.md) | A shipped playbook to study and the scaffold templates |
 | [`assets/manual-testing-playbook-template.md`](./assets/manual-testing-playbook-template.md) | Root playbook scaffold |
-| [`assets/manual-testing-playbook-snippet-template.md`](./assets/manual-testing-playbook-snippet-template.md) | Per-feature single-prompt scenario scaffold |
-| [`assets/manual-testing-playbook-conversation-snippet-template.md`](./assets/manual-testing-playbook-conversation-snippet-template.md) | Per-feature conversation scenario scaffold |
-
-<!-- readme-check
-allow-ref checklist.md | the checklist a spec packet can carry at its root, which only a legacy packet still has, so no fixed checkout path holds one
--->
+| [`assets/manual-testing-playbook-snippet-template.md`](./assets/manual-testing-playbook-snippet-template.md) | Single-prompt scenario scaffold |
+| [`assets/manual-testing-playbook-conversation-snippet-template.md`](./assets/manual-testing-playbook-conversation-snippet-template.md) | Conversation scenario scaffold |
+| [`scripts/validate-playbook-package.cjs`](./scripts/validate-playbook-package.cjs) | Operator-contract validator |
+| [`scripts/run-conversation-scenario.cjs`](./scripts/run-conversation-scenario.cjs) | Shared conversation runner |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The mode's own operator package: eight scenarios across four categories |

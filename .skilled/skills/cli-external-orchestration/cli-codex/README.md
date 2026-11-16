@@ -9,12 +9,12 @@ trigger_phrases:
   - "code review"
   - "second opinion"
   - "cross-validate"
-version: 1.9.7.0
+version: 1.9.8.0
 ---
 
 # cli-codex
 
-> Get OpenAI-grade coding work into any AI runtime: sandboxed file edits, live web research, diff-aware reviews and a second opinion on your code, all delivered through the `codex` CLI without leaving your current session.
+> Finish a coding or review task through the Codex CLI without leaving your current session.
 
 ---
 
@@ -24,49 +24,53 @@ version: 1.9.7.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Sandboxed coding, repo analysis, PR review, live web research and cross-model validation through OpenAI's `codex` CLI |
-| **Invoke with** | "codex", "openai", "web search", "second opinion" or auto-routing on Codex keywords |
-| **Works on** | Any external runtime (Claude Code, Copilot, raw shell) that needs to reach the `codex` binary |
-| **Produces** | Code edits in a sandbox, text responses, diff-aware reviews and web-enriched research |
-
-### Why This Skill Exists
-
-A non-Codex assistant has no built-in way to reach the `codex` binary. When a task wants OpenAI-model strengths, like sandboxed file edits, live web browsing mid-execution, the diff-aware review workflow or a second model's opinion, the caller either hand-builds fragile `codex exec` invocations and picks flags by trial or skips the capability. The worst trap: `codex exec` defaults to a read-only sandbox, so edit tasks fail silently. Auth handling, service-tier selection, sandbox mapping and reasoning effort all become guesswork. If the calling assistant is itself Codex, a circular self-dispatch burns tokens for no value. This skill standardizes the dispatch, the auth pre-flight, the self-invocation guard and the readiness check. The caller never builds its own CLI wrapper.
+| **Use it for** | Sandboxed coding, repo analysis, diff-aware review and live web research through the `codex` binary |
+| **Invoke with** | "codex", "codex cli", "web search", "second opinion" or the hub's `cli-codex` mode |
+| **Works on** | Any runtime that is not Codex itself and can reach the `codex` binary |
+| **Produces** | File edits inside the workspace, review findings, sourced research answers or a second opinion |
 
 ### What It Does
 
-cli-codex is the single routing point for external runtimes that need Codex CLI. A smart router scores the task against intent signals (code generation, review, web research, architecture exploration, agent delegation) and loads only the references that match. It fails closed when `command -v codex` cannot resolve the binary. A three-layer self-invocation guard refuses to load if the caller is already inside Codex. Orchestrated execution delegates to the shipped deep-loop runtime. This packet does not build a second adapter.
+cli-codex turns a task into a `codex exec` run and hands the output back to the calling assistant. The packet owns the routing, the availability probe, the prompt shape and the self-invocation guard. Research and review lineages run through the shared deep-loop runtime rather than a packet-local adapter.
 
-It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders, memory and continuity. cli-codex dispatches to Codex and hands the result back to the caller.
+It does not write the standards your code has to meet. Nor does it manage spec folders. `sk-code` owns code quality and verification. `system-spec-kit` owns spec folders, memory and continuity.
 
-### The Dispatch Capabilities
+### Why This Skill Exists
 
-| Capability | What the skill can operate |
+A non-Codex assistant has no way to reach the `codex` binary. A hand-built `codex exec` line drifts on the sandbox flag and the auth check. A caller that is already inside Codex burns a run on a dispatch that cannot start. This packet holds those decisions in one place.
+
+### The Dispatch Surfaces
+
+| Capability | What the packet does with it |
 |---|---|
-| **Sandboxed coding** | file edits inside the caller's workspace through `codex exec` with `workspace-write` sandboxing |
-| **Repo analysis** | codebase mapping and architecture exploration through read-only `codex exec` prompts |
-| **Diff-aware review** | the `codex exec review` subcommand scoped to a commit's diff, with a named focus area |
-| **Live web research** | the `codex --search exec` flag for answers sourced from current web results |
-| **Agent delegation** | the repo-local `.codex/agents/` roster through `[agents.<name>]` config entries |
-| **Cross-model validation** | a second OpenAI model opinion on code quality, routed with a `--model` override |
-
-### When To Use This Skill
-
-Reach for cli-codex when a task benefits from sandboxed file operations, live web search via `--search`, the diff-aware review subcommand or a second-AI opinion on code quality. Reach for it too when you want to offload generation to a sandboxed runtime while you keep conducting. Skip it for simple tasks the caller can answer directly and for interactive terminal work where `codex` itself is the right tool. Deep extended-thinking analysis belongs to `cli-claude-code` instead.
+| **Sandboxed coding** | runs `codex exec` with `--sandbox workspace-write` so edits land inside the caller's workspace |
+| **Repo analysis** | reads a codebase in a read-only run and maps files, dependencies or architecture |
+| **Diff-aware review** | uses `codex exec review` on a commit diff, a base branch or the uncommitted changes |
+| **Live web research** | places the top-level `--search` flag before `exec` so answers cite current results |
+| **Image input** | attaches a screenshot or mockup with `-i` for design-to-code and visual bug work |
+| **Second opinion** | runs a separate dispatch, often with the `review` profile, over work the caller produced |
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Verify the CLI is installed.**
+**Step 1: Check the binary.**
 
 ```bash
 command -v codex
 ```
 
-If nothing prints, install it with `npm i -g @openai/codex`.
+Expected output: the path to the binary, for example `/opt/homebrew/bin/codex`. Nothing prints when the CLI is missing. Run `npm i -g @openai/codex` to install it.
 
-**Step 2: Run the default dispatch.**
+**Step 2: Confirm the ChatGPT login.**
+
+```bash
+codex login status
+```
+
+Expected output: a line that reports the login state. The pre-flight in [`SKILL.md`](./SKILL.md) matches `logged in` or `chatgpt-oauth`. When it reports no login, run `codex login` and finish the browser flow with a Plus, Pro, Business, Edu or Enterprise account. cli-codex uses ChatGPT OAuth only and never an API key.
+
+**Step 3: Run the default dispatch.**
 
 ```bash
 codex exec \
@@ -75,229 +79,167 @@ codex exec \
   -c service_tier="fast" \
   -c approval_policy=never \
   --sandbox workspace-write \
-  "Add input validation to src/utils.ts" \
-  2>&1
+  "Add input validation to src/utils.ts" </dev/null
 ```
 
-You get the file edited in place inside your workspace, ending with a cost summary line. For a read-only task like review or research, swap the sandbox to `read-only`.
+Expected output: exit code 0. The answer arrives on stdout and the file is changed in the workspace. A non-zero exit carries the failure on stderr. The `</dev/null` keeps the child from reading your stdin.
 
-**Step 3: Reach for web research when the task needs live data.**
+**Step 4: Review a commit.**
 
 ```bash
-codex --search exec \
-  --model gpt-6-luna \
-  -c service_tier="fast" \
-  --sandbox read-only \
-  "What changed in the Express.js 5.x release? Search the web for current details." \
-  2>&1
+codex exec review "Focus on security" --commit HEAD --model gpt-6-luna -c model_reasoning_effort="medium" -c service_tier="fast" </dev/null
 ```
 
-You get a response sourced from live web results, not a static training cutoff.
-
-**Step 4: Run a diff-aware code review.**
-
-```bash
-codex exec review "Focus on security vulnerabilities" --commit HEAD --model gpt-6-luna
-```
-
-You get a structured review of the latest commit's diff, scoped to the focus area you named.
+Expected output: a review that stays on the `HEAD` diff and the security focus you named, then exit 0.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### The Dispatch Lifecycle
+A dispatch starts when the hub routes a request here or when a caller reads the skill directly. The packet probes `command -v codex` and checks the ChatGPT login before it builds anything. The calling assistant writes the prompt and pins the model, the reasoning effort, the service tier and the sandbox.
 
-1. The calling AI composes a prompt with the right model, reasoning effort, service tier and sandbox.
-2. The shared deep-loop runtime constructs and runs the `codex exec` process.
-3. Codex returns the result.
-4. The caller validates and integrates it.
-5. The packet owns routing and availability checks. `system-deep-loop/runtime/scripts/fanout-run.cjs` owns execution.
+Then one of two paths runs the work. A single build or doc task goes out through the child dispatch envelope in [`references/providers-and-models.md`](./references/providers-and-models.md). A research or review lineage goes to the shared deep-loop runtime at [`fanout-run.cjs`](../../system-deep-loop/runtime/scripts/fanout-run.cjs), which accepts only those two loop types with executor kind `cli-codex`. The output returns to the caller, which validates it before integrating.
 
-### The Two Silent Traps
+```mermaid
+flowchart TD
+  Request["A request that names Codex"] --> Route["The hub routes it to cli-codex"]
+  Route --> Guard{"Binary present and OAuth live?"}
+  Guard -- no --> Ask["Surface the install or codex login"]
+  Guard -- yes --> Shape["Caller sets prompt, model, effort and sandbox"]
+  Shape --> Single["Child dispatch envelope"]
+  Shape --> Loop["Deep-loop runtime for research or review"]
+  Single --> Back["Output returns to the caller"]
+  Loop --> Back
+  Back --> Verify["Caller validates and integrates"]
+```
 
-Two `codex exec` defaults punish operators who do not know them. A reader who learns them here never hits them.
+### The Packet Layout
 
-**Trap 1: the read-only default sandbox.** `codex exec` without an explicit `--sandbox` runs in `read-only` with auto-approve. A task that asks for file edits reads the code, plans the changes, writes nothing and returns a confident summary. No files change, no warnings. Pass `--sandbox workspace-write` for edit tasks or `--full-auto`, which combines workspace-write with `on-request` approval. Read-only tasks are fine with the default.
+| Path | Role |
+|---|---|
+| `SKILL.md` | Runtime instructions and the dispatch rules |
+| `ROUTER.md` | Machine router: intent map, resource map and loading levels |
+| `README.md` | This front page |
+| `references/cli-reference.md` | Flags, sandbox modes, sessions and auth, loaded on every run |
+| `references/agent-delegation.md` | Profile roster, routing table and invocation patterns |
+| `references/codex-tools.md` | Built-in review, search, MCP, image and session surfaces |
+| `references/hook-contract.md` | Native hook wiring for startup context and the advisor brief |
+| `references/integration-patterns.md` | Cross-AI orchestration patterns |
+| `references/providers-and-models.md` | Model ids, effort ceilings and the dispatch envelope |
+| `assets/prompt-quality-card.md` | Fast-path prompt discipline, loaded on every run |
+| `assets/prompt-templates.md` | Copy-paste prompt templates |
+| `hard-rules.json` | The two preflight rules: stdin redirect and binary availability |
+| `manual-testing-playbook/` | 43 scenarios across 11 categories |
+| `benchmark/reports/` | Dated runs of the playbook |
+| `changelog/` | One entry per release |
 
-**Trap 2: the silent service-tier fallback.** Without `-c service_tier="fast"`, Codex falls back to whatever the caller's `~/.codex/config.toml` sets as default, which may be a slower tier. Pass it explicitly every time so the dispatch is reproducible.
+### Profiles And Reasoning Effort
+
+A profile sets the sandbox and the effort for one kind of task. `-p review` loads `$CODEX_HOME/review.config.toml`. A profile named `debug` loads `$CODEX_HOME/debug.config.toml` the same way. The `.codex/agents/*.toml` files are a separate surface: they define personas for the interactive multi-agent TUI and are not loaded by `-p`.
+
+Reasoning effort goes through the config override `-c model_reasoning_effort="<level>"`. There is no `--reasoning-effort` or `--quiet` flag. The ladder runs eight levels from `none` to `ultra`. Each model caps at its own ceiling. The roster with the ceilings lives in the [provider and model reference](./references/providers-and-models.md).
+
+### The Silent Traps
+
+Four defaults surprise an operator who has not read the reference.
+
+**The read-only default.** `codex exec` runs read-only when no `--sandbox` is passed. A task that asks for edits reads the files and plans the change without writing anything. Pass `--sandbox workspace-write` for any task that edits.
+
+**The misplaced search flag.** `--search` belongs before the subcommand. `codex --search exec "<prompt>"` turns on live browsing, while `codex exec --search` fails with `unexpected argument '--search'` on current builds.
+
+**The service tier fallback.** Without `-c service_tier="fast"` the run uses whatever `~/.codex/config.toml` sets, which can be a slower tier.
+
+**The inherited stdin.** A backgrounded `codex exec` reads the caller's stdin unless you close it. A loop over `input.jsonl` stops after a few dispatches and reports no error. Add `</dev/null` to every non-interactive dispatch.
 
 ### The Self-Invocation Guard
 
-If the agent reading this skill is itself running inside Codex, the skill refuses to load. The guard checks three layers in order:
-
-1. The `$CODEX_SESSION_ID` env var and any `CODEX_*`-prefixed vars, which Codex sets on session start.
-2. Process ancestry, where a `codex` parent in the tree trips the guard.
-3. Lock files under `~/.codex/state/<id>/lock`, which signal an active session.
-
-When any layer matches, the skill returns a refusal and loads nothing. The cli-X family exists for cross-AI delegation. A running CLI skill never dispatches itself.
-
-### Agent Routing And Reasoning Effort
-
-Route to a specialized Codex agent through the repo-local agent surface. `.codex/config.toml` declares `[agents.<name>]` entries whose `config_file` values point at `.codex/agents/<name>.toml`. The `.codex/agents/` directory holds the Codex-side agent files. The roster is larger than the old six-profile set.
-
-| Agent | Task | Pair with |
-|---|---|---|
-| `code` | Application-code implementation | `--sandbox workspace-write` |
-| `context` | Production context retrieval and codebase mapping | `--sandbox read-only` |
-| `debug` | Fresh-perspective debugging | `--sandbox workspace-write` |
-| `deep-research` | Iterative technical research | `--search` |
-| `deep-review` | Iterative code review | `--sandbox read-only` |
-| `markdown` | Documentation execution | `--sandbox workspace-write` |
-| `orchestrate` | Multi-agent coordination | `--sandbox read-only` |
-| `prompt-improver` | Dispatch-ready prompt packages | `--sandbox read-only` |
-| `review` | Code review and security audit | `--sandbox read-only` |
-| `ai-council` | Multi-strategy planning | `--sandbox read-only` |
-| `design` | Design values, Style Reference measurement, charts and diagrams | `--sandbox workspace-write` |
-
-`gpt-6-luna` at `medium` is the skill default. Five GPT models are available on the `fast` tier via `--model`: `gpt-5.5`, `gpt-6-luna`, `gpt-5.6-terra`, `gpt-6.1-terra` and `gpt-6-sol`. Reasoning effort is set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high`, `xhigh`, `max` and `ultra`. There is no `--reasoning-effort` flag. A ChatGPT-account login accepts only the models its plan lists, so pass `-m <model>` explicitly when in doubt. Each model has an effort ceiling:
-
-| Model | Effort ceiling |
-|---|---|
-| `gpt-5.5` | `xhigh` |
-| `gpt-6-luna` | `max` |
-| `gpt-5.6-terra` | `ultra` |
-| `gpt-6.1-terra` | `ultra` |
-| `gpt-6-sol` | `ultra` |
-
-The `.codex/agents/*.toml` roster above pins `gpt-6-luna`. Override per dispatch with `--model` when another model fits the task better, for example `gpt-5.6-terra high` for implementation speed or `gpt-6-sol ultra` for verification.
-
-### Auth Pre-Flight And Memory Handback
-
-- **Auth pre-flight:** cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch the skill checks whether `codex login` has been completed. If it has not, it surfaces `codex login` and waits rather than dispatching. It does not use an OpenAI API key.
-- **Memory handback:** When the caller needs to keep a Codex session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js`. The full procedure lives in `system-spec-kit/references/cli/memory-handback.md`.
+If the agent reading this skill is itself running inside Codex, the packet refuses to load and returns `Self-invocation refused`. The guard reads the `CODEX_*` environment variables first. It then walks the process ancestry for a `codex` parent before it checks for a lock file under `~/.codex/state/<id>/lock`. When any layer matches, nothing loads. The cli-X family exists for cross-AI delegation. A running CLI skill never dispatches itself.
 
 ---
 
-## 4. STRUCTURE
+## 4. INTEGRATION & NAVIGATION
 
-```text
-.skilled/skills/cli-external-orchestration/cli-codex/
-+-- SKILL.md                                # Runtime instructions and the full rule set
-+-- ROUTER.md                               # Machine router: intent map, resource map and loading levels (section 3)
-+-- README.md                               # This file
-+-- assets/                                 # Prompt-quality card and prompt templates
-|   +-- prompt-quality-card.md              # Fast-path prompt discipline and the CLEAR check
-|   `-- prompt-templates.md                 # Copy-paste prompt templates for common tasks
-+-- benchmark/                              # Benchmark reports derived from the manual testing playbook
-+-- changelog/                              # Packet-local version changelog
-+-- manual-testing-playbook/                # Per-feature manual test scenarios
-`-- references/                             # Deep-dive references loaded by intent
-    +-- agent-delegation.md                 # Agent roster, routing table and invocation patterns
-    +-- cli-reference.md                    # Complete CLI subcommands, flags, sandbox modes and config reference
-    +-- codex-tools.md                      # Built-in capabilities: the review subcommand, --search, MCP and sessions
-    +-- hook-contract.md                    # Native hook contract and Spec Kit startup wiring
-    +-- integration-patterns.md             # Cross-AI orchestration patterns and workflows
-    `-- providers-and-models.md             # Single-source catalog of the OpenAI provider, the model roster and the effort ladder
-```
+### When To Use This Skill
 
-| File | Role |
-|---|---|
-| `SKILL.md` | Runtime instructions and the full rule set |
-| [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| `README.md` | This file |
-| `references/agent-delegation.md` | Agent roster, routing table and invocation patterns |
-| `references/cli-reference.md` | Complete CLI subcommands, flags, sandbox modes and config reference |
-| `references/codex-tools.md` | Built-in capabilities: the review subcommand, `--search`, MCP and sessions |
-| `references/hook-contract.md` | Native hook contract and Spec Kit startup wiring |
-| `references/integration-patterns.md` | Cross-AI orchestration patterns and workflows |
-| `references/providers-and-models.md` | Single-source catalog of the OpenAI provider, the model roster and the effort ladder |
-| `assets/prompt-quality-card.md` | Fast-path prompt discipline and the CLEAR check |
-| `assets/prompt-templates.md` | Copy-paste prompt templates for common tasks |
-| `hard-rules.json` | Dispatch preflight hard rules (stdin redirect, codex availability) |
-
----
-
-## 5. INTEGRATION & NAVIGATION
-
-### Sibling Boundaries
-
-The cli-X skills each dispatch to a different provider and never overlap.
-
-| Skill | Provider | When to reach for it |
-|---|---|---|
-| `cli-codex` | OpenAI | Sandboxed coding, repo analysis, PR review, web research |
-| `cli-claude-code` | Anthropic | Deep reasoning, diff-based edits, `--json-schema` output, agent delegation |
-| `cli-opencode` | OpenCode | Full OpenCode runtime dispatch, in-OpenCode parallel sessions |
-| `cli-cursor` | Cursor | Composer-model dispatch, read-only plan and ask exploration |
-| `cli-devin` | Cognition | Cloud coding via `devin -p`, subagent delegation, `/handoff` |
-| `cli-pi` | Pi | Guarded headless print and JSON-event dispatch |
-| `cli-deepseek-harness` | DeepSeek Harness | Pinned headless one-task dispatch over a closed DeepSeek V4.1 Flash roster, prompt on stdin. Experimental, no route proven live yet |
-| `cli-mistral-vibe` | Mistral | Pinned print-mode one-task dispatch over a closed DeepSeek and GLM roster, outcome read from `export.json`. Experimental, ACP deferred |
-
-If you are already inside one runtime, the matching cli-X skill refuses to load. Use a different runtime or exit first.
+Reach for cli-codex when the work needs a sandboxed editor, a diff-aware review, live web research or a second opinion on code the caller wrote. Skip it for a question the caller can answer from context it already holds. Skip it too for interactive terminal work where `codex` itself is the right tool. If the caller is already inside Codex, the guard refuses the route, so use a sibling skill or a different runtime.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-code` | Owns code standards and verification. cli-codex dispatches the work, sk-code governs the quality of what comes back. |
-| `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Codex session back into the caller's spec folder. |
+| `cli-claude-code` | Deep reasoning and schema-validated output through the `claude` CLI. Reach for it when the task needs those instead of a sandboxed editor. |
+| `cli-opencode` | Full runtime dispatch with every plugin and registered MCP server. |
+| `sk-code` | Owns the code standards and the verification that the returned work has to pass. |
+| `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback carries a Codex session back into the caller's packet. |
+| `system-deep-loop` | Owns the runtime that runs research and review lineages. |
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
-| `command not found: codex` | CLI not installed or PATH not updated | `npm i -g @openai/codex`, then restart your terminal |
-| `401 Unauthorized` or `not authenticated` | ChatGPT OAuth not configured or expired | Run `codex login` (browser flow) with a ChatGPT Plus/Pro/Business/Edu/Enterprise account |
-| Task ran but no files changed | `codex exec` defaulted to the read-only sandbox | Add `--sandbox workspace-write` or `--full-auto` |
-| Agent asks for spec folder or approval | Non-interactive `exec` cannot answer prompts | Include `(pre-approved, skip Gate 3)` in the prompt and use `--full-auto` |
-| `Self-invocation refused` | The caller is already inside Codex (`CODEX_*` env set, `codex` ancestry or a state lock) | Use a different runtime or exit the current Codex session first |
-| `unknown option: --reasoning` or `--quiet` | Those flags do not exist on `codex exec` | Use `-c model_reasoning_effort="high"`. There is no quiet flag. Capture output with `-o file.txt` |
-| Context too large or truncated output | The prompt references broad paths instead of specific files | Name files with `@./path/to/file` and split large tasks |
-| No startup context or advisor brief | Native hooks not enabled | Set `[features].codex_hooks = true`, trust the checkout in `~/.codex/config.toml`, and verify `.codex/hooks.json` |
+| `command not found: codex` | the binary is not installed or not on `PATH` | `npm i -g @openai/codex`, then restart the terminal |
+| `401 Unauthorized` or `not authenticated` | the ChatGPT OAuth login is missing or expired | run `codex login` and finish the browser flow |
+| The run finished but no file changed | `codex exec` defaulted to the read-only sandbox | add `--sandbox workspace-write`, with `-a never` before `exec` for a headless run |
+| `unexpected argument '--search'` | `--search` was placed after `exec` | place it before the subcommand: `codex --search exec "<prompt>"` |
+| `unexpected argument '--reasoning' found` | no reasoning flag exists | set the effort with `-c model_reasoning_effort="high"` |
+| A background loop stops after a few dispatches | the backgrounded `codex` inherited the loop's stdin | close stdin on every dispatch with `</dev/null` |
+| `Self-invocation refused` | the caller is already running inside Codex | use a sibling cli-* skill or a different runtime |
+| A read-only child reports `FILES READ: none` | the inlined persona named tools the child does not have | place the tool-mapping line above the persona and treat the run as failed |
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
-**Q: Why not just call `codex exec` directly from my shell?**
+### Why not call `codex exec` from a script directly?
 
-A: You can. This skill exists for when an external AI assistant (Claude Code, Copilot) needs to dispatch to Codex programmatically. It handles model selection, sandbox mapping, auth pre-flight and the self-invocation guard so the calling AI does not have to.
+You can. This packet exists for a calling assistant that has to choose the model, the effort, the sandbox and the auth check on every dispatch. That assistant must not dispatch itself. It holds those decisions in one place and refuses the route when the binary or the login is missing.
 
-**Q: What reasoning effort do I pick?**
+### When should I use `codex exec review` instead of a read-only prompt?
 
-A: Default to `medium`, which balances speed and depth for most tasks. Raise to `high` for architecture trade-offs and security audits. Complex planning also earns `high`, while the hardest problems take `xhigh`. Drop to `low` or `minimal` for trivial lookups.
+`codex exec review --commit HEAD` reads the commit diff, so the review stays on the lines that changed. Use a read-only prompt for a question about named files or a pattern.
 
-**Q: The task ran but nothing changed. What happened?**
+### Why does `--search` sit before `exec`?
 
-A: You hit the read-only default sandbox trap. `codex exec` without `--sandbox` defaults to read-only. Codex read your files, planned the changes, reported success and never wrote a byte. Add `--sandbox workspace-write` or `--full-auto` for any task that edits files.
+Because it is a top-level flag. `codex --search exec "<prompt>"` turns on live web access for the session. The same flag after `exec` is rejected on current builds.
 
-**Q: `codex exec review` versus a read-only review prompt. Which do I use?**
+### Which model and effort should I pass?
 
-A: `codex exec review --commit HEAD` runs the built-in diff-aware subcommand, which sees line-level changes in the commit and catches things a plain prompt cannot. Use it for commit review. Use a read-only prompt for reviewing arbitrary files or patterns.
+Start from the default in the [provider and model reference](./references/providers-and-models.md), then raise the effort for architecture work and security review and lower it for a quick lookup. The effort has to stay under the chosen model's ceiling. A ChatGPT login accepts only the models its plan lists.
 
-**Q: When do I pick Codex over Claude Code?**
+### Can the packet run itself from inside Codex?
 
-A: Reach for Codex when the task needs sandboxed edits, live web search, a diff-aware review or a second opinion on your code. Reach for cli-claude-code when it needs deep extended thinking or `--json-schema` output.
+No. The guard refuses the load and returns `Self-invocation refused`. Dispatch from a sibling cli-* skill in another runtime instead.
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
-The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, sandbox modes, reasoning effort, agent routing, session continuity, integration patterns, prompt templates and built-in tools.
+The packet ships a manual testing playbook of 43 scenarios across 11 categories. The categories cover CLI invocation, sandbox modes, reasoning effort, agent routing, session continuity, integration patterns, prompt templates, built-in tools, Codex cloud, git preflight and a hermetic stress matrix.
 
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-codex/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md` |
-| Default dispatch | `codex exec "Say hello" --model gpt-6-luna -c service_tier="fast" --sandbox read-only` returns a greeting |
+| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md --type playbook` reports zero issues |
+| Binary and login | `command -v codex` prints a path and `codex login status` reports a ChatGPT login |
+| Behavior | run the scenarios under `manual-testing-playbook/<category>/` from a runtime that is not Codex. Record each result under `benchmark/reports/` |
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions and the full rule set |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions and the dispatch rules |
 | [`ROUTER.md`](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, sandbox modes and config reference |
-| [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of the OpenAI provider, the model roster and the effort ladder |
-| [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns and workflows |
-| [`references/codex-tools.md`](./references/codex-tools.md) | Built-in capabilities: the review subcommand, `--search`, MCP and sessions |
-| [`references/hook-contract.md`](./references/hook-contract.md) | Native hook contract and Spec Kit startup wiring |
-| [`references/agent-delegation.md`](./references/agent-delegation.md) | Agent roster, routing table and invocation patterns |
+| [`references/cli-reference.md`](./references/cli-reference.md) | Flags, sandbox modes, sessions, auth and troubleshooting |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | Model ids, effort ceilings and the dispatch envelope |
+| [`references/agent-delegation.md`](./references/agent-delegation.md) | Profile roster, routing table and invocation patterns |
+| [`references/codex-tools.md`](./references/codex-tools.md) | Built-in review, search, MCP, image and session surfaces |
+| [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns |
+| [`references/hook-contract.md`](./references/hook-contract.md) | Native hook wiring for startup context and the advisor brief |
 | [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Fast-path prompt discipline and the CLEAR check |
-| [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates for common tasks |
+| [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The scenario directory for operators |
+| [`hard-rules.json`](./hard-rules.json) | The two preflight rules |
