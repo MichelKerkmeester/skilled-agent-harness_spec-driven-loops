@@ -1,0 +1,91 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+## Code Implementation Result
+
+**Mode:** 4: Test Add
+**Files:** `.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+**Verification:** PASS (the wanted failure is present, and it is the only failure)
+**Quality Gate:** N/A — the brief names the check and forbids engine edits; no quality runner was in scope
+**Command:** `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+**Exit Code:** 1 (expected: one failing test)
+**First Failing Assertion:** `AssertionError [ERR_ASSERTION]: Expected values to be strictly equal` at `overlay-engine-sync.test.cjs:719` — actual `{"rows":{"a":{"top":"sk-doc"}}}`, expected `{"rows":{"a":{"top":"sk-code"}}}`
+**Escalation:** NONE
+**Confidence:** HIGH
+**Not checked:** the full `tests/` directory run (completion criterion 1) — this brief scoped the single file only.
+
+### Summary
+Step 1 replaced the 8-line import block with the 11-line version (`spawnSync`, `createWorkspace`, `runEngine` added). Step 2 appended the pinned-set fixture, the `git` helper and the new test verbatim after one blank line. Step 3 ran the suite: 22 tests, 21 pass, 1 fail, and the failing test is `apply returns a value to the pin once its set leaves the entry set`. The failure is the intended one: `apply` with an empty entry set exits 0 but leaves `sk-doc` in the live file, because `planOperation`'s `set` branch has no restore path and `removeDroppedItems` only retracts array items. No engine file was touched.
+
+### Adversarial Summary
+| Finding | Builder Defense | Critic Challenge | Verifier Verdict | Final Action |
+| --- | --- | --- | --- | --- |
+| Failure is the wanted one, not a fixture crash | `applied.code === 0` at line 718 passed, so the engine ran and wrote; the failure is the byte comparison at 719 | Could the fixture have failed earlier and masked the real assertion? | PASS — the reported assertion is line 719, past the apply | ship |
+| Imports resolve | `createWorkspace`, `runEngine`, `writeManifest`, `readJson`, `sha256`, `writeFile` all exported by `overlay-engine-fixtures.cjs` | Would a missing export surface as a require-time crash? | PASS — 21 sibling tests in the same file ran | ship |
+
+### Out Of Scope
+- `setKeyOnItem` restore is a named known limit (D5) and was not built.
+- The engine change that records `sets` in `sync-state.json` and restores from the pin belongs to a later brief.
+
+### Spec Drift
+update_recommended: false
+reason: none
+affected_spec_docs: none
+
+---
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+
+`git diff --stat` reports `1 file changed, 86 insertions(+)`, 0 deletions. No other tracked file is modified. Two untracked `scratch/` folders under the packet (`scratch/dispatch/`, `scratch/vibe-runs/`) are harness run artifacts, not writes of mine.
+
+## 2. COMMANDS
+
+| # | Command | Exit |
+| --- | --- | --- |
+| 1 | `wc -l` + `sed -n '1,40p'` on the test file | 0 |
+| 2 | `sed -n '1,200p' .skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs` | 0 |
+| 3 | `sed -n '600,638p' <test> \| cat -A \| tail -20` | 1 — macOS `cat` has no `-A`; retried as #4 |
+| 4 | `sed -n '600,638p' <test>` | 0 |
+| 5 | `rg -n "checkout\|sets\b\|pinnedSha256" overlay-engine.cjs \| head -60` | 0 |
+| 6 | `rg -n "\.sets\|sets:\|'sets'\|\"sets\"" overlay-engine.cjs` | 0 (one comment-only hit) |
+| 7 | `rg -n "json-entry" overlay-engine.cjs \| head -40` | 0 |
+| 8 | `sed -n '2860,2960p' overlay-engine.cjs` | 0 |
+| 9 | `rg -n "function planJsonOverlay" overlay-engine.cjs` | 0 |
+| 10 | `sed -n '1389,1500p' overlay-engine.cjs` | 0 |
+| 11 | `rg -n "readUpstreamText\|onListed\|recordedItems\|case 'set'\|op === 'set'" overlay-engine.cjs` | 0 |
+| 12 | `sed -n '830,930p' overlay-engine.cjs` | 0 |
+| 13 | `rg -n "GIT_CONFIG\|function git\(\|spawnSync\|createPinnedSetFixture\|TOP_PATH\|PINNED_ROWS\|createWorkspace\|runEngine" <test>` | 1 — no matches, confirming no name collisions |
+| 14 | `tail -c 40 <test> \| od -c \| tail -5` | 0 |
+| 15 | `node --test <test> 2>&1 \| tail -60` | pipeline 0 (node's 1 masked by the pipe) |
+| 16 | `node --test <test> > /tmp/overlay-sync-run.log 2>&1; echo "EXIT=$?"; tail -15 /tmp/overlay-sync-run.log` | 1 |
+| 17 | `git status --porcelain && git diff --stat && sed -n '1,25p' <test>` | 0 |
+| 18 | `sed -n '709,725p' <test> \| nl -ba -v709` | 0 |
+
+Commands 1–14 and 17–18 are read-only inspection; their output is quoted in the transcript above. The decisive run, #16, last 15 lines:
+
+```
+EXIT=1
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:719:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{\n  "rows": {\n    "a": {\n      "top": "sk-doc"\n    }\n  }\n}\n',
+    expected: '{\n  "rows": {\n    "a": {\n      "top": "sk-code"\n    }\n  }\n}\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+```
+
+Counts from the same run: `tests 22`, `pass 21`, `fail 1`, `cancelled 0`, `skipped 0`, `todo 0`, `duration_ms 4360.885041`. The single failing test is `apply returns a value to the pin once its set leaves the entry set` at line 709. No other test failed.
+
+## 3. OPEN QUESTIONS
+
+- The brief asked for the last 15 lines of every command. I gave that for the verification run and the diff/status check, and listed the read-only inspection commands with exit status only, since their output is already in the transcript. Say the word if you want all of them repeated.
+- Command 3 failed on macOS `cat -A` (no such flag) and was retried as command 4. No file was affected.
+- The new test's `git` helper shells out to the real `git` binary, so this test needs `git` on `PATH` in CI. That is inherent to the block as specified, not something I added.

@@ -1,0 +1,45 @@
+All three edits landed and the check matches the brief's expectation.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/overlay-engine.cjs`
+
+No other file was written. `git status` also shows `.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` as modified, but that change predates this dispatch — I did not touch it.
+
+## 2. COMMANDS
+
+**Command 1** — `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node -e "require('./.skilled/commands/doctor/scripts/overlay-engine.cjs')"`
+Exit status: `0`. Output: empty (nothing printed), as expected.
+
+**Command 2** — `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+Exit status: `1`. Counts: **tests 22, pass 21, fail 1**.
+
+Last 15 lines of output:
+
+```
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:719:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:5)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:12)
+      at Test.postRun (node:internal/test_runner/test:1542:11)
+      at Test.run (node:internal/test_runner/test:1467:9)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:1183:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{\n  "rows": {\n    "a": {\n      "top": "sk-doc"\n    }\n  }\n}\n',
+    expected: '{\n  "rows": {\n    "a": {\n      "top": "sk-code"\n    }\n  }\n}\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+```
+
+The single failure is `apply returns a value to the pin once its set leaves the entry set` at `overlay-engine-sync.test.cjs:709` — the expected failure the brief names. No other test failed.
+
+**Command 3** (scope check) — `git status --porcelain && git diff --stat`
+Exit status: `0`. Confirmed the engine diff is 19 lines across the three steps and nothing else.
+
+## 3. OPEN QUESTIONS
+
+none
+
+The engine now reports every `set` through `options.onSet` with `{ path, value, added }`, and computes `wasAdded` from `options.recordedSets`. Both are inert until a caller passes them — `planJsonOverlay` at `overlay-engine.cjs:1422` still forwards only `recordedItems` and `onListed`, so the failing test stays failing until the later brief wires the callback and the `sync-state.json` record through.
