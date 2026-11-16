@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-16 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
@@ -204,7 +204,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- None. The operator asked for the recommended option on 2026-11-16.
+- None. The operator asked for the recommended option on 2026-11-16, recorded as Q080.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -2165,10 +2165,31 @@ describe('run log summary', () => {
         tune: { runs: 2, scored: 2, capped: 1, startRate: '1 of 1', cappedStartRows: 1 },
       },
     });
-    // The split covers the counted starts only, so the capped row adds no shape.
+    // The split covers the uncapped start rows only, so the capped row adds no shape.
     const block = (summary as { claude: { tune: { startShapes: Record<string, number> } } }).claude.tune;
     const shapes = Object.values(block.startShapes);
     expect(shapes.reduce((sum, count) => sum + count, 0)).toBe(1);
+  });
+
+  // A read of the document with no write is a lookup, so every count built on a
+  // start leaves it out while the split still prints it, which keeps the count a
+  // reader would get under the old rule recoverable from the summary.
+  it('counts an offered read with no write as a lookup and not a start', () => {
+    const summary = summarize((root) => {
+      const locator = loadableEntries(root, [
+        ...claudeToolTurn('lookup-read', 'Read', { file_path: '.skilled/commands/create/agent.md' }),
+      ]);
+      return [{ rowId: SUMMARY_ROW, arm: 'tune', exit: 0, locator, offeredCommand: '/create:agent' }];
+    });
+
+    const block = (summary as {
+      claude: { tune: { startRate: string; startedOfOffered: number; startShapes: Record<string, number>;
+        byPolicy: Record<string, { started: number }> } };
+    }).claude.tune;
+    expect(block.startRate).toBe('0 of 1');
+    expect(block.startedOfOffered).toBe(0);
+    expect(block.startShapes).toMatchObject({ readOnly: 1, skill: 0, reported: 0, expanded: 0, readWrite: 0 });
+    expect(Object.values(block.byPolicy).reduce((sum, policy) => sum + policy.started, 0)).toBe(0);
   });
 
   // The runner records what a turn changed after it restores the worktree, so the

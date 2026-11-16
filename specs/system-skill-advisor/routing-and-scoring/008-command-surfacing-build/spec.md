@@ -152,7 +152,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 33 | 033-untuned-arm-arena-run/ | The untuned behaviour arm run live in five arenas at one commit, run 1 of both arms and run 2 of the decline rows, scored with the committed scorer, with its verdict, step reader and B-5 rows in the goal log | Complete |
 | 34 | 034-scorer-heredoc-redirect-fix/ | The transcript scorer stops reading a `>` inside a heredoc body as a redirect, and the phase 033 lines are rescored so the arm verdict and B-5 trigger are restated from the fixed scorer | Complete |
 | 35 | 035-suite-metrics-and-start-shape/ | The advisor suite writes its health records under its own temp folder, and the scorer prints the shape of every start beside the start rate | Complete |
-| 36 | 036-start-rate-fixed-rule/ | The printed start rate follows the fixed arm start rule, a read alone counts as a lookup beside it, and the 007 and 033 start rates are restated | Pending |
+| 36 | 036-start-rate-fixed-rule/ | The printed start rate follows the fixed arm start rule, a read alone counts as a lookup beside it, and the 007 and 033 start rates are restated | Complete |
 
 ### Phase Transition Rules
 

@@ -61,7 +61,7 @@ Every command runs from the repository root. Set the names once with `export ADV
 - [x] T006 [C] Rerun the gates (`$SP/after.txt`). After T005. Run `SUITE`, `FLOOR` and `EVAL`. Verify: 0 failed, `FLOOR` and `EVAL` equal to `before.txt`. Evidence: after.txt: 2325 passed 0 failed exit 0, FLOOR and EVAL equal to before.txt
 - [x] T007 [C] Restate the rates (`$SP/start-007-after.json`, `$SP/arm-033-after.json`, `$SP/restate.txt`). After T006. Run `S007` and `S033` into the after files, then `RESTATE > $SP/restate.txt`. Verify: 22 lines read `numerator moved by readOnly, denominator equal`, and the 033 decline and skill-only counts equal 034's. Evidence: restate.txt: 22 lines 'numerator moved by readOnly, denominator equal', 0 DIFF, 033 decline and skill-only equal; fields-check.txt: no other field moved
 - [x] T008 [C] Log the restated rates (`../goal.md`). After T007. `PLOG` a `Start rates, fixed rule, 007 set` row and a `Start rates, fixed rule, 033 arm` row from `restate.txt`. Verify: `rg -c '^\| Start rates, fixed rule' $PK/goal.md` prints 2 and `packet_budget=ok`. Evidence: goal rows Start rates, fixed rule, 007 set and 033 arm plus a correction row for the decline totals; rg -c prints 2, packet_budget=ok
-- [ ] T009 [C] Close the phase (`implementation-summary.md`). After T008. Fill the summary, tick the checklist and validate. Verify: `validate.sh $PK/036-start-rate-fixed-rule --strict` prints `RESULT: PASSED`.
+- [x] T009 [C] Close the phase (`implementation-summary.md`). After T008. Fill the summary, tick the checklist and validate. Verify: `validate.sh $PK/036-start-rate-fixed-rule --strict` prints `RESULT: PASSED`. Evidence: implementation-summary.md filled with the changed expectations, AC 5 of 5 Met, CHK 12/12 13/13 1/1, spec Complete, validate --strict RESULT: PASSED (errors=0 warnings=0)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -69,9 +69,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] `restate.txt` and the goal rows agree
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] `restate.txt` and the goal rows agree
 <!-- /ANCHOR:completion -->
 
 ---
@@ -106,9 +106,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Pre-Implementation
 <!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
 
-- [ ] CHK-001 [P0] Both before summaries are on file (T001)
-- [ ] CHK-002 [P0] The operator's go-ahead is recorded in `../decision-record.md`
-- [ ] CHK-003 [P1] Both stored sets still score with their before unscored counts
+- [x] CHK-001 [P0] Both before summaries are on file (T001). Evidence: start-007-before.json (cmp equal to the 267c27fc5df copy) and arm-033-before.json, both scored at c3477fdcc85
+- [x] CHK-002 [P0] The operator's go-ahead is recorded in `../decision-record.md`. Evidence: Q080 in ../decision-record.md, written by the continuity save
+- [x] CHK-003 [P1] Both stored sets still score with their before unscored counts. Evidence: fields-check.txt: with the start fields removed both summaries diff to nothing, so unscored counts hold
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -117,10 +117,10 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Code Quality
 <!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
 
-- [ ] CHK-010 [P0] `node --check $S` exits 0 and the build type check exits 0
-- [ ] CHK-011 [P0] The change touches the scorer, its test and the README row only (`G diff --stat`)
-- [ ] CHK-012 [P1] `startState`'s doc comment states the rule
-- [ ] CHK-013 [P1] Comments carry no phase or finding id
+- [x] CHK-010 [P0] `node --check $S` exits 0 and the build type check exits 0. Evidence: node --check exit 0, npm run typecheck exit 0
+- [x] CHK-011 [P0] The change touches the scorer, its test and the README row only (`G diff --stat`). Evidence: git show --stat 99aef1e794f plus the review fixes: scorer, test file and README only outside the spec folder
+- [x] CHK-012 [P1] `startState`'s doc comment states the rule. Evidence: startState doc comment states the four starting shapes and the lookup
+- [x] CHK-013 [P1] Comments carry no phase or finding id. Evidence: diff grep for phase, REQ, T and Q ids in added .skilled lines finds none
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -129,10 +129,10 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Full suite 0 failed (`after.txt`)
-- [ ] CHK-022 [P1] A write outside the checkout leaves a lookup
-- [ ] CHK-023 [P1] A row with no expected command has no shape
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: acceptance-criteria.md 5 of 5 Met
+- [x] CHK-021 [P0] Full suite 0 failed (`after.txt`). Evidence: after.txt 2325 then 2326 passed after the review fixes, 0 failed, exit 0
+- [x] CHK-022 [P1] A write outside the checkout leaves a lookup. Evidence: outside-checkout case asserts shape readOnly and started false
+- [x] CHK-023 [P1] A row with no expected command has no shape. Evidence: expected_command null case returns shape null
 <!-- /ANCHOR:testing -->
 
 ---
@@ -141,13 +141,13 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## FIX ADDENDUM: FIX COMPLETENESS
 <!-- FILL: Write this section when the packet fixes a reported finding. Delete it otherwise. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
 
-- [ ] CHK-FIX-001 [P0] Class `cross-consumer`: one judge feeds the rate, the policy tally and the offered count
-- [ ] CHK-FIX-002 [P0] `startedCommand` already follows the rule, and no third judge exists
-- [ ] CHK-FIX-003 [P0] Consumers listed in `plan.md` and each reread in the rescore
-- [ ] CHK-FIX-004 [P0] N/A: no parser, path or redaction logic changes
-- [ ] CHK-FIX-005 [P1] Matrix axes listed in `plan.md`
-- [ ] CHK-FIX-006 [P1] N/A: the judge reads no environment
-- [ ] CHK-FIX-007 [P1] Evidence names the code commit
+- [x] CHK-FIX-001 [P0] Class `cross-consumer`: one judge feeds the rate, the policy tally and the offered count. Evidence: consumers tally.started, startedOfOffered and byPolicy started all read result.started
+- [x] CHK-FIX-002 [P0] `startedCommand` already follows the rule, and no third judge exists. Evidence: rg readDocument( finds startState and startedCommand only; the review confirmed no third judge
+- [x] CHK-FIX-003 [P0] Consumers listed in `plan.md` and each reread in the rescore. Evidence: plan.md affected surfaces; restate.txt, restate-sets.txt and fields-check.txt reread each
+- [x] CHK-FIX-004 [P0] N/A: no parser, path or redaction logic changes. Evidence: no parser, path or redaction change
+- [x] CHK-FIX-005 [P1] Matrix axes listed in `plan.md`. Evidence: plan.md lists five shapes, no expected command and an outside write
+- [x] CHK-FIX-006 [P1] N/A: the judge reads no environment. Evidence: startState reads no environment
+- [x] CHK-FIX-007 [P1] Evidence names the code commit. Evidence: 99aef1e794f, review fixes in the close-out commit
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -156,9 +156,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Security
 <!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] `scripts/rotate-logs.sh` reads no credential. WEAK: Security is fine. -->
 
-- [ ] CHK-030 [P0] No prompt or session text in any scratch file
-- [ ] CHK-031 [P0] `.skilled/hooks/hook-flags.env` neither read nor created
-- [ ] CHK-032 [P1] N/A: no credential or auth path is touched
+- [x] CHK-030 [P0] No prompt or session text in any scratch file. Evidence: key-only jq scan of the summaries finds no prompt, text, content, message or transcript key
+- [x] CHK-031 [P0] `.skilled/hooks/hook-flags.env` neither read nor created. Evidence: never opened or created
+- [x] CHK-032 [P1] N/A: no credential or auth path is touched. Evidence: no credential or auth path touched
 <!-- /ANCHOR:security -->
 
 ---
@@ -167,9 +167,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## Documentation
 <!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
 
-- [ ] CHK-040 [P1] Spec, plan, tasks, README and goal rows state the same rule and numbers
-- [ ] CHK-041 [P1] The scorer comments match the rule
-- [ ] CHK-042 [P2] The README scorer row lists `startShapes`
+- [x] CHK-040 [P1] Spec, plan, tasks, README and goal rows state the same rule and numbers. Evidence: README, spec and the goal rows state one rule; figures match restate.txt and restate-sets.txt, with correction rows for two misstatements
+- [x] CHK-041 [P1] The scorer comments match the rule. Evidence: readDocument comment reworded after the review so no comment calls a read alone a start
+- [x] CHK-042 [P2] The README scorer row lists `startShapes`. Evidence: README scorer row lists startShapes; rg -c startShapes prints 2
 <!-- /ANCHOR:docs -->
 
 ---
@@ -178,8 +178,8 @@ Every command runs from the repository root. Set the names once with `export ADV
 ## File Organization
 <!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
-- [ ] CHK-050 [P1] Evidence lives in this phase's `scratch/` only
-- [ ] CHK-051 [P1] `scratch/` holds the summaries, the check script and the gate files only
+- [x] CHK-050 [P1] Evidence lives in this phase's `scratch/` only. Evidence: git status lists only this phase, goal.md and the three .skilled files
+- [x] CHK-051 [P1] `scratch/` holds the summaries, the check script and the gate files only. Evidence: scratch holds the gate files, the summaries, restate.py, restate-sets.py and their outputs
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -190,9 +190,9 @@ Every command runs from the repository root. Set the names once with `export ADV
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-16
 <!-- /ANCHOR:summary -->

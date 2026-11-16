@@ -1375,12 +1375,12 @@ function spokenCommands(events) {
   return commands;
 }
 
-// A start has more than one shape and most of them carry no order: the
-// document the command routes to was read, the command was loaded through a
-// skill tool, or the model reported the start on its `COMMAND:` line. A read
-// after the first write still took the command, so position is not consulted.
-// A shell read of the document is a start by the rule a load already uses, so a
-// search, an in-place `sed` and a heredoc line are not.
+// Finds whether the run touched the command's document: it read the document or
+// loaded the command through a skill tool. Position is not consulted, so a read
+// after the first write still counts. A touch is not yet a start: a read becomes
+// one only with a write inside the checkout, which `startShape` and
+// `startedCommand` judge. A shell read of the document counts by the rule a load
+// already uses, so a search, an in-place `sed` and a heredoc line do not.
 function readDocument(events, wanted) {
   const documents = documentTails(wanted);
 
