@@ -58,7 +58,7 @@ Every other entry belongs to someone else. The installer keeps it untouched in e
 
 Reconcile only removes entries and never adds one. When the target changes, it first copies the file to `<target>.bak-<timestamp>`. Then it writes a temp file and renames it over the target. The file mode stays the same.
 
-The installer refuses to run from a linked worktree. It exits 1 and names the primary checkout. Pass `--allow-worktree` to run it there. A session that starts in a linked worktree therefore gets a warning while the target is clean. A missing `git` binary skips this guard.
+A run that can write refuses to start from a linked worktree, so a reconcile never anchors to a checkout that may soon be removed. It exits 1 and names the primary checkout. Pass `--allow-worktree` to run it there. `--check` writes nothing, so it runs from a linked worktree too, and a session that starts there gets no warning while the target is clean. A missing `git` binary skips this guard.
 
 ---
 
@@ -70,8 +70,8 @@ The installer refuses to run from a linked worktree. It exits 1 and names the pr
 | Cursor | `sessionStart` | `cursor/install-codex-hooks.mjs` | `.skilled/bin/install-codex-hooks.mjs` | On a failed check, `permission: "allow"` with one `agent_message`. |
 | Devin | `SessionStart` | `devin/install-codex-hooks.mjs` | `.skilled/bin/install-codex-hooks.mjs` | On a failed check, one echoed line. |
 | OpenCode | `session.created` | `opencode/codex-hooks-watchdog.js` | `.opencode/plugins/codex-hooks-watchdog.js` | On a failed check, one line in a log file. |
-| Pi | `session_start` | None | `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | The check's output as a warning, on a pass too. |
-| DSH | `agent/created` | None | `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs` | The check's output as an injected notice, on a pass too. |
+| Pi | `session_start` | None | `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | On a failed check, its output as a warning. |
+| DSH | `agent/created` | None | `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs` | On a failed check, its output as an injected notice. |
 | Codex | None | None | None | Nothing. Codex owns the target file and does not check itself. |
 | Vibe | None | None | None | Nothing. No registration runs the check. |
 
@@ -87,7 +87,7 @@ No registration names a path in this folder. The four links exist for browsing. 
 
 The OpenCode plugin runs the check once per session with a 5-second timeout. It remembers 1000 session ids and drops the oldest when the set is full. On a failed check it appends one line to `.skilled/logs/codex-hooks-watchdog.log`. It empties that log once the file passes 256 KB. The plugin never writes to stdout or stderr, because OpenCode paints plugin output onto the prompt line. Every error inside the plugin ends as a no-op.
 
-Pi runs the check on a `session_start` event with the reason `startup` or `new`. DSH runs it when an agent is created at startup. A fan-out leaf skips it. Both adapters also stop when the `session-lifecycle` concern is off. Both pass on whatever the check prints. A clean run prints an `OK` line, so Pi and DSH show that line too.
+Pi runs the check on a `session_start` event with the reason `startup` or `new`. DSH runs it when an agent is created at startup. A fan-out leaf skips it. Both adapters also stop when the `session-lifecycle` concern is off. Both show what the check prints only when it exits non-zero. A clean run prints an `OK` line and exits 0, so neither shows anything then.
 
 ---
 
@@ -142,13 +142,13 @@ The installer takes these flags:
 | `--target <file>` | The target hook file. The default is `~/.codex/hooks.json`. |
 | `--check` | Report drift and write nothing. |
 | `--dry-run` | Print the report and write nothing. |
-| `--allow-worktree` | Run from a linked worktree. |
+| `--allow-worktree` | Run a reconcile or a dry run from a linked worktree. `--check` needs no flag there. |
 
 ---
 
 ## 7. VALIDATION
 
-Run from the repository root. In a linked worktree, add `--allow-worktree` to the installer commands.
+Run from the repository root, in the primary checkout or a linked worktree.
 
 ```bash
 node .skilled/bin/install-codex-hooks.mjs --check; echo "exit: $?"
