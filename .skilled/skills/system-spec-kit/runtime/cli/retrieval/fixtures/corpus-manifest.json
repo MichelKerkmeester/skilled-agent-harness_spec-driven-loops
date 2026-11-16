@@ -1,5 +1,5 @@
 {
-  "corpusHash": "dc49a9239d48cb46692af2ffe9cb2f761c6605bc6857ac645084089bed5d1b82",
+  "corpusHash": "a586e5c59e81472d9e4d85a7a51ed704813eb49903e1f2a4cd1fd293e260ccdf",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27819,
+  "includedPathCount": 27820,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11811,6 +11811,7 @@
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/goal.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/decision-record.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/implementation-summary.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/009-claude-user-hook-sync/spec.md",
@@ -27851,7 +27852,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9becdc13c4e22d22ae3649f85971f39189d09818082b57672bb2a0a97d9d84c9",
+  "manifestHash": "38c0342116433cf57ed01df8ce91b23d168c084b4686d3fc20a25b4d293406b4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
