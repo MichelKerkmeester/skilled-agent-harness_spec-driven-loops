@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b0dd2d430b3e5dfed588162590e237e06ee66bd82b8a2bc9e613a28bfaabb680",
+  "corpusHash": "7c187da8ea5a340dfa4a851c9185e43632b4e1790ece642a8ccdd107d19be5de",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27877,
+  "includedPathCount": 27882,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11378,6 +11378,11 @@
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/plan.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/spec.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/tasks.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/decision-record.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/implementation-summary.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/plan.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/spec.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/tasks.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/decision-record.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/goal.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/handover.md",
@@ -27909,7 +27914,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c1d62010a88eb18a9d858a18cb1bea2cdea8939274f18fb6499f4b1bf3c3f580",
+  "manifestHash": "4e64be5550875518ab283e706526e1bf93911a763553533b1437a238de350677",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31133,6 +31138,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/012-session-scoped-sweep-and-consume/scratch",
       "reason": "excluded directory"
     },
     {
