@@ -3365,7 +3365,7 @@ test('the usage text names the goal packet on claim and consume', (t) => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const RECEIVER_SESSION_ID = 'session-cli-00000002';
-const LOOKUP_SENTENCE = 'Use it for a detail this note does not spell out, before you guess.';
+const LOOKUP_SENTENCE = 'Use it for a detail this note does not spell out, before you guess or ask the operator, even when the note says the detail cannot be recovered.';
 
 function setNoteLine(handoffPath, pattern, line) {
   const text = fs.readFileSync(handoffPath, 'utf8');

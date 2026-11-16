@@ -62,7 +62,7 @@ const GOAL_GUIDANCE_START = '   When spec_folder names a packet, open ## Goal wi
 const CONTINUITY_WRITER = 'node .skilled/skills/system-spec-kit/runtime/cli/'
   + 'dist/continuity/generate-context.js';
 const SEED_REMAINING_WORK_STEP = [
-  '6. Continue the work under "Remaining work". Do not run prepare for this note;',
+  '7. Continue the work under "Remaining work". Do not run prepare for this note;',
   'its handoff is already done. If Remaining work names only handoff steps,',
   'treat it as empty.',
 ].join(' ');
@@ -104,8 +104,10 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
   const sectionLine = handoffLines.findIndex((line) => line.startsWith('   followed by '));
   assert.notEqual(sectionLine, -1);
   assert.equal(handoffLines[sectionLine + 1], HANDOFF_GUIDANCE);
-  assert.equal(handoffLines[sectionLine + 2], SPEC_FOLDER_GUIDANCE);
-  const goalGuidance = handoffLines[sectionLine + 3];
+  assert.ok(handoffLines[sectionLine + 2].includes('History Lookup'), text);
+  assert.ok(handoffLines[sectionLine + 2].includes('Never write that the next session cannot recover'), text);
+  assert.equal(handoffLines[sectionLine + 3], SPEC_FOLDER_GUIDANCE);
+  const goalGuidance = handoffLines[sectionLine + 4];
   assert.ok(goalGuidance.startsWith(GOAL_GUIDANCE_START), text);
   for (const part of [
     '### Purpose',
@@ -442,11 +444,13 @@ test('seed text claims the note, resumes only a bound spec folder, and completes
   const seedSteps = withSpec.split('\n').filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
     seedSteps.map((line) => Number.parseInt(line, 10)),
-    [1, 2, 3, 4, 5, 6, 7],
+    [1, 2, 3, 4, 5, 6, 7, 8],
   );
   assert.ok(seedSteps[1].includes(`/speckit:resume ${SPEC_FOLDER}`));
-  assert.equal(seedSteps[5], SEED_REMAINING_WORK_STEP);
-  assert.ok(seedSteps[6].includes('complete'));
+  assert.ok(seedSteps[5].includes('`## History Lookup`'), seedSteps[5]);
+  assert.ok(seedSteps[5].includes('before you ask the operator'), seedSteps[5]);
+  assert.equal(seedSteps[6], SEED_REMAINING_WORK_STEP);
+  assert.ok(seedSteps[7].includes('complete'));
 
   const withoutSpec = seedText({ notePath: NOTE_PATH, specFolder: '', sessionId: SESSION_ID, cliPath: CLI_PATH });
   assert.equal(withoutSpec.includes('/speckit:resume'), false);
@@ -460,7 +464,7 @@ test('seed text claims the note, resumes only a bound spec folder, and completes
   const skipSteps = skipped.split('\n').filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
     skipSteps.map((line) => Number.parseInt(line, 10)),
-    [1, 2, 3, 4, 5, 6, 7],
+    [1, 2, 3, 4, 5, 6, 7, 8],
   );
   assert.equal(skipSteps.some((line) => line.includes('/speckit:resume')), false);
   assert.equal(skipSteps[2], SKIP_GATE_LINE);
@@ -622,7 +626,7 @@ test('after-compaction pointer names the note created_at and the git checks', ()
   assert.ok(checkIndex > 0 && checkIndex < continueIndex, pointer);
   assert.deepEqual(
     lines.slice(1).map((line) => Number.parseInt(line, 10)),
-    [1, 2, 3, 4, 5, 6, 7, 8],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
   );
 
   // A date the session pastes into its shell stays one quoted argument.

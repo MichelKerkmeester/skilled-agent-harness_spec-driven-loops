@@ -1,0 +1,39 @@
+{
+  "researchTopic": "Find every reason a session hand-over hop on OpenCode or Pi can fail to finish the sender's task, or fail to recover a detail the note left out through the History Lookup, and name a concrete fix for each. Known case: a live Pi hop on DeepSeek V4.1 Flash at max scored 4/5. The sender kept a side word out of its note as told, then wrote that a fresh session could not recover it. The receiver was offered a working History Lookup, did not run it, asked the operator and left the note claimed. The same task on OpenCode scored 5/5. Check: the prepare text each runtime gives the sender, the claim text and lookup offer the receiver reads, the OpenCode and Pi session readers that feed the lookup (including secret redaction of their tool-call argument shapes), model and effort carry on relaunch, and these known limits: an OpenCode store without a directory column, AI_SESSION_CHILD leaking into test sandboxes, the 160-character preview cut, a double nudge from two hooks. Code: .skilled/hooks/session-handover/, .skilled/hooks/shared/session-readers/, .pi/extensions/session-handover.ts, .opencode/plugins/. Evidence: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/.",
+  "specFolder": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "stopPolicy": "convergence",
+  "lineageMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "fanout": {
+      "executors": [
+        {
+          "kind": "cli-mistral-vibe",
+          "model": "deepseek-flash",
+          "label": "vibe-deepseek",
+          "iterations": 10,
+          "timeoutSeconds": 900
+        },
+        {
+          "kind": "cli-opencode",
+          "model": "opencode-go/deepseek-v4.1-flash",
+          "reasoningEffort": "max",
+          "label": "opencode-go-deepseek",
+          "iterations": 10,
+          "timeoutSeconds": 900
+        }
+      ],
+      "concurrency": 2
+    }
+  },
+  "status": "complete"
+}

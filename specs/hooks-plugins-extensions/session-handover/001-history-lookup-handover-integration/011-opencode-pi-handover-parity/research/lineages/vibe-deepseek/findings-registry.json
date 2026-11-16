@@ -1,0 +1,1818 @@
+{
+  "sessionId": "fanout-vibe-deepseek-1794807924469-5jb1x3",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-16T05:55:59.423Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-does-the-prepare-text-each-runtime-gives-the-sender-say-and-where-does-it-l",
+      "inboxId": null,
+      "text": "What does the prepare text each runtime gives the sender say, and where does it let the sender drop a detail the receiver must later recover?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-claim-text-and-history-lookup-offer-does-the-receiver-read-and-why-would-a-",
+      "inboxId": null,
+      "text": "What claim text and History Lookup offer does the receiver read, and why would a receiver skip the lookup and ask the operator instead?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-do-the-opencode-and-pi-session-readers-feed-the-history-lookup-and-do-they-r",
+      "inboxId": null,
+      "text": "How do the OpenCode and Pi session readers feed the History Lookup, and do they redact secrets in tool-call argument shapes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-does-model-and-reasoning-effort-carry-across-the-relaunch-on-each-runtime-and-wh",
+      "inboxId": null,
+      "text": "Does model and reasoning effort carry across the relaunch on each runtime, and what breaks when it does not?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-known-limits-opencode-store-without-a-directory-column-ai-session-child-le",
+      "inboxId": null,
+      "text": "Which known limits (OpenCode store without a directory column, AI_SESSION_CHILD leaking into test sandboxes, the 160-character preview cut, a double nudge from two hooks) can make a hop fail, and what is the concrete fix for each?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-does-the-prepare-text-each-runtime-gives-the-sender-say-and-where-does-it-l",
+      "inboxId": null,
+      "text": "What does the prepare text each runtime gives the sender say, and where does it let the sender drop a detail the receiver must later recover?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-2-what-claim-text-and-history-lookup-offer-does-the-receiver-read-and-why-would-a-",
+      "inboxId": null,
+      "text": "What claim text and History Lookup offer does the receiver read, and why would a receiver skip the lookup and ask the operator instead?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-how-do-the-opencode-and-pi-session-readers-feed-the-history-lookup-and-do-they-r",
+      "inboxId": null,
+      "text": "How do the OpenCode and Pi session readers feed the History Lookup, and do they redact secrets in tool-call argument shapes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-does-model-and-reasoning-effort-carry-across-the-relaunch-on-each-runtime-and-wh",
+      "inboxId": null,
+      "text": "Does model and reasoning effort carry across the relaunch on each runtime, and what breaks when it does not?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-which-known-limits-opencode-store-without-a-directory-column-ai-session-child-le",
+      "inboxId": null,
+      "text": "Which known limits (OpenCode store without a directory column, AI_SESSION_CHILD leaking into test sandboxes, the 160-character preview cut, a double nudge from two hooks) can make a hop fail, and what is the concrete fix for each?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-the-prepare-command-s-only-stdout-is-the-arming-line-session-handover-handoff-pr",
+      "text": "The `prepare` command's only stdout is the arming line: `[session-handover] handoff prepared; stop now and end this turn.` plus the note path. It names no recovery path either, so the sender's last instruction before it stops carries the same omission. [SOURCE: .skilled/hooks/session-handover/bin/session-handover.cjs:630]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1072`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/note-20261116T053237Z-01a1e2d7-6b7b-75de-a705-ee16233b97a3.md:31`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/note-20261116T052759Z-ses_e1d2c7c81ffeJTAeWEY1UQO3wn.md:25`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-claim-output-appends-the-lookup-section-with-the-instruction-use-it-for-a-de",
+      "text": "The claim output appends the lookup section with the instruction `Use it for a detail this note does not spell out, before you guess.` That is a weaker directive than the note's own `Ask the operator for it`, and the note body is printed first, so the note's claim wins the reading order. [SOURCE: .skilled/hooks/session-handover/bin/session-handover.cjs:729]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1072`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/note-20261116T053237Z-01a1e2d7-6b7b-75de-a705-ee16233b97a3.md:31`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/note-20261116T052759Z-ses_e1d2c7c81ffeJTAeWEY1UQO3wn.md:25`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-claim-seed-text-tells-the-receiver-1-run-claim-it-prints-the-note-body-and-t",
+      "text": "The claim seed text tells the receiver `1. Run <claim>; it prints the note body.` and then walks it through the note's sections, the goal, the active command and completion. It never names the History Lookup, so the only place the offer appears is the claim command's own stdout, after the note body. [SOURCE: .skilled/hooks/session-handover/lib/nudge.cjs:276]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1072`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/note-20261116T053237Z-01a1e2d7-6b7b-75de-a705-ee16233b97a3.md:31`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/note-20261116T052759Z-ses_e1d2c7c81ffeJTAeWEY1UQO3wn.md:25`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-opencode-sender-s-note-pointed-the-other-way-the-side-word-recovered-from-th",
+      "text": "The OpenCode sender's note pointed the other way: `the side word recovered from the sender's earlier turn through the claim's History Lookup section. The note does not carry the side word by instruction.` Same withholding instruction, opposite instruction to the receiver, and that run scored 5/5. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/note-20261116T052759Z-ses_e1d2c7c81ffeJTAeWEY1UQO3wn.md:25]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1072`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/note-20261116T053237Z-01a1e2d7-6b7b-75de-a705-ee16233b97a3.md:31`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/note-20261116T052759Z-ses_e1d2c7c81ffeJTAeWEY1UQO3wn.md:25`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-pi-receiver-s-reply-shows-the-note-s-claim-beating-the-offer-a-fresh-session",
+      "text": "The Pi receiver's reply shows the note's claim beating the offer: `A fresh session has no path to it — not through the note, not through history lookup, since it was never written.` It named the lookup and dismissed it on the note's authority, then asked the operator and left the note `claimed`. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1072`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/note-20261116T053237Z-01a1e2d7-6b7b-75de-a705-ee16233b97a3.md:31`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/note-20261116T052759Z-ses_e1d2c7c81ffeJTAeWEY1UQO3wn.md:25`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-pi-sender-s-note-turned-that-omission-into-a-false-claim-about-the-hop-ask-t",
+      "text": "The Pi sender's note turned that omission into a false claim about the hop: `Ask the operator for it rather than inventing one, and say plainly that a fresh session cannot recover it from this note.` The sentence is true of the note and false of the hop, because the claim prints a working lookup. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/note-20261116T053237Z-01a1e2d7-6b7b-75de-a705-ee16233b97a3.md:31]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1072`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/note-20261116T053237Z-01a1e2d7-6b7b-75de-a705-ee16233b97a3.md:31`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/note-20261116T052759Z-ses_e1d2c7c81ffeJTAeWEY1UQO3wn.md:25`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-prepare-nudge-text-enumerates-the-note-s-frontmatter-shape-and-every-require",
+      "text": "The prepare nudge text enumerates the note's frontmatter shape and every required section, and never mentions the History Lookup. A sender reading it learns only that the note is the carrier, so a detail deliberately kept out of the note reads as a detail the hop loses. [SOURCE: .skilled/hooks/session-handover/lib/nudge.cjs:180]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1072`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/note-20261116T053237Z-01a1e2d7-6b7b-75de-a705-ee16233b97a3.md:31`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/note-20261116T052759Z-ses_e1d2c7c81ffeJTAeWEY1UQO3wn.md:25`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-2-2-redactargument-redacts-a-string-argument-only-when-its-key-matches-secret-argume",
+      "text": "`redactArgument` redacts a string argument only when its key matches `SECRET_ARGUMENT_KEY`; every other string falls through to `redactText`, which is a pattern scan of the value alone. The key rule is therefore the only thing that catches a short credential. [SOURCE: .skilled/hooks/session-handover/history/lib/core.ts:71]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:57`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:101`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/lib/navigator.ts:267`",
+        "`.skilled/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/shared/session-readers/pi.mjs:242`",
+        "`.skilled/skills/system-spec-kit/shared/dist/parsing/secret-scrubber.js:120`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`"
+      ]
+    },
+    {
+      "id": "finding-2-3-secret-argument-key-does-not-match-a-prefixed-header-name-x-api-key-fails-the-an",
+      "text": "`SECRET_ARGUMENT_KEY` does not match a prefixed header name. `x-api-key` fails the anchored alternation, so its value is scanned as bare text and a short token survives. Verified by running the scrubber: `{\"x-api-key\":\"sk-live-abc123\"}` comes back unchanged. [SOURCE: .skilled/hooks/session-handover/history/lib/core.ts:57]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:57`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:101`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/lib/navigator.ts:267`",
+        "`.skilled/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/shared/session-readers/pi.mjs:242`",
+        "`.skilled/skills/system-spec-kit/shared/dist/parsing/secret-scrubber.js:120`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`"
+      ]
+    },
+    {
+      "id": "finding-2-1-redaction-runs-once-in-the-core-before-projection-redacthistoryentries-maps-ever",
+      "text": "Redaction runs once, in the core, before projection: `redactHistoryEntries` maps every entry's content through `redactBlock`, so search, previews, part lists and pages all read already-redacted text. A route cannot reach an unredacted byte. [SOURCE: .skilled/hooks/session-handover/history/lib/core.ts:101]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:57`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:101`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/lib/navigator.ts:267`",
+        "`.skilled/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/shared/session-readers/pi.mjs:242`",
+        "`.skilled/skills/system-spec-kit/shared/dist/parsing/secret-scrubber.js:120`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-160-character-preview-cut-hides-the-very-detail-a-lookup-is-for-the-side-wor",
+      "text": "The 160-character preview cut hides the very detail a lookup is for. The side word sits at character 295 of the 425-character sender turn, so a `search` preview ends 135 characters before it; only `load` or `page` reaches the value. [SOURCE: .skilled/hooks/session-handover/history/lib/pages.ts:300]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:57`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:101`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/lib/navigator.ts:267`",
+        "`.skilled/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/shared/session-readers/pi.mjs:242`",
+        "`.skilled/skills/system-spec-kit/shared/dist/parsing/secret-scrubber.js:120`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-opencode-reader-skips-that-proof-when-the-store-has-no-directory-column-hasd",
+      "text": "The OpenCode reader skips that proof when the store has no `directory` column. `hasDirectory` is false, the SELECT narrows to `id`, and the `projectDir` comparison is guarded by `hasDirectory`, so a same-id session from another project is accepted and its parts are served. [SOURCE: .skilled/hooks/shared/session-readers/opencode.mjs:256]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:57`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:101`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/lib/navigator.ts:267`",
+        "`.skilled/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/shared/session-readers/pi.mjs:242`",
+        "`.skilled/skills/system-spec-kit/shared/dist/parsing/secret-scrubber.js:120`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`"
+      ]
+    },
+    {
+      "id": "finding-2-8-the-opencode-receiver-s-success-came-from-doing-exactly-that-it-reported-that-it",
+      "text": "The OpenCode receiver's success came from doing exactly that: it reported that it \"loaded the sender's first user turn\" and quoted the sentence holding the side word, rather than reading a preview. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:57`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:101`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/lib/navigator.ts:267`",
+        "`.skilled/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/shared/session-readers/pi.mjs:242`",
+        "`.skilled/skills/system-spec-kit/shared/dist/parsing/secret-scrubber.js:120`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-pi-reader-proves-the-session-before-reading-it-it-requires-the-header-s-type",
+      "text": "The Pi reader proves the session before reading it: it requires the header's `type` to be `session`, its `id` to equal the requested id, and `samePath(header.cwd, projectDir)`, returning `session_mismatch` on any failure. [SOURCE: .skilled/hooks/shared/session-readers/pi.mjs:242]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:57`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:101`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/lib/navigator.ts:267`",
+        "`.skilled/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/shared/session-readers/pi.mjs:242`",
+        "`.skilled/skills/system-spec-kit/shared/dist/parsing/secret-scrubber.js:120`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-scrubber-s-credential-assignment-pattern-requires-a-20-character-value-so-a-",
+      "text": "The scrubber's `credential-assignment` pattern requires a 20-character value, so a short token is invisible to text scanning even when the key is spelled out. Verified: `apiKey=sk-live-abc123` is unchanged while `apiKey=sk-live-abcdefghij1234567890` redacts. [SOURCE: .skilled/skills/system-spec-kit/shared/dist/parsing/secret-scrubber.js:120]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:57`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:101`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/lib/navigator.ts:267`",
+        "`.skilled/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/shared/session-readers/pi.mjs:242`",
+        "`.skilled/skills/system-spec-kit/shared/dist/parsing/secret-scrubber.js:120`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`"
+      ]
+    },
+    {
+      "id": "finding-3-5-append-effort-arguments-has-cases-for-claude-codex-and-pi-only-so-no-opencode-re",
+      "text": "`append_effort_arguments` has cases for `claude`, `codex` and `pi` only, so no OpenCode relaunch ever receives a thinking level. [SOURCE: .skilled/bin/skilled-loop:405]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:461`",
+        "`.opencode/plugins/session-handover.js:575`",
+        "`.skilled/bin/skilled-loop:216`",
+        "`.skilled/bin/skilled-loop:312`",
+        "`.skilled/bin/skilled-loop:405`",
+        "`.skilled/bin/skilled-loop:753`",
+        "`.skilled/bin/skilled-loop:775`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-3-6-build-relaunch-arguments-drops-the-model-on-opencode-2-by-design-the-comment-rec",
+      "text": "`build_relaunch_arguments` drops the model on OpenCode 2 by design: the comment records that OpenCode 2's root command has no model flag and a replayed `-m` would end the launch with a usage error, so `-m` is appended only on OpenCode 1. [SOURCE: .skilled/bin/skilled-loop:775]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:461`",
+        "`.opencode/plugins/session-handover.js:575`",
+        "`.skilled/bin/skilled-loop:216`",
+        "`.skilled/bin/skilled-loop:312`",
+        "`.skilled/bin/skilled-loop:405`",
+        "`.skilled/bin/skilled-loop:753`",
+        "`.skilled/bin/skilled-loop:775`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-3-4-effort-is-valid-has-no-opencode-case-so-an-opencode-effort-would-be-rejected-eve",
+      "text": "`effort_is_valid` has no `opencode:` case, so an OpenCode effort would be rejected even if one were recorded. [SOURCE: .skilled/bin/skilled-loop:216]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:461`",
+        "`.opencode/plugins/session-handover.js:575`",
+        "`.skilled/bin/skilled-loop:216`",
+        "`.skilled/bin/skilled-loop:312`",
+        "`.skilled/bin/skilled-loop:405`",
+        "`.skilled/bin/skilled-loop:753`",
+        "`.skilled/bin/skilled-loop:775`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-3-9-live-model-voids-launch-effort-deliberately-drops-the-launch-effort-when-the-liv",
+      "text": "`live_model_voids_launch_effort` deliberately drops the launch effort when the live model differs and brings no usable effort of its own, because some models reject an effort chosen for another. That rule is correct and is not the OpenCode gap. [SOURCE: .skilled/bin/skilled-loop:312]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:461`",
+        "`.opencode/plugins/session-handover.js:575`",
+        "`.skilled/bin/skilled-loop:216`",
+        "`.skilled/bin/skilled-loop:312`",
+        "`.skilled/bin/skilled-loop:405`",
+        "`.skilled/bin/skilled-loop:753`",
+        "`.skilled/bin/skilled-loop:775`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-3-1-resolvesessionsettings-has-branches-for-claude-codex-and-cursor-only-every-other",
+      "text": "`resolveSessionSettings` has branches for `claude`, `codex` and `cursor` only. Every other runtime, including `pi` and `opencode`, falls to `return none`, so the CLI-side prepare record carries no model and no effort for them. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1121]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:461`",
+        "`.opencode/plugins/session-handover.js:575`",
+        "`.skilled/bin/skilled-loop:216`",
+        "`.skilled/bin/skilled-loop:312`",
+        "`.skilled/bin/skilled-loop:405`",
+        "`.skilled/bin/skilled-loop:753`",
+        "`.skilled/bin/skilled-loop:775`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-3-8-neither-live-run-proved-the-carry-the-pi-scorecard-records-model-unobservable-ef",
+      "text": "Neither live run proved the carry: the Pi scorecard records `model: unobservable, effort: unobservable` and the OpenCode scorecard records `model: not-set, effort: not-set`. The OpenCode run passed 5/5 because the harness launched both sessions on the same default, not because the model carried. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:461`",
+        "`.opencode/plugins/session-handover.js:575`",
+        "`.skilled/bin/skilled-loop:216`",
+        "`.skilled/bin/skilled-loop:312`",
+        "`.skilled/bin/skilled-loop:405`",
+        "`.skilled/bin/skilled-loop:753`",
+        "`.skilled/bin/skilled-loop:775`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-3-2-pi-closes-that-gap-from-its-own-extension-livesettings-reads-ctx-model-id-ctx-mo",
+      "text": "Pi closes that gap from its own extension: `liveSettings` reads `ctx.model.id`, `ctx.model.provider` and `pi.getThinkingLevel()`, and the arm path writes them onto the record. Pi therefore carries model, provider and effort. [SOURCE: .skilled/hooks/session-handover/pi/session-handover.ts:461]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:461`",
+        "`.opencode/plugins/session-handover.js:575`",
+        "`.skilled/bin/skilled-loop:216`",
+        "`.skilled/bin/skilled-loop:312`",
+        "`.skilled/bin/skilled-loop:405`",
+        "`.skilled/bin/skilled-loop:753`",
+        "`.skilled/bin/skilled-loop:775`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-3-7-pi-s-relaunch-appends-provider-model-thinking-and-the-plan-or-build-mode-so-a-pi",
+      "text": "Pi's relaunch appends `--provider`, `--model`, `--thinking` and the plan or build mode, so a Pi hop replays all three carried values. [SOURCE: .skilled/bin/skilled-loop:753]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:461`",
+        "`.opencode/plugins/session-handover.js:575`",
+        "`.skilled/bin/skilled-loop:216`",
+        "`.skilled/bin/skilled-loop:312`",
+        "`.skilled/bin/skilled-loop:405`",
+        "`.skilled/bin/skilled-loop:753`",
+        "`.skilled/bin/skilled-loop:775`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-opencode-plugin-never-reads-a-model-or-an-effort-its-only-model-access-is-in",
+      "text": "The OpenCode plugin never reads a model or an effort. Its only model access is `input?.model?.limit?.context`, which sizes the context window; nothing is written to the record. [SOURCE: .opencode/plugins/session-handover.js:575]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:461`",
+        "`.opencode/plugins/session-handover.js:575`",
+        "`.skilled/bin/skilled-loop:216`",
+        "`.skilled/bin/skilled-loop:312`",
+        "`.skilled/bin/skilled-loop:405`",
+        "`.skilled/bin/skilled-loop:753`",
+        "`.skilled/bin/skilled-loop:775`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-4-1-ai-session-child-1-short-circuits-nudgedecision-before-the-ratio-the-loop-check-",
+      "text": "`AI_SESSION_CHILD=1` short-circuits `nudgeDecision` before the ratio, the loop check and the level: `if (relaunchSessionIsChild(env)) return quiet('child-session')`. A sandbox that inherits the value gets no nudge at any fill. [SOURCE: .skilled/hooks/session-handover/lib/nudge.cjs:707]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:703`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/goal/lib/goal-core.cjs`",
+        "`.skilled/hooks/session-handover/claude/context-nudge.mjs:157`",
+        "`.skilled/hooks/session-handover/codex/shared.mjs:142`",
+        "`.skilled/hooks/session-handover/vibe/handover-parts.mjs:304`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`.claude/settings.json:169`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md:62`"
+      ]
+    },
+    {
+      "id": "finding-4-5-commitnudge-is-the-double-nudge-guard-it-takes-a-per-session-claim-re-runs-nudge",
+      "text": "`commitNudge` is the double-nudge guard: it takes a per-session claim, re-runs `nudgeDecision` under that claim, writes the level, and releases in a `finally`. Two hooks racing therefore produce one delivery, because the loser re-decides against the level the winner wrote. [SOURCE: .skilled/hooks/session-handover/lib/nudge.cjs]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:703`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/goal/lib/goal-core.cjs`",
+        "`.skilled/hooks/session-handover/claude/context-nudge.mjs:157`",
+        "`.skilled/hooks/session-handover/codex/shared.mjs:142`",
+        "`.skilled/hooks/session-handover/vibe/handover-parts.mjs:304`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`.claude/settings.json:169`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md:62`"
+      ]
+    },
+    {
+      "id": "finding-4-2-relaunchsessionischild-is-a-bare-environment-read-string-env-child-session-env-t",
+      "text": "`relaunchSessionIsChild` is a bare environment read: `String(env[CHILD_SESSION_ENV] ?? '').trim() === '1'`. Nothing distinguishes a real dispatched child from a test process that inherited the variable, so the suppression cannot be narrowed from inside the decision. [SOURCE: .skilled/hooks/goal/lib/goal-core.cjs]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:703`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/goal/lib/goal-core.cjs`",
+        "`.skilled/hooks/session-handover/claude/context-nudge.mjs:157`",
+        "`.skilled/hooks/session-handover/codex/shared.mjs:142`",
+        "`.skilled/hooks/session-handover/vibe/handover-parts.mjs:304`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`.claude/settings.json:169`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md:62`"
+      ]
+    },
+    {
+      "id": "finding-4-6-only-three-adapters-use-it-claude-context-nudge-mjs-codex-shared-mjs-and-vibe-ha",
+      "text": "Only three adapters use it: `claude/context-nudge.mjs`, `codex/shared.mjs` and `vibe/handover-parts.mjs`. Pi and OpenCode call `nudgeDecision` directly and never take the claim. [SOURCE: .skilled/hooks/session-handover/claude/context-nudge.mjs:157]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:703`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/goal/lib/goal-core.cjs`",
+        "`.skilled/hooks/session-handover/claude/context-nudge.mjs:157`",
+        "`.skilled/hooks/session-handover/codex/shared.mjs:142`",
+        "`.skilled/hooks/session-handover/vibe/handover-parts.mjs:304`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`.claude/settings.json:169`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md:62`"
+      ]
+    },
+    {
+      "id": "finding-4-8-opencode-s-substitute-guard-is-state-pendingnudge-also-in-process-queuenudge-ret",
+      "text": "OpenCode's substitute guard is `state.pendingNudge`, also in-process: `queueNudge` returns early when it is set. A plugin reload or a second host instance starts with it null and can deliver again. [SOURCE: .opencode/plugins/session-handover.js:181]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:703`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/goal/lib/goal-core.cjs`",
+        "`.skilled/hooks/session-handover/claude/context-nudge.mjs:157`",
+        "`.skilled/hooks/session-handover/codex/shared.mjs:142`",
+        "`.skilled/hooks/session-handover/vibe/handover-parts.mjs:304`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`.claude/settings.json:169`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md:62`"
+      ]
+    },
+    {
+      "id": "finding-4-7-pi-s-substitute-guard-is-the-in-process-heldnudges-map-and-deliverheldnudge-dele",
+      "text": "Pi's substitute guard is the in-process `heldNudges` map, and `deliverHeldNudge` deletes the entry before sending, so `turn_end` followed by `agent_end` cannot deliver the same text twice within one process. [SOURCE: .skilled/hooks/session-handover/pi/session-handover.ts:652]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:703`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/goal/lib/goal-core.cjs`",
+        "`.skilled/hooks/session-handover/claude/context-nudge.mjs:157`",
+        "`.skilled/hooks/session-handover/codex/shared.mjs:142`",
+        "`.skilled/hooks/session-handover/vibe/handover-parts.mjs:304`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`.claude/settings.json:169`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md:62`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-packet-s-completion-criterion-therefore-runs-the-history-engine-hooks-vitest",
+      "text": "The packet's completion criterion therefore runs the history engine, hooks vitest, session readers and handover suites under `env -u AI_SESSION_CHILD`, which is the only way to get a nudge-capable environment from inside a child session. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md:62]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:703`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/goal/lib/goal-core.cjs`",
+        "`.skilled/hooks/session-handover/claude/context-nudge.mjs:157`",
+        "`.skilled/hooks/session-handover/codex/shared.mjs:142`",
+        "`.skilled/hooks/session-handover/vibe/handover-parts.mjs:304`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`.claude/settings.json:169`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md:62`"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-suppression-is-deliberate-and-correct-for-its-purpose-a-dispatched-child-own",
+      "text": "The suppression is deliberate and correct for its purpose: a dispatched child owns no hand-over, and a nudge there would ask a worker to save continuity into the parent's packet, which is the write its brief forbids. [SOURCE: .skilled/hooks/session-handover/lib/nudge.cjs:703]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:703`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/goal/lib/goal-core.cjs`",
+        "`.skilled/hooks/session-handover/claude/context-nudge.mjs:157`",
+        "`.skilled/hooks/session-handover/codex/shared.mjs:142`",
+        "`.skilled/hooks/session-handover/vibe/handover-parts.mjs:304`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`.claude/settings.json:169`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md:62`"
+      ]
+    },
+    {
+      "id": "finding-4-9-the-two-hook-shape-the-claim-exists-for-is-real-on-claude-context-nudge-mjs-is-r",
+      "text": "The two-hook shape the claim exists for is real on Claude: `context-nudge.mjs` is registered on both `UserPromptSubmit` and `PostToolUse`, so one turn that submits a prompt and then runs a tool reaches the nudge code twice. [SOURCE: .claude/settings.json:169]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:703`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/goal/lib/goal-core.cjs`",
+        "`.skilled/hooks/session-handover/claude/context-nudge.mjs:157`",
+        "`.skilled/hooks/session-handover/codex/shared.mjs:142`",
+        "`.skilled/hooks/session-handover/vibe/handover-parts.mjs:304`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`.claude/settings.json:169`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md:62`"
+      ]
+    },
+    {
+      "id": "finding-5-7-the-carry-block-reports-unobservable-when-the-first-launch-line-s-basename-equal",
+      "text": "The carry block reports `unobservable` when the first launch line's basename equals the runtime and the line is exactly the runtime name, which is the Pi case, so Pi's carry can never be scored from the card even when it works. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:55]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:55`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:149`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-5-6-the-harness-plants-no-token-live-hop-sh-contains-no-token-redact-or-plant-refere",
+      "text": "The harness plants no token. `live-hop.sh` contains no `token`, `REDACT` or `plant` reference, so the packet's `[REDACTED:` completion criterion has no evidence from either run. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:55`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:149`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-opencode-pane-s-last-marker-sits-at-character-425-so-its-afterseed-starts-af",
+      "text": "The OpenCode pane's last marker sits at character 425, so its `afterSeed` starts after the seed and its side word is genuinely in the receiver's reply, which quotes the loaded turn. The OpenCode recall is real; the Pi one is not. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:55`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:149`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-pi-4-5-is-the-noteclosed-step-not-the-recall-block-the-note-s-status-stayed-",
+      "text": "The Pi 4/5 is the `noteClosed` step, not the recall block: the note's status stayed `claimed` because the receiver held the close open waiting for the operator's answer. The recall block is scored apart from the five steps, so a failed recall cannot lower the score. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:55`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:149`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-pi-pane-contains-no-session-handover-marker-at-all-so-its-afterseed-is-the-e",
+      "text": "The Pi pane contains no `[session-handover]` marker at all, so its `afterSeed` is the entire 30,172-character capture, and the side word appears at character 12,812 inside the echoed sender prompt. The Pi `sideWordStated: true` is that echo, not a receiver statement. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:149]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:55`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:149`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-pi-receiver-s-own-words-contradict-its-scorecard-a-fresh-session-has-no-path",
+      "text": "The Pi receiver's own words contradict its scorecard: `A fresh session has no path to it — not through the note, not through history lookup, since it was never written.` The recall failed and the card recorded a pass. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:55`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:149`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-scorecard-s-recall-check-is-afterseed-includes-meta-sideword-where-afterseed",
+      "text": "The scorecard's recall check is `afterSeed.includes(meta.sideWord)`, where `afterSeed` is the pane from the last `[session-handover]` marker, or the whole pane when no marker exists. A pane with no marker therefore passes on the sender's own prompt echo. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:55`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:149`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:331`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/scorecard.json`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/pane.txt:22`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-opencode/scorecard.json`"
+      ]
+    },
+    {
+      "id": "finding-6-1-completehandoff-throws-unless-the-note-s-status-is-exactly-claimed-a-note-in-any",
+      "text": "`completeHandoff` throws unless the note's status is exactly `claimed`. A note in any other state cannot be completed, and a claimed note can only be completed by whoever holds it. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:188`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:742`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:333`"
+      ]
+    },
+    {
+      "id": "finding-6-2-notestate-accepts-exactly-missing-invalid-open-claimed-and-done-there-is-no-expi",
+      "text": "`noteState` accepts exactly `missing`, `invalid`, `open`, `claimed` and `done`. There is no `expired` or `abandoned` state, so a claim that is never closed has no representation other than `claimed`. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:407]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:188`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:742`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:333`"
+      ]
+    },
+    {
+      "id": "finding-6-4-questionholdreason-blocks-a-question-only-while-the-session-s-record-is-armable-",
+      "text": "`questionHoldReason` blocks a question only while the session's record is armable, and the Pi extension applies it to two tool names: `question` and `ask_user_question`. A receiver that asks in prose is never blocked. [SOURCE: .skilled/hooks/session-handover/pi/session-handover.ts:188]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:188`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:742`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:333`"
+      ]
+    },
+    {
+      "id": "finding-6-3-nothing-expires-a-claimed-note-the-only-stale-sweeps-in-the-handover-code-belong",
+      "text": "Nothing expires a claimed note. The only stale sweeps in the handover code belong to the killer and cover lock files and takeover mutexes, not handoff notes. [SOURCE: .skilled/hooks/session-handover/lib/killer.cjs:317]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:188`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:742`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:333`"
+      ]
+    },
+    {
+      "id": "finding-6-6-the-claim-output-s-completion-instruction-is-conditional-when-the-remaining-work",
+      "text": "The claim output's completion instruction is conditional: `When the remaining work is done, run <complete> to close this note.` A note whose Remaining work requires an operator answer makes completion unreachable in an unattended run, and the receiver is following the instruction exactly. [SOURCE: .skilled/hooks/session-handover/bin/session-handover.cjs:742]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:188`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:742`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:333`"
+      ]
+    },
+    {
+      "id": "finding-6-7-the-guard-s-own-text-already-names-the-correct-behaviour-end-the-turn-and-put-th",
+      "text": "The guard's own text already names the correct behaviour: end the turn and put the question in the handoff note for the next session, or cancel the hand-over first. The Pi receiver did neither, and nothing detected that. [SOURCE: .skilled/hooks/session-handover/lib/nudge.cjs]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:188`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:742`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:333`"
+      ]
+    },
+    {
+      "id": "finding-6-5-the-pi-receiver-asked-in-prose-so-what-was-the-side-word-once-you-give-it-i-ll-c",
+      "text": "The Pi receiver asked in prose: `So: what was the side word? Once you give it, I'll close the note.` The guard therefore never fired, and the note stayed `claimed` with the close deferred to an answer that could not arrive. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:333]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs`",
+        "`.skilled/hooks/session-handover/pi/session-handover.ts:188`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:742`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/pane.txt:333`"
+      ]
+    },
+    {
+      "id": "finding-7-7-isloopancestor-throws-on-a-failed-process-table-read-and-the-killer-refuses-to-s",
+      "text": "`isLoopAncestor` throws on a failed process-table read, and the killer refuses to signal rather than guess at ancestry, so a process-table failure blocks the hop instead of risking a wrong kill. [SOURCE: .skilled/hooks/session-handover/lib/killer.cjs:220]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:23`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:29`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:220`",
+        "`.skilled/bin/skilled-loop:1263`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/relaunch.log`"
+      ]
+    },
+    {
+      "id": "finding-7-1-shouldrelaunch-declines-with-one-of-six-named-reasons-no-file-not-armed-withdraw",
+      "text": "`shouldRelaunch` declines with one of six named reasons: `no-file`, `not-armed`, `withdrawn`, `stale`, `hop-cap` and `incomplete-record`. Only a record that passes every check returns `{ relaunch: true }` with no reason. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:23`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:29`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:220`",
+        "`.skilled/bin/skilled-loop:1263`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/relaunch.log`"
+      ]
+    },
+    {
+      "id": "finding-7-2-a-record-armed-in-the-future-is-read-as-stale-not-fresh-because-a-clock-that-ste",
+      "text": "A record armed in the future is read as `stale`, not fresh, because a clock that stepped back makes the record's age unknown and stale is the safe reading. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:23`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:29`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:220`",
+        "`.skilled/bin/skilled-loop:1263`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/relaunch.log`"
+      ]
+    },
+    {
+      "id": "finding-7-3-the-hop-count-is-read-as-stored-and-never-coerced-so-a-malformed-or-hand-edited-",
+      "text": "The hop count is read as stored and never coerced, so a malformed or hand-edited record cannot slip under the cap by turning `null` into `0` or `\"3\"` into `3`. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:23`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:29`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:220`",
+        "`.skilled/bin/skilled-loop:1263`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/relaunch.log`"
+      ]
+    },
+    {
+      "id": "finding-7-6-the-killer-s-default-timeout-is-30000-ms-a-session-that-never-goes-idle-within-t",
+      "text": "The killer's default timeout is 30000 ms. A session that never goes idle within that window is left running and the hop does not happen. [SOURCE: .skilled/hooks/session-handover/lib/killer.cjs:29]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:23`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:29`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:220`",
+        "`.skilled/bin/skilled-loop:1263`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/relaunch.log`"
+      ]
+    },
+    {
+      "id": "finding-7-5-the-killer-s-transcript-grace-is-1000-ms-a-transcript-that-stays-missing-for-one",
+      "text": "The killer's transcript grace is 1000 ms: a transcript that stays missing for one second makes `waitForIdle` return false, which un-arms the session, so no signal is sent and no hop happens. [SOURCE: .skilled/hooks/session-handover/lib/killer.cjs:23]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:23`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:29`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:220`",
+        "`.skilled/bin/skilled-loop:1263`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/relaunch.log`"
+      ]
+    },
+    {
+      "id": "finding-7-8-the-pi-live-run-shows-the-path-working-end-to-end-prepare-at-05-32-49-151-killer",
+      "text": "The Pi live run shows the path working end to end: prepare at 05:32:49.151, killer signal to pid 46361 at 05:32:57.828, relaunch at 05:32:58.064 with reason `ready`. The Pi failure was therefore downstream of the relaunch, not in it. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/relaunch.log]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:23`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:29`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:220`",
+        "`.skilled/bin/skilled-loop:1263`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/relaunch.log`"
+      ]
+    },
+    {
+      "id": "finding-7-4-the-wrapper-calls-should-relaunch-only-after-the-runtime-process-exits-and-a-non",
+      "text": "The wrapper calls `should-relaunch` only after the runtime process exits, and a non-zero status takes the decline path, which preserves the runtime's own exit code rather than replacing it. [SOURCE: .skilled/bin/skilled-loop:1263]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:23`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:29`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:220`",
+        "`.skilled/bin/skilled-loop:1263`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/runs/base1-pi/relaunch.log`"
+      ]
+    },
+    {
+      "id": "finding-8-7-lookuprunsfrom-requires-three-things-in-the-workspace-a-git-entry-the-entry-scri",
+      "text": "`lookupRunsFrom` requires three things in the workspace: a `.git` entry, the entry script, and the compiled core at `.skilled/hooks/session-handover/history/dist/cli.js`. A checkout without a built core gets no offer at all. [SOURCE: .skilled/hooks/session-handover/history/lib/lookup-offer.ts]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:37`",
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:217`",
+        "`.skilled/hooks/session-handover/history/lib/lookup-offer.ts`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1060`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1090`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`"
+      ]
+    },
+    {
+      "id": "finding-8-4-minthandoverlocator-returns-null-and-therefore-withholds-the-offer-on-any-of-an-",
+      "text": "`mintHandoverLocator` returns null, and therefore withholds the offer, on any of: an empty runtime or session id, a runtime with no locator kind, a transcript-based runtime with no transcript path, a `placeLookup` miss, a reader that cannot find the session, or a recorded folder outside the sender's checkout. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:929]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:37`",
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:217`",
+        "`.skilled/hooks/session-handover/history/lib/lookup-offer.ts`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1060`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1090`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`"
+      ]
+    },
+    {
+      "id": "finding-8-2-a-locator-whose-mintedat-is-in-the-future-counts-as-stale-because-a-future-times",
+      "text": "A locator whose `mintedAt` is in the future counts as stale, because a future timestamp is clock skew rather than freshness. [SOURCE: .skilled/hooks/session-handover/history/lib/cli.ts:217]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:37`",
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:217`",
+        "`.skilled/hooks/session-handover/history/lib/lookup-offer.ts`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1060`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1090`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`"
+      ]
+    },
+    {
+      "id": "finding-8-8-every-one-of-those-conditions-fails-closed-by-returning-null-and-the-claim-comma",
+      "text": "Every one of those conditions fails closed by returning null, and the claim command wraps the call in a bare `catch {}`, so a withheld offer produces no message, no log line and no marker in the claim output. [SOURCE: .skilled/hooks/session-handover/bin/session-handover.cjs:729]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:37`",
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:217`",
+        "`.skilled/hooks/session-handover/history/lib/lookup-offer.ts`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1060`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1090`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`"
+      ]
+    },
+    {
+      "id": "finding-8-5-for-pi-and-opencode-the-mint-asks-the-reader-directly-readerfindssession-instead",
+      "text": "For Pi and OpenCode the mint asks the reader directly (`readerFindsSession`) instead of resolving a transcript path, so the mint and the lookup agree on whether the session exists. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:929]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:37`",
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:217`",
+        "`.skilled/hooks/session-handover/history/lib/lookup-offer.ts`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1060`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1090`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`"
+      ]
+    },
+    {
+      "id": "finding-8-1-the-cli-refuses-a-locator-older-than-30-minutes-locator-ttl-ms-30-60-1000-and-is",
+      "text": "The CLI refuses a locator older than 30 minutes: `LOCATOR_TTL_MS = 30 * 60 * 1000`, and `isFresh` requires `ageMs >= 0 && ageMs < LOCATOR_TTL_MS`. [SOURCE: .skilled/hooks/session-handover/history/lib/cli.ts:37]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:37`",
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:217`",
+        "`.skilled/hooks/session-handover/history/lib/lookup-offer.ts`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1060`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1090`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`"
+      ]
+    },
+    {
+      "id": "finding-8-3-the-mint-is-done-at-claim-time-rather-than-at-prepare-time-precisely-because-of-",
+      "text": "The mint is done at claim time rather than at prepare time precisely because of that TTL, so a note claimed hours after it was written still redeems. This is the correct design and is not a failure mode. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1060]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:37`",
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:217`",
+        "`.skilled/hooks/session-handover/history/lib/lookup-offer.ts`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1060`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1090`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`"
+      ]
+    },
+    {
+      "id": "finding-8-6-the-offer-is-withheld-unless-the-receiver-s-workspace-and-the-sender-s-workspace",
+      "text": "The offer is withheld unless the receiver's workspace and the sender's workspace are the same checkout, because the printed command moves to the locator's workspace and would otherwise read the wrong repository. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1090]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:37`",
+        "`.skilled/hooks/session-handover/history/lib/cli.ts:217`",
+        "`.skilled/hooks/session-handover/history/lib/lookup-offer.ts`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1060`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1090`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`"
+      ]
+    },
+    {
+      "id": "finding-9-6-redactblock-returns-image-blocks-unchanged-deliberately-because-image-bytes-are-",
+      "text": "`redactBlock` returns image blocks unchanged, deliberately, because image bytes are base64 where a pattern hit would corrupt the image. A token visible in a screenshot is therefore not redacted, and the criterion cannot be met by planting the token in an image. [SOURCE: .skilled/hooks/session-handover/history/lib/core.ts:86]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:136`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts:15`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:59`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:102`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:109`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs`",
+        "Compiled scrubber run over seventeen candidate strings and seven header/URL shapes"
+      ]
+    },
+    {
+      "id": "finding-9-4-secret-argument-key-does-not-match-x-api-key-or-x-api-key-because-the-alternatio",
+      "text": "`SECRET_ARGUMENT_KEY` does not match `x-api-key` or `X-Api-Key`, because the alternation requires the key to begin with `api`, `access`, `auth`, `client`, `refresh` or `secret`. The value alone carries no assignment context, so `{\"x-api-key\": \"FAKE0123456789abcdef\"}` leaks both the key and the value. [SOURCE: .skilled/hooks/session-handover/history/lib/core.ts:56] [SOURCE: verified by running the `SECRET_ARGUMENT_KEY` and `redactText` patterns on the header shape; both returned unchanged]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:136`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts:15`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:59`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:102`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:109`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs`",
+        "Compiled scrubber run over seventeen candidate strings and seven header/URL shapes"
+      ]
+    },
+    {
+      "id": "finding-9-3-a-realistic-looking-fake-key-can-still-miss-sk-fake-0123456789abcdef0123456789ab",
+      "text": "A realistic-looking fake key can still miss. `sk-fake-0123456789abcdef0123456789abcdef` misses the OpenAI pattern because the hyphen after `sk-` breaks the base62 value class, and `AIzaFake0123456789abcdef0123456789abc` misses the Google pattern because its tail is 33 characters against a required 35. [SOURCE: .skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:102] [SOURCE: .skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:109] [SOURCE: verified by running the compiled scrubber on both strings; both returned unchanged]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:136`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts:15`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:59`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:102`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:109`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs`",
+        "Compiled scrubber run over seventeen candidate strings and seven header/URL shapes"
+      ]
+    },
+    {
+      "id": "finding-9-1-redaction-runs-before-projection-createhistorylookup-calls-projecthistoryentries",
+      "text": "Redaction runs before projection: `createHistoryLookup` calls `projectHistoryEntries(redactHistoryEntries(entries), options)`, so every preview, page offset, part list and search index is computed on the text a caller receives. A secret therefore cannot be matched by `search`, and a secret straddling a page boundary is redacted before the boundary is chosen. [SOURCE: .skilled/hooks/session-handover/history/lib/core.ts:136]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:136`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts:15`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:59`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:102`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:109`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs`",
+        "Compiled scrubber run over seventeen candidate strings and seven header/URL shapes"
+      ]
+    },
+    {
+      "id": "finding-9-5-the-array-branch-of-redactargument-drops-the-key-value-map-item-redactargument-i",
+      "text": "The array branch of `redactArgument` drops the key: `value.map((item) => redactArgument(item))` passes no key, so a plural secret key holding an array is not redacted by key and each item is only shape-scanned. `{\"api_keys\": [\"plainpassphrase\"]}` survives. [SOURCE: .skilled/hooks/session-handover/history/lib/core.ts:71]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:136`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts:15`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:59`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:102`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:109`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs`",
+        "Compiled scrubber run over seventeen candidate strings and seven header/URL shapes"
+      ]
+    },
+    {
+      "id": "finding-9-8-the-existing-redaction-test-covers-seven-secret-kinds-plus-a-keyed-password-and-",
+      "text": "The existing redaction test covers seven secret kinds plus a keyed `password` and `token` argument, and asserts the tail never appears in search, browse, load or page replies. It does not cover `x-api-key`, plural keys, arrays under a secret key, or image blocks, so the guarantee is narrower than the test's name suggests. [SOURCE: .skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts:15] [SOURCE: .skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts:28]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:136`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts:15`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:59`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:102`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:109`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs`",
+        "Compiled scrubber run over seventeen candidate strings and seven header/URL shapes"
+      ]
+    },
+    {
+      "id": "finding-9-7-the-harness-cannot-express-the-criterion-today-live-hop-sh-contains-no-token-red",
+      "text": "The harness cannot express the criterion today. `live-hop.sh` contains no token, redaction or plant reference, and `score.cjs` contains no redaction or token field, so no run has ever checked a `[REDACTED:` marker. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61] [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:136`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts:15`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:59`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:102`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:109`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs`",
+        "Compiled scrubber run over seventeen candidate strings and seven header/URL shapes"
+      ]
+    },
+    {
+      "id": "finding-9-9-the-preview-is-the-first-160-characters-of-already-redacted-text-so-a-token-past",
+      "text": "The preview is the first 160 characters of already-redacted text, so a token past character 160 yields a reply containing neither the token nor a marker. The criterion is satisfiable only on a `load` or `page` reply, or with the token inside the first 160 characters of the turn. [SOURCE: .skilled/hooks/session-handover/history/lib/pages.ts:300]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:136`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts:15`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:59`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:102`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:109`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs`",
+        "Compiled scrubber run over seventeen candidate strings and seven header/URL shapes"
+      ]
+    },
+    {
+      "id": "finding-9-2-the-shared-scrubber-is-shape-driven-not-entropy-driven-it-requires-a-vendor-pref",
+      "text": "The shared scrubber is shape-driven, not entropy-driven. It requires a vendor prefix, a fixed length, or an assignment context with both a digit and a letter and a 20-character floor. A generic plant such as `FAKE_TOKEN_abc123` or `PLANTED_FAKE_TOKEN_9f3a2b1c8d7e6f5a` passes through unchanged. [SOURCE: .skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:59] [SOURCE: verified by running `.skilled/skills/system-spec-kit/shared/dist/parsing/secret-scrubber.js` on both strings; both returned unchanged]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:136`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/history/tests/history-secret-redaction.vitest.ts:15`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:59`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:102`",
+        "`.skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts:109`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs`",
+        "Compiled scrubber run over seventeen candidate strings and seven header/URL shapes"
+      ]
+    },
+    {
+      "id": "finding-10-1-mode-a-the-sender-is-never-told-the-lookup-exists-the-prepare-seed-s-opening-lin",
+      "text": "**Mode A — the sender is never told the lookup exists.** The prepare seed's opening line and the prepare stdout both describe writing a note and nothing else; neither names the History Lookup. A sender that believes the note is the only channel writes a closing sentence (\"a fresh session cannot recover it\") instead of a pointer. Fix: add one sentence to the prepare seed and to the prepare stdout naming the lookup and the fact that the receiver can read the sender's turns. [SOURCE: .skilled/hooks/session-handover/lib/nudge.cjs:180] [SOURCE: .skilled/hooks/session-handover/bin/session-handover.cjs:630]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:775`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/session-handover/hooks/context-nudge.mjs:157`",
+        "`.pi/extensions/session-handover.ts:188`",
+        "`.pi/extensions/session-handover.ts:461`",
+        "`.pi/extensions/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`"
+      ]
+    },
+    {
+      "id": "finding-10-2-mode-b-the-note-outranks-the-lookup-in-the-claim-text-the-claim-seed-omits-the-l",
+      "text": "**Mode B — the note outranks the lookup in the claim text.** The claim seed omits the lookup, and the claim output prints the offer after the note body with a weaker directive, so a receiver that reads top-down treats the note as authoritative. The Pi receiver did exactly that: it dismissed the lookup on the note's authority and asked the operator. Fix: print the lookup offer before the note body and phrase it as a step, not an option. [SOURCE: .skilled/hooks/session-handover/lib/nudge.cjs:276] [SOURCE: .skilled/hooks/session-handover/bin/session-handover.cjs:729]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:775`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/session-handover/hooks/context-nudge.mjs:157`",
+        "`.pi/extensions/session-handover.ts:188`",
+        "`.pi/extensions/session-handover.ts:461`",
+        "`.pi/extensions/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`"
+      ]
+    },
+    {
+      "id": "finding-10-3-mode-c-a-withheld-offer-is-indistinguishable-from-no-need-to-look-minthandoverlo",
+      "text": "**Mode C — a withheld offer is indistinguishable from no need to look.** `mintHandoverLocator` returns null on six conditions and the claim command wraps the call in a bare `catch {}`, so a withheld offer prints nothing, logs nothing and leaves no marker. Fix: return a typed refusal, print one line naming why the offer was withheld, and log it. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:929] [SOURCE: .skilled/hooks/session-handover/bin/session-handover.cjs:729]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:775`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/session-handover/hooks/context-nudge.mjs:157`",
+        "`.pi/extensions/session-handover.ts:188`",
+        "`.pi/extensions/session-handover.ts:461`",
+        "`.pi/extensions/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`"
+      ]
+    },
+    {
+      "id": "finding-10-4-mode-d-the-opencode-reader-can-return-another-project-s-session-when-the-store-h",
+      "text": "**Mode D — the OpenCode reader can return another project's session.** When the store has no `directory` column the reader skips the project proof, so the lookup's answer may come from a different checkout. Fix: require the column, or fall back to a cwd proof taken from the session's own record rather than from the store schema. [SOURCE: .skilled/hooks/session-handover/hooks/shared/session-readers/opencode.mjs:256]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:775`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/session-handover/hooks/context-nudge.mjs:157`",
+        "`.pi/extensions/session-handover.ts:188`",
+        "`.pi/extensions/session-handover.ts:461`",
+        "`.pi/extensions/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`"
+      ]
+    },
+    {
+      "id": "finding-10-5-mode-e-a-secret-survives-redaction-in-three-shapes-secret-argument-key-misses-x-",
+      "text": "**Mode E — a secret survives redaction in three shapes.** `SECRET_ARGUMENT_KEY` misses `x-api-key` and `X-Api-Key`, the array branch of `redactArgument` drops the key, and image blocks are returned unchanged. Fix: accept a vendor prefix and a plural suffix in the key pattern, pass the parent key into the array branch, and document the image exclusion as a known limit rather than a guarantee. [SOURCE: .skilled/hooks/session-handover/history/lib/core.ts:56] [SOURCE: .skilled/hooks/session-handover/history/lib/core.ts:71] [SOURCE: .skilled/hooks/session-handover/history/lib/core.ts:86]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:775`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/session-handover/hooks/context-nudge.mjs:157`",
+        "`.pi/extensions/session-handover.ts:188`",
+        "`.pi/extensions/session-handover.ts:461`",
+        "`.pi/extensions/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`"
+      ]
+    },
+    {
+      "id": "finding-10-6-mode-f-a-detail-past-character-160-is-invisible-until-the-receiver-loads-the-tur",
+      "text": "**Mode F — a detail past character 160 is invisible until the receiver loads the turn.** The preview is the first 160 characters of redacted text, so a detail at character 295 of a 425-character turn appears in neither the preview nor any marker. The OpenCode receiver succeeded only because it chose to `load` the turn. Fix: raise the preview bound, or append an explicit \"more at part N\" handle so the receiver knows the preview is truncated. [SOURCE: .skilled/hooks/session-handover/history/lib/pages.ts:300]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:775`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/session-handover/hooks/context-nudge.mjs:157`",
+        "`.pi/extensions/session-handover.ts:188`",
+        "`.pi/extensions/session-handover.ts:461`",
+        "`.pi/extensions/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`"
+      ]
+    },
+    {
+      "id": "finding-10-7-mode-g-model-and-effort-do-not-carry-on-opencode-resolvesessionsettings-has-no-p",
+      "text": "**Mode G — model and effort do not carry on OpenCode.** `resolveSessionSettings` has no Pi or OpenCode branch, the OpenCode plugin never reads model or effort, `effort_is_valid` and `append_effort_arguments` have no OpenCode case, and `build_relaunch_arguments` drops the model on OpenCode 2. Pi is unaffected because its extension supplies the values itself. Fix: write the model and effort into the OpenCode config or a per-session setting, since the wrapper's own comment records that OpenCode 2 has no model flag on its root command. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1121] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:775] [SOURCE: .pi/extensions/session-handover.ts:461]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:775`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/session-handover/hooks/context-nudge.mjs:157`",
+        "`.pi/extensions/session-handover.ts:188`",
+        "`.pi/extensions/session-handover.ts:461`",
+        "`.pi/extensions/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`"
+      ]
+    },
+    {
+      "id": "finding-10-8-mode-h-the-nudge-is-suppressed-by-a-bare-environment-variable-and-two-hooks-can-",
+      "text": "**Mode H — the nudge is suppressed by a bare environment variable, and two hooks can both nudge.** `AI_SESSION_CHILD=1` short-circuits `nudgeDecision` through `relaunchSessionIsChild`, a bare env read, so a test sandbox that inherits the variable gets no nudge at all. Separately, only claude, codex and vibe route through `commitNudge`; Pi and OpenCode keep in-process state, so two hooks can both nudge. Fix: replace the bare env read with a marker written into the relaunch environment, and route Pi and OpenCode through the same claim guard. [SOURCE: .skilled/hooks/session-handover/lib/nudge.cjs:707] [SOURCE: .skilled/hooks/session-handover/hooks/context-nudge.mjs:157] [SOURCE: .pi/extensions/session-handover.ts:652] [SOURCE: .opencode/plugins/session-handover.js:181]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:775`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/session-handover/hooks/context-nudge.mjs:157`",
+        "`.pi/extensions/session-handover.ts:188`",
+        "`.pi/extensions/session-handover.ts:461`",
+        "`.pi/extensions/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`"
+      ]
+    },
+    {
+      "id": "finding-10-9-mode-i-a-claimed-note-never-expires-so-the-sender-s-task-is-left-open-completeha",
+      "text": "**Mode I — a claimed note never expires, so the sender's task is left open.** `completeHandoff` requires status `claimed`, `noteState` has no expired or abandoned state, no sweep expires a claimed note, and `questionHoldReason` covers only question tools, so a receiver that asks in prose holds the note open indefinitely. Fix: add an expiry sweep for a claimed note past its window, and widen the hold guard to a prose ask. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:407] [SOURCE: .skilled/hooks/session-handover/lib/killer.cjs:317] [SOURCE: .pi/extensions/session-handover.ts:188]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:775`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/session-handover/hooks/context-nudge.mjs:157`",
+        "`.pi/extensions/session-handover.ts:188`",
+        "`.pi/extensions/session-handover.ts:461`",
+        "`.pi/extensions/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`"
+      ]
+    },
+    {
+      "id": "finding-10-10-mode-j-the-scorecard-can-report-a-pass-that-did-not-happen-the-recall-check-slic",
+      "text": "**Mode J — the scorecard can report a pass that did not happen.** The recall check slices at the last `[session-handover]` marker or the whole pane; the Pi pane has no marker, so `sideWordStated: true` is the sender's own prompt echo at character 12,812 of 30,172. The harness also plants no token and `score.cjs` has no redaction field. Fix: require the marker, or slice from the receiver's first turn, and add a token plant plus a redaction assertion. [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74] [SOURCE: specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:180`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:276`",
+        "`.skilled/hooks/session-handover/lib/nudge.cjs:707`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:630`",
+        "`.skilled/hooks/session-handover/bin/session-handover.cjs:729`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:407`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:775`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:929`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1121`",
+        "`.skilled/hooks/session-handover/lib/killer.cjs:317`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:56`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:71`",
+        "`.skilled/hooks/session-handover/history/lib/core.ts:86`",
+        "`.skilled/hooks/session-handover/history/lib/pages.ts:300`",
+        "`.skilled/hooks/session-handover/hooks/shared/session-readers/opencode.mjs:256`",
+        "`.skilled/hooks/session-handover/hooks/context-nudge.mjs:157`",
+        "`.pi/extensions/session-handover.ts:188`",
+        "`.pi/extensions/session-handover.ts:461`",
+        "`.pi/extensions/session-handover.ts:652`",
+        "`.opencode/plugins/session-handover.js:181`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/score.cjs:74`",
+        "`specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch/harness/live-hop.sh:61`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-f4014bb9a114",
+      "text": "\"The Pi lookup was never offered.\" The packet goal records that the offer was printed and works, and `handoverLookupSection` mints the locator at claim time from the note's own `session_id`, `runtime` and `cwd`, all three of which the Pi note carries. The pane capture collapses tool output, so its silence is not evidence of absence. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1072]",
+      "contentHash": "f4014bb9a114",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-4ccf3173f232",
+      "text": "\"The Pi sender leaked the side word.\" Both scorecards record `sideWordInNote: false`, so the withholding instruction held on both runtimes.",
+      "contentHash": "4ccf3173f232",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-449fc8a74ca8",
+      "text": "Reading the pane transcript for the claim command's stdout. The capture collapses tool output, so the offer's presence cannot be proven or disproven from the pane. The code path plus the goal's recorded observation is the stronger evidence.",
+      "contentHash": "449fc8a74ca8",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-1ebba8375638",
+      "text": "\"Redaction is per-adapter, so one runtime can miss it.\" Both readers emit `toolCallBlock`, and the core redacts every block regardless of which reader produced it, so the layer is shared.",
+      "contentHash": "1ebba8375638",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4b7b4ed34711",
+      "text": "\"The preview cut is harmless because search returns the whole turn.\" It returns a bounded preview plus a read handle; the value is only reachable through the handle.",
+      "contentHash": "4b7b4ed34711",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-fb2628e57001",
+      "text": "Reading the Pi fixture for a tool-call argument shape. `pi-assistant-message-end.json` carries no `toolCall` item, so the argument shape had to be read from the reader's mapping instead.",
+      "contentHash": "fb2628e57001",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-bec3ee1b4761",
+      "text": "\"The OpenCode model carries because the plugin reads `input.model`.\" It reads only `limit.context`, a number, and writes nothing to the record.",
+      "contentHash": "bec3ee1b4761",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-76796368ad97",
+      "text": "\"The Pi carry is broken because `resolveSessionSettings` has no Pi branch.\" The Pi extension supplies the values itself, so the missing branch is harmless on Pi.",
+      "contentHash": "76796368ad97",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-e435b87a2958",
+      "text": "Looking for a `--thinking` flag on OpenCode's CLI. The wrapper's own comment states OpenCode 2 has no model flag on its root command, so there is no flag to append; the fix has to be a config write or a per-session setting, not a launch argument.",
+      "contentHash": "e435b87a2958",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-81ca108bde7f",
+      "text": "\"`AI_SESSION_CHILD` can be ignored in tests because the nudge is not under test.\" The nudge is the entry point of the whole hop, so a suppressed nudge means no note, no prepare and no hop.",
+      "contentHash": "81ca108bde7f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ab59b4a827f1",
+      "text": "\"The double nudge is unguarded everywhere.\" Three adapters take the claim and are safe; the gap is Pi and OpenCode only.",
+      "contentHash": "ab59b4a827f1",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-5bee3168d0aa",
+      "text": "Searching the handover tests for a case named after the double nudge. No test carries that name; the guard is proven by `commitNudge`'s claim and by the adapters that call it.",
+      "contentHash": "5bee3168d0aa",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-8907c7790b8f",
+      "text": "\"The 4/5 is the recall failure.\" The five steps do not include recall; the missing step is `noteClosed`.",
+      "contentHash": "8907c7790b8f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-b923d7faa736",
+      "text": "\"The Pi run proves recall because its card says `sideWordStated: true`.\" The card's own input is the echoed prompt, and the receiver's reply says the opposite.",
+      "contentHash": "b923d7faa736",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-d428d3d14b85",
+      "text": "Looking for a token-planting branch in the harness. There is none, so the redaction criterion cannot be scored from the current harness at all.",
+      "contentHash": "d428d3d14b85",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-b90127ddb1d6",
+      "text": "\"The note stayed claimed because the receiver crashed.\" The pane shows a complete, coherent reply and a deliberate decision to hold the close.",
+      "contentHash": "b90127ddb1d6",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-a7f0b9a44947",
+      "text": "\"The question-hold guard should have blocked the ask.\" The guard covers question tools only, and the receiver asked in prose.",
+      "contentHash": "a7f0b9a44947",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-ac0f2bf92a61",
+      "text": "Looking for a timeout that closes a stale claim. There is none in the handover code, so the fix has to add one rather than tune one.",
+      "contentHash": "ac0f2bf92a61",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-f20972cab86a",
+      "text": "\"A decline is reported to the operator.\" The decline path preserves the runtime's exit code and prints a warning only when the decision command itself fails, so a normal decline is silent.",
+      "contentHash": "f20972cab86a",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-707800581022",
+      "text": "\"The Pi hop failed to relaunch.\" Its relaunch log records a `ready` relaunch 0.2 seconds after the signal.",
+      "contentHash": "707800581022",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-625fea66d3d8",
+      "text": "Looking for a retry after a decline. There is none; the wrapper takes the decline path once and exits.",
+      "contentHash": "625fea66d3d8",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-6bbc2248f542",
+      "text": "\"A withheld offer is visible to the receiver.\" The claim output prints the section only when it is non-null, and the surrounding `catch {}` swallows any error, so absence is silent.",
+      "contentHash": "6bbc2248f542",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-322321e5d8fe",
+      "text": "\"The 30-minute TTL is a bug.\" Minting at claim time makes the TTL irrelevant to a normal hop; it only bites a locator minted and redeemed across a long gap, which the design avoids.",
+      "contentHash": "322321e5d8fe",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-01a868f09a10",
+      "text": "Looking for a reason code on a withheld offer. There is none; the function returns null rather than a typed refusal.",
+      "contentHash": "01a868f09a10",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-3baa47c5bd28",
+      "text": "\"Any planted fake token will be redacted.\" The scrubber is shape-driven; a generic `FAKE_TOKEN_...` string is not a secret shape and passes through.",
+      "contentHash": "3baa47c5bd28",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-634f70166d17",
+      "text": "\"Planting the token in an image would exercise redaction.\" Image blocks are returned unchanged by design.",
+      "contentHash": "634f70166d17",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-20d38229e129",
+      "text": "\"The redaction test proves the criterion.\" The test proves seven vendor shapes and two keyed argument names; it does not prove the header-key, array or image paths.",
+      "contentHash": "20d38229e129",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-49abd022992b",
+      "text": "Looking for a redaction count or marker summary in the reply metadata. The reply carries a `preview` and part handles, but no field saying something was removed.",
+      "contentHash": "49abd022992b",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-7a1d0fc4dcb8",
+      "text": "Looking for an entropy or high-randomness detector in the scrubber. There is none; every pattern is a vendor shape, a fixed length, or an assignment context.",
+      "contentHash": "7a1d0fc4dcb8",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-29c44875ab0a",
+      "text": "\"Fixing the prepare text alone would close the Pi gap.\" The Pi receiver had a working offer and did not run it, so the claim text and the note's authority are the binding constraint, not the prepare text.",
+      "contentHash": "29c44875ab0a",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-4e504c35053b",
+      "text": "\"The five criteria are five independent checks.\" They are not: the first two depend on the scorecard's recall slice, which is the same code path, so fixing the slice changes both.",
+      "contentHash": "4e504c35053b",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-956594f1e276",
+      "text": "Looking for a single root cause behind all ten modes. There are three: the note is treated as the only channel (A, B, C), the readers and the scorecard disagree about what a session is (D, F, J), and the relaunch path has no per-runtime settings contract (G, H, I).",
+      "contentHash": "956594f1e276",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 82,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.35,
+    "coverageBySources": {
+      "code": 128,
+      "other": 19
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/422-opencode-pi-handover-parity/specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/lineages/vibe-deepseek/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
