@@ -67,8 +67,12 @@ expected_resources:
   - sk-create-quality-control/references/validation-and-enforcement.md
   - sk-create-quality-control/references/workflow-examples.md
   - sk-create-quality-control/references/workflows.md
+  - sk-create-readme/assets/contributing-template.md
+  - sk-create-readme/assets/install-template.md
   - sk-create-readme/assets/readme-code-template.md
   - sk-create-readme/assets/readme-template.md
+  - sk-create-readme/assets/security-policy-template.md
+  - sk-create-readme/assets/skill-readme-template.md
   - sk-create-readme/references/README.md
   - sk-create-readme/references/readme/quality-and-checklist.md
   - sk-create-readme/references/readme/types-and-voice.md
@@ -84,7 +88,6 @@ expected_resources:
   - sk-create-skill/assets/skill/skill-asset-template.md
   - sk-create-skill/assets/skill/skill-md-template.md
   - sk-create-skill/assets/skill/skill-procedure-template.md
-  - sk-create-skill/assets/skill/skill-readme-template.md
   - sk-create-skill/assets/skill/skill-reference-template.md
   - sk-create-skill/assets/skill/skill-scaffold-template.md
   - sk-create-skill/assets/skill/skill-smart-router.md
@@ -265,9 +268,17 @@ expected_leaf_resources:
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/workflows.md
   - workflow_mode: sk-create-readme
+    leaf_resource_id: assets/contributing-template.md
+  - workflow_mode: sk-create-readme
+    leaf_resource_id: assets/install-template.md
+  - workflow_mode: sk-create-readme
     leaf_resource_id: assets/readme-code-template.md
   - workflow_mode: sk-create-readme
     leaf_resource_id: assets/readme-template.md
+  - workflow_mode: sk-create-readme
+    leaf_resource_id: assets/security-policy-template.md
+  - workflow_mode: sk-create-readme
+    leaf_resource_id: assets/skill-readme-template.md
   - workflow_mode: sk-create-readme
     leaf_resource_id: references/README.md
   - workflow_mode: sk-create-readme
@@ -300,8 +311,6 @@ expected_leaf_resources:
     leaf_resource_id: assets/skill/skill-md-template.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-procedure-template.md
-  - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/skill/skill-readme-template.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
   - workflow_mode: sk-create-skill

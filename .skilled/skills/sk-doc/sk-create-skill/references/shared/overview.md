@@ -9,7 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
-version: 1.2.5.0
+version: 1.2.6.0
 ---
 
 # Skill Anatomy and Structure System
@@ -100,7 +100,7 @@ Validation reminder:
 
 ### README.md Guidance
 
-Create `README.md` when the skill needs human-facing orientation beyond runtime routing. Use [skill-readme-template.md](../../assets/skill/skill-readme-template.md) for skill package READMEs rather than the generic folder README template.
+Create `README.md` when the skill needs human-facing orientation beyond runtime routing. The `sk-create-readme` mode writes it from [skill-readme-template.md](../../../sk-create-readme/assets/skill-readme-template.md), the skill package scaffold, rather than from the generic folder README template.
 
 Include a skill README when:
 - Operators need a quick start, examples, troubleshooting or FAQ.
@@ -265,7 +265,7 @@ Use this operating pattern:
 
 Use these templates when authoring layered skills:
 - Skill template: `../../assets/skill/skill-md-template.md`
-- Skill README template: `../../assets/skill/skill-readme-template.md`
+- Skill README template: `../../../sk-create-readme/assets/skill-readme-template.md`, owned by the `sk-create-readme` mode
 - Reference template: `../../assets/skill/skill-reference-template.md`
 - Asset template: `../../assets/skill/skill-asset-template.md`
 
@@ -280,7 +280,7 @@ Use these templates when authoring layered skills:
 
 ### Templates
 - [skill-md-template.md](../../assets/skill/skill-md-template.md) - SKILL.md file templates
-- [skill-readme-template.md](../../assets/skill/skill-readme-template.md) - Skill README file template
+- [skill-readme-template.md](../../../sk-create-readme/assets/skill-readme-template.md) - Skill README file template, owned by the `sk-create-readme` mode
 - [skill-reference-template.md](../../assets/skill/skill-reference-template.md) - Reference file templates
 - [skill-asset-template.md](../../assets/skill/skill-asset-template.md) - Asset file templates
 - [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type

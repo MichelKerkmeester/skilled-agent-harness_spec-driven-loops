@@ -1,7 +1,7 @@
 ---
 title: "create-readme: Manual Testing Playbook"
 description: "Operator-facing reference for routing, authoring and validating READMEs in the create-readme workflow."
-version: 1.1.0.3
+version: 1.1.1.0
 ---
 
 # create-readme: Manual Testing Playbook
@@ -139,12 +139,12 @@ The scenarios can run in two waves. Each wave keeps its target fixtures separate
 ### RMR-001 | Skill README
 
 #### Description
-Verify that a skill folder receives a general README with orientation first and reference detail later.
+Verify that a skill folder receives a README from the skill README template, with orientation first and reference detail later.
 
 #### Scenario Contract
 Prompt: `Write a README for this skill folder so a new contributor can understand what it does and how to use it.`
 
-The answer selects a general skill README. It reads the target folder and uses the general README template with a tagline, overview and only evidence-backed sections.
+The answer selects the skill README template. It reads the target folder and writes a pitch, the At a Glance table and only evidence-backed sections.
 
 Desired user-visible outcome: a new contributor can decide relevance and find the first useful action quickly.
 

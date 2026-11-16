@@ -9,7 +9,7 @@ trigger_phrases:
   - "hub readme validation"
 importance_tier: normal
 contextType: general
-version: 1.3.3.0
+version: 1.3.4.0
 ---
 
 # Parent Skill Hub README Template
@@ -273,7 +273,7 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/[hu
 ## 6. RELATED RESOURCES
 
 - [`parent-skill-hub-template.md`](./parent-skill-hub-template.md) - The hub `SKILL.md` scaffold this README template pairs with.
-- [`skill-readme-template.md`](../skill/skill-readme-template.md) - The standalone skill README template this hub template extends.
+- [`skill-readme-template.md`](../../../sk-create-readme/assets/skill-readme-template.md) - The standalone skill README template this hub template extends, owned by the `sk-create-readme` mode.
 - [`parent-skill-registry-template.json`](./parent-skill-registry-template.json) - The `mode-registry.json` scaffold the packet table mirrors.
 - [`parent-skill-hub-router-template.json`](./parent-skill-hub-router-template.json) - The `hub-router.json` scaffold the hub routes with.
 - [`hvr-rules.md`](../../../sk-create-with-human-voice/references/hvr-rules.md) - The Human Voice Rules this template writes in.

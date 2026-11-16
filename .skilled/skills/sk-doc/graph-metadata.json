@@ -332,7 +332,18 @@
     "intent file",
     "new agent definition",
     "reusable prompt shortcut",
-    "agent registry"
+    "agent registry",
+    "skill readme",
+    "readme for my new skill",
+    "readme for a new skill",
+    "readme for my skill",
+    "readme for a skill",
+    "readme for the skill",
+    "readme for this skill",
+    "skill's readme",
+    "install guide",
+    "contributing guide",
+    "security policy"
   ],
   "derived": {
     "trigger_phrases": [
@@ -798,6 +809,17 @@
     "intent file",
     "new agent definition",
     "reusable prompt shortcut",
-    "agent registry"
+    "agent registry",
+    "skill readme",
+    "readme for my new skill",
+    "readme for a new skill",
+    "readme for my skill",
+    "readme for a skill",
+    "readme for the skill",
+    "readme for this skill",
+    "skill's readme",
+    "install guide",
+    "contributing guide",
+    "security policy"
   ]
 }

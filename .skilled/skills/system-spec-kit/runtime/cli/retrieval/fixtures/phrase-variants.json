@@ -1,5 +1,5 @@
 {
-  "manifestHash": "38c0342116433cf57ed01df8ce91b23d168c084b4686d3fc20a25b4d293406b4",
+  "manifestHash": "10c805f1cb9f9709a8970ea3392e17e4bc864ef2632c82b40b3c1af3bd405376",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20811,6 +20811,18 @@
     "claude hook settings schema normalization": [
       "claude hook settings schema normalization"
     ],
+    "claude hook tree guard": [
+      "claude hook tree guard"
+    ],
+    "claude hook tree guard implementation summary": [
+      "claude hook tree guard implementation summary"
+    ],
+    "claude hook tree guard plan": [
+      "claude hook tree guard plan"
+    ],
+    "claude hook tree guard tasks": [
+      "claude hook tree guard tasks"
+    ],
     "claude injection screen": [
       "claude injection screen"
     ],
@@ -31076,6 +31088,12 @@
     ],
     "contributing clone url": [
       "contributing clone url"
+    ],
+    "contributing guide template": [
+      "contributing guide template"
+    ],
+    "contributing md template": [
+      "contributing.md template"
     ],
     "convention audit tasks": [
       "convention audit tasks"
@@ -53225,6 +53243,9 @@
     "fromscan recheck bypass": [
       "fromScan recheck bypass"
     ],
+    "front page readme template": [
+      "front page readme template"
+    ],
     "front proxy buffer then decode": [
       "front-proxy buffer then decode"
     ],
@@ -59204,6 +59225,9 @@
     "hook bridge window": [
       "hook bridge window"
     ],
+    "hook cleanup deep review fixes": [
+      "hook cleanup deep review fixes"
+    ],
     "hook compatibility consumer cutover": [
       "hook compatibility consumer cutover"
     ],
@@ -59389,6 +59413,15 @@
     ],
     "hook library cleanup and readme rewrite": [
       "hook library cleanup and readme rewrite"
+    ],
+    "hook library cleanup deep review iteration 2 security": [
+      "hook library cleanup deep review iteration 2 security"
+    ],
+    "hook library cleanup deep review report": [
+      "hook library cleanup deep review report"
+    ],
+    "hook library cleanup deep review strategy": [
+      "hook library cleanup deep review strategy"
     ],
     "hook library cleanup phase parent spec": [
       "hook library cleanup phase parent spec"
@@ -59893,6 +59926,9 @@
     ],
     "how to author a chart template": [
       "how to author a chart template"
+    ],
+    "how to contribute guide": [
+      "how to contribute guide"
     ],
     "how to phrase a jev question": [
       "how to phrase a jev question"
@@ -61781,6 +61817,9 @@
     "install guide sweep": [
       "install guide sweep"
     ],
+    "install guide template": [
+      "install guide template"
+    ],
     "install guides coverage question": [
       "install guides coverage question"
     ],
@@ -61789,6 +61828,9 @@
     ],
     "install guides trigger index corpus": [
       "install guides trigger index corpus"
+    ],
+    "install md template": [
+      "install.md template"
     ],
     "install obsidian theme": [
       "install obsidian theme"
@@ -61816,6 +61858,9 @@
     ],
     "install transition tasks": [
       "install-transition tasks"
+    ],
+    "installation guide scaffold": [
+      "installation guide scaffold"
     ],
     "installation verification": [
       "installation verification"
@@ -73158,6 +73203,9 @@
     ],
     "mixed version oracle handoff": [
       "mixed-version oracle handoff"
+    ],
+    "mk claude hook could not resolve home folder": [
+      "mk claude hook could not resolve home folder"
     ],
     "mk code index 32000 fix": [
       "mk-code-index -32000 fix"
@@ -84573,6 +84621,9 @@
     "phase 7 remediation review fixes": [
       "phase 7 remediation review fixes"
     ],
+    "phase 7 review doc reconciliation": [
+      "phase 7 review doc reconciliation"
+    ],
     "phase 7 review packet fixes": [
       "phase 7 review packet fixes"
     ],
@@ -84653,6 +84704,9 @@
     ],
     "phase 8 claim error per state": [
       "phase 8 claim error per state"
+    ],
+    "phase 8 claude hook tree guard": [
+      "phase 8 claude hook tree guard"
     ],
     "phase 8 cli pi": [
       "phase 8 cli pi"
@@ -90031,6 +90085,9 @@
     ],
     "pull request commit hygiene": [
       "pull request commit hygiene"
+    ],
+    "pull request guide scaffold": [
+      "pull request guide scaffold"
     ],
     "pull request packet resolution": [
       "pull request packet resolution"
@@ -96265,6 +96322,9 @@
     "repoint the clickup official code mode manual": [
       "repoint the clickup official code mode manual"
     ],
+    "report a vulnerability guide": [
+      "report a vulnerability guide"
+    ],
     "report gen ts tokens json": [
       "report-gen.ts tokens.json"
     ],
@@ -96318,6 +96378,9 @@
     ],
     "repository field on the config": [
       "repository field on the config"
+    ],
+    "repository install guide": [
+      "repository install guide"
     ],
     "repository quality config": [
       "repository quality config"
@@ -98994,6 +99057,18 @@
     ],
     "review divergent convergence": [
       "review divergent convergence"
+    ],
+    "review doc reconciliation": [
+      "review doc reconciliation"
+    ],
+    "review doc reconciliation implementation summary": [
+      "review doc reconciliation implementation summary"
+    ],
+    "review doc reconciliation plan": [
+      "review doc reconciliation plan"
+    ],
+    "review doc reconciliation tasks": [
+      "review doc reconciliation tasks"
     ],
     "review docs floor and lens": [
       "review docs floor and lens"
@@ -104359,6 +104434,9 @@
     "security md sk doc": [
       "security.md sk-doc"
     ],
+    "security md template": [
+      "security.md template"
+    ],
     "security md verification": [
       "security.md verification"
     ],
@@ -104379,6 +104457,9 @@
     ],
     "security policy tasks": [
       "security policy tasks"
+    ],
+    "security policy template": [
+      "security policy template"
     ],
     "security policy validation": [
       "security policy validation"

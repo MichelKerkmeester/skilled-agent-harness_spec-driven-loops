@@ -19,10 +19,12 @@ Use this packet when the request involves:
 
 - Creating or refreshing a folder `README.md`.
 - Documenting a project, skill, feature, component or source-code directory.
+- Writing a skill package's README, including the README step `create-skill` hands over while it scaffolds a new skill.
+- Writing a repository's front page, install guide, contributing guide or security policy.
 - Writing developer orientation for a code folder, including topology, boundaries, entrypoints and validation.
 - Running `/create:readme`.
 
-Keyword triggers: `create readme`, `/create:readme`, `readme`, `folder readme`, `write readme`, `README.md`, `front-page overview`, `code folder readme`.
+Keyword triggers: `create readme`, `/create:readme`, `readme`, `folder readme`, `write readme`, `README.md`, `front-page overview`, `code folder readme`, `skill readme`, `install guide`, `contributing guide`, `security policy`.
 
 ### When NOT to Use
 
@@ -41,10 +43,10 @@ This is a nested workflow packet under the `sk-doc` parent hub. It owns README a
 
 `sk-doc` routes README authoring here: the request names a README, a folder readme, a code-folder readme or `/create:readme`.
 The hub's mode signal selects this packet.
-Three artifacts route here: a general README, a code-folder README and a skill package's `ARCHITECTURE.md`.
 The artifact decides the template before the folder decides the sections.
 
-Authoring starts from the matching template: `assets/readme-template.md` for a general README, `assets/readme-code-template.md` for a source-code folder, and `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`.
+Authoring starts from the matching template: `assets/readme-template.md` for a repository front page or a general README, `assets/skill-readme-template.md` for a skill package README, `assets/readme-code-template.md` for a source-code folder and `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`.
+A repository's root guides start from `assets/install-template.md`, `assets/contributing-template.md` and `assets/security-policy-template.md`.
 `references/README.md` is the fallback route map when the artifact type or folder purpose is unclear.
 
 When nothing matches, report `UNKNOWN_FALLBACK` with the router's disambiguation checklist instead of guessing.
@@ -104,13 +106,13 @@ Use only the sections that fit the audience.
 | Configuration | Settings exist | Config files, options, defaults and env vars |
 | Usage Examples | Patterns are easier shown than described | Simple and advanced examples with expected results |
 | Troubleshooting | Users can hit known issues | What they see, cause and fix |
-| FAQ | Repeated questions exist | Short answers only |
+| FAQ | Repeated questions exist | One heading per question, short answers only |
 | Related Resources | Links exist | Grouped skills, documents, commands or external references |
 
 General README format rules:
 
 - H1 is a plain title.
-- Add a one-sentence blockquote tagline immediately after the H1.
+- Add a one-sentence blockquote tagline immediately after the H1. A repository front page may put its pitch under the nav line of its first section instead.
 - H2 headings are numbered and ALL CAPS, for example `## 1. OVERVIEW`.
 - Numbered H3 and H4 subsections inside feature sections are ALL CAPS, for example `### 3.1 TECHNICAL REFERENCE`.
 - Unnumbered H3 and H4 headings use Title Case.
@@ -118,9 +120,9 @@ General README format rules:
 - Emoji use follows two registers. The repository front-page README may use decorative emoji on section headings. Every other README uses semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers.
 - Give every item in an inventory a description. A list of bare names says nothing about when to use each one.
 - Explain in short paragraphs of short sentences, about 10-15 words each and about 60 words a paragraph. Use bullets only for items a reader scans or compares: commands, options, steps and parallel facts. A run of bullets that each hold a sentence of explanation reads better as a paragraph.
-- When installing takes more than a few steps, a front-page README keeps only the minimum commands and points to a root install document, such as `INSTALL-SKILLED.md`.
-- Use `---` horizontal rules between H2 sections.
-- When a README spaces its sections with `&nbsp;` lines, put one above every H2, H3 and H4 heading. Leave it out only where a heading directly follows another heading, so sibling sections never get different gaps.
+- When installing takes more than a few steps, a front-page README keeps only the minimum commands and points to a root install document, such as `INSTALL.md`.
+- A front-page README follows the order in `assets/readme-template.md` Section 4: a nav line under the first H2, a highlights list, install and then how it works. Each FAQ question is its own heading.
+- Use `---` horizontal rules between H2 sections. A repository's root guides put one `&nbsp;` line above each H2 instead. Only the guides the validator exempts by name may do so, and the selection guide in `assets/readme-template.md` lists them.
 - Do not add a Table of Contents.
 - Do not add `<!-- ANCHOR -->` navigation comments.
 - Use tables for comparisons, file maps, configuration, options and troubleshooting.
@@ -285,7 +287,9 @@ Pre-publish checks for READMEs:
 
 The core workflow lives in this `SKILL.md`. Use these files only for deep overflow detail, exhaustive scaffolds, edge cases and long examples:
 
-- `assets/readme-template.md` for the full fillable general README scaffold.
+- `assets/readme-template.md` for the selection guide, the general README scaffold and the front-page scaffold.
+- `assets/skill-readme-template.md` for a skill package README, the template `create-skill` hands the README step to.
+- `assets/install-template.md`, `assets/contributing-template.md` and `assets/security-policy-template.md` for a repository's root guides.
 - `assets/readme-code-template.md` for the full fillable code-folder scaffold and diagram examples.
 - `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`: the fixed eight-section system document.
 - `references/README.md` for the overflow route map that indexes the `readme/` reference group.
