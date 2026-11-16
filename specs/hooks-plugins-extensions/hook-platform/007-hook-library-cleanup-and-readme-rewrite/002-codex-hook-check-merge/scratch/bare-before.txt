@@ -1,0 +1,14 @@
+./.opencode/plugins/ARCHITECTURE.md:1
+./.opencode/plugins/codex-hooks-watchdog.js:1
+./.opencode/plugins/README.md:1
+./.skilled/bin/install-codex-hooks.mjs:1
+./.skilled/hooks/coverage-rationale.md:2
+./.skilled/hooks/README.md:5
+./.skilled/hooks/session-lifecycle/README.md:1
+./.skilled/hooks/session-lifecycle/tests/dsh-session-lifecycle.test.mjs:1
+./.skilled/hooks/shared/hook-flags.cjs:3
+./.skilled/hooks/shared/README.md:2
+./.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:1
+./.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs:1
+./.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts:1
+./README.md:1

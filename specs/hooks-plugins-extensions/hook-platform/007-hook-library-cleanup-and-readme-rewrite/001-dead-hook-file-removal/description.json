@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal",
+  "description": "Phase 1: dead-hook-file-removal",
+  "keywords": [
+    "phase",
+    "dead-hook-file-removal"
+  ],
+  "lastUpdated": "2026-11-15T16:34:12.177Z",
+  "specId": "001",
+  "folderSlug": "dead-hook-file-removal",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform",
+    "007-hook-library-cleanup-and-readme-rewrite"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "15-11-26_16-18__planned-phase-1-of-the-hook-library-cleanup.md",
+    "15-11-26_17-34__closed-phase-1-of-the-hook-library-cleanup-three.md"
+  ]
+}

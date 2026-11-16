@@ -1,0 +1,3 @@
+   - The old table has no Vibe row. Vibe has a `pre_tool` hook named `overlay-guard`, `strict = true`, matching `bash`, `process_start`, `write_file` and `edit`, that runs `.vibe/plugins/repo-guards/overlay-guard.mjs`. Read it for what it reads and how it refuses, and give Vibe a row with entry None.
+   - The old table has the columns Adapter, Event and matcher, Paths it reads and Refusal. RUNTIME COVERAGE takes the target columns, and the paths each runtime reads move into one sentence per runtime under the table.
+   - Keep every matcher, tool name and refusal shape byte for byte.

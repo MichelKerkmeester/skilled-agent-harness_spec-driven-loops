@@ -1,0 +1,23 @@
+{
+  "specFolder": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite",
+  "description": "Hook library cleanup, literal names and README rewrite",
+  "keywords": [
+    "hook",
+    "library",
+    "cleanup",
+    "literal",
+    "names",
+    "readme",
+    "rewrite"
+  ],
+  "lastUpdated": "2026-11-15T14:58:48.410Z",
+  "specId": "007",
+  "folderSlug": "hook-library-cleanup-and-readme-rewrite",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

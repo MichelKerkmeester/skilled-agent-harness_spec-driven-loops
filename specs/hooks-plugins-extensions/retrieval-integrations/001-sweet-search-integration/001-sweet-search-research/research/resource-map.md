@@ -70,7 +70,7 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/acceptance-criteria.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/acceptance-criteria.md | Cited | OK | Citations=1; Iterations=1 |
 | specs/hooks-plugins-extensions/ask-surface-guard/001-ask-surface-enforcement/spec.md | Cited | OK | Citations=1; Iterations=1 |
 | specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl | Cited | OK | Citations=1; Iterations=1 |
 | specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md | Cited | OK | Citations=1; Iterations=1 |

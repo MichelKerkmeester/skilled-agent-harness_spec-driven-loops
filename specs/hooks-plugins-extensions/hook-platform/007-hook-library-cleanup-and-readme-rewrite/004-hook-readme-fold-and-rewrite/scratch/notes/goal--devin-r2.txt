@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the folder also holds `goal-devin.test.mjs`. Replace the first sentence with: "`goal-inject.mjs` is the Devin goal adapter."

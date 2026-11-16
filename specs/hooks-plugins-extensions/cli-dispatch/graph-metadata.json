@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/cli-dispatch",
+  "spec_folder": "hooks-plugins-extensions/cli-dispatch",
+  "parent_id": "hooks-plugins-extensions",
+  "children_ids": [
+    "hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "hooks-plugins-extensions/cli-dispatch"
+    ],
+    "causal_summary": "Container folder for hooks-plugins-extensions/cli-dispatch."
+  }
+}

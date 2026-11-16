@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: write: "It waits for transcript idle, signals the target runtime once an armed record exists and raises a macOS notice with the manual claim command on timeout."

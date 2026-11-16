@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the hook never stays silent; with no goal or a paused goal it writes `{ permission: "allow" }`. Replace the test-coverage sentence with: "It covers injection when active, a bare `{ permission: "allow" }` when no goal is set or the goal is paused, the disabled switch and malformed stdin." Fix any other place that says no output.
+   - Defect 2: name the mirror by its full path. Write: "The runtime mirror `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` holds the same binding under the id `goal-inject`."

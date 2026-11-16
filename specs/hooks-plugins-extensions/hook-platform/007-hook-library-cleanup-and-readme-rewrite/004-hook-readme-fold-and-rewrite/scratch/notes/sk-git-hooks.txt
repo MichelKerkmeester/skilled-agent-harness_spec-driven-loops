@@ -1,0 +1,9 @@
+   - This one file is the README of two hook folders, `.skilled/hooks/git-message-gate/` and `.skilled/hooks/git-preflight/`, both linking it. The H1 and the title name both hooks: the message gate and the preflight advisory. Give the message gate its own HOW IT WORKS subsection beside the advisory's.
+   - Because one file serves two folders, write each RUNTIME COVERAGE entry from the repository root, such as `.skilled/hooks/git-preflight/dsh/git-preflight-advisory.mjs`. Add these four git-preflight rows to the git-message-gate rows above:
+     DSH: event `tools/post-execute`, entry `.skilled/hooks/git-preflight/dsh/git-preflight-advisory.mjs`, real file `.skilled/skills/sk-git/scripts/hooks/dsh/git-preflight-advisory.mjs`
+     OpenCode: event `experimental.chat.system.transform, tool.execute.before`, entry `.skilled/hooks/git-preflight/opencode/sk-git-preflight-advisory.js`, real file `.opencode/plugins/sk-git-preflight-advisory.js`
+     Pi: event `tool_call, tool_result`, entry `.skilled/hooks/git-preflight/pi/git-preflight-advisory.ts`, real file `.skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts`
+     Shared: no event, a core module the adapters import, entry `.skilled/hooks/git-preflight/shared/git-preflight-advisory.mjs`, real file `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs`
+   - Registry ids `git-preflight-advisory` and `git-message-gate`: Claude `PreToolUse` on `Bash`, Codex on `exec|Bash`, Devin on `^exec$`, each 5 seconds, and Cursor `preToolUse` on `Shell`, 10 seconds.
+   - Vibe runs the message gate: a `pre_tool` hook named `git-message-gate` in `.vibe/hooks.toml` runs `.vibe/plugins/repo-guards/git-message-gate.mjs`. No Vibe hook runs the preflight advisory. Give Vibe a row for each.
+   - The old sections WHAT IT DOES and BOUNDARIES AND FLOW become HOW IT WORKS. PER-RUNTIME DELIVERY becomes RUNTIME COVERAGE.

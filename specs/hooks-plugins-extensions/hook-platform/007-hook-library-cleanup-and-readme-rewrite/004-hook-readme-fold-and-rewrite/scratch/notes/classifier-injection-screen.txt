@@ -1,0 +1,7 @@
+   - The old text names Claude, Devin, OpenCode and Pi and says nothing of DSH or Vibe. Both screen fetched text today. Give each a RUNTIME COVERAGE row:
+     DSH: `tools/post-execute` in `.dsh/plugins/repo-guards/adapters/classifier-injection-screen.mjs`, which loads `dsh/classifier-injection-screen.mjs` in this folder. Read both.
+     Vibe: a `post_tool` hook named `classifier-injection-screen` in `.vibe/hooks.toml`, matching `web_fetch` and `open_url`, which runs `.vibe/plugins/repo-guards/classifier-injection-screen.mjs`. Entry None. It appends one advisory line as `additional_context` and never denies.
+   - Registry rows for the concern key `injection-screen`: Claude `PostToolUse` on `WebFetch`, Devin `PostToolUse` on `^webfetch$`, each with a 30-second timeout. Pi listens on `tool_result` in `pi/classifier-injection-screen.ts`. Read the OpenCode plugin for its event.
+   - Cursor and Codex get rows that keep the old reason they carry no adapter.
+   - The old sections are OVERVIEW, HOW IT DECIDES, SWITCHES, FILES and VALIDATION. Map them: HOW IT DECIDES becomes HOW IT WORKS, SWITCHES becomes CONFIGURATION, and FILES becomes DIRECTORY TREE plus KEY FILES, because the folder has subfolders. Keep the advisory line in its `text` fence byte for byte.
+   - Keep the numbers byte for byte: 84 of 90, 68, 0.60, 5 lines, 60 lines, 12 sections, 8,000 code units, 4 at a time, 20 seconds, 96,000 code units.

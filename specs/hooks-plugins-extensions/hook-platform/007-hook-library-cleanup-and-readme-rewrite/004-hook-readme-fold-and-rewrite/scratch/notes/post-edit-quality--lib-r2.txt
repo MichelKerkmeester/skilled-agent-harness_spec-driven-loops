@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the Cursor event key is `postToolUse`. Write: "Cursor runs `post-tool-use.mjs` on `postToolUse` in `.cursor/hooks.json`, and that proxy shells out to the Claude adapter."

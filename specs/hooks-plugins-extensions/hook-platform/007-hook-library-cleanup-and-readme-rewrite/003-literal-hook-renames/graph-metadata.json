@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames",
+  "parent_id": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "literal hook renames",
+      "phase 3 literal hook renames",
+      "literal hook renames plan",
+      "literal hook renames tasks",
+      "literal hook renames acceptance criteria",
+      "literal hook renames goal",
+      "literal hook renames implementation summary"
+    ],
+    "key_topics": [
+      "literal",
+      "hook",
+      "renames",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "reader"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      ".vibe/hooks.toml",
+      ".github/workflows/dispatch-enforcement-guard.yml",
+      ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      "specs/descriptions.json",
+      "scratch/review-artifacts.txt",
+      "scratch/pre-phase3.patch",
+      ".opencode/plugins/tests/sk-code-post-edit-quality.test.cjs",
+      "scratch/hook-ids-before.txt",
+      ".github/workflows/README.md",
+      ".skilled/hooks/session-handover/tests/subagent-guard.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.toml",
+        "kind": "file",
+        "path": ".vibe/hooks.toml",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-enforcement-guard.yml",
+        "kind": "config",
+        "path": ".github/workflows/dispatch-enforcement-guard.yml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-mirrors.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": "specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-artifacts.txt",
+        "kind": "file",
+        "path": "scratch/review-artifacts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pre-phase3.patch",
+        "kind": "file",
+        "path": "scratch/pre-phase3.patch",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-post-edit-quality.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/sk-code-post-edit-quality.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-ids-before.txt",
+        "kind": "file",
+        "path": "scratch/hook-ids-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "subagent-guard.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/subagent-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A reader of `.skilled/hooks/` cannot tell `dispatch/` from `task-dispatch/` by name",
+    "created_at": "2026-11-15T14:58:51Z",
+    "last_save_at": "2026-11-15T18:39:08.351Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a8700636c428347795e00ce732361d25d7fac5efe0e272a4ce08b889668a3b2d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "62bcfaf3317e40ce70d74a642c1a573164b93b64d7a87398d276fdf092989303",
+      "plan.md": "5da4e103077ba026894cff5f3a60ddabaabbc1687d89cf47526e2e098c65a9e0",
+      "tasks.md": "bf7a1b9d4629cccef60323a06c02ffb12f397ca47b867ca8b4d5f20fcdc70b2c",
+      "implementation-summary.md": "0ef403a0cf3f3a02b6ca714d8e034190268cbb6819ee319be8bc0b3fe842e553"
+    },
+    "last_active_at": null
+  }
+}

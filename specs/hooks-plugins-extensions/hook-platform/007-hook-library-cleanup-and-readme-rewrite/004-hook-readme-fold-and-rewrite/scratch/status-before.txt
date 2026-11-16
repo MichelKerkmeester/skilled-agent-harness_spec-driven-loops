@@ -1,0 +1,334 @@
+ M .claude/hooks/README.md
+D  .claude/hooks/ask-capture-posttooluse.mjs
+D  .claude/hooks/claude-posttooluse.cjs
+D  .claude/hooks/compact-pointer.mjs
+D  .claude/hooks/context-nudge.mjs
+A  .claude/hooks/decision-capture-posttooluse.mjs
+ M .claude/hooks/dispatch-audit-posttooluse.mjs
+ M .claude/hooks/dispatch-preflight-lint.mjs
+ M .claude/hooks/fable-subagent-guard.mjs
+A  .claude/hooks/handover-compact-pointer.mjs
+A  .claude/hooks/handover-context-nudge.mjs
+A  .claude/hooks/handover-stop-arm.mjs
+A  .claude/hooks/handover-subagent-guard.mjs
+A  .claude/hooks/post-edit-quality.cjs
+D  .claude/hooks/stop-arm.mjs
+D  .claude/hooks/subagent-guard.mjs
+ M .claude/hooks/task-dispatch-guard.cjs
+ M .claude/settings.json
+ M .codex/hooks.json
+ M .codex/hooks/README.md
+D  .codex/hooks/compact-pointer.mjs
+D  .codex/hooks/context-nudge.mjs
+ M .codex/hooks/dispatch-audit-posttooluse.mjs
+ M .codex/hooks/dispatch-preflight-lint.mjs
+A  .codex/hooks/handover-compact-pointer.mjs
+A  .codex/hooks/handover-context-nudge.mjs
+A  .codex/hooks/handover-prompt-seed.mjs
+A  .codex/hooks/handover-stop-arm.mjs
+D  .codex/hooks/prompt-seed.mjs
+D  .codex/hooks/stop-arm.mjs
+ M .cursor/hooks.json
+ M .cursor/hooks/dispatch-preflight-lint.mjs
+ M .cursor/hooks/task-dispatch-guard.mjs
+ M .devin/hooks.v1.json
+ M .devin/hooks/README.md
+D  .devin/hooks/ask-capture-posttooluse.mjs
+A  .devin/hooks/decision-capture-posttooluse.mjs
+ M .devin/hooks/dispatch-audit-posttooluse.mjs
+ M .devin/hooks/dispatch-preflight-lint.mjs
+ M .devin/hooks/task-dispatch-guard.cjs
+ M .dsh/plugins/repo-guards/adapters/dispatch-audit.mjs
+ M .dsh/plugins/repo-guards/adapters/dispatch-preflight-lint.mjs
+ M .dsh/plugins/repo-guards/adapters/task-dispatch-guard.mjs
+ M .github/scripts/check-gate-inputs.sh
+ M .github/scripts/tests/broken-move-drill.sh
+ M .github/scripts/tests/check-gate-inputs.test.sh
+ M .github/workflows/README.md
+ M .github/workflows/dispatch-enforcement-guard.yml
+ M .github/workflows/opencode-dual-version.yml
+ M .github/workflows/opencode-plugin-tests.yml
+ M .opencode/plugins/cli-dispatch-audit.js
+ M .opencode/plugins/sk-git-preflight-advisory.js
+ M .opencode/plugins/system-deep-loop-guard.js
+ M .opencode/plugins/tests/claude-fable-subagent-guard.test.cjs
+ M .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs
+ M .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
+ M .pi/extensions/README.md
+ M .pi/extensions/dispatch-audit.ts
+ M .pi/extensions/dispatch-preflight-lint.ts
+ M .pi/extensions/task-dispatch-guard.ts
+ M .skilled/commands/doctor/assets/doctor-env.yaml
+ M .skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml
+ M .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
+ M .skilled/hooks/README.md
+RM .skilled/hooks/dispatch/README.md -> .skilled/hooks/cli-dispatch/README.md
+RM .skilled/hooks/dispatch/claude/README.md -> .skilled/hooks/cli-dispatch/claude/README.md
+R  .skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs -> .skilled/hooks/cli-dispatch/claude/dispatch-audit-posttooluse.mjs
+R  .skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs -> .skilled/hooks/cli-dispatch/claude/dispatch-preflight-lint.mjs
+RM .skilled/hooks/dispatch/codex/README.md -> .skilled/hooks/cli-dispatch/codex/README.md
+R  .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs -> .skilled/hooks/cli-dispatch/codex/codex-shell-tool.test.mjs
+R  .skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs -> .skilled/hooks/cli-dispatch/codex/dispatch-audit-posttooluse.mjs
+R  .skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs -> .skilled/hooks/cli-dispatch/codex/dispatch-preflight-lint.mjs
+RM .skilled/hooks/dispatch/cursor/README.md -> .skilled/hooks/cli-dispatch/cursor/README.md
+RM .skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs -> .skilled/hooks/cli-dispatch/cursor/dispatch-preflight-lint.mjs
+R  .skilled/hooks/dispatch/cursor/post-tool-use.mjs -> .skilled/hooks/cli-dispatch/cursor/post-tool-use.mjs
+RM .skilled/hooks/dispatch/devin/README.md -> .skilled/hooks/cli-dispatch/devin/README.md
+R  .skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs -> .skilled/hooks/cli-dispatch/devin/devin-dispatch-audit.test.mjs
+R  .skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs -> .skilled/hooks/cli-dispatch/devin/dispatch-audit-posttooluse.mjs
+R  .skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs -> .skilled/hooks/cli-dispatch/devin/dispatch-preflight-lint.mjs
+RM .skilled/hooks/dispatch/dsh/README.md -> .skilled/hooks/cli-dispatch/dsh/README.md
+R  .skilled/hooks/dispatch/dsh/dispatch-audit.mjs -> .skilled/hooks/cli-dispatch/dsh/dispatch-audit.mjs
+R  .skilled/hooks/dispatch/dsh/dispatch-preflight-lint.mjs -> .skilled/hooks/cli-dispatch/dsh/dispatch-preflight-lint.mjs
+RM .skilled/hooks/dispatch/lib/README.md -> .skilled/hooks/cli-dispatch/lib/README.md
+R  .skilled/hooks/dispatch/lib/dispatch-audit.mjs -> .skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs
+RM .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs -> .skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs
+R  .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs -> .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs
+RM .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs -> .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs
+R  .skilled/hooks/dispatch/lib/opencode-version-corpus.json -> .skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json
+R  .skilled/hooks/dispatch/lib/opencode-version.mjs -> .skilled/hooks/cli-dispatch/lib/opencode-version.mjs
+RM .skilled/hooks/dispatch/opencode/README.md -> .skilled/hooks/cli-dispatch/opencode/README.md
+R  .skilled/hooks/dispatch/opencode/cli-dispatch-audit.js -> .skilled/hooks/cli-dispatch/opencode/cli-dispatch-audit.js
+RM .skilled/hooks/dispatch/pi/README.md -> .skilled/hooks/cli-dispatch/pi/README.md
+R  .skilled/hooks/dispatch/pi/directive-dedup.test.ts -> .skilled/hooks/cli-dispatch/pi/directive-dedup.test.ts
+R  .skilled/hooks/dispatch/pi/dispatch-audit.ts -> .skilled/hooks/cli-dispatch/pi/dispatch-audit.ts
+R  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts -> .skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.test.ts
+RM .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts -> .skilled/hooks/cli-dispatch/pi/dispatch-preflight-lint.ts
+RM .skilled/hooks/dispatch/tests/README.md -> .skilled/hooks/cli-dispatch/tests/README.md
+R  .skilled/hooks/dispatch/tests/dsh-dispatch.test.mjs -> .skilled/hooks/cli-dispatch/tests/dsh-dispatch.test.mjs
+RM .skilled/hooks/hook-install/README.md -> .skilled/hooks/codex-global-hooks-check/README.md
+RM .skilled/hooks/hook-install/claude/README.md -> .skilled/hooks/codex-global-hooks-check/claude/README.md
+R  .skilled/hooks/hook-install/claude/install-codex-hooks.mjs -> .skilled/hooks/codex-global-hooks-check/claude/install-codex-hooks.mjs
+RM .skilled/hooks/hook-install/cursor/README.md -> .skilled/hooks/codex-global-hooks-check/cursor/README.md
+R  .skilled/hooks/hook-install/cursor/install-codex-hooks.mjs -> .skilled/hooks/codex-global-hooks-check/cursor/install-codex-hooks.mjs
+RM .skilled/hooks/hook-install/devin/README.md -> .skilled/hooks/codex-global-hooks-check/devin/README.md
+R  .skilled/hooks/hook-install/devin/install-codex-hooks.mjs -> .skilled/hooks/codex-global-hooks-check/devin/install-codex-hooks.mjs
+RM .skilled/hooks/codex-watchdog/opencode/README.md -> .skilled/hooks/codex-global-hooks-check/opencode/README.md
+R  .skilled/hooks/codex-watchdog/opencode/codex-hooks-watchdog.js -> .skilled/hooks/codex-global-hooks-check/opencode/codex-hooks-watchdog.js
+D  .skilled/hooks/codex-watchdog/README.md
+RM .skilled/hooks/completion/README.md -> .skilled/hooks/completion-evidence/README.md
+RM .skilled/hooks/completion/claude/README.md -> .skilled/hooks/completion-evidence/claude/README.md
+R  .skilled/hooks/completion/claude/completion-evidence-stop.cjs -> .skilled/hooks/completion-evidence/claude/completion-evidence-stop.cjs
+RM .skilled/hooks/completion/codex/README.md -> .skilled/hooks/completion-evidence/codex/README.md
+R  .skilled/hooks/completion/codex/completion-evidence-stop.cjs -> .skilled/hooks/completion-evidence/codex/completion-evidence-stop.cjs
+RM .skilled/hooks/completion/cursor/README.md -> .skilled/hooks/completion-evidence/cursor/README.md
+R  .skilled/hooks/completion/cursor/completion-evidence-response.mjs -> .skilled/hooks/completion-evidence/cursor/completion-evidence-response.mjs
+RM .skilled/hooks/completion/devin/README.md -> .skilled/hooks/completion-evidence/devin/README.md
+R  .skilled/hooks/completion/devin/completion-evidence-stop.cjs -> .skilled/hooks/completion-evidence/devin/completion-evidence-stop.cjs
+RM .skilled/hooks/completion/dsh/README.md -> .skilled/hooks/completion-evidence/dsh/README.md
+R  .skilled/hooks/completion/dsh/completion-evidence.mjs -> .skilled/hooks/completion-evidence/dsh/completion-evidence.mjs
+RM .skilled/hooks/completion/opencode/README.md -> .skilled/hooks/completion-evidence/opencode/README.md
+R  .skilled/hooks/completion/opencode/system-completion-sentinel.js -> .skilled/hooks/completion-evidence/opencode/system-completion-sentinel.js
+R  .skilled/hooks/completion/opencode/system-speckit-completion.js -> .skilled/hooks/completion-evidence/opencode/system-speckit-completion.js
+RM .skilled/hooks/completion/pi/README.md -> .skilled/hooks/completion-evidence/pi/README.md
+R  .skilled/hooks/completion/pi/completion-evidence.ts -> .skilled/hooks/completion-evidence/pi/completion-evidence.ts
+RM .skilled/hooks/completion/tests/README.md -> .skilled/hooks/completion-evidence/tests/README.md
+R  .skilled/hooks/completion/tests/dsh-completion-evidence.test.mjs -> .skilled/hooks/completion-evidence/tests/dsh-completion-evidence.test.mjs
+R  .skilled/hooks/completion/vibe/completion-evidence-post-agent.cjs -> .skilled/hooks/completion-evidence/vibe/completion-evidence-post-agent.cjs
+ M .skilled/hooks/coverage-rationale.md
+ M .skilled/hooks/decision-capture/claude/README.md
+R  .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs -> .skilled/hooks/decision-capture/claude/decision-capture-posttooluse.mjs
+RM .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.test.mjs -> .skilled/hooks/decision-capture/claude/decision-capture-posttooluse.test.mjs
+ M .skilled/hooks/decision-capture/devin/README.md
+R  .skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs -> .skilled/hooks/decision-capture/devin/decision-capture-posttooluse.mjs
+RM .skilled/hooks/decision-capture/devin/ask-capture-posttooluse.test.mjs -> .skilled/hooks/decision-capture/devin/decision-capture-posttooluse.test.mjs
+ M .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+ M .skilled/hooks/decision-capture/vibe/README.md
+R  .skilled/hooks/decision-capture/vibe/ask-capture-post-tool.mjs -> .skilled/hooks/decision-capture/vibe/decision-capture-post-tool.mjs
+RM .skilled/hooks/decision-capture/vibe/ask-capture-post-tool.test.mjs -> .skilled/hooks/decision-capture/vibe/decision-capture-post-tool.test.mjs
+D  .skilled/hooks/git/README.md
+D  .skilled/hooks/git/install-hooks.sh
+D  .skilled/hooks/git/install-hooks.test.sh
+D  .skilled/hooks/git/pre-commit
+ M .skilled/hooks/hook-flags.env.example
+ M .skilled/hooks/injection-contract.md
+ M .skilled/hooks/permission-policy/README.md
+ M .skilled/hooks/permission-policy/devin/README.md
+ M .skilled/hooks/post-edit-quality/README.md
+ M .skilled/hooks/post-edit-quality/claude/README.md
+RM .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs -> .skilled/hooks/post-edit-quality/claude/post-edit-quality.cjs
+ M .skilled/hooks/post-edit-quality/cursor/README.md
+ M .skilled/hooks/session-handover/README.md
+ M .skilled/hooks/session-handover/claude/README.md
+R  .skilled/hooks/session-handover/claude/compact-pointer.mjs -> .skilled/hooks/session-handover/claude/handover-compact-pointer.mjs
+R  .skilled/hooks/session-handover/claude/context-nudge.mjs -> .skilled/hooks/session-handover/claude/handover-context-nudge.mjs
+R  .skilled/hooks/session-handover/claude/stop-arm.mjs -> .skilled/hooks/session-handover/claude/handover-stop-arm.mjs
+R  .skilled/hooks/session-handover/claude/subagent-guard.mjs -> .skilled/hooks/session-handover/claude/handover-subagent-guard.mjs
+ M .skilled/hooks/session-handover/codex/README.md
+R  .skilled/hooks/session-handover/codex/compact-pointer.mjs -> .skilled/hooks/session-handover/codex/handover-compact-pointer.mjs
+R  .skilled/hooks/session-handover/codex/context-nudge.mjs -> .skilled/hooks/session-handover/codex/handover-context-nudge.mjs
+R  .skilled/hooks/session-handover/codex/prompt-seed.mjs -> .skilled/hooks/session-handover/codex/handover-prompt-seed.mjs
+R  .skilled/hooks/session-handover/codex/stop-arm.mjs -> .skilled/hooks/session-handover/codex/handover-stop-arm.mjs
+ M .skilled/hooks/session-handover/tests/adapter-conformance.test.cjs
+ M .skilled/hooks/session-handover/tests/claude-adapters.test.cjs
+ M .skilled/hooks/session-handover/tests/codex-adapters.test.cjs
+ M .skilled/hooks/session-handover/tests/subagent-guard.test.cjs
+ M .skilled/hooks/session-lifecycle/README.md
+ M .skilled/hooks/shared/README.md
+ M .skilled/hooks/shared/hook-flags.test.cjs
+D  .skilled/hooks/shared/hook-flags.ts
+ M .skilled/hooks/shared/hook-stdin-deadline.test.mjs
+RM .skilled/hooks/task-dispatch/README.md -> .skilled/hooks/subagent-dispatch-guard/README.md
+RM .skilled/hooks/task-dispatch/claude/README.md -> .skilled/hooks/subagent-dispatch-guard/claude/README.md
+R  .skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs -> .skilled/hooks/subagent-dispatch-guard/claude/fable-subagent-guard.mjs
+RM .skilled/hooks/task-dispatch/claude/task-dispatch-guard.cjs -> .skilled/hooks/subagent-dispatch-guard/claude/task-dispatch-guard.cjs
+RM .skilled/hooks/task-dispatch/cursor/README.md -> .skilled/hooks/subagent-dispatch-guard/cursor/README.md
+RM .skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs -> .skilled/hooks/subagent-dispatch-guard/cursor/task-dispatch-guard.mjs
+RM .skilled/hooks/task-dispatch/devin/README.md -> .skilled/hooks/subagent-dispatch-guard/devin/README.md
+RM .skilled/hooks/task-dispatch/devin/task-dispatch-guard.cjs -> .skilled/hooks/subagent-dispatch-guard/devin/task-dispatch-guard.cjs
+RM .skilled/hooks/task-dispatch/dsh/README.md -> .skilled/hooks/subagent-dispatch-guard/dsh/README.md
+RM .skilled/hooks/task-dispatch/dsh/task-dispatch-guard.mjs -> .skilled/hooks/subagent-dispatch-guard/dsh/task-dispatch-guard.mjs
+RM .skilled/hooks/task-dispatch/lib/README.md -> .skilled/hooks/subagent-dispatch-guard/lib/README.md
+R  .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs -> .skilled/hooks/subagent-dispatch-guard/lib/subagent-dispatch-guard.cjs
+R  .skilled/hooks/task-dispatch/opencode/README.md -> .skilled/hooks/subagent-dispatch-guard/opencode/README.md
+R  .skilled/hooks/task-dispatch/opencode/system-deep-loop-guard.js -> .skilled/hooks/subagent-dispatch-guard/opencode/system-deep-loop-guard.js
+RM .skilled/hooks/task-dispatch/pi/README.md -> .skilled/hooks/subagent-dispatch-guard/pi/README.md
+RM .skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts -> .skilled/hooks/subagent-dispatch-guard/pi/task-dispatch-guard.ts
+RM .skilled/hooks/task-dispatch/tests/README.md -> .skilled/hooks/subagent-dispatch-guard/tests/README.md
+RM .skilled/hooks/task-dispatch/tests/dsh-task-dispatch-guard.test.mjs -> .skilled/hooks/subagent-dispatch-guard/tests/dsh-task-dispatch-guard.test.mjs
+ M .skilled/logs/README.md
+ M .skilled/scripts/git-hooks/lib/README.md
+ M .skilled/scripts/git-hooks/tests/README.md
+ M .skilled/scripts/git-hooks/tests/pre-commit.test.sh
+ M .skilled/scripts/git-hooks/tests/source-root-selection.test.sh
+ M .skilled/skills/.state/loop-guard/README.md
+ M .skilled/skills/cli-classifier/cli-jev/feature-catalog/dispatch-guards/dispatch-guards.md
+ M .skilled/skills/cli-classifier/cli-jev/feature-catalog/judgment-primitives/judgment-primitives.md
+ M .skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/dispatch-guards/declared-hard-rules-refuse-violations.md
+ M .skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md
+ M .skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md
+ M .skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md
+ M .skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md
+ M .skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/cli-invocation/repo-root-dispatch-refusal.md
+ M .skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/guards/dispatch-rule-check-suite.md
+ M .skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md
+ M .skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/hooks/pretooluse-still-fires-under-bypass.md
+ M .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hard-rules/dispatch-rule-check-suite.md
+ M .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hard-rules/hard-rule-sidecar-integrity.md
+ M .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/decision-capture-ask-conversation.md
+ M .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/deep-loop-guard-conversation.md
+ M .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/dispatch-preflight-conversation.md
+ M .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/hook-scenarios/turn-start-save-nudge-conversation.md
+ M .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/git-preflight-advisory/git-preflight-advisory.md
+ M .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/cli-dispatch-audit.md
+ M .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-deep-loop-guard.md
+ M .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs
+ M .skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/git-preflight-advisory/git-preflight-advisory.md
+ M .skilled/skills/cli-external-orchestration/feature-catalog/cli-dispatch-authorization/cli-dispatch-authorization.md
+ M .skilled/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md
+ M .skilled/skills/cli-external-orchestration/feature-catalog/deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md
+ M .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md
+ M .skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md
+ M .skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md
+ M .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-audit-trail.md
+ M .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization-conversation.md
+ M .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md
+ M .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md
+ M .skilled/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md
+ M .skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/check-dist-staleness-hook.md
+ M .skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md
+ M .skilled/skills/sk-code/sk-code-quality/SKILL.md
+ M .skilled/skills/sk-code/sk-code-quality/scripts/lib/README.md
+ M .skilled/skills/sk-code/sk-code-quality/scripts/tests/claude-posttooluse.test.sh
+ M .skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md
+ M .skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md
+ M .skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json
+ M .skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json
+ M .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json
+ M .skilled/skills/sk-doc/shared/scripts/relocation-ledger.json
+ M .skilled/skills/sk-git/scripts/hooks/README.md
+ M .skilled/skills/sk-git/scripts/hooks/dsh/git-preflight-advisory.mjs
+ M .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs
+ M .skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts
+ M .skilled/skills/sk-git/scripts/lib/advisory-noise-audit.mjs
+ M .skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
+ M .skilled/skills/system-deep-loop/ARCHITECTURE.md
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts
+ M .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts
+ M .skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md
+ M .skilled/skills/system-spec-kit/feature-catalog/ux-hooks/directive-lifecycle-dedup.md
+ M .skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-handover-claude.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-handover-command-runtimes.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/comment-hygiene-claude-code-hook.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/comment-hygiene-opencode-plugin.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md
+ M .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+ M .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
+ M .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
+ M .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+ M .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json
+ M .skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/shared.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/cursor/README.md
+ M .skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/devin/README.md
+ M .skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
+ M .skilled/skills/system-spec-kit/runtime/hooks/dsh/README.md
+ M .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs
+ M .skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts
+ M .vibe/hooks.toml
+ M .vibe/plugins/README.md
+ M .vibe/plugins/repo-guards/deep-loop-guard.mjs
+ M .vibe/plugins/repo-guards/dispatch-preflight.mjs
+ M README.md
+ M SECURITY.md
+ M specs/descriptions.json
+RM specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/acceptance-criteria.md -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/acceptance-criteria.md
+RM specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/description.json -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/description.json
+RM specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/graph-metadata.json -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/graph-metadata.json
+RM specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/implementation-summary.md -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/implementation-summary.md
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/plan.md -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/plan.md
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/.gitkeep -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/.gitkeep
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/after/codex-shell.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/after/codex-shell.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/after/guard-node.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/after/guard-node.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/after/guard-vitest.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/after/guard-vitest.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/after/hooks-vitest-tree.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/after/hooks-vitest-tree.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/after/pi-dedup.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/after/pi-dedup.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/after/pi-preflight.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/after/pi-preflight.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/after/shared-node.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/after/shared-node.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/after/wrong-runner-codex.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/after/wrong-runner-codex.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/after/wrong-runner-pi.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/after/wrong-runner-pi.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/baseline/codex-shell.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/baseline/codex-shell.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/baseline/guard-node.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/baseline/guard-node.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/baseline/guard-vitest.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/baseline/guard-vitest.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/baseline/hooks-vitest-tree.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/baseline/hooks-vitest-tree.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/baseline/pi-dedup.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/baseline/pi-dedup.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/baseline/pi-preflight.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/baseline/pi-preflight.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/baseline/shared-node.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/baseline/shared-node.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/baseline/wrong-runner-codex.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/baseline/wrong-runner-codex.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/baseline/wrong-runner-pi.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/baseline/wrong-runner-pi.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t1.task -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t1.task
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t2.task -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t2.task
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t3.task -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t3.task
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t4.task -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t4.task
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t5.task -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t5.task
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t6.task -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t6.task
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t7.task -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t7.task
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t8.task -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/briefs/t8.task
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/review/luna-1.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/review/luna-1.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/review/luna-2.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/review/luna-2.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/review/luna-3.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/review/luna-3.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/review/luna-4.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/review/luna-4.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/suites-after.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/suites-after.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/suites-before.txt -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/suites-before.txt
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/scratch/suites.sh -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/scratch/suites.sh
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/spec.md -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/spec.md
+R  specs/hooks-plugins-extensions/dispatch/001-dispatch-adapter-test-repair/tasks.md -> specs/hooks-plugins-extensions/cli-dispatch/001-dispatch-adapter-test-repair/tasks.md
+R  specs/hooks-plugins-extensions/dispatch/description.json -> specs/hooks-plugins-extensions/cli-dispatch/description.json
+R  specs/hooks-plugins-extensions/dispatch/graph-metadata.json -> specs/hooks-plugins-extensions/cli-dispatch/graph-metadata.json
+R  specs/hooks-plugins-extensions/dispatch/z_archive/.gitkeep -> specs/hooks-plugins-extensions/cli-dispatch/z_archive/.gitkeep
+ M specs/hooks-plugins-extensions/graph-metadata.json
+ M specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/feature-overview.md
+ M specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/scratch/move-map/map-intrack.json
+ M specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/scratch/move-map/map.txt
+ M specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/scratch/wave-a/cards-w2.md
+ M specs/hooks-plugins-extensions/hook-platform/graph-metadata.json
+ M specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/findings-registry.json
+ M specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/resource-map.md
+?? specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/

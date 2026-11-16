@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: restore the dropped reason from the before copy, that a payload or a configured match may name the tool either way, which is why matching the bare name in `.vibe/hooks.toml` still works.

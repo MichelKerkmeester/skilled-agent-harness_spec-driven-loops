@@ -9,7 +9,8 @@
     "hooks-plugins-extensions/hook-platform/003-hook-library-mk-rename",
     "hooks-plugins-extensions/hook-platform/004-hook-feature-flags-and-hub-index",
     "hooks-plugins-extensions/hook-platform/005-smart-rule-injection",
-    "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports"
+    "hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports",
+    "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite"
   ],
   "manual": {
     "depends_on": [],

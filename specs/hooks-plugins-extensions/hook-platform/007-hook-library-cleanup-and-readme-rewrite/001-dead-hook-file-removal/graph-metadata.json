@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal",
+  "parent_id": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dead hook file removal",
+      "phase 1 dead hook file removal",
+      "legacy git pre-commit removal",
+      "typescript hook flags facade removal",
+      "dead hook file removal plan",
+      "legacy git pre-commit removal plan",
+      "dead hook file removal tasks",
+      "dead hook file removal acceptance criteria",
+      "dead hook file removal goal",
+      "001-dead-hook-file-removal operator decisions",
+      "dead hook file removal implementation summary"
+    ],
+    "key_topics": [
+      "dead",
+      "hook",
+      "file",
+      "removal",
+      "phase",
+      "legacy",
+      "git",
+      "pre-commit",
+      "typescript",
+      "flags",
+      "facade",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/shared/hook-flags.test.cjs",
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/scripts/git-hooks/tests/source-root-selection.test.sh",
+      ".github/scripts/check-gate-inputs.sh",
+      ".github/scripts/tests/check-gate-inputs.test.sh",
+      ".github/scripts/tests/broken-move-drill.sh",
+      ".github/workflows/opencode-plugin-tests.yml",
+      ".github/workflows/README.md",
+      ".skilled/hooks/README.md",
+      ".skilled/hooks/shared/README.md",
+      ".skilled/scripts/git-hooks/lib/README.md",
+      ".skilled/commands/doctor/assets/doctor-env.yaml",
+      ".skilled/hooks/hook-flags.env.example"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "source-root-selection.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/source-root-selection.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.test.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/check-gate-inputs.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "broken-move-drill.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/broken-move-drill.sh",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-plugin-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-env.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A reader of `.skilled/hooks/` cannot tell which files are live",
+    "created_at": "2026-11-15T14:58:48Z",
+    "last_save_at": "2026-11-15T16:40:27.150Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1ba867f48fa59ebefc4dab5addb5061ef7ea482cee1a7ae813c14fca2994b297",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2b55dd9ac359fdeaa838ccb0ecbd1c49f276f67f25106781a80e0b2d1387de19",
+      "plan.md": "885382de3d71f83a0bceee0e8f6b3ca397dd9f4c2929908f5a169a4f0fb8bd43",
+      "tasks.md": "9823e1e27cb2a6cf26459199555da902482bf9945ffd720b162dd2085431e3f7",
+      "decision-record.md": "64bfa884f32546eb2f40636fa76445b98c7ad5d868b74fc906d0e9fe74e40dd6",
+      "implementation-summary.md": "27c8d0d82d8e58515b6bb59c5792df5099bd29fc8834f68f033c54fe16c4c708"
+    },
+    "last_active_at": null
+  }
+}

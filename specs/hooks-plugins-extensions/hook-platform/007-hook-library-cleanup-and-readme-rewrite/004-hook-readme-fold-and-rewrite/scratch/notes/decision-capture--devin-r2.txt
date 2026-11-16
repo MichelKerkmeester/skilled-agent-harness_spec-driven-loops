@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: the code trims the field. Write "when that field holds a non-blank string" in place of "a non-empty string".
+   - Defect 2: the stamp causes nothing. Write: "The adapter stamps each record `source: 'hook'` and the sweep stamps `source: 'transcript'`. The queue keeps the first line written for a key, so a question never queues twice."

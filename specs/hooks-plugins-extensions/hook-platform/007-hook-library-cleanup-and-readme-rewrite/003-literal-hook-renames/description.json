@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames",
+  "description": "Phase 3: literal-hook-renames",
+  "keywords": [
+    "phase",
+    "literal-hook-renames"
+  ],
+  "lastUpdated": "2026-11-15T18:38:50.196Z",
+  "specId": "003",
+  "folderSlug": "literal-hook-renames",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform",
+    "007-hook-library-cleanup-and-readme-rewrite"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "15-11-26_18-36__planned-phase-3-of-the-hook-library-cleanup-three.md",
+    "15-11-26_19-10__ran-phase-3-of-the-hook-library-cleanup-through.md",
+    "15-11-26_19-38__closed-phase-3-of-the-hook-library-cleanup-the.md"
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge",
+  "parent_id": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "codex hook check merge",
+      "phase 2 codex hook check merge",
+      "codex hook check merge plan",
+      "codex hook check merge tasks",
+      "codex hook check merge acceptance criteria",
+      "codex hook check merge goal",
+      "codex hook check merge implementation summary"
+    ],
+    "key_topics": [
+      "codex",
+      "hook",
+      "check",
+      "merge",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/codex-global-hooks-check/README.md",
+      ".skilled/hooks/README.md",
+      ".skilled/hooks/coverage-rationale.md",
+      ".codex/README.md",
+      ".skilled/bin/install-codex-hooks.mjs",
+      ".opencode/plugins/codex-hooks-watchdog.js",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/hooks/shared/hook-stdin-deadline.test.mjs",
+      ".opencode/plugins/ARCHITECTURE.md",
+      ".opencode/plugins/README.md",
+      ".skilled/hooks/session-lifecycle/README.md",
+      ".skilled/hooks/session-lifecycle/tests/dsh-session-lifecycle.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/codex-global-hooks-check/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-rationale.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/coverage-rationale.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks.mjs",
+        "kind": "file",
+        "path": ".skilled/bin/install-codex-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "codex-hooks-watchdog.js",
+        "kind": "code",
+        "path": ".opencode/plugins/codex-hooks-watchdog.js",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-stdin-deadline.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-stdin-deadline.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-session-lifecycle.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-lifecycle/tests/dsh-session-lifecycle.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A reader who wants to know how this repository watches Codex's user-global hook file finds two folders",
+    "created_at": "2026-11-15T14:58:50Z",
+    "last_save_at": "2026-11-15T17:17:56.510Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eeae0490c5f4bc982c0efe02c198f8506c847d626117a55d5cb7a757fb3b059b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4d1065bc322c63741dca052aef259dd3fe5d33a57d87a768bd2e96a3a5f70a04",
+      "plan.md": "fc1d07d06443e586566af10cc9ac4e5ebfc0caa2a7904ead288a1404260ad25d",
+      "tasks.md": "47a38d80297261b66200b3a4f87744bb38a0fded066d6cb2af330c50e853357a",
+      "implementation-summary.md": "e98f514b87aafbae001177d028638e1bcc9da9d15669474e1d96cbe4fb46a356"
+    },
+    "last_active_at": null
+  }
+}

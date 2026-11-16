@@ -1,0 +1,3 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: write: "It calls `takeNudge`, which returns the waiting count only when it has risen since the last report, and 0 otherwise."
+   - Defect 2: write: "The default notice factory builds the message with `createUserMessage` from `loadDshLlm()` and sets its source kind to `repo-guards`."

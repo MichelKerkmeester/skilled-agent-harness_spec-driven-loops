@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite",
+  "spec_folder": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite",
+  "parent_id": "hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook readme fold and rewrite",
+      "phase 4 hook readme fold and rewrite",
+      "hook readme fold and rewrite plan",
+      "hook readme fold and rewrite tasks",
+      "hook readme fold and rewrite acceptance criteria",
+      "hook readme fold and rewrite goal",
+      "004-hook-readme-fold-and-rewrite operator decisions",
+      "hook readme fold and rewrite implementation summary"
+    ],
+    "key_topics": [
+      "hook",
+      "readme",
+      "fold",
+      "rewrite",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "004-hook-readme-fold-and-rewrite",
+      "operator"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/README.md",
+      ".skilled/hooks/session-handover/README.md",
+      ".skilled/hooks/session-handover/handoff-protocol.md",
+      ".skilled/hooks/ask-surface-guard/README.md",
+      ".skilled/hooks/decision-capture/README.md",
+      "scratch/deleted-readmes.txt",
+      ".skilled/skills/sk-git/scripts/hooks/README.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "scratch/review-log.tsv"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff-protocol.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-handover/handoff-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "deleted-readmes.txt",
+        "kind": "file",
+        "path": "scratch/deleted-readmes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-log.tsv",
+        "kind": "file",
+        "path": "scratch/review-log.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Baseline The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A reader who opens a runtime folder such as `.skilled/hooks/git-live-follow/claude/` finds a README of about 300 words for one symlink",
+    "created_at": "2026-11-15T14:58:52Z",
+    "last_save_at": "2026-11-16T05:26:14.880Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:933936eacd96c9d1d898fda7ad6f9d2152cbc7f0a051c19fa59dcce0e7c0fa52",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "57f7faa4277e7bcf340d072209db0b1dc6a1f4df3e5b4207008495ea7b750cb8",
+      "plan.md": "64f461290de6cee6fb8408e9315a21a25997e11c80222fd3396cba38bcef6471",
+      "tasks.md": "ab9b6e03a41b91a02771a6c42604908b70b6cd9a218edb233ba1d8df703a030f",
+      "decision-record.md": "d40645e0540bc896abea710a5ffb2c7621ec156ba0e57a607e3981c8e6eda8aa",
+      "implementation-summary.md": "515711107693c90198b92ff20e6c86c19c349b62b96f62230498abae4b0cbc42"
+    },
+    "last_active_at": null
+  }
+}

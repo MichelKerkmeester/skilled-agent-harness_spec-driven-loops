@@ -1,0 +1,2 @@
+   - This is a correction pass. The file on disk passes the check. Keep its shape and every other line, and fix only the defects below.
+   - Defect 1: not every DSH suite imports the harness. In the table and in the frontmatter description, write "the DSH adapter suites" in place of "every DSH adapter suite". Table row: "The fake plugin contexts, agents, notices and predicates the DSH adapter suites import."
