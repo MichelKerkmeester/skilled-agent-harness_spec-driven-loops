@@ -122,6 +122,34 @@ describe('history lookup secret redaction', () => {
     expect(joined).toContain('[REDACTED:github-token]');
   });
 
+  it('redacts credential arguments under header, camel-case and plural names and inside arrays', () => {
+    const entries: HistoryEntry[] = [
+      userEntry('user-1', 1, 'call the api'),
+      {
+        id: 'turn-1',
+        role: 'assistant',
+        sequence: 2,
+        timestamp: TIMESTAMP,
+        content: [{
+          type: 'toolCall',
+          id: 'call-1',
+          name: 'fetch',
+          arguments: {
+            headers: { 'x-api-key': 'headerkeyvalue', xAuthToken: 'camelvalue' },
+            api_keys: ['firstkeyvalue', 'secondkeyvalue'],
+            max_tokens: '4096',
+          },
+        }],
+      },
+      { id: 'result-1', role: 'toolResult', sequence: 3, timestamp: TIMESTAMP, toolCallId: 'call-1', content: [{ type: 'text', text: 'ok' }] },
+    ];
+    const loaded = replyText(createHistoryLookup(entries).load(['turn-1']));
+    for (const value of ['headerkeyvalue', 'camelvalue', 'firstkeyvalue', 'secondkeyvalue']) {
+      expect(loaded).not.toContain(value);
+    }
+    expect(loaded).toContain('4096');
+  });
+
   it('still excludes a paging turn and leaves ordinary text and the input alone', () => {
     const ordinary = 'Load sk-create-with-human-voice, see https://host.example:8080/a@b, Authorization: required';
     const entries: HistoryEntry[] = [

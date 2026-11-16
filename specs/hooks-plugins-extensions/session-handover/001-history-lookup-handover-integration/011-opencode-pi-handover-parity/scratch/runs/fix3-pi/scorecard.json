@@ -1,0 +1,45 @@
+{
+  "runtime": "pi",
+  "label": "fix3",
+  "trustDialogs": 0,
+  "steps": {
+    "notePrepared": true,
+    "signalled": true,
+    "relaunched": true,
+    "noteClosed": true,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "recall": {
+    "source": "receiver-transcript",
+    "sideWordStated": true,
+    "sideWordInNote": false,
+    "lookupCalls": 5
+  },
+  "secret": {
+    "leakedToReceiver": false,
+    "leakedToNote": false,
+    "markerInLookupReply": true
+  },
+  "noteStatus": "done",
+  "carry": {
+    "model": "unobservable",
+    "effort": "unobservable",
+    "name": "unobservable",
+    "provider": "unobservable"
+  },
+  "seconds": {
+    "startToPrepare": 11.6,
+    "prepareToSignal": 5.9,
+    "signalToRelaunch": 0.2,
+    "startToClosed": 35.6
+  },
+  "problems": [],
+  "firstLaunch": "pi",
+  "relaunchArgs": null,
+  "score": "5/5"
+}

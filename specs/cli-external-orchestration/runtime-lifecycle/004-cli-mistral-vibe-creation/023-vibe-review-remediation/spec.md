@@ -39,7 +39,7 @@ contextType: "implementation"
 
 This is **Phase 23** of the Mistral Vibe runtime mode build specification.
 
-**Scope Boundary**: The findings in `../review/review-report.md` and the live evidence they put in doubt. No new hook behavior beyond what a finding requires.
+**Scope Boundary**: The findings in `../review-archive/2026-11-16T05-57-42Z/review-report.md` and the live evidence they put in doubt. No new hook behavior beyond what a finding requires.
 
 **Dependencies**:
 - Phase 022 (`022-vibe-hook-playbook-and-live-scenarios`): the scenarios, the runner's Vibe adapter and the verdict table this phase corrects.
@@ -133,7 +133,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-003 | The runner's Vibe home pins `deepseek-flash` without breaking a scenario that pins its own model |
 | REQ-004 | The compaction detector records every compaction it consumed, measures an empty journal directory as 0 and keeps its state under the payload folder only when that folder exists |
 | REQ-005 | Every doc the review found wrong states what the code does |
-| REQ-006 | Every finding in `../review/review-report.md` has a recorded disposition |
+| REQ-006 | Every finding in `../review-archive/2026-11-16T05-57-42Z/review-report.md` has a recorded disposition |
 | REQ-007 | VIB-HK-027's hop and withdraw pass live on the merged code |
 | REQ-008 | Every runner scenario's `result.json` records the model, from a run after the merge |
 | REQ-009 | A live scenario shows the model loading the skill the advisor brief names |

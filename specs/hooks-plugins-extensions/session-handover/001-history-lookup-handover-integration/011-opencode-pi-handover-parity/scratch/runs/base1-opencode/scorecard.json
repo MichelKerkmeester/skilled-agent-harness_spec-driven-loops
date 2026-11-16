@@ -1,0 +1,41 @@
+{
+  "runtime": "opencode",
+  "label": "base1",
+  "trustDialogs": 0,
+  "steps": {
+    "notePrepared": true,
+    "signalled": true,
+    "relaunched": true,
+    "noteClosed": true,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "recall": {
+    "source": "receiver-transcript",
+    "sideWordStated": true,
+    "sideWordInNote": false,
+    "lookupCalls": 4
+  },
+  "secret": null,
+  "noteStatus": "done",
+  "carry": {
+    "model": "not-set",
+    "effort": "not-set",
+    "name": "not-set",
+    "provider": "not-set"
+  },
+  "seconds": {
+    "startToPrepare": 186.4,
+    "prepareToSignal": 11.1,
+    "signalToRelaunch": 0.2,
+    "startToClosed": 220.8
+  },
+  "problems": [],
+  "firstLaunch": "opencode --standalone --auto --prompt Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat the code word ORCHID-3274. Start by reading the README. One more fact for later: the side word is LAGOON-20492. Do not write the side word in the handoff note. The new session must report it too. Gate 3: D) Skip, no spec folder.",
+  "relaunchArgs": "opencode --standalone --prompt [session-handover] claim and continue handoff /Users/michelkerkmeester/worktrees/public/422-opencode-pi-handover-parity/.skilled/skills/.state/session-handover/handoffs/20261116T052759Z-ses_e1d2c7c81ffeJTAeWEY1UQO3wn.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session) --auto",
+  "score": "5/5"
+}

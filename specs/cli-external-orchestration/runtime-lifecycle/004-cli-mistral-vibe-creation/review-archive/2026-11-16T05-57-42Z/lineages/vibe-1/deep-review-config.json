@@ -1,0 +1,133 @@
+{
+  "topic": "Review: specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "sessionId": "fanout-vibe-1-1794765851303-zrv85l",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "createdAt": "2026-11-15T18:10:03Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-mistral-vibe",
+    "model": "deepseek-flash",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "Find concrete improvements in the Mistral Vibe runtime work: phases 013-022 and the 2026-11-15 fixes (skilled-loop manual claim flags, Vibe goal fallback and vibeGoalPacket in relaunch-core.cjs, runner --remove-home, overlay and doctor Vibe rows, hardened VIB-HK checks). Open lead: VIB-HK-005, 006 and 007 failed live after the automatic handover tier (e5b8611a4fa) changed turn-start.mjs, turn-end.mjs and compaction-post-tool.mjs; three compaction records were journaled but no Context restored text was injected, while buildCompactionPart on the same journal with a fresh state dir returns it. Find the root cause.",
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+    ".skilled/hooks/session-lifecycle/vibe/turn-end.mjs",
+    ".skilled/hooks/session-lifecycle/vibe/compaction-post-tool.mjs",
+    ".skilled/hooks/session-lifecycle/vibe/compaction-context.mjs",
+    ".skilled/hooks/shared/session-readers/vibe.mjs",
+    ".skilled/hooks/session-handover/vibe/handover-parts.mjs",
+    ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+    ".skilled/hooks/goal/vibe/goal-inject.mjs",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/013-vibe-audit-fixes",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/014-vibe-journal-fixture-and-reader",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/015-vibe-turn-start-advisor-and-dist",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/016-vibe-turn-end-guards",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/017-vibe-decision-capture",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/018-vibe-compaction-context",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/020-vibe-dispatch-hardening",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/021-vibe-hook-docs-correction",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/022-vibe-hook-playbook-and-live-scenarios"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  }
+}

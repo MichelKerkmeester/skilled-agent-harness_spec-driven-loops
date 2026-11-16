@@ -1,5 +1,5 @@
 {
-  "manifestHash": "109b9431dc907e1ba03aa762b7b6b07421647a24c1d0cd42d264f6a609f2b7a2",
+  "manifestHash": "df138edb2c9dfb7fce2631b5e97a6b1ce8731e55006b47259121a6c02dff02b5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -77593,6 +77593,21 @@
     "opencode persistent wrapper": [
       "opencode-persistent wrapper"
     ],
+    "opencode pi handover parity": [
+      "opencode pi handover parity"
+    ],
+    "opencode pi handover parity goal": [
+      "opencode pi handover parity goal"
+    ],
+    "opencode pi handover parity implementation summary": [
+      "opencode pi handover parity implementation summary"
+    ],
+    "opencode pi handover parity plan": [
+      "opencode pi handover parity plan"
+    ],
+    "opencode pi handover parity tasks": [
+      "opencode pi handover parity tasks"
+    ],
     "opencode plugin": [
       "opencode plugin"
     ],
@@ -82133,6 +82148,9 @@
     ],
     "phase 11 hub registration and routing": [
       "phase 11 hub registration and routing"
+    ],
+    "phase 11 opencode pi handover parity": [
+      "phase 11 opencode pi handover parity"
     ],
     "phase 11 permission mode carry": [
       "phase 11 permission mode carry"

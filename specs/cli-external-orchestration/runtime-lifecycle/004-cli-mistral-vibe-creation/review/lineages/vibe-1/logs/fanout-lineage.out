@@ -1,11 +1,11 @@
-Lineage complete. All five iterations ran inline, each recorded through the append gateway (ledger sequences 2-6) and reduced; synthesis committed at sequence 7 with `stopReason: maxIterationsReached`.
+The lineage is complete. Five iterations ran inline, each with its artifact, strategy update, gateway record, delta and reducer pass; synthesis closed with the terminal record carrying `stopReason: "maxIterationsReached"`.
 
-**Result: CONDITIONAL** — 0 P0, 3 P1, 10 P2, 13 active findings, 0 corruption, dimension coverage 4/4.
+**Result: CONDITIONAL** — 0 P0, 1 P1, 15 P2, 0 search debt, 0 corruption.
 
-The operator's open lead is answered. `buildCompactionPart` writes the watermark at `compaction-context.mjs:231` before building sections, then returns `''` at `:252` when no section resolves; the `seen` filter at `:220`/`:223` suppresses every later attempt, so the compaction is consumed with nothing injected. Reproduced: same journal, fresh state dir → 1199 chars with `Context restored after a compaction.`; consumed state dir → 0 chars. `e5b8611a4fa` never touched that file.
+The one P1 is `R1-P1-001`: `hook-io.mjs:37` maps `process_start` onto the shell shape and `toCoreCall:82` reads only `input.command`, but no capture or reference records that tool's `tool_input` key. If it differs, six shell guards take their empty-command allow branch on every background command. Iteration 5 confirmed the downgrade trigger has not fired.
 
-The VIB-HK-005 half is *not* that commit: its `turn-start.mjs` diff is three additive hunks and leaves `buildSaveNudgePart` and `composeTurnStart` byte-identical. That cause stays open, narrowed to `capture-core.mjs`, the `decision-capture-ask` post-tool hook, and the runner's scratch `cwd`.
+The P2s cluster into five workstreams: the payload-path and kill-switch gaps (three adapters still create directories at a payload-named path, one then unlinks there, while `compaction-context.mjs:76-88` already has the guard); two reference-document claims that fail against the files they describe; the reply contract living in eight hand-rolled sites instead of one; and verification gaps — `session-start` is the only one of 18 bindings with no playbook scenario, and its adapter is also the only one with no test and no import guard.
 
-One correction worth flagging: I initially tagged R4-P2-002 with `refines: R1-P1-001`, and the reducer read that as a supersession — it downgraded the headline P1 to P2 and overwrote its title. I removed the field from `deltas/iter-004.jsonl` and re-reduced; the registry now shows R1-P1-001 at P1 on line 231 with its own title. The `refines` key means "replaces", not "relates to".
+Two things worth flagging. The bundle is better verified than the finding count suggests: 17 of 18 bindings have a live scenario with a recorded PASS on 2026-11-15, and that verdict table narrowed two carried findings rather than confirming them. And I left `deep-review-config.json` at `status: "initialized"` — the workflow's `step_update_config_status` sets it to `complete`, but the agent contract marks that file read-only, so I recorded the conflict in the strategy and let the state log's terminal row carry completion instead. `step_stage_artifact_dir` was skipped for the same reason: the dispatch forbids git writes.
 
 FANOUT_LINEAGE_COMPLETE:vibe-1

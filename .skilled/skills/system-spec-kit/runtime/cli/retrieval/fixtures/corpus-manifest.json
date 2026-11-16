@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9b54a77b02ba383a6b84b15695344924bb5c2931b643cecd1a42b0832cc957ee",
+  "corpusHash": "738ae9c35616487da54ef058fcdf94d10bff508be2ca08cbc3ce7975cd0c4054",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27729,
+  "includedPathCount": 27737,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10867,6 +10867,8 @@
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/023-vibe-review-remediation/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/decision-record.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/fanout-attribution.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/review-report.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/fanout-attribution.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/review-report.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/spec.md",
@@ -12137,6 +12139,12 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/research.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/fanout-attribution.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-dashboard.md",
@@ -27761,7 +27769,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "109b9431dc907e1ba03aa762b7b6b07421647a24c1d0cd42d264f6a609f2b7a2",
+  "manifestHash": "df138edb2c9dfb7fce2631b5e97a6b1ce8731e55006b47259121a6c02dff02b5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30508,6 +30516,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/lineages",
       "reason": "excluded directory"
     },
@@ -31573,6 +31585,26 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch",
       "reason": "excluded directory"
     },
     {

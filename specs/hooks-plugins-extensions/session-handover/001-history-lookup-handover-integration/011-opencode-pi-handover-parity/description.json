@@ -1,0 +1,36 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity",
+  "description": "On a live Pi hop with DeepSeek V4.1 Flash at max thinking, the sender kept the side word out of its note as told and then wrote that a fresh session",
+  "keywords": [
+    "live",
+    "hop",
+    "deepseek",
+    "flash",
+    "max",
+    "thinking",
+    "sender",
+    "kept",
+    "side",
+    "word",
+    "note",
+    "told",
+    "wrote",
+    "fresh",
+    "session"
+  ],
+  "lastUpdated": "2026-11-16T06:31:00.812Z",
+  "specId": "011",
+  "folderSlug": "opencode-pi-handover-parity",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "001-history-lookup-handover-integration"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "16-11-26_07-13__baseline-live-hops-opencode-5-5-with-lookup.md",
+    "16-11-26_07-20__all-fixes-landed-in-worktree-422-prepare-text.md",
+    "16-11-26_07-31__opencode-and-pi-hand-over-hops-now-recover-a.md"
+  ]
+}

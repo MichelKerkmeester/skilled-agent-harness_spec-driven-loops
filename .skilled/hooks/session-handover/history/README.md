@@ -109,7 +109,7 @@ Every file in `lib/`:
 
 The core projects every entry before a caller can see it:
 
-- Secret-shaped values are redacted first, in text, thinking and tool-call arguments. Vendor keys, tokens, JWTs, bearer values, private keys and `key=value` credentials go through the spec-kit shared secret scrubber. The core adds a URL password, a non-bearer `Authorization` value and an argument stored under a credential name such as `password`. Each becomes a typed marker such as `[REDACTED:github-token]`. Search cannot match a secret, and every bound and page offset is measured on the redacted text. The stored transcript is never changed.
+- Secret-shaped values are redacted first, in text, thinking and tool-call arguments. Vendor keys, tokens, JWTs, bearer values, private keys and `key=value` credentials go through the spec-kit shared secret scrubber. The core adds a URL password, a non-bearer `Authorization` value and an argument stored under a credential name such as `password`. The name is matched on its last words, so `x-api-key`, `xAuthToken` and `api_keys` count, and each item of an array stored under such a name is redacted too. Each becomes a typed marker such as `[REDACTED:github-token]`. Search cannot match a secret, and every bound and page offset is measured on the redacted text. The stored transcript is never changed.
 - Assistant thinking, provider signatures and redacted payloads become `null`.
 - Paging tool calls (`search_history`, `browse_history`, `load_history`, `read_context_output`) and their results are removed.
 - A paging-only turn disappears entirely. A mixed turn keeps its ordinary text and tool work.

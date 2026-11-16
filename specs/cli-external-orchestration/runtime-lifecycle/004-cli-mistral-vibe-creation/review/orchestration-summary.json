@@ -1,5 +1,5 @@
 {
-  "run_id": "1794765851303-zrv85l",
+  "run_id": "1794808672532-65xu0h",
   "loop_type": "review",
   "spec_folder": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
   "base_artifact_dir": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review",
@@ -24,5 +24,48 @@
     "unattributed_state_log": 0,
     "needs_input": 0,
     "quota": 0
-  }
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "vibe-1",
+      "state_log": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/lineages/vibe-1/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-11-16T05:57:52.537Z",
+        "end_at_iso": "2026-11-16T06:10:43.626Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 4,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-11-16T07:20:00Z",
+          "deltaMs": 4036374
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-11-16T07:40:00Z",
+          "deltaMs": 5236374
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-11-16T08:00:00Z",
+          "deltaMs": 6436374
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-11-16T08:20:00Z",
+          "deltaMs": 7636374
+        }
+      ]
+    }
+  ]
 }

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6846,
-    "ok": 19256,
+    "missing-frontmatter": 6849,
+    "ok": 19261,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27729,
+  "documentsScanned": 27737,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "109b9431dc907e1ba03aa762b7b6b07421647a24c1d0cd42d264f6a609f2b7a2",
+  "manifestHash": "df138edb2c9dfb7fce2631b5e97a6b1ce8731e55006b47259121a6c02dff02b5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 44345,
+      "ok": 44351,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -34994,6 +34994,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -35766,6 +35778,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/benchmark/summary.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/research.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -55257,6 +55275,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review-archive/2026-11-16T05-57-42Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/review/lineages",
       "reason": "excluded directory"
     },
@@ -56322,6 +56344,26 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity/scratch",
       "reason": "excluded directory"
     },
     {

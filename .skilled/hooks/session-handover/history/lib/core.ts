@@ -53,8 +53,15 @@ const AUTHORIZATION_VALUE =
   /\b((?:proxy-)?authorization["']?\s*[:=]\s*["']?(?:(?:basic|bearer|token|digest|bot|negotiate)\s+)?)(?!\[REDACTED)(?!\$)([^\s"',;]{8,})/gi;
 // An argument under one of these names is a credential whatever its shape,
 // which a scan of the bare string value cannot see once the key is gone.
+// The name is matched on its last words, so a header such as `x-api-key`, a camel-case
+// `xAuthToken` and a plural `api_keys` count, while `max_tokens` stays a plain setting.
 const SECRET_ARGUMENT_KEY =
-  /^(?:(?:api|access|auth|client|refresh|secret)[_-]?(?:key|token|secret)|apikey|password|passwd|passphrase|token|secret|authorization|credentials?)$/i;
+  /(?:^|_)(?:(?:api|access|auth|client|refresh|secret|private)_?(?:keys?|tokens?|secrets?)|apikeys?|password|passwd|passphrase|token|secret|authorization|credentials?)$/;
+
+function isSecretArgumentKey(key: string): boolean {
+  const words = key.replace(/([a-z0-9])([A-Z])/g, '$1_$2').replace(/-/g, '_').toLowerCase();
+  return SECRET_ARGUMENT_KEY.test(words);
+}
 
 /** A header value is a credential when it has a digit or mixed case, never a plain word. */
 function looksLikeCredential(value: string): boolean {
@@ -71,12 +78,13 @@ function redactText(text: string): string {
 function redactArgument(value: unknown, key?: string): unknown {
   if (typeof value === 'string') {
     // A shell variable reference names a secret without holding it.
-    if (key !== undefined && SECRET_ARGUMENT_KEY.test(key) && value.length > 0 && !value.startsWith('$')) {
+    if (key !== undefined && isSecretArgumentKey(key) && value.length > 0 && !value.startsWith('$')) {
       return '[REDACTED:credential-argument]';
     }
     return redactText(value);
   }
-  if (Array.isArray(value)) return value.map((item) => redactArgument(item));
+  // Items under a credential name are credentials too, so the name travels into the array.
+  if (Array.isArray(value)) return value.map((item) => redactArgument(item, key));
   if (typeof value === 'object' && value !== null) {
     return Object.fromEntries(Object.entries(value).map(([name, child]) => [name, redactArgument(child, name)]));
   }

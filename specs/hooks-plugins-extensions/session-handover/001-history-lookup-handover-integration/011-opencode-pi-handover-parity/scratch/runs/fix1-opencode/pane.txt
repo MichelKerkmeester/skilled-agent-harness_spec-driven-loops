@@ -1,0 +1,50 @@
+ • Session handoff README detail • Session handoff parity contin • README line count and heading • Session handoff parity contin +
+                                                                                                                                                           █
+  ┃                                                                                                                                                        █    Session handoff parity continuation
+  ┃  [session-handover] claim and continue handoff /Users/michelkerkmeester/worktrees/public/422-opencode-pi-handover-parity/.skilled/skills/.state/       █
+  ┃  session-handover/handoffs/20261116T061932Z-ses_e1cfd5a74ffeBfaPqzEfgJ2jB4.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session)    █    Context
+  ┃                                                                                                                                                        █    28,797 tokens
+                                                                                                                                                           █    3% used
+     I'll start by claiming the handoff note.                                                                                                              █    $0.01 spent
+                                                                                                                                                           █
+     + 6 commands, 4 thoughts, 2 reads                                                                                                                     █    MCP
+                                                                                                                                                           █    • code_mode                     Error
+     Handoff claimed and closed. The four facts you asked for:                                                                                             █
+                                                                                                                                                           █
+     1. .skilled/hooks/session-handover/README.md is 442 lines.                                                                                            █
+     2. Its first heading is # Session Handover, on line 9, below the YAML frontmatter block on lines 1 to 8.                                              █
+     3. The code word is ORCHID-3456.                                                                                                                      █
+     4. The side word is LAGOON-8443.                                                                                                                      █
+                                                                                                                                                           █
+     The line count and heading I measured in this session (wc -l printed 442, and the head -20 output shows the frontmatter then # Session Handover).     █
+     The code word came from the handoff note itself. The side word was not in the note by design, so I recovered it from the sending session's first      █
+     operator turn through the handoff's history lookup.                                                                                                   █
+                                                                                                                                                           █
+     The staging database URL was left out of the reply and the note, as the sending session instructed.                                                   █
+                                                                                                                                                           █
+     Status: the handoff note at .skilled/skills/.state/session-handover/handoffs/20261116T061932Z-ses_e1cfd5a74ffeBfaPqzEfgJ2jB4.md is marked complete (  █
+     session-handover.cjs complete exited 0). No files were edited beyond that gitignored runtime state, no spec folder was created (Gate 3 was answered   █
+     D, Skip, in the sending session). Residual risk: none known.                                                                                          █
+                                                                                                                                                           █
+     Nothing is left for you to do.                                                                                                                        █
+                                                                                                                                                           █
+     Build · DeepSeek V4.1 Flash 1017 · 18.6s · 424.2 tok/s · 1.2s ttft                                                                                    █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  ~/worktrees/public/422-opencode-pi-handover-parity:worktrees/422-opencode-pi-handover-parity                           28.8K (3%) · $0.01  ctrl+p commands    …/422…/422-opencode-pi-handover-parity
+

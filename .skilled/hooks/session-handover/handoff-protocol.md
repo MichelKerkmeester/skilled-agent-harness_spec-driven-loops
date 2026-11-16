@@ -210,7 +210,7 @@ A handoff note holds what the sender chose to write down. The history lookup let
 
 ### What The Claim Prints
 
-`claim` mints a history locator for the sending session with provenance source `handover`. It prints a `## History Lookup` section after the note body, then the sentence `Use it for a detail this note does not spell out, before you guess.`
+`claim` mints a history locator for the sending session with provenance source `handover`. It prints a `## History Lookup` section after the note body, then the sentence `Use it for a detail this note does not spell out, before you guess or ask the operator, even when the note says the detail cannot be recovered.`
 
 The section names one read-only command, `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. That command searches, browses, loads and pages the sender's earlier turns. It runs in a subshell that first moves to the checkout root, so it works from any subfolder. A locator from any sender other than Claude Code adds its runtime in front of the command, such as `SPECKIT_RUNTIME=codex` or `SPECKIT_RUNTIME=pi`.
 
