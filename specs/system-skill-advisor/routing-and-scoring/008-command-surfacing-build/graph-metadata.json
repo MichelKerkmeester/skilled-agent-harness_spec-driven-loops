@@ -239,7 +239,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-16T06:03:41.354Z",
+    "last_save_at": "2026-11-16T06:04:47.235Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -247,7 +247,7 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:2e8a64e8914e8665b49fb24f7c2953ba025964b63c99a9a196a844ed339fb518",
+    "source_fingerprint": "sha256:629bc749be3d7c140f03f7888260a157d44ca2e1c60dc59d0885392913bbcfab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2287642ae73f164b47a32b6845a27bc8a699bf6ca565772639b9d2fbb3631276",

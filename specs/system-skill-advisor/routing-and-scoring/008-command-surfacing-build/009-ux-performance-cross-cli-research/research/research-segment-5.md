@@ -83,11 +83,11 @@ Ranked by expected gain per unit of risk to the floors. Gain here means measurem
 
 | Rank | Recommendation | Source | Proposed disposition |
 |---|---|---|---|
-| 1 | Record on every run line how long the turn ran and whether the cap fired, and mark `capped` from them | performance-5 rank 2, the aim of cross-cli-5 rank 3 and the store times in section 2 | Build now in a new measurement phase, before the B-5 retest |
+| 1 | Record on every run line how long the turn ran and whether the cap fired, and mark `capped` from them | performance-5 rank 2, the aim of cross-cli-5 rank 3 and the store times in section 2 | Build in a new measurement phase. Phase 034 removed the B-5 retest, so the phase runs on its own merit |
 | 2 | Write a prompt-free OpenCode delivery receipt and read it in `briefDelivered` | cross-cli-5 rank 1, segment four rank 3 | Build in the same phase, before the next run that includes OpenCode |
 | 3 | Keep the advisor suite's records out of the shared metrics folder | performance-5 rank 3, moved from the readers to the producer | Build in the same phase |
 | 4 | Print the shape of each start per runtime beside the start rate | cross-cli-5 rank 2 | Build in the same phase, print only. Which rule the rate follows waits on the operator (section 7, question 1) |
-| 5 | Give turns that open a workflow a longer cap | performance-5 rank 1, segment four rank 4 | Defer to the design of the next full arm. The B-5 retest keeps 300 s so its decline count compares with 033's |
+| 5 | Give turns that open a workflow a longer cap | performance-5 rank 1, segment four rank 4 | Decline. No further arm is planned in this packet, and a cap with no arm to run it measures nothing. Reopen when a full arm is designed |
 | 6 | Split `capped` into exit 143 and exit null | cross-cli-5 rank 3 | Decline. Devin's null exits are cap kills |
 | 7 | Score the head-moved lines as unscored | cross-cli-5 rank 4 | Decline. Phase 033 ADR-001 keeps and scores them |
 | 8 | Read a negated depth phrase as a refusal and a positive one as a request | ux-5 R1 | Decline. It tunes on fresh rows and reaches 1 decline row, not 4 |
@@ -102,12 +102,12 @@ Ranked by expected gain per unit of risk to the floors. Gain here means measurem
 Not re-ranked, because the operator or a lineage settled them, or the coordinator found them after the lineages:
 
 - The scorer's redirect parser reads a `>` inside a heredoc body as a write (section 7, question 9). The coordinator found it while reviewing this draft. It builds first, in its own phase, with a rescore of the 033 lines, because the B-5 trigger and every write boundary in the arm depend on it.
-- B-5, the head reword. The operator decided it (P036, `goal.md:275`), its trigger fired (`goal.md:335`) and it goes to its own phase. Section 4 (a) carries what this segment found about the trigger.
+- B-5, the head reword. The operator decided it (P036, `goal.md:275`). Its trigger read Fired at first (`goal.md:335`), but phase 034 fixed the scorer misread behind it and the rescore reads decline starts on 0 of 80, so the trigger does not fire and B-5 is not built (goal rows `Arm verdict, rescored` and `B-5 trigger, rescored`).
 - Codex. The operator left it out of the arm (Q075).
 - A policy legend in the brief. ux-5 withdrew it, because `AGENTS.md:68` defines the words.
 - Trimming the brief and lowering the 300 s cap. performance-5 declined both, and this draft agrees (section 5).
 
-Detail for the build and defer items:
+Detail for the build items and the rank 5 decline:
 
 | Rank | Files | Measurable gain | Verify | Floor risk |
 |---|---|---|---|---|
@@ -139,7 +139,7 @@ Why each decline, and what would reopen it:
 Answer: the scorer's one decline start, its write unconfirmed, was the model's own substitution in a turn that ran to the cap. A head reword cannot remove the five decline-row offers.
 
 - DSH's on-arm run 1 of `fresh-decline-refusal-02` drew an ask offer of `/deep:review`, and the brief arrived. The session's own lines report that command declined 12 times. It then read the document of `/create:sk-skill` (12 path mentions and no command line for it). The session made no skill call. The scorer's start is that read plus writes that are heredoc comparisons misread as redirects, so under the fixed rule the session made a lookup (section 7, question 9). The session ran 297.8 s and its line reads exit 0. All three DSH runs of this row ran 297 to 298 s.
-- The other 49 on-arm decline offers drew no start.
+- The other 49 on-arm decline offers drew no start. After phase 034's scorer fix, none of the 50 did: decline starts read 0 of 80, so the B-5 trigger does not fire and the retest this draft weighed falls away.
 - Five of eight decline rows carry an offer on every runtime and in both arms, through three attach paths:
 
 | Row | Kind | Offer | Attach path |
@@ -152,8 +152,6 @@ Answer: the scorer's one decline start, its write unconfirmed, was the model's o
 
 The offers come from the run lines and the kinds from the corpus, read with `jq 'del(.prompt)'`. The attach paths come from `lib/command-attach.ts:15-40`, `:179`, `:339` and `:510-512`.
 
-- What B-5 can show. B-5 rewords the head so the command reads as an option, but the triggering session already declined the offer before it substituted. If the true rate is the observed 1 of 80, a retest of the same 80 on-arm decline runs shows no start with probability 0.37 even when the reword does nothing. This draft reads that as a retest that cannot tell a working reword from chance (section 7, question 2).
-- The retest should keep the 300 s cap. All three DSH runs of the trigger row ran to it, and more time on these rows gives a model more room to start something (inferred).
 
 ### (b) What the 300 s cap took from the arm
 
@@ -211,7 +209,7 @@ The worst live row uses 61.5 percent of the 2,500 ms budget. The 2,218 ms maximu
 
 ### (e) Segment four's open questions
 
-- Question 2, another behaviour arm with OpenCode: the next run is the B-5 retest (`goal.md:335`). Rank 2 is built for it if OpenCode runs there.
+- Question 2, another behaviour arm with OpenCode: none is planned. The B-5 retest fell away with phase 034's rescore. Rank 2 is built so that any later run with OpenCode answers delivery.
 - Question 3, Claude's create rows after phase 016: answered in (c).
 - Question 5, who writes small health files: one writer to the shared folder is now named, the trim test behind rank 3. The 13 marked records in one- or two-record files are a different shape and stay open.
 - Question 6, the embedder's cold first call: still UNKNOWN. The cascade probe narrows to a first daemon start, and the 690 ms cold figure counts the cold embedding twice (inferred).
@@ -250,7 +248,7 @@ This draft proposes no segment six. It proposes recording the goal's research cr
 ## 7. Open questions
 
 1. Which start rule should the printed per-runtime start rate follow? LOGIC-SYNC REQUIRED: the goal's fixed arm start rule calls a read alone a lookup (`goal.md:295`), while `startState` counts it as a start (`score-command-transcripts.mjs:1483`). The verdict reads not shown either way, because its p value is 0.0769. Its decline clause follows the fixed rule, and whether the one decline start meets that rule is question 9. Owner: the operator. Rank 4 prints the split meanwhile.
-2. Should the B-5 retest run as decided? Its trigger was a document read after 12 declines in a turn that ran to the cap, and question 9 found its write to be a scorer misread. The rescore after the scorer fix decides whether the trigger stands. A retest of the same size shows no decline start with probability 0.37 when the reword does nothing. Owner: the operator, before the B-5 phase is planned.
+2. Should the B-5 retest run as decided? Answered by phase 034: no. The trigger rested on a scorer misread, and the rescore with the fixed scorer reads decline starts on 0 of 80, so the P036 condition is not met and B-5 is not built.
 3. Will a full behaviour arm run again in this packet? Yes means rank 5 enters its design with its token cost. Owner: the operator.
 4. What ended DSH's 13 cap-length turns, the runner's signal or a DSH limit? Owner: rank 1's first smoke run.
 5. Why does Claude start none of its 10 start rows after phase 016? Owner: the operator, if a Claude-only diagnostic run is wanted. The facts are in section 4 (c).

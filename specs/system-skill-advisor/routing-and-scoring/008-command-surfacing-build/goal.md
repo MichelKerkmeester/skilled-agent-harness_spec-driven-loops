@@ -340,6 +340,7 @@ and findings belong here.
 | Arm verdict, rescored | Not shown | fixed scorer 4bb83364145 over the same 401 lines: pooled runtimes=5 rows=140 gained=25 lost=15 ties=100 unpaired=0 p=0.0769, decline starts on 0 of 80 (dsh 0 of 16), skill-only on 0 of 40 and off 0 of 40, floors fixture 2 of 44 and real 5 of 44. Fails on p alone. Supersedes the Arm verdict row's decline clause; 034 scratch/rescore-evidence.txt |
 | B-5 trigger, rescored | Not fired | decline starts on 0 of 80 and skill-only on 0 of 40 against off 0 of 40, so the P036 condition is not met and B-5 is not built. The earlier Fired row rested on a heredoc comparison the scorer read as a write (034 rescore-diff.txt) |
 | Phase 034 scorer heredoc redirect fix | Complete | 4bb83364145 strips heredoc bodies in redirectTargets, 2199af49c56 lets the shared pattern end an empty body and match a backslash end word (gate review P2s). Suite 2319/0, floors 24/44 0/35 2/44, eval [160,49,21,5] unchanged, rescore byte-identical across both fixes, strict PASSED |
+| Segment five dispositions | Decided (D1) | 15 ranked: ranks 1-4 build in one measurement phase (turn duration and cap flag, OpenCode delivery receipt, suite metrics folder kept out of the shared one, start shape printed), ranks 5-15 declined with reasons and reopen conditions (rank 5 longer cap: no further arm planned). Research recorded as converged on coverage, 0.05 never reached. research-segment-5.md |
 
 ### Deviations and findings
 
