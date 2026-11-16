@@ -1,0 +1,36 @@
+{
+  "trigger_phrases": [
+    "tiny notes export",
+    "level 1 fixture",
+    "valid baseline"
+  ],
+  "level": "1",
+  "name": "Tiny Notes Export",
+  "status": "in_progress",
+  "specFolder": "system-spec-kit/runtime/cli/test-fixtures/083-level-match-mixed-record",
+  "description": "A tiny fixture feature that exports one note to a text file for validation baseline checks",
+  "keywords": [
+    "tiny",
+    "fixture",
+    "feature",
+    "exports",
+    "one",
+    "note",
+    "text",
+    "file",
+    "validation",
+    "baseline",
+    "checks"
+  ],
+  "lastUpdated": "2026-09-07T16:14:54.721Z",
+  "specId": "083",
+  "folderSlug": "level-match-mixed-record",
+  "parentChain": [
+    "system-spec-kit",
+    "runtime",
+    "cli",
+    "test-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

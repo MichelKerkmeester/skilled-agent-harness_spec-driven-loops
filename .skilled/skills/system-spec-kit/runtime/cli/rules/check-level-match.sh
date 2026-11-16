@@ -8,6 +8,8 @@ set -euo pipefail
 
 _level_match_rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _level_match_helper="$_level_match_rule_dir/../utils/template-structure.js"
+# shellcheck source=../lib/shell-common.sh
+source "$_level_match_rule_dir/../lib/shell-common.sh"
 unset _level_match_rule_dir
 
 # Rule: LEVEL_MATCH
@@ -218,9 +220,10 @@ run_check() {
         fi
     done
 
-    # Check for files that suggest higher level
+    # Check for files that suggest higher level. A record the save step wrote
+    # Holds operator answers, which any level may carry, so it does not count.
     if [[ "$primary_level" = "1" ]]; then
-        if [[ -f "$folder/decision-record.md" ]]; then
+        if [[ -f "$folder/decision-record.md" ]] && ! decision_record_is_writer_only "$folder/decision-record.md"; then
             warnings+=("decision-record.md present but Level 1 declared - consider upgrading level")
         fi
     fi

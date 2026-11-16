@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.15.0
+version: 2.7.16.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -764,7 +764,7 @@ cat .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
 | ---------------------- | ----------------------------------------------------- |
 | Cross-file consistency | Level in spec.md matches level in plan.md, checklist  |
 | Required files         | All files required for declared level exist           |
-| File presence hints    | Warns if files suggest higher level than declared     |
+| File presence hints    | Warns if files suggest higher level than declared. A `decision-record.md` whose only anchors are `operator-decisions` and `operator-answers-verbatim` was written by the save step and does not count |
 
 ### Required Files by Level
 
@@ -794,6 +794,8 @@ plan.md declares: Level 1
 Declared: Level 1
 Present: decision-record.md (suggests Level 3)
 ```
+
+The save step writes operator answers into `decision-record.md` at any level. A record with no anchors other than `operator-decisions` and `operator-answers-verbatim` raises no warning. A record with no anchors at all, or with any other anchor such as `adr-001`, still warns.
 
 ### How to Fix
 

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a84fe385858ffd446420ff4901a0e07b4ad174f47a33227736d9d999571b6f6d",
+  "corpusHash": "bbf3c64d90eba342528300a311fc29deb6ac5330f4c012f87df714ff6995595a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27865,
+  "includedPathCount": 27870,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11370,6 +11370,11 @@
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary/plan.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary/spec.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary/tasks.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/decision-record.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/implementation-summary.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/plan.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/spec.md",
+    "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/tasks.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/decision-record.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/goal.md",
     "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/handover.md",
@@ -27897,7 +27902,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7639f87a27083c75b0261ff22e901495b928bcc2179b0c5ed594cf2aa6995fad",
+  "manifestHash": "8db5b467ec13dd50f54e64c5eb7323112b659803280a62809cbc87b4f7aaca63",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31117,6 +31122,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/010-decision-routing-vocabulary/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/011-level-match-operator-record/scratch",
       "reason": "excluded directory"
     },
     {
