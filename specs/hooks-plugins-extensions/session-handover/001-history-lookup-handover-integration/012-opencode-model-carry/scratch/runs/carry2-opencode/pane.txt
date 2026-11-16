@@ -1,0 +1,50 @@
+ • Probe control  • PROBE-content- • New session    • Token PROBE-cf • Probe variant  • README line co • Session handof • README handoff • Session handof • README line co • Session handoff continua +
+     The lookup works. The side word sits in the operator's opening message of the sending session — let me page back through its history to sequence 1.
+                                                                                                                                                                Session handoff continuation
+     + 1 command, 1 thought
+                                                                                                                                                                Context
+     The count parameter didn't page further back. Let me check the lookup's documented options to page to the session's opening message.                       38,824 tokens
+                                                                                                                                                                4% used
+     + 1 command, 3 thoughts, 1 read, 2 tools                                                                                                                   $0.02 spent
+                                                                                                                                                           █
+     browse supports an anchor. The opening message likely mentions the code word, so I'll search for it, and also anchor backward from the oldest         █    MCP
+     visible reference (sequence 24).                                                                                                                      █    • code_mode                     Error
+                                                                                                                                                           █
+     + 2 commands, 1 thought                                                                                                                               █
+                                                                                                                                                           █
+     Found the operator's opening message (msg_1e3623f07001E5EJeRZyLWQ9Ng). Loading it in full to recover the side word.                                   █
+                                                                                                                                                           █
+     + 1 command, 1 thought                                                                                                                                █
+                                                                                                                                                           █
+     All four facts recovered. Closing the handoff note.                                                                                                   █
+                                                                                                                                                           █
+     + 3 commands, 4 thoughts, 2 reads                                                                                                                     █
+                                                                                                                                                           █
+     Handoff complete. The four facts: the README has 283 lines, its first heading is # Session Handover, the code word is ORCHID-21727, and the side      █
+     word is LAGOON-8243.                                                                                                                                  █
+                                                                                                                                                           █
+     Verification behind each fact, all run in this session:                                                                                               █
+                                                                                                                                                           █
+     1. wc -l .skilled/hooks/session-handover/README.md returned 283, and grep -n '^# ' confirmed the first heading # Session Handover sits at line 13 (   █
+        the title: line above it is YAML frontmatter, not a heading).                                                                                      █
+     2. The history lookup recovered the side word from the operator's opening message in the sending session (@README line count and first heading,       █
+        message msg_1e3623f07001E5EJeRZyLWQ9Ng): "the side word is LAGOON-8243". I searched for the code word, loaded that message, and read it in full.   █
+        The database URL in that message was redacted by the lookup's scrubber, and per the operator's instruction neither it nor the side word was ever   █
+        written to the note.                                                                                                                               █
+     3. The handoff note is closed: session-handover.cjs complete set status: done with a completed_at timestamp, and the claim record shows this session  █
+        as claimed_by.                                                                                                                                     █
+                                                                                                                                                           █
+     Status: all work was read-only lookups plus the note's own lifecycle, no repository files were changed, and nothing is in flight. Known residual      █
+     risk: none.                                                                                                                                           █
+                                                                                                                                                           █
+     Nothing is yours to do here.                                                                                                                          █
+                                                                                                                                                           █
+     Build · DeepSeek V4.1 Flash · 50.6s · 1270.6 tok/s · 11.7s ttft                                                                                       █
+
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash DevPass (LLM Gateway) · max
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  ~/worktrees/public/426-opencode-model-carry:worktrees/426-opencode-model-carry                                         38.8K (4%) · $0.02  ctrl+p commands    …/426-openco…/426-opencode-model-carry
+

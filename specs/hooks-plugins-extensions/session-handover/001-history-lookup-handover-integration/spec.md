@@ -126,6 +126,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 9 | 009-deep-review-p2-remediation/ | Fix the deep review's P2 advisories on the engine move, measure the search index memory, and remove the predecessor hard block from `/speckit:complete`. Independent of phase 8. | Complete |
 | 10 | 010-history-secret-redaction/ | Redact secret-shaped values (API keys, tokens, private keys, auth headers, URL passwords) from every history lookup reply. The stored transcript stays untouched. | Complete |
 | 11 | 011-opencode-pi-handover-parity/ | [Phase 11 scope] | Pending |
+| 12 | 012-opencode-model-carry/ | [Phase 12 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -148,6 +149,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 008-wider-hop-recall-measurement | 009-deep-review-p2-remediation | None: phase 9 remediates the phase 6 review and does not wait on phase 8's measurement. | Phase 9 started while phase 8 was Draft, by the operator's decision. |
 | 009-deep-review-p2-remediation | 010-history-secret-redaction | None: phase 10 is a new operator request and does not depend on phase 9's fixes. | Phase 10 started after phase 9 merged, by the operator's decision. |
 | 010-history-secret-redaction | 011-opencode-pi-handover-parity | [Criteria TBD] | [Verification TBD] |
+| 011-opencode-pi-handover-parity | 012-opencode-model-carry | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -154,7 +154,8 @@ const record = {
     SESSION_HANDOVER_GOAL_PACKET: process.env.SESSION_HANDOVER_GOAL_PACKET || "",
     hasGoalPacket: Object.hasOwn(process.env, "SESSION_HANDOVER_GOAL_PACKET"),
     SKILLED_LOOP_CLAIM_SEED: process.env.SKILLED_LOOP_CLAIM_SEED || "",
-    hasClaimSeed: Object.hasOwn(process.env, "SKILLED_LOOP_CLAIM_SEED")
+    hasClaimSeed: Object.hasOwn(process.env, "SKILLED_LOOP_CLAIM_SEED"),
+    OPENCODE_CONFIG_CONTENT: process.env.OPENCODE_CONFIG_CONTENT ?? null
   }
 };
 fs.appendFileSync(recordPath, JSON.stringify(record) + "\\n");
@@ -259,6 +260,7 @@ function createSandbox(t) {
     'SESSION_HANDOVER_GOAL',
     'SESSION_HANDOVER_GOAL_PACKET',
     'SKILLED_LOOP_CLAIM_SEED',
+    'OPENCODE_CONFIG_CONTENT',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   return { root, repoRoot, xdgRuntimeDir, home, binDir, recordedCwd, env };
