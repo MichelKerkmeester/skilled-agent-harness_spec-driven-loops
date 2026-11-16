@@ -8,25 +8,24 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/hub-architecture/008-host-surface-hint-and-score-window"
-    last_updated_at: "2026-11-16T16:25:42Z"
+    last_updated_at: "2026-11-16T18:13:46Z"
     last_updated_by: "generate-context"
-    recent_action: "Built the two windows surface score and corrected the stale hint descriptions"
-    next_safe_action: "Verify with the operator whether the all-five-modes route needs a bundle rule"
+    recent_action: "Recorded that the cap of four modes stays"
+    next_safe_action: "Verify nothing, the packet is complete"
     packet_purpose: "Purpose: A session's surface hint adds its surface to a scored route, and a request that names a workflow mode keeps that mode however many phrases a surface matches."
     blockers: []
     key_files:
       - ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs"
-      - ".skilled/bin/tests/compiled-route-surface-hint.test.cjs"
-      - ".skilled/skills/sk-code/README.md"
+      - ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs"
     session_dedup:
-      fingerprint: "sha256:424a481f8cc3390f99cafcaac7bbc7ffbe1e1079bf2ed9feec844ec26fbcf13d"
+      fingerprint: "sha256:df34a332c87d83d02222f556bd3858bb63abf1d4c26afaae7a21f5072ea7e9c1"
       session_id: "scaffold-008-host-surface-hint-and-score-window"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "3912763e-4a15-47d7-994e-71d31bbf339f"
       workspace: "/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake"
-      savedAt: "2026-11-16T16:25:42Z"
+      savedAt: "2026-11-16T18:13:46Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -161,7 +160,7 @@ The surface score came in a second build the same way, as briefs 07 to 17. Brief
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep 3` leaves three archives in `logs/archive`. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
 1. **A surface with several phrases still drops a second surface with fewer.** `fix the typescript dark mode toggle and focus trap` scores frontend 12 and skilled 4 and routes `sk-code-frontend` alone. A host surface is dropped the same way beside the frontend surface. The sk-code README says a host may lower a surface's `weight` or raise `routerPolicy.ambiguityDelta`.
-2. **Two windows can build a route of five targets that the policy has no rule for.** The prompt `quality review of .github/workflows/ci.yml and the github actions workflow, the dark mode toggle css, and the typescript vitest checks` scores skilled 8, ci 8, frontend 8, quality 4 and review 4. The evaluation throws `BUNDLE_NOT_IN_POLICY`, so `resolveRoute` returns null and the caller falls back to legacy routing. Before the change one window kept the three surfaces and routed them. The compiler writes bundle rules for two to four modes only. One window reached five targets only when all five modes tied.
+2. **Two windows can build a route of five targets that the policy has no rule for.** The prompt `quality review of .github/workflows/ci.yml and the github actions workflow, the dark mode toggle css, and the typescript vitest checks` scores skilled 8, ci 8, frontend 8, quality 4 and review 4. The evaluation throws `BUNDLE_NOT_IN_POLICY`, so `resolveRoute` returns null and the caller falls back to legacy routing. Before the change one window kept the three surfaces and routed them. The compiler writes bundle rules for two to four modes only. The operator chose that cap on 2026-11-13 in `specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth`, which names this fallback as the accepted trade-off. One window reached five targets only when all five modes tied, so two windows makes the fallback a little easier to reach. The operator confirmed the cap of four on 2026-11-16.
 3. **One host-surface test keeps the old reading.** `SKILLED alone still routes when a hub also declares another surface` evaluates without the hint and then reorders. So its WEBFLOW case asserts `sk-code-skilled` alone. In serving the WEBFLOW hint joins: the same prompt with the hint passed into the evaluation routes `sk-code-webflow, sk-code-skilled`. The assertion holds for the reorder step it calls. The test `a hinted host surface joins as the first surface after the workflow modes` covers the join, so the test is unchanged.
 4. **`router-replay-lib.cjs` keeps its own scorer.** Leg 4 of `verify-router-sync.cjs` uses it. Nothing compares it with the compiled selection.
 5. **A commit may make the CB-CR-007 digest stale.** `evidence_manifest_digest` is the sha256 of the sk-code activation manifest, the `manifestFingerprint` that `compiled-route-status.cjs` prints. The pre-commit hooks may raise doc versions and re-mint the manifest. A version bump in `SKILL.md` or `ROUTER.md` would change the policy hash and so the digest. `validate-compiled-routing-scenarios.cjs` checks only that the field is present, so nothing fails when it goes stale.
