@@ -1,5 +1,5 @@
 {
-  "run_id": "1794570002424-6wv97k",
+  "run_id": "1794801313778-3ys69o",
   "loop_type": "research",
   "spec_folder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research",
   "base_artifact_dir": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research",
@@ -24,42 +24,5 @@
     "unattributed_state_log": 0,
     "needs_input": 0,
     "quota": 0
-  },
-  "timestamp_anomalies": [
-    {
-      "label": "residual-limits-4",
-      "state_log": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/deep-research-state.jsonl",
-      "window": {
-        "start_at_iso": "2026-11-13T11:40:02.939Z",
-        "end_at_iso": "2026-11-13T12:10:28.780Z",
-        "tolerance_ms": 120000
-      },
-      "counts": {
-        "anomalous": 3,
-        "untimestamped": 0,
-        "unparseable": 0,
-        "total": 6
-      },
-      "sample": [
-        {
-          "index": 0,
-          "reason": "after_window",
-          "timestamp": "2026-11-13T12:45:00.000Z",
-          "deltaMs": 1951220
-        },
-        {
-          "index": 4,
-          "reason": "after_window",
-          "timestamp": "2026-11-13T12:18:00.000Z",
-          "deltaMs": 331220
-        },
-        {
-          "index": 5,
-          "reason": "after_window",
-          "timestamp": "2026-11-13T12:25:00.000Z",
-          "deltaMs": 751220
-        }
-      ]
-    }
-  ]
+  }
 }
