@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/039-main-sk-doc-routing-repair",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "main sk doc routing repair",
+      "phase 39 main sk doc routing repair",
+      "hook readme phrases git hooks",
+      "skill graph signal drift sk-doc",
+      "main sk doc routing repair plan",
+      "main sk doc routing repair tasks",
+      "main sk doc routing repair acceptance criteria",
+      "main sk doc routing repair implementation summary"
+    ],
+    "key_topics": [
+      "main",
+      "doc",
+      "routing",
+      "repair",
+      "phase",
+      "hook",
+      "readme",
+      "phrases",
+      "git",
+      "hooks",
+      "skill",
+      "graph"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/sk-doc/sk-create-readme/ROUTER.md",
+      ".skilled/skills/sk-doc/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Main",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Data",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Main's README intents gave sk-doc words that other skills own",
+    "created_at": "2026-11-16T16:54:08Z",
+    "last_save_at": "2026-11-16T16:56:48.203Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e38208956228630288dd512e3304b42359d6b4362c230b5e441a7f1ca0cbe297",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "efce936d942cbcfcc98e9c1fb473cb0009e04453e794758357621e74efc0488c",
+      "plan.md": "5a6f13606b0c9299ad3355d979b520ca1cf6f47dd2313a10eb34d0d33f5b21f4",
+      "tasks.md": "7b92751215b84340023db0f924b6587d02326e362c4288bec69e6d4eef4ebdf0",
+      "implementation-summary.md": "9c07944a274cd8e37fa3e82d4b2f6efcf860d943f021c73e4309dfabed1e491a"
+    },
+    "last_active_at": null
+  }
+}

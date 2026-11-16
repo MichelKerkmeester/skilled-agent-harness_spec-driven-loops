@@ -391,6 +391,9 @@ and findings belong here.
 | Operator item: sk-doc hook README routing regression on main | Waiting | fix belongs in sk-doc ROUTER.md and graph-metadata.json, owned by main's README-template workstream; in a throwaway origin/main tree, dropping the 24 git-* hook phrases (12 per file) cleared the four isolation cases, while the slice, ratchet and holdout failures need main's other phrase changes revisited; once main is fixed, merge and rerun the gate |
 | Pre-existing: S15-ci-divergence-ratchet | Fails on origin/main | the CI-gated ratchet row fails on clean origin/main 2005499d504 the same way it fails on the merged HEAD, so an alignment P0 on that row is inherited, not branch-caused |
 | Intermittent: python-compat under full-suite load | Not attributed | failed in both suite runs of the first merged gate, passed in three later merged full runs and 3 of 3 direct runs (89/0); the error text was not captured; the Python advisor calls the native scorer with a 2.5 s timeout, so load can force its local fallback; the branch only renamed the create-skill row in that file |
+| Pre-existing: S7-skill-graph-freshness | Fails on origin/main | --strict reports SIGNAL DRIFT compiled vs disk for sk-doc on clean origin/main 2005499d504 as on HEAD; main changed sk-doc graph-metadata without recompiling skill-graph.json, and the reindex is operator-gated |
+| Local build: S1-package-check | Fixed locally | the merge left the gitignored system-spec-kit runtime and cli dist stale; npm run build in both brings dist freshness to 4/4, nothing tracked changes |
+| Operator answer: main's sk-doc routing regression | Fix on this branch | ask tool 2026-11-16: fix on this branch, reindex the skill graph here, add TEMP and TMP to the surface map (added, backup scratchpad/surface-map.yaml.bak2); phase 039 planned |
 
 ### Deviations and findings
 

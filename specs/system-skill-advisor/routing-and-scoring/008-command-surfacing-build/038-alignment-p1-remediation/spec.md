@@ -26,9 +26,9 @@ contextType: "general"
 | **Created** | 2026-11-16 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 38 of 38 |
+| **Phase** | 38 of 39 |
 | **Predecessor** | 037-review-pass-six-remediation |
-| **Successor** | None |
+| **Successor** | 039-main-sk-doc-routing-repair |
 | **Handoff Criteria** | Each branch-caused P0 and P1 of the alignment run is fixed, and every other open P0 and P1 row has a reason in the goal log |
 <!-- /ANCHOR:metadata -->
 

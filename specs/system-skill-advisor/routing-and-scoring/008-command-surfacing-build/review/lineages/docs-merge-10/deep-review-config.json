@@ -1,0 +1,108 @@
+{
+  "topic": "Review: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "sessionId": "fanout-docs-merge-10-1794847584683-k2l24m",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 8,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stopPolicy": "convergence",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 60,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "createdAt": "2026-11-16T16:57:46.000Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "Review pass ten. First read specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-brief-10.txt and follow it: it names your area by lineage label, the scope file, the graph and stop steps each iteration runs, and the holdout rule.",
+  "reviewScopeFiles": [
+    ".skilled/skills/system-skill-advisor/README.md",
+    ".skilled/skills/system-skill-advisor/SKILL.md",
+    ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+    ".env.example",
+    ".skilled/skills/sk-doc/SKILL.md",
+    ".skilled/skills/sk-doc/sk-create-skill/ROUTER.md",
+    ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+    ".skilled/changelog/skilled/v4.0.2.1.md",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts"
+  ],
+  "fanout_lineage_artifact_dir": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/docs-merge-10",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}
