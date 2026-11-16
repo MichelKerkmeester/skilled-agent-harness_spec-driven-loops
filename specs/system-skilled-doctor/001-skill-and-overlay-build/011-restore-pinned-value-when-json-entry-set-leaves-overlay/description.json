@@ -6,19 +6,20 @@
     "phase",
     "restore-pinned-value-when-json-entry-set-leaves-overlay"
   ],
-  "lastUpdated": "2026-11-16T13:22:15.505Z",
+  "lastUpdated": "2026-11-16T16:25:35.535Z",
   "specId": "011",
   "folderSlug": "restore-pinned-value-when-json-entry-set-leaves-overlay",
   "parentChain": [
     "system-skilled-doctor",
     "001-skill-and-overlay-build"
   ],
-  "memorySequence": 5,
+  "memorySequence": 6,
   "memoryNameHistory": [
     "16-11-26_11-24__planned-the-removed-set-restore-and-recorded-the.md",
     "16-11-26_11-56__built-and-verified-the-restore-of-a-removed-json.md",
     "16-11-26_11-58__built-and-verified-the-restore-of-a-removed-json.md",
     "16-11-26_14-21__a-fresh-review-of-the-pushed-restore-found-that-a.md",
-    "16-11-26_14-22__a-fresh-review-of-the-pushed-restore-found-that-a.md"
+    "16-11-26_14-22__a-fresh-review-of-the-pushed-restore-found-that-a.md",
+    "16-11-26_17-25__a-second-review-of-the-pushed-fix-found-that-a.md"
   ]
 }

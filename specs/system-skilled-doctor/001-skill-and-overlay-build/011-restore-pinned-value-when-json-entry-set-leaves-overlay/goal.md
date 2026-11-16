@@ -86,6 +86,9 @@ and findings belong here.
 | Packet validation after the build | Done | validate.sh --strict printed RESULT: PASSED (errors=0 warnings=2) on 2026-11-16, and the parent tree printed 13 of 13 PASSED |
 | Review of the commit on main | Done | A fresh Fable 5.2 session reviewed `cb31e584730` and listed nine findings. Findings 1 to 5 were reproduced on the function with a script |
 | Review fix | Done | Five more Vibe runs, 08 to 12, each `export.json` records `exit_code` 0 and `outcome` `finished`. `node --test` on `overlay-engine-sync.test.cjs` printed `tests 35`, `pass 35`, `fail 0` |
+| Whole re-pin over a dropped set | Done | Vibe run 13, exit_code 0, outcome finished. overlay-engine-repin.test.cjs printed tests 28, pass 28, fail 0. The test fails on the engine from before this phase |
+| Second review and fix | Done | Opus 5.5 reviewed c92aa25378e and listed nine findings. Three were rerun and fixed in Vibe runs 14 to 16: a string array index, an index past the end of the array and duplicate records. The doctor test folder printed tests 1201, pass 1201, fail 0 |
+| Recheck fixes | Done | Vibe runs 17 to 22, each exit_code 0, outcome finished, bytes matched. The check after the write now reads the records the run keeps. The doctor test folder printed tests 1204, pass 1204, fail 0 |
 
 ### Deviations and findings
 

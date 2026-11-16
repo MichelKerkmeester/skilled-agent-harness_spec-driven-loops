@@ -1,0 +1,61 @@
+1. FILES CHANGED:
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` (57 insertions, appended at end after one blank line; nothing else in the file touched)
+
+2. COMMANDS:
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && wc -l .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs && tail -n 40 .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` — exit 0. Last 15 lines:
+```
+  delete older.sets;
+  writeFile(fixture.overlayDir, 'sync-state.json', JSON.stringify(older, null, 2) + '\n');
+  assert.equal(fixture.run(['apply']).code, 0);
+  assert.deepEqual(fixture.recordedSets(), [{ path: ['rows', 'a', 'extra'], value: 1, added: false }]);
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+test('apply refuses to delete a key the pin does not hold once its value was edited', (t) => {
+```
+
+`cd ... && tail -c 60 .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs | od -c | tail -n 5` — exit 0. Confirmed the file ended with `});\n` and no trailing blank line.
+
+`cd ... && grep -n "recordedSets(), \[\]" .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` — exit 0. Two hits (lines 722, 932), so I used a longer anchor.
+
+`cd ... && grep -n "note: 'kept'" ... ; grep -nE "^(const|function) (createPinnedSetFixture|PINNED_LIST|PINNED_ROWS|INSERT_X|seedState|readJson|TOP_PATH)\b" ... ; sed -n '1,20p' ...` — exit 0. All helpers the block uses exist: `seedState` (28), `createPinnedSetFixture` (669), `TOP_PATH` (708), `PINNED_ROWS` (709), `PINNED_LIST` (832), `INSERT_X` (833); `readJson` imported at line 14, `fs` at line 10.
+
+`cd ... && sed -n '660,720p' ...` — exit 0. Confirmed `createPinnedSetFixture` sets `fixture.seed`, `fixture.livePath`, `fixture.readLive`, `fixture.recordedSets`, `fixture.writeOperations`, `fixture.run`.
+
+`cd ... && git diff --stat -- <file> && git diff -- <file>` — exit 0. `1 file changed, 57 insertions(+)`, all additions after line 933, no deletions or context edits.
+
+`cd ... && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs > /tmp/overlay-engine-sync.out 2>&1; echo "EXIT_STATUS=$?"` — exit status of the node command: **1** (expected, the three new tests fail by design). Last 15 lines:
+```
+✔ apply restores a dropped set through an array index while the arrays line up (171.742417ms)
+✔ apply refuses a dropped set through an array the overlay added an item to (220.269875ms)
+✔ two sets on one path keep one record and both leave together (178.514333ms)
+✔ apply deletes a key the pin does not hold even when its record never marked it as added (212.882791ms)
+✔ apply refuses to delete a key the pin does not hold once its value was edited (192.727542ms)
+✔ a dropped set is restored while the operations that stay are still applied (210.388416ms)
+✖ apply refuses a dropped set whose array index is written as a string (194.813292ms)
+✖ a dropped set whose index fell off the array is refused until the array matches the pin (193.242667ms)
+✖ two records for one path in an older state file restore from the last one (184.239166ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 35
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6782.80125
+```
+
+Counts match the brief: `pass 35`, `fail 3`, and the three failures are exactly the three new tests. No other test failed. Each fails on its intended assertion, not on a missing helper:
+- string index: `actual: 0, expected: 1` at line 946 — the engine applied instead of refusing.
+- index off the array: `actual: 0, expected: 1` at line 961 — same.
+- two records: `actual: 1, expected: 0` at line 988 — engine reports `dropped set at rows.a.top was edited after it was applied` instead of restoring from the last record.
+
+`cd ... && git status --porcelain` and `ls -lT` on the three modified test files — exit 0. Only my file carries my change; `compiled-route-admission.test.cjs` (16:22) and `overlay-engine-repin.test.cjs` (16:27) were already modified before this run (mine is 16:45), and the spec-doc modifications are pre-existing packet state.
+
+3. OPEN QUESTIONS: none. The block appended verbatim, including the literal `'\n'` in the `fs.writeFileSync` call (verified with `od -c`) and the escaped dots in both regexes.

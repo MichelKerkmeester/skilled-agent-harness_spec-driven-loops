@@ -1,0 +1,63 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+## Code Implementation Result
+
+**Mode:** 2: Surgical Fix
+**Files:** `.skilled/skills/system-skilled-doctor/references/overlays.md`
+**Verification:** PASS
+**Quality Gate:** N/A (single-sentence prose correction in a reference doc; no code path, no quality-gate runner applies)
+**Command:** `rg -c 'then add the operations back' .skilled/skills/system-skilled-doctor/references/overlays.md`
+**Exit Code:** 0
+**First Failing Assertion:** N/A
+**Rubric Score:** N/A
+**Escalation:** NONE
+**Confidence:** HIGH
+**Not checked:** nothing material — the check named in the brief ran and returned the expected count.
+
+### Summary
+Replaced the one sentence at `overlays.md:62` describing how a refused array path clears. The old text told the reader to restore the array and run `apply` while the entry set still listed its operations on that array, which contradicts the refusal it claims to clear. The new text removes those operations first, restores the array, applies, then adds them back. The rest of the long line is byte-identical; `git diff --stat` reports 1 insertion, 1 deletion.
+
+### Out Of Scope
+None observed.
+
+### Spec Drift
+update_recommended: false
+reason: none
+affected_spec_docs: none
+
+---
+
+1. FILES CHANGED:
+   - /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skilled-doctor/references/overlays.md
+
+2. COMMANDS:
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -n 'To clear it, put that whole array back to the pin' .skilled/skills/system-skilled-doctor/references/overlays.md | cut -c1-400`
+   exit 0, last lines:
+   ```
+   62:`sync-state.json` carries three optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine retargets its own link instead of refusing a stranger at that path. `items` holds the array items each `json-entry` overlay added, so an item the overlay drops is removed from the live file while it s
+   ```
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -o 'To clear it, put that whole array back to the pin.{0,200}' .skilled/skills/system-skilled-doctor/references/overlays.md`
+   exit 0, last lines:
+   ```
+   To clear it, put that whole array back to the pin's by hand and run `apply`. The operations the entry set still lists then write into it again. A key the pin does not hold is deleted even when a person added it by hand before a `set` named it, becau
+   ```
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -c 'then add the operations back' .skilled/skills/system-skilled-doctor/references/overlays.md; echo "EXIT=$?"`
+   exit 0, last lines:
+   ```
+   1
+   EXIT=0
+   ```
+
+   `cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && rg -c 'The operations the entry set still lists then write into it again' .skilled/skills/system-skilled-doctor/references/overlays.md; echo "OLD_EXIT=$?"; rg -o 'That refusal clears once.{0,320}' .skilled/skills/system-skilled-doctor/references/overlays.md; git diff --stat -- .skilled/skills/system-skilled-doctor/references/overlays.md`
+   exit 0, last lines:
+   ```
+   OLD_EXIT=1
+   That refusal clears once the outermost array on the path reads the same as the pin's. To clear it, take the entry set's operations on that array out, put the whole array back to the pin's by hand, run `apply`, then add the operations back. A key the pin does not hold is deleted even when a person added it by hand before a `set` named it, beca
+    .skilled/skills/system-skilled-doctor/references/overlays.md | 2 +-
+    1 file changed, 1 insertion(+), 1 deletion(-)
+   ```
+
+3. OPEN QUESTIONS: none.

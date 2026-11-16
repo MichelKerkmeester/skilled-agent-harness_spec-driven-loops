@@ -1,0 +1,85 @@
+TASK: narrow two rules in the restore of a dropped `set`: skip a record over an equal array only while the entry set adds no item there, and let a missing key leave quietly once the array indexes line up.
+One file changes. Do the 6 steps below in order.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (3 lines, this exact text appears once in the file):
+ * @param {Array<string|number>} path Path the set wrote.
+ * @returns {object|null} The array node, or null when the path meets none.
+ */
+NEW (replace those lines with these 4 lines, same indentation):
+ * @param {Array<string|number>} path Path the set wrote.
+ * @returns {{node: object, path: Array<string|number>}|null} The array node
+ *   and the path that reaches it, or null when the path meets no array.
+ */
+
+STEP 2 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (3 lines, this exact text appears once in the file):
+    if (!container) return null;
+    if (container.type === 'array') return container;
+  }
+NEW (replace those lines with these 3 lines, same indentation):
+    if (!container) return null;
+    if (container.type === 'array') return { node: container, path: path.slice(0, depth) };
+  }
+
+STEP 3 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (5 lines, this exact text appears once in the file):
+    // The key, or the object that held it, may be gone already: nothing is left
+    // for this record to take back. Through an array that reading is not safe,
+    // because a removed item moves every index after it and the value may sit
+    // one place along.
+    const node = recordedNodeAt(root, record.path);
+NEW (replace those lines with these 5 lines, same indentation):
+    // The key, or the object that held it, may be gone already: nothing is left
+    // for this record to take back. Through an array that reading waits for the
+    // index check below, because a removed item moves every index after it and
+    // the value may sit one place along.
+    const node = recordedNodeAt(root, record.path);
+
+STEP 4 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (6 lines, this exact text appears once in the file):
+    // wrote, so the record has nothing left to take back. This is also how a
+    // refusal below clears once the array was put right by hand.
+    if (liveArray && pinnedArray && deepEqual(
+      JSON.parse(output.slice(liveArray.start, liveArray.end)),
+      JSON.parse(upstreamText.slice(pinnedArray.start, pinnedArray.end)),
+    )) continue;
+NEW (replace those lines with these 12 lines, same indentation):
+    // wrote, so the record has nothing left to take back. This is also how a
+    // refusal below clears once the array was put right by hand. It holds only
+    // while the entry set adds no item there: the check after the write reads
+    // the same record against the array with that item in it and would refuse
+    // a file already written.
+    const addsBelow = liveArray && operations.some((operation) =>
+      (operation.op === 'insertItems' || operation.op === 'appendItems')
+      && deepEqual(operation.path.slice(0, liveArray.path.length), liveArray.path));
+    if (liveArray && pinnedArray && !addsBelow && deepEqual(
+      JSON.parse(output.slice(liveArray.node.start, liveArray.node.end)),
+      JSON.parse(upstreamText.slice(pinnedArray.node.start, pinnedArray.node.end)),
+    )) continue;
+
+STEP 5 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (3 lines, this exact text appears once in the file):
+    )) continue;
+    if (!node || !indexesMatchPin(root, upstreamRoot, record.path, operations, recordedItems)) {
+      throw new Error('cannot restore the dropped set at ' + where +
+NEW (replace those lines with these 3 lines, same indentation):
+    )) continue;
+    if (!indexesMatchPin(root, upstreamRoot, record.path, operations, recordedItems)) {
+      throw new Error('cannot restore the dropped set at ' + where +
+
+STEP 6 of 6. File: R/.skilled/commands/doctor/scripts/overlay-engine.cjs
+OLD (2 lines, this exact text appears once in the file):
+    }
+    const pinned = recordedNodeAt(upstreamRoot, record.path);
+NEW (replace those lines with these 4 lines, same indentation):
+    }
+    // The arrays line up, so a key that is missing is gone and not one place along.
+    if (!node) continue;
+    const pinned = recordedNodeAt(upstreamRoot, record.path);
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the summary shows "tests 40", "pass 40" and "fail 0". Report the three numbers. If a test fails, report its name and output. Do not change a test.

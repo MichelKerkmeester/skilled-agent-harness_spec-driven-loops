@@ -1,0 +1,12 @@
+1. vibe:create-plugin, vibe:import, vibe:skill-creator, vibe:vibe, vibe:worktree
+2. none
+3. `ls -a` in /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/3912763e-4a15-47d7-994e-71d31bbf339f/scratchpad/t008/proj:
+```
+.
+..
+.dsh
+.git
+.skilled
+.vibe
+README.md
+```

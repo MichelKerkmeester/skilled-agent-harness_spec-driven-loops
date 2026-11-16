@@ -45,7 +45,8 @@
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
       ".skilled/skills/system-skilled-doctor/references/overlays.md",
-      "scratch/repro-removed-set.cjs"
+      "scratch/repro-removed-set.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs"
     ],
     "entities": [
       {
@@ -106,6 +107,12 @@
         "name": "repro-removed-set.cjs",
         "kind": "file",
         "path": "scratch/repro-removed-set.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-repin.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A project that vendors Skilled changes one value in an upstream JSON file with a `set` operation in a `json-entry` overlay",
     "created_at": "2026-11-16T09:33:04Z",
-    "last_save_at": "2026-11-16T13:22:15.505Z",
+    "last_save_at": "2026-11-16T16:25:35.535Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6c69739b76579b321623203ec5c3a6682c81b9606eefea03f5105ef9ffe43f0",
+    "source_fingerprint": "sha256:46af8b24a6280f063dc2e59f1355ab8baa83b06fe0122dc69fdf8118334b0737",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6434d6482abcd829f4a2c88238712271dfcc9e9f4a839300146ed541eab38495",
       "plan.md": "aa91cc0fe2be84cb8521f70a6b8f9e83de94562ed2c37c74db58de7dc1704e46",
-      "tasks.md": "5bf46539b148ab149848527aefc89dbe094248026e9a0b23717a62884f9b07de",
-      "decision-record.md": "3db3ead7a580e504719b0e64966116528f390d6cb5016019a1e84304d6c3857e",
-      "implementation-summary.md": "b16f7efa0b8cad4024b5ceb585b31a08ec276b33e666d92c896eb026229e1d88"
+      "tasks.md": "5cf1f64df203430bc4a56693748a5af20ae11df8768abdc72ce3705f89b72716",
+      "decision-record.md": "b5bf6a5ff553d20b9a675d4c748ffcdf8f2a365d215f5125cda0ad79a93545c4",
+      "implementation-summary.md": "ec29f655a7e1666ee9c5fde374f60f00a3814ed90712d5f64c3b2479fa70aaaf"
     },
     "last_active_at": null
   }

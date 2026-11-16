@@ -8,29 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes"
-    last_updated_at: "2026-11-16T13:22:20Z"
+    last_updated_at: "2026-11-16T16:25:38Z"
     last_updated_by: "generate-context"
-    recent_action: "Built the vibe and dsh link runtimes and ran the engine tests"
-    next_safe_action: "Start a Vibe and a DSH session in a linked scratch project for T008"
+    recent_action: "Ran the live Vibe and DSH session check and closed the packet"
+    next_safe_action: "Verify nothing, the packet is complete"
     packet_purpose: "Purpose: `/doctor:symlink` links `.vibe` and `.dsh` like every other runtime folder, and every runtime list in the doctor commands names them."
-    blockers:
-      - "T008 needs a live Vibe and DSH session"
+    blockers: []
     key_files:
       - ".skilled/commands/doctor/assets/symlink-manifest.json"
       - ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs"
       - ".skilled/commands/doctor/symlink.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:abc3e2e4a0b1862937377306a38ae15abfdb63408e4d0f9bb58f7a95de5f5350"
       session_id: "scaffold-004-symlink-vibe-and-dsh-runtimes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "3912763e-4a15-47d7-994e-71d31bbf339f"
       workspace: "/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake"
-      savedAt: "2026-11-16T13:22:20Z"
+      savedAt: "2026-11-16T16:25:38Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +48,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-symlink-vibe-and-dsh-runtimes |
-| **Completed** | Built on 2026-11-16. Not closed: the session check (T008) is open |
+| **Completed** | 2026-11-16 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -95,7 +94,12 @@ No file in `.vibe` or `.dsh` must stay per project.
 
 ### Session check (T008)
 
-Not checked. This build ran without an interactive session. `vibe` (3.1.2) and `dsh` (0.2.2-rc.3) are both installed, but no session was started in a linked project. Only the link creation is proved, by the two tests and by `symlink-engine.cjs check --runtimes vibe,dsh`.
+Checked on 2026-11-16 in a fresh scratch project linked with `symlink-engine.cjs apply --runtimes vibe,dsh`. Each runtime got one print-mode session with the same read-only prompt, which is in `scratch/session-check/prompt.txt`.
+
+- **Vibe 3.1.2.** With `--trust` the session ended `exit_code 0`, `outcome finished` and listed 55 Skilled skills beside Vibe's own five. It listed no agents. Without `--trust` Vibe printed that the folder is not trusted and that `.vibe/` is ignored, and the session listed only Vibe's own five skills.
+- **DSH 0.2.2-rc.3.** The headless session exited 0 with a `final` event of kind `completed`. It listed 55 Skilled skills and the agent `lead`.
+
+Two things a linked project meets that the tests do not show. A new project folder must be trusted before Vibe reads the linked `.vibe/`. With hooks rendered into `VIBE_HOME` and the linked `hooks.toml` both present, Vibe printed `Duplicate hook name` for each hook and went on.
 <!-- /ANCHOR:how-delivered -->
 
 ---

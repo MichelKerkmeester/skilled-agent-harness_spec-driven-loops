@@ -1,0 +1,62 @@
+The block is appended verbatim at the end of the file, after one blank line, and nothing else in the file changed.
+
+1. FILES CHANGED:
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs`
+
+2. COMMANDS:
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && wc -l .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs && tail -n 40 .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` — exit 0, last 15 lines:
+```
+  assert.match(plain.output, /^blocked owned-dir: upstream-moved \.skilled\/skills\/owned\/keep\.md$/m);
+  assert.match(plain.output, /^RESULT: BLOCKED$/m);
+
+  // A rebase onto some other commit says nothing about this one.
+  entry.rebasedOnto = fixture.oldCommit.slice(0, 10);
+  writeManifest(fixture);
+  const staleStage = path.join(fixture.workspace, 'stage-stale');
+  const stale = fixture.repin(['--stage', staleStage]);
+  assert.equal(stale.code, 1, stale.output);
+  assert.match(stale.output, /^blocked owned-dir: upstream-moved \.skilled\/skills\/owned\/keep\.md$/m);
+
+  entry.rebasedOnto = fixture.newCommit.slice(0, 10);
+  writeManifest(fixture);
+  const live = fixture.repin();
+  assert.equal(live.code, 0, live.output);
+  assert.doesNotMatch(live.output, /^blocked owned-dir:/m);
+  assert.match(live.output, /^RESULT: PASSED$/m);
+```
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && sed -n '1,120p' .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` — exit 0, confirmed the fixture imports (`createWorkspace`, `readJson`, `runEngine`, `sha256`, `writeFile`, `writeManifest`) and the `createRepinFixture(t, {oldEntries, newEntries})` signature the block relies on.
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && grep -n "json-entry\|sync-state\|sets\b\|overlays\[3\]\|overlays.push" .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` — exit 0, showed the fixture's `overlays` array holds 3 entries, so the pushed overlay lands at index 3.
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && grep -rn "json-entry" .skilled/commands/doctor/scripts/tests/` — exit 0, confirmed `json-entry` overlay shape (`target`, `style`, `operations`) and `pinnedSha256` = hash of the seed document.
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && grep -rn "sets" .skilled/commands/doctor/scripts/overlay-engine.cjs` — exit 0, confirmed `sync-state.json` `sets` is `Record<destination, object[]>`.
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs > /tmp/repin-out.txt 2>&1; echo "EXIT: $?"; tail -n 15 /tmp/repin-out.txt` — exit 0, last 15 lines:
+```
+✔ a re-pin over a refused overlay stops before the backup and writes nothing (353.348166ms)
+✔ a re-pin replaces an unowned link with the folder the new pin ships there (573.833666ms)
+✔ a re-pin still refuses a new upstream file that a project link already reaches (526.439458ms)
+✔ repin --stage treats an upstream addition inside a directory overlay as overlay-owned, and a hand-added file as live-edited (677.68175ms)
+✔ a folder overlay rebased onto the new pin applies after the copy, and one that is not stays upstream-moved (968.93175ms)
+✔ a live repin names the regenerate step that rewrote a file an overlay owns, not upstream-moved (525.544208ms)
+✔ a live repin returns a dropped set to the value the new pin holds and keeps the set that stays (718.448542ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17723.751167
+```
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git status --porcelain && echo "---DIFFSTAT---" && git diff --stat` — exit 0, showed my file as the only change I made (`57 +++`); the other listed modifications were already present in the working tree before this dispatch.
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && git diff -- .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` — exit 0, diff is a single `@@ -829,3 +829,60 @@` hunk: one blank line plus the appended block, no other lines touched.
+
+The three numbers: **tests 28, pass 28, fail 0**.
+
+3. OPEN QUESTIONS: none. The new test passed on its first run, so no engine edit and no assertion change was needed.

@@ -1,0 +1,26 @@
+1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/skills/system-skilled-doctor/references/overlays.md` (line 62, one sentence pair replaced; file still 241 lines)
+
+2. COMMANDS
+
+| # | Command | Exit | Output (tail) |
+|---|---|---|---|
+| 1 | `rg -c 'That refusal clears once the whole array reads the same as the pin' .skilled/skills/system-skilled-doctor/references/overlays.md` | 0 | `1` |
+| 2 | `rg -n '<anchor>' … \| cut -c1-40; wc -l …` | 0 | `62:`sync-state.json` carries three optio` / `241 …` |
+| 3 | `awk 'NR==62' … \| grep -o '.\{300\}That refusal clears.\{500\}'` | 2 | `grep: maximum repetition exceeds 255` (probe only; retried at 200) |
+| 4 | `awk 'NR==62' … \| grep -o '.\{200\}That refusal clears.\{200\}'` | 0 | `…Otherwise `apply` refuses and says to restore the value by hand. That refusal clears once the whole array reads the same as the pin's and the entry set adds no item to it. To clear it, take the entry set's operations on that array out, put the whole array back to the pin's by hand, r…` |
+| 5 | `awk 'NR==62' … \| grep -o "<full OLD string>" \| wc -l` | 0 | `1` (anchor unique before edit) |
+| 6 | `rg -c 'outermost array on the path' .skilled/skills/system-skilled-doctor/references/overlays.md` — **the brief's CHECK** | 0 | `1` (expected 1) |
+| 7 | `awk 'NR==62' … \| grep -o '.\{120\}That refusal clears.\{260\}'; rg -c "take the entry set's operations on that array out" …; git status --porcelain; git diff --stat` | 0 | `grep: maximum repetition exceeds 255`; `old_text_exit=1` (OLD text gone); `M .skilled/skills/system-skilled-doctor/references/overlays.md` among 33 pre-existing modified files; `33 files changed, 458 insertions(+), 103 deletions(-)` |
+| 8 | `git diff --word-diff=plain -- …overlays.md \| grep -o '\[-.\{0,400\}'` | 2 | `grep: maximum repetition exceeds 255` (probe only; retried at 250) |
+| 9 | `git diff --word-diff=plain -- …overlays.md \| grep -o '\[-.\{0,250\}'` / `'{+.\{0,250\}'` | 0 | removed: `…[-index-] is restored only while that array holds the same number of items…`; added: `{+That refusal clears once the outermost array on the path reads the same as the pin's. To clear it, put that …` |
+| 10 | `wc -l …; awk 'NR==62' … \| grep -o 'Otherwise `apply` refuses.\{0,250\}'; rg -c 'outermost array on the path' …` | 0 | `241 …`; `Otherwise `apply` refuses and says to restore the value by hand. That refusal clears once the outermost array on the path reads the same as the pin's. To clear it, put that whole array back to the pin's by hand and run `apply`. The operations the entry set still lists then w…`; `1` |
+
+The edit itself was applied with the `edit` tool (exact-string replacement, `lines_changed: 1`), not a shell write. No git write commands were run.
+
+3. OPEN QUESTIONS
+
+- The working tree already carried 33 modified and many untracked files from earlier phases before this step; only `overlays.md` is mine. `git status` is therefore not a clean baseline for this dispatch.
+- Line 62 already carried an earlier phase's edit (`A step into an array counts as an index however the entry set spells it.`), so the committed diff for that line shows two changes, not one. I left that sentence untouched.
+- Two probe commands exited 2 on `grep`'s 255-repetition limit. They were inspection probes, not the check; the check command itself exited 0 with `1`.

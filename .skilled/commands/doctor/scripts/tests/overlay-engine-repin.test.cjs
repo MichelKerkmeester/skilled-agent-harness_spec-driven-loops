@@ -829,3 +829,60 @@ test('a live repin names the regenerate step that rewrote a file an overlay owns
     /^regenerated \.skilled\/skills\/hub\/SKILL\.md {2}\(overlay: skilled-overlays\/files\/SKILL\.md\) {2}step: rewrites-owned {2}fix: /m);
   assert.doesNotMatch(failed.output, /^upstream-moved \.skilled\/skills\/hub\/SKILL\.md/m);
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. A SET DROPPED BEFORE A RE-PIN
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SET_DESTINATION = '.codex/baseline.json';
+const SET_SOURCE = 'json/baseline.json';
+
+function setDocument(top, other) {
+  return JSON.stringify({ rows: { a: { top }, b: { top: other } } }, null, 2) + '\n';
+}
+
+function writeSetOperations(fixture, operations) {
+  writeFile(fixture.overlayDir, SET_SOURCE, JSON.stringify({
+    target: SET_DESTINATION,
+    style: { indent: 2, primitiveArrays: 'inline' },
+    operations,
+  }, null, 2) + '\n');
+}
+
+test('a live repin returns a dropped set to the value the new pin holds and keeps the set that stays', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: { [SET_DESTINATION]: setDocument('sk-code', 'old') },
+    newEntries: { [SET_DESTINATION]: setDocument('sk-review', 'new') },
+  });
+  const dropped = { op: 'set', path: ['rows', 'a', 'top'], value: 'sk-doc' };
+  const kept = { op: 'set', path: ['rows', 'b', 'top'], value: 'project' };
+  writeSetOperations(fixture, [dropped, kept]);
+  fixture.manifest.overlays.push({
+    id: 'baseline-set',
+    scope: 'json-entry',
+    source: SET_SOURCE,
+    destination: SET_DESTINATION,
+    pinnedSha256: sha256(Buffer.from(setDocument('sk-code', 'old'))),
+  });
+  writeManifest(fixture);
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+  assert.equal(read(fixture.tree, SET_DESTINATION), setDocument('sk-doc', 'project'));
+
+  // The entry set is rebased onto the new pin and one set leaves it.
+  writeSetOperations(fixture, [kept]);
+  fixture.manifest.overlays[3].pinnedSha256 = sha256(Buffer.from(setDocument('sk-review', 'new')));
+  writeManifest(fixture);
+  const result = fixture.repin();
+
+  assert.equal(result.code, 0, result.output);
+  assert.match(result.output, /^RESULT: PASSED$/m);
+  // The dropped set must not survive the re-pin, and its value comes from the
+  // new pin, not from the pin it was applied over.
+  assert.equal(read(fixture.tree, SET_DESTINATION), setDocument('sk-review', 'project'));
+  const sets = readJson(path.join(fixture.overlayDir, 'sync-state.json')).sets[SET_DESTINATION];
+  assert.deepEqual(sets.map((entry) => entry.path), [kept.path]);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.equal(fixture.run(['apply']).output.trim(), '0 changed');
+});

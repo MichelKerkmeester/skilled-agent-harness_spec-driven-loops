@@ -65,8 +65,8 @@ contextType: "general"
 
 - [x] T007 Run the doctor script tests (`T`). Verify: `node --test T` prints `fail 0` and a pass count two above T001's.
   - Evidence: `node --test T` printed `tests 1185`, `pass 1185`, `fail 0`, exit 0. The baseline was 1183.
-- [B] T008 Link a scratch project with `--runtimes vibe,dsh` and start one session per runtime that is installed (`goal.md`). Verify: `goal.md` section 4 says which runtime was tried and what it loaded, or that it was not installed.
-  - Not checked. Both runtimes are installed (`vibe` 3.1.2, `dsh` 0.2.2-rc.3), but this build could not start an interactive session. The link is proved by the tests. Recorded in `implementation-summary.md`.
+- [x] T008 Link a scratch project with `--runtimes vibe,dsh` and start one session per runtime that is installed (`goal.md`). Verify: `goal.md` section 4 says which runtime was tried and what it loaded, or that it was not installed.
+  - Evidence: `symlink-engine.cjs plan` then `apply --runtimes vibe,dsh` on a fresh scratch project printed `linked-merge` for `.skilled`, `.vibe` and `.dsh`. A print-mode `vibe --trust` session there (3.1.2, `deepseek-flash`) ended `exit_code 0`, `outcome finished` and listed 55 Skilled skills. A `dsh --profile headless` session there (0.2.2-rc.3) exited 0 with a `final` event of kind `completed` and listed 55 Skilled skills and the agent `lead`. Outputs are in `scratch/session-check/`.
 - [x] T009 Validate the packet (`spec.md`). Verify: `validate.sh <this folder> --strict --quiet` prints `RESULT: PASSED`. Evidence: `RESULT: PASSED (errors=0 warnings=1)` on 2026-11-16.
   - Pending. The orchestrator runs `validate.sh` once at the end.
 <!-- /ANCHOR:phase-3 -->
@@ -77,9 +77,9 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 - [x] `symlink-engine.cjs check --runtimes vibe,dsh` prints no `unknown runtime` line
 <!-- /ANCHOR:completion -->
 

@@ -8,22 +8,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay"
-    last_updated_at: "2026-11-16T13:22:15Z"
+    last_updated_at: "2026-11-16T16:25:35Z"
     last_updated_by: "generate-context"
-    recent_action: "Applied and verified the review fix for index paths and added keys"
-    next_safe_action: "Verify the Barter session knows which commit holds the review fix"
+    recent_action: "Applied and verified the second review's fixes and added the whole re-pin test"
+    next_safe_action: "Verify the Barter session knows which commit holds every fix"
     packet_purpose: "Purpose: After a `set` operation leaves an overlay source, `apply` returns the live value to the pin's value, and removes a key the engine added that the pin does not hold."
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/overlay-engine.cjs"
       - ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs"
+      - ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs"
       - ".skilled/skills/system-skilled-doctor/references/overlays.md"
       - "specs/system-skilled-doctor/001-skill-and-overlay-build/011-restore-pinned-value-when-json-entry-set-leaves-overlay/handover-to-barter.md"
     session_ref:
       runtime: "claude"
       sessionId: "3912763e-4a15-47d7-994e-71d31bbf339f"
       workspace: "/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake"
-      savedAt: "2026-11-16T13:22:15Z"
+      savedAt: "2026-11-16T16:25:35Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -94,6 +95,11 @@ After the first version reached main, a fresh Fable 5.2 session reviewed the com
 | Write the pin's own text, not a new serialisation | The file returns to upstream's bytes, which a test asserts |
 | Delete a key the pin does not hold while it carries the recorded value | The first version deleted only a key its record marked as added. A record made after an older engine added the key is not marked, so the removal was refused for good. An equal live value shows that nobody edited it. The operator chose this after the review |
 | Refuse a path through an array index unless the arrays line up | An index is a position. An item the overlay added moves it, and the first version then wrote another item's value. The engine refuses and says to restore the value by hand |
+| Read an index from the document, not from the step's type | A path step written as the string `"1"` skipped the index check and the restore wrote another item's value. A step is an index when the node it steps into is an array |
+| Refuse a path through an array that no longer resolves | The first fix skipped such a record as already gone. A removed item moves every later index, so the value can sit one place along |
+| Drop the record once the whole array equals the pin's | It gives the refusal a way to clear after a hand repair, and an array that equals the pin's holds nothing the overlay wrote |
+| The check after the write reads the records the run keeps | It read the records the run started with. A set the run had just taken back was then read against the written file and judged as a stranger's edit, so the run exited 1 with the file already written |
+| A key that is gone leaves quietly once the indexes line up | Refusing every unresolved path through an array stopped safe cases, such as a key a person deleted by hand |
 | One record per path | Two `set` operations on one path made two records, and the first never matched the live value again |
 | Change one older test's setup | It replaced one `set` with another on a fixture with no pinned copy, which the operator's refusal rule now stops first. The test keeps its first `set` listed and no assert line changed |
 <!-- /ANCHOR:decisions -->
@@ -116,6 +122,16 @@ After the first version reached main, a fresh Fable 5.2 session reviewed the com
 | Seven Vibe runs | Each `export.json` records `exit_code` 0 and `outcome` `finished` |
 | `overlay-engine-sync.test.cjs` with the six fix tests and the engine before the fix | `tests 35`, `pass 32`, `fail 3` |
 | The same file after the fix | `tests 35`, `pass 35`, `fail 0`, exit 0 |
+| A second review of the fix, by Opus 5.5 | Nine findings. I reran its scripts for the string index, the index past the end and the duplicate records, and each showed the wrong result it reported |
+| `overlay-engine-sync.test.cjs` with three more tests, before and after the second fix | `pass 35`, `fail 3`, then `tests 38`, `pass 38`, `fail 0` |
+| The same three reviewer scripts after the second fix | Two refusals that write nothing and one correct restore |
+| `node --test .skilled/commands/doctor/scripts/tests` after the second fix | `tests 1201`, `pass 1201`, `fail 0` |
+| Two rechecks by the same reviewer | Each found an `apply` that wrote the file and then exited 1. The cause was one line: the check after the write read the records from before the run |
+| `overlay-engine-sync.test.cjs` after runs 17 to 22 | `tests 41`, `pass 41`, `fail 0` |
+| `node --test .skilled/commands/doctor/scripts/tests` after run 22 | `tests 1204`, `pass 1204`, `fail 0` |
+| A third recheck, with a differential fuzz of 320 cases against `c92aa25378e` | No wrong value and no write followed by exit 1. One doc sentence was wrong and run 23 corrected it |
+| Six more Vibe runs, 17 to 22 | Each `export.json` records `exit_code` 0 and `outcome` `finished`, and each edited file equals the prototype byte for byte |
+| Four more Vibe runs, 13 to 16 | Each `export.json` records `exit_code` 0 and `outcome` `finished`, and each edited file equals the prototype byte for byte |
 | Five more Vibe runs, 08 to 12 | Each `export.json` records `exit_code` 0 and `outcome` `finished`. The engine, the test file and the reference each equal the prototype byte for byte |
 <!-- /ANCHOR:verification -->
 
@@ -126,14 +142,17 @@ After the first version reached main, a fresh Fable 5.2 session reviewed the com
 
 1. **A value left behind before this change is not restored.** No record of it exists. Put it back by hand, or keep the `set` until one `apply` has recorded it.
 2. **`setKeyOnItem` keeps no record.** A value it wrote stays after the operation leaves the entry set. The operator left it out of this phase.
-3. **A path through an array index is often refused.** It is restored only while the array has the same length in the live file and in the pin and the overlay adds no item to it. A `set` on an item the overlay itself added can therefore not be dropped.
-4. **The restore across a changed pin is tested on the function only.** No test runs a whole `repin` over a dropped `set`.
-5. **A restore needs the checkout the manifest's pin names.** Without it `apply` refuses and writes nothing.
-6. **A `set` that another operation writes inside or over cannot be dropped alone.** A `set` on an object with a second `set` on one of its keys, or with an `insertObjectKeys` on the same object, is refused as edited though nobody edited it.
-7. **A restored value carries the pin's line endings.** A CRLF pin puts them into an LF live file when the value spans lines.
-8. **Removing a whole entry from the manifest, or changing its `destination`, restores nothing.** The records leave with the entry. The `items` record behaves the same way.
-9. **A record with no `path` refuses with a JavaScript error text.** The state check only looks at whether each destination maps to a list.
-10. **A re-pin may refuse a dropped `set` after its copy has written.** Read in the code and not run. It needs a `json-entry` destination outside the folders the re-pin extracts.
+3. **A refused array path clears only when the outermost array on its path equals the pin's.** A hand repair of one value does not clear it. Take the entry set's operations on that array out, put the whole array back to the pin's by hand, run `apply`, then add the operations back. Some safe cases are still refused: a `set` dropped from an array the overlay appends to, while the array differs from the pin's.
+13. **A hand swap of two items can hide a value.** When a person swaps two items of the same array by hand and drops a `set` that added a key to one of them, the engine reads the key as gone. The first build did the same.
+4. **A key a person added by hand is deleted** when a `set` later names it with the same value and is then removed. The operator chose the delete rule, and the record cannot tell the two cases apart.
+5. **A path through an array index is often refused.** It is restored only while the array has the same length in the live file and in the pin and the overlay adds no item to it. A `set` on an item the overlay itself added can therefore not be dropped.
+6. **A re-pin over a dropped `set` is tested for one shape.** One test re-pins after a `set` left an entry set that keeps a second `set`, and reads the new pin's value from the live file. When upstream changed the file and operations remain, the entry's `pinnedSha256` must name the new pin first, or the re-pin stops with `upstream-moved` as it does for any entry.
+7. **A restore needs the checkout the manifest's pin names.** Without it `apply` refuses and writes nothing.
+8. **A `set` that another operation writes inside or over cannot be dropped alone.** A `set` on an object with a second `set` on one of its keys, or with an `insertObjectKeys` on the same object, is refused as edited though nobody edited it.
+9. **A restored value carries the pin's line endings.** A CRLF pin puts them into an LF live file when the value spans lines.
+10. **Removing a whole entry from the manifest, or changing its `destination`, restores nothing.** The records leave with the entry. The `items` record behaves the same way.
+11. **A record with no `path` refuses with a JavaScript error text.** The state check only looks at whether each destination maps to a list.
+12. **A re-pin may refuse a dropped `set` after its copy has written.** Read in the code and not run. It needs a `json-entry` destination outside the folders the re-pin extracts.
 <!-- /ANCHOR:limitations -->
 
 ---

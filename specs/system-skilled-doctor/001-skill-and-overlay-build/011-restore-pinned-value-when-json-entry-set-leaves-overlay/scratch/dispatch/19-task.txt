@@ -1,0 +1,15 @@
+TASK: correct one sentence about how a refused array path clears, in the overlay reference.
+One file changes.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/skills/system-skilled-doctor/references/overlays.md
+The text below sits inside one long line. Replace only this text and leave the rest of the line as it is.
+OLD (this exact text appears once in the file):
+That refusal clears once the whole array reads the same as the pin's, so the overlay's own items must leave that array for the one `apply` that clears it.
+NEW:
+That refusal clears once the whole array reads the same as the pin's and the entry set adds no item to it. To clear it, take the entry set's operations on that array out, put the whole array back to the pin's by hand, run `apply`, then add the operations back.
+
+CHECK. Run:
+cd R && rg -c 'then add the operations back' .skilled/skills/system-skilled-doctor/references/overlays.md
+Expected: 1

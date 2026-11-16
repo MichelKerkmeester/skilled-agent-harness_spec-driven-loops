@@ -1,0 +1,8 @@
+tool_call: list_agents
+tool_call: bash
+final reason: completed
+1. cli-classifier, cli-claude-code, cli-codex, cli-cursor, cli-deepseek-harness, cli-devin, cli-external-orchestration, cli-jev, cli-mistral-vibe, cli-opencode, cli-orca, cli-pi, deep-research, deep-review, mcp-aside-devtools, mcp-chrome-devtools, mcp-click-up, mcp-code-mode, mcp-figma, mcp-mobbin, mcp-notion, mcp-obsidian, mcp-refero, mcp-tooling, sk-code, sk-code-ci, sk-code-frontend, sk-code-quality, sk-code-review, sk-code-skilled, sk-create-agent, sk-create-benchmark, sk-create-changelog, sk-create-command, sk-create-diff, sk-create-feature-catalog, sk-create-frontmatter, sk-create-goal, sk-create-manual-testing-playbook, sk-create-quality-control, sk-create-readme, sk-create-repo-rule, sk-create-skill, sk-create-with-human-voice, sk-design, sk-design-chart, sk-design-diagram, sk-design-md-generator, sk-doc, sk-git, sk-prompt, system-deep-loop, system-skill-advisor, system-skilled-doctor, system-spec-kit
+
+2. lead
+
+3. `ls -a` output: `.` `..` `.dsh` `.git` `.skilled` `.vibe` `README.md`

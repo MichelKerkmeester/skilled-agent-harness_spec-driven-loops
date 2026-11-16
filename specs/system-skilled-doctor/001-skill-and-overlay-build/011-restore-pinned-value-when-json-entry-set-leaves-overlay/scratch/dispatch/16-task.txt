@@ -1,0 +1,15 @@
+TASK: correct three sentences about recorded `set` operations in the overlay reference.
+One file changes.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/skills/system-skilled-doctor/references/overlays.md
+The text below sits inside one long line. Replace only this text and leave the rest of the line as it is.
+OLD (this exact text appears once in the file):
+A path through an array index is restored only while that array holds the same number of items in the live file and in the pin and the overlay adds no item to it. Otherwise `apply` refuses and says to restore the value by hand.
+NEW:
+A path through an array is restored only while that array holds the same number of items in the live file and in the pin and the overlay adds no item to it. A step into an array counts as an index however the entry set spells it. Otherwise `apply` refuses and says to restore the value by hand. That refusal clears once the whole array reads the same as the pin's, so the overlay's own items must leave that array for the one `apply` that clears it. A key the pin does not hold is deleted even when a person added it by hand before a `set` named it, because the record cannot tell the two apart.
+
+CHECK. Run:
+cd R && rg -c 'however the entry set spells it' .skilled/skills/system-skilled-doctor/references/overlays.md
+Expected: 1

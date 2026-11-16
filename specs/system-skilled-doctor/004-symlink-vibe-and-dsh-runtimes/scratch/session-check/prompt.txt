@@ -1,0 +1,5 @@
+Read-only task. Do not edit, create or delete any file. Do not run git.
+Answer in plain text with three numbered lines:
+1. The names of the skills you can see in this session, comma separated. If you see none, say none.
+2. The names of the agents or subagents you can see, comma separated. If you see none, say none.
+3. Run `ls -a` in the current directory and print the output.

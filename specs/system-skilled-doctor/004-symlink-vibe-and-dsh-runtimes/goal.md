@@ -53,9 +53,9 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `node --test .skilled/commands/doctor/scripts/tests` prints `fail 0` with the two new tests in the count.
-- [ ] `symlink-engine.cjs check --runtimes vibe,dsh` prints no `unknown runtime` line.
-- [ ] `rg -c 'vibe' .skilled/commands/doctor/symlink.md` prints a number above 0.
+- [x] `node --test .skilled/commands/doctor/scripts/tests` prints `fail 0` with the two new tests in the count.
+- [x] `symlink-engine.cjs check --runtimes vibe,dsh` prints no `unknown runtime` line.
+- [x] `rg -c 'vibe' .skilled/commands/doctor/symlink.md` prints a number above 0.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -75,6 +75,7 @@ and findings belong here.
 | Report checked against the manifest | Done | `symlink-engine.cjs check --runtimes vibe` printed `ERROR: unknown runtime: vibe`, and the same for `dsh` |
 | Spec, plan and tasks | Done | This folder |
 | Build | Pending | None yet |
+| Live session per runtime in a linked scratch project | Done | vibe 3.1.2 with --trust ended exit_code 0, outcome finished and listed 55 Skilled skills. dsh 0.2.2-rc.3 headless exited 0 with a final event of kind completed and listed 55 Skilled skills and the agent lead. Without --trust Vibe ignored the linked .vibe folder |
 
 ### Deviations and findings
 

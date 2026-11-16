@@ -1,0 +1,69 @@
+TASK: add three tests for the restore of a dropped `set` operation. All three fail until the next brief changes the engine.
+One file changes.
+
+R = /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake
+
+STEP 1 of 1. File: R/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Append the block below at the END of the file, after one blank line. Change nothing else in the file.
+
+BLOCK TO APPEND:
+// A path step into an array is an index however the entry set spells it.
+test('apply refuses a dropped set whose array index is written as a string', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([INSERT_X, { op: 'set', path: ['rows', '1', 'top'], value: 'v' }]);
+  seedState(fixture);
+  assert.deepEqual(readJson(fixture.livePath).rows.map((row) => row.top), ['x', 'v', 'b']);
+  const liveBefore = fixture.readLive();
+
+  fixture.writeOperations([INSERT_X]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 1, applied.output);
+  assert.match(applied.output, /cannot restore the dropped set at rows\.1\.top: its path goes through an array whose items differ from the pinned copy/);
+  assert.equal(fixture.readLive(), liveBefore);
+});
+
+test('a dropped set whose index fell off the array is refused until the array matches the pin', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_LIST);
+  fixture.writeOperations([INSERT_X, { op: 'set', path: ['rows', 2, 'top'], value: 'v' }]);
+  seedState(fixture);
+  assert.deepEqual(readJson(fixture.livePath).rows.map((row) => row.top), ['x', 'a', 'v']);
+  const liveBefore = fixture.readLive();
+
+  // Removing the inserted item would leave no index 2, with B still holding the value.
+  fixture.writeOperations([]);
+  const refused = fixture.run(['apply']);
+  assert.equal(refused.code, 1, refused.output);
+  assert.match(refused.output, /cannot restore the dropped set at rows\.2\.top/);
+  assert.equal(fixture.readLive(), liveBefore);
+
+  // Put right by hand, the array reads as the pin's and the record has nothing left to do.
+  fs.writeFileSync(fixture.livePath, fixture.seed);
+  const cleared = fixture.run(['apply']);
+  assert.equal(cleared.code, 0, cleared.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+  assert.deepEqual(fixture.recordedSets(), []);
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('two records for one path in an older state file restore from the last one', (t) => {
+  const fixture = createPinnedSetFixture(t, PINNED_ROWS);
+  fixture.writeOperations([{ op: 'set', path: TOP_PATH, value: 'sk-git' }]);
+  seedState(fixture);
+  const state = readJson(fixture.statePath);
+  state.sets['baseline.json'] = [
+    { path: TOP_PATH, value: 'sk-doc', added: false },
+    { path: TOP_PATH, value: 'sk-git', added: false },
+  ];
+  fs.writeFileSync(fixture.statePath, JSON.stringify(state, null, 2) + '\n');
+
+  fixture.writeOperations([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fixture.readLive(), fixture.seed);
+});
+
+CHECK. Run:
+cd R && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+Expected: the summary shows "pass 35" and "fail 3". The three failing tests are the three new ones. Those failures are wanted: the engine change comes in the next brief. Do not edit the engine and do not change a test to make it pass. Report the pass and fail counts. If any other test fails, report its name and output.

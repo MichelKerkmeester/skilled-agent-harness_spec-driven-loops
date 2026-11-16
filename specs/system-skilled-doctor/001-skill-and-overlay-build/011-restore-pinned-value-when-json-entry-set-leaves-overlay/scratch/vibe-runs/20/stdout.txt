@@ -1,0 +1,54 @@
+Both steps landed and the check produced exactly the expected shape.
+
+## 1. FILES CHANGED
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`
+
+Step 1 replaced the 13-line test at line 992 with the 17-line version (now at line 992). Step 2 appended the 13-line block after one blank line, ending at line 1039. File grew 1021 → 1039 lines. No other file touched by me; the other entries in `git status` are pre-existing uncommitted work from earlier dispatches in this session.
+
+## 2. COMMANDS
+
+**`grep -n "a dropped set is refused before any write" .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`** — exit 0
+```
+992:test('a dropped set is refused before any write when the same apply adds an item to its array', (t) => {
+```
+
+**`wc -l .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`** — exit 0
+```
+    1021 .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs
+```
+
+**`node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`** — exit 1
+```
+EXIT_STATUS=1
+ℹ tests 41
+ℹ pass 39
+ℹ fail 2
+```
+Last 15 lines of output:
+```
+  at TestContext.<anonymous> (.../overlay-engine-sync.test.cjs:1035:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+```
+
+The two failures are exactly the rewritten test (`:992`) and the added test (`:1027`), both on `assert.equal(applied.code, 0, applied.output)` with `1 !== 0`. The rewritten one reports `BLOCKED baseline-set: cannot apply the entry set to baseline.json: cannot restore the dropped set at rows.1.top: its path goes through an array whose items differ from the pinned copy`. No other test fails.
+
+**`git status --porcelain` / `git diff --stat`** — exit 0, confirming my edit is confined to the one file.
+
+**`git diff -- <file> | grep -E '^[+-]test\('`** — exit 0, showing only `+test(` lines (no `-test(`), because the old test was itself added by an earlier uncommitted dispatch and so never existed in HEAD.
+
+## 3. OPEN QUESTIONS
+
+none

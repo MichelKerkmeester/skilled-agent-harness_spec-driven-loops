@@ -1,0 +1,40 @@
+Both tests are in place and fail exactly as intended.
+
+**1. FILES CHANGED**
+
+- `/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` — 43 lines appended after one blank line at EOF; nothing else in the file touched.
+
+**2. COMMANDS**
+
+`cd /Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake && node --test .skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` — exit status **1** (expected: the two new tests fail by design).
+
+Summary counts: `tests 40`, `pass 38`, `fail 2`, `cancelled 0`, `skipped 0`, `todo 0`.
+
+Failing tests, both the new ones:
+- `a dropped set is refused before any write when the same apply adds an item to its array` — `AssertionError` at line 1003: live file contains the inserted `X` row, so `fixture.readLive()` differs from `fixture.seed`. The engine applied the insert instead of refusing before any write.
+- `a dropped set whose key was deleted by hand leaves quietly while the arrays line up` — `AssertionError` at line 1018: `1 !== 0`, with `BLOCKED baseline-set: cannot apply the entry set to baseline.json: cannot restore the dropped set at rows.0.extra: its path goes through an array whose items differ from the pinned copy; restore the value by hand`. The engine refuses instead of leaving quietly.
+
+Last 15 lines of that run:
+
+```
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/425-repin-engine-limits-intake/.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:1018:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+```
+
+`git status --porcelain` and `git diff --stat` — exit status 0. The working tree already carried modifications from earlier steps in this session (engine, other test files, packet docs); my diff on the named file is only the appended block, confirmed by reading the file tail and the diff tail.
+
+**3. OPEN QUESTIONS**
+
+None. The block matched the brief verbatim, all identifiers it uses (`createPinnedSetFixture`, `PINNED_LIST`, `INSERT_X`, `seedState`, `readJson`, `fixture.recordedSets`) already exist in the file, and the counts match the expected `pass 38` / `fail 2`.

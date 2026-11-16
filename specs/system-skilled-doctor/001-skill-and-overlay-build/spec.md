@@ -104,12 +104,12 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 4 | 004-guard-hook/ | The pre-write guard hook (REQ-013) | Complete |
 | 5 | 005-barter-parity/ | Adoption by a real vendoring project: per-entry protected-path refusal, `.dsh` and not-copied changes in a re-pin, adoption docs and routing, Barter's tree on the engine | Complete |
 | 6 | 006-setup-guide/ | A root `SETUP.md` that guides linking and copying with overlays, and a root README that points to it | Complete |
-| 7 | 007-doctor-ux-research/ | [Phase 7 scope] | Pending |
+| 7 | 007-doctor-ux-research/ | Five-iteration research on the overlay logic and the onboarding path for an external repository. `research/research.md` holds the ranked, code-checked list | Complete |
 | 8 | 008-overlay-first-write-checks/ | Opt-in write checks for a vendoring project: a strict `--guard` behind the manifest's `strictWrites`, `apply --adopt`, a `generated` list, a `pre-commit` check and a `root-file` line in the re-pin report | Complete |
 | 9 | 009-overlay-write-checks-follow-up/ | Follow-up from a vendoring project and a fresh review: lock takeover, link and item records, `apply --relayout`, `status --audit`, the stale root-file line, an OpenCode guard adapter and four strict-write corrections | Complete |
 | 10 | 010-fix-barter-repin-handover-items-for-overlay-engine/ | Six items from a vendoring project's re-pin: a link that became a folder, a rebased folder overlay, the stage result, a `set` on a key the new pin adds, generator-written files, the `vocabularyMirrors` host question and the history lookup package's build step | Complete |
 | 11 | 011-restore-pinned-value-when-json-entry-set-leaves-overlay/ | One item from the same vendoring project's second handover: a `set` operation removed from a `json-entry` overlay source left its value in the live file. `apply` now returns it to the pin's value | Complete |
-| 12 | 012-fix-barter-022-handover-items-for-doctor-scripts/ | Three items still open from the same vendoring project's first handover: a host hook form in the git setup check, `apply --adopt` under `repin.exclude` and a regenerate step named when it rewrites an owned file. Planned, not built | Pending |
+| 12 | 012-fix-barter-022-handover-items-for-doctor-scripts/ | Three items still open from the same vendoring project's first handover: a host hook form in the git setup check, `apply --adopt` under `repin.exclude` and a regenerate step named when it rewrites an owned file | Complete |
 
 ### Phase Transition Rules
 
