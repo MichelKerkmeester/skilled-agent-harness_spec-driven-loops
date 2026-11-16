@@ -1,0 +1,1282 @@
+{
+  "sessionId": "2026-11-16T10:21:46.673Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Phase 4 summary still reports the env-secret-guard README as unsigned off",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/implementation-summary.md",
+      "line": 59,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Packet-level completion criteria still describe four children and zero progress",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
+      "line": 59,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Canonical switch pointer lands on a missing anchor",
+      "file": ".skilled/hooks/injection-contract.md",
+      "line": 20,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Browsable tree omits the session-handover history engine",
+      "file": ".skilled/hooks/README.md",
+      "line": 251,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "Phase-4 README count no longer reproduces from its own command",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/spec.md",
+      "line": 184,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Phase 4 leaves its completion criteria unchecked while reporting Complete",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/tasks.md",
+      "line": 129,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 5,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Phase 4 summary still reports the env-secret-guard README as unsigned off",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/implementation-summary.md",
+      "line": 59,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Packet-level completion criteria still describe four children and zero progress",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
+      "line": 59,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Canonical switch pointer lands on a missing anchor",
+      "file": ".skilled/hooks/injection-contract.md",
+      "line": 20,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Browsable tree omits the session-handover history engine",
+      "file": ".skilled/hooks/README.md",
+      "line": 251,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "Phase-4 README count no longer reproduces from its own command",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/spec.md",
+      "line": 184,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Phase 4 summary still reports the env-secret-guard README as unsigned off",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/implementation-summary.md",
+      "line": 59,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Packet-level completion criteria still describe four children and zero progress",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
+      "line": 59,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Canonical switch pointer lands on a missing anchor",
+      "file": ".skilled/hooks/injection-contract.md",
+      "line": 20,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Browsable tree omits the session-handover history engine",
+      "file": ".skilled/hooks/README.md",
+      "line": 251,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "Phase-4 README count no longer reproduces from its own command",
+      "file": "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/spec.md",
+      "line": 184,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 6
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.83,
+  "graphConvergenceScore": 0.85,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 0,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.85
+  },
+  "candidateCoverage": {
+    "covered": [
+      "broken_cross_reference",
+      "checklist_evidence_gap",
+      "completion_metadata_drift",
+      "count_drift",
+      "documentation_drift",
+      "error_handling",
+      "stale_status_claim",
+      "state_transition"
+    ],
+    "ruledOut": [
+      "command_injection",
+      "comment_hygiene",
+      "documentation_structure_drift",
+      "error_handling",
+      "guard_bypass",
+      "path_resolution",
+      "secret_exposure",
+      "state_transition",
+      "supply_chain_ci",
+      "undocumented_convention",
+      "unsafe_file_write",
+      "unsupported_completion_claim"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "state_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "error_handling": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path_resolution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "guard_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unsafe_file_write": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "supply_chain_ci": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "stale_status_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "completion_metadata_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "unsupported_completion_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "count_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4,
+          5
+        ]
+      },
+      "broken_cross_reference": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      },
+      "documentation_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      },
+      "documentation_structure_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "undocumented_convention": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "checklist_evidence_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "comment_hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/install-codex-hooks.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "reconcile and dry-run branches keep args.check false, so the guard still refuses a linked worktree",
+      "evidenceRefs": [
+        ".skilled/bin/install-codex-hooks.mjs:324",
+        ".skilled/bin/install-codex-hooks.mjs:336-344"
+      ],
+      "reason": "bypass is scoped to the non-writing check path"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs"
+      ],
+      "bugClass": "error_handling",
+      "disposition": "ruled_out",
+      "rationale": "both adapters keep the warning on a non-zero exit",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts:59",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs:65-70"
+      ],
+      "reason": "suppression is gated on success in both runtimes"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"
+      ],
+      "bugClass": "path_resolution",
+      "disposition": "ruled_out",
+      "rationale": "both registration authorities pass from the current tree",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:1",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:1"
+      ],
+      "reason": "no dead registration or mirror"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/completion-evidence/pi/completion-evidence.ts",
+        ".skilled/hooks/goal/pi/goal-context.ts"
+      ],
+      "bugClass": "path_resolution",
+      "disposition": "ruled_out",
+      "rationale": "every inspected relative import resolves on disk",
+      "evidenceRefs": [
+        ".skilled/hooks/completion-evidence/pi/completion-evidence.ts:12",
+        ".skilled/hooks/shared/hook-flags.mjs:1"
+      ],
+      "reason": "no dangling specifier"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/goal/dsh/goal-manage.mjs",
+        ".skilled/hooks/cli-dispatch/cursor/dispatch-preflight-lint.mjs"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "Every reached production sink passes an argument vector, not a shell string.",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs:1208",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:251",
+        ".skilled/hooks/goal/dsh/goal-manage.mjs:47",
+        ".skilled/hooks/cli-dispatch/cursor/dispatch-preflight-lint.mjs:80"
+      ],
+      "reason": "all reached sinks pass argv arrays; no shell-string interpolation found"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/env-secret-guard/README.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "The in-scope README's owner-only claim is implemented by the cited modes.",
+      "evidenceRefs": [
+        ".skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs:111-112",
+        ".skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs:129",
+        ".skilled/hooks/env-secret-guard/README.md:220"
+      ],
+      "reason": "permission claim verified against the guard library"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/install-codex-hooks.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs"
+      ],
+      "bugClass": "guard_bypass",
+      "disposition": "ruled_out",
+      "rationale": "The bypass covers a read-only branch and quietOnSuccess only hides the pass line.",
+      "evidenceRefs": [
+        ".skilled/bin/install-codex-hooks.mjs:324",
+        ".skilled/bin/install-codex-hooks.mjs:336-344",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts:59",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs:65-67"
+      ],
+      "reason": "check path writes nothing and drift still exits 1"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/install-codex-hooks.mjs"
+      ],
+      "bugClass": "unsafe_file_write",
+      "disposition": "ruled_out",
+      "rationale": "A symlinked target is replaced rather than written through, both paths are same-user, and the backup precedes the write.",
+      "evidenceRefs": [
+        ".skilled/bin/install-codex-hooks.mjs:281-300",
+        ".skilled/bin/install-codex-hooks.mjs:367-378"
+      ],
+      "reason": "no trust boundary crosses the write path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/dispatch-enforcement-guard.yml",
+        ".github/workflows/opencode-dual-version.yml",
+        ".github/workflows/opencode-plugin-tests.yml",
+        ".github/workflows/spec-kit-check.yml"
+      ],
+      "bugClass": "supply_chain_ci",
+      "disposition": "ruled_out",
+      "rationale": "The four in-scope workflows hold the repository's pinned-action and least-privilege pattern.",
+      "evidenceRefs": [
+        ".github/workflows/opencode-plugin-tests.yml:66",
+        ".github/workflows/opencode-plugin-tests.yml:88",
+        ".github/workflows/dispatch-enforcement-guard.yml:10"
+      ],
+      "reason": "pinned actions, explicit permissions, no run-step event interpolation"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/tasks.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/tasks.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/tasks.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/tasks.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/tasks.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/tasks.md"
+      ],
+      "bugClass": "unsupported_completion_claim",
+      "disposition": "ruled_out",
+      "rationale": "Completion claims are backed by checked tasks and Met criteria across all six phases.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/tasks.md:165"
+      ],
+      "reason": "no unchecked implementation tasks and no non-Met acceptance rows; the one deferral documents itself"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch/README.md",
+        ".skilled/hooks/subagent-dispatch-guard/README.md",
+        ".skilled/hooks/completion-evidence/README.md",
+        ".skilled/hooks/session-handover/README.md"
+      ],
+      "bugClass": "documentation_structure_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/README.md:123",
+        ".skilled/hooks/completion-evidence/README.md:94"
+      ],
+      "reason": "All four sampled READMEs use the same section order and the same five-column runtime table."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/subagent-dispatch-guard/README.md"
+      ],
+      "bugClass": "undocumented_convention",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/hooks/README.md:79",
+        ".skilled/hooks/subagent-dispatch-guard/README.md:157"
+      ],
+      "reason": "The convention is documented once at the canonical index and echoed in the affected concern README."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch",
+        ".skilled/hooks/decision-capture",
+        ".skilled/hooks/completion-evidence",
+        ".skilled/hooks/subagent-dispatch-guard",
+        ".skilled/skills/cli-external-orchestration"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "Match vocabulary is the tooling's own task ids, not ephemeral packet labels.",
+      "evidenceRefs": [
+        ".skilled/hooks/goal/lib/goal-core.test.cjs:716"
+      ],
+      "reason": "No packet spec or phase id appears in the named code surfaces."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/install-codex-hooks.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "reconcile and dry-run branches keep args.check false, so the guard still refuses a linked worktree",
+      "evidenceRefs": [
+        ".skilled/bin/install-codex-hooks.mjs:324",
+        ".skilled/bin/install-codex-hooks.mjs:336-344"
+      ],
+      "proof": "bypass is scoped to the non-writing check path"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs"
+      ],
+      "bugClass": "error_handling",
+      "disposition": "ruled_out",
+      "rationale": "both adapters keep the warning on a non-zero exit",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts:59",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs:65-70"
+      ],
+      "proof": "suppression is gated on success in both runtimes"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"
+      ],
+      "bugClass": "path_resolution",
+      "disposition": "ruled_out",
+      "rationale": "both registration authorities pass from the current tree",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:1",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:1"
+      ],
+      "proof": "no dead registration or mirror"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/completion-evidence/pi/completion-evidence.ts",
+        ".skilled/hooks/goal/pi/goal-context.ts"
+      ],
+      "bugClass": "path_resolution",
+      "disposition": "ruled_out",
+      "rationale": "every inspected relative import resolves on disk",
+      "evidenceRefs": [
+        ".skilled/hooks/completion-evidence/pi/completion-evidence.ts:12",
+        ".skilled/hooks/shared/hook-flags.mjs:1"
+      ],
+      "proof": "no dangling specifier"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/goal/dsh/goal-manage.mjs",
+        ".skilled/hooks/cli-dispatch/cursor/dispatch-preflight-lint.mjs"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "Every reached production sink passes an argument vector, not a shell string.",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs:1208",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:251",
+        ".skilled/hooks/goal/dsh/goal-manage.mjs:47",
+        ".skilled/hooks/cli-dispatch/cursor/dispatch-preflight-lint.mjs:80"
+      ],
+      "proof": "all reached sinks pass argv arrays; no shell-string interpolation found"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/env-secret-guard/README.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "The in-scope README's owner-only claim is implemented by the cited modes.",
+      "evidenceRefs": [
+        ".skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs:111-112",
+        ".skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs:129",
+        ".skilled/hooks/env-secret-guard/README.md:220"
+      ],
+      "proof": "permission claim verified against the guard library"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/install-codex-hooks.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs"
+      ],
+      "bugClass": "guard_bypass",
+      "disposition": "ruled_out",
+      "rationale": "The bypass covers a read-only branch and quietOnSuccess only hides the pass line.",
+      "evidenceRefs": [
+        ".skilled/bin/install-codex-hooks.mjs:324",
+        ".skilled/bin/install-codex-hooks.mjs:336-344",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts:59",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs:65-67"
+      ],
+      "proof": "check path writes nothing and drift still exits 1"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/install-codex-hooks.mjs"
+      ],
+      "bugClass": "unsafe_file_write",
+      "disposition": "ruled_out",
+      "rationale": "A symlinked target is replaced rather than written through, both paths are same-user, and the backup precedes the write.",
+      "evidenceRefs": [
+        ".skilled/bin/install-codex-hooks.mjs:281-300",
+        ".skilled/bin/install-codex-hooks.mjs:367-378"
+      ],
+      "proof": "no trust boundary crosses the write path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/dispatch-enforcement-guard.yml",
+        ".github/workflows/opencode-dual-version.yml",
+        ".github/workflows/opencode-plugin-tests.yml",
+        ".github/workflows/spec-kit-check.yml"
+      ],
+      "bugClass": "supply_chain_ci",
+      "disposition": "ruled_out",
+      "rationale": "The four in-scope workflows hold the repository's pinned-action and least-privilege pattern.",
+      "evidenceRefs": [
+        ".github/workflows/opencode-plugin-tests.yml:66",
+        ".github/workflows/opencode-plugin-tests.yml:88",
+        ".github/workflows/dispatch-enforcement-guard.yml:10"
+      ],
+      "proof": "pinned actions, explicit permissions, no run-step event interpolation"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/tasks.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/tasks.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/tasks.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/tasks.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/tasks.md",
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/006-codex-check-and-advisory-fixes/tasks.md"
+      ],
+      "bugClass": "unsupported_completion_claim",
+      "disposition": "ruled_out",
+      "rationale": "Completion claims are backed by checked tasks and Met criteria across all six phases.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/tasks.md:165"
+      ],
+      "proof": "no unchecked implementation tasks and no non-Met acceptance rows; the one deferral documents itself"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch/README.md",
+        ".skilled/hooks/subagent-dispatch-guard/README.md",
+        ".skilled/hooks/completion-evidence/README.md",
+        ".skilled/hooks/session-handover/README.md"
+      ],
+      "bugClass": "documentation_structure_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/README.md:123",
+        ".skilled/hooks/completion-evidence/README.md:94"
+      ],
+      "proof": "All four sampled READMEs use the same section order and the same five-column runtime table."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/subagent-dispatch-guard/README.md"
+      ],
+      "bugClass": "undocumented_convention",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/hooks/README.md:79",
+        ".skilled/hooks/subagent-dispatch-guard/README.md:157"
+      ],
+      "proof": "The convention is documented once at the canonical index and echoed in the affected concern README."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch",
+        ".skilled/hooks/decision-capture",
+        ".skilled/hooks/completion-evidence",
+        ".skilled/hooks/subagent-dispatch-guard",
+        ".skilled/skills/cli-external-orchestration"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "Match vocabulary is the tooling's own task ids, not ephemeral packet labels.",
+      "evidenceRefs": [
+        ".skilled/hooks/goal/lib/goal-core.test.cjs:716"
+      ],
+      "proof": "No packet spec or phase id appears in the named code surfaces."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "stale_status_claim",
+      "completion_metadata_drift",
+      "broken_cross_reference",
+      "documentation_drift",
+      "count_drift",
+      "checklist_evidence_gap",
+      "comment_hygiene"
+    ],
+    "covered": [
+      "stale_status_claim",
+      "completion_metadata_drift",
+      "broken_cross_reference",
+      "documentation_drift",
+      "count_drift",
+      "checklist_evidence_gap"
+    ],
+    "ruledOut": [
+      "comment_hygiene"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/spec.md:131",
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/005-closeout-follow-up-fixes/implementation-summary.md:113",
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/spec.md:184",
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/implementation-summary.md:59"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "Phase 5 requirements REQ-001..005 carry recorded command evidence (actionlint NOT_APPLICABLE/RAN_CLEAN, 503/503 Vitest, 1888 node tests, empty dead-specifier search, both sync checks PASS); phase 4 SC-001's 105-vs-104 count and the line-59 unsigned claim keep the protocol partial."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/tasks.md:129",
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/tasks.md:130",
+          "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/tasks.md:165"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "All implementation tasks are checked; one documented P2 deferral (001 CHK-042) and two unchecked phase-4 completion criteria leave the protocol partial."
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code",
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

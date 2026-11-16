@@ -4,7 +4,7 @@
 // Run with the pinned binary, because `npx vitest` resolves a different copy:
 // .skilled/node_modules/.bin/vitest run .skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs
 
-import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { delimiter, dirname, join } from 'node:path';
@@ -896,6 +896,24 @@ describe('buildAuditLine', () => {
     expect(parsed.command).toContain('[REDACTED]');
   });
 
+  // A proxy or base URL carries its credentials in the userinfo part, with no keyword
+  // for the patterns above to anchor on.
+  it('scrubs the userinfo of a credential-bearing URL and keeps its scheme and host', () => {
+    const proxy = JSON.parse(buildAuditLine({ command: 'HTTPS_PROXY=http://alice:hunter2@proxy.local:8080 opencode run' }));
+    expect(proxy.command).not.toContain('hunter2');
+    expect(proxy.command).toContain('http://[REDACTED]@proxy.local:8080');
+
+    const baseUrl = JSON.parse(buildAuditLine({ command: 'pi -p --base-url https://ghs_tokenOnlyUser@api.example.com/v1' }));
+    expect(baseUrl.command).not.toContain('ghs_tokenOnlyUser');
+    expect(baseUrl.command).toContain('https://[REDACTED]@api.example.com/v1');
+  });
+
+  it('leaves a URL without userinfo and a bare address untouched', () => {
+    const command = 'opencode run "see https://example.com/a@b and mail ops@example.com"';
+    const parsed = JSON.parse(buildAuditLine({ command }));
+    expect(parsed.command).toBe(command);
+  });
+
   it('truncates an oversized target field before serialization', () => {
     const line = buildAuditLine({ command: 'x', target: 'y'.repeat(2000) });
     const parsed = JSON.parse(line);
@@ -924,6 +942,17 @@ describe('appendAuditLog', () => {
       const lines = readFileSync(logPath, 'utf8').split('\n').filter(Boolean);
       expect(lines.length).toBe(1);
       expect(() => JSON.parse(lines[0])).not.toThrow();
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('creates a new log readable by its owner only', () => {
+    const dir = makeScratchDir();
+    try {
+      const logPath = join(dir, 'audit.log');
+      expect(appendAuditLog(logPath, 'line')).toBe(true);
+      expect(statSync(logPath).mode & 0o777).toBe(0o600);
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }

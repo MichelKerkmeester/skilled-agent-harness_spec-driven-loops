@@ -14,19 +14,16 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 import { buildPostToolPart } from './compaction-context.mjs';
+import { isCliEntry } from '../../shared/cli-entry.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const IS_CLI_ENTRY = process.argv[1]
-  ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
-  : false;
+const IS_CLI_ENTRY = isCliEntry(import.meta.url);
 const HANDOVER_PART_URL = new URL(
   '../../session-handover/vibe/handover-parts.mjs',
   import.meta.url,

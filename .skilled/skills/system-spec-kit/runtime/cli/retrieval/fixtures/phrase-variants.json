@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f2eaa49f07fd6ebe3b0a12f9af2f216b3b1fc2662bf06ff3c870772f34bb140c",
+  "manifestHash": "38c0342116433cf57ed01df8ce91b23d168c084b4686d3fc20a25b4d293406b4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2333,6 +2333,9 @@
     "009 changelogs constitutional and templates implementation summary": [
       "009-changelogs-constitutional-and-templates implementation summary"
     ],
+    "009 claude user hook sync operator decisions": [
+      "009-claude-user-hook-sync operator decisions"
+    ],
     "009 cocoindex ipc fix": [
       "009 cocoindex IPC fix"
     ],
@@ -2729,6 +2732,9 @@
     "011 migration bridge": [
       "011 migration bridge"
     ],
+    "011 opencode pi handover parity operator decisions": [
+      "011-opencode-pi-handover-parity operator decisions"
+    ],
     "011 pi fast mode w subagent support": [
       "011-pi-fast-mode-w-subagent-support"
     ],
@@ -2929,6 +2935,9 @@
     ],
     "012 memory trust display": [
       "012 memory trust display"
+    ],
+    "012 opencode model carry operator decisions": [
+      "012-opencode-model-carry operator decisions"
     ],
     "012 outcome": [
       "012 outcome"

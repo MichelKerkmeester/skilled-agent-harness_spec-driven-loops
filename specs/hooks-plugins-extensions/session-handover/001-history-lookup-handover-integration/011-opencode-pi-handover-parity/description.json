@@ -19,7 +19,7 @@
     "fresh",
     "session"
   ],
-  "lastUpdated": "2026-11-16T06:31:00.812Z",
+  "lastUpdated": "2026-11-16T11:34:39.334Z",
   "specId": "011",
   "folderSlug": "opencode-pi-handover-parity",
   "parentChain": [
@@ -27,10 +27,11 @@
     "session-handover",
     "001-history-lookup-handover-integration"
   ],
-  "memorySequence": 3,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "16-11-26_07-13__baseline-live-hops-opencode-5-5-with-lookup.md",
     "16-11-26_07-20__all-fixes-landed-in-worktree-422-prepare-text.md",
-    "16-11-26_07-31__opencode-and-pi-hand-over-hops-now-recover-a.md"
+    "16-11-26_07-31__opencode-and-pi-hand-over-hops-now-recover-a.md",
+    "16-11-26_12-34__recorded-three-operator-answers-from-the-sending.md"
   ]
 }

@@ -8,24 +8,24 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/011-opencode-pi-handover-parity"
-    last_updated_at: "2026-11-16T06:31:00Z"
+    last_updated_at: "2026-11-16T11:34:39Z"
     last_updated_by: "generate-context"
-    recent_action: "Proved six live hops on Pi and OpenCode"
-    next_safe_action: "Run the sk-git commit and merge of worktree 422 once approved"
+    recent_action: "Recorded the research decisions and repaired the research citations"
+    next_safe_action: "None; phase 011 is merged and complete"
     packet_purpose: "Purpose: A hand-over hop on OpenCode or Pi finishes the sender's task, and the new session recovers any detail the note left out through the History Lookup."
     blockers: []
     key_files:
       - ".skilled/hooks/session-handover/lib/nudge.cjs"
       - ".skilled/hooks/session-handover/history/lib/core.ts"
     session_dedup:
-      fingerprint: "sha256:2de52b565ab08359d1089bfb1501982c2446d5640606d356743cdb6f916afaf0"
+      fingerprint: "sha256:7a491de423ea42b48625d95801c5490aad7afe4e2da683d587d6eb76e3bd4c33"
       session_id: "scaffold-011-opencode-pi-handover-parity"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "87e90d42-7a99-4147-b5e1-353501784430"
-      workspace: "/Users/michelkerkmeester/worktrees/public/422-opencode-pi-handover-parity"
-      savedAt: "2026-11-16T06:31:00Z"
+      sessionId: "ab672873-2f89-4541-9659-73a60e125e14"
+      workspace: "/Users/michelkerkmeester/worktrees/public/430-history-lookup-leftovers"
+      savedAt: "2026-11-16T11:34:39Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
