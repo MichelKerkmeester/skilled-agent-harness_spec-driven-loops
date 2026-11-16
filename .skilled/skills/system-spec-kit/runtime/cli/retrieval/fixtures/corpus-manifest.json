@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6a90727276f29045fdceae707c42ee2f8ee8118b96aec9165cb4f846e5c221ec",
+  "corpusHash": "aa42b075ca67f0b71c6f374ebcbca4e2334c30c6cbb80c6ffe315ec75db3aad4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27874,
+  "includedPathCount": 27877,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7032,9 +7032,12 @@
     ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/architecture-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/contributing-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/hook-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/install-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-folder-template.md",
+    ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-plugin-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/security-policy-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/skill-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.0.0.0.md",
@@ -27906,7 +27909,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2d546ceab9ffda7ab6258baf99b308504753a117fb85325142f8329acb83c7c0",
+  "manifestHash": "cc5e5f04cee1606e299c93c80c21d2b2d329161ba49524c80ae6200e401f4b22",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36410,6 +36413,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/lineages",
       "reason": "excluded directory"
     },
     {

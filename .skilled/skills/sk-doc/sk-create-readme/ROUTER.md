@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-readme routing"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,13 +20,16 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name a README, a folder readme, a code-folder readme or `/create:readme`, when they ask for developer orientation on a project, skill, feature, component or source-code directory, and when they ask for a repository's install guide, contributing guide or security policy. `create-skill` also hands its README step here.
+Requests reach this skill when they name a README, a folder readme, a code-folder readme or `/create:readme`, when they ask for developer orientation on a project, skill, feature, component or source-code directory, and when they ask for a repository's install guide, contributing guide or security policy. They also arrive when they ask for the README of a hook folder, a runtime plugin or extension folder, or a runtime folder and its `SYNC.md`. `create-skill` also hands its README step here.
 
-It routes to seven artifact templates under `assets/`:
+It routes to ten artifact templates under `assets/`:
 
 - `readme-template.md` for a repository front page or a general README.
 - `skill-readme-template.md` for a skill package README.
 - `readme-code-template.md` for a source-code folder.
+- `hook-readme-template.md` for a shared hook folder and its runtime adapter folders.
+- `runtime-plugin-readme-template.md` for a folder a runtime loads its hooks from, or a hook mirror.
+- `runtime-folder-template.md` for a runtime folder's README and its `SYNC.md`.
 - `architecture-template.md` for a skill package's `ARCHITECTURE.md`.
 - `install-template.md` for a repository install guide.
 - `contributing-template.md` for a repository contributing guide.
@@ -42,7 +45,7 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-- **`readme`** fires on `readme`, `readme for`, `folder readme`, `create readme`, `write readme`, `project readme`, `skill readme`, `install guide`, `contributing guide` and `security policy` at weight 4. It selects the template the target names: `assets/skill-readme-template.md` for a skill package, `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`, a root-guide template for an install guide, contributing guide or security policy, and `assets/readme-template.md` for everything else. It then loads the flat markdown inventory under `references/` and `assets/`.
+- **`readme`** fires on `readme`, `readme for`, `folder readme`, `create readme`, `write readme`, `project readme`, `skill readme`, `install guide`, `contributing guide`, `security policy`, `sync.md` and `sync doc for the` at weight 4. It selects the template the target names: `assets/skill-readme-template.md` for a skill package, `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`, a root-guide template for an install guide, contributing guide or security policy, `assets/hook-readme-template.md` for a hook folder, `assets/runtime-plugin-readme-template.md` for a plugin or extension folder, `assets/runtime-folder-template.md` for a runtime folder's README or `SYNC.md`, and `assets/readme-template.md` for everything else. It then loads the flat markdown inventory under `references/` and `assets/`.
 - **`code_readme`** fires on `code folder readme`, `source-code folder readme` and `source code readme` at weight 4. It selects `assets/readme-code-template.md` and loads the same flat inventory, with `references/readme/` carrying the extended code-folder voice and pattern detail.
 
 ---
@@ -62,6 +65,9 @@ Route by artifact type first, then by folder purpose.
 | Repository contributing guide | `CONTRIBUTING.md` at the repository root | `assets/contributing-template.md` |
 | Repository security policy | `SECURITY.md` at the repository root | `assets/security-policy-template.md` |
 | Source-code folder README | `README.md` in the source folder | `assets/readme-code-template.md` |
+| Hook folder README | `README.md` in a hook folder or one of its runtime folders | `assets/hook-readme-template.md` |
+| Runtime plugin or extension folder README | `README.md` in a folder a runtime loads its hooks from | `assets/runtime-plugin-readme-template.md` |
+| Runtime folder README or sync manifest | `README.md` or `SYNC.md` at the top of a runtime folder | `assets/runtime-folder-template.md` |
 | Skill package architecture document | `ARCHITECTURE.md` at the skill package root | `assets/architecture-template.md` |
 
 This packet uses simple artifact routing. It selects general README or code-folder README behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/` and `assets/`.
@@ -100,7 +106,7 @@ DEFAULT_RESOURCE = "references/README.md"
 
 # Two output artifacts; keywords come from this packet's activation triggers.
 INTENT_MODEL = {
-    "readme": {"weight": 4, "keywords": ["readme", "readme for", "folder readme", "create readme", "write readme", "project readme", "skill readme", "install guide", "contributing guide", "security policy"]},
+    "readme": {"weight": 4, "keywords": ["readme", "readme for", "folder readme", "create readme", "write readme", "project readme", "skill readme", "install guide", "contributing guide", "security policy", "sync.md", "sync doc for the"]},
     "code_readme": {"weight": 4, "keywords": ["code folder readme", "source-code folder readme", "source code readme"]},
 }
 UNKNOWN_FALLBACK_CHECKLIST = [

@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.4.10.0
+version: 2.4.11.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -127,6 +127,20 @@ emits leaf paths, and this router never re-decides the mode.
   policy templates, one intent each, for the guides that sit beside a
   repository's front page. Fired by "install guide", "contributing guide /
   contributing.md" and "security policy / security.md" requests.
+- **hook-readme leaves.** The readme README and the hook folder template a
+  request to write the README of a shared hook folder loads. Fired by "readme
+  for a new hook / readme for this hook" requests. No phrase is a bare "hook
+  readme", because "webhook readme" would contain it.
+- **runtime-plugin-readme leaves.** The readme README and the runtime plugin
+  template a request to write the README of a plugin, extension or hook mirror
+  folder loads. Fired by "plugins folder readme / readme for the extensions
+  folder / hook mirror readme" requests.
+- **runtime-folder leaves.** The readme README and the runtime folder template
+  a request to write a runtime folder's README or its `SYNC.md` loads. Fired by
+  "runtime folder readme / sync.md / sync doc for the"
+  requests. The three readme intents above score four times the base weight
+  for the reason the skill-readme intent does: their phrases also score the
+  readme-creation intent up to three times.
 - **changelog leaves** — the changelog template a request to author release notes
   / version notes loads. Fired by "changelog / release notes / what shipped /
   since the last version" requests.
@@ -197,6 +211,9 @@ INTENT_SIGNALS = {
     "INSTALL_GUIDE": {"weight": 4, "keywords": ["install guide"]},
     "CONTRIBUTING_GUIDE": {"weight": 4, "keywords": ["contributing guide", "contributing.md"]},
     "SECURITY_POLICY": {"weight": 4, "keywords": ["security policy", "security.md"]},
+    "HOOK_README": {"weight": 16, "keywords": ["readme for a new hook", "readme for a hook", "readme for the hook", "readme for this hook", "readme for my hook", "hook's readme"]},
+    "RUNTIME_PLUGIN_README": {"weight": 16, "keywords": ["plugins folder readme", "extensions folder readme", "readme for the plugins folder", "readme for the extensions folder", "readme for a plugin folder", "readme for an extension folder", "hook mirror readme"]},
+    "RUNTIME_FOLDER": {"weight": 16, "keywords": ["runtime folder readme", "readme for a runtime folder", "readme for the runtime folder", "sync.md", "sync doc for the"]},
     "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version", "changelog entry", "nested changelog", "packet changelog", "packet-local changelog", "create changelog", "global changelog", "vx.y.z.b", "/create:changelog"]},
     "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark", "benchmark-report.md", "source.md", "mcp-server/benchmarks", "behavior-benchmark.md", "scenario contract", "claude-baseline", "benchmark/readme.md", "run-label folder", "benchmark package", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture", "agent quality dimensions", "new benchmark", "promote benchmark folder", "create benchmark", "behavior_benchmark"]},
     "DIFF": {"weight": 4, "keywords": ["document diff", "doc diff", "diff document", "before and after diff", "before/after diff", "visual document diff", "create diff report", "document before after review", "before after document diff", "document change report", "before and after document", "document before/after review", "before/after document diff", "review document edits", "docx diff", "pdf diff", "before and after my rewrite"]},
@@ -280,6 +297,18 @@ RESOURCE_MAP = {
     ],
     "SECURITY_POLICY": [
         "sk-create-readme/assets/security-policy-template.md"
+    ],
+    "HOOK_README": [
+        "sk-create-readme/references/README.md",
+        "sk-create-readme/assets/hook-readme-template.md"
+    ],
+    "RUNTIME_PLUGIN_README": [
+        "sk-create-readme/references/README.md",
+        "sk-create-readme/assets/runtime-plugin-readme-template.md"
+    ],
+    "RUNTIME_FOLDER": [
+        "sk-create-readme/references/README.md",
+        "sk-create-readme/assets/runtime-folder-template.md"
     ],
     "CHANGELOG": [
         "sk-create-changelog/assets/changelog-template.md"
@@ -395,9 +424,12 @@ RESOURCE_MAP = {
         "sk-create-quality-control/references/workflows.md",
         "sk-create-readme/assets/architecture-template.md",
         "sk-create-readme/assets/contributing-template.md",
+        "sk-create-readme/assets/hook-readme-template.md",
         "sk-create-readme/assets/install-template.md",
         "sk-create-readme/assets/readme-code-template.md",
         "sk-create-readme/assets/readme-template.md",
+        "sk-create-readme/assets/runtime-folder-template.md",
+        "sk-create-readme/assets/runtime-plugin-readme-template.md",
         "sk-create-readme/assets/security-policy-template.md",
         "sk-create-readme/assets/skill-readme-template.md",
         "sk-create-readme/references/README.md",
@@ -481,7 +513,7 @@ The hub's detailed routing prose, moved here from `SKILL.md` so the skill body k
 
 Stage 2 of routing lives in section 3 of this file.
 It defines three things:
-- The per-intent leaf model: document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, the human-voice pass, playbooks, playbook conversations, feature catalogs, READMEs, skill READMEs, root guides, changelogs, benchmarks, diffs, frontmatter, packet goals, repo rules, and the explicit full-toolkit intent.
+- The per-intent leaf model: document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, the human-voice pass, playbooks, playbook conversations, feature catalogs, READMEs, skill READMEs, root guides, hook and runtime folder READMEs, changelogs, benchmarks, diffs, frontmatter, packet goals, repo rules, and the explicit full-toolkit intent.
 - The machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse.
 - The how-to-read rules: a dominant intent gives one leaf set, near-tied intents give a deduped union, and no keyword match gives the hub UNKNOWN fallback, never a silent default.
 
