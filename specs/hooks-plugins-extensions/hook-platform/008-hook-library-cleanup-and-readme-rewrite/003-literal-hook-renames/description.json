@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames",
+  "description": "A reader of `.skilled/hooks/` cannot tell `dispatch/` from `task-dispatch/` by name",
+  "keywords": [
+    "reader",
+    "skilled",
+    "hooks",
+    "cannot",
+    "tell",
+    "dispatch",
+    "task-dispatch",
+    "name"
+  ],
+  "lastUpdated": "2026-11-16T07:03:33.273Z",
+  "specId": "003",
+  "folderSlug": "literal-hook-renames",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "hook-platform",
+    "008-hook-library-cleanup-and-readme-rewrite"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "15-11-26_18-36__planned-phase-3-of-the-hook-library-cleanup-three.md",
+    "15-11-26_19-10__ran-phase-3-of-the-hook-library-cleanup-through.md",
+    "15-11-26_19-38__closed-phase-3-of-the-hook-library-cleanup-the.md"
+  ]
+}

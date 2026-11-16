@@ -1,0 +1,2 @@
+relocate: refused: specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/scratch/relocate-dry-run.txt: has uncommitted changes and would be rewritten
+relocate: nothing was written

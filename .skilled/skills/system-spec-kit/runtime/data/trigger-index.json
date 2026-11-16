@@ -1,5 +1,5 @@
 {
-  "manifestHash": "df138edb2c9dfb7fce2631b5e97a6b1ce8731e55006b47259121a6c02dff02b5",
+  "manifestHash": "509760cf6428679049f5520ef72743ab18976cff927ea6da8c82b7d541eb72f4",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -5882,38 +5882,38 @@
     "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/tasks.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/acceptance-criteria.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/decision-record.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/goal.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/implementation-summary.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/plan.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/spec.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/tasks.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/acceptance-criteria.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/goal.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/implementation-summary.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/plan.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/spec.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/tasks.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/acceptance-criteria.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/goal.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/implementation-summary.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/plan.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/spec.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/tasks.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/acceptance-criteria.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/decision-record.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/goal.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/implementation-summary.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/plan.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/spec.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/tasks.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/goal.md",
-    "specs/hooks-plugins-extensions/hook-platform/007-hook-library-cleanup-and-readme-rewrite/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/implementation-summary.md",
     "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/decision-record.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/001-dead-hook-file-removal/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/002-codex-hook-check-merge/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/003-literal-hook-renames/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/decision-record.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/plan.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/spec.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/004-hook-readme-fold-and-rewrite/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/goal.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/spec.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/implementation-summary.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/plan.md",
     "specs/hooks-plugins-extensions/pi-cache-optimizer/001-pi-caching-like-reasonix/001-research/spec.md",
@@ -19419,7 +19419,7 @@
       14934
     ],
     "001 dead hook file removal operator decisions": [
-      5873
+      5877
     ],
     "001 deep research operator decisions": [
       4945
@@ -20472,7 +20472,7 @@
       6835
     ],
     "004 hook readme fold and rewrite operator decisions": [
-      5892
+      5896
     ],
     "004 implementation summary": [
       13843
@@ -47828,22 +47828,22 @@
       12155
     ],
     "codex hook check merge": [
-      5883
+      5887
     ],
     "codex hook check merge acceptance criteria": [
-      5879
+      5883
     ],
     "codex hook check merge goal": [
-      5880
+      5884
     ],
     "codex hook check merge implementation summary": [
-      5881
+      5885
     ],
     "codex hook check merge plan": [
-      5882
+      5886
     ],
     "codex hook check merge tasks": [
-      5884
+      5888
     ],
     "codex hook cleanup": [
       12000
@@ -49928,7 +49928,7 @@
       5176,
       5418,
       5472,
-      5898,
+      5902,
       5995,
       6001,
       6007,
@@ -52362,7 +52362,7 @@
       9084
     ],
     "conversation scenario suffix rename": [
-      5902
+      5874
     ],
     "conversation scenario validator rules": [
       9005
@@ -55712,23 +55712,23 @@
       18524
     ],
     "dead hook file removal": [
-      5877,
-      5899
+      5881,
+      5903
     ],
     "dead hook file removal acceptance criteria": [
-      5872
-    ],
-    "dead hook file removal goal": [
-      5874
-    ],
-    "dead hook file removal implementation summary": [
-      5875
-    ],
-    "dead hook file removal plan": [
       5876
     ],
-    "dead hook file removal tasks": [
+    "dead hook file removal goal": [
       5878
+    ],
+    "dead hook file removal implementation summary": [
+      5879
+    ],
+    "dead hook file removal plan": [
+      5880
+    ],
+    "dead hook file removal tasks": [
+      5882
     ],
     "dead man switch ioc scan": [
       12378
@@ -67491,7 +67491,7 @@
       5176,
       5418,
       5472,
-      5898,
+      5902,
       5995,
       6001,
       6007,
@@ -78329,7 +78329,7 @@
       5176,
       5418,
       5472,
-      5898,
+      5902,
       5995,
       6001,
       6007,
@@ -82899,7 +82899,7 @@
       15838
     ],
     "hook hub index gap links and conversation scenario": [
-      5902
+      5874
     ],
     "hook injection contract": [
       113
@@ -82939,10 +82939,10 @@
       5604
     ],
     "hook library cleanup and readme rewrite": [
-      5899
+      5903
     ],
     "hook library cleanup phase parent spec": [
-      5899
+      5903
     ],
     "hook library rename": [
       5845
@@ -83024,25 +83024,25 @@
       2239
     ],
     "hook readme fold and rewrite": [
-      5896
+      5900
     ],
     "hook readme fold and rewrite acceptance criteria": [
-      5891
-    ],
-    "hook readme fold and rewrite goal": [
-      5893
-    ],
-    "hook readme fold and rewrite implementation summary": [
-      5894
-    ],
-    "hook readme fold and rewrite plan": [
       5895
     ],
-    "hook readme fold and rewrite tasks": [
+    "hook readme fold and rewrite goal": [
       5897
     ],
-    "hook readme rewrite": [
+    "hook readme fold and rewrite implementation summary": [
+      5898
+    ],
+    "hook readme fold and rewrite plan": [
       5899
+    ],
+    "hook readme fold and rewrite tasks": [
+      5901
+    ],
+    "hook readme rewrite": [
+      5903
     ],
     "hook references as routed leaves": [
       2124
@@ -83633,16 +83633,16 @@
       9485
     ],
     "hub index gap links": [
-      5902
+      5874
     ],
     "hub index gap links implementation summary": [
-      5900
+      5872
     ],
     "hub index gap links plan": [
-      5901
+      5873
     ],
     "hub index gap links tasks": [
-      5903
+      5875
     ],
     "hub intent vocabulary": [
       657
@@ -88703,10 +88703,10 @@
       16243
     ],
     "legacy git pre commit removal": [
-      5877
+      5881
     ],
     "legacy git pre commit removal plan": [
-      5876
+      5880
     ],
     "legacy goal migration": [
       569
@@ -89631,25 +89631,25 @@
       13814
     ],
     "literal hook folder names": [
-      5899
+      5903
     ],
     "literal hook renames": [
-      5889
+      5893
     ],
     "literal hook renames acceptance criteria": [
-      5885
+      5889
     ],
     "literal hook renames goal": [
-      5886
+      5890
     ],
     "literal hook renames implementation summary": [
-      5887
+      5891
     ],
     "literal hook renames plan": [
-      5888
+      5892
     ],
     "literal hook renames tasks": [
-      5890
+      5894
     ],
     "literal naming": [
       13084,
@@ -104876,7 +104876,7 @@
       5176,
       5418,
       5472,
-      5898,
+      5902,
       5995,
       6001,
       6007,
@@ -107391,7 +107391,7 @@
       19172
     ],
     "phase 1 dead hook file removal": [
-      5877
+      5881
     ],
     "phase 1 deep research": [
       4778,
@@ -108295,7 +108295,7 @@
       8799
     ],
     "phase 2 codex hook check merge": [
-      5883
+      5887
     ],
     "phase 2 command inventory and risk metadata": [
       12110
@@ -108885,7 +108885,7 @@
       11690
     ],
     "phase 3 literal hook renames": [
-      5889
+      5893
     ],
     "phase 3 manual claim live settings": [
       6410
@@ -109170,7 +109170,7 @@
       12276
     ],
     "phase 4 hook readme fold and rewrite": [
-      5896
+      5900
     ],
     "phase 4 hook stdin deadline": [
       7300
@@ -156201,7 +156201,7 @@
       1487
     ],
     "typescript hook flags facade removal": [
-      5877
+      5881
     ],
     "typescript import ordering": [
       1486
@@ -159341,7 +159341,7 @@
       112
     ],
     "vibe guard browsability symlink": [
-      5902
+      5874
     ],
     "vibe guard porting": [
       445
