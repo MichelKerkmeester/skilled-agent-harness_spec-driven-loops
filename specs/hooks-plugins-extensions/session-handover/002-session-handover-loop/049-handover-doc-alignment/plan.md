@@ -1,10 +1,10 @@
 ---
 title: "Implementation Plan: Hand-over doc alignment: fix the 58 findings of the doc alignment run and add vibe to the loop shell shim"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "DeepSeek V4.1 Flash at max fixes the findings in small literal briefs run one at a time inside the worktree, a fresh Opus medium agent reviews every changed line against the code, and DeepSeek applies what the review confirms."
 trigger_phrases:
   - "handover doc alignment plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
 # Implementation Plan: Hand-over doc alignment: fix the 58 findings of the doc alignment run and add vibe to the loop shell shim
@@ -15,81 +15,70 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | Markdown docs, a bash and zsh shell shim, Node test runner |
+| **Framework** | Session hand-over loop (`skilled-loop`, per-runtime adapters) |
+| **Storage** | None |
+| **Testing** | `node --test` hand-over and shim suites, drift guards, mirror checks |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The findings come from one `/local-doc-alignment session-handover` run. The 13 in the READMEs worktree 411 rewrites go to that session. The rest go to DeepSeek V4.1 Flash at max in five briefs, run one at a time through the alignment lane runner inside worktree 424, each naming its allowed files and the code to check first. A fresh Opus medium agent then reviews the result.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-handover/tests/*.test.cjs` prints `fail 0`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Report, fix, review: a findings report drives literal fix briefs, and an independent model reviews the fixes against the code.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **Findings report**: `~/.local/state/local-doc-alignment/Skilled/20261116T053904Z/findings.json`, 58 findings.
+- **Fix briefs**: G0 for the shim, G1 to G4 by doc area, G5 for the review fixes, each run by `run-lanes.cjs --lanes <id>` with the `opencode-go` preset.
+- **Review**: a fresh Opus medium agent with the diffs, the code roots and the findings, and no conclusions.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+findings.json → split by overlap with 411 → G0 to G4 briefs → DeepSeek edits in 424 → Opus review → G5 brief → final checks.
 <!-- /ANCHOR:architecture -->
 
 ---
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
-<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `scripts/rotate-logs.sh`: owns the deletion. Action: update. WEAK: Various files. -->
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| `.skilled/bin/skilled-loop-shell.sh` | Starts a plain runtime launch under the loop | update: wrap `vibe` | shim suite 37 of 37, and the suite fails with vibe removed |
+| `.skilled/bin/skilled-loop` | Relaunch wrapper, already handles `vibe` | unchanged | its `vibe)` case and flag tables at lines 630 to 647 and 694 |
+| Hand-over docs outside 411's rewrite | Describe the loop to readers | update | Opus review against the code at HEAD |
+| Seven hook READMEs 411 rewrote | Describe the loop to readers | not changed here, sent to 411 | 411 reported 10 already fixed, 2 fixed in `0af73b5d4d5`, 1 folded into this pass |
 <!-- /ANCHOR:affected-surfaces -->
-
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 <!-- /ANCHOR:phases -->
@@ -98,44 +87,38 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
-| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
-| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
+| Unit | Shim resolver, pass-through lists and launch function | `node --test skilled-loop-shell.test.cjs`, plus a mutation run with vibe removed |
+| Integration | Hand-over loop suites and the OpenCode plugin suite on the merged tree | `node --test` with `AI_SESSION_CHILD` cleared |
+| Manual | Every changed doc line against the code | Fresh Opus medium review |
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
+| Worktree 411 rewrite of the hook READMEs | Internal | Green: merged as `0c6cd13ab0e` and `0af73b5d4d5` | Its 13 findings would stay open |
+| OpenCode Go DeepSeek V4.1 Flash | External | Green | No fix executor |
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
-- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+- **Trigger**: A merged doc or the shim proves wrong in use.
+- **Procedure**: Revert the merge commit of `worktrees/424-handover-doc-alignment` on main. The shim change is one commit, `f3a2624d047`, and reverts on its own.
 <!-- /ANCHOR:rollback -->
-
----
-
 
 ---
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
 
 ```
 Setup ──► Implementation ──► Verification
@@ -143,10 +126,7 @@ Setup ──► Implementation ──► Verification
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| [YOUR_VALUE_HERE: Phase A] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase B] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase C] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
+| Setup: report, split, worktree | The doc alignment run | Implementation |
+| Implementation: G0 to G4, review, G5 | Setup | Verification |
+| Verification: suites, validation | Implementation | Merge to main |
 <!-- /ANCHOR:phase-deps -->
-
----
-

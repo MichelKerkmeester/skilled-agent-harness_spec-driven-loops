@@ -1,24 +1,35 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The hand-over docs now match the loop the code runs, and a plain vibe launch runs under skilled-loop like the other runtimes."
 trigger_phrases:
   - "handover doc alignment implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/049-handover-doc-alignment"
-    last_updated_at: "2026-11-16T07:07:40Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment"
+    last_updated_at: "2026-11-16T09:23:10Z"
+    last_updated_by: "generate-context"
+    recent_action: "Applied the review fixes and closed the packet"
+    next_safe_action: "Await operator approval to merge worktree 424"
+    packet_purpose: "Purpose: Every finding is fixed in the doc that states it, or handed to worktree 411 where that worktree rewrites the doc."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/bin/skilled-loop-shell.sh"
+      - ".skilled/hooks/session-handover/tests/skilled-loop-shell.test.cjs"
+      - ".skilled/hooks/injection-contract.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e63e057fe01b8629ffaa4a7fced6a11cbc4cfa5990960d466db0536cf65f9b70"
       session_id: "scaffold-049-handover-doc-alignment"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "b726ec67-1d85-4833-b219-c038e184d696"
+      workspace: "/Users/michelkerkmeester/worktrees/public/424-handover-doc-alignment"
+      savedAt: "2026-11-16T09:23:10Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +43,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,62 +55,67 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The hand-over docs now describe the loop the code runs. Vibe reads as an automatic, history-ready runtime everywhere, history lookup is offered at claim and never at compaction, and the playbook suites run in an agent session. A plain `vibe` launch in a shell that sources the shim now runs under the loop like the other five runtimes.
 
-### Hand-over doc alignment: fix the 58 findings of the doc alignment run and add vibe to the loop shell shim
+### Hand-over doc alignment
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+A `/local-doc-alignment session-handover` run checked 83 docs against the code and found 58 statements that no longer held. DeepSeek V4.1 Flash at max fixed the 45 outside worktree 411's rewrite, after reading the cited code for each, and worktree 411 resolved the other 13 in its own rewrite. A fresh Opus medium review caught one wrong Vibe nudge statement and four smaller gaps, which DeepSeek then fixed.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/bin/skilled-loop-shell.sh` | Modified | Wrap `vibe` |
+| `.skilled/hooks/session-handover/tests/skilled-loop-shell.test.cjs` | Modified | Vibe interactive and pass-through cases |
+| System-spec-kit playbook, catalog, README and ENV-REFERENCE | Modified | Vibe, history lookup, test commands, counts |
+| cli-mistral-vibe reference and hook scenarios | Modified | The typed hand-over arms inside the loop |
+| Hook, runtime and plugin READMEs, `injection-contract.md`, `coverage-rationale.md`, `speckit/handoff.md`, root README | Modified | Runtime lists, flags, events and session-id rules |
+| `hop-recall.sh` harness | Modified | The history CLI's current build path |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Built in worktree `worktrees/424-handover-doc-alignment`. Six DeepSeek briefs ran one at a time through the alignment lane runner, each limited to named files. Worktree 411 merged first and renamed the hook adapters, so the first chain stopped after the shim brief, main was merged in, and the doc briefs were rewritten to find each statement by its text. A second merge hit one version-line conflict, resolved to `1.3.9.0` as the operator chose.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Send the findings in 411's rewritten READMEs to that session | The operator chose it, so the two worktrees never conflict |
+| Count only READMEs with 44 or more changed lines as 411's | Most of 411's touches were 2 to 11 line path renames, which merge line by line |
+| Add vibe to the shim instead of changing the docs | The operator chose it after the check showed the omission had no recorded reason |
+| Stop the first chain and rebase the briefs on main | 411's merge renamed files the briefs cited, which would have produced stale fixes |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Hand-over suites (`node --test tests/*.test.cjs`, `AI_SESSION_CHILD` cleared) | PASS: 1041 of 1041 |
+| OpenCode plugin suite | PASS: 75 of 75 |
+| Shim suite and mutation run | PASS: 37 of 37; removing vibe fails the bash and zsh vibe cases |
+| Drift guards, hook registrations, runtime mirrors | PASS: 4 of 4 guards, both syncs in step |
+| Opus medium review | 1 P1 and 4 P2, all fixed; every other change confirmed against the code |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Nine docs never had a full lane review.** The lane that held the env reference, the spec-kit SKILL.md and the root README timed out twice at 30 minutes. The critic still found four issues there, all fixed. Run `/local-doc-alignment session-handover` with more lanes to cover them.
+2. **The Codex, Pi and OpenCode test sandboxes still read `AI_SESSION_CHILD`.** The playbooks now give the working command with the variable cleared. The sandboxes themselves are unchanged.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

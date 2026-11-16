@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment",
   "description": "Hand-over doc alignment: fix the 58 findings of the doc alignment run and add vibe to the loop shell shim",
   "keywords": [
@@ -12,7 +13,7 @@
     "shell",
     "shim"
   ],
-  "lastUpdated": "2026-11-16T07:07:40.285Z",
+  "lastUpdated": "2026-11-16T09:23:10.352Z",
   "specId": "049",
   "folderSlug": "handover-doc-alignment",
   "parentChain": [
@@ -20,7 +21,8 @@
     "session-handover",
     "002-session-handover-loop"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-11-26_10-23__fixed-the-hand-over-doc-findings-of-the-doc.md"
+  ]
 }

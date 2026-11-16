@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/049-handover-doc-alignment"
+    packet_pointer: "hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment"
     last_updated_at: "2026-11-16T07:07:40Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -35,11 +35,10 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
+**Packet:** 049-handover-doc-alignment
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-11-16
 <!-- /ANCHOR:metadata -->
 
@@ -47,13 +46,16 @@ _memory:
 
 <!-- ANCHOR:criteria -->
 ## 2. CRITERIA
-<!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--keep 3` runs, Then `ls logs/archive | wc -l` prints 3. WEAK: The feature works. -->
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the 45 findings outside 411's rewrite, When the fix briefs ran, Then each is fixed or left with a reason the code confirms | G1 to G4 lanes `ok`, 26 files changed; L1-14 and L3-16 true after the shim change and C7 already fixed on main, all three confirmed by the Opus review (`lib/README.md:29`, `handoff.md:196`, `system-spec-kit/README.md:92`) | Met | - |
+| AC-002 | REQ-002 | Given a shell that sources the shim, When `vibe` opens a session, Then it runs under skilled-loop, and a non-session vibe command runs directly | `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-handover/tests/skilled-loop-shell.test.cjs` prints `pass 37`, `fail 0`; with vibe removed from the resolver the bash and zsh vibe cases fail | Met | - |
+| AC-003 | REQ-003 | Given 13 findings in READMEs 411 rewrote, When they were sent to that session, Then each is resolved | 411 reported 10 already fixed on `0c6cd13ab0e`, 2 fixed in `0af73b5d4d5` on origin/main, and the shim list folded into this pass as S1 to S3 | Met | - |
+| AC-004 | REQ-004 | Given the full change, When a fresh Opus medium agent reviewed it against the code, Then no P0 or P1 remains | Review found 1 P1 and 4 P2, all applied in `cdfcfd079f1` with the text the review quoted | Met | - |
+| AC-005 | REQ-005 | Given the worktree diff against main, When it is listed, Then only scoped files change | `git diff --stat origin/main...HEAD` lists the shim, its suite, the hand-over docs, the harness and this packet | Met | - |
 
 ### Status values
 
@@ -77,9 +79,8 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
-<!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Every criterion is Met with observed evidence.
 <!-- /ANCHOR:closure -->
