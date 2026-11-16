@@ -237,30 +237,64 @@ function readJsonLines(filePath) {
 // 7. PATHS
 // ─────────────────────────────────────────────────────────────────────────────
 
+const checkoutRoots = new Map();
 const canonicalRoots = new Map();
 
-function canonicalRoot(dir) {
+function gitOutput(cwd, args) {
+  const env = { ...process.env };
+  delete env.GIT_DIR;
+  delete env.GIT_WORK_TREE;
+  return execFileSync('git', ['-c', 'core.fsmonitor=false', ...args], {
+    cwd,
+    env,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+    timeout: 5000,
+  }).trim();
+}
+
+// The working tree that holds dir: its Git top level, or its real path outside Git.
+function checkoutRoot(dir) {
   const input = String(dir);
-  if (canonicalRoots.has(input)) return canonicalRoots.get(input);
+  if (checkoutRoots.has(input)) return checkoutRoots.get(input);
 
   let root;
   try {
-    const env = { ...process.env };
-    delete env.GIT_DIR;
-    delete env.GIT_WORK_TREE;
-    root = realpathSync(execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', '--show-toplevel'], {
-      cwd: input,
-      env,
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-      timeout: 5000,
-    }).trim());
+    root = realpathSync(gitOutput(input, ['rev-parse', '--show-toplevel']));
   } catch {
     try {
       root = realpathSync(input);
     } catch {
       root = resolve(input);
     }
+  }
+
+  checkoutRoots.set(input, root);
+  return root;
+}
+
+// A session's hook queues answers where the session started, while its save may
+// run in a linked worktree, so a worktree shares its primary checkout's state. The
+// first `git worktree list` entry is the primary checkout. A submodule shares no
+// common dir and a bare repository has no working tree, so both keep their own root.
+function primaryCheckout(dir) {
+  const [gitDir, commonDir] = gitOutput(dir, ['rev-parse', '--path-format=absolute', '--git-dir', '--git-common-dir']).split('\n');
+  if (!gitDir || !commonDir || realpathSync(gitDir) === realpathSync(commonDir)) return null;
+  const first = gitOutput(dir, ['worktree', 'list', '--porcelain']).split('\n\n')[0].split('\n');
+  if (first.includes('bare')) return null;
+  const line = first.find((entry) => entry.startsWith('worktree '));
+  return line ? realpathSync(line.slice('worktree '.length)) : null;
+}
+
+function canonicalRoot(dir) {
+  const input = String(dir);
+  if (canonicalRoots.has(input)) return canonicalRoots.get(input);
+
+  let root = checkoutRoot(input);
+  try {
+    root = primaryCheckout(input) ?? root;
+  } catch {
+    // Outside Git the checkout root already stands.
   }
 
   canonicalRoots.set(input, root);
@@ -278,6 +312,14 @@ export function queueDir(projectDir) {
 
 function legacyDir(projectDir) {
   return join(canonicalRoot(projectDir), QUEUE_RELATIVE_DIR);
+}
+
+// A linked worktree kept its own state folder before it shared the primary
+// checkout's. Reads still include that folder so answers queued there are found.
+function worktreeDir(projectDir) {
+  const local = checkoutRoot(projectDir);
+  if (local === canonicalRoot(projectDir)) return null;
+  return join(local, QUEUE_RELATIVE_DIR, createHash('sha256').update(local).digest('hex').slice(0, 12));
 }
 
 export function queueFile(projectDir, sessionId) {
@@ -377,6 +419,7 @@ export function readQueue(projectDir, sessionId) {
   const records = [
     ...readJsonLines(join(queueDir(projectDir), fileName)),
     ...readJsonLines(join(legacyDir(projectDir), fileName)),
+    ...(worktreeDir(projectDir) ? readJsonLines(join(worktreeDir(projectDir), fileName)) : []),
   ];
   const keys = new Set();
   return records.filter((record) => {
@@ -393,7 +436,7 @@ export function readQueue(projectDir, sessionId) {
 // already wrote without the queue growing a second record per answer.
 export function readConsumedKeys(projectDir) {
   const keys = new Set();
-  for (const directory of [queueDir(projectDir), legacyDir(projectDir)]) {
+  for (const directory of [queueDir(projectDir), legacyDir(projectDir), worktreeDir(projectDir)].filter(Boolean)) {
     for (const row of readJsonLines(join(directory, CONSUMED_FILE))) {
       const key = textOf(row.key);
       if (key) keys.add(key);

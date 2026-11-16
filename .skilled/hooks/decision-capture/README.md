@@ -23,7 +23,7 @@ Two producers feed the queue: a live adapter and a save-time sweep. A runtime ad
 
 The core is `lib/capture-core.mjs`. It normalizes a payload, deduplicates by key and appends under a lock. `lib/chat-questions.mjs` handles questions asked in plain chat, where no tool result exists.
 
-The queue lives under `.skilled/skills/.state/decision-capture` at the nearest Git root. The concern key is `decision-capture`. Its switch is `SYSTEM_DECISION_CAPTURE_DISABLED`, and `SYSTEM_HOOKS_DISABLED=1` is the master switch.
+The queue lives under `.skilled/skills/.state/decision-capture` at the nearest Git root. A linked worktree shares its primary checkout's queue. The concern key is `decision-capture`. Its switch is `SYSTEM_DECISION_CAPTURE_DISABLED`, and `SYSTEM_HOOKS_DISABLED=1` is the master switch.
 
 ---
 
